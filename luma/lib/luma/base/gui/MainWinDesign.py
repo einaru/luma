@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'MainWinDesign.ui'
 #
-# Created: Sun Nov 9 17:37:14 2003
+# Created: Sat Nov 15 02:04:03 2003
 #      by: The PyQt User Interface Compiler (pyuic) 3.7
 #
 # WARNING! All changes made in this file will be lost!
@@ -1529,7 +1529,7 @@ class MainWinDesign(QMainWindow):
         self.menu_configure_plugins.setText(self.__tr("Configure Plugins"))
         self.reload.setText(self.__tr("Reload Plugins"))
         self.select_language.setText(self.__tr("Language"))
-        self.menubar.findItem(0).setText(self.__tr("Programm"))
+        self.menubar.findItem(0).setText(self.__tr("Program"))
         self.menubar.findItem(1).setText(self.__tr("Settings"))
         self.menubar.findItem(2).setText(self.__tr("Help"))
 

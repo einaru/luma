@@ -150,7 +150,7 @@
     <property name="name">
         <cstring>menubar</cstring>
     </property>
-    <item text="Programm" name="PopupMenu_3">
+    <item text="Program" name="PopupMenu_3">
         <action name="reload"/>
         <separator/>
         <action name="exitItem"/>
