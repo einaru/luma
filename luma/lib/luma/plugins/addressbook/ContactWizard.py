@@ -22,6 +22,7 @@ from plugins.addressbook.AddressbookWidget import AddressbookWidget
 from base.backend.LumaConnection import LumaConnection
 from base.utils import lumaStringDecode, lumaStringEncode
 from time import strftime
+from base.utils.backend.ObjectClassAttributeInfo import ObjectClassAttributeInfo
 
 
 class ContactWizard(ContactWizardDesign):
@@ -150,7 +151,7 @@ class ContactWizard(ContactWizardDesign):
 
     def getAllowedAttributes(self):
         objectClassList = ['person', 'organizationalPerson', 'inetOrgPerson', 'evolutionPerson']
-        metaInfo = environment.getServerMeta(self.locationServer)
+        metaInfo = ObjectClassAttributeInfo(self.locationServer)
         
         self.availableClasses = []
         for x in objectClassList:

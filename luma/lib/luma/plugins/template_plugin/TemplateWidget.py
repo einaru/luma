@@ -22,6 +22,7 @@ from plugins.template_plugin.AddObjectClassDialog import AddObjectClassDialog
 from plugins.template_plugin.AddAttributeDialog import AddAttributeDialog
 from plugins.template_plugin.ClassDeleteDialog import ClassDeleteDialog
 import environment
+from base.utils.backend.ObjectClassAttributeInfo import ObjectClassAttributeInfo
 
 
 class TemplateWidget(TemplateWidgetDesign):
@@ -98,7 +99,7 @@ class TemplateWidget(TemplateWidgetDesign):
 ###############################################################################
 
     def loadServerMeta(self, serverName):
-        self.preloadedServerMeta[serverName] = environment.getServerMeta(serverName)
+        self.preloadedServerMeta[serverName] = ObjectClassAttributeInfo(serverName)
     
 ###############################################################################
 

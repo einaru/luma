@@ -16,6 +16,7 @@ import environment
 from base.backend.ServerObject import ServerObject
 from base.backend.ServerList import ServerList
 from base.utils.backend.templateutils import *
+from base.utils.backend.ObjectClassAttributeInfo import ObjectClassAttributeInfo
 
 
 class OClassDialog(OClassDialogDesign):
@@ -100,7 +101,7 @@ class OClassDialog(OClassDialogDesign):
 
     def server_selected(self, serverName):
         self.classBox.clear()
-        self.objectInfo = environment.getServerMeta(str(serverName))
+        self.objectInfo = ObjectClassAttributeInfo(str(serverName))
 
         tmpList = self.objectInfo.objectClassesDict.keys()
         tmpList.sort()
