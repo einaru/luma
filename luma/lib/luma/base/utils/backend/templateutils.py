@@ -77,7 +77,7 @@ class LdapTemplate(object):
         for x in self.attributes.keys():
             attributeObject = self.attributes[x]
             if attributeObject.defaultValue == None:
-                dataObject[attributeObject.attributeName] = ['']
+                dataObject[attributeObject.attributeName] = [None]
             else:
                 dataObject[attributeObject.attributeName] = [attributeObject.defaultValue.encode("utf-8")]
             
