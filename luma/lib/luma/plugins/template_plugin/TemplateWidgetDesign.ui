@@ -8,14 +8,14 @@
         <rect>
             <x>0</x>
             <y>0</y>
-            <width>673</width>
-            <height>552</height>
+            <width>647</width>
+            <height>557</height>
         </rect>
     </property>
     <property name="caption">
         <string>Form1</string>
     </property>
-    <hbox>
+    <vbox>
         <property name="name">
             <cstring>unnamed</cstring>
         </property>
@@ -24,7 +24,7 @@
         </property>
         <widget class="QSplitter">
             <property name="name">
-                <cstring>splitter6</cstring>
+                <cstring>splitter2</cstring>
             </property>
             <property name="orientation">
                 <enum>Horizontal</enum>
@@ -304,7 +304,7 @@
                             <widget class="QListView" row="1" column="1" rowspan="3" colspan="1">
                                 <column>
                                     <property name="text">
-                                        <string>Objectclass</string>
+                                        <string>Name</string>
                                     </property>
                                     <property name="clickable">
                                         <bool>true</bool>
@@ -331,7 +331,7 @@
                                     </size>
                                 </property>
                                 <property name="resizeMode">
-                                    <enum>AllColumns</enum>
+                                    <enum>LastColumn</enum>
                                 </property>
                             </widget>
                             <widget class="QLabel" row="0" column="0" rowspan="1" colspan="2">
@@ -393,7 +393,18 @@
                                 </column>
                                 <column>
                                     <property name="text">
-                                        <string>Show</string>
+                                        <string>Single</string>
+                                    </property>
+                                    <property name="clickable">
+                                        <bool>true</bool>
+                                    </property>
+                                    <property name="resizable">
+                                        <bool>true</bool>
+                                    </property>
+                                </column>
+                                <column>
+                                    <property name="text">
+                                        <string>Binary</string>
                                     </property>
                                     <property name="clickable">
                                         <bool>true</bool>
@@ -415,6 +426,9 @@
                                 </column>
                                 <property name="name">
                                     <cstring>attributeView</cstring>
+                                </property>
+                                <property name="allColumnsShowFocus">
+                                    <bool>true</bool>
                                 </property>
                                 <property name="resizeMode">
                                     <enum>LastColumn</enum>
@@ -491,7 +505,7 @@
                 </vbox>
             </widget>
         </widget>
-    </hbox>
+    </vbox>
 </widget>
 <connections>
     <connection>
@@ -536,6 +550,12 @@
         <receiver>TemplateWidgetDesign</receiver>
         <slot>editAttribute()</slot>
     </connection>
+    <connection>
+        <sender>saveTemplateButton</sender>
+        <signal>clicked()</signal>
+        <receiver>TemplateWidgetDesign</receiver>
+        <slot>saveTemplates()</slot>
+    </connection>
 </connections>
 <tabstops>
     <tabstop>templateView</tabstop>
@@ -560,6 +580,7 @@
     <slot>deleteObjectClass()</slot>
     <slot>deleteAttribute()</slot>
     <slot>editAttribute()</slot>
+    <slot>saveTemplates()</slot>
 </slots>
 <layoutdefaults spacing="6" margin="11"/>
 </UI>
