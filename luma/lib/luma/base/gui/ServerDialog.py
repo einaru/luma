@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 ###########################################################################
 #    Copyright (C) 2003 by Wido Depping                                      
 #    <wido.depping@tu-clausthal.de>                                                             
@@ -142,11 +144,11 @@ class ServerDialog(ServerDialogDesign):
         self.serverListObject.addServer(str(self.nameLineEdit.text()),
                 str(self.hostLineEdit.text()),
                 str(self.portSpinBox.value()),
-                str(self.bindAnonBox.isChecked()),
+                int(self.bindAnonBox.isChecked()),
                 str(self.baseLineEdit.text()),
                 str(self.bindLineEdit.text()),
                 str(self.passwordLineEdit.text()),
-                str(self.tlsCheckBox.isChecked()))
+                int(self.tlsCheckBox.isChecked()))
         self.reloadServer()
         
 ###############################################################################
