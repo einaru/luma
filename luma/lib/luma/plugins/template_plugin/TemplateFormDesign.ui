@@ -1,4 +1,4 @@
-<!DOCTYPE UI><UI version="3.2" stdsetdef="1">
+<!DOCTYPE UI><UI version="3.3" stdsetdef="1">
 <class>TemplateFormDesign</class>
 <comment>###########################################################################
 #    Copyright (C) 2003 by Wido Depping                                      
@@ -266,6 +266,12 @@
         <receiver>TemplateFormDesign</receiver>
         <slot>save_template()</slot>
     </connection>
+    <connection>
+        <sender>infoView</sender>
+        <signal>doubleClicked(QListViewItem*)</signal>
+        <receiver>TemplateFormDesign</receiver>
+        <slot>toggleShow()</slot>
+    </connection>
 </connections>
 <slots>
     <slot>add_template()</slot>
@@ -274,6 +280,7 @@
     <slot>edit_classes()</slot>
     <slot>edit_attributes()</slot>
     <slot>save_template()</slot>
+    <slot>toggleShow()</slot>
 </slots>
 <layoutdefaults spacing="6" margin="11"/>
 </UI>

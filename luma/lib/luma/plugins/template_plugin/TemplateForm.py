@@ -44,7 +44,7 @@ class TemplateForm(TemplateFormDesign):
         if templateText.isEmpty():
             return
         else:
-            templateText = str(templateText)
+            templateText = unicode(templateText)
         templateList = self.get_template_list()
         if templateText in templateList:
             QMessageBox.warning(self, self.trUtf8("Add Template"), self.trUtf8("Template name already exists!"))
@@ -61,7 +61,7 @@ class TemplateForm(TemplateFormDesign):
     def delete_template(self):
         if self.templateView.selectedItem() == None:
             return
-        itemText = str(self.templateView.selectedItem().text(0))
+        itemText = unicode(self.templateView.selectedItem().text(0))
         position = self.tplFile.tplList.index(self.tplFile.get_templateobject(itemText))
         del self.tplFile.tplList[position]
         self.tplFile.save_to_file()
@@ -82,7 +82,7 @@ class TemplateForm(TemplateFormDesign):
 
         nameList = []
         for x in tmpList:
-            nameList.append(str(x.text(0)))
+            nameList.append(unicode(x.text(0)))
         return nameList
 
 ###############################################################################
@@ -91,7 +91,7 @@ class TemplateForm(TemplateFormDesign):
         self.infoView.clear()
         if self.templateView.selectedItem() == None:
             return
-        curItem = str(self.templateView.selectedItem().text(0))
+        curItem = unicode(self.templateView.selectedItem().text(0))
         if reloadView:
             self.tplFile = TemplateFile()
         
@@ -126,7 +126,7 @@ class TemplateForm(TemplateFormDesign):
         dialog.classView.clear()
         if self.templateView.selectedItem() == None:
             return
-        curItem = str(self.templateView.selectedItem().text(0))
+        curItem = unicode(self.templateView.selectedItem().text(0))
         position = None
         for x in self.tplFile.tplList:
             if x.name == curItem:
@@ -154,8 +154,30 @@ class TemplateForm(TemplateFormDesign):
     def save_template(self):
         self.tplFile.save_to_file()
 
+###############################################################################
+
+    def toggleShow(self, tmpItem):
+        """ Will be implemented in the next release.
+        """
+        
+        return
+        if self.templateView.selectedItem() == None:
+            return
+            
+        type = unicode(tmpItem.text(0))
+        name = unicode(tmpItem.text(1))
 
 
+        currentTemplate = unicode(self.templateView.selectedItem().text(0))
+        
+        x = self.tplFile.get_templateobject(currentTemplate)
+        if x == None:
+            return
+            
+        tmpDict = x.get_attributeinfos()
+        if type == "attribute":
+            tmpDict[name]['SHOW'] = not tmpDict[name]['SHOW']
+            self.update_view()
 
 
 

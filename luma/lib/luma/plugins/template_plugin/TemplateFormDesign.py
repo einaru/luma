@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file '/home/wido/src/luma/lib/luma/plugins/template_plugin/TemplateFormDesign.ui'
 #
-# Created: Mon Apr 26 16:00:27 2004
+# Created: Wed May 12 20:36:15 2004
 #      by: The PyQt User Interface Compiler (pyuic) 3.11
 #
 # WARNING! All changes made in this file will be lost!
@@ -89,6 +89,7 @@ class TemplateFormDesign(QWidget):
         self.connect(self.templateView,SIGNAL("selectionChanged()"),self.update_view)
         self.connect(self.classButton,SIGNAL("clicked()"),self.edit_classes)
         self.connect(self.saveButton,SIGNAL("clicked()"),self.save_template)
+        self.connect(self.infoView,SIGNAL("doubleClicked(QListViewItem*)"),self.toggleShow)
 
 
     def languageChange(self):
@@ -128,6 +129,9 @@ class TemplateFormDesign(QWidget):
 
     def save_template(self):
         print "TemplateFormDesign.save_template(): Not implemented yet"
+
+    def toggleShow(self):
+        print "TemplateFormDesign.toggleShow(): Not implemented yet"
 
     def __tr(self,s,c = None):
         return qApp.translate("TemplateFormDesign",s,c)
