@@ -39,7 +39,7 @@ class Usermanagement(QWidget):
     
         self.entryView = UsermanagementWidget(self.splitter)
         self.connect (self.entryList, PYSIGNAL("ldap_result"), self.entryView.initView)
-        #self.connect (self.entryList, PYSIGNAL("about_to_change"), self.entryView.aboutToChange)
+        self.connect (self.entryList, PYSIGNAL("about_to_change"), self.entryView.aboutToChange)
         self.connect(self.entryList, PYSIGNAL("server_changed"), self.entryView.serverChanged)
         self.connect(self.entryList, PYSIGNAL("add_entry"), self.addEntry)
         self.mainLayout.addWidget(self.splitter)
