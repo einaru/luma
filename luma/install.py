@@ -48,7 +48,7 @@ def doImportCheck():
         import mx.DateTime
         print "\tGood: Egenix mx package installed."
     except ImportError:
-        print """\n\tERROR: Egenix mx package not installed!!!
+        print """\n\tWARNING: Egenix mx package not installed!!!
 \tYou can get the module here: http://www.egenix.com/
 \tNOTE: This package is only needed for the "Massive User Creation"- and the
 \t"Admin Utilities"-Plugin.
