@@ -2,8 +2,8 @@
 
 # Form implementation generated from reading ui file '/home/wido/src/luma/lib/luma/base/gui/BaseSelectorDesign.ui'
 #
-# Created: Tue Feb 3 23:58:05 2004
-#      by: The PyQt User Interface Compiler (pyuic) 3.10
+# Created: Thu Mar 25 00:32:41 2004
+#      by: The PyQt User Interface Compiler (pyuic) 3.11
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -25,36 +25,34 @@ class BaseSelectorDesign(QDialog):
         self.textLabel1 = QLabel(self,"textLabel1")
         self.textLabel1.setSizePolicy(QSizePolicy(1,4,0,0,self.textLabel1.sizePolicy().hasHeightForWidth()))
 
-        BaseSelectorDesignLayout.addWidget(self.textLabel1,0,0)
+        BaseSelectorDesignLayout.addMultiCellWidget(self.textLabel1,0,0,0,3)
 
         self.dnBox = QComboBox(0,self,"dnBox")
 
-        BaseSelectorDesignLayout.addWidget(self.dnBox,1,0)
-        spacer = QSpacerItem(21,16,QSizePolicy.Minimum,QSizePolicy.Expanding)
-        BaseSelectorDesignLayout.addItem(spacer,2,0)
-
-        layout2 = QHBoxLayout(None,0,6,"layout2")
-        spacer_2 = QSpacerItem(60,21,QSizePolicy.Expanding,QSizePolicy.Minimum)
-        layout2.addItem(spacer_2)
+        BaseSelectorDesignLayout.addMultiCellWidget(self.dnBox,1,1,0,3)
+        spacer2 = QSpacerItem(21,16,QSizePolicy.Minimum,QSizePolicy.Expanding)
+        BaseSelectorDesignLayout.addItem(spacer2,2,1)
 
         self.cancelButton = QPushButton(self,"cancelButton")
-        layout2.addWidget(self.cancelButton)
+
+        BaseSelectorDesignLayout.addWidget(self.cancelButton,4,3)
 
         self.okButton = QPushButton(self,"okButton")
-        layout2.addWidget(self.okButton)
 
-        BaseSelectorDesignLayout.addLayout(layout2,4,0)
+        BaseSelectorDesignLayout.addWidget(self.okButton,4,2)
+        spacer1 = QSpacerItem(140,21,QSizePolicy.Expanding,QSizePolicy.Minimum)
+        BaseSelectorDesignLayout.addItem(spacer1,4,0)
 
         self.line1 = QFrame(self,"line1")
         self.line1.setFrameShape(QFrame.HLine)
         self.line1.setFrameShadow(QFrame.Sunken)
         self.line1.setFrameShape(QFrame.HLine)
 
-        BaseSelectorDesignLayout.addWidget(self.line1,3,0)
+        BaseSelectorDesignLayout.addMultiCellWidget(self.line1,3,3,0,3)
 
         self.languageChange()
 
-        self.resize(QSize(353,129).expandedTo(self.minimumSizeHint()))
+        self.resize(QSize(300,131).expandedTo(self.minimumSizeHint()))
         self.clearWState(Qt.WState_Polished)
 
         self.connect(self.cancelButton,SIGNAL("clicked()"),self,SLOT("reject()"))

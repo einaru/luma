@@ -1,4 +1,4 @@
-<!DOCTYPE UI><UI version="3.2" stdsetdef="1">
+<!DOCTYPE UI><UI version="3.3" stdsetdef="1">
 <class>LanguageDialogDesign</class>
 <comment>###########################################################################
 #    Copyright (C) 2003 by Wido Depping                                      
@@ -17,8 +17,8 @@
         <rect>
             <x>0</x>
             <y>0</y>
-            <width>327</width>
-            <height>118</height>
+            <width>329</width>
+            <height>132</height>
         </rect>
     </property>
     <property name="caption">
@@ -76,7 +76,7 @@
                 </size>
             </property>
         </spacer>
-        <widget class="QPushButton" row="3" column="2">
+        <widget class="QPushButton" row="3" column="1">
             <property name="name">
                 <cstring>okButton</cstring>
             </property>
@@ -87,7 +87,7 @@
                 <string>Alt+O</string>
             </property>
         </widget>
-        <widget class="QPushButton" row="3" column="1">
+        <widget class="QPushButton" row="3" column="2">
             <property name="name">
                 <cstring>cancelButton</cstring>
             </property>
