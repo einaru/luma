@@ -63,10 +63,12 @@ class BrowserWidget(QListView):
             tmpItem = QListViewItem(self, x.name)
             if x.tls == 1:
                 tmpItem.setPixmap(0, QPixmap(tmpIconFile))
+            tmpItem.setExpandable(True)
             self.insertItem(tmpItem)
-            tmpBase = QListViewItem(tmpItem, x.baseDN)
-            tmpBase.setExpandable(1)
-            tmpItem.insertItem(tmpBase)
+            #for base in LumaConnection(x).getBaseDNList():
+            #    tmpBase = QListViewItem(tmpItem, base)
+            #    tmpBase.setExpandable(1)
+            #    tmpItem.insertItem(tmpBase)
 
             
         # different menus for right click
@@ -139,24 +141,38 @@ class BrowserWidget(QListView):
         
         self.blockSignals(True)
         
-        fullPath = self.getFullPath(item)
-        results = self.getLdapItemChildren(fullPath, 0, ['dn'])
+        if item.parent():
+            fullPath = self.getFullPath(item)
+            results = self.getLdapItemChildren(fullPath, 0, ['dn'])
         
-        if results == None:
-            self.blockSignals(False)
-            return None
-            item.setExpandable(0)
-        if len(results) == 0:
-            self.blockSignals(False)
-            item.setExpandable(0)
-            return None
+            if results == None:
+                self.blockSignals(False)
+                item.setExpandable(0)
+                return None
+            if len(results) == 0:
+                self.blockSignals(False)
+                item.setExpandable(0)
+                return None
     
-        for x in results:
-            tmp = x[0].decode('utf-8')
-            tmp = string.split(tmp, ",")
-            tmpItem = QListViewItem(item, tmp[0])
-            tmpItem.setExpandable(1)
-            item.insertItem(tmpItem)
+            for x in results:
+                tmp = x[0].decode('utf-8')
+                tmp = string.split(tmp, ",")
+                tmpItem = QListViewItem(item, tmp[0])
+                tmpItem.setExpandable(1)
+                item.insertItem(tmpItem)
+        else:
+            serverList = ServerList()
+            serverList.readServerList()
+            serverMeta = serverList.getServerObject(self.getFullPath(item))
+            tmpList = None
+            if serverMeta.autoBase:
+                tmpList = LumaConnection(serverMeta).getBaseDNList()
+            else:
+                tmpList = serverMeta.baseDN
+                
+            for base in tmpList:
+                tmpBase = QListViewItem(item, base)
+                tmpBase.setExpandable(1)
 
         self.blockSignals(False)
             
@@ -170,9 +186,6 @@ class BrowserWidget(QListView):
         
         fullPath = self.getFullPath(item)
         serverName, ldapObject = self.splitPath(fullPath)
-        if len(ldapObject) == 0:
-            self.blockSignals(False)
-            return None
         while item.childCount() > 0:
             item.takeItem(item.firstChild())
             

@@ -16,8 +16,8 @@
     <property name="geometry">
         <rect>
             <x>0</x>
-            <y>1</y>
-            <width>609</width>
+            <y>0</y>
+            <width>641</width>
             <height>118</height>
         </rect>
     </property>
@@ -55,22 +55,6 @@
                 <property name="name">
                     <cstring>unnamed</cstring>
                 </property>
-                <widget class="QComboBox" row="1" column="1" rowspan="1" colspan="3">
-                    <property name="name">
-                        <cstring>searchEdit</cstring>
-                    </property>
-                    <property name="sizePolicy">
-                        <sizepolicy>
-                            <hsizetype>7</hsizetype>
-                            <vsizetype>0</vsizetype>
-                            <horstretch>0</horstretch>
-                            <verstretch>0</verstretch>
-                        </sizepolicy>
-                    </property>
-                    <property name="editable">
-                        <bool>true</bool>
-                    </property>
-                </widget>
                 <widget class="QLabel" row="1" column="0">
                     <property name="name">
                         <cstring>textLabel6</cstring>
@@ -85,11 +69,6 @@
                     </property>
                     <property name="text">
                         <string>Filter:</string>
-                    </property>
-                </widget>
-                <widget class="QComboBox" row="0" column="1">
-                    <property name="name">
-                        <cstring>serverBox</cstring>
                     </property>
                 </widget>
                 <widget class="QLabel" row="0" column="0">
@@ -108,7 +87,7 @@
                         <string>Server:</string>
                     </property>
                 </widget>
-                <widget class="QPushButton" row="0" column="2">
+                <widget class="QPushButton" row="0" column="4">
                     <property name="name">
                         <cstring>filterWizardButton</cstring>
                     </property>
@@ -127,7 +106,7 @@
                         <string>Alt+F</string>
                     </property>
                 </widget>
-                <widget class="QPushButton" row="0" column="3">
+                <widget class="QPushButton" row="0" column="5">
                     <property name="name">
                         <cstring>startButton</cstring>
                     </property>
@@ -144,6 +123,48 @@
                     </property>
                     <property name="accel">
                         <string>Alt+S</string>
+                    </property>
+                </widget>
+                <widget class="QComboBox" row="1" column="1" rowspan="1" colspan="5">
+                    <property name="name">
+                        <cstring>searchEdit</cstring>
+                    </property>
+                    <property name="sizePolicy">
+                        <sizepolicy>
+                            <hsizetype>7</hsizetype>
+                            <vsizetype>0</vsizetype>
+                            <horstretch>0</horstretch>
+                            <verstretch>0</verstretch>
+                        </sizepolicy>
+                    </property>
+                    <property name="editable">
+                        <bool>true</bool>
+                    </property>
+                </widget>
+                <widget class="QComboBox" row="0" column="1">
+                    <property name="name">
+                        <cstring>serverBox</cstring>
+                    </property>
+                </widget>
+                <widget class="QComboBox" row="0" column="3">
+                    <property name="name">
+                        <cstring>baseBox</cstring>
+                    </property>
+                </widget>
+                <widget class="QLabel" row="0" column="2">
+                    <property name="name">
+                        <cstring>textLabel1</cstring>
+                    </property>
+                    <property name="sizePolicy">
+                        <sizepolicy>
+                            <hsizetype>0</hsizetype>
+                            <vsizetype>5</vsizetype>
+                            <horstretch>0</horstretch>
+                            <verstretch>0</verstretch>
+                        </sizepolicy>
+                    </property>
+                    <property name="text">
+                        <string>Base DN:</string>
                     </property>
                 </widget>
             </grid>
@@ -163,10 +184,17 @@
         <receiver>SearchFormDesign</receiver>
         <slot>startSearch()</slot>
     </connection>
+    <connection>
+        <sender>serverBox</sender>
+        <signal>activated(const QString&amp;)</signal>
+        <receiver>SearchFormDesign</receiver>
+        <slot>serverChanged()</slot>
+    </connection>
 </connections>
 <slots>
     <slot>startFilterWizard()</slot>
     <slot>startSearch()</slot>
+    <slot>serverChanged()</slot>
 </slots>
 <layoutdefaults spacing="6" margin="11"/>
 </UI>

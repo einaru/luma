@@ -44,7 +44,7 @@ class GroupDialog(GroupDialogDesign):
         connectionObject = LumaConnection(self.SERVERMETA)
         connectionObject.bind()
         
-        results = connectionObject.search(self.SERVERMETA.baseDN, ldap.SCOPE_SUBTREE, 
+        results = connectionObject.search(self.SERVERMETA.currentBase, ldap.SCOPE_SUBTREE, 
                 "objectClass=posixGroup", )
                 
         connectionObject.unbind()

@@ -212,7 +212,7 @@ class UsermanagementWidget(UsermanagementWidgetDesign):
             connectionObject = LumaConnection(self.SERVERMETA)
             connectionObject.bind()
             filter = "(&(objectClass=posixGroup)(gidNumber=" + self.CURRENTDATA['gidNumber'][0] + "))"
-            result = connectionObject.search(self.SERVERMETA.baseDN, 
+            result = connectionObject.search(self.SERVERMETA.currentBase, 
                         ldap.SCOPE_SUBTREE, filter)
             
             if result == None:
@@ -513,7 +513,7 @@ Please read console output for more information."""),
     def retrieveUserIDs(self):
         connectionObject = LumaConnection(self.SERVERMETA)
         connectionObject.bind()
-        results = connectionObject.search(self.SERVERMETA.baseDN, ldap.SCOPE_SUBTREE,
+        results = connectionObject.search(self.SERVERMETA.currentBase, ldap.SCOPE_SUBTREE,
                 "(&(objectClass=*)(uidNumber=*))", ["uidNumber"], 0)
         connectionObject.unbind()
                 

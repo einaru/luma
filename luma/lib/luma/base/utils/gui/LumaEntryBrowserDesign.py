@@ -2,8 +2,8 @@
 
 # Form implementation generated from reading ui file '/home/wido/src/luma/lib/luma/base/utils/gui/LumaEntryBrowserDesign.ui'
 #
-# Created: Sun Aug 29 00:49:13 2004
-#      by: The PyQt User Interface Compiler (pyuic) 3.12
+# Created: Wed Dec 1 15:52:30 2004
+#      by: The PyQt User Interface Compiler (pyuic) 3.13
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -24,25 +24,33 @@ class LumaEntryBrowserDesign(QWidget):
 
         self.goButton = QPushButton(self,"goButton")
 
-        LumaEntryBrowserDesignLayout.addWidget(self.goButton,1,3)
-
-        self.searchEdit = QLineEdit(self,"searchEdit")
-
-        LumaEntryBrowserDesignLayout.addWidget(self.searchEdit,1,2)
+        LumaEntryBrowserDesignLayout.addWidget(self.goButton,2,2)
 
         self.textLabel13 = QLabel(self,"textLabel13")
         self.textLabel13.setFrameShape(QLabel.NoFrame)
         self.textLabel13.setFrameShadow(QLabel.Plain)
 
-        LumaEntryBrowserDesignLayout.addMultiCellWidget(self.textLabel13,1,1,0,1)
+        LumaEntryBrowserDesignLayout.addWidget(self.textLabel13,2,0)
 
         self.serverBox = QComboBox(0,self,"serverBox")
 
-        LumaEntryBrowserDesignLayout.addMultiCellWidget(self.serverBox,0,0,2,3)
+        LumaEntryBrowserDesignLayout.addMultiCellWidget(self.serverBox,0,0,1,2)
 
         self.textLabel12 = QLabel(self,"textLabel12")
 
-        LumaEntryBrowserDesignLayout.addMultiCellWidget(self.textLabel12,0,0,0,1)
+        LumaEntryBrowserDesignLayout.addWidget(self.textLabel12,0,0)
+
+        self.textLabel1 = QLabel(self,"textLabel1")
+
+        LumaEntryBrowserDesignLayout.addWidget(self.textLabel1,1,0)
+
+        self.baseBox = QComboBox(0,self,"baseBox")
+
+        LumaEntryBrowserDesignLayout.addMultiCellWidget(self.baseBox,1,1,1,2)
+
+        self.searchEdit = QLineEdit(self,"searchEdit")
+
+        LumaEntryBrowserDesignLayout.addWidget(self.searchEdit,2,1)
 
         layout1 = QHBoxLayout(None,0,6,"layout1")
         spacer5 = QSpacerItem(150,21,QSizePolicy.Expanding,QSizePolicy.Minimum)
@@ -56,7 +64,7 @@ class LumaEntryBrowserDesign(QWidget):
         self.deleteButton.setSizePolicy(QSizePolicy(0,0,0,0,self.deleteButton.sizePolicy().hasHeightForWidth()))
         layout1.addWidget(self.deleteButton)
 
-        LumaEntryBrowserDesignLayout.addMultiCellLayout(layout1,5,5,0,3)
+        LumaEntryBrowserDesignLayout.addMultiCellLayout(layout1,6,6,0,2)
 
         self.widgetStack = QWidgetStack(self,"widgetStack")
 
@@ -73,42 +81,45 @@ class LumaEntryBrowserDesign(QWidget):
         self.widgetStack.addWidget(self.WStackPage,0)
 
         self.WStackPage_2 = QWidget(self.widgetStack,"WStackPage_2")
-        WStackPageLayout_2 = QVBoxLayout(self.WStackPage_2,0,0,"WStackPageLayout_2")
+        WStackPageLayout_2 = QVBoxLayout(self.WStackPage_2,0,6,"WStackPageLayout_2")
 
         self.itemListView = QListView(self.WStackPage_2,"itemListView")
         self.itemListView.addColumn(self.__tr("Object"))
+        self.itemListView.setMargin(0)
         self.itemListView.setResizeMode(QListView.LastColumn)
         WStackPageLayout_2.addWidget(self.itemListView)
         self.widgetStack.addWidget(self.WStackPage_2,1)
 
-        LumaEntryBrowserDesignLayout.addMultiCellWidget(self.widgetStack,4,4,0,3)
-        spacer2 = QSpacerItem(260,31,QSizePolicy.Expanding,QSizePolicy.Minimum)
-        LumaEntryBrowserDesignLayout.addMultiCell(spacer2,3,3,2,3)
-
-        self.iconViewButton = QToolButton(self,"iconViewButton")
-        self.iconViewButton.setSizePolicy(QSizePolicy(0,0,0,0,self.iconViewButton.sizePolicy().hasHeightForWidth()))
-        self.iconViewButton.setMinimumSize(QSize(24,24))
-        self.iconViewButton.setAutoRaise(1)
-
-        LumaEntryBrowserDesignLayout.addWidget(self.iconViewButton,3,1)
-
-        self.listViewButton = QToolButton(self,"listViewButton")
-        self.listViewButton.setSizePolicy(QSizePolicy(0,0,0,0,self.listViewButton.sizePolicy().hasHeightForWidth()))
-        self.listViewButton.setMinimumSize(QSize(24,0))
-        self.listViewButton.setAutoRaise(1)
-
-        LumaEntryBrowserDesignLayout.addWidget(self.listViewButton,3,0)
+        LumaEntryBrowserDesignLayout.addMultiCellWidget(self.widgetStack,5,5,0,2)
 
         self.line1 = QFrame(self,"line1")
         self.line1.setFrameShape(QFrame.HLine)
         self.line1.setFrameShadow(QFrame.Sunken)
         self.line1.setFrameShape(QFrame.HLine)
 
-        LumaEntryBrowserDesignLayout.addMultiCellWidget(self.line1,2,2,0,3)
+        LumaEntryBrowserDesignLayout.addMultiCellWidget(self.line1,3,3,0,2)
+
+        layout4 = QHBoxLayout(None,0,6,"layout4")
+
+        self.listViewButton = QToolButton(self,"listViewButton")
+        self.listViewButton.setSizePolicy(QSizePolicy(0,0,0,0,self.listViewButton.sizePolicy().hasHeightForWidth()))
+        self.listViewButton.setMinimumSize(QSize(24,0))
+        self.listViewButton.setAutoRaise(1)
+        layout4.addWidget(self.listViewButton)
+
+        self.iconViewButton = QToolButton(self,"iconViewButton")
+        self.iconViewButton.setSizePolicy(QSizePolicy(0,0,0,0,self.iconViewButton.sizePolicy().hasHeightForWidth()))
+        self.iconViewButton.setMinimumSize(QSize(24,24))
+        self.iconViewButton.setAutoRaise(1)
+        layout4.addWidget(self.iconViewButton)
+        spacer2 = QSpacerItem(268,31,QSizePolicy.Expanding,QSizePolicy.Minimum)
+        layout4.addItem(spacer2)
+
+        LumaEntryBrowserDesignLayout.addMultiCellLayout(layout4,4,4,0,2)
 
         self.languageChange()
 
-        self.resize(QSize(357,741).expandedTo(self.minimumSizeHint()))
+        self.resize(QSize(281,508).expandedTo(self.minimumSizeHint()))
         self.clearWState(Qt.WState_Polished)
 
         self.connect(self.serverBox,SIGNAL("activated(const QString&)"),self.serverChanged)
@@ -128,13 +139,14 @@ class LumaEntryBrowserDesign(QWidget):
         self.goButton.setAccel(self.__tr("Alt+G"))
         self.textLabel13.setText(self.__tr("Filter:"))
         self.textLabel12.setText(self.__tr("Server:"))
+        self.textLabel1.setText(self.__tr("Base DN:"))
         self.addButton.setText(self.__tr("&Add..."))
         self.addButton.setAccel(self.__tr("Alt+A"))
         self.deleteButton.setText(self.__tr("&Delete"))
         self.deleteButton.setAccel(self.__tr("Alt+D"))
         self.itemListView.header().setLabel(0,self.__tr("Object"))
-        self.iconViewButton.setText(self.__tr("...","DO NOT TRANSLATE"))
         self.listViewButton.setText(self.__tr("...","DO NOT TRANSLATE"))
+        self.iconViewButton.setText(self.__tr("...","DO NOT TRANSLATE"))
 
 
     def serverChanged(self):

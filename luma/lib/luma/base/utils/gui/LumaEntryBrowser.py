@@ -85,6 +85,9 @@ class LumaEntryBrowser (LumaEntryBrowserDesign):
         
         # metadata of the current server
         self.SERVERMETA = None
+        
+        # A string representing the currently selected baseDN
+        self.currentBase = None
                     
 ###############################################################################
 
@@ -96,11 +99,29 @@ class LumaEntryBrowser (LumaEntryBrowserDesign):
             if x.name == str(serverName):
                 self.SERVERMETA = x
                 self.lumaConnection = LumaConnection(x)
+                break
         
-        self.search()
+        self.initBaseBox()
         
         self.emit(PYSIGNAL("about_to_change"), ())
         self.emit(PYSIGNAL("server_changed"), ())
+        
+###############################################################################
+
+    def initBaseBox(self):
+        baseList = None
+        if self.SERVERMETA.autoBase:
+            baseList = self.lumaConnection.getBaseDNList()
+        else:
+            baseList = self.SERVERMETA.baseDN
+            
+        if None == baseList:
+            return
+            
+        self.baseBox.clear()
+        for tmpBase in baseList:
+            self.baseBox.insertItem(tmpBase)
+            
         
 ###############################################################################
 
@@ -124,8 +145,10 @@ class LumaEntryBrowser (LumaEntryBrowserDesign):
                 
         tmpFilter = self.searchFilterPrefix + tmpString + self.searchFilterSuffix
         
+        self.SERVERMETA.currentBase = unicode(self.baseBox.currentText())
+        
         self.lumaConnection.bind()
-        results = self.lumaConnection.search(self.lumaConnection.serverMeta.baseDN, ldap.SCOPE_SUBTREE, tmpFilter.encode('utf-8'), [self.primaryKey, 'sn', 'givenName'], 0)
+        results = self.lumaConnection.search(self.SERVERMETA.currentBase, ldap.SCOPE_SUBTREE, tmpFilter.encode('utf-8'), [self.primaryKey, 'sn', 'givenName'], 0)
         self.lumaConnection.unbind()
         self.processResults(results)
 

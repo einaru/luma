@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file '/home/wido/src/luma/lib/luma/plugins/usermanagement/AccountWizardDesign.ui'
 #
-# Created: Thu Sep 30 18:49:08 2004
+# Created: Tue Nov 30 20:47:28 2004
 #      by: The PyQt User Interface Compiler (pyuic) 3.13
 #
 # WARNING! All changes made in this file will be lost!

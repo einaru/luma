@@ -31,6 +31,10 @@ class SearchForm(SearchFormDesign):
         self.serverListObject = ServerList()
         self.serverListObject.readServerList()
         self.serverList = self.serverListObject.serverList
+        self.currentServer = None
+        
+        self.connection = None
+        
         
         if not (self.serverList == None):
             for x in self.serverList:
@@ -39,6 +43,7 @@ class SearchForm(SearchFormDesign):
                 else:
                     self.serverBox.insertItem(x.name)
 
+        self.serverChanged()
         self.initFilterBookmarks()
 
         self.searchEdit.installEventFilter(self)
@@ -55,20 +60,16 @@ class SearchForm(SearchFormDesign):
         self.groupBox2.setEnabled(False)
 
         criteriaList = self.getSearchCriteria()
-        
-        server = unicode(self.serverBox.currentText())
-        serverMeta = self.serverListObject.getServerObject(server)
-        
-
-        conObject = LumaConnection(serverMeta)
-        conObject.bind()
-        searchResult = conObject.search(serverMeta.baseDN.encode('utf-8'), ldap.SCOPE_SUBTREE,
+    
+        self.connection.bind()
+        self.currentServer.currentBase = unicode(self.baseBox.currentText())
+        searchResult = self.connection.search(self.currentServer.currentBase, ldap.SCOPE_SUBTREE,
                 unicode(self.searchEdit.currentText()).encode('utf-8'))
-        conObject.unbind()
+        self.connection.unbind()
         
         self.groupBox2.setEnabled(True)
 
-        self.emit(PYSIGNAL("ldap_result"), (serverMeta.name, searchResult,criteriaList, ))
+        self.emit(PYSIGNAL("ldap_result"), (self.currentServer.name, searchResult,criteriaList, ))
 
 ###############################################################################
 
@@ -120,3 +121,21 @@ class SearchForm(SearchFormDesign):
                 
         return 0
 
+###############################################################################
+
+    def serverChanged(self, serverString=""):
+        serverString = unicode(self.serverBox.currentText())
+        self.currentServer = self.serverListObject.getServerObject(serverString)
+        
+        self.connection = LumaConnection(self.currentServer)
+        
+        baseList = None
+        if self.currentServer.autoBase:
+            baseList = self.connection.getBaseDNList()
+        else:
+            baseList = self.currentServer.baseDN
+            
+        self.baseBox.clear()
+        for x in baseList:
+            self.baseBox.insertItem(x)
+        

@@ -10,6 +10,7 @@
 
 import os
 import ldap
+import copy
 
 from qt import *
 
@@ -49,9 +50,9 @@ class ServerDialog(ServerDialogDesign):
         self.serverListObject.readServerList()
           
         if self.serverListObject.serverList == None:
-            self.infoGroupBox.setEnabled(False)
+            self.serverWidget.setEnabled(False)
         elif len(self.serverListObject.serverList) == 0:
-            self.infoGroupBox.setEnabled(False)
+            self.serverWidget.setEnabled(False)
 
         self.serverIcon = QPixmap(os.path.join(self._PREFIX, "share", "luma", "icons", "server.png"))
         
@@ -97,17 +98,17 @@ class ServerDialog(ServerDialogDesign):
         self.hostLineEdit.blockSignals(True)
         self.portSpinBox.blockSignals(True)
         self.bindAnonBox.blockSignals(True)
-        self.baseLineEdit.blockSignals(True)
+        #self.baseLineEdit.blockSignals(True)
         self.bindLineEdit.blockSignals(True)
         self.passwordLineEdit.blockSignals(True)
         self.tlsCheckBox.blockSignals(True)
         self.methodBox.blockSignals(True)
         
-        self.infoGroupBox.setTitle(x.name)
+        #self.infoGroupBox.setTitle(x.name)
         self.hostLineEdit.setText(x.host)
         self.portSpinBox.setValue(x.port)
         self.bindAnonBox.setChecked(int(x.bindAnon))
-        self.baseLineEdit.setText(x.baseDN)
+        #self.baseLineEdit.setText(x.baseDN)
         self.bindLineEdit.setText(x.bindDN)
         self.passwordLineEdit.setText(x.bindPassword)
         self.tlsCheckBox.setChecked(int(x.tls))
@@ -117,7 +118,7 @@ class ServerDialog(ServerDialogDesign):
         self.hostLineEdit.blockSignals(False)
         self.portSpinBox.blockSignals(False)
         self.bindAnonBox.blockSignals(False)
-        self.baseLineEdit.blockSignals(False)
+        #self.baseLineEdit.blockSignals(False)
         self.bindLineEdit.blockSignals(False)
         self.passwordLineEdit.blockSignals(False)
         self.tlsCheckBox.blockSignals(False)
@@ -129,6 +130,12 @@ class ServerDialog(ServerDialogDesign):
         else:
             self.passwordLineEdit.setEnabled(True)
             self.bindLineEdit.setEnabled(True)
+            
+        self.manageBaseBaseButton.setEnabled(not self.currentServer.autoBase)
+        self.baseBox.blockSignals(True)
+        self.baseBox.setChecked(self.currentServer.autoBase)
+        self.baseBox.blockSignals(False)
+        self.displayBase()
 
 ###############################################################################
 
@@ -144,8 +151,7 @@ class ServerDialog(ServerDialogDesign):
         if result[1] == False:
             return
 
-        self.infoGroupBox.setEnabled(True)
-        self.infoGroupBox.setTitle(result[0])
+        self.serverWidget.setEnabled(True)
         
         serverObject = ServerObject()
         serverObject.name = unicode(result[0])
@@ -206,7 +212,7 @@ class ServerDialog(ServerDialogDesign):
         if (reallyDelete.result() == 1):
             self.serverListObject.deleteServer(unicode(selectedServerString))
             if len(self.serverListObject.serverList) == 0:
-                self.infoGroupBox.setEnabled(False)
+                self.serverWidget.setEnabled(False)
             
             self.displayServerList()
             self.applyButton.setEnabled(1)
@@ -219,47 +225,19 @@ class ServerDialog(ServerDialogDesign):
             Currently OpenLDAP, Novell and UMich are supported.
         """
         
-        serverMeta = ServerObject()
-        serverMeta.name = unicode(self.hostLineEdit.text())
-        serverMeta.host = unicode(self.hostLineEdit.text())
-        serverMeta.port = int(self.portSpinBox.value())
-        serverMeta.tls = bool(self.tlsCheckBox.isChecked())
-        serverMeta.bindAnon = True
-        serverMeta.baseDN = unicode("")
-        serverMeta.bindDN = unicode("")
-        serverMeta.bindPassword = unicode("")
+        #serverMeta = ServerObject()
+        #serverMeta.name = unicode(self.hostLineEdit.text())
+        #serverMeta.host = unicode(self.hostLineEdit.text())
+        #serverMeta.port = int(self.portSpinBox.value())
+        #serverMeta.tls = bool(self.tlsCheckBox.isChecked())
+        #serverMeta.bindAnon = True
+        #serverMeta.baseDN = unicode("")
+        #serverMeta.bindDN = unicode("")
+        #serverMeta.bindPassword = unicode("")
         
-        try:
-            conObject = LumaConnection(serverMeta)
-            conObject.bind()
-            
-            dnList = None
-        
-            # Check for openldap
-            result = conObject.search("", ldap.SCOPE_BASE, "(objectClass=*)", ["namingContexts"])
-            dnList = result[0][1]['namingContexts']
-        
-            # Check for Novell
-            if dnList[0] == '':
-                result = conObject.search("", ldap.SCOPE_BASE)
-                dnList = result[0][1]['dsaName']
-            
-            # Univertity of Michigan aka umich
-            # not jet tested
-            if dnList[0] == '':
-                result = conObject.search("", ldap.SCOPE_BASE, "(objectClass=*)",['database'])
-                dnList = result[0][1]['namingContexts']
-                
-            conObject.unbind()
-        
-            dialog = BaseSelector()
-            dialog.setList(dnList)
-            dialog.exec_loop()
-            if dialog.result() == QDialog.Accepted:
-                self.baseLineEdit.setText(dialog.dnBox.currentText())
-                self.applyButton.setEnabled(1)
-                
-        except:
+        connection = LumaConnection(self.currentServer)
+        baseList = connection.getBaseDNList()
+        if None == baseList:
             QMessageBox.warning(None,
                 self.trUtf8("Error"),
                 self.trUtf8("""Could not retrieve BaseDN for server. 
@@ -269,6 +247,8 @@ Please see console output for more information."""),
                 None,
                 None,
                 0, -1)
+        else:
+            return baseList
 
 ###############################################################################
 
@@ -359,3 +339,38 @@ Please see console output for more information."""),
         self.passwordLineEdit.blockSignals(False)
             
         self.applyButton.setEnabled(1)
+        
+###############################################################################
+
+    def useServerBase(self):
+        self.applyButton.setEnabled(1)
+        automaticBase = self.baseBox.isChecked()
+        self.currentServer.autoBase = automaticBase
+        self.manageBaseBaseButton.setEnabled(not automaticBase)
+        self.displayBase()
+        
+###############################################################################
+
+    def displayBase(self):
+        self.baseDNView.clear()
+        if self.currentServer.autoBase:
+            baseList = self.searchBaseDN()
+            for x in baseList:
+                item = QListViewItem(self.baseDNView, x)
+        else:
+            for x in self.currentServer.baseDN:
+                item = QListViewItem(self.baseDNView, x)
+
+###############################################################################
+
+    def manageBaseDN(self):
+        connection = LumaConnection(self.currentServer)
+        dialog = BaseSelector()
+        dialog.connection = connection
+        dialog.baseList = copy.deepcopy(self.currentServer.baseDN)
+        dialog.displayBase()
+        dialog.exec_loop()
+        if dialog.result() == QDialog.Accepted:
+            self.applyButton.setEnabled(1)
+            self.currentServer.baseDN = copy.deepcopy(dialog.baseList)
+            self.displayBase()

@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file '/home/wido/src/luma/lib/luma/base/utils/gui/SearchFormDesign.ui'
 #
-# Created: Sat Oct 30 00:16:19 2004
+# Created: Wed Dec 1 16:28:07 2004
 #      by: The PyQt User Interface Compiler (pyuic) 3.13
 #
 # WARNING! All changes made in this file will be lost!
@@ -31,20 +31,10 @@ class SearchFormDesign(QWidget):
         groupBox2Layout = QGridLayout(self.groupBox2.layout())
         groupBox2Layout.setAlignment(Qt.AlignTop)
 
-        self.searchEdit = QComboBox(0,self.groupBox2,"searchEdit")
-        self.searchEdit.setSizePolicy(QSizePolicy(7,0,0,0,self.searchEdit.sizePolicy().hasHeightForWidth()))
-        self.searchEdit.setEditable(1)
-
-        groupBox2Layout.addMultiCellWidget(self.searchEdit,1,1,1,3)
-
         self.textLabel6 = QLabel(self.groupBox2,"textLabel6")
         self.textLabel6.setSizePolicy(QSizePolicy(0,5,0,0,self.textLabel6.sizePolicy().hasHeightForWidth()))
 
         groupBox2Layout.addWidget(self.textLabel6,1,0)
-
-        self.serverBox = QComboBox(0,self.groupBox2,"serverBox")
-
-        groupBox2Layout.addWidget(self.serverBox,0,1)
 
         self.textLabel2 = QLabel(self.groupBox2,"textLabel2")
         self.textLabel2.setSizePolicy(QSizePolicy(0,5,0,0,self.textLabel2.sizePolicy().hasHeightForWidth()))
@@ -54,21 +44,41 @@ class SearchFormDesign(QWidget):
         self.filterWizardButton = QPushButton(self.groupBox2,"filterWizardButton")
         self.filterWizardButton.setSizePolicy(QSizePolicy(0,0,0,0,self.filterWizardButton.sizePolicy().hasHeightForWidth()))
 
-        groupBox2Layout.addWidget(self.filterWizardButton,0,2)
+        groupBox2Layout.addWidget(self.filterWizardButton,0,4)
 
         self.startButton = QPushButton(self.groupBox2,"startButton")
         self.startButton.setSizePolicy(QSizePolicy(0,0,0,0,self.startButton.sizePolicy().hasHeightForWidth()))
 
-        groupBox2Layout.addWidget(self.startButton,0,3)
+        groupBox2Layout.addWidget(self.startButton,0,5)
+
+        self.searchEdit = QComboBox(0,self.groupBox2,"searchEdit")
+        self.searchEdit.setSizePolicy(QSizePolicy(7,0,0,0,self.searchEdit.sizePolicy().hasHeightForWidth()))
+        self.searchEdit.setEditable(1)
+
+        groupBox2Layout.addMultiCellWidget(self.searchEdit,1,1,1,5)
+
+        self.serverBox = QComboBox(0,self.groupBox2,"serverBox")
+
+        groupBox2Layout.addWidget(self.serverBox,0,1)
+
+        self.baseBox = QComboBox(0,self.groupBox2,"baseBox")
+
+        groupBox2Layout.addWidget(self.baseBox,0,3)
+
+        self.textLabel1 = QLabel(self.groupBox2,"textLabel1")
+        self.textLabel1.setSizePolicy(QSizePolicy(0,5,0,0,self.textLabel1.sizePolicy().hasHeightForWidth()))
+
+        groupBox2Layout.addWidget(self.textLabel1,0,2)
         SearchFormDesignLayout.addWidget(self.groupBox2)
 
         self.languageChange()
 
-        self.resize(QSize(609,118).expandedTo(self.minimumSizeHint()))
+        self.resize(QSize(641,118).expandedTo(self.minimumSizeHint()))
         self.clearWState(Qt.WState_Polished)
 
         self.connect(self.filterWizardButton,SIGNAL("clicked()"),self.startFilterWizard)
         self.connect(self.startButton,SIGNAL("clicked()"),self.startSearch)
+        self.connect(self.serverBox,SIGNAL("activated(const QString&)"),self.serverChanged)
 
 
     def languageChange(self):
@@ -80,6 +90,7 @@ class SearchFormDesign(QWidget):
         self.filterWizardButton.setAccel(self.__tr("Alt+F"))
         self.startButton.setText(self.__tr("&Search"))
         self.startButton.setAccel(self.__tr("Alt+S"))
+        self.textLabel1.setText(self.__tr("Base DN:"))
 
 
     def startFilterWizard(self):
@@ -87,6 +98,9 @@ class SearchFormDesign(QWidget):
 
     def startSearch(self):
         print "SearchFormDesign.startSearch(): Not implemented yet"
+
+    def serverChanged(self):
+        print "SearchFormDesign.serverChanged(): Not implemented yet"
 
     def __tr(self,s,c = None):
         return qApp.translate("SearchFormDesign",s,c)

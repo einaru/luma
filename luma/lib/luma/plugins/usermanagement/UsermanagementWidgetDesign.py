@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file '/home/wido/src/luma/lib/luma/plugins/usermanagement/UsermanagementWidgetDesign.ui'
 #
-# Created: Thu Sep 30 18:34:12 2004
+# Created: Tue Nov 30 20:48:00 2004
 #      by: The PyQt User Interface Compiler (pyuic) 3.13
 #
 # WARNING! All changes made in this file will be lost!
@@ -64,6 +64,7 @@ class UsermanagementWidgetDesign(QWidget):
 
         self.uidBox = QSpinBox(self,"uidBox")
         self.uidBox.setMaxValue(65535)
+        self.uidBox.setValue(1000)
 
         UsermanagementWidgetDesignLayout.addMultiCellWidget(self.uidBox,1,1,2,3)
 
@@ -189,7 +190,7 @@ class UsermanagementWidgetDesign(QWidget):
 
         self.languageChange()
 
-        self.resize(QSize(484,461).expandedTo(self.minimumSizeHint()))
+        self.resize(QSize(546,485).expandedTo(self.minimumSizeHint()))
         self.clearWState(Qt.WState_Polished)
 
         self.connect(self.addMailButton,SIGNAL("clicked()"),self.addMail)
