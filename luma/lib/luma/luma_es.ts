@@ -26,17 +26,6 @@
         <translation>Créditos</translation>
     </message>
     <message>
-        <source>&lt;p align=&quot;center&quot;&gt;LDAP management made easy.&lt;br&gt;&lt;br&gt;
-(c) 2003, Wido Depping&lt;br&gt;&lt;br&gt;
-http://luma.sourceforge.net
-&lt;/p&gt;</source>
-        <comment>DO NOT TRANSLATE</comment>
-        <translation>&lt;p align=&quot;center&quot;&gt;Administración LDAP fácil.&lt;br&gt;&lt;br&gt;(new line)
-(c) 2003, Wido Depping&lt;br&gt;&lt;br&gt;(new line)
-http://luma.sourceforge.net(new line)
-&lt;/p&gt;</translation>
-    </message>
-    <message>
         <source>Wido Depping&lt;br&gt;
 &lt;blockquote&gt;widod@users.sourceforge.net&lt;/blockquote&gt;</source>
         <comment>DO NOT TRANSLATE</comment>
@@ -353,7 +342,16 @@ Testing guinea pig for python 2.3</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>&lt;font size=&quot;+2&quot;&gt;&lt;b&gt;Luma 1.3pre4 &lt;/b&gt;&lt;/font&gt;</source>
+        <source>&lt;font size=&quot;+2&quot;&gt;&lt;b&gt;Luma 1.4pre2&lt;/b&gt;&lt;/font&gt;</source>
+        <comment>DO NOT TRANSLATE</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;p align=&quot;center&quot;&gt;LDAP management made easy.&lt;br&gt;&lt;br&gt;
+(c) 2003, 2004   Wido Depping&lt;br&gt;&lt;br&gt;
+http://luma.sourceforge.net
+&lt;/p&gt;</source>
+        <comment>DO NOT TRANSLATE</comment>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -534,13 +532,6 @@ the selected objectclass.&lt;/p&gt;</source>
     </message>
 </context>
 <context>
-    <name>AddressbookView</name>
-    <message>
-        <source>&amp;Save</source>
-        <translation>&amp;Guardar</translation>
-    </message>
-</context>
-<context>
     <name>AddressbookWidget</name>
     <message>
         <source>Error</source>
@@ -551,6 +542,10 @@ the selected objectclass.&lt;/p&gt;</source>
 Please read console output for more information.</source>
         <translation>No he podido guardar sus datos de contacto. 
 Por favor, lea los mensajes de la consola para más información </translation>
+    </message>
+    <message>
+        <source>Save</source>
+        <translation type="unfinished">Guardar</translation>
     </message>
 </context>
 <context>
@@ -1283,21 +1278,11 @@ Vea los mensajes en la consola para más información.</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>&lt;b&gt;Primary Group&lt;/b&gt;&lt;br&gt;
-You may select from the groups available in the LDAP database or enter any ID that is valid on the system below.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Group ID:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>LDAP Groups:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&lt;b&gt;Additional Groups&lt;/b&gt;&lt;br&gt;
-Select any additional groups the &lt;b&gt;%1&lt;/b&gt; user should belong to from the list below.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1307,6 +1292,22 @@ Select any additional groups the &lt;b&gt;%1&lt;/b&gt; user should belong to fro
     <message>
         <source>&amp;OK</source>
         <translation type="unfinished">&amp;OK</translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;Primary Group&lt;/b&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>You may select from the groups available in the LDAP database or enter any ID that is valid on the system below.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Select any additional groups the &lt;b&gt;%1&lt;/b&gt; user should belong to from the list below.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;Additional Groups&lt;/b&gt;</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1929,6 +1930,10 @@ Please see console output for more information.</source>
         <source>Alt+C</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>MassCreationDesign</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>NameDialog</name>
@@ -2289,6 +2294,17 @@ Please read console output for more information.</source>
     </message>
 </context>
 <context>
+    <name>PasswordDialog</name>
+    <message>
+        <source>Passwords match</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Passwords do not match</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>PasswordDialogDesign</name>
     <message>
         <source>New password</source>
@@ -2312,16 +2328,20 @@ Please read console output for more information.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Retype new password:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>New password:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Method:</source>
         <translation type="unfinished">Método:</translation>
+    </message>
+    <message>
+        <source>Verify:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Passwords do not match</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2482,28 +2502,8 @@ Por favor, lea los mensajes en la consola para más información. </translation>
         <translation>Administrar la Lista de Servidores</translation>
     </message>
     <message>
-        <source>Use TLS</source>
-        <translation>Usar TLS</translation>
-    </message>
-    <message>
-        <source>User Transport Layer Security</source>
-        <translation>Transport Layer Security del Usuario</translation>
-    </message>
-    <message>
         <source>Base DN:</source>
         <translation>DN Base:</translation>
-    </message>
-    <message>
-        <source>Bind anonymously</source>
-        <translation>Bind anónimamente</translation>
-    </message>
-    <message>
-        <source>Bind DN:</source>
-        <translation>DN para Bind:</translation>
-    </message>
-    <message>
-        <source>Bind Password:</source>
-        <translation>Contraseña para Bind:</translation>
     </message>
     <message>
         <source>Alt+C</source>
@@ -2546,18 +2546,6 @@ Por favor, lea los mensajes en la consola para más información. </translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Network options</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>AO</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Authentification options</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>&amp;OK</source>
         <translation type="unfinished">&amp;OK</translation>
     </message>
@@ -2571,6 +2559,70 @@ Por favor, lea los mensajes en la consola para más información. </translation>
     </message>
     <message>
         <source>&amp;Cancel</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;Network options&lt;/b&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Fetch Base DNs</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>SO</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Anonymous bind</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;Security options&lt;/b&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Use secure connection (SSL)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;Authentification mechanism&lt;/b&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Simple</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>SASL Plain</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>SASL CRAM-MD5</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>SASL DIGEST-MD5</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>SASL Login</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>SASL GSSAPI</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Password:</source>
+        <translation type="unfinished">Contraseña:</translation>
+    </message>
+    <message>
+        <source>Bind as:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;Credentials&lt;/b&gt;</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2682,10 +2734,6 @@ Por favor, lea los mensajes en la consola para más información. </translation>
         <translation type="unfinished">Guardar</translation>
     </message>
     <message>
-        <source>Delete entry</source>
-        <translation type="unfinished">Eliminar entrada</translation>
-    </message>
-    <message>
         <source>Error</source>
         <translation type="unfinished">Error</translation>
     </message>
@@ -2699,16 +2747,27 @@ Please read console output for more information.</source>
 Please read console output for more information.</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Save entry</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The account has been modified. Do you want to save it?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Yes</source>
+        <translation type="unfinished">&amp;Sí</translation>
+    </message>
+    <message>
+        <source>&amp;No</source>
+        <translation type="unfinished">&amp;No</translation>
+    </message>
 </context>
 <context>
     <name>UsermanagementWidgetDesign</name>
     <message>
         <source>Usermanagement</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>...</source>
-        <comment>DO NOT TRANSLATE</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2795,6 +2854,10 @@ Please read console output for more information.</source>
     <message>
         <source>Password:</source>
         <translation type="unfinished">Contraseña:</translation>
+    </message>
+    <message>
+        <source>Find next free</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 </TS>

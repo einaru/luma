@@ -26,17 +26,6 @@
         <translation>&amp;Lukk</translation>
     </message>
     <message>
-        <source>&lt;p align=&quot;center&quot;&gt;LDAP management made easy.&lt;br&gt;&lt;br&gt;
-(c) 2003, Wido Depping&lt;br&gt;&lt;br&gt;
-http://luma.sourceforge.net
-&lt;/p&gt;</source>
-        <comment>DO NOT TRANSLATE</comment>
-        <translation>&lt;p align=&quot;center&quot;&gt;Enkel LDAP administrasjon.&lt;br&gt;&lt;br&gt;
-(c) 2003, Wido Depping&lt;br&gt;&lt;br&gt;
-http://luma.sourceforge.net
-&lt;/p&gt;</translation>
-    </message>
-    <message>
         <source>Wido Depping&lt;br&gt;
 &lt;blockquote&gt;widod@users.sourceforge.net&lt;/blockquote&gt;</source>
         <comment>DO NOT TRANSLATE</comment>
@@ -353,8 +342,17 @@ Testing guinea pig for python 2.3</source>
         <translation></translation>
     </message>
     <message>
-        <source>&lt;font size=&quot;+2&quot;&gt;&lt;b&gt;Luma 1.3pre4 &lt;/b&gt;&lt;/font&gt;</source>
-        <translation></translation>
+        <source>&lt;font size=&quot;+2&quot;&gt;&lt;b&gt;Luma 1.4pre2&lt;/b&gt;&lt;/font&gt;</source>
+        <comment>DO NOT TRANSLATE</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;p align=&quot;center&quot;&gt;LDAP management made easy.&lt;br&gt;&lt;br&gt;
+(c) 2003, 2004   Wido Depping&lt;br&gt;&lt;br&gt;
+http://luma.sourceforge.net
+&lt;/p&gt;</source>
+        <comment>DO NOT TRANSLATE</comment>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -541,13 +539,6 @@ til høyre viser alle attributter som må legges til i tillegg til valgt objektk
     </message>
 </context>
 <context>
-    <name>AddressbookView</name>
-    <message>
-        <source>&amp;Save</source>
-        <translation>&amp;Lagre</translation>
-    </message>
-</context>
-<context>
     <name>AddressbookWidget</name>
     <message>
         <source>Error</source>
@@ -558,6 +549,10 @@ til høyre viser alle attributter som må legges til i tillegg til valgt objektk
 Please read console output for more information.</source>
         <translation>Kunne ikke lagre kontaktinformasjon.
 Vennligst les utskrift til konsollet for mer informasjon.</translation>
+    </message>
+    <message>
+        <source>Save</source>
+        <translation type="unfinished">Lagre</translation>
     </message>
 </context>
 <context>
@@ -1290,12 +1285,6 @@ Se utskrift i konsollet for mer informasjon.</translation>
         <translation>Velg gruppene som &lt;strong&gt;%1&lt;/strong&gt; brukeren skal være medlem av.</translation>
     </message>
     <message>
-        <source>&lt;b&gt;Primary Group&lt;/b&gt;&lt;br&gt;
-You may select from the groups available in the LDAP database or enter any ID that is valid on the system below.</source>
-        <translation>&lt;b&gt;Primærgruppe&lt;/b&gt;&lt;br&gt;
-Du kan velge blant de tilgjengelige gruppene i LDAP, eller skriv inn en eller annen ID som er gyldig i systemet under.</translation>
-    </message>
-    <message>
         <source>Group ID:</source>
         <translation>Gruppe-ID:</translation>
     </message>
@@ -1304,18 +1293,28 @@ Du kan velge blant de tilgjengelige gruppene i LDAP, eller skriv inn en eller an
         <translation>LDAP-grupper:</translation>
     </message>
     <message>
-        <source>&lt;b&gt;Additional Groups&lt;/b&gt;&lt;br&gt;
-Select any additional groups the &lt;b&gt;%1&lt;/b&gt; user should belong to from the list below.</source>
-        <translation>&lt;b&gt;Sekundærgrupper&lt;/b&gt;&lt;br&gt;
-Velg sekundærgruppe(r) som bruker &lt;b&gt;%1&lt;/b&gt; burde være medlem av fra listen under.</translation>
-    </message>
-    <message>
         <source>&amp;Cancel</source>
         <translation>&amp;Avbryt</translation>
     </message>
     <message>
         <source>&amp;OK</source>
         <translation>&amp;OK</translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;Primary Group&lt;/b&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>You may select from the groups available in the LDAP database or enter any ID that is valid on the system below.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Select any additional groups the &lt;b&gt;%1&lt;/b&gt; user should belong to from the list below.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;Additional Groups&lt;/b&gt;</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1937,6 +1936,10 @@ Vennligst se konsoll-utskrift for mer informasjon.</translation>
         <source>Alt+C</source>
         <translation></translation>
     </message>
+    <message>
+        <source>MassCreationDesign</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>NameDialog</name>
@@ -2299,6 +2302,17 @@ Vennligst se konsoll-utskrift for mer informasjon.</translation>
     </message>
 </context>
 <context>
+    <name>PasswordDialog</name>
+    <message>
+        <source>Passwords match</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Passwords do not match</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>PasswordDialogDesign</name>
     <message>
         <source>New password</source>
@@ -2322,16 +2336,20 @@ Vennligst se konsoll-utskrift for mer informasjon.</translation>
         <translation>&amp;Avbryt</translation>
     </message>
     <message>
-        <source>Retype new password:</source>
-        <translation>Skriv nytt passord omigjen:</translation>
-    </message>
-    <message>
         <source>New password:</source>
         <translation>Nytt passord:</translation>
     </message>
     <message>
         <source>Method:</source>
         <translation>Metode:</translation>
+    </message>
+    <message>
+        <source>Verify:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Passwords do not match</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2492,28 +2510,8 @@ Vennligst se utskrift i konsollet for mer informasjon.</translation>
         <translation>Vedlikehold tjenerliste</translation>
     </message>
     <message>
-        <source>Use TLS</source>
-        <translation>Bruk TLS</translation>
-    </message>
-    <message>
-        <source>User Transport Layer Security</source>
-        <translation>Bruk Transportlagsikkerhet</translation>
-    </message>
-    <message>
         <source>Base DN:</source>
         <translation>Base DN:</translation>
-    </message>
-    <message>
-        <source>Bind anonymously</source>
-        <translation>Koble til anonymt</translation>
-    </message>
-    <message>
-        <source>Bind DN:</source>
-        <translation>Base DN:</translation>
-    </message>
-    <message>
-        <source>Bind Password:</source>
-        <translation>Passord for tilkobling:</translation>
     </message>
     <message>
         <source>Alt+C</source>
@@ -2556,18 +2554,6 @@ Vennligst se utskrift i konsollet for mer informasjon.</translation>
         <translation>NV</translation>
     </message>
     <message>
-        <source>Network options</source>
-        <translation>Nettverksvalg</translation>
-    </message>
-    <message>
-        <source>AO</source>
-        <translation>AV</translation>
-    </message>
-    <message>
-        <source>Authentification options</source>
-        <translation>Autentiseringsvalg</translation>
-    </message>
-    <message>
         <source>&amp;OK</source>
         <translation>&amp;OK</translation>
     </message>
@@ -2582,6 +2568,70 @@ Vennligst se utskrift i konsollet for mer informasjon.</translation>
     <message>
         <source>&amp;Cancel</source>
         <translation>&amp;Avbryt</translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;Network options&lt;/b&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Fetch Base DNs</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>SO</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Anonymous bind</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;Security options&lt;/b&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Use secure connection (SSL)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;Authentification mechanism&lt;/b&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Simple</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>SASL Plain</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>SASL CRAM-MD5</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>SASL DIGEST-MD5</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>SASL Login</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>SASL GSSAPI</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Password:</source>
+        <translation type="unfinished">Passord:</translation>
+    </message>
+    <message>
+        <source>Bind as:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;Credentials&lt;/b&gt;</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2692,10 +2742,6 @@ Vennligst se utskrift i konsollet for mer informasjon.</translation>
         <translation>Lagre</translation>
     </message>
     <message>
-        <source>Delete entry</source>
-        <translation>Slett innlegg</translation>
-    </message>
-    <message>
         <source>Error</source>
         <translation>Feil</translation>
     </message>
@@ -2711,17 +2757,28 @@ Please read console output for more information.</source>
         <translation>Kunne ikke lagre gruppeinformasjon.
 Vennligst se konsoll-utskrift for mer informasjon.</translation>
     </message>
+    <message>
+        <source>Save entry</source>
+        <translation type="unfinished">Lagre</translation>
+    </message>
+    <message>
+        <source>The account has been modified. Do you want to save it?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Yes</source>
+        <translation type="unfinished">&amp;Ja</translation>
+    </message>
+    <message>
+        <source>&amp;No</source>
+        <translation type="unfinished">&amp;Nei</translation>
+    </message>
 </context>
 <context>
     <name>UsermanagementWidgetDesign</name>
     <message>
         <source>Usermanagement</source>
         <translation>Brukeradministrasjon</translation>
-    </message>
-    <message>
-        <source>...</source>
-        <comment>DO NOT TRANSLATE</comment>
-        <translation>...</translation>
     </message>
     <message>
         <source>US</source>
@@ -2807,6 +2864,10 @@ Vennligst se konsoll-utskrift for mer informasjon.</translation>
     <message>
         <source>Password:</source>
         <translation>Passord:</translation>
+    </message>
+    <message>
+        <source>Find next free</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 </TS>
