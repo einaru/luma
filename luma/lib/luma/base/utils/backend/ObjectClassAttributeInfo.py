@@ -33,8 +33,8 @@ class ObjectClassAttributeInfo(object):
         self.SERVER = server
         
         # delete oid for userPassword attribute
-        if ldap.schema.NOT_HUMAN_READABLE_LDAP_SYNTAXES.has_key('1.3.6.1.4.1.1466.115.121.1.40'):
-            del ldap.schema.NOT_HUMAN_READABLE_LDAP_SYNTAXES['1.3.6.1.4.1.1466.115.121.1.40']
+        #if ldap.schema.NOT_HUMAN_READABLE_LDAP_SYNTAXES.has_key('1.3.6.1.4.1.1466.115.121.1.40'):
+        #    del ldap.schema.NOT_HUMAN_READABLE_LDAP_SYNTAXES['1.3.6.1.4.1.1466.115.121.1.40']
         
         if not (server == None):
             self.retrieveInfoFromServer()
@@ -62,16 +62,16 @@ class ObjectClassAttributeInfo(object):
                 environment.updateUI()
                 y = schema.get_obj(ldap.schema.ObjectClass, x)
                 name = y.names[0]
-                desc = ""
                 
+                desc = ""
                 if not (y.desc == None):
                     desc = y.desc
+                    
                 must = []
-                
                 if not (len(y.must) == 0):
                     must = y.must
+                    
                 may = []
-                
                 if not (len(y.may) == 0):
                     may = y.may
                     
@@ -127,11 +127,11 @@ class ObjectClassAttributeInfo(object):
         may = Set()
         
         for x in classList:
-            if not x in self.OBJECTCLASSES:
+            if not (x in self.OBJECTCLASSES):
                 continue
-            must = must | Set(self.OBJECTCLASSES[x]["MUST"])
-            may = may | Set(self.OBJECTCLASSES[x]["MAY"])
-            
+            must = must.union(Set(self.OBJECTCLASSES[x]["MUST"]))
+            may = may.union(Set(self.OBJECTCLASSES[x]["MAY"]))
+           
         return must, may
 
 ###############################################################################
@@ -144,7 +144,7 @@ class ObjectClassAttributeInfo(object):
         must = Set()
         
         for x in classList:
-            must = must | Set(self.OBJECTCLASSES[x]["MUST"])
+            must = must.union(Set(self.OBJECTCLASSES[x]["MUST"]))
             
         return must
 
