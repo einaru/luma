@@ -10,6 +10,7 @@
 
 
 from qt import *
+from copy import deepcopy
 import os.path
 import ldap
 from ConfigParser import *
@@ -159,4 +160,4 @@ class LumaIconView (LumaIconViewDesign):
         dn = self.iconDict[icon]
         tmpData = self.data[dn]
         
-        self.emit(PYSIGNAL("ldap_result"), (dn, tmpData, self.lumaConnection.server,))
+        self.emit(PYSIGNAL("ldap_result"), (deepcopy(dn), deepcopy(tmpData), deepcopy(self.lumaConnection.server),))
