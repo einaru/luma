@@ -17,6 +17,7 @@ cp COPYING tmp/luma-$1
 cd tmp
 find . -name "CVS" | xargs rm -rf
 find . -name "*.pyc" | xargs rm
+find . -name "*~" | xargs rm
 rm -rf luma-$1/lib/luma/plugins/ifi_user
 rm -rf luma-$1/lib/luma/plugins/config_create
 tar -cvjvpf luma-$1.tar.bz2 luma-$1

@@ -1,16 +1,21 @@
-#
-# eric3 project session file
-# This file was generated automatically, do not edit.
-# Saved: 2003-09-26, 04:18:50
-#
-
-fn: /daten/src/cvs/luma/lib/luma/luma.py
-fn: /daten/src/cvs/luma/lib/luma/base/utils/gui/BrowserWidget.py
-fn: /daten/src/cvs/luma/lib/luma/base/gui/MainWin.py
-
-aw: /daten/src/cvs/luma/lib/luma/base/gui/MainWin.py
-
-
-cl: 
-wd: 
-er: 1
+<?xml version='1.0' encoding='UTF-8'?>
+<!--eric3 session file for project luma-->
+<!--This file was generated automatically, do not edit.-->
+<!--Saved: 2004-03-31, 03:00:07-->
+<Session>
+  <Filenames>
+    <Filename>/home/wido/src/luma/lib/luma/plugins/admin_utils/admin_utilities_plugin.py</Filename>
+  </Filenames>
+  <ActiveWindow>/home/wido/src/luma/lib/luma/plugins/admin_utils/admin_utilities_plugin.py</ActiveWindow>
+  <Breakpoints>
+  </Breakpoints>
+  <DebugInfo>
+    <CommandLine></CommandLine>
+    <WorkingDirectory></WorkingDirectory>
+    <ReportExceptions value="1" />
+    <Exceptions>
+    </Exceptions>
+  </DebugInfo>
+  <Bookmarks>
+  </Bookmarks>
+</Session>

@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!--Project file for project luma-->
-<!--Saved: 2004-02-08, 03:09:29-->
+<!--Saved: 2004-03-28, 15:17:43-->
 <!--Copyright (C) 2004 Wido Depping, wido.depping@tu-clausthal.de-->
 <Project>
   <Version>1.0beta1</Version>
@@ -639,6 +639,22 @@
       <Dir>addressbook</Dir>
       <Name>ContactWizard.py</Name>
     </Source>
+    <Source>
+      <Dir>lib</Dir>
+      <Dir>luma</Dir>
+      <Dir>base</Dir>
+      <Dir>utils</Dir>
+      <Dir>gui</Dir>
+      <Name>AddAttributeWizardDesign.py</Name>
+    </Source>
+    <Source>
+      <Dir>lib</Dir>
+      <Dir>luma</Dir>
+      <Dir>base</Dir>
+      <Dir>utils</Dir>
+      <Dir>gui</Dir>
+      <Name>AddAttributeWizard.py</Name>
+    </Source>
   </Sources>
   <Forms>
     <Form>
@@ -820,6 +836,14 @@
       <Dir>plugins</Dir>
       <Dir>addressbook</Dir>
       <Name>ContactWizardDesign.ui</Name>
+    </Form>
+    <Form>
+      <Dir>lib</Dir>
+      <Dir>luma</Dir>
+      <Dir>base</Dir>
+      <Dir>utils</Dir>
+      <Dir>gui</Dir>
+      <Name>AddAttributeWizardDesign.ui</Name>
     </Form>
   </Forms>
   <Translations>
