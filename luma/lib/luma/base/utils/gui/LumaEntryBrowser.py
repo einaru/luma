@@ -117,7 +117,7 @@ class LumaEntryBrowser (LumaEntryBrowserDesign):
         
         self.setEnabled(True)
         
-        if not (None == self.SERVERMETA):
+        if not (self.SERVERMETA == None):
             self.initBaseBox()
         
             self.emit(PYSIGNAL("about_to_change"), ())
@@ -146,7 +146,7 @@ class LumaEntryBrowser (LumaEntryBrowserDesign):
           
         self.setEnabled(True)
         
-        if None == baseList:
+        if baseList == None:
             self.goButton.setEnabled(False)
             return
         else:
@@ -243,7 +243,7 @@ class LumaEntryBrowser (LumaEntryBrowserDesign):
                     if tmpData.hasAttribute('sn'):
                         name = tmpData.getAttributeValue('sn', 0)
                     if tmpData.hasAttribute('givenName'):
-                        if not('' == name):
+                        if not(name == ''):
                             name = name + ' '
                         name += tmpData.getAttributeValue('givenName', 0)
                 

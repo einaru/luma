@@ -143,7 +143,7 @@ class ExportDialog(ExportDialogDesign):
                 
             format = str(self.formatBox.currentText())
             
-            if "DSML" == format:
+            if format == "DSML":
                 tmpString = StringIO.StringIO()
                 dsmlWriter = dsml.DSMLWriter(tmpString)
                 dsmlWriter.writeHeader()
@@ -151,9 +151,9 @@ class ExportDialog(ExportDialogDesign):
             
             for x in itemList:
                 try:
-                    if "LDIF" == format:
+                    if format == "LDIF":
                         fileHandler.write(x.convertToLdif())
-                    elif "DSML" == format:
+                    elif format == "DSML":
                         fileHandler.write(x.convertToDsml())
             
                     self.displayItemStatus(self.exportDictionary[x.getPrettyDN()][1], True, None)
@@ -161,7 +161,7 @@ class ExportDialog(ExportDialogDesign):
                     self.displayItemStatus(self.exportDictionary[x.getPrettyDN()][1], False, None)
                     allExported = False
             
-            if "DSML" == format:
+            if format == "DSML": 
                 tmpString = StringIO.StringIO()
                 dsmlWriter = dsml.DSMLWriter(tmpString)
                 dsmlWriter.writeFooter()

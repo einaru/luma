@@ -56,7 +56,7 @@ def getEditorWidget(parent, dataObject, attributeName, index=0):
             dialog = StandardEditor(parent)
             dialog.initValue(dataObject, attributeName, index)
             
-    if None == dialog:
+    if dialog == None:
         raise Exception("No suitable editor dialog found")
     
     return dialog

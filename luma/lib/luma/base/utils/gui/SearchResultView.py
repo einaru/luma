@@ -163,10 +163,10 @@ class SearchResultView(SearchResultViewDesign):
             listItem.setText(0, dataObject.getPrettyDN())
             
             for x in self.FILTER_COLUMN_POS.keys():
-                if 'dn' == x:
+                if x == 'dn':
                     continue
                     
-                if "objectclass" == string.lower(x):
+                if string.lower(x) == "objectclass":
                     valueList = dataObject.getObjectClasses()
                     listItem.setText(self.FILTER_COLUMN_POS[x], ",".join(valueList))
                         

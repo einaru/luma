@@ -73,7 +73,7 @@ class SearchForm(SearchFormDesign):
         
         # Returns was pressed but no server selected. So we don't want 
         # to search.
-        if None == self.connection:
+        if self.connection == None:
             return
         
         self.groupFrame.setEnabled(False)
@@ -164,12 +164,12 @@ class SearchForm(SearchFormDesign):
     def serverChanged(self, serverString=""):
         serverString = unicode(self.serverBox.currentText())
         
-        if "" == serverString:
+        if serverString = "":
             return 
             
         self.currentServer = self.serverListObject.getServerObject(serverString)
         
-        if None == self.currentServer:
+        if self.currentServer == None:
             return
         
         self.connection = LumaConnection(self.currentServer)
@@ -188,7 +188,7 @@ class SearchForm(SearchFormDesign):
         else:
             baseList = self.currentServer.baseDN
             
-        if None == baseList:
+        if baseList == None:
             self.startButton.setEnabled(False)
             baseList = []
         else:
