@@ -19,9 +19,10 @@ import base64
 from base.backend.ServerList import ServerList
 import environment
 from base.utils.backend.templateutils import *
-from base.utils.gui.TemplateObjectWidget import TemplateObjectWidget
+from base.utils.gui.ObjectWidget import ObjectWidget
 from base.backend.LumaConnection import LumaConnection
 from base.utils import isBinaryAttribute
+from base.utils.backend.LdifHelper import LdifHelper
 
 class BrowserWidget(QListView):
     """ Widget for browsing ldap trees. 
@@ -116,6 +117,7 @@ class BrowserWidget(QListView):
             fullPath = self.get_full_path(item)
             try:
                 server, result = self.getLdapItem(fullPath)
+                #print result
                 self.emit(PYSIGNAL("about_to_change"), ())
                 self.emit(PYSIGNAL("ldap_result"), (deepcopy(server), deepcopy(result),))
             except TypeError:
@@ -270,9 +272,10 @@ See console output for more information."""),
         """
         
         fullPath = self.get_full_path(self.selectedItem())
+        serverName = fullPath.split(",")[-1]
         result = self.getLdapItem(fullPath)
-        ldifString = self.__convert_to_ldif(result[1])
-        self.__save_ldif(ldifString)
+        ldifHelper = LdifHelper(serverName)
+        self.__save_ldif(ldifHelper.convertToLdif(result[1]))
 
 ###############################################################################
 
@@ -281,9 +284,10 @@ See console output for more information."""),
         """
         
         fullPath = self.get_full_path(self.selectedItem())
-        results = self.getLdapItemChildren(fullPath, 1)
-        resultString = self.__convert_to_ldif(results)
-        self.__save_ldif(resultString)
+        serverName = fullPath.split(",")[-1]
+        result = self.getLdapItemChildren(fullPath, 1)
+        ldifHelper = LdifHelper(serverName)
+        self.__save_ldif(ldifHelper.convertToLdif(result))
 
 ###############################################################################
 
@@ -293,13 +297,15 @@ See console output for more information."""),
         
         currentItem = self.selectedItem()
         fullPath = self.get_full_path(currentItem)
+        serverName = fullPath.split(",")[-1]
+        ldifHelper = LdifHelper(serverName)
         parents = self.__get_parents(currentItem)
         resultString = ""
         for x in parents:
             tmpResult = self.getLdapItem(x)
-            resultString = resultString + self.__convert_to_ldif(tmpResult[1])
+            resultString = resultString + ldifHelper.convertToLdif(tmpResult[1])
         subtree = self.getLdapItemChildren(fullPath, 1)
-        subtreeString = self.__convert_to_ldif(subtree)
+        subtreeString = ldifHelper.convertToLdif(subtree)
         self.__save_ldif(resultString + subtreeString)
 
 
@@ -336,32 +342,6 @@ See console output for more information."""),
         if not (tmpItem == None):
             if not (tmpItem.parent() == None):
                 self.popupMenu.exec_loop(point)
-
-###############################################################################
-
-    def __convert_to_ldif(self, data):
-        """ Convert data of a ldap object to ldif format.
-        """
-        
-        tmpListe = []
-        if data == None:
-            data = []
-        for a in data:
-            tmpCN = a[0]
-            if isBinaryAttribute(a[0]) == 1:
-                tmpCN = base64.encodestring(tmpCN)
-                tmpListe.append("dn:: " + tmpCN)
-            else:
-                tmpListe.append("dn: " + tmpCN)
-            for x in a[1].keys():
-                for y in a[1][x]:
-                    if isBinaryAttribute(y) == 1:
-                        tmpListe.append(x + ":: " + base64.encodestring(y))
-                    else:
-                        tmpListe.append(x + ": " + y + "\n")
-
-            tmpListe.append("\n")
-        return string.join(tmpListe, "")
 
 ###############################################################################
 
@@ -419,15 +399,26 @@ See console output for more information."""),
         
         tFile = TemplateFile()
         template = tFile.get_templateobject(templateName)
+        data = template.getDataObject()
         
         if template == None:
             return 
             
         fqn = self.get_full_path(self.selectedItem())
-        widget = TemplateObjectWidget(None, template.name, 0)
-        widget.setMinimumHeight(350)
+        tmpList = fqn.split(",")
+        
+        server = tmpList[-1]
+        del tmpList[-1]
+        
+        dn = ",".join(tmpList)
+        
+        fullData = [(dn, data)]
+        
+        widget = ObjectWidget(None, template.name, 0)
+        widget.setMinimumHeight(500)
+        widget.setMinimumWidth(600)
         widget.setCaption(self.trUtf8('Add entry'))
-        widget.initView(fqn, template)
+        widget.initView(server, fullData, True)
         widget.show()
         
         # don't loose reference. normally window will disappear if function is completed
