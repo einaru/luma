@@ -2,7 +2,7 @@
 
 ###########################################################################
 #    Copyright (C) 2004 by Wido Depping
-#    <wido.depping@tu-clausthal.de>
+#    <widod@users.sourceforge.net>
 #
 # Copyright: See COPYING file that comes with this distribution
 #
@@ -89,15 +89,15 @@ class LumaIconView (LumaIconViewDesign):
         if self.lumaConnection.server == None:
             return
             
-        if not(str(self.searchEdit.text()) == ''):
-            filter = str(self.searchEdit.text())
+        if not(unicode(self.searchEdit.text()) == ''):
+            filter = unicode(self.searchEdit.text())
           
         tmpFilter = None
         
-        if (str(filter) == '') or (filter == None):
+        if (unicode(filter) == '') or (filter == None):
             filter = "*"
         else:
-            filter = "*" + str(filter) + "*"
+            filter = "*" + unicode(filter) + "*"
             
         tmpString = ""
         for x in self.filterElements:
@@ -105,7 +105,7 @@ class LumaIconView (LumaIconViewDesign):
                 
         tmpFilter = self.searchFilterPrefix + tmpString + self.searchFilterSuffix
         
-        results = self.lumaConnection.search(self.lumaConnection.server.baseDN, ldap.SCOPE_SUBTREE, tmpFilter, ['cn', 'sn', 'givenName'], 0)
+        results = self.lumaConnection.search(self.lumaConnection.server.baseDN, ldap.SCOPE_SUBTREE, tmpFilter.encode('utf-8'), ['cn', 'sn', 'givenName'], 0)
         self.processResults(results)
 
 ###############################################################################
@@ -142,6 +142,9 @@ class LumaIconView (LumaIconViewDesign):
                         if not(name == ''):
                             name = name + ' '
                         name = name + tmpData['givenName'][0]
+                        
+            name = name.decode('utf-8')
+            #name = lumaStringDecode(name)
                 
             nameList.append((name, x))
         
@@ -203,6 +206,9 @@ class LumaIconView (LumaIconViewDesign):
                 del self.data[dn]
                 self.showResults()
 
-            
+###############################################################################
+
+    def addItem(self):
+        self.emit(PYSIGNAL("add_entry"), ())
             
             
