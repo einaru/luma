@@ -122,4 +122,33 @@ class LumaConnection(object):
             environment.set_busy(0)
             return 0
             
-    
+###############################################################################
+
+    def modify_s(self, dn, modlist=None):
+        if modlist == None:
+            return 0
+            
+        environment.set_busy(1)
+        
+        try:
+            ldapServerObject = ldap.open(self.server.host, self.server.port)
+            ldapServerObject.protocol_version = ldap.VERSION3
+            
+            if self.server.tls == 1:
+                ldapServerObject.start_tls_s()
+                
+            if len(self.server.bindDN) > 0:
+                ldapServerObject.simple_bind_s(self.server.bindDN,self.server.bindPassword)
+                
+            ldapServerObject.modify_s(dn, modlist)
+            
+            if len(self.server.bindDN) > 0:
+                ldapServerObject.unbind()
+                
+            environment.set_busy(0)
+            return 1
+        except ldap.LDAPError, e:
+            print "Error during LDAP request"
+            print "Reason: " + str(e)
+            environment.set_busy(0)
+            return 0
