@@ -253,7 +253,7 @@ class AdvancedObjectWidget(QWidget):
             if self.ldapDataObject.isAttributeMust(x, self.ldapDataObject.getObjectClasses()):
                 attributeString = "<b>" + attributeString + "</b>"
             
-            if None == valueList[0]:
+            if valueList[0] == None:
                 attributeString = """<font color="red">""" + attributeString + """</font>"""
                 
             tmpList.append("""<td bgcolor="#E5E5E5" width="35%">""" + attributeString + """</td>""")
@@ -262,10 +262,10 @@ class AdvancedObjectWidget(QWidget):
             univAttributeName = x + "__" + unicode(attributeIndex)
 
             attributeModify = True
-            if not (None == valueList[0]):
+            if not (valueList[0] == None):
                 attributeModify = not self.ldapDataObject.isAttributeValueRDN(x, valueList[0])
             
-            if None == valueList[0]:
+            if (valueList[0] == None):
                 tmpList.append("""<td bgcolor="#E5E5E5" width="60%"><font color="#ff0000">""" + 
                     unicode(self.trUtf8("Value not set.")) + """</font></td>""")
                     
@@ -287,12 +287,12 @@ class AdvancedObjectWidget(QWidget):
                 univAttributeName = x + "__" + unicode(attributeIndex)
                 
                 attributeModify = True
-                if not (None == y):
+                if not (y == None):
                     attributeModify = not self.ldapDataObject.isAttributeValueRDN(x, y)
                 
                 tmpList.append("""<tr><td width="35%"></td>""")
                 
-                if None == y:
+                if y == None:
                     tmpList.append("""<td bgcolor="#E5E5E5" width="55%"><font color="#ff0000">""" +
                         unicode(self.trUtf8("Value not set.")) + """</font></td>""")
                         
@@ -377,11 +377,11 @@ class AdvancedObjectWidget(QWidget):
         index = int(tmpList[1])
         operation = tmpList[2]
         
-        if "edit" == operation:
+        if operation == "edit":
             self.editAttribute(attributeName, index)
-        elif "delete" == operation:
+        elif operation == "delete":
             self.deleteAttribute(attributeName, index)
-        elif "export" == operation:
+        elif operation == "export":
             self.exportAttribute(attributeName, index)
 
 ###############################################################################
@@ -422,7 +422,7 @@ class AdvancedObjectWidget(QWidget):
     def editAttribute(self, attributeName, index):
         oldDN = self.ldapDataObject.getDN()
         
-        if 'RDN' == attributeName:
+        if attributeName == 'RDN':     
             self.ldapDataObject.setDN(self.baseDN)
             
         dialog = EditorFactory.getEditorWidget(self, self.ldapDataObject, attributeName, index)
@@ -431,12 +431,12 @@ class AdvancedObjectWidget(QWidget):
         
         if dialog.result() == QDialog.Accepted:
             newValue = dialog.getValue()
-            if not (None == newValue):
+            if not (newValue == None):
                 self.ldapDataObject.setAttributeValue(attributeName, index, newValue)
                 self.EDITED = True
                 self.displayValues()
         else:
-            if 'RDN' == attributeName:
+            if attributeName == 'RDN':
                 self.ldapDataObject.setDN(oldDN)
 
 ###############################################################################
@@ -481,7 +481,7 @@ class AdvancedObjectWidget(QWidget):
             None,
             0, -1)
             
-        if 0 == result:
+        if result == 0:
             self.saveView()
 
         
