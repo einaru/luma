@@ -39,7 +39,7 @@
                 <enum>Plain</enum>
             </property>
             <property name="text">
-                <string>&lt;font size="+2"&gt;&lt;b&gt;Luma 1.4pre2&lt;/b&gt;&lt;/font&gt;</string>
+                <string>&lt;font size="+2"&gt;&lt;b&gt;Luma 1.4&lt;/b&gt;&lt;/font&gt;</string>
                 <comment>DO NOT TRANSLATE</comment>
             </property>
         </widget>
