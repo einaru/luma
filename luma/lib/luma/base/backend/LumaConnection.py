@@ -10,6 +10,7 @@
 
 import ldap
 import ldapurl
+import ldap.modlist
 
 try:
     import ldap.sasl
@@ -18,6 +19,7 @@ except ImportError, e:
     print e
     
 import threading
+import copy
 import time
 
 import environment
@@ -60,8 +62,11 @@ class LumaConnection(object):
     def search(self, base="", scope=ldap.SCOPE_BASE, filter="(objectClass=*)", attrList=None, attrsonly=0):
         """Aynchronous search.
         """
-    
+        
         environment.setBusy(True)
+        
+        #base = self.cleanDN(base)
+        
         workerThread = WorkerThreadSearch(self.ldapServerObject)
         workerThread.base = base
         workerThread.scope = scope
@@ -76,21 +81,29 @@ class LumaConnection(object):
         
         environment.setBusy(False)
             
-        if len(workerThread.result) == 0:
-            return None
+        if None == workerThread.exceptionObject:
+            resultList = []
+            for x in workerThread.result:
+                copyItem = copy.deepcopy(x)
+                resultList.append(SmartDataObject(copyItem, self.serverMeta))
+                
+            return (True, resultList, None)
         else:
-            return workerThread.result
+            return (False, None, workerThread.exceptionObject)
+            
             
             
 ###############################################################################
 
     def delete(self, dnDelete=None):
-        """Synchronous delete.
+        """ Synchronous delete.
         """
         
         if dnDelete == None:
             return
             
+        #dnDelete = self.cleanDN(dnDelete)
+        
         environment.setBusy(True)
         workerThread = WorkerThreadDelete(self.ldapServerObject)
         workerThread.dnDelete = dnDelete
@@ -101,17 +114,23 @@ class LumaConnection(object):
             time.sleep(0.01)
             
         environment.setBusy(False)
-        return workerThread.result
+        
+        if None == workerThread.exceptionObject:
+            return (True, None)
+        else:
+            return (False, workerThread.exceptionObject)
             
 ###############################################################################
 
     def modify(self, dn, modlist=None):
-        """Synchronous modify.
+        """ Synchronous modify.
         """
         
         if modlist == None:
             return False
-            
+        
+        #dn = self.cleanDN(dn)
+        
         environment.setBusy(True)
         workerThread = WorkerThreadModify(self.ldapServerObject)
         workerThread.dn = dn
@@ -123,7 +142,11 @@ class LumaConnection(object):
             time.sleep(0.05)
             
         environment.setBusy(False)
-        return workerThread.result
+        
+        if None == workerThread.exceptionObject:
+            return (True, None)
+        else:
+            return (False, workerThread.exceptionObject)
 
 ###############################################################################
 
@@ -133,6 +156,7 @@ class LumaConnection(object):
         
         
         environment.setBusy(True)
+        
         workerThread = WorkerThreadAdd(self.ldapServerObject)
         workerThread.dn = dn
         workerThread.modlist = modlist
@@ -141,9 +165,37 @@ class LumaConnection(object):
         while not workerThread.FINISHED:
             environment.updateUI()
             time.sleep(0.05)
-            
+        
         environment.setBusy(False)
-        return workerThread.result
+        
+        if None == workerThread.exceptionObject:
+            return (True, None)
+        else:
+            return (False, workerThread.exceptionObject)
+        
+###############################################################################
+
+    def updateDataObject(self, dataObject):
+        """ Updates the given SmartDataObject on the server. 
+        """
+        
+        success, resultList, exceptionObject = self.search(dataObject.getDN(), ldap.SCOPE_BASE)
+        
+        if success:
+            oldObject = resultList[0]
+            modlist =  ldap.modlist.modifyModlist(oldObject.data, dataObject.data, [], 0)
+            return self.modify(dataObject.getDN(), modlist)
+        else:
+            return (False, exceptionObject)
+        
+###############################################################################
+
+    def addDataObject(self, dataObject):
+        """ Adds the given SmartDataObject to the server.
+        """
+        
+        return self.add(dataObject.getDN(), ldap.modlist.addModlist(dataObject.data))
+        
 
 ###############################################################################
 
@@ -197,11 +249,20 @@ class LumaConnection(object):
                     sasl_mech = "GSSAPI"
                     
                 sasl_auth = ldap.sasl.sasl(sasl_cb_value_dict,sasl_mech)
-                self.ldapServerObject.sasl_interactive_bind_s("", sasl_auth)
+                
+                # If python-ldap has no support for SASL, it doesn't have 
+                # sasl_interactive_bind_s as a method.
+                try:
+                    self.ldapServerObject.sasl_interactive_bind_s("", sasl_auth)
+                except AttributeError, e:
+                    return (False, "Python-LDAP is not build with SASL support.")
+                
+            return (True, None)
                 
         except ldap.LDAPError, e:
             print "Error during LDAP bind request"
             print "Reason: " + str(e)
+            return (False, e)
         
 ###############################################################################
 
@@ -218,35 +279,67 @@ class LumaConnection(object):
             
 ###############################################################################
 
+    # FIXME: implement better error handling for function which call 
+    # getBaseDNList. Error handling inside is okay.
     def getBaseDNList(self):
         environment.setBusy(True)
-        try:
-            self.bind()
+
+        bindSuccess, exceptionObject = self.bind()
             
-            dnList = None
-        
-            # Check for openldap
-            result = self.search("", ldap.SCOPE_BASE, "(objectClass=*)", ["namingContexts"])
-            dnList = result[0][1]['namingContexts']
-        
-            # Check for Novell
-            if dnList[0] == '':
-                result = self.search("", ldap.SCOPE_BASE)
-                dnList = result[0][1]['dsaName']
+        if not bindSuccess:
+            environment.setBusy(False)
+            return (False, None, exceptionObject)
             
-            # Univertity of Michigan aka umich
-            # not jet tested
-            if dnList[0] == '':
-                result = self.search("", ldap.SCOPE_BASE, "(objectClass=*)",['database'])
-                dnList = result[0][1]['namingContexts']
+        dnList = None
+        
+        # Check for openldap
+        success, resultList, exceptionObject = self.search("", ldap.SCOPE_BASE, "(objectClass=*)", ["namingContexts"])
+        if success and (len(resultList) > 0):
+            resultItem = resultList[0]
+            if resultItem.hasAttribute('namingContexts'):
+                dnList = resultItem.getAttributeValueList('namingContexts')
+        
+        # Check for Novell
+        if None == dnList:
+            success, resultList, exceptionObject = self.search("", ldap.SCOPE_BASE)
+            if success and (len(resultList) > 0):
+                resultItem = resultList[0]
+                if resultItem.hasAttribute('dsaName'):
+                    dnList = resultItem.getAttributeValueList('dsaName')
+            
+        # Univertity of Michigan aka umich
+        # not jet tested
+        if None == dnList:
+            success, resultList, exceptionObject = self.search("", ldap.SCOPE_BASE, "(objectClass=*)",['database'])
+            if success and (len(resultList) > 0):
+                resultItem = resultList[0]
+                if resultItem.hasAttribute('namingContexts'):
+                    dnList = resultItem.getAttributeValueList('namingContexts')
                 
-            self.unbind()
-            environment.setBusy(False)
-            return dnList
-        except Exception, e:
-            environment.setBusy(False)
-            print e
-            return None
+        self.unbind()
+        environment.setBusy(False)
+            
+        if None == dnList:
+            return (False, None, "Unknown server type")
+        else:
+            return (True, dnList, None)
+            
+###############################################################################
+
+    def cleanDN(self, dnString):
+        tmpList = []
+        
+        for x in ldap.explode_dn(dnString):
+            tmpList.append(self.escape_dn_chars(x))
+            
+        return ",".join(tmpList)
+            
+            
+    def escape_dn_chars(self, s):
+        s = s.replace('\,', r'\2C')
+        s = s.replace('\=', r'\3D')
+        s = s.replace('\+', r'\2B')
+        return s
         
 ###############################################################################
 
@@ -258,6 +351,7 @@ class WorkerThreadSearch(threading.Thread):
             
         self.FINISHED = False
         self.result = []
+        self.exceptionObject = None
             
     def run(self):
         try:
@@ -277,6 +371,7 @@ class WorkerThreadSearch(threading.Thread):
         except ldap.LDAPError, e:
             print "Error during LDAP search request"
             print "Reason: " + str(e)
+            self.exceptionObject = e
             
         self.FINISHED = True
         
@@ -290,6 +385,7 @@ class WorkerThreadDelete(threading.Thread):
             
         self.FINISHED = False
         self.result = False
+        self.exceptionObject = None
         
     def run(self):
         try:
@@ -298,6 +394,7 @@ class WorkerThreadDelete(threading.Thread):
         except ldap.LDAPError, e:
             print "Error during LDAP delete request"
             print "Reason: " + str(e)
+            self.exceptionObject = e
             self.result = False
             
         self.FINISHED = True
@@ -312,6 +409,7 @@ class WorkerThreadAdd(threading.Thread):
             
         self.FINISHED = False
         self.result = False
+        self.exceptionObject = None
         
     def run(self):
         try:
@@ -320,6 +418,7 @@ class WorkerThreadAdd(threading.Thread):
         except ldap.LDAPError, e:
             print "Error during LDAP add request"
             print "Reason: " + str(e)
+            self.exceptionObject = e
             self.result = False
             
         self.FINISHED = True
@@ -334,6 +433,7 @@ class WorkerThreadModify(threading.Thread):
             
         self.FINISHED = False
         self.result = False
+        self.exceptionObject = None
         
     def run(self):
         try:
@@ -342,6 +442,7 @@ class WorkerThreadModify(threading.Thread):
         except ldap.LDAPError, e:
             print "Error during LDAP modify request"
             print "Reason: " + str(e)
+            self.exceptionObject = e
             self.result = False
             
         self.FINISHED = True
