@@ -50,6 +50,7 @@ class AdvancedObjectWidget(QWidget):
         # create the widget containing the object data
         self.objectWidget = QTextBrowser(self.attributeFrame.viewport())
         self.objectWidget.setSizePolicy(QSizePolicy.Maximum, QSizePolicy.Maximum)
+        self.objectWidget.setWrapPolicy(QTextEdit.Anywhere)
         self.connect(self.objectWidget, SIGNAL("anchorClicked (const QString&, const QString&)"), self.modifierClicked)
     
         self.attributeFrame.addChild(self.objectWidget)
@@ -152,8 +153,8 @@ class AdvancedObjectWidget(QWidget):
         tmpList.append("""<body>""")
         tmpList.append("""<table border="0" cellpadding="1" cellspacing="0" width="100%">""")
         tmpList.append("""<tr>""")
-        tmpList.append("""<td bgcolor="#B2CAE7" width="30%"><font size="+1"> <b>Distinguished Name:</b> </font></td>""")
-        tmpList.append("""<td bgcolor="#B2CAE7" width="65%"><font size="+1"><b>""" + self.ldapDataObject.getPrettyDN() + """</b></font></td>""")
+        tmpList.append("""<td bgcolor="#B2CAE7" width="40%"><font size="+1"> <b>Distinguished Name:</b> </font></td>""")
+        tmpList.append("""<td bgcolor="#B2CAE7" width="60%"><font size="+1"><b>""" + self.ldapDataObject.getPrettyDN() + """</b></font></td>""")
         
         if self.CREATE:
             self.mimeFactory.setPixmap("editPixmap", self.editPixmap)
@@ -162,11 +163,11 @@ class AdvancedObjectWidget(QWidget):
         tmpList.append("""</tr>""")
         
         tmpList.append("</table>")
-        tmpList.append("<br><br>")
+        tmpList.append("<br>")
         
         tmpList.append(self.createClassString())
         
-        tmpList.append("<br><br>")
+        tmpList.append("<br>")
         
         tmpList.append(self.createAttributeString())
         
@@ -314,14 +315,14 @@ class AdvancedObjectWidget(QWidget):
                 tmpImage = QImage()
                 tmpImage.loadFromData(value)
                 self.mimeFactory.setImage(univAttributeName, tmpImage)
-                tmpList.append("""<td width="75%"><img source=""" + univAttributeName + """></td>""")
+                tmpList.append("""<td width="70%"><img source=""" + univAttributeName + """></td>""")
             elif attributeIsPassword:
-                tmpList.append("""<td bgcolor="#E5E5E5" width="65%">""" + value + """</td>""")
+                tmpList.append("""<td bgcolor="#E5E5E5" width="70%">""" + value + """</td>""")
             else:
                 self.mimeFactory.setImage(univAttributeName, self.binaryPixmap)
-                tmpList.append("""<td width="75%"><img source=""" + univAttributeName + """></td>""")
+                tmpList.append("""<td width="70%"><img source=""" + univAttributeName + """></td>""")
         else:
-            tmpList.append("""<td bgcolor="#E5E5E5" width="75%">""" + value + """</td>""")
+            tmpList.append("""<td bgcolor="#E5E5E5" width="70%">""" + value + """</td>""")
             
         return "".join(tmpList)
         
@@ -330,7 +331,7 @@ class AdvancedObjectWidget(QWidget):
     def getAttributeModifierString(self, univAttributeName, allowDelete, attributeBinaryExport, attributeModify):
         tmpList = []
         
-        tmpList.append("""<td width=5%>""")
+        tmpList.append("""<td width=10%>""")
         
         if attributeModify:
         #if True:
