@@ -221,7 +221,7 @@ class AddressbookWidget(AddressbookWidgetDesign):
         
         # find the given name
         if self.data.has_key('givenName'):
-            givenName = self.data['givenName'][0].decode('utf-8')
+            givenName = strip(self.data['givenName'][0].decode('utf-8'))
         
         # find the suffix
         if not sureNamePosition == (len(tmpList) - 1):
@@ -237,12 +237,21 @@ class AddressbookWidget(AddressbookWidgetDesign):
                 givenName = frontList[0]
                 middleName = " ".join(frontList[1:])
         else:
-            givenNamePosition = tmpList.index(givenName)
-            if not givenNamePosition == 0:
-                title = " ".join(tmpList[:givenNamePosition])
+            if not givenName in tmpList:
+                frontList = tmpList[:sureNamePosition]
+                if len(frontList) == 1:
+                    givenName = frontList[0]
             
-            if (sureNamePosition-givenNamePosition) > 1:
-                middleName = " ".join(tmpList[givenNamePosition+1 : sureNamePosition])
+                if len(frontList) > 1:
+                    givenName = frontList[0]
+                    middleName = " ".join(frontList[1:])
+            else:
+                givenNamePosition = tmpList.index(givenName)
+                if not givenNamePosition == 0:
+                    title = " ".join(tmpList[:givenNamePosition])
+            
+                if (sureNamePosition-givenNamePosition) > 1:
+                    middleName = " ".join(tmpList[givenNamePosition+1 : sureNamePosition])
             
             
             
