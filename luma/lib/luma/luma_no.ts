@@ -1249,7 +1249,7 @@ til høyre viser alle attributter som må legges til i tillegg til valgt objektk
     </message>
     <message>
         <source>Export</source>
-        <translation type="unfinished"></translation>
+        <translation>Eksporter</translation>
     </message>
 </context>
 <context>
@@ -1551,104 +1551,105 @@ Vennligst trykk start for å begynne slettingen.</translation>
     <name>ExportDialog</name>
     <message>
         <source>Select file to change binary value</source>
-        <translation type="unfinished">Velg fil for å endre binærverdi</translation>
+        <translation>Velg fil for å endre binærverdi</translation>
     </message>
     <message>
         <source>Given file is a directory. Please check the filename.</source>
-        <translation type="unfinished">Oppgitt fil er en katalog. Vennligst sjekk filnavnet.</translation>
+        <translation>Oppgitt fil er en katalog. Vennligst sjekk filnavnet.</translation>
     </message>
     <message>
         <source>Can&apos;t open file. Please check file system permissions.</source>
-        <translation type="unfinished"></translation>
+        <translation>Kunne ikke åpne filen. Vennligst sjekk filrettigheter.</translation>
     </message>
     <message>
         <source>Could not export all entires. Please check messages.</source>
-        <translation type="unfinished"></translation>
+        <translation>Kunne ikke eksporter alle objektene. Vennligst sjekk melding.</translation>
     </message>
     <message>
         <source>All items exported successfully.</source>
-        <translation type="unfinished"></translation>
+        <translation>Alle objekter ble eksportert.</translation>
     </message>
     <message>
         <source>Item exported successfully.</source>
-        <translation type="unfinished"></translation>
+        <translation>Objekt ble eksportert.</translation>
     </message>
 </context>
 <context>
     <name>ExportDialogDesign</name>
     <message>
         <source>1</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>DN</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Message</source>
-        <translation type="unfinished">Melding</translation>
+        <translation>Melding</translation>
     </message>
     <message>
         <source>Export items</source>
-        <translation type="unfinished"></translation>
+        <translation>Eksporter objekter</translation>
     </message>
     <message>
         <source>The following entries will be exported to the format of your choice. You can remove items from the list if you don&apos;t want them to be exported. Press start to begin with export..</source>
-        <translation type="unfinished"></translation>
+        <translation>De følgende objektene vil bli eksportert til det formatet du velger. Du kan fjerne objekter fra listen om du ikke ønsker
+å ekskportere dem. Trykk start for å begynne eksporten..</translation>
     </message>
     <message>
         <source>&amp;Start</source>
-        <translation type="unfinished">&amp;Start</translation>
+        <translation>&amp;Start</translation>
     </message>
     <message>
         <source>Alt+S</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>&amp;Remove</source>
-        <translation type="unfinished">&amp;Fjern</translation>
+        <translation>&amp;Fjern</translation>
     </message>
     <message>
         <source>Alt+R</source>
-        <translation type="unfinished">Alt+F</translation>
+        <translation>Alt+F</translation>
     </message>
     <message>
         <source>DL</source>
         <comment>DO NOT TRANSLATE</comment>
-        <translation type="unfinished">DL</translation>
+        <translation>DL</translation>
     </message>
     <message>
         <source>A</source>
         <comment>DO NOT TRANSLATE</comment>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Export format:</source>
-        <translation type="unfinished"></translation>
+        <translation>Ekportformat:</translation>
     </message>
     <message>
         <source>foo</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>LDIF</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>DSML</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Output file:</source>
-        <translation type="unfinished"></translation>
+        <translation>Til fil:</translation>
     </message>
     <message>
         <source>&amp;Cancel</source>
-        <translation type="unfinished">&amp;Avbryt</translation>
+        <translation>&amp;Avbryt</translation>
     </message>
     <message>
         <source>Alt+C</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
 </context>
 <context>
@@ -2655,142 +2656,146 @@ Try increasing the uidNumber range or delete some users from the subtree.</sourc
     <name>SchemaView</name>
     <message>
         <source>Could not fetch schema information from server.&lt;br&gt;&lt;br&gt;Reason: </source>
-        <translation type="unfinished"></translation>
+        <translation>Kunne ikke hente schema-informasjon fra tjener.&lt;br&gt;&lt;br&gt;Grunn:</translation>
     </message>
     <message>
         <source>&lt;b&gt;Attribute name&lt;/b&gt;&lt;br&gt;Description</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;Attributtnavn&lt;/b&gt;&lt;br&gt;Beskrivelse</translation>
     </message>
     <message>
         <source>&lt;b&gt;Class Name&lt;/b&gt;&lt;br&gt;Description</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;Klassenavn&lt;/b&gt;&lt;br&gt;Beskrivelse</translation>
     </message>
     <message>
         <source>&lt;b&gt;Syntax&lt;/b&gt;&lt;br&gt;Description</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;Syntaks&lt;/b&gt;&lt;br&gt;Beskrivelse</translation>
     </message>
     <message>
         <source>&lt;b&gt;Matching rule&lt;/b&gt;&lt;br&gt;Description</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;Treff-regler&lt;/b&gt;&lt;br&gt;Beskrivelse</translation>
     </message>
 </context>
 <context>
     <name>SchemaViewDesign</name>
     <message>
         <source>Form</source>
-        <translation type="unfinished"></translation>
+        <translation>Skjema</translation>
     </message>
     <message>
         <source>Server:</source>
-        <translation type="unfinished">Tjener:</translation>
+        <translation>Tjener:</translation>
     </message>
     <message>
         <source>Filter:</source>
-        <translation type="unfinished">Filter:</translation>
+        <translation>Filter:</translation>
     </message>
     <message>
         <source>ObjectClasses</source>
-        <translation type="unfinished"></translation>
+        <translation>Objektklasser</translation>
     </message>
     <message>
         <source>Attributes</source>
-        <translation type="unfinished">Attributter</translation>
+        <translation>Attributter</translation>
     </message>
     <message>
         <source>Matching rules</source>
-        <translation type="unfinished"></translation>
+        <translation>Treff-regler</translation>
     </message>
     <message>
         <source>LDAP syntaxes</source>
-        <translation type="unfinished"></translation>
+        <translation>LDAP syntakser</translation>
     </message>
     <message>
         <source>&lt;b&gt;Class Name&lt;/b&gt;&lt;br&gt;
 Description</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;Klassenavn&lt;/b&gt;&lt;br&gt;
+Beskrivelse</translation>
     </message>
     <message>
         <source>Kind:</source>
-        <translation type="unfinished"></translation>
+        <translation>Type:</translation>
     </message>
     <message>
         <source>OID:</source>
-        <translation type="unfinished"></translation>
+        <translation>OID:</translation>
     </message>
     <message>
         <source>Superior:</source>
-        <translation type="unfinished"></translation>
+        <translation>Forelder:</translation>
     </message>
     <message>
         <source>&lt;b&gt;Required attributes&lt;/b&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;Påkrevde attributter&lt;/b&gt;</translation>
     </message>
     <message>
         <source>&lt;b&gt;Allowed attributes&lt;/b&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;Tillatte attributter&lt;/b&gt;</translation>
     </message>
     <message>
         <source>&lt;b&gt;Attribute name&lt;/b&gt;&lt;br&gt;
 Description</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;Attributtnavn&lt;/b&gt;&lt;br&gt;
+Beskrivelse</translation>
     </message>
     <message>
         <source>&lt;b&gt;Used in ObjectClasses&lt;/b&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;Brukt i objektklasse(r)&lt;/b&gt;</translation>
     </message>
     <message>
         <source>Single value</source>
-        <translation type="unfinished"></translation>
+        <translation>Enkelverdi</translation>
     </message>
     <message>
         <source>Collective</source>
-        <translation type="unfinished"></translation>
+        <translation>Samlet</translation>
     </message>
     <message>
         <source>Obsolete</source>
-        <translation type="unfinished"></translation>
+        <translation>Utgått</translation>
     </message>
     <message>
         <source>Syntax {length}:</source>
-        <translation type="unfinished"></translation>
+        <translation>Syntaks {lengde}:</translation>
     </message>
     <message>
         <source>Ordering:</source>
-        <translation type="unfinished"></translation>
+        <translation>Sortering:</translation>
     </message>
     <message>
         <source>Usage:</source>
-        <translation type="unfinished"></translation>
+        <translation>Bruk:</translation>
     </message>
     <message>
         <source>Equality:</source>
-        <translation type="unfinished"></translation>
+        <translation>Likhet:</translation>
     </message>
     <message>
         <source>&lt;b&gt;Matching rule&lt;/b&gt;&lt;br&gt;
 Description</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;Likhet-regel&lt;/b&gt;&lt;br&gt;
+Beskrivelse</translation>
     </message>
     <message>
         <source>Syntax:</source>
-        <translation type="unfinished"></translation>
+        <translation>Syntaks:</translation>
     </message>
     <message>
         <source>&lt;b&gt;Used in Attribute&lt;/b&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;Brukt i attributt&lt;/b&gt;</translation>
     </message>
     <message>
         <source>&lt;b&gt;Syntax&lt;/b&gt;&lt;br&gt;
 Description</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;Syntaks&lt;/b&gt;&lt;br&gt;
+Beskrivelse</translation>
     </message>
     <message>
         <source>&lt;b&gt;Used in attributes&lt;/b&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;Brukt i attributt&lt;/b&gt;</translation>
     </message>
     <message>
         <source>&lt;b&gt;Used in matching rules&lt;/b&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;Brukt i likhet-regel&lt;/b&gt;</translation>
     </message>
 </context>
 <context>
@@ -2863,11 +2868,11 @@ Description</source>
     </message>
     <message>
         <source>Could not bind to server.&lt;br&gt;&lt;br&gt;Reason: </source>
-        <translation type="unfinished">Kunne ikke koble til server. &lt;br&gt;&lt;br&gt;Grunn:</translation>
+        <translation>Kunne ikke koble til server. &lt;br&gt;&lt;br&gt;Grunn:</translation>
     </message>
     <message>
         <source>Could not access entry.&lt;br&gt;&lt;br&gt;Reason: </source>
-        <translation type="unfinished">Fikk ikke tilgang til objekt.&lt;br&gt;&lt;br&gt;Grunn:</translation>
+        <translation>Fikk ikke tilgang til objekt.&lt;br&gt;&lt;br&gt;Grunn:</translation>
     </message>
 </context>
 <context>
