@@ -105,12 +105,6 @@ def doInstall():
         if a.poll() > 0:
             raise "CopyError", "Error!!! Could not copy File. Maybe wrong permissions?"
 
-        a = Popen3("cp -R man " + prefixDir)
-        while a.poll() == -1:
-            pass
-        if a.poll() > 0:
-            raise "CopyError", "Error!!! Could not copy File. Maybe wrong permissions?"
-
         a = Popen3("cp -R lib " + prefixDir)
         while a.poll() == -1:
             pass
