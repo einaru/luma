@@ -18,6 +18,7 @@ from base.utils.gui.SearchResultViewDesign import SearchResultViewDesign
 from base.utils.gui.ObjectWidget import ObjectWidget
 from base.backend.ServerList import ServerList
 import environment
+from base.utils import isBinaryAttribute, encodeBase64
 
 
 class SearchResultView(SearchResultViewDesign):
@@ -104,11 +105,13 @@ class SearchResultView(SearchResultViewDesign):
             listItem.setText(0, x.decode('utf-8'))
             for y in self.RESULT[x][1].keys():
                 if (self.FILTER_COLUMN_POS.has_key(y)) and (not (y == 'dn')):
-                    showString = ""
+                    showString = []
                     for z in self.RESULT[x][1][y]:
-                        showString = showString + z + ", "
-                    print showString[:-2]
-                    listItem.setText(self.FILTER_COLUMN_POS[y], showString[:-2].decode('utf-8'))
+                        if isBinaryAttribute(z) >= 1:
+                            showString.append(encodeBase64(z))
+                        else:
+                            showString.append(z.decode('utf-8'))
+                    listItem.setText(self.FILTER_COLUMN_POS[y], ",".join(showString))
             self.resultListView.insertItem(listItem)
         self.resultListView.setColumnWidth(0, 250)
         self.resultListView.triggerUpdate()
