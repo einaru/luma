@@ -44,6 +44,7 @@ class AddTemplateDialog(AddTemplateDialogDesign):
         if len(name) > 0:
             if name in self.templateList:
                 self.statusLabel.setText(self.trUtf8("A template with this name already exists."))
+                self.okButton.setEnabled(False)
             else:
                 self.okButton.setEnabled(True)
                 self.statusLabel.setText(None)
