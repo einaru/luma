@@ -13,6 +13,7 @@ import string
 import ldap
 import os.path
 import re
+import base64
 
 from base.backend.ServerList import ServerList
 import environment
