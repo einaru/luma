@@ -13,6 +13,8 @@
 import sys
 from qt import *
 
+
+import environment
 from base.gui.MainWin import MainWin
 
 
