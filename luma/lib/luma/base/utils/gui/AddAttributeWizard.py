@@ -120,12 +120,12 @@ class AddAttributeWizard(AddAttributeWizardDesign):
             attributeList = mustAttributes.union(mayAttributes)
             
             cleanList = filter(lambda x: string.lower(x) in tmpList, attributeList)
-            cleanList.sort()
-            map(self.attributeBox.insertItem, cleanList)
-        else:
-            tmpList.sort()
-            map(self.attributeBox.insertItem, tmpList)
-        
+            tmpList = cleanList
+
+        tmpList.sort()
+        tmpList = filter(lambda x: not (string.lower(x) == "objectclass"), tmpList)
+        map(self.attributeBox.insertItem, tmpList)
+            
         self.newSelection(self.attributeBox.currentText())
             
         
