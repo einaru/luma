@@ -376,6 +376,8 @@ class UsermanagementWidget(UsermanagementWidgetDesign):
         
         if self.dataObject.isAttributeAllowed('cn'):
             self.dataObject.addAttributeValue('cn', [newName], True)
+            if self.dataObject.isAttributeAllowed('gecos'):
+                self.dataObject.addAttributeValue('gecos', [newName], True)
             
         self.EDITED = True
         self.enableToolBar()
