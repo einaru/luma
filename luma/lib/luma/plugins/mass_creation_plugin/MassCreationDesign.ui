@@ -185,7 +185,7 @@
                     <cstring>tab</cstring>
                 </property>
                 <attribute name="title">
-                    <string>Account settings</string>
+                    <string>Account Settings</string>
                 </attribute>
                 <vbox>
                     <property name="name">
@@ -438,7 +438,7 @@
                     <cstring>tab</cstring>
                 </property>
                 <attribute name="title">
-                    <string>Account passwords</string>
+                    <string>Account Passwords</string>
                 </attribute>
                 <vbox>
                     <property name="name">

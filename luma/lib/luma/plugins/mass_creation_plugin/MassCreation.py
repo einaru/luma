@@ -94,9 +94,6 @@ Try increasing the uidNumber range or delete some users from the subtree."""),
         tmpObject.readServerList()
         serverMeta = tmpObject.get_serverobject(server)
         
-        # Status variable to test if there was a error during user creation.
-        error = 0
-        
         try:
             ldapServerObject = ldap.open(serverMeta.host, serverMeta.port)
             ldapServerObject.protocol_version = ldap.VERSION3
@@ -138,6 +135,13 @@ Try increasing the uidNumber range or delete some users from the subtree."""),
             
             # set GUI not busy
             mainWin.set_busy(0)
+            QMessageBox.information(None,
+            self.trUtf8("Success"),
+            self.trUtf8("""All users were created successfully."""),
+            self.trUtf8("&OK"),
+            None,
+            None,
+            0, -1)
         except ldap.LDAPError, e:
             print "Error during LDAP request"
             print "Reason: " + str(e[0]['desc'])
@@ -154,21 +158,6 @@ Try increasing the uidNumber range or delete some users from the subtree."""),
                 None,
                 0, -1)
 
-            error = 1
-        
-        
-        if error:
-            return -1
-            
-        QMessageBox.information(None,
-            self.trUtf8("Success"),
-            self.trUtf8("""All users were created successfully."""),
-            self.trUtf8("&OK"),
-            None,
-            None,
-            0, -1)
-
-        
 ###############################################################################
             
     def browse_server(self):
@@ -256,6 +245,8 @@ Try increasing the uidNumber range or delete some users from the subtree."""),
         dialog = BrowserDialog(self)
         if dialog.result() == QDialog.Accepted:
             ldapItem = dialog.getLdapItem()
+        else:
+            return 0
         
         groupId = None
         

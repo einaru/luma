@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'MassCreationDesign.ui'
 #
-# Created: Mon Nov 10 19:35:18 2003
+# Created: Mon Nov 10 22:12:15 2003
 #      by: The PyQt User Interface Compiler (pyuic) 3.7
 #
 # WARNING! All changes made in this file will be lost!
@@ -560,9 +560,9 @@ class MassCreationDesign(QWidget):
         self.groupBox2.setTitle(self.__tr("uid number range"))
         self.textLabel2_2.setText(self.__tr("Minimum:"))
         self.textLabel3_2.setText(self.__tr("Maximum:"))
-        self.tabWidget2.changeTab(self.tab_2,self.__tr("Account settings"))
+        self.tabWidget2.changeTab(self.tab_2,self.__tr("Account Settings"))
         self.textLabel1_2.setText(self.__tr("Account Passwords:"))
-        self.tabWidget2.changeTab(self.tab_3,self.__tr("Account passwords"))
+        self.tabWidget2.changeTab(self.tab_3,self.__tr("Account Passwords"))
         self.pushButton1.setText(self.__tr("Create"))
 
 
