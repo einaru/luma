@@ -19,6 +19,8 @@ from base.utils.gui.ObjectWidget import ObjectWidget
 from base.backend.ServerList import ServerList
 import environment
 from base.utils import isBinaryAttribute, encodeBase64
+from base.utils.backend.LdifHelper import LdifHelper
+
 
 
 class SearchResultView(SearchResultViewDesign):
@@ -185,7 +187,10 @@ class SearchResultView(SearchResultViewDesign):
         tmpList = []
         for x in itemList:
             tmpList.append(self.RESULT[unicode(x.text(0))])
-        exportString = self.convert_to_ldif(tmpList)
+            
+        ldifHelper = LdifHelper(self.SERVER)
+        
+        exportString = ldifHelper.convertToLdif(tmpList)
         
         fileName = unicode(QFileDialog.getSaveFileName())
         if fileName == '':
@@ -221,14 +226,21 @@ class SearchResultView(SearchResultViewDesign):
 
         tmpList = []
         for a in data:
-            tmpList.append("dn: " + a[0] + "\n")
+            tmpDN = a[0]
+            if isBinaryAttribute(a[0]) == 1:
+                tmpDN = base64.encodestring(tmpDN)
+                tmpList.append("dn:: " + tmpDN)
+            else:
+                tmpList.append("dn: " + tmpDN + "\n")
+        
+            
             for x in a[1].keys():
                 for y in a[1][x]:
-                    if not (safe_string_re.search(y) == None):
+                    if isBinaryAttribute(y) == 1:
                         tmpList.append(x + ":: " + base64.encodestring(y))
                     else:
                         tmpList.append(x + ": " + y + "\n")
-                    
+
             tmpList.append("\n")
         return "".join(tmpList)
     
