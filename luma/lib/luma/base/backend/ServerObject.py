@@ -31,8 +31,8 @@ class ServerObject(object):
     
     """
     
-    __slots__ = ('nameP', 'hostP', 'portP', 'bindAnonP', 'baseDNP', 'bindDNP', 
-        'bindPasswordP', 'tlsP', 'authMethodP')
+    __slots__ = (u'nameP', u'hostP', u'portP', u'bindAnonP', u'baseDNP', u'bindDNP', 
+        u'bindPasswordP', u'tlsP', u'authMethodP')
     
     authentificationMethods = [u"Simple", u"SASL Plain", u"SASL CRAM-MD5", 
         u"SASL DIGEST-MD5", u"SASL Login", u"SASL GSSAPI"]
@@ -40,15 +40,15 @@ class ServerObject(object):
 ###############################################################################
 
     def __init__(self):
-        self.nameP = ""
-        self.hostP = ""
+        self.nameP = u""
+        self.hostP = u""
         self.portP = 389
         self.bindAnonP = 0
-        self.baseDNP = ""
-        self.bindDNP = ""
-        self.bindPasswordP = ""
+        self.baseDNP = u""
+        self.bindDNP = u""
+        self.bindPasswordP = u""
         self.tlsP = 0
-        self.authMethodP = "Simple"
+        self.authMethodP = u"Simple"
         
 ###############################################################################
 
