@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ###########################################################################
-#    Copyright (C) 2003 by Wido Depping                                      
+#    Copyright (C) 2003, 2004 by Wido Depping                                      
 #    <widod@users.sourceforge.net>                                                             
 #
 # Copyright: See COPYING file that comes with this distribution
@@ -12,8 +12,13 @@ import os.path
 import sys
 from sets import Set
 
+# The prefix where Luma is installed.
 lumaInstallationPrefix = None
+
+# The script name with which Luma is called.
 lumaScriptName = None
+
+# The home directory of the user.
 userHomeDir = None
 
 def setPaths():
@@ -43,6 +48,7 @@ def updateUI():
     
     This way these functions can be accessed globally. No need to import qt and use qApp
     """
+    
     pass
 
 ###############################################################################
@@ -52,6 +58,7 @@ def setBusy(self, busy):
     
     This way these functions can be accessed globally. No need to import qt and use qApp
     """
+    
     pass
     
 ###############################################################################
