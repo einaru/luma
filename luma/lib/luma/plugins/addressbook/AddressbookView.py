@@ -26,4 +26,5 @@ class AddressbookView(QWidget):
         self.entryList.setMinimumWidth(200)
         self.addressBookWidget = AddressbookWidget(self.splitter)
         self.connect (self.entryList, PYSIGNAL("ldap_result"), self.addressBookWidget.init_view)
+        self.connect(self.entryList, PYSIGNAL("server_changed"), self.addressBookWidget.serverChanged)
         self.mainLayout.addWidget(self.splitter)
