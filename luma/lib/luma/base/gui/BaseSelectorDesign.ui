@@ -29,7 +29,7 @@
                 </property>
                 <widget class="QLabel" row="0" column="1">
                     <property name="name">
-                        <cstring>textLabel1</cstring>
+                        <cstring>baseLabel</cstring>
                     </property>
                     <property name="text">
                         <string>Manage the base distinguished names you want to use with server &lt;b&gt;%1&lt;/b&gt;.</string>
