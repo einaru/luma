@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file '/home/wido/src/luma/lib/luma/base/gui/ServerDialogDesign.ui'
 #
-# Created: Thu Dec 2 22:23:24 2004
+# Created: Fri Jan 28 16:27:13 2005
 #      by: The PyQt User Interface Compiler (pyuic) 3.13
 #
 # WARNING! All changes made in this file will be lost!
@@ -227,7 +227,7 @@ class ServerDialogDesign(QDialog):
 
         self.languageChange()
 
-        self.resize(QSize(600,444).expandedTo(self.minimumSizeHint()))
+        self.resize(QSize(615,444).expandedTo(self.minimumSizeHint()))
         self.clearWState(Qt.WState_Polished)
 
         self.connect(self.applyButton,SIGNAL("clicked()"),self.saveServer)
@@ -263,7 +263,7 @@ class ServerDialogDesign(QDialog):
         self.applyButton.setAccel(self.__tr("Alt+A"))
         self.cancelButton.setText(self.__tr("&Cancel"))
         self.cancelButton.setAccel(self.__tr("Alt+C"))
-        self.addButton.setText(self.__tr("&Add"))
+        self.addButton.setText(self.__tr("&Add..."))
         self.addButton.setAccel(self.__tr("Alt+A"))
         self.serverListView.header().setLabel(0,self.__tr("Server"))
         self.deleteButton.setText(self.__tr("&Delete"))
@@ -284,11 +284,12 @@ class ServerDialogDesign(QDialog):
         self.bindAnonBox.setText(self.__tr("Anonymous bind"))
         self.methodBox.clear()
         self.methodBox.insertItem(self.__tr("Simple"))
-        self.methodBox.insertItem(self.__tr("SASL Plain"))
         self.methodBox.insertItem(self.__tr("SASL CRAM-MD5"))
         self.methodBox.insertItem(self.__tr("SASL DIGEST-MD5"))
-        self.methodBox.insertItem(self.__tr("SASL Login"))
+        self.methodBox.insertItem(self.__tr("SASL EXTERNAL"))
         self.methodBox.insertItem(self.__tr("SASL GSSAPI"))
+        self.methodBox.insertItem(self.__tr("SASL Login"))
+        self.methodBox.insertItem(self.__tr("SASL Plain"))
         self.textLabel4.setText(self.__tr("<b>Authentification mechanism</b>"))
         self.textLabel5.setText(self.__tr("<b>Credentials</b>"))
         self.textLabel12.setText(self.__tr("Password:"))

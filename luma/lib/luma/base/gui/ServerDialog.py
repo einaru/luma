@@ -31,7 +31,7 @@ class ServerDialog(ServerDialogDesign):
         ServerDialogDesign.__init__(self, parent)
         
         self.authentificationMethods = [u"Simple", u"SASL Plain", u"SASL CRAM-MD5", 
-        u"SASL DIGEST-MD5", u"SASL Login", u"SASL GSSAPI"]
+        u"SASL DIGEST-MD5", u"SASL Login", u"SASL GSSAPI", u"SASL EXTERNAL"]
 
         self._PREFIX = environment.lumaInstallationPrefix
         
@@ -113,7 +113,8 @@ class ServerDialog(ServerDialogDesign):
         self.bindLineEdit.setText(x.bindDN)
         self.passwordLineEdit.setText(x.bindPassword)
         self.tlsCheckBox.setChecked(int(x.tls))
-        self.methodBox.setCurrentItem(self.authentificationMethods.index(x.authMethod))
+        #self.methodBox.setCurrentItem(self.authentificationMethods.index(x.authMethod))
+        self.methodBox.setCurrentText(x.authMethod)
         self.bindAnonChanged(x.bindAnon, True)
         self.aliasBox.setChecked(int(x.followAliases))
         
@@ -126,7 +127,8 @@ class ServerDialog(ServerDialogDesign):
         self.methodBox.blockSignals(False)
         self.aliasBox.blockSignals(False)
         
-        if (self.currentServer.authMethod == u"SASL GSSAPI") or x.bindAnon :
+        authMethod = self.currentServer.authMethod
+        if (authMethod == u"SASL GSSAPI") or (authMethod == u"SASL EXTERNAL") or x.bindAnon :
             self.passwordLineEdit.setEnabled(False)
             self.bindLineEdit.setEnabled(False)
         else:
@@ -181,7 +183,8 @@ class ServerDialog(ServerDialogDesign):
         """ Save the changed server values.
         """
         
-        if self.currentServer.authMethod == u"SASL GSSAPI":
+        authMethod = self.currentServer.authMethod
+        if (authMethod == u"SASL GSSAPI") or (authMethod == u"SASL EXTERNAL"):
             self.currentServer.bindDN = u""
             self.currentServer.bindPassword = u""
         
@@ -286,12 +289,13 @@ class ServerDialog(ServerDialogDesign):
         tmpBool = self.bindAnonBox.isChecked()
         
         widgetBool = True
-        if tmpBool or (self.currentServer.authMethod == u"SASL GSSAPI"):
+        authMethod = self.currentServer.authMethod
+        if tmpBool or (authMethod == u"SASL GSSAPI") or (authMethod == u"SASL EXTERNAL"):
             widgetBool = False
             
         self.passwordLineEdit.setEnabled(widgetBool)
         self.bindLineEdit.setEnabled(widgetBool)
-        self.methodBox.setEnabled(widgetBool)
+        self.methodBox.setEnabled(not tmpBool)
         
         self.currentServer.bindAnon = tmpBool
 
@@ -316,12 +320,15 @@ class ServerDialog(ServerDialogDesign):
 ###############################################################################
 
     def methodChanged(self, position):
-        self.currentServer.authMethod = self.authentificationMethods[position]
+        self.currentServer.authMethod = unicode(self.methodBox.currentText())
+        #self.currentServer.authMethod = self.authentificationMethods[position]
         
         self.bindLineEdit.blockSignals(True)
         self.passwordLineEdit.blockSignals(True)
         
-        if self.currentServer.authMethod == u"SASL GSSAPI":
+        authMethod = self.currentServer.authMethod
+        print authMethod
+        if (authMethod == u"SASL GSSAPI") or (u"SASL EXTERNAL" == authMethod):
             self.passwordLineEdit.setEnabled(False)
             self.bindLineEdit.setEnabled(False)
             self.passwordLineEdit.clear()

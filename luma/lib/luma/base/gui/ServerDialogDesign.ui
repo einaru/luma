@@ -607,11 +607,6 @@
                                     </item>
                                     <item>
                                         <property name="text">
-                                            <string>SASL Plain</string>
-                                        </property>
-                                    </item>
-                                    <item>
-                                        <property name="text">
                                             <string>SASL CRAM-MD5</string>
                                         </property>
                                     </item>
@@ -622,12 +617,22 @@
                                     </item>
                                     <item>
                                         <property name="text">
-                                            <string>SASL Login</string>
+                                            <string>SASL EXTERNAL</string>
                                         </property>
                                     </item>
                                     <item>
                                         <property name="text">
                                             <string>SASL GSSAPI</string>
+                                        </property>
+                                    </item>
+                                    <item>
+                                        <property name="text">
+                                            <string>SASL Login</string>
+                                        </property>
+                                    </item>
+                                    <item>
+                                        <property name="text">
+                                            <string>SASL Plain</string>
                                         </property>
                                     </item>
                                     <property name="name">
