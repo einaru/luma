@@ -91,7 +91,7 @@ class BrowserWidget(QListView):
         if not(item == None):
             fullPath = self.get_full_path(item)
             try:
-                server, result = self.__get_ldap_item(fullPath)
+                server, result = self.getLdapItem(fullPath)
                 self.emit(PYSIGNAL("ldap_result"), (server, result[:],))
             except TypeError:
                 "No result from Server"
@@ -101,7 +101,7 @@ class BrowserWidget(QListView):
 
     def item_expanded(self, item):
         fullPath = self.get_full_path(item)
-        results = self.__get_ldap_item_children(fullPath, 0)
+        results = self.getLdapItemChildren(fullPath, 0)
         if results == None:
             return None
         if len(results) == 0:
@@ -140,7 +140,7 @@ class BrowserWidget(QListView):
 
 ###############################################################################
 
-    def __get_ldap_item(self, itemPath):
+    def getLdapItem(self, itemPath):
         serverName, ldapObject = self.__split_path(itemPath)
         if len(ldapObject) == 0:
             return None
@@ -179,7 +179,7 @@ class BrowserWidget(QListView):
 
 ###############################################################################
 
-    def __get_ldap_item_children(self, itemPath, allLevel):
+    def getLdapItemChildren(self, itemPath, allLevel):
         serverName, ldapObject = self.__split_path(itemPath)
         if len(ldapObject) == 0:
             return None
@@ -246,7 +246,7 @@ class BrowserWidget(QListView):
 
     def __export_item(self):
         fullPath = self.get_full_path(self.selectedItem())
-        result = self.__get_ldap_item(fullPath)
+        result = self.getLdapItem(fullPath)
         ldifString = self.__convert_to_ldif(result[1])
         self.__save_ldif(ldifString)
 
@@ -254,7 +254,7 @@ class BrowserWidget(QListView):
 
     def __export_item_subtree(self):
         fullPath = self.get_full_path(self.selectedItem())
-        results = self.__get_ldap_item_children(fullPath, 1)
+        results = self.getLdapItemChildren(fullPath, 1)
         resultString = self.__convert_to_ldif(results)
         self.__save_ldif(resultString)
 
@@ -266,9 +266,9 @@ class BrowserWidget(QListView):
         parents = self.__get_parents(currentItem)
         resultString = ""
         for x in parents:
-            tmpResult = self.__get_ldap_item(x)
+            tmpResult = self.getLdapItem(x)
             resultString = resultString + self.__convert_to_ldif(tmpResult[1])
-        subtree = self.__get_ldap_item_children(fullPath, 1)
+        subtree = self.getLdapItemChildren(fullPath, 1)
         subtreeString = self.__convert_to_ldif(subtree)
         self.__save_ldif(resultString + subtreeString)
 
@@ -383,7 +383,7 @@ class BrowserWidget(QListView):
         
         parent = currentItem.parent()
         fullPath = self.get_full_path(currentItem)
-        children = self.__get_ldap_item_children(fullPath, 1)
+        children = self.getLdapItemChildren(fullPath, 1)
         
         serverName, selectedObject = self.__split_path(fullPath)
         if len(selectedObject) == 0:
