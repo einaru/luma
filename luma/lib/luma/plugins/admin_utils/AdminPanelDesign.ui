@@ -1,4 +1,4 @@
-<!DOCTYPE UI><UI version="3.1" stdsetdef="1">
+<!DOCTYPE UI><UI version="3.2" stdsetdef="1">
 <class>AdminPanelDesign</class>
 <comment>###########################################################################
 #    Copyright (C) 2003 by Wido Depping                                      
@@ -17,8 +17,8 @@
         <rect>
             <x>0</x>
             <y>0</y>
-            <width>448</width>
-            <height>380</height>
+            <width>420</width>
+            <height>378</height>
         </rect>
     </property>
     <property name="caption">
@@ -43,7 +43,7 @@
                     <property name="name">
                         <cstring>unnamed</cstring>
                     </property>
-                    <spacer row="3" column="1">
+                    <spacer row="3" column="2">
                         <property name="name">
                             <cstring>spacer2</cstring>
                         </property>
@@ -56,11 +56,11 @@
                         <property name="sizeHint">
                             <size>
                                 <width>41</width>
-                                <height>90</height>
+                                <height>16</height>
                             </size>
                         </property>
                     </spacer>
-                    <widget class="QGroupBox" row="2" column="0" rowspan="1" colspan="2">
+                    <widget class="QGroupBox" row="2" column="0" rowspan="1" colspan="3">
                         <property name="name">
                             <cstring>groupBox2</cstring>
                         </property>
@@ -107,7 +107,7 @@
                             </widget>
                         </grid>
                     </widget>
-                    <widget class="QGroupBox" row="1" column="0" rowspan="1" colspan="2">
+                    <widget class="QGroupBox" row="1" column="0" rowspan="1" colspan="3">
                         <property name="name">
                             <cstring>groupBox1</cstring>
                         </property>
@@ -171,23 +171,7 @@
                             </spacer>
                         </grid>
                     </widget>
-                    <widget class="QLabel" row="0" column="0">
-                        <property name="name">
-                            <cstring>textLabel1_2</cstring>
-                        </property>
-                        <property name="sizePolicy">
-                            <sizepolicy>
-                                <hsizetype>4</hsizetype>
-                                <vsizetype>5</vsizetype>
-                                <horstretch>0</horstretch>
-                                <verstretch>0</verstretch>
-                            </sizepolicy>
-                        </property>
-                        <property name="text">
-                            <string>Method:</string>
-                        </property>
-                    </widget>
-                    <widget class="QComboBox" row="0" column="1">
+                    <widget class="QComboBox" row="0" column="2">
                         <item>
                             <property name="text">
                                 <string>crypt</string>
@@ -212,6 +196,41 @@
                             <cstring>methodBox</cstring>
                         </property>
                     </widget>
+                    <widget class="QLabel" row="0" column="1">
+                        <property name="name">
+                            <cstring>textLabel1_2</cstring>
+                        </property>
+                        <property name="sizePolicy">
+                            <sizepolicy>
+                                <hsizetype>4</hsizetype>
+                                <vsizetype>5</vsizetype>
+                                <horstretch>0</horstretch>
+                                <verstretch>0</verstretch>
+                            </sizepolicy>
+                        </property>
+                        <property name="text">
+                            <string>Method:</string>
+                        </property>
+                    </widget>
+                    <widget class="QLabel" row="0" column="0">
+                        <property name="name">
+                            <cstring>secureLabel</cstring>
+                        </property>
+                        <property name="sizePolicy">
+                            <sizepolicy>
+                                <hsizetype>0</hsizetype>
+                                <vsizetype>5</vsizetype>
+                                <horstretch>0</horstretch>
+                                <verstretch>0</verstretch>
+                            </sizepolicy>
+                        </property>
+                        <property name="text">
+                            <string>Secure</string>
+                        </property>
+                        <property name="scaledContents">
+                            <bool>false</bool>
+                        </property>
+                    </widget>
                 </grid>
             </widget>
             <widget class="QWidget">
@@ -221,11 +240,11 @@
                 <attribute name="title">
                     <string>Date/Time</string>
                 </attribute>
-                <vbox>
+                <grid>
                     <property name="name">
                         <cstring>unnamed</cstring>
                     </property>
-                    <widget class="QGroupBox">
+                    <widget class="QGroupBox" row="1" column="0">
                         <property name="name">
                             <cstring>groupBox3</cstring>
                         </property>
@@ -258,7 +277,7 @@
                                 </property>
                                 <property name="sizePolicy">
                                     <sizepolicy>
-                                        <hsizetype>1</hsizetype>
+                                        <hsizetype>0</hsizetype>
                                         <vsizetype>0</vsizetype>
                                         <horstretch>0</horstretch>
                                         <verstretch>0</verstretch>
@@ -271,6 +290,13 @@
                             <widget class="QDateEdit" row="0" column="1">
                                 <property name="name">
                                     <cstring>dateEdit</cstring>
+                                </property>
+                                <property name="date">
+                                    <date>
+                                        <year>2000</year>
+                                        <month>1</month>
+                                        <day>1</day>
+                                    </date>
                                 </property>
                             </widget>
                             <widget class="QLabel" row="1" column="0">
@@ -296,7 +322,7 @@
                             </widget>
                         </grid>
                     </widget>
-                    <widget class="QGroupBox">
+                    <widget class="QGroupBox" row="2" column="0">
                         <property name="name">
                             <cstring>groupBox4</cstring>
                         </property>
@@ -327,6 +353,14 @@
                                 <property name="name">
                                     <cstring>durationButton</cstring>
                                 </property>
+                                <property name="sizePolicy">
+                                    <sizepolicy>
+                                        <hsizetype>0</hsizetype>
+                                        <vsizetype>0</vsizetype>
+                                        <horstretch>0</horstretch>
+                                        <verstretch>0</verstretch>
+                                    </sizepolicy>
+                                </property>
                                 <property name="text">
                                     <string>Convert</string>
                                 </property>
@@ -336,13 +370,16 @@
                                     <cstring>durationBox</cstring>
                                 </property>
                                 <property name="buttonSymbols">
-                                    <enum>PlusMinus</enum>
+                                    <enum>UpDownArrows</enum>
                                 </property>
                                 <property name="maxValue">
                                     <number>65000</number>
                                 </property>
                                 <property name="minValue">
                                     <number>-65000</number>
+                                </property>
+                                <property name="value">
+                                    <number>365</number>
                                 </property>
                             </widget>
                             <widget class="QLabel" row="1" column="0">
@@ -368,7 +405,7 @@
                             </widget>
                         </grid>
                     </widget>
-                    <spacer>
+                    <spacer row="3" column="0">
                         <property name="name">
                             <cstring>spacer3</cstring>
                         </property>
@@ -385,7 +422,18 @@
                             </size>
                         </property>
                     </spacer>
-                </vbox>
+                    <widget class="QLabel" row="0" column="0">
+                        <property name="name">
+                            <cstring>dateLabel</cstring>
+                        </property>
+                        <property name="text">
+                            <string>Date</string>
+                        </property>
+                        <property name="scaledContents">
+                            <bool>false</bool>
+                        </property>
+                    </widget>
+                </grid>
             </widget>
         </widget>
     </grid>
@@ -426,6 +474,12 @@
         <signal>valueChanged(int)</signal>
         <receiver>AdminPanelDesign</receiver>
         <slot>convert_duration()</slot>
+    </connection>
+    <connection>
+        <sender>dateEdit</sender>
+        <signal>valueChanged(const QDate&amp;)</signal>
+        <receiver>AdminPanelDesign</receiver>
+        <slot>convert_date()</slot>
     </connection>
 </connections>
 <slots>

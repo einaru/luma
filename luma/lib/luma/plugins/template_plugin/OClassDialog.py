@@ -9,9 +9,10 @@
 ###########################################################################
 
 from qt import *
+import os.path
 
 from plugins.template_plugin.OClassDialogDesign import OClassDialogDesign
-from base.backend.DirUtils import DirUtils
+import environment
 from base.backend.ServerObject import ServerObject
 from base.backend.ServerList import ServerList
 from base.utils.backend.ObjectClassAttributeInfo import ObjectClassAttributeInfo
@@ -23,7 +24,7 @@ class OClassDialog(OClassDialogDesign):
     def __init__(self,parent = None,name = None,modal = 0,fl = 0):
         OClassDialogDesign.__init__(self,parent,name,modal,fl)
 
-        tmpFile  = DirUtils().PREFIX + "/share/luma/icons/secure.png"
+        tmpFile  = os.path.join(environment.lumaInstallationPrefix, "share", "luma", "icons", "secure.png")
         securePixmap = QPixmap(tmpFile)
 
         self.serverListObject = ServerList()

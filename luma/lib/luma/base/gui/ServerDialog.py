@@ -17,7 +17,7 @@ from qt import *
 from base.gui.ServerDialogDesign import ServerDialogDesign
 from base.backend.ServerObject import ServerObject
 from base.backend.ServerList import ServerList
-from base.backend.DirUtils import DirUtils
+import environment
 from base.gui.BaseSelector import BaseSelector
 from base.backend.LumaConnection import LumaConnection
 
@@ -28,7 +28,7 @@ class ServerDialog(ServerDialogDesign):
     def __init__(self, parent= None):
         ServerDialogDesign.__init__(self, parent)
 
-        self._PREFIX = DirUtils().PREFIX
+        self._PREFIX = environment.lumaInstallationPrefix
 
         self.guiParent = parent
 
@@ -126,10 +126,9 @@ class ServerDialog(ServerDialogDesign):
         else:
             self.serverList = self.serverListObject.SERVERLIST
         self.serverListIconView = []
+        tmpIcon = QPixmap(os.path.join(self._PREFIX, "share", "luma", "icons", "server.png"))
         for x in self.serverList:
-            self.serverListIconView.append(QIconViewItem(
-                    self.serverIconView, x.name, QPixmap(
-                    self._PREFIX + "/share/luma/icons/server.png")))
+            self.serverListIconView.append(QIconViewItem(self.serverIconView, x.name, tmpIcon))
         self.serverIconView.setCurrentItem(self.serverIconView.firstItem())
         self.setInputEnabled(0)
         
@@ -165,8 +164,7 @@ class ServerDialog(ServerDialogDesign):
                 QMessageBox.Cancel,
                 QMessageBox.NoButton,
                 self)
-        reallyDelete.setIconPixmap(QPixmap(
-                self._PREFIX + "/share/luma/icons/error.png"))
+        reallyDelete.setIconPixmap(QPixmap(os.path.join(self._PREFIX, "share", "luma", "icons", "error.png")))
         reallyDelete.exec_loop()
         if (reallyDelete.result() == 1):
             self.serverListObject.deleteServer(str(selectedServerString))

@@ -14,9 +14,10 @@ import ldap.modlist
 import re
 import time
 from qt import *
+import os.path
 
 from base.backend.ServerList import ServerList
-from base.backend.DirUtils import DirUtils
+import environment
 from base.utils.backend.ObjectClassAttributeInfo import ObjectClassAttributeInfo
 
 class TemplateObjectWidget(QWidget):
@@ -190,9 +191,9 @@ class TemplateObjectWidget(QWidget):
 
     def add_entries(self, offset, OClass = 0):
         laenge = 0
-        tmpIconDir = DirUtils().PREFIX + "/share/luma/icons"
-        newIcon = tmpIconDir + "/new.png"
-        delIcon = tmpIconDir + "/clear.png"
+        tmpIconDir = os.path.join(environment.lumaInstallationPrefix, "share", "luma", "icons")
+        newIcon = os.path.join(tmpIconDir, "new.png")
+        delIcon = os.path.join(tmpIconDir, "clear.png")
         if OClass:
             for x in self.objectClasses:
                 label = QLabel(self.attributeWidget, "LDAP_ATTRIBUTE")

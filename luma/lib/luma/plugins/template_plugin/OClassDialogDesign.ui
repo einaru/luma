@@ -1,4 +1,4 @@
-<!DOCTYPE UI><UI version="3.1" stdsetdef="1">
+<!DOCTYPE UI><UI version="3.2" stdsetdef="1">
 <class>OClassDialogDesign</class>
 <comment>###########################################################################
 #    Copyright (C) 2003 by Wido Depping                                      
@@ -18,7 +18,7 @@
             <x>0</x>
             <y>0</y>
             <width>508</width>
-            <height>529</height>
+            <height>531</height>
         </rect>
     </property>
     <property name="caption">
@@ -34,8 +34,8 @@
             </property>
             <property name="minimumSize">
                 <size>
-                    <width>241</width>
-                    <height>80</height>
+                    <width>253</width>
+                    <height>84</height>
                 </size>
             </property>
             <property name="orientation">
@@ -104,32 +104,7 @@
                 <string>Ok</string>
             </property>
         </widget>
-        <widget class="QPushButton" row="4" column="0">
-            <property name="name">
-                <cstring>cancelButton</cstring>
-            </property>
-            <property name="text">
-                <string>Cancel</string>
-            </property>
-        </widget>
-        <spacer row="4" column="1" rowspan="1" colspan="4">
-            <property name="name">
-                <cstring>spacer4</cstring>
-            </property>
-            <property name="orientation">
-                <enum>Horizontal</enum>
-            </property>
-            <property name="sizeType">
-                <enum>Expanding</enum>
-            </property>
-            <property name="sizeHint">
-                <size>
-                    <width>131</width>
-                    <height>21</height>
-                </size>
-            </property>
-        </spacer>
-        <spacer row="2" column="3">
+        <spacer row="2" column="2" rowspan="1" colspan="2">
             <property name="name">
                 <cstring>spacer6_2</cstring>
             </property>
@@ -146,7 +121,7 @@
                 </size>
             </property>
         </spacer>
-        <widget class="QLabel" row="1" column="0" rowspan="1" colspan="2">
+        <widget class="QLabel" row="1" column="0">
             <property name="name">
                 <cstring>textLabel2_2</cstring>
             </property>
@@ -170,12 +145,12 @@
                 <string>Add ObjectClass</string>
             </property>
         </widget>
-        <widget class="QComboBox" row="1" column="2" rowspan="1" colspan="4">
+        <widget class="QComboBox" row="1" column="1" rowspan="1" colspan="5">
             <property name="name">
                 <cstring>classBox</cstring>
             </property>
         </widget>
-        <widget class="QPushButton" row="2" column="2">
+        <widget class="QPushButton" row="2" column="1">
             <property name="name">
                 <cstring>deleteButton</cstring>
             </property>
@@ -183,9 +158,34 @@
                 <string>Delete selected Class</string>
             </property>
         </widget>
-        <widget class="QComboBox" row="0" column="2" rowspan="1" colspan="4">
+        <widget class="QComboBox" row="0" column="1" rowspan="1" colspan="5">
             <property name="name">
                 <cstring>serverBox</cstring>
+            </property>
+        </widget>
+        <spacer row="4" column="0" rowspan="1" colspan="3">
+            <property name="name">
+                <cstring>spacer4</cstring>
+            </property>
+            <property name="orientation">
+                <enum>Horizontal</enum>
+            </property>
+            <property name="sizeType">
+                <enum>Expanding</enum>
+            </property>
+            <property name="sizeHint">
+                <size>
+                    <width>131</width>
+                    <height>21</height>
+                </size>
+            </property>
+        </spacer>
+        <widget class="QPushButton" row="4" column="3" rowspan="1" colspan="2">
+            <property name="name">
+                <cstring>cancelButton</cstring>
+            </property>
+            <property name="text">
+                <string>Cancel</string>
             </property>
         </widget>
     </grid>

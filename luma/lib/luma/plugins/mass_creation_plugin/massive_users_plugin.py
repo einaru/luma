@@ -9,8 +9,10 @@
 ###########################################################################
 
 from qt import *
+import os.path
 
 from plugins.mass_creation_plugin.MassCreation import MassCreation
+import environment
 
 class TaskPlugin(object):
 
@@ -19,19 +21,42 @@ class TaskPlugin(object):
         self.pluginPath = ""
         self.pluginWidget = None
 
+###############################################################################
+
     def postprocess (self):
         pass
 
+###############################################################################
+
     def get_icon(self):
+        iconPixmap = None
         try:
-            iconPixmap = QPixmap(self.pluginPath + "/icons/massive_users.png")
+            iconPixmap = QPixmap (os.path.join (self.pluginPath, "icons", "massive_users.png"))
         except:
             print "Debug: Icon konnte nicht geöffnet werden"
 
         return iconPixmap
 
+###############################################################################
 
-    def set_widget(self, parent):
+    def getPluginWidget(self, parent):
         self.pluginWidget = MassCreation(parent)
         return self.pluginWidget
 
+###############################################################################
+
+    def getPluginSettingsWidget(self, parent):
+        return
+        
+###############################################################################
+
+    def getHelpText(self):
+        docFile = os.path.join(environment.lumaInstallationPrefix, "share", "luma", "doc", "massive.help")
+        helpText = None
+        
+        try:
+            helpText = open(docFile, 'r').readlines()
+        except Exception, e:
+            print "Could not read plugin help. Reason:"
+            print e
+        return "".join(helpText)

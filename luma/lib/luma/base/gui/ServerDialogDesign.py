@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file '/home/wido/src/luma/lib/luma/base/gui/ServerDialogDesign.ui'
 #
-# Created: Thu Dec 4 01:54:09 2003
+# Created: Sat Jan 10 00:41:42 2004
 #      by: The PyQt User Interface Compiler (pyuic) 3.8.1
 #
 # WARNING! All changes made in this file will be lost!
@@ -296,7 +296,7 @@ class ServerDialogDesign(QDialog):
 
         self.languageChange()
 
-        self.resize(QSize(626,578).expandedTo(self.minimumSizeHint()))
+        self.resize(QSize(399,582).expandedTo(self.minimumSizeHint()))
         self.clearWState(Qt.WState_Polished)
 
         self.connect(self.closeButton,SIGNAL("clicked()"),self,SLOT("close()"))
@@ -327,7 +327,7 @@ class ServerDialogDesign(QDialog):
         self.addButton.setText(self.__tr("Add Server"))
         self.deleteButton.setText(self.__tr("Delete Server"))
         self.modifyButton.setText(self.__tr("Modify Server"))
-        self.closeButton.setText(self.__tr("Close Dialog"))
+        self.closeButton.setText(self.__tr("Close"))
         self.groupBox3.setTitle(self.__tr("Server Info"))
         self.textLabel11.setText(self.__tr("Server Name:"))
         self.textLabel8.setText(self.__tr("LDAP Host:"))

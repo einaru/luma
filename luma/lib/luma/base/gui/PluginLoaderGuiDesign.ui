@@ -1,14 +1,5 @@
 <!DOCTYPE UI><UI version="3.2" stdsetdef="1">
 <class>PluginLoaderGuiDesign</class>
-<comment>###########################################################################
-#    Copyright (C) 2003 by Wido Depping                                      
-#    &lt;wido.depping@tu-clausthal.de&gt;                                                             
-#
-# Copyright: See COPYING file that comes with this distribution
-#
-###########################################################################
-</comment>
-<author>Wido Depping</author>
 <widget class="QDialog">
     <property name="name">
         <cstring>PluginLoaderGuiDesign</cstring>
@@ -17,18 +8,18 @@
         <rect>
             <x>0</x>
             <y>0</y>
-            <width>462</width>
-            <height>331</height>
+            <width>600</width>
+            <height>494</height>
         </rect>
     </property>
     <property name="caption">
-        <string>Configure Plugins</string>
+        <string>Plugin settings</string>
     </property>
-    <grid>
+    <vbox>
         <property name="name">
             <cstring>unnamed</cstring>
         </property>
-        <widget class="QLabel" row="0" column="0" rowspan="1" colspan="2">
+        <widget class="QLabel">
             <property name="name">
                 <cstring>textLabel1</cstring>
             </property>
@@ -44,68 +35,7 @@
                 <string>Available Plugins:</string>
             </property>
         </widget>
-        <spacer row="6" column="0">
-            <property name="name">
-                <cstring>spacer1</cstring>
-            </property>
-            <property name="orientation">
-                <enum>Horizontal</enum>
-            </property>
-            <property name="sizeType">
-                <enum>Expanding</enum>
-            </property>
-            <property name="sizeHint">
-                <size>
-                    <width>201</width>
-                    <height>21</height>
-                </size>
-            </property>
-        </spacer>
-        <widget class="Line" row="4" column="0" rowspan="2" colspan="3">
-            <property name="name">
-                <cstring>line2</cstring>
-            </property>
-            <property name="frameShape">
-                <enum>HLine</enum>
-            </property>
-            <property name="frameShadow">
-                <enum>Sunken</enum>
-            </property>
-            <property name="orientation">
-                <enum>Horizontal</enum>
-            </property>
-        </widget>
-        <widget class="QListView" row="2" column="0" rowspan="2" colspan="2">
-            <column>
-                <property name="text">
-                    <string>Load</string>
-                </property>
-                <property name="clickable">
-                    <bool>true</bool>
-                </property>
-                <property name="resizable">
-                    <bool>true</bool>
-                </property>
-            </column>
-            <property name="name">
-                <cstring>chooserView</cstring>
-            </property>
-            <property name="allColumnsShowFocus">
-                <bool>false</bool>
-            </property>
-            <property name="resizeMode">
-                <enum>AllColumns</enum>
-            </property>
-        </widget>
-        <widget class="QPushButton" row="2" column="2">
-            <property name="name">
-                <cstring>pushButton3</cstring>
-            </property>
-            <property name="text">
-                <string>Modify</string>
-            </property>
-        </widget>
-        <widget class="Line" row="1" column="0" rowspan="1" colspan="3">
+        <widget class="Line">
             <property name="name">
                 <cstring>line1</cstring>
             </property>
@@ -119,43 +49,154 @@
                 <enum>Horizontal</enum>
             </property>
         </widget>
-        <spacer row="3" column="2">
+        <widget class="QSplitter">
             <property name="name">
-                <cstring>spacer2</cstring>
+                <cstring>splitter2</cstring>
             </property>
             <property name="orientation">
-                <enum>Vertical</enum>
+                <enum>Horizontal</enum>
             </property>
-            <property name="sizeType">
-                <enum>Expanding</enum>
-            </property>
-            <property name="sizeHint">
-                <size>
-                    <width>41</width>
-                    <height>141</height>
-                </size>
-            </property>
-        </spacer>
-        <widget class="QPushButton" row="5" column="1" rowspan="2" colspan="2">
+            <widget class="QListView">
+                <column>
+                    <property name="text">
+                        <string>Load</string>
+                    </property>
+                    <property name="clickable">
+                        <bool>true</bool>
+                    </property>
+                    <property name="resizable">
+                        <bool>true</bool>
+                    </property>
+                </column>
+                <property name="name">
+                    <cstring>chooserView</cstring>
+                </property>
+                <property name="maximumSize">
+                    <size>
+                        <width>200</width>
+                        <height>32767</height>
+                    </size>
+                </property>
+                <property name="allColumnsShowFocus">
+                    <bool>false</bool>
+                </property>
+                <property name="resizeMode">
+                    <enum>AllColumns</enum>
+                </property>
+            </widget>
+            <widget class="QGroupBox">
+                <property name="name">
+                    <cstring>settingsBox</cstring>
+                </property>
+                <property name="title">
+                    <string>Settings Box</string>
+                </property>
+                <grid>
+                    <property name="name">
+                        <cstring>unnamed</cstring>
+                    </property>
+                    <widget class="QWidgetStack" row="0" column="0">
+                        <property name="name">
+                            <cstring>settingsStack</cstring>
+                        </property>
+                        <property name="sizePolicy">
+                            <sizepolicy>
+                                <hsizetype>5</hsizetype>
+                                <vsizetype>7</vsizetype>
+                                <horstretch>0</horstretch>
+                                <verstretch>0</verstretch>
+                            </sizepolicy>
+                        </property>
+                        <widget class="QWidget">
+                            <property name="name">
+                                <cstring>WStackPage</cstring>
+                            </property>
+                            <attribute name="id">
+                                <number>0</number>
+                            </attribute>
+                        </widget>
+                    </widget>
+                </grid>
+            </widget>
+        </widget>
+        <widget class="Line">
             <property name="name">
-                <cstring>pushButton1</cstring>
+                <cstring>line2</cstring>
             </property>
-            <property name="text">
-                <string>Close</string>
+            <property name="frameShape">
+                <enum>HLine</enum>
+            </property>
+            <property name="frameShadow">
+                <enum>Sunken</enum>
+            </property>
+            <property name="orientation">
+                <enum>Horizontal</enum>
             </property>
         </widget>
-    </grid>
+        <widget class="QLayoutWidget">
+            <property name="name">
+                <cstring>layout1</cstring>
+            </property>
+            <hbox>
+                <property name="name">
+                    <cstring>unnamed</cstring>
+                </property>
+                <spacer>
+                    <property name="name">
+                        <cstring>spacer1</cstring>
+                    </property>
+                    <property name="orientation">
+                        <enum>Horizontal</enum>
+                    </property>
+                    <property name="sizeType">
+                        <enum>Expanding</enum>
+                    </property>
+                    <property name="sizeHint">
+                        <size>
+                            <width>458</width>
+                            <height>21</height>
+                        </size>
+                    </property>
+                </spacer>
+                <widget class="QPushButton">
+                    <property name="name">
+                        <cstring>closeButton</cstring>
+                    </property>
+                    <property name="focusPolicy">
+                        <enum>ClickFocus</enum>
+                    </property>
+                    <property name="text">
+                        <string>Close</string>
+                    </property>
+                    <property name="autoDefault">
+                        <bool>false</bool>
+                    </property>
+                </widget>
+            </hbox>
+        </widget>
+    </vbox>
 </widget>
 <connections>
     <connection>
-        <sender>pushButton1</sender>
+        <sender>closeButton</sender>
         <signal>clicked()</signal>
         <receiver>PluginLoaderGuiDesign</receiver>
         <slot>saveValues()</slot>
     </connection>
+    <connection>
+        <sender>chooserView</sender>
+        <signal>selectionChanged(QListViewItem*)</signal>
+        <receiver>PluginLoaderGuiDesign</receiver>
+        <slot>pluginSelected()</slot>
+    </connection>
 </connections>
+<tabstops>
+    <tabstop>chooserView</tabstop>
+    <tabstop>closeButton</tabstop>
+</tabstops>
 <slots>
     <slot>saveValues()</slot>
+    <slot>pluginSelected()</slot>
 </slots>
 <layoutdefaults spacing="6" margin="11"/>
 </UI>

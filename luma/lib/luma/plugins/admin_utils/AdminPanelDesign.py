@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file '/home/wido/src/luma/lib/luma/plugins/admin_utils/AdminPanelDesign.ui'
 #
-# Created: Thu Dec 4 01:54:12 2003
+# Created: Sat Jan 3 17:38:51 2004
 #      by: The PyQt User Interface Compiler (pyuic) 3.8.1
 #
 # WARNING! All changes made in this file will be lost!
@@ -26,8 +26,8 @@ class AdminPanelDesign(QWidget):
 
         self.tab = QWidget(self.tabWidget2,"tab")
         tabLayout = QGridLayout(self.tab,1,1,11,6,"tabLayout")
-        spacer = QSpacerItem(41,90,QSizePolicy.Minimum,QSizePolicy.Expanding)
-        tabLayout.addItem(spacer,3,1)
+        spacer = QSpacerItem(41,16,QSizePolicy.Minimum,QSizePolicy.Expanding)
+        tabLayout.addItem(spacer,3,2)
 
         self.groupBox2 = QGroupBox(self.tab,"groupBox2")
         self.groupBox2.setColumnLayout(0,Qt.Vertical)
@@ -56,7 +56,7 @@ class AdminPanelDesign(QWidget):
 
         groupBox2Layout.addWidget(self.cryptEdit,1,1)
 
-        tabLayout.addMultiCellWidget(self.groupBox2,2,2,0,1)
+        tabLayout.addMultiCellWidget(self.groupBox2,2,2,0,2)
 
         self.groupBox1 = QGroupBox(self.tab,"groupBox1")
         self.groupBox1.setColumnLayout(0,Qt.Vertical)
@@ -87,20 +87,26 @@ class AdminPanelDesign(QWidget):
         spacer_2 = QSpacerItem(191,21,QSizePolicy.Expanding,QSizePolicy.Minimum)
         groupBox1Layout.addItem(spacer_2,2,1)
 
-        tabLayout.addMultiCellWidget(self.groupBox1,1,1,0,1)
+        tabLayout.addMultiCellWidget(self.groupBox1,1,1,0,2)
+
+        self.methodBox = QComboBox(0,self.tab,"methodBox")
+
+        tabLayout.addWidget(self.methodBox,0,2)
 
         self.textLabel1_2 = QLabel(self.tab,"textLabel1_2")
         self.textLabel1_2.setSizePolicy(QSizePolicy(4,5,0,0,self.textLabel1_2.sizePolicy().hasHeightForWidth()))
 
-        tabLayout.addWidget(self.textLabel1_2,0,0)
+        tabLayout.addWidget(self.textLabel1_2,0,1)
 
-        self.methodBox = QComboBox(0,self.tab,"methodBox")
+        self.secureLabel = QLabel(self.tab,"secureLabel")
+        self.secureLabel.setSizePolicy(QSizePolicy(0,5,0,0,self.secureLabel.sizePolicy().hasHeightForWidth()))
+        self.secureLabel.setScaledContents(0)
 
-        tabLayout.addWidget(self.methodBox,0,1)
+        tabLayout.addWidget(self.secureLabel,0,0)
         self.tabWidget2.insertTab(self.tab,QString(""))
 
         self.tab_2 = QWidget(self.tabWidget2,"tab_2")
-        tabLayout_2 = QVBoxLayout(self.tab_2,11,6,"tabLayout_2")
+        tabLayout_2 = QGridLayout(self.tab_2,1,1,11,6,"tabLayout_2")
 
         self.groupBox3 = QGroupBox(self.tab_2,"groupBox3")
         self.groupBox3.setColumnLayout(0,Qt.Vertical)
@@ -115,11 +121,12 @@ class AdminPanelDesign(QWidget):
         groupBox3Layout.addWidget(self.textLabel5,0,0)
 
         self.dateButton = QPushButton(self.groupBox3,"dateButton")
-        self.dateButton.setSizePolicy(QSizePolicy(1,0,0,0,self.dateButton.sizePolicy().hasHeightForWidth()))
+        self.dateButton.setSizePolicy(QSizePolicy(0,0,0,0,self.dateButton.sizePolicy().hasHeightForWidth()))
 
         groupBox3Layout.addWidget(self.dateButton,0,2)
 
         self.dateEdit = QDateEdit(self.groupBox3,"dateEdit")
+        self.dateEdit.setDate(QDate(2000,1,1))
 
         groupBox3Layout.addWidget(self.dateEdit,0,1)
 
@@ -131,7 +138,8 @@ class AdminPanelDesign(QWidget):
         self.convDateEdit = QLineEdit(self.groupBox3,"convDateEdit")
 
         groupBox3Layout.addMultiCellWidget(self.convDateEdit,1,1,1,2)
-        tabLayout_2.addWidget(self.groupBox3)
+
+        tabLayout_2.addWidget(self.groupBox3,1,0)
 
         self.groupBox4 = QGroupBox(self.tab_2,"groupBox4")
         self.groupBox4.setColumnLayout(0,Qt.Vertical)
@@ -146,13 +154,15 @@ class AdminPanelDesign(QWidget):
         groupBox4Layout.addWidget(self.textLabel7,0,0)
 
         self.durationButton = QPushButton(self.groupBox4,"durationButton")
+        self.durationButton.setSizePolicy(QSizePolicy(0,0,0,0,self.durationButton.sizePolicy().hasHeightForWidth()))
 
         groupBox4Layout.addWidget(self.durationButton,0,2)
 
         self.durationBox = QSpinBox(self.groupBox4,"durationBox")
-        self.durationBox.setButtonSymbols(QSpinBox.PlusMinus)
+        self.durationBox.setButtonSymbols(QSpinBox.UpDownArrows)
         self.durationBox.setMaxValue(65000)
         self.durationBox.setMinValue(-65000)
+        self.durationBox.setValue(365)
 
         groupBox4Layout.addWidget(self.durationBox,0,1)
 
@@ -164,16 +174,22 @@ class AdminPanelDesign(QWidget):
         self.convDurationEdit = QLineEdit(self.groupBox4,"convDurationEdit")
 
         groupBox4Layout.addMultiCellWidget(self.convDurationEdit,1,1,1,2)
-        tabLayout_2.addWidget(self.groupBox4)
+
+        tabLayout_2.addWidget(self.groupBox4,2,0)
         spacer_3 = QSpacerItem(21,141,QSizePolicy.Minimum,QSizePolicy.Expanding)
-        tabLayout_2.addItem(spacer_3)
+        tabLayout_2.addItem(spacer_3,3,0)
+
+        self.dateLabel = QLabel(self.tab_2,"dateLabel")
+        self.dateLabel.setScaledContents(0)
+
+        tabLayout_2.addWidget(self.dateLabel,0,0)
         self.tabWidget2.insertTab(self.tab_2,QString(""))
 
         AdminPanelDesignLayout.addWidget(self.tabWidget2,0,0)
 
         self.languageChange()
 
-        self.resize(QSize(448,380).expandedTo(self.minimumSizeHint()))
+        self.resize(QSize(420,378).expandedTo(self.minimumSizeHint()))
         self.clearWState(Qt.WState_Polished)
 
         self.connect(self.createButton,SIGNAL("clicked()"),self.create_random)
@@ -182,6 +198,7 @@ class AdminPanelDesign(QWidget):
         self.connect(self.dateButton,SIGNAL("clicked()"),self.convert_date)
         self.connect(self.durationButton,SIGNAL("clicked()"),self.convert_duration)
         self.connect(self.durationBox,SIGNAL("valueChanged(int)"),self.convert_duration)
+        self.connect(self.dateEdit,SIGNAL("valueChanged(const QDate&)"),self.convert_date)
 
 
     def languageChange(self):
@@ -194,12 +211,13 @@ class AdminPanelDesign(QWidget):
         self.textLabel1.setText(self.__tr("Password:"))
         self.textLabel2.setText(self.__tr("Encrypted password:"))
         self.createButton.setText(self.__tr("Create"))
-        self.textLabel1_2.setText(self.__tr("Method:"))
         self.methodBox.clear()
         self.methodBox.insertItem(self.__tr("crypt"))
         self.methodBox.insertItem(self.__tr("md5"))
         self.methodBox.insertItem(self.__tr("sha"))
         self.methodBox.insertItem(self.__tr("ssha"))
+        self.textLabel1_2.setText(self.__tr("Method:"))
+        self.secureLabel.setText(self.__tr("Secure"))
         self.tabWidget2.changeTab(self.tab,self.__tr("Passwords"))
         self.groupBox3.setTitle(self.__tr("Date to Unix"))
         self.textLabel5.setText(self.__tr("Date:"))
@@ -209,6 +227,7 @@ class AdminPanelDesign(QWidget):
         self.textLabel7.setText(self.__tr("Days from now:"))
         self.durationButton.setText(self.__tr("Convert"))
         self.textLabel6_2.setText(self.__tr("Days since birth of Unix:"))
+        self.dateLabel.setText(self.__tr("Date"))
         self.tabWidget2.changeTab(self.tab_2,self.__tr("Date/Time"))
 
 

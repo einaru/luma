@@ -8,14 +8,13 @@
 #
 ###########################################################################
 
-from qt import *
-
 import ldap
 import ldap.schema
 import re
 import string
 
 from base.backend.ServerList import ServerList
+import environment
 
 class ObjectClassAttributeInfo(object):
     """ A class for getting information about objectclasses and attributes 
@@ -54,8 +53,7 @@ class ObjectClassAttributeInfo(object):
         serverMeta = ""
         serverMeta = tmpObject.get_serverobject(self.SERVER)
 
-        mainWin = qApp.mainWidget()
-        mainWin.set_busy()
+        environment.set_busy(1)
 
         try:
             tmpUrl = "ldap://" + serverMeta.host + ":" + str(serverMeta.port)
@@ -63,7 +61,7 @@ class ObjectClassAttributeInfo(object):
             oidList = schema.listall(ldap.schema.ObjectClass)
             
             for x in oidList:
-                mainWin.update_ui()
+                environment.update_ui()
                 y = schema.get_obj(ldap.schema.ObjectClass, x)
                 name = y.names[0]
                 desc = ""
@@ -85,7 +83,7 @@ class ObjectClassAttributeInfo(object):
             oidList = schema.listall(ldap.schema.AttributeType)
             
             for x in oidList:
-                mainWin.update_ui()
+                environment.update_ui()
                 y = schema.get_obj(ldap.schema.AttributeType, x)
                 name = y.names
                 desc = ""
@@ -103,7 +101,7 @@ class ObjectClassAttributeInfo(object):
             print "Error during LDAP request"
             print "Reason: " + str(e)
             
-        mainWin.set_busy(0)
+        environment.set_busy(0)
 
 ###############################################################################
 

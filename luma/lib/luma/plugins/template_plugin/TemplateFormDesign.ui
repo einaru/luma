@@ -1,4 +1,4 @@
-<!DOCTYPE UI><UI version="3.1" stdsetdef="1">
+<!DOCTYPE UI><UI version="3.2" stdsetdef="1">
 <class>TemplateFormDesign</class>
 <comment>###########################################################################
 #    Copyright (C) 2003 by Wido Depping                                      
@@ -17,8 +17,8 @@
         <rect>
             <x>0</x>
             <y>0</y>
-            <width>598</width>
-            <height>545</height>
+            <width>367</width>
+            <height>388</height>
         </rect>
     </property>
     <property name="caption">
@@ -28,7 +28,7 @@
         <property name="name">
             <cstring>unnamed</cstring>
         </property>
-        <widget class="QGroupBox" row="2" column="0">
+        <widget class="QGroupBox" row="1" column="0">
             <property name="name">
                 <cstring>groupBox2</cstring>
             </property>
@@ -105,14 +105,6 @@
                         <enum>AllColumns</enum>
                     </property>
                 </widget>
-                <widget class="QPushButton" row="1" column="0">
-                    <property name="name">
-                        <cstring>classButton</cstring>
-                    </property>
-                    <property name="text">
-                        <string>Edit</string>
-                    </property>
-                </widget>
                 <widget class="QPushButton" row="1" column="2">
                     <property name="name">
                         <cstring>saveButton</cstring>
@@ -121,7 +113,15 @@
                         <string>Save </string>
                     </property>
                 </widget>
-                <spacer row="1" column="1">
+                <widget class="QPushButton" row="1" column="1">
+                    <property name="name">
+                        <cstring>classButton</cstring>
+                    </property>
+                    <property name="text">
+                        <string>Edit</string>
+                    </property>
+                </widget>
+                <spacer row="1" column="0">
                     <property name="name">
                         <cstring>spacer6</cstring>
                     </property>
@@ -133,47 +133,33 @@
                     </property>
                     <property name="sizeHint">
                         <size>
-                            <width>546</width>
+                            <width>220</width>
                             <height>20</height>
                         </size>
                     </property>
                 </spacer>
             </grid>
         </widget>
-        <spacer row="1" column="0">
+        <widget class="QGroupBox" row="0" column="0">
             <property name="name">
-                <cstring>spacer7</cstring>
+                <cstring>groupBox2_2</cstring>
             </property>
-            <property name="orientation">
-                <enum>Vertical</enum>
+            <property name="sizePolicy">
+                <sizepolicy>
+                    <hsizetype>5</hsizetype>
+                    <vsizetype>5</vsizetype>
+                    <horstretch>0</horstretch>
+                    <verstretch>0</verstretch>
+                </sizepolicy>
             </property>
-            <property name="sizeType">
-                <enum>Minimum</enum>
-            </property>
-            <property name="sizeHint">
-                <size>
-                    <width>31</width>
-                    <height>51</height>
-                </size>
-            </property>
-        </spacer>
-        <widget class="QLayoutWidget" row="0" column="0">
-            <property name="name">
-                <cstring>layout1</cstring>
+            <property name="title">
+                <string>Template List</string>
             </property>
             <grid>
                 <property name="name">
                     <cstring>unnamed</cstring>
                 </property>
-                <widget class="QPushButton" row="2" column="1">
-                    <property name="name">
-                        <cstring>addTemplateButton</cstring>
-                    </property>
-                    <property name="text">
-                        <string>Add</string>
-                    </property>
-                </widget>
-                <widget class="QPushButton" row="0" column="1">
+                <widget class="QPushButton" row="1" column="1">
                     <property name="name">
                         <cstring>delTemplateButton</cstring>
                     </property>
@@ -181,7 +167,7 @@
                         <string>Delete</string>
                     </property>
                 </widget>
-                <spacer row="1" column="1">
+                <spacer row="2" column="1">
                     <property name="name">
                         <cstring>spacer5</cstring>
                     </property>
@@ -194,10 +180,18 @@
                     <property name="sizeHint">
                         <size>
                             <width>31</width>
-                            <height>50</height>
+                            <height>7</height>
                         </size>
                     </property>
                 </spacer>
+                <widget class="QPushButton" row="0" column="1">
+                    <property name="name">
+                        <cstring>addTemplateButton</cstring>
+                    </property>
+                    <property name="text">
+                        <string>Add</string>
+                    </property>
+                </widget>
                 <widget class="QListView" row="0" column="0" rowspan="3" colspan="1">
                     <column>
                         <property name="text">
@@ -213,17 +207,13 @@
                     <property name="name">
                         <cstring>templateView</cstring>
                     </property>
-                    <property name="minimumSize">
-                        <size>
-                            <width>0</width>
-                            <height>130</height>
-                        </size>
-                    </property>
-                    <property name="maximumSize">
-                        <size>
-                            <width>32767</width>
-                            <height>200</height>
-                        </size>
+                    <property name="sizePolicy">
+                        <sizepolicy>
+                            <hsizetype>3</hsizetype>
+                            <vsizetype>0</vsizetype>
+                            <horstretch>0</horstretch>
+                            <verstretch>0</verstretch>
+                        </sizepolicy>
                     </property>
                     <property name="resizeMode">
                         <enum>AllColumns</enum>

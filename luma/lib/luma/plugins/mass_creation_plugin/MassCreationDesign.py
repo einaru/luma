@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file '/home/wido/src/luma/lib/luma/plugins/mass_creation_plugin/MassCreationDesign.ui'
 #
-# Created: Thu Dec 4 01:54:12 2003
+# Created: Mon Jan 5 20:42:41 2004
 #      by: The PyQt User Interface Compiler (pyuic) 3.8.1
 #
 # WARNING! All changes made in this file will be lost!
@@ -331,7 +331,7 @@ class MassCreationDesign(QWidget):
             self.setName("MassCreationDesign")
 
 
-        MassCreationDesignLayout = QVBoxLayout(self,11,6,"MassCreationDesignLayout")
+        MassCreationDesignLayout = QGridLayout(self,1,1,11,6,"MassCreationDesignLayout")
 
         self.tabWidget2 = QTabWidget(self,"tabWidget2")
 
@@ -516,14 +516,18 @@ class MassCreationDesign(QWidget):
         self.passwordEdit = QTextEdit(self.tab_3,"passwordEdit")
         tabLayout_3.addWidget(self.passwordEdit)
         self.tabWidget2.insertTab(self.tab_3,QString(""))
-        MassCreationDesignLayout.addWidget(self.tabWidget2)
+
+        MassCreationDesignLayout.addMultiCellWidget(self.tabWidget2,0,0,0,2)
 
         self.pushButton1 = QPushButton(self,"pushButton1")
-        MassCreationDesignLayout.addWidget(self.pushButton1)
+
+        MassCreationDesignLayout.addWidget(self.pushButton1,1,2)
+        spacer_4 = QSpacerItem(130,21,QSizePolicy.Expanding,QSizePolicy.Minimum)
+        MassCreationDesignLayout.addItem(spacer_4,1,1)
 
         self.languageChange()
 
-        self.resize(QSize(461,491).expandedTo(self.minimumSizeHint()))
+        self.resize(QSize(404,456).expandedTo(self.minimumSizeHint()))
         self.clearWState(Qt.WState_Polished)
 
         self.connect(self.dateButton,SIGNAL("clicked()"),self.radioButton2,SLOT("toggle()"))
@@ -575,6 +579,9 @@ class MassCreationDesign(QWidget):
 
     def browseGroups(self):
         print "MassCreationDesign.browseGroups(): Not implemented yet"
+
+    def showHelp(self):
+        print "MassCreationDesign.showHelp(): Not implemented yet"
 
     def __tr(self,s,c = None):
         return qApp.translate("MassCreationDesign",s,c)

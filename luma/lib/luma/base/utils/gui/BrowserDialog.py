@@ -11,8 +11,6 @@
 import ldap
 from qt import *
 from base.utils.gui.BrowserWidget import BrowserWidget
-#from base.backend.ServerList import ServerList
-#from base.backend.ServerObject import ServerObject
 
 class BrowserDialog(QDialog):
     """ A dialog for browsing available ldap server.

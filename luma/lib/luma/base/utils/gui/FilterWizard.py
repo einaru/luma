@@ -9,14 +9,17 @@
 ###########################################################################
 
 from qt import *
+import os.path
 
 from base.utils.gui.FilterWizardDesign import FilterWizardDesign
 from base.utils.backend.ObjectClassAttributeInfo import ObjectClassAttributeInfo
 from base.backend.ServerList import ServerList
 from base.backend.ServerObject import ServerObject
-from base.backend.DirUtils import DirUtils
+import environment
 
 class FilterWizard(FilterWizardDesign):
+
+    bookmarkFile = None
 
     def __init__(self,server = None, parent = None,name = None,modal = 0,fl = 0):
         FilterWizardDesign.__init__(self,parent,name,modal,fl)
@@ -30,7 +33,7 @@ class FilterWizard(FilterWizardDesign):
         self.expressionEdit.setEnabled(0)
         self.init_object_combo()
 
-        self.dirHelper = DirUtils()
+        self.bookmarkFile = os.path.join(environment.userHomeDir, ".luma", "filterBookmarks")
         self.init_filter_bookmarks()
 
 ###############################################################################
@@ -124,9 +127,8 @@ class FilterWizard(FilterWizardDesign):
 ###############################################################################
 
     def init_filter_bookmarks(self):
-        bookmarkFile = self.dirHelper.USERDIR + "/.luma/filterBookmarks"
         try:
-            fileHandler = open(bookmarkFile, 'r')
+            fileHandler = open(self.bookmarkFile, 'r')
             text = fileHandler.readlines()
             fileHandler.close()
             self.bookmarkBox.clear()
@@ -159,9 +161,8 @@ class FilterWizard(FilterWizardDesign):
 ###############################################################################
 
     def save_bookmarks(self):
-        bookmarkFile = self.dirHelper.USERDIR + "/.luma/filterBookmarks"
         try:
-            fileHandler = open(bookmarkFile, 'w')
+            fileHandler = open(self.bookmarkFile, 'w')
             for x in range(0, self.bookmarkBox.count()):
                 fileHandler.write(str(self.bookmarkBox.text(x)) + "\n")
             fileHandler.close()

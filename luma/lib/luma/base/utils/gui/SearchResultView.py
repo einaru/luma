@@ -12,11 +12,12 @@ import ldap
 from qt import *
 import base64
 import re
+import os.path
 
 from base.utils.gui.SearchResultViewDesign import SearchResultViewDesign
 from base.utils.gui.ObjectWidget import ObjectWidget
 from base.backend.ServerList import ServerList
-from base.backend.DirUtils import DirUtils
+import environment
 
 
 class SearchResultView(SearchResultViewDesign):
@@ -31,9 +32,9 @@ class SearchResultView(SearchResultViewDesign):
         self.FILTER_COLUMN_POS = {}
         self.FILTER_LIST = []
         
-        tmpDirObject = DirUtils()
-        delIconFile = tmpDirObject.PREFIX + "/share/luma/icons/deleteEntry.png"
-        exportIconFile = tmpDirObject.PREFIX + "/share/luma/icons/exportLdif.png"
+        tmpDirObject = os.path.join(environment.lumaInstallationPrefix, "share", "luma", "icons")
+        delIconFile = os.path.join(tmpDirObject, "deleteEntry.png")
+        exportIconFile = os.path.join(tmpDirObject, "exportLdif.png")
         
         self.popupMenu = QPopupMenu()
         self.popupMenu.insertItem(QIconSet(QPixmap(exportIconFile)), self.trUtf8("Export selected"), self.export_items)
@@ -134,10 +135,9 @@ class SearchResultView(SearchResultViewDesign):
         serverList.readServerList()
         
         serverMeta = serverList.get_serverobject(self.SERVER)
-                
-        mainWin = qApp.mainWidget()
+
         # set gui busy
-        mainWin.set_busy()
+        environment.set_busy(1)
         
         try:
             ldapServerObject = ldap.open(serverMeta.host, serverMeta.port)
@@ -151,7 +151,7 @@ class SearchResultView(SearchResultViewDesign):
                                 serverMeta.bindPassword)
             for x in itemList:
                 # keep UI responsive
-                mainWin.update_ui()
+                environment.update_ui()
                 
                 ldapServerObject.delete_s(str(x.text(0)))
                 
@@ -165,7 +165,7 @@ class SearchResultView(SearchResultViewDesign):
             self.resultListView.takeItem(x)
             
         # set GUI not busy
-        mainWin.set_busy(0)
+        environment.set_busy(0)
         
         
 ###############################################################################

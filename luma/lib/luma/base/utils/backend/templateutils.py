@@ -8,7 +8,9 @@
 #
 ###########################################################################
 
-from base.backend.DirUtils import DirUtils
+import environment
+
+import os.path
 
 class LdapTemplate(object):
     """ A class for storing template information of ldap-objects.
@@ -104,7 +106,7 @@ class TemplateFile:
     """
 
     def __init__(self):
-        self.tplFile = DirUtils().USERDIR + "/.luma/templates"
+        self.tplFile = os.path.join (environment.userHomeDir, ".luma", "templates")
 
         self.tplList = []
 

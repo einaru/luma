@@ -11,12 +11,13 @@
 from qt import *
 import ldap
 import re
+import os.path
 
 from base.utils.gui.SearchFormDesign import SearchFormDesign
 from base.utils.gui.FilterWizard import FilterWizard
 from base.backend.ServerObject import ServerObject
 from base.backend.ServerList import ServerList
-from base.backend.DirUtils import DirUtils
+import environment
 from base.backend.LumaConnection import LumaConnection
 
 class SearchForm(SearchFormDesign):
@@ -24,7 +25,7 @@ class SearchForm(SearchFormDesign):
     def __init__(self,parent = None,name = None,fl = 0):
         SearchFormDesign.__init__(self,parent,name,fl)
 
-        tmpFile  = DirUtils().PREFIX + "/share/luma/icons/secure.png"
+        tmpFile  = os.path.join(environment.lumaInstallationPrefix, "share", "luma", "icons", "secure.png")
         securePixmap = QPixmap(tmpFile)
 
         self.serverListObject = ServerList()
@@ -80,7 +81,7 @@ class SearchForm(SearchFormDesign):
 ###############################################################################
 
     def init_filter_bookmarks(self):
-        bookmarkFile = DirUtils().USERDIR + "/.luma/filterBookmarks"
+        bookmarkFile = os.path.join(environment.userHomeDir, ".luma", "filterBookmarks")
         try:
             fileHandler = open(bookmarkFile, 'r')
             text = fileHandler.readlines()

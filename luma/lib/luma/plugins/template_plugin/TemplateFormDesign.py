@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file '/home/wido/src/luma/lib/luma/plugins/template_plugin/TemplateFormDesign.ui'
 #
-# Created: Thu Dec 4 01:54:12 2003
+# Created: Thu Jan 1 17:35:31 2004
 #      by: The PyQt User Interface Compiler (pyuic) 3.8.1
 #
 # WARNING! All changes made in this file will be lost!
@@ -40,45 +40,48 @@ class TemplateFormDesign(QWidget):
 
         groupBox2Layout.addMultiCellWidget(self.infoView,0,0,0,2)
 
-        self.classButton = QPushButton(self.groupBox2,"classButton")
-
-        groupBox2Layout.addWidget(self.classButton,1,0)
-
         self.saveButton = QPushButton(self.groupBox2,"saveButton")
 
         groupBox2Layout.addWidget(self.saveButton,1,2)
-        spacer = QSpacerItem(546,20,QSizePolicy.Expanding,QSizePolicy.Minimum)
-        groupBox2Layout.addItem(spacer,1,1)
 
-        TemplateFormDesignLayout.addWidget(self.groupBox2,2,0)
-        spacer_2 = QSpacerItem(31,51,QSizePolicy.Minimum,QSizePolicy.Minimum)
-        TemplateFormDesignLayout.addItem(spacer_2,1,0)
+        self.classButton = QPushButton(self.groupBox2,"classButton")
 
-        layout1 = QGridLayout(None,1,1,0,6,"layout1")
+        groupBox2Layout.addWidget(self.classButton,1,1)
+        spacer = QSpacerItem(220,20,QSizePolicy.Expanding,QSizePolicy.Minimum)
+        groupBox2Layout.addItem(spacer,1,0)
 
-        self.addTemplateButton = QPushButton(self,"addTemplateButton")
+        TemplateFormDesignLayout.addWidget(self.groupBox2,1,0)
 
-        layout1.addWidget(self.addTemplateButton,2,1)
+        self.groupBox2_2 = QGroupBox(self,"groupBox2_2")
+        self.groupBox2_2.setSizePolicy(QSizePolicy(5,5,0,0,self.groupBox2_2.sizePolicy().hasHeightForWidth()))
+        self.groupBox2_2.setColumnLayout(0,Qt.Vertical)
+        self.groupBox2_2.layout().setSpacing(6)
+        self.groupBox2_2.layout().setMargin(11)
+        groupBox2_2Layout = QGridLayout(self.groupBox2_2.layout())
+        groupBox2_2Layout.setAlignment(Qt.AlignTop)
 
-        self.delTemplateButton = QPushButton(self,"delTemplateButton")
+        self.delTemplateButton = QPushButton(self.groupBox2_2,"delTemplateButton")
 
-        layout1.addWidget(self.delTemplateButton,0,1)
-        spacer_3 = QSpacerItem(31,50,QSizePolicy.Minimum,QSizePolicy.Preferred)
-        layout1.addItem(spacer_3,1,1)
+        groupBox2_2Layout.addWidget(self.delTemplateButton,1,1)
+        spacer_2 = QSpacerItem(31,7,QSizePolicy.Minimum,QSizePolicy.Preferred)
+        groupBox2_2Layout.addItem(spacer_2,2,1)
 
-        self.templateView = QListView(self,"templateView")
+        self.addTemplateButton = QPushButton(self.groupBox2_2,"addTemplateButton")
+
+        groupBox2_2Layout.addWidget(self.addTemplateButton,0,1)
+
+        self.templateView = QListView(self.groupBox2_2,"templateView")
         self.templateView.addColumn(self.__tr("Template Name"))
-        self.templateView.setMinimumSize(QSize(0,130))
-        self.templateView.setMaximumSize(QSize(32767,200))
+        self.templateView.setSizePolicy(QSizePolicy(3,0,0,0,self.templateView.sizePolicy().hasHeightForWidth()))
         self.templateView.setResizeMode(QListView.AllColumns)
 
-        layout1.addMultiCellWidget(self.templateView,0,2,0,0)
+        groupBox2_2Layout.addMultiCellWidget(self.templateView,0,2,0,0)
 
-        TemplateFormDesignLayout.addLayout(layout1,0,0)
+        TemplateFormDesignLayout.addWidget(self.groupBox2_2,0,0)
 
         self.languageChange()
 
-        self.resize(QSize(598,545).expandedTo(self.minimumSizeHint()))
+        self.resize(QSize(367,388).expandedTo(self.minimumSizeHint()))
         self.clearWState(Qt.WState_Polished)
 
         self.connect(self.addTemplateButton,SIGNAL("clicked()"),self.add_template)
@@ -96,10 +99,11 @@ class TemplateFormDesign(QWidget):
         self.infoView.header().setLabel(2,self.__tr("Must"))
         self.infoView.header().setLabel(3,self.__tr("Single"))
         self.infoView.header().setLabel(4,self.__tr("Show"))
-        self.classButton.setText(self.__tr("Edit"))
         self.saveButton.setText(self.__tr("Save "))
-        self.addTemplateButton.setText(self.__tr("Add"))
+        self.classButton.setText(self.__tr("Edit"))
+        self.groupBox2_2.setTitle(self.__tr("Template List"))
         self.delTemplateButton.setText(self.__tr("Delete"))
+        self.addTemplateButton.setText(self.__tr("Add"))
         self.templateView.header().setLabel(0,self.__tr("Template Name"))
 
 

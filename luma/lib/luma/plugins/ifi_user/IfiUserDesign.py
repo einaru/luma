@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file '/home/wido/src/luma/lib/luma/plugins/ifi_user/IfiUserDesign.ui'
 #
-# Created: Thu Dec 4 01:54:13 2003
+# Created: Thu Jan 1 17:35:33 2004
 #      by: The PyQt User Interface Compiler (pyuic) 3.8.1
 #
 # WARNING! All changes made in this file will be lost!
@@ -331,7 +331,7 @@ class IfiUserDesign(QWidget):
             self.setName("IfiUserDesign")
 
 
-        IfiUserDesignLayout = QVBoxLayout(self,11,6,"IfiUserDesignLayout")
+        IfiUserDesignLayout = QGridLayout(self,1,1,11,6,"IfiUserDesignLayout")
 
         self.tabWidget2 = QTabWidget(self,"tabWidget2")
 
@@ -515,14 +515,18 @@ class IfiUserDesign(QWidget):
         self.passwordEdit = QTextEdit(self.tab_3,"passwordEdit")
         tabLayout_3.addWidget(self.passwordEdit)
         self.tabWidget2.insertTab(self.tab_3,QString(""))
-        IfiUserDesignLayout.addWidget(self.tabWidget2)
+
+        IfiUserDesignLayout.addMultiCellWidget(self.tabWidget2,0,0,0,1)
 
         self.pushButton1 = QPushButton(self,"pushButton1")
-        IfiUserDesignLayout.addWidget(self.pushButton1)
+
+        IfiUserDesignLayout.addWidget(self.pushButton1,1,1)
+        spacer_3 = QSpacerItem(301,21,QSizePolicy.Expanding,QSizePolicy.Minimum)
+        IfiUserDesignLayout.addItem(spacer_3,1,0)
 
         self.languageChange()
 
-        self.resize(QSize(488,460).expandedTo(self.minimumSizeHint()))
+        self.resize(QSize(446,450).expandedTo(self.minimumSizeHint()))
         self.clearWState(Qt.WState_Polished)
 
         self.connect(self.dateButton,SIGNAL("clicked()"),self.radioButton2,SLOT("toggle()"))

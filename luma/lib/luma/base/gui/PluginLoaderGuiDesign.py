@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file '/home/wido/src/luma/lib/luma/base/gui/PluginLoaderGuiDesign.ui'
 #
-# Created: Mon Dec 29 16:56:30 2003
+# Created: Mon Jan 5 21:42:04 2004
 #      by: The PyQt User Interface Compiler (pyuic) 3.8.1
 #
 # WARNING! All changes made in this file will be lost!
@@ -20,64 +20,83 @@ class PluginLoaderGuiDesign(QDialog):
             self.setName("PluginLoaderGuiDesign")
 
 
-        PluginLoaderGuiDesignLayout = QGridLayout(self,1,1,11,6,"PluginLoaderGuiDesignLayout")
+        PluginLoaderGuiDesignLayout = QVBoxLayout(self,11,6,"PluginLoaderGuiDesignLayout")
 
         self.textLabel1 = QLabel(self,"textLabel1")
         self.textLabel1.setSizePolicy(QSizePolicy(5,0,0,0,self.textLabel1.sizePolicy().hasHeightForWidth()))
-
-        PluginLoaderGuiDesignLayout.addMultiCellWidget(self.textLabel1,0,0,0,1)
-        spacer = QSpacerItem(201,21,QSizePolicy.Expanding,QSizePolicy.Minimum)
-        PluginLoaderGuiDesignLayout.addItem(spacer,6,0)
-
-        self.line2 = QFrame(self,"line2")
-        self.line2.setFrameShape(QFrame.HLine)
-        self.line2.setFrameShadow(QFrame.Sunken)
-        self.line2.setFrameShape(QFrame.HLine)
-
-        PluginLoaderGuiDesignLayout.addMultiCellWidget(self.line2,4,5,0,2)
-
-        self.chooserView = QListView(self,"chooserView")
-        self.chooserView.addColumn(self.__tr("Load"))
-        self.chooserView.setAllColumnsShowFocus(0)
-        self.chooserView.setResizeMode(QListView.AllColumns)
-
-        PluginLoaderGuiDesignLayout.addMultiCellWidget(self.chooserView,2,3,0,1)
-
-        self.pushButton3 = QPushButton(self,"pushButton3")
-
-        PluginLoaderGuiDesignLayout.addWidget(self.pushButton3,2,2)
+        PluginLoaderGuiDesignLayout.addWidget(self.textLabel1)
 
         self.line1 = QFrame(self,"line1")
         self.line1.setFrameShape(QFrame.HLine)
         self.line1.setFrameShadow(QFrame.Sunken)
         self.line1.setFrameShape(QFrame.HLine)
+        PluginLoaderGuiDesignLayout.addWidget(self.line1)
 
-        PluginLoaderGuiDesignLayout.addMultiCellWidget(self.line1,1,1,0,2)
-        spacer_2 = QSpacerItem(41,141,QSizePolicy.Minimum,QSizePolicy.Expanding)
-        PluginLoaderGuiDesignLayout.addItem(spacer_2,3,2)
+        self.splitter2 = QSplitter(self,"splitter2")
+        self.splitter2.setOrientation(QSplitter.Horizontal)
 
-        self.pushButton1 = QPushButton(self,"pushButton1")
+        self.chooserView = QListView(self.splitter2,"chooserView")
+        self.chooserView.addColumn(self.__tr("Load"))
+        self.chooserView.setMaximumSize(QSize(200,32767))
+        self.chooserView.setAllColumnsShowFocus(0)
+        self.chooserView.setResizeMode(QListView.AllColumns)
 
-        PluginLoaderGuiDesignLayout.addMultiCellWidget(self.pushButton1,5,6,1,2)
+        self.settingsBox = QGroupBox(self.splitter2,"settingsBox")
+        self.settingsBox.setColumnLayout(0,Qt.Vertical)
+        self.settingsBox.layout().setSpacing(6)
+        self.settingsBox.layout().setMargin(11)
+        settingsBoxLayout = QGridLayout(self.settingsBox.layout())
+        settingsBoxLayout.setAlignment(Qt.AlignTop)
+
+        self.settingsStack = QWidgetStack(self.settingsBox,"settingsStack")
+        self.settingsStack.setSizePolicy(QSizePolicy(5,7,0,0,self.settingsStack.sizePolicy().hasHeightForWidth()))
+
+        self.WStackPage = QWidget(self.settingsStack,"WStackPage")
+        self.settingsStack.addWidget(self.WStackPage,0)
+
+        settingsBoxLayout.addWidget(self.settingsStack,0,0)
+        PluginLoaderGuiDesignLayout.addWidget(self.splitter2)
+
+        self.line2 = QFrame(self,"line2")
+        self.line2.setFrameShape(QFrame.HLine)
+        self.line2.setFrameShadow(QFrame.Sunken)
+        self.line2.setFrameShape(QFrame.HLine)
+        PluginLoaderGuiDesignLayout.addWidget(self.line2)
+
+        layout1 = QHBoxLayout(None,0,6,"layout1")
+        spacer = QSpacerItem(458,21,QSizePolicy.Expanding,QSizePolicy.Minimum)
+        layout1.addItem(spacer)
+
+        self.closeButton = QPushButton(self,"closeButton")
+        self.closeButton.setFocusPolicy(QPushButton.ClickFocus)
+        self.closeButton.setAutoDefault(0)
+        layout1.addWidget(self.closeButton)
+        PluginLoaderGuiDesignLayout.addLayout(layout1)
 
         self.languageChange()
 
-        self.resize(QSize(462,331).expandedTo(self.minimumSizeHint()))
+        self.resize(QSize(600,494).expandedTo(self.minimumSizeHint()))
         self.clearWState(Qt.WState_Polished)
 
-        self.connect(self.pushButton1,SIGNAL("clicked()"),self.saveValues)
+        self.connect(self.closeButton,SIGNAL("clicked()"),self.saveValues)
+        self.connect(self.chooserView,SIGNAL("selectionChanged(QListViewItem*)"),self.pluginSelected)
+
+        self.setTabOrder(self.chooserView,self.closeButton)
 
 
     def languageChange(self):
-        self.setCaption(self.__tr("Configure Plugins"))
+        self.setCaption(self.__tr("Plugin settings"))
         self.textLabel1.setText(self.__tr("Available Plugins:"))
         self.chooserView.header().setLabel(0,self.__tr("Load"))
-        self.pushButton3.setText(self.__tr("Modify"))
-        self.pushButton1.setText(self.__tr("Close"))
+        self.settingsBox.setTitle(self.__tr("Settings Box"))
+        self.closeButton.setText(self.__tr("Close"))
 
 
     def saveValues(self):
         print "PluginLoaderGuiDesign.saveValues(): Not implemented yet"
+
+    def pluginSelected(self):
+        print "PluginLoaderGuiDesign.pluginSelected(): Not implemented yet"
 
     def __tr(self,s,c = None):
         return qApp.translate("PluginLoaderGuiDesign",s,c)

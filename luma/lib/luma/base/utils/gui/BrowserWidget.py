@@ -11,10 +11,11 @@
 from qt import *
 import string
 import ldap
-import time
+import os.path
+import re
 
 from base.backend.ServerList import ServerList
-from base.backend.DirUtils import DirUtils
+import environment
 from base.utils.backend.templateutils import *
 from base.utils.gui.TemplateObjectWidget import TemplateObjectWidget
 from base.backend.LumaConnection import LumaConnection
@@ -41,8 +42,8 @@ class BrowserWidget(QListView):
         #self.set_search_class(['organizationalUnit', \
         #       'dcObject', 'organization'])
 
-        tmpDirObject = DirUtils()
-        tmpIconFile = tmpDirObject.PREFIX + "/lib/luma/base/utils/icons/secure.png"
+        tmpDirObject = environment.lumaInstallationPrefix
+        tmpIconFile = os.path.join(tmpDirObject, "lib", "luma", "base", "utils", "icons", "secure.png")
 
         tmpObject = ServerList()
         tmpObject.readServerList()
@@ -71,9 +72,9 @@ class BrowserWidget(QListView):
         self.deleteMenu = QPopupMenu()
         
         # Icon files for the menu entries
-        addIconFile = tmpDirObject.PREFIX + "/share/luma/icons/newEntry.png"
-        delIconFile = tmpDirObject.PREFIX + "/share/luma/icons/deleteEntry.png"
-        exportIconFile = tmpDirObject.PREFIX + "/share/luma/icons/exportLdif.png"
+        addIconFile = os.path.join(tmpDirObject, "share", "luma", "icons", "newEntry.png")
+        delIconFile = os.path.join(tmpDirObject, "share", "luma", "icons", "deleteEntry.png")
+        exportIconFile = os.path.join(tmpDirObject, "share", "luma", "icons", "exportLdif.png")
         
         
         # Fill export menu
@@ -127,6 +128,7 @@ class BrowserWidget(QListView):
         results = self.getLdapItemChildren(fullPath, 0)
         if results == None:
             return None
+            item.setExpandable(0)
         if len(results) == 0:
             item.setExpandable(0)
             return None
@@ -136,7 +138,6 @@ class BrowserWidget(QListView):
             tmpItem = QListViewItem(item, tmp[0])
             tmpItem.setExpandable(1)
             item.insertItem(tmpItem)
-
 
 
 ###############################################################################
@@ -448,9 +449,8 @@ See console output for more information."""),
         if result == 1:
             return
             
-        mainWin = qApp.mainWidget()
         # set gui busy
-        mainWin.set_busy(1)
+        environment.set_busy(1)
         
         currentItem = self.selectedItem()
         
@@ -466,7 +466,7 @@ See console output for more information."""),
             del children[0]
         
         while ((len(children) > 0) and (not(children == None))) :
-            mainWin.update_ui()
+            environment.update_ui()
             self.__delete_ldap_entry(serverName, children[-1][0])
             del children[-1]
         
@@ -475,7 +475,7 @@ See console output for more information."""),
         parent.setOpen(0)
         parent.setOpen(1)
         
-        mainWin.set_busy(0)
+        environment.set_busy(0)
         
 ###############################################################################
 

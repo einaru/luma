@@ -10,11 +10,12 @@
 
 from qt import *
 import copy
+import os.path
 
 from plugins.template_plugin.TemplateFormDesign import TemplateFormDesign
 from base.utils.backend.ObjectClassAttributeInfo import ObjectClassAttributeInfo
 from base.utils.backend.templateutils import *
-from base.backend.DirUtils import DirUtils
+import environment
 from base.backend.ServerObject import ServerObject
 from base.backend.ServerList import ServerList
 from plugins.template_plugin.OClassDialog import OClassDialog
@@ -24,11 +25,11 @@ from plugins.template_plugin.OClassDialog import OClassDialog
 class TemplateForm(TemplateFormDesign):
 
     def __init__(self,parent = None,name = None,fl = 0):
-        TemplateFormDesign.__init__(self,parent,name,fl)
+        TemplateFormDesign.__init__ (self,parent,name,fl)
 
-        self.iconPath = DirUtils().PREFIX + "/share/luma/icons/"
-        self.okIcon = QPixmap(self.iconPath + "ok.png")
-        self.noIcon = QPixmap(self.iconPath + "no.png")
+        self.iconPath = os.path.join (environment.lumaInstallationPrefix, "share", "luma", "icons")
+        self.okIcon = QPixmap (os.path.join (self.iconPath, "ok.png") )
+        self.noIcon = QPixmap (os.path.join (self.iconPath, "no.png") )
 
         self.tplFile = None
 

@@ -1,4 +1,4 @@
-<!DOCTYPE UI><UI version="3.1" stdsetdef="1">
+<!DOCTYPE UI><UI version="3.2" stdsetdef="1">
 <class>MassCreationDesign</class>
 <comment>###########################################################################
 #    Copyright (C) 2003 by Wido Depping                                      
@@ -17,18 +17,18 @@
         <rect>
             <x>0</x>
             <y>0</y>
-            <width>461</width>
-            <height>491</height>
+            <width>404</width>
+            <height>456</height>
         </rect>
     </property>
     <property name="caption">
         <string>Form1</string>
     </property>
-    <vbox>
+    <grid>
         <property name="name">
             <cstring>unnamed</cstring>
         </property>
-        <widget class="QTabWidget">
+        <widget class="QTabWidget" row="0" column="0" rowspan="1" colspan="3">
             <property name="name">
                 <cstring>tabWidget2</cstring>
             </property>
@@ -460,7 +460,7 @@
                 </vbox>
             </widget>
         </widget>
-        <widget class="QPushButton">
+        <widget class="QPushButton" row="1" column="2">
             <property name="name">
                 <cstring>pushButton1</cstring>
             </property>
@@ -468,7 +468,24 @@
                 <string>Create</string>
             </property>
         </widget>
-    </vbox>
+        <spacer row="1" column="1">
+            <property name="name">
+                <cstring>spacer4_2</cstring>
+            </property>
+            <property name="orientation">
+                <enum>Horizontal</enum>
+            </property>
+            <property name="sizeType">
+                <enum>Expanding</enum>
+            </property>
+            <property name="sizeHint">
+                <size>
+                    <width>130</width>
+                    <height>21</height>
+                </size>
+            </property>
+        </spacer>
+    </grid>
 </widget>
 <images>
     <image name="image0">
@@ -535,6 +552,7 @@
     <slot>create_users()</slot>
     <slot>browse_server()</slot>
     <slot>browseGroups()</slot>
+    <slot>showHelp()</slot>
 </slots>
 <layoutdefaults spacing="6" margin="11"/>
 </UI>

@@ -9,6 +9,7 @@
 ###########################################################################
 
 from qt import *
+import os.path
 
 from plugins.admin_utils.AdminPanel import AdminPanel
 
@@ -24,14 +25,23 @@ class TaskPlugin(object):
 
     def get_icon(self):
         try:
-            iconPixmap = QPixmap(self.pluginPath + "/icons/admin_utils.png")
+            iconPixmap = QPixmap (os.path.join (self.pluginPath, "icons", "admin_utils.png"))
         except:
             print "Debug: Icon could not be opened."
 
         return iconPixmap
 
 
-    def set_widget(self, parent):
+    def getPluginWidget(self, parent):
         self.pluginWidget = AdminPanel(parent)
         return self.pluginWidget
 
+###############################################################################
+
+    def getPluginSettingsWidget(self, parent):
+        return
+        
+###############################################################################
+
+    def getHelpText(self):
+        return

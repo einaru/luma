@@ -10,6 +10,7 @@
 
 
 from qt import *
+import os.path
 
 from plugins.template_plugin.TemplateForm import TemplateForm
 
@@ -25,13 +26,24 @@ class TaskPlugin(object):
 
     def get_icon(self):
         try:
-            iconPixmap = QPixmap(self.pluginPath + "/icons/plugin.png")
+            iconPixmap = QPixmap (os.path.join (self.pluginPath, "icons", "plugin.png"))
         except:
             print "Debug: Icon konnte nicht geöffnet werden"
 
         return iconPixmap
 
 
-    def set_widget(self, parent):
+    def getPluginWidget(self, parent):
         self.pluginWidget = TemplateForm()
         return self.pluginWidget
+
+###############################################################################
+
+    def getPluginSettingsWidget(self, parent):
+        return
+        
+###############################################################################
+
+    def getHelpText(self):
+        return
+

@@ -13,9 +13,10 @@ import ldap.modlist
 import re
 import time
 from qt import *
+import os.path
 
 from base.backend.ServerList import ServerList
-from base.backend.DirUtils import DirUtils
+import environment
 from base.utils.backend.ObjectClassAttributeInfo import ObjectClassAttributeInfo
 
 class ObjectWidget(QWidget):
@@ -45,7 +46,7 @@ class ObjectWidget(QWidget):
         self.buttonFrameLayout.addItem(spacer)
 
         self.displayAllButton = QPushButton(self.buttonFrame,"displayAllButton")
-        self.displayAllButton.setText(self.trUtf8("Display all Attributes"))
+        self.displayAllButton.setText(self.trUtf8("Display all"))
         self.buttonFrameLayout.addWidget(self.displayAllButton)
         spacer = QSpacerItem(100,20,QSizePolicy.Expanding,QSizePolicy.Minimum)
         self.buttonFrameLayout.addItem(spacer)
@@ -202,9 +203,9 @@ class ObjectWidget(QWidget):
 
     def __add_entries(self, attribute, valueList=[], offset=0, editable=0, bold=0, objectClasses=None):
         laenge = range(offset, len(valueList)+offset)
-        tmpIconDir = DirUtils().PREFIX + "/share/luma/icons"
-        newIcon = tmpIconDir + "/new.png"
-        delIcon = tmpIconDir + "/clear.png"
+        tmpIconDir = os.path.join(environment.lumaInstallationPrefix, "share", "luma", "icons")
+        newIcon = os.path.join(tmpIconDir, "new.png")
+        delIcon = os.path.join(tmpIconDir, "clear.png")
         for x in laenge:
             label = QLabel(self.attributeWidget, "LDAP_ATTRIBUTE")
             if (bold) or (self.SERVERMETA.is_must(attribute, objectClasses)):

@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file '/home/wido/src/luma/lib/luma/plugins/config_create/ConfigPanelDesign.ui'
 #
-# Created: Thu Dec 4 01:54:11 2003
+# Created: Thu Jan 1 17:35:31 2004
 #      by: The PyQt User Interface Compiler (pyuic) 3.8.1
 #
 # WARNING! All changes made in this file will be lost!
@@ -432,7 +432,7 @@ class ConfigPanelDesign(QWidget):
 
         self.languageChange()
 
-        self.resize(QSize(722,391).expandedTo(self.minimumSizeHint()))
+        self.resize(QSize(452,337).expandedTo(self.minimumSizeHint()))
         self.clearWState(Qt.WState_Polished)
 
         self.connect(self.helpAdminName,SIGNAL("clicked()"),self.displayAdminNameHelp)

@@ -10,6 +10,9 @@
 
 
 from qt import *
+import os.path
+
+import environment
 from plugins.admin_utils.AdminPanelDesign import AdminPanelDesign
 from base.utils.backend.CryptPwGenerator import CryptPwGenerator
 from base.utils.backend.DateHelper import DateHelper
@@ -21,6 +24,13 @@ class AdminPanel(AdminPanelDesign):
 
     def __init__(self,parent = None,name = None,fl = 0):
         AdminPanelDesign.__init__(self,parent,name,fl)
+        
+        iconDir = os.path.join (environment.lumaInstallationPrefix, "lib", "luma", "plugins", "admin_utils", "icons")
+        secureIcon = QPixmap (os.path.join (iconDir, "secure.png"))
+        dateIcon = QPixmap (os.path.join (iconDir, "date.png"))
+        
+        self.secureLabel.setPixmap (secureIcon)
+        self.dateLabel.setPixmap (dateIcon)
         
         self.pwHandler = CryptPwGenerator()
         self.dateHandler = DateHelper()
@@ -42,7 +52,6 @@ class AdminPanel(AdminPanelDesign):
 
     def crypt_password(self):
         tmpPassword = str(self.pwEdit.text())
-        #self.cryptEdit.setText(self.pwHandler.encrypt_password(tmpPassword)[1])
         method = str(self.methodBox.currentText())
         password = mkpasswd(tmpPassword, 3, method)
         self.cryptEdit.setText(password)

@@ -9,6 +9,7 @@
 ###########################################################################
 
 from qt import *
+import os.path
 
 from plugins.ifi_user.IfiUser import IfiUser
 
@@ -24,14 +25,24 @@ class TaskPlugin(object):
 
     def get_icon(self):
         try:
-            iconPixmap = QPixmap(self.pluginPath + "/icons/ifi_user.png")
+            iconPixmap = QPixmap (os.path.join(self.pluginPath, "icons", "ifi_user.png"))
         except:
             print "Debug: Icon konnte nicht geöffnet werden"
 
         return iconPixmap
 
 
-    def set_widget(self, parent):
+    def getPluginWidget(self, parent):
         self.pluginWidget = IfiUser(parent)
         return self.pluginWidget
+
+###############################################################################
+
+    def getPluginSettingsWidget(self, parent):
+        return
+        
+###############################################################################
+
+    def getHelpText(self):
+        return
 

@@ -10,6 +10,7 @@
 
 import ldap
 from qt import *
+
 from plugins.ifi_user.IfiUserDesign import IfiUserDesign
 from base.utils.gui.BrowserWidget import BrowserWidget
 from base.backend.ServerList import ServerList
@@ -17,6 +18,7 @@ from base.backend.ServerObject import ServerObject
 from base.utils.backend.DateHelper import DateHelper
 from base.utils.backend.CryptPwGenerator import CryptPwGenerator
 from base.utils.gui.BrowserDialog import BrowserDialog
+import environment
 
 
 class IfiUser(IfiUserDesign):
@@ -40,9 +42,8 @@ class IfiUser(IfiUserDesign):
             return None
 
     
-        mainWin = qApp.mainWidget()
         # set gui busy
-        mainWin.set_busy()
+        environment.set_busy()
         
         # get data for usernames
         userName = str(self.usernameEdit.text())
@@ -58,7 +59,7 @@ class IfiUser(IfiUserDesign):
         freeNumbers = self.get_uidNumbers(uidNumMin, uidNumMax, usedNumbers, 1)
         
         if freeNumbers == None:
-            mainWin.set_busy(0)
+            environment.set_busy(0)
             QMessageBox.warning(None,
                 self.trUtf8("Conflict"),
                 self.trUtf8("""There are not enough user ids left! 
@@ -107,7 +108,7 @@ Try increasing the uidNumber range or delete some users from the subtree."""),
             pwGenerator = CryptPwGenerator()
             self.passwordEdit.clear()
             
-            mainWin.update_ui()
+            environment.update_ui()
                 
             uidNumber = freeNumbers[0]
             passwordClear, passwordCrypt = pwGenerator.get_random_password()
@@ -151,7 +152,7 @@ Try increasing the uidNumber range or delete some users from the subtree."""),
             self.passwordEdit.append(userName + ': ' + passwordClear + "\n") 
                 
             ldapServerObject.unbind()
-            mainWin.set_busy(0)
+            environment.set_busy(0)
             QMessageBox.information(None,
                 self.trUtf8("Success"),
                 self.trUtf8("""User was created successfully."""),
@@ -162,7 +163,7 @@ Try increasing the uidNumber range or delete some users from the subtree."""),
         except ldap.LDAPError, e:
             print "Error during LDAP request"
             print "Reason: " + str(e)
-            mainWin.set_busy(0)
+            environment.set_busy(0)
             QMessageBox.critical(None,
                 self.trUtf8("Error"),
                 self.trUtf8("""Error during creation of user.\nReason: """ + 
@@ -196,9 +197,8 @@ Try increasing the uidNumber range or delete some users from the subtree."""),
         
         searchResult = []
 
-        mainWin = qApp.mainWidget()
         # set gui busy
-        mainWin.set_busy()
+        environment.set_busy(1)
 
         try:
             ldapServerObject = ldap.open(serverMeta.host)
@@ -215,7 +215,7 @@ Try increasing the uidNumber range or delete some users from the subtree."""),
 
             while 1:
                 # keep UI responsive
-                mainWin.update_ui()
+                environment.update_ui()
 
                 result_type, result_data = ldapServerObject.result(resultId, 0)
                 if (result_data == []):
@@ -231,7 +231,7 @@ Try increasing the uidNumber range or delete some users from the subtree."""),
             print "Error during LDAP request"
             print "Reason: " + str(e)
         
-        mainWin.set_busy(0)
+        environment.set_busy(0)
         
         numberList = []
         for x in searchResult:
