@@ -2,8 +2,8 @@
 
 # Form implementation generated from reading ui file '/home/wido/src/luma/lib/luma/base/gui/AboutDialog.ui'
 #
-# Created: Sun Aug 29 00:49:05 2004
-#      by: The PyQt User Interface Compiler (pyuic) 3.12
+# Created: Mon Nov 8 14:26:29 2004
+#      by: The PyQt User Interface Compiler (pyuic) 3.13
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -74,12 +74,12 @@ class AboutDialog(QDialog):
         self.resize(QSize(546,459).expandedTo(self.minimumSizeHint()))
         self.clearWState(Qt.WState_Polished)
 
-        self.connect(self.pushButton1,SIGNAL("clicked()"),self,SLOT("close()"))
+        self.connect(self.pushButton1,SIGNAL("clicked()"),self.close)
 
 
     def languageChange(self):
         self.setCaption(self.__tr("About Luma"))
-        self.textLabel5.setText(self.__tr("<font size=\"+2\"><b>Luma 1.4</b></font>","DO NOT TRANSLATE"))
+        self.textLabel5.setText(self.__tr("<font size=\"+2\"><b>Luma 1.5</b></font>","DO NOT TRANSLATE"))
         self.textLabel4.setText(self.__tr("<p align=\"center\">LDAP management made easy.<br><br>\n"
 "(c) 2003, 2004   Wido Depping<br><br>\n"
 "http://luma.sourceforge.net\n"
