@@ -12,6 +12,7 @@ import environment
 
 import os.path
 from qtxml import *
+from qt import *
 
 class LdapTemplate(object):
     """ A class for storing template information of ldap-objects.
@@ -35,6 +36,16 @@ class LdapTemplate(object):
         """
         
         return self.objectClasses
+        
+###############################################################################
+
+    def deleteAttribute(self, attribute):
+        del self.attributes[attribute]
+        
+###############################################################################
+
+    def deleteObjectClass(self, className):
+        self.objectClasses = filter(lambda x: not x == className, self.objectClasses)
         
 ###############################################################################
 
@@ -119,15 +130,13 @@ class TemplateList:
     """ A class for loading and saving template data to file.
     """
 
-    def __init__(self, tmpList):
+    def __init__(self, tmpList=None):
         self.templateFile = os.path.join (environment.userHomeDir, ".luma", "templates")
 
-        self.templateList = tmpList
-
-        #try:
-        #    self.read_list()
-        #except IOError, data:
-        #    print "Template file could not be read. \nReason: " + str(data)
+        if tmpList == None:
+            self.readList()
+        else:
+            self.templateList = tmpList
 
 ###############################################################################
 
@@ -136,55 +145,77 @@ class TemplateList:
     
         Templates are stored in self.tplList
         """
-    
-        self.tplList = []
-        content = open(self.tplFile, 'r').readlines()
-        template = LdapTemplate()
         
-        for x in content:
-            #x = x.decode("utf-8")
-            if x == "\n":
-                self.tplList.append(template)
-                template = LdapTemplate()
-                template.name = []
-                template.tData = []
+        fileContent = u"".join(open(self.templateFile, "r").readlines())
+    
+        self.templateList = [] 
+        
+        document = QDomDocument("LumaTemplateFile")
+        document.setContent(fileContent)
+        
+        root = document.documentElement()
+        if not (unicode(root.tagName()) == "LumaTemplates"):
+            print "Could not parse template file"
+            
+        child = root.firstChild()
+        while (not child.isNull()):
+            tmpTemplate = LdapTemplate()
+            element = child.toElement()
+            if unicode(element.tagName()) == "template":
+                tmpTemplate.name = unicode(element.attribute("name"))
+                tmpTemplate.serverName = unicode(element.attribute("server"))
+                tmpTemplate.description = unicode(element.attribute("description"))
                 
-            if x[:6] == "Name: ":
-                template.name = x[6:-1].decode("utf-8")
-                continue
-                
-            if x[:6] == "class ":
-                tmpString = x[6:-1]
-                tmpList = tmpString.split(" >> ")
-                data = {}
-                data['CLASSNAME'] = tmpList[0]
-                tmpList = tmpList[1].split(" || ")
-                attributeList = []
-                
-                for y in tmpList:
-                    attrInfo = y.split(",")
-                    tmpDict = {}
-                    tmpDict["NAME"] = attrInfo[0]
+                templateChild = child.firstChild()
+                while (not templateChild.isNull()):
+                    templateElement = templateChild.toElement()
+                    tagName = unicode(templateElement.tagName())
                     
-                    if attrInfo[1] == "MUST":
-                        tmpDict["MUST"] = 1
-                    else:
-                        tmpDict["MUST"] = 0
-
-                    if attrInfo[2] == "SINGLE":
-                        tmpDict["SINGLE"] = 1
-                    else:
-                        tmpDict["SINGLE"] = 0
-
-                    if attrInfo[3] == "SHOW":
-                        tmpDict["SHOW"] = 1
-                    else:
-                        tmpDict["SHOW"] = 0
+                    if tagName == "objectClasses":
+                        classNode = templateChild.firstChild()
+                        while (not classNode.isNull()):
+                            classElement = classNode.toElement()
+                            className = unicode (classElement.tagName())
+                            tmpTemplate.objectClasses.append(className)
+                            classNode = classNode.nextSibling()
                         
-                    attributeList.append(tmpDict)
-                    
-                data["ATTRIBUTES"] = attributeList
-                template.tData.append(data)
+                    if tagName == "attributes":
+                        attributeNode = templateChild.firstChild()
+                        while (not attributeNode.isNull()):
+                            attributeElement = attributeNode.toElement()
+                            
+                            attributeName = unicode(attributeElement.tagName())
+                            binaryString = attributeElement.attribute("binary")
+                            mustString = attributeElement.attribute("must")
+                            singleString = attributeElement.attribute("single")
+                            
+                            binary = False
+                            if binaryString == "True":
+                                binary = True
+                                
+                            must = False
+                            if mustString == "True":
+                                must = True
+                                
+                            single = False
+                            if singleString == "True":
+                                single = True
+                                
+                            defaultValue = None
+                            if attributeElement.hasAttribute("defaultValue"):
+                                defaultValue = unicode(attributeElement.attribute("defaultValue"))
+                                
+                            attribute = AttributeObject(attributeName, must, single, binary, defaultValue)
+                            tmpTemplate.attributes[attributeName] = attribute
+                            attributeNode = attributeNode.nextSibling()
+                        
+                        
+                    templateChild = templateChild.nextSibling()
+            
+            child = child.nextSibling()
+            self.templateList.append(tmpTemplate)
+        
+
 
 ###############################################################################
 
@@ -192,8 +223,8 @@ class TemplateList:
         """ Save template list to file.
         """
         
-        document = QDomDocument("Luma template file")
-        root = document.createElement( "Luma templates" )
+        document = QDomDocument("LumaTemplateFile")
+        root = document.createElement( "LumaTemplates" )
         document.appendChild(root)
         
         for x in self.templateList:
@@ -222,7 +253,6 @@ class TemplateList:
             
             
             root.appendChild(templateNode)
-        
         
         fileHandler = open(self.templateFile, "w")
         fileHandler.write(unicode(document.toString()))
