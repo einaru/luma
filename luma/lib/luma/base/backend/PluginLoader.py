@@ -41,6 +41,7 @@ class PluginLoader(object):
         
         # get the base diretory of the plugins as a string
         self.__pluginBaseDir = DirUtils().PREFIX + "/lib/luma/plugins"
+        
         self.__pluginDirList = self.__get_plugin_list()
 
         self.__import_plugin_metas(pluginsToLoad)
@@ -53,6 +54,7 @@ class PluginLoader(object):
         
         tmpList = []
         try:
+            # test for every file listed, if it is a directory
             for x in listdir(self.__pluginBaseDir):
                 tmp = self.__pluginBaseDir + "/" + x
                 if isdir(tmp):
@@ -65,9 +67,14 @@ class PluginLoader(object):
 ###############################################################################
 
     def __load_plugin_code(self):
+        """ Load the plugin source code and try to import it.
+        """
+        
         module = None
         for x in self.PLUGINS.keys():
             tmpPlugin = self.PLUGINS[x]
+            
+            # test if plugin should be loaded or not
             if tmpPlugin["PLUGIN_LOAD"]:
                 tmpString = tmpPlugin["PLUGIN_FILE"]
                 
@@ -87,6 +94,8 @@ class PluginLoader(object):
                     
                 tmpObject = TaskPlugin()
                 tmpObject.pluginPath = tmpPlugin["PLUGIN_PATH"]
+                
+                
                 if self.__plugin_ok(tmpPlugin["PLUGIN_NAME"], dir(tmpObject)):
                     tmpPlugin["PLUGIN_CODE"] = tmpObject
                 else:
@@ -97,6 +106,12 @@ class PluginLoader(object):
 ###############################################################################
 
     def __import_plugin_metas(self, pluginsToLoad=[]):
+        """ Read the meta information for every plugin directory which is 
+        found.
+        
+        pluginsToLoad is a list of plugins which should be loaded.
+        """
+        
         for x in self.__pluginDirList:
             pluginMetaObject = {}
             try:
@@ -109,6 +124,12 @@ class PluginLoader(object):
 ###############################################################################
 
     def __read_meta_info(self, pluginPath, pluginsToLoad):
+        """ Read the meta information for a plugin given by its directory.
+        
+        If the plugin is in pluginsToLoad, the flag for using this plugin will 
+        be set.
+        """
+        
         ATTRIBUTE_LIST = ["PLUGIN_NAME", "PLUGIN_VERSION", "PLUGIN_AUTHOR",
                             "PLUGIN_FILE", "PLUGIN_LOAD", "PLUGIN_PATH",
                             "PLUGIN_CODE"]
