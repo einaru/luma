@@ -33,10 +33,11 @@ class BrowserDialog(QDialog):
         self.cancelButton = QPushButton(self.hWidget)
         self.cancelButton.setText(self.trUtf8("Cancel"))
         
-        hLayout.addWidget(self.cancelButton)
+        
         spacer = QSpacerItem(100,21,QSizePolicy.Preferred,QSizePolicy.Minimum)
         hLayout.addItem(spacer)
         hLayout.addWidget(self.okButton)
+        hLayout.addWidget(self.cancelButton)
         
         self.tmpBrowser = BrowserWidget(self)
         
@@ -58,7 +59,7 @@ class BrowserDialog(QDialog):
         """
         
         tmpItem = self.tmpBrowser.selectedItem()
-        tmpText = self.tmpBrowser.get_full_path(tmpItem)
+        tmpText = self.tmpBrowser.getFullPath(tmpItem)
         return tmpText
             
 ###############################################################################
@@ -67,7 +68,7 @@ class BrowserDialog(QDialog):
         """ Return ldap data of the selected item.
         """  
         tmpItem = self.tmpBrowser.selectedItem()
-        tmpText = self.tmpBrowser.get_full_path(tmpItem)
+        tmpText = self.tmpBrowser.getFullPath(tmpItem)
         return self.tmpBrowser.getLdapItem(tmpText)
         
 ###############################################################################
@@ -80,7 +81,7 @@ class BrowserDialog(QDialog):
         if tmpItem == None:
             pass
         else:
-            tmpText = self.tmpBrowser.get_full_path(tmpItem)
+            tmpText = self.tmpBrowser.getFullPath(tmpItem)
             if len(tmpText.split(',')) > 1:
                 self.accept()
         
