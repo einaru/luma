@@ -38,17 +38,17 @@ class ServerDialog(ServerDialogDesign):
         self.applyButton.setEnabled(0)
 
         self.serverListObject = ServerList()
-        self.serverList = None
         
         # Server which is currently selected.
         self.currentServer = None
 
         
         self.serverListObject.readServerList()
+          
         if self.serverListObject.SERVERLIST == None:
-            self.serverList = []
-        else:
-            self.serverList = self.serverListObject.SERVERLIST
+            self.infoGroupBox.setEnabled(False)
+        elif len(self.serverListObject.SERVERLIST) == 0:
+            self.infoGroupBox.setEnabled(False)
 
         self.serverIcon = QPixmap(os.path.join(self._PREFIX, "share", "luma", "icons", "server.png"))
         
@@ -59,7 +59,10 @@ class ServerDialog(ServerDialogDesign):
     def displayServerList(self):
         self.serverListView.clear()
         
-        for x in self.serverList:
+        if self.serverListObject.SERVERLIST == None:
+            return
+        
+        for x in self.serverListObject.SERVERLIST:
             tmpItem = QListViewItem(self.serverListView, x.name)
             tmpItem.setPixmap(0, self.serverIcon)
             self.serverListView.insertItem(tmpItem)
@@ -119,13 +122,16 @@ class ServerDialog(ServerDialogDesign):
         if result[1] == False:
             return
 
+        self.infoGroupBox.setEnabled(True)
         self.infoGroupBox.setTitle(result[0])
         
         serverObject = ServerObject()
         serverObject.name = unicode(result[0])
         
-        self.serverList.append(serverObject)
-        #self.displayServerList()
+        if self.serverListObject.SERVERLIST == None:
+            self.serverListObject.SERVERLIST = [serverObject]
+        else:
+            self.serverListObject.SERVERLIST.append(serverObject)
         
         self.applyButton.setEnabled(1)
         
@@ -140,7 +146,6 @@ class ServerDialog(ServerDialogDesign):
         """ Save the changed server values.
         """
         
-        self.serverListObject.SERVERLIST = self.serverList
         self.serverListObject.save_settings(self.serverListObject.SERVERLIST)
         
         self.displayServerList()
@@ -169,8 +174,9 @@ class ServerDialog(ServerDialogDesign):
         reallyDelete.setIconPixmap(QPixmap(os.path.join(self._PREFIX, "share", "luma", "icons", "error.png")))
         reallyDelete.exec_loop()
         if (reallyDelete.result() == 1):
-            self.serverListObject.deleteServer(str(selectedServerString))
-            self.serverList = self.serverListObject.SERVERLIST
+            self.serverListObject.deleteServer(unicode(selectedServerString))
+            if len(self.serverListObject.SERVERLIST) == 0:
+                self.infoGroupBox.setEnabled(False)
             
             self.displayServerList()
             self.applyButton.setEnabled(1)
