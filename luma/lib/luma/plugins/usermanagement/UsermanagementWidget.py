@@ -318,8 +318,8 @@ class UsermanagementWidget(UsermanagementWidgetDesign):
             while listIterator.current():
                 item = listIterator.current()
                 self.OTHERGROUPS[unicode(item.text(2)).encode("utf-8")] = item.isOn()
-
-                listIterator.__iadd__(1)
+                
+                listIterator += 1
             
             self.EDITED = True
             self.displayValues()
