@@ -70,7 +70,12 @@ class SearchForm(SearchFormDesign):
         search result and the criterias used for the filter.
         """
         
-        self.groupBox2.setEnabled(False)
+        # Returns was pressed but no server selected. So we don't want 
+        # to search.
+        if None == self.connection:
+            return
+        
+        self.groupFrame.setEnabled(False)
 
         criteriaList = self.getSearchCriteria()
     
@@ -90,7 +95,7 @@ class SearchForm(SearchFormDesign):
                 unicode(self.searchEdit.currentText()).encode('utf-8'))
         self.connection.unbind()
         
-        self.groupBox2.setEnabled(True)
+        self.groupFrame.setEnabled(True)
         
         if success:
             self.emit(PYSIGNAL("ldap_result"), (self.currentServer, resultList, criteriaList, ))

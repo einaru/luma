@@ -16,15 +16,15 @@
     <property name="geometry">
         <rect>
             <x>0</x>
-            <y>1</y>
+            <y>0</y>
             <width>641</width>
-            <height>115</height>
+            <height>102</height>
         </rect>
     </property>
     <property name="sizePolicy">
         <sizepolicy>
             <hsizetype>5</hsizetype>
-            <vsizetype>0</vsizetype>
+            <vsizetype>5</vsizetype>
             <horstretch>0</horstretch>
             <verstretch>0</verstretch>
         </sizepolicy>
@@ -36,9 +36,9 @@
         <property name="name">
             <cstring>unnamed</cstring>
         </property>
-        <widget class="QGroupBox">
+        <widget class="QFrame">
             <property name="name">
-                <cstring>groupBox2</cstring>
+                <cstring>groupFrame</cstring>
             </property>
             <property name="sizePolicy">
                 <sizepolicy>
@@ -48,13 +48,77 @@
                     <verstretch>0</verstretch>
                 </sizepolicy>
             </property>
-            <property name="title">
-                <string>Search</string>
+            <property name="frameShape">
+                <enum>StyledPanel</enum>
+            </property>
+            <property name="frameShadow">
+                <enum>Sunken</enum>
             </property>
             <grid>
                 <property name="name">
                     <cstring>unnamed</cstring>
                 </property>
+                <widget class="QPushButton" row="0" column="4">
+                    <property name="name">
+                        <cstring>filterWizardButton</cstring>
+                    </property>
+                    <property name="sizePolicy">
+                        <sizepolicy>
+                            <hsizetype>0</hsizetype>
+                            <vsizetype>0</vsizetype>
+                            <horstretch>0</horstretch>
+                            <verstretch>0</verstretch>
+                        </sizepolicy>
+                    </property>
+                    <property name="text">
+                        <string>&amp;Filter wizard</string>
+                    </property>
+                    <property name="accel">
+                        <string>Alt+F</string>
+                    </property>
+                </widget>
+                <widget class="QComboBox" row="0" column="3">
+                    <property name="name">
+                        <cstring>baseBox</cstring>
+                    </property>
+                </widget>
+                <widget class="QComboBox" row="1" column="1" rowspan="1" colspan="4">
+                    <property name="name">
+                        <cstring>searchEdit</cstring>
+                    </property>
+                    <property name="sizePolicy">
+                        <sizepolicy>
+                            <hsizetype>7</hsizetype>
+                            <vsizetype>0</vsizetype>
+                            <horstretch>0</horstretch>
+                            <verstretch>0</verstretch>
+                        </sizepolicy>
+                    </property>
+                    <property name="editable">
+                        <bool>true</bool>
+                    </property>
+                </widget>
+                <widget class="QLabel" row="0" column="2">
+                    <property name="name">
+                        <cstring>textLabel1</cstring>
+                    </property>
+                    <property name="sizePolicy">
+                        <sizepolicy>
+                            <hsizetype>0</hsizetype>
+                            <vsizetype>5</vsizetype>
+                            <horstretch>0</horstretch>
+                            <verstretch>0</verstretch>
+                        </sizepolicy>
+                    </property>
+                    <property name="text">
+                        <string>Base DN:</string>
+                    </property>
+                </widget>
+                <widget class="QComboBox" row="0" column="1">
+                    <property name="name">
+                        <cstring>serverBox</cstring>
+                    </property>
+                </widget>
                 <widget class="QLabel" row="1" column="0">
                     <property name="name">
                         <cstring>textLabel6</cstring>
@@ -87,25 +151,6 @@
                         <string>Server:</string>
                     </property>
                 </widget>
-                <widget class="QPushButton" row="0" column="4">
-                    <property name="name">
-                        <cstring>filterWizardButton</cstring>
-                    </property>
-                    <property name="sizePolicy">
-                        <sizepolicy>
-                            <hsizetype>0</hsizetype>
-                            <vsizetype>0</vsizetype>
-                            <horstretch>0</horstretch>
-                            <verstretch>0</verstretch>
-                        </sizepolicy>
-                    </property>
-                    <property name="text">
-                        <string>&amp;Filter wizard</string>
-                    </property>
-                    <property name="accel">
-                        <string>Alt+F</string>
-                    </property>
-                </widget>
                 <widget class="QPushButton" row="0" column="5">
                     <property name="name">
                         <cstring>startButton</cstring>
@@ -127,47 +172,8 @@
                     <property name="accel">
                         <string>Alt+S</string>
                     </property>
-                </widget>
-                <widget class="QComboBox" row="1" column="1" rowspan="1" colspan="5">
-                    <property name="name">
-                        <cstring>searchEdit</cstring>
-                    </property>
-                    <property name="sizePolicy">
-                        <sizepolicy>
-                            <hsizetype>7</hsizetype>
-                            <vsizetype>0</vsizetype>
-                            <horstretch>0</horstretch>
-                            <verstretch>0</verstretch>
-                        </sizepolicy>
-                    </property>
-                    <property name="editable">
+                    <property name="default">
                         <bool>true</bool>
-                    </property>
-                </widget>
-                <widget class="QComboBox" row="0" column="1">
-                    <property name="name">
-                        <cstring>serverBox</cstring>
-                    </property>
-                </widget>
-                <widget class="QComboBox" row="0" column="3">
-                    <property name="name">
-                        <cstring>baseBox</cstring>
-                    </property>
-                </widget>
-                <widget class="QLabel" row="0" column="2">
-                    <property name="name">
-                        <cstring>textLabel1</cstring>
-                    </property>
-                    <property name="sizePolicy">
-                        <sizepolicy>
-                            <hsizetype>0</hsizetype>
-                            <vsizetype>5</vsizetype>
-                            <horstretch>0</horstretch>
-                            <verstretch>0</verstretch>
-                        </sizepolicy>
-                    </property>
-                    <property name="text">
-                        <string>Base DN:</string>
                     </property>
                 </widget>
             </grid>
@@ -194,6 +200,13 @@
         <slot>serverChanged()</slot>
     </connection>
 </connections>
+<tabstops>
+    <tabstop>serverBox</tabstop>
+    <tabstop>baseBox</tabstop>
+    <tabstop>searchEdit</tabstop>
+    <tabstop>filterWizardButton</tabstop>
+    <tabstop>startButton</tabstop>
+</tabstops>
 <slots>
     <slot>startFilterWizard()</slot>
     <slot>startSearch()</slot>

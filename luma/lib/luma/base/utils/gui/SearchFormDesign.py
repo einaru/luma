@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file '/home/wido/src/luma/lib/luma/base/utils/gui/SearchFormDesign.ui'
 #
-# Created: Wed Jan 5 22:17:46 2005
+# Created: Tue Feb 8 21:29:27 2005
 #      by: The PyQt User Interface Compiler (pyuic) 3.13
 #
 # WARNING! All changes made in this file will be lost!
@@ -19,79 +19,82 @@ class SearchFormDesign(QWidget):
         if not name:
             self.setName("SearchFormDesign")
 
-        self.setSizePolicy(QSizePolicy(5,0,0,0,self.sizePolicy().hasHeightForWidth()))
+        self.setSizePolicy(QSizePolicy(5,5,0,0,self.sizePolicy().hasHeightForWidth()))
 
         SearchFormDesignLayout = QVBoxLayout(self,11,6,"SearchFormDesignLayout")
 
-        self.groupBox2 = QGroupBox(self,"groupBox2")
-        self.groupBox2.setSizePolicy(QSizePolicy(5,0,0,0,self.groupBox2.sizePolicy().hasHeightForWidth()))
-        self.groupBox2.setColumnLayout(0,Qt.Vertical)
-        self.groupBox2.layout().setSpacing(6)
-        self.groupBox2.layout().setMargin(11)
-        groupBox2Layout = QGridLayout(self.groupBox2.layout())
-        groupBox2Layout.setAlignment(Qt.AlignTop)
+        self.groupFrame = QFrame(self,"groupFrame")
+        self.groupFrame.setSizePolicy(QSizePolicy(5,0,0,0,self.groupFrame.sizePolicy().hasHeightForWidth()))
+        self.groupFrame.setFrameShape(QFrame.StyledPanel)
+        self.groupFrame.setFrameShadow(QFrame.Sunken)
+        groupFrameLayout = QGridLayout(self.groupFrame,1,1,11,6,"groupFrameLayout")
 
-        self.textLabel6 = QLabel(self.groupBox2,"textLabel6")
-        self.textLabel6.setSizePolicy(QSizePolicy(0,5,0,0,self.textLabel6.sizePolicy().hasHeightForWidth()))
-
-        groupBox2Layout.addWidget(self.textLabel6,1,0)
-
-        self.textLabel2 = QLabel(self.groupBox2,"textLabel2")
-        self.textLabel2.setSizePolicy(QSizePolicy(0,5,0,0,self.textLabel2.sizePolicy().hasHeightForWidth()))
-
-        groupBox2Layout.addWidget(self.textLabel2,0,0)
-
-        self.filterWizardButton = QPushButton(self.groupBox2,"filterWizardButton")
+        self.filterWizardButton = QPushButton(self.groupFrame,"filterWizardButton")
         self.filterWizardButton.setSizePolicy(QSizePolicy(0,0,0,0,self.filterWizardButton.sizePolicy().hasHeightForWidth()))
 
-        groupBox2Layout.addWidget(self.filterWizardButton,0,4)
+        groupFrameLayout.addWidget(self.filterWizardButton,0,4)
 
-        self.startButton = QPushButton(self.groupBox2,"startButton")
-        self.startButton.setEnabled(0)
-        self.startButton.setSizePolicy(QSizePolicy(0,0,0,0,self.startButton.sizePolicy().hasHeightForWidth()))
+        self.baseBox = QComboBox(0,self.groupFrame,"baseBox")
 
-        groupBox2Layout.addWidget(self.startButton,0,5)
+        groupFrameLayout.addWidget(self.baseBox,0,3)
 
-        self.searchEdit = QComboBox(0,self.groupBox2,"searchEdit")
+        self.searchEdit = QComboBox(0,self.groupFrame,"searchEdit")
         self.searchEdit.setSizePolicy(QSizePolicy(7,0,0,0,self.searchEdit.sizePolicy().hasHeightForWidth()))
         self.searchEdit.setEditable(1)
 
-        groupBox2Layout.addMultiCellWidget(self.searchEdit,1,1,1,5)
+        groupFrameLayout.addMultiCellWidget(self.searchEdit,1,1,1,4)
 
-        self.serverBox = QComboBox(0,self.groupBox2,"serverBox")
-
-        groupBox2Layout.addWidget(self.serverBox,0,1)
-
-        self.baseBox = QComboBox(0,self.groupBox2,"baseBox")
-
-        groupBox2Layout.addWidget(self.baseBox,0,3)
-
-        self.textLabel1 = QLabel(self.groupBox2,"textLabel1")
+        self.textLabel1 = QLabel(self.groupFrame,"textLabel1")
         self.textLabel1.setSizePolicy(QSizePolicy(0,5,0,0,self.textLabel1.sizePolicy().hasHeightForWidth()))
 
-        groupBox2Layout.addWidget(self.textLabel1,0,2)
-        SearchFormDesignLayout.addWidget(self.groupBox2)
+        groupFrameLayout.addWidget(self.textLabel1,0,2)
+
+        self.serverBox = QComboBox(0,self.groupFrame,"serverBox")
+
+        groupFrameLayout.addWidget(self.serverBox,0,1)
+
+        self.textLabel6 = QLabel(self.groupFrame,"textLabel6")
+        self.textLabel6.setSizePolicy(QSizePolicy(0,5,0,0,self.textLabel6.sizePolicy().hasHeightForWidth()))
+
+        groupFrameLayout.addWidget(self.textLabel6,1,0)
+
+        self.textLabel2 = QLabel(self.groupFrame,"textLabel2")
+        self.textLabel2.setSizePolicy(QSizePolicy(0,5,0,0,self.textLabel2.sizePolicy().hasHeightForWidth()))
+
+        groupFrameLayout.addWidget(self.textLabel2,0,0)
+
+        self.startButton = QPushButton(self.groupFrame,"startButton")
+        self.startButton.setEnabled(0)
+        self.startButton.setSizePolicy(QSizePolicy(0,0,0,0,self.startButton.sizePolicy().hasHeightForWidth()))
+        self.startButton.setDefault(1)
+
+        groupFrameLayout.addWidget(self.startButton,0,5)
+        SearchFormDesignLayout.addWidget(self.groupFrame)
 
         self.languageChange()
 
-        self.resize(QSize(641,115).expandedTo(self.minimumSizeHint()))
+        self.resize(QSize(641,102).expandedTo(self.minimumSizeHint()))
         self.clearWState(Qt.WState_Polished)
 
         self.connect(self.filterWizardButton,SIGNAL("clicked()"),self.startFilterWizard)
         self.connect(self.startButton,SIGNAL("clicked()"),self.startSearch)
         self.connect(self.serverBox,SIGNAL("activated(const QString&)"),self.serverChanged)
 
+        self.setTabOrder(self.serverBox,self.baseBox)
+        self.setTabOrder(self.baseBox,self.searchEdit)
+        self.setTabOrder(self.searchEdit,self.filterWizardButton)
+        self.setTabOrder(self.filterWizardButton,self.startButton)
+
 
     def languageChange(self):
         self.setCaption(self.__tr("SearchFormDesign"))
-        self.groupBox2.setTitle(self.__tr("Search"))
-        self.textLabel6.setText(self.__tr("Filter:"))
-        self.textLabel2.setText(self.__tr("Server:"))
         self.filterWizardButton.setText(self.__tr("&Filter wizard"))
         self.filterWizardButton.setAccel(self.__tr("Alt+F"))
+        self.textLabel1.setText(self.__tr("Base DN:"))
+        self.textLabel6.setText(self.__tr("Filter:"))
+        self.textLabel2.setText(self.__tr("Server:"))
         self.startButton.setText(self.__tr("&Search"))
         self.startButton.setAccel(self.__tr("Alt+S"))
-        self.textLabel1.setText(self.__tr("Base DN:"))
 
 
     def startFilterWizard(self):
