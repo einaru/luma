@@ -20,6 +20,7 @@ cd tmp
 find . -name "CVS" | xargs rm -rf
 find . -name "*.pyc" | xargs rm
 find . -name "*~" | xargs rm
+find . -name ".*" | xargs rm
 
 rm luma-$1/lib/luma/*.qm
 rm luma-$1/lib/luma/*.ts
