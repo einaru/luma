@@ -1,7 +1,7 @@
 # -*- coding: <utf-8> -*-
 
 ###########################################################################
-#    Copyright (C) 2004 by Wido Depping                                      
+#    Copyright (C) 2004, 2005 by Wido Depping                                      
 #    <widod@users.sourceforge.net>                                                             
 #
 # Copyright: See COPYING file that comes with this distribution
@@ -15,7 +15,7 @@ import copy
 import base64
 import StringIO
 
-from base.utils.backend.ObjectClassAttributeInfo import ObjectClassAttributeInfo
+from base.backend.ObjectClassAttributeInfo import ObjectClassAttributeInfo
 from base.utils import stripSpecialChars
 from base.utils import escapeSpecialChars
 from base.utils import isBinaryAttribute
