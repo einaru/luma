@@ -92,10 +92,10 @@ class ObjectClassAttributeInfo(object):
                         "NAME": z}
             
             oidList = schema.listall(ldap.schema.LDAPSyntax)
-            for x in oidList:
-                environment.updateUI()
-                y = schema.get_obj(ldap.schema.LDAPSyntax, x)
-                print y.desc
+            #for x in oidList:
+            #    environment.updateUI()
+            #    y = schema.get_obj(ldap.schema.LDAPSyntax, x)
+            #    print y.desc
                 
                 
         except ldap.LDAPError, e:
