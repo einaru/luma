@@ -37,6 +37,9 @@ class ServerDialog(ServerDialogDesign):
         self._PREFIX = environment.lumaInstallationPrefix
         
         self.iconPath = os.path.join(self._PREFIX, "share", "luma", "icons")
+        folderPixmap = QPixmap(os.path.join(self.iconPath, "folder.png"))
+        self.certFileButton.setPixmap(folderPixmap)
+        self.certKeyFileButton.setPixmap(folderPixmap)
         self.networkLabel.setPixmap(QPixmap(os.path.join(self.iconPath, "worldmedium.png")))
         self.authLabel.setPixmap(QPixmap(os.path.join(self.iconPath, "passwordmedium.png")))
         self.guiParent = parent
@@ -392,3 +395,72 @@ class ServerDialog(ServerDialogDesign):
     def aliasesChanged(self):
         self.applyButton.setEnabled(True)
         self.currentServer.followAliases = self.aliasBox.isChecked()
+        
+###############################################################################
+
+    def sslSettingsChanged(self, tmpBool):
+        if self.tlsCheckBox.isChecked():
+            self.useClientCertBox.setEnabled(True)
+            
+            tmpBool = self.useClientCertBox.isChecked()
+            
+            self.certFileEdit.setEnabled(tmpBool)
+            self.certKeyfileEdit.setEnabled(tmpBool)
+            self.certFileButton.setEnabled(tmpBool)
+            self.certKeyFileButton.setEnabled(tmpBool)
+        else:
+            self.useClientCertBox.setEnabled(False)
+            self.certFileEdit.setEnabled(False)
+            self.certKeyfileEdit.setEnabled(False)
+            self.certFileButton.setEnabled(False)
+            self.certKeyFileButton.setEnabled(False)
+            
+        self.applyButton.setEnabled(True)
+
+###############################################################################
+
+    def certFileChanged(self, tmpFileName):
+        tmpFileName = unicode(tmpFileName)
+        
+        # Now do file checking
+        
+        # Now do internal stuff like updating the ServerObject 
+        # and activate apply button
+        self.applyButton.setEnabled(True)
+        
+###############################################################################
+
+    def certKeyFileChanged(self, tmpFileName):
+        tmpFileName = unicode(tmpFileName)
+        
+        # Now do file checking
+        
+        # Now do internal stuff like updating the ServerObject 
+        # and activate apply button
+        self.applyButton.setEnabled(True)
+        
+###############################################################################
+
+    def showCertFileDialog(self):
+        filename = QFileDialog.getOpenFileName(\
+            None,
+            None,
+            None, None,
+            self.trUtf8("Select certificate file"),
+            None, 1)
+            
+        self.certFileEdit.setText(unicode(filename))
+
+        
+###############################################################################
+
+    def showCertKeyFileDialog(self):
+        filename = QFileDialog.getOpenFileName(\
+            None,
+            None,
+            None, None,
+            self.trUtf8("Select certificate key file"),
+            None, 1)
+            
+        self.certKeyfileEdit.setText(unicode(filename))
+        

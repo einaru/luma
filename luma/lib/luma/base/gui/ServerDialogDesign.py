@@ -1,13 +1,14 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file './lib/luma/base/gui/ServerDialogDesign.ui'
+# Form implementation generated from reading ui file '/home/wido/src/luma/lib/luma/base/gui/ServerDialogDesign.ui'
 #
-# Created: Tue Mar 1 22:42:11 2005
+# Created: Sun Apr 3 16:14:22 2005
 #      by: The PyQt User Interface Compiler (pyuic) 3.14
 #
 # WARNING! All changes made in this file will be lost!
 
 
+import sys
 from qt import *
 
 
@@ -19,31 +20,7 @@ class ServerDialogDesign(QDialog):
             self.setName("ServerDialogDesign")
 
 
-        ServerDialogDesignLayout = QGridLayout(self,1,1,11,6,"ServerDialogDesignLayout")
-
-        self.line1 = QFrame(self,"line1")
-        self.line1.setFrameShape(QFrame.HLine)
-        self.line1.setFrameShadow(QFrame.Sunken)
-        self.line1.setFrameShape(QFrame.HLine)
-
-        ServerDialogDesignLayout.addWidget(self.line1,1,0)
-
-        layout4 = QHBoxLayout(None,0,6,"layout4")
-        spacer6 = QSpacerItem(350,21,QSizePolicy.Expanding,QSizePolicy.Minimum)
-        layout4.addItem(spacer6)
-
-        self.okButton = QPushButton(self,"okButton")
-        self.okButton.setDefault(1)
-        layout4.addWidget(self.okButton)
-
-        self.applyButton = QPushButton(self,"applyButton")
-        self.applyButton.setSizePolicy(QSizePolicy(QSizePolicy.Minimum,QSizePolicy.Fixed,0,0,self.applyButton.sizePolicy().hasHeightForWidth()))
-        layout4.addWidget(self.applyButton)
-
-        self.cancelButton = QPushButton(self,"cancelButton")
-        layout4.addWidget(self.cancelButton)
-
-        ServerDialogDesignLayout.addLayout(layout4,2,0)
+        ServerDialogDesignLayout = QVBoxLayout(self,11,6,"ServerDialogDesignLayout")
 
         self.splitter2 = QSplitter(self,"splitter2")
         self.splitter2.setOrientation(QSplitter.Horizontal)
@@ -149,31 +126,76 @@ class ServerDialogDesign(QDialog):
         self.authLabel.setMinimumSize(QSize(48,48))
 
         tabLayout_2.addWidget(self.authLabel,0,0)
-        spacer6_2 = QSpacerItem(21,178,QSizePolicy.Minimum,QSizePolicy.Expanding)
-        tabLayout_2.addMultiCell(spacer6_2,1,5,0,0)
-        spacer14 = QSpacerItem(21,10,QSizePolicy.Minimum,QSizePolicy.Fixed)
-        tabLayout_2.addItem(spacer14,2,1)
-        spacer9 = QSpacerItem(21,70,QSizePolicy.Minimum,QSizePolicy.Expanding)
-        tabLayout_2.addItem(spacer9,6,3)
+        spacer9 = QSpacerItem(21,40,QSizePolicy.Minimum,QSizePolicy.Expanding)
+        tabLayout_2.addItem(spacer9,8,4)
+        spacer14_2 = QSpacerItem(21,16,QSizePolicy.Minimum,QSizePolicy.Fixed)
+        tabLayout_2.addItem(spacer14_2,2,1)
+        spacer14 = QSpacerItem(21,16,QSizePolicy.Minimum,QSizePolicy.Fixed)
+        tabLayout_2.addItem(spacer14,4,3)
+        spacer12 = QSpacerItem(20,16,QSizePolicy.Minimum,QSizePolicy.Fixed)
+        tabLayout_2.addItem(spacer12,6,2)
 
-        layout5 = QGridLayout(None,1,1,0,6,"layout5")
-
-        self.tlsCheckBox = QCheckBox(self.tab_2,"tlsCheckBox")
-
-        layout5.addWidget(self.tlsCheckBox,1,1)
+        layout6 = QGridLayout(None,1,1,0,6,"layout6")
 
         self.textLabel2 = QLabel(self.tab_2,"textLabel2")
         self.textLabel2.setAlignment(QLabel.AlignVCenter)
 
-        layout5.addMultiCellWidget(self.textLabel2,0,0,0,1)
+        layout6.addMultiCellWidget(self.textLabel2,0,0,0,1)
+
+        self.tlsCheckBox = QCheckBox(self.tab_2,"tlsCheckBox")
+
+        layout6.addWidget(self.tlsCheckBox,2,1)
+        spacer11 = QSpacerItem(16,16,QSizePolicy.Fixed,QSizePolicy.Minimum)
+        layout6.addItem(spacer11,1,0)
 
         self.bindAnonBox = QCheckBox(self.tab_2,"bindAnonBox")
 
-        layout5.addWidget(self.bindAnonBox,2,1)
-        spacer11 = QSpacerItem(12,16,QSizePolicy.Fixed,QSizePolicy.Minimum)
-        layout5.addItem(spacer11,1,0)
+        layout6.addWidget(self.bindAnonBox,1,1)
 
-        tabLayout_2.addMultiCellLayout(layout5,0,1,1,3)
+        tabLayout_2.addMultiCellLayout(layout6,0,1,1,4)
+
+        layout8 = QGridLayout(None,1,1,0,6,"layout8")
+
+        self.textLabel3 = QLabel(self.tab_2,"textLabel3")
+
+        layout8.addWidget(self.textLabel3,3,1)
+
+        self.certKeyFileButton = QToolButton(self.tab_2,"certKeyFileButton")
+        self.certKeyFileButton.setEnabled(0)
+
+        layout8.addWidget(self.certKeyFileButton,3,3)
+
+        self.certFileButton = QToolButton(self.tab_2,"certFileButton")
+        self.certFileButton.setEnabled(0)
+
+        layout8.addWidget(self.certFileButton,2,3)
+        spacer11_2 = QSpacerItem(16,16,QSizePolicy.Fixed,QSizePolicy.Minimum)
+        layout8.addItem(spacer11_2,1,0)
+
+        self.certFileEdit = QLineEdit(self.tab_2,"certFileEdit")
+        self.certFileEdit.setEnabled(0)
+
+        layout8.addWidget(self.certFileEdit,2,2)
+
+        self.useClientCertBox = QCheckBox(self.tab_2,"useClientCertBox")
+        self.useClientCertBox.setEnabled(0)
+
+        layout8.addMultiCellWidget(self.useClientCertBox,1,1,1,3)
+
+        self.certKeyfileEdit = QLineEdit(self.tab_2,"certKeyfileEdit")
+        self.certKeyfileEdit.setEnabled(0)
+
+        layout8.addWidget(self.certKeyfileEdit,3,2)
+
+        self.textLabel1_3 = QLabel(self.tab_2,"textLabel1_3")
+
+        layout8.addMultiCellWidget(self.textLabel1_3,0,0,0,3)
+
+        self.textLabel2_2 = QLabel(self.tab_2,"textLabel2_2")
+
+        layout8.addWidget(self.textLabel2_2,2,1)
+
+        tabLayout_2.addMultiCellLayout(layout8,3,3,1,4)
 
         layout7 = QGridLayout(None,1,1,0,6,"layout7")
 
@@ -188,46 +210,67 @@ class ServerDialogDesign(QDialog):
 
         layout7.addMultiCellWidget(self.textLabel4,0,0,0,1)
 
-        tabLayout_2.addMultiCellLayout(layout7,3,3,1,3)
-        spacer12 = QSpacerItem(20,10,QSizePolicy.Minimum,QSizePolicy.Fixed)
-        tabLayout_2.addItem(spacer12,4,2)
+        tabLayout_2.addMultiCellLayout(layout7,5,5,1,4)
 
-        layout8 = QGridLayout(None,1,1,0,6,"layout8")
+        layout8_2 = QGridLayout(None,1,1,0,6,"layout8_2")
 
         self.textLabel5 = QLabel(self.tab_2,"textLabel5")
         self.textLabel5.setAlignment(QLabel.AlignVCenter)
 
-        layout8.addMultiCellWidget(self.textLabel5,0,0,0,2)
+        layout8_2.addMultiCellWidget(self.textLabel5,0,0,0,2)
 
         self.textLabel12 = QLabel(self.tab_2,"textLabel12")
         self.textLabel12.setAlignment(QLabel.AlignVCenter)
 
-        layout8.addWidget(self.textLabel12,2,1)
+        layout8_2.addWidget(self.textLabel12,2,1)
 
         self.passwordLineEdit = QLineEdit(self.tab_2,"passwordLineEdit")
         self.passwordLineEdit.setEchoMode(QLineEdit.Password)
 
-        layout8.addWidget(self.passwordLineEdit,2,2)
+        layout8_2.addWidget(self.passwordLineEdit,2,2)
 
         self.textLabel10 = QLabel(self.tab_2,"textLabel10")
         self.textLabel10.setAlignment(QLabel.WordBreak | QLabel.AlignVCenter)
 
-        layout8.addWidget(self.textLabel10,1,1)
+        layout8_2.addWidget(self.textLabel10,1,1)
         spacer15 = QSpacerItem(12,10,QSizePolicy.Fixed,QSizePolicy.Minimum)
-        layout8.addItem(spacer15,1,0)
+        layout8_2.addItem(spacer15,1,0)
 
         self.bindLineEdit = QLineEdit(self.tab_2,"bindLineEdit")
 
-        layout8.addWidget(self.bindLineEdit,1,2)
+        layout8_2.addWidget(self.bindLineEdit,1,2)
 
-        tabLayout_2.addMultiCellLayout(layout8,5,5,1,3)
+        tabLayout_2.addMultiCellLayout(layout8_2,7,7,1,4)
+        spacer6_2 = QSpacerItem(21,610,QSizePolicy.Minimum,QSizePolicy.Expanding)
+        tabLayout_2.addMultiCell(spacer6_2,1,8,0,0)
         self.serverWidget.insertTab(self.tab_2,QString.fromLatin1(""))
+        ServerDialogDesignLayout.addWidget(self.splitter2)
 
-        ServerDialogDesignLayout.addWidget(self.splitter2,0,0)
+        self.line1 = QFrame(self,"line1")
+        self.line1.setFrameShape(QFrame.HLine)
+        self.line1.setFrameShadow(QFrame.Sunken)
+        self.line1.setFrameShape(QFrame.HLine)
+        ServerDialogDesignLayout.addWidget(self.line1)
+
+        layout4 = QHBoxLayout(None,0,6,"layout4")
+        spacer6 = QSpacerItem(350,21,QSizePolicy.Expanding,QSizePolicy.Minimum)
+        layout4.addItem(spacer6)
+
+        self.okButton = QPushButton(self,"okButton")
+        self.okButton.setDefault(1)
+        layout4.addWidget(self.okButton)
+
+        self.applyButton = QPushButton(self,"applyButton")
+        self.applyButton.setSizePolicy(QSizePolicy(QSizePolicy.Minimum,QSizePolicy.Fixed,0,0,self.applyButton.sizePolicy().hasHeightForWidth()))
+        layout4.addWidget(self.applyButton)
+
+        self.cancelButton = QPushButton(self,"cancelButton")
+        layout4.addWidget(self.cancelButton)
+        ServerDialogDesignLayout.addLayout(layout4)
 
         self.languageChange()
 
-        self.resize(QSize(621,444).expandedTo(self.minimumSizeHint()))
+        self.resize(QSize(615,565).expandedTo(self.minimumSizeHint()))
         self.clearWState(Qt.WState_Polished)
 
         self.connect(self.applyButton,SIGNAL("clicked()"),self.saveServer)
@@ -246,6 +289,12 @@ class ServerDialogDesign(QDialog):
         self.connect(self.manageBaseBaseButton,SIGNAL("clicked()"),self.manageBaseDN)
         self.connect(self.baseBox,SIGNAL("clicked()"),self.useServerBase)
         self.connect(self.aliasBox,SIGNAL("clicked()"),self.aliasesChanged)
+        self.connect(self.useClientCertBox,SIGNAL("toggled(bool)"),self.sslSettingsChanged)
+        self.connect(self.tlsCheckBox,SIGNAL("toggled(bool)"),self.sslSettingsChanged)
+        self.connect(self.certFileEdit,SIGNAL("textChanged(const QString&)"),self.certFileChanged)
+        self.connect(self.certKeyfileEdit,SIGNAL("textChanged(const QString&)"),self.certKeyFileChanged)
+        self.connect(self.certFileButton,SIGNAL("clicked()"),self.showCertFileDialog)
+        self.connect(self.certKeyFileButton,SIGNAL("clicked()"),self.showCertKeyFileDialog)
 
         self.setTabOrder(self.serverListView,self.addButton)
         self.setTabOrder(self.addButton,self.deleteButton)
@@ -268,12 +317,6 @@ class ServerDialogDesign(QDialog):
 
     def languageChange(self):
         self.setCaption(self.__tr("Manage Server List"))
-        self.okButton.setText(self.__tr("&OK"))
-        self.okButton.setAccel(self.__tr("Alt+O"))
-        self.applyButton.setText(self.__tr("&Apply"))
-        self.applyButton.setAccel(self.__tr("Alt+A"))
-        self.cancelButton.setText(self.__tr("&Cancel"))
-        self.cancelButton.setAccel(self.__tr("Alt+C"))
         self.addButton.setText(self.__tr("&Add..."))
         self.addButton.setAccel(self.__tr("Alt+A"))
         self.serverListView.header().setLabel(0,self.__tr("Server"))
@@ -290,9 +333,15 @@ class ServerDialogDesign(QDialog):
         self.textLabel1.setText(self.__tr("<b>LDAP options</b>"))
         self.serverWidget.changeTab(self.tab,self.__tr("Network"))
         self.authLabel.setText(self.__tr("SO"))
-        self.tlsCheckBox.setText(self.__tr("Use secure connection (SSL)"))
         self.textLabel2.setText(self.__tr("<b>Security options</b>"))
+        self.tlsCheckBox.setText(self.__tr("Use secure connection (SSL)"))
         self.bindAnonBox.setText(self.__tr("Anonymous bind"))
+        self.textLabel3.setText(self.__tr("Certificate keyfile:"))
+        self.certKeyFileButton.setText(self.__tr("..."))
+        self.certFileButton.setText(self.__tr("..."))
+        self.useClientCertBox.setText(self.__tr("Use client certificates"))
+        self.textLabel1_3.setText(self.__tr("<b>Certificate options</b>"))
+        self.textLabel2_2.setText(self.__tr("Certificate file:"))
         self.methodBox.clear()
         self.methodBox.insertItem(self.__tr("Simple"))
         self.methodBox.insertItem(self.__tr("SASL CRAM-MD5"))
@@ -306,6 +355,12 @@ class ServerDialogDesign(QDialog):
         self.textLabel12.setText(self.__tr("Password:"))
         self.textLabel10.setText(self.__tr("Bind as:"))
         self.serverWidget.changeTab(self.tab_2,self.__tr("Security"))
+        self.okButton.setText(self.__tr("&OK"))
+        self.okButton.setAccel(self.__tr("Alt+O"))
+        self.applyButton.setText(self.__tr("&Apply"))
+        self.applyButton.setAccel(self.__tr("Alt+A"))
+        self.cancelButton.setText(self.__tr("&Cancel"))
+        self.cancelButton.setAccel(self.__tr("Alt+C"))
 
 
     def serverSelectionChanged(self):
@@ -359,5 +414,28 @@ class ServerDialogDesign(QDialog):
     def aliasesChanged(self):
         print "ServerDialogDesign.aliasesChanged(): Not implemented yet"
 
+    def sslSettingsChanged(self):
+        print "ServerDialogDesign.sslSettingsChanged(): Not implemented yet"
+
+    def certFileChanged(self):
+        print "ServerDialogDesign.certFileChanged(): Not implemented yet"
+
+    def certKeyFileChanged(self):
+        print "ServerDialogDesign.certKeyFileChanged(): Not implemented yet"
+
+    def showCertFileDialog(self):
+        print "ServerDialogDesign.showCertFileDialog(): Not implemented yet"
+
+    def showCertKeyFileDialog(self):
+        print "ServerDialogDesign.showCertKeyFileDialog(): Not implemented yet"
+
     def __tr(self,s,c = None):
         return qApp.translate("ServerDialogDesign",s,c)
+
+if __name__ == "__main__":
+    a = QApplication(sys.argv)
+    QObject.connect(a,SIGNAL("lastWindowClosed()"),a,SLOT("quit()"))
+    w = ServerDialogDesign()
+    a.setMainWidget(w)
+    w.show()
+    a.exec_loop()
