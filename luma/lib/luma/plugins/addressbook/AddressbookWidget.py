@@ -124,10 +124,11 @@ class AddressbookWidget(AddressbookWidgetDesign):
         
         if (self.DISABLED == 1):
             self.ocInfo.setServer(self.serverMeta.name)
+            self.ocInfo.retrieveInfoFromServer()
             self.DISABLED = 0
             
         must, may = self.ocInfo.getAllAttributes(self.data['objectClass'])
-        self.enableContactFields(must | may)
+        self.enableContactFields(must.union(may))
         
         
         self.addressBox.setEnabled(1)
@@ -479,19 +480,19 @@ Please read console output for more information."""),
         for x in self.attributeWidgets.keys():
             widget = self.attributeWidgets[x]
             if x in self.allowedAttributes:
-                widget.setEnabled(1)
+                widget.setEnabled(True)
                 if (x == 'cn'):
-                    self.nameButton.setEnabled(1)
+                    self.nameButton.setEnabled(True)
                     
                 if (x == 'category'):
-                    self.categoryButton.setEnabled(1)
+                    self.categoryButton.setEnabled(True)
             else:
-                widget.setEnabled(0)
+                widget.setEnabled(False)
                 if (x == 'cn'):
-                    self.nameButton.setEnabled(0)
+                    self.nameButton.setEnabled(False)
                     
                 if (x == 'category'):
-                    self.categoryButton.setEnabled(0)
+                    self.categoryButton.setEnabled(False)
 
 
     
