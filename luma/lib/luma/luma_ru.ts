@@ -365,10 +365,6 @@ http://luma.sourceforge.net
         <translation>Пожалуйста, введите имя пользователя.</translation>
     </message>
     <message>
-        <source>&amp;OK</source>
-        <translation>&amp;OK</translation>
-    </message>
-    <message>
         <source>Please enter a uid number.</source>
         <translation>Пожалуйста, введите номер идентификации пользователя (uid).</translation>
     </message>
@@ -385,22 +381,6 @@ http://luma.sourceforge.net
         <translation>Пожалуйста, введите домашнюю директорию (homeDirectory).</translation>
     </message>
     <message>
-        <source>Create account</source>
-        <translation>Создать учетную запись</translation>
-    </message>
-    <message>
-        <source>Could not create account. 
-Please see console output for more information.</source>
-        <translation>Невозможно создать учетную запись.
-Для получения более подробной информации просмотрите текст, выведенный на консоль.</translation>
-    </message>
-    <message>
-        <source>Could not create automount entry. 
-Please see console output for more information.</source>
-        <translation>Невозможно создать запись точки автоподключения.
-Для получения более подробной информации просмотрите текст, выведенный на консоль.</translation>
-    </message>
-    <message>
         <source>Warning: Location</source>
         <translation>Предупреждение: размещение</translation>
     </message>
@@ -409,15 +389,23 @@ Please see console output for more information.</source>
         <translation>Пожалуйста, выберите место для сохранения контакта.</translation>
     </message>
     <message>
-        <source>Missing Password</source>
-        <translation>Пропущен пароль</translation>
-    </message>
-    <message>
         <source>It is strongly recommended that you choose 
 a password for the new user. Otherwise 
 it might compromise the security of your system.</source>
         <translation>Настоятельно рекомендуем задать пароль для нового пользователя.
 В противном случае защищенность Вашей системы будет существенно снижена.</translation>
+    </message>
+    <message>
+        <source>Missing password</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Could not bind to server.&lt;br&gt;&lt;br&gt;Reason: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Could not create account.&lt;br&gt;&lt;br&gt;Reason: </source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -695,18 +683,16 @@ the selected objectclass.&lt;/p&gt;</source>
 <context>
     <name>AddressbookWidget</name>
     <message>
-        <source>Error</source>
-        <translation>Ошибка</translation>
-    </message>
-    <message>
-        <source>Could not save contact data. 
-Please read console output for more information.</source>
-        <translation>Невозможно сохранить информацию о контакте.
-Для получения более подробной информации просмотрите текст, выведенный на консоль.</translation>
-    </message>
-    <message>
         <source>Save</source>
         <translation>Сохранить</translation>
+    </message>
+    <message>
+        <source>Could not bind to server.&lt;br&gt;&lt;br&gt;Reason: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Could not save entry.&lt;br&gt;&lt;br&gt;Reason: </source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -987,6 +973,80 @@ Please read console output for more information.</source>
     </message>
 </context>
 <context>
+    <name>AdvancedObjectWidget</name>
+    <message>
+        <source>Value not set.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Export binary attribute to file</source>
+        <translation type="unfinished">Экспортировать двоичный атрибут в файл</translation>
+    </message>
+    <message>
+        <source>Export binary attribute</source>
+        <translation type="unfinished">Экспортировать двоичный атрибут</translation>
+    </message>
+    <message>
+        <source>&amp;Cancel</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;OK</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Reload</source>
+        <translation type="unfinished">Перезагрузить</translation>
+    </message>
+    <message>
+        <source>Save</source>
+        <translation type="unfinished">Сохранить</translation>
+    </message>
+    <message>
+        <source>Add attribute...</source>
+        <translation type="unfinished">Добавить Атрибут...</translation>
+    </message>
+    <message>
+        <source>Delete object</source>
+        <translation type="unfinished">Удалить объект</translation>
+    </message>
+    <message>
+        <source>Could not bind to server.&lt;br&gt;&lt;br&gt;Reason: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Could not check if object is a leaf in the ldap tree.&lt;br&gt;&lt;br&gt;Reason: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Could not refresh entry.&lt;br&gt;&lt;br&gt;Reason: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Could not add entry.&lt;br&gt;&lt;br&gt;Reason: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Could not save entry.&lt;br&gt;&lt;br&gt;Reason: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Do your really want to delete the object?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Could not delete entry.&lt;br&gt;&lt;br&gt;Reason: </source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>BaseSelector</name>
+    <message>
+        <source>Could not retrieve baseDN.&lt;br&gt;&lt;br&gt;Reason: </source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>BaseSelectorDesign</name>
     <message>
         <source>&amp;Cancel</source>
@@ -1046,6 +1106,70 @@ Please read console output for more information.</source>
     </message>
 </context>
 <context>
+    <name>BinaryEditor</name>
+    <message>
+        <source>Given file does not exist. Please check the filename.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Given file is a directory. Please check the filename.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Can&apos;t open file. Please check file permissions.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Select file to change binary value</source>
+        <translation type="unfinished">Выберите файл для замены двоичного значения</translation>
+    </message>
+</context>
+<context>
+    <name>BinaryEditorDesign</name>
+    <message>
+        <source>Edit attribute</source>
+        <translation type="unfinished">ПравкаАтрибута</translation>
+    </message>
+    <message>
+        <source>IT</source>
+        <comment>DO NOT TRANSLATE</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;OK</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Alt+O</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Cancel</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Alt+C</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>F</source>
+        <comment>DO NOT TRANSLATE</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please enter a file location from where to load binary data for the attribute &lt;b&gt;%1&lt;/b&gt;.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>IL</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Location:</source>
+        <translation type="unfinished">Размещение:</translation>
+    </message>
+</context>
+<context>
     <name>BrowserDialog</name>
     <message>
         <source>Ok</source>
@@ -1091,56 +1215,64 @@ Please read console output for more information.</source>
         <translation>Удалить</translation>
     </message>
     <message>
-        <source>Error</source>
-        <translation>Ошибка</translation>
-    </message>
-    <message>
-        <source>Could not access entry.
-See console output for more information.</source>
-        <translation>Невозможно прочитать запись.
-Для получения более подробной информации просмотрите текст, выведенный на консоль.</translation>
-    </message>
-    <message>
-        <source>&amp;OK</source>
-        <translation>&amp;OK</translation>
-    </message>
-    <message>
-        <source>Do you really want to delete the item from the server?</source>
-        <translation>Вы действительно хотите удалить элемент с сервера?</translation>
-    </message>
-    <message>
         <source>Delete entry</source>
         <translation>Удалить Запись</translation>
-    </message>
-    <message>
-        <source>Cancel</source>
-        <translation>Отменить</translation>
     </message>
     <message>
         <source>Add entry</source>
         <translation>Добавить Запись</translation>
     </message>
     <message>
-        <source>Do you really want to delete the items recursively from the server?</source>
-        <translation>Вы действительно хотите рекурсивно удалить элементы с сервера?</translation>
-    </message>
-    <message>
         <source>Delete entries</source>
         <translation>Удалить записи</translation>
     </message>
     <message>
-        <source>Error </source>
-        <translation>Ошибка</translation>
-    </message>
-    <message>
-        <source>Delete operation was not succesful.
-See console output for more information.</source>
-        <translation>Удаление не было выполнено.
-Для получения более подробной информации просмотрите текст, выведенный на консоль.</translation>
-    </message>
-    <message>
         <source>Follow Aliases</source>
         <translation>Следовать псевдонимам</translation>
+    </message>
+    <message>
+        <source>Could not access entry.&lt;br&gt;&lt;br&gt;Reason: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Could not expand entry.&lt;br&gt;&lt;br&gt;Reason: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Could not retrieve baseDN.&lt;br&gt;&lt;br&gt;Reason: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Could not export item.&lt;br&gt;&lt;br&gt;Reason: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Could not export items.&lt;br&gt;&lt;br&gt;Reason: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Do your really want to delete the entry from the server?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Could not delete entry.&lt;br&gt;&lt;br&gt;Reason: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Do your really want to delete the items recursively from the server?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Could not delete the following entry:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Reason: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Could not delete items.&lt;br&gt;&lt;br&gt;Reason: </source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1331,23 +1463,6 @@ See console output for more information.</source>
 <context>
     <name>ContactWizard</name>
     <message>
-        <source>Error</source>
-        <translation>Ошибка</translation>
-    </message>
-    <message>
-        <source>Could not save entry. Please see console for more infomation.</source>
-        <translation>Невозможно сохранить запись.
-Для получения более подробной информации просмотрите текст, выведенный на консоль.</translation>
-    </message>
-    <message>
-        <source>&amp;OK</source>
-        <translation>&amp;OK</translation>
-    </message>
-    <message>
-        <source>Incomplete Information</source>
-        <translation>Недостаточная информация</translation>
-    </message>
-    <message>
         <source>Warning: Location</source>
         <translation>Предупреждение: размещение</translation>
     </message>
@@ -1358,6 +1473,18 @@ See console output for more information.</source>
     <message>
         <source>Your contact needs at least a surname.</source>
         <translation>В контакте необходимо указать хотя бы фамилию.</translation>
+    </message>
+    <message>
+        <source>Could not bind to server.&lt;br&gt;&lt;br&gt;Reason: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Could not add entry.&lt;br&gt;&lt;br&gt;Reason: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Incomplete information.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1488,6 +1615,17 @@ See console output for more information.</source>
     </message>
 </context>
 <context>
+    <name>GroupDialog</name>
+    <message>
+        <source>Could not bind to server.&lt;br&gt;&lt;br&gt;Reason: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Could retrieve other group information.&lt;br&gt;&lt;br&gt;Reason: </source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>GroupDialogDesign</name>
     <message>
         <source>Group</source>
@@ -1591,29 +1729,28 @@ See console output for more information.</source>
         <translation>Удалить Контакт</translation>
     </message>
     <message>
-        <source>Do you really want to delete the selected contact?</source>
-        <translation>Вы действительно хотите удалить выбранный контакт?</translation>
+        <source>Could not retrieve baseDN.&lt;br&gt;&lt;br&gt;Reason: </source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>&amp;Yes</source>
-        <translation>&amp;Да</translation>
+        <source>Could not bind to server.&lt;br&gt;&lt;br&gt;Reason: </source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>&amp;No</source>
-        <translation>&amp;Нет</translation>
+        <source>Could not search entries.&lt;br&gt;&lt;br&gt;Reason: </source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Error</source>
-        <translation>Ошибка</translation>
+        <source>Could not access entry.&lt;br&gt;&lt;br&gt;Reason: </source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Could not delete contact. See console output for more information.</source>
-        <translation>Невозможно удалить контакт.
-Для получения более подробной информации просмотрите текст, выведенный на консоль.</translation>
+        <source>Do your really want to delete the selected contact?</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>&amp;OK</source>
-        <translation>&amp;OK</translation>
+        <source>Could not delete entry.&lt;br&gt;&lt;br&gt;Reason: </source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1669,74 +1806,22 @@ See console output for more information.</source>
     </message>
 </context>
 <context>
-    <name>LumaIconView</name>
-    <message>
-        <source>Delete contact</source>
-        <translation>Удалить Контакт</translation>
-    </message>
-    <message>
-        <source>Do you really want to delete the selected contact?</source>
-        <translation>Вы действительно хотите удалить выбранный контакт?</translation>
-    </message>
-    <message>
-        <source>&amp;No</source>
-        <translation>&amp;Нет</translation>
-    </message>
-    <message>
-        <source>&amp;Yes</source>
-        <translation>&amp;Да</translation>
-    </message>
+    <name>LumaErrorDialogDesign</name>
     <message>
         <source>Error</source>
-        <translation>Ошибка</translation>
+        <translation type="unfinished">Ошибка</translation>
     </message>
     <message>
-        <source>Could not delete contact. See console output for more information.</source>
-        <translation>Невозможно удалить контакт.
-Для получения более подробной информации просмотрите текст, выведенный на консоль.</translation>
+        <source>EL</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>&amp;OK</source>
-        <translation>&amp;OK</translation>
-    </message>
-</context>
-<context>
-    <name>LumaIconViewDesign</name>
-    <message>
-        <source>LumaIconViewDesign</source>
-        <translation>LumaIconViewDesign</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>&amp;Go</source>
-        <translation>&amp;Идти</translation>
-    </message>
-    <message>
-        <source>Alt+G</source>
-        <translation>Alt+И</translation>
-    </message>
-    <message>
-        <source>Filter:</source>
-        <translation>Фильтр:</translation>
-    </message>
-    <message>
-        <source>Server:</source>
-        <translation>Сервер:</translation>
-    </message>
-    <message>
-        <source>&amp;Add...</source>
-        <translation>&amp;Добавить...</translation>
-    </message>
-    <message>
-        <source>Alt+A</source>
-        <translation>Alt+Д</translation>
-    </message>
-    <message>
-        <source>&amp;Delete</source>
-        <translation>&amp;Удалить</translation>
-    </message>
-    <message>
-        <source>Alt+D</source>
-        <translation>Alt+У</translation>
+        <source>Alt+O</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1849,20 +1934,8 @@ See console output for more information.</source>
 <context>
     <name>MassCreation</name>
     <message>
-        <source>Incomplete Information</source>
-        <translation>Недостаточная информация</translation>
-    </message>
-    <message>
         <source>Please select a valid node from a ldap server.</source>
         <translation>Пожалуйста, выберите верный (node) с сервера LDAP.</translation>
-    </message>
-    <message>
-        <source>&amp;OK</source>
-        <translation>&amp;OK</translation>
-    </message>
-    <message>
-        <source>Conflict</source>
-        <translation>Конфликт</translation>
     </message>
     <message>
         <source>There are not enough user ids left! 
@@ -1879,22 +1952,40 @@ Try increasing the uidNumber range or delete some users from the subtree.</sourc
         <translation>Все пользователи были успешно созданы.</translation>
     </message>
     <message>
-        <source>Error</source>
-        <translation>Ошибка</translation>
-    </message>
-    <message>
-        <source>Wrong entry!</source>
-        <translation>Неверная запись!</translation>
-    </message>
-    <message>
         <source>The selected ldap entry did not contain the attribute &apos;gidNumber&apos;.</source>
         <translation>Выбранная запись не содержит атрибута &apos;gidNumber&apos;.</translation>
     </message>
     <message>
-        <source>Error during creation of users.
-Please see console output for more information.</source>
-        <translation>Ошибка при создании пользователей.
-Для получения более подробной информации просмотрите текст, выведенный на консоль.</translation>
+        <source>Incomplete information</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Warning</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Could not bind to server.&lt;br&gt;&lt;br&gt;Reason: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Could not create all users.&lt;br&gt;&lt;br&gt;Reason: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Could not create all automount information.&lt;br&gt;&lt;br&gt;Reason: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Could not retrieve used userid numbers.&lt;br&gt;&lt;br&gt;Reason: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Wrong entry</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Could not retrieve selected item.&lt;br&gt;&lt;br&gt;Reason: </source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2223,165 +2314,6 @@ Please see console output for more information.</source>
     </message>
 </context>
 <context>
-    <name>OClassDialogDesign</name>
-    <message>
-        <source>ObjectClass</source>
-        <translation>Класс объекта</translation>
-    </message>
-    <message>
-        <source>Attribute</source>
-        <translation>Атрибут</translation>
-    </message>
-    <message>
-        <source>Luma</source>
-        <translation>Luma</translation>
-    </message>
-    <message>
-        <source>Object Class:</source>
-        <translation>Класс объекта:</translation>
-    </message>
-    <message>
-        <source>Server:</source>
-        <translation>Сервер:</translation>
-    </message>
-    <message>
-        <source>&amp;Add</source>
-        <translation>&amp;Добавить</translation>
-    </message>
-    <message>
-        <source>Alt+A</source>
-        <translation>Alt+Д</translation>
-    </message>
-    <message>
-        <source>&amp;Delete</source>
-        <translation>&amp;Удалить</translation>
-    </message>
-    <message>
-        <source>Alt+D</source>
-        <translation>Alt+У</translation>
-    </message>
-    <message>
-        <source>&amp;Ok</source>
-        <translation>O&amp;K</translation>
-    </message>
-    <message>
-        <source>Alt+O</source>
-        <translation>Alt+К</translation>
-    </message>
-    <message>
-        <source>&amp;Cancel</source>
-        <translation>&amp;Отменить</translation>
-    </message>
-    <message>
-        <source>Alt+C</source>
-        <translation>Alt+О</translation>
-    </message>
-</context>
-<context>
-    <name>ObjectWidget</name>
-    <message>
-        <source>Reload</source>
-        <translation>Перезагрузить</translation>
-    </message>
-    <message>
-        <source>Save</source>
-        <translation>Сохранить</translation>
-    </message>
-    <message>
-        <source>Add attribute...</source>
-        <translation>Добавить Атрибут...</translation>
-    </message>
-    <message>
-        <source>Delete object</source>
-        <translation>Удалить объект</translation>
-    </message>
-    <message>
-        <source>&lt;b&gt;Attributes&lt;/b&gt;</source>
-        <translation>Атрибуты&lt;/b&gt;</translation>
-    </message>
-    <message>
-        <source>&lt;b&gt;Values&lt;/b&gt;</source>
-        <translation>&lt;b&gt;Значения&lt;/b&gt;</translation>
-    </message>
-    <message>
-        <source>Error</source>
-        <translation>Ошибка</translation>
-    </message>
-    <message>
-        <source>Could not save object data. 
-Please read console output for more information.</source>
-        <translation>Невозможно сохранить информацию об объекте.
-Для получения более подробной информации просмотрите текст, выведенный на консоль.</translation>
-    </message>
-    <message>
-        <source>Binary value</source>
-        <translation>Бинарное значение</translation>
-    </message>
-    <message>
-        <source>Edit...</source>
-        <translation>Правка...</translation>
-    </message>
-    <message>
-        <source>Delete</source>
-        <translation>Удалить</translation>
-    </message>
-    <message>
-        <source>Export...</source>
-        <translation>Экспорт...</translation>
-    </message>
-    <message>
-        <source>Select file to change binary value</source>
-        <translation>Выберите файл для замены двоичного значения</translation>
-    </message>
-    <message>
-        <source>Edit attribute</source>
-        <translation>ПравкаАтрибута</translation>
-    </message>
-    <message>
-        <source>Export binary attribute to file</source>
-        <translation>Экспортировать двоичный атрибут в файл</translation>
-    </message>
-    <message>
-        <source>Export binary attribute</source>
-        <translation>Экспортировать двоичный атрибут</translation>
-    </message>
-    <message>
-        <source>&amp;Cancel</source>
-        <translation>&amp;Отменить</translation>
-    </message>
-    <message>
-        <source>&amp;OK</source>
-        <translation>&amp;OK</translation>
-    </message>
-    <message>
-        <source>Save entry</source>
-        <translation>Сохранить запись</translation>
-    </message>
-    <message>
-        <source>The entry has been modified. Do you want to save it?</source>
-        <translation>Запись была изменена.
-Хотите сохранить?</translation>
-    </message>
-    <message>
-        <source>&amp;Yes</source>
-        <translation>&amp;Да</translation>
-    </message>
-    <message>
-        <source>&amp;No</source>
-        <translation>&amp;Нет</translation>
-    </message>
-    <message>
-        <source>Do you really want to delete the object?</source>
-        <translation>Вы действительно хотите удалить объект?</translation>
-    </message>
-    <message>
-        <source>Could not delete object. 
-Please read console output for more information.</source>
-        <translation>Невозможно удалить объект.
-Для получения более подробной информации просмотрите текст, выведенный на консоль.</translation>
-    </message>
-</context>
-<context>
     <name>PasswordDialog</name>
     <message>
         <source>Passwords match</source>
@@ -2437,6 +2369,61 @@ Please read console output for more information.</source>
     </message>
 </context>
 <context>
+    <name>PasswordEditor</name>
+    <message>
+        <source>Passwords match</source>
+        <translation type="unfinished">Пароли совпадают</translation>
+    </message>
+    <message>
+        <source>Passwords do not match</source>
+        <translation type="unfinished">Пароли не совпадают</translation>
+    </message>
+</context>
+<context>
+    <name>PasswordEditorDesign</name>
+    <message>
+        <source>New password</source>
+        <translation type="unfinished">Новый пароль</translation>
+    </message>
+    <message>
+        <source>PW</source>
+        <comment>DO NOT TRANSLATE</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;OK</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Cancel</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Strength:</source>
+        <translation type="unfinished">Мощность:</translation>
+    </message>
+    <message>
+        <source>Hash algorithm:</source>
+        <translation type="unfinished">Хэш-алгоритм:</translation>
+    </message>
+    <message>
+        <source>Password:</source>
+        <translation type="unfinished">Пароль:</translation>
+    </message>
+    <message>
+        <source>Verify:</source>
+        <translation type="unfinished">Проверка:</translation>
+    </message>
+    <message>
+        <source>Passwords do not match</source>
+        <translation type="unfinished">Пароли не совпадают</translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;Please enter a new password.&lt;/b&gt;</source>
+        <translation type="unfinished">&lt;b&gt;Пожалуйста, введите новый пароль.&lt;/b&gt;</translation>
+    </message>
+</context>
+<context>
     <name>PluginInformation</name>
     <message>
         <source>Plugin Information</source>
@@ -2485,6 +2472,65 @@ Please read console output for more information.</source>
     <message>
         <source>Alt+C</source>
         <translation>Alt+З</translation>
+    </message>
+</context>
+<context>
+    <name>RdnEditorDesign</name>
+    <message>
+        <source>Edit DN</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>IT</source>
+        <comment>DO NOT TRANSLATE</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;OK</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Alt+O</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Cancel</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Alt+C</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Value:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>DN:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please choose an attribute and enter a value for it. These values will be part of distinguished name for the new object.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Attribute:</source>
+        <translation type="unfinished">Атрибут:</translation>
+    </message>
+</context>
+<context>
+    <name>SearchForm</name>
+    <message>
+        <source>Could not bind to server.&lt;br&gt;&lt;br&gt;Reason: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Error during search operation.&lt;br&gt;&lt;br&gt;Reason: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Could not retrieve baseDN.&lt;br&gt;&lt;br&gt;Reason: </source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2537,20 +2583,28 @@ Please read console output for more information.</source>
         <translation>Удалить выбранные объекты</translation>
     </message>
     <message>
-        <source>Do you really want to delete the item(s) from the server?</source>
-        <translation>Вы действительно хотите удалить элемент(ы) с сервера?</translation>
-    </message>
-    <message>
         <source>Delete entry</source>
         <translation>Удалить Запись</translation>
     </message>
     <message>
-        <source>Delete</source>
-        <translation>Удаление</translation>
+        <source>&lt;u&gt;Binary value&lt;/u&gt;</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Cancel</source>
-        <translation>Отмена</translation>
+        <source>Do your really want to delete the item(s) from the server?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Could not bind to server.&lt;br&gt;&lt;br&gt;Reason: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Could not delete the following entry:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Reason: </source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2571,28 +2625,16 @@ Please read console output for more information.</source>
         <translation>Вы действительно хотите удалить сервер?</translation>
     </message>
     <message>
-        <source>Error</source>
-        <translation>Ошибка</translation>
-    </message>
-    <message>
-        <source>Could not retrieve BaseDN for server. 
-Maybe the server data is not correct. 
-Please see console output for more information.</source>
-        <translation>Не удается получить базовый DN с сервера.
-Возможно, информация о сервере неверна.
-Для получения более подробной информации просмотрите текст, выведенный на консоль.</translation>
-    </message>
-    <message>
-        <source>&amp;OK</source>
-        <translation>&amp;OK</translation>
-    </message>
-    <message>
         <source>New server</source>
         <translation>Новый Сервер</translation>
     </message>
     <message>
         <source>Please enter a name for the new server:</source>
         <translation>Пожалуйста, введите название нового сервера:</translation>
+    </message>
+    <message>
+        <source>Could not retrieve baseDN for LDAP server at host/ip:</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2743,6 +2785,42 @@ Please see console output for more information.</source>
     </message>
 </context>
 <context>
+    <name>StandardEditorDesign</name>
+    <message>
+        <source>Edit attribute</source>
+        <translation type="unfinished">ПравкаАтрибута</translation>
+    </message>
+    <message>
+        <source>IT</source>
+        <comment>DO NOT TRANSLATE</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please enter a new value for the attribute &lt;b&gt;%1&lt;/b&gt;.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;OK</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Alt+O</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Cancel</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Alt+C</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Value:</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>TemplateWidget</name>
     <message>
         <source>Delete template</source>
@@ -2751,14 +2829,6 @@ Please see console output for more information.</source>
     <message>
         <source>Do you really want to delete the selected template?</source>
         <translation>Вы действительно хотите удалить выбранный шаблон?</translation>
-    </message>
-    <message>
-        <source>&amp;OK</source>
-        <translation>O&amp;K</translation>
-    </message>
-    <message>
-        <source>&amp;Cancel</source>
-        <translation>&amp;Отменить</translation>
     </message>
     <message>
         <source>Delete attribute</source>
@@ -2880,22 +2950,6 @@ Please see console output for more information.</source>
         <translation>Сохранить</translation>
     </message>
     <message>
-        <source>Error</source>
-        <translation>Ошибка</translation>
-    </message>
-    <message>
-        <source>Could not save account data. 
-Please read console output for more information.</source>
-        <translation>Невозможно сохранить информацию об учетной записи.
-Для получения более подробной информации просмотрите текст, выведенный на консоль.</translation>
-    </message>
-    <message>
-        <source>Could not group information. 
-Please read console output for more information.</source>
-        <translation>Невозможно сгруппировать информацию.
-Для получения более подробной информации просмотрите текст, выведенный на консоль.</translation>
-    </message>
-    <message>
         <source>Save entry</source>
         <translation>Сохранить запись</translation>
     </message>
@@ -2911,6 +2965,22 @@ Please read console output for more information.</source>
     <message>
         <source>&amp;No</source>
         <translation>&amp;Нет</translation>
+    </message>
+    <message>
+        <source>Could not bind to server.&lt;br&gt;&lt;br&gt;Reason: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Could not save entry.&lt;br&gt;&lt;br&gt;Reason: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Could not update all group information.&lt;br&gt;&lt;br&gt;Reason: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Could not retrieve used userids.&lt;br&gt;&lt;br&gt;Reason: </source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

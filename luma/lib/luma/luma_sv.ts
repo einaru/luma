@@ -365,10 +365,6 @@ http://luma.sourceforge.net
         <translation>Ange ett användarnamn.</translation>
     </message>
     <message>
-        <source>&amp;OK</source>
-        <translation>&amp;OK</translation>
-    </message>
-    <message>
         <source>Please enter a uid number.</source>
         <translation>Ange ett uid nummer.</translation>
     </message>
@@ -385,22 +381,6 @@ http://luma.sourceforge.net
         <translation>Ange homeDirectory.</translation>
     </message>
     <message>
-        <source>Create account</source>
-        <translation>Skapa konto</translation>
-    </message>
-    <message>
-        <source>Could not create account. 
-Please see console output for more information.</source>
-        <translation>Kunde inte skapa konto.
-Se konsolen för mer information.</translation>
-    </message>
-    <message>
-        <source>Could not create automount entry. 
-Please see console output for more information.</source>
-        <translation>Kunde inte skapa automount post.
-Se konsolen för mer information.</translation>
-    </message>
-    <message>
         <source>Warning: Location</source>
         <translation>Varning: Destination</translation>
     </message>
@@ -409,16 +389,24 @@ Se konsolen för mer information.</translation>
         <translation>Välj en destination var kontakten skall sparas.</translation>
     </message>
     <message>
-        <source>Missing Password</source>
-        <translation>Lösenord Saknas</translation>
-    </message>
-    <message>
         <source>It is strongly recommended that you choose 
 a password for the new user. Otherwise 
 it might compromise the security of your system.</source>
         <translation>Det rekommenderas att du sätter ett lösenord
 för den nya användaren. Om du inte gör detta
 påverkar det säkerheten i systemet negativt.</translation>
+    </message>
+    <message>
+        <source>Missing password</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Could not bind to server.&lt;br&gt;&lt;br&gt;Reason: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Could not create account.&lt;br&gt;&lt;br&gt;Reason: </source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -698,18 +686,16 @@ alla attribut som även dem måste läggas till för vald objektklass.&lt;/p&gt;
 <context>
     <name>AddressbookWidget</name>
     <message>
-        <source>Error</source>
-        <translation>Fel</translation>
-    </message>
-    <message>
-        <source>Could not save contact data. 
-Please read console output for more information.</source>
-        <translation>Kunde inte spara kontakt information.
-Se konsolen för mer information.</translation>
-    </message>
-    <message>
         <source>Save</source>
         <translation>Spara</translation>
+    </message>
+    <message>
+        <source>Could not bind to server.&lt;br&gt;&lt;br&gt;Reason: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Could not save entry.&lt;br&gt;&lt;br&gt;Reason: </source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -990,6 +976,80 @@ Se konsolen för mer information.</translation>
     </message>
 </context>
 <context>
+    <name>AdvancedObjectWidget</name>
+    <message>
+        <source>Value not set.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Export binary attribute to file</source>
+        <translation type="unfinished">Exportera binära attributet till fil</translation>
+    </message>
+    <message>
+        <source>Export binary attribute</source>
+        <translation type="unfinished">Exportera binärt attribut</translation>
+    </message>
+    <message>
+        <source>&amp;Cancel</source>
+        <translation type="unfinished">&amp;Avbryt</translation>
+    </message>
+    <message>
+        <source>&amp;OK</source>
+        <translation type="unfinished">&amp;OK</translation>
+    </message>
+    <message>
+        <source>Reload</source>
+        <translation type="unfinished">Ladda om</translation>
+    </message>
+    <message>
+        <source>Save</source>
+        <translation type="unfinished">Spara</translation>
+    </message>
+    <message>
+        <source>Add attribute...</source>
+        <translation type="unfinished">Lägg till attribut...</translation>
+    </message>
+    <message>
+        <source>Delete object</source>
+        <translation type="unfinished">Ta bort objekt</translation>
+    </message>
+    <message>
+        <source>Could not bind to server.&lt;br&gt;&lt;br&gt;Reason: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Could not check if object is a leaf in the ldap tree.&lt;br&gt;&lt;br&gt;Reason: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Could not refresh entry.&lt;br&gt;&lt;br&gt;Reason: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Could not add entry.&lt;br&gt;&lt;br&gt;Reason: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Could not save entry.&lt;br&gt;&lt;br&gt;Reason: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Do your really want to delete the object?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Could not delete entry.&lt;br&gt;&lt;br&gt;Reason: </source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>BaseSelector</name>
+    <message>
+        <source>Could not retrieve baseDN.&lt;br&gt;&lt;br&gt;Reason: </source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>BaseSelectorDesign</name>
     <message>
         <source>&amp;Cancel</source>
@@ -1049,6 +1109,70 @@ Se konsolen för mer information.</translation>
     </message>
 </context>
 <context>
+    <name>BinaryEditor</name>
+    <message>
+        <source>Given file does not exist. Please check the filename.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Given file is a directory. Please check the filename.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Can&apos;t open file. Please check file permissions.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Select file to change binary value</source>
+        <translation type="unfinished">Välj en fil för att ändra binära värdet</translation>
+    </message>
+</context>
+<context>
+    <name>BinaryEditorDesign</name>
+    <message>
+        <source>Edit attribute</source>
+        <translation type="unfinished">Ändra attribut</translation>
+    </message>
+    <message>
+        <source>IT</source>
+        <comment>DO NOT TRANSLATE</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;OK</source>
+        <translation type="unfinished">&amp;OK</translation>
+    </message>
+    <message>
+        <source>Alt+O</source>
+        <translation type="unfinished">Alt+O</translation>
+    </message>
+    <message>
+        <source>&amp;Cancel</source>
+        <translation type="unfinished">&amp;Avbryt</translation>
+    </message>
+    <message>
+        <source>Alt+C</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>F</source>
+        <comment>DO NOT TRANSLATE</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please enter a file location from where to load binary data for the attribute &lt;b&gt;%1&lt;/b&gt;.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>IL</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Location:</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>BrowserDialog</name>
     <message>
         <source>Ok</source>
@@ -1094,56 +1218,64 @@ Se konsolen för mer information.</translation>
         <translation>Ta bort</translation>
     </message>
     <message>
-        <source>Error</source>
-        <translation>Fel</translation>
-    </message>
-    <message>
-        <source>Could not access entry.
-See console output for more information.</source>
-        <translation>Kunde inte komma åt post.
-Se konsolen för mer information.</translation>
-    </message>
-    <message>
-        <source>&amp;OK</source>
-        <translation>&amp;OK</translation>
-    </message>
-    <message>
-        <source>Do you really want to delete the item from the server?</source>
-        <translation>Vill du verkligen ta bort posten från servern?</translation>
-    </message>
-    <message>
         <source>Delete entry</source>
         <translation>Ta bort post</translation>
-    </message>
-    <message>
-        <source>Cancel</source>
-        <translation>Avbryt</translation>
     </message>
     <message>
         <source>Add entry</source>
         <translation>Lägg till post</translation>
     </message>
     <message>
-        <source>Do you really want to delete the items recursively from the server?</source>
-        <translation>Vill du verkligen rekursivt ta bort posterna från servern?</translation>
-    </message>
-    <message>
         <source>Delete entries</source>
         <translation>Ta bort poster</translation>
     </message>
     <message>
-        <source>Error </source>
-        <translation>Fel</translation>
-    </message>
-    <message>
-        <source>Delete operation was not succesful.
-See console output for more information.</source>
-        <translation>Kunde inte ta bort.
-Se konsolen för mer information.</translation>
-    </message>
-    <message>
         <source>Follow Aliases</source>
         <translation>Följ alias</translation>
+    </message>
+    <message>
+        <source>Could not access entry.&lt;br&gt;&lt;br&gt;Reason: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Could not expand entry.&lt;br&gt;&lt;br&gt;Reason: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Could not retrieve baseDN.&lt;br&gt;&lt;br&gt;Reason: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Could not export item.&lt;br&gt;&lt;br&gt;Reason: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Could not export items.&lt;br&gt;&lt;br&gt;Reason: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Do your really want to delete the entry from the server?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Could not delete entry.&lt;br&gt;&lt;br&gt;Reason: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Do your really want to delete the items recursively from the server?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Could not delete the following entry:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Reason: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Could not delete items.&lt;br&gt;&lt;br&gt;Reason: </source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1334,22 +1466,6 @@ Se konsolen för mer information.</translation>
 <context>
     <name>ContactWizard</name>
     <message>
-        <source>Error</source>
-        <translation>Fel</translation>
-    </message>
-    <message>
-        <source>Could not save entry. Please see console for more infomation.</source>
-        <translation>Kunde inte spara post. Se konsolen för mer information.</translation>
-    </message>
-    <message>
-        <source>&amp;OK</source>
-        <translation>&amp;OK</translation>
-    </message>
-    <message>
-        <source>Incomplete Information</source>
-        <translation>Inkomplett Information</translation>
-    </message>
-    <message>
         <source>Warning: Location</source>
         <translation>Varning: Plats</translation>
     </message>
@@ -1360,6 +1476,18 @@ Se konsolen för mer information.</translation>
     <message>
         <source>Your contact needs at least a surname.</source>
         <translation>Din kontakt måste åtminstone ha ett efternamn.</translation>
+    </message>
+    <message>
+        <source>Could not bind to server.&lt;br&gt;&lt;br&gt;Reason: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Could not add entry.&lt;br&gt;&lt;br&gt;Reason: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Incomplete information.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1490,6 +1618,17 @@ Se konsolen för mer information.</translation>
     </message>
 </context>
 <context>
+    <name>GroupDialog</name>
+    <message>
+        <source>Could not bind to server.&lt;br&gt;&lt;br&gt;Reason: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Could retrieve other group information.&lt;br&gt;&lt;br&gt;Reason: </source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>GroupDialogDesign</name>
     <message>
         <source>Group</source>
@@ -1591,28 +1730,28 @@ Se konsolen för mer information.</translation>
         <translation>Ta bort kontakt</translation>
     </message>
     <message>
-        <source>Do you really want to delete the selected contact?</source>
-        <translation>VIll du verkligen ta bort valda kontakter ?</translation>
+        <source>Could not retrieve baseDN.&lt;br&gt;&lt;br&gt;Reason: </source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>&amp;Yes</source>
-        <translation>&amp;Ja</translation>
+        <source>Could not bind to server.&lt;br&gt;&lt;br&gt;Reason: </source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>&amp;No</source>
-        <translation>&amp;Nej</translation>
+        <source>Could not search entries.&lt;br&gt;&lt;br&gt;Reason: </source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Error</source>
-        <translation>Fel</translation>
+        <source>Could not access entry.&lt;br&gt;&lt;br&gt;Reason: </source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Could not delete contact. See console output for more information.</source>
-        <translation>Kunde inte ta bort kontakt. Se konsolen för mer information.</translation>
+        <source>Do your really want to delete the selected contact?</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>&amp;OK</source>
-        <translation>&amp;OK</translation>
+        <source>Could not delete entry.&lt;br&gt;&lt;br&gt;Reason: </source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1668,73 +1807,22 @@ Se konsolen för mer information.</translation>
     </message>
 </context>
 <context>
-    <name>LumaIconView</name>
-    <message>
-        <source>Delete contact</source>
-        <translation>Ta bort kontakt</translation>
-    </message>
-    <message>
-        <source>Do you really want to delete the selected contact?</source>
-        <translation>VIll du verkligen ta bort vald kontakt ?</translation>
-    </message>
-    <message>
-        <source>&amp;No</source>
-        <translation>&amp;Nej</translation>
-    </message>
-    <message>
-        <source>&amp;Yes</source>
-        <translation>&amp;Ja</translation>
-    </message>
+    <name>LumaErrorDialogDesign</name>
     <message>
         <source>Error</source>
-        <translation>Fel</translation>
+        <translation type="unfinished">Fel</translation>
     </message>
     <message>
-        <source>Could not delete contact. See console output for more information.</source>
-        <translation>Kunde inte ta bort kontakt. Se konsolen för mer information.</translation>
+        <source>EL</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>&amp;OK</source>
-        <translation>&amp;OK</translation>
-    </message>
-</context>
-<context>
-    <name>LumaIconViewDesign</name>
-    <message>
-        <source>LumaIconViewDesign</source>
-        <translation>LumaIconViewDesign</translation>
+        <translation type="unfinished">&amp;OK</translation>
     </message>
     <message>
-        <source>&amp;Go</source>
-        <translation>&amp;Sök</translation>
-    </message>
-    <message>
-        <source>Alt+G</source>
-        <translation>Alt+S</translation>
-    </message>
-    <message>
-        <source>Filter:</source>
-        <translation>Filter:</translation>
-    </message>
-    <message>
-        <source>Server:</source>
-        <translation>Server:</translation>
-    </message>
-    <message>
-        <source>&amp;Add...</source>
-        <translation>&amp;Lägg till...</translation>
-    </message>
-    <message>
-        <source>Alt+A</source>
-        <translation>Alt+L</translation>
-    </message>
-    <message>
-        <source>&amp;Delete</source>
-        <translation>&amp;Ta bort</translation>
-    </message>
-    <message>
-        <source>Alt+D</source>
-        <translation>Alt+T</translation>
+        <source>Alt+O</source>
+        <translation type="unfinished">Alt+O</translation>
     </message>
 </context>
 <context>
@@ -1847,36 +1935,14 @@ Se konsolen för mer information.</translation>
 <context>
     <name>MassCreation</name>
     <message>
-        <source>Incomplete Information</source>
-        <translation>Inkomplett Information</translation>
-    </message>
-    <message>
         <source>Please select a valid node from a ldap server.</source>
         <translation>Välj en giltig nod från en LDAP server.</translation>
-    </message>
-    <message>
-        <source>&amp;OK</source>
-        <translation>&amp;OK</translation>
-    </message>
-    <message>
-        <source>Conflict</source>
-        <translation>Konflikt</translation>
     </message>
     <message>
         <source>There are not enough user ids left! 
 Try increasing the uidNumber range or delete some users from the subtree.</source>
         <translation>Det finns inte tillräckligt många användare IDn kvar!
 Testa öka uidNumber eller ta bort användare från trädet.</translation>
-    </message>
-    <message>
-        <source>Error</source>
-        <translation>Fel</translation>
-    </message>
-    <message>
-        <source>Error during creation of users.
-Please see console output for more information.</source>
-        <translation>Ett fel uppstog under skapandet av användarna.
-Se konsolen för mer information.</translation>
     </message>
     <message>
         <source>Success</source>
@@ -1887,12 +1953,40 @@ Se konsolen för mer information.</translation>
         <translation>Alla användare skapades korrekt.</translation>
     </message>
     <message>
-        <source>Wrong entry!</source>
-        <translation>Fel post!</translation>
-    </message>
-    <message>
         <source>The selected ldap entry did not contain the attribute &apos;gidNumber&apos;.</source>
         <translation>Den markerad ldap posten innehåller inte attributet gidNumber.</translation>
+    </message>
+    <message>
+        <source>Incomplete information</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Warning</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Could not bind to server.&lt;br&gt;&lt;br&gt;Reason: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Could not create all users.&lt;br&gt;&lt;br&gt;Reason: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Could not create all automount information.&lt;br&gt;&lt;br&gt;Reason: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Could not retrieve used userid numbers.&lt;br&gt;&lt;br&gt;Reason: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Wrong entry</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Could not retrieve selected item.&lt;br&gt;&lt;br&gt;Reason: </source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2221,163 +2315,6 @@ Se konsolen för mer information.</translation>
     </message>
 </context>
 <context>
-    <name>OClassDialogDesign</name>
-    <message>
-        <source>ObjectClass</source>
-        <translation>ObjectClass</translation>
-    </message>
-    <message>
-        <source>Attribute</source>
-        <translation>Attribut</translation>
-    </message>
-    <message>
-        <source>Luma</source>
-        <translation>Luma</translation>
-    </message>
-    <message>
-        <source>Object Class:</source>
-        <translation>Objektklass:</translation>
-    </message>
-    <message>
-        <source>Server:</source>
-        <translation>Server:</translation>
-    </message>
-    <message>
-        <source>&amp;Add</source>
-        <translation>&amp;Lägg till</translation>
-    </message>
-    <message>
-        <source>Alt+A</source>
-        <translation>Alt+L</translation>
-    </message>
-    <message>
-        <source>&amp;Delete</source>
-        <translation>&amp;Ta bort</translation>
-    </message>
-    <message>
-        <source>Alt+D</source>
-        <translation>Alt+T</translation>
-    </message>
-    <message>
-        <source>&amp;Ok</source>
-        <translation>&amp;Ok</translation>
-    </message>
-    <message>
-        <source>Alt+O</source>
-        <translation>Alt+O</translation>
-    </message>
-    <message>
-        <source>&amp;Cancel</source>
-        <translation>&amp;Avbryt</translation>
-    </message>
-    <message>
-        <source>Alt+C</source>
-        <translation>Alt+A</translation>
-    </message>
-</context>
-<context>
-    <name>ObjectWidget</name>
-    <message>
-        <source>Reload</source>
-        <translation>Ladda om</translation>
-    </message>
-    <message>
-        <source>Save</source>
-        <translation>Spara</translation>
-    </message>
-    <message>
-        <source>Add attribute...</source>
-        <translation>Lägg till attribut...</translation>
-    </message>
-    <message>
-        <source>Delete object</source>
-        <translation>Ta bort objekt</translation>
-    </message>
-    <message>
-        <source>&lt;b&gt;Attributes&lt;/b&gt;</source>
-        <translation>&lt;b&gt;Attribut&lt;/b&gt;</translation>
-    </message>
-    <message>
-        <source>&lt;b&gt;Values&lt;/b&gt;</source>
-        <translation>&lt;b&gt;Värde&lt;/b&gt;</translation>
-    </message>
-    <message>
-        <source>Error</source>
-        <translation>Fel</translation>
-    </message>
-    <message>
-        <source>Could not save object data. 
-Please read console output for more information.</source>
-        <translation>Kunde inte spara objekt data. Se konsolen för mer information.</translation>
-    </message>
-    <message>
-        <source>Binary value</source>
-        <translation>Binär värde</translation>
-    </message>
-    <message>
-        <source>Edit...</source>
-        <translation>Ändra...</translation>
-    </message>
-    <message>
-        <source>Delete</source>
-        <translation>Ta bort</translation>
-    </message>
-    <message>
-        <source>Export...</source>
-        <translation>Exportera...</translation>
-    </message>
-    <message>
-        <source>Select file to change binary value</source>
-        <translation>Välj en fil för att ändra binära värdet</translation>
-    </message>
-    <message>
-        <source>Edit attribute</source>
-        <translation>Ändra attribut</translation>
-    </message>
-    <message>
-        <source>Export binary attribute to file</source>
-        <translation>Exportera binära attributet till fil</translation>
-    </message>
-    <message>
-        <source>Export binary attribute</source>
-        <translation>Exportera binärt attribut</translation>
-    </message>
-    <message>
-        <source>&amp;Cancel</source>
-        <translation>&amp;Avbryt</translation>
-    </message>
-    <message>
-        <source>&amp;OK</source>
-        <translation>&amp;OK</translation>
-    </message>
-    <message>
-        <source>Save entry</source>
-        <translation>Spara post</translation>
-    </message>
-    <message>
-        <source>The entry has been modified. Do you want to save it?</source>
-        <translation>Posten har ändrats. Vill du spara den?</translation>
-    </message>
-    <message>
-        <source>&amp;Yes</source>
-        <translation>&amp;Ja</translation>
-    </message>
-    <message>
-        <source>&amp;No</source>
-        <translation>&amp;Nej</translation>
-    </message>
-    <message>
-        <source>Do you really want to delete the object?</source>
-        <translation>Vill du verkligen ta bort objektet?</translation>
-    </message>
-    <message>
-        <source>Could not delete object. 
-Please read console output for more information.</source>
-        <translation>Kunde inte ta bort objektet.
-Se konsolen för mer information.</translation>
-    </message>
-</context>
-<context>
     <name>PasswordDialog</name>
     <message>
         <source>Passwords match</source>
@@ -2433,6 +2370,61 @@ Se konsolen för mer information.</translation>
     </message>
 </context>
 <context>
+    <name>PasswordEditor</name>
+    <message>
+        <source>Passwords match</source>
+        <translation type="unfinished">Lösenorden stämmer överens</translation>
+    </message>
+    <message>
+        <source>Passwords do not match</source>
+        <translation type="unfinished">Lösenordern stämmer inte överens</translation>
+    </message>
+</context>
+<context>
+    <name>PasswordEditorDesign</name>
+    <message>
+        <source>New password</source>
+        <translation type="unfinished">Nytt lösenord</translation>
+    </message>
+    <message>
+        <source>PW</source>
+        <comment>DO NOT TRANSLATE</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;OK</source>
+        <translation type="unfinished">&amp;OK</translation>
+    </message>
+    <message>
+        <source>&amp;Cancel</source>
+        <translation type="unfinished">&amp;Avbryt</translation>
+    </message>
+    <message>
+        <source>Strength:</source>
+        <translation type="unfinished">Styrka:</translation>
+    </message>
+    <message>
+        <source>Hash algorithm:</source>
+        <translation type="unfinished">Hash algoritm:</translation>
+    </message>
+    <message>
+        <source>Password:</source>
+        <translation type="unfinished">Lösenord:</translation>
+    </message>
+    <message>
+        <source>Verify:</source>
+        <translation type="unfinished">Verifiera:</translation>
+    </message>
+    <message>
+        <source>Passwords do not match</source>
+        <translation type="unfinished">Lösenordern stämmer inte överens</translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;Please enter a new password.&lt;/b&gt;</source>
+        <translation type="unfinished">&lt;b&gt;Ange ett nytt lösenord.&lt;b&gt;</translation>
+    </message>
+</context>
+<context>
     <name>PluginInformation</name>
     <message>
         <source>Plugin Information</source>
@@ -2481,6 +2473,65 @@ Se konsolen för mer information.</translation>
     <message>
         <source>Alt+C</source>
         <translation>Alt+S</translation>
+    </message>
+</context>
+<context>
+    <name>RdnEditorDesign</name>
+    <message>
+        <source>Edit DN</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>IT</source>
+        <comment>DO NOT TRANSLATE</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;OK</source>
+        <translation type="unfinished">&amp;OK</translation>
+    </message>
+    <message>
+        <source>Alt+O</source>
+        <translation type="unfinished">Alt+O</translation>
+    </message>
+    <message>
+        <source>&amp;Cancel</source>
+        <translation type="unfinished">&amp;Avbryt</translation>
+    </message>
+    <message>
+        <source>Alt+C</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Value:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>DN:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please choose an attribute and enter a value for it. These values will be part of distinguished name for the new object.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Attribute:</source>
+        <translation type="unfinished">Attribut:</translation>
+    </message>
+</context>
+<context>
+    <name>SearchForm</name>
+    <message>
+        <source>Could not bind to server.&lt;br&gt;&lt;br&gt;Reason: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Error during search operation.&lt;br&gt;&lt;br&gt;Reason: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Could not retrieve baseDN.&lt;br&gt;&lt;br&gt;Reason: </source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2533,20 +2584,28 @@ Se konsolen för mer information.</translation>
         <translation>Ta bort markerad</translation>
     </message>
     <message>
-        <source>Do you really want to delete the item(s) from the server?</source>
-        <translation>Vill du verkligen ta bort objekten från servern?</translation>
-    </message>
-    <message>
         <source>Delete entry</source>
         <translation>Ta bort objekt</translation>
     </message>
     <message>
-        <source>Delete</source>
-        <translation>Ta bort</translation>
+        <source>&lt;u&gt;Binary value&lt;/u&gt;</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Cancel</source>
-        <translation>Avbryt</translation>
+        <source>Do your really want to delete the item(s) from the server?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Could not bind to server.&lt;br&gt;&lt;br&gt;Reason: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Could not delete the following entry:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Reason: </source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2575,20 +2634,8 @@ Se konsolen för mer information.</translation>
         <translation>Vill du verkligen ta bort servern?</translation>
     </message>
     <message>
-        <source>Error</source>
-        <translation>Fel</translation>
-    </message>
-    <message>
-        <source>Could not retrieve BaseDN for server. 
-Maybe the server data is not correct. 
-Please see console output for more information.</source>
-        <translation>Kunde inte hämta Base DN från servern.
-Server informationen kan vara felaktig.
-Se konsolen för mer information.</translation>
-    </message>
-    <message>
-        <source>&amp;OK</source>
-        <translation>&amp;OK</translation>
+        <source>Could not retrieve baseDN for LDAP server at host/ip:</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2739,6 +2786,42 @@ Se konsolen för mer information.</translation>
     </message>
 </context>
 <context>
+    <name>StandardEditorDesign</name>
+    <message>
+        <source>Edit attribute</source>
+        <translation type="unfinished">Ändra attribut</translation>
+    </message>
+    <message>
+        <source>IT</source>
+        <comment>DO NOT TRANSLATE</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please enter a new value for the attribute &lt;b&gt;%1&lt;/b&gt;.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;OK</source>
+        <translation type="unfinished">&amp;OK</translation>
+    </message>
+    <message>
+        <source>Alt+O</source>
+        <translation type="unfinished">Alt+O</translation>
+    </message>
+    <message>
+        <source>&amp;Cancel</source>
+        <translation type="unfinished">&amp;Avbryt</translation>
+    </message>
+    <message>
+        <source>Alt+C</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Value:</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>TemplateWidget</name>
     <message>
         <source>Delete template</source>
@@ -2747,14 +2830,6 @@ Se konsolen för mer information.</translation>
     <message>
         <source>Do you really want to delete the selected template?</source>
         <translation>Vill du verkligen ta bort den markerade mallen?</translation>
-    </message>
-    <message>
-        <source>&amp;OK</source>
-        <translation>&amp;OK</translation>
-    </message>
-    <message>
-        <source>&amp;Cancel</source>
-        <translation>&amp;Avbryt</translation>
     </message>
     <message>
         <source>Delete attribute</source>
@@ -2876,22 +2951,6 @@ Se konsolen för mer information.</translation>
         <translation>Spara</translation>
     </message>
     <message>
-        <source>Error</source>
-        <translation>Fel</translation>
-    </message>
-    <message>
-        <source>Could not save account data. 
-Please read console output for more information.</source>
-        <translation>Kunde inte spara konto information.
-Se konsolen för mer information.</translation>
-    </message>
-    <message>
-        <source>Could not group information. 
-Please read console output for more information.</source>
-        <translation>Kunde inte gruppera informationen.
-Se konsolen för mer information.</translation>
-    </message>
-    <message>
         <source>Save entry</source>
         <translation>Spara post</translation>
     </message>
@@ -2906,6 +2965,22 @@ Se konsolen för mer information.</translation>
     <message>
         <source>&amp;No</source>
         <translation>&amp;Nej</translation>
+    </message>
+    <message>
+        <source>Could not bind to server.&lt;br&gt;&lt;br&gt;Reason: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Could not save entry.&lt;br&gt;&lt;br&gt;Reason: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Could not update all group information.&lt;br&gt;&lt;br&gt;Reason: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Could not retrieve used userids.&lt;br&gt;&lt;br&gt;Reason: </source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
