@@ -385,18 +385,20 @@ class BrowserWidget(QListView):
         """ Export the whole subtree to ldif, together with all its parents.
         """
         
+        
+        itemList = []
         stringList = []
         searchError = False
         
         currentItem = self.selectedItem()
         fullPath = self.getFullPath(currentItem)
+        exceptionObject = None
         
         parentDNList = self.getParents(currentItem)
         for x in parentDNList:
             success, resultList, exceptionObject = self.getLdapItem(x)
             if success:
-                for y in tmpResult:
-                    stringList.append(y.convertToLdif())
+                itemList.extend(resultList)
             else:
                 searchError = True
                 break
@@ -405,10 +407,11 @@ class BrowserWidget(QListView):
             success, subtreeList, exceptionObject = self.getLdapItemChildren(fullPath, 1)
             
             if success:
-                for x in subtreeList:
-                    stringList.append(x.convertToLdif())
-            
-                self.saveLdif("".join(stringList))
+                itemList.extend(subtreeList)
+                if len(itemList) > 0:
+                    exportDialog = ExportDialog()
+                    exportDialog.initData(itemList)
+                    exportDialog.exec_loop()
             else:
                 dialog = LumaErrorDialog()
                 errorMsg = self.trUtf8("Could not export items.<br><br>Reason: ")
