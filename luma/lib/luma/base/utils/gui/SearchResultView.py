@@ -54,6 +54,7 @@ class SearchResultView(SearchResultViewDesign):
 
         widget = ObjectWidget(None, str(listItem.text(0)), 0)
         values = [self.RESULT[str(listItem.text(0))]]
+        #print values
         widget.init_view(self.SERVER, values)
         widget.setMinimumHeight(500)
         widget.show()

@@ -212,11 +212,20 @@ class ObjectWidget(QWidget):
                 label.setText(attribute)
             label.setAlignment(Qt.AlignLeft)
 
-            value = QLineEdit(self.attributeWidget, "LDAP_VALUE")
-            value.setText(valueList[x-offset])
-            value.setAlignment(Qt.AlignLeft)
-            if not editable:
-                value.setReadOnly(1)
+            value = None
+            if attribute == 'jpegPhoto':
+                picture = QImage()
+                data = valueList[x-offset]
+                picture.loadFromData(data)
+                value = QLabel(self.attributeWidget, "LDAP_ATTRIBUTE")
+                value.setPixmap(QPixmap(picture))
+                value.setAlignment(Qt.AlignLeft)
+            else:
+                value = QLineEdit(self.attributeWidget, "LDAP_VALUE")
+                value.setText(valueList[x-offset])
+                value.setAlignment(Qt.AlignLeft)
+                if not editable:
+                    value.setReadOnly(1)
 
             self.attributeGrid.addWidget(label, x, 0)
             self.attributeGrid.addWidget(value, x, 1)
