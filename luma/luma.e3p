@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE Project SYSTEM "Project-3.5.dtd">
 <!-- Project file for project luma -->
-<!-- Saved: 2005-02-18, 23:50:29 -->
+<!-- Saved: 2005-04-02, 21:04:58 -->
 <!-- Copyright (C) 2005 Wido Depping, wido.depping@tu-clausthal.de -->
 <Project version="3.5">
   <Description></Description>
@@ -901,13 +901,6 @@
       <Dir>luma</Dir>
       <Dir>plugins</Dir>
       <Dir>schemabrowser</Dir>
-      <Name>SearchView.py</Name>
-    </Source>
-    <Source>
-      <Dir>lib</Dir>
-      <Dir>luma</Dir>
-      <Dir>plugins</Dir>
-      <Dir>schemabrowser</Dir>
       <Name>__init__.py</Name>
     </Source>
     <Source>
@@ -961,6 +954,41 @@
       <Dir>utils</Dir>
       <Dir>gui</Dir>
       <Name>LoggerWidget.py</Name>
+    </Source>
+    <Source>
+      <Dir>lib</Dir>
+      <Dir>luma</Dir>
+      <Dir>plugins</Dir>
+      <Dir>schemaeditor</Dir>
+      <Name>__init__.py</Name>
+    </Source>
+    <Source>
+      <Dir>lib</Dir>
+      <Dir>luma</Dir>
+      <Dir>plugins</Dir>
+      <Dir>schemaeditor</Dir>
+      <Name>schemaeditor.py</Name>
+    </Source>
+    <Source>
+      <Dir>lib</Dir>
+      <Dir>luma</Dir>
+      <Dir>plugins</Dir>
+      <Dir>schemaeditor</Dir>
+      <Name>SchemaEditorDesign.py</Name>
+    </Source>
+    <Source>
+      <Dir>lib</Dir>
+      <Dir>luma</Dir>
+      <Dir>plugins</Dir>
+      <Dir>schemaeditor</Dir>
+      <Name>SchemaEditor.py</Name>
+    </Source>
+    <Source>
+      <Dir>lib</Dir>
+      <Dir>luma</Dir>
+      <Dir>plugins</Dir>
+      <Dir>schemabrowser</Dir>
+      <Name>SearchView.py</Name>
     </Source>
   </Sources>
   <Forms>
@@ -1278,6 +1306,13 @@
       <Dir>gui</Dir>
       <Name>LoggerWidgetDesign.ui</Name>
     </Form>
+    <Form>
+      <Dir>lib</Dir>
+      <Dir>luma</Dir>
+      <Dir>plugins</Dir>
+      <Dir>schemaeditor</Dir>
+      <Name>SchemaEditorDesign.ui</Name>
+    </Form>
   </Forms>
   <Translations>
     <Translation>
@@ -1319,6 +1354,11 @@
       <Dir>lib</Dir>
       <Dir>luma</Dir>
       <Name>luma_cs.ts</Name>
+    </Translation>
+    <Translation>
+      <Dir>lib</Dir>
+      <Dir>luma</Dir>
+      <Name>luma_no_NY.ts</Name>
     </Translation>
   </Translations>
   <Interfaces>

@@ -2,14 +2,14 @@
 <!DOCTYPE Session SYSTEM "Session-3.6.dtd">
 <!-- eric3 session file for project luma -->
 <!-- This file was generated automatically, do not edit. -->
-<!-- Saved: 2005-03-02, 01:10:21 -->
+<!-- Saved: 2005-04-02, 21:04:58 -->
 <Session version="3.6">
   <Filenames>
-    <Filename cline="52" cindex="59">/home/wido/src/luma/lib/luma/luma.py</Filename>
-    <Filename cline="99" cindex="77">/home/wido/src/luma/lib/luma/base/gui/MainWin.py</Filename>
-    <Filename cline="32" cindex="82">/home/wido/src/luma/lib/luma/base/utils/gui/AdvancedObjectWidget.py</Filename>
+    <Filename cline="241" cindex="71">/home/wido/src/luma/lib/luma/base/backend/LumaConnection.py</Filename>
+    <Filename cline="41" cindex="53">/home/wido/src/luma/lib/luma/base/gui/ServerDialog.py</Filename>
+    <Filename cline="31" cindex="73">/home/wido/src/luma/lib/luma/base/utils/gui/ExportDialog.py</Filename>
   </Filenames>
-  <ActiveWindow cline="99" cindex="77">/home/wido/src/luma/lib/luma/base/gui/MainWin.py</ActiveWindow>
+  <ActiveWindow cline="41" cindex="53">/home/wido/src/luma/lib/luma/base/gui/ServerDialog.py</ActiveWindow>
   <Breakpoints>
   </Breakpoints>
   <DebugInfo>
