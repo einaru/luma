@@ -190,39 +190,49 @@ class ServerDialog(ServerDialogDesign):
 
     def searchBaseDN(self):
         server = str(self.hostLineEdit.text())
-        tls = self.tlsCheckBox.isChecked()
+        tls = int(self.tlsCheckBox.isChecked())
         serverMeta = ServerObject()
         serverMeta.host = str(self.hostLineEdit.text())
         serverMeta.port = self.portSpinBox.value()
-        serverMeta.tls = self.tlsCheckBox.isChecked()
+        serverMeta.tls = int(self.tlsCheckBox.isChecked())
         serverMeta.bindAnon = 1
         serverMeta.baseDN = ""
         serverMeta.bindDN = ""
         serverMeta.bindPassword = ""
-        conObject = LumaConnection(serverMeta)
         
-        dnList = None
+        try:
+            conObject = LumaConnection(serverMeta)
         
-        # Check for openldap
-        result = conObject.search_s("", ldap.SCOPE_BASE, "(objectClass=*)", ["namingContexts"])
-        dnList = result[0][1]['namingContexts']
+            dnList = None
         
-        # Check for Novell
-        if dnList[0] == '':
-            result = conObject.search_s("", ldap.SCOPE_BASE)
-            dnList = result[0][1]['dsaName']
-            
-        # Univertity of Michigan aka umich
-        # not jet tested
-        if dnList[0] == '':
-            result = conObject.search_s("", ldap.SCOPE_BASE, "(objectClass=*)",['database'])
+            # Check for openldap
+            result = conObject.search_s("", ldap.SCOPE_BASE, "(objectClass=*)", ["namingContexts"])
             dnList = result[0][1]['namingContexts']
         
-        dialog = BaseSelector()
-        dialog.setList(dnList)
-        dialog.exec_loop()
-        if dialog.result() == QDialog.Accepted:
-            self.baseLineEdit.setText(dialog.dnBox.currentText())
-
-
+            # Check for Novell
+            if dnList[0] == '':
+                result = conObject.search_s("", ldap.SCOPE_BASE)
+                dnList = result[0][1]['dsaName']
+            
+            # Univertity of Michigan aka umich
+            # not jet tested
+            if dnList[0] == '':
+                result = conObject.search_s("", ldap.SCOPE_BASE, "(objectClass=*)",['database'])
+                dnList = result[0][1]['namingContexts']
+        
+            dialog = BaseSelector()
+            dialog.setList(dnList)
+            dialog.exec_loop()
+            if dialog.result() == QDialog.Accepted:
+                self.baseLineEdit.setText(dialog.dnBox.currentText())
+        except:
+            QMessageBox.warning(None,
+                self.trUtf8("Error"),
+                self.trUtf8("""Could not retrieve BaseDN for server. 
+Maybe the server data is not correct. 
+Please see console output for more information."""),
+                self.trUtf8("&OK"),
+                None,
+                None,
+                0, -1)
 
