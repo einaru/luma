@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file '/home/wido/src/luma/lib/luma/plugins/template_plugin/TemplateWidgetDesign.ui'
 #
-# Created: Sat Oct 16 18:11:15 2004
+# Created: Sun Oct 17 20:39:56 2004
 #      by: The PyQt User Interface Compiler (pyuic) 3.13
 #
 # WARNING! All changes made in this file will be lost!
@@ -96,8 +96,6 @@ class TemplateWidgetDesign(QWidget):
 
         layout25.addWidget(self.textLabel6,1,0)
         frame4Layout.addLayout(layout25)
-        spacer18 = QSpacerItem(21,16,QSizePolicy.Minimum,QSizePolicy.Fixed)
-        frame4Layout.addItem(spacer18)
 
         layout15 = QGridLayout(None,1,1,0,6,"layout15")
         spacer15 = QSpacerItem(20,82,QSizePolicy.Minimum,QSizePolicy.Minimum)
@@ -161,7 +159,7 @@ class TemplateWidgetDesign(QWidget):
 
         self.languageChange()
 
-        self.resize(QSize(660,572).expandedTo(self.minimumSizeHint()))
+        self.resize(QSize(694,513).expandedTo(self.minimumSizeHint()))
         self.clearWState(Qt.WState_Polished)
 
         self.connect(self.addTemplateButton,SIGNAL("clicked()"),self.addTemplate)

@@ -66,11 +66,6 @@ class PluginLoaderGui(PluginLoaderGuiDesign):
 
     def saveValues(self):
         try:
-            # if luma dir in home does not exist -> create 
-            configDir = os.path.join(environment.userHomeDir,  ".luma")
-            if not (os.path.isdir(configDir)):
-                os.mkdir (configDir)
-            
             configParser = ConfigParser()
             if os.path.isfile(self.defaultsHome):
                 configParser.readfp(open(self.defaultsHome, 'r'))
@@ -87,7 +82,7 @@ class PluginLoaderGui(PluginLoaderGuiDesign):
                 configParser.set(pluginName, "load", tmpVal)
                 configParser.write(open(self.defaultsHome, 'w'))
         except IOError, errorData:
-            print "Could not open file for plugin defaults :("
+            print "Could not save to file for plugin defaults :("
             print "Reason: ", errorData
             
         self.accept()

@@ -157,7 +157,7 @@ class SearchResultView(SearchResultViewDesign):
                 # keep UI responsive
                 environment.updateUI()
                 
-                ldapServerObject.delete(unicode(x.text(0)))
+                ldapServerObject.delete(unicode(x.text(0)).encode('utf-8'))
                 
             if len(serverMeta.bindDN) > 0:
                 ldapServerObject.unbind()

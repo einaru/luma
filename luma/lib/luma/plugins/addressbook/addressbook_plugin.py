@@ -29,7 +29,7 @@ class TaskPlugin(object):
 
 ###############################################################################
         
-    def get_icon(self):
+    def getIcon(self):
         try:
             iconPixmap = QPixmap (os.path.join(self.pluginIconPath, "addressbook.png"))
         except:
@@ -49,7 +49,4 @@ class TaskPlugin(object):
         self.pluginSettingsWidget = AddressbookSettings(parent)
         return self.pluginSettingsWidget
         
-###############################################################################
 
-    def getHelpText(self):
-        return

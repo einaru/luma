@@ -22,10 +22,14 @@ class TaskPlugin(object):
         self.pluginIconPath = ""
         self.pluginWidget = None
 
+###############################################################################
+
     def postprocess (self):
         pass
 
-    def get_icon(self):
+###############################################################################
+
+    def getIcon(self):
         try:
             iconPixmap = QPixmap (os.path.join (self.pluginIconPath,"plugin.png"))
         except:
@@ -33,6 +37,7 @@ class TaskPlugin(object):
 
         return iconPixmap
 
+###############################################################################
 
     def getPluginWidget(self, parent):
         self.pluginWidget = BrowserView()
@@ -43,9 +48,5 @@ class TaskPlugin(object):
     def getPluginSettingsWidget(self, parent):
         return
         
-###############################################################################
 
-    def getHelpText(self):
-        return
 
-        

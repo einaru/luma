@@ -23,6 +23,7 @@ import time
 import environment
 from base.backend.ServerObject import ServerObject
 
+
 class LumaConnectionException(Exception):
     """This exception class will be raised if no proper server object is passed 
     to the constructor.
@@ -30,7 +31,8 @@ class LumaConnectionException(Exception):
     
     pass
 
-    
+###############################################################################
+
 
 class LumaConnection(object):
     """ This class is a wrapper around the ldap functions. It is provided to 
@@ -42,7 +44,7 @@ class LumaConnection(object):
     
     def __init__(self, serverMeta=None):
         # Throw exception if no ServerObject is passed.
-        if not (isinstance(serverMeta, ServerObject)):
+        if not isinstance(serverMeta, ServerObject):
             exceptionString = u"Expected ServerObject type. Passed object was " + unicode(type(serverMeta))
             raise LumaConnectionException, exceptionString
         
@@ -70,7 +72,7 @@ class LumaConnection(object):
         while not workerThread.FINISHED:
             environment.updateUI()
             time.sleep(0.05)
-            
+        
         environment.setBusy(False)
             
         if len(workerThread.result) == 0:
@@ -223,6 +225,7 @@ class WorkerThreadSearch(threading.Thread):
     def run(self):
         try:
             resultId = self.ldapServerObject.search(self.base, self.scope, self.filter, self.attrList, self.attrsonly)
+
             
             while 1:
                 # search with a 60 second timeout

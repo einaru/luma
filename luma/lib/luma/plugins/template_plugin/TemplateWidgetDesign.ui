@@ -8,8 +8,8 @@
         <rect>
             <x>0</x>
             <y>0</y>
-            <width>660</width>
-            <height>572</height>
+            <width>694</width>
+            <height>513</height>
         </rect>
     </property>
     <property name="caption">
@@ -234,23 +234,6 @@
                             </widget>
                         </grid>
                     </widget>
-                    <spacer>
-                        <property name="name">
-                            <cstring>spacer18</cstring>
-                        </property>
-                        <property name="orientation">
-                            <enum>Vertical</enum>
-                        </property>
-                        <property name="sizeType">
-                            <enum>Fixed</enum>
-                        </property>
-                        <property name="sizeHint">
-                            <size>
-                                <width>21</width>
-                                <height>16</height>
-                            </size>
-                        </property>
-                    </spacer>
                     <widget class="QLayoutWidget">
                         <property name="name">
                             <cstring>layout15</cstring>

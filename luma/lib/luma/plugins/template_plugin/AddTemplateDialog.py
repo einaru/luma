@@ -22,7 +22,7 @@ class AddTemplateDialog(AddTemplateDialogDesign):
 
         serverListObject = ServerList()
         serverListObject.readServerList()
-        serverList = serverListObject.SERVERLIST
+        serverList = serverListObject.serverList
         
         if not (serverList == None):
             tmpList = []

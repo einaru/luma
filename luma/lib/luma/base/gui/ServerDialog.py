@@ -48,9 +48,9 @@ class ServerDialog(ServerDialogDesign):
         
         self.serverListObject.readServerList()
           
-        if self.serverListObject.SERVERLIST == None:
+        if self.serverListObject.serverList == None:
             self.infoGroupBox.setEnabled(False)
-        elif len(self.serverListObject.SERVERLIST) == 0:
+        elif len(self.serverListObject.serverList) == 0:
             self.infoGroupBox.setEnabled(False)
 
         self.serverIcon = QPixmap(os.path.join(self._PREFIX, "share", "luma", "icons", "server.png"))
@@ -68,10 +68,10 @@ class ServerDialog(ServerDialogDesign):
     def displayServerList(self):
         self.serverListView.clear()
         
-        if self.serverListObject.SERVERLIST == None:
+        if self.serverListObject.serverList == None:
             return
         
-        for x in self.serverListObject.SERVERLIST:
+        for x in self.serverListObject.serverList:
             tmpItem = QListViewItem(self.serverListView, x.name)
             tmpItem.setPixmap(0, self.serverIcon)
             self.serverListView.insertItem(tmpItem)
@@ -147,10 +147,10 @@ class ServerDialog(ServerDialogDesign):
         serverObject = ServerObject()
         serverObject.name = unicode(result[0])
         
-        if self.serverListObject.SERVERLIST == None:
-            self.serverListObject.SERVERLIST = [serverObject]
+        if self.serverListObject.serverList == None:
+            self.serverListObject.serverList = [serverObject]
         else:
-            self.serverListObject.SERVERLIST.append(serverObject)
+            self.serverListObject.serverList.append(serverObject)
         
         self.applyButton.setEnabled(1)
         
@@ -165,7 +165,7 @@ class ServerDialog(ServerDialogDesign):
         """ Save the changed server values.
         """
         
-        self.serverListObject.saveSettings(self.serverListObject.SERVERLIST)
+        self.serverListObject.saveSettings(self.serverListObject.serverList)
         
         self.displayServerList()
         self.applyButton.setEnabled(0)
@@ -198,7 +198,7 @@ class ServerDialog(ServerDialogDesign):
         reallyDelete.exec_loop()
         if (reallyDelete.result() == 1):
             self.serverListObject.deleteServer(unicode(selectedServerString))
-            if len(self.serverListObject.SERVERLIST) == 0:
+            if len(self.serverListObject.serverList) == 0:
                 self.infoGroupBox.setEnabled(False)
             
             self.displayServerList()

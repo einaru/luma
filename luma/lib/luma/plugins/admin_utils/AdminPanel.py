@@ -39,8 +39,8 @@ class AdminPanel(AdminPanelDesign):
         
 ###############################################################################
 
-    def create_random(self):
-        tmpPassword = self.pwHandler.create_random_string(10)
+    def createRandom(self):
+        tmpPassword = self.pwHandler.createRandomString(10)
         self.randomPwEdit.setText(tmpPassword)
         method = str(self.methodBox.currentText())
         
@@ -53,7 +53,7 @@ class AdminPanel(AdminPanelDesign):
         
 ###############################################################################
 
-    def crypt_password(self):
+    def cryptPassword(self):
         tmpPassword = str(self.pwEdit.text())
         method = str(self.methodBox.currentText())
         
@@ -66,19 +66,19 @@ class AdminPanel(AdminPanelDesign):
         
 ###############################################################################
 
-    def convert_date(self):
+    def convertDate(self):
         tmpDate = self.dateEdit.date()
         year = tmpDate.year()
         month = tmpDate.month()
         day = tmpDate.day()
-        tmpDays = self.dateHandler.date_to_unix(year, month, day)
+        tmpDays = self.dateHandler.dateToUnix(year, month, day)
         self.convDateEdit.setText(str(tmpDays))
         
 ###############################################################################
 
-    def convert_duration(self):
+    def convertDuration(self):
         tmpValue = self.durationBox.value()
-        tmpDays = self.dateHandler.dateduration_to_unix(tmpValue)
+        tmpDays = self.dateHandler.datedurationToUnix(tmpValue)
         self.convDurationEdit.setText(str(tmpDays))
         
         

@@ -28,7 +28,7 @@ class TaskPlugin(object):
 
 ###############################################################################
         
-    def get_icon(self):
+    def getIcon(self):
         try:
             iconPixmap = QPixmap (os.path.join(self.pluginIconPath, "usermanagement.png"))
         except:
@@ -47,7 +47,3 @@ class TaskPlugin(object):
     def getPluginSettingsWidget(self, parent):
         return
         
-###############################################################################
-
-    def getHelpText(self):
-        return

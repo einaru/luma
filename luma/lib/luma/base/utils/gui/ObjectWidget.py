@@ -258,6 +258,7 @@ Please read console output for more information."""),
                         QToolTip.add(value, self.trUtf8("Binary value"))
             else:
                 data = data.decode('utf-8')
+
                 value = None
                 if data == '':
                     value = QLabel(self.attributeWidget, "LDAP_VALUE")

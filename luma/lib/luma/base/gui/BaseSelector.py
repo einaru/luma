@@ -25,7 +25,4 @@ class BaseSelector(BaseSelectorDesign):
         """ Fill the combobox with possible baseDNs specified by dnList.
         """
         
-        if not (type(dnList) == list):
-            raise TypeError
-
         map(self.dnBox.insertItem, dnList)

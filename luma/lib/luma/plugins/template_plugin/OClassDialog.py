@@ -30,7 +30,7 @@ class OClassDialog(OClassDialogDesign):
         self.serverListObject = ServerList()
         self.serverListObject.readServerList()
 
-        self.serverList = self.serverListObject.SERVERLIST
+        self.serverList = self.serverListObject.serverList
         for x in self.serverList:
             if x.tls == 1:
                 self.serverBox.insertItem(securePixmap, x.name)

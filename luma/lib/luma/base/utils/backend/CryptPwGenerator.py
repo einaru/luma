@@ -20,7 +20,7 @@ class CryptPwGenerator(object):
     
     Two relevant functions are usable:
     
-    get_random_password returns a random password in cleartext and crypt format.
+    getRandomPassword returns a random password in cleartext and crypt format.
     
     encrypt_password accepts a password string and returns the password in cleartext and 
     crypt format.
@@ -30,11 +30,11 @@ class CryptPwGenerator(object):
 
     def __init__(self):
         self.saltchars = string.uppercase + string.lowercase + string.digits + "./" 
-        self.pwGen = self.password_generator()
+        self.pwGen = self.passwordGenerator()
         
 ###############################################################################
 
-    def create_random_string(self, stringLength):
+    def createRandomString(self, stringLength):
         """ Creates a random string of the length stringLength.
         """
         
@@ -45,18 +45,18 @@ class CryptPwGenerator(object):
         
 ###############################################################################
 
-    def password_generator(self):
+    def passwordGenerator(self):
         """ This is the password generator. Do not call directly.
         """
         
         while 1:
-            randPassword = self.create_random_string(8)
-            salt = "$1$" + self.create_random_string(8)
+            randPassword = self.createRandomString(8)
+            salt = "$1$" + self.createRandomString(8)
             yield randPassword, crypt.crypt(randPassword, salt)
             
 ###############################################################################
 
-    def get_random_password(self):
+    def getRandomPassword(self):
         """ Returns a random password in cleatext and in crypt format
         """
         
@@ -64,11 +64,11 @@ class CryptPwGenerator(object):
         
 ###############################################################################
 
-    def encrypt_password(self, tmpString):
+    def encryptPassword(self, tmpString):
         """ Encrypts a given string to crypt format and returns the password in cleartext and in crypt.
         """
         
-        salt = "$1$" + self.create_random_string(8)
+        salt = "$1$" + self.createRandomString(8)
         return tmpString, crypt.crypt(tmpString, salt)
         
         

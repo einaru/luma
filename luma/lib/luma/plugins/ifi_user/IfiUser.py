@@ -78,10 +78,10 @@ Try increasing the uidNumber range or delete some users from the subtree."""),
             year = date.year()
             month = date.month()
             day = date.day()
-            shadowMax = dateHelper.date_to_unix(year, month, day)
+            shadowMax = dateHelper.dateToUnix(year, month, day)
         else:
             days = self.dayBox.value()
-            shadowMax = dateHelper.dateduration_to_unix(days)
+            shadowMax = dateHelper.datedurationToUnix(days)
         
         baseHomeDir = str(self.homeEdit.text())
         groupId = str(self.gidBox.value())
@@ -111,7 +111,7 @@ Try increasing the uidNumber range or delete some users from the subtree."""),
             environment.updateUI()
                 
             uidNumber = freeNumbers[0]
-            passwordClear, passwordCrypt = pwGenerator.get_random_password()
+            passwordClear, passwordCrypt = pwGenerator.getRandomPassword()
             homeDir = baseHomeDir + "/" + userName
                 
             modList = []

@@ -30,7 +30,7 @@ class SearchForm(SearchFormDesign):
 
         self.serverListObject = ServerList()
         self.serverListObject.readServerList()
-        self.serverList = self.serverListObject.SERVERLIST
+        self.serverList = self.serverListObject.serverList
         
         if not (self.serverList == None):
             for x in self.serverList:

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ###########################################################################
-#    Copyright (C) 2003 by Wido Depping
+#    Copyright (C) 2003,2004 by Wido Depping
 #    <widod@users.sourceforge.net>
 #
 # Copyright: See COPYING file that comes with this distribution
@@ -62,11 +62,7 @@ class LdapTemplate(object):
 ###############################################################################
 
     def getAttributeList(self):
-        tmpList = []
-        for x in self.attributes.keys():
-            tmpList.append(x)
-            
-        return tmpList
+        return self.attributes.keys()
         
 
 ###############################################################################
@@ -244,16 +240,7 @@ class TemplateList:
         fileHandler.write(unicode(document.toString()).encode("utf-8"))
         fileHandler.close()
 
-###############################################################################
 
-    def addTemplate(self, name):
-        pass
-
-###############################################################################
-
-    def deleteTemplate(self, name):
-        pass
-        
 ###############################################################################
 
     def getTemplate(self, templateName):

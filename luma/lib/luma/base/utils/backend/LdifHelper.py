@@ -20,15 +20,13 @@ class LdifHelper(object):
         
         self.SCHEMAMETA = ObjectClassAttributeInfo(self.SERVERNAME)
         
-        
-        
 ###############################################################################
 
     def convertToLdif(self, data):
-        tmpList = []
-        
         if data == None:
-            data = []
+            return ""
+            
+        tmpList = []
             
         for a in data:
             tmpDN = a[0]

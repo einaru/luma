@@ -73,7 +73,7 @@ class LumaEntryBrowser (LumaEntryBrowserDesign):
 
         serverListObject = ServerList()
         serverListObject.readServerList()
-        self.serverList = serverListObject.SERVERLIST
+        self.serverList = serverListObject.serverList
         
         self.serverBox.insertItem("")
         if not (self.serverList == None):

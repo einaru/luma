@@ -54,12 +54,12 @@ class BrowserWidget(QListView):
         
         self.serverListObject = tmpObject
         
-        if (tmpObject.SERVERLIST == None):
-            self.SERVERLIST = []
+        if (tmpObject.serverList == None):
+            self.serverList = []
         else:
-            self.SERVERLIST = tmpObject.SERVERLIST[:]
+            self.serverList = tmpObject.serverList[:]
             
-        for x in self.SERVERLIST:
+        for x in self.serverList:
             tmpItem = QListViewItem(self, x.name)
             if x.tls == 1:
                 tmpItem.setPixmap(0, QPixmap(tmpIconFile))

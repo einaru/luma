@@ -125,7 +125,6 @@ class MainWin(MainWinDesign):
         pluginName = str(self.pluginBox.currentText())
         self.taskStack.raiseWidget(self.PLUGINS[pluginName]["WIDGET_ID"])
             
-        self.PLUGINS_LOADED = 1
 
 ###############################################################################
 
@@ -161,6 +160,7 @@ class MainWin(MainWinDesign):
             self.taskStack.raiseWidget(self.PLUGINS[pluginName]["WIDGET_ID"])
 
         toolBars = self.toolBars(Qt.DockTop)
+        
         for x in toolBars:
             if not (str(x.name()) == "PLUGINTOOLBAR"):
                 x.deleteLater()
@@ -169,7 +169,7 @@ class MainWin(MainWinDesign):
         try:
             self.PLUGINS[pluginName]["WIDGET_REF"].buildToolBar(self)
         except AttributeError, e:
-            print "Error: Could not build toolbar for plugin ", pluginName
+            print "Could not build toolbar for plugin ", pluginName
 
 ###############################################################################
 
@@ -253,10 +253,10 @@ class MainWin(MainWinDesign):
         """
         
         dialog = LanguageDialog()
-        dialog.setCaption(self.trUtf8("Choose Language"))
         dialog.exec_loop()
-        if dialog.result() == dialog.Accepted:
-            trFile = dialog.get_language_file()
+        
+        if dialog.result() == QDialog.Accepted:
+            trFile = dialog.getLanguageFile()
             if trFile == 'NATIVE':
                 qApp.removeTranslator(self.translator)
             else:
@@ -269,16 +269,11 @@ class MainWin(MainWinDesign):
             
             try:
                 configParser.readfp(open(self.configFile, 'r'))
-            except Exception, errorData:
-                print "Error: Could not open luma config file for storing language settings. Reason:"
-                print errorData
                 
-            if not(configParser.has_section("Defaults")):
-                configParser.add_section("Defaults")
-                    
-            configParser.set("Defaults", "language", trFile)
-            
-            try:
+                if not(configParser.has_section("Defaults")):
+                    configParser.add_section("Defaults")
+                
+                configParser.set("Defaults", "language", trFile)
                 configParser.write(open(self.configFile, 'w'))
             except Exception, errorData:
                 print "Error: could not save language settings file. Reason:"

@@ -24,17 +24,11 @@ class ObjectClassAttributeInfo(object):
     """ A class for getting information about objectClassesDict and attributes 
     from a server.
     """
-
-###############################################################################
     
     def __init__(self, server=None):
         self.objectClassesDict = {}
         self.attributeDict = {}
         self.SERVER = server
-        
-        # delete oid for userPassword attribute
-        #if ldap.schema.NOT_HUMAN_READABLE_LDAP_SYNTAXES.has_key('1.3.6.1.4.1.1466.115.121.1.40'):
-        #    del ldap.schema.NOT_HUMAN_READABLE_LDAP_SYNTAXES['1.3.6.1.4.1.1466.115.121.1.40']
         
         if not (server == None):
             self.retrieveInfoFromServer()
@@ -63,6 +57,12 @@ class ObjectClassAttributeInfo(object):
             for x in oidList:
                 environment.updateUI()
                 y = schema.get_obj(ldap.schema.ObjectClass, x)
+                
+                
+                #print y.kind # could be: ( "ABSTRACT" / "STRUCTURAL" / "AUXILIARY" )
+                #print y.schema_attribute
+                #print y.token_defaults
+
                 name = y.names[0]
                 
                 desc = ""
@@ -146,7 +146,7 @@ class ObjectClassAttributeInfo(object):
         must = Set()
         
         for x in classList:
-            must = must.union(Set(self.objectClassesDict[x]["MUST"]))
+            must |= Set(self.objectClassesDict[x]["MUST"])
             
         return must
 
@@ -160,7 +160,7 @@ class ObjectClassAttributeInfo(object):
         may = Set()
         
         for x in classList:
-            may = may | Set(self.objectClassesDict[x]["MAY"])
+            may |= Set(self.objectClassesDict[x]["MAY"])
             
         return may
 
@@ -204,11 +204,10 @@ class ObjectClassAttributeInfo(object):
         
         if objectClassesDict == None:
             raise "Missing Arguments to Funktion 'isMust(attribute, objectClassesDict)"
-            
-        else:
-            for x in objectClassesDict:
-                if attribute in self.objectClassesDict[x]["MUST"]:
-                    return True
+
+        for x in objectClassesDict:
+            if attribute in self.objectClassesDict[x]["MUST"]:
+                return True
                     
         return False
         
@@ -230,10 +229,7 @@ class ObjectClassAttributeInfo(object):
 ###############################################################################
 
     def hasObjectClass(self, objectClass):
-        if objectClass in self.objectClassesDict.keys():
-            return True
-        else:
-            return False
+        return objectClass in self.objectClassesDict.keys()
 
 ###############################################################################
 

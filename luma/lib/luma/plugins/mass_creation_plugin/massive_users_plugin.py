@@ -29,7 +29,7 @@ class TaskPlugin(object):
 
 ###############################################################################
 
-    def get_icon(self):
+    def getIcon(self):
         iconPixmap = None
         try:
             iconPixmap = QPixmap (os.path.join (self.pluginIconPath, "massive_users.png"))
@@ -49,15 +49,4 @@ class TaskPlugin(object):
     def getPluginSettingsWidget(self, parent):
         return
         
-###############################################################################
 
-    def getHelpText(self):
-        docFile = os.path.join(environment.lumaInstallationPrefix, "share", "luma", "doc", "massive.help")
-        helpText = None
-        
-        try:
-            helpText = open(docFile, 'r').readlines()
-        except Exception, e:
-            print "Could not read plugin help. Reason:"
-            print e
-        return "".join(helpText)

@@ -17,8 +17,8 @@
         <rect>
             <x>0</x>
             <y>0</y>
-            <width>410</width>
-            <height>399</height>
+            <width>417</width>
+            <height>408</height>
         </rect>
     </property>
     <property name="caption">
@@ -609,50 +609,50 @@
         <sender>createButton</sender>
         <signal>clicked()</signal>
         <receiver>AdminPanelDesign</receiver>
-        <slot>create_random()</slot>
+        <slot>createRandom()</slot>
     </connection>
     <connection>
         <sender>cryptButton</sender>
         <signal>clicked()</signal>
         <receiver>AdminPanelDesign</receiver>
-        <slot>crypt_password()</slot>
+        <slot>cryptPassword()</slot>
     </connection>
     <connection>
         <sender>pwEdit</sender>
         <signal>returnPressed()</signal>
         <receiver>AdminPanelDesign</receiver>
-        <slot>crypt_password()</slot>
+        <slot>cryptPassword()</slot>
     </connection>
     <connection>
         <sender>dateButton</sender>
         <signal>clicked()</signal>
         <receiver>AdminPanelDesign</receiver>
-        <slot>convert_date()</slot>
+        <slot>convertDate()</slot>
     </connection>
     <connection>
         <sender>durationButton</sender>
         <signal>clicked()</signal>
         <receiver>AdminPanelDesign</receiver>
-        <slot>convert_duration()</slot>
+        <slot>convertDuration()</slot>
     </connection>
     <connection>
         <sender>durationBox</sender>
         <signal>valueChanged(int)</signal>
         <receiver>AdminPanelDesign</receiver>
-        <slot>convert_duration()</slot>
+        <slot>convertDuration()</slot>
     </connection>
     <connection>
         <sender>dateEdit</sender>
         <signal>valueChanged(const QDate&amp;)</signal>
         <receiver>AdminPanelDesign</receiver>
-        <slot>convert_date()</slot>
+        <slot>convertDate()</slot>
     </connection>
 </connections>
 <slots>
-    <slot>create_random()</slot>
-    <slot>crypt_password()</slot>
-    <slot>convert_date()</slot>
-    <slot>convert_duration()</slot>
+    <slot>createRandom()</slot>
+    <slot>cryptPassword()</slot>
+    <slot>convertDate()</slot>
+    <slot>convertDuration()</slot>
 </slots>
 <layoutdefaults spacing="6" margin="11"/>
 </UI>

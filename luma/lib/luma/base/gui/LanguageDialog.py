@@ -20,7 +20,7 @@ import environment
 class LanguageDialog(LanguageDialogDesign):
     """A dialog for choosing the language to use. 
     
-    After the dialog is shown, use get_language_file() to get the language
+    After the dialog is shown, use getLanguageFile() to get the language
     file which should be used.
     """
 
@@ -36,39 +36,29 @@ class LanguageDialog(LanguageDialogDesign):
         
         # Since english is the default language, there is no language
         # file and we have to make the entry manually.
-        pixmap = QPixmap(os.path.join(self.trDir, "gb.png"))
         self.languageBox.insertItem("English")
         
         # Insert all languages which have a language file.
         # IMPORTANT: Has to be edited every time a new languaged is
         # added to luma.
         for x in self.languages:
-            pixmap = QPixmap(os.path.join(self.trDir, x + ".png"))
-            
-            
             if x == 'br':
                 self.languageBox.insertItem("Portuguese")
-                continue
             elif x == 'de':
                 self.languageBox.insertItem("Deutsch")
-                continue
             elif x == 'no':
                 self.languageBox.insertItem("Norsk")
-                continue
             elif x == 'ru':
                 self.languageBox.insertItem("Russian")
-                continue
             elif x == 'es':
                 self.languageBox.insertItem("Spanish")
-                continue
             elif x == 'sv':
                 self.languageBox.insertItem("Swedish")
-                continue
                 
 
 ###############################################################################
 
-    def get_language_file(self):
+    def getLanguageFile(self):
         """Returns the language file which should be used (string).
         
         If english is chosen, the string 'NATIVE' is returned. Because there 

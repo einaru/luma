@@ -21,10 +21,14 @@ class TaskPlugin(object):
         self.pluginIconPath = ""
         self.pluginWidget = None
 
+###############################################################################
+
     def postprocess (self):
         pass
 
-    def get_icon(self):
+###############################################################################
+
+    def getIcon(self):
         try:
             iconPixmap = QPixmap (os.path.join(self.pluginIconPath, "admin_utils.png"))
         except:
@@ -32,6 +36,7 @@ class TaskPlugin(object):
 
         return iconPixmap
 
+###############################################################################
 
     def getPluginWidget(self, parent):
         self.pluginWidget = AdminPanel(parent)
@@ -42,7 +47,4 @@ class TaskPlugin(object):
     def getPluginSettingsWidget(self, parent):
         return
         
-###############################################################################
 
-    def getHelpText(self):
-        return

@@ -2,8 +2,8 @@
 
 # Form implementation generated from reading ui file '/home/wido/src/luma/lib/luma/plugins/admin_utils/AdminPanelDesign.ui'
 #
-# Created: Sun Aug 29 00:49:08 2004
-#      by: The PyQt User Interface Compiler (pyuic) 3.12
+# Created: Sun Oct 17 22:53:37 2004
+#      by: The PyQt User Interface Compiler (pyuic) 3.13
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -201,16 +201,16 @@ class AdminPanelDesign(QWidget):
 
         self.languageChange()
 
-        self.resize(QSize(410,399).expandedTo(self.minimumSizeHint()))
+        self.resize(QSize(417,408).expandedTo(self.minimumSizeHint()))
         self.clearWState(Qt.WState_Polished)
 
-        self.connect(self.createButton,SIGNAL("clicked()"),self.create_random)
-        self.connect(self.cryptButton,SIGNAL("clicked()"),self.crypt_password)
-        self.connect(self.pwEdit,SIGNAL("returnPressed()"),self.crypt_password)
-        self.connect(self.dateButton,SIGNAL("clicked()"),self.convert_date)
-        self.connect(self.durationButton,SIGNAL("clicked()"),self.convert_duration)
-        self.connect(self.durationBox,SIGNAL("valueChanged(int)"),self.convert_duration)
-        self.connect(self.dateEdit,SIGNAL("valueChanged(const QDate&)"),self.convert_date)
+        self.connect(self.createButton,SIGNAL("clicked()"),self.createRandom)
+        self.connect(self.cryptButton,SIGNAL("clicked()"),self.cryptPassword)
+        self.connect(self.pwEdit,SIGNAL("returnPressed()"),self.cryptPassword)
+        self.connect(self.dateButton,SIGNAL("clicked()"),self.convertDate)
+        self.connect(self.durationButton,SIGNAL("clicked()"),self.convertDuration)
+        self.connect(self.durationBox,SIGNAL("valueChanged(int)"),self.convertDuration)
+        self.connect(self.dateEdit,SIGNAL("valueChanged(const QDate&)"),self.convertDate)
 
 
     def languageChange(self):
@@ -242,17 +242,17 @@ class AdminPanelDesign(QWidget):
         self.tabWidget2.changeTab(self.tab_2,self.__tr("Date/Time"))
 
 
-    def create_random(self):
-        print "AdminPanelDesign.create_random(): Not implemented yet"
+    def createRandom(self):
+        print "AdminPanelDesign.createRandom(): Not implemented yet"
 
-    def crypt_password(self):
-        print "AdminPanelDesign.crypt_password(): Not implemented yet"
+    def cryptPassword(self):
+        print "AdminPanelDesign.cryptPassword(): Not implemented yet"
 
-    def convert_date(self):
-        print "AdminPanelDesign.convert_date(): Not implemented yet"
+    def convertDate(self):
+        print "AdminPanelDesign.convertDate(): Not implemented yet"
 
-    def convert_duration(self):
-        print "AdminPanelDesign.convert_duration(): Not implemented yet"
+    def convertDuration(self):
+        print "AdminPanelDesign.convertDuration(): Not implemented yet"
 
     def __tr(self,s,c = None):
         return qApp.translate("AdminPanelDesign",s,c)
