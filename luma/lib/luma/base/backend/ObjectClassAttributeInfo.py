@@ -32,6 +32,15 @@ class ObjectClassAttributeInfo(object):
         # Dictionaries with lowercase names of attributes and objectclasses
         self.objectClassesDict = {}
         self.attributeDict = {}
+        self.matchingDict = {}
+        self.syntaxDict = {}
+        
+        # Indicates if an error has occured while fetching the schemas
+        self.failure = False
+        
+        # Exception object why fetching schema failed
+        self.failureException = None
+        
         
         # alias name of the current server
         self.serverMeta = serverMeta
@@ -54,6 +63,8 @@ class ObjectClassAttributeInfo(object):
         if self.serverMeta.name in self.serverMetaCache.keys():
             self.objectClassesDict = self.serverMetaCache[self.serverMeta.name]["objectClassesDict"]
             self.attributeDict = self.serverMetaCache[self.serverMeta.name]["attributeDict"]
+            self.syntaxDict = self.serverMetaCache[self.serverMeta.name]["syntaxDict"]
+            self.matchingDict = self.serverMetaCache[self.serverMeta.name]["matchingDict"]
         else:
             tmpObject = ServerList()
             tmpObject.readServerList()
@@ -75,6 +86,7 @@ class ObjectClassAttributeInfo(object):
                     environment.updateUI()
                     y = schema.get_obj(ldap.schema.ObjectClass, x)
                 
+                    
                     # detect kind of objectclass
                     kind = ""
                     if 0 == y.kind:
@@ -108,13 +120,17 @@ class ObjectClassAttributeInfo(object):
                         # derived from top
                         if not ("top" == string.lower(parent)):
                             parents.append(string.lower(parent))
-                    
+                            
+                    oid = ""
+                    if not (y.oid == None):
+                        oid = y.oid
+                            
                     # store values for each name the current class has.
                     # IMPORTANT: the key is always lowercase
                     for name in y.names:
                         self.objectClassesDict[string.lower(name)] = {"DESC": desc, 
                             "MUST": must, "MAY": may, "NAME": name, "KIND": kind,
-                            "PARENTS": parents}
+                            "PARENTS": parents, "OID": oid}
                                 
                 
                 # get attribute information
@@ -127,26 +143,53 @@ class ObjectClassAttributeInfo(object):
                     for z in nameList:
                         self.attributeDict[string.lower(z)] = {"DESC": y.desc, 
                             "SINGLE": y.single_value, "SYNTAX": y.syntax,
-                            "NAME": z}
+                            "NAME": z, "COLLECTIVE": y.collective, 
+                            "EQUALITY": y.equality, "OBSOLETE": y.obsolete,
+                            "OID": y.oid, "ORDERING": y.ordering, "SUP": y.sup,
+                            "SYNTAX_LEN": y.syntax_len, "USAGE": y.usage}
             
-                #oidList = schema.listall(ldap.schema.LDAPSyntax)
-                #for x in oidList:
-                #    environment.updateUI()
-                #    y = schema.get_obj(ldap.schema.LDAPSyntax, x)
-                #    print y.desc
+                # get syntax information
+                oidList = schema.listall(ldap.schema.LDAPSyntax)
+                for x in oidList:
+                    environment.updateUI()
+                    y = schema.get_obj(ldap.schema.LDAPSyntax, x)
+                    self.syntaxDict[x] = {"DESC": y.desc, "OID": y.oid}
+                        
+                
+                # get matching information
+                oidList = schema.listall(ldap.schema.MatchingRule)
+                for x in oidList:
+                    environment.updateUI()
+                    y = schema.get_obj(ldap.schema.MatchingRule, x)
+                    for z in y.names:
+                        self.matchingDict[string.lower(z)] = {"DESC": y.desc, "OID": y.oid,
+                            "OBSOLETE": y.obsolete, "SYNTAX": y.syntax,
+                            "NAME": z}
                 
                 # store retrieved information in the cache
                 metaData = {}
                 metaData['objectClassesDict'] = self.objectClassesDict
                 metaData['attributeDict'] = self.attributeDict
+                metaData['syntaxDict'] = self.syntaxDict
+                metaData['matchingDict'] = self.matchingDict
                 self.__class__.serverMetaCache[self.serverMeta.name] = metaData
                 
             except ldap.LDAPError, e:
+                self.failure = True
+                self.failureException = e
                 print "Error during LDAP request"
                 print "Reason: " + str(e)
             
         environment.setBusy(False)
 
+###############################################################################
+
+    def getAttributeList(self):
+        """ Returns a list of all attributes the server supports.
+        """
+        
+        return map(lambda x: x["NAME"], self.attributeDict.values())
+        
 ###############################################################################
 
     def getAllAttributes(self, classList = None):
@@ -156,6 +199,8 @@ class ObjectClassAttributeInfo(object):
         
         must = Set()
         may = Set()
+        
+        classList = self.getClassesWithParents(classList)
         
         for x in classList:
             x = string.lower(x)
@@ -175,6 +220,8 @@ class ObjectClassAttributeInfo(object):
         
         must = Set()
         
+        classList = self.getClassesWithParents(classList)
+        
         for x in classList:
             must |= Set(self.objectClassesDict[string.lower(x)]["MUST"])
             
@@ -188,6 +235,8 @@ class ObjectClassAttributeInfo(object):
         """
         
         may = Set()
+        
+        classList = self.getClassesWithParents(classList)
         
         for x in classList:
             may |= Set(self.objectClassesDict[string.lower(x)]["MAY"])
@@ -232,17 +281,18 @@ class ObjectClassAttributeInfo(object):
 
 ###############################################################################
 
-    def isMust(self, attribute="", objectClassesDict = None):
+    def isMust(self, attribute="", classList = None):
         """ Check if the given attribute must be set.
         """
 
-        if objectClassesDict == None:
+        if classList == None:
             raise "Missing Arguments to Funktion 'isMust(attribute, objectClassesDict)"
 
         attribute = string.lower(attribute)
+        classList = self.getClassesWithParents(classList)
         
         value = False
-        for x in objectClassesDict:
+        for x in classList:
             tmpList = self.objectClassesDict[string.lower(x)]["MUST"]
             tmpList = map(lambda tmpString: string.lower(tmpString), tmpList)
             if attribute in tmpList:
@@ -365,10 +415,27 @@ class ObjectClassAttributeInfo(object):
         
 ###############################################################################
 
+    def getClassesWithParents(self, classList):
+        """ Returns the given classes together with their parents in a set.
+        """
+        
+        classSet = Set()
+        for x in classList:
+            tmpList = self.getParents(x)
+            classSet.add(x)
+            for y in tmpList:
+                classSet.add(y)
+                
+        return classSet
+        
+###############################################################################
+
     def attributeAllowed(self, attributeName, classList):
         """ Returns a boolean if the attribute attributeName is allowed with the
         classes given by classList.
         """
+        
+        classList = self.getClassesWithParents(classList)
         
         mustSet, maySet = self.getAllAttributes(classList)
         newSet = mustSet.union(maySet)
@@ -378,3 +445,85 @@ class ObjectClassAttributeInfo(object):
         else:
             return False
 
+###############################################################################
+
+    def getSyntaxList(self):
+        """ Returns the list of supported syntaxes by the server.
+        """
+        
+        return self.syntaxDict.keys()
+        
+###############################################################################
+
+    def getAttributeListForSyntax(self, syntaxString):
+        """ Returns a list of attributes which use the syntax given 
+        by syntaxString.
+        """
+        
+        tmpList = self.getAttributeList()
+        attributeList = []
+        
+        for x in tmpList:
+            dataDict = self.attributeDict[string.lower(x)]
+            if dataDict["SYNTAX"] == syntaxString:
+                attributeList.append(x)
+                
+        return attributeList
+        
+###############################################################################
+
+    def getMachtingListForSyntax(self, syntaxString):
+        """ Returns a list of matching rules for the given syntax.
+        """
+        
+        tmpList = self.getMachtingList()
+        matchingList = []
+        
+        for x in tmpList:
+            dataDict = self.matchingDict[string.lower(x)]
+            if dataDict["SYNTAX"] == syntaxString:
+                matchingList.append(x)
+                
+        return matchingList
+        
+###############################################################################
+
+    def getMachtingList(self):
+        """ Returns a list of matching rules supported by the server.
+        """
+        
+        return map(lambda x: self.matchingDict[x]['NAME'], self.matchingDict.keys())
+        
+###############################################################################
+
+    def getMatchingRuleList(self):
+        """ Returns a list of matching rules supported by the server.
+        """
+        
+        return map(lambda x: self.matchingDict[x]['NAME'], self.matchingDict.keys())
+        
+###############################################################################
+
+    def getAttributeListForMatchingRule(self, matchingString):
+        """ Returns a list of attributes which use the matching rule given
+        by matchingString.
+        """
+        
+        tmpList = self.getAttributeList()
+        attributeList = []
+        
+        for x in tmpList:
+            dataDict = self.attributeDict[string.lower(x)]
+            if dataDict["EQUALITY"] == matchingString:
+                attributeList.append(x)
+                
+        return attributeList
+        
+        
+        
+        
+        
+        
+        
+        
+        
