@@ -437,8 +437,7 @@ See console output for more information."""),
         floatingWidget = ChildWindow(None)
         self.widgetList.append(floatingWidget)
         widget = ObjectWidget(floatingWidget, template.name.encode("utf-8"), 0)
-        widget.setMinimumHeight(500)
-        widget.setMinimumWidth(600)
+    
         floatingWidget.setCentralWidget(widget)
         widget.setCaption(self.trUtf8('Add entry'))
         widget.buildToolBar(floatingWidget)

@@ -62,7 +62,6 @@ class SearchResultView(SearchResultViewDesign):
         widget.buildToolBar(floatingWidget)
         values = [self.RESULT[unicode(listItem.text(0)).encode('utf-8')]]
         widget.initView(self.SERVER, values)
-        widget.setMinimumHeight(500)
         
         # needed if window is closed. gets deletetd from the list
         floatingWidget.installEventFilter(self)

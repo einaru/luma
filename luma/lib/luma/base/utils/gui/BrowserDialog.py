@@ -47,7 +47,7 @@ class BrowserDialog(QDialog):
         self.connect(self.okButton, SIGNAL("clicked()"), self.checkInput)
         self.connect(self.cancelButton, SIGNAL("clicked()"), self.cancel)
         
-        self.tmpBrowser.setMinimumWidth(500)
+        #self.tmpBrowser.setMinimumWidth(500)
         self.exec_loop()
         
 
