@@ -160,8 +160,8 @@ class TemplateWidget(TemplateWidgetDesign):
             return
             
         newClasses = []
-        listIterator = QListViewItemIterator(dialog.classView)
         
+        listIterator = QListViewItemIterator(dialog.classView)
         while listIterator.current():
             item = listIterator.current()
             
@@ -173,10 +173,19 @@ class TemplateWidget(TemplateWidgetDesign):
         for x in newClasses:
             item = QListViewItem(self.classView, x)
             self.currentTemplate.addObjectClass(x)
+            
          
          
         mustAttributes = metaInfo.getAllMusts(newClasses)
         for x in mustAttributes:
+            # WARNING!!! DO NOT REMOVE THIS CODE!!!
+            # If you choose the objectClass 'top', it has the attribute 
+            # 'objectClass'. This overwrites the objectClass attribute value
+            # from the python data structure and causes errors. So we filter it 
+            # out.
+            if x == "objectClass":
+                continue
+                
             must = metaInfo.isMust(x, newClasses)
             single = metaInfo.isSingle(x)
             binary = metaInfo.isBinary(x)
