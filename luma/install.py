@@ -37,7 +37,14 @@ def doImportCheck():
 
     try:
         import qt
-        print "\tGood: PyQt installed."
+        vString = "3.8"
+        if qt.PYQT_VERSION_STR >= vString:
+            print "\tGood: PyQt (>= " + vString + ") installed."
+        else:
+            print "\tBad: Installed version of PyQt is out of date."
+            print "\t     At least version " + vString + " is needed"
+            print "\t     Currently version " + qt.PYQT_VERSION_STR + " is available.\n"
+            myError = 1
     except ImportError:
         print """\n\tERROR: PyQt not installed!!!
 \tYou can get the module here: http://www.riverbankcomputing.co.uk/pyqt
