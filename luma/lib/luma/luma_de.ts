@@ -438,6 +438,71 @@ Siehe Konsolenausgabe für mehr Informationen.</translation>
     </message>
 </context>
 <context>
+    <name>AddAttributeDialogDesign</name>
+    <message>
+        <source>Attributes</source>
+        <translation type="unfinished">Attribute</translation>
+    </message>
+    <message>
+        <source>Add attribute</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please select the attributes you want to add.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;OK</source>
+        <translation type="unfinished">&amp;Ok</translation>
+    </message>
+    <message>
+        <source>Alt+O</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Cancel</source>
+        <translation type="unfinished">&amp;Abbrechen</translation>
+    </message>
+    <message>
+        <source>Alt+C</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;Attribute information&lt;/b&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Binary:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>B</source>
+        <comment>DO NOT TRANSLATE</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>C</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Must:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Default value:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Single:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>A</source>
+        <comment>DO NOT TRANSLATE</comment>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>AddAttributeWizardDesign</name>
     <message>
         <source>Add Attribute</source>
@@ -496,6 +561,94 @@ the selected objectclass.&lt;/p&gt;</source>
     </message>
 </context>
 <context>
+    <name>AddObjectClassDialogDesign</name>
+    <message>
+        <source>Objectclass</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Form</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please choose the objectclasses you want to add to the plugin.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;OK</source>
+        <translation type="unfinished">&amp;Ok</translation>
+    </message>
+    <message>
+        <source>Alt+O</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Cancel</source>
+        <translation type="unfinished">&amp;Abbrechen</translation>
+    </message>
+    <message>
+        <source>Alt+C</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>AddTemplateDialog</name>
+    <message>
+        <source>A template with this name already exists.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please supply a template name.</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>AddTemplateDialogDesign</name>
+    <message>
+        <source>New Template</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please choose a template name, a description and a server with which the template is associated.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;OK</source>
+        <translation type="unfinished">&amp;Ok</translation>
+    </message>
+    <message>
+        <source>&amp;Cancel</source>
+        <translation type="unfinished">&amp;Abbrechen</translation>
+    </message>
+    <message>
+        <source>Template name:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Server:</source>
+        <translation type="unfinished">Server:</translation>
+    </message>
+    <message>
+        <source>Description:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please supply a template name.</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>AddressbookSettings</name>
+    <message>
+        <source>New search criteria</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Attribute:</source>
+        <translation type="unfinished">Attribut:</translation>
+    </message>
+</context>
+<context>
     <name>AddressbookSettingsDesign</name>
     <message>
         <source>Attributes</source>
@@ -504,14 +657,6 @@ the selected objectclass.&lt;/p&gt;</source>
     <message>
         <source>Addressbook Settings</source>
         <translation>Addressbuch Einstellungen</translation>
-    </message>
-    <message>
-        <source>Search Criteria</source>
-        <translation>Suchkriterium</translation>
-    </message>
-    <message>
-        <source>&amp;Add</source>
-        <translation>&amp;Hinzufügen</translation>
     </message>
     <message>
         <source>Alt+A</source>
@@ -526,12 +671,12 @@ the selected objectclass.&lt;/p&gt;</source>
         <translation>Alt+L</translation>
     </message>
     <message>
-        <source>&amp;Save</source>
-        <translation>&amp;Speichern</translation>
+        <source>&lt;b&gt;Search criteria&lt;/b&gt;</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Alt+S</source>
-        <translation>Alt+S</translation>
+        <source>&amp;Add...</source>
+        <translation type="unfinished">&amp;Hinzufügen...</translation>
     </message>
 </context>
 <context>
@@ -737,10 +882,6 @@ Please read console output for more information.</source>
         <translation>Passwort:</translation>
     </message>
     <message>
-        <source>Encrypt Password</source>
-        <translation>Passwort verschlüsseln</translation>
-    </message>
-    <message>
         <source>Date:</source>
         <translation>Datum:</translation>
     </message>
@@ -761,10 +902,6 @@ Please read console output for more information.</source>
         <translation>Verschlüsseltes Passwort:</translation>
     </message>
     <message>
-        <source>Method:</source>
-        <translation>Methode:</translation>
-    </message>
-    <message>
         <source>Passwords</source>
         <translation>Passwörter</translation>
     </message>
@@ -775,10 +912,6 @@ Please read console output for more information.</source>
     <message>
         <source>Alt+E</source>
         <translation>Alt+V</translation>
-    </message>
-    <message>
-        <source>Create Random Password</source>
-        <translation>Zufallspasswort erstellen</translation>
     </message>
     <message>
         <source>&amp;Create</source>
@@ -799,20 +932,12 @@ Please read console output for more information.</source>
         <translation>Datum</translation>
     </message>
     <message>
-        <source>Date to Unix Date</source>
-        <translation>Datum nach Unix Datum</translation>
-    </message>
-    <message>
         <source>&amp;Convert</source>
         <translation>&amp;Konvertieren</translation>
     </message>
     <message>
         <source>Unix Date:</source>
         <translation>Unix Datum:</translation>
-    </message>
-    <message>
-        <source>Duration to Unix Date</source>
-        <translation>Zeitspanne nach Unix Datum</translation>
     </message>
     <message>
         <source>C&amp;onvert</source>
@@ -825,6 +950,26 @@ Please read console output for more information.</source>
     <message>
         <source>AdminPanelDesign</source>
         <translation></translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;Hash method:&lt;/b&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;Encrypt password&lt;/b&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;Create random password&lt;/b&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;Date to Unix date&lt;/b&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;Duration to Unix date&lt;/b&gt;</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -983,12 +1128,43 @@ Mehr Informationen in der Konsolen-Ausgabe.</translation>
         <translation>Alt+L</translation>
     </message>
     <message>
-        <source>&amp;Add</source>
-        <translation>&amp;Hinzufügen</translation>
-    </message>
-    <message>
         <source>Alt+A</source>
         <translation>Alt+H</translation>
+    </message>
+    <message>
+        <source>&amp;Add...</source>
+        <translation type="unfinished">&amp;Hinzufügen...</translation>
+    </message>
+</context>
+<context>
+    <name>ClassDeleteDialog</name>
+    <message>
+        <source>Attribute</source>
+        <translation type="unfinished">Attribut</translation>
+    </message>
+    <message>
+        <source>Attribute warning</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Cancel</source>
+        <translation type="unfinished">&amp;Abbrechen</translation>
+    </message>
+    <message>
+        <source>Alt+C</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;OK</source>
+        <translation type="unfinished">&amp;Ok</translation>
+    </message>
+    <message>
+        <source>Alt+O</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;Warning:&lt;/b&gt; The follwing attributes will be removed when deleting objectclass &lt;b&gt;%1&lt;/b&gt;. Do you want to continue?</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1168,10 +1344,6 @@ Mehr Informationen in der Konsolen-Ausgabe.</translation>
         <translation>Suchfilter Assistent</translation>
     </message>
     <message>
-        <source>Search Criteria</source>
-        <translation>Suchkriterium</translation>
-    </message>
-    <message>
         <source>ObjectClass</source>
         <translation>Objektklasse</translation>
     </message>
@@ -1196,16 +1368,8 @@ Mehr Informationen in der Konsolen-Ausgabe.</translation>
         <translation>&lt;= (kleiner)</translation>
     </message>
     <message>
-        <source>Expression:</source>
-        <translation>Ausdruck:</translation>
-    </message>
-    <message>
         <source>Add</source>
         <translation>Hinzufügen</translation>
-    </message>
-    <message>
-        <source>Concatenation:</source>
-        <translation>Verknüpfung:</translation>
     </message>
     <message>
         <source>and</source>
@@ -1220,24 +1384,12 @@ Mehr Informationen in der Konsolen-Ausgabe.</translation>
         <translation>nicht</translation>
     </message>
     <message>
-        <source>Search Filter</source>
-        <translation>Suchfilter</translation>
-    </message>
-    <message>
-        <source>Bookmark:</source>
-        <translation>Lesezeichen:</translation>
-    </message>
-    <message>
         <source>&amp;Delete</source>
         <translation>&amp;Löschen</translation>
     </message>
     <message>
         <source>Alt+D</source>
         <translation>Alt+L</translation>
-    </message>
-    <message>
-        <source>&amp;Add to Bookmarks</source>
-        <translation>&amp;Zu Lesezeichen hinzufügen</translation>
     </message>
     <message>
         <source>Alt+A</source>
@@ -1250,6 +1402,38 @@ Mehr Informationen in der Konsolen-Ausgabe.</translation>
     <message>
         <source>Alt+O</source>
         <translation>Alt+O</translation>
+    </message>
+    <message>
+        <source>&amp;Add current filter</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;Filter bookmarks&lt;/b&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Filter:</source>
+        <translation type="unfinished">Filter:</translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;Search Criteria&lt;/b&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;Concatenation&lt;/b&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;Current filter&lt;/b&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Cancel</source>
+        <translation type="unfinished">&amp;Abbrechen</translation>
+    </message>
+    <message>
+        <source>Alt+C</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1699,25 +1883,10 @@ Versuchen sie entweder den Bereich für die uids zu erweitern oder löschen sie 
     </message>
 </context>
 <context>
-    <name>MainWin</name>
-    <message>
-        <source>Choose Language</source>
-        <translation>Sprache auswählen</translation>
-    </message>
-</context>
-<context>
     <name>MainWinDesign</name>
     <message>
         <source>Luma</source>
         <translation>Luma</translation>
-    </message>
-    <message>
-        <source>Plugins</source>
-        <translation>Plugins</translation>
-    </message>
-    <message>
-        <source>Work Area</source>
-        <translation>Arbeitsbereich</translation>
     </message>
     <message>
         <source>Exit</source>
@@ -1841,10 +2010,6 @@ Please see console output for more information.</source>
 <context>
     <name>MassCreationDesign</name>
     <message>
-        <source>Directory Settings</source>
-        <translation>Verzeichniseinstellungen</translation>
-    </message>
-    <message>
         <source>Base node:</source>
         <translation>Basisknoten:</translation>
     </message>
@@ -1857,16 +2022,8 @@ Please see console output for more information.</source>
         <translation>Maximum:</translation>
     </message>
     <message>
-        <source>Usernames</source>
-        <translation>Benutzernamen</translation>
-    </message>
-    <message>
         <source>Prefix:</source>
         <translation>Präfix:</translation>
-    </message>
-    <message>
-        <source>Expiration date</source>
-        <translation>Auslaufdatum</translation>
     </message>
     <message>
         <source>Date</source>
@@ -1875,10 +2032,6 @@ Please see console output for more information.</source>
     <message>
         <source>Days from now</source>
         <translation>Tage von jetzt an</translation>
-    </message>
-    <message>
-        <source>Account settings</source>
-        <translation>Kontoeinstellungen</translation>
     </message>
     <message>
         <source>/home</source>
@@ -1897,32 +2050,12 @@ Please see console output for more information.</source>
         <translation>Login Shell:</translation>
     </message>
     <message>
-        <source>Basic</source>
-        <translation>Basis</translation>
-    </message>
-    <message>
         <source>Select group from LDAP</source>
         <translation>Gruppe auswählen</translation>
     </message>
     <message>
-        <source>Account Settings</source>
-        <translation>Accounteinstellungen</translation>
-    </message>
-    <message>
-        <source>Account Passwords:</source>
-        <translation>Accountpasswörter:</translation>
-    </message>
-    <message>
-        <source>Account Passwords</source>
-        <translation>Accountpasswörter</translation>
-    </message>
-    <message>
         <source>Home prefix:</source>
         <translation>Home Präfix:</translation>
-    </message>
-    <message>
-        <source>Uid number range</source>
-        <translation>UserId Nummernbereich</translation>
     </message>
     <message>
         <source>&amp;Create</source>
@@ -1935,6 +2068,66 @@ Please see console output for more information.</source>
     <message>
         <source>MassCreationDesign</source>
         <translation></translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;Usernames&lt;/b&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;UID number range&lt;/b&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;Account settings&lt;/b&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;Expiration date&lt;/b&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;Directory location&lt;/b&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Account</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Enable automount support</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;Automount options&lt;/b&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Server:</source>
+        <translation type="unfinished">Server:</translation>
+    </message>
+    <message>
+        <source>Arguments:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Location:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>-fstype=nfs,rw,quota,soft,intr</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Automount</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;Account Passwords&lt;/b&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Passwords</source>
+        <translation type="unfinished">Passwörter</translation>
     </message>
 </context>
 <context>
@@ -2035,10 +2228,6 @@ Please see console output for more information.</source>
         <translation>Neue Kategorie</translation>
     </message>
     <message>
-        <source>Add Category:</source>
-        <translation>Neue Kategorie:</translation>
-    </message>
-    <message>
         <source>Birthday</source>
         <translation>Geburtstag</translation>
     </message>
@@ -2137,6 +2326,10 @@ Please see console output for more information.</source>
     <message>
         <source>Alt+C</source>
         <translation>Alt+A</translation>
+    </message>
+    <message>
+        <source>Category:</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2320,10 +2513,6 @@ Siehe Konsolenausgabe für mehr Informationen.</translation>
         <translation></translation>
     </message>
     <message>
-        <source>Please enter a new password.</source>
-        <translation>Bitte ein neues Passwort eingeben.</translation>
-    </message>
-    <message>
         <source>&amp;OK</source>
         <translation>&amp;Ok</translation>
     </message>
@@ -2346,6 +2535,10 @@ Siehe Konsolenausgabe für mehr Informationen.</translation>
     <message>
         <source>Passwords do not match</source>
         <translation>Passwörter stimmen nicht überein</translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;Please enter a new password.&lt;/b&gt;</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2414,20 +2607,24 @@ Siehe Konsolenausgabe für mehr Informationen.</translation>
         <translation>Server:</translation>
     </message>
     <message>
-        <source>&amp;Wizard</source>
-        <translation>&amp;Assistent</translation>
-    </message>
-    <message>
-        <source>Alt+W</source>
-        <translation>Alt+A</translation>
-    </message>
-    <message>
-        <source>&amp;Start</source>
-        <translation>&amp;Start</translation>
-    </message>
-    <message>
         <source>Alt+S</source>
         <translation>Alt+S</translation>
+    </message>
+    <message>
+        <source>SearchFormDesign</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Filter wizard</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Alt+F</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Search</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2629,92 +2826,6 @@ Please see console output for more information.</source>
     </message>
 </context>
 <context>
-    <name>TemplateForm</name>
-    <message>
-        <source>Add Template</source>
-        <translation>Template hinzufügen</translation>
-    </message>
-    <message>
-        <source>Enter template name:</source>
-        <translation>Template Namen eingeben:</translation>
-    </message>
-    <message>
-        <source>Template name already exists!</source>
-        <translation>Template existiert bereits!</translation>
-    </message>
-</context>
-<context>
-    <name>TemplateFormDesign</name>
-    <message>
-        <source>Type</source>
-        <translation>Typ</translation>
-    </message>
-    <message>
-        <source>Name</source>
-        <translation>Name</translation>
-    </message>
-    <message>
-        <source>Must</source>
-        <translation>Muss</translation>
-    </message>
-    <message>
-        <source>Single</source>
-        <translation>Einzig</translation>
-    </message>
-    <message>
-        <source>Show</source>
-        <translation>Anzeigen</translation>
-    </message>
-    <message>
-        <source>Template Name</source>
-        <translation>Template Name</translation>
-    </message>
-    <message>
-        <source>Template Info</source>
-        <translation>Template Informationen</translation>
-    </message>
-    <message>
-        <source>Template List</source>
-        <translation>Vorlagenliste</translation>
-    </message>
-    <message>
-        <source>TemplateFormDesign</source>
-        <translation></translation>
-    </message>
-    <message>
-        <source>&amp;Save</source>
-        <translation>&amp;Speichern</translation>
-    </message>
-    <message>
-        <source>Alt+S</source>
-        <translation>Alt+S</translation>
-    </message>
-    <message>
-        <source>&amp;Edit...</source>
-        <translation>&amp;Editieren</translation>
-    </message>
-    <message>
-        <source>Alt+E</source>
-        <translation>Alt+E</translation>
-    </message>
-    <message>
-        <source>&amp;Delete</source>
-        <translation>&amp;Löschen</translation>
-    </message>
-    <message>
-        <source>Alt+D</source>
-        <translation>Alt+L</translation>
-    </message>
-    <message>
-        <source>&amp;Add...</source>
-        <translation>&amp;Hinzufügen...</translation>
-    </message>
-    <message>
-        <source>Alt+A</source>
-        <translation>Alt+H</translation>
-    </message>
-</context>
-<context>
     <name>TemplateObjectWidget</name>
     <message>
         <source>Reset Values</source>
@@ -2727,6 +2838,136 @@ Please see console output for more information.</source>
     <message>
         <source>Save</source>
         <translation>Speichern</translation>
+    </message>
+</context>
+<context>
+    <name>TemplateWidget</name>
+    <message>
+        <source>Delete template</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Do you really want to delete the selected template?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;OK</source>
+        <translation type="unfinished">&amp;Ok</translation>
+    </message>
+    <message>
+        <source>&amp;Cancel</source>
+        <translation type="unfinished">&amp;Abbrechen</translation>
+    </message>
+    <message>
+        <source>Delete attribute</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Do you really want to delete the attribute?</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>TemplateWidgetDesign</name>
+    <message>
+        <source>Name</source>
+        <translation type="unfinished">Name</translation>
+    </message>
+    <message>
+        <source>Must</source>
+        <translation type="unfinished">Muss</translation>
+    </message>
+    <message>
+        <source>Single</source>
+        <translation type="unfinished">Einzig</translation>
+    </message>
+    <message>
+        <source>Binary</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Default value</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Form1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;Templates&lt;/b&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Add...</source>
+        <translation type="unfinished">&amp;Hinzufügen...</translation>
+    </message>
+    <message>
+        <source>Alt+A</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Save</source>
+        <translation type="unfinished">&amp;Speichern</translation>
+    </message>
+    <message>
+        <source>Alt+S</source>
+        <translation type="unfinished">Alt+S</translation>
+    </message>
+    <message>
+        <source>&amp;Delete...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Alt+D</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>D&amp;uplicate...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Alt+U</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;Name:&lt;/b&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>This a description of the template you are currently working with.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>foo</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;Description:&lt;/b&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>bar</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;Server:&lt;/b&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add...</source>
+        <translation type="unfinished">Hinzufügen...</translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;Objectclasses&lt;/b&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Delete</source>
+        <translation type="unfinished">Löschen</translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;Attributes&lt;/b&gt;</source>
+        <translation type="unfinished">&lt;b&gt;Attribute&lt;/b&gt;</translation>
     </message>
 </context>
 <context>
