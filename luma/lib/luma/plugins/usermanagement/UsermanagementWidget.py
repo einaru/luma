@@ -28,6 +28,10 @@ class UsermanagementWidget(UsermanagementWidgetDesign):
     def __init__(self,parent = None,name = None,fl = 0):
         UsermanagementWidgetDesign.__init__(self,parent,name,fl)
         
+        self.optionLine1.hide()
+        self.deleteButton.hide()
+        
+        
         iconDir = os.path.join (environment.lumaInstallationPrefix, "share", "luma", "icons", "plugins", "usermanagement")
         lumaIconPath = os.path.join (environment.lumaInstallationPrefix, "share", "luma", "icons")
 
@@ -110,7 +114,7 @@ class UsermanagementWidget(UsermanagementWidgetDesign):
         self.passwordButton.setEnabled(posixBool)
         
         inetOrgBool = False
-        if "inetOrgPerson" in objectClasses:
+        if ("inetOrgPerson" in objectClasses) or (self.CURRENTDATA.has_key("mail")):
             inetOrgBool = True
         self.mailBox.setEnabled(inetOrgBool)
         self.deleteMailButton.setEnabled(inetOrgBool)
@@ -231,8 +235,13 @@ class UsermanagementWidget(UsermanagementWidgetDesign):
         self.mailBox.clear()
         
         self.mailBox.blockSignals(True)
+        
         if self.CURRENTDATA.has_key('mail'):
-            map(self.mailBox.insertItem, self.CURRENTDATA['mail'])
+            tmpList = self.CURRENTDATA['mail']
+            tmpList.sort()
+            for y in tmpList:
+                self.mailBox.insertItem(y.decode('utf-8'))
+                
         self.mailBox.blockSignals(False)
             
 ###############################################################################
