@@ -571,14 +571,6 @@ til høyre viser alle attributter som må legges til i tillegg til valgt objektk
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Form</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Please choose the objectclasses you want to add to the plugin.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>&amp;OK</source>
         <translation type="unfinished"></translation>
     </message>
@@ -592,6 +584,14 @@ til høyre viser alle attributter som må legges til i tillegg til valgt objektk
     </message>
     <message>
         <source>Alt+C</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add objectclass</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please choose the objectclasses you want to add to the template.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2940,10 +2940,6 @@ Vennligst se utskrift i konsollet for mer informasjon.</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>This a description of the template you are currently working with.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>foo</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2974,6 +2970,11 @@ Vennligst se utskrift i konsollet for mer informasjon.</translation>
     <message>
         <source>&lt;b&gt;Attributes&lt;/b&gt;</source>
         <translation type="unfinished">&lt;b&gt;Attributter&lt;/b&gt;</translation>
+    </message>
+    <message>
+        <source>This is a description of the template you are currently working with.</source>
+        <comment>DO NOT TRANSLATE</comment>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

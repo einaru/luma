@@ -571,14 +571,6 @@ alla attribut som även dem måste läggas till för vald objektklass.&lt;/p&gt;
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Form</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Please choose the objectclasses you want to add to the plugin.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>&amp;OK</source>
         <translation type="unfinished">&amp;OK</translation>
     </message>
@@ -592,6 +584,14 @@ alla attribut som även dem måste läggas till för vald objektklass.&lt;/p&gt;
     </message>
     <message>
         <source>Alt+C</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add objectclass</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please choose the objectclasses you want to add to the template.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2941,10 +2941,6 @@ Se konsolen för mer information.</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>This a description of the template you are currently working with.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>foo</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2975,6 +2971,11 @@ Se konsolen för mer information.</translation>
     <message>
         <source>&lt;b&gt;Attributes&lt;/b&gt;</source>
         <translation type="unfinished">&lt;b&gt;Attribut&lt;/b&gt;</translation>
+    </message>
+    <message>
+        <source>This is a description of the template you are currently working with.</source>
+        <comment>DO NOT TRANSLATE</comment>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

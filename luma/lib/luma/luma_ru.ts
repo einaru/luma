@@ -351,7 +351,7 @@ http://luma.sourceforge.net
     <message>
         <source>&lt;font size=&quot;+2&quot;&gt;&lt;b&gt;Luma 1.4&lt;/b&gt;&lt;/font&gt;</source>
         <comment>DO NOT TRANSLATE</comment>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
 </context>
 <context>
@@ -441,65 +441,65 @@ Please see console output for more information.</source>
     <name>AddAttributeDialogDesign</name>
     <message>
         <source>Attributes</source>
-        <translation type="unfinished">Атрибуты</translation>
+        <translation>Атрибуты</translation>
     </message>
     <message>
         <source>Add attribute</source>
-        <translation type="unfinished"></translation>
+        <translation>Добавить атрибут</translation>
     </message>
     <message>
         <source>Please select the attributes you want to add.</source>
-        <translation type="unfinished"></translation>
+        <translation>Пожалуйста, выберите атрибуты, которые Вы хотите добавить.</translation>
     </message>
     <message>
         <source>&amp;OK</source>
-        <translation type="unfinished"></translation>
+        <translation>O&amp;K</translation>
     </message>
     <message>
         <source>Alt+O</source>
-        <translation type="unfinished"></translation>
+        <translation>Alt+К</translation>
     </message>
     <message>
         <source>&amp;Cancel</source>
-        <translation type="unfinished">&amp;Отменить</translation>
+        <translation>&amp;Отменить</translation>
     </message>
     <message>
         <source>Alt+C</source>
-        <translation type="unfinished"></translation>
+        <translation>Alt+О</translation>
     </message>
     <message>
         <source>&lt;b&gt;Attribute information&lt;/b&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>Информация атрибута</translation>
     </message>
     <message>
         <source>Binary:</source>
-        <translation type="unfinished"></translation>
+        <translation>Бинарное:</translation>
     </message>
     <message>
         <source>B</source>
         <comment>DO NOT TRANSLATE</comment>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>C</source>
-        <translation type="unfinished"></translation>
+        <translation>C</translation>
     </message>
     <message>
         <source>Must:</source>
-        <translation type="unfinished"></translation>
+        <translation>Необходимое:</translation>
     </message>
     <message>
         <source>Default value:</source>
-        <translation type="unfinished"></translation>
+        <translation>Значение по умолчанию:</translation>
     </message>
     <message>
         <source>Single:</source>
-        <translation type="unfinished"></translation>
+        <translation>Единственный:</translation>
     </message>
     <message>
         <source>A</source>
         <comment>DO NOT TRANSLATE</comment>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
 </context>
 <context>
@@ -566,88 +566,88 @@ the selected objectclass.&lt;/p&gt;</source>
     <name>AddObjectClassDialogDesign</name>
     <message>
         <source>Objectclass</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Form</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Please choose the objectclasses you want to add to the plugin.</source>
-        <translation type="unfinished"></translation>
+        <translation>Класс объекта</translation>
     </message>
     <message>
         <source>&amp;OK</source>
-        <translation type="unfinished"></translation>
+        <translation>O&amp;K</translation>
     </message>
     <message>
         <source>Alt+O</source>
-        <translation type="unfinished"></translation>
+        <translation>Alt+К</translation>
     </message>
     <message>
         <source>&amp;Cancel</source>
-        <translation type="unfinished">&amp;Отменить</translation>
+        <translation>&amp;Отменить&amp;Отменить</translation>
     </message>
     <message>
         <source>Alt+C</source>
-        <translation type="unfinished"></translation>
+        <translation>Alt+О</translation>
+    </message>
+    <message>
+        <source>Add objectclass</source>
+        <translation>Добавить класс объекта</translation>
+    </message>
+    <message>
+        <source>Please choose the objectclasses you want to add to the template.</source>
+        <translation>Пожалуйста, выберите классы объекта, которые Вы хотите добавить в шаблон.</translation>
     </message>
 </context>
 <context>
     <name>AddTemplateDialog</name>
     <message>
         <source>A template with this name already exists.</source>
-        <translation type="unfinished"></translation>
+        <translation>Шаблон с этим именем уже существует.</translation>
     </message>
     <message>
         <source>Please supply a template name.</source>
-        <translation type="unfinished"></translation>
+        <translation>Пожалуйста, введите название шаблона.</translation>
     </message>
 </context>
 <context>
     <name>AddTemplateDialogDesign</name>
     <message>
         <source>New Template</source>
-        <translation type="unfinished"></translation>
+        <translation>Новый шаблон</translation>
     </message>
     <message>
         <source>Please choose a template name, a description and a server with which the template is associated.</source>
-        <translation type="unfinished"></translation>
+        <translation>Пожалуйста, введите название шаблона, его описание и сервер, с которым ассоциируется этот шаблон.</translation>
     </message>
     <message>
         <source>&amp;OK</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;OK</translation>
     </message>
     <message>
         <source>&amp;Cancel</source>
-        <translation type="unfinished">&amp;Отменить</translation>
+        <translation>&amp;Отменить</translation>
     </message>
     <message>
         <source>Template name:</source>
-        <translation type="unfinished"></translation>
+        <translation>Название шаблона:</translation>
     </message>
     <message>
         <source>Server:</source>
-        <translation type="unfinished"></translation>
+        <translation>Сервер:</translation>
     </message>
     <message>
         <source>Description:</source>
-        <translation type="unfinished"></translation>
+        <translation>Описание:</translation>
     </message>
     <message>
         <source>Please supply a template name.</source>
-        <translation type="unfinished"></translation>
+        <translation>Пожалуйста, введите название шаблона.</translation>
     </message>
 </context>
 <context>
     <name>AddressbookSettings</name>
     <message>
         <source>New search criteria</source>
-        <translation type="unfinished"></translation>
+        <translation>Новое условие поиска</translation>
     </message>
     <message>
         <source>Attribute:</source>
-        <translation type="unfinished">Атрибут:</translation>
+        <translation>Атрибут:</translation>
     </message>
 </context>
 <context>
@@ -674,11 +674,11 @@ the selected objectclass.&lt;/p&gt;</source>
     </message>
     <message>
         <source>&lt;b&gt;Search criteria&lt;/b&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;Условие поиска&lt;/b&gt;</translation>
     </message>
     <message>
         <source>&amp;Add...</source>
-        <translation type="unfinished">&amp;Добавить...</translation>
+        <translation>&amp;Добавить...</translation>
     </message>
 </context>
 <context>
@@ -956,23 +956,23 @@ Please read console output for more information.</source>
     </message>
     <message>
         <source>&lt;b&gt;Hash method:&lt;/b&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;Метод хэширования:&lt;/b&gt;</translation>
     </message>
     <message>
         <source>&lt;b&gt;Encrypt password&lt;/b&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;Зашифровать пароль&lt;/b&gt;</translation>
     </message>
     <message>
         <source>&lt;b&gt;Create random password&lt;/b&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;Создать случайный пароль&lt;/b&gt;</translation>
     </message>
     <message>
         <source>&lt;b&gt;Date to Unix date&lt;/b&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;Дату в Юникс-дату&lt;/b&gt;</translation>
     </message>
     <message>
         <source>&lt;b&gt;Duration to Unix date&lt;/b&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;Длительность в Юникс-дату&lt;/b&gt;</translation>
     </message>
 </context>
 <context>
@@ -1136,38 +1136,38 @@ See console output for more information.</source>
     </message>
     <message>
         <source>&amp;Add...</source>
-        <translation type="unfinished">&amp;Добавить...</translation>
+        <translation>&amp;Добавить...</translation>
     </message>
 </context>
 <context>
     <name>ClassDeleteDialog</name>
     <message>
         <source>Attribute</source>
-        <translation type="unfinished">Атрибут</translation>
+        <translation>Атрибут</translation>
     </message>
     <message>
         <source>Attribute warning</source>
-        <translation type="unfinished"></translation>
+        <translation>Предупреждение атрибута</translation>
     </message>
     <message>
         <source>&amp;Cancel</source>
-        <translation type="unfinished">&amp;Отменить</translation>
+        <translation>&amp;Отменить</translation>
     </message>
     <message>
         <source>Alt+C</source>
-        <translation type="unfinished"></translation>
+        <translation>Alt+О</translation>
     </message>
     <message>
         <source>&amp;OK</source>
-        <translation type="unfinished"></translation>
+        <translation>O&amp;K</translation>
     </message>
     <message>
         <source>Alt+O</source>
-        <translation type="unfinished"></translation>
+        <translation>Alt+К</translation>
     </message>
     <message>
         <source>&lt;b&gt;Warning:&lt;/b&gt; The follwing attributes will be removed when deleting objectclass &lt;b&gt;%1&lt;/b&gt;. Do you want to continue?</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;Предупреждение:&lt;/b&gt; При удалении класса объектов &lt;b&gt;%1&lt;/b&gt; следующие атрибуты будут удалены. Вы уверены, что хотите продолжить?</translation>
     </message>
 </context>
 <context>
@@ -1401,43 +1401,43 @@ See console output for more information.</source>
     </message>
     <message>
         <source>&amp;Ok</source>
-        <translation>&amp;OK</translation>
+        <translation>O&amp;K</translation>
     </message>
     <message>
         <source>Alt+O</source>
-        <translation>Alt+О</translation>
+        <translation>Alt+К</translation>
     </message>
     <message>
         <source>&amp;Add current filter</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Добавить текущий фильтр</translation>
     </message>
     <message>
         <source>&lt;b&gt;Filter bookmarks&lt;/b&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;Фильтровать закладки&lt;/b&gt;</translation>
     </message>
     <message>
         <source>Filter:</source>
-        <translation type="unfinished">Фильтр:</translation>
+        <translation>Фильтр:</translation>
     </message>
     <message>
         <source>&lt;b&gt;Search Criteria&lt;/b&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;Условие поиска&lt;/b&gt;</translation>
     </message>
     <message>
         <source>&lt;b&gt;Concatenation&lt;/b&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;Объединение&lt;/b&gt;</translation>
     </message>
     <message>
         <source>&lt;b&gt;Current filter&lt;/b&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;Текущий фильтр&lt;/b&gt;</translation>
     </message>
     <message>
         <source>&amp;Cancel</source>
-        <translation type="unfinished">&amp;Отменить</translation>
+        <translation>&amp;Отменить</translation>
     </message>
     <message>
         <source>Alt+C</source>
-        <translation type="unfinished"></translation>
+        <translation>Alt+О</translation>
     </message>
 </context>
 <context>
@@ -2080,63 +2080,63 @@ Please see console output for more information.</source>
     </message>
     <message>
         <source>&lt;b&gt;Usernames&lt;/b&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;Имена пользователей&lt;/b&gt;</translation>
     </message>
     <message>
         <source>&lt;b&gt;UID number range&lt;/b&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;Диапазон идентификаторов пользователей&lt;/b&gt;</translation>
     </message>
     <message>
         <source>&lt;b&gt;Account settings&lt;/b&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;Параметры учетной записи&lt;/b&gt;</translation>
     </message>
     <message>
         <source>&lt;b&gt;Expiration date&lt;/b&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;Дата окончания срока годности&lt;/b&gt;</translation>
     </message>
     <message>
         <source>&lt;b&gt;Directory location&lt;/b&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;Размещение папки&lt;/b&gt;</translation>
     </message>
     <message>
         <source>Account</source>
-        <translation type="unfinished"></translation>
+        <translation>Учетная запись</translation>
     </message>
     <message>
         <source>Enable automount support</source>
-        <translation type="unfinished"></translation>
+        <translation>Разрешить поддержку автомонтирования</translation>
     </message>
     <message>
         <source>&lt;b&gt;Automount options&lt;/b&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;Параметры автомонтирования&lt;/b&gt;</translation>
     </message>
     <message>
         <source>Server:</source>
-        <translation type="unfinished"></translation>
+        <translation>Сервер:</translation>
     </message>
     <message>
         <source>Arguments:</source>
-        <translation type="unfinished"></translation>
+        <translation>Аргументы:</translation>
     </message>
     <message>
         <source>Location:</source>
-        <translation type="unfinished">Размещение:</translation>
+        <translation>Размещение:</translation>
     </message>
     <message>
         <source>-fstype=nfs,rw,quota,soft,intr</source>
-        <translation type="unfinished"></translation>
+        <translation>-fstype=nfs,rw,quota,soft,intr</translation>
     </message>
     <message>
         <source>Automount</source>
-        <translation type="unfinished"></translation>
+        <translation>Автомонтирование</translation>
     </message>
     <message>
         <source>&lt;b&gt;Account Passwords&lt;/b&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;Пароли Учетной записи&lt;/b&gt;</translation>
     </message>
     <message>
         <source>Passwords</source>
-        <translation type="unfinished">Пароли</translation>
+        <translation>Пароли</translation>
     </message>
 </context>
 <context>
@@ -2338,7 +2338,7 @@ Please see console output for more information.</source>
     </message>
     <message>
         <source>Category:</source>
-        <translation type="unfinished"></translation>
+        <translation>Категория:</translation>
     </message>
 </context>
 <context>
@@ -2548,7 +2548,7 @@ Please read console output for more information.</source>
     </message>
     <message>
         <source>&lt;b&gt;Please enter a new password.&lt;/b&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;Пожалуйста, введите новый пароль.&lt;/b&gt;</translation>
     </message>
 </context>
 <context>
@@ -2622,19 +2622,19 @@ Please read console output for more information.</source>
     </message>
     <message>
         <source>SearchFormDesign</source>
-        <translation type="unfinished"></translation>
+        <translation>SearchFormDesign</translation>
     </message>
     <message>
         <source>&amp;Filter wizard</source>
-        <translation type="unfinished"></translation>
+        <translation>Мастер &amp;Фильтров</translation>
     </message>
     <message>
         <source>Alt+F</source>
-        <translation type="unfinished"></translation>
+        <translation>Alt+Ф</translation>
     </message>
     <message>
         <source>&amp;Search</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Поиск</translation>
     </message>
 </context>
 <context>
@@ -2856,130 +2856,131 @@ Please see console output for more information.</source>
     <name>TemplateWidget</name>
     <message>
         <source>Delete template</source>
-        <translation type="unfinished"></translation>
+        <translation>Удалить шаблон</translation>
     </message>
     <message>
         <source>Do you really want to delete the selected template?</source>
-        <translation type="unfinished"></translation>
+        <translation>Вы действительно хотите удалить выбранный шаблон?</translation>
     </message>
     <message>
         <source>&amp;OK</source>
-        <translation type="unfinished"></translation>
+        <translation>O&amp;K</translation>
     </message>
     <message>
         <source>&amp;Cancel</source>
-        <translation type="unfinished">&amp;Отменить</translation>
+        <translation>&amp;Отменить</translation>
     </message>
     <message>
         <source>Delete attribute</source>
-        <translation type="unfinished"></translation>
+        <translation>Удалить атрибут</translation>
     </message>
     <message>
         <source>Do you really want to delete the attribute?</source>
-        <translation type="unfinished"></translation>
+        <translation>Вы действительно хотите удалить атрибут?</translation>
     </message>
 </context>
 <context>
     <name>TemplateWidgetDesign</name>
     <message>
         <source>Name</source>
-        <translation type="unfinished">Имя/Название</translation>
+        <translation>Имя/Название</translation>
     </message>
     <message>
         <source>Must</source>
-        <translation type="unfinished">Необходимый</translation>
+        <translation>Необходимый</translation>
     </message>
     <message>
         <source>Single</source>
-        <translation type="unfinished">Уникальный</translation>
+        <translation>Уникальный</translation>
     </message>
     <message>
         <source>Binary</source>
-        <translation type="unfinished"></translation>
+        <translation>Бинарный</translation>
     </message>
     <message>
         <source>Default value</source>
-        <translation type="unfinished"></translation>
+        <translation>Значение по умолчанию</translation>
     </message>
     <message>
         <source>Form1</source>
-        <translation type="unfinished"></translation>
+        <translation>Форма1</translation>
     </message>
     <message>
         <source>&lt;b&gt;Templates&lt;/b&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;Шаблоны&lt;/b&gt;</translation>
     </message>
     <message>
         <source>&amp;Add...</source>
-        <translation type="unfinished">&amp;Добавить...</translation>
+        <translation>&amp;Добавить...</translation>
     </message>
     <message>
         <source>Alt+A</source>
-        <translation type="unfinished">Alt+Д</translation>
+        <translation>Alt+Д</translation>
     </message>
     <message>
         <source>&amp;Save</source>
-        <translation type="unfinished">&amp;Сохранить</translation>
+        <translation>&amp;Сохранить</translation>
     </message>
     <message>
         <source>Alt+S</source>
-        <translation type="unfinished">Alt+П</translation>
+        <translation>Alt+С</translation>
     </message>
     <message>
         <source>&amp;Delete...</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Удалить...</translation>
     </message>
     <message>
         <source>Alt+D</source>
-        <translation type="unfinished">Alt+У</translation>
+        <translation>Alt+У</translation>
     </message>
     <message>
         <source>D&amp;uplicate...</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Копировать...</translation>
     </message>
     <message>
         <source>Alt+U</source>
-        <translation type="unfinished"></translation>
+        <translation>Alt+К</translation>
     </message>
     <message>
         <source>&lt;b&gt;Name:&lt;/b&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>This a description of the template you are currently working with.</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;Имя:&lt;/b&gt;</translation>
     </message>
     <message>
         <source>foo</source>
-        <translation type="unfinished"></translation>
+        <translation>foo</translation>
     </message>
     <message>
         <source>&lt;b&gt;Description:&lt;/b&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;Описание:&lt;/b&gt;</translation>
     </message>
     <message>
         <source>bar</source>
-        <translation type="unfinished"></translation>
+        <translation>bar</translation>
     </message>
     <message>
         <source>&lt;b&gt;Server:&lt;/b&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;Сервер:&lt;/b&gt;</translation>
     </message>
     <message>
         <source>Add...</source>
-        <translation type="unfinished">Добавить...</translation>
+        <translation>Добавить...</translation>
     </message>
     <message>
         <source>&lt;b&gt;Objectclasses&lt;/b&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>Классы объектов</translation>
     </message>
     <message>
         <source>Delete</source>
-        <translation type="unfinished"></translation>
+        <translation>Удалить</translation>
     </message>
     <message>
         <source>&lt;b&gt;Attributes&lt;/b&gt;</source>
-        <translation type="unfinished">Атрибуты&lt;/b&gt;</translation>
+        <translation>&lt;b&gt;Атрибуты&lt;/b&gt;</translation>
+    </message>
+    <message>
+        <source>This is a description of the template you are currently working with.</source>
+        <comment>DO NOT TRANSLATE</comment>
+        <translation></translation>
     </message>
 </context>
 <context>
