@@ -9,7 +9,7 @@
             <x>0</x>
             <y>0</y>
             <width>309</width>
-            <height>306</height>
+            <height>308</height>
         </rect>
     </property>
     <property name="caption">
@@ -74,7 +74,10 @@
                 <cstring>cancelButton</cstring>
             </property>
             <property name="text">
-                <string>Cancel</string>
+                <string>&amp;Cancel</string>
+            </property>
+            <property name="accel">
+                <string>Alt+C</string>
             </property>
         </widget>
         <widget class="QPushButton" row="7" column="2">
@@ -82,7 +85,10 @@
                 <cstring>okButton</cstring>
             </property>
             <property name="text">
-                <string>Ok</string>
+                <string>&amp;Ok</string>
+            </property>
+            <property name="accel">
+                <string>Alt+O</string>
             </property>
         </widget>
         <widget class="QLayoutWidget" row="4" column="0" rowspan="1" colspan="3">
@@ -98,7 +104,10 @@
                         <cstring>deleteButton</cstring>
                     </property>
                     <property name="text">
-                        <string>Delete</string>
+                        <string>&amp;Delete</string>
+                    </property>
+                    <property name="accel">
+                        <string>Alt+D</string>
                     </property>
                 </widget>
                 <widget class="QPushButton">
@@ -106,7 +115,10 @@
                         <cstring>addButton</cstring>
                     </property>
                     <property name="text">
-                        <string>Add</string>
+                        <string>&amp;Add</string>
+                    </property>
+                    <property name="accel">
+                        <string>Alt+A</string>
                     </property>
                 </widget>
             </hbox>

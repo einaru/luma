@@ -9,119 +9,118 @@
             <x>0</x>
             <y>0</y>
             <width>238</width>
-            <height>368</height>
+            <height>376</height>
         </rect>
     </property>
     <property name="caption">
-        <string>Form1</string>
+        <string>LumaIconViewDesign</string>
     </property>
     <grid>
         <property name="name">
             <cstring>unnamed</cstring>
         </property>
-        <widget class="QLayoutWidget" row="0" column="0">
+        <widget class="QPushButton" row="3" column="3">
             <property name="name">
-                <cstring>layout15</cstring>
+                <cstring>addButton</cstring>
             </property>
-            <grid>
-                <property name="name">
-                    <cstring>unnamed</cstring>
-                </property>
-                <widget class="QPushButton" row="3" column="0" rowspan="1" colspan="2">
-                    <property name="name">
-                        <cstring>deleteButton</cstring>
-                    </property>
-                    <property name="text">
-                        <string>Delete</string>
-                    </property>
-                </widget>
-                <widget class="QPushButton" row="3" column="3">
-                    <property name="name">
-                        <cstring>addButton</cstring>
-                    </property>
-                    <property name="text">
-                        <string>Add</string>
-                    </property>
-                </widget>
-                <widget class="QIconView" row="2" column="0" rowspan="1" colspan="4">
-                    <property name="name">
-                        <cstring>resultView</cstring>
-                    </property>
-                    <property name="resizePolicy">
-                        <enum>AutoOneFit</enum>
-                    </property>
-                    <property name="gridX">
-                        <number>100</number>
-                    </property>
-                    <property name="gridY">
-                        <number>100</number>
-                    </property>
-                    <property name="resizeMode">
-                        <enum>Adjust</enum>
-                    </property>
-                    <property name="itemsMovable">
-                        <bool>false</bool>
-                    </property>
-                </widget>
-                <widget class="QPushButton" row="1" column="3">
-                    <property name="name">
-                        <cstring>goButton</cstring>
-                    </property>
-                    <property name="text">
-                        <string>Go</string>
-                    </property>
-                </widget>
-                <widget class="QLineEdit" row="1" column="1" rowspan="1" colspan="2">
-                    <property name="name">
-                        <cstring>searchEdit</cstring>
-                    </property>
-                </widget>
-                <widget class="QLabel" row="1" column="0">
-                    <property name="name">
-                        <cstring>textLabel13</cstring>
-                    </property>
-                    <property name="frameShape">
-                        <enum>NoFrame</enum>
-                    </property>
-                    <property name="frameShadow">
-                        <enum>Plain</enum>
-                    </property>
-                    <property name="text">
-                        <string>Search:</string>
-                    </property>
-                </widget>
-                <widget class="QComboBox" row="0" column="1" rowspan="1" colspan="3">
-                    <property name="name">
-                        <cstring>serverBox</cstring>
-                    </property>
-                </widget>
-                <widget class="QLabel" row="0" column="0">
-                    <property name="name">
-                        <cstring>textLabel12</cstring>
-                    </property>
-                    <property name="text">
-                        <string>Server:</string>
-                    </property>
-                </widget>
-                <spacer row="3" column="2">
-                    <property name="name">
-                        <cstring>spacer5</cstring>
-                    </property>
-                    <property name="orientation">
-                        <enum>Horizontal</enum>
-                    </property>
-                    <property name="sizeType">
-                        <enum>Expanding</enum>
-                    </property>
-                    <property name="sizeHint">
-                        <size>
-                            <width>61</width>
-                            <height>21</height>
-                        </size>
-                    </property>
-                </spacer>
-            </grid>
+            <property name="text">
+                <string>&amp;Add...</string>
+            </property>
+            <property name="accel">
+                <string>Alt+A</string>
+            </property>
         </widget>
+        <widget class="QIconView" row="2" column="0" rowspan="1" colspan="4">
+            <property name="name">
+                <cstring>resultView</cstring>
+            </property>
+            <property name="resizePolicy">
+                <enum>AutoOneFit</enum>
+            </property>
+            <property name="gridX">
+                <number>100</number>
+            </property>
+            <property name="gridY">
+                <number>100</number>
+            </property>
+            <property name="resizeMode">
+                <enum>Adjust</enum>
+            </property>
+            <property name="itemsMovable">
+                <bool>false</bool>
+            </property>
+        </widget>
+        <widget class="QPushButton" row="1" column="3">
+            <property name="name">
+                <cstring>goButton</cstring>
+            </property>
+            <property name="text">
+                <string>&amp;Go</string>
+            </property>
+            <property name="accel">
+                <string>Alt+G</string>
+            </property>
+        </widget>
+        <widget class="QLineEdit" row="1" column="1" rowspan="1" colspan="2">
+            <property name="name">
+                <cstring>searchEdit</cstring>
+            </property>
+        </widget>
+        <widget class="QLabel" row="1" column="0">
+            <property name="name">
+                <cstring>textLabel13</cstring>
+            </property>
+            <property name="frameShape">
+                <enum>NoFrame</enum>
+            </property>
+            <property name="frameShadow">
+                <enum>Plain</enum>
+            </property>
+            <property name="text">
+                <string>Filter:</string>
+            </property>
+        </widget>
+        <widget class="QComboBox" row="0" column="1" rowspan="1" colspan="3">
+            <property name="name">
+                <cstring>serverBox</cstring>
+            </property>
+        </widget>
+        <widget class="QLabel" row="0" column="0">
+            <property name="name">
+                <cstring>textLabel12</cstring>
+            </property>
+            <property name="text">
+                <string>Server:</string>
+            </property>
+        </widget>
+        <widget class="QPushButton" row="3" column="2">
+            <property name="name">
+                <cstring>deleteButton</cstring>
+            </property>
+            <property name="text">
+                <string>&amp;Delete</string>
+            </property>
+            <property name="accel">
+                <string>Alt+D</string>
+            </property>
+        </widget>
+        <spacer row="3" column="0" rowspan="1" colspan="2">
+            <property name="name">
+                <cstring>spacer5</cstring>
+            </property>
+            <property name="orientation">
+                <enum>Horizontal</enum>
+            </property>
+            <property name="sizeType">
+                <enum>Expanding</enum>
+            </property>
+            <property name="sizeHint">
+                <size>
+                    <width>80</width>
+                    <height>21</height>
+                </size>
+            </property>
+        </spacer>
     </grid>
 </widget>
 <connections>
@@ -149,11 +148,25 @@
         <receiver>LumaIconViewDesign</receiver>
         <slot>iconClicked()</slot>
     </connection>
+    <connection>
+        <sender>deleteButton</sender>
+        <signal>clicked()</signal>
+        <receiver>LumaIconViewDesign</receiver>
+        <slot>deleteItem()</slot>
+    </connection>
+    <connection>
+        <sender>addButton</sender>
+        <signal>clicked()</signal>
+        <receiver>LumaIconViewDesign</receiver>
+        <slot>addItem()</slot>
+    </connection>
 </connections>
 <slots>
     <slot>serverChanged()</slot>
     <slot>search()</slot>
     <slot>iconClicked()</slot>
+    <slot>deleteItem()</slot>
+    <slot>addItem()</slot>
 </slots>
 <layoutdefaults spacing="6" margin="11"/>
 </UI>

@@ -40,19 +40,19 @@ class ObjectWidget(QWidget):
         self.buttonFrameLayout = QHBoxLayout(self.buttonFrame,11,6,"buttonFrameLayout")
 
         self.applyButton = QPushButton(self.buttonFrame,"applyButton")
-        self.applyButton.setText(self.trUtf8("Apply"))
+        self.applyButton.setText(self.trUtf8("&Apply"))
         self.buttonFrameLayout.addWidget(self.applyButton)
         spacer = QSpacerItem(100,20,QSizePolicy.Expanding,QSizePolicy.Minimum)
         self.buttonFrameLayout.addItem(spacer)
 
         self.displayAllButton = QPushButton(self.buttonFrame,"displayAllButton")
-        self.displayAllButton.setText(self.trUtf8("Display all"))
+        self.displayAllButton.setText(self.trUtf8("&Display all"))
         self.buttonFrameLayout.addWidget(self.displayAllButton)
         spacer = QSpacerItem(100,20,QSizePolicy.Expanding,QSizePolicy.Minimum)
         self.buttonFrameLayout.addItem(spacer)
 
         self.refreshButton = QPushButton(self.buttonFrame,"refeshButton")
-        self.refreshButton.setText(self.trUtf8("Refresh"))
+        self.refreshButton.setText(self.trUtf8("&Refresh"))
         self.buttonFrameLayout.addWidget(self.refreshButton)
 
         self.mainGrid.addWidget(self.buttonFrame,1,0)

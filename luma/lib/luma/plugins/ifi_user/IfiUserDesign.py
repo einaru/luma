@@ -2,8 +2,8 @@
 
 # Form implementation generated from reading ui file '/home/wido/src/luma/lib/luma/plugins/ifi_user/IfiUserDesign.ui'
 #
-# Created: Thu Jan 1 17:35:33 2004
-#      by: The PyQt User Interface Compiler (pyuic) 3.8.1
+# Created: Tue Feb 3 23:58:05 2004
+#      by: The PyQt User Interface Compiler (pyuic) 3.10
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -352,10 +352,12 @@ class IfiUserDesign(QWidget):
         groupBox1Layout.addWidget(self.usernameEdit,0,1)
 
         self.textLabel1 = QLabel(self.groupBox1,"textLabel1")
+        self.textLabel1.setAlignment(QLabel.AlignVCenter | QLabel.AlignRight)
 
         groupBox1Layout.addWidget(self.textLabel1,0,0)
 
         self.textLabel2 = QLabel(self.groupBox1,"textLabel2")
+        self.textLabel2.setAlignment(QLabel.AlignVCenter | QLabel.AlignRight)
 
         groupBox1Layout.addWidget(self.textLabel2,1,0)
 
@@ -368,6 +370,7 @@ class IfiUserDesign(QWidget):
         groupBox1Layout.addWidget(self.givenNameEdit,2,1)
 
         self.textLabel3 = QLabel(self.groupBox1,"textLabel3")
+        self.textLabel3.setAlignment(QLabel.AlignVCenter | QLabel.AlignRight)
 
         groupBox1Layout.addWidget(self.textLabel3,2,0)
         tabLayout.addWidget(self.groupBox1)
@@ -447,17 +450,20 @@ class IfiUserDesign(QWidget):
         groupBox4Layout.addMultiCellWidget(self.shellEdit,2,2,1,2)
 
         self.textLabel7 = QLabel(self.groupBox4,"textLabel7")
-        self.textLabel7.setSizePolicy(QSizePolicy(4,5,0,0,self.textLabel7.sizePolicy().hasHeightForWidth()))
+        self.textLabel7.setSizePolicy(QSizePolicy(0,5,0,0,self.textLabel7.sizePolicy().hasHeightForWidth()))
+        self.textLabel7.setAlignment(QLabel.AlignVCenter | QLabel.AlignRight)
 
         groupBox4Layout.addWidget(self.textLabel7,2,0)
 
         self.textLabel5 = QLabel(self.groupBox4,"textLabel5")
-        self.textLabel5.setSizePolicy(QSizePolicy(4,5,0,0,self.textLabel5.sizePolicy().hasHeightForWidth()))
+        self.textLabel5.setSizePolicy(QSizePolicy(1,5,0,0,self.textLabel5.sizePolicy().hasHeightForWidth()))
+        self.textLabel5.setAlignment(QLabel.AlignVCenter | QLabel.AlignRight)
 
         groupBox4Layout.addWidget(self.textLabel5,0,0)
 
         self.textLabel6 = QLabel(self.groupBox4,"textLabel6")
-        self.textLabel6.setSizePolicy(QSizePolicy(4,5,0,0,self.textLabel6.sizePolicy().hasHeightForWidth()))
+        self.textLabel6.setSizePolicy(QSizePolicy(1,5,0,0,self.textLabel6.sizePolicy().hasHeightForWidth()))
+        self.textLabel6.setAlignment(QLabel.AlignVCenter | QLabel.AlignRight)
 
         groupBox4Layout.addWidget(self.textLabel6,1,0)
 
@@ -526,7 +532,7 @@ class IfiUserDesign(QWidget):
 
         self.languageChange()
 
-        self.resize(QSize(446,450).expandedTo(self.minimumSizeHint()))
+        self.resize(QSize(446,454).expandedTo(self.minimumSizeHint()))
         self.clearWState(Qt.WState_Polished)
 
         self.connect(self.dateButton,SIGNAL("clicked()"),self.radioButton2,SLOT("toggle()"))
@@ -541,7 +547,7 @@ class IfiUserDesign(QWidget):
 
 
     def languageChange(self):
-        self.setCaption(self.__tr("Form1"))
+        self.setCaption(self.__tr("IfiUserDesign"))
         self.groupBox1.setTitle(self.__tr("General Information"))
         self.textLabel1.setText(self.__tr("Username:"))
         self.textLabel2.setText(self.__tr("Surename:"))
@@ -557,7 +563,7 @@ class IfiUserDesign(QWidget):
         self.homeEdit.setText(self.__tr("/home"))
         self.shellEdit.setText(self.__tr("/bin/bash"))
         self.textLabel7.setText(self.__tr("Login shell:"))
-        self.textLabel5.setText(self.__tr("Home directory:"))
+        self.textLabel5.setText(self.__tr("Home:"))
         self.textLabel6.setText(self.__tr("Group Id:"))
         self.browseGroupButton.setText(QString.null)
         QToolTip.add(self.browseGroupButton,self.__tr("Select group from LDAP"))
@@ -567,7 +573,8 @@ class IfiUserDesign(QWidget):
         self.tabWidget2.changeTab(self.tab_2,self.__tr("Account Settings"))
         self.textLabel1_2_3.setText(self.__tr("Account Password:"))
         self.tabWidget2.changeTab(self.tab_3,self.__tr("Account Password"))
-        self.pushButton1.setText(self.__tr("Create"))
+        self.pushButton1.setText(self.__tr("&Create"))
+        self.pushButton1.setAccel(self.__tr("Alt+C"))
 
 
     def create_user(self):

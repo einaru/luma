@@ -1,4 +1,4 @@
-<!DOCTYPE UI><UI version="3.1" stdsetdef="1">
+<!DOCTYPE UI><UI version="3.2" stdsetdef="1">
 <class>BaseSelectorDesign</class>
 <widget class="QDialog">
     <property name="name">
@@ -8,18 +8,18 @@
         <rect>
             <x>0</x>
             <y>0</y>
-            <width>438</width>
-            <height>121</height>
+            <width>353</width>
+            <height>129</height>
         </rect>
     </property>
     <property name="caption">
-        <string>Available Base DN</string>
+        <string>Select Base DN</string>
     </property>
-    <vbox>
+    <grid>
         <property name="name">
             <cstring>unnamed</cstring>
         </property>
-        <widget class="QLabel">
+        <widget class="QLabel" row="0" column="0">
             <property name="name">
                 <cstring>textLabel1</cstring>
             </property>
@@ -32,15 +32,15 @@
                 </sizepolicy>
             </property>
             <property name="text">
-                <string>Select Base DN:</string>
+                <string>Available Base DNs:</string>
             </property>
         </widget>
-        <widget class="QComboBox">
+        <widget class="QComboBox" row="1" column="0">
             <property name="name">
                 <cstring>dnBox</cstring>
             </property>
         </widget>
-        <spacer>
+        <spacer row="2" column="0">
             <property name="name">
                 <cstring>spacer2</cstring>
             </property>
@@ -53,26 +53,18 @@
             <property name="sizeHint">
                 <size>
                     <width>21</width>
-                    <height>91</height>
+                    <height>16</height>
                 </size>
             </property>
         </spacer>
-        <widget class="QLayoutWidget">
+        <widget class="QLayoutWidget" row="4" column="0">
             <property name="name">
-                <cstring>layout1</cstring>
+                <cstring>layout2</cstring>
             </property>
             <hbox>
                 <property name="name">
                     <cstring>unnamed</cstring>
                 </property>
-                <widget class="QPushButton">
-                    <property name="name">
-                        <cstring>cancelButton</cstring>
-                    </property>
-                    <property name="text">
-                        <string>Cancel</string>
-                    </property>
-                </widget>
                 <spacer>
                     <property name="name">
                         <cstring>spacer1</cstring>
@@ -85,22 +77,50 @@
                     </property>
                     <property name="sizeHint">
                         <size>
-                            <width>250</width>
+                            <width>60</width>
                             <height>21</height>
                         </size>
                     </property>
                 </spacer>
                 <widget class="QPushButton">
                     <property name="name">
+                        <cstring>cancelButton</cstring>
+                    </property>
+                    <property name="text">
+                        <string>&amp;Cancel</string>
+                    </property>
+                    <property name="accel">
+                        <string>Alt+C</string>
+                    </property>
+                </widget>
+                <widget class="QPushButton">
+                    <property name="name">
                         <cstring>okButton</cstring>
                     </property>
                     <property name="text">
-                        <string>Ok</string>
+                        <string>&amp;Ok</string>
+                    </property>
+                    <property name="accel">
+                        <string>Alt+O</string>
                     </property>
                 </widget>
             </hbox>
         </widget>
-    </vbox>
+        <widget class="Line" row="3" column="0">
+            <property name="name">
+                <cstring>line1</cstring>
+            </property>
+            <property name="frameShape">
+                <enum>HLine</enum>
+            </property>
+            <property name="frameShadow">
+                <enum>Sunken</enum>
+            </property>
+            <property name="orientation">
+                <enum>Horizontal</enum>
+            </property>
+        </widget>
+    </grid>
 </widget>
 <connections>
     <connection>

@@ -18,7 +18,7 @@
             <x>0</x>
             <y>0</y>
             <width>546</width>
-            <height>455</height>
+            <height>457</height>
         </rect>
     </property>
     <property name="caption">
@@ -66,6 +66,7 @@
 (c) 2003, Wido Depping&lt;br&gt;&lt;br&gt;
 http://luma.sourceforge.net
 &lt;/p&gt;</string>
+                            <comment>DO NOT TRANSLATE</comment>
                         </property>
                     </widget>
                 </vbox>
@@ -88,6 +89,7 @@ http://luma.sourceforge.net
                         <property name="text">
                             <string>Wido Depping&lt;br&gt;
 &lt;blockquote&gt;widod@users.sourceforge.net&lt;/blockquote&gt;</string>
+                            <comment>DO NOT TRANSLATE</comment>
                         </property>
                     </widget>
                 </vbox>
@@ -391,6 +393,7 @@ POSSIBILITY OF SUCH DAMAGES.
 
 		     END OF TERMS AND CONDITIONS
 </string>
+                            <comment>DO NOT TRANSLATE</comment>
                         </property>
                     </widget>
                 </vbox>
@@ -431,6 +434,7 @@ My mentor and UI tester :)
 
 Eric Cote
 Testing guinea pig for python 2.3</string>
+                            <comment>DO NOT TRANSLATE</comment>
                         </property>
                     </widget>
                 </grid>

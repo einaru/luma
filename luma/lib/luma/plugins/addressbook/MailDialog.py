@@ -2,8 +2,8 @@
 
 # Form implementation generated from reading ui file '/home/wido/src/luma/lib/luma/plugins/addressbook/MailDialog.ui'
 #
-# Created: Sat Jan 31 14:59:50 2004
-#      by: The PyQt User Interface Compiler (pyuic) 3.8.1
+# Created: Tue Feb 3 23:58:07 2004
+#      by: The PyQt User Interface Compiler (pyuic) 3.10
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -60,7 +60,7 @@ class MailDialog(QDialog):
 
         self.languageChange()
 
-        self.resize(QSize(411,110).expandedTo(self.minimumSizeHint()))
+        self.resize(QSize(411,112).expandedTo(self.minimumSizeHint()))
         self.clearWState(Qt.WState_Polished)
 
         self.connect(self.cancelButton,SIGNAL("clicked()"),self,SLOT("reject()"))
@@ -72,8 +72,10 @@ class MailDialog(QDialog):
 
     def languageChange(self):
         self.setCaption(self.__tr("New mail"))
-        self.okButton.setText(self.__tr("Ok"))
-        self.cancelButton.setText(self.__tr("Cancel"))
+        self.okButton.setText(self.__tr("&Ok"))
+        self.okButton.setAccel(self.__tr("Alt+O"))
+        self.cancelButton.setText(self.__tr("&Cancel"))
+        self.cancelButton.setAccel(self.__tr("Alt+C"))
         self.mailIconLabel.setText(self.__tr("ML"))
         self.textLabel2.setText(self.__tr("New mail:"))
 

@@ -2,8 +2,8 @@
 
 # Form implementation generated from reading ui file '/home/wido/src/luma/lib/luma/base/gui/BaseSelectorDesign.ui'
 #
-# Created: Thu Jan 1 17:35:33 2004
-#      by: The PyQt User Interface Compiler (pyuic) 3.8.1
+# Created: Tue Feb 3 23:58:05 2004
+#      by: The PyQt User Interface Compiler (pyuic) 3.10
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -20,31 +20,41 @@ class BaseSelectorDesign(QDialog):
             self.setName("BaseSelectorDesign")
 
 
-        BaseSelectorDesignLayout = QVBoxLayout(self,11,6,"BaseSelectorDesignLayout")
+        BaseSelectorDesignLayout = QGridLayout(self,1,1,11,6,"BaseSelectorDesignLayout")
 
         self.textLabel1 = QLabel(self,"textLabel1")
         self.textLabel1.setSizePolicy(QSizePolicy(1,4,0,0,self.textLabel1.sizePolicy().hasHeightForWidth()))
-        BaseSelectorDesignLayout.addWidget(self.textLabel1)
+
+        BaseSelectorDesignLayout.addWidget(self.textLabel1,0,0)
 
         self.dnBox = QComboBox(0,self,"dnBox")
-        BaseSelectorDesignLayout.addWidget(self.dnBox)
-        spacer = QSpacerItem(21,91,QSizePolicy.Minimum,QSizePolicy.Expanding)
-        BaseSelectorDesignLayout.addItem(spacer)
 
-        layout1 = QHBoxLayout(None,0,6,"layout1")
+        BaseSelectorDesignLayout.addWidget(self.dnBox,1,0)
+        spacer = QSpacerItem(21,16,QSizePolicy.Minimum,QSizePolicy.Expanding)
+        BaseSelectorDesignLayout.addItem(spacer,2,0)
+
+        layout2 = QHBoxLayout(None,0,6,"layout2")
+        spacer_2 = QSpacerItem(60,21,QSizePolicy.Expanding,QSizePolicy.Minimum)
+        layout2.addItem(spacer_2)
 
         self.cancelButton = QPushButton(self,"cancelButton")
-        layout1.addWidget(self.cancelButton)
-        spacer_2 = QSpacerItem(250,21,QSizePolicy.Expanding,QSizePolicy.Minimum)
-        layout1.addItem(spacer_2)
+        layout2.addWidget(self.cancelButton)
 
         self.okButton = QPushButton(self,"okButton")
-        layout1.addWidget(self.okButton)
-        BaseSelectorDesignLayout.addLayout(layout1)
+        layout2.addWidget(self.okButton)
+
+        BaseSelectorDesignLayout.addLayout(layout2,4,0)
+
+        self.line1 = QFrame(self,"line1")
+        self.line1.setFrameShape(QFrame.HLine)
+        self.line1.setFrameShadow(QFrame.Sunken)
+        self.line1.setFrameShape(QFrame.HLine)
+
+        BaseSelectorDesignLayout.addWidget(self.line1,3,0)
 
         self.languageChange()
 
-        self.resize(QSize(438,121).expandedTo(self.minimumSizeHint()))
+        self.resize(QSize(353,129).expandedTo(self.minimumSizeHint()))
         self.clearWState(Qt.WState_Polished)
 
         self.connect(self.cancelButton,SIGNAL("clicked()"),self,SLOT("reject()"))
@@ -52,10 +62,12 @@ class BaseSelectorDesign(QDialog):
 
 
     def languageChange(self):
-        self.setCaption(self.__tr("Available Base DN"))
-        self.textLabel1.setText(self.__tr("Select Base DN:"))
-        self.cancelButton.setText(self.__tr("Cancel"))
-        self.okButton.setText(self.__tr("Ok"))
+        self.setCaption(self.__tr("Select Base DN"))
+        self.textLabel1.setText(self.__tr("Available Base DNs:"))
+        self.cancelButton.setText(self.__tr("&Cancel"))
+        self.cancelButton.setAccel(self.__tr("Alt+C"))
+        self.okButton.setText(self.__tr("&Ok"))
+        self.okButton.setAccel(self.__tr("Alt+O"))
 
 
     def __tr(self,s,c = None):

@@ -2,8 +2,8 @@
 
 # Form implementation generated from reading ui file '/home/wido/src/luma/lib/luma/plugins/mass_creation_plugin/MassCreationDesign.ui'
 #
-# Created: Mon Jan 5 20:42:41 2004
-#      by: The PyQt User Interface Compiler (pyuic) 3.8.1
+# Created: Tue Feb 3 23:58:04 2004
+#      by: The PyQt User Interface Compiler (pyuic) 3.10
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -446,13 +446,11 @@ class MassCreationDesign(QWidget):
 
         groupBox4Layout.addMultiCellWidget(self.homeEdit,0,0,1,2)
 
-        self.shellEdit = QLineEdit(self.groupBox4,"shellEdit")
+        self.browseGroupButton = QPushButton(self.groupBox4,"browseGroupButton")
+        self.browseGroupButton.setSizePolicy(QSizePolicy(0,0,0,0,self.browseGroupButton.sizePolicy().hasHeightForWidth()))
+        self.browseGroupButton.setPixmap(self.image0)
 
-        groupBox4Layout.addMultiCellWidget(self.shellEdit,2,2,1,2)
-
-        self.textLabel7 = QLabel(self.groupBox4,"textLabel7")
-
-        groupBox4Layout.addWidget(self.textLabel7,2,0)
+        groupBox4Layout.addWidget(self.browseGroupButton,1,2)
 
         self.textLabel5 = QLabel(self.groupBox4,"textLabel5")
 
@@ -462,17 +460,19 @@ class MassCreationDesign(QWidget):
 
         groupBox4Layout.addWidget(self.textLabel6,1,0)
 
+        self.textLabel7 = QLabel(self.groupBox4,"textLabel7")
+
+        groupBox4Layout.addWidget(self.textLabel7,2,0)
+
         self.gidBox = QSpinBox(self.groupBox4,"gidBox")
         self.gidBox.setMaxValue(65535)
         self.gidBox.setValue(100)
 
         groupBox4Layout.addWidget(self.gidBox,1,1)
 
-        self.browseGroupButton = QPushButton(self.groupBox4,"browseGroupButton")
-        self.browseGroupButton.setSizePolicy(QSizePolicy(0,0,0,0,self.browseGroupButton.sizePolicy().hasHeightForWidth()))
-        self.browseGroupButton.setPixmap(self.image0)
+        self.shellEdit = QLineEdit(self.groupBox4,"shellEdit")
 
-        groupBox4Layout.addWidget(self.browseGroupButton,1,2)
+        groupBox4Layout.addMultiCellWidget(self.shellEdit,2,2,1,2)
         tabLayout_2.addWidget(self.groupBox4)
 
         self.groupBox2 = QGroupBox(self.tab_2,"groupBox2")
@@ -527,7 +527,7 @@ class MassCreationDesign(QWidget):
 
         self.languageChange()
 
-        self.resize(QSize(404,456).expandedTo(self.minimumSizeHint()))
+        self.resize(QSize(404,458).expandedTo(self.minimumSizeHint()))
         self.clearWState(Qt.WState_Polished)
 
         self.connect(self.dateButton,SIGNAL("clicked()"),self.radioButton2,SLOT("toggle()"))
@@ -542,7 +542,7 @@ class MassCreationDesign(QWidget):
 
 
     def languageChange(self):
-        self.setCaption(self.__tr("Form1"))
+        self.setCaption(QString.null)
         self.groupBox1.setTitle(self.__tr("Usernames"))
         self.textLabel2.setText(self.__tr("Minimum:"))
         self.textLabel3.setText(self.__tr("Maximum:"))
@@ -556,19 +556,20 @@ class MassCreationDesign(QWidget):
         self.radioButton2.setText(self.__tr("Days from now"))
         self.groupBox4.setTitle(self.__tr("Account settings"))
         self.homeEdit.setText(self.__tr("/home"))
-        self.shellEdit.setText(self.__tr("/bin/bash"))
-        self.textLabel7.setText(self.__tr("Login shell:"))
-        self.textLabel5.setText(self.__tr("Home directory:"))
-        self.textLabel6.setText(self.__tr("Group Id:"))
         self.browseGroupButton.setText(QString.null)
         QToolTip.add(self.browseGroupButton,self.__tr("Select group from LDAP"))
-        self.groupBox2.setTitle(self.__tr("uid number range"))
+        self.textLabel5.setText(self.__tr("Home prefix:"))
+        self.textLabel6.setText(self.__tr("Group Id:"))
+        self.textLabel7.setText(self.__tr("Login shell:"))
+        self.shellEdit.setText(self.__tr("/bin/bash"))
+        self.groupBox2.setTitle(self.__tr("Uid number range"))
         self.textLabel2_2.setText(self.__tr("Minimum:"))
         self.textLabel3_2.setText(self.__tr("Maximum:"))
         self.tabWidget2.changeTab(self.tab_2,self.__tr("Account Settings"))
         self.textLabel1_2.setText(self.__tr("Account Passwords:"))
         self.tabWidget2.changeTab(self.tab_3,self.__tr("Account Passwords"))
-        self.pushButton1.setText(self.__tr("Create"))
+        self.pushButton1.setText(self.__tr("&Create"))
+        self.pushButton1.setAccel(self.__tr("Alt+C"))
 
 
     def create_users(self):

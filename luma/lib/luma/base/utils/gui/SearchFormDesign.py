@@ -2,8 +2,8 @@
 
 # Form implementation generated from reading ui file '/home/wido/src/luma/lib/luma/base/utils/gui/SearchFormDesign.ui'
 #
-# Created: Thu Jan 1 17:35:30 2004
-#      by: The PyQt User Interface Compiler (pyuic) 3.8.1
+# Created: Tue Feb 3 23:58:02 2004
+#      by: The PyQt User Interface Compiler (pyuic) 3.10
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -72,12 +72,14 @@ class SearchFormDesign(QWidget):
 
 
     def languageChange(self):
-        self.setCaption(self.__tr("Form1"))
+        self.setCaption(QString.null)
         self.groupBox2.setTitle(self.__tr("Search"))
         self.textLabel6.setText(self.__tr("Filter:"))
         self.textLabel2.setText(self.__tr("Server:"))
-        self.filterWizardButton.setText(self.__tr("Wizard"))
-        self.startButton.setText(self.__tr("Start"))
+        self.filterWizardButton.setText(self.__tr("&Wizard"))
+        self.filterWizardButton.setAccel(self.__tr("Alt+W"))
+        self.startButton.setText(self.__tr("&Start"))
+        self.startButton.setAccel(self.__tr("Alt+S"))
 
 
     def start_filter_wizard(self):

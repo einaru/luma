@@ -2,8 +2,8 @@
 
 # Form implementation generated from reading ui file '/home/wido/src/luma/lib/luma/plugins/addressbook/CategoryEditDialogDesign.ui'
 #
-# Created: Sat Jan 31 20:46:32 2004
-#      by: The PyQt User Interface Compiler (pyuic) 3.8.1
+# Created: Tue Feb 3 23:58:07 2004
+#      by: The PyQt User Interface Compiler (pyuic) 3.10
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -57,7 +57,7 @@ class CategoryEditDialogDesign(QDialog):
 
         self.languageChange()
 
-        self.resize(QSize(309,306).expandedTo(self.minimumSizeHint()))
+        self.resize(QSize(309,308).expandedTo(self.minimumSizeHint()))
         self.clearWState(Qt.WState_Polished)
 
         self.connect(self.cancelButton,SIGNAL("clicked()"),self,SLOT("reject()"))
@@ -69,10 +69,14 @@ class CategoryEditDialogDesign(QDialog):
     def languageChange(self):
         self.setCaption(self.__tr("Edit categories"))
         self.categoryView.header().setLabel(0,self.__tr("Categories"))
-        self.cancelButton.setText(self.__tr("Cancel"))
-        self.okButton.setText(self.__tr("Ok"))
-        self.deleteButton.setText(self.__tr("Delete"))
-        self.addButton.setText(self.__tr("Add"))
+        self.cancelButton.setText(self.__tr("&Cancel"))
+        self.cancelButton.setAccel(self.__tr("Alt+C"))
+        self.okButton.setText(self.__tr("&Ok"))
+        self.okButton.setAccel(self.__tr("Alt+O"))
+        self.deleteButton.setText(self.__tr("&Delete"))
+        self.deleteButton.setAccel(self.__tr("Alt+D"))
+        self.addButton.setText(self.__tr("&Add"))
+        self.addButton.setAccel(self.__tr("Alt+A"))
 
 
     def deleteCategory(self):

@@ -2,8 +2,8 @@
 
 # Form implementation generated from reading ui file '/home/wido/src/luma/lib/luma/plugins/addressbook/AddressbookWidgetDesign.ui'
 #
-# Created: Mon Feb 2 22:05:51 2004
-#      by: The PyQt User Interface Compiler (pyuic) 3.8.1
+# Created: Tue Feb 3 23:58:05 2004
+#      by: The PyQt User Interface Compiler (pyuic) 3.10
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -355,7 +355,7 @@ class AddressbookWidgetDesign(QWidget):
 
         self.languageChange()
 
-        self.resize(QSize(589,465).expandedTo(self.minimumSizeHint()))
+        self.resize(QSize(589,469).expandedTo(self.minimumSizeHint()))
         self.clearWState(Qt.WState_Polished)
 
         self.connect(self.saveButton,SIGNAL("clicked()"),self.saveEntry)
@@ -367,44 +367,49 @@ class AddressbookWidgetDesign(QWidget):
 
 
     def languageChange(self):
-        self.setCaption(self.__tr("Form1"))
-        self.saveButton.setText(self.__tr("Save"))
-        self.personLabel.setText(self.__tr("P"))
-        self.nameButton.setText(self.__tr("Full Name ..."))
+        self.setCaption(QString.null)
+        self.saveButton.setText(self.__tr("&Save"))
+        self.saveButton.setAccel(self.__tr("Alt+S"))
+        self.personLabel.setText(self.__tr("P","DO NOT TRANSLATE"))
+        self.nameButton.setText(self.__tr("&Full Name..."))
+        self.nameButton.setAccel(self.__tr("Alt+F"))
         self.textLabel3_2.setText(self.__tr("Job title:"))
         self.textLabel2_2.setText(self.__tr("Organisation:"))
-        self.categoryButton.setText(self.__tr("Categories ..."))
-        self.categoryLabel.setText(self.__tr("CL"))
+        self.categoryButton.setText(self.__tr("&Categories..."))
+        self.categoryButton.setAccel(self.__tr("Alt+C"))
+        self.categoryLabel.setText(self.__tr("CL","DO NOT TRANSLATE"))
         self.textLabel1.setText(self.__tr("Web page address:"))
-        self.webPageLabel.setText(self.__tr("WP"))
-        self.mailLabel.setText(self.__tr("Ma"))
+        self.webPageLabel.setText(self.__tr("WP","DO NOT TRANSLATE"))
+        self.mailLabel.setText(self.__tr("Ma","DO NOT TRANSLATE"))
         self.textLabel10.setText(self.__tr("Email:"))
-        self.deleteMailButton.setText(self.__tr("Delete"))
-        self.addMailButton.setText(self.__tr("Add"))
+        self.deleteMailButton.setText(self.__tr("&Delete"))
+        self.deleteMailButton.setAccel(self.__tr("Alt+D"))
+        self.addMailButton.setText(self.__tr("&Add..."))
+        self.addMailButton.setAccel(self.__tr("Alt+A"))
         self.tabWidget2.changeTab(self.tab,self.__tr("General"))
         self.textLabel9.setText(self.__tr("Mobile:"))
         self.textLabel3.setText(self.__tr("Business Fax:"))
-        self.phoneLabel.setText(self.__tr("Ph"))
+        self.phoneLabel.setText(self.__tr("Ph","DO NOT TRANSLATE"))
         self.textLabel8.setText(self.__tr("Work:"))
         self.textLabel7.setText(self.__tr("Home:"))
         self.addressBox.clear()
         self.addressBox.insertItem(self.__tr("Business"))
         self.addressBox.insertItem(self.__tr("Home"))
         self.addressBox.insertItem(self.__tr("Other"))
-        self.homeLabel.setText(self.__tr("HI"))
+        self.homeLabel.setText(self.__tr("HI","DO NOT TRANSLATE"))
         self.tabWidget2.changeTab(self.tab_2,self.__tr("Phone/Address"))
-        self.personalLabel.setText(self.__tr("ME"))
+        self.personalLabel.setText(self.__tr("ME","DO NOT TRANSLATE"))
         self.textLabel5.setText(self.__tr("Profession:"))
         self.textLabel4.setText(self.__tr("Office:"))
         self.textLabel7_2.setText(self.__tr("Assistant's name:"))
         self.textLabel6.setText(self.__tr("Manager's name:"))
-        self.workLabel.setText(self.__tr("WO"))
+        self.workLabel.setText(self.__tr("WO","DO NOT TRANSLATE"))
         self.textLabel3_3.setText(self.__tr("Departement:"))
         self.textLabel10_2.setText(self.__tr("Spouse:"))
         self.textLabel9_2.setText(self.__tr("Nickname:"))
         self.textLabel11.setText(self.__tr("Birthday:"))
         self.textLabel12.setText(self.__tr("Anniversary:"))
-        self.notesLabel.setText(self.__tr("NO"))
+        self.notesLabel.setText(self.__tr("NO","DO NOT TRANSLATE"))
         self.textLabel14.setText(self.__tr("Notes:"))
         self.tabWidget2.changeTab(self.TabPage,self.__tr("Details"))
 

@@ -2,8 +2,8 @@
 
 # Form implementation generated from reading ui file '/home/wido/src/luma/lib/luma/base/gui/AboutDialog.ui'
 #
-# Created: Mon Jan 5 20:44:47 2004
-#      by: The PyQt User Interface Compiler (pyuic) 3.8.1
+# Created: Tue Feb 3 23:58:00 2004
+#      by: The PyQt User Interface Compiler (pyuic) 3.10
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -71,7 +71,7 @@ class AboutDialog(QDialog):
 
         self.languageChange()
 
-        self.resize(QSize(546,455).expandedTo(self.minimumSizeHint()))
+        self.resize(QSize(546,457).expandedTo(self.minimumSizeHint()))
         self.clearWState(Qt.WState_Polished)
 
         self.connect(self.pushButton1,SIGNAL("clicked()"),self,SLOT("close()"))
@@ -83,10 +83,10 @@ class AboutDialog(QDialog):
         self.textLabel4.setText(self.__tr("<p align=\"center\">LDAP management made easy.<br><br>\n"
 "(c) 2003, Wido Depping<br><br>\n"
 "http://luma.sourceforge.net\n"
-"</p>"))
+"</p>","DO NOT TRANSLATE"))
         self.tabWidget2.changeTab(self.tab,self.__tr("About"))
         self.textBrowser4.setText(self.__tr("Wido Depping<br>\n"
-"<blockquote>widod@users.sourceforge.net</blockquote>"))
+"<blockquote>widod@users.sourceforge.net</blockquote>","DO NOT TRANSLATE"))
         self.tabWidget2.changeTab(self.tab_2,self.__tr("Authors"))
         self.textBrowser5.setText(self.__tr("This program is distributed under the terms of the GPL v2.\n"
 "\n"
@@ -370,7 +370,7 @@ class AboutDialog(QDialog):
 "POSSIBILITY OF SUCH DAMAGES.\n"
 "\n"
 "		     END OF TERMS AND CONDITIONS\n"
-""))
+"","DO NOT TRANSLATE"))
         self.tabWidget2.changeTab(self.tab_3,self.__tr("License Agreement"))
         self.textBrowser4_2.setText(self.__tr("Bjorn Ove Grotan\n"
 "Contributed his mkpasswd module. \n"
@@ -388,7 +388,7 @@ class AboutDialog(QDialog):
 "My mentor and UI tester :) \n"
 "\n"
 "Eric Cote\n"
-"Testing guinea pig for python 2.3"))
+"Testing guinea pig for python 2.3","DO NOT TRANSLATE"))
         self.tabWidget2.changeTab(self.tab_4,self.__tr("Credits"))
         self.pushButton1.setText(self.__tr("&Close"))
 

@@ -18,7 +18,7 @@
             <x>0</x>
             <y>0</y>
             <width>508</width>
-            <height>531</height>
+            <height>533</height>
         </rect>
     </property>
     <property name="caption">
@@ -28,14 +28,14 @@
         <property name="name">
             <cstring>unnamed</cstring>
         </property>
-        <widget class="QSplitter" row="3" column="0" rowspan="1" colspan="6">
+        <widget class="QSplitter" row="3" column="0" rowspan="1" colspan="4">
             <property name="name">
                 <cstring>splitter8_2</cstring>
             </property>
             <property name="minimumSize">
                 <size>
-                    <width>253</width>
-                    <height>84</height>
+                    <width>241</width>
+                    <height>80</height>
                 </size>
             </property>
             <property name="orientation">
@@ -96,15 +96,63 @@
                 </property>
             </widget>
         </widget>
-        <widget class="QPushButton" row="4" column="5">
+        <widget class="QLabel" row="1" column="0">
             <property name="name">
-                <cstring>okButton</cstring>
+                <cstring>textLabel2_2</cstring>
             </property>
             <property name="text">
-                <string>Ok</string>
+                <string>Object Class:</string>
             </property>
         </widget>
-        <spacer row="2" column="2" rowspan="1" colspan="2">
+        <widget class="QLabel" row="0" column="0">
+            <property name="name">
+                <cstring>textLabel1_2</cstring>
+            </property>
+            <property name="text">
+                <string>Server:</string>
+            </property>
+        </widget>
+        <widget class="QComboBox" row="1" column="1" rowspan="1" colspan="3">
+            <property name="name">
+                <cstring>classBox</cstring>
+            </property>
+        </widget>
+        <widget class="QComboBox" row="0" column="1" rowspan="1" colspan="3">
+            <property name="name">
+                <cstring>serverBox</cstring>
+            </property>
+        </widget>
+        <widget class="QPushButton" row="2" column="3">
+            <property name="name">
+                <cstring>addButton</cstring>
+            </property>
+            <property name="text">
+                <string>&amp;Add</string>
+            </property>
+            <property name="accel">
+                <string>Alt+A</string>
+            </property>
+        </widget>
+        <widget class="QPushButton" row="2" column="2">
+            <property name="name">
+                <cstring>deleteButton</cstring>
+            </property>
+            <property name="sizePolicy">
+                <sizepolicy>
+                    <hsizetype>1</hsizetype>
+                    <vsizetype>1</vsizetype>
+                    <horstretch>0</horstretch>
+                    <verstretch>0</verstretch>
+                </sizepolicy>
+            </property>
+            <property name="text">
+                <string>&amp;Delete</string>
+            </property>
+            <property name="accel">
+                <string>Alt+D</string>
+            </property>
+        </widget>
+        <spacer row="2" column="1">
             <property name="name">
                 <cstring>spacer6_2</cstring>
             </property>
@@ -116,54 +164,34 @@
             </property>
             <property name="sizeHint">
                 <size>
-                    <width>150</width>
+                    <width>250</width>
                     <height>21</height>
                 </size>
             </property>
         </spacer>
-        <widget class="QLabel" row="1" column="0">
+        <widget class="QPushButton" row="4" column="3">
             <property name="name">
-                <cstring>textLabel2_2</cstring>
+                <cstring>okButton</cstring>
             </property>
             <property name="text">
-                <string>ObjectClass:</string>
+                <string>&amp;Ok</string>
+            </property>
+            <property name="accel">
+                <string>Alt+O</string>
             </property>
         </widget>
-        <widget class="QLabel" row="0" column="0">
+        <widget class="QPushButton" row="4" column="2">
             <property name="name">
-                <cstring>textLabel1_2</cstring>
+                <cstring>cancelButton</cstring>
             </property>
             <property name="text">
-                <string>Server:</string>
+                <string>&amp;Cancel</string>
+            </property>
+            <property name="accel">
+                <string>Alt+C</string>
             </property>
         </widget>
-        <widget class="QPushButton" row="2" column="4" rowspan="1" colspan="2">
-            <property name="name">
-                <cstring>addButton</cstring>
-            </property>
-            <property name="text">
-                <string>Add ObjectClass</string>
-            </property>
-        </widget>
-        <widget class="QComboBox" row="1" column="1" rowspan="1" colspan="5">
-            <property name="name">
-                <cstring>classBox</cstring>
-            </property>
-        </widget>
-        <widget class="QPushButton" row="2" column="1">
-            <property name="name">
-                <cstring>deleteButton</cstring>
-            </property>
-            <property name="text">
-                <string>Delete selected Class</string>
-            </property>
-        </widget>
-        <widget class="QComboBox" row="0" column="1" rowspan="1" colspan="5">
-            <property name="name">
-                <cstring>serverBox</cstring>
-            </property>
-        </widget>
-        <spacer row="4" column="0" rowspan="1" colspan="3">
+        <spacer row="4" column="0" rowspan="1" colspan="2">
             <property name="name">
                 <cstring>spacer4</cstring>
             </property>
@@ -175,19 +203,11 @@
             </property>
             <property name="sizeHint">
                 <size>
-                    <width>131</width>
+                    <width>340</width>
                     <height>21</height>
                 </size>
             </property>
         </spacer>
-        <widget class="QPushButton" row="4" column="3" rowspan="1" colspan="2">
-            <property name="name">
-                <cstring>cancelButton</cstring>
-            </property>
-            <property name="text">
-                <string>Cancel</string>
-            </property>
-        </widget>
     </grid>
 </widget>
 <connections>

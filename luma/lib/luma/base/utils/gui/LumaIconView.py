@@ -105,7 +105,7 @@ class LumaIconView (LumaIconViewDesign):
                 
         tmpFilter = self.searchFilterPrefix + tmpString + self.searchFilterSuffix
         
-        results = self.lumaConnection.search(self.lumaConnection.server.baseDN, ldap.SCOPE_SUBTREE, tmpFilter)
+        results = self.lumaConnection.search(self.lumaConnection.server.baseDN, ldap.SCOPE_SUBTREE, tmpFilter, ['cn', 'sn', 'givenName'], 0)
         self.processResults(results)
 
 ###############################################################################
@@ -147,6 +147,7 @@ class LumaIconView (LumaIconViewDesign):
         
         nameList.sort()
         
+        
         for x in nameList:
             iconTmp = QIconViewItem(self.resultView, x[0], self.entryIcon)
             self.iconDict[iconTmp] = x[1]
@@ -158,6 +159,50 @@ class LumaIconView (LumaIconViewDesign):
             return
             
         dn = self.iconDict[icon]
-        tmpData = self.data[dn]
+        tmpData = self.lumaConnection.search(dn, ldap.SCOPE_BASE)[0][1]
         
         self.emit(PYSIGNAL("ldap_result"), (deepcopy(dn), deepcopy(tmpData), deepcopy(self.lumaConnection.server),))
+        
+###############################################################################
+
+    def deleteItem(self):
+        item = None
+        
+        for x in self.iconDict.keys():
+            if x.isSelected():
+                item = x
+                break
+            
+        
+        if item == None:
+            return
+            
+        dn = self.iconDict[item]
+        
+        dialogResult = QMessageBox.warning(None,
+            self.trUtf8("Delete contact"),
+            self.trUtf8("""Do you really want to delete the selected contact?"""),
+            self.trUtf8("&No"),
+            self.trUtf8("&Yes"),
+            None,
+            0, -1)
+            
+            
+            
+        if dialogResult == 1:
+            result = self.lumaConnection.delete_s(dn)
+            if result == 0:
+                QMessageBox.warning(None,
+                    self.trUtf8("Error"),
+                    self.trUtf8("""Could not delete contact. See console output for more information."""),
+                    self.trUtf8("&OK"),
+                    None,
+                    None,
+                    0, -1)
+            else:
+                del self.data[dn]
+                self.showResults()
+
+            
+            
+            

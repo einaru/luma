@@ -2,8 +2,8 @@
 
 # Form implementation generated from reading ui file '/home/wido/src/luma/lib/luma/plugins/addressbook/NewCategoryDialog.ui'
 #
-# Created: Sat Jan 31 21:00:14 2004
-#      by: The PyQt User Interface Compiler (pyuic) 3.8.1
+# Created: Tue Feb 3 23:58:08 2004
+#      by: The PyQt User Interface Compiler (pyuic) 3.10
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -56,7 +56,7 @@ class NewCategoryDialog(QDialog):
 
         self.languageChange()
 
-        self.resize(QSize(374,107).expandedTo(self.minimumSizeHint()))
+        self.resize(QSize(374,109).expandedTo(self.minimumSizeHint()))
         self.clearWState(Qt.WState_Polished)
 
         self.connect(self.cancelButton,SIGNAL("clicked()"),self,SLOT("reject()"))
@@ -65,8 +65,10 @@ class NewCategoryDialog(QDialog):
 
     def languageChange(self):
         self.setCaption(self.__tr("Add category"))
-        self.okButton.setText(self.__tr("Ok"))
-        self.cancelButton.setText(self.__tr("Cancel"))
+        self.okButton.setText(self.__tr("&Ok"))
+        self.okButton.setAccel(self.__tr("Alt+O"))
+        self.cancelButton.setText(self.__tr("&Cancel"))
+        self.cancelButton.setAccel(self.__tr("Alt+C"))
         self.textLabel5.setText(self.__tr("Add Category:"))
         self.categoryBox.clear()
         self.categoryBox.insertItem(QString.null)

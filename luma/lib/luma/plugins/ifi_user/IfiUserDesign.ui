@@ -18,11 +18,11 @@
             <x>0</x>
             <y>0</y>
             <width>446</width>
-            <height>450</height>
+            <height>454</height>
         </rect>
     </property>
     <property name="caption">
-        <string>Form1</string>
+        <string>IfiUserDesign</string>
     </property>
     <grid>
         <property name="name">
@@ -72,6 +72,9 @@
                                 <property name="text">
                                     <string>Username:</string>
                                 </property>
+                                <property name="alignment">
+                                    <set>AlignVCenter|AlignRight</set>
+                                </property>
                             </widget>
                             <widget class="QLabel" row="1" column="0">
                                 <property name="name">
@@ -79,6 +82,9 @@
                                 </property>
                                 <property name="text">
                                     <string>Surename:</string>
+                                </property>
+                                <property name="alignment">
+                                    <set>AlignVCenter|AlignRight</set>
                                 </property>
                             </widget>
                             <widget class="QLineEdit" row="1" column="1">
@@ -97,6 +103,9 @@
                                 </property>
                                 <property name="text">
                                     <string>Given Name:</string>
+                                </property>
+                                <property name="alignment">
+                                    <set>AlignVCenter|AlignRight</set>
                                 </property>
                             </widget>
                         </grid>
@@ -274,7 +283,7 @@
                                 </property>
                                 <property name="sizePolicy">
                                     <sizepolicy>
-                                        <hsizetype>4</hsizetype>
+                                        <hsizetype>0</hsizetype>
                                         <vsizetype>5</vsizetype>
                                         <horstretch>0</horstretch>
                                         <verstretch>0</verstretch>
@@ -283,6 +292,9 @@
                                 <property name="text">
                                     <string>Login shell:</string>
                                 </property>
+                                <property name="alignment">
+                                    <set>AlignVCenter|AlignRight</set>
+                                </property>
                             </widget>
                             <widget class="QLabel" row="0" column="0">
                                 <property name="name">
@@ -290,14 +302,17 @@
                                 </property>
                                 <property name="sizePolicy">
                                     <sizepolicy>
-                                        <hsizetype>4</hsizetype>
+                                        <hsizetype>1</hsizetype>
                                         <vsizetype>5</vsizetype>
                                         <horstretch>0</horstretch>
                                         <verstretch>0</verstretch>
                                     </sizepolicy>
                                 </property>
                                 <property name="text">
-                                    <string>Home directory:</string>
+                                    <string>Home:</string>
+                                </property>
+                                <property name="alignment">
+                                    <set>AlignVCenter|AlignRight</set>
                                 </property>
                             </widget>
                             <widget class="QLabel" row="1" column="0">
@@ -306,7 +321,7 @@
                                 </property>
                                 <property name="sizePolicy">
                                     <sizepolicy>
-                                        <hsizetype>4</hsizetype>
+                                        <hsizetype>1</hsizetype>
                                         <vsizetype>5</vsizetype>
                                         <horstretch>0</horstretch>
                                         <verstretch>0</verstretch>
@@ -314,6 +329,9 @@
                                 </property>
                                 <property name="text">
                                     <string>Group Id:</string>
+                                </property>
+                                <property name="alignment">
+                                    <set>AlignVCenter|AlignRight</set>
                                 </property>
                             </widget>
                             <widget class="QSpinBox" row="1" column="1">
@@ -466,7 +484,10 @@
                 <cstring>pushButton1</cstring>
             </property>
             <property name="text">
-                <string>Create</string>
+                <string>&amp;Create</string>
+            </property>
+            <property name="accel">
+                <string>Alt+C</string>
             </property>
         </widget>
         <spacer row="1" column="0">

@@ -2,8 +2,8 @@
 
 # Form implementation generated from reading ui file '/home/wido/src/luma/lib/luma/base/gui/PluginLoaderGuiDesign.ui'
 #
-# Created: Mon Jan 5 21:42:04 2004
-#      by: The PyQt User Interface Compiler (pyuic) 3.8.1
+# Created: Tue Feb 3 23:58:01 2004
+#      by: The PyQt User Interface Compiler (pyuic) 3.10
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -75,7 +75,7 @@ class PluginLoaderGuiDesign(QDialog):
 
         self.languageChange()
 
-        self.resize(QSize(600,494).expandedTo(self.minimumSizeHint()))
+        self.resize(QSize(600,496).expandedTo(self.minimumSizeHint()))
         self.clearWState(Qt.WState_Polished)
 
         self.connect(self.closeButton,SIGNAL("clicked()"),self.saveValues)
@@ -85,11 +85,12 @@ class PluginLoaderGuiDesign(QDialog):
 
 
     def languageChange(self):
-        self.setCaption(self.__tr("Plugin settings"))
+        self.setCaption(self.__tr("Plugin Settings"))
         self.textLabel1.setText(self.__tr("Available Plugins:"))
         self.chooserView.header().setLabel(0,self.__tr("Load"))
-        self.settingsBox.setTitle(self.__tr("Settings Box"))
-        self.closeButton.setText(self.__tr("Close"))
+        self.settingsBox.setTitle(self.__tr("Settings"))
+        self.closeButton.setText(self.__tr("&Close"))
+        self.closeButton.setAccel(self.__tr("Alt+C"))
 
 
     def saveValues(self):

@@ -17,12 +17,12 @@
         <rect>
             <x>0</x>
             <y>0</y>
-            <width>420</width>
-            <height>378</height>
+            <width>380</width>
+            <height>364</height>
         </rect>
     </property>
     <property name="caption">
-        <string>Form1</string>
+        <string></string>
     </property>
     <grid>
         <property name="name">
@@ -84,7 +84,10 @@
                                     <cstring>cryptButton</cstring>
                                 </property>
                                 <property name="text">
-                                    <string>Encrypt</string>
+                                    <string>&amp;Encrypt</string>
+                                </property>
+                                <property name="accel">
+                                    <string>Alt+E</string>
                                 </property>
                             </widget>
                             <widget class="QLineEdit" row="0" column="1">
@@ -99,6 +102,9 @@
                                 <property name="text">
                                     <string>Password:</string>
                                 </property>
+                                <property name="alignment">
+                                    <set>AlignVCenter|AlignRight</set>
+                                </property>
                             </widget>
                             <widget class="QLineEdit" row="1" column="1">
                                 <property name="name">
@@ -112,7 +118,7 @@
                             <cstring>groupBox1</cstring>
                         </property>
                         <property name="title">
-                            <string>Create random Password</string>
+                            <string>Create Random Password</string>
                         </property>
                         <grid>
                             <property name="name">
@@ -124,6 +130,9 @@
                                 </property>
                                 <property name="text">
                                     <string>Password:</string>
+                                </property>
+                                <property name="alignment">
+                                    <set>AlignVCenter|AlignRight</set>
                                 </property>
                             </widget>
                             <widget class="QLabel" row="1" column="0">
@@ -149,7 +158,10 @@
                                     <cstring>createButton</cstring>
                                 </property>
                                 <property name="text">
-                                    <string>Create</string>
+                                    <string>&amp;Create</string>
+                                </property>
+                                <property name="accel">
+                                    <string>Alt+C</string>
                                 </property>
                             </widget>
                             <spacer row="2" column="1">
@@ -226,6 +238,7 @@
                         </property>
                         <property name="text">
                             <string>Secure</string>
+                            <comment>DO NOT TRANSLATE</comment>
                         </property>
                         <property name="scaledContents">
                             <bool>false</bool>
@@ -244,31 +257,44 @@
                     <property name="name">
                         <cstring>unnamed</cstring>
                     </property>
+                    <widget class="QLabel" row="0" column="0">
+                        <property name="name">
+                            <cstring>dateLabel</cstring>
+                        </property>
+                        <property name="text">
+                            <string>Date</string>
+                            <comment>DO NOT TRANSLATE</comment>
+                        </property>
+                        <property name="scaledContents">
+                            <bool>false</bool>
+                        </property>
+                    </widget>
                     <widget class="QGroupBox" row="1" column="0">
                         <property name="name">
                             <cstring>groupBox3</cstring>
                         </property>
                         <property name="title">
-                            <string>Date to Unix</string>
+                            <string>Date to Unix Date</string>
                         </property>
                         <grid>
                             <property name="name">
                                 <cstring>unnamed</cstring>
                             </property>
-                            <widget class="QLabel" row="0" column="0">
+                            <widget class="QLineEdit" row="1" column="1" rowspan="1" colspan="2">
                                 <property name="name">
-                                    <cstring>textLabel5</cstring>
+                                    <cstring>convDateEdit</cstring>
                                 </property>
-                                <property name="sizePolicy">
-                                    <sizepolicy>
-                                        <hsizetype>1</hsizetype>
-                                        <vsizetype>5</vsizetype>
-                                        <horstretch>0</horstretch>
-                                        <verstretch>0</verstretch>
-                                    </sizepolicy>
+                            </widget>
+                            <widget class="QDateEdit" row="0" column="1">
+                                <property name="name">
+                                    <cstring>dateEdit</cstring>
                                 </property>
-                                <property name="text">
-                                    <string>Date:</string>
+                                <property name="date">
+                                    <date>
+                                        <year>2000</year>
+                                        <month>1</month>
+                                        <day>1</day>
+                                    </date>
                                 </property>
                             </widget>
                             <widget class="QPushButton" row="0" column="2">
@@ -284,19 +310,29 @@
                                     </sizepolicy>
                                 </property>
                                 <property name="text">
-                                    <string>Convert</string>
+                                    <string>&amp;Convert</string>
+                                </property>
+                                <property name="accel">
+                                    <string>Alt+C</string>
                                 </property>
                             </widget>
-                            <widget class="QDateEdit" row="0" column="1">
+                            <widget class="QLabel" row="0" column="0">
                                 <property name="name">
-                                    <cstring>dateEdit</cstring>
+                                    <cstring>textLabel5</cstring>
                                 </property>
-                                <property name="date">
-                                    <date>
-                                        <year>2000</year>
-                                        <month>1</month>
-                                        <day>1</day>
-                                    </date>
+                                <property name="sizePolicy">
+                                    <sizepolicy>
+                                        <hsizetype>1</hsizetype>
+                                        <vsizetype>5</vsizetype>
+                                        <horstretch>0</horstretch>
+                                        <verstretch>0</verstretch>
+                                    </sizepolicy>
+                                </property>
+                                <property name="text">
+                                    <string>Date:</string>
+                                </property>
+                                <property name="alignment">
+                                    <set>AlignVCenter|AlignRight</set>
                                 </property>
                             </widget>
                             <widget class="QLabel" row="1" column="0">
@@ -305,102 +341,14 @@
                                 </property>
                                 <property name="sizePolicy">
                                     <sizepolicy>
-                                        <hsizetype>1</hsizetype>
-                                        <vsizetype>5</vsizetype>
-                                        <horstretch>0</horstretch>
-                                        <verstretch>0</verstretch>
-                                    </sizepolicy>
-                                </property>
-                                <property name="text">
-                                    <string>Days since birth of Unix:</string>
-                                </property>
-                            </widget>
-                            <widget class="QLineEdit" row="1" column="1" rowspan="1" colspan="2">
-                                <property name="name">
-                                    <cstring>convDateEdit</cstring>
-                                </property>
-                            </widget>
-                        </grid>
-                    </widget>
-                    <widget class="QGroupBox" row="2" column="0">
-                        <property name="name">
-                            <cstring>groupBox4</cstring>
-                        </property>
-                        <property name="title">
-                            <string>Duration to Unix</string>
-                        </property>
-                        <grid>
-                            <property name="name">
-                                <cstring>unnamed</cstring>
-                            </property>
-                            <widget class="QLabel" row="0" column="0">
-                                <property name="name">
-                                    <cstring>textLabel7</cstring>
-                                </property>
-                                <property name="sizePolicy">
-                                    <sizepolicy>
-                                        <hsizetype>1</hsizetype>
-                                        <vsizetype>5</vsizetype>
-                                        <horstretch>0</horstretch>
-                                        <verstretch>0</verstretch>
-                                    </sizepolicy>
-                                </property>
-                                <property name="text">
-                                    <string>Days from now:</string>
-                                </property>
-                            </widget>
-                            <widget class="QPushButton" row="0" column="2">
-                                <property name="name">
-                                    <cstring>durationButton</cstring>
-                                </property>
-                                <property name="sizePolicy">
-                                    <sizepolicy>
                                         <hsizetype>0</hsizetype>
-                                        <vsizetype>0</vsizetype>
-                                        <horstretch>0</horstretch>
-                                        <verstretch>0</verstretch>
-                                    </sizepolicy>
-                                </property>
-                                <property name="text">
-                                    <string>Convert</string>
-                                </property>
-                            </widget>
-                            <widget class="QSpinBox" row="0" column="1">
-                                <property name="name">
-                                    <cstring>durationBox</cstring>
-                                </property>
-                                <property name="buttonSymbols">
-                                    <enum>UpDownArrows</enum>
-                                </property>
-                                <property name="maxValue">
-                                    <number>65000</number>
-                                </property>
-                                <property name="minValue">
-                                    <number>-65000</number>
-                                </property>
-                                <property name="value">
-                                    <number>365</number>
-                                </property>
-                            </widget>
-                            <widget class="QLabel" row="1" column="0">
-                                <property name="name">
-                                    <cstring>textLabel6_2</cstring>
-                                </property>
-                                <property name="sizePolicy">
-                                    <sizepolicy>
-                                        <hsizetype>1</hsizetype>
                                         <vsizetype>5</vsizetype>
                                         <horstretch>0</horstretch>
                                         <verstretch>0</verstretch>
                                     </sizepolicy>
                                 </property>
                                 <property name="text">
-                                    <string>Days since birth of Unix:</string>
-                                </property>
-                            </widget>
-                            <widget class="QLineEdit" row="1" column="1" rowspan="1" colspan="2">
-                                <property name="name">
-                                    <cstring>convDurationEdit</cstring>
+                                    <string>Unix Date:</string>
                                 </property>
                             </widget>
                         </grid>
@@ -422,16 +370,97 @@
                             </size>
                         </property>
                     </spacer>
-                    <widget class="QLabel" row="0" column="0">
+                    <widget class="QGroupBox" row="2" column="0">
                         <property name="name">
-                            <cstring>dateLabel</cstring>
+                            <cstring>groupBox4</cstring>
                         </property>
-                        <property name="text">
-                            <string>Date</string>
+                        <property name="title">
+                            <string>Duration to Unix Date</string>
                         </property>
-                        <property name="scaledContents">
-                            <bool>false</bool>
-                        </property>
+                        <grid>
+                            <property name="name">
+                                <cstring>unnamed</cstring>
+                            </property>
+                            <widget class="QPushButton" row="0" column="2">
+                                <property name="name">
+                                    <cstring>durationButton</cstring>
+                                </property>
+                                <property name="sizePolicy">
+                                    <sizepolicy>
+                                        <hsizetype>0</hsizetype>
+                                        <vsizetype>0</vsizetype>
+                                        <horstretch>0</horstretch>
+                                        <verstretch>0</verstretch>
+                                    </sizepolicy>
+                                </property>
+                                <property name="text">
+                                    <string>C&amp;onvert</string>
+                                </property>
+                                <property name="accel">
+                                    <string>Alt+O</string>
+                                </property>
+                            </widget>
+                            <widget class="QLineEdit" row="1" column="1" rowspan="1" colspan="2">
+                                <property name="name">
+                                    <cstring>convDurationEdit</cstring>
+                                </property>
+                            </widget>
+                            <widget class="QSpinBox" row="0" column="1">
+                                <property name="name">
+                                    <cstring>durationBox</cstring>
+                                </property>
+                                <property name="buttonSymbols">
+                                    <enum>UpDownArrows</enum>
+                                </property>
+                                <property name="maxValue">
+                                    <number>65000</number>
+                                </property>
+                                <property name="minValue">
+                                    <number>-65000</number>
+                                </property>
+                                <property name="value">
+                                    <number>365</number>
+                                </property>
+                            </widget>
+                            <widget class="QLabel" row="0" column="0">
+                                <property name="name">
+                                    <cstring>textLabel7</cstring>
+                                </property>
+                                <property name="sizePolicy">
+                                    <sizepolicy>
+                                        <hsizetype>0</hsizetype>
+                                        <vsizetype>5</vsizetype>
+                                        <horstretch>0</horstretch>
+                                        <verstretch>0</verstretch>
+                                    </sizepolicy>
+                                </property>
+                                <property name="text">
+                                    <string>Days from now:</string>
+                                </property>
+                                <property name="alignment">
+                                    <set>AlignVCenter|AlignRight</set>
+                                </property>
+                            </widget>
+                            <widget class="QLabel" row="1" column="0">
+                                <property name="name">
+                                    <cstring>textLabel6_2</cstring>
+                                </property>
+                                <property name="sizePolicy">
+                                    <sizepolicy>
+                                        <hsizetype>1</hsizetype>
+                                        <vsizetype>5</vsizetype>
+                                        <horstretch>0</horstretch>
+                                        <verstretch>0</verstretch>
+                                    </sizepolicy>
+                                </property>
+                                <property name="text">
+                                    <string>Unix Date:</string>
+                                </property>
+                                <property name="alignment">
+                                    <set>AlignVCenter|AlignRight</set>
+                                </property>
+                            </widget>
+                        </grid>
                     </widget>
                 </grid>
             </widget>

@@ -1,4 +1,4 @@
-<!DOCTYPE UI><UI version="3.1" stdsetdef="1">
+<!DOCTYPE UI><UI version="3.2" stdsetdef="1">
 <class>FilterWizardDesign</class>
 <comment>###########################################################################
 #    Copyright (C) 2003 by Wido Depping                                      
@@ -17,8 +17,8 @@
         <rect>
             <x>0</x>
             <y>0</y>
-            <width>398</width>
-            <height>416</height>
+            <width>360</width>
+            <height>426</height>
         </rect>
     </property>
     <property name="sizePolicy">
@@ -327,7 +327,10 @@
                                 </sizepolicy>
                             </property>
                             <property name="text">
-                                <string>Delete</string>
+                                <string>&amp;Delete</string>
+                            </property>
+                            <property name="accel">
+                                <string>Alt+D</string>
                             </property>
                         </widget>
                     </hbox>
@@ -389,7 +392,10 @@
                                 </sizepolicy>
                             </property>
                             <property name="text">
-                                <string>Add to Bookmarks</string>
+                                <string>&amp;Add to Bookmarks</string>
+                            </property>
+                            <property name="accel">
+                                <string>Alt+A</string>
                             </property>
                         </widget>
                     </hbox>
@@ -418,7 +424,10 @@
                 <cstring>pushButton11</cstring>
             </property>
             <property name="text">
-                <string>Ok</string>
+                <string>&amp;Ok</string>
+            </property>
+            <property name="accel">
+                <string>Alt+O</string>
             </property>
         </widget>
     </vbox>

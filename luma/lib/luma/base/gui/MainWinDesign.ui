@@ -18,7 +18,7 @@
             <x>0</x>
             <y>0</y>
             <width>547</width>
-            <height>422</height>
+            <height>428</height>
         </rect>
     </property>
     <property name="caption">
@@ -183,7 +183,10 @@
             <iconset>image0</iconset>
         </property>
         <property name="text">
-            <string>About Luma</string>
+            <string>About Luma...</string>
+        </property>
+        <property name="accel">
+            <string>Ctrl+A</string>
         </property>
     </action>
     <action>
@@ -194,7 +197,10 @@
             <iconset>image1</iconset>
         </property>
         <property name="text">
-            <string>Edit Server List</string>
+            <string>Edit Server List...</string>
+        </property>
+        <property name="accel">
+            <string>Ctrl+E</string>
         </property>
     </action>
     <action>
@@ -207,6 +213,9 @@
         <property name="text">
             <string>Exit</string>
         </property>
+        <property name="accel">
+            <string>Ctrl+X</string>
+        </property>
     </action>
     <action>
         <property name="name">
@@ -216,7 +225,10 @@
             <iconset>image3</iconset>
         </property>
         <property name="text">
-            <string>Configure Plugins</string>
+            <string>Configure Plugins...</string>
+        </property>
+        <property name="accel">
+            <string>Ctrl+C</string>
         </property>
     </action>
     <action>
@@ -229,6 +241,9 @@
         <property name="text">
             <string>Reload Plugins</string>
         </property>
+        <property name="accel">
+            <string>Ctrl+R</string>
+        </property>
     </action>
     <action>
         <property name="name">
@@ -238,7 +253,10 @@
             <iconset>image5</iconset>
         </property>
         <property name="text">
-            <string>Language</string>
+            <string>Language...</string>
+        </property>
+        <property name="accel">
+            <string>Ctrl+L</string>
         </property>
     </action>
     <action>
@@ -256,6 +274,9 @@
         </property>
         <property name="text">
             <string>Hide/Show pluginlist</string>
+        </property>
+        <property name="accel">
+            <string>Ctrl+P</string>
         </property>
     </action>
 </actions>

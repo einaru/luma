@@ -2,8 +2,8 @@
 
 # Form implementation generated from reading ui file '/home/wido/src/luma/lib/luma/plugins/config_create/ConfigError.ui'
 #
-# Created: Thu Jan 1 17:35:30 2004
-#      by: The PyQt User Interface Compiler (pyuic) 3.8.1
+# Created: Tue Feb 3 23:58:02 2004
+#      by: The PyQt User Interface Compiler (pyuic) 3.10
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -369,10 +369,6 @@ class ConfigError(QDialog):
 
         ConfigErrorLayout = QGridLayout(self,1,1,11,6,"ConfigErrorLayout")
 
-        self.pushButton6 = QPushButton(self,"pushButton6")
-
-        ConfigErrorLayout.addMultiCellWidget(self.pushButton6,2,2,0,1)
-
         self.suffixIcon = QLabel(self,"suffixIcon")
         self.suffixIcon.setSizePolicy(QSizePolicy(0,0,0,0,self.suffixIcon.sizePolicy().hasHeightForWidth()))
         self.suffixIcon.setFrameShape(QLabel.NoFrame)
@@ -386,11 +382,24 @@ class ConfigError(QDialog):
 
         self.errorLabel = QLabel(self,"errorLabel")
 
-        ConfigErrorLayout.addMultiCellWidget(self.errorLabel,0,1,1,1)
+        ConfigErrorLayout.addMultiCellWidget(self.errorLabel,0,1,1,2)
+
+        self.pushButton6 = QPushButton(self,"pushButton6")
+
+        ConfigErrorLayout.addWidget(self.pushButton6,3,2)
+        spacer_2 = QSpacerItem(261,31,QSizePolicy.Expanding,QSizePolicy.Minimum)
+        ConfigErrorLayout.addMultiCell(spacer_2,3,3,0,1)
+
+        self.line1 = QFrame(self,"line1")
+        self.line1.setFrameShape(QFrame.HLine)
+        self.line1.setFrameShadow(QFrame.Sunken)
+        self.line1.setFrameShape(QFrame.HLine)
+
+        ConfigErrorLayout.addMultiCellWidget(self.line1,2,2,0,2)
 
         self.languageChange()
 
-        self.resize(QSize(287,127).expandedTo(self.minimumSizeHint()))
+        self.resize(QSize(375,263).expandedTo(self.minimumSizeHint()))
         self.clearWState(Qt.WState_Polished)
 
         self.connect(self.pushButton6,SIGNAL("clicked()"),self,SLOT("close()"))
@@ -398,8 +407,9 @@ class ConfigError(QDialog):
 
     def languageChange(self):
         self.setCaption(self.__tr("Info"))
-        self.pushButton6.setText(self.__tr("Ok"))
         self.errorLabel.setText(QString.null)
+        self.pushButton6.setText(self.__tr("&Ok"))
+        self.pushButton6.setAccel(self.__tr("Alt+O"))
 
 
     def __tr(self,s,c = None):

@@ -2,8 +2,8 @@
 
 # Form implementation generated from reading ui file '/home/wido/src/luma/lib/luma/base/gui/MainWinDesign.ui'
 #
-# Created: Sun Jan 4 22:33:12 2004
-#      by: The PyQt User Interface Compiler (pyuic) 3.8.1
+# Created: Wed Feb 4 00:06:45 2004
+#      by: The PyQt User Interface Compiler (pyuic) 3.10
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -1518,7 +1518,7 @@ class MainWinDesign(QMainWindow):
 
         self.languageChange()
 
-        self.resize(QSize(547,422).expandedTo(self.minimumSizeHint()))
+        self.resize(QSize(547,428).expandedTo(self.minimumSizeHint()))
         self.clearWState(Qt.WState_Polished)
 
         self.connect(self.about,SIGNAL("activated()"),self.showAboutLuma)
@@ -1536,13 +1536,20 @@ class MainWinDesign(QMainWindow):
         self.setCaption(self.__tr("Luma"))
         self.pluginBox.setTitle(self.__tr("Plugins"))
         self.taskBox.setTitle(self.__tr("Work Area"))
-        self.about.setText(self.__tr("About Luma"))
-        self.editServerList.setText(self.__tr("Edit Server List"))
+        self.about.setText(self.__tr("About Luma..."))
+        self.about.setAccel(self.__tr("Ctrl+A"))
+        self.editServerList.setText(self.__tr("Edit Server List..."))
+        self.editServerList.setAccel(self.__tr("Ctrl+E"))
         self.exitItem.setText(self.__tr("Exit"))
-        self.menu_configure_plugins.setText(self.__tr("Configure Plugins"))
+        self.exitItem.setAccel(self.__tr("Ctrl+X"))
+        self.menu_configure_plugins.setText(self.__tr("Configure Plugins..."))
+        self.menu_configure_plugins.setAccel(self.__tr("Ctrl+C"))
         self.reload.setText(self.__tr("Reload Plugins"))
-        self.select_language.setText(self.__tr("Language"))
+        self.reload.setAccel(self.__tr("Ctrl+R"))
+        self.select_language.setText(self.__tr("Language..."))
+        self.select_language.setAccel(self.__tr("Ctrl+L"))
         self.togglePluginList.setText(self.__tr("Hide/Show pluginlist"))
+        self.togglePluginList.setAccel(self.__tr("Ctrl+P"))
         self.menubar.findItem(1).setText(self.__tr("Program"))
         self.menubar.findItem(2).setText(self.__tr("Settings"))
         self.menubar.findItem(3).setText(self.__tr("Help"))

@@ -2,8 +2,8 @@
 
 # Form implementation generated from reading ui file '/home/wido/src/luma/lib/luma/plugins/template_plugin/OClassDialogDesign.ui'
 #
-# Created: Thu Jan 1 17:35:31 2004
-#      by: The PyQt User Interface Compiler (pyuic) 3.8.1
+# Created: Tue Feb 3 23:58:03 2004
+#      by: The PyQt User Interface Compiler (pyuic) 3.10
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -23,7 +23,7 @@ class OClassDialogDesign(QDialog):
         OClassDialogDesignLayout = QGridLayout(self,1,1,11,6,"OClassDialogDesignLayout")
 
         self.splitter8_2 = QSplitter(self,"splitter8_2")
-        self.splitter8_2.setMinimumSize(QSize(253,84))
+        self.splitter8_2.setMinimumSize(QSize(241,80))
         self.splitter8_2.setOrientation(QSplitter.Horizontal)
 
         self.classView = QListView(self.splitter8_2,"classView")
@@ -36,13 +36,7 @@ class OClassDialogDesign(QDialog):
         self.attributeView.setSizePolicy(QSizePolicy(4,4,0,0,self.attributeView.sizePolicy().hasHeightForWidth()))
         self.attributeView.setResizeMode(QListView.AllColumns)
 
-        OClassDialogDesignLayout.addMultiCellWidget(self.splitter8_2,3,3,0,5)
-
-        self.okButton = QPushButton(self,"okButton")
-
-        OClassDialogDesignLayout.addWidget(self.okButton,4,5)
-        spacer = QSpacerItem(150,21,QSizePolicy.Expanding,QSizePolicy.Minimum)
-        OClassDialogDesignLayout.addMultiCell(spacer,2,2,2,3)
+        OClassDialogDesignLayout.addMultiCellWidget(self.splitter8_2,3,3,0,3)
 
         self.textLabel2_2 = QLabel(self,"textLabel2_2")
 
@@ -52,31 +46,38 @@ class OClassDialogDesign(QDialog):
 
         OClassDialogDesignLayout.addWidget(self.textLabel1_2,0,0)
 
-        self.addButton = QPushButton(self,"addButton")
-
-        OClassDialogDesignLayout.addMultiCellWidget(self.addButton,2,2,4,5)
-
         self.classBox = QComboBox(0,self,"classBox")
 
-        OClassDialogDesignLayout.addMultiCellWidget(self.classBox,1,1,1,5)
-
-        self.deleteButton = QPushButton(self,"deleteButton")
-
-        OClassDialogDesignLayout.addWidget(self.deleteButton,2,1)
+        OClassDialogDesignLayout.addMultiCellWidget(self.classBox,1,1,1,3)
 
         self.serverBox = QComboBox(0,self,"serverBox")
 
-        OClassDialogDesignLayout.addMultiCellWidget(self.serverBox,0,0,1,5)
-        spacer_2 = QSpacerItem(131,21,QSizePolicy.Expanding,QSizePolicy.Minimum)
-        OClassDialogDesignLayout.addMultiCell(spacer_2,4,4,0,2)
+        OClassDialogDesignLayout.addMultiCellWidget(self.serverBox,0,0,1,3)
+
+        self.addButton = QPushButton(self,"addButton")
+
+        OClassDialogDesignLayout.addWidget(self.addButton,2,3)
+
+        self.deleteButton = QPushButton(self,"deleteButton")
+        self.deleteButton.setSizePolicy(QSizePolicy(1,1,0,0,self.deleteButton.sizePolicy().hasHeightForWidth()))
+
+        OClassDialogDesignLayout.addWidget(self.deleteButton,2,2)
+        spacer = QSpacerItem(250,21,QSizePolicy.Expanding,QSizePolicy.Minimum)
+        OClassDialogDesignLayout.addItem(spacer,2,1)
+
+        self.okButton = QPushButton(self,"okButton")
+
+        OClassDialogDesignLayout.addWidget(self.okButton,4,3)
 
         self.cancelButton = QPushButton(self,"cancelButton")
 
-        OClassDialogDesignLayout.addMultiCellWidget(self.cancelButton,4,4,3,4)
+        OClassDialogDesignLayout.addWidget(self.cancelButton,4,2)
+        spacer_2 = QSpacerItem(340,21,QSizePolicy.Expanding,QSizePolicy.Minimum)
+        OClassDialogDesignLayout.addMultiCell(spacer_2,4,4,0,1)
 
         self.languageChange()
 
-        self.resize(QSize(508,531).expandedTo(self.minimumSizeHint()))
+        self.resize(QSize(508,533).expandedTo(self.minimumSizeHint()))
         self.clearWState(Qt.WState_Polished)
 
         self.connect(self.okButton,SIGNAL("clicked()"),self,SLOT("accept()"))
@@ -92,12 +93,16 @@ class OClassDialogDesign(QDialog):
         self.setCaption(self.__tr("Luma"))
         self.classView.header().setLabel(0,self.__tr("ObjectClass"))
         self.attributeView.header().setLabel(0,self.__tr("Attribute"))
-        self.okButton.setText(self.__tr("Ok"))
-        self.textLabel2_2.setText(self.__tr("ObjectClass:"))
+        self.textLabel2_2.setText(self.__tr("Object Class:"))
         self.textLabel1_2.setText(self.__tr("Server:"))
-        self.addButton.setText(self.__tr("Add ObjectClass"))
-        self.deleteButton.setText(self.__tr("Delete selected Class"))
-        self.cancelButton.setText(self.__tr("Cancel"))
+        self.addButton.setText(self.__tr("&Add"))
+        self.addButton.setAccel(self.__tr("Alt+A"))
+        self.deleteButton.setText(self.__tr("&Delete"))
+        self.deleteButton.setAccel(self.__tr("Alt+D"))
+        self.okButton.setText(self.__tr("&Ok"))
+        self.okButton.setAccel(self.__tr("Alt+O"))
+        self.cancelButton.setText(self.__tr("&Cancel"))
+        self.cancelButton.setAccel(self.__tr("Alt+C"))
 
 
     def add_class(self):

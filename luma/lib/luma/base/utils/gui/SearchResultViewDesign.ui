@@ -1,4 +1,4 @@
-<!DOCTYPE UI><UI version="3.1" stdsetdef="1">
+<!DOCTYPE UI><UI version="3.2" stdsetdef="1">
 <class>SearchResultViewDesign</class>
 <comment>###########################################################################
 #    Copyright (C) 2003 by Wido Depping                                      
@@ -18,11 +18,11 @@
             <x>0</x>
             <y>0</y>
             <width>600</width>
-            <height>480</height>
+            <height>482</height>
         </rect>
     </property>
     <property name="caption">
-        <string>Form1</string>
+        <string></string>
     </property>
     <grid>
         <property name="name">

@@ -2,8 +2,8 @@
 
 # Form implementation generated from reading ui file '/home/wido/src/luma/lib/luma/plugins/template_plugin/TemplateFormDesign.ui'
 #
-# Created: Thu Jan 1 17:35:31 2004
-#      by: The PyQt User Interface Compiler (pyuic) 3.8.1
+# Created: Wed Feb 4 00:10:55 2004
+#      by: The PyQt User Interface Compiler (pyuic) 3.10
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -81,7 +81,7 @@ class TemplateFormDesign(QWidget):
 
         self.languageChange()
 
-        self.resize(QSize(367,388).expandedTo(self.minimumSizeHint()))
+        self.resize(QSize(367,392).expandedTo(self.minimumSizeHint()))
         self.clearWState(Qt.WState_Polished)
 
         self.connect(self.addTemplateButton,SIGNAL("clicked()"),self.add_template)
@@ -92,18 +92,22 @@ class TemplateFormDesign(QWidget):
 
 
     def languageChange(self):
-        self.setCaption(self.__tr("Form2"))
+        self.setCaption(self.__tr("TemplateFormDesign"))
         self.groupBox2.setTitle(self.__tr("Template Info"))
         self.infoView.header().setLabel(0,self.__tr("Type"))
         self.infoView.header().setLabel(1,self.__tr("Name"))
         self.infoView.header().setLabel(2,self.__tr("Must"))
         self.infoView.header().setLabel(3,self.__tr("Single"))
         self.infoView.header().setLabel(4,self.__tr("Show"))
-        self.saveButton.setText(self.__tr("Save "))
-        self.classButton.setText(self.__tr("Edit"))
+        self.saveButton.setText(self.__tr("&Save"))
+        self.saveButton.setAccel(self.__tr("Alt+S"))
+        self.classButton.setText(self.__tr("&Edit..."))
+        self.classButton.setAccel(self.__tr("Alt+E"))
         self.groupBox2_2.setTitle(self.__tr("Template List"))
-        self.delTemplateButton.setText(self.__tr("Delete"))
-        self.addTemplateButton.setText(self.__tr("Add"))
+        self.delTemplateButton.setText(self.__tr("&Delete"))
+        self.delTemplateButton.setAccel(self.__tr("Alt+D"))
+        self.addTemplateButton.setText(self.__tr("&Add..."))
+        self.addTemplateButton.setAccel(self.__tr("Alt+A"))
         self.templateView.header().setLabel(0,self.__tr("Template Name"))
 
 

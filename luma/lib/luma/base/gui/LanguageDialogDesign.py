@@ -2,8 +2,8 @@
 
 # Form implementation generated from reading ui file '/home/wido/src/luma/lib/luma/base/gui/LanguageDialogDesign.ui'
 #
-# Created: Thu Jan 1 17:35:32 2004
-#      by: The PyQt User Interface Compiler (pyuic) 3.8.1
+# Created: Tue Feb 3 23:58:04 2004
+#      by: The PyQt User Interface Compiler (pyuic) 3.10
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -54,7 +54,7 @@ class LanguageDialogDesign(QDialog):
 
         self.languageChange()
 
-        self.resize(QSize(327,116).expandedTo(self.minimumSizeHint()))
+        self.resize(QSize(327,118).expandedTo(self.minimumSizeHint()))
         self.clearWState(Qt.WState_Polished)
 
         self.connect(self.okButton,SIGNAL("clicked()"),self,SLOT("accept()"))
@@ -64,8 +64,10 @@ class LanguageDialogDesign(QDialog):
     def languageChange(self):
         self.setCaption(self.__tr("Choose Language"))
         self.textLabel1.setText(self.__tr("Language:"))
-        self.okButton.setText(self.__tr("Ok"))
-        self.cancelButton.setText(self.__tr("Cancel"))
+        self.okButton.setText(self.__tr("&Ok"))
+        self.okButton.setAccel(self.__tr("Alt+O"))
+        self.cancelButton.setText(self.__tr("&Cancel"))
+        self.cancelButton.setAccel(self.__tr("Alt+C"))
 
 
     def __tr(self,s,c = None):

@@ -2,8 +2,8 @@
 
 # Form implementation generated from reading ui file '/home/wido/src/luma/lib/luma/plugins/admin_utils/AdminPanelDesign.ui'
 #
-# Created: Sat Jan 3 17:38:51 2004
-#      by: The PyQt User Interface Compiler (pyuic) 3.8.1
+# Created: Tue Feb 3 23:58:04 2004
+#      by: The PyQt User Interface Compiler (pyuic) 3.10
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -49,6 +49,7 @@ class AdminPanelDesign(QWidget):
         groupBox2Layout.addWidget(self.pwEdit,0,1)
 
         self.textLabel3 = QLabel(self.groupBox2,"textLabel3")
+        self.textLabel3.setAlignment(QLabel.AlignVCenter | QLabel.AlignRight)
 
         groupBox2Layout.addWidget(self.textLabel3,0,0)
 
@@ -66,6 +67,7 @@ class AdminPanelDesign(QWidget):
         groupBox1Layout.setAlignment(Qt.AlignTop)
 
         self.textLabel1 = QLabel(self.groupBox1,"textLabel1")
+        self.textLabel1.setAlignment(QLabel.AlignVCenter | QLabel.AlignRight)
 
         groupBox1Layout.addWidget(self.textLabel1,0,0)
 
@@ -108,6 +110,11 @@ class AdminPanelDesign(QWidget):
         self.tab_2 = QWidget(self.tabWidget2,"tab_2")
         tabLayout_2 = QGridLayout(self.tab_2,1,1,11,6,"tabLayout_2")
 
+        self.dateLabel = QLabel(self.tab_2,"dateLabel")
+        self.dateLabel.setScaledContents(0)
+
+        tabLayout_2.addWidget(self.dateLabel,0,0)
+
         self.groupBox3 = QGroupBox(self.tab_2,"groupBox3")
         self.groupBox3.setColumnLayout(0,Qt.Vertical)
         self.groupBox3.layout().setSpacing(6)
@@ -115,31 +122,34 @@ class AdminPanelDesign(QWidget):
         groupBox3Layout = QGridLayout(self.groupBox3.layout())
         groupBox3Layout.setAlignment(Qt.AlignTop)
 
-        self.textLabel5 = QLabel(self.groupBox3,"textLabel5")
-        self.textLabel5.setSizePolicy(QSizePolicy(1,5,0,0,self.textLabel5.sizePolicy().hasHeightForWidth()))
+        self.convDateEdit = QLineEdit(self.groupBox3,"convDateEdit")
 
-        groupBox3Layout.addWidget(self.textLabel5,0,0)
-
-        self.dateButton = QPushButton(self.groupBox3,"dateButton")
-        self.dateButton.setSizePolicy(QSizePolicy(0,0,0,0,self.dateButton.sizePolicy().hasHeightForWidth()))
-
-        groupBox3Layout.addWidget(self.dateButton,0,2)
+        groupBox3Layout.addMultiCellWidget(self.convDateEdit,1,1,1,2)
 
         self.dateEdit = QDateEdit(self.groupBox3,"dateEdit")
         self.dateEdit.setDate(QDate(2000,1,1))
 
         groupBox3Layout.addWidget(self.dateEdit,0,1)
 
+        self.dateButton = QPushButton(self.groupBox3,"dateButton")
+        self.dateButton.setSizePolicy(QSizePolicy(0,0,0,0,self.dateButton.sizePolicy().hasHeightForWidth()))
+
+        groupBox3Layout.addWidget(self.dateButton,0,2)
+
+        self.textLabel5 = QLabel(self.groupBox3,"textLabel5")
+        self.textLabel5.setSizePolicy(QSizePolicy(1,5,0,0,self.textLabel5.sizePolicy().hasHeightForWidth()))
+        self.textLabel5.setAlignment(QLabel.AlignVCenter | QLabel.AlignRight)
+
+        groupBox3Layout.addWidget(self.textLabel5,0,0)
+
         self.textLabel6 = QLabel(self.groupBox3,"textLabel6")
-        self.textLabel6.setSizePolicy(QSizePolicy(1,5,0,0,self.textLabel6.sizePolicy().hasHeightForWidth()))
+        self.textLabel6.setSizePolicy(QSizePolicy(0,5,0,0,self.textLabel6.sizePolicy().hasHeightForWidth()))
 
         groupBox3Layout.addWidget(self.textLabel6,1,0)
 
-        self.convDateEdit = QLineEdit(self.groupBox3,"convDateEdit")
-
-        groupBox3Layout.addMultiCellWidget(self.convDateEdit,1,1,1,2)
-
         tabLayout_2.addWidget(self.groupBox3,1,0)
+        spacer_3 = QSpacerItem(21,141,QSizePolicy.Minimum,QSizePolicy.Expanding)
+        tabLayout_2.addItem(spacer_3,3,0)
 
         self.groupBox4 = QGroupBox(self.tab_2,"groupBox4")
         self.groupBox4.setColumnLayout(0,Qt.Vertical)
@@ -148,15 +158,14 @@ class AdminPanelDesign(QWidget):
         groupBox4Layout = QGridLayout(self.groupBox4.layout())
         groupBox4Layout.setAlignment(Qt.AlignTop)
 
-        self.textLabel7 = QLabel(self.groupBox4,"textLabel7")
-        self.textLabel7.setSizePolicy(QSizePolicy(1,5,0,0,self.textLabel7.sizePolicy().hasHeightForWidth()))
-
-        groupBox4Layout.addWidget(self.textLabel7,0,0)
-
         self.durationButton = QPushButton(self.groupBox4,"durationButton")
         self.durationButton.setSizePolicy(QSizePolicy(0,0,0,0,self.durationButton.sizePolicy().hasHeightForWidth()))
 
         groupBox4Layout.addWidget(self.durationButton,0,2)
+
+        self.convDurationEdit = QLineEdit(self.groupBox4,"convDurationEdit")
+
+        groupBox4Layout.addMultiCellWidget(self.convDurationEdit,1,1,1,2)
 
         self.durationBox = QSpinBox(self.groupBox4,"durationBox")
         self.durationBox.setButtonSymbols(QSpinBox.UpDownArrows)
@@ -166,30 +175,26 @@ class AdminPanelDesign(QWidget):
 
         groupBox4Layout.addWidget(self.durationBox,0,1)
 
+        self.textLabel7 = QLabel(self.groupBox4,"textLabel7")
+        self.textLabel7.setSizePolicy(QSizePolicy(0,5,0,0,self.textLabel7.sizePolicy().hasHeightForWidth()))
+        self.textLabel7.setAlignment(QLabel.AlignVCenter | QLabel.AlignRight)
+
+        groupBox4Layout.addWidget(self.textLabel7,0,0)
+
         self.textLabel6_2 = QLabel(self.groupBox4,"textLabel6_2")
         self.textLabel6_2.setSizePolicy(QSizePolicy(1,5,0,0,self.textLabel6_2.sizePolicy().hasHeightForWidth()))
+        self.textLabel6_2.setAlignment(QLabel.AlignVCenter | QLabel.AlignRight)
 
         groupBox4Layout.addWidget(self.textLabel6_2,1,0)
 
-        self.convDurationEdit = QLineEdit(self.groupBox4,"convDurationEdit")
-
-        groupBox4Layout.addMultiCellWidget(self.convDurationEdit,1,1,1,2)
-
         tabLayout_2.addWidget(self.groupBox4,2,0)
-        spacer_3 = QSpacerItem(21,141,QSizePolicy.Minimum,QSizePolicy.Expanding)
-        tabLayout_2.addItem(spacer_3,3,0)
-
-        self.dateLabel = QLabel(self.tab_2,"dateLabel")
-        self.dateLabel.setScaledContents(0)
-
-        tabLayout_2.addWidget(self.dateLabel,0,0)
         self.tabWidget2.insertTab(self.tab_2,QString(""))
 
         AdminPanelDesignLayout.addWidget(self.tabWidget2,0,0)
 
         self.languageChange()
 
-        self.resize(QSize(420,378).expandedTo(self.minimumSizeHint()))
+        self.resize(QSize(380,364).expandedTo(self.minimumSizeHint()))
         self.clearWState(Qt.WState_Polished)
 
         self.connect(self.createButton,SIGNAL("clicked()"),self.create_random)
@@ -202,32 +207,36 @@ class AdminPanelDesign(QWidget):
 
 
     def languageChange(self):
-        self.setCaption(self.__tr("Form1"))
+        self.setCaption(QString.null)
         self.groupBox2.setTitle(self.__tr("Encrypt Password"))
         self.textLabel4.setText(self.__tr("Encrypted Password:"))
-        self.cryptButton.setText(self.__tr("Encrypt"))
+        self.cryptButton.setText(self.__tr("&Encrypt"))
+        self.cryptButton.setAccel(self.__tr("Alt+E"))
         self.textLabel3.setText(self.__tr("Password:"))
-        self.groupBox1.setTitle(self.__tr("Create random Password"))
+        self.groupBox1.setTitle(self.__tr("Create Random Password"))
         self.textLabel1.setText(self.__tr("Password:"))
         self.textLabel2.setText(self.__tr("Encrypted password:"))
-        self.createButton.setText(self.__tr("Create"))
+        self.createButton.setText(self.__tr("&Create"))
+        self.createButton.setAccel(self.__tr("Alt+C"))
         self.methodBox.clear()
         self.methodBox.insertItem(self.__tr("crypt"))
         self.methodBox.insertItem(self.__tr("md5"))
         self.methodBox.insertItem(self.__tr("sha"))
         self.methodBox.insertItem(self.__tr("ssha"))
         self.textLabel1_2.setText(self.__tr("Method:"))
-        self.secureLabel.setText(self.__tr("Secure"))
+        self.secureLabel.setText(self.__tr("Secure","DO NOT TRANSLATE"))
         self.tabWidget2.changeTab(self.tab,self.__tr("Passwords"))
-        self.groupBox3.setTitle(self.__tr("Date to Unix"))
+        self.dateLabel.setText(self.__tr("Date","DO NOT TRANSLATE"))
+        self.groupBox3.setTitle(self.__tr("Date to Unix Date"))
+        self.dateButton.setText(self.__tr("&Convert"))
+        self.dateButton.setAccel(self.__tr("Alt+C"))
         self.textLabel5.setText(self.__tr("Date:"))
-        self.dateButton.setText(self.__tr("Convert"))
-        self.textLabel6.setText(self.__tr("Days since birth of Unix:"))
-        self.groupBox4.setTitle(self.__tr("Duration to Unix"))
+        self.textLabel6.setText(self.__tr("Unix Date:"))
+        self.groupBox4.setTitle(self.__tr("Duration to Unix Date"))
+        self.durationButton.setText(self.__tr("C&onvert"))
+        self.durationButton.setAccel(self.__tr("Alt+O"))
         self.textLabel7.setText(self.__tr("Days from now:"))
-        self.durationButton.setText(self.__tr("Convert"))
-        self.textLabel6_2.setText(self.__tr("Days since birth of Unix:"))
-        self.dateLabel.setText(self.__tr("Date"))
+        self.textLabel6_2.setText(self.__tr("Unix Date:"))
         self.tabWidget2.changeTab(self.tab_2,self.__tr("Date/Time"))
 
 

@@ -40,6 +40,7 @@ class TemplateForm(TemplateFormDesign):
 
     def add_template(self):
         templateText = QInputDialog.getText(self.trUtf8("Add Template"), self.trUtf8("Enter template name:"))[0]
+
         if templateText.isEmpty():
             return
         else:

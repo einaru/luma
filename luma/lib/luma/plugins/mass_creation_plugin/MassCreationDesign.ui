@@ -18,11 +18,11 @@
             <x>0</x>
             <y>0</y>
             <width>404</width>
-            <height>456</height>
+            <height>458</height>
         </rect>
     </property>
     <property name="caption">
-        <string>Form1</string>
+        <string></string>
     </property>
     <grid>
         <property name="name">
@@ -283,49 +283,6 @@
                                     <string>/home</string>
                                 </property>
                             </widget>
-                            <widget class="QLineEdit" row="2" column="1" rowspan="1" colspan="2">
-                                <property name="name">
-                                    <cstring>shellEdit</cstring>
-                                </property>
-                                <property name="text">
-                                    <string>/bin/bash</string>
-                                </property>
-                            </widget>
-                            <widget class="QLabel" row="2" column="0">
-                                <property name="name">
-                                    <cstring>textLabel7</cstring>
-                                </property>
-                                <property name="text">
-                                    <string>Login shell:</string>
-                                </property>
-                            </widget>
-                            <widget class="QLabel" row="0" column="0">
-                                <property name="name">
-                                    <cstring>textLabel5</cstring>
-                                </property>
-                                <property name="text">
-                                    <string>Home directory:</string>
-                                </property>
-                            </widget>
-                            <widget class="QLabel" row="1" column="0">
-                                <property name="name">
-                                    <cstring>textLabel6</cstring>
-                                </property>
-                                <property name="text">
-                                    <string>Group Id:</string>
-                                </property>
-                            </widget>
-                            <widget class="QSpinBox" row="1" column="1">
-                                <property name="name">
-                                    <cstring>gidBox</cstring>
-                                </property>
-                                <property name="maxValue">
-                                    <number>65535</number>
-                                </property>
-                                <property name="value">
-                                    <number>100</number>
-                                </property>
-                            </widget>
                             <widget class="QPushButton" row="1" column="2">
                                 <property name="name">
                                     <cstring>browseGroupButton</cstring>
@@ -348,6 +305,49 @@
                                     <string>Select group from LDAP</string>
                                 </property>
                             </widget>
+                            <widget class="QLabel" row="0" column="0">
+                                <property name="name">
+                                    <cstring>textLabel5</cstring>
+                                </property>
+                                <property name="text">
+                                    <string>Home prefix:</string>
+                                </property>
+                            </widget>
+                            <widget class="QLabel" row="1" column="0">
+                                <property name="name">
+                                    <cstring>textLabel6</cstring>
+                                </property>
+                                <property name="text">
+                                    <string>Group Id:</string>
+                                </property>
+                            </widget>
+                            <widget class="QLabel" row="2" column="0">
+                                <property name="name">
+                                    <cstring>textLabel7</cstring>
+                                </property>
+                                <property name="text">
+                                    <string>Login shell:</string>
+                                </property>
+                            </widget>
+                            <widget class="QSpinBox" row="1" column="1">
+                                <property name="name">
+                                    <cstring>gidBox</cstring>
+                                </property>
+                                <property name="maxValue">
+                                    <number>65535</number>
+                                </property>
+                                <property name="value">
+                                    <number>100</number>
+                                </property>
+                            </widget>
+                            <widget class="QLineEdit" row="2" column="1" rowspan="1" colspan="2">
+                                <property name="name">
+                                    <cstring>shellEdit</cstring>
+                                </property>
+                                <property name="text">
+                                    <string>/bin/bash</string>
+                                </property>
+                            </widget>
                         </grid>
                     </widget>
                     <widget class="QGroupBox">
@@ -355,7 +355,7 @@
                             <cstring>groupBox2</cstring>
                         </property>
                         <property name="title">
-                            <string>uid number range</string>
+                            <string>Uid number range</string>
                         </property>
                         <grid>
                             <property name="name">
@@ -465,7 +465,10 @@
                 <cstring>pushButton1</cstring>
             </property>
             <property name="text">
-                <string>Create</string>
+                <string>&amp;Create</string>
+            </property>
+            <property name="accel">
+                <string>Alt+C</string>
             </property>
         </widget>
         <spacer row="1" column="1">

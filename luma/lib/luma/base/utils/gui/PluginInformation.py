@@ -2,8 +2,8 @@
 
 # Form implementation generated from reading ui file '/home/wido/src/luma/lib/luma/base/utils/gui/PluginInformation.ui'
 #
-# Created: Mon Jan 5 17:21:21 2004
-#      by: The PyQt User Interface Compiler (pyuic) 3.8.1
+# Created: Tue Feb 3 23:58:06 2004
+#      by: The PyQt User Interface Compiler (pyuic) 3.10
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -63,7 +63,7 @@ class PluginInformation(QDialog):
 
         self.languageChange()
 
-        self.resize(QSize(382,264).expandedTo(self.minimumSizeHint()))
+        self.resize(QSize(382,266).expandedTo(self.minimumSizeHint()))
         self.clearWState(Qt.WState_Polished)
 
         self.connect(self.closeButton,SIGNAL("clicked()"),self,SLOT("accept()"))
@@ -71,9 +71,10 @@ class PluginInformation(QDialog):
 
     def languageChange(self):
         self.setCaption(self.__tr("Plugin Information"))
-        self.iconLabel.setText(self.__tr("Icon"))
+        self.iconLabel.setText(self.__tr("Icon","DO NOT TRANSLATE"))
         self.textLabel3.setText(self.__tr("Information about this plugin:"))
-        self.closeButton.setText(self.__tr("Close"))
+        self.closeButton.setText(self.__tr("&Close"))
+        self.closeButton.setAccel(self.__tr("Alt+C"))
 
 
     def __tr(self,s,c = None):

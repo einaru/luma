@@ -9,7 +9,7 @@
             <x>0</x>
             <y>0</y>
             <width>344</width>
-            <height>297</height>
+            <height>299</height>
         </rect>
     </property>
     <property name="caption">
@@ -71,7 +71,10 @@
                                     <cstring>addButton</cstring>
                                 </property>
                                 <property name="text">
-                                    <string>Add</string>
+                                    <string>&amp;Add</string>
+                                </property>
+                                <property name="accel">
+                                    <string>Alt+A</string>
                                 </property>
                             </widget>
                         </grid>
@@ -81,7 +84,10 @@
                             <cstring>deleteButton</cstring>
                         </property>
                         <property name="text">
-                            <string>Delete</string>
+                            <string>&amp;Delete</string>
+                        </property>
+                        <property name="accel">
+                            <string>Alt+D</string>
                         </property>
                     </widget>
                     <spacer row="1" column="2">
@@ -137,7 +143,10 @@
                         <enum>ClickFocus</enum>
                     </property>
                     <property name="text">
-                        <string>Save</string>
+                        <string>&amp;Save</string>
+                    </property>
+                    <property name="accel">
+                        <string>Alt+S</string>
                     </property>
                 </widget>
             </hbox>

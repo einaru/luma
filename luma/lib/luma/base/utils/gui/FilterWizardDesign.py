@@ -2,8 +2,8 @@
 
 # Form implementation generated from reading ui file '/home/wido/src/luma/lib/luma/base/utils/gui/FilterWizardDesign.ui'
 #
-# Created: Thu Jan 1 17:35:30 2004
-#      by: The PyQt User Interface Compiler (pyuic) 3.8.1
+# Created: Tue Feb 3 23:58:01 2004
+#      by: The PyQt User Interface Compiler (pyuic) 3.10
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -136,7 +136,7 @@ class FilterWizardDesign(QDialog):
 
         self.languageChange()
 
-        self.resize(QSize(398,416).expandedTo(self.minimumSizeHint()))
+        self.resize(QSize(360,426).expandedTo(self.minimumSizeHint()))
         self.clearWState(Qt.WState_Polished)
 
         self.connect(self.pushButton11,SIGNAL("clicked()"),self,SLOT("close()"))
@@ -169,9 +169,12 @@ class FilterWizardDesign(QDialog):
         self.concatButton.setText(self.__tr("Add"))
         self.groupBox5.setTitle(self.__tr("Search Filter"))
         self.textLabel1.setText(self.__tr("Bookmark:"))
-        self.delBookmarkButton.setText(self.__tr("Delete"))
-        self.addBookmarkButton.setText(self.__tr("Add to Bookmarks"))
-        self.pushButton11.setText(self.__tr("Ok"))
+        self.delBookmarkButton.setText(self.__tr("&Delete"))
+        self.delBookmarkButton.setAccel(self.__tr("Alt+D"))
+        self.addBookmarkButton.setText(self.__tr("&Add to Bookmarks"))
+        self.addBookmarkButton.setAccel(self.__tr("Alt+A"))
+        self.pushButton11.setText(self.__tr("&Ok"))
+        self.pushButton11.setAccel(self.__tr("Alt+O"))
 
 
     def class_choice_changed(self):

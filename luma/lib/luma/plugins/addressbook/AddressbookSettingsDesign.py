@@ -2,8 +2,8 @@
 
 # Form implementation generated from reading ui file '/home/wido/src/luma/lib/luma/plugins/addressbook/AddressbookSettingsDesign.ui'
 #
-# Created: Mon Jan 5 21:31:04 2004
-#      by: The PyQt User Interface Compiler (pyuic) 3.8.1
+# Created: Tue Feb 3 23:58:06 2004
+#      by: The PyQt User Interface Compiler (pyuic) 3.10
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -58,12 +58,13 @@ class AddressbookSettingsDesign(QWidget):
         layout2.addItem(spacer_2)
 
         self.saveButton = QPushButton(self,"saveButton")
+        self.saveButton.setFocusPolicy(QPushButton.ClickFocus)
         layout2.addWidget(self.saveButton)
         AddressbookSettingsDesignLayout.addLayout(layout2)
 
         self.languageChange()
 
-        self.resize(QSize(344,297).expandedTo(self.minimumSizeHint()))
+        self.resize(QSize(344,299).expandedTo(self.minimumSizeHint()))
         self.clearWState(Qt.WState_Polished)
 
         self.connect(self.saveButton,SIGNAL("clicked()"),self.saveValues)
@@ -80,11 +81,13 @@ class AddressbookSettingsDesign(QWidget):
     def languageChange(self):
         self.setCaption(self.__tr("Addressbook Settings"))
         self.attributeView.header().setLabel(0,self.__tr("Attributes"))
-        self.addButton.setText(self.__tr("Add"))
-        self.deleteButton.setText(self.__tr("Delete"))
+        self.addButton.setText(self.__tr("&Add"))
+        self.addButton.setAccel(self.__tr("Alt+A"))
+        self.deleteButton.setText(self.__tr("&Delete"))
+        self.deleteButton.setAccel(self.__tr("Alt+D"))
         self.tabWidget2.changeTab(self.tab,self.__tr("Search Criteria"))
-        self.saveButton.setText(self.__tr("Save"))
-        self.saveButton.setAccel(QString.null)
+        self.saveButton.setText(self.__tr("&Save"))
+        self.saveButton.setAccel(self.__tr("Alt+S"))
 
 
     def saveValues(self):

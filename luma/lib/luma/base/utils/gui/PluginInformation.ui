@@ -9,7 +9,7 @@
             <x>0</x>
             <y>0</y>
             <width>382</width>
-            <height>264</height>
+            <height>266</height>
         </rect>
     </property>
     <property name="caption">
@@ -61,6 +61,7 @@
                             </property>
                             <property name="text">
                                 <string>Icon</string>
+                                <comment>DO NOT TRANSLATE</comment>
                             </property>
                         </widget>
                         <spacer row="1" column="0">
@@ -154,7 +155,10 @@
                         <cstring>closeButton</cstring>
                     </property>
                     <property name="text">
-                        <string>Close</string>
+                        <string>&amp;Close</string>
+                    </property>
+                    <property name="accel">
+                        <string>Alt+C</string>
                     </property>
                 </widget>
             </hbox>

@@ -2,8 +2,8 @@
 
 # Form implementation generated from reading ui file '/home/wido/src/luma/lib/luma/plugins/config_create/ConfigPanelDesign.ui'
 #
-# Created: Thu Jan 1 17:35:31 2004
-#      by: The PyQt User Interface Compiler (pyuic) 3.8.1
+# Created: Tue Feb 3 23:58:03 2004
+#      by: The PyQt User Interface Compiler (pyuic) 3.10
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -432,7 +432,7 @@ class ConfigPanelDesign(QWidget):
 
         self.languageChange()
 
-        self.resize(QSize(452,337).expandedTo(self.minimumSizeHint()))
+        self.resize(QSize(452,339).expandedTo(self.minimumSizeHint()))
         self.clearWState(Qt.WState_Polished)
 
         self.connect(self.helpAdminName,SIGNAL("clicked()"),self.displayAdminNameHelp)
@@ -460,9 +460,9 @@ class ConfigPanelDesign(QWidget):
 
 
     def languageChange(self):
-        self.setCaption(self.__tr("Form3"))
+        self.setCaption(QString.null)
         self.groupBox4.setTitle(self.__tr("Server Options"))
-        self.textLabel1.setText(self.__tr("Suffix:"))
+        self.textLabel1.setText(self.__tr("Base DN:"))
         self.textLabel2.setText(self.__tr("Admin Name:"))
         self.textLabel3.setText(self.__tr("Admin Password:"))
         self.textLabel4.setText(self.__tr("Admin Password (Re-Type):"))
@@ -474,7 +474,8 @@ class ConfigPanelDesign(QWidget):
         self.groupBox5.setTitle(self.__tr("Save Options"))
         self.textLabel5.setText(self.__tr("Save to file:"))
         self.fileChooserButton.setText(QString.null)
-        self.finishConfig.setText(self.__tr("Finish"))
+        self.finishConfig.setText(self.__tr("&Finish"))
+        self.finishConfig.setAccel(self.__tr("Alt+F"))
 
 
     def displaySuffixHelp(self):
