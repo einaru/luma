@@ -86,7 +86,7 @@ class ContactWizard(ContactWizardDesign):
             serverMeta = serverList.get_serverobject(self.locationServer)
             connection = LumaConnection(serverMeta)
             tmpString = lumaStringEncode(strip(values['cn'][0]))
-            tmpString = tmpString + strftime('%Y%m%d') + unicode(random.randint(0,100))
+            tmpString = tmpString + strftime('%Y%m%d') + str(random.randint(0,100))
             dn = 'cn=' + tmpString + ',' + self.locationDN.encode('utf-8')
             result = connection.add_s(dn, modlist)
             if result == 1:
