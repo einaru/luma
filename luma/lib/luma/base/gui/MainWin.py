@@ -125,7 +125,10 @@ class MainWin(MainWinDesign):
         pluginName = str(self.pluginBox.currentText())
         if self.PLUGINS.has_key(pluginName):
             self.taskStack.raiseWidget(self.PLUGINS[pluginName]["WIDGET_ID"])
-            self.PLUGINS[pluginName]["WIDGET_REF"].buildToolBar(self)
+            try:
+                self.PLUGINS[pluginName]["WIDGET_REF"].buildToolBar(self)
+            except AttributeError, e:
+                pass
             
 
 ###############################################################################
