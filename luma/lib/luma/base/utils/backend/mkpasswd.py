@@ -148,19 +148,28 @@ def check_strength(passwordString=""):
             if upperBool and lowerBool and specialBool and numberBool:
                 break
         
-        #print passwordString, combination, upperBool, lowerBool, numberBool, specialBool
         return valueDict[combination]
         
         
     def check_distribution():
         tmpDict = {}
         for x in passwordString:
-            tmpDict[x] = None
+            if tmpDict.has_key(x):
+                tmpDict[x] += 1
+            else:
+                tmpDict[x] = 0
+                
+        doubleCharSum = 0
         
-        ratio = pLength / len(tmpDict.keys())
-        #if 1 == ratio:
-        #    return 0
-        return 13 * (ratio-1)
+        for x in tmpDict.keys():
+            value = tmpDict[x]
+            if value > 2:
+                doubleCharSum += value
+            
+        
+        #ratio = pLength / len(tmpDict.keys())
+        #return 13 * (ratio-1)
+        return 13 * doubleCharSum
         
     def check_special_characters():
         tmpVal = 0
@@ -168,12 +177,12 @@ def check_strength(passwordString=""):
     
     pLength = len(passwordString)
     
+    if 0 == pLength:
+        return 0
+    
     value = check_length()
-    #print "Length: ", value
     value -= check_distribution()
-    #print "Distribution: ", value
     value -= check_chars()
-    #print "Chars: ", value
     
     if value < 0:
         value = 0
