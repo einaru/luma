@@ -25,6 +25,8 @@ class ObjectClassAttributeInfo(object):
     from a server.
     """
     
+    serverMetaCache = {}
+    
     def __init__(self, server=None):
         self.objectClassesDict = {}
         self.attributeDict = {}
@@ -40,68 +42,82 @@ class ObjectClassAttributeInfo(object):
         server.
         """
         
-        tmpObject = ServerList()
-        tmpObject.readServerList()
-        serverMeta = tmpObject.getServerObject(self.SERVER)
+        # Try to get server schema information from the cache.
+        if self.SERVER in self.serverMetaCache.keys():
+            self.objectClassesDict = self.serverMetaCache[self.SERVER]["objectClassesDict"]
+            self.attributeDict = self.serverMetaCache[self.SERVER]["attributeDict"]
+        else:
+            tmpObject = ServerList()
+            tmpObject.readServerList()
+            serverMeta = tmpObject.getServerObject(self.SERVER)
 
-        environment.setBusy(1)
+            environment.setBusy(1)
 
-        try:
-            method = "ldap://"
-            if serverMeta.tls:
-                method = "ldaps://"
-            tmpUrl = method + serverMeta.host + ":" + str(serverMeta.port)
-            subschemasubentry_dn,schema = ldap.schema.urlfetch(tmpUrl)
+            try:
+                method = "ldap://"
+                if serverMeta.tls:
+                    method = "ldaps://"
+                tmpUrl = method + serverMeta.host + ":" + str(serverMeta.port)
+                subschemasubentry_dn,schema = ldap.schema.urlfetch(tmpUrl)
             
-            oidList = schema.listall(ldap.schema.ObjectClass)
-            for x in oidList:
-                environment.updateUI()
-                y = schema.get_obj(ldap.schema.ObjectClass, x)
+                oidList = schema.listall(ldap.schema.ObjectClass)
+                for x in oidList:
+                    environment.updateUI()
+                    y = schema.get_obj(ldap.schema.ObjectClass, x)
                 
                 
-                #print y.kind # could be: ( "ABSTRACT" / "STRUCTURAL" / "AUXILIARY" )
-                #print y.schema_attribute
-                #print y.token_defaults
+                    kind = ""
+                    if 0 == y.kind:
+                        kind = "STRUCTURAL"
+                    elif 1 == y.kind:
+                        kind = "ABSTRACT"
+                    elif 2 == y.kind:
+                        kind = "AUXILIARY"
                 
-                desc = ""
-                if not (y.desc == None):
-                    desc = y.desc
+                    desc = ""
+                    if not (y.desc == None):
+                        desc = y.desc
                     
-                must = []
-                if not (len(y.must) == 0):
-                    must = y.must
+                    must = []
+                    if not (len(y.must) == 0):
+                        must = y.must
                     
-                may = []
-                if not (len(y.may) == 0):
-                    may = y.may
+                    may = []
+                    if not (len(y.may) == 0):
+                        may = y.may
                 
-                for name in y.names:
-                    self.objectClassesDict[string.lower(name)] = {"DESC": desc, 
-                        "MUST": must, "MAY": may, "NAME": name}
+                    for name in y.names:
+                        self.objectClassesDict[string.lower(name)] = {"DESC": desc, 
+                            "MUST": must, "MAY": may, "NAME": name, "KIND": kind}
+                                
 
-            oidList = schema.listall(ldap.schema.AttributeType)
-            for x in oidList:
-                environment.updateUI()
-                y = schema.get_obj(ldap.schema.AttributeType, x)
-                name = y.names
+                oidList = schema.listall(ldap.schema.AttributeType)
+                for x in oidList:
+                    environment.updateUI()
+                    y = schema.get_obj(ldap.schema.AttributeType, x)
+                    name = y.names
                 
-                for z in name:
-                    self.attributeDict[string.lower(z)] = {"DESC": y.desc, 
-                        "SINGLE": y.single_value, "SYNTAX": y.syntax,
-                        "NAME": z}
+                    for z in name:
+                        self.attributeDict[string.lower(z)] = {"DESC": y.desc, 
+                            "SINGLE": y.single_value, "SYNTAX": y.syntax,
+                            "NAME": z}
             
-            #oidList = schema.listall(ldap.schema.LDAPSyntax)
-            #for x in oidList:
-            #    environment.updateUI()
-            #    y = schema.get_obj(ldap.schema.LDAPSyntax, x)
-            #    print y.desc
+                #oidList = schema.listall(ldap.schema.LDAPSyntax)
+                #for x in oidList:
+                #    environment.updateUI()
+                #    y = schema.get_obj(ldap.schema.LDAPSyntax, x)
+                #    print y.desc
                 
+                metaData = {}
+                metaData['objectClassesDict'] = self.objectClassesDict
+                metaData['attributeDict'] = self.attributeDict
+                self.__class__.serverMetaCache[self.SERVER] = metaData
                 
-        except ldap.LDAPError, e:
-            print "Error during LDAP request"
-            print "Reason: " + str(e)
+            except ldap.LDAPError, e:
+                print "Error during LDAP request"
+                print "Reason: " + str(e)
             
-        environment.setBusy(0)
+            environment.setBusy(0)
 
 ###############################################################################
 
@@ -223,6 +239,15 @@ class ObjectClassAttributeInfo(object):
         
 ###############################################################################
 
+    def isStructural(self, objectClass):
+        objectClass = string.lower(objectClass)
+        if "STRUCTURAL" == self.objectClassesDict[objectClass]["KIND"]:
+            return True
+        else:
+            return False
+        
+###############################################################################
+
     def isBinary(self, attribute=""):
         """ Check if the given attribute has binary values.
         """
@@ -259,7 +284,35 @@ class ObjectClassAttributeInfo(object):
             
         return self.attributeDict[attribute]["SYNTAX"]
 
+###############################################################################
 
+    def encodeAttributeValue(self, attribute=None, value=None):
+        if (attribute == None) or (value == None):
+            return None
+
+        returnValue = None
+        
+        if false:
+            pass
+        else:
+            returnValue = value
+        
+        return returnValue
+###############################################################################
+
+    def decodeAttributeValue(self, attribute=None, value=None):
+        if (attribute == None) or (value == None):
+            return None
+            
+        returnValue = None
+        
+        if false:
+            pass
+        else:
+            returnValue = value
+        
+        return returnValue
+            
 
 
 
