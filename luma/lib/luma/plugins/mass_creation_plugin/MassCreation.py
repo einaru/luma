@@ -117,12 +117,14 @@ Try increasing the uidNumber range or delete some users from the subtree."""),
         bindSuccess, exceptionObject = connectionObject.bind()
         
         if not bindSuccess:
-                dialog = LumaErrorDialog()
-                errorMsg = self.trUtf8("Could not bind to server.<br><br>Reason: ")
-                errorMsg.append(str(exceptionObject))
-                dialog.setErrorMessage(errorMsg)
-                dialog.exec_loop()
-                return
+            environment.setBusy(False)
+            
+            dialog = LumaErrorDialog()
+            errorMsg = self.trUtf8("Could not bind to server.<br><br>Reason: ")
+            errorMsg.append(str(exceptionObject))
+            dialog.setErrorMessage(errorMsg)
+            dialog.exec_loop()
+            return
         
         pwGenerator = CryptPwGenerator()
         self.passwordEdit.clear()
@@ -242,17 +244,20 @@ Try increasing the uidNumber range or delete some users from the subtree."""),
         bindSuccess, exceptionObject = connectionObject.bind()
         
         if not bindSuccess:
-                dialog = LumaErrorDialog()
-                errorMsg = self.trUtf8("Could not bind to server.<br><br>Reason: ")
-                errorMsg.append(str(exceptionObject))
-                dialog.setErrorMessage(errorMsg)
-                dialog.exec_loop()
-                return []
+            environment.setBusy(False)
+            
+            dialog = LumaErrorDialog()
+            errorMsg = self.trUtf8("Could not bind to server.<br><br>Reason: ")
+            errorMsg.append(str(exceptionObject))
+            dialog.setErrorMessage(errorMsg)
+            dialog.exec_loop()
+            return []
         
         success, resultList, exceptionObject = connectionObject.search(ldapObject, ldap.SCOPE_SUBTREE,
                 "(objectClass=posixAccount)", ["uidNumber"], 0)
                 
         connectionObject.unbind()
+        
         environment.setBusy(False)
                 
         if success:
