@@ -1,13 +1,14 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'AboutDialog.ui'
+# Form implementation generated from reading ui file '/home/wido/src/luma/lib/luma/base/gui/AboutDialog.ui'
 #
-# Created: Thu Dec 4 02:24:53 2003
-#      by: The PyQt User Interface Compiler (pyuic) 3.7
+# Created: Mon Jan 5 20:44:47 2004
+#      by: The PyQt User Interface Compiler (pyuic) 3.8.1
 #
 # WARNING! All changes made in this file will be lost!
 
 
+import sys
 from qt import *
 
 
@@ -50,11 +51,12 @@ class AboutDialog(QDialog):
         self.tabWidget2.insertTab(self.tab_3,QString(""))
 
         self.tab_4 = QWidget(self.tabWidget2,"tab_4")
-        tabLayout_4 = QVBoxLayout(self.tab_4,11,6,"tabLayout_4")
+        tabLayout_4 = QGridLayout(self.tab_4,1,1,11,6,"tabLayout_4")
 
         self.textBrowser4_2 = QTextBrowser(self.tab_4,"textBrowser4_2")
-        self.textBrowser4_2.setTextFormat(QTextBrowser.RichText)
-        tabLayout_4.addWidget(self.textBrowser4_2)
+        self.textBrowser4_2.setTextFormat(QTextBrowser.PlainText)
+
+        tabLayout_4.addWidget(self.textBrowser4_2,0,0)
         self.tabWidget2.insertTab(self.tab_4,QString(""))
         AboutDialogLayout.addWidget(self.tabWidget2)
 
@@ -69,7 +71,7 @@ class AboutDialog(QDialog):
 
         self.languageChange()
 
-        self.resize(QSize(553,450).expandedTo(self.minimumSizeHint()))
+        self.resize(QSize(546,455).expandedTo(self.minimumSizeHint()))
         self.clearWState(Qt.WState_Polished)
 
         self.connect(self.pushButton1,SIGNAL("clicked()"),self,SLOT("close()"))
@@ -77,7 +79,7 @@ class AboutDialog(QDialog):
 
     def languageChange(self):
         self.setCaption(self.__tr("About Luma"))
-        self.textLabel5.setText(self.__tr("<font size=\"+2\"><b>Luma 1.0 </b></font>"))
+        self.textLabel5.setText(self.__tr("<font size=\"+2\"><b>Luma 1.2 </b></font>"))
         self.textLabel4.setText(self.__tr("<p align=\"center\">LDAP management made easy.<br><br>\n"
 "(c) 2003, Wido Depping<br><br>\n"
 "http://luma.sourceforge.net\n"
@@ -370,29 +372,23 @@ class AboutDialog(QDialog):
 "		     END OF TERMS AND CONDITIONS\n"
 ""))
         self.tabWidget2.changeTab(self.tab_3,self.__tr("License Agreement"))
-        self.textBrowser4_2.setText(self.__trUtf8("<p><b>Bjørn Ove Grøtan</b><br>\n"
-"<i>Contributed his mkpasswd module.</i>\n"
-"</p>\n"
+        self.textBrowser4_2.setText(self.__tr("Bjorn Ove Grotan\n"
+"Contributed his mkpasswd module. \n"
 "\n"
-"<p><b>Kerstin Isebrecht</b><br>\n"
-"<i>Thanks for the ice and all your patience :)</i>\n"
-"</p>\n"
+"Kerstin Isebrecht\n"
+"Thanks for the ice and all your patience :) \n"
 "\n"
-"<p><b>Jörn Körner</b><br>\n"
-"<i>Luma-crash-test-dummy. He also had the idea with the plugin support.</i>\n"
-"</p>\n"
+"Joern Koerner\n"
+"Luma-crash-test-dummy. He also had the idea with the plugin support. \n"
 "\n"
-"<p><b>Fernando Maciel Souto Maior</b><br>\n"
-"<i>Portuguese translation</i>\n"
-"</p>\n"
+"Fernando Maciel Souto Maior\n"
+"Portuguese translation \n"
 "\n"
-"<p><b>Jan Winhuysen</b><br>\n"
-"<i>My mentor and UI tester :)</i>\n"
-"</p>\n"
+"Jan Winhuysen\n"
+"My mentor and UI tester :) \n"
 "\n"
-"<p><b>Eric Côté</b><br>\n"
-"<i>Testing guinea pig for python 2.3</i>\n"
-"</p>"))
+"Eric Cote\n"
+"Testing guinea pig for python 2.3"))
         self.tabWidget2.changeTab(self.tab_4,self.__tr("Credits"))
         self.pushButton1.setText(self.__tr("&Close"))
 
@@ -400,5 +396,10 @@ class AboutDialog(QDialog):
     def __tr(self,s,c = None):
         return qApp.translate("AboutDialog",s,c)
 
-    def __trUtf8(self,s,c = None):
-        return qApp.translate("AboutDialog",s,c,QApplication.UnicodeUTF8)
+if __name__ == "__main__":
+    a = QApplication(sys.argv)
+    QObject.connect(a,SIGNAL("lastWindowClosed()"),a,SLOT("quit()"))
+    w = AboutDialog()
+    a.setMainWidget(w)
+    w.show()
+    a.exec_loop()

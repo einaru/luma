@@ -1,4 +1,4 @@
-<!DOCTYPE UI><UI version="3.1" stdsetdef="1">
+<!DOCTYPE UI><UI version="3.2" stdsetdef="1">
 <class>AboutDialog</class>
 <comment>###########################################################################
 #    Copyright (C) 2003 by Wido Depping                                      
@@ -17,8 +17,8 @@
         <rect>
             <x>0</x>
             <y>0</y>
-            <width>553</width>
-            <height>450</height>
+            <width>546</width>
+            <height>455</height>
         </rect>
     </property>
     <property name="caption">
@@ -39,7 +39,7 @@
                 <enum>Plain</enum>
             </property>
             <property name="text">
-                <string>&lt;font size="+2"&gt;&lt;b&gt;Luma 1.0 &lt;/b&gt;&lt;/font&gt;</string>
+                <string>&lt;font size="+2"&gt;&lt;b&gt;Luma 1.2 &lt;/b&gt;&lt;/font&gt;</string>
             </property>
         </widget>
         <widget class="QTabWidget">
@@ -402,44 +402,38 @@ POSSIBILITY OF SUCH DAMAGES.
                 <attribute name="title">
                     <string>Credits</string>
                 </attribute>
-                <vbox>
+                <grid>
                     <property name="name">
                         <cstring>unnamed</cstring>
                     </property>
-                    <widget class="QTextBrowser">
+                    <widget class="QTextBrowser" row="0" column="0">
                         <property name="name">
                             <cstring>textBrowser4_2</cstring>
                         </property>
                         <property name="textFormat">
-                            <enum>RichText</enum>
+                            <enum>PlainText</enum>
                         </property>
                         <property name="text">
-                            <string>&lt;p&gt;&lt;b&gt;Bjørn Ove Grøtan&lt;/b&gt;&lt;br&gt;
-&lt;i&gt;Contributed his mkpasswd module.&lt;/i&gt;
-&lt;/p&gt;
+                            <string>Bjorn Ove Grotan
+Contributed his mkpasswd module. 
 
-&lt;p&gt;&lt;b&gt;Kerstin Isebrecht&lt;/b&gt;&lt;br&gt;
-&lt;i&gt;Thanks for the ice and all your patience :)&lt;/i&gt;
-&lt;/p&gt;
+Kerstin Isebrecht
+Thanks for the ice and all your patience :) 
 
-&lt;p&gt;&lt;b&gt;Jörn Körner&lt;/b&gt;&lt;br&gt;
-&lt;i&gt;Luma-crash-test-dummy. He also had the idea with the plugin support.&lt;/i&gt;
-&lt;/p&gt;
+Joern Koerner
+Luma-crash-test-dummy. He also had the idea with the plugin support. 
 
-&lt;p&gt;&lt;b&gt;Fernando Maciel Souto Maior&lt;/b&gt;&lt;br&gt;
-&lt;i&gt;Portuguese translation&lt;/i&gt;
-&lt;/p&gt;
+Fernando Maciel Souto Maior
+Portuguese translation 
 
-&lt;p&gt;&lt;b&gt;Jan Winhuysen&lt;/b&gt;&lt;br&gt;
-&lt;i&gt;My mentor and UI tester :)&lt;/i&gt;
-&lt;/p&gt;
+Jan Winhuysen
+My mentor and UI tester :) 
 
-&lt;p&gt;&lt;b&gt;Eric Côté&lt;/b&gt;&lt;br&gt;
-&lt;i&gt;Testing guinea pig for python 2.3&lt;/i&gt;
-&lt;/p&gt;</string>
+Eric Cote
+Testing guinea pig for python 2.3</string>
                         </property>
                     </widget>
-                </vbox>
+                </grid>
             </widget>
         </widget>
         <widget class="QLayoutWidget">
