@@ -33,9 +33,9 @@ class BrowserWidget(QListView):
     def __init__(self,parent = None,name = None,fl = 0):
         QListView.__init__(self,parent,name,fl)
 
-        self.connect(self, SIGNAL("clicked(QListViewItem*)"), self.item_clicked)
-        self.connect(self, SIGNAL("collapsed(QListViewItem*)"), self.item_collapsed)
-        self.connect(self, SIGNAL("expanded(QListViewItem*)"), self.item_expanded)
+        self.connect(self, SIGNAL("clicked(QListViewItem*)"), self.itemClicked)
+        self.connect(self, SIGNAL("collapsed(QListViewItem*)"), self.itemCollapsed)
+        self.connect(self, SIGNAL("expanded(QListViewItem*)"), self.itemExpanded)
 
         self.setRootIsDecorated(1)
         self.addColumn(self.trUtf8("Entries"))
@@ -100,7 +100,7 @@ class BrowserWidget(QListView):
         self.popupMenu.insertItem(QIconSet(QPixmap(delIconFile)), self.trUtf8("Delete"), self.deleteMenu)
         
         
-        self.connect(self.addItemMenu, SIGNAL("aboutToShow()"), self.create_add_menu)
+        self.connect(self.addItemMenu, SIGNAL("aboutToShow()"), self.createAddMenu)
 
         self.addItemWidgets = []
 
@@ -110,7 +110,7 @@ class BrowserWidget(QListView):
 
 ###############################################################################
 
-    def item_clicked(self, item):
+    def itemClicked(self, item):
         """ Emit the ldap object and the server if a valid object has been
         clicked.
         """
@@ -118,7 +118,7 @@ class BrowserWidget(QListView):
         self.blockSignals(True)
         
         if not(item == None):
-            fullPath = self.get_full_path(item)
+            fullPath = self.getFullPath(item)
             try:
                 server, result = self.getLdapItem(fullPath)
                 self.blockSignals(False)
@@ -133,13 +133,13 @@ class BrowserWidget(QListView):
 
 ###############################################################################
 
-    def item_expanded(self, item):
+    def itemExpanded(self, item):
         """ Get all children of the expanded object and display them.
         """
         
         self.blockSignals(True)
         
-        fullPath = self.get_full_path(item)
+        fullPath = self.getFullPath(item)
         results = self.getLdapItemChildren(fullPath, 0, ['dn'])
         
         if results == None:
@@ -162,13 +162,13 @@ class BrowserWidget(QListView):
             
 ###############################################################################
 
-    def item_collapsed(self, item):
+    def itemCollapsed(self, item):
         """ Delete all children if a ldap object collapses.
         """
         
         self.blockSignals(True)
         
-        fullPath = self.get_full_path(item)
+        fullPath = self.getFullPath(item)
         serverName, ldapObject = self.__split_path(fullPath)
         if len(ldapObject) == 0:
             self.blockSignals(False)
@@ -180,7 +180,7 @@ class BrowserWidget(QListView):
 
 ###############################################################################
 
-    def get_full_path(self, item):
+    def getFullPath(self, item):
         """ Return the full dn of an object, including its server.
         """
         
@@ -275,7 +275,7 @@ See console output for more information."""),
 
 ###############################################################################
 
-    def set_search_class(self, classList):
+    def setSearchClass(self, classList):
         """ Display only ldap values which are in classList.
         """
         
@@ -291,7 +291,7 @@ See console output for more information."""),
         """ Export the selected item to ldif.
         """
         
-        fullPath = self.get_full_path(self.selectedItem())
+        fullPath = self.getFullPath(self.selectedItem())
         serverName = fullPath.split(",")[-1]
         result = self.getLdapItem(fullPath)
         ldifHelper = LdifHelper(serverName)
@@ -303,7 +303,7 @@ See console output for more information."""),
         """ Export the whole subtree to ldif.
         """
         
-        fullPath = self.get_full_path(self.selectedItem())
+        fullPath = self.getFullPath(self.selectedItem())
         serverName = fullPath.split(",")[-1]
         result = self.getLdapItemChildren(fullPath, 1)
         ldifHelper = LdifHelper(serverName)
@@ -316,7 +316,7 @@ See console output for more information."""),
         """
         
         currentItem = self.selectedItem()
-        fullPath = self.get_full_path(currentItem)
+        fullPath = self.getFullPath(currentItem)
         serverName = fullPath.split(",")[-1]
         ldifHelper = LdifHelper(serverName)
         parents = self.__get_parents(currentItem)
@@ -341,7 +341,7 @@ See console output for more information."""),
             return
         item = self.selectedItem()
         parent = item.parent()
-        fullPath = self.get_full_path(item)
+        fullPath = self.getFullPath(item)
         serverName, ldapObject = self.__split_path(fullPath)
         if len(ldapObject) == 0:
             return None
@@ -390,25 +390,25 @@ See console output for more information."""),
         parentList = []
         while (item.parent()):
             item = item.parent()
-            parentList.append(self.get_full_path(item))
+            parentList.append(self.getFullPath(item))
         parentList.reverse()
         del parentList[0]
         return parentList
 
 ###############################################################################
 
-    def create_add_menu(self):
+    def createAddMenu(self):
         """ Fill the 'add'-menu with entries from the templates.
         """
         
         self.addItemMenu.clear()
-        tFile = TemplateFile()
-        for x in tFile.tplList:
-            self.addItemMenu.insertItem(x.name, self.add_item)
+        templates = TemplateList()
+        for x in templates.templateList:
+            self.addItemMenu.insertItem(x.name, self.addItem)
             
 ###############################################################################
 
-    def add_item(self, id):
+    def addItem(self, id):
         """ Add an item to ldap.
         
         id gives the menu entrie which was clicked and which template was 
@@ -417,14 +417,14 @@ See console output for more information."""),
         
         templateName = unicode(self.addItemMenu.text(id))
         
-        tFile = TemplateFile()
-        template = tFile.get_templateobject(templateName)
+        templates = TemplateList()
+        template = templates.getTemplate(templateName)
         data = template.getDataObject()
         
         if template == None:
             return 
             
-        fqn = self.get_full_path(self.selectedItem())
+        fqn = self.getFullPath(self.selectedItem())
         tmpList = fqn.split(",")
         
         server = tmpList[-1]
@@ -472,7 +472,7 @@ See console output for more information."""),
         currentItem = self.selectedItem()
         
         parent = currentItem.parent()
-        fullPath = self.get_full_path(currentItem)
+        fullPath = self.getFullPath(currentItem)
         children = self.getLdapItemChildren(fullPath, 1)
         
         serverName, selectedObject = self.__split_path(fullPath)
