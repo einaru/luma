@@ -1,0 +1,97 @@
+#
+# Project file for project "luma"
+# Saved: 2003-08-31, 21:40:16
+#
+# Copyright (C) 2003 Wido Depping <wido.depping@tu-clausthal.de>
+#
+
+VERSION = 0.1 
+
+AUTHOR = Wido Depping 
+
+EMAIL = wido.depping@tu-clausthal.de 
+
+SOURCES = lib%os.sep%luma%os.sep%__init__.py \
+	lib%os.sep%luma%os.sep%luma.py \
+	lib%os.sep%luma%os.sep%base%os.sep%__init__.py \
+	lib%os.sep%luma%os.sep%base%os.sep%gui%os.sep%MainWinDesign.py \
+	lib%os.sep%luma%os.sep%base%os.sep%gui%os.sep%__init__.py \
+	lib%os.sep%luma%os.sep%base%os.sep%gui%os.sep%MainWin.py \
+	lib%os.sep%luma%os.sep%base%os.sep%gui%os.sep%AboutDialog.py \
+	lib%os.sep%luma%os.sep%base%os.sep%gui%os.sep%ServerDialog.py \
+	lib%os.sep%luma%os.sep%base%os.sep%gui%os.sep%ServerDialogDesign.py \
+	lib%os.sep%luma%os.sep%base%os.sep%gui%os.sep%PluginLoaderGuiDesign.py \
+	lib%os.sep%luma%os.sep%base%os.sep%gui%os.sep%PluginLoaderGui.py \
+	lib%os.sep%luma%os.sep%base%os.sep%backend%os.sep%__init__.py \
+	lib%os.sep%luma%os.sep%base%os.sep%backend%os.sep%DirUtils.py \
+	lib%os.sep%luma%os.sep%base%os.sep%backend%os.sep%ServerObject.py \
+	lib%os.sep%luma%os.sep%base%os.sep%backend%os.sep%ServerList.py \
+	lib%os.sep%luma%os.sep%base%os.sep%backend%os.sep%PluginLoader.py \
+	lib%os.sep%luma%os.sep%base%os.sep%utils%os.sep%__init__.py \
+	lib%os.sep%luma%os.sep%base%os.sep%utils%os.sep%backend%os.sep%__init__.py \
+	lib%os.sep%luma%os.sep%base%os.sep%utils%os.sep%backend%os.sep%ObjectClassAttributeInfo.py \
+	lib%os.sep%luma%os.sep%base%os.sep%utils%os.sep%backend%os.sep%templateutils.py \
+	lib%os.sep%luma%os.sep%base%os.sep%utils%os.sep%gui%os.sep%BrowserWidget.py \
+	lib%os.sep%luma%os.sep%base%os.sep%utils%os.sep%gui%os.sep%__init__.py \
+	lib%os.sep%luma%os.sep%base%os.sep%utils%os.sep%gui%os.sep%SearchForm.py \
+	lib%os.sep%luma%os.sep%base%os.sep%utils%os.sep%gui%os.sep%SearchFormDesign.py \
+	lib%os.sep%luma%os.sep%base%os.sep%utils%os.sep%gui%os.sep%FilterWizardDesign.py \
+	lib%os.sep%luma%os.sep%base%os.sep%utils%os.sep%gui%os.sep%FilterWizard.py \
+	lib%os.sep%luma%os.sep%base%os.sep%utils%os.sep%gui%os.sep%SearchResultView.py \
+	lib%os.sep%luma%os.sep%base%os.sep%utils%os.sep%gui%os.sep%SearchResultViewDesign.py \
+	lib%os.sep%luma%os.sep%base%os.sep%utils%os.sep%gui%os.sep%ObjectWidget.py \
+	lib%os.sep%luma%os.sep%plugins%os.sep%__init__.py \
+	lib%os.sep%luma%os.sep%plugins%os.sep%config_create%os.sep%__init__.py \
+	lib%os.sep%luma%os.sep%plugins%os.sep%config_create%os.sep%ConfigPanelDesign.py \
+	lib%os.sep%luma%os.sep%plugins%os.sep%config_create%os.sep%ConfigError.py \
+	lib%os.sep%luma%os.sep%plugins%os.sep%config_create%os.sep%config_create_plugin.py \
+	lib%os.sep%luma%os.sep%plugins%os.sep%config_create%os.sep%ConfigPanel.py \
+	lib%os.sep%luma%os.sep%plugins%os.sep%config_create%os.sep%ConfigFileObject.py \
+	lib%os.sep%luma%os.sep%plugins%os.sep%browser_plugin%os.sep%__init__.py \
+	lib%os.sep%luma%os.sep%plugins%os.sep%browser_plugin%os.sep%browser_plugin.py \
+	lib%os.sep%luma%os.sep%plugins%os.sep%browser_plugin%os.sep%BrowserView.py \
+	lib%os.sep%luma%os.sep%plugins%os.sep%search_plugin%os.sep%search_plugin.py \
+	lib%os.sep%luma%os.sep%plugins%os.sep%search_plugin%os.sep%SearchView.py \
+	lib%os.sep%luma%os.sep%plugins%os.sep%search_plugin%os.sep%__init__.py \
+	lib%os.sep%luma%os.sep%plugins%os.sep%template_plugin%os.sep%TemplateFormDesign.py \
+	lib%os.sep%luma%os.sep%plugins%os.sep%template_plugin%os.sep%TemplateForm.py \
+	lib%os.sep%luma%os.sep%plugins%os.sep%template_plugin%os.sep%__init__.py \
+	lib%os.sep%luma%os.sep%plugins%os.sep%template_plugin%os.sep%template_plugin.py \
+	lib%os.sep%luma%os.sep%plugins%os.sep%template_plugin%os.sep%OClassDialogDesign.py \
+	lib%os.sep%luma%os.sep%plugins%os.sep%template_plugin%os.sep%OClassDialog.py \
+	lib%os.sep%luma%os.sep%base%os.sep%utils%os.sep%gui%os.sep%TemplateObjectWidget.py \
+	lib%os.sep%luma%os.sep%base%os.sep%utils%os.sep%backend%os.sep%CryptPwGenerator.py \
+	lib%os.sep%luma%os.sep%plugins%os.sep%admin_utils%os.sep%AdminPanelDesign.py \
+	lib%os.sep%luma%os.sep%plugins%os.sep%admin_utils%os.sep%AdminPanel.py \
+	lib%os.sep%luma%os.sep%plugins%os.sep%admin_utils%os.sep%__init__.py \
+	lib%os.sep%luma%os.sep%plugins%os.sep%admin_utils%os.sep%admin_utilities_plugin.py \
+	lib%os.sep%luma%os.sep%base%os.sep%utils%os.sep%backend%os.sep%DateHelper.py \
+	lib%os.sep%luma%os.sep%plugins%os.sep%mass_creation_plugin%os.sep%__init__.py \
+	lib%os.sep%luma%os.sep%plugins%os.sep%mass_creation_plugin%os.sep%massive_users_plugin.py \
+	lib%os.sep%luma%os.sep%plugins%os.sep%mass_creation_plugin%os.sep%MassCreationDesign.py \
+	lib%os.sep%luma%os.sep%plugins%os.sep%mass_creation_plugin%os.sep%MassCreation.py \
+	lib%os.sep%luma%os.sep%base%os.sep%gui%os.sep%LanguageDialog.py \
+	lib%os.sep%luma%os.sep%base%os.sep%gui%os.sep%LanguageDialogDesign.py \
+	install.py 
+
+FORMS = lib%os.sep%luma%os.sep%base%os.sep%gui%os.sep%AboutDialog.ui \
+	lib%os.sep%luma%os.sep%base%os.sep%gui%os.sep%MainWinDesign.ui \
+	lib%os.sep%luma%os.sep%base%os.sep%gui%os.sep%PluginLoaderGuiDesign.ui \
+	lib%os.sep%luma%os.sep%base%os.sep%gui%os.sep%ServerDialogDesign.ui \
+	lib%os.sep%luma%os.sep%base%os.sep%utils%os.sep%gui%os.sep%FilterWizardDesign.ui \
+	lib%os.sep%luma%os.sep%base%os.sep%utils%os.sep%gui%os.sep%SearchFormDesign.ui \
+	lib%os.sep%luma%os.sep%base%os.sep%utils%os.sep%gui%os.sep%SearchResultViewDesign.ui \
+	lib%os.sep%luma%os.sep%plugins%os.sep%config_create%os.sep%ConfigError.ui \
+	lib%os.sep%luma%os.sep%plugins%os.sep%config_create%os.sep%ConfigPanelDesign.ui \
+	lib%os.sep%luma%os.sep%plugins%os.sep%template_plugin%os.sep%OClassDialogDesign.ui \
+	lib%os.sep%luma%os.sep%plugins%os.sep%template_plugin%os.sep%TemplateFormDesign.ui \
+	lib%os.sep%luma%os.sep%plugins%os.sep%admin_utils%os.sep%AdminPanelDesign.ui \
+	lib%os.sep%luma%os.sep%plugins%os.sep%mass_creation_plugin%os.sep%MassCreationDesign.ui \
+	lib%os.sep%luma%os.sep%base%os.sep%gui%os.sep%LanguageDialogDesign.ui 
+
+TRANSLATIONS = lib/luma/luma_de.ts 
+
+MAINSCRIPT = lib/luma/luma.py 
+
+VCS = None 
+

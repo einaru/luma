@@ -1,0 +1,161 @@
+###########################################################################
+#    Copyright (C) 2003 by Wido Depping
+#    <wido.depping@tu-clausthal.de>
+#
+# Copyright: See COPYING file that comes with this distribution
+#
+###########################################################################
+
+from base.backend.DirUtils import DirUtils
+
+class LdapTemplate:
+
+    def __init__(self, filename=None):
+        self.name = ""
+        self.tData = []
+
+        if filename != None:
+            self.init_from_file(filename)
+
+###############################################################################
+
+    def get_objectclasses(self):
+        tmpList = []
+        for x in self.tData:
+            tmpList.append(x["CLASSNAME"])
+        return tmpList
+
+###############################################################################
+
+    def get_attributeinfos(self):
+        tmpDict = {}
+        for x in self.tData:
+            for y in x["ATTRIBUTES"]:
+                tmpDict[y["NAME"]] = {"MUST" : y["MUST"], "SINGLE" : y["SINGLE"] , "SHOW" : y["SHOW"] }
+        return tmpDict
+
+###############################################################################
+
+    def set_attribute_show(self, attribute, value):
+        for x in self.tData:
+            for y in x['ATTRIBUTES']:
+                if y['NAME'] == attribute:
+                    y['SHOW'] = value
+
+###############################################################################
+
+    def __repr__(self):
+        tmpList = []
+        tmpList.append("Name: " + self.name + "\n")
+        for x in self.tData:
+            tmpList.append("class ")
+            tmpList.append(x["CLASSNAME"])
+            tmpList.append(" >> ")
+            for y in x["ATTRIBUTES"]:
+                tmpList.append(y["NAME"] + ",")
+                if y["MUST"]:
+                    tmpList.append("MUST,")
+                else:
+                    tmpList.append("NOMUST,")
+                if y["SINGLE"]:
+                    tmpList.append("SINGLE,")
+                else:
+                    tmpList.append("NOSINGLE,")
+                if y["SHOW"]:
+                    tmpList.append("SHOW")
+                else:
+                    tmpList.append("NOSHOW")
+                tmpList.append(" || ")
+
+            del tmpList[-1]
+            tmpList.append("\n")
+        tmpList.append("\n")
+        return "".join(tmpList)
+
+###############################################################################
+
+class TemplateFile:
+
+    def __init__(self):
+        self.tplFile = DirUtils().USERDIR + "/.luma/templates"
+
+        self.tplList = []
+
+        try:
+            self.read_list()
+        except IOError, data:
+            print "Template file could not be read. \nReason: " + str(data)
+
+###############################################################################
+
+    def read_list(self):
+        self.tplList = []
+        content = open(self.tplFile, 'r').readlines()
+        template = LdapTemplate()
+        template.name = ""
+        template.tData = []
+        for x in content:
+            if x == "\n":
+                self.tplList.append(template)
+                template = LdapTemplate()
+                template.name = []
+                template.tData = []
+            if x[:6] == "Name: ":
+                template.name = x[6:-1]
+                continue
+            if x[:6] == "class ":
+                tmpString = x[6:-1]
+                tmpList = tmpString.split(" >> ")
+                data = {}
+                data['CLASSNAME'] = tmpList[0]
+                tmpList = tmpList[1].split(" || ")
+                attributeList = []
+                for y in tmpList:
+                    attrInfo = y.split(",")
+                    tmpDict = {}
+                    tmpDict["NAME"] = attrInfo[0]
+                    if attrInfo[1] == "MUST":
+                        tmpDict["MUST"] = 1
+                    else:
+                        tmpDict["MUST"] = 0
+
+                    if attrInfo[2] == "SINGLE":
+                        tmpDict["SINGLE"] = 1
+                    else:
+                        tmpDict["SINGLE"] = 0
+
+                    if attrInfo[3] == "SHOW":
+                        tmpDict["SHOW"] = 1
+                    else:
+                        tmpDict["SHOW"] = 0
+                    attributeList.append(tmpDict)
+                data["ATTRIBUTES"] = attributeList
+                template.tData.append(data)
+
+###############################################################################
+
+    def save_to_file(self):
+        fileHandler = open(self.tplFile, "w")
+        for x in self.tplList:
+            fileHandler.write(str(x))
+        fileHandler.close()
+
+###############################################################################
+
+    def add_template(self, name):
+        pass
+
+###############################################################################
+
+    def delete_template(self, name):
+        pass
+        
+###############################################################################
+
+    def get_templateobject(self, templateName):
+        for x in self.tplList:
+            if x.name == templateName:
+                return x
+    
+    
+

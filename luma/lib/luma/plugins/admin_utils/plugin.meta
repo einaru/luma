@@ -1,0 +1,4 @@
+PLUGIN_NAME=Admin Utilities
+PLUGIN_VERSION=0.1
+PLUGIN_AUTHOR=wido.depping@tu-clausthal.de
+PLUGIN_FILE=admin_utilities_plugin.py

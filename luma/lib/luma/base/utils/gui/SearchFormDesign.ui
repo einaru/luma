@@ -1,0 +1,166 @@
+<!DOCTYPE UI><UI version="3.1" stdsetdef="1">
+<class>SearchFormDesign</class>
+<comment>###########################################################################
+#    Copyright (C) 2003 by Wido Depping                                      
+#    &lt;wido.depping@tu-clausthal.de&gt;                                                             
+#
+# Copyright: See COPYING file that comes with this distribution
+#
+###########################################################################
+</comment>
+<author>Wido Depping</author>
+<widget class="QWidget">
+    <property name="name">
+        <cstring>SearchFormDesign</cstring>
+    </property>
+    <property name="geometry">
+        <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>609</width>
+            <height>118</height>
+        </rect>
+    </property>
+    <property name="sizePolicy">
+        <sizepolicy>
+            <hsizetype>5</hsizetype>
+            <vsizetype>0</vsizetype>
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+        </sizepolicy>
+    </property>
+    <property name="caption">
+        <string>Form1</string>
+    </property>
+    <vbox>
+        <property name="name">
+            <cstring>unnamed</cstring>
+        </property>
+        <widget class="QGroupBox">
+            <property name="name">
+                <cstring>groupBox2</cstring>
+            </property>
+            <property name="sizePolicy">
+                <sizepolicy>
+                    <hsizetype>5</hsizetype>
+                    <vsizetype>0</vsizetype>
+                    <horstretch>0</horstretch>
+                    <verstretch>0</verstretch>
+                </sizepolicy>
+            </property>
+            <property name="title">
+                <string>Search</string>
+            </property>
+            <grid>
+                <property name="name">
+                    <cstring>unnamed</cstring>
+                </property>
+                <widget class="QComboBox" row="1" column="1" rowspan="1" colspan="3">
+                    <property name="name">
+                        <cstring>searchEdit</cstring>
+                    </property>
+                    <property name="sizePolicy">
+                        <sizepolicy>
+                            <hsizetype>7</hsizetype>
+                            <vsizetype>0</vsizetype>
+                            <horstretch>0</horstretch>
+                            <verstretch>0</verstretch>
+                        </sizepolicy>
+                    </property>
+                    <property name="editable">
+                        <bool>true</bool>
+                    </property>
+                </widget>
+                <widget class="QLabel" row="1" column="0">
+                    <property name="name">
+                        <cstring>textLabel6</cstring>
+                    </property>
+                    <property name="sizePolicy">
+                        <sizepolicy>
+                            <hsizetype>0</hsizetype>
+                            <vsizetype>5</vsizetype>
+                            <horstretch>0</horstretch>
+                            <verstretch>0</verstretch>
+                        </sizepolicy>
+                    </property>
+                    <property name="text">
+                        <string>Filter:</string>
+                    </property>
+                </widget>
+                <widget class="QComboBox" row="0" column="1">
+                    <property name="name">
+                        <cstring>serverBox</cstring>
+                    </property>
+                </widget>
+                <widget class="QLabel" row="0" column="0">
+                    <property name="name">
+                        <cstring>textLabel2</cstring>
+                    </property>
+                    <property name="sizePolicy">
+                        <sizepolicy>
+                            <hsizetype>0</hsizetype>
+                            <vsizetype>5</vsizetype>
+                            <horstretch>0</horstretch>
+                            <verstretch>0</verstretch>
+                        </sizepolicy>
+                    </property>
+                    <property name="text">
+                        <string>Server:</string>
+                    </property>
+                </widget>
+                <widget class="QPushButton" row="0" column="2">
+                    <property name="name">
+                        <cstring>filterWizardButton</cstring>
+                    </property>
+                    <property name="sizePolicy">
+                        <sizepolicy>
+                            <hsizetype>0</hsizetype>
+                            <vsizetype>0</vsizetype>
+                            <horstretch>0</horstretch>
+                            <verstretch>0</verstretch>
+                        </sizepolicy>
+                    </property>
+                    <property name="text">
+                        <string>Wizard</string>
+                    </property>
+                </widget>
+                <widget class="QPushButton" row="0" column="3">
+                    <property name="name">
+                        <cstring>startButton</cstring>
+                    </property>
+                    <property name="sizePolicy">
+                        <sizepolicy>
+                            <hsizetype>0</hsizetype>
+                            <vsizetype>0</vsizetype>
+                            <horstretch>0</horstretch>
+                            <verstretch>0</verstretch>
+                        </sizepolicy>
+                    </property>
+                    <property name="text">
+                        <string>Start</string>
+                    </property>
+                </widget>
+            </grid>
+        </widget>
+    </vbox>
+</widget>
+<connections>
+    <connection>
+        <sender>filterWizardButton</sender>
+        <signal>clicked()</signal>
+        <receiver>SearchFormDesign</receiver>
+        <slot>start_filter_wizard()</slot>
+    </connection>
+    <connection>
+        <sender>startButton</sender>
+        <signal>clicked()</signal>
+        <receiver>SearchFormDesign</receiver>
+        <slot>start_search()</slot>
+    </connection>
+</connections>
+<slots>
+    <slot>start_filter_wizard()</slot>
+    <slot>start_search()</slot>
+</slots>
+<layoutdefaults spacing="6" margin="11"/>
+</UI>

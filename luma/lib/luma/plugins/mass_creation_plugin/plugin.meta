@@ -1,0 +1,4 @@
+PLUGIN_NAME=Massive User Creation
+PLUGIN_VERSION=0.1
+PLUGIN_AUTHOR=wido.depping@tu-clausthal.de
+PLUGIN_FILE=massive_users_plugin.py

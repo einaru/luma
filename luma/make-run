@@ -1,0 +1,3 @@
+mkdir bin
+cd bin
+ln -s ../lib/luma/luma.py luma

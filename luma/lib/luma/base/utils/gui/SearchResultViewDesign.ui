@@ -1,0 +1,60 @@
+<!DOCTYPE UI><UI version="3.1" stdsetdef="1">
+<class>SearchResultViewDesign</class>
+<comment>###########################################################################
+#    Copyright (C) 2003 by Wido Depping                                      
+#    &lt;wido.depping@tu-clausthal.de&gt;                                                             
+#
+# Copyright: See COPYING file that comes with this distribution
+#
+###########################################################################
+</comment>
+<author>Wido Depping</author>
+<widget class="QWidget">
+    <property name="name">
+        <cstring>SearchResultViewDesign</cstring>
+    </property>
+    <property name="geometry">
+        <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>600</width>
+            <height>480</height>
+        </rect>
+    </property>
+    <property name="caption">
+        <string>Form1</string>
+    </property>
+    <grid>
+        <property name="name">
+            <cstring>unnamed</cstring>
+        </property>
+        <widget class="QListView" row="0" column="0">
+            <property name="name">
+                <cstring>resultListView</cstring>
+            </property>
+            <property name="selectionMode">
+                <enum>Extended</enum>
+            </property>
+            <property name="allColumnsShowFocus">
+                <bool>true</bool>
+            </property>
+            <property name="resizeMode">
+                <enum>AllColumns</enum>
+            </property>
+        </widget>
+    </grid>
+</widget>
+<connections>
+    <connection>
+        <sender>resultListView</sender>
+        <signal>doubleClicked(QListViewItem*)</signal>
+        <receiver>SearchResultViewDesign</receiver>
+        <slot>show_entry()</slot>
+    </connection>
+</connections>
+<slots>
+    <slot>show_entry()</slot>
+    <slot>set_result()</slot>
+</slots>
+<layoutdefaults spacing="6" margin="11"/>
+</UI>

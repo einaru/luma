@@ -1,0 +1,136 @@
+<!DOCTYPE UI><UI version="3.1" stdsetdef="1">
+<class>PluginLoaderGuiDesign</class>
+<comment>###########################################################################
+#    Copyright (C) 2003 by Wido Depping                                      
+#    &lt;wido.depping@tu-clausthal.de&gt;                                                             
+#
+# Copyright: See COPYING file that comes with this distribution
+#
+###########################################################################
+</comment>
+<author>Wido Depping</author>
+<widget class="QDialog">
+    <property name="name">
+        <cstring>PluginLoaderGuiDesign</cstring>
+    </property>
+    <property name="geometry">
+        <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>412</width>
+            <height>346</height>
+        </rect>
+    </property>
+    <property name="caption">
+        <string>Configure Plugins</string>
+    </property>
+    <grid>
+        <property name="name">
+            <cstring>unnamed</cstring>
+        </property>
+        <widget class="QPushButton" row="3" column="1">
+            <property name="name">
+                <cstring>pushButton1</cstring>
+            </property>
+            <property name="text">
+                <string>Ok</string>
+            </property>
+        </widget>
+        <widget class="QPushButton" row="3" column="2">
+            <property name="name">
+                <cstring>pushButton2</cstring>
+            </property>
+            <property name="text">
+                <string>Cancel</string>
+            </property>
+        </widget>
+        <widget class="QLabel" row="0" column="0" rowspan="1" colspan="3">
+            <property name="name">
+                <cstring>textLabel1</cstring>
+            </property>
+            <property name="sizePolicy">
+                <sizepolicy>
+                    <hsizetype>5</hsizetype>
+                    <vsizetype>0</vsizetype>
+                    <horstretch>0</horstretch>
+                    <verstretch>0</verstretch>
+                </sizepolicy>
+            </property>
+            <property name="text">
+                <string>Available Plugins:</string>
+            </property>
+        </widget>
+        <widget class="Line" row="1" column="0" rowspan="1" colspan="3">
+            <property name="name">
+                <cstring>line1</cstring>
+            </property>
+            <property name="frameShape">
+                <enum>HLine</enum>
+            </property>
+            <property name="frameShadow">
+                <enum>Sunken</enum>
+            </property>
+            <property name="orientation">
+                <enum>Horizontal</enum>
+            </property>
+        </widget>
+        <spacer row="3" column="0">
+            <property name="name">
+                <cstring>spacer1</cstring>
+            </property>
+            <property name="orientation">
+                <enum>Horizontal</enum>
+            </property>
+            <property name="sizeType">
+                <enum>Expanding</enum>
+            </property>
+            <property name="sizeHint">
+                <size>
+                    <width>201</width>
+                    <height>21</height>
+                </size>
+            </property>
+        </spacer>
+        <widget class="QListView" row="2" column="0" rowspan="1" colspan="3">
+            <column>
+                <property name="text">
+                    <string>Plugins</string>
+                </property>
+                <property name="clickable">
+                    <bool>true</bool>
+                </property>
+                <property name="resizable">
+                    <bool>true</bool>
+                </property>
+            </column>
+            <property name="name">
+                <cstring>chooserView</cstring>
+            </property>
+            <property name="allColumnsShowFocus">
+                <bool>false</bool>
+            </property>
+            <property name="resizeMode">
+                <enum>NoColumn</enum>
+            </property>
+        </widget>
+    </grid>
+</widget>
+<connections>
+    <connection>
+        <sender>pushButton2</sender>
+        <signal>clicked()</signal>
+        <receiver>PluginLoaderGuiDesign</receiver>
+        <slot>close()</slot>
+    </connection>
+    <connection>
+        <sender>pushButton1</sender>
+        <signal>clicked()</signal>
+        <receiver>PluginLoaderGuiDesign</receiver>
+        <slot>saveValues()</slot>
+    </connection>
+</connections>
+<slots>
+    <slot>saveValues()</slot>
+</slots>
+<layoutdefaults spacing="6" margin="11"/>
+</UI>
