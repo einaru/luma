@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file '/home/wido/src/luma/lib/luma/base/gui/ServerDialogDesign.ui'
 #
-# Created: Tue Nov 30 22:42:49 2004
+# Created: Thu Dec 2 22:23:24 2004
 #      by: The PyQt User Interface Compiler (pyuic) 3.13
 #
 # WARNING! All changes made in this file will be lost!
@@ -45,11 +45,11 @@ class ServerDialogDesign(QDialog):
 
         ServerDialogDesignLayout.addLayout(layout4,2,0)
 
-        self.splitter3 = QSplitter(self,"splitter3")
-        self.splitter3.setOrientation(QSplitter.Horizontal)
+        self.splitter2 = QSplitter(self,"splitter2")
+        self.splitter2.setOrientation(QSplitter.Horizontal)
 
-        LayoutWidget = QWidget(self.splitter3,"layout3")
-        layout3 = QGridLayout(LayoutWidget,1,1,11,6,"layout3")
+        LayoutWidget = QWidget(self.splitter2,"layout3")
+        layout3 = QGridLayout(LayoutWidget,1,1,0,6,"layout3")
 
         self.addButton = QPushButton(LayoutWidget,"addButton")
 
@@ -67,31 +67,23 @@ class ServerDialogDesign(QDialog):
 
         layout3.addWidget(self.deleteButton,1,2)
 
-        self.serverWidget = QTabWidget(self.splitter3,"serverWidget")
+        self.serverWidget = QTabWidget(self.splitter2,"serverWidget")
 
         self.tab = QWidget(self.serverWidget,"tab")
         tabLayout = QGridLayout(self.tab,1,1,11,6,"tabLayout")
-        spacer8 = QSpacerItem(41,81,QSizePolicy.Minimum,QSizePolicy.Expanding)
-        tabLayout.addItem(spacer8,1,0)
-
-        layout8 = QGridLayout(None,1,1,0,6,"layout8")
-        spacer7_2 = QSpacerItem(21,232,QSizePolicy.Minimum,QSizePolicy.Expanding)
-        layout8.addMultiCell(spacer7_2,2,4,0,0)
-
-        self.manageBaseBaseButton = QPushButton(self.tab,"manageBaseBaseButton")
-
-        layout8.addWidget(self.manageBaseBaseButton,5,3)
+        spacer7_2 = QSpacerItem(21,263,QSizePolicy.Minimum,QSizePolicy.Expanding)
+        tabLayout.addMultiCell(spacer7_2,2,8,0,0)
 
         self.networkLabel = QLabel(self.tab,"networkLabel")
         self.networkLabel.setSizePolicy(QSizePolicy(0,0,0,0,self.networkLabel.sizePolicy().hasHeightForWidth()))
         self.networkLabel.setMinimumSize(QSize(48,48))
 
-        layout8.addMultiCellWidget(self.networkLabel,0,1,0,0)
+        tabLayout.addMultiCellWidget(self.networkLabel,0,1,0,0)
 
-        self.textLabel9 = QLabel(self.tab,"textLabel9")
-        self.textLabel9.setSizePolicy(QSizePolicy(0,5,0,0,self.textLabel9.sizePolicy().hasHeightForWidth()))
+        self.textLabel1_2 = QLabel(self.tab,"textLabel1_2")
+        self.textLabel1_2.setAlignment(QLabel.WordBreak | QLabel.AlignVCenter)
 
-        layout8.addWidget(self.textLabel9,2,1)
+        tabLayout.addMultiCellWidget(self.textLabel1_2,0,0,1,4)
 
         self.portSpinBox = QSpinBox(self.tab,"portSpinBox")
         self.portSpinBox.setSizePolicy(QSizePolicy(1,0,0,0,self.portSpinBox.sizePolicy().hasHeightForWidth()))
@@ -99,103 +91,143 @@ class ServerDialogDesign(QDialog):
         self.portSpinBox.setMinValue(1)
         self.portSpinBox.setValue(389)
 
-        layout8.addMultiCellWidget(self.portSpinBox,2,2,2,3)
-
-        self.baseBox = QCheckBox(self.tab,"baseBox")
-
-        layout8.addMultiCellWidget(self.baseBox,3,3,1,3)
+        tabLayout.addMultiCellWidget(self.portSpinBox,3,3,3,4)
 
         self.hostLineEdit = QLineEdit(self.tab,"hostLineEdit")
 
-        layout8.addMultiCellWidget(self.hostLineEdit,1,1,2,3)
+        tabLayout.addMultiCellWidget(self.hostLineEdit,1,2,3,4)
+
+        self.textLabel9 = QLabel(self.tab,"textLabel9")
+        self.textLabel9.setSizePolicy(QSizePolicy(0,5,0,0,self.textLabel9.sizePolicy().hasHeightForWidth()))
+
+        tabLayout.addWidget(self.textLabel9,3,2)
+        spacer8_2 = QSpacerItem(12,10,QSizePolicy.Fixed,QSizePolicy.Minimum)
+        tabLayout.addItem(spacer8_2,1,1)
+
+        self.textLabel8 = QLabel(self.tab,"textLabel8")
+        self.textLabel8.setSizePolicy(QSizePolicy(0,5,0,0,self.textLabel8.sizePolicy().hasHeightForWidth()))
+
+        tabLayout.addMultiCellWidget(self.textLabel8,1,2,2,2)
+        spacer8 = QSpacerItem(41,81,QSizePolicy.Minimum,QSizePolicy.Expanding)
+        tabLayout.addItem(spacer8,10,4)
+
+        self.aliasBox = QCheckBox(self.tab,"aliasBox")
+
+        tabLayout.addMultiCellWidget(self.aliasBox,6,6,2,4)
 
         self.baseDNView = QListView(self.tab,"baseDNView")
         self.baseDNView.addColumn(self.__tr("Base DNs"))
         self.baseDNView.setResizeMode(QListView.AllColumns)
 
-        layout8.addMultiCellWidget(self.baseDNView,4,4,1,3)
+        tabLayout.addMultiCellWidget(self.baseDNView,8,8,2,4)
 
-        self.textLabel1_2 = QLabel(self.tab,"textLabel1_2")
-        self.textLabel1_2.setAlignment(QLabel.WordBreak | QLabel.AlignVCenter)
+        self.baseBox = QCheckBox(self.tab,"baseBox")
 
-        layout8.addMultiCellWidget(self.textLabel1_2,0,0,1,3)
+        tabLayout.addMultiCellWidget(self.baseBox,7,7,2,4)
 
-        self.textLabel8 = QLabel(self.tab,"textLabel8")
-        self.textLabel8.setSizePolicy(QSizePolicy(0,5,0,0,self.textLabel8.sizePolicy().hasHeightForWidth()))
+        self.manageBaseBaseButton = QPushButton(self.tab,"manageBaseBaseButton")
 
-        layout8.addWidget(self.textLabel8,1,1)
-        spacer10 = QSpacerItem(81,21,QSizePolicy.Expanding,QSizePolicy.Minimum)
-        layout8.addMultiCell(spacer10,5,5,1,2)
+        tabLayout.addWidget(self.manageBaseBaseButton,9,4)
 
-        tabLayout.addLayout(layout8,0,0)
+        self.textLabel1 = QLabel(self.tab,"textLabel1")
+        self.textLabel1.setAlignment(QLabel.AlignVCenter)
+
+        tabLayout.addMultiCellWidget(self.textLabel1,5,5,1,3)
+        spacer9_2 = QSpacerItem(12,20,QSizePolicy.Fixed,QSizePolicy.Minimum)
+        tabLayout.addItem(spacer9_2,6,1)
+        spacer10 = QSpacerItem(124,21,QSizePolicy.Expanding,QSizePolicy.Minimum)
+        tabLayout.addMultiCell(spacer10,9,9,2,3)
+        spacer10_2 = QSpacerItem(20,10,QSizePolicy.Minimum,QSizePolicy.Fixed)
+        tabLayout.addItem(spacer10_2,4,2)
         self.serverWidget.insertTab(self.tab,QString(""))
 
         self.tab_2 = QWidget(self.serverWidget,"tab_2")
-        tabLayout_2 = QVBoxLayout(self.tab_2,11,6,"tabLayout_2")
-
-        layout7 = QGridLayout(None,1,1,0,6,"layout7")
-
-        self.textLabel10 = QLabel(self.tab_2,"textLabel10")
-        self.textLabel10.setAlignment(QLabel.WordBreak | QLabel.AlignVCenter)
-
-        layout7.addWidget(self.textLabel10,6,1)
+        tabLayout_2 = QGridLayout(self.tab_2,1,1,11,6,"tabLayout_2")
 
         self.authLabel = QLabel(self.tab_2,"authLabel")
         self.authLabel.setSizePolicy(QSizePolicy(0,0,0,0,self.authLabel.sizePolicy().hasHeightForWidth()))
         self.authLabel.setMinimumSize(QSize(48,48))
 
-        layout7.addMultiCellWidget(self.authLabel,0,1,0,0)
+        tabLayout_2.addWidget(self.authLabel,0,0)
+        spacer6_2 = QSpacerItem(21,178,QSizePolicy.Minimum,QSizePolicy.Expanding)
+        tabLayout_2.addMultiCell(spacer6_2,1,5,0,0)
+        spacer14 = QSpacerItem(21,10,QSizePolicy.Minimum,QSizePolicy.Fixed)
+        tabLayout_2.addItem(spacer14,2,1)
+        spacer9 = QSpacerItem(21,70,QSizePolicy.Minimum,QSizePolicy.Expanding)
+        tabLayout_2.addItem(spacer9,6,3)
 
-        self.bindLineEdit = QLineEdit(self.tab_2,"bindLineEdit")
+        layout5 = QGridLayout(None,1,1,0,6,"layout5")
 
-        layout7.addWidget(self.bindLineEdit,6,2)
+        self.tlsCheckBox = QCheckBox(self.tab_2,"tlsCheckBox")
 
-        self.textLabel5 = QLabel(self.tab_2,"textLabel5")
-
-        layout7.addMultiCellWidget(self.textLabel5,5,5,1,2)
-
-        self.textLabel4 = QLabel(self.tab_2,"textLabel4")
-
-        layout7.addMultiCellWidget(self.textLabel4,3,3,1,2)
-        spacer6_2 = QSpacerItem(21,170,QSizePolicy.Minimum,QSizePolicy.Expanding)
-        layout7.addMultiCell(spacer6_2,2,7,0,0)
-
-        self.passwordLineEdit = QLineEdit(self.tab_2,"passwordLineEdit")
-        self.passwordLineEdit.setEchoMode(QLineEdit.Password)
-
-        layout7.addWidget(self.passwordLineEdit,7,2)
-
-        self.methodBox = QComboBox(0,self.tab_2,"methodBox")
-
-        layout7.addMultiCellWidget(self.methodBox,4,4,1,2)
-
-        self.bindAnonBox = QCheckBox(self.tab_2,"bindAnonBox")
-
-        layout7.addMultiCellWidget(self.bindAnonBox,2,2,1,2)
+        layout5.addWidget(self.tlsCheckBox,1,1)
 
         self.textLabel2 = QLabel(self.tab_2,"textLabel2")
         self.textLabel2.setAlignment(QLabel.AlignVCenter)
 
-        layout7.addMultiCellWidget(self.textLabel2,0,0,1,2)
+        layout5.addMultiCellWidget(self.textLabel2,0,0,0,1)
+
+        self.bindAnonBox = QCheckBox(self.tab_2,"bindAnonBox")
+
+        layout5.addWidget(self.bindAnonBox,2,1)
+        spacer11 = QSpacerItem(12,16,QSizePolicy.Fixed,QSizePolicy.Minimum)
+        layout5.addItem(spacer11,1,0)
+
+        tabLayout_2.addMultiCellLayout(layout5,0,1,1,3)
+
+        layout7 = QGridLayout(None,1,1,0,6,"layout7")
+
+        self.methodBox = QComboBox(0,self.tab_2,"methodBox")
+
+        layout7.addWidget(self.methodBox,1,1)
+        spacer13 = QSpacerItem(16,16,QSizePolicy.Fixed,QSizePolicy.Minimum)
+        layout7.addItem(spacer13,1,0)
+
+        self.textLabel4 = QLabel(self.tab_2,"textLabel4")
+        self.textLabel4.setAlignment(QLabel.AlignVCenter)
+
+        layout7.addMultiCellWidget(self.textLabel4,0,0,0,1)
+
+        tabLayout_2.addMultiCellLayout(layout7,3,3,1,3)
+        spacer12 = QSpacerItem(20,10,QSizePolicy.Minimum,QSizePolicy.Fixed)
+        tabLayout_2.addItem(spacer12,4,2)
+
+        layout8 = QGridLayout(None,1,1,0,6,"layout8")
+
+        self.textLabel5 = QLabel(self.tab_2,"textLabel5")
+        self.textLabel5.setAlignment(QLabel.AlignVCenter)
+
+        layout8.addMultiCellWidget(self.textLabel5,0,0,0,2)
 
         self.textLabel12 = QLabel(self.tab_2,"textLabel12")
         self.textLabel12.setAlignment(QLabel.AlignVCenter)
 
-        layout7.addWidget(self.textLabel12,7,1)
+        layout8.addWidget(self.textLabel12,2,1)
 
-        self.tlsCheckBox = QCheckBox(self.tab_2,"tlsCheckBox")
+        self.passwordLineEdit = QLineEdit(self.tab_2,"passwordLineEdit")
+        self.passwordLineEdit.setEchoMode(QLineEdit.Password)
 
-        layout7.addMultiCellWidget(self.tlsCheckBox,1,1,1,2)
-        tabLayout_2.addLayout(layout7)
-        spacer9 = QSpacerItem(21,101,QSizePolicy.Minimum,QSizePolicy.Expanding)
-        tabLayout_2.addItem(spacer9)
+        layout8.addWidget(self.passwordLineEdit,2,2)
+
+        self.textLabel10 = QLabel(self.tab_2,"textLabel10")
+        self.textLabel10.setAlignment(QLabel.WordBreak | QLabel.AlignVCenter)
+
+        layout8.addWidget(self.textLabel10,1,1)
+        spacer15 = QSpacerItem(12,10,QSizePolicy.Fixed,QSizePolicy.Minimum)
+        layout8.addItem(spacer15,1,0)
+
+        self.bindLineEdit = QLineEdit(self.tab_2,"bindLineEdit")
+
+        layout8.addWidget(self.bindLineEdit,1,2)
+
+        tabLayout_2.addMultiCellLayout(layout8,5,5,1,3)
         self.serverWidget.insertTab(self.tab_2,QString(""))
 
-        ServerDialogDesignLayout.addWidget(self.splitter3,0,0)
+        ServerDialogDesignLayout.addWidget(self.splitter2,0,0)
 
         self.languageChange()
 
-        self.resize(QSize(616,561).expandedTo(self.minimumSizeHint()))
+        self.resize(QSize(600,444).expandedTo(self.minimumSizeHint()))
         self.clearWState(Qt.WState_Polished)
 
         self.connect(self.applyButton,SIGNAL("clicked()"),self.saveServer)
@@ -213,6 +245,7 @@ class ServerDialogDesign(QDialog):
         self.connect(self.methodBox,SIGNAL("activated(int)"),self.methodChanged)
         self.connect(self.manageBaseBaseButton,SIGNAL("clicked()"),self.manageBaseDN)
         self.connect(self.baseBox,SIGNAL("clicked()"),self.useServerBase)
+        self.connect(self.aliasBox,SIGNAL("clicked()"),self.aliasesChanged)
 
         self.setTabOrder(self.addButton,self.deleteButton)
         self.setTabOrder(self.deleteButton,self.hostLineEdit)
@@ -235,18 +268,20 @@ class ServerDialogDesign(QDialog):
         self.serverListView.header().setLabel(0,self.__tr("Server"))
         self.deleteButton.setText(self.__tr("&Delete"))
         self.deleteButton.setAccel(self.__tr("Alt+D"))
-        self.manageBaseBaseButton.setText(self.__tr("Manage Base DN list"))
         self.networkLabel.setText(self.__tr("NO"))
-        self.textLabel9.setText(self.__tr("Port:"))
-        self.baseBox.setText(self.__tr("Use Base DNs provided by the server"))
-        self.baseDNView.header().setLabel(0,self.__tr("Base DNs"))
         self.textLabel1_2.setText(self.__tr("<b>Network options</b>"))
+        self.textLabel9.setText(self.__tr("Port:"))
         self.textLabel8.setText(self.__tr("Host:"))
+        self.aliasBox.setText(self.__tr("Follow aliases"))
+        self.baseDNView.header().setLabel(0,self.__tr("Base DNs"))
+        self.baseBox.setText(self.__tr("Use Base DNs provided by the server"))
+        self.manageBaseBaseButton.setText(self.__tr("Manage Base DN list"))
+        self.textLabel1.setText(self.__tr("<b>LDAP options</b>"))
         self.serverWidget.changeTab(self.tab,self.__tr("Network"))
-        self.textLabel10.setText(self.__tr("Bind as:"))
         self.authLabel.setText(self.__tr("SO"))
-        self.textLabel5.setText(self.__tr("<b>Credentials</b>"))
-        self.textLabel4.setText(self.__tr("<b>Authentification mechanism</b>"))
+        self.tlsCheckBox.setText(self.__tr("Use secure connection (SSL)"))
+        self.textLabel2.setText(self.__tr("<b>Security options</b>"))
+        self.bindAnonBox.setText(self.__tr("Anonymous bind"))
         self.methodBox.clear()
         self.methodBox.insertItem(self.__tr("Simple"))
         self.methodBox.insertItem(self.__tr("SASL Plain"))
@@ -254,10 +289,10 @@ class ServerDialogDesign(QDialog):
         self.methodBox.insertItem(self.__tr("SASL DIGEST-MD5"))
         self.methodBox.insertItem(self.__tr("SASL Login"))
         self.methodBox.insertItem(self.__tr("SASL GSSAPI"))
-        self.bindAnonBox.setText(self.__tr("Anonymous bind"))
-        self.textLabel2.setText(self.__tr("<b>Security options</b>"))
+        self.textLabel4.setText(self.__tr("<b>Authentification mechanism</b>"))
+        self.textLabel5.setText(self.__tr("<b>Credentials</b>"))
         self.textLabel12.setText(self.__tr("Password:"))
-        self.tlsCheckBox.setText(self.__tr("Use secure connection (SSL)"))
+        self.textLabel10.setText(self.__tr("Bind as:"))
         self.serverWidget.changeTab(self.tab_2,self.__tr("Security"))
 
 
@@ -308,6 +343,9 @@ class ServerDialogDesign(QDialog):
 
     def manageBaseDN(self):
         print "ServerDialogDesign.manageBaseDN(): Not implemented yet"
+
+    def aliasesChanged(self):
+        print "ServerDialogDesign.aliasesChanged(): Not implemented yet"
 
     def __tr(self,s,c = None):
         return qApp.translate("ServerDialogDesign",s,c)

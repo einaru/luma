@@ -98,31 +98,30 @@ class ServerDialog(ServerDialogDesign):
         self.hostLineEdit.blockSignals(True)
         self.portSpinBox.blockSignals(True)
         self.bindAnonBox.blockSignals(True)
-        #self.baseLineEdit.blockSignals(True)
         self.bindLineEdit.blockSignals(True)
         self.passwordLineEdit.blockSignals(True)
         self.tlsCheckBox.blockSignals(True)
         self.methodBox.blockSignals(True)
+        self.aliasBox.blockSignals(True)
         
-        #self.infoGroupBox.setTitle(x.name)
         self.hostLineEdit.setText(x.host)
         self.portSpinBox.setValue(x.port)
         self.bindAnonBox.setChecked(int(x.bindAnon))
-        #self.baseLineEdit.setText(x.baseDN)
         self.bindLineEdit.setText(x.bindDN)
         self.passwordLineEdit.setText(x.bindPassword)
         self.tlsCheckBox.setChecked(int(x.tls))
         self.methodBox.setCurrentItem(self.authentificationMethods.index(x.authMethod))
         self.bindAnonChanged(x.bindAnon, True)
+        self.aliasBox.setChecked(int(x.followAliases))
         
         self.hostLineEdit.blockSignals(False)
         self.portSpinBox.blockSignals(False)
         self.bindAnonBox.blockSignals(False)
-        #self.baseLineEdit.blockSignals(False)
         self.bindLineEdit.blockSignals(False)
         self.passwordLineEdit.blockSignals(False)
         self.tlsCheckBox.blockSignals(False)
         self.methodBox.blockSignals(False)
+        self.aliasBox.blockSignals(False)
         
         if (self.currentServer.authMethod == u"SASL GSSAPI") or x.bindAnon :
             self.passwordLineEdit.setEnabled(False)
@@ -224,17 +223,7 @@ class ServerDialog(ServerDialogDesign):
         
             Currently OpenLDAP, Novell and UMich are supported.
         """
-        
-        #serverMeta = ServerObject()
-        #serverMeta.name = unicode(self.hostLineEdit.text())
-        #serverMeta.host = unicode(self.hostLineEdit.text())
-        #serverMeta.port = int(self.portSpinBox.value())
-        #serverMeta.tls = bool(self.tlsCheckBox.isChecked())
-        #serverMeta.bindAnon = True
-        #serverMeta.baseDN = unicode("")
-        #serverMeta.bindDN = unicode("")
-        #serverMeta.bindPassword = unicode("")
-        
+
         connection = LumaConnection(self.currentServer)
         baseList = connection.getBaseDNList()
         if None == baseList:
@@ -247,6 +236,7 @@ Please see console output for more information."""),
                 None,
                 None,
                 0, -1)
+            return []
         else:
             return baseList
 
@@ -338,12 +328,12 @@ Please see console output for more information."""),
         self.bindLineEdit.blockSignals(False)
         self.passwordLineEdit.blockSignals(False)
             
-        self.applyButton.setEnabled(1)
+        self.applyButton.setEnabled(True)
         
 ###############################################################################
 
     def useServerBase(self):
-        self.applyButton.setEnabled(1)
+        self.applyButton.setEnabled(True)
         automaticBase = self.baseBox.isChecked()
         self.currentServer.autoBase = automaticBase
         self.manageBaseBaseButton.setEnabled(not automaticBase)
@@ -366,6 +356,10 @@ Please see console output for more information."""),
     def manageBaseDN(self):
         connection = LumaConnection(self.currentServer)
         dialog = BaseSelector()
+        
+        tmpText = dialog.baseLabel.text().arg(self.currentServer.name)
+        dialog.baseLabel.setText(tmpText)
+        
         dialog.connection = connection
         dialog.baseList = copy.deepcopy(self.currentServer.baseDN)
         dialog.displayBase()
@@ -374,3 +368,9 @@ Please see console output for more information."""),
             self.applyButton.setEnabled(1)
             self.currentServer.baseDN = copy.deepcopy(dialog.baseList)
             self.displayBase()
+
+###############################################################################
+
+    def aliasesChanged(self):
+        self.applyButton.setEnabled(True)
+        self.currentServer.followAliases = self.aliasBox.isChecked()
