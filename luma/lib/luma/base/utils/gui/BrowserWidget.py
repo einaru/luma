@@ -117,7 +117,6 @@ class BrowserWidget(QListView):
             fullPath = self.get_full_path(item)
             try:
                 server, result = self.getLdapItem(fullPath)
-                #print result
                 self.emit(PYSIGNAL("about_to_change"), ())
                 self.emit(PYSIGNAL("ldap_result"), (deepcopy(server), deepcopy(result),))
             except TypeError:
