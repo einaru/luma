@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!--Project file for project luma-->
-<!--Saved: 2003-12-29, 18:13:01-->
-<!--Copyright (C) 2003 Wido Depping, wido.depping@tu-clausthal.de-->
+<!--Saved: 2004-01-10, 19:20:19-->
+<!--Copyright (C) 2004 Wido Depping, wido.depping@tu-clausthal.de-->
 <Project>
   <Version>1.0beta1</Version>
   <Author>Wido Depping</Author>
@@ -504,6 +504,69 @@
       <Dir>ifi_user</Dir>
       <Name>IfiUserDesign.py</Name>
     </Source>
+    <Source>
+      <Dir>lib</Dir>
+      <Dir>luma</Dir>
+      <Dir>base</Dir>
+      <Dir>gui</Dir>
+      <Name>BaseSelectorDesign.py</Name>
+    </Source>
+    <Source>
+      <Dir>lib</Dir>
+      <Dir>luma</Dir>
+      <Dir>plugins</Dir>
+      <Dir>addressbook</Dir>
+      <Name>__init__.py</Name>
+    </Source>
+    <Source>
+      <Dir>lib</Dir>
+      <Dir>luma</Dir>
+      <Dir>plugins</Dir>
+      <Dir>addressbook</Dir>
+      <Name>addressbook_plugin.py</Name>
+    </Source>
+    <Source>
+      <Dir>lib</Dir>
+      <Dir>luma</Dir>
+      <Dir>plugins</Dir>
+      <Dir>addressbook</Dir>
+      <Name>AddressbookWidgetDesign.py</Name>
+    </Source>
+    <Source>
+      <Dir>lib</Dir>
+      <Dir>luma</Dir>
+      <Dir>plugins</Dir>
+      <Dir>addressbook</Dir>
+      <Name>AddressbookWidget.py</Name>
+    </Source>
+    <Source>
+      <Dir>lib</Dir>
+      <Dir>luma</Dir>
+      <Dir>plugins</Dir>
+      <Dir>addressbook</Dir>
+      <Name>AddressbookSettingsDesign.py</Name>
+    </Source>
+    <Source>
+      <Dir>lib</Dir>
+      <Dir>luma</Dir>
+      <Dir>plugins</Dir>
+      <Dir>addressbook</Dir>
+      <Name>AddressbookSettings.py</Name>
+    </Source>
+    <Source>
+      <Dir>lib</Dir>
+      <Dir>luma</Dir>
+      <Dir>base</Dir>
+      <Dir>utils</Dir>
+      <Dir>gui</Dir>
+      <Name>PluginInformation.py</Name>
+    </Source>
+    <Source>
+      <Dir>lib</Dir>
+      <Dir>luma</Dir>
+      <Dir>environment</Dir>
+      <Name>__init__.py</Name>
+    </Source>
   </Sources>
   <Forms>
     <Form>
@@ -621,6 +684,28 @@
       <Dir>gui</Dir>
       <Name>BaseSelectorDesign.ui</Name>
     </Form>
+    <Form>
+      <Dir>lib</Dir>
+      <Dir>luma</Dir>
+      <Dir>plugins</Dir>
+      <Dir>addressbook</Dir>
+      <Name>AddressbookWidgetDesign.ui</Name>
+    </Form>
+    <Form>
+      <Dir>lib</Dir>
+      <Dir>luma</Dir>
+      <Dir>plugins</Dir>
+      <Dir>addressbook</Dir>
+      <Name>AddressbookSettingsDesign.ui</Name>
+    </Form>
+    <Form>
+      <Dir>lib</Dir>
+      <Dir>luma</Dir>
+      <Dir>base</Dir>
+      <Dir>utils</Dir>
+      <Dir>gui</Dir>
+      <Name>PluginInformation.ui</Name>
+    </Form>
   </Forms>
   <Translations>
     <Translation>
@@ -637,6 +722,12 @@
   <Interfaces>
   </Interfaces>
   <Others>
+    <Other>
+      <Dir>share</Dir>
+      <Dir>luma</Dir>
+      <Dir>doc</Dir>
+      <Name>massive.help</Name>
+    </Other>
   </Others>
   <MainScript>
     <Dir>lib</Dir>
