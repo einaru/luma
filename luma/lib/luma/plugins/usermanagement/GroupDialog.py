@@ -54,6 +54,9 @@ class GroupDialog(GroupDialogDesign):
 ###############################################################################
 
     def processResults(self, results):
+        if results == None:
+            return
+            
         for x in results:
             self.groupData[x[0]] = x[1]
            
@@ -88,14 +91,16 @@ class GroupDialog(GroupDialogDesign):
 ###############################################################################
         
     def groupNumberChanged(self, groupNumber):
-        newGroup = ""
+        newGroup = None
         
         for x in self.groupData.keys():
             if int(self.groupData[x]['gidNumber'][0]) == groupNumber:
                 newGroup = self.groupData[x]['cn'][0]
                 break
                 
-                    
+        if newGroup == None:
+            return
+            
         self.groupNameBox.blockSignals(True)
         self.groupNameBox.setCurrentText(newGroup)
         self.groupNameBox.blockSignals(False)
