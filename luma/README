@@ -1,1 +1,10 @@
- 
+To install Luma, just execute the install script 'install.py'. You must give a
+path as prefix. Example:
+
+	./install.py --prefix=/usr/local
+
+If you run the script without the prefix option, only some checks will be done.
+This is useful, if you want to test if all needed software packages are
+available on your system.
+
+Thats all. Enjoy Luma! :)
