@@ -61,6 +61,9 @@ class ServerDialog(ServerDialogDesign):
         # 'dialog.result() == QDialog.Accepted' is not enough.
         self.SAVED = False
         
+        # Will be set to the currently selected server
+        self.currentServer = None
+        
         self.displayServerList()
         
 ###############################################################################
@@ -164,6 +167,10 @@ class ServerDialog(ServerDialogDesign):
     def saveServer(self):
         """ Save the changed server values.
         """
+        
+        if self.currentServer.authMethod == u"SASL GSSAPI":
+            self.currentServer.bindDN = u""
+            self.currentServer.bindPassword = u""
         
         self.serverListObject.saveSettings(self.serverListObject.serverList)
         
@@ -304,11 +311,11 @@ Please see console output for more information."""),
         widgetBool = True
         if tmpBool or (self.currentServer.authMethod == u"SASL GSSAPI"):
             widgetBool = False
-        
+            
         self.passwordLineEdit.setEnabled(widgetBool)
         self.bindLineEdit.setEnabled(widgetBool)
         self.methodBox.setEnabled(widgetBool)
-            
+        
         self.currentServer.bindAnon = tmpBool
 
 ###############################################################################
@@ -334,11 +341,21 @@ Please see console output for more information."""),
     def methodChanged(self, position):
         self.currentServer.authMethod = self.authentificationMethods[position]
         
+        self.bindLineEdit.blockSignals(True)
+        self.passwordLineEdit.blockSignals(True)
+        
         if self.currentServer.authMethod == u"SASL GSSAPI":
             self.passwordLineEdit.setEnabled(False)
             self.bindLineEdit.setEnabled(False)
+            self.passwordLineEdit.clear()
+            self.bindLineEdit.clear()
         else:
             self.passwordLineEdit.setEnabled(True)
             self.bindLineEdit.setEnabled(True)
+            self.bindLineEdit.setText(self.currentServer.bindDN)
+            self.passwordLineEdit.setText(self.currentServer.bindPassword)
+            
+        self.bindLineEdit.blockSignals(False)
+        self.passwordLineEdit.blockSignals(False)
             
         self.applyButton.setEnabled(1)
