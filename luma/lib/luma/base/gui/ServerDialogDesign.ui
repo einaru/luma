@@ -18,7 +18,7 @@
             <x>0</x>
             <y>0</y>
             <width>626</width>
-            <height>571</height>
+            <height>578</height>
         </rect>
     </property>
     <property name="caption">
@@ -304,12 +304,7 @@
                                     <string>Base DN:</string>
                                 </property>
                             </widget>
-                            <widget class="QLineEdit" row="0" column="1">
-                                <property name="name">
-                                    <cstring>baseLineEdit</cstring>
-                                </property>
-                            </widget>
-                            <widget class="QGroupBox" row="1" column="0" rowspan="1" colspan="2">
+                            <widget class="QGroupBox" row="1" column="0" rowspan="1" colspan="3">
                                 <property name="name">
                                     <cstring>groupBox5</cstring>
                                 </property>
@@ -376,6 +371,25 @@
                                     </spacer>
                                 </grid>
                             </widget>
+                            <widget class="QLineEdit" row="0" column="1">
+                                <property name="name">
+                                    <cstring>baseLineEdit</cstring>
+                                </property>
+                            </widget>
+                            <widget class="QPushButton" row="0" column="2">
+                                <property name="name">
+                                    <cstring>basednButton</cstring>
+                                </property>
+                                <property name="enabled">
+                                    <bool>false</bool>
+                                </property>
+                                <property name="text">
+                                    <string></string>
+                                </property>
+                                <property name="pixmap">
+                                    <pixmap>image0</pixmap>
+                                </property>
+                            </widget>
                         </grid>
                     </widget>
                 </widget>
@@ -391,6 +405,11 @@
         </widget>
     </grid>
 </widget>
+<images>
+    <image name="image0">
+        <data format="XPM.GZ" length="2286">789c85d55953db481007f0773e858b7ea3b63a9a914647a5f2c07d13c84148b6f6613492b001db1c366052fbddd7ee7f4bbb106f0553053fa63dd33ddd32efd67a17a7c7bdb5772b0f133f19845ee8fbfbde5a351d0e677ffef5e1e7caaa497b8bef28e9d9d53f5656cf26bdd03b198fea0568670ef2d65551bc30e70b973e2d4c24eb470b5749961a27eb9138cf6a53cafabed8674984fdc2c2759ce7a691f84f629f3736138fc575d1d85c9c2ddc4485b795785d6cca34957c08b6456c0a597f814396cb7e74277685375ed60b3844b1e4c757e2bca823e4f3435cf810231f03974ee3a770ed4ad4b727f67919c9feb42b2e0b67a45e9ec1f38c70fe993884d8c97dd1a1b82a8291cba7cdce41e2af619feafdd570282cf6bb14d721a4b085ebc4a13fb88fc64716de521b83fb9baa2dee9b6e3aa39e6775acfd6adf9fd854d6676a6f13f1b63a58d4f3049736c2feb7adb11f6da8e308f779a07611f2bd6f8d79e2d019f9b4eff70efdaed4c1625e1b7515637e36d5b5937cf9331ca204f731561b9ddfc7d616f90ed556e751cf0b31ee8349edb49f23756e50ffa433eef7415d607ea954fb18f3ecd595dec7a5bad6fe5ca9f579a1ebce9817adbf8a747dd019e7f5d5469fb79dd6984fd67e564ee76dd23ac37c6afe55e1b0bfd65ff918f3ed3b635e581db0ce65eb0cf5a6eaf98162ed7f6d12f43b51bb04eb779df1bc39759a1871dc19f1dfd5b5c379dfd48d43fc39dc44787ef8abda26a877d0bac4fce83c37718cfbbb68adefffa2f639ea3d52570ef91eaae71f28e2e3ce384fe7ad691ce6f9a033ce3be98cfe3c75c67ecfadf179c9fb9d31af1f3be3bc7e67ccf75eeb0cf59e76463f1e5be7a877d4daa3be9bd601f7bbdbba423fead64d847f3eff7d31bdf6d9e46d0c7b2e39fc26a6e29a9bdfc45c729f077cf5ff317ccd373ce4118fdfc6f02ddff13d3ff084a7fcc84ffccc337ee175dee04dded2986ddee15ddee37d3ee0433ee2e3f9cf13fec8a77cc69ffe3d8b3ff317fecae7fc4d5ee77cc1dff90747aff361c396634ee4e538e58cf35f73e68298165f7efeb3a4f06b5d54514d0d5d529f067445d774b3246648231ad32dddd13d3dd084a64b621ee9899e6936ffed85d669833697c46cd136edb47fa75ddaa3fdd7317440876ffb4d47cbfbb5ecb5faf7fb957f0026a43b01</data>
+    </image>
+</images>
 <connections>
     <connection>
         <sender>closeButton</sender>
@@ -434,6 +453,12 @@
         <receiver>ServerDialogDesign</receiver>
         <slot>bind_anon()</slot>
     </connection>
+    <connection>
+        <sender>basednButton</sender>
+        <signal>clicked()</signal>
+        <receiver>ServerDialogDesign</receiver>
+        <slot>searchBaseDN()</slot>
+    </connection>
 </connections>
 <tabstops>
     <tabstop>serverIconView</tabstop>
@@ -456,6 +481,7 @@
     <slot>addServer()</slot>
     <slot>modifyServer()</slot>
     <slot>bind_anon()</slot>
+    <slot>searchBaseDN()</slot>
 </slots>
 <layoutdefaults spacing="6" margin="11"/>
 </UI>

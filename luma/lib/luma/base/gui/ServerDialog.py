@@ -7,13 +7,17 @@
 ###########################################################################
 
 import os
+import ldap
 
 from qt import *
+
 
 from base.gui.ServerDialogDesign import ServerDialogDesign
 from base.backend.ServerObject import ServerObject
 from base.backend.ServerList import ServerList
 from base.backend.DirUtils import DirUtils
+from base.gui.BaseSelector import BaseSelector
+from base.backend.LumaConnection import LumaConnection
 
 class ServerDialog(ServerDialogDesign):
     """ Show the dialog for managing all server information.
@@ -81,6 +85,7 @@ class ServerDialog(ServerDialogDesign):
         self.passwordLineEdit.setReadOnly(not(inputMutex))
         self.tlsCheckBox.setEnabled(inputMutex)
         self.saveButton.setEnabled(inputMutex)
+        self.basednButton.setEnabled(inputMutex)
         
 ###############################################################################
 
@@ -179,8 +184,37 @@ class ServerDialog(ServerDialogDesign):
             self.passwordLineEdit.setEnabled(1)
             self.bindLineEdit.setEnabled(1)
 
+###############################################################################
 
-
+    def searchBaseDN(self):
+        server = str(self.hostLineEdit.text())
+        tls = self.tlsCheckBox.isChecked()
+        serverMeta = ServerObject()
+        serverMeta.host = str(self.hostLineEdit.text())
+        serverMeta.port = self.portSpinBox.value()
+        serverMeta.tls = self.tlsCheckBox.isChecked()
+        serverMeta.bindAnon = 1
+        serverMeta.baseDN = ""
+        serverMeta.bindDN = ""
+        serverMeta.bindPassword = ""
+        conObject = LumaConnection(serverMeta)
+        
+        dnList = None
+        
+        # Check for openldap
+        result = conObject.search_s("", ldap.SCOPE_BASE, "(objectClass=*)", ["namingContexts"])
+        dnList = result[0][1]['namingContexts']
+        
+        # Check for Novell
+        if dnList[0] == '':
+            result = conObject.search_s("", ldap.SCOPE_BASE)
+            dnList = result[0][1]['dsaName']
+        
+        dialog = BaseSelector()
+        dialog.setList(dnList)
+        dialog.exec_loop()
+        if dialog.result() == QDialog.Accepted:
+            self.baseLineEdit.setText(dialog.dnBox.currentText())
 
 
 
