@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!--Project file for project luma-->
-<!--Saved: 2004-02-04, 01:13:47-->
+<!--Saved: 2004-02-08, 03:09:29-->
 <!--Copyright (C) 2004 Wido Depping, wido.depping@tu-clausthal.de-->
 <Project>
   <Version>1.0beta1</Version>
@@ -625,6 +625,20 @@
       <Dir>addressbook</Dir>
       <Name>CategoryEditDialog.py</Name>
     </Source>
+    <Source>
+      <Dir>lib</Dir>
+      <Dir>luma</Dir>
+      <Dir>plugins</Dir>
+      <Dir>addressbook</Dir>
+      <Name>ContactWizardDesign.py</Name>
+    </Source>
+    <Source>
+      <Dir>lib</Dir>
+      <Dir>luma</Dir>
+      <Dir>plugins</Dir>
+      <Dir>addressbook</Dir>
+      <Name>ContactWizard.py</Name>
+    </Source>
   </Sources>
   <Forms>
     <Form>
@@ -800,6 +814,13 @@
       <Dir>addressbook</Dir>
       <Name>NewCategoryDialog.ui</Name>
     </Form>
+    <Form>
+      <Dir>lib</Dir>
+      <Dir>luma</Dir>
+      <Dir>plugins</Dir>
+      <Dir>addressbook</Dir>
+      <Name>ContactWizardDesign.ui</Name>
+    </Form>
   </Forms>
   <Translations>
     <Translation>
@@ -821,6 +842,11 @@
       <Dir>lib</Dir>
       <Dir>luma</Dir>
       <Name>luma_no.ts</Name>
+    </Translation>
+    <Translation>
+      <Dir>lib</Dir>
+      <Dir>luma</Dir>
+      <Name>luma_fr.ts</Name>
     </Translation>
   </Translations>
   <Interfaces>
