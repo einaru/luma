@@ -322,7 +322,7 @@ POSSIBILITY OF SUCH DAMAGES.
     <message>
         <source>&lt;font size=&quot;+2&quot;&gt;&lt;b&gt;Luma 2.0.2&lt;/b&gt;&lt;/font&gt;</source>
         <comment>DO NOT TRANSLATE</comment>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>&lt;p align=&quot;center&quot;&gt;LDAP management made easy.&lt;br&gt;&lt;br&gt;
@@ -330,7 +330,7 @@ POSSIBILITY OF SUCH DAMAGES.
 http://luma.sourceforge.net
 &lt;/p&gt;</source>
         <comment>DO NOT TRANSLATE</comment>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message encoding="UTF-8">
         <source>Bjorn Ove Grotan
@@ -361,7 +361,7 @@ Swedish translation
 Alexander Novitsky
 Russian translation</source>
         <comment>DO NOT TRANSLATE</comment>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
 </context>
 <context>
@@ -1545,15 +1545,15 @@ Vennligst trykk start for å begynne slettingen.</translation>
     </message>
     <message>
         <source>&amp;Delete</source>
-        <translation type="unfinished">&amp;Slett</translation>
+        <translation>&amp;Slett</translation>
     </message>
     <message>
         <source>Alt+D</source>
-        <translation type="unfinished"></translation>
+        <translation>Alt+D</translation>
     </message>
     <message>
         <source>&amp;Remove from list</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Fjern fra liste</translation>
     </message>
 </context>
 <context>
@@ -1580,7 +1580,7 @@ Vennligst trykk start for å begynne slettingen.</translation>
     </message>
     <message>
         <source>Select file for exporting</source>
-        <translation type="unfinished"></translation>
+        <translation>Velg fil for eksport</translation>
     </message>
 </context>
 <context>
@@ -1650,15 +1650,15 @@ Vennligst trykk start for å begynne slettingen.</translation>
     </message>
     <message>
         <source>&amp;Export</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Eksporter</translation>
     </message>
     <message>
         <source>Alt+E</source>
-        <translation type="unfinished"></translation>
+        <translation>Alt+E</translation>
     </message>
     <message>
         <source>&amp;Remove from list</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Fjern fra liste</translation>
     </message>
 </context>
 <context>
@@ -3054,11 +3054,11 @@ Beskrivelse</translation>
     </message>
     <message>
         <source>&amp;Add...</source>
-        <translation type="unfinished">&amp;Legg til...</translation>
+        <translation>&amp;Legg til...</translation>
     </message>
     <message>
         <source>SASL EXTERNAL</source>
-        <translation type="unfinished"></translation>
+        <translation>SASL Ekstern</translation>
     </message>
 </context>
 <context>
