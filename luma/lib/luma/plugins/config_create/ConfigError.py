@@ -1,14 +1,13 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file '/home/wido/src/luma/lib/luma/plugins/config_create/ConfigError.ui'
+# Form implementation generated from reading ui file './lib/luma/plugins/config_create/ConfigError.ui'
 #
-# Created: Sun Aug 29 00:49:07 2004
-#      by: The PyQt User Interface Compiler (pyuic) 3.12
+# Created: Tue Mar 1 22:50:16 2005
+#      by: The PyQt User Interface Compiler (pyuic) 3.14
 #
 # WARNING! All changes made in this file will be lost!
 
 
-import sys
 from qt import *
 
 image0_data = \
@@ -190,7 +189,7 @@ class ConfigError(QDialog):
         ConfigErrorLayout = QGridLayout(self,1,1,11,6,"ConfigErrorLayout")
 
         self.suffixIcon = QLabel(self,"suffixIcon")
-        self.suffixIcon.setSizePolicy(QSizePolicy(0,0,0,0,self.suffixIcon.sizePolicy().hasHeightForWidth()))
+        self.suffixIcon.setSizePolicy(QSizePolicy(QSizePolicy.Fixed,QSizePolicy.Fixed,0,0,self.suffixIcon.sizePolicy().hasHeightForWidth()))
         self.suffixIcon.setFrameShape(QLabel.NoFrame)
         self.suffixIcon.setFrameShadow(QLabel.Plain)
         self.suffixIcon.setPixmap(self.image0)
@@ -222,7 +221,7 @@ class ConfigError(QDialog):
         self.resize(QSize(375,263).expandedTo(self.minimumSizeHint()))
         self.clearWState(Qt.WState_Polished)
 
-        self.connect(self.pushButton6,SIGNAL("clicked()"),self,SLOT("close()"))
+        self.connect(self.pushButton6,SIGNAL("clicked()"),self.close)
 
 
     def languageChange(self):
@@ -234,11 +233,3 @@ class ConfigError(QDialog):
 
     def __tr(self,s,c = None):
         return qApp.translate("ConfigError",s,c)
-
-if __name__ == "__main__":
-    a = QApplication(sys.argv)
-    QObject.connect(a,SIGNAL("lastWindowClosed()"),a,SLOT("quit()"))
-    w = ConfigError()
-    a.setMainWidget(w)
-    w.show()
-    a.exec_loop()

@@ -1,14 +1,13 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file '/home/wido/src/luma/lib/luma/plugins/mass_creation_plugin/MassCreationDesign.ui'
+# Form implementation generated from reading ui file './lib/luma/plugins/mass_creation_plugin/MassCreationDesign.ui'
 #
-# Created: Tue Feb 8 21:38:06 2005
-#      by: The PyQt User Interface Compiler (pyuic) 3.13
+# Created: Tue Mar 1 22:50:48 2005
+#      by: The PyQt User Interface Compiler (pyuic) 3.14
 #
 # WARNING! All changes made in this file will be lost!
 
 
-import sys
 from qt import *
 
 image0_data = \
@@ -93,12 +92,12 @@ class MassCreationDesign(QWidget):
         tabLayout.addMultiCellWidget(self.textLabel4_2,5,5,0,5)
 
         self.textLabel7 = QLabel(self.tab,"textLabel7")
-        self.textLabel7.setSizePolicy(QSizePolicy(4,5,0,0,self.textLabel7.sizePolicy().hasHeightForWidth()))
+        self.textLabel7.setSizePolicy(QSizePolicy(QSizePolicy.Maximum,QSizePolicy.Preferred,0,0,self.textLabel7.sizePolicy().hasHeightForWidth()))
 
         tabLayout.addWidget(self.textLabel7,8,1)
 
         self.textLabel6 = QLabel(self.tab,"textLabel6")
-        self.textLabel6.setSizePolicy(QSizePolicy(4,5,0,0,self.textLabel6.sizePolicy().hasHeightForWidth()))
+        self.textLabel6.setSizePolicy(QSizePolicy(QSizePolicy.Maximum,QSizePolicy.Preferred,0,0,self.textLabel6.sizePolicy().hasHeightForWidth()))
 
         tabLayout.addWidget(self.textLabel6,7,1)
 
@@ -117,28 +116,28 @@ class MassCreationDesign(QWidget):
         tabLayout.addMultiCellWidget(self.shellEdit,8,8,2,6)
 
         self.browseGroupButton = QPushButton(self.tab,"browseGroupButton")
-        self.browseGroupButton.setSizePolicy(QSizePolicy(4,5,0,0,self.browseGroupButton.sizePolicy().hasHeightForWidth()))
+        self.browseGroupButton.setSizePolicy(QSizePolicy(QSizePolicy.Maximum,QSizePolicy.Preferred,0,0,self.browseGroupButton.sizePolicy().hasHeightForWidth()))
         self.browseGroupButton.setPixmap(self.image0)
 
         tabLayout.addWidget(self.browseGroupButton,7,6)
 
         self.textLabel5 = QLabel(self.tab,"textLabel5")
-        self.textLabel5.setSizePolicy(QSizePolicy(4,5,0,0,self.textLabel5.sizePolicy().hasHeightForWidth()))
+        self.textLabel5.setSizePolicy(QSizePolicy(QSizePolicy.Maximum,QSizePolicy.Preferred,0,0,self.textLabel5.sizePolicy().hasHeightForWidth()))
 
         tabLayout.addWidget(self.textLabel5,6,1)
 
         self.textLabel2 = QLabel(self.tab,"textLabel2")
-        self.textLabel2.setSizePolicy(QSizePolicy(4,5,0,0,self.textLabel2.sizePolicy().hasHeightForWidth()))
+        self.textLabel2.setSizePolicy(QSizePolicy(QSizePolicy.Maximum,QSizePolicy.Preferred,0,0,self.textLabel2.sizePolicy().hasHeightForWidth()))
 
         tabLayout.addWidget(self.textLabel2,2,1)
 
         self.textLabel1 = QLabel(self.tab,"textLabel1")
-        self.textLabel1.setSizePolicy(QSizePolicy(4,5,0,0,self.textLabel1.sizePolicy().hasHeightForWidth()))
+        self.textLabel1.setSizePolicy(QSizePolicy(QSizePolicy.Maximum,QSizePolicy.Preferred,0,0,self.textLabel1.sizePolicy().hasHeightForWidth()))
 
         tabLayout.addWidget(self.textLabel1,1,1)
 
         self.textLabel2_2 = QLabel(self.tab,"textLabel2_2")
-        self.textLabel2_2.setSizePolicy(QSizePolicy(4,5,0,0,self.textLabel2_2.sizePolicy().hasHeightForWidth()))
+        self.textLabel2_2.setSizePolicy(QSizePolicy(QSizePolicy.Maximum,QSizePolicy.Preferred,0,0,self.textLabel2_2.sizePolicy().hasHeightForWidth()))
 
         tabLayout.addWidget(self.textLabel2_2,4,1)
 
@@ -154,13 +153,13 @@ class MassCreationDesign(QWidget):
         tabLayout.addMultiCellWidget(self.prefixMaxBox,2,2,5,6)
 
         self.dateButton = QRadioButton(self.tab,"dateButton")
-        self.dateButton.setSizePolicy(QSizePolicy(4,0,0,0,self.dateButton.sizePolicy().hasHeightForWidth()))
+        self.dateButton.setSizePolicy(QSizePolicy(QSizePolicy.Maximum,QSizePolicy.Fixed,0,0,self.dateButton.sizePolicy().hasHeightForWidth()))
         self.dateButton.setChecked(0)
 
         tabLayout.addWidget(self.dateButton,10,1)
 
         self.daysButton = QRadioButton(self.tab,"daysButton")
-        self.daysButton.setSizePolicy(QSizePolicy(4,0,0,0,self.daysButton.sizePolicy().hasHeightForWidth()))
+        self.daysButton.setSizePolicy(QSizePolicy(QSizePolicy.Maximum,QSizePolicy.Fixed,0,0,self.daysButton.sizePolicy().hasHeightForWidth()))
         self.daysButton.setChecked(1)
 
         tabLayout.addMultiCellWidget(self.daysButton,11,11,1,2)
@@ -183,7 +182,7 @@ class MassCreationDesign(QWidget):
         tabLayout.addItem(spacer6,13,0)
 
         self.browseButton = QPushButton(self.tab,"browseButton")
-        self.browseButton.setSizePolicy(QSizePolicy(1,5,0,0,self.browseButton.sizePolicy().hasHeightForWidth()))
+        self.browseButton.setSizePolicy(QSizePolicy(QSizePolicy.Minimum,QSizePolicy.Preferred,0,0,self.browseButton.sizePolicy().hasHeightForWidth()))
         self.browseButton.setPixmap(self.image0)
 
         tabLayout.addWidget(self.browseButton,13,6)
@@ -222,15 +221,15 @@ class MassCreationDesign(QWidget):
         tabLayout.addMultiCellWidget(self.dayBox,11,11,3,6)
 
         self.textLabel3_2 = QLabel(self.tab,"textLabel3_2")
-        self.textLabel3_2.setSizePolicy(QSizePolicy(4,5,0,0,self.textLabel3_2.sizePolicy().hasHeightForWidth()))
+        self.textLabel3_2.setSizePolicy(QSizePolicy(QSizePolicy.Maximum,QSizePolicy.Preferred,0,0,self.textLabel3_2.sizePolicy().hasHeightForWidth()))
 
         tabLayout.addWidget(self.textLabel3_2,4,4)
 
         self.textLabel3 = QLabel(self.tab,"textLabel3")
-        self.textLabel3.setSizePolicy(QSizePolicy(4,5,0,0,self.textLabel3.sizePolicy().hasHeightForWidth()))
+        self.textLabel3.setSizePolicy(QSizePolicy(QSizePolicy.Maximum,QSizePolicy.Preferred,0,0,self.textLabel3.sizePolicy().hasHeightForWidth()))
 
         tabLayout.addWidget(self.textLabel3,2,4)
-        self.tabWidget2.insertTab(self.tab,QString(""))
+        self.tabWidget2.insertTab(self.tab,QString.fromLatin1(""))
 
         self.TabPage = QWidget(self.tabWidget2,"TabPage")
         TabPageLayout = QGridLayout(self.TabPage,1,1,11,6,"TabPageLayout")
@@ -263,7 +262,7 @@ class MassCreationDesign(QWidget):
         TabPageLayout.addWidget(self.automountLocationEdit,5,2)
 
         self.browseAutomountButton = QPushButton(self.TabPage,"browseAutomountButton")
-        self.browseAutomountButton.setSizePolicy(QSizePolicy(4,5,0,0,self.browseAutomountButton.sizePolicy().hasHeightForWidth()))
+        self.browseAutomountButton.setSizePolicy(QSizePolicy(QSizePolicy.Maximum,QSizePolicy.Preferred,0,0,self.browseAutomountButton.sizePolicy().hasHeightForWidth()))
         self.browseAutomountButton.setPixmap(self.image0)
 
         TabPageLayout.addWidget(self.browseAutomountButton,5,3)
@@ -277,7 +276,7 @@ class MassCreationDesign(QWidget):
         TabPageLayout.addMultiCellWidget(self.nfsServerEdit,2,2,2,3)
         spacer10 = QSpacerItem(41,111,QSizePolicy.Minimum,QSizePolicy.Expanding)
         TabPageLayout.addItem(spacer10,6,2)
-        self.tabWidget2.insertTab(self.TabPage,QString(""))
+        self.tabWidget2.insertTab(self.TabPage,QString.fromLatin1(""))
 
         self.tab_2 = QWidget(self.tabWidget2,"tab_2")
         tabLayout_2 = QVBoxLayout(self.tab_2,11,6,"tabLayout_2")
@@ -287,7 +286,7 @@ class MassCreationDesign(QWidget):
 
         self.passwordEdit = QTextEdit(self.tab_2,"passwordEdit")
         tabLayout_2.addWidget(self.passwordEdit)
-        self.tabWidget2.insertTab(self.tab_2,QString(""))
+        self.tabWidget2.insertTab(self.tab_2,QString.fromLatin1(""))
 
         MassCreationDesignLayout.addMultiCellWidget(self.tabWidget2,0,0,0,1)
 
@@ -384,11 +383,3 @@ class MassCreationDesign(QWidget):
 
     def __tr(self,s,c = None):
         return qApp.translate("MassCreationDesign",s,c)
-
-if __name__ == "__main__":
-    a = QApplication(sys.argv)
-    QObject.connect(a,SIGNAL("lastWindowClosed()"),a,SLOT("quit()"))
-    w = MassCreationDesign()
-    a.setMainWidget(w)
-    w.show()
-    a.exec_loop()

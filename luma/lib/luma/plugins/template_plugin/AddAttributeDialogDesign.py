@@ -1,14 +1,13 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file '/home/wido/src/luma/lib/luma/plugins/template_plugin/AddAttributeDialogDesign.ui'
+# Form implementation generated from reading ui file './lib/luma/plugins/template_plugin/AddAttributeDialogDesign.ui'
 #
-# Created: Tue Feb 8 21:39:56 2005
-#      by: The PyQt User Interface Compiler (pyuic) 3.13
+# Created: Tue Mar 1 22:51:35 2005
+#      by: The PyQt User Interface Compiler (pyuic) 3.14
 #
 # WARNING! All changes made in this file will be lost!
 
 
-import sys
 from qt import *
 
 image0_data = \
@@ -288,7 +287,7 @@ class AddAttributeDialogDesign(QDialog):
         AddAttributeDialogDesignLayout = QGridLayout(self,1,1,6,6,"AddAttributeDialogDesignLayout")
 
         self.pixmapLabel1 = QLabel(self,"pixmapLabel1")
-        self.pixmapLabel1.setSizePolicy(QSizePolicy(0,0,0,0,self.pixmapLabel1.sizePolicy().hasHeightForWidth()))
+        self.pixmapLabel1.setSizePolicy(QSizePolicy(QSizePolicy.Fixed,QSizePolicy.Fixed,0,0,self.pixmapLabel1.sizePolicy().hasHeightForWidth()))
         self.pixmapLabel1.setPixmap(self.image0)
         self.pixmapLabel1.setScaledContents(1)
 
@@ -311,11 +310,11 @@ class AddAttributeDialogDesign(QDialog):
         layout4.addItem(spacer1)
 
         self.okButton = QPushButton(self,"okButton")
-        self.okButton.setSizePolicy(QSizePolicy(4,0,0,0,self.okButton.sizePolicy().hasHeightForWidth()))
+        self.okButton.setSizePolicy(QSizePolicy(QSizePolicy.Maximum,QSizePolicy.Fixed,0,0,self.okButton.sizePolicy().hasHeightForWidth()))
         layout4.addWidget(self.okButton)
 
         self.cancelButton = QPushButton(self,"cancelButton")
-        self.cancelButton.setSizePolicy(QSizePolicy(4,0,0,0,self.cancelButton.sizePolicy().hasHeightForWidth()))
+        self.cancelButton.setSizePolicy(QSizePolicy(QSizePolicy.Maximum,QSizePolicy.Fixed,0,0,self.cancelButton.sizePolicy().hasHeightForWidth()))
         layout4.addWidget(self.cancelButton)
 
         AddAttributeDialogDesignLayout.addMultiCellLayout(layout4,3,3,0,1)
@@ -414,11 +413,3 @@ class AddAttributeDialogDesign(QDialog):
 
     def __tr(self,s,c = None):
         return qApp.translate("AddAttributeDialogDesign",s,c)
-
-if __name__ == "__main__":
-    a = QApplication(sys.argv)
-    QObject.connect(a,SIGNAL("lastWindowClosed()"),a,SLOT("quit()"))
-    w = AddAttributeDialogDesign()
-    a.setMainWidget(w)
-    w.show()
-    a.exec_loop()

@@ -1,14 +1,13 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file '/home/wido/src/luma/lib/luma/plugins/admin_utils/AdminPanelDesign.ui'
+# Form implementation generated from reading ui file './lib/luma/plugins/admin_utils/AdminPanelDesign.ui'
 #
-# Created: Tue Feb 8 21:36:50 2005
-#      by: The PyQt User Interface Compiler (pyuic) 3.13
+# Created: Tue Mar 1 22:49:57 2005
+#      by: The PyQt User Interface Compiler (pyuic) 3.14
 #
 # WARNING! All changes made in this file will be lost!
 
 
-import sys
 from qt import *
 
 
@@ -30,14 +29,14 @@ class AdminPanelDesign(QWidget):
         tabLayout.addItem(spacer2,3,2)
 
         self.secureLabel = QLabel(self.tab,"secureLabel")
-        self.secureLabel.setSizePolicy(QSizePolicy(0,0,0,0,self.secureLabel.sizePolicy().hasHeightForWidth()))
+        self.secureLabel.setSizePolicy(QSizePolicy(QSizePolicy.Fixed,QSizePolicy.Fixed,0,0,self.secureLabel.sizePolicy().hasHeightForWidth()))
         self.secureLabel.setMinimumSize(QSize(64,64))
         self.secureLabel.setScaledContents(0)
 
         tabLayout.addWidget(self.secureLabel,0,0)
 
         self.textLabel1_2 = QLabel(self.tab,"textLabel1_2")
-        self.textLabel1_2.setSizePolicy(QSizePolicy(0,5,0,0,self.textLabel1_2.sizePolicy().hasHeightForWidth()))
+        self.textLabel1_2.setSizePolicy(QSizePolicy(QSizePolicy.Fixed,QSizePolicy.Preferred,0,0,self.textLabel1_2.sizePolicy().hasHeightForWidth()))
 
         tabLayout.addWidget(self.textLabel1_2,0,1)
 
@@ -50,7 +49,7 @@ class AdminPanelDesign(QWidget):
         layout5.addMultiCell(spacer5,3,3,1,2)
 
         self.textLabel3 = QLabel(self.tab,"textLabel3")
-        self.textLabel3.setSizePolicy(QSizePolicy(0,5,0,0,self.textLabel3.sizePolicy().hasHeightForWidth()))
+        self.textLabel3.setSizePolicy(QSizePolicy(QSizePolicy.Fixed,QSizePolicy.Preferred,0,0,self.textLabel3.sizePolicy().hasHeightForWidth()))
         self.textLabel3.setAlignment(QLabel.AlignVCenter)
 
         layout5.addWidget(self.textLabel3,1,1)
@@ -64,7 +63,7 @@ class AdminPanelDesign(QWidget):
         layout5.addMultiCellWidget(self.pwEdit,1,1,2,3)
 
         self.textLabel4 = QLabel(self.tab,"textLabel4")
-        self.textLabel4.setSizePolicy(QSizePolicy(0,5,0,0,self.textLabel4.sizePolicy().hasHeightForWidth()))
+        self.textLabel4.setSizePolicy(QSizePolicy(QSizePolicy.Fixed,QSizePolicy.Preferred,0,0,self.textLabel4.sizePolicy().hasHeightForWidth()))
 
         layout5.addWidget(self.textLabel4,2,1)
 
@@ -96,7 +95,7 @@ class AdminPanelDesign(QWidget):
         layout6.addMultiCellWidget(self.randomCryptEdit,2,2,2,3)
 
         self.textLabel2 = QLabel(self.tab,"textLabel2")
-        self.textLabel2.setSizePolicy(QSizePolicy(0,5,0,0,self.textLabel2.sizePolicy().hasHeightForWidth()))
+        self.textLabel2.setSizePolicy(QSizePolicy(QSizePolicy.Fixed,QSizePolicy.Preferred,0,0,self.textLabel2.sizePolicy().hasHeightForWidth()))
 
         layout6.addWidget(self.textLabel2,2,1)
 
@@ -107,7 +106,7 @@ class AdminPanelDesign(QWidget):
         layout6.addItem(spacer10,1,0)
 
         self.textLabel1 = QLabel(self.tab,"textLabel1")
-        self.textLabel1.setSizePolicy(QSizePolicy(0,5,0,0,self.textLabel1.sizePolicy().hasHeightForWidth()))
+        self.textLabel1.setSizePolicy(QSizePolicy(QSizePolicy.Fixed,QSizePolicy.Preferred,0,0,self.textLabel1.sizePolicy().hasHeightForWidth()))
         self.textLabel1.setAlignment(QLabel.AlignVCenter)
 
         layout6.addWidget(self.textLabel1,1,1)
@@ -115,30 +114,30 @@ class AdminPanelDesign(QWidget):
         layout6.addMultiCell(spacer1,3,3,1,2)
 
         tabLayout.addMultiCellLayout(layout6,1,1,0,2)
-        self.tabWidget2.insertTab(self.tab,QString(""))
+        self.tabWidget2.insertTab(self.tab,QString.fromLatin1(""))
 
         self.tab_2 = QWidget(self.tabWidget2,"tab_2")
         tabLayout_2 = QGridLayout(self.tab_2,1,1,11,6,"tabLayout_2")
 
         self.dateLabel = QLabel(self.tab_2,"dateLabel")
-        self.dateLabel.setSizePolicy(QSizePolicy(0,0,0,0,self.dateLabel.sizePolicy().hasHeightForWidth()))
+        self.dateLabel.setSizePolicy(QSizePolicy(QSizePolicy.Fixed,QSizePolicy.Fixed,0,0,self.dateLabel.sizePolicy().hasHeightForWidth()))
         self.dateLabel.setMinimumSize(QSize(64,64))
         self.dateLabel.setScaledContents(0)
 
         tabLayout_2.addMultiCellWidget(self.dateLabel,0,0,0,1)
 
         self.dateButton = QPushButton(self.tab_2,"dateButton")
-        self.dateButton.setSizePolicy(QSizePolicy(0,0,0,0,self.dateButton.sizePolicy().hasHeightForWidth()))
+        self.dateButton.setSizePolicy(QSizePolicy(QSizePolicy.Fixed,QSizePolicy.Fixed,0,0,self.dateButton.sizePolicy().hasHeightForWidth()))
 
         tabLayout_2.addWidget(self.dateButton,2,4)
 
         self.textLabel6 = QLabel(self.tab_2,"textLabel6")
-        self.textLabel6.setSizePolicy(QSizePolicy(0,5,0,0,self.textLabel6.sizePolicy().hasHeightForWidth()))
+        self.textLabel6.setSizePolicy(QSizePolicy(QSizePolicy.Fixed,QSizePolicy.Preferred,0,0,self.textLabel6.sizePolicy().hasHeightForWidth()))
 
         tabLayout_2.addWidget(self.textLabel6,3,1)
 
         self.textLabel5 = QLabel(self.tab_2,"textLabel5")
-        self.textLabel5.setSizePolicy(QSizePolicy(1,5,0,0,self.textLabel5.sizePolicy().hasHeightForWidth()))
+        self.textLabel5.setSizePolicy(QSizePolicy(QSizePolicy.Minimum,QSizePolicy.Preferred,0,0,self.textLabel5.sizePolicy().hasHeightForWidth()))
         self.textLabel5.setAlignment(QLabel.AlignVCenter)
 
         tabLayout_2.addWidget(self.textLabel5,2,1)
@@ -161,7 +160,7 @@ class AdminPanelDesign(QWidget):
         tabLayout_2.addItem(spacer3,8,3)
 
         self.durationButton = QPushButton(self.tab_2,"durationButton")
-        self.durationButton.setSizePolicy(QSizePolicy(0,0,0,0,self.durationButton.sizePolicy().hasHeightForWidth()))
+        self.durationButton.setSizePolicy(QSizePolicy(QSizePolicy.Fixed,QSizePolicy.Fixed,0,0,self.durationButton.sizePolicy().hasHeightForWidth()))
 
         tabLayout_2.addWidget(self.durationButton,6,4)
 
@@ -170,7 +169,7 @@ class AdminPanelDesign(QWidget):
         tabLayout_2.addMultiCellWidget(self.convDurationEdit,7,7,2,4)
 
         self.textLabel6_2 = QLabel(self.tab_2,"textLabel6_2")
-        self.textLabel6_2.setSizePolicy(QSizePolicy(0,5,0,0,self.textLabel6_2.sizePolicy().hasHeightForWidth()))
+        self.textLabel6_2.setSizePolicy(QSizePolicy(QSizePolicy.Fixed,QSizePolicy.Preferred,0,0,self.textLabel6_2.sizePolicy().hasHeightForWidth()))
         self.textLabel6_2.setAlignment(QLabel.AlignVCenter)
 
         tabLayout_2.addWidget(self.textLabel6_2,7,1)
@@ -184,7 +183,7 @@ class AdminPanelDesign(QWidget):
         tabLayout_2.addMultiCellWidget(self.durationBox,6,6,2,3)
 
         self.textLabel7 = QLabel(self.tab_2,"textLabel7")
-        self.textLabel7.setSizePolicy(QSizePolicy(0,5,0,0,self.textLabel7.sizePolicy().hasHeightForWidth()))
+        self.textLabel7.setSizePolicy(QSizePolicy(QSizePolicy.Fixed,QSizePolicy.Preferred,0,0,self.textLabel7.sizePolicy().hasHeightForWidth()))
         self.textLabel7.setAlignment(QLabel.AlignVCenter)
 
         tabLayout_2.addWidget(self.textLabel7,6,1)
@@ -196,7 +195,7 @@ class AdminPanelDesign(QWidget):
         tabLayout_2.addMultiCellWidget(self.textLabel5_2,5,5,0,4)
         spacer9 = QSpacerItem(21,16,QSizePolicy.Minimum,QSizePolicy.Fixed)
         tabLayout_2.addItem(spacer9,4,3)
-        self.tabWidget2.insertTab(self.tab_2,QString(""))
+        self.tabWidget2.insertTab(self.tab_2,QString.fromLatin1(""))
         AdminPanelDesignLayout.addWidget(self.tabWidget2)
 
         self.languageChange()
@@ -270,11 +269,3 @@ class AdminPanelDesign(QWidget):
 
     def __tr(self,s,c = None):
         return qApp.translate("AdminPanelDesign",s,c)
-
-if __name__ == "__main__":
-    a = QApplication(sys.argv)
-    QObject.connect(a,SIGNAL("lastWindowClosed()"),a,SLOT("quit()"))
-    w = AdminPanelDesign()
-    a.setMainWidget(w)
-    w.show()
-    a.exec_loop()

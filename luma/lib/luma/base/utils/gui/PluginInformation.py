@@ -1,14 +1,13 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file '/home/wido/src/luma/lib/luma/base/utils/gui/PluginInformation.ui'
+# Form implementation generated from reading ui file './lib/luma/base/utils/gui/PluginInformation.ui'
 #
-# Created: Sun Aug 29 00:49:10 2004
-#      by: The PyQt User Interface Compiler (pyuic) 3.12
+# Created: Tue Mar 1 22:44:51 2005
+#      by: The PyQt User Interface Compiler (pyuic) 3.14
 #
 # WARNING! All changes made in this file will be lost!
 
 
-import sys
 from qt import *
 
 
@@ -27,7 +26,7 @@ class PluginInformation(QDialog):
         layout5 = QGridLayout(None,1,1,0,6,"layout5")
 
         self.iconLabel = QLabel(self,"iconLabel")
-        self.iconLabel.setSizePolicy(QSizePolicy(0,0,0,0,self.iconLabel.sizePolicy().hasHeightForWidth()))
+        self.iconLabel.setSizePolicy(QSizePolicy(QSizePolicy.Fixed,QSizePolicy.Fixed,0,0,self.iconLabel.sizePolicy().hasHeightForWidth()))
         self.iconLabel.setMinimumSize(QSize(64,64))
         self.iconLabel.setMaximumSize(QSize(64,64))
 
@@ -66,7 +65,9 @@ class PluginInformation(QDialog):
         self.resize(QSize(382,266).expandedTo(self.minimumSizeHint()))
         self.clearWState(Qt.WState_Polished)
 
-        self.connect(self.closeButton,SIGNAL("clicked()"),self,SLOT("accept()"))
+        self.connect(self.closeButton,SIGNAL("clicked()"),self.accept)
+
+        self.setTabOrder(self.informationEdit,self.closeButton)
 
 
     def languageChange(self):
@@ -79,11 +80,3 @@ class PluginInformation(QDialog):
 
     def __tr(self,s,c = None):
         return qApp.translate("PluginInformation",s,c)
-
-if __name__ == "__main__":
-    a = QApplication(sys.argv)
-    QObject.connect(a,SIGNAL("lastWindowClosed()"),a,SLOT("quit()"))
-    w = PluginInformation()
-    a.setMainWidget(w)
-    w.show()
-    a.exec_loop()

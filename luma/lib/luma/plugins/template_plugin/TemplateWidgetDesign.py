@@ -1,14 +1,13 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file '/home/wido/src/luma/lib/luma/plugins/template_plugin/TemplateWidgetDesign.ui'
+# Form implementation generated from reading ui file './lib/luma/plugins/template_plugin/TemplateWidgetDesign.ui'
 #
-# Created: Tue Oct 19 15:04:09 2004
-#      by: The PyQt User Interface Compiler (pyuic) 3.13
+# Created: Tue Mar 1 22:51:23 2005
+#      by: The PyQt User Interface Compiler (pyuic) 3.14
 #
 # WARNING! All changes made in this file will be lost!
 
 
-import sys
 from qt import *
 
 
@@ -67,7 +66,7 @@ class TemplateWidgetDesign(QWidget):
         layout25 = QGridLayout(None,1,1,0,6,"layout25")
 
         self.nameLabel = QLabel(self.frame4,"nameLabel")
-        self.nameLabel.setSizePolicy(QSizePolicy(0,0,0,0,self.nameLabel.sizePolicy().hasHeightForWidth()))
+        self.nameLabel.setSizePolicy(QSizePolicy(QSizePolicy.Fixed,QSizePolicy.Fixed,0,0,self.nameLabel.sizePolicy().hasHeightForWidth()))
         self.nameLabel.setAlignment(QLabel.WordBreak | QLabel.AlignVCenter)
 
         layout25.addWidget(self.nameLabel,0,0)
@@ -82,7 +81,7 @@ class TemplateWidgetDesign(QWidget):
         layout25.addWidget(self.templateLabel,0,1)
 
         self.textLabel2 = QLabel(self.frame4,"textLabel2")
-        self.textLabel2.setSizePolicy(QSizePolicy(0,5,0,0,self.textLabel2.sizePolicy().hasHeightForWidth()))
+        self.textLabel2.setSizePolicy(QSizePolicy(QSizePolicy.Fixed,QSizePolicy.Preferred,0,0,self.textLabel2.sizePolicy().hasHeightForWidth()))
         self.textLabel2.setAlignment(QLabel.WordBreak | QLabel.AlignTop)
 
         layout25.addWidget(self.textLabel2,2,0)
@@ -92,7 +91,7 @@ class TemplateWidgetDesign(QWidget):
         layout25.addWidget(self.serverLabel,1,1)
 
         self.textLabel6 = QLabel(self.frame4,"textLabel6")
-        self.textLabel6.setSizePolicy(QSizePolicy(0,0,0,0,self.textLabel6.sizePolicy().hasHeightForWidth()))
+        self.textLabel6.setSizePolicy(QSizePolicy(QSizePolicy.Fixed,QSizePolicy.Fixed,0,0,self.textLabel6.sizePolicy().hasHeightForWidth()))
 
         layout25.addWidget(self.textLabel6,1,0)
         frame4Layout.addLayout(layout25)
@@ -109,14 +108,14 @@ class TemplateWidgetDesign(QWidget):
 
         self.classView = QListView(self.frame4,"classView")
         self.classView.addColumn(self.__tr("Name"))
-        self.classView.setSizePolicy(QSizePolicy(7,1,0,0,self.classView.sizePolicy().hasHeightForWidth()))
+        self.classView.setSizePolicy(QSizePolicy(QSizePolicy.Expanding,QSizePolicy.Minimum,0,0,self.classView.sizePolicy().hasHeightForWidth()))
         self.classView.setMaximumSize(QSize(32767,150))
         self.classView.setResizeMode(QListView.LastColumn)
 
         layout15.addMultiCellWidget(self.classView,1,3,1,1)
 
         self.textLabel5 = QLabel(self.frame4,"textLabel5")
-        self.textLabel5.setSizePolicy(QSizePolicy(5,0,0,0,self.textLabel5.sizePolicy().hasHeightForWidth()))
+        self.textLabel5.setSizePolicy(QSizePolicy(QSizePolicy.Preferred,QSizePolicy.Fixed,0,0,self.textLabel5.sizePolicy().hasHeightForWidth()))
 
         layout15.addMultiCellWidget(self.textLabel5,0,0,0,1)
 
@@ -256,11 +255,3 @@ class TemplateWidgetDesign(QWidget):
 
     def __tr(self,s,c = None):
         return qApp.translate("TemplateWidgetDesign",s,c)
-
-if __name__ == "__main__":
-    a = QApplication(sys.argv)
-    QObject.connect(a,SIGNAL("lastWindowClosed()"),a,SLOT("quit()"))
-    w = TemplateWidgetDesign()
-    a.setMainWidget(w)
-    w.show()
-    a.exec_loop()

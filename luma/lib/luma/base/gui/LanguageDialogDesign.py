@@ -1,14 +1,13 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file '/home/wido/src/luma/lib/luma/base/gui/LanguageDialogDesign.ui'
+# Form implementation generated from reading ui file './lib/luma/base/gui/LanguageDialogDesign.ui'
 #
-# Created: Sun Aug 29 00:49:09 2004
-#      by: The PyQt User Interface Compiler (pyuic) 3.12
+# Created: Tue Mar 1 22:41:44 2005
+#      by: The PyQt User Interface Compiler (pyuic) 3.14
 #
 # WARNING! All changes made in this file will be lost!
 
 
-import sys
 from qt import *
 
 
@@ -23,7 +22,7 @@ class LanguageDialogDesign(QDialog):
         LanguageDialogDesignLayout = QVBoxLayout(self,11,6,"LanguageDialogDesignLayout")
 
         self.textLabel1 = QLabel(self,"textLabel1")
-        self.textLabel1.setSizePolicy(QSizePolicy(4,5,0,0,self.textLabel1.sizePolicy().hasHeightForWidth()))
+        self.textLabel1.setSizePolicy(QSizePolicy(QSizePolicy.Maximum,QSizePolicy.Preferred,0,0,self.textLabel1.sizePolicy().hasHeightForWidth()))
         LanguageDialogDesignLayout.addWidget(self.textLabel1)
 
         self.languageBox = QComboBox(0,self,"languageBox")
@@ -53,8 +52,8 @@ class LanguageDialogDesign(QDialog):
         self.resize(QSize(302,132).expandedTo(self.minimumSizeHint()))
         self.clearWState(Qt.WState_Polished)
 
-        self.connect(self.okButton,SIGNAL("clicked()"),self,SLOT("accept()"))
-        self.connect(self.cancelButton,SIGNAL("clicked()"),self,SLOT("reject()"))
+        self.connect(self.okButton,SIGNAL("clicked()"),self.accept)
+        self.connect(self.cancelButton,SIGNAL("clicked()"),self.reject)
 
 
     def languageChange(self):
@@ -68,11 +67,3 @@ class LanguageDialogDesign(QDialog):
 
     def __tr(self,s,c = None):
         return qApp.translate("LanguageDialogDesign",s,c)
-
-if __name__ == "__main__":
-    a = QApplication(sys.argv)
-    QObject.connect(a,SIGNAL("lastWindowClosed()"),a,SLOT("quit()"))
-    w = LanguageDialogDesign()
-    a.setMainWidget(w)
-    w.show()
-    a.exec_loop()

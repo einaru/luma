@@ -1,14 +1,13 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file '/home/wido/src/luma/lib/luma/base/utils/gui/PasswordDialogDesign.ui'
+# Form implementation generated from reading ui file './lib/luma/base/utils/gui/PasswordDialogDesign.ui'
 #
-# Created: Sat Dec 4 02:19:35 2004
-#      by: The PyQt User Interface Compiler (pyuic) 3.13
+# Created: Tue Mar 1 22:44:39 2005
+#      by: The PyQt User Interface Compiler (pyuic) 3.14
 #
 # WARNING! All changes made in this file will be lost!
 
 
-import sys
 from qt import *
 
 
@@ -24,7 +23,7 @@ class PasswordDialogDesign(QDialog):
         PasswordDialogDesignLayout = QGridLayout(self,1,1,11,6,"PasswordDialogDesignLayout")
 
         self.iconLabel = QLabel(self,"iconLabel")
-        self.iconLabel.setSizePolicy(QSizePolicy(0,0,0,0,self.iconLabel.sizePolicy().hasHeightForWidth()))
+        self.iconLabel.setSizePolicy(QSizePolicy(QSizePolicy.Fixed,QSizePolicy.Fixed,0,0,self.iconLabel.sizePolicy().hasHeightForWidth()))
         self.iconLabel.setMinimumSize(QSize(64,64))
 
         PasswordDialogDesignLayout.addWidget(self.iconLabel,0,0)
@@ -143,11 +142,3 @@ class PasswordDialogDesign(QDialog):
 
     def __tr(self,s,c = None):
         return qApp.translate("PasswordDialogDesign",s,c)
-
-if __name__ == "__main__":
-    a = QApplication(sys.argv)
-    QObject.connect(a,SIGNAL("lastWindowClosed()"),a,SLOT("quit()"))
-    w = PasswordDialogDesign()
-    a.setMainWidget(w)
-    w.show()
-    a.exec_loop()

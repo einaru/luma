@@ -1,14 +1,13 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file '/home/wido/src/luma/lib/luma/base/utils/gui/MailDialogDesign.ui'
+# Form implementation generated from reading ui file './lib/luma/base/utils/gui/MailDialogDesign.ui'
 #
-# Created: Tue Feb 8 21:17:12 2005
-#      by: The PyQt User Interface Compiler (pyuic) 3.13
+# Created: Tue Mar 1 22:44:25 2005
+#      by: The PyQt User Interface Compiler (pyuic) 3.14
 #
 # WARNING! All changes made in this file will be lost!
 
 
-import sys
 from qt import *
 
 
@@ -25,7 +24,7 @@ class MailDialogDesign(QDialog):
         layout2 = QHBoxLayout(None,0,6,"layout2")
 
         self.mailIconLabel = QLabel(self,"mailIconLabel")
-        self.mailIconLabel.setSizePolicy(QSizePolicy(0,0,0,0,self.mailIconLabel.sizePolicy().hasHeightForWidth()))
+        self.mailIconLabel.setSizePolicy(QSizePolicy(QSizePolicy.Fixed,QSizePolicy.Fixed,0,0,self.mailIconLabel.sizePolicy().hasHeightForWidth()))
         self.mailIconLabel.setMinimumSize(QSize(32,32))
         layout2.addWidget(self.mailIconLabel)
 
@@ -81,11 +80,3 @@ class MailDialogDesign(QDialog):
 
     def __tr(self,s,c = None):
         return qApp.translate("MailDialogDesign",s,c)
-
-if __name__ == "__main__":
-    a = QApplication(sys.argv)
-    QObject.connect(a,SIGNAL("lastWindowClosed()"),a,SLOT("quit()"))
-    w = MailDialogDesign()
-    a.setMainWidget(w)
-    w.show()
-    a.exec_loop()

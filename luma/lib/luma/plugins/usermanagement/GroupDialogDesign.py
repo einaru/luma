@@ -1,14 +1,13 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file '/home/wido/src/luma/lib/luma/plugins/usermanagement/GroupDialogDesign.ui'
+# Form implementation generated from reading ui file './lib/luma/plugins/usermanagement/GroupDialogDesign.ui'
 #
-# Created: Tue Sep 28 04:59:15 2004
-#      by: The PyQt User Interface Compiler (pyuic) 3.13
+# Created: Tue Mar 1 22:52:33 2005
+#      by: The PyQt User Interface Compiler (pyuic) 3.14
 #
 # WARNING! All changes made in this file will be lost!
 
 
-import sys
 from qt import *
 
 
@@ -36,7 +35,7 @@ class GroupDialogDesign(QDialog):
         GroupDialogDesignLayout.addWidget(self.groupNumberBox,5,2)
 
         self.textLabel1 = QLabel(self,"textLabel1")
-        self.textLabel1.setSizePolicy(QSizePolicy(0,5,0,0,self.textLabel1.sizePolicy().hasHeightForWidth()))
+        self.textLabel1.setSizePolicy(QSizePolicy(QSizePolicy.Fixed,QSizePolicy.Preferred,0,0,self.textLabel1.sizePolicy().hasHeightForWidth()))
         self.textLabel1.setAlignment(QLabel.AlignVCenter | QLabel.AlignRight)
 
         GroupDialogDesignLayout.addWidget(self.textLabel1,4,1)
@@ -93,7 +92,7 @@ class GroupDialogDesign(QDialog):
         layout10 = QHBoxLayout(None,0,6,"layout10")
 
         self.groupLabel = QLabel(self,"groupLabel")
-        self.groupLabel.setSizePolicy(QSizePolicy(0,0,0,0,self.groupLabel.sizePolicy().hasHeightForWidth()))
+        self.groupLabel.setSizePolicy(QSizePolicy(QSizePolicy.Fixed,QSizePolicy.Fixed,0,0,self.groupLabel.sizePolicy().hasHeightForWidth()))
         self.groupLabel.setMinimumSize(QSize(64,64))
         layout10.addWidget(self.groupLabel)
 
@@ -110,7 +109,7 @@ class GroupDialogDesign(QDialog):
 
         self.okButton = QPushButton(self,"okButton")
         self.okButton.setAutoDefault(0)
-        self.okButton.setDefault(0)
+        self.okButton.setDefault(1)
         layout7.addWidget(self.okButton)
 
         self.cancelButton = QPushButton(self,"cancelButton")
@@ -135,6 +134,11 @@ class GroupDialogDesign(QDialog):
         self.connect(self.okButton,SIGNAL("clicked()"),self.accept)
         self.connect(self.groupNameBox,SIGNAL("activated(const QString&)"),self.groupNameChanged)
         self.connect(self.groupNumberBox,SIGNAL("valueChanged(int)"),self.groupNumberChanged)
+
+        self.setTabOrder(self.groupNameBox,self.groupNumberBox)
+        self.setTabOrder(self.groupNumberBox,self.groupView)
+        self.setTabOrder(self.groupView,self.okButton)
+        self.setTabOrder(self.okButton,self.cancelButton)
 
         self.infoLabel2.setBuddy(self.groupView)
 
@@ -166,11 +170,3 @@ class GroupDialogDesign(QDialog):
 
     def __tr(self,s,c = None):
         return qApp.translate("GroupDialogDesign",s,c)
-
-if __name__ == "__main__":
-    a = QApplication(sys.argv)
-    QObject.connect(a,SIGNAL("lastWindowClosed()"),a,SLOT("quit()"))
-    w = GroupDialogDesign()
-    a.setMainWidget(w)
-    w.show()
-    a.exec_loop()

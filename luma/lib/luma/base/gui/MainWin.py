@@ -97,6 +97,8 @@ class MainWin(MainWinDesign):
 
         self.PLUGINS = {}
         self.ICONPREFIX = os.path.join(environment.lumaInstallationPrefix, "share", "luma", "icons")
+        self.applicationIcon = QPixmap(os.path.join(self.ICONPREFIX, "luma-32.png"))
+        self.setIcon(self.applicationIcon)
         
 
 ###############################################################################

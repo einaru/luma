@@ -1,14 +1,13 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file '/home/wido/src/luma/lib/luma/base/utils/gui/SearchFormDesign.ui'
+# Form implementation generated from reading ui file './lib/luma/base/utils/gui/SearchFormDesign.ui'
 #
-# Created: Tue Feb 8 21:29:27 2005
-#      by: The PyQt User Interface Compiler (pyuic) 3.13
+# Created: Tue Mar 1 22:45:09 2005
+#      by: The PyQt User Interface Compiler (pyuic) 3.14
 #
 # WARNING! All changes made in this file will be lost!
 
 
-import sys
 from qt import *
 
 
@@ -19,18 +18,18 @@ class SearchFormDesign(QWidget):
         if not name:
             self.setName("SearchFormDesign")
 
-        self.setSizePolicy(QSizePolicy(5,5,0,0,self.sizePolicy().hasHeightForWidth()))
+        self.setSizePolicy(QSizePolicy(QSizePolicy.Preferred,QSizePolicy.Preferred,0,0,self.sizePolicy().hasHeightForWidth()))
 
         SearchFormDesignLayout = QVBoxLayout(self,11,6,"SearchFormDesignLayout")
 
         self.groupFrame = QFrame(self,"groupFrame")
-        self.groupFrame.setSizePolicy(QSizePolicy(5,0,0,0,self.groupFrame.sizePolicy().hasHeightForWidth()))
+        self.groupFrame.setSizePolicy(QSizePolicy(QSizePolicy.Preferred,QSizePolicy.Fixed,0,0,self.groupFrame.sizePolicy().hasHeightForWidth()))
         self.groupFrame.setFrameShape(QFrame.StyledPanel)
         self.groupFrame.setFrameShadow(QFrame.Sunken)
         groupFrameLayout = QGridLayout(self.groupFrame,1,1,11,6,"groupFrameLayout")
 
         self.filterWizardButton = QPushButton(self.groupFrame,"filterWizardButton")
-        self.filterWizardButton.setSizePolicy(QSizePolicy(0,0,0,0,self.filterWizardButton.sizePolicy().hasHeightForWidth()))
+        self.filterWizardButton.setSizePolicy(QSizePolicy(QSizePolicy.Fixed,QSizePolicy.Fixed,0,0,self.filterWizardButton.sizePolicy().hasHeightForWidth()))
 
         groupFrameLayout.addWidget(self.filterWizardButton,0,4)
 
@@ -39,13 +38,13 @@ class SearchFormDesign(QWidget):
         groupFrameLayout.addWidget(self.baseBox,0,3)
 
         self.searchEdit = QComboBox(0,self.groupFrame,"searchEdit")
-        self.searchEdit.setSizePolicy(QSizePolicy(7,0,0,0,self.searchEdit.sizePolicy().hasHeightForWidth()))
+        self.searchEdit.setSizePolicy(QSizePolicy(QSizePolicy.Expanding,QSizePolicy.Fixed,0,0,self.searchEdit.sizePolicy().hasHeightForWidth()))
         self.searchEdit.setEditable(1)
 
         groupFrameLayout.addMultiCellWidget(self.searchEdit,1,1,1,4)
 
         self.textLabel1 = QLabel(self.groupFrame,"textLabel1")
-        self.textLabel1.setSizePolicy(QSizePolicy(0,5,0,0,self.textLabel1.sizePolicy().hasHeightForWidth()))
+        self.textLabel1.setSizePolicy(QSizePolicy(QSizePolicy.Fixed,QSizePolicy.Preferred,0,0,self.textLabel1.sizePolicy().hasHeightForWidth()))
 
         groupFrameLayout.addWidget(self.textLabel1,0,2)
 
@@ -54,18 +53,18 @@ class SearchFormDesign(QWidget):
         groupFrameLayout.addWidget(self.serverBox,0,1)
 
         self.textLabel6 = QLabel(self.groupFrame,"textLabel6")
-        self.textLabel6.setSizePolicy(QSizePolicy(0,5,0,0,self.textLabel6.sizePolicy().hasHeightForWidth()))
+        self.textLabel6.setSizePolicy(QSizePolicy(QSizePolicy.Fixed,QSizePolicy.Preferred,0,0,self.textLabel6.sizePolicy().hasHeightForWidth()))
 
         groupFrameLayout.addWidget(self.textLabel6,1,0)
 
         self.textLabel2 = QLabel(self.groupFrame,"textLabel2")
-        self.textLabel2.setSizePolicy(QSizePolicy(0,5,0,0,self.textLabel2.sizePolicy().hasHeightForWidth()))
+        self.textLabel2.setSizePolicy(QSizePolicy(QSizePolicy.Fixed,QSizePolicy.Preferred,0,0,self.textLabel2.sizePolicy().hasHeightForWidth()))
 
         groupFrameLayout.addWidget(self.textLabel2,0,0)
 
         self.startButton = QPushButton(self.groupFrame,"startButton")
         self.startButton.setEnabled(0)
-        self.startButton.setSizePolicy(QSizePolicy(0,0,0,0,self.startButton.sizePolicy().hasHeightForWidth()))
+        self.startButton.setSizePolicy(QSizePolicy(QSizePolicy.Fixed,QSizePolicy.Fixed,0,0,self.startButton.sizePolicy().hasHeightForWidth()))
         self.startButton.setDefault(1)
 
         groupFrameLayout.addWidget(self.startButton,0,5)
@@ -108,11 +107,3 @@ class SearchFormDesign(QWidget):
 
     def __tr(self,s,c = None):
         return qApp.translate("SearchFormDesign",s,c)
-
-if __name__ == "__main__":
-    a = QApplication(sys.argv)
-    QObject.connect(a,SIGNAL("lastWindowClosed()"),a,SLOT("quit()"))
-    w = SearchFormDesign()
-    a.setMainWidget(w)
-    w.show()
-    a.exec_loop()

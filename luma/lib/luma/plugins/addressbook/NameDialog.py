@@ -1,14 +1,13 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file '/home/wido/src/luma/lib/luma/plugins/addressbook/NameDialog.ui'
+# Form implementation generated from reading ui file './lib/luma/plugins/addressbook/NameDialog.ui'
 #
-# Created: Tue Feb 8 21:35:25 2005
-#      by: The PyQt User Interface Compiler (pyuic) 3.13
+# Created: Tue Mar 1 22:48:53 2005
+#      by: The PyQt User Interface Compiler (pyuic) 3.14
 #
 # WARNING! All changes made in this file will be lost!
 
 
-import sys
 from qt import *
 
 
@@ -35,7 +34,7 @@ class NameDialog(QDialog):
         layout3.addWidget(self.textLabel3,2,0)
 
         self.textLabel1 = QLabel(self,"textLabel1")
-        self.textLabel1.setSizePolicy(QSizePolicy(5,5,0,0,self.textLabel1.sizePolicy().hasHeightForWidth()))
+        self.textLabel1.setSizePolicy(QSizePolicy(QSizePolicy.Preferred,QSizePolicy.Preferred,0,0,self.textLabel1.sizePolicy().hasHeightForWidth()))
         self.textLabel1.setAlignment(QLabel.AlignVCenter | QLabel.AlignRight)
 
         layout3.addWidget(self.textLabel1,0,0)
@@ -86,12 +85,12 @@ class NameDialog(QDialog):
         layout2.addItem(spacer9)
 
         self.okButton = QPushButton(self,"okButton")
-        self.okButton.setSizePolicy(QSizePolicy(0,0,0,0,self.okButton.sizePolicy().hasHeightForWidth()))
+        self.okButton.setSizePolicy(QSizePolicy(QSizePolicy.Fixed,QSizePolicy.Fixed,0,0,self.okButton.sizePolicy().hasHeightForWidth()))
         self.okButton.setDefault(1)
         layout2.addWidget(self.okButton)
 
         self.cancelButton = QPushButton(self,"cancelButton")
-        self.cancelButton.setSizePolicy(QSizePolicy(0,0,0,0,self.cancelButton.sizePolicy().hasHeightForWidth()))
+        self.cancelButton.setSizePolicy(QSizePolicy(QSizePolicy.Fixed,QSizePolicy.Fixed,0,0,self.cancelButton.sizePolicy().hasHeightForWidth()))
         self.cancelButton.setAutoDefault(0)
         layout2.addWidget(self.cancelButton)
         NameDialogLayout.addLayout(layout2)
@@ -143,11 +142,3 @@ class NameDialog(QDialog):
 
     def __tr(self,s,c = None):
         return qApp.translate("NameDialog",s,c)
-
-if __name__ == "__main__":
-    a = QApplication(sys.argv)
-    QObject.connect(a,SIGNAL("lastWindowClosed()"),a,SLOT("quit()"))
-    w = NameDialog()
-    a.setMainWidget(w)
-    w.show()
-    a.exec_loop()

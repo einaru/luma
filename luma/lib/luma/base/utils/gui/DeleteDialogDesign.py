@@ -1,14 +1,13 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file '/home/wido/src/luma/lib/luma/base/utils/gui/DeleteDialogDesign.ui'
+# Form implementation generated from reading ui file './lib/luma/base/utils/gui/DeleteDialogDesign.ui'
 #
-# Created: Tue Feb 8 20:53:49 2005
-#      by: The PyQt User Interface Compiler (pyuic) 3.13
+# Created: Tue Mar 1 22:43:19 2005
+#      by: The PyQt User Interface Compiler (pyuic) 3.14
 #
 # WARNING! All changes made in this file will be lost!
 
 
-import sys
 from qt import *
 
 
@@ -23,7 +22,7 @@ class DeleteDialogDesign(QDialog):
         DeleteDialogDesignLayout = QGridLayout(self,1,1,6,6,"DeleteDialogDesignLayout")
 
         self.iconLabel = QLabel(self,"iconLabel")
-        self.iconLabel.setSizePolicy(QSizePolicy(0,0,0,0,self.iconLabel.sizePolicy().hasHeightForWidth()))
+        self.iconLabel.setSizePolicy(QSizePolicy(QSizePolicy.Fixed,QSizePolicy.Fixed,0,0,self.iconLabel.sizePolicy().hasHeightForWidth()))
         self.iconLabel.setMinimumSize(QSize(64,64))
 
         DeleteDialogDesignLayout.addWidget(self.iconLabel,0,0)
@@ -45,7 +44,7 @@ class DeleteDialogDesign(QDialog):
         layout3.addItem(spacer1)
 
         self.startButton = QPushButton(self,"startButton")
-        self.startButton.setSizePolicy(QSizePolicy(1,0,0,0,self.startButton.sizePolicy().hasHeightForWidth()))
+        self.startButton.setSizePolicy(QSizePolicy(QSizePolicy.Minimum,QSizePolicy.Fixed,0,0,self.startButton.sizePolicy().hasHeightForWidth()))
         layout3.addWidget(self.startButton)
 
         self.pushButton2 = QPushButton(self,"pushButton2")
@@ -64,7 +63,7 @@ class DeleteDialogDesign(QDialog):
         layout4 = QGridLayout(None,1,1,0,6,"layout4")
 
         self.removeButton = QPushButton(self,"removeButton")
-        self.removeButton.setSizePolicy(QSizePolicy(1,0,0,0,self.removeButton.sizePolicy().hasHeightForWidth()))
+        self.removeButton.setSizePolicy(QSizePolicy(QSizePolicy.Minimum,QSizePolicy.Fixed,0,0,self.removeButton.sizePolicy().hasHeightForWidth()))
 
         layout4.addWidget(self.removeButton,1,1)
 
@@ -72,7 +71,7 @@ class DeleteDialogDesign(QDialog):
         self.itemView.addColumn(QString.null)
         self.itemView.addColumn(self.__tr("DN"))
         self.itemView.addColumn(self.__tr("Message"))
-        self.itemView.setSizePolicy(QSizePolicy(7,7,0,0,self.itemView.sizePolicy().hasHeightForWidth()))
+        self.itemView.setSizePolicy(QSizePolicy(QSizePolicy.Expanding,QSizePolicy.Expanding,0,0,self.itemView.sizePolicy().hasHeightForWidth()))
         self.itemView.setSelectionMode(QListView.Extended)
         self.itemView.setAllColumnsShowFocus(1)
         self.itemView.setShowSortIndicator(1)
@@ -117,11 +116,3 @@ class DeleteDialogDesign(QDialog):
 
     def __tr(self,s,c = None):
         return qApp.translate("DeleteDialogDesign",s,c)
-
-if __name__ == "__main__":
-    a = QApplication(sys.argv)
-    QObject.connect(a,SIGNAL("lastWindowClosed()"),a,SLOT("quit()"))
-    w = DeleteDialogDesign()
-    a.setMainWidget(w)
-    w.show()
-    a.exec_loop()

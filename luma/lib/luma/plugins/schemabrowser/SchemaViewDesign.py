@@ -1,14 +1,13 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file '/home/wido/src/luma/lib/luma/plugins/schemabrowser/SchemaViewDesign.ui'
+# Form implementation generated from reading ui file './lib/luma/plugins/schemabrowser/SchemaViewDesign.ui'
 #
-# Created: Tue Feb 8 21:39:32 2005
-#      by: The PyQt User Interface Compiler (pyuic) 3.13
+# Created: Tue Mar 1 22:50:58 2005
+#      by: The PyQt User Interface Compiler (pyuic) 3.14
 #
 # WARNING! All changes made in this file will be lost!
 
 
-import sys
 from qt import *
 
 
@@ -33,7 +32,7 @@ class SchemaViewDesign(QWidget):
         layout2.addWidget(self.serverBox,0,1)
 
         self.textLabel1 = QLabel(LayoutWidget,"textLabel1")
-        self.textLabel1.setSizePolicy(QSizePolicy(4,5,0,0,self.textLabel1.sizePolicy().hasHeightForWidth()))
+        self.textLabel1.setSizePolicy(QSizePolicy(QSizePolicy.Maximum,QSizePolicy.Preferred,0,0,self.textLabel1.sizePolicy().hasHeightForWidth()))
 
         layout2.addWidget(self.textLabel1,0,0)
 
@@ -55,7 +54,7 @@ class SchemaViewDesign(QWidget):
         self.classBox = QListBox(self.page1,"classBox")
 
         page1Layout.addMultiCellWidget(self.classBox,1,1,0,1)
-        self.toolBox.addItem(self.page1,QString(""))
+        self.toolBox.addItem(self.page1,QString.fromLatin1(""))
 
         self.page2 = QWidget(self.toolBox,"page2")
         self.page2.setBackgroundMode(QWidget.PaletteBackground)
@@ -72,7 +71,7 @@ class SchemaViewDesign(QWidget):
         self.attributeBox = QListBox(self.page2,"attributeBox")
 
         page2Layout.addMultiCellWidget(self.attributeBox,1,1,0,1)
-        self.toolBox.addItem(self.page2,QString(""))
+        self.toolBox.addItem(self.page2,QString.fromLatin1(""))
 
         self.page = QWidget(self.toolBox,"page")
         self.page.setBackgroundMode(QWidget.PaletteBackground)
@@ -89,7 +88,7 @@ class SchemaViewDesign(QWidget):
         self.textLabel3_3 = QLabel(self.page,"textLabel3_3")
 
         pageLayout.addWidget(self.textLabel3_3,0,0)
-        self.toolBox.addItem(self.page,QString(""))
+        self.toolBox.addItem(self.page,QString.fromLatin1(""))
 
         self.page_2 = QWidget(self.toolBox,"page_2")
         self.page_2.setBackgroundMode(QWidget.PaletteBackground)
@@ -106,12 +105,12 @@ class SchemaViewDesign(QWidget):
         self.textLabel3_4 = QLabel(self.page_2,"textLabel3_4")
 
         pageLayout_2.addWidget(self.textLabel3_4,0,0)
-        self.toolBox.addItem(self.page_2,QString(""))
+        self.toolBox.addItem(self.page_2,QString.fromLatin1(""))
 
         layout2.addMultiCellWidget(self.toolBox,1,1,0,1)
 
         self.widgetStack = QWidgetStack(self.splitter4,"widgetStack")
-        self.widgetStack.setSizePolicy(QSizePolicy(3,5,0,0,self.widgetStack.sizePolicy().hasHeightForWidth()))
+        self.widgetStack.setSizePolicy(QSizePolicy(QSizePolicy.MinimumExpanding,QSizePolicy.Preferred,0,0,self.widgetStack.sizePolicy().hasHeightForWidth()))
 
         self.WStackPage = QWidget(self.widgetStack,"WStackPage")
         WStackPageLayout = QGridLayout(self.WStackPage,1,1,3,6,"WStackPageLayout")
@@ -205,15 +204,15 @@ class SchemaViewDesign(QWidget):
         layout8_2 = QVBoxLayout(None,0,6,"layout8_2")
 
         self.singleAttributeBox = QCheckBox(self.WStackPage_2,"singleAttributeBox")
-        self.singleAttributeBox.setSizePolicy(QSizePolicy(0,0,0,0,self.singleAttributeBox.sizePolicy().hasHeightForWidth()))
+        self.singleAttributeBox.setSizePolicy(QSizePolicy(QSizePolicy.Fixed,QSizePolicy.Fixed,0,0,self.singleAttributeBox.sizePolicy().hasHeightForWidth()))
         layout8_2.addWidget(self.singleAttributeBox)
 
         self.collectiveAttributeBox = QCheckBox(self.WStackPage_2,"collectiveAttributeBox")
-        self.collectiveAttributeBox.setSizePolicy(QSizePolicy(0,0,0,0,self.collectiveAttributeBox.sizePolicy().hasHeightForWidth()))
+        self.collectiveAttributeBox.setSizePolicy(QSizePolicy(QSizePolicy.Fixed,QSizePolicy.Fixed,0,0,self.collectiveAttributeBox.sizePolicy().hasHeightForWidth()))
         layout8_2.addWidget(self.collectiveAttributeBox)
 
         self.obsoleteAttributeBox = QCheckBox(self.WStackPage_2,"obsoleteAttributeBox")
-        self.obsoleteAttributeBox.setSizePolicy(QSizePolicy(0,0,0,0,self.obsoleteAttributeBox.sizePolicy().hasHeightForWidth()))
+        self.obsoleteAttributeBox.setSizePolicy(QSizePolicy(QSizePolicy.Fixed,QSizePolicy.Fixed,0,0,self.obsoleteAttributeBox.sizePolicy().hasHeightForWidth()))
         layout8_2.addWidget(self.obsoleteAttributeBox)
 
         WStackPageLayout_2.addLayout(layout8_2,6,0)
@@ -506,11 +505,3 @@ class SchemaViewDesign(QWidget):
 
     def __tr(self,s,c = None):
         return qApp.translate("SchemaViewDesign",s,c)
-
-if __name__ == "__main__":
-    a = QApplication(sys.argv)
-    QObject.connect(a,SIGNAL("lastWindowClosed()"),a,SLOT("quit()"))
-    w = SchemaViewDesign()
-    a.setMainWidget(w)
-    w.show()
-    a.exec_loop()

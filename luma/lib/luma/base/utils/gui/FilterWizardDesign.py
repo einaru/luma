@@ -1,14 +1,13 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file '/home/wido/src/luma/lib/luma/base/utils/gui/FilterWizardDesign.ui'
+# Form implementation generated from reading ui file './lib/luma/base/utils/gui/FilterWizardDesign.ui'
 #
-# Created: Tue Feb 8 21:15:17 2005
-#      by: The PyQt User Interface Compiler (pyuic) 3.13
+# Created: Tue Mar 1 22:43:48 2005
+#      by: The PyQt User Interface Compiler (pyuic) 3.14
 #
 # WARNING! All changes made in this file will be lost!
 
 
-import sys
 from qt import *
 
 
@@ -19,14 +18,14 @@ class FilterWizardDesign(QDialog):
         if not name:
             self.setName("FilterWizardDesign")
 
-        self.setSizePolicy(QSizePolicy(5,5,0,0,self.sizePolicy().hasHeightForWidth()))
+        self.setSizePolicy(QSizePolicy(QSizePolicy.Preferred,QSizePolicy.Preferred,0,0,self.sizePolicy().hasHeightForWidth()))
 
         FilterWizardDesignLayout = QVBoxLayout(self,11,6,"FilterWizardDesignLayout")
 
         layout7 = QGridLayout(None,1,1,0,6,"layout7")
 
         self.delBookmarkButton = QPushButton(self,"delBookmarkButton")
-        self.delBookmarkButton.setSizePolicy(QSizePolicy(0,0,0,0,self.delBookmarkButton.sizePolicy().hasHeightForWidth()))
+        self.delBookmarkButton.setSizePolicy(QSizePolicy(QSizePolicy.Fixed,QSizePolicy.Fixed,0,0,self.delBookmarkButton.sizePolicy().hasHeightForWidth()))
 
         layout7.addWidget(self.delBookmarkButton,2,4)
         spacer6 = QSpacerItem(128,21,QSizePolicy.Expanding,QSizePolicy.Minimum)
@@ -40,7 +39,7 @@ class FilterWizardDesign(QDialog):
         layout7.addItem(spacer5,1,0)
 
         self.addBookmarkButton = QPushButton(self,"addBookmarkButton")
-        self.addBookmarkButton.setSizePolicy(QSizePolicy(0,0,0,0,self.addBookmarkButton.sizePolicy().hasHeightForWidth()))
+        self.addBookmarkButton.setSizePolicy(QSizePolicy(QSizePolicy.Fixed,QSizePolicy.Fixed,0,0,self.addBookmarkButton.sizePolicy().hasHeightForWidth()))
 
         layout7.addWidget(self.addBookmarkButton,2,3)
 
@@ -50,7 +49,7 @@ class FilterWizardDesign(QDialog):
         layout7.addMultiCellWidget(self.textLabel2,0,0,0,4)
 
         self.textLabel1 = QLabel(self,"textLabel1")
-        self.textLabel1.setSizePolicy(QSizePolicy(0,0,0,0,self.textLabel1.sizePolicy().hasHeightForWidth()))
+        self.textLabel1.setSizePolicy(QSizePolicy(QSizePolicy.Fixed,QSizePolicy.Fixed,0,0,self.textLabel1.sizePolicy().hasHeightForWidth()))
 
         layout7.addWidget(self.textLabel1,1,1)
         FilterWizardDesignLayout.addLayout(layout7)
@@ -64,12 +63,12 @@ class FilterWizardDesign(QDialog):
         layout6.addMultiCellWidget(self.expressionEdit,2,2,2,3)
 
         self.attributeButton = QRadioButton(self,"attributeButton")
-        self.attributeButton.setSizePolicy(QSizePolicy(0,0,0,0,self.attributeButton.sizePolicy().hasHeightForWidth()))
+        self.attributeButton.setSizePolicy(QSizePolicy(QSizePolicy.Fixed,QSizePolicy.Fixed,0,0,self.attributeButton.sizePolicy().hasHeightForWidth()))
 
         layout6.addWidget(self.attributeButton,1,2)
 
         self.filterTypeBox = QComboBox(0,self,"filterTypeBox")
-        self.filterTypeBox.setSizePolicy(QSizePolicy(0,0,0,0,self.filterTypeBox.sizePolicy().hasHeightForWidth()))
+        self.filterTypeBox.setSizePolicy(QSizePolicy(QSizePolicy.Fixed,QSizePolicy.Fixed,0,0,self.filterTypeBox.sizePolicy().hasHeightForWidth()))
 
         layout6.addWidget(self.filterTypeBox,2,1)
 
@@ -79,12 +78,12 @@ class FilterWizardDesign(QDialog):
         layout6.addMultiCellWidget(self.textLabel1_2,0,0,0,4)
 
         self.addObjectButton = QPushButton(self,"addObjectButton")
-        self.addObjectButton.setSizePolicy(QSizePolicy(0,0,0,0,self.addObjectButton.sizePolicy().hasHeightForWidth()))
+        self.addObjectButton.setSizePolicy(QSizePolicy(QSizePolicy.Fixed,QSizePolicy.Fixed,0,0,self.addObjectButton.sizePolicy().hasHeightForWidth()))
 
         layout6.addWidget(self.addObjectButton,2,4)
 
         self.classButton = QRadioButton(self,"classButton")
-        self.classButton.setSizePolicy(QSizePolicy(0,0,0,0,self.classButton.sizePolicy().hasHeightForWidth()))
+        self.classButton.setSizePolicy(QSizePolicy(QSizePolicy.Fixed,QSizePolicy.Fixed,0,0,self.classButton.sizePolicy().hasHeightForWidth()))
         self.classButton.setChecked(0)
 
         layout6.addWidget(self.classButton,1,1)
@@ -107,12 +106,12 @@ class FilterWizardDesign(QDialog):
         layout3.addWidget(self.concatBox,1,1)
 
         self.concatButton = QPushButton(self,"concatButton")
-        self.concatButton.setSizePolicy(QSizePolicy(0,0,0,0,self.concatButton.sizePolicy().hasHeightForWidth()))
+        self.concatButton.setSizePolicy(QSizePolicy(QSizePolicy.Fixed,QSizePolicy.Fixed,0,0,self.concatButton.sizePolicy().hasHeightForWidth()))
 
         layout3.addWidget(self.concatButton,1,2)
 
         self.textLabel4 = QLabel(self,"textLabel4")
-        self.textLabel4.setSizePolicy(QSizePolicy(0,5,0,0,self.textLabel4.sizePolicy().hasHeightForWidth()))
+        self.textLabel4.setSizePolicy(QSizePolicy(QSizePolicy.Fixed,QSizePolicy.Preferred,0,0,self.textLabel4.sizePolicy().hasHeightForWidth()))
         self.textLabel4.setAlignment(QLabel.AlignVCenter)
 
         layout3.addMultiCellWidget(self.textLabel4,0,0,0,1)
@@ -230,11 +229,3 @@ class FilterWizardDesign(QDialog):
 
     def __tr(self,s,c = None):
         return qApp.translate("FilterWizardDesign",s,c)
-
-if __name__ == "__main__":
-    a = QApplication(sys.argv)
-    QObject.connect(a,SIGNAL("lastWindowClosed()"),a,SLOT("quit()"))
-    w = FilterWizardDesign()
-    a.setMainWidget(w)
-    w.show()
-    a.exec_loop()

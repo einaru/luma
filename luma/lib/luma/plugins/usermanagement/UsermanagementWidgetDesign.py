@@ -1,14 +1,13 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file '/home/wido/src/luma/lib/luma/plugins/usermanagement/UsermanagementWidgetDesign.ui'
+# Form implementation generated from reading ui file './lib/luma/plugins/usermanagement/UsermanagementWidgetDesign.ui'
 #
-# Created: Tue Feb 8 21:43:27 2005
-#      by: The PyQt User Interface Compiler (pyuic) 3.13
+# Created: Tue Mar 1 22:53:00 2005
+#      by: The PyQt User Interface Compiler (pyuic) 3.14
 #
 # WARNING! All changes made in this file will be lost!
 
 
-import sys
 from qt import *
 
 
@@ -88,7 +87,7 @@ class UsermanagementWidgetDesign(QWidget):
         UsermanagementWidgetDesignLayout.addWidget(self.textLabel10,9,1)
 
         self.groupLabel = QLabel(self,"groupLabel")
-        self.groupLabel.setSizePolicy(QSizePolicy(0,0,0,0,self.groupLabel.sizePolicy().hasHeightForWidth()))
+        self.groupLabel.setSizePolicy(QSizePolicy(QSizePolicy.Fixed,QSizePolicy.Fixed,0,0,self.groupLabel.sizePolicy().hasHeightForWidth()))
         self.groupLabel.setMinimumSize(QSize(32,32))
 
         UsermanagementWidgetDesignLayout.addWidget(self.groupLabel,5,0)
@@ -124,13 +123,13 @@ class UsermanagementWidgetDesign(QWidget):
         UsermanagementWidgetDesignLayout.addMultiCellWidget(self.groupEdit,5,5,2,5)
 
         self.mailLabel = QLabel(self,"mailLabel")
-        self.mailLabel.setSizePolicy(QSizePolicy(0,0,0,0,self.mailLabel.sizePolicy().hasHeightForWidth()))
+        self.mailLabel.setSizePolicy(QSizePolicy(QSizePolicy.Fixed,QSizePolicy.Fixed,0,0,self.mailLabel.sizePolicy().hasHeightForWidth()))
         self.mailLabel.setMinimumSize(QSize(32,32))
 
         UsermanagementWidgetDesignLayout.addWidget(self.mailLabel,14,0)
 
         self.textLabel4 = QLabel(self,"textLabel4")
-        self.textLabel4.setSizePolicy(QSizePolicy(0,5,0,0,self.textLabel4.sizePolicy().hasHeightForWidth()))
+        self.textLabel4.setSizePolicy(QSizePolicy(QSizePolicy.Fixed,QSizePolicy.Preferred,0,0,self.textLabel4.sizePolicy().hasHeightForWidth()))
         self.textLabel4.setAlignment(QLabel.AlignVCenter | QLabel.AlignRight)
 
         UsermanagementWidgetDesignLayout.addWidget(self.textLabel4,6,1)
@@ -143,7 +142,7 @@ class UsermanagementWidgetDesign(QWidget):
         UsermanagementWidgetDesignLayout.addWidget(self.shellLabel,9,0)
 
         self.textLabel5 = QLabel(self,"textLabel5")
-        self.textLabel5.setSizePolicy(QSizePolicy(5,5,0,0,self.textLabel5.sizePolicy().hasHeightForWidth()))
+        self.textLabel5.setSizePolicy(QSizePolicy(QSizePolicy.Preferred,QSizePolicy.Preferred,0,0,self.textLabel5.sizePolicy().hasHeightForWidth()))
         self.textLabel5.setAlignment(QLabel.AlignVCenter)
 
         UsermanagementWidgetDesignLayout.addWidget(self.textLabel5,5,1)
@@ -180,7 +179,7 @@ class UsermanagementWidgetDesign(QWidget):
         UsermanagementWidgetDesignLayout.addMultiCellLayout(layout3,15,15,3,5)
 
         self.groupButton = QPushButton(self,"groupButton")
-        self.groupButton.setSizePolicy(QSizePolicy(1,0,0,0,self.groupButton.sizePolicy().hasHeightForWidth()))
+        self.groupButton.setSizePolicy(QSizePolicy(QSizePolicy.Minimum,QSizePolicy.Fixed,0,0,self.groupButton.sizePolicy().hasHeightForWidth()))
 
         UsermanagementWidgetDesignLayout.addMultiCellWidget(self.groupButton,7,7,3,5)
 
@@ -286,11 +285,3 @@ class UsermanagementWidgetDesign(QWidget):
 
     def __tr(self,s,c = None):
         return qApp.translate("UsermanagementWidgetDesign",s,c)
-
-if __name__ == "__main__":
-    a = QApplication(sys.argv)
-    QObject.connect(a,SIGNAL("lastWindowClosed()"),a,SLOT("quit()"))
-    w = UsermanagementWidgetDesign()
-    a.setMainWidget(w)
-    w.show()
-    a.exec_loop()

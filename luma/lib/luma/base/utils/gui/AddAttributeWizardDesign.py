@@ -1,14 +1,13 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file '/home/wido/src/luma/lib/luma/base/utils/gui/AddAttributeWizardDesign.ui'
+# Form implementation generated from reading ui file './lib/luma/base/utils/gui/AddAttributeWizardDesign.ui'
 #
-# Created: Sun Aug 29 00:49:12 2004
-#      by: The PyQt User Interface Compiler (pyuic) 3.12
+# Created: Tue Mar 1 22:46:25 2005
+#      by: The PyQt User Interface Compiler (pyuic) 3.14
 #
 # WARNING! All changes made in this file will be lost!
 
 
-import sys
 from qt import *
 
 
@@ -25,7 +24,7 @@ class AddAttributeWizardDesign(QWizard):
         WizardPageLayout = QGridLayout(self.WizardPage,1,1,11,6,"WizardPageLayout")
 
         self.imageLabel = QLabel(self.WizardPage,"imageLabel")
-        self.imageLabel.setSizePolicy(QSizePolicy(0,0,0,0,self.imageLabel.sizePolicy().hasHeightForWidth()))
+        self.imageLabel.setSizePolicy(QSizePolicy(QSizePolicy.Fixed,QSizePolicy.Fixed,0,0,self.imageLabel.sizePolicy().hasHeightForWidth()))
         self.imageLabel.setMinimumSize(QSize(64,64))
 
         WizardPageLayout.addWidget(self.imageLabel,0,0)
@@ -41,7 +40,7 @@ class AddAttributeWizardDesign(QWizard):
         WizardPageLayout.addWidget(self.attributeBox,3,1)
 
         self.textLabel4 = QLabel(self.WizardPage,"textLabel4")
-        self.textLabel4.setSizePolicy(QSizePolicy(0,0,0,0,self.textLabel4.sizePolicy().hasHeightForWidth()))
+        self.textLabel4.setSizePolicy(QSizePolicy(QSizePolicy.Fixed,QSizePolicy.Fixed,0,0,self.textLabel4.sizePolicy().hasHeightForWidth()))
 
         WizardPageLayout.addWidget(self.textLabel4,3,0)
 
@@ -98,7 +97,7 @@ class AddAttributeWizardDesign(QWizard):
         WizardPageLayout_2.addMultiCellWidget(self.splitter1,3,3,0,1)
 
         self.objectclassLabel = QLabel(self.WizardPage_2,"objectclassLabel")
-        self.objectclassLabel.setSizePolicy(QSizePolicy(0,0,0,0,self.objectclassLabel.sizePolicy().hasHeightForWidth()))
+        self.objectclassLabel.setSizePolicy(QSizePolicy(QSizePolicy.Fixed,QSizePolicy.Fixed,0,0,self.objectclassLabel.sizePolicy().hasHeightForWidth()))
         self.objectclassLabel.setMinimumSize(QSize(64,64))
 
         WizardPageLayout_2.addWidget(self.objectclassLabel,0,0)
@@ -149,11 +148,3 @@ class AddAttributeWizardDesign(QWizard):
 
     def __tr(self,s,c = None):
         return qApp.translate("AddAttributeWizardDesign",s,c)
-
-if __name__ == "__main__":
-    a = QApplication(sys.argv)
-    QObject.connect(a,SIGNAL("lastWindowClosed()"),a,SLOT("quit()"))
-    w = AddAttributeWizardDesign()
-    a.setMainWidget(w)
-    w.show()
-    a.exec_loop()

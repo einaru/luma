@@ -1,14 +1,13 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file '/home/wido/src/luma/lib/luma/plugins/template_plugin/AddObjectClassDialogDesign.ui'
+# Form implementation generated from reading ui file './lib/luma/plugins/template_plugin/AddObjectClassDialogDesign.ui'
 #
-# Created: Tue Feb 8 21:40:20 2005
-#      by: The PyQt User Interface Compiler (pyuic) 3.13
+# Created: Tue Mar 1 22:51:46 2005
+#      by: The PyQt User Interface Compiler (pyuic) 3.14
 #
 # WARNING! All changes made in this file will be lost!
 
 
-import sys
 from qt import *
 
 image0_data = \
@@ -345,7 +344,7 @@ class AddObjectClassDialogDesign(QDialog):
         layout2 = QHBoxLayout(None,0,6,"layout2")
 
         self.pixmapLabel1 = QLabel(self,"pixmapLabel1")
-        self.pixmapLabel1.setSizePolicy(QSizePolicy(0,0,0,0,self.pixmapLabel1.sizePolicy().hasHeightForWidth()))
+        self.pixmapLabel1.setSizePolicy(QSizePolicy(QSizePolicy.Fixed,QSizePolicy.Fixed,0,0,self.pixmapLabel1.sizePolicy().hasHeightForWidth()))
         self.pixmapLabel1.setPixmap(self.image0)
         self.pixmapLabel1.setScaledContents(0)
         layout2.addWidget(self.pixmapLabel1)
@@ -407,11 +406,3 @@ class AddObjectClassDialogDesign(QDialog):
 
     def __tr(self,s,c = None):
         return qApp.translate("AddObjectClassDialogDesign",s,c)
-
-if __name__ == "__main__":
-    a = QApplication(sys.argv)
-    QObject.connect(a,SIGNAL("lastWindowClosed()"),a,SLOT("quit()"))
-    w = AddObjectClassDialogDesign()
-    a.setMainWidget(w)
-    w.show()
-    a.exec_loop()

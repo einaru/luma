@@ -1,14 +1,13 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file '/home/wido/src/luma/lib/luma/base/gui/PluginLoaderGuiDesign.ui'
+# Form implementation generated from reading ui file './lib/luma/base/gui/PluginLoaderGuiDesign.ui'
 #
-# Created: Sun Aug 29 00:49:05 2004
-#      by: The PyQt User Interface Compiler (pyuic) 3.12
+# Created: Tue Mar 1 22:42:35 2005
+#      by: The PyQt User Interface Compiler (pyuic) 3.14
 #
 # WARNING! All changes made in this file will be lost!
 
 
-import sys
 from qt import *
 
 
@@ -23,7 +22,7 @@ class PluginLoaderGuiDesign(QDialog):
         PluginLoaderGuiDesignLayout = QVBoxLayout(self,11,6,"PluginLoaderGuiDesignLayout")
 
         self.textLabel1 = QLabel(self,"textLabel1")
-        self.textLabel1.setSizePolicy(QSizePolicy(5,0,0,0,self.textLabel1.sizePolicy().hasHeightForWidth()))
+        self.textLabel1.setSizePolicy(QSizePolicy(QSizePolicy.Preferred,QSizePolicy.Fixed,0,0,self.textLabel1.sizePolicy().hasHeightForWidth()))
         PluginLoaderGuiDesignLayout.addWidget(self.textLabel1)
 
         self.line1 = QFrame(self,"line1")
@@ -49,7 +48,7 @@ class PluginLoaderGuiDesign(QDialog):
         settingsBoxLayout.setAlignment(Qt.AlignTop)
 
         self.settingsStack = QWidgetStack(self.settingsBox,"settingsStack")
-        self.settingsStack.setSizePolicy(QSizePolicy(5,7,0,0,self.settingsStack.sizePolicy().hasHeightForWidth()))
+        self.settingsStack.setSizePolicy(QSizePolicy(QSizePolicy.Preferred,QSizePolicy.Expanding,0,0,self.settingsStack.sizePolicy().hasHeightForWidth()))
 
         self.WStackPage = QWidget(self.settingsStack,"WStackPage")
         self.settingsStack.addWidget(self.WStackPage,0)
@@ -101,11 +100,3 @@ class PluginLoaderGuiDesign(QDialog):
 
     def __tr(self,s,c = None):
         return qApp.translate("PluginLoaderGuiDesign",s,c)
-
-if __name__ == "__main__":
-    a = QApplication(sys.argv)
-    QObject.connect(a,SIGNAL("lastWindowClosed()"),a,SLOT("quit()"))
-    w = PluginLoaderGuiDesign()
-    a.setMainWidget(w)
-    w.show()
-    a.exec_loop()

@@ -1,14 +1,13 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file '/home/wido/src/luma/lib/luma/base/gui/MainWinDesign.ui'
+# Form implementation generated from reading ui file './lib/luma/base/gui/MainWinDesign.ui'
 #
-# Created: Sat Feb 19 00:32:49 2005
-#      by: The PyQt User Interface Compiler (pyuic) 3.13
+# Created: Tue Mar 1 22:41:56 2005
+#      by: The PyQt User Interface Compiler (pyuic) 3.14
 #
 # WARNING! All changes made in this file will be lost!
 
 
-import sys
 from qt import *
 
 image0_data = \
@@ -637,7 +636,7 @@ class MainWinDesign(QMainWindow):
         MainWinDesignLayout = QGridLayout(self.centralWidget(),1,1,11,6,"MainWinDesignLayout")
 
         self.taskStack = QWidgetStack(self.centralWidget(),"taskStack")
-        self.taskStack.setSizePolicy(QSizePolicy(5,7,0,0,self.taskStack.sizePolicy().hasHeightForWidth()))
+        self.taskStack.setSizePolicy(QSizePolicy(QSizePolicy.Preferred,QSizePolicy.Expanding,0,0,self.taskStack.sizePolicy().hasHeightForWidth()))
 
         self.page = QWidget(self.taskStack,"page")
         self.taskStack.addWidget(self.page,0)
@@ -764,11 +763,3 @@ class MainWinDesign(QMainWindow):
 
     def __tr(self,s,c = None):
         return qApp.translate("MainWinDesign",s,c)
-
-if __name__ == "__main__":
-    a = QApplication(sys.argv)
-    QObject.connect(a,SIGNAL("lastWindowClosed()"),a,SLOT("quit()"))
-    w = MainWinDesign()
-    a.setMainWidget(w)
-    w.show()
-    a.exec_loop()

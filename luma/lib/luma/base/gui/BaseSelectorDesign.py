@@ -1,14 +1,13 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file '/home/wido/src/luma/lib/luma/base/gui/BaseSelectorDesign.ui'
+# Form implementation generated from reading ui file './lib/luma/base/gui/BaseSelectorDesign.ui'
 #
-# Created: Tue Feb 8 21:31:32 2005
-#      by: The PyQt User Interface Compiler (pyuic) 3.13
+# Created: Tue Mar 1 22:39:29 2005
+#      by: The PyQt User Interface Compiler (pyuic) 3.14
 #
 # WARNING! All changes made in this file will be lost!
 
 
-import sys
 from qt import *
 
 image0_data = \
@@ -222,7 +221,7 @@ class BaseSelectorDesign(QDialog):
         layout8.addWidget(self.baseLabel,0,1)
 
         self.pixmapLabel1 = QLabel(self,"pixmapLabel1")
-        self.pixmapLabel1.setSizePolicy(QSizePolicy(0,0,0,0,self.pixmapLabel1.sizePolicy().hasHeightForWidth()))
+        self.pixmapLabel1.setSizePolicy(QSizePolicy(QSizePolicy.Fixed,QSizePolicy.Fixed,0,0,self.pixmapLabel1.sizePolicy().hasHeightForWidth()))
         self.pixmapLabel1.setPixmap(self.image0)
         self.pixmapLabel1.setScaledContents(1)
 
@@ -336,11 +335,3 @@ class BaseSelectorDesign(QDialog):
 
     def __tr(self,s,c = None):
         return qApp.translate("BaseSelectorDesign",s,c)
-
-if __name__ == "__main__":
-    a = QApplication(sys.argv)
-    QObject.connect(a,SIGNAL("lastWindowClosed()"),a,SLOT("quit()"))
-    w = BaseSelectorDesign()
-    a.setMainWidget(w)
-    w.show()
-    a.exec_loop()

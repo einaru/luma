@@ -1,14 +1,13 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file '/home/wido/src/luma/lib/luma/base/utils/gui/ExportDialogDesign.ui'
+# Form implementation generated from reading ui file './lib/luma/base/utils/gui/ExportDialogDesign.ui'
 #
-# Created: Tue Feb 8 21:00:39 2005
-#      by: The PyQt User Interface Compiler (pyuic) 3.13
+# Created: Tue Mar 1 22:43:32 2005
+#      by: The PyQt User Interface Compiler (pyuic) 3.14
 #
 # WARNING! All changes made in this file will be lost!
 
 
-import sys
 from qt import *
 
 
@@ -35,7 +34,7 @@ class ExportDialogDesign(QDialog):
         ExportDialogDesignLayout.addMultiCellWidget(self.line2,1,1,0,1)
 
         self.iconLabel = QLabel(self,"iconLabel")
-        self.iconLabel.setSizePolicy(QSizePolicy(0,0,0,0,self.iconLabel.sizePolicy().hasHeightForWidth()))
+        self.iconLabel.setSizePolicy(QSizePolicy(QSizePolicy.Fixed,QSizePolicy.Fixed,0,0,self.iconLabel.sizePolicy().hasHeightForWidth()))
         self.iconLabel.setMinimumSize(QSize(64,64))
 
         ExportDialogDesignLayout.addWidget(self.iconLabel,0,0)
@@ -75,7 +74,7 @@ class ExportDialogDesign(QDialog):
         layout4_2.addItem(spacer1)
 
         self.startButton = QPushButton(self,"startButton")
-        self.startButton.setSizePolicy(QSizePolicy(1,0,0,0,self.startButton.sizePolicy().hasHeightForWidth()))
+        self.startButton.setSizePolicy(QSizePolicy(QSizePolicy.Minimum,QSizePolicy.Fixed,0,0,self.startButton.sizePolicy().hasHeightForWidth()))
         layout4_2.addWidget(self.startButton)
 
         self.pushButton2 = QPushButton(self,"pushButton2")
@@ -98,7 +97,7 @@ class ExportDialogDesign(QDialog):
         layout5.addMultiCellWidget(self.resultLabel,2,2,0,1)
 
         self.removeButton = QPushButton(self,"removeButton")
-        self.removeButton.setSizePolicy(QSizePolicy(1,0,0,0,self.removeButton.sizePolicy().hasHeightForWidth()))
+        self.removeButton.setSizePolicy(QSizePolicy(QSizePolicy.Minimum,QSizePolicy.Fixed,0,0,self.removeButton.sizePolicy().hasHeightForWidth()))
 
         layout5.addWidget(self.removeButton,1,1)
 
@@ -106,7 +105,7 @@ class ExportDialogDesign(QDialog):
         self.itemView.addColumn(self.__tr("1"))
         self.itemView.addColumn(self.__tr("DN"))
         self.itemView.addColumn(self.__tr("Message"))
-        self.itemView.setSizePolicy(QSizePolicy(7,7,0,0,self.itemView.sizePolicy().hasHeightForWidth()))
+        self.itemView.setSizePolicy(QSizePolicy(QSizePolicy.Expanding,QSizePolicy.Expanding,0,0,self.itemView.sizePolicy().hasHeightForWidth()))
         self.itemView.setSelectionMode(QListView.Extended)
         self.itemView.setAllColumnsShowFocus(1)
         self.itemView.setShowSortIndicator(1)
@@ -167,11 +166,3 @@ class ExportDialogDesign(QDialog):
 
     def __tr(self,s,c = None):
         return qApp.translate("ExportDialogDesign",s,c)
-
-if __name__ == "__main__":
-    a = QApplication(sys.argv)
-    QObject.connect(a,SIGNAL("lastWindowClosed()"),a,SLOT("quit()"))
-    w = ExportDialogDesign()
-    a.setMainWidget(w)
-    w.show()
-    a.exec_loop()

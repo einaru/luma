@@ -1,14 +1,13 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file '/home/wido/src/luma/lib/luma/base/utils/gui/editors/PasswordEditorDesign.ui'
+# Form implementation generated from reading ui file './lib/luma/base/utils/gui/editors/PasswordEditorDesign.ui'
 #
-# Created: Tue Feb 8 21:13:47 2005
-#      by: The PyQt User Interface Compiler (pyuic) 3.13
+# Created: Tue Mar 1 22:45:43 2005
+#      by: The PyQt User Interface Compiler (pyuic) 3.14
 #
 # WARNING! All changes made in this file will be lost!
 
 
-import sys
 from qt import *
 
 
@@ -24,7 +23,7 @@ class PasswordEditorDesign(QDialog):
         PasswordEditorDesignLayout = QGridLayout(self,1,1,11,6,"PasswordEditorDesignLayout")
 
         self.iconLabel = QLabel(self,"iconLabel")
-        self.iconLabel.setSizePolicy(QSizePolicy(0,0,0,0,self.iconLabel.sizePolicy().hasHeightForWidth()))
+        self.iconLabel.setSizePolicy(QSizePolicy(QSizePolicy.Fixed,QSizePolicy.Fixed,0,0,self.iconLabel.sizePolicy().hasHeightForWidth()))
         self.iconLabel.setMinimumSize(QSize(64,64))
 
         PasswordEditorDesignLayout.addWidget(self.iconLabel,0,0)
@@ -143,11 +142,3 @@ class PasswordEditorDesign(QDialog):
 
     def __tr(self,s,c = None):
         return qApp.translate("PasswordEditorDesign",s,c)
-
-if __name__ == "__main__":
-    a = QApplication(sys.argv)
-    QObject.connect(a,SIGNAL("lastWindowClosed()"),a,SLOT("quit()"))
-    w = PasswordEditorDesign()
-    a.setMainWidget(w)
-    w.show()
-    a.exec_loop()

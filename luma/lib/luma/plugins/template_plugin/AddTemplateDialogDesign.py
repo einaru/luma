@@ -1,14 +1,13 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file '/home/wido/src/luma/lib/luma/plugins/template_plugin/AddTemplateDialogDesign.ui'
+# Form implementation generated from reading ui file './lib/luma/plugins/template_plugin/AddTemplateDialogDesign.ui'
 #
-# Created: Sun Aug 29 00:52:47 2004
-#      by: The PyQt User Interface Compiler (pyuic) 3.12
+# Created: Tue Mar 1 22:51:58 2005
+#      by: The PyQt User Interface Compiler (pyuic) 3.14
 #
 # WARNING! All changes made in this file will be lost!
 
 
-import sys
 from qt import *
 
 image0_data = \
@@ -216,7 +215,7 @@ class AddTemplateDialogDesign(QDialog):
         AddTemplateDialogDesignLayout = QGridLayout(self,1,1,11,6,"AddTemplateDialogDesignLayout")
 
         self.pixmapLabel1 = QLabel(self,"pixmapLabel1")
-        self.pixmapLabel1.setSizePolicy(QSizePolicy(0,0,0,0,self.pixmapLabel1.sizePolicy().hasHeightForWidth()))
+        self.pixmapLabel1.setSizePolicy(QSizePolicy(QSizePolicy.Fixed,QSizePolicy.Fixed,0,0,self.pixmapLabel1.sizePolicy().hasHeightForWidth()))
         self.pixmapLabel1.setPixmap(self.image0)
         self.pixmapLabel1.setScaledContents(0)
 
@@ -252,12 +251,12 @@ class AddTemplateDialogDesign(QDialog):
         AddTemplateDialogDesignLayout.addMultiCellWidget(self.line1,7,7,0,3)
 
         self.textLabel1 = QLabel(self,"textLabel1")
-        self.textLabel1.setSizePolicy(QSizePolicy(0,5,0,0,self.textLabel1.sizePolicy().hasHeightForWidth()))
+        self.textLabel1.setSizePolicy(QSizePolicy(QSizePolicy.Fixed,QSizePolicy.Preferred,0,0,self.textLabel1.sizePolicy().hasHeightForWidth()))
 
         AddTemplateDialogDesignLayout.addMultiCellWidget(self.textLabel1,2,2,0,2)
 
         self.textLabel2 = QLabel(self,"textLabel2")
-        self.textLabel2.setSizePolicy(QSizePolicy(0,5,0,0,self.textLabel2.sizePolicy().hasHeightForWidth()))
+        self.textLabel2.setSizePolicy(QSizePolicy(QSizePolicy.Fixed,QSizePolicy.Preferred,0,0,self.textLabel2.sizePolicy().hasHeightForWidth()))
 
         AddTemplateDialogDesignLayout.addMultiCellWidget(self.textLabel2,3,3,0,1)
 
@@ -295,8 +294,8 @@ class AddTemplateDialogDesign(QDialog):
         self.resize(QSize(461,292).expandedTo(self.minimumSizeHint()))
         self.clearWState(Qt.WState_Polished)
 
-        self.connect(self.okButton,SIGNAL("clicked()"),self,SLOT("accept()"))
-        self.connect(self.cancelButton,SIGNAL("clicked()"),self,SLOT("reject()"))
+        self.connect(self.okButton,SIGNAL("clicked()"),self.accept)
+        self.connect(self.cancelButton,SIGNAL("clicked()"),self.reject)
         self.connect(self.nameEdit,SIGNAL("textChanged(const QString&)"),self.valuesChanged)
         self.connect(self.serverBox,SIGNAL("textChanged(const QString&)"),self.valuesChanged)
 
@@ -324,11 +323,3 @@ class AddTemplateDialogDesign(QDialog):
 
     def __tr(self,s,c = None):
         return qApp.translate("AddTemplateDialogDesign",s,c)
-
-if __name__ == "__main__":
-    a = QApplication(sys.argv)
-    QObject.connect(a,SIGNAL("lastWindowClosed()"),a,SLOT("quit()"))
-    w = AddTemplateDialogDesign()
-    a.setMainWidget(w)
-    w.show()
-    a.exec_loop()

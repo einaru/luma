@@ -232,6 +232,10 @@ class AdvancedObjectWidget(QWidget):
                     
             valueList = self.ldapDataObject.getAttributeValueList(x)
             
+            if len(valueList) == 0:
+                continue
+                
+            
             allowDelete = False
             if attributeIsMust:
                 if len(valueList) > 1:

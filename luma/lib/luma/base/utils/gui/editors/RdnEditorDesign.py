@@ -1,14 +1,13 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file '/home/wido/src/luma/lib/luma/base/utils/gui/editors/RdnEditorDesign.ui'
+# Form implementation generated from reading ui file './lib/luma/base/utils/gui/editors/RdnEditorDesign.ui'
 #
-# Created: Tue Feb 8 21:13:45 2005
-#      by: The PyQt User Interface Compiler (pyuic) 3.13
+# Created: Tue Mar 1 22:46:01 2005
+#      by: The PyQt User Interface Compiler (pyuic) 3.14
 #
 # WARNING! All changes made in this file will be lost!
 
 
-import sys
 from qt import *
 
 
@@ -23,7 +22,7 @@ class RdnEditorDesign(QDialog):
         RdnEditorDesignLayout = QGridLayout(self,1,1,11,6,"RdnEditorDesignLayout")
 
         self.iconLabel = QLabel(self,"iconLabel")
-        self.iconLabel.setSizePolicy(QSizePolicy(0,0,0,0,self.iconLabel.sizePolicy().hasHeightForWidth()))
+        self.iconLabel.setSizePolicy(QSizePolicy(QSizePolicy.Fixed,QSizePolicy.Fixed,0,0,self.iconLabel.sizePolicy().hasHeightForWidth()))
         self.iconLabel.setMinimumSize(QSize(64,64))
 
         RdnEditorDesignLayout.addWidget(self.iconLabel,0,0)
@@ -117,11 +116,3 @@ class RdnEditorDesign(QDialog):
 
     def __tr(self,s,c = None):
         return qApp.translate("RdnEditorDesign",s,c)
-
-if __name__ == "__main__":
-    a = QApplication(sys.argv)
-    QObject.connect(a,SIGNAL("lastWindowClosed()"),a,SLOT("quit()"))
-    w = RdnEditorDesign()
-    a.setMainWidget(w)
-    w.show()
-    a.exec_loop()

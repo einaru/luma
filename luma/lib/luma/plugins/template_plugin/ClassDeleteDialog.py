@@ -1,14 +1,13 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file '/home/wido/src/luma/lib/luma/plugins/template_plugin/ClassDeleteDialog.ui'
+# Form implementation generated from reading ui file './lib/luma/plugins/template_plugin/ClassDeleteDialog.ui'
 #
-# Created: Tue Feb 8 21:41:07 2005
-#      by: The PyQt User Interface Compiler (pyuic) 3.13
+# Created: Tue Mar 1 22:51:11 2005
+#      by: The PyQt User Interface Compiler (pyuic) 3.14
 #
 # WARNING! All changes made in this file will be lost!
 
 
-import sys
 from qt import *
 
 image0_data = \
@@ -257,20 +256,20 @@ class ClassDeleteDialog(QDialog):
         ClassDeleteDialogLayout = QGridLayout(self,1,1,6,6,"ClassDeleteDialogLayout")
 
         self.cancelButton = QPushButton(self,"cancelButton")
-        self.cancelButton.setSizePolicy(QSizePolicy(0,0,0,0,self.cancelButton.sizePolicy().hasHeightForWidth()))
+        self.cancelButton.setSizePolicy(QSizePolicy(QSizePolicy.Fixed,QSizePolicy.Fixed,0,0,self.cancelButton.sizePolicy().hasHeightForWidth()))
         self.cancelButton.setDefault(1)
 
         ClassDeleteDialogLayout.addWidget(self.cancelButton,2,3)
 
         self.okButton = QPushButton(self,"okButton")
-        self.okButton.setSizePolicy(QSizePolicy(0,0,0,0,self.okButton.sizePolicy().hasHeightForWidth()))
+        self.okButton.setSizePolicy(QSizePolicy(QSizePolicy.Fixed,QSizePolicy.Fixed,0,0,self.okButton.sizePolicy().hasHeightForWidth()))
 
         ClassDeleteDialogLayout.addWidget(self.okButton,2,2)
         spacer1 = QSpacerItem(341,21,QSizePolicy.Expanding,QSizePolicy.Minimum)
         ClassDeleteDialogLayout.addMultiCell(spacer1,2,2,0,1)
 
         self.pixmapLabel1 = QLabel(self,"pixmapLabel1")
-        self.pixmapLabel1.setSizePolicy(QSizePolicy(0,0,0,0,self.pixmapLabel1.sizePolicy().hasHeightForWidth()))
+        self.pixmapLabel1.setSizePolicy(QSizePolicy(QSizePolicy.Fixed,QSizePolicy.Fixed,0,0,self.pixmapLabel1.sizePolicy().hasHeightForWidth()))
         self.pixmapLabel1.setPixmap(self.image0)
         self.pixmapLabel1.setScaledContents(0)
 
@@ -310,11 +309,3 @@ class ClassDeleteDialog(QDialog):
 
     def __tr(self,s,c = None):
         return qApp.translate("ClassDeleteDialog",s,c)
-
-if __name__ == "__main__":
-    a = QApplication(sys.argv)
-    QObject.connect(a,SIGNAL("lastWindowClosed()"),a,SLOT("quit()"))
-    w = ClassDeleteDialog()
-    a.setMainWidget(w)
-    w.show()
-    a.exec_loop()

@@ -1,14 +1,13 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file '/home/wido/src/luma/lib/luma/base/utils/gui/LumaEntryBrowserDesign.ui'
+# Form implementation generated from reading ui file './lib/luma/base/utils/gui/LumaEntryBrowserDesign.ui'
 #
-# Created: Tue Feb 8 21:16:20 2005
-#      by: The PyQt User Interface Compiler (pyuic) 3.13
+# Created: Tue Mar 1 22:47:08 2005
+#      by: The PyQt User Interface Compiler (pyuic) 3.14
 #
 # WARNING! All changes made in this file will be lost!
 
 
-import sys
 from qt import *
 
 
@@ -58,11 +57,11 @@ class LumaEntryBrowserDesign(QWidget):
         layout1.addItem(spacer5)
 
         self.addButton = QPushButton(self,"addButton")
-        self.addButton.setSizePolicy(QSizePolicy(0,0,0,0,self.addButton.sizePolicy().hasHeightForWidth()))
+        self.addButton.setSizePolicy(QSizePolicy(QSizePolicy.Fixed,QSizePolicy.Fixed,0,0,self.addButton.sizePolicy().hasHeightForWidth()))
         layout1.addWidget(self.addButton)
 
         self.deleteButton = QPushButton(self,"deleteButton")
-        self.deleteButton.setSizePolicy(QSizePolicy(0,0,0,0,self.deleteButton.sizePolicy().hasHeightForWidth()))
+        self.deleteButton.setSizePolicy(QSizePolicy(QSizePolicy.Fixed,QSizePolicy.Fixed,0,0,self.deleteButton.sizePolicy().hasHeightForWidth()))
         layout1.addWidget(self.deleteButton)
 
         LumaEntryBrowserDesignLayout.addMultiCellLayout(layout1,6,6,0,2)
@@ -103,13 +102,13 @@ class LumaEntryBrowserDesign(QWidget):
         layout4 = QHBoxLayout(None,0,6,"layout4")
 
         self.listViewButton = QToolButton(self,"listViewButton")
-        self.listViewButton.setSizePolicy(QSizePolicy(0,0,0,0,self.listViewButton.sizePolicy().hasHeightForWidth()))
+        self.listViewButton.setSizePolicy(QSizePolicy(QSizePolicy.Fixed,QSizePolicy.Fixed,0,0,self.listViewButton.sizePolicy().hasHeightForWidth()))
         self.listViewButton.setMinimumSize(QSize(24,0))
         self.listViewButton.setAutoRaise(1)
         layout4.addWidget(self.listViewButton)
 
         self.iconViewButton = QToolButton(self,"iconViewButton")
-        self.iconViewButton.setSizePolicy(QSizePolicy(0,0,0,0,self.iconViewButton.sizePolicy().hasHeightForWidth()))
+        self.iconViewButton.setSizePolicy(QSizePolicy(QSizePolicy.Fixed,QSizePolicy.Fixed,0,0,self.iconViewButton.sizePolicy().hasHeightForWidth()))
         self.iconViewButton.setMinimumSize(QSize(24,24))
         self.iconViewButton.setAutoRaise(1)
         layout4.addWidget(self.iconViewButton)
@@ -188,11 +187,3 @@ class LumaEntryBrowserDesign(QWidget):
 
     def __tr(self,s,c = None):
         return qApp.translate("LumaEntryBrowserDesign",s,c)
-
-if __name__ == "__main__":
-    a = QApplication(sys.argv)
-    QObject.connect(a,SIGNAL("lastWindowClosed()"),a,SLOT("quit()"))
-    w = LumaEntryBrowserDesign()
-    a.setMainWidget(w)
-    w.show()
-    a.exec_loop()

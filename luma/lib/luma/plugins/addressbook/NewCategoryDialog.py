@@ -1,14 +1,13 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file '/home/wido/src/luma/lib/luma/plugins/addressbook/NewCategoryDialog.ui'
+# Form implementation generated from reading ui file './lib/luma/plugins/addressbook/NewCategoryDialog.ui'
 #
-# Created: Sun Aug 29 00:49:12 2004
-#      by: The PyQt User Interface Compiler (pyuic) 3.12
+# Created: Tue Mar 1 22:49:05 2005
+#      by: The PyQt User Interface Compiler (pyuic) 3.14
 #
 # WARNING! All changes made in this file will be lost!
 
 
-import sys
 from qt import *
 
 
@@ -25,7 +24,7 @@ class NewCategoryDialog(QDialog):
         layout6 = QHBoxLayout(None,0,6,"layout6")
 
         self.textLabel5 = QLabel(self,"textLabel5")
-        self.textLabel5.setSizePolicy(QSizePolicy(0,5,0,0,self.textLabel5.sizePolicy().hasHeightForWidth()))
+        self.textLabel5.setSizePolicy(QSizePolicy(QSizePolicy.Fixed,QSizePolicy.Preferred,0,0,self.textLabel5.sizePolicy().hasHeightForWidth()))
         layout6.addWidget(self.textLabel5)
 
         self.categoryBox = QComboBox(0,self,"categoryBox")
@@ -58,8 +57,8 @@ class NewCategoryDialog(QDialog):
         self.resize(QSize(341,110).expandedTo(self.minimumSizeHint()))
         self.clearWState(Qt.WState_Polished)
 
-        self.connect(self.cancelButton,SIGNAL("clicked()"),self,SLOT("reject()"))
-        self.connect(self.okButton,SIGNAL("clicked()"),self,SLOT("accept()"))
+        self.connect(self.cancelButton,SIGNAL("clicked()"),self.reject)
+        self.connect(self.okButton,SIGNAL("clicked()"),self.accept)
 
 
     def languageChange(self):
@@ -96,11 +95,3 @@ class NewCategoryDialog(QDialog):
 
     def __tr(self,s,c = None):
         return qApp.translate("NewCategoryDialog",s,c)
-
-if __name__ == "__main__":
-    a = QApplication(sys.argv)
-    QObject.connect(a,SIGNAL("lastWindowClosed()"),a,SLOT("quit()"))
-    w = NewCategoryDialog()
-    a.setMainWidget(w)
-    w.show()
-    a.exec_loop()

@@ -1,14 +1,13 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file '/home/wido/src/luma/lib/luma/plugins/addressbook/AddressbookWidgetDesign.ui'
+# Form implementation generated from reading ui file './lib/luma/plugins/addressbook/AddressbookWidgetDesign.ui'
 #
-# Created: Tue Feb 8 21:57:44 2005
-#      by: The PyQt User Interface Compiler (pyuic) 3.13
+# Created: Tue Mar 1 22:49:29 2005
+#      by: The PyQt User Interface Compiler (pyuic) 3.14
 #
 # WARNING! All changes made in this file will be lost!
 
 
-import sys
 from qt import *
 
 
@@ -30,7 +29,7 @@ class AddressbookWidgetDesign(QWidget):
         tabLayout = QGridLayout(self.tab,1,1,0,6,"tabLayout")
 
         self.personLabel = QLabel(self.tab,"personLabel")
-        self.personLabel.setSizePolicy(QSizePolicy(0,0,0,0,self.personLabel.sizePolicy().hasHeightForWidth()))
+        self.personLabel.setSizePolicy(QSizePolicy(QSizePolicy.Fixed,QSizePolicy.Fixed,0,0,self.personLabel.sizePolicy().hasHeightForWidth()))
         self.personLabel.setMinimumSize(QSize(32,32))
 
         tabLayout.addWidget(self.personLabel,0,0)
@@ -77,26 +76,26 @@ class AddressbookWidgetDesign(QWidget):
         tabLayout.addItem(spacer5_2,3,4)
 
         self.mailLabel = QLabel(self.tab,"mailLabel")
-        self.mailLabel.setSizePolicy(QSizePolicy(0,0,0,0,self.mailLabel.sizePolicy().hasHeightForWidth()))
+        self.mailLabel.setSizePolicy(QSizePolicy(QSizePolicy.Fixed,QSizePolicy.Fixed,0,0,self.mailLabel.sizePolicy().hasHeightForWidth()))
         self.mailLabel.setMinimumSize(QSize(32,32))
 
         tabLayout.addWidget(self.mailLabel,4,0)
 
         self.webPageLabel = QLabel(self.tab,"webPageLabel")
-        self.webPageLabel.setSizePolicy(QSizePolicy(0,0,0,0,self.webPageLabel.sizePolicy().hasHeightForWidth()))
+        self.webPageLabel.setSizePolicy(QSizePolicy(QSizePolicy.Fixed,QSizePolicy.Fixed,0,0,self.webPageLabel.sizePolicy().hasHeightForWidth()))
         self.webPageLabel.setMinimumSize(QSize(32,32))
 
         tabLayout.addWidget(self.webPageLabel,6,0)
 
         self.categoryLabel = QLabel(self.tab,"categoryLabel")
-        self.categoryLabel.setSizePolicy(QSizePolicy(0,0,0,0,self.categoryLabel.sizePolicy().hasHeightForWidth()))
+        self.categoryLabel.setSizePolicy(QSizePolicy(QSizePolicy.Fixed,QSizePolicy.Fixed,0,0,self.categoryLabel.sizePolicy().hasHeightForWidth()))
         self.categoryLabel.setMinimumSize(QSize(32,32))
         self.categoryLabel.setMaximumSize(QSize(32,32))
 
         tabLayout.addWidget(self.categoryLabel,7,0)
 
         self.textLabel10 = QLabel(self.tab,"textLabel10")
-        self.textLabel10.setSizePolicy(QSizePolicy(0,5,0,0,self.textLabel10.sizePolicy().hasHeightForWidth()))
+        self.textLabel10.setSizePolicy(QSizePolicy(QSizePolicy.Fixed,QSizePolicy.Preferred,0,0,self.textLabel10.sizePolicy().hasHeightForWidth()))
         self.textLabel10.setAlignment(QLabel.AlignVCenter)
 
         tabLayout.addWidget(self.textLabel10,4,1)
@@ -107,7 +106,7 @@ class AddressbookWidgetDesign(QWidget):
         tabLayout.addWidget(self.textLabel1,6,1)
 
         self.categoryButton = QPushButton(self.tab,"categoryButton")
-        self.categoryButton.setSizePolicy(QSizePolicy(0,0,0,0,self.categoryButton.sizePolicy().hasHeightForWidth()))
+        self.categoryButton.setSizePolicy(QSizePolicy(QSizePolicy.Fixed,QSizePolicy.Fixed,0,0,self.categoryButton.sizePolicy().hasHeightForWidth()))
 
         tabLayout.addWidget(self.categoryButton,7,1)
 
@@ -123,7 +122,7 @@ class AddressbookWidgetDesign(QWidget):
         self.categoryEdit = QLineEdit(self.tab,"categoryEdit")
 
         tabLayout.addMultiCellWidget(self.categoryEdit,7,7,2,5)
-        self.tabWidget2.insertTab(self.tab,QString(""))
+        self.tabWidget2.insertTab(self.tab,QString.fromLatin1(""))
 
         self.tab_2 = QWidget(self.tabWidget2,"tab_2")
         tabLayout_2 = QGridLayout(self.tab_2,1,1,0,6,"tabLayout_2")
@@ -152,7 +151,7 @@ class AddressbookWidgetDesign(QWidget):
         tabLayout_2.addWidget(self.mobileEdit,2,2)
 
         self.phoneLabel = QLabel(self.tab_2,"phoneLabel")
-        self.phoneLabel.setSizePolicy(QSizePolicy(0,0,0,0,self.phoneLabel.sizePolicy().hasHeightForWidth()))
+        self.phoneLabel.setSizePolicy(QSizePolicy(QSizePolicy.Fixed,QSizePolicy.Fixed,0,0,self.phoneLabel.sizePolicy().hasHeightForWidth()))
         self.phoneLabel.setMinimumSize(QSize(32,32))
 
         tabLayout_2.addWidget(self.phoneLabel,0,0)
@@ -191,7 +190,7 @@ class AddressbookWidgetDesign(QWidget):
         layout2.addWidget(self.homeLabel,0,0)
 
         tabLayout_2.addMultiCellLayout(layout2,5,5,0,1)
-        self.tabWidget2.insertTab(self.tab_2,QString(""))
+        self.tabWidget2.insertTab(self.tab_2,QString.fromLatin1(""))
 
         self.TabPage = QWidget(self.tabWidget2,"TabPage")
         TabPageLayout = QGridLayout(self.TabPage,1,1,0,6,"TabPageLayout")
@@ -320,7 +319,7 @@ class AddressbookWidgetDesign(QWidget):
         self.textLabel14.setAlignment(QLabel.AlignVCenter | QLabel.AlignLeft)
 
         TabPageLayout.addWidget(self.textLabel14,7,1)
-        self.tabWidget2.insertTab(self.TabPage,QString(""))
+        self.tabWidget2.insertTab(self.TabPage,QString.fromLatin1(""))
 
         AddressbookWidgetDesignLayout.addMultiCellWidget(self.tabWidget2,0,0,0,1)
 
@@ -444,11 +443,3 @@ class AddressbookWidgetDesign(QWidget):
 
     def __tr(self,s,c = None):
         return qApp.translate("AddressbookWidgetDesign",s,c)
-
-if __name__ == "__main__":
-    a = QApplication(sys.argv)
-    QObject.connect(a,SIGNAL("lastWindowClosed()"),a,SLOT("quit()"))
-    w = AddressbookWidgetDesign()
-    a.setMainWidget(w)
-    w.show()
-    a.exec_loop()

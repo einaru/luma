@@ -1,14 +1,13 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file '/home/wido/src/luma/lib/luma/base/utils/gui/LumaErrorDialogDesign.ui'
+# Form implementation generated from reading ui file './lib/luma/base/utils/gui/LumaErrorDialogDesign.ui'
 #
-# Created: Wed Jan 5 19:36:30 2005
-#      by: The PyQt User Interface Compiler (pyuic) 3.13
+# Created: Tue Mar 1 22:47:19 2005
+#      by: The PyQt User Interface Compiler (pyuic) 3.14
 #
 # WARNING! All changes made in this file will be lost!
 
 
-import sys
 from qt import *
 
 
@@ -23,7 +22,7 @@ class LumaErrorDialogDesign(QDialog):
         LumaErrorDialogDesignLayout = QGridLayout(self,1,1,6,6,"LumaErrorDialogDesignLayout")
 
         self.pixmapLabel = QLabel(self,"pixmapLabel")
-        self.pixmapLabel.setSizePolicy(QSizePolicy(0,0,0,0,self.pixmapLabel.sizePolicy().hasHeightForWidth()))
+        self.pixmapLabel.setSizePolicy(QSizePolicy(QSizePolicy.Fixed,QSizePolicy.Fixed,0,0,self.pixmapLabel.sizePolicy().hasHeightForWidth()))
         self.pixmapLabel.setMinimumSize(QSize(64,64))
 
         LumaErrorDialogDesignLayout.addWidget(self.pixmapLabel,0,0)
@@ -70,11 +69,3 @@ class LumaErrorDialogDesign(QDialog):
 
     def __tr(self,s,c = None):
         return qApp.translate("LumaErrorDialogDesign",s,c)
-
-if __name__ == "__main__":
-    a = QApplication(sys.argv)
-    QObject.connect(a,SIGNAL("lastWindowClosed()"),a,SLOT("quit()"))
-    w = LumaErrorDialogDesign()
-    a.setMainWidget(w)
-    w.show()
-    a.exec_loop()

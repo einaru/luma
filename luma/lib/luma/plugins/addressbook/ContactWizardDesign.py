@@ -1,14 +1,13 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file '/home/wido/src/luma/lib/luma/plugins/addressbook/ContactWizardDesign.ui'
+# Form implementation generated from reading ui file './lib/luma/plugins/addressbook/ContactWizardDesign.ui'
 #
-# Created: Sun Aug 29 00:49:12 2004
-#      by: The PyQt User Interface Compiler (pyuic) 3.12
+# Created: Tue Mar 1 22:48:41 2005
+#      by: The PyQt User Interface Compiler (pyuic) 3.14
 #
 # WARNING! All changes made in this file will be lost!
 
 
-import sys
 from qt import *
 
 
@@ -25,7 +24,7 @@ class ContactWizardDesign(QWizard):
         WizardPageLayout = QGridLayout(self.WizardPage,1,1,11,6,"WizardPageLayout")
 
         self.locationLabel = QLabel(self.WizardPage,"locationLabel")
-        self.locationLabel.setSizePolicy(QSizePolicy(0,0,0,0,self.locationLabel.sizePolicy().hasHeightForWidth()))
+        self.locationLabel.setSizePolicy(QSizePolicy(QSizePolicy.Fixed,QSizePolicy.Fixed,0,0,self.locationLabel.sizePolicy().hasHeightForWidth()))
         self.locationLabel.setMinimumSize(QSize(64,64))
 
         WizardPageLayout.addWidget(self.locationLabel,0,0)
@@ -38,7 +37,7 @@ class ContactWizardDesign(QWizard):
         WizardPageLayout.addMultiCellWidget(self.line1,1,1,0,2)
 
         self.textLabel2 = QLabel(self.WizardPage,"textLabel2")
-        self.textLabel2.setSizePolicy(QSizePolicy(5,1,0,0,self.textLabel2.sizePolicy().hasHeightForWidth()))
+        self.textLabel2.setSizePolicy(QSizePolicy(QSizePolicy.Preferred,QSizePolicy.Minimum,0,0,self.textLabel2.sizePolicy().hasHeightForWidth()))
 
         WizardPageLayout.addMultiCellWidget(self.textLabel2,0,0,1,2)
 
@@ -84,11 +83,3 @@ class ContactWizardDesign(QWizard):
 
     def __tr(self,s,c = None):
         return qApp.translate("ContactWizardDesign",s,c)
-
-if __name__ == "__main__":
-    a = QApplication(sys.argv)
-    QObject.connect(a,SIGNAL("lastWindowClosed()"),a,SLOT("quit()"))
-    w = ContactWizardDesign()
-    a.setMainWidget(w)
-    w.show()
-    a.exec_loop()
