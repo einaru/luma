@@ -15,7 +15,8 @@ import os.path
 from ConfigParser import ConfigParser
 
 from base.backend.ServerObject import ServerObject
-from base.backend.DirUtils import DirUtils
+import environment
+
 
 class ServerList:
     """Object for managing the list of available servers.
@@ -27,7 +28,7 @@ class ServerList:
     SERVERLIST = None
     
     def __init__(self):
-        userdir = DirUtils().USERDIR
+        userdir = environment.userHomeDir
         self.__configPrefix = os.path.join(userdir, ".luma")
         self.__configFile = os.path.join(self.__configPrefix,  "serverlist")
         self.__checkConfigDir()
@@ -77,7 +78,8 @@ class ServerList:
         try:
             configParser = ConfigParser()
             for x in self.SERVERLIST:
-                configParser.add_section(x.name)
+                if not configParser.has_section(x.name):
+                    configParser.add_section(x.name)
                 configParser.set(x.name, "hostname", x.host)
                 configParser.set(x.name, "port", x.port)
                 configParser.set(x.name, "bindAnon", x.bindAnon)
