@@ -183,6 +183,7 @@ class MainWin(MainWinDesign):
         qApp.processEvents()
         progress = self.progressBar.progress()
         self.progressBar.setProgress(progress + 1)
+            
 
 ###############################################################################
 
