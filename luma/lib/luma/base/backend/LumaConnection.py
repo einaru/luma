@@ -319,6 +319,16 @@ class LumaConnection(object):
                 resultItem = resultList[0]
                 if resultItem.hasAttribute('namingContexts'):
                     dnList = resultItem.getAttributeValueList('namingContexts')
+                    
+        # Check for Oracle
+        if None == dnList:
+            success, resultList, exceptionObject = self.search("", ldap.SCOPE_ONELEVEL, "(objectClass=*)", ['dn'])
+            if success and (len(resultList) > 0):
+                dnList = []
+                for x in resultList:
+                    dnList.append(x.getDN())
+                #if resultItem.hasAttribute('namingContexts'):
+                #    dnList = resultItem.getAttributeValueList('namingContexts')
                 
         self.unbind()
         environment.setBusy(False)
