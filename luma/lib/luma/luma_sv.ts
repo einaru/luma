@@ -341,15 +341,15 @@ Testing guinea pig for python 2.3</source>
         <translation>&amp;Stäng</translation>
     </message>
     <message>
-        <source>&lt;font size=&quot;+2&quot;&gt;&lt;b&gt;Luma 1.4pre2&lt;/b&gt;&lt;/font&gt;</source>
-        <comment>DO NOT TRANSLATE</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>&lt;p align=&quot;center&quot;&gt;LDAP management made easy.&lt;br&gt;&lt;br&gt;
 (c) 2003, 2004   Wido Depping&lt;br&gt;&lt;br&gt;
 http://luma.sourceforge.net
 &lt;/p&gt;</source>
+        <comment>DO NOT TRANSLATE</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;font size=&quot;+2&quot;&gt;&lt;b&gt;Luma 1.4&lt;/b&gt;&lt;/font&gt;</source>
         <comment>DO NOT TRANSLATE</comment>
         <translation type="unfinished"></translation>
     </message>
@@ -1005,7 +1005,7 @@ Se konsolen för mer information.</translation>
     <message>
         <source>&amp;Ok</source>
         <comment>DO NOT TRANSLATE</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">&amp;Ok</translation>
     </message>
     <message>
         <source>Alt+O</source>
@@ -1060,7 +1060,7 @@ Se konsolen för mer information.</translation>
     <message>
         <source>Base DN:</source>
         <comment>DO NOT TRANSLATE</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Base ND:</translation>
     </message>
     <message>
         <source>Admin Name:</source>
@@ -1085,7 +1085,7 @@ Se konsolen för mer information.</translation>
     <message>
         <source>Help</source>
         <comment>DO NOT TRANSLATE</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Hjälp</translation>
     </message>
     <message>
         <source>Save Options</source>
@@ -1278,7 +1278,7 @@ Se konsolen för mer information.</translation>
     <message>
         <source>GR</source>
         <comment>DO NOT TRANSLATE</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">GR</translation>
     </message>
     <message>
         <source>Select the groups the &lt;strong&gt;%1&lt;/strong&gt; user should belong to.</source>
@@ -1391,12 +1391,12 @@ Testa öka uidNumber omfånget eller ta bort användare från underträdet.</tra
     <message>
         <source>Directory Settings</source>
         <comment>DO NOT TRANSLATE</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Katalog Inställningar</translation>
     </message>
     <message>
         <source>Base node:</source>
         <comment>DO NOT TRANSLATE</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Huvud nod:</translation>
     </message>
     <message>
         <source>Basic</source>
@@ -1405,7 +1405,7 @@ Testa öka uidNumber omfånget eller ta bort användare från underträdet.</tra
     <message>
         <source>Expiration date</source>
         <comment>DO NOT TRANSLATE</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Utgångsdatum</translation>
     </message>
     <message>
         <source>Date</source>
@@ -1415,12 +1415,12 @@ Testa öka uidNumber omfånget eller ta bort användare från underträdet.</tra
     <message>
         <source>Days from now</source>
         <comment>DO NOT TRANSLATE</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Dagar från idag</translation>
     </message>
     <message>
         <source>Account settings</source>
         <comment>DO NOT TRANSLATE</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Konto inställningar</translation>
     </message>
     <message>
         <source>/home</source>
@@ -1433,17 +1433,17 @@ Testa öka uidNumber omfånget eller ta bort användare från underträdet.</tra
     <message>
         <source>Login shell:</source>
         <comment>DO NOT TRANSLATE</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Inloggnings skal:</translation>
     </message>
     <message>
         <source>Home:</source>
         <comment>DO NOT TRANSLATE</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Hem:</translation>
     </message>
     <message>
         <source>Group Id:</source>
         <comment>DO NOT TRANSLATE</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Grupp ID:</translation>
     </message>
     <message>
         <source>Select group from LDAP</source>
@@ -1457,12 +1457,12 @@ Testa öka uidNumber omfånget eller ta bort användare från underträdet.</tra
     <message>
         <source>Minimum:</source>
         <comment>DO NOT TRANSLATE</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Minimum:</translation>
     </message>
     <message>
         <source>Maximum:</source>
         <comment>DO NOT TRANSLATE</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Maximum:</translation>
     </message>
     <message>
         <source>Account Settings</source>
@@ -1480,7 +1480,7 @@ Testa öka uidNumber omfånget eller ta bort användare från underträdet.</tra
     <message>
         <source>&amp;Create</source>
         <comment>DO NOT TRANSLATE</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">&amp;Skapa</translation>
     </message>
     <message>
         <source>Alt+C</source>

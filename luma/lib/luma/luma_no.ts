@@ -342,15 +342,15 @@ Testing guinea pig for python 2.3</source>
         <translation></translation>
     </message>
     <message>
-        <source>&lt;font size=&quot;+2&quot;&gt;&lt;b&gt;Luma 1.4pre2&lt;/b&gt;&lt;/font&gt;</source>
-        <comment>DO NOT TRANSLATE</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>&lt;p align=&quot;center&quot;&gt;LDAP management made easy.&lt;br&gt;&lt;br&gt;
 (c) 2003, 2004   Wido Depping&lt;br&gt;&lt;br&gt;
 http://luma.sourceforge.net
 &lt;/p&gt;</source>
+        <comment>DO NOT TRANSLATE</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;font size=&quot;+2&quot;&gt;&lt;b&gt;Luma 1.4&lt;/b&gt;&lt;/font&gt;</source>
         <comment>DO NOT TRANSLATE</comment>
         <translation type="unfinished"></translation>
     </message>

@@ -341,17 +341,17 @@ Testing guinea pig for python 2.3</source>
         <translation></translation>
     </message>
     <message>
-        <source>&lt;font size=&quot;+2&quot;&gt;&lt;b&gt;Luma 1.4pre2&lt;/b&gt;&lt;/font&gt;</source>
-        <comment>DO NOT TRANSLATE</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>&lt;p align=&quot;center&quot;&gt;LDAP management made easy.&lt;br&gt;&lt;br&gt;
 (c) 2003, 2004   Wido Depping&lt;br&gt;&lt;br&gt;
 http://luma.sourceforge.net
 &lt;/p&gt;</source>
         <comment>DO NOT TRANSLATE</comment>
-        <translation type="unfinished"></translation>
+        <translation></translation>
+    </message>
+    <message>
+        <source>&lt;font size=&quot;+2&quot;&gt;&lt;b&gt;Luma 1.4&lt;/b&gt;&lt;/font&gt;</source>
+        <comment>DO NOT TRANSLATE</comment>
+        <translation></translation>
     </message>
 </context>
 <context>
@@ -547,7 +547,7 @@ Please read console output for more information.</source>
     </message>
     <message>
         <source>Save</source>
-        <translation type="unfinished">Speichern</translation>
+        <translation>Speichern</translation>
     </message>
 </context>
 <context>
@@ -1297,19 +1297,19 @@ Mehr Informationen in der Konsolen-Ausgabe.</translation>
     </message>
     <message>
         <source>&lt;b&gt;Primary Group&lt;/b&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;Primäre Gruppe&lt;/b&gt;</translation>
     </message>
     <message>
         <source>You may select from the groups available in the LDAP database or enter any ID that is valid on the system below.</source>
-        <translation type="unfinished"></translation>
+        <translation>Wählen Sie eine Gruppe aus der LDAP Datenbank aus oder geben sie eine gültige Gruppen ID an, die auf dem System gültig ist.</translation>
     </message>
     <message>
         <source>Select any additional groups the &lt;b&gt;%1&lt;/b&gt; user should belong to from the list below.</source>
-        <translation type="unfinished"></translation>
+        <translation>Wählen sie zusätzliche Gruppen aus, zu denen der Benutzer &lt;b&gt;%1&lt;/b&gt; gehören soll.</translation>
     </message>
     <message>
         <source>&lt;b&gt;Additional Groups&lt;/b&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;Zusätzliche Gruppen&lt;/b&gt;</translation>
     </message>
 </context>
 <context>
@@ -1934,7 +1934,7 @@ Please see console output for more information.</source>
     </message>
     <message>
         <source>MassCreationDesign</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
 </context>
 <context>
@@ -1965,11 +1965,11 @@ Please see console output for more information.</source>
     </message>
     <message>
         <source>Esq.</source>
-        <translation type="unfinished"></translation>
+        <translation>Jur.</translation>
     </message>
     <message>
         <source>Middle:</source>
-        <translation type="unfinished"></translation>
+        <translation>Zweiter Vorname:</translation>
     </message>
     <message>
         <source>Title:</source>
@@ -2301,11 +2301,11 @@ Siehe Konsolenausgabe für mehr Informationen.</translation>
     <name>PasswordDialog</name>
     <message>
         <source>Passwords match</source>
-        <translation type="unfinished"></translation>
+        <translation>Passwörter stimmen überein</translation>
     </message>
     <message>
         <source>Passwords do not match</source>
-        <translation type="unfinished"></translation>
+        <translation>Passwörter stimmen nicht überein</translation>
     </message>
 </context>
 <context>
@@ -2341,11 +2341,11 @@ Siehe Konsolenausgabe für mehr Informationen.</translation>
     </message>
     <message>
         <source>Verify:</source>
-        <translation type="unfinished"></translation>
+        <translation>Bestätigen:</translation>
     </message>
     <message>
         <source>Passwords do not match</source>
-        <translation type="unfinished"></translation>
+        <translation>Passwörter stimmen nicht überein</translation>
     </message>
 </context>
 <context>
@@ -2565,67 +2565,67 @@ Please see console output for more information.</source>
     </message>
     <message>
         <source>&lt;b&gt;Network options&lt;/b&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;Netzwerkoptionen&lt;/b&gt;</translation>
     </message>
     <message>
         <source>Fetch Base DNs</source>
-        <translation type="unfinished"></translation>
+        <translation>Basis DN abrufen</translation>
     </message>
     <message>
         <source>SO</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Anonymous bind</source>
-        <translation type="unfinished"></translation>
+        <translation>Anonym binden</translation>
     </message>
     <message>
         <source>&lt;b&gt;Security options&lt;/b&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;Sicherheitsoptionen&lt;/b&gt;</translation>
     </message>
     <message>
         <source>Use secure connection (SSL)</source>
-        <translation type="unfinished"></translation>
+        <translation>Sichere Verbindung nutzen (SSL)</translation>
     </message>
     <message>
         <source>&lt;b&gt;Authentification mechanism&lt;/b&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;Authentifizierungs Mechanismus&lt;/b&gt;</translation>
     </message>
     <message>
         <source>Simple</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>SASL Plain</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>SASL CRAM-MD5</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>SASL DIGEST-MD5</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>SASL Login</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>SASL GSSAPI</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Password:</source>
-        <translation type="unfinished">Passwort:</translation>
+        <translation>Passwort:</translation>
     </message>
     <message>
         <source>Bind as:</source>
-        <translation type="unfinished"></translation>
+        <translation>Binden als:</translation>
     </message>
     <message>
         <source>&lt;b&gt;Credentials&lt;/b&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;Berechtigung&lt;/b&gt;</translation>
     </message>
 </context>
 <context>
@@ -2751,19 +2751,19 @@ Please read console output for more information.</source>
     </message>
     <message>
         <source>Save entry</source>
-        <translation type="unfinished">Eintrag speichern</translation>
+        <translation>Eintrag speichern</translation>
     </message>
     <message>
         <source>The account has been modified. Do you want to save it?</source>
-        <translation type="unfinished"></translation>
+        <translation>Kontodaten wurden geändert. Möchten Sie die Änderungen speichern?</translation>
     </message>
     <message>
         <source>&amp;Yes</source>
-        <translation type="unfinished">&amp;Ja</translation>
+        <translation>&amp;Ja</translation>
     </message>
     <message>
         <source>&amp;No</source>
-        <translation type="unfinished">&amp;Nein</translation>
+        <translation>&amp;Nein</translation>
     </message>
 </context>
 <context>
@@ -2859,7 +2859,7 @@ Please read console output for more information.</source>
     </message>
     <message>
         <source>Find next free</source>
-        <translation type="unfinished"></translation>
+        <translation>Suche nächste freie</translation>
     </message>
 </context>
 </TS>
