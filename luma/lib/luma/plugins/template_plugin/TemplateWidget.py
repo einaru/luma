@@ -26,6 +26,7 @@ class TemplateWidget(TemplateWidgetDesign):
         self.templateList = []
         self.preloadedServerMeta = {}
         self.currentTemplate = None
+        self.clearTemplateFields()
         
 ###############################################################################
 
@@ -88,4 +89,13 @@ class TemplateWidget(TemplateWidgetDesign):
 
     def displayData(self):
         self.templateLabel.setText(self.currentTemplate.name)
+        self.serverLabel.setText(self.currentTemplate.serverName)
+        self.descriptionLabel.setText(self.currentTemplate.description)
+        
+###############################################################################
+
+    def clearTemplateFields(self):
+        self.templateLabel.setText(None)
+        self.serverLabel.setText(None)
+        self.descriptionLabel.setText(None)
     
