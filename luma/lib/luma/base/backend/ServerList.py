@@ -109,7 +109,10 @@ class ServerList:
         server.bindDN = bindDN
         server.bindPassword = password
         server.tls = tls
-        self.SERVERLIST.append(server)
+        if self.SERVERLIST == None:
+            self.SERVERLIST = [server]
+        else:
+            self.SERVERLIST.append(server)
         self.save_settings(self.SERVERLIST)
         self.readServerList()
 
