@@ -349,7 +349,7 @@ http://luma.sourceforge.net
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>&lt;font size=&quot;+2&quot;&gt;&lt;b&gt;Luma 1.4&lt;/b&gt;&lt;/font&gt;</source>
+        <source>&lt;font size=&quot;+2&quot;&gt;&lt;b&gt;Luma 1.6 CVS&lt;/b&gt;&lt;/font&gt;</source>
         <comment>DO NOT TRANSLATE</comment>
         <translation type="unfinished"></translation>
     </message>
@@ -408,6 +408,18 @@ Se konsolen för mer information.</translation>
         <source>Please select a location where to store the contact.</source>
         <translation>Välj en destination var kontakten skall sparas.</translation>
     </message>
+    <message>
+        <source>Missing Password</source>
+        <translation>Lösenord Saknas</translation>
+    </message>
+    <message>
+        <source>It is strongly recommended that you choose 
+a password for the new user. Otherwise 
+it might compromise the security of your system.</source>
+        <translation>Det rekommenderas att du sätter ett lösenord
+för den nya användaren. Om du inte gör detta
+påverkar det säkerheten i systemet negativt.</translation>
+    </message>
 </context>
 <context>
     <name>AccountWizardDesign</name>
@@ -434,7 +446,7 @@ Se konsolen för mer information.</translation>
     </message>
     <message>
         <source>Fill contact data</source>
-        <translation>Ange kontakt information</translation>
+        <translation>Ange kontaktinformation</translation>
     </message>
 </context>
 <context>
@@ -494,7 +506,7 @@ Se konsolen för mer information.</translation>
     </message>
     <message>
         <source>Single:</source>
-        <translation type="unfinished"></translation>
+        <translation>Enkel:</translation>
     </message>
     <message>
         <source>A</source>
@@ -530,7 +542,7 @@ supported by other objectclasses, please enable this functionality below.
         <translation>&lt;p&gt;Välj attribut du vill lägga till till nuvarande post.&lt;/p&gt;
 &lt;p&gt;Som standard visas enbart attribut som stödjs av nuvarande objekt
 klasser (objectClass). Om du du vill lägga till attribut som stödjs av andra
-objekt klasser måste denna funktion vara påslagen.&lt;/p&gt;</translation>
+objekt klasser måste välja &quot;Visa alla attribut..&quot; nedan.&lt;/p&gt;</translation>
     </message>
     <message>
         <source>Select Attribute</source>
@@ -568,7 +580,7 @@ alla attribut som även dem måste läggas till för vald objektklass.&lt;/p&gt;
     <name>AddObjectClassDialogDesign</name>
     <message>
         <source>Objectclass</source>
-        <translation type="unfinished"></translation>
+        <translation>objectClass</translation>
     </message>
     <message>
         <source>&amp;OK</source>
@@ -591,8 +603,8 @@ alla attribut som även dem måste läggas till för vald objektklass.&lt;/p&gt;
         <translation>Lägg till objectclass</translation>
     </message>
     <message>
-        <source>Please choose the objectclasses you want to add to the template.</source>
-        <translation>Välj objectclass du vill lägga till i din mall.</translation>
+        <source>Please choose the objectclass you want to add to the template.</source>
+        <translation>Välj objectClass som du vill lägga till i din mall.</translation>
     </message>
 </context>
 <context>
@@ -958,35 +970,27 @@ Se konsolen för mer information.</translation>
     </message>
     <message>
         <source>&lt;b&gt;Hash method:&lt;/b&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;Hash-metod:&lt;/b&gt;</translation>
     </message>
     <message>
         <source>&lt;b&gt;Encrypt password&lt;/b&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;Krypterat lösenord&lt;/b&gt;</translation>
     </message>
     <message>
         <source>&lt;b&gt;Create random password&lt;/b&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;Skapa slumpmässigt lösenord&lt;/b&gt;</translation>
     </message>
     <message>
         <source>&lt;b&gt;Date to Unix date&lt;/b&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;Datum till UNIX tid&lt;/b&gt;</translation>
     </message>
     <message>
         <source>&lt;b&gt;Duration to Unix date&lt;/b&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;Varaktighet till UNIX tid&lt;/b&gt;</translation>
     </message>
 </context>
 <context>
     <name>BaseSelectorDesign</name>
-    <message>
-        <source>Select Base DN</source>
-        <translation>Välj Base DN</translation>
-    </message>
-    <message>
-        <source>Available Base DNs:</source>
-        <translation>Tillgängliga Base DNs:</translation>
-    </message>
     <message>
         <source>&amp;Cancel</source>
         <translation>&amp;Avbryt</translation>
@@ -996,12 +1000,52 @@ Se konsolen för mer information.</translation>
         <translation>Alt+A</translation>
     </message>
     <message>
-        <source>&amp;Ok</source>
-        <translation>&amp;Ok</translation>
-    </message>
-    <message>
         <source>Alt+O</source>
         <translation>Alt+O</translation>
+    </message>
+    <message>
+        <source>Base DN</source>
+        <translation>Base DN</translation>
+    </message>
+    <message>
+        <source>Select Base DNs</source>
+        <translation>Välj Base DNs</translation>
+    </message>
+    <message>
+        <source>Manage the base distinguished names you want to use with server &lt;b&gt;%1&lt;/b&gt;.</source>
+        <translation>Hantera de distinguerade bas namnen (Base DN) du vill använda med servern &lt;b&gt;%1&lt;/b&gt;.</translation>
+    </message>
+    <message>
+        <source>Custom:</source>
+        <translation>Anpassad:</translation>
+    </message>
+    <message>
+        <source>&amp;Delete</source>
+        <translation>&amp;Ta bort</translation>
+    </message>
+    <message>
+        <source>Alt+D</source>
+        <translation>Alt+T</translation>
+    </message>
+    <message>
+        <source>&amp;Add</source>
+        <translation>&amp;Lägg till</translation>
+    </message>
+    <message>
+        <source>Alt+A</source>
+        <translation>Alt+L</translation>
+    </message>
+    <message>
+        <source>&amp;Update from server</source>
+        <translation>&amp;Uppdatera från servern</translation>
+    </message>
+    <message>
+        <source>Alt+U</source>
+        <translation>Alt+U</translation>
+    </message>
+    <message>
+        <source>&amp;OK</source>
+        <translation>&amp;OK</translation>
     </message>
 </context>
 <context>
@@ -1097,6 +1141,10 @@ See console output for more information.</source>
         <translation>Kunde inte ta bort.
 Se konsolen för mer information.</translation>
     </message>
+    <message>
+        <source>Follow Aliases</source>
+        <translation>Följ alias</translation>
+    </message>
 </context>
 <context>
     <name>CategoryEditDialogDesign</name>
@@ -1181,7 +1229,7 @@ Se konsolen för mer information.</translation>
     <message>
         <source>&amp;Ok</source>
         <comment>DO NOT TRANSLATE</comment>
-        <translation type="unfinished">&amp;Ok</translation>
+        <translation>&amp;Ok</translation>
     </message>
     <message>
         <source>Alt+O</source>
@@ -1236,7 +1284,7 @@ Se konsolen för mer information.</translation>
     <message>
         <source>Base DN:</source>
         <comment>DO NOT TRANSLATE</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Base DN:</translation>
     </message>
     <message>
         <source>Admin Name:</source>
@@ -1502,176 +1550,6 @@ Se konsolen för mer information.</translation>
     </message>
 </context>
 <context>
-    <name>IfiUser</name>
-    <message>
-        <source>Incomplete Information</source>
-        <translation>Inkomplett Information</translation>
-    </message>
-    <message>
-        <source>Please select a valid node from a ldap server.</source>
-        <translation>Välj en giltig nod från en LDAP server.</translation>
-    </message>
-    <message>
-        <source>&amp;OK</source>
-        <translation>&amp;OK</translation>
-    </message>
-    <message>
-        <source>Conflict</source>
-        <translation>Konflikt</translation>
-    </message>
-    <message>
-        <source>There are not enough user ids left! 
-Try increasing the uidNumber range or delete some users from the subtree.</source>
-        <translation>Det finns inte tillräckligt många användare IDn kvar!
-Testa öka uidNumber omfånget eller ta bort användare från underträdet.</translation>
-    </message>
-    <message>
-        <source>Success</source>
-        <translation>Färdigt</translation>
-    </message>
-    <message>
-        <source>User was created successfully.</source>
-        <translation>Användaren skapades korrekt.</translation>
-    </message>
-    <message>
-        <source>Error</source>
-        <translation>Fel</translation>
-    </message>
-    <message>
-        <source>Wrong entry!</source>
-        <translation>Fel post!</translation>
-    </message>
-    <message>
-        <source>The selected ldap entry did not contain the attribute &apos;gidNumber&apos;.</source>
-        <translation>Den valda LDAP posten innehåller inte attributet gidNumber.</translation>
-    </message>
-</context>
-<context>
-    <name>IfiUserDesign</name>
-    <message>
-        <source>IfiUserDesign</source>
-        <translation>IfiUserDesign</translation>
-    </message>
-    <message>
-        <source>General Information</source>
-        <comment>DO NOT TRANSLATE</comment>
-        <translation></translation>
-    </message>
-    <message>
-        <source>Username:</source>
-        <comment>DO NOT TRANSLATE</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Surename:</source>
-        <comment>DO NOT TRANSLATE</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Given Name:</source>
-        <comment>DO NOT TRANSLATE</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Directory Settings</source>
-        <comment>DO NOT TRANSLATE</comment>
-        <translation type="unfinished">Katalog Inställningar</translation>
-    </message>
-    <message>
-        <source>Base node:</source>
-        <comment>DO NOT TRANSLATE</comment>
-        <translation type="unfinished">Huvud nod:</translation>
-    </message>
-    <message>
-        <source>Basic</source>
-        <translation type="unfinished">Grundläggande</translation>
-    </message>
-    <message>
-        <source>Expiration date</source>
-        <comment>DO NOT TRANSLATE</comment>
-        <translation type="unfinished">Utgångsdatum</translation>
-    </message>
-    <message>
-        <source>Date</source>
-        <comment>DO NOT TRANSLATE</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Days from now</source>
-        <comment>DO NOT TRANSLATE</comment>
-        <translation type="unfinished">Dagar från idag</translation>
-    </message>
-    <message>
-        <source>Account settings</source>
-        <comment>DO NOT TRANSLATE</comment>
-        <translation type="unfinished">Konto inställningar</translation>
-    </message>
-    <message>
-        <source>/home</source>
-        <translation type="unfinished">/home</translation>
-    </message>
-    <message>
-        <source>/bin/bash</source>
-        <translation type="unfinished">/bin/bash</translation>
-    </message>
-    <message>
-        <source>Login shell:</source>
-        <comment>DO NOT TRANSLATE</comment>
-        <translation type="unfinished">Inloggnings skal:</translation>
-    </message>
-    <message>
-        <source>Home:</source>
-        <comment>DO NOT TRANSLATE</comment>
-        <translation type="unfinished">Hem:</translation>
-    </message>
-    <message>
-        <source>Group Id:</source>
-        <comment>DO NOT TRANSLATE</comment>
-        <translation type="unfinished">Grupp ID:</translation>
-    </message>
-    <message>
-        <source>Select group from LDAP</source>
-        <translation>Välj grupp från LDAP</translation>
-    </message>
-    <message>
-        <source>uid number range</source>
-        <comment>DO NOT TRANSLATE</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Minimum:</source>
-        <comment>DO NOT TRANSLATE</comment>
-        <translation type="unfinished">Minimum:</translation>
-    </message>
-    <message>
-        <source>Maximum:</source>
-        <comment>DO NOT TRANSLATE</comment>
-        <translation type="unfinished">Maximum:</translation>
-    </message>
-    <message>
-        <source>Account Settings</source>
-        <translation>Konto Inställningar</translation>
-    </message>
-    <message>
-        <source>Account Password:</source>
-        <comment>DO NOT TRANSLATE</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Account Password</source>
-        <translation>Konto Lösenord</translation>
-    </message>
-    <message>
-        <source>&amp;Create</source>
-        <comment>DO NOT TRANSLATE</comment>
-        <translation type="unfinished">&amp;Skapa</translation>
-    </message>
-    <message>
-        <source>Alt+C</source>
-        <translation>Alt+C</translation>
-    </message>
-</context>
-<context>
     <name>LanguageDialogDesign</name>
     <message>
         <source>Choose Language</source>
@@ -1783,6 +1661,10 @@ Testa öka uidNumber omfånget eller ta bort användare från underträdet.</tra
         <source>...</source>
         <comment>DO NOT TRANSLATE</comment>
         <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Base DN:</source>
+        <translation>Base DN:</translation>
     </message>
 </context>
 <context>
@@ -2073,7 +1955,7 @@ Se konsolen för mer information.</translation>
     </message>
     <message>
         <source>MassCreationDesign</source>
-        <translation type="unfinished"></translation>
+        <translation>MassCreationDesign</translation>
     </message>
     <message>
         <source>&lt;b&gt;Usernames&lt;/b&gt;</source>
@@ -2204,7 +2086,7 @@ Se konsolen för mer information.</translation>
     </message>
     <message>
         <source>This attribute must be set.</source>
-        <translation>Denna attribut måste vara satt.</translation>
+        <translation>Detta attribut måste ha ett värde.</translation>
     </message>
     <message>
         <source>First:</source>
@@ -2259,7 +2141,7 @@ Se konsolen för mer information.</translation>
     </message>
     <message>
         <source>Holiday</source>
-        <translation type="unfinished"></translation>
+        <translation>Semester</translation>
     </message>
     <message>
         <source>Holiday Cards</source>
@@ -2303,11 +2185,11 @@ Se konsolen för mer information.</translation>
     </message>
     <message>
         <source>Suppliers</source>
-        <translation type="unfinished"></translation>
+        <translation>Leverantörer</translation>
     </message>
     <message>
         <source>Time &amp; Expenses</source>
-        <translation type="unfinished"></translation>
+        <translation>Tid &amp; Utgifter</translation>
     </message>
     <message>
         <source>VIP</source>
@@ -2526,14 +2408,6 @@ Se konsolen för mer information.</translation>
         <translation>&amp;Avbryt</translation>
     </message>
     <message>
-        <source>New password:</source>
-        <translation>Nytt lösenord:</translation>
-    </message>
-    <message>
-        <source>Method:</source>
-        <translation>Metod:</translation>
-    </message>
-    <message>
         <source>Verify:</source>
         <translation>Verifiera:</translation>
     </message>
@@ -2544,6 +2418,18 @@ Se konsolen för mer information.</translation>
     <message>
         <source>&lt;b&gt;Please enter a new password.&lt;/b&gt;</source>
         <translation>&lt;b&gt;Ange ett nytt lösenord.&lt;b&gt;</translation>
+    </message>
+    <message>
+        <source>Strength:</source>
+        <translation>Styrka:</translation>
+    </message>
+    <message>
+        <source>Hash algorithm:</source>
+        <translation>Hash algoritm:</translation>
+    </message>
+    <message>
+        <source>Password:</source>
+        <translation>Lösenord:</translation>
     </message>
 </context>
 <context>
@@ -2617,19 +2503,23 @@ Se konsolen för mer information.</translation>
     </message>
     <message>
         <source>SearchFormDesign</source>
-        <translation type="unfinished"></translation>
+        <translation>SearchFormDesign</translation>
     </message>
     <message>
         <source>&amp;Filter wizard</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Filter guide</translation>
     </message>
     <message>
         <source>Alt+F</source>
-        <translation type="unfinished">Alt+F</translation>
+        <translation>Alt+F</translation>
     </message>
     <message>
         <source>&amp;Search</source>
         <translation>&amp;Sök</translation>
+    </message>
+    <message>
+        <source>Base DN:</source>
+        <translation>Base DN:</translation>
     </message>
 </context>
 <context>
@@ -2728,20 +2618,12 @@ Se konsolen för mer information.</translation>
         <translation>Alt+T</translation>
     </message>
     <message>
-        <source>Server Information</source>
-        <translation>Server Information</translation>
-    </message>
-    <message>
         <source>Host:</source>
         <translation>Värddatornamn:</translation>
     </message>
     <message>
         <source>Port:</source>
         <translation>Port:</translation>
-    </message>
-    <message>
-        <source>Base DN:</source>
-        <translation>Base ND:</translation>
     </message>
     <message>
         <source>NO</source>
@@ -2770,10 +2652,6 @@ Se konsolen för mer information.</translation>
     <message>
         <source>&lt;b&gt;Network options&lt;/b&gt;</source>
         <translation>&lt;b&gt;Nätverks inställningar&lt;/b&gt;</translation>
-    </message>
-    <message>
-        <source>Fetch Base DNs</source>
-        <translation>Hämta Base DNs</translation>
     </message>
     <message>
         <source>SO</source>
@@ -2831,20 +2709,33 @@ Se konsolen för mer information.</translation>
         <source>&lt;b&gt;Credentials&lt;/b&gt;</source>
         <translation>&lt;b&gt;Anslutnings Information&lt;/b&gt;</translation>
     </message>
-</context>
-<context>
-    <name>TemplateObjectWidget</name>
     <message>
-        <source>Reset Values</source>
-        <translation>Återställ Värden</translation>
+        <source>Base DNs</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Display all Attributes</source>
-        <translation>Visa alla attribut</translation>
+        <source>Follow aliases</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Save</source>
-        <translation>Spara</translation>
+        <source>Use Base DNs provided by the server</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Manage Base DN list</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;LDAP options&lt;/b&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Network</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Security</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2962,7 +2853,7 @@ Se konsolen för mer information.</translation>
     </message>
     <message>
         <source>&lt;b&gt;Objectclasses&lt;/b&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;Objekt klasser (objectClass)&lt;/b&gt;</translation>
     </message>
     <message>
         <source>Delete</source>
@@ -3114,4 +3005,3 @@ Se konsolen för mer information.</translation>
     </message>
 </context>
 </TS>
-

@@ -349,7 +349,7 @@ http://luma.sourceforge.net
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>&lt;font size=&quot;+2&quot;&gt;&lt;b&gt;Luma 1.4&lt;/b&gt;&lt;/font&gt;</source>
+        <source>&lt;font size=&quot;+2&quot;&gt;&lt;b&gt;Luma 1.6 CVS&lt;/b&gt;&lt;/font&gt;</source>
         <comment>DO NOT TRANSLATE</comment>
         <translation type="unfinished"></translation>
     </message>
@@ -404,6 +404,16 @@ Please see console output for more information.</source>
     </message>
     <message>
         <source>Please select a location where to store the contact.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Missing Password</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>It is strongly recommended that you choose 
+a password for the new user. Otherwise 
+it might compromise the security of your system.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -583,7 +593,7 @@ the selected objectclass.&lt;/p&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Please choose the objectclasses you want to add to the template.</source>
+        <source>Please choose the objectclass you want to add to the template.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -971,14 +981,6 @@ Please read console output for more information.</source>
 <context>
     <name>BaseSelectorDesign</name>
     <message>
-        <source>Select Base DN</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Available Base DNs:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>&amp;Cancel</source>
         <translation type="unfinished"></translation>
     </message>
@@ -987,11 +989,51 @@ Please read console output for more information.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>&amp;Ok</source>
+        <source>Alt+O</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Alt+O</source>
+        <source>Base DN</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Select Base DNs</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Manage the base distinguished names you want to use with server &lt;b&gt;%1&lt;/b&gt;.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Custom:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Delete</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Alt+D</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Add</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Alt+A</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Update from server</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Alt+U</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;OK</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1084,6 +1126,10 @@ See console output for more information.</source>
     <message>
         <source>Delete operation was not succesful.
 See console output for more information.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Follow Aliases</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1491,175 +1537,6 @@ See console output for more information.</source>
     </message>
 </context>
 <context>
-    <name>IfiUser</name>
-    <message>
-        <source>Incomplete Information</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Please select a valid node from a ldap server.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&amp;OK</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Conflict</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>There are not enough user ids left! 
-Try increasing the uidNumber range or delete some users from the subtree.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Success</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>User was created successfully.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Error</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Wrong entry!</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>The selected ldap entry did not contain the attribute &apos;gidNumber&apos;.</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>IfiUserDesign</name>
-    <message>
-        <source>IfiUserDesign</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Basic</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>/home</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>/bin/bash</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Select group from LDAP</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Account Settings</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Account Password</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Alt+C</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>General Information</source>
-        <comment>DO NOT TRANSLATE</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Username:</source>
-        <comment>DO NOT TRANSLATE</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Surename:</source>
-        <comment>DO NOT TRANSLATE</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Given Name:</source>
-        <comment>DO NOT TRANSLATE</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Directory Settings</source>
-        <comment>DO NOT TRANSLATE</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Base node:</source>
-        <comment>DO NOT TRANSLATE</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Expiration date</source>
-        <comment>DO NOT TRANSLATE</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Date</source>
-        <comment>DO NOT TRANSLATE</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Days from now</source>
-        <comment>DO NOT TRANSLATE</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Account settings</source>
-        <comment>DO NOT TRANSLATE</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Login shell:</source>
-        <comment>DO NOT TRANSLATE</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Home:</source>
-        <comment>DO NOT TRANSLATE</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Group Id:</source>
-        <comment>DO NOT TRANSLATE</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>uid number range</source>
-        <comment>DO NOT TRANSLATE</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Minimum:</source>
-        <comment>DO NOT TRANSLATE</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Maximum:</source>
-        <comment>DO NOT TRANSLATE</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Account Password:</source>
-        <comment>DO NOT TRANSLATE</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&amp;Create</source>
-        <comment>DO NOT TRANSLATE</comment>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
     <name>LanguageDialogDesign</name>
     <message>
         <source>Choose Language</source>
@@ -1770,6 +1647,10 @@ Try increasing the uidNumber range or delete some users from the subtree.</sourc
     <message>
         <source>...</source>
         <comment>DO NOT TRANSLATE</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Base DN:</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2511,14 +2392,6 @@ Please read console output for more information.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>New password:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Method:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Verify:</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2528,6 +2401,18 @@ Please read console output for more information.</source>
     </message>
     <message>
         <source>&lt;b&gt;Please enter a new password.&lt;/b&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Strength:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Hash algorithm:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Password:</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2614,6 +2499,10 @@ Please read console output for more information.</source>
     </message>
     <message>
         <source>&amp;Search</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Base DN:</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2711,19 +2600,11 @@ Please see console output for more information.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Server Information</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Host:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Port:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Base DN:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2752,10 +2633,6 @@ Please see console output for more information.</source>
     </message>
     <message>
         <source>&lt;b&gt;Network options&lt;/b&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Fetch Base DNs</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2814,19 +2691,32 @@ Please see console output for more information.</source>
         <source>&lt;b&gt;Credentials&lt;/b&gt;</source>
         <translation type="unfinished"></translation>
     </message>
-</context>
-<context>
-    <name>TemplateObjectWidget</name>
     <message>
-        <source>Reset Values</source>
+        <source>Base DNs</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Display all Attributes</source>
+        <source>Follow aliases</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Save</source>
+        <source>Use Base DNs provided by the server</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Manage Base DN list</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;LDAP options&lt;/b&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Network</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Security</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

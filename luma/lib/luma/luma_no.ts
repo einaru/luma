@@ -350,7 +350,7 @@ http://luma.sourceforge.net
         <translation></translation>
     </message>
     <message>
-        <source>&lt;font size=&quot;+2&quot;&gt;&lt;b&gt;Luma 1.4&lt;/b&gt;&lt;/font&gt;</source>
+        <source>&lt;font size=&quot;+2&quot;&gt;&lt;b&gt;Luma 1.6 CVS&lt;/b&gt;&lt;/font&gt;</source>
         <comment>DO NOT TRANSLATE</comment>
         <translation></translation>
     </message>
@@ -406,6 +406,18 @@ Please see console output for more information.</source>
     <message>
         <source>Please select a location where to store the contact.</source>
         <translation>Vennligst vel en lokalisering å lagre kontakten.</translation>
+    </message>
+    <message>
+        <source>Missing Password</source>
+        <translation>Passord ikke oppgitt</translation>
+    </message>
+    <message>
+        <source>It is strongly recommended that you choose 
+a password for the new user. Otherwise 
+it might compromise the security of your system.</source>
+        <translation>Det er sterkt anbefalt at du velger
+et passord for den nye brukeren. Ellers
+vil det muligens kompromittere sikkerheten i systemet ditt.</translation>
     </message>
 </context>
 <context>
@@ -591,8 +603,8 @@ til høyre viser alle attributter som må legges til i tillegg til valgt objektk
         <translation>Legg til objektklasse</translation>
     </message>
     <message>
-        <source>Please choose the objectclasses you want to add to the template.</source>
-        <translation>Vennligst velg objektklassene du vil legge til malen.</translation>
+        <source>Please choose the objectclass you want to add to the template.</source>
+        <translation>Vennligst velg objektklassen du ønsker å legge til malen.</translation>
     </message>
 </context>
 <context>
@@ -980,14 +992,6 @@ Vennligst les utskrift til konsollet for mer informasjon.</translation>
 <context>
     <name>BaseSelectorDesign</name>
     <message>
-        <source>Select Base DN</source>
-        <translation>Velg base dn</translation>
-    </message>
-    <message>
-        <source>Available Base DNs:</source>
-        <translation>Tilgjengelige base DNer:</translation>
-    </message>
-    <message>
         <source>&amp;Cancel</source>
         <translation>&amp;Avbryt</translation>
     </message>
@@ -996,12 +1000,52 @@ Vennligst les utskrift til konsollet for mer informasjon.</translation>
         <translation></translation>
     </message>
     <message>
-        <source>&amp;Ok</source>
-        <translation>&amp;Ok</translation>
-    </message>
-    <message>
         <source>Alt+O</source>
         <translation></translation>
+    </message>
+    <message>
+        <source>Base DN</source>
+        <translation>Base DN</translation>
+    </message>
+    <message>
+        <source>Select Base DNs</source>
+        <translation>Velg Base DNer</translation>
+    </message>
+    <message>
+        <source>Manage the base distinguished names you want to use with server &lt;b&gt;%1&lt;/b&gt;.</source>
+        <translation>Vedlikehold base dn du ønsker å bruke med server &lt;b&gt;%1&lt;/b&gt;.</translation>
+    </message>
+    <message>
+        <source>Custom:</source>
+        <translation>Skreddersydd:</translation>
+    </message>
+    <message>
+        <source>&amp;Delete</source>
+        <translation>&amp;Slett</translation>
+    </message>
+    <message>
+        <source>Alt+D</source>
+        <translation>Alt+D</translation>
+    </message>
+    <message>
+        <source>&amp;Add</source>
+        <translation>&amp;Legg til</translation>
+    </message>
+    <message>
+        <source>Alt+A</source>
+        <translation>Alt+A</translation>
+    </message>
+    <message>
+        <source>&amp;Update from server</source>
+        <translation>&amp;Oppdater fra tjener</translation>
+    </message>
+    <message>
+        <source>Alt+U</source>
+        <translation>Alt+U</translation>
+    </message>
+    <message>
+        <source>&amp;OK</source>
+        <translation>&amp;OK</translation>
     </message>
 </context>
 <context>
@@ -1096,6 +1140,10 @@ Vennligst les utskrift til konsollet for mer informasjon.</translation>
 See console output for more information.</source>
         <translation>Slette-operasjonen trynet.
 Se utskrift i konsollet for mer informasjon.</translation>
+    </message>
+    <message>
+        <source>Follow Aliases</source>
+        <translation>Følg aliaser</translation>
     </message>
 </context>
 <context>
@@ -1502,175 +1550,6 @@ Se utskrift i konsollet for mer informasjon.</translation>
     </message>
 </context>
 <context>
-    <name>IfiUser</name>
-    <message>
-        <source>Incomplete Information</source>
-        <translation>Ufullstendig informasjon</translation>
-    </message>
-    <message>
-        <source>Please select a valid node from a ldap server.</source>
-        <translation>Vennligst velg en gyldig node fra en ldap-tjener.</translation>
-    </message>
-    <message>
-        <source>&amp;OK</source>
-        <translation>&amp;Ok</translation>
-    </message>
-    <message>
-        <source>Conflict</source>
-        <translation>Konflikt</translation>
-    </message>
-    <message>
-        <source>There are not enough user ids left! 
-Try increasing the uidNumber range or delete some users from the subtree.</source>
-        <translation>Det er ikke flere brukerIDer igjen! Prøv å øk mengden tilgjengelig uidNumber eller slett noen brukere fra greina.</translation>
-    </message>
-    <message>
-        <source>Success</source>
-        <translation>Suksess</translation>
-    </message>
-    <message>
-        <source>User was created successfully.</source>
-        <translation>Bruker ble opprettet.</translation>
-    </message>
-    <message>
-        <source>Error</source>
-        <translation>Feil</translation>
-    </message>
-    <message>
-        <source>Wrong entry!</source>
-        <translation>Feil entry!</translation>
-    </message>
-    <message>
-        <source>The selected ldap entry did not contain the attribute &apos;gidNumber&apos;.</source>
-        <translation>Valgt ldap-object hadde ikke attributtet &apos;gidNumber&apos;.</translation>
-    </message>
-</context>
-<context>
-    <name>IfiUserDesign</name>
-    <message>
-        <source>Basic</source>
-        <translation>Enkel</translation>
-    </message>
-    <message>
-        <source>/home</source>
-        <translation></translation>
-    </message>
-    <message>
-        <source>/bin/bash</source>
-        <translation></translation>
-    </message>
-    <message>
-        <source>Select group from LDAP</source>
-        <translation>Velg gruppe fra LDAP</translation>
-    </message>
-    <message>
-        <source>Account Settings</source>
-        <translation>Konto-oppsett</translation>
-    </message>
-    <message>
-        <source>Account Password</source>
-        <translation>Konto passord</translation>
-    </message>
-    <message>
-        <source>IfiUserDesign</source>
-        <translation></translation>
-    </message>
-    <message>
-        <source>Alt+C</source>
-        <translation></translation>
-    </message>
-    <message>
-        <source>General Information</source>
-        <comment>DO NOT TRANSLATE</comment>
-        <translation>Generell informasjon</translation>
-    </message>
-    <message>
-        <source>Username:</source>
-        <comment>DO NOT TRANSLATE</comment>
-        <translation>Brukernavn:</translation>
-    </message>
-    <message>
-        <source>Surename:</source>
-        <comment>DO NOT TRANSLATE</comment>
-        <translation>Etternavn:</translation>
-    </message>
-    <message>
-        <source>Given Name:</source>
-        <comment>DO NOT TRANSLATE</comment>
-        <translation>Fornavn:</translation>
-    </message>
-    <message>
-        <source>Directory Settings</source>
-        <comment>DO NOT TRANSLATE</comment>
-        <translation>Katalogoppsett</translation>
-    </message>
-    <message>
-        <source>Base node:</source>
-        <comment>DO NOT TRANSLATE</comment>
-        <translation>Base node:</translation>
-    </message>
-    <message>
-        <source>Expiration date</source>
-        <comment>DO NOT TRANSLATE</comment>
-        <translation>Utgått dato</translation>
-    </message>
-    <message>
-        <source>Date</source>
-        <comment>DO NOT TRANSLATE</comment>
-        <translation>Dato</translation>
-    </message>
-    <message>
-        <source>Days from now</source>
-        <comment>DO NOT TRANSLATE</comment>
-        <translation>Dager fra nå</translation>
-    </message>
-    <message>
-        <source>Account settings</source>
-        <comment>DO NOT TRANSLATE</comment>
-        <translation>Konto-oppsett</translation>
-    </message>
-    <message>
-        <source>Login shell:</source>
-        <comment>DO NOT TRANSLATE</comment>
-        <translation>Login-skall:</translation>
-    </message>
-    <message>
-        <source>Home:</source>
-        <comment>DO NOT TRANSLATE</comment>
-        <translation>Hjem:</translation>
-    </message>
-    <message>
-        <source>Group Id:</source>
-        <comment>DO NOT TRANSLATE</comment>
-        <translation>GruppeID:</translation>
-    </message>
-    <message>
-        <source>uid number range</source>
-        <comment>DO NOT TRANSLATE</comment>
-        <translation>tilgjengelig uidNumber</translation>
-    </message>
-    <message>
-        <source>Minimum:</source>
-        <comment>DO NOT TRANSLATE</comment>
-        <translation>Minimum:</translation>
-    </message>
-    <message>
-        <source>Maximum:</source>
-        <comment>DO NOT TRANSLATE</comment>
-        <translation>Max:</translation>
-    </message>
-    <message>
-        <source>Account Password:</source>
-        <comment>DO NOT TRANSLATE</comment>
-        <translation>Konto passord:</translation>
-    </message>
-    <message>
-        <source>&amp;Create</source>
-        <comment>DO NOT TRANSLATE</comment>
-        <translation>&amp;Opprett</translation>
-    </message>
-</context>
-<context>
     <name>LanguageDialogDesign</name>
     <message>
         <source>Choose Language</source>
@@ -1782,6 +1661,10 @@ Try increasing the uidNumber range or delete some users from the subtree.</sourc
         <source>...</source>
         <comment>DO NOT TRANSLATE</comment>
         <translation>...</translation>
+    </message>
+    <message>
+        <source>Base DN:</source>
+        <translation>Base DN:</translation>
     </message>
 </context>
 <context>
@@ -2525,14 +2408,6 @@ Vennligst se konsoll-utskrift for mer informasjon.</translation>
         <translation>&amp;Avbryt</translation>
     </message>
     <message>
-        <source>New password:</source>
-        <translation>Nytt passord:</translation>
-    </message>
-    <message>
-        <source>Method:</source>
-        <translation>Metode:</translation>
-    </message>
-    <message>
         <source>Verify:</source>
         <translation>Verifiser:</translation>
     </message>
@@ -2543,6 +2418,18 @@ Vennligst se konsoll-utskrift for mer informasjon.</translation>
     <message>
         <source>&lt;b&gt;Please enter a new password.&lt;/b&gt;</source>
         <translation>&lt;b&gt;Vennligst skriv inn nytt passord.&lt;/b&gt;</translation>
+    </message>
+    <message>
+        <source>Strength:</source>
+        <translation>Styrke:</translation>
+    </message>
+    <message>
+        <source>Hash algorithm:</source>
+        <translation>Enveis krypteringalgoritme:</translation>
+    </message>
+    <message>
+        <source>Password:</source>
+        <translation>Passord:</translation>
     </message>
 </context>
 <context>
@@ -2630,6 +2517,10 @@ Vennligst se konsoll-utskrift for mer informasjon.</translation>
         <source>&amp;Search</source>
         <translation>&amp;Søk</translation>
     </message>
+    <message>
+        <source>Base DN:</source>
+        <translation>Base DN:</translation>
+    </message>
 </context>
 <context>
     <name>SearchResultView</name>
@@ -2707,10 +2598,6 @@ Vennligst se utskrift i konsollet for mer informasjon.</translation>
         <translation>Vedlikehold tjenerliste</translation>
     </message>
     <message>
-        <source>Base DN:</source>
-        <translation>Base DN:</translation>
-    </message>
-    <message>
         <source>Alt+C</source>
         <translation></translation>
     </message>
@@ -2729,10 +2616,6 @@ Vennligst se utskrift i konsollet for mer informasjon.</translation>
     <message>
         <source>Alt+D</source>
         <translation></translation>
-    </message>
-    <message>
-        <source>Server Information</source>
-        <translation>Tjenerinformasjon</translation>
     </message>
     <message>
         <source>Host:</source>
@@ -2769,10 +2652,6 @@ Vennligst se utskrift i konsollet for mer informasjon.</translation>
     <message>
         <source>&lt;b&gt;Network options&lt;/b&gt;</source>
         <translation>&lt;b&gt;Nettverksvalg&lt;/b&gt;</translation>
-    </message>
-    <message>
-        <source>Fetch Base DNs</source>
-        <translation>Hent Base DN fra tjener</translation>
     </message>
     <message>
         <source>SO</source>
@@ -2830,20 +2709,33 @@ Vennligst se utskrift i konsollet for mer informasjon.</translation>
         <source>&lt;b&gt;Credentials&lt;/b&gt;</source>
         <translation>&lt;b&gt;Kreditiver (passord)&lt;/b&gt;</translation>
     </message>
-</context>
-<context>
-    <name>TemplateObjectWidget</name>
     <message>
-        <source>Reset Values</source>
-        <translation>Reset verdier</translation>
+        <source>Base DNs</source>
+        <translation>Base DNer</translation>
     </message>
     <message>
-        <source>Display all Attributes</source>
-        <translation>Vis alle attributter</translation>
+        <source>Follow aliases</source>
+        <translation>Følg aliaser</translation>
     </message>
     <message>
-        <source>Save</source>
-        <translation>Lagre</translation>
+        <source>Use Base DNs provided by the server</source>
+        <translation>Bruk Base DN gitt av tjener</translation>
+    </message>
+    <message>
+        <source>Manage Base DN list</source>
+        <translation>Vedlikehold liste av Base DN</translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;LDAP options&lt;/b&gt;</source>
+        <translation>&lt;b&gt;LDAP valg&lt;/b&gt;</translation>
+    </message>
+    <message>
+        <source>Network</source>
+        <translation>Nettverk</translation>
+    </message>
+    <message>
+        <source>Security</source>
+        <translation>Sikkerhet</translation>
     </message>
 </context>
 <context>

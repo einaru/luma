@@ -349,7 +349,7 @@ http://luma.sourceforge.net
         <translation></translation>
     </message>
     <message>
-        <source>&lt;font size=&quot;+2&quot;&gt;&lt;b&gt;Luma 1.4&lt;/b&gt;&lt;/font&gt;</source>
+        <source>&lt;font size=&quot;+2&quot;&gt;&lt;b&gt;Luma 1.6 CVS&lt;/b&gt;&lt;/font&gt;</source>
         <comment>DO NOT TRANSLATE</comment>
         <translation></translation>
     </message>
@@ -407,6 +407,17 @@ Please see console output for more information.</source>
     <message>
         <source>Please select a location where to store the contact.</source>
         <translation>Пожалуйста, выберите место для сохранения контакта.</translation>
+    </message>
+    <message>
+        <source>Missing Password</source>
+        <translation>Пропущен пароль</translation>
+    </message>
+    <message>
+        <source>It is strongly recommended that you choose 
+a password for the new user. Otherwise 
+it might compromise the security of your system.</source>
+        <translation>Настоятельно рекомендуем задать пароль для нового пользователя.
+В противном случае защищенность Вашей системы будет существенно снижена.</translation>
     </message>
 </context>
 <context>
@@ -589,8 +600,8 @@ the selected objectclass.&lt;/p&gt;</source>
         <translation>Добавить класс объекта</translation>
     </message>
     <message>
-        <source>Please choose the objectclasses you want to add to the template.</source>
-        <translation>Пожалуйста, выберите классы объекта, которые Вы хотите добавить в шаблон.</translation>
+        <source>Please choose the objectclass you want to add to the template.</source>
+        <translation>Пожалуйста, выберите класс объекта, который Вы хотите добавить к шаблону.</translation>
     </message>
 </context>
 <context>
@@ -978,14 +989,6 @@ Please read console output for more information.</source>
 <context>
     <name>BaseSelectorDesign</name>
     <message>
-        <source>Select Base DN</source>
-        <translation>Выберите Базовый DN</translation>
-    </message>
-    <message>
-        <source>Available Base DNs:</source>
-        <translation>Допустимые Базовые DN:</translation>
-    </message>
-    <message>
         <source>&amp;Cancel</source>
         <translation>&amp;Отменить</translation>
     </message>
@@ -994,12 +997,52 @@ Please read console output for more information.</source>
         <translation>Alt+О</translation>
     </message>
     <message>
-        <source>&amp;Ok</source>
-        <translation>O&amp;K</translation>
-    </message>
-    <message>
         <source>Alt+O</source>
         <translation>Alt+К</translation>
+    </message>
+    <message>
+        <source>Base DN</source>
+        <translation>Базовый DN</translation>
+    </message>
+    <message>
+        <source>Select Base DNs</source>
+        <translation>Выберите Базовый DN</translation>
+    </message>
+    <message>
+        <source>Manage the base distinguished names you want to use with server &lt;b&gt;%1&lt;/b&gt;.</source>
+        <translation>Управление базовыми определяющими именами, используемыми с сервером &lt;b&gt;%1&lt;/b&gt;.</translation>
+    </message>
+    <message>
+        <source>Custom:</source>
+        <translation>Настраиваемый:</translation>
+    </message>
+    <message>
+        <source>&amp;Delete</source>
+        <translation>&amp;Удалить</translation>
+    </message>
+    <message>
+        <source>Alt+D</source>
+        <translation>Alt+У</translation>
+    </message>
+    <message>
+        <source>&amp;Add</source>
+        <translation>&amp;Добавить</translation>
+    </message>
+    <message>
+        <source>Alt+A</source>
+        <translation>Alt+Д</translation>
+    </message>
+    <message>
+        <source>&amp;Update from server</source>
+        <translation>&amp;Обновить с сервера</translation>
+    </message>
+    <message>
+        <source>Alt+U</source>
+        <translation>Alt+О</translation>
+    </message>
+    <message>
+        <source>&amp;OK</source>
+        <translation>O&amp;K</translation>
     </message>
 </context>
 <context>
@@ -1094,6 +1137,10 @@ See console output for more information.</source>
 See console output for more information.</source>
         <translation>Удаление не было выполнено.
 Для получения более подробной информации просмотрите текст, выведенный на консоль.</translation>
+    </message>
+    <message>
+        <source>Follow Aliases</source>
+        <translation>Следовать псевдонимам</translation>
     </message>
 </context>
 <context>
@@ -1503,176 +1550,6 @@ See console output for more information.</source>
     </message>
 </context>
 <context>
-    <name>IfiUser</name>
-    <message>
-        <source>Incomplete Information</source>
-        <translation>Недостаточная информация</translation>
-    </message>
-    <message>
-        <source>Please select a valid node from a ldap server.</source>
-        <translation>Пожалуйста, выберите верный (node) с сервера LDAP.</translation>
-    </message>
-    <message>
-        <source>&amp;OK</source>
-        <translation>&amp;OK</translation>
-    </message>
-    <message>
-        <source>Conflict</source>
-        <translation>Конфликт</translation>
-    </message>
-    <message>
-        <source>There are not enough user ids left! 
-Try increasing the uidNumber range or delete some users from the subtree.</source>
-        <translation>Не осталось свообдных идентификаторов пользователя (user IDs)!
-Попробуйте увеличить диапазон идентификаторов пользователя (uidNumber) или удалить некоторых пользователей из поддерева.</translation>
-    </message>
-    <message>
-        <source>Success</source>
-        <translation>Успешно</translation>
-    </message>
-    <message>
-        <source>User was created successfully.</source>
-        <translation>Пользователь был успешно создан.</translation>
-    </message>
-    <message>
-        <source>Error</source>
-        <translation>Ошибка</translation>
-    </message>
-    <message>
-        <source>Wrong entry!</source>
-        <translation>Неверная запись!</translation>
-    </message>
-    <message>
-        <source>The selected ldap entry did not contain the attribute &apos;gidNumber&apos;.</source>
-        <translation>Выбранная запись не содержит атрибута &apos;gidNumber&apos;.</translation>
-    </message>
-</context>
-<context>
-    <name>IfiUserDesign</name>
-    <message>
-        <source>IfiUserDesign</source>
-        <translation>IfiUserDesign</translation>
-    </message>
-    <message>
-        <source>General Information</source>
-        <comment>DO NOT TRANSLATE</comment>
-        <translation></translation>
-    </message>
-    <message>
-        <source>Username:</source>
-        <comment>DO NOT TRANSLATE</comment>
-        <translation></translation>
-    </message>
-    <message>
-        <source>Surename:</source>
-        <comment>DO NOT TRANSLATE</comment>
-        <translation></translation>
-    </message>
-    <message>
-        <source>Given Name:</source>
-        <comment>DO NOT TRANSLATE</comment>
-        <translation></translation>
-    </message>
-    <message>
-        <source>Directory Settings</source>
-        <comment>DO NOT TRANSLATE</comment>
-        <translation></translation>
-    </message>
-    <message>
-        <source>Base node:</source>
-        <comment>DO NOT TRANSLATE</comment>
-        <translation></translation>
-    </message>
-    <message>
-        <source>Basic</source>
-        <translation>Базовый</translation>
-    </message>
-    <message>
-        <source>Expiration date</source>
-        <comment>DO NOT TRANSLATE</comment>
-        <translation></translation>
-    </message>
-    <message>
-        <source>Date</source>
-        <comment>DO NOT TRANSLATE</comment>
-        <translation></translation>
-    </message>
-    <message>
-        <source>Days from now</source>
-        <comment>DO NOT TRANSLATE</comment>
-        <translation></translation>
-    </message>
-    <message>
-        <source>Account settings</source>
-        <comment>DO NOT TRANSLATE</comment>
-        <translation></translation>
-    </message>
-    <message>
-        <source>/home</source>
-        <translation>/home</translation>
-    </message>
-    <message>
-        <source>/bin/bash</source>
-        <translation>/bin/bash</translation>
-    </message>
-    <message>
-        <source>Login shell:</source>
-        <comment>DO NOT TRANSLATE</comment>
-        <translation></translation>
-    </message>
-    <message>
-        <source>Home:</source>
-        <comment>DO NOT TRANSLATE</comment>
-        <translation></translation>
-    </message>
-    <message>
-        <source>Group Id:</source>
-        <comment>DO NOT TRANSLATE</comment>
-        <translation></translation>
-    </message>
-    <message>
-        <source>Select group from LDAP</source>
-        <translation></translation>
-    </message>
-    <message>
-        <source>uid number range</source>
-        <comment>DO NOT TRANSLATE</comment>
-        <translation></translation>
-    </message>
-    <message>
-        <source>Minimum:</source>
-        <comment>DO NOT TRANSLATE</comment>
-        <translation></translation>
-    </message>
-    <message>
-        <source>Maximum:</source>
-        <comment>DO NOT TRANSLATE</comment>
-        <translation></translation>
-    </message>
-    <message>
-        <source>Account Settings</source>
-        <translation>Параметры учетной записи</translation>
-    </message>
-    <message>
-        <source>Account Password:</source>
-        <comment>DO NOT TRANSLATE</comment>
-        <translation></translation>
-    </message>
-    <message>
-        <source>Account Password</source>
-        <translation>Пароль Учетной записи</translation>
-    </message>
-    <message>
-        <source>&amp;Create</source>
-        <comment>DO NOT TRANSLATE</comment>
-        <translation></translation>
-    </message>
-    <message>
-        <source>Alt+C</source>
-        <translation>Alt+C</translation>
-    </message>
-</context>
-<context>
     <name>LanguageDialogDesign</name>
     <message>
         <source>Choose Language</source>
@@ -1785,6 +1662,10 @@ Try increasing the uidNumber range or delete some users from the subtree.</sourc
         <source>...</source>
         <comment>DO NOT TRANSLATE</comment>
         <translation></translation>
+    </message>
+    <message>
+        <source>Base DN:</source>
+        <translation>Базовый DN:</translation>
     </message>
 </context>
 <context>
@@ -2531,14 +2412,6 @@ Please read console output for more information.</source>
         <translation>&amp;Отменить</translation>
     </message>
     <message>
-        <source>New password:</source>
-        <translation>Новый пароль:</translation>
-    </message>
-    <message>
-        <source>Method:</source>
-        <translation>Метод:</translation>
-    </message>
-    <message>
         <source>Verify:</source>
         <translation>Проверка:</translation>
     </message>
@@ -2549,6 +2422,18 @@ Please read console output for more information.</source>
     <message>
         <source>&lt;b&gt;Please enter a new password.&lt;/b&gt;</source>
         <translation>&lt;b&gt;Пожалуйста, введите новый пароль.&lt;/b&gt;</translation>
+    </message>
+    <message>
+        <source>Strength:</source>
+        <translation>Мощность:</translation>
+    </message>
+    <message>
+        <source>Hash algorithm:</source>
+        <translation>Хэш-алгоритм:</translation>
+    </message>
+    <message>
+        <source>Password:</source>
+        <translation>Пароль:</translation>
     </message>
 </context>
 <context>
@@ -2635,6 +2520,10 @@ Please read console output for more information.</source>
     <message>
         <source>&amp;Search</source>
         <translation>&amp;Поиск</translation>
+    </message>
+    <message>
+        <source>Base DN:</source>
+        <translation>Базовый DN:</translation>
     </message>
 </context>
 <context>
@@ -2733,20 +2622,12 @@ Please see console output for more information.</source>
         <translation>Alt+У</translation>
     </message>
     <message>
-        <source>Server Information</source>
-        <translation>Информация о Сервере</translation>
-    </message>
-    <message>
         <source>Host:</source>
         <translation>Сервер:</translation>
     </message>
     <message>
         <source>Port:</source>
         <translation>Порт:</translation>
-    </message>
-    <message>
-        <source>Base DN:</source>
-        <translation>Базовый DN:</translation>
     </message>
     <message>
         <source>Server</source>
@@ -2775,10 +2656,6 @@ Please see console output for more information.</source>
     <message>
         <source>&lt;b&gt;Network options&lt;/b&gt;</source>
         <translation>&lt;b&gt;Параметры сети&lt;/b&gt;</translation>
-    </message>
-    <message>
-        <source>Fetch Base DNs</source>
-        <translation>Получить Базовый DN</translation>
     </message>
     <message>
         <source>SO</source>
@@ -2836,20 +2713,33 @@ Please see console output for more information.</source>
         <source>&lt;b&gt;Credentials&lt;/b&gt;</source>
         <translation>&lt;b&gt;Благодарности&lt;/b&gt;</translation>
     </message>
-</context>
-<context>
-    <name>TemplateObjectWidget</name>
     <message>
-        <source>Reset Values</source>
-        <translation>Сбросить значения</translation>
+        <source>Base DNs</source>
+        <translation>Базовые DN</translation>
     </message>
     <message>
-        <source>Display all Attributes</source>
-        <translation>Показать все Атрибуты</translation>
+        <source>Follow aliases</source>
+        <translation>Следовать псевдонимам</translation>
     </message>
     <message>
-        <source>Save</source>
-        <translation>Сохранить</translation>
+        <source>Use Base DNs provided by the server</source>
+        <translation>Использовать базовые DN, предоставляемые сервером</translation>
+    </message>
+    <message>
+        <source>Manage Base DN list</source>
+        <translation>Работа со списком базовых DN</translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;LDAP options&lt;/b&gt;</source>
+        <translation>&lt;b&gt;Параметры LDAP&lt;/b&gt;</translation>
+    </message>
+    <message>
+        <source>Network</source>
+        <translation>Сеть</translation>
+    </message>
+    <message>
+        <source>Security</source>
+        <translation>Секретность</translation>
     </message>
 </context>
 <context>

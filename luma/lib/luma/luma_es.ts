@@ -62,11 +62,6 @@ http://luma.sourceforge.net
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>&lt;font size=&quot;+2&quot;&gt;&lt;b&gt;Luma 1.4&lt;/b&gt;&lt;/font&gt;</source>
-        <comment>DO NOT TRANSLATE</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>This program is distributed under the terms of the GPL v2.
 
 <byte value="x9"/><byte value="x9"/>    GNU GENERAL PUBLIC LICENSE
@@ -353,6 +348,11 @@ POSSIBILITY OF SUCH DAMAGES.
         <comment>DO NOT TRANSLATE</comment>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>&lt;font size=&quot;+2&quot;&gt;&lt;b&gt;Luma 1.6 CVS&lt;/b&gt;&lt;/font&gt;</source>
+        <comment>DO NOT TRANSLATE</comment>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>AccountWizard</name>
@@ -407,6 +407,16 @@ Por favor, lea los mensajes de la consola para más información.</translation>
     <message>
         <source>Please select a location where to store the contact.</source>
         <translation>Por favor, seleccione un sitio donde almacenar el contacto.</translation>
+    </message>
+    <message>
+        <source>Missing Password</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>It is strongly recommended that you choose 
+a password for the new user. Otherwise 
+it might compromise the security of your system.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -593,7 +603,7 @@ el objectclass seleccionado.&lt;/p&gt;</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Please choose the objectclasses you want to add to the template.</source>
+        <source>Please choose the objectclass you want to add to the template.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -982,14 +992,6 @@ Por favor, lea los mensajes de la consola para más información </translation>
 <context>
     <name>BaseSelectorDesign</name>
     <message>
-        <source>Select Base DN</source>
-        <translation>Seleccionar Base DN</translation>
-    </message>
-    <message>
-        <source>Available Base DNs:</source>
-        <translation>Base DNs disponibles:</translation>
-    </message>
-    <message>
         <source>&amp;Cancel</source>
         <translation>&amp;Cancelar</translation>
     </message>
@@ -998,12 +1000,52 @@ Por favor, lea los mensajes de la consola para más información </translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>&amp;Ok</source>
-        <translation>&amp;Ok</translation>
-    </message>
-    <message>
         <source>Alt+O</source>
         <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Base DN</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Select Base DNs</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Manage the base distinguished names you want to use with server &lt;b&gt;%1&lt;/b&gt;.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Custom:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Delete</source>
+        <translation type="unfinished">&amp;Eliminar</translation>
+    </message>
+    <message>
+        <source>Alt+D</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Add</source>
+        <translation type="unfinished">&amp;Añadir</translation>
+    </message>
+    <message>
+        <source>Alt+A</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Update from server</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Alt+U</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;OK</source>
+        <translation type="unfinished">&amp;OK</translation>
     </message>
 </context>
 <context>
@@ -1098,6 +1140,10 @@ Lea los mensajes de la consola para más información.</translation>
 See console output for more information.</source>
         <translation>La operación de borrado no fue completada. 
 Lea los mensajes de la consola para más información.</translation>
+    </message>
+    <message>
+        <source>Follow Aliases</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1504,176 +1550,6 @@ Lea los mensajes de la consola para más información.</translation>
     </message>
 </context>
 <context>
-    <name>IfiUser</name>
-    <message>
-        <source>Incomplete Information</source>
-        <translation>Información Incompleta</translation>
-    </message>
-    <message>
-        <source>Please select a valid node from a ldap server.</source>
-        <translation>Por favor, seleccione un nodo válido de un servidor ldap.</translation>
-    </message>
-    <message>
-        <source>&amp;OK</source>
-        <translation>&amp;OK</translation>
-    </message>
-    <message>
-        <source>Conflict</source>
-        <translation>Conflicto</translation>
-    </message>
-    <message>
-        <source>There are not enough user ids left! 
-Try increasing the uidNumber range or delete some users from the subtree.</source>
-        <translation>¡No quedan suficientes ids de usuario!
-Intente incrementar el rango uidNumber o eliminar algunos usuarios del subárbol.</translation>
-    </message>
-    <message>
-        <source>Success</source>
-        <translation>Éxito</translation>
-    </message>
-    <message>
-        <source>User was created successfully.</source>
-        <translation>Usuario creado correctamente.</translation>
-    </message>
-    <message>
-        <source>Error</source>
-        <translation>Error</translation>
-    </message>
-    <message>
-        <source>Wrong entry!</source>
-        <translation>¡Entrada incorrecta!</translation>
-    </message>
-    <message>
-        <source>The selected ldap entry did not contain the attribute &apos;gidNumber&apos;.</source>
-        <translation>La entrada ldap seleccionada no contiene el atributo &apos;gidNumber&apos;.</translation>
-    </message>
-</context>
-<context>
-    <name>IfiUserDesign</name>
-    <message>
-        <source>Basic</source>
-        <translation>Básico</translation>
-    </message>
-    <message>
-        <source>/home</source>
-        <translation>/home</translation>
-    </message>
-    <message>
-        <source>/bin/bash</source>
-        <translation>/bin/bash</translation>
-    </message>
-    <message>
-        <source>Select group from LDAP</source>
-        <translation>Seleccione un grupo del LDAP</translation>
-    </message>
-    <message>
-        <source>Account Settings</source>
-        <translation>Preferencias de la Cuenta</translation>
-    </message>
-    <message>
-        <source>Account Password</source>
-        <translation>Contraseña de la Cuenta</translation>
-    </message>
-    <message>
-        <source>IfiUserDesign</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Alt+C</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>General Information</source>
-        <comment>DO NOT TRANSLATE</comment>
-        <translation>Información General</translation>
-    </message>
-    <message>
-        <source>Username:</source>
-        <comment>DO NOT TRANSLATE</comment>
-        <translation>Nombre de usuario:</translation>
-    </message>
-    <message>
-        <source>Surename:</source>
-        <comment>DO NOT TRANSLATE</comment>
-        <translation>Apellido:</translation>
-    </message>
-    <message>
-        <source>Given Name:</source>
-        <comment>DO NOT TRANSLATE</comment>
-        <translation>Nombre:</translation>
-    </message>
-    <message>
-        <source>Directory Settings</source>
-        <comment>DO NOT TRANSLATE</comment>
-        <translation>Preferencias del Directorio</translation>
-    </message>
-    <message>
-        <source>Base node:</source>
-        <comment>DO NOT TRANSLATE</comment>
-        <translation>Nodo base:</translation>
-    </message>
-    <message>
-        <source>Expiration date</source>
-        <comment>DO NOT TRANSLATE</comment>
-        <translation>Data de expiración</translation>
-    </message>
-    <message>
-        <source>Date</source>
-        <comment>DO NOT TRANSLATE</comment>
-        <translation>Fecha</translation>
-    </message>
-    <message>
-        <source>Days from now</source>
-        <comment>DO NOT TRANSLATE</comment>
-        <translation>Días a partir de ahora</translation>
-    </message>
-    <message>
-        <source>Account settings</source>
-        <comment>DO NOT TRANSLATE</comment>
-        <translation>Preferencias de la Cuenta</translation>
-    </message>
-    <message>
-        <source>Login shell:</source>
-        <comment>DO NOT TRANSLATE</comment>
-        <translation>Shell de login:</translation>
-    </message>
-    <message>
-        <source>Home:</source>
-        <comment>DO NOT TRANSLATE</comment>
-        <translation>Casa:</translation>
-    </message>
-    <message>
-        <source>Group Id:</source>
-        <comment>DO NOT TRANSLATE</comment>
-        <translation>Id de Grupo:</translation>
-    </message>
-    <message>
-        <source>uid number range</source>
-        <comment>DO NOT TRANSLATE</comment>
-        <translation>rango de números uid</translation>
-    </message>
-    <message>
-        <source>Minimum:</source>
-        <comment>DO NOT TRANSLATE</comment>
-        <translation>Mínimo:</translation>
-    </message>
-    <message>
-        <source>Maximum:</source>
-        <comment>DO NOT TRANSLATE</comment>
-        <translation>Máximo:</translation>
-    </message>
-    <message>
-        <source>Account Password:</source>
-        <comment>DO NOT TRANSLATE</comment>
-        <translation>Contraseña de la Cuenta:</translation>
-    </message>
-    <message>
-        <source>&amp;Create</source>
-        <comment>DO NOT TRANSLATE</comment>
-        <translation>&amp;Crear</translation>
-    </message>
-</context>
-<context>
     <name>LanguageDialogDesign</name>
     <message>
         <source>Choose Language</source>
@@ -1785,6 +1661,10 @@ Intente incrementar el rango uidNumber o eliminar algunos usuarios del subárbol
         <source>...</source>
         <comment>DO NOT TRANSLATE</comment>
         <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Base DN:</source>
+        <translation type="unfinished">DN Base:</translation>
     </message>
 </context>
 <context>
@@ -2529,14 +2409,6 @@ Por favor, lea los mensajes de la consola para más información.</translation>
         <translation>&amp;Cancelar</translation>
     </message>
     <message>
-        <source>New password:</source>
-        <translation>Nueva contraseña:</translation>
-    </message>
-    <message>
-        <source>Method:</source>
-        <translation>Método:</translation>
-    </message>
-    <message>
         <source>Verify:</source>
         <translation>Verificación:</translation>
     </message>
@@ -2547,6 +2419,18 @@ Por favor, lea los mensajes de la consola para más información.</translation>
     <message>
         <source>&lt;b&gt;Please enter a new password.&lt;/b&gt;</source>
         <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Strength:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Hash algorithm:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Password:</source>
+        <translation type="unfinished">Contraseña:</translation>
     </message>
 </context>
 <context>
@@ -2634,6 +2518,10 @@ Por favor, lea los mensajes de la consola para más información.</translation>
         <source>&amp;Search</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Base DN:</source>
+        <translation type="unfinished">DN Base:</translation>
+    </message>
 </context>
 <context>
     <name>SearchResultView</name>
@@ -2711,10 +2599,6 @@ Por favor, lea los mensajes de la consola para más información.</translation>
         <translation>Administrar la Lista de Servidores</translation>
     </message>
     <message>
-        <source>Base DN:</source>
-        <translation>DN Base:</translation>
-    </message>
-    <message>
         <source>Alt+C</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2733,10 +2617,6 @@ Por favor, lea los mensajes de la consola para más información.</translation>
     <message>
         <source>Alt+D</source>
         <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Server Information</source>
-        <translation>Información del Servidor</translation>
     </message>
     <message>
         <source>Host:</source>
@@ -2773,10 +2653,6 @@ Por favor, lea los mensajes de la consola para más información.</translation>
     <message>
         <source>&lt;b&gt;Network options&lt;/b&gt;</source>
         <translation>&lt;b&gt;Opciones de red&lt;/b&gt;</translation>
-    </message>
-    <message>
-        <source>Fetch Base DNs</source>
-        <translation>Coger DNs Base</translation>
     </message>
     <message>
         <source>SO</source>
@@ -2834,20 +2710,33 @@ Por favor, lea los mensajes de la consola para más información.</translation>
         <source>&lt;b&gt;Credentials&lt;/b&gt;</source>
         <translation>&lt;b&gt;Credenciales&lt;/b&gt;</translation>
     </message>
-</context>
-<context>
-    <name>TemplateObjectWidget</name>
     <message>
-        <source>Reset Values</source>
-        <translation>Iniciar Valores</translation>
+        <source>Base DNs</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Display all Attributes</source>
-        <translation>Mostrar todos los Atributos</translation>
+        <source>Follow aliases</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Save</source>
-        <translation>Guardar</translation>
+        <source>Use Base DNs provided by the server</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Manage Base DN list</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;LDAP options&lt;/b&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Network</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Security</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
