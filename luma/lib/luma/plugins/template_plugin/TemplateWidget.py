@@ -146,25 +146,32 @@ class TemplateWidget(TemplateWidgetDesign):
         dialog = AddObjectClassDialog()
         metaInfo = self.preloadedServerMeta[serverName]
         
-        objectClasses = Set(metaInfo.getObjectClasses())
         templateClasses = Set(self.currentTemplate.getObjectClasses())
         
         structural = False
+        structuralList = []
         for x in templateClasses:
             if metaInfo.isStructural(x):
                 structural = True
-                break
+                structuralList.append(x)
                 
         tmpClasses = metaInfo.getObjectClasses()
         if structural:
-            tmpClasses = filter(lambda x: not metaInfo.isStructural(x), tmpClasses)
+            nonStructClasses = filter(lambda x: not metaInfo.isStructural(x), tmpClasses)
+            structClasses = filter(lambda x: metaInfo.isStructural(x), tmpClasses)
+                
+            tmpClasses = nonStructClasses
+            
+            for x in structClasses:
+                if metaInfo.classAllowed(x, structuralList):
+                    tmpClasses.append(x)
                 
         objectClasses = Set(tmpClasses)
                 
         objectClasses -= templateClasses
         
         for x in objectClasses:
-            item = QCheckListItem(dialog.classView, x, QCheckListItem.CheckBox)
+            tmpItem = QListViewItem(dialog.classView, x)
         
         dialog.exec_loop()
         
@@ -177,17 +184,21 @@ class TemplateWidget(TemplateWidgetDesign):
         while listIterator.current():
             item = listIterator.current()
             
-            if item.isOn():
+            if item.isSelected():
                 newClasses.append(str(item.text(0)))
                 
             listIterator += 1
-            
+        
+        parentClasses = []
         for x in newClasses:
-            item = QListViewItem(self.classView, x)
+            parentList = metaInfo.getParents(x)
+            parentClasses += parentList
+            
+        newClasses = Set(newClasses).union(Set(parentClasses))
+        
+        for x in newClasses:
             self.currentTemplate.addObjectClass(x)
             
-         
-         
         mustAttributes = metaInfo.getAllMusts(newClasses)
         for x in mustAttributes:
             # WARNING!!! DO NOT REMOVE THIS CODE!!!
@@ -204,6 +215,7 @@ class TemplateWidget(TemplateWidgetDesign):
             self.currentTemplate.addAttribute(x, must, single, binary, None)
             
         self.displayAttributes()
+        self.displayObjectClasses()
         self.saveTemplateButton.setEnabled(True)
         
 ###############################################################################
