@@ -16,6 +16,7 @@ import copy
 
 import environment
 from base.utils.gui.AddAttributeWizardDesign import AddAttributeWizardDesign
+from base.utils.backend.ObjectClassAttributeInfo import ObjectClassAttributeInfo
 
 
 class AddAttributeWizard(AddAttributeWizardDesign):
@@ -44,13 +45,15 @@ class AddAttributeWizard(AddAttributeWizardDesign):
         
 ###############################################################################
 
-    def setData(self, objectValues, schemaMeta):
+    def setData(self, dataObject):
         """ Sets the current object data, schema information and initializes
         the attribute box and wizard buttons.
         """
         
-        self.OBJECTVALUES = objectValues
-        self.SCHEMAINFO = schemaMeta
+        self.ldapDataObject = dataObject
+        
+        #self.OBJECTVALUES = objectValues
+        self.SCHEMAINFO = ObjectClassAttributeInfo(self.ldapDataObject.getServerMeta())
         self.processData()
         self.initAttributeBox()
         
@@ -66,10 +69,12 @@ class AddAttributeWizard(AddAttributeWizardDesign):
         the object. Single values which are already given are sorted out.
         """
         
-        possibleMust, possibleMay = self.SCHEMAINFO.getAllAttributes(self.OBJECTVALUES['objectClass'])
+        objectClasses = self.ldapDataObject.getObjectClasses()
+        possibleMust, possibleMay = self.SCHEMAINFO.getAllAttributes(objectClasses)
         
         # attributes used by the current objectClass
-        usedAttributes = Set(self.OBJECTVALUES).difference(Set(['objectClass']))
+        #usedAttributes = Set(objectAttributes).difference(Set(['objectClass']))
+        usedAttributes = self.ldapDataObject.getAttributeList()
         
         # set of attribute which are used and have to be single
         singleAttributes = Set(filter(self.SCHEMAINFO.isSingle, usedAttributes))
@@ -98,21 +103,16 @@ class AddAttributeWizard(AddAttributeWizardDesign):
         else:
             tmpList = copy.deepcopy(self.possibleAttributes)
         
-        structural = False
-        structuralClass = []
-        for x in self.OBJECTVALUES['objectClass']:
-            if self.SCHEMAINFO.isStructural(x):
-                structural = True
-                structuralClass.append(x)
+        structuralClass = self.ldapDataObject.getStructuralClasses()
         
         # only show attributes whose objectclass combinations don't violate 
         # the objectclass chain (not two structural classes)
-        if structural:
+        if len(structuralClass) > 0:
             classList = filter(lambda x: not self.SCHEMAINFO.isStructural(x), self.SCHEMAINFO.getObjectClasses())
             for x in structuralClass:
                 classList += self.SCHEMAINFO.getParents(x)
                 
-            for x in self.OBJECTVALUES['objectClass']:
+            for x in self.ldapDataObject.getObjectClasses():
                 if not (x in classList):
                     classList.append(x)
                     
@@ -164,22 +164,15 @@ class AddAttributeWizard(AddAttributeWizardDesign):
         self.mustAttributeBox.clear()
         
         attribute = str(self.attributeBox.currentText())
-        
         mustSet, maySet = self.SCHEMAINFO.getAllObjectclassesForAttr(attribute)
-        
         classList = mustSet.union(maySet)
         
-        structural = False
-        for x in self.OBJECTVALUES['objectClass']:
-            if self.SCHEMAINFO.isStructural(x):
-                structural = True
-                break
-        if structural:
+        if self.ldapDataObject.hasStructuralClass():
             structList = filter(lambda x: self.SCHEMAINFO.isStructural(x), classList)
             classList = filter(lambda x: not self.SCHEMAINFO.isStructural(x), classList)
             
             for x in structList:
-                for y in self.OBJECTVALUES['objectClass']:
+                for y in self.ldapDataObject.getObjectClasses():
                     if self.SCHEMAINFO.sameObjectClassChain(x, y):
                         classList.append(x)
                         
