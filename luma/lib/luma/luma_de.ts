@@ -323,32 +323,29 @@ POSSIBILITY OF SUCH DAMAGES.
         <source>&lt;font size=&quot;+2&quot;&gt;&lt;b&gt;Luma 1.0 &lt;/b&gt;&lt;/font&gt;</source>
         <translation></translation>
     </message>
-    <message encoding="UTF-8">
-        <source>&lt;p&gt;&lt;b&gt;Bjørn Ove Grøtan&lt;/b&gt;&lt;br&gt;
-&lt;i&gt;Contributed his mkpasswd module.&lt;/i&gt;
-&lt;/p&gt;
-
-&lt;p&gt;&lt;b&gt;Kerstin Isebrecht&lt;/b&gt;&lt;br&gt;
-&lt;i&gt;Thanks for the ice and all your patience :)&lt;/i&gt;
-&lt;/p&gt;
-
-&lt;p&gt;&lt;b&gt;Jörn Körner&lt;/b&gt;&lt;br&gt;
-&lt;i&gt;Luma-crash-test-dummy. He also had the idea with the plugin support.&lt;/i&gt;
-&lt;/p&gt;
-
-&lt;p&gt;&lt;b&gt;Fernando Maciel Souto Maior&lt;/b&gt;&lt;br&gt;
-&lt;i&gt;Portuguese translation&lt;/i&gt;
-&lt;/p&gt;
-
-&lt;p&gt;&lt;b&gt;Jan Winhuysen&lt;/b&gt;&lt;br&gt;
-&lt;i&gt;My mentor and UI tester :)&lt;/i&gt;
-&lt;/p&gt;
-</source>
-        <translation></translation>
-    </message>
     <message>
         <source>Credits</source>
         <translation></translation>
+    </message>
+    <message>
+        <source>Bjorn Ove Grotan
+Contributed his mkpasswd module. 
+
+Kerstin Isebrecht
+Thanks for the ice and all your patience :) 
+
+Joern Koerner
+Luma-crash-test-dummy. He also had the idea with the plugin support. 
+
+Fernando Maciel Souto Maior
+Portuguese translation 
+
+Jan Winhuysen
+My mentor and UI tester :) 
+
+Eric Cote
+Testing guinea pig for python 2.3</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -436,6 +433,25 @@ POSSIBILITY OF SUCH DAMAGES.
     <message>
         <source>Passwords</source>
         <translation>Passwörter</translation>
+    </message>
+</context>
+<context>
+    <name>BaseSelectorDesign</name>
+    <message>
+        <source>Available Base DN</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Select Base DN:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <translation type="unfinished">Abbrechen</translation>
+    </message>
+    <message>
+        <source>Ok</source>
+        <translation type="unfinished">Ok</translation>
     </message>
 </context>
 <context>
@@ -760,6 +776,109 @@ Versuchen sie entweder den Bereich für die uids zu erweitern oder löschen sie 
     </message>
 </context>
 <context>
+    <name>IfiUserDesign</name>
+    <message>
+        <source>Form1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>General Information</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Username:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Surename:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Given Name:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Directory Settings</source>
+        <translation type="unfinished">Verzeichniseinstellungen</translation>
+    </message>
+    <message>
+        <source>Base node:</source>
+        <translation type="unfinished">Basisknoten:</translation>
+    </message>
+    <message>
+        <source>Basic</source>
+        <translation type="unfinished">Basis</translation>
+    </message>
+    <message>
+        <source>Expiration date</source>
+        <translation type="unfinished">Auslaufdatum</translation>
+    </message>
+    <message>
+        <source>Date</source>
+        <translation type="unfinished">Datum</translation>
+    </message>
+    <message>
+        <source>Days from now</source>
+        <translation type="unfinished">Tage von jetzt an</translation>
+    </message>
+    <message>
+        <source>Account settings</source>
+        <translation type="unfinished">Kontoeinstellungen</translation>
+    </message>
+    <message>
+        <source>/home</source>
+        <translation type="unfinished">/home</translation>
+    </message>
+    <message>
+        <source>/bin/bash</source>
+        <translation type="unfinished">/bin/bash</translation>
+    </message>
+    <message>
+        <source>Login shell:</source>
+        <translation type="unfinished">Login Shell:</translation>
+    </message>
+    <message>
+        <source>Home directory:</source>
+        <translation type="unfinished">Benutzerverzeichnis:</translation>
+    </message>
+    <message>
+        <source>Group Id:</source>
+        <translation type="unfinished">Gruppen Id:</translation>
+    </message>
+    <message>
+        <source>Select group from LDAP</source>
+        <translation type="unfinished">Gruppe auswählen</translation>
+    </message>
+    <message>
+        <source>uid number range</source>
+        <translation type="unfinished">UserId Nummernbereich</translation>
+    </message>
+    <message>
+        <source>Minimum:</source>
+        <translation type="unfinished">Minimum:</translation>
+    </message>
+    <message>
+        <source>Maximum:</source>
+        <translation type="unfinished">Maximum:</translation>
+    </message>
+    <message>
+        <source>Account Settings</source>
+        <translation type="unfinished">Accounteinstellungen</translation>
+    </message>
+    <message>
+        <source>Account Password:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Account Password</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Create</source>
+        <translation type="unfinished">Erstellen</translation>
+    </message>
+</context>
+<context>
     <name>LanguageDialogDesign</name>
     <message>
         <source>Language:</source>
@@ -834,6 +953,22 @@ Versuchen sie entweder den Bereich für die uids zu erweitern oder löschen sie 
     <message>
         <source>Program</source>
         <translation>Programm</translation>
+    </message>
+    <message>
+        <source>Alt+X</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Alt+R</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Hide/Show pluginlist</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Alt+H</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1022,10 +1157,6 @@ Versuchen sie entweder den Bereich für die uids zu erweitern oder löschen sie 
         <translation>Übernehmen</translation>
     </message>
     <message>
-        <source>Display all Attributes</source>
-        <translation>Alle Attribute anzeigen</translation>
-    </message>
-    <message>
         <source>Refresh</source>
         <translation>Erneuern</translation>
     </message>
@@ -1037,28 +1168,32 @@ Versuchen sie entweder den Bereich für die uids zu erweitern oder löschen sie 
         <source>&lt;b&gt;Values&lt;/b&gt;</source>
         <translation>&lt;b&gt;Werte&lt;/b&gt;</translation>
     </message>
+    <message>
+        <source>Display all</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>PluginLoaderGuiDesign</name>
-    <message>
-        <source>Plugins</source>
-        <translation>Plugins</translation>
-    </message>
     <message>
         <source>Configure Plugins</source>
         <translation>Plugins konfigurieren</translation>
     </message>
     <message>
-        <source>Ok</source>
-        <translation>Ok</translation>
-    </message>
-    <message>
-        <source>Cancel</source>
-        <translation>Abbrechen</translation>
-    </message>
-    <message>
         <source>Available Plugins:</source>
         <translation>Verfügbare Plugiins:</translation>
+    </message>
+    <message>
+        <source>Load</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Modify</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Close</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1131,6 +1266,20 @@ Versuchen sie entweder den Bereich für die uids zu erweitern oder löschen sie 
     <message>
         <source>Do your really want to delete the Server?</source>
         <translation>Soll der Server wirklich entfernt werden?</translation>
+    </message>
+    <message>
+        <source>Error</source>
+        <translation type="unfinished">Fehler</translation>
+    </message>
+    <message>
+        <source>Could not retrieve BaseDN for server. 
+Maybe the server data is not correct. 
+Please see console output for more information.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;OK</source>
+        <translation type="unfinished">&amp;Ok</translation>
     </message>
 </context>
 <context>
@@ -1280,6 +1429,10 @@ Versuchen sie entweder den Bereich für die uids zu erweitern oder löschen sie 
     <message>
         <source>Delete</source>
         <translation>Löschen</translation>
+    </message>
+    <message>
+        <source>Template List</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
