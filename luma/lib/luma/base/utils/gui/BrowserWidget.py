@@ -399,6 +399,7 @@ See console output for more information."""),
 
     def __delete_ldap_entry(self, serverName, ldapObject):
         serverMeta = self.serverListObject.get_serverobject(serverName)
+        
         try:
             ldapServerObject = ldap.open(serverMeta.host)
             ldapServerObject.protocol_version = ldap.VERSION3
