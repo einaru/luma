@@ -236,7 +236,7 @@ class LumaConnection(object):
         """
 
         # If we're going to present client certificates, this must be set as an option
-        if self.certificate:
+        if self.useCertificate:
             try:
                 self.set_option(ldap.OPT_X_TLS_CERTFILE,self.clientCertfile)
                 self.set_option(ldap.OPT_X_TLS_KEYFILE,self.clientCertKeyfile)

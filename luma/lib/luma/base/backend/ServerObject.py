@@ -28,7 +28,7 @@ class ServerObject(object):
     self.tls: Indicates, if we should use tls to connect to the server 
     (integer).
 
-    self.certificate: Indicates, if we should use clientside certificates
+    self.useCertificate: Indicates, if we should use clientside certificates
 
     self.clientCertFile: The Client certificate. PEM-file (string)
 
@@ -54,7 +54,7 @@ class ServerObject(object):
         self.tls = False
         self.authMethod = u"Simple"
         self.followAliases = False
-        self.certificate = False
+        self.useCertificate = False
         self.clientCertFile = u""
         self.clientCertKeyfile = u""
         
@@ -86,8 +86,8 @@ class ServerObject(object):
         finalString.append(unicode(self.tls))
         finalString.append(unicode("\nAuthentification method: "))
         finalString.append(unicode(self.authMethod))
-        finalString.append(unicode"\nClient certificate: "))
-        finalString.append(unicode(self.certificate))
+        finalString.append(unicode"\nUse Client certificate: "))
+        finalString.append(unicode(self.useCertificate))
         finalString.append(unicode"\nClient certificate file: "))
         finalString.append(unicode(self.clientCertFile))
         finalString.append(unicode"\nClient certificate keyfile: "))
