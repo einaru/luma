@@ -109,7 +109,7 @@ class ServerDialog(ServerDialogDesign):
         self.passwordLineEdit.setText(x.bindPassword)
         self.tlsCheckBox.setChecked(int(x.tls))
         self.methodBox.setCurrentItem(self.authentificationMethods.index(x.authMethod))
-        self.bindAnonChanged(True, True)
+        self.bindAnonChanged(x.bindAnon, True)
         
         self.hostLineEdit.blockSignals(False)
         self.portSpinBox.blockSignals(False)
@@ -120,7 +120,7 @@ class ServerDialog(ServerDialogDesign):
         self.tlsCheckBox.blockSignals(False)
         self.methodBox.blockSignals(False)
         
-        if self.currentServer.authMethod == u"SASL GSSAPI":
+        if (self.currentServer.authMethod == u"SASL GSSAPI") or x.bindAnon :
             self.passwordLineEdit.setEnabled(False)
             self.bindLineEdit.setEnabled(False)
         else:
@@ -300,20 +300,14 @@ Please see console output for more information."""),
             self.applyButton.setEnabled(1)
         
         tmpBool = self.bindAnonBox.isChecked()
-         
-        #tmpVal = int(not tmpBool)
-        
-        #self.passwordLineEdit.setEnabled(tmpVal)
-        #self.bindLineEdit.setEnabled(tmpVal)
-        #self.methodBox.setEnabled(tmpVal)
         
         widgetBool = True
-        if tmpBool or self.currentServer.authMethod == u"SASL GSSAPI":
+        if tmpBool or (self.currentServer.authMethod == u"SASL GSSAPI"):
             widgetBool = False
         
         self.passwordLineEdit.setEnabled(widgetBool)
         self.bindLineEdit.setEnabled(widgetBool)
-        self.methodBox.setEnabled(not tmpBool)
+        self.methodBox.setEnabled(widgetBool)
             
         self.currentServer.bindAnon = tmpBool
 
