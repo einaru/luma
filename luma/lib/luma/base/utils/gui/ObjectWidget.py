@@ -25,6 +25,7 @@ import environment
 from base.utils.gui.AddAttributeWizard import AddAttributeWizard
 from base.backend.LumaConnection import LumaConnection
 from base.utils.gui.PasswordDialog import PasswordDialog
+from base.utils.backend.ObjectClassAttributeInfo import ObjectClassAttributeInfo
 
 
 class ObjectWidget(QWidget):
@@ -318,7 +319,7 @@ Please read console output for more information."""),
     def setServer(self, server):
         if not (server == self.SERVER):
             self.SERVER = server
-            self.SERVERMETA = environment.getServerMeta(self.SERVER)
+            self.SERVERMETA = ObjectClassAttributeInfo(self.SERVER)
 
 
 ###############################################################################

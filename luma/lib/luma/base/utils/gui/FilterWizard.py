@@ -15,6 +15,7 @@ from base.utils.gui.FilterWizardDesign import FilterWizardDesign
 from base.backend.ServerList import ServerList
 from base.backend.ServerObject import ServerObject
 import environment
+from base.utils.backend.ObjectClassAttributeInfo import ObjectClassAttributeInfo
 
 class FilterWizard(FilterWizardDesign):
 
@@ -23,7 +24,7 @@ class FilterWizard(FilterWizardDesign):
     def __init__(self,server = None, parent = None,name = None,modal = 0,fl = 0):
         FilterWizardDesign.__init__(self,parent,name,modal,fl)
 
-        self.objectInfo = environment.getServerMeta(server)
+        self.objectInfo = ObjectClassAttributeInfo(server)
 
         self.objectSelection = "CLASS"
         self.classButton.setChecked(1)
