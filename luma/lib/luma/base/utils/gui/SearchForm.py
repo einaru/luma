@@ -164,7 +164,7 @@ class SearchForm(SearchFormDesign):
     def serverChanged(self, serverString=""):
         serverString = unicode(self.serverBox.currentText())
         
-        if serverString = "":
+        if serverString == "":
             return 
             
         self.currentServer = self.serverListObject.getServerObject(serverString)
