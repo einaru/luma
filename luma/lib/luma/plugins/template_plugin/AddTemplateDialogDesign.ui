@@ -1,0 +1,277 @@
+<!DOCTYPE UI><UI version="3.3" stdsetdef="1">
+<class>AddTemplateDialogDesign</class>
+<widget class="QDialog">
+    <property name="name">
+        <cstring>AddTemplateDialogDesign</cstring>
+    </property>
+    <property name="geometry">
+        <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>461</width>
+            <height>292</height>
+        </rect>
+    </property>
+    <property name="caption">
+        <string>New Template</string>
+    </property>
+    <property name="sizeGripEnabled">
+        <bool>true</bool>
+    </property>
+    <grid>
+        <property name="name">
+            <cstring>unnamed</cstring>
+        </property>
+        <widget class="QLabel" row="0" column="0">
+            <property name="name">
+                <cstring>pixmapLabel1</cstring>
+            </property>
+            <property name="sizePolicy">
+                <sizepolicy>
+                    <hsizetype>0</hsizetype>
+                    <vsizetype>0</vsizetype>
+                    <horstretch>0</horstretch>
+                    <verstretch>0</verstretch>
+                </sizepolicy>
+            </property>
+            <property name="pixmap">
+                <pixmap>image0</pixmap>
+            </property>
+            <property name="scaledContents">
+                <bool>false</bool>
+            </property>
+        </widget>
+        <widget class="QLabel" row="0" column="1" rowspan="1" colspan="3">
+            <property name="name">
+                <cstring>textLabel3</cstring>
+            </property>
+            <property name="text">
+                <string>Please choose a template name, a description and a server with which the template is associated.</string>
+            </property>
+            <property name="scaledContents">
+                <bool>false</bool>
+            </property>
+            <property name="alignment">
+                <set>WordBreak|AlignVCenter</set>
+            </property>
+        </widget>
+        <widget class="QLayoutWidget" row="8" column="0" rowspan="1" colspan="4">
+            <property name="name">
+                <cstring>Layout1</cstring>
+            </property>
+            <hbox>
+                <property name="name">
+                    <cstring>unnamed</cstring>
+                </property>
+                <property name="margin">
+                    <number>0</number>
+                </property>
+                <property name="spacing">
+                    <number>6</number>
+                </property>
+                <spacer>
+                    <property name="name">
+                        <cstring>Horizontal Spacing2</cstring>
+                    </property>
+                    <property name="orientation">
+                        <enum>Horizontal</enum>
+                    </property>
+                    <property name="sizeType">
+                        <enum>Expanding</enum>
+                    </property>
+                    <property name="sizeHint">
+                        <size>
+                            <width>20</width>
+                            <height>20</height>
+                        </size>
+                    </property>
+                </spacer>
+                <widget class="QPushButton">
+                    <property name="name">
+                        <cstring>okButton</cstring>
+                    </property>
+                    <property name="enabled">
+                        <bool>false</bool>
+                    </property>
+                    <property name="text">
+                        <string>&amp;OK</string>
+                    </property>
+                    <property name="accel">
+                        <string></string>
+                    </property>
+                    <property name="autoDefault">
+                        <bool>true</bool>
+                    </property>
+                    <property name="default">
+                        <bool>true</bool>
+                    </property>
+                </widget>
+                <widget class="QPushButton">
+                    <property name="name">
+                        <cstring>cancelButton</cstring>
+                    </property>
+                    <property name="text">
+                        <string>&amp;Cancel</string>
+                    </property>
+                    <property name="accel">
+                        <string></string>
+                    </property>
+                    <property name="autoDefault">
+                        <bool>true</bool>
+                    </property>
+                </widget>
+            </hbox>
+        </widget>
+        <widget class="Line" row="7" column="0" rowspan="1" colspan="4">
+            <property name="name">
+                <cstring>line1</cstring>
+            </property>
+            <property name="frameShape">
+                <enum>HLine</enum>
+            </property>
+            <property name="frameShadow">
+                <enum>Sunken</enum>
+            </property>
+            <property name="orientation">
+                <enum>Horizontal</enum>
+            </property>
+        </widget>
+        <widget class="QLabel" row="2" column="0" rowspan="1" colspan="3">
+            <property name="name">
+                <cstring>textLabel1</cstring>
+            </property>
+            <property name="sizePolicy">
+                <sizepolicy>
+                    <hsizetype>0</hsizetype>
+                    <vsizetype>5</vsizetype>
+                    <horstretch>0</horstretch>
+                    <verstretch>0</verstretch>
+                </sizepolicy>
+            </property>
+            <property name="text">
+                <string>Template name:</string>
+            </property>
+        </widget>
+        <widget class="QLabel" row="3" column="0" rowspan="1" colspan="2">
+            <property name="name">
+                <cstring>textLabel2</cstring>
+            </property>
+            <property name="sizePolicy">
+                <sizepolicy>
+                    <hsizetype>0</hsizetype>
+                    <vsizetype>5</vsizetype>
+                    <horstretch>0</horstretch>
+                    <verstretch>0</verstretch>
+                </sizepolicy>
+            </property>
+            <property name="text">
+                <string>Server:</string>
+            </property>
+        </widget>
+        <widget class="QLineEdit" row="2" column="3">
+            <property name="name">
+                <cstring>nameEdit</cstring>
+            </property>
+        </widget>
+        <widget class="QLabel" row="4" column="0" rowspan="1" colspan="3">
+            <property name="name">
+                <cstring>textLabel4</cstring>
+            </property>
+            <property name="text">
+                <string>Description:</string>
+            </property>
+        </widget>
+        <widget class="QComboBox" row="3" column="3">
+            <property name="name">
+                <cstring>serverBox</cstring>
+            </property>
+        </widget>
+        <widget class="Line" row="1" column="0" rowspan="1" colspan="4">
+            <property name="name">
+                <cstring>line2</cstring>
+            </property>
+            <property name="frameShape">
+                <enum>HLine</enum>
+            </property>
+            <property name="frameShadow">
+                <enum>Sunken</enum>
+            </property>
+            <property name="orientation">
+                <enum>Horizontal</enum>
+            </property>
+        </widget>
+        <widget class="QLineEdit" row="4" column="3">
+            <property name="name">
+                <cstring>descriptionEdit</cstring>
+            </property>
+        </widget>
+        <widget class="QLabel" row="6" column="0" rowspan="1" colspan="4">
+            <property name="name">
+                <cstring>statusLabel</cstring>
+            </property>
+            <property name="text">
+                <string>Please supply a template name.</string>
+            </property>
+        </widget>
+        <spacer row="5" column="2">
+            <property name="name">
+                <cstring>spacer10</cstring>
+            </property>
+            <property name="orientation">
+                <enum>Vertical</enum>
+            </property>
+            <property name="sizeType">
+                <enum>Expanding</enum>
+            </property>
+            <property name="sizeHint">
+                <size>
+                    <width>21</width>
+                    <height>30</height>
+                </size>
+            </property>
+        </spacer>
+    </grid>
+</widget>
+<images>
+    <image name="image0">
+        <data format="PNG" length="2265">89504e470d0a1a0a0000000d49484452000000300000003008060000005702f987000008a049444154789cc5997d6c9d551dc73fcf73dbdbdef6beb483ad0ce6066e2c33d14da2532326c46890ec0f9440044532ff411270431213fe51913f4850209018887189d03989283290b9315e52ac5ddb31ec061d745bdfd67bd7aedd6d7b7b5f9f97fb9c73fce3dc968ef5bef4de4e7fc92f4d9fe739bff3fbfeceeff55c43294531320ca3e8bbc5f4dc735d3728a56ef33c6e92526d9352453c4f2284c4f3340b2192ae9befb76da72b9349befafcf3f7fe07104071051651313d8d6a01bcf0c2b11621c44342b0534ab561b1c218268d4dcd08219152313793c4b69d02188510927cde8b5956eec568f4f8331d1d4fc70b60fe3700dadbdf7b48081e114245849098757e422dad845b57116a891495373d35c3f8d879a2a3e324e73205402295c9249e78e595fb9f021c405e3600fbf6f5b508215f9552dd2484a4a129c8956bd7d11c0e53e78348088201680e405ddd27eb6c071c17e632904ceb67931371fa7a4f123b3b891012c7b18e0e0e1ebef3e4c997c7016fc501ecddfbde0d60ee97526d90caa46dfd75845a5a8984a06d15b45d5154cc45e409989983e879b05d181d3ac75b078ee0d82e527a13f1f8a97b3a3b7fdb05e459141f3501d8b7afaf4529352a846ca9f30758b7690b7ebf8fcd1be08a96ca145f8ac62f6820d99ccb2b2fbec9f45402a564baafaffd2b23231da368972a09c0ac642329e5bb8b950f877c6cff7c6dca035cb306b66e86e6663fb7fff06656b7b562186668dbb61fbc06b40275e5649405b077efb147a5649be9f3b37ef31682cd3ebe703dd4f96a537e9e9a03b0f57a0806fddc71f7cd842341eaea1a37df72cb6f1e01c2e5742cf9b2bdfdfd1621785008c9d5d75e4b7dbd8febd7af9cf2f3d41c80f56b21d0e4e73bb77e1d806070cd8faeb9e64bd7018da5d696042084b84d4a1509340709b58489042114d491b5d27cd595d0d8001bae6be3331bda300c5f70d3a66f7f17682ea5671900ea7b424856af6dc334b4cf0b71f9b83504a6015ffedae7000885aefe261004ea8be958324894e256cf93ac5abd4a7fecd31b5d2e6a0a8099840d9f6d03201068fd061002fc2cca488ba92400212481a626ccc239490562c93ab9326418609ad0d4e4a76d6d2b53e7130001aa3d01cf5318a68959a867525ede13b01d16f66a6cf4cf3ff601459bb2b22720a55a38819c0dfeb299b97aca7b2cec5561235c1e407c6a7641a8e3425e542e7c39242458ce2700ce8e4c55b4ae2400db768e1886efc6d45c9a9655211490b520d050abba9752d6fa44f9c9894461ff643f6566869269d4b272073c4f7266208acf009f01f9bc3e89954c9f395bff9ddfa3b76b008054ea5c3760b344775a118044626abf1092330331b2590bd3d456ca7be07ae0c9dad9c9ebe4302f3b3997a1effd61004647ffdd096401b72a00cf3e7bdf503a9ddc2384e2ddb73e58d8c43441a995b13e7091dc975fea06209d9e7c3b1aed1e0532e8d67af9000079ea54f7af3dcf4b47c7e20c7c14c334b8840d433be97c9a2dc652eaef8c25649806f41d1b6664680a2945f6e8d1e79e0592050045ab4f3900eae0c167a6e2f173bb8490bc73f8035c377f91c54c137c26d4fbc05f0f0d7ea8afbf941bfcfa7dbd4f7fff69198ee3f28ffdef033031d1f78744e2ec04300358541bc40512ededf7bf64db566f36ebd0d9f1d1259b7f9aeb7c9772b9356fbef12196e562dbc9fe9e9edfbd064c174ea064e9ac68a001dc58ece44f849074759e2139975dd205aae5b94486ce0e9d794e9cf8f313400298a544f02e17803c74e8b153b95cf6af4248de3cd45fd6a2cbe1370e7e08e8c08dc57a47d0ae93a584ef2f170080373373f6d17cde4bf7740f9148645644f94422c3d19e61a414d98f3fdedf8eb67e9212b9bf5a00eaf0e147cfd876e62f4a290e1df87045001c3aa0ad9f4a8dbf1d8df60c1500d8547863b71c000022993cf70c404ff730b6e5d6e4fbb6e5d2d3ad8bd6e9d3fffc1bdaf229ca046e2d005447c76367f279eb2580de9ee19aacdfdba395d745ab671498430f2e1559bf1a0000c2f3ecd7007a8e0ce32bd4816ab8e7880630333378046df90ccbb07eb500d481030ffe5d29958a4613ccce5417ccb33319a2d104528aecb1637b3a8034cbb47eb500003c219c8300a74f4f55e5ffb1986e99b3d9780fbada66a930f3ac0400a9943c0130339dadea0462510dc0b26687801c3af32c7be2ae7a4094d23b0e90b35ccc2acc90b374914d26636728d3f397a2aa0198669d04888ecd2e0ce2cba1e8d82c0086614a74cb50d57d47b52e442673e104403c9ec52a9c42a56c592e6363da85c6c6ba07d199a72a0055ffc40498b7dffec74ed3acbbb19a8d41cfbcafbfbeeb3e6008ddff140551d3f57a119223231d77e5f3d6b16a16db76b2bfabeba95fa1f37f55010c35c400c0f1e37f9abce38e2dc75dd7dd3e3d3dcd52ecba453be261a5d438baefb7aad5a11617e2c9279fbcc1b6edbe9d3b7fcc9a356bf03cb1c042888bfe9f7f363232ce3beffc8ba79ffe05c05d4aa9c3e81ea864015bf19f590b643efcf0c3b3e1703872f7ddf7100a45705d17c7f1701c17d7cde3382e8e93c771f2b8aecbe0e0308f3ffe4b2626c6b24aa96f01c3e8e1a5a40b5d8e18e081071eb836954a45d6aebd9a8686463c4fe0ba5a79db76c8e56cb2599b743ac7f8f805c6c626c9645c366edc02fade7f1d25ee3d2ba19a62c0755d72b91cf5f5758442cd18864963a37f4917b26d975ccefeb408831a01d474027bf6ec399b4c26939d9d9dcccece1594b448a7732412696666925cb8304b2c36b5a0bc6565191e3e05baf7395fcbfe3503d8b163c71753a95464d7aedd84c3611cc7259bb549a5b2cccdcd0348108f2710855bacd6d6d5dc79e7bd00cd86616c6299dde725a4942aca1590b975ebd6dfaf5bb74e3536362ac33096c3af025f05aea4024316d3b1d62c64a083f12aa075e3c68d3fdfbd7bf7f7239108a3a3a30c0c0cd0dfdfcfe0e020420894523f053e425f15bae8f97712ed4eff97340ada7a8d4003d06018c6cfb66fdfbed334cdab2ccb626464844c26d3ab94da0bf40117d09397871e602aaac2c5f4fc2f7bb6a484507898080000000049454e44ae426082</data>
+    </image>
+</images>
+<connections>
+    <connection>
+        <sender>okButton</sender>
+        <signal>clicked()</signal>
+        <receiver>AddTemplateDialogDesign</receiver>
+        <slot>accept()</slot>
+    </connection>
+    <connection>
+        <sender>cancelButton</sender>
+        <signal>clicked()</signal>
+        <receiver>AddTemplateDialogDesign</receiver>
+        <slot>reject()</slot>
+    </connection>
+    <connection>
+        <sender>nameEdit</sender>
+        <signal>textChanged(const QString&amp;)</signal>
+        <receiver>AddTemplateDialogDesign</receiver>
+        <slot>valuesChanged()</slot>
+    </connection>
+    <connection>
+        <sender>serverBox</sender>
+        <signal>textChanged(const QString&amp;)</signal>
+        <receiver>AddTemplateDialogDesign</receiver>
+        <slot>valuesChanged()</slot>
+    </connection>
+</connections>
+<tabstops>
+    <tabstop>nameEdit</tabstop>
+    <tabstop>serverBox</tabstop>
+    <tabstop>descriptionEdit</tabstop>
+    <tabstop>okButton</tabstop>
+    <tabstop>cancelButton</tabstop>
+</tabstops>
+<slots>
+    <slot>valuesChanged()</slot>
+</slots>
+<layoutdefaults spacing="6" margin="11"/>
+</UI>
