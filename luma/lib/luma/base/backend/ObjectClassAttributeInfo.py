@@ -10,13 +10,20 @@
 
 import ldap
 import ldap.schema
+import ldapurl
+
 import re
 import string
 from sets import Set
 from copy import copy
+import threading
+import time
 
 from base.backend.ServerList import ServerList
 import environment
+
+SCHEMA_CLASS_MAPPING = ldap.cidict.cidict()
+SCHEMA_ATTRS = SCHEMA_CLASS_MAPPING.keys()
 
 class UnknownAttribute(object):
     pass
@@ -70,108 +77,20 @@ class ObjectClassAttributeInfo(object):
             tmpObject = ServerList()
             tmpObject.readServerList()
             serverMeta = self.serverMeta
-
-            try:
-                # FIXME: is this right? it only checks normal and ssl transport
-                # what about other methods?
-                method = "ldap://"
-                if serverMeta.tls:
-                    method = "ldaps://"
-                    
-                tmpUrl = ""
-                if u"SASL EXTERNAL" == serverMeta.authMethod:
-                    tmpUrl = "ldapi://" + serverMeta.host.replace("/", "%2F").replace(",", "%2C")
-                else:
-                    tmpUrl = method + serverMeta.host + ":" + str(serverMeta.port)
-                
-                subschemasubentry_dn,schema = ldap.schema.urlfetch(tmpUrl)
-                
-                # get objectclass information
-                oidList = schema.listall(ldap.schema.ObjectClass)
-                for x in oidList:
-                    environment.updateUI()
-                    y = schema.get_obj(ldap.schema.ObjectClass, x)
-                
-                    
-                    # detect kind of objectclass
-                    kind = ""
-                    if 0 == y.kind:
-                        kind = "STRUCTURAL"
-                    elif 1 == y.kind:
-                        kind = "ABSTRACT"
-                    elif 2 == y.kind:
-                        kind = "AUXILIARY"
-                
-                    # name of objectclass
-                    desc = ""
-                    if not (y.desc == None):
-                        desc = y.desc
-                    
-                    # must attributes of the objectclass
-                    must = []
-                    if not (len(y.must) == 0):
-                        must = y.must
-                    
-                    # may attributes of the objectclass
-                    may = []
-                    if not (len(y.may) == 0):
-                        may = y.may
-                     
-                    # parents of the objectclass
-                    # beware that not the whole class chain is given. only
-                    # the first class above the current
-                    parents = []
-                    for parent in y.sup:
-                        # filter out objectclass top. all classes are 
-                        # derived from top
-                        if not ("top" == string.lower(parent)):
-                            parents.append(string.lower(parent))
-                            
-                    oid = ""
-                    if not (y.oid == None):
-                        oid = y.oid
-                            
-                    # store values for each name the current class has.
-                    # IMPORTANT: the key is always lowercase
-                    for name in y.names:
-                        self.objectClassesDict[string.lower(name)] = {"DESC": desc, 
-                            "MUST": must, "MAY": may, "NAME": name, "KIND": kind,
-                            "PARENTS": parents, "OID": oid}
-                                
-                
-                # get attribute information
-                oidList = schema.listall(ldap.schema.AttributeType)
-                for x in oidList:
-                    environment.updateUI()
-                    y = schema.get_obj(ldap.schema.AttributeType, x)
-                    
-                    nameList = y.names
-                    for z in nameList:
-                        self.attributeDict[string.lower(z)] = {"DESC": y.desc, 
-                            "SINGLE": y.single_value, "SYNTAX": y.syntax,
-                            "NAME": z, "COLLECTIVE": y.collective, 
-                            "EQUALITY": y.equality, "OBSOLETE": y.obsolete,
-                            "OID": y.oid, "ORDERING": y.ordering, "SUP": y.sup,
-                            "SYNTAX_LEN": y.syntax_len, "USAGE": y.usage}
             
-                # get syntax information
-                oidList = schema.listall(ldap.schema.LDAPSyntax)
-                for x in oidList:
-                    environment.updateUI()
-                    y = schema.get_obj(ldap.schema.LDAPSyntax, x)
-                    self.syntaxDict[x] = {"DESC": y.desc, "OID": y.oid}
-                        
-                
-                # get matching information
-                oidList = schema.listall(ldap.schema.MatchingRule)
-                for x in oidList:
-                    environment.updateUI()
-                    y = schema.get_obj(ldap.schema.MatchingRule, x)
-                    for z in y.names:
-                        self.matchingDict[string.lower(z)] = {"DESC": y.desc, "OID": y.oid,
-                            "OBSOLETE": y.obsolete, "SYNTAX": y.syntax,
-                            "NAME": z}
-                
+            workerThread = WorkerThreadFetch(serverMeta)
+            workerThread.start()
+        
+            while not workerThread.FINISHED:
+                environment.updateUI()
+                time.sleep(0.05)
+        
+            if None == workerThread.exceptionObject:
+                self.objectClassesDict = workerThread.objectClassesDict
+                self.attributeDict = workerThread.attributeDict
+                self.syntaxDict = workerThread.syntaxDict
+                self.matchingDict = workerThread.matchingDict
+            
                 # store retrieved information in the cache
                 metaData = {}
                 metaData['objectClassesDict'] = self.objectClassesDict
@@ -179,13 +98,7 @@ class ObjectClassAttributeInfo(object):
                 metaData['syntaxDict'] = self.syntaxDict
                 metaData['matchingDict'] = self.matchingDict
                 self.__class__.serverMetaCache[self.serverMeta.name] = metaData
-                
-            except ldap.LDAPError, e:
-                self.failure = True
-                self.failureException = e
-                print "Error during LDAP request"
-                print "Reason: " + str(e)
-            
+
         environment.setBusy(False)
 
 ###############################################################################
@@ -374,6 +287,9 @@ class ObjectClassAttributeInfo(object):
             return None
         
         className = string.lower(className)
+        
+        if "top" == className:
+            return []
     
         parentList = []
         tmpList = copy(self.objectClassesDict[className]["PARENTS"])
@@ -525,9 +441,195 @@ class ObjectClassAttributeInfo(object):
                 
         return attributeList
         
+###############################################################################
+###############################################################################
         
+class WorkerThreadFetch(threading.Thread):
+    
+    def __init__(self, serverMeta):
+        threading.Thread.__init__(self)
+        self.serverMeta = serverMeta
+            
+        self.FINISHED = False
+        self.exceptionObject = None
         
+        self.objectClassesDict = {}
+        self.attributeDict = {}
+        self.syntaxDict = {}
+        self.matchingDict = {}
         
+    def run(self):
+        try:
+            whoVal = None
+            credVal = None
+            if not (self.serverMeta.bindAnon):
+                whoVal = self.serverMeta.bindDN
+                credVal = self.serverMeta.bindPassword
+                
+                
+            ldapSession = None
+                
+            if u"SASL EXTERNAL" == self.serverMeta.authMethod:
+                urlschemeVal = "ldapi"
+                url = ldapurl.LDAPUrl(urlscheme=urlschemeVal, 
+                hostport = self.serverMeta.host.replace("/", "%2F").replace(",", "%2C"),
+                who = whoVal, cred = credVal)
+                    
+                ldapSession = ldap.initialize(url.initializeUrl())
+                ldapSession.protocol_version = ldap.VERSION3
+                    
+                sasl_cb_value_dict = {}
+                sasl_cb_value_dict[ldap.sasl.CB_AUTHNAME] = whoVal
+                sasl_cb_value_dict[ldap.sasl.CB_PASS] = credVal
+                sasl_auth = ldap.sasl.sasl(sasl_cb_value_dict, "EXTERNAL")
+                    
+                ldapSession.sasl_interactive_bind_s("", sasl_auth)
+            else:
+                urlschemeVal = "ldap"
+                if self.serverMeta.tls:
+                    urlschemeVal = "ldaps"
+                        
+                url = ldapurl.LDAPUrl(urlscheme=urlschemeVal, 
+                    hostport = self.serverMeta.host + ":" + str(self.serverMeta.port),
+                    who = whoVal, cred = credVal)
+                    
+                ldapSession = ldap.initialize(url.initializeUrl())
+                ldapSession.protocol_version = ldap.VERSION3
+                
+                
+                if self.serverMeta.bindAnon:
+                    ldapSession.simple_bind()
+                elif self.serverMeta.authMethod == u"Simple":
+                    ldapSession.simple_bind(whoVal, credVal)
+                elif u"SASL" in self.serverMeta.authMethod:
+                    sasl_cb_value_dict = {}
+                    if not u"GSSAPI" in self.serverMeta.authMethod:
+                        sasl_cb_value_dict[ldap.sasl.CB_AUTHNAME] = whoVal
+                        sasl_cb_value_dict[ldap.sasl.CB_PASS] = credVal
+                    
+                    sasl_mech = None
+                    if self.serverMeta.authMethod == u"SASL Plain":
+                        sasl_mech = "PLAIN"
+                    elif self.serverMeta.authMethod == u"SASL CRAM-MD5":
+                        sasl_mech = "CRAM-MD5"
+                    elif self.serverMeta.authMethod == u"SASL DIGEST-MD5":
+                        sasl_mech = "DIGEST-MD5"
+                    elif self.serverMeta.authMethod == u"SASL Login":
+                        sasl_mech = "LOGIN"
+                    elif self.serverMeta.authMethod == u"SASL GSSAPI":
+                        sasl_mech = "GSSAPI"
+                    
+                    sasl_auth = ldap.sasl.sasl(sasl_cb_value_dict,sasl_mech)
+                    ldapSession.sasl_interactive_bind_s("", sasl_auth)
+                
+            subschemasubentry_dn = ldapSession.search_subschemasubentry_s(url.dn)
+            if subschemasubentry_dn is None:
+                subschemasubentry_entry = None
+            else:
+                if url.attrs is None:
+                    schema_attrs = SCHEMA_ATTRS
+                else:
+                    schema_attrs = url.attrs
+                subschemasubentry_entry = ldapSession.read_subschemasubentry_s(
+                    subschemasubentry_dn,attrs=schema_attrs)
+            ldapSession.unbind_s()
+                
+            schema = None
+            if subschemasubentry_dn!=None:
+                schema = ldap.schema.SubSchema(subschemasubentry_entry)
+            else:
+                schema = None
+                
+                
+            # get objectclass information
+            oidList = schema.listall(ldap.schema.ObjectClass)
+            for x in oidList:
+                y = schema.get_obj(ldap.schema.ObjectClass, x)
+                
+                    
+                # detect kind of objectclass
+                kind = ""
+                if 0 == y.kind:
+                    kind = "STRUCTURAL"
+                elif 1 == y.kind:
+                    kind = "ABSTRACT"
+                elif 2 == y.kind:
+                    kind = "AUXILIARY"
+                
+                # name of objectclass
+                desc = ""
+                if not (y.desc == None):
+                    desc = y.desc
+                    
+                # must attributes of the objectclass
+                must = []
+                if not (len(y.must) == 0):
+                    must = y.must
+                    
+                # may attributes of the objectclass
+                may = []
+                if not (len(y.may) == 0):
+                    may = y.may
+                     
+                # parents of the objectclass
+                # beware that not the whole class chain is given. only
+                # the first class above the current
+                parents = []
+                for parent in y.sup:
+                    # filter out objectclass top. all classes are 
+                    # derived from top
+                    if not ("top" == string.lower(parent)):
+                        parents.append(string.lower(parent))
+                            
+                oid = ""
+                if not (y.oid == None):
+                    oid = y.oid
+                            
+                # store values for each name the current class has.
+                # IMPORTANT: the key is always lowercase
+                for name in y.names:
+                    self.objectClassesDict[string.lower(name)] = {"DESC": desc, 
+                        "MUST": must, "MAY": may, "NAME": name, "KIND": kind,
+                        "PARENTS": parents, "OID": oid}
+                            
+                
+            # get attribute information
+            oidList = schema.listall(ldap.schema.AttributeType)
+            for x in oidList:
+                y = schema.get_obj(ldap.schema.AttributeType, x)
+                    
+                nameList = y.names
+                for z in nameList:
+                    self.attributeDict[string.lower(z)] = {"DESC": y.desc, 
+                        "SINGLE": y.single_value, "SYNTAX": y.syntax,
+                        "NAME": z, "COLLECTIVE": y.collective, 
+                        "EQUALITY": y.equality, "OBSOLETE": y.obsolete,
+                        "OID": y.oid, "ORDERING": y.ordering, "SUP": y.sup,
+                        "SYNTAX_LEN": y.syntax_len, "USAGE": y.usage}
+            
+            # get syntax information
+            oidList = schema.listall(ldap.schema.LDAPSyntax)
+            for x in oidList:
+                y = schema.get_obj(ldap.schema.LDAPSyntax, x)
+                self.syntaxDict[x] = {"DESC": y.desc, "OID": y.oid}
+                        
+                
+            # get matching information
+            oidList = schema.listall(ldap.schema.MatchingRule)
+            for x in oidList:
+                y = schema.get_obj(ldap.schema.MatchingRule, x)
+                for z in y.names:
+                    self.matchingDict[string.lower(z)] = {"DESC": y.desc, "OID": y.oid,
+                        "OBSOLETE": y.obsolete, "SYNTAX": y.syntax,
+                        "NAME": z}
+                
+            self.FINISHED = True
+            
+        except Exception, e:
+            self.FINISHED = True
+            self.failureException = e
+            print "Error during LDAP schema fetch request."
+            print "Reason: " + str(e)
         
         
         
