@@ -10,7 +10,7 @@
 
 import string
 import ldap
-import ldif
+import ldif,dsml
 import copy
 import base64
 import StringIO
