@@ -238,16 +238,6 @@ See console output for more information."""),
                 
         searchResult = conObject.search(ldapObject, searchLevel,self.searchObjectClass, None, 0)
 
-        if searchResult == None:
-            QMessageBox.critical(None,
-                self.trUtf8("Search Error"),
-                self.trUtf8("""Could not access children.
-See console output for more information."""),
-                self.trUtf8("&OK"),
-                None,
-                None,
-                0, -1)
-        
         return searchResult
         
 
