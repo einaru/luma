@@ -234,6 +234,17 @@ class LumaConnection(object):
     def bind(self):
         """Bind to server.
         """
+
+        # If we're going to present client certificates, this must be set as an option
+        if self.certificate:
+            try:
+                self.set_option(ldap.OPT_X_TLS_CERTFILE,self.clientCertfile)
+                self.set_option(ldap.OPT_X_TLS_KEYFILE,self.clientCertKeyfile)
+            except:
+                message = "Certificate error. Reason:\n"
+                message += "Could not set client certificate and certificate keyfile"
+                environment.logMEssage(LogObject("Error,",message))
+
         
         environment.setBusy(True)
         
@@ -246,14 +257,14 @@ class LumaConnection(object):
         
         environment.setBusy(False)
         
-        if None == workerThread.exceptionObject:
+        if workerThread.exceptionObject == None:
             message = "LDAP bind operation successful."
             environment.logMessage(LogObject("Info", message))
             self.ldapServerObject = workerThread.ldapServerObject
             return (True, None)
         else:
             message = "LDAP bind operation not successful. Reason:\n"
-            message = message + str(workerThread.exceptionObject)
+            message += str(workerThread.exceptionObject)
             environment.logMessage(LogObject("Error", message))
             return (False, workerThread.exceptionObject)
         
