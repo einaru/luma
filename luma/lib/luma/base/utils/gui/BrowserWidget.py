@@ -201,7 +201,7 @@ class BrowserWidget(QListView):
         if len(ldapObject) == 0:
             return None
         
-        serverMeta = self.serverListObject.get_serverobject(serverName)
+        serverMeta = self.serverListObject.getServerObject(serverName)
         
         conObject = LumaConnection(serverMeta)
         conObject.bind()
@@ -247,7 +247,7 @@ See console output for more information."""),
         if len(ldapObject) == 0:
             return None
             
-        serverMeta = self.serverListObject.get_serverobject(serverName)
+        serverMeta = self.serverListObject.getServerObject(serverName)
         searchResult = None
         
         conObject = LumaConnection(serverMeta)
@@ -431,7 +431,7 @@ See console output for more information."""),
         
         fullData = [(dn, data)]
         
-        widget = ObjectWidget(None, template.name, 0)
+        widget = ObjectWidget(None, template.name.encode("utf-8"), 0)
         widget.setMinimumHeight(500)
         widget.setMinimumWidth(600)
         widget.setCaption(self.trUtf8('Add entry'))
@@ -499,7 +499,7 @@ See console output for more information."""),
        ldapObject. 
         """
         
-        serverMeta = self.serverListObject.get_serverobject(serverName)
+        serverMeta = self.serverListObject.getServerObject(serverName)
         
         connectionObject = LumaConnection(serverMeta)
         connectionObject.bind()

@@ -223,7 +223,7 @@ class ObjectWidget(QWidget):
         
         tmpObject = ServerList()
         tmpObject.readServerList()
-        serverMeta = tmpObject.get_serverobject(self.SERVER)
+        serverMeta = tmpObject.getServerObject(self.SERVER)
         
         lumaConnection = LumaConnection(serverMeta)
         
@@ -232,7 +232,8 @@ class ObjectWidget(QWidget):
         result = 1
         
         if self.OBJECTCLASS_CHANGED or self.CREATE:
-            oldEntry = lumaConnection.search_s(self.DN, ldap.SCOPE_BASE)[0][1]
+            if not self.CREATE:
+                oldEntry = lumaConnection.search_s(self.DN, ldap.SCOPE_BASE)[0][1]
             
             if not self.CREATE:
                 result = lumaConnection.delete_s(self.DN)
@@ -267,7 +268,7 @@ Please read console output for more information."""),
     def refreshView(self):
         tmpObject = ServerList()
         tmpObject.readServerList()
-        serverMeta = tmpObject.get_serverobject(self.SERVER)
+        serverMeta = tmpObject.getServerObject(self.SERVER)
         self.CURRENTVALUES = {}
         
         lumaConnection = LumaConnection(serverMeta)
@@ -414,7 +415,7 @@ Please read console output for more information."""),
             try:
                 tmpObject = ServerList()
                 tmpObject.readServerList()
-                serverMeta = tmpObject.get_serverobject(self.SERVER)
+                serverMeta = tmpObject.getServerObject(self.SERVER)
         
                 lumaConnection = LumaConnection(serverMeta)
         
@@ -553,7 +554,7 @@ Please read console output for more information."""),
                     self.trUtf8("Edit attribute"),
                     unicode(attribute) + unicode(":"),
                     QLineEdit.Normal,
-                    oldValue.decode("utf-8"), None, None)
+                    oldValue.decode("utf-8"), self, None)
                     
 
         
@@ -562,6 +563,7 @@ Please read console output for more information."""),
             return
             
         val = unicode(text[0]).encode("utf-8")
+
         
         if self.CREATE and (attribute == "dn"):
             self.DN = val
@@ -685,7 +687,7 @@ Please read console output for more information."""),
         
         tmpObject = ServerList()
         tmpObject.readServerList()
-        serverMeta = tmpObject.get_serverobject(self.SERVER)
+        serverMeta = tmpObject.getServerObject(self.SERVER)
         
         lumaConnection = LumaConnection(serverMeta)
         
