@@ -61,6 +61,12 @@ class MainWin(MainWinDesign):
         self.progressBar.setMaximumWidth(150)
         self.progressBar.setTotalSteps(0)
         statusBar.addWidget(self.progressBar, 0, 1)
+        
+        # Build the plugin toolbar
+        self.pluginToolBar = QToolBar(self, "PLUGINTOOLBAR")
+        self.toolBarLabel = QLabel("Plugin:", self.pluginToolBar)
+        self.pluginBox = QComboBox(self.pluginToolBar)
+        self.connect(self.pluginBox, SIGNAL("activated(const QString &)"), self.pluginSelectionChanged)
 
         self.PLUGINS = {}
         self.ICONPREFIX = os.path.join(environment.lumaInstallationPrefix, "share", "luma", "icons")
@@ -106,24 +112,18 @@ class MainWin(MainWinDesign):
         self.PLUGINS = pluginObject.PLUGINS
         iconTmp = None
         
+        self.pluginBox.clear()
+        
         for x in self.PLUGINS.keys():
             tmpObject = self.PLUGINS[x]
-            if tmpObject['PLUGIN_LOAD']:
-                iconTmp =QIconViewItem(self.taskList, tmpObject["PLUGIN_NAME"],
-                        tmpObject["PLUGIN_CODE"].get_icon())
-                        
+            if tmpObject['PLUGIN_LOAD'] == 1:
+                self.pluginBox.insertItem(self.PLUGINS[x]['PLUGIN_NAME'])
                 widgetTmp = tmpObject["PLUGIN_CODE"].getPluginWidget(self.taskStack)
-                
                 tmpObject["WIDGET_REF"] = widgetTmp
-                tmpObject["ICON_REF"] = iconTmp
                 tmpObject["WIDGET_ID"] = self.taskStack.addWidget(widgetTmp, -1)
                 
-                self.taskList.insertItem(iconTmp)
-        
-        if not(iconTmp == None):
-            iconTmp.setSelected(1, 0)
-        
-        self.taskSelectionChanged(iconTmp)
+        pluginName = str(self.pluginBox.currentText())
+        self.taskStack.raiseWidget(self.PLUGINS[pluginName]["WIDGET_ID"])
             
         self.PLUGINS_LOADED = 1
 
@@ -147,33 +147,29 @@ class MainWin(MainWinDesign):
                 widgetRef.deleteLater()
                 
         self.PLUGINS = {}
-        self.taskList.clear()
 
 ###############################################################################
 
-    def taskSelectionChanged(self, taskSender=None):
+    def pluginSelectionChanged(self, pluginName):
         """If a plugin icon is clicked, the corresponding plugin widget is
         raised.
         """ 
         
-        # Make sure an icon was selected.
-        if not(taskSender == None):
-            fooString = str(taskSender.text())
-            
-            if self.PLUGINS.has_key(fooString):
-                self.taskStack.raiseWidget(self.PLUGINS[fooString]["WIDGET_ID"])
-                
-                toolBars = self.toolBars(Qt.DockTop)
-                for x in toolBars:
-                    x.deleteLater()
+        pluginName = str(pluginName)
 
-                #build the toolbar for the selected plugin
-                try:
-                    self.PLUGINS[fooString]["WIDGET_REF"].buildToolBar(self)
-                except AttributeError, e:
-                    pass
-                    
-                self.taskBox.setTitle(fooString)
+        if self.PLUGINS.has_key(pluginName):
+            self.taskStack.raiseWidget(self.PLUGINS[pluginName]["WIDGET_ID"])
+
+        toolBars = self.toolBars(Qt.DockTop)
+        for x in toolBars:
+            if not (str(x.name()) == "PLUGINTOOLBAR"):
+                x.deleteLater()
+
+        #build the toolbar for the selected plugin
+        try:
+            self.PLUGINS[pluginName]["WIDGET_REF"].buildToolBar(self)
+        except AttributeError, e:
+            print "Error: Could not build toolbar for plugin ", pluginName
 
 ###############################################################################
 
@@ -289,4 +285,4 @@ class MainWin(MainWinDesign):
                 print errorData
                 
             self.reloadPlugins()
-    
+
