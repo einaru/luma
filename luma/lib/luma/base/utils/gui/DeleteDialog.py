@@ -81,6 +81,8 @@ class DeleteDialog(DeleteDialogDesign):
         """ Delete items from server and display statusmessages.
         """
         
+        environment.setBusy(True)
+        
         connectionObject = None
         currentServerMeta = None
         connected = False
@@ -117,6 +119,8 @@ class DeleteDialog(DeleteDialogDesign):
             
             if success:
                 self.deletedEntries.append(normalDN)
+                
+        environment.setBusy(False)
             
 ###############################################################################
 
