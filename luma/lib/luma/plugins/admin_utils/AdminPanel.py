@@ -48,7 +48,7 @@ class AdminPanel(AdminPanelDesign):
             password = tmpPassword
         else:
             password = mkpasswd(tmpPassword, 3, method)
-        
+
         self.randomCryptEdit.setText(password)
         
 ###############################################################################
