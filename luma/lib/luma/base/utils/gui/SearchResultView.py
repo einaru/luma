@@ -10,6 +10,8 @@
 
 import ldap
 from qt import *
+import base64
+import re
 
 from base.utils.gui.SearchResultViewDesign import SearchResultViewDesign
 from base.utils.gui.ObjectWidget import ObjectWidget
@@ -210,12 +212,19 @@ class SearchResultView(SearchResultViewDesign):
 ###############################################################################
 
     def convert_to_ldif(self, data):
+        SAFE_STRING_PATTERN = '(^(\000|\n|\r| |:|<)|[\000\n\r\200-\377]+|[ ]+$)'
+        safe_string_re = re.compile(SAFE_STRING_PATTERN)
+
         tmpList = []
         for a in data:
             tmpList.append("dn: " + a[0] + "\n")
             for x in a[1].keys():
                 for y in a[1][x]:
-                    tmpList.append(x + ": " + y + "\n")
+                    if not (safe_string_re.search(y) == None):
+                        tmpList.append(x + ":: " + base64.encodestring(y))
+                    else:
+                        tmpList.append(x + ": " + y + "\n")
+                    
             tmpList.append("\n")
         return "".join(tmpList)
     
