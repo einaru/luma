@@ -54,43 +54,58 @@ class AddressbookSettings(AddressbookSettingsDesign):
 
     def readSettings(self):
         config = ConfigParser()
-        config.readfp(open(self.configFile, 'r'))
+        try:
+            config.readfp(open(self.configFile, 'r'))
+        except IOError, e:
+            print "Could not read addressbook settings. Reason: "
+            print e
         
         filter = None
         
+        if not(config.has_section("Addressbook")):
+            config.add_section("Addressbook")
+        
+        if not(config.has_option("Addressbook", "filter")):
+            config.set("Addressbook", "filter", "mail,givenName,cn,sn,uid")
+        
+        filter = config.get("Addressbook", "filter").strip()
+        
+        if (filter.split(",")[0] == "") or (filter == None):
+            config.set("Addressbook", "filter", "mail,givenName,cn,sn,uid")
+            
         if config.has_option('Addressbook', 'filter'):
             filter = config.get('Addressbook', 'filter')
-            filterSplit = filter.split(",")
-            if filterSplit[0] == "":
-                config.set("Addressbook", "filter", "inetOrgPerson,cn,sn,givenName,mail")
-                config.write(open(self.configFile, 'w'))
-                filterSplit = "inetOrgPerson,cn,sn,givenName,mail".split(",")
-            
-            for x in filterSplit:
+        
+        try:
+            config.write(open(self.configFile, 'w'))
+        except IOError, e:
+            print "Error: Could not write to " + self.configFile + ". Reason:"
+            print e
+        
+        filterSplit = filter.split(",")
+        for x in filterSplit:
                 tmpItem = QListViewItem(self.attributeView, x)
                 self.attributeView.insertItem(tmpItem)
                 self.filterDict[x] = None
-                
-        else:
-            config.add_section("Addressbook")
-            config.set("Addressbook", "load", "1")
-            config.set("Addressbook", "filter", "inetOrgPerson,cn,sn,givenName,mail")
-            config.write(open(self.configFile, 'w'))
-        
 ###############################################################################
 
     def saveValues(self):
         config = ConfigParser()
-        config.readfp(open(self.configFile, 'r'))
         
-        val = ",".join(self.filterDict.keys())
+        try:
+            config.readfp(open(self.configFile, 'r'))
         
-        if not config.has_section("Addressbook"):
-            config.add_section("Addressbook")
-            config.set("Addressbook", "load", "1")
+            val = ",".join(self.filterDict.keys())
+        
+            if not config.has_section("Addressbook"):
+                config.add_section("Addressbook")
+                #config.set("Addressbook", "load", "1")
             
-        config.set("Addressbook", "filter", val)
+            config.set("Addressbook", "filter", val)
         
-        config.write(open(self.configFile, 'w'))
+            config.write(open(self.configFile, 'w'))
+        except IOError, e:
+            print "Error: Could not read/write to " + self.configFile + ". Reason:"
+            print e
         
         
