@@ -157,32 +157,28 @@ class ObjectWidget(QWidget):
         serverMeta = tmpObject.getServerObject(self.SERVER)
         
         lumaConnection = LumaConnection(serverMeta)
-        
         lumaConnection.bind()
         
-        result = 1
+        success = False
         
-        if self.OBJECTCLASS_CHANGED or self.CREATE:
-            if not self.CREATE:
-                oldEntry = lumaConnection.search(self.DN, ldap.SCOPE_BASE)[0][1]
-            
-            if not self.CREATE:
-                result = lumaConnection.delete(self.DN)
+        # clean out attributes which were given by the template but got no value
+        # by the user.
+        for x in self.CURRENTVALUES.keys():
+            if self.CURRENTVALUES[x] == [None]:
+                del self.CURRENTVALUES[x]
                 
-            if not(result == 0):
-                modlist = ldap.modlist.addModlist(self.CURRENTVALUES)
-                result = lumaConnection.add(self.DN, modlist)
-                if result == 0:
-                    modlist = ldap.modlist.addModlist(self.oldEntry)
-                    lumaConnection.add(self.DN, modlist)
+        
+        if self.CREATE:
+            modlist = ldap.modlist.addModlist(self.CURRENTVALUES)
+            success = lumaConnection.add(self.DN, modlist)
         else:
             oldEntry = lumaConnection.search(self.DN, ldap.SCOPE_BASE)[0][1]
             modlist =  ldap.modlist.modifyModlist(oldEntry, self.CURRENTVALUES, [], 0)
-            result = lumaConnection.modify(self.DN, modlist)
+            success = lumaConnection.modify(self.DN, modlist)
             
         lumaConnection.unbind()
         
-        if result == 0:
+        if not success:
             QMessageBox.warning(self,
             self.trUtf8("Error"),
             self.trUtf8("""Could not save object data. 
@@ -227,7 +223,7 @@ Please read console output for more information."""),
             if (bold) or (self.SERVERMETA.isMust(attribute, objectClasses)):
                 text = "<b>" + attribute + "</b>"
                 
-            if data == "":
+            if data == None:
                 text = """<font color="#ff0000">""" + text + "</font>"
                 
             label.setText(text)
@@ -235,7 +231,10 @@ Please read console output for more information."""),
             
             isBinary = False
             
-            if self.SERVERMETA.isBinary(attribute) or isBinaryAttribute(data):
+            #if not (attribute=="dn" or attribute=="objectClass"):
+            #    print dir(self.SERVERMETA.matchingRule(attribute))
+            
+            if (self.SERVERMETA.isBinary(attribute) or isBinaryAttribute(data)) and not (data == None):
                 if attribute == 'jpegPhoto':
                     isBinary = True
                     picture = QImage()
@@ -257,10 +256,11 @@ Please read console output for more information."""),
                         value.setAlignment(Qt.AlignLeft)
                         QToolTip.add(value, self.trUtf8("Binary value"))
             else:
-                data = data.decode('utf-8')
+                if not (data == None):
+                    data = data.decode('utf-8')
 
                 value = None
-                if data == '':
+                if data == None:
                     value = QLabel(self.attributeWidget, "LDAP_VALUE")
                     value.setText("""<font color="#ff0000">Value not set.</font>""")
                     value.setAlignment(Qt.AlignLeft)
@@ -465,9 +465,9 @@ Please read console output for more information."""),
             
         for x in attributeList:
             if self.CURRENTVALUES.has_key(x):
-                self.CURRENTVALUES[x].append('')
+                self.CURRENTVALUES[x].append(None)
             else:
-                self.CURRENTVALUES[x] = ['']
+                self.CURRENTVALUES[x] = [None]
             
         self.displayValues()
         
@@ -500,6 +500,9 @@ Please read console output for more information."""),
             oldValue = self.DN
         else:
             oldValue = self.CURRENTVALUES[attribute][position]
+            
+        if oldValue == None:
+            oldValue = ""
             
         text = QInputDialog.getText(\
                     self.trUtf8("Edit attribute"),
