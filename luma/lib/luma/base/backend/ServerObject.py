@@ -48,19 +48,27 @@ class ServerObject(object):
 ###############################################################################
 
     def __repr__(self):
-        finalString = ""
+        finalString = []
 
-        finalString = unicode("Name: ") + unicode(self.name)
-        finalString = finalString + unicode("\nHost: ") + unicode(self.host)
-        portString = unicode(self.port)
-        finalString = finalString + unicode("\nPort: ") + unicode(portString)
-        finalString = finalString + unicode("\nBind anonymously: ") + unicode(self.bindAnon)
-        finalString = finalString + unicode("\nBase DN: ") + unicode(self.baseDN)
-        finalString = finalString + unicode("\nBind DN: ") + unicode(self.bindDN)
-        finalString = finalString + unicode("\nBind Password: ") + unicode(self.bindPassword)
-        finalString = finalString + unicode("\nTLS: ") + unicode(self.tls) + unicode("\n")
+        finalString.append(unicode("Name: "))
+        finalString.append(unicode(self.name))
+        finalString.append(unicode("\nHost: "))
+        finalString.append(unicode(self.host))
+        finalString.append(unicode("\nPort: "))
+        finalString.append(unicode(self.port))
+        finalString.append(unicode("\nBind anonymously: "))
+        finalString.append(unicode(self.bindAnon))
+        finalString.append(unicode("\nBase DN: "))
+        finalString.append(unicode(self.baseDN))
+        finalString.append(unicode("\nBind DN: "))
+        finalString.append(unicode(self.bindDN))
+        finalString.append(unicode("\nBind Password: "))
+        finalString.append(unicode(self.bindPassword))
+        finalString.append(unicode("\nTLS: "))
+        finalString.append(unicode(self.tls))
+        finalString.append(unicode("\n"))
 
-        return finalString
+        return "".join(finalString)
         
 ###############################################################################
 
