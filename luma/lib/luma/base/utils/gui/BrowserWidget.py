@@ -342,6 +342,10 @@ See console output for more information."""),
         """ Convert data of a ldap object to ldif format.
         """
         
+        SAFE_STRING_PATTERN = '(^(\000|\n|\r| |:|<)|[\000\n\r\200-\377]+|[ ]+$)'
+        safe_string_re = re.compile(SAFE_STRING_PATTERN)
+
+        
         tmpListe = []
         if data == None:
             data = []
@@ -349,7 +353,11 @@ See console output for more information."""),
             tmpListe.append("dn: " + a[0] + "\n")
             for x in a[1].keys():
                 for y in a[1][x]:
-                    tmpListe.append(x + ": " + y + "\n")
+                    if not (safe_string_re.search(y) == None):
+                        tmpListe.append(x + ":: " + base64.encodestring(y))
+                    else:
+                        tmpListe.append(x + ": " + y + "\n")
+
             tmpListe.append("\n")
         return string.join(tmpListe, "")
 
