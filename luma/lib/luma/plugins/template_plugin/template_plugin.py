@@ -13,24 +13,23 @@ from plugins.template_plugin.TemplateForm import TemplateForm
 
 class TaskPlugin(object):
 
-	def __init__(self):
-		self.pluginName = "Browse LDAP Tree"
-		self.pluginPath = ""
-		self.pluginWidget = None
-		print "Trying to initialize plugin \"" + self.pluginName + "\""
+    def __init__(self):
+        self.pluginName = "Browse LDAP Tree"
+        self.pluginPath = ""
+        self.pluginWidget = None
 
-	def postprocess (self):
-		print "Plugin \"" + self.pluginName + "\" will be shut down"
+    def postprocess (self):
+        pass
 
-	def get_icon(self):
-		try:
-			iconPixmap = QPixmap(self.pluginPath + "/icons/plugin.png")
-		except:
-			print "Icon konnte nicht geöffnet werden"
+    def get_icon(self):
+        try:
+            iconPixmap = QPixmap(self.pluginPath + "/icons/plugin.png")
+        except:
+            print "Debug: Icon konnte nicht geöffnet werden"
 
-		return iconPixmap
+        return iconPixmap
 
 
-	def set_widget(self, parent):
-		self.pluginWidget = TemplateForm()
-		return self.pluginWidget
+    def set_widget(self, parent):
+        self.pluginWidget = TemplateForm()
+        return self.pluginWidget

@@ -16,16 +16,15 @@ class TaskPlugin(object):
         self.pluginName = "Massive user creation"
         self.pluginPath = ""
         self.pluginWidget = None
-        print "Trying to initialize plugin \"" + self.pluginName + "\""
 
     def postprocess (self):
-        print "Plugin \"" + self.pluginName + "\" will be shut down"
+        pass
 
     def get_icon(self):
         try:
             iconPixmap = QPixmap(self.pluginPath + "/icons/massive_users.png")
         except:
-            print "Icon konnte nicht geöffnet werden"
+            print "Debug: Icon konnte nicht geöffnet werden"
 
         return iconPixmap
 

@@ -17,16 +17,15 @@ class TaskPlugin(object):
         self.pluginName = "Browse LDAP Tree"
         self.pluginPath = ""
         self.pluginWidget = None
-        print "Trying to initialize plugin \"" + self.pluginName + "\""
 
     def postprocess (self):
-        print "Plugin \"" + self.pluginName + "\" will be shut down"
+        pass
 
     def get_icon(self):
         try:
             iconPixmap = QPixmap(self.pluginPath + "/icons/plugin.png")
         except:
-            print "Icon could not be opened."
+            print "Debug: Icon could not be opened."
 
         return iconPixmap
 
