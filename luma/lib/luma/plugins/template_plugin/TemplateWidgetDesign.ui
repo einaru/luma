@@ -8,8 +8,8 @@
         <rect>
             <x>0</x>
             <y>0</y>
-            <width>647</width>
-            <height>557</height>
+            <width>660</width>
+            <height>572</height>
         </rect>
     </property>
     <property name="caption">
@@ -362,13 +362,21 @@
                     </widget>
                     <widget class="QLayoutWidget">
                         <property name="name">
-                            <cstring>layout14</cstring>
+                            <cstring>layout4</cstring>
                         </property>
                         <grid>
                             <property name="name">
                                 <cstring>unnamed</cstring>
                             </property>
-                            <widget class="QListView" row="1" column="1" rowspan="4" colspan="1">
+                            <widget class="QPushButton" row="1" column="2">
+                                <property name="name">
+                                    <cstring>addAttributeButton</cstring>
+                                </property>
+                                <property name="text">
+                                    <string>Add...</string>
+                                </property>
+                            </widget>
+                            <widget class="QListView" row="1" column="1" rowspan="3" colspan="1">
                                 <column>
                                     <property name="text">
                                         <string>Name</string>
@@ -433,48 +441,10 @@
                                 <property name="resizeMode">
                                     <enum>LastColumn</enum>
                                 </property>
-                            </widget>
-                            <widget class="QLabel" row="0" column="0" rowspan="1" colspan="2">
-                                <property name="name">
-                                    <cstring>textLabel7</cstring>
-                                </property>
-                                <property name="text">
-                                    <string>&lt;b&gt;Attributes&lt;/b&gt;</string>
+                                <property name="defaultRenameAction">
+                                    <enum>Accept</enum>
                                 </property>
                             </widget>
-                            <widget class="QPushButton" row="1" column="2">
-                                <property name="name">
-                                    <cstring>addAttributeButton</cstring>
-                                </property>
-                                <property name="text">
-                                    <string>Add...</string>
-                                </property>
-                            </widget>
-                            <widget class="QPushButton" row="2" column="2">
-                                <property name="name">
-                                    <cstring>editAttributeButton</cstring>
-                                </property>
-                                <property name="text">
-                                    <string>Edit...</string>
-                                </property>
-                            </widget>
-                            <spacer row="4" column="2">
-                                <property name="name">
-                                    <cstring>spacer14</cstring>
-                                </property>
-                                <property name="orientation">
-                                    <enum>Vertical</enum>
-                                </property>
-                                <property name="sizeType">
-                                    <enum>MinimumExpanding</enum>
-                                </property>
-                                <property name="sizeHint">
-                                    <size>
-                                        <width>21</width>
-                                        <height>31</height>
-                                    </size>
-                                </property>
-                            </spacer>
                             <spacer row="1" column="0">
                                 <property name="name">
                                     <cstring>spacer12</cstring>
@@ -492,7 +462,32 @@
                                     </size>
                                 </property>
                             </spacer>
-                            <widget class="QPushButton" row="3" column="2">
+                            <widget class="QLabel" row="0" column="0" rowspan="1" colspan="2">
+                                <property name="name">
+                                    <cstring>textLabel7</cstring>
+                                </property>
+                                <property name="text">
+                                    <string>&lt;b&gt;Attributes&lt;/b&gt;</string>
+                                </property>
+                            </widget>
+                            <spacer row="3" column="2">
+                                <property name="name">
+                                    <cstring>spacer14</cstring>
+                                </property>
+                                <property name="orientation">
+                                    <enum>Vertical</enum>
+                                </property>
+                                <property name="sizeType">
+                                    <enum>MinimumExpanding</enum>
+                                </property>
+                                <property name="sizeHint">
+                                    <size>
+                                        <width>21</width>
+                                        <height>132</height>
+                                    </size>
+                                </property>
+                            </spacer>
+                            <widget class="QPushButton" row="2" column="2">
                                 <property name="name">
                                     <cstring>deleteAttributeButton</cstring>
                                 </property>
@@ -545,16 +540,34 @@
         <slot>deleteAttribute()</slot>
     </connection>
     <connection>
-        <sender>editAttributeButton</sender>
-        <signal>clicked()</signal>
-        <receiver>TemplateWidgetDesign</receiver>
-        <slot>editAttribute()</slot>
-    </connection>
-    <connection>
         <sender>saveTemplateButton</sender>
         <signal>clicked()</signal>
         <receiver>TemplateWidgetDesign</receiver>
         <slot>saveTemplates()</slot>
+    </connection>
+    <connection>
+        <sender>attributeView</sender>
+        <signal>itemRenamed(QListViewItem*,int,const QString&amp;)</signal>
+        <receiver>TemplateWidgetDesign</receiver>
+        <slot>editAttribute()</slot>
+    </connection>
+    <connection>
+        <sender>deleteTemplateButton</sender>
+        <signal>clicked()</signal>
+        <receiver>TemplateWidgetDesign</receiver>
+        <slot>deleteTemplate()</slot>
+    </connection>
+    <connection>
+        <sender>duplicateTemplateButton</sender>
+        <signal>clicked()</signal>
+        <receiver>TemplateWidgetDesign</receiver>
+        <slot>duplicateTemplate()</slot>
+    </connection>
+    <connection>
+        <sender>attributeView</sender>
+        <signal>clicked(QListViewItem*)</signal>
+        <receiver>TemplateWidgetDesign</receiver>
+        <slot>attributeSelectionChanged()</slot>
     </connection>
 </connections>
 <tabstops>
@@ -568,7 +581,6 @@
     <tabstop>deleteClassButton</tabstop>
     <tabstop>attributeView</tabstop>
     <tabstop>addAttributeButton</tabstop>
-    <tabstop>editAttributeButton</tabstop>
     <tabstop>deleteAttributeButton</tabstop>
 </tabstops>
 <slots>
@@ -581,6 +593,9 @@
     <slot>deleteAttribute()</slot>
     <slot>editAttribute()</slot>
     <slot>saveTemplates()</slot>
+    <slot>deleteTemplate()</slot>
+    <slot>duplicateTemplate()</slot>
+    <slot>attributeSelectionChanged()</slot>
 </slots>
 <layoutdefaults spacing="6" margin="11"/>
 </UI>

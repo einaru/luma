@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file '/home/wido/src/luma/lib/luma/plugins/template_plugin/TemplateWidgetDesign.ui'
 #
-# Created: Mon Oct 4 23:47:00 2004
+# Created: Sat Oct 16 18:11:15 2004
 #      by: The PyQt User Interface Compiler (pyuic) 3.13
 #
 # WARNING! All changes made in this file will be lost!
@@ -127,7 +127,11 @@ class TemplateWidgetDesign(QWidget):
         layout15.addWidget(self.deleteClassButton,2,2)
         frame4Layout.addLayout(layout15)
 
-        layout14 = QGridLayout(None,1,1,0,6,"layout14")
+        layout4 = QGridLayout(None,1,1,0,6,"layout4")
+
+        self.addAttributeButton = QPushButton(self.frame4,"addAttributeButton")
+
+        layout4.addWidget(self.addAttributeButton,1,2)
 
         self.attributeView = QListView(self.frame4,"attributeView")
         self.attributeView.addColumn(self.__tr("Name"))
@@ -137,34 +141,27 @@ class TemplateWidgetDesign(QWidget):
         self.attributeView.addColumn(self.__tr("Default value"))
         self.attributeView.setAllColumnsShowFocus(1)
         self.attributeView.setResizeMode(QListView.LastColumn)
+        self.attributeView.setDefaultRenameAction(QListView.Accept)
 
-        layout14.addMultiCellWidget(self.attributeView,1,4,1,1)
+        layout4.addMultiCellWidget(self.attributeView,1,3,1,1)
+        spacer12 = QSpacerItem(16,21,QSizePolicy.Fixed,QSizePolicy.Minimum)
+        layout4.addItem(spacer12,1,0)
 
         self.textLabel7 = QLabel(self.frame4,"textLabel7")
 
-        layout14.addMultiCellWidget(self.textLabel7,0,0,0,1)
-
-        self.addAttributeButton = QPushButton(self.frame4,"addAttributeButton")
-
-        layout14.addWidget(self.addAttributeButton,1,2)
-
-        self.editAttributeButton = QPushButton(self.frame4,"editAttributeButton")
-
-        layout14.addWidget(self.editAttributeButton,2,2)
-        spacer14 = QSpacerItem(21,31,QSizePolicy.Minimum,QSizePolicy.MinimumExpanding)
-        layout14.addItem(spacer14,4,2)
-        spacer12 = QSpacerItem(16,21,QSizePolicy.Fixed,QSizePolicy.Minimum)
-        layout14.addItem(spacer12,1,0)
+        layout4.addMultiCellWidget(self.textLabel7,0,0,0,1)
+        spacer14 = QSpacerItem(21,132,QSizePolicy.Minimum,QSizePolicy.MinimumExpanding)
+        layout4.addItem(spacer14,3,2)
 
         self.deleteAttributeButton = QPushButton(self.frame4,"deleteAttributeButton")
 
-        layout14.addWidget(self.deleteAttributeButton,3,2)
-        frame4Layout.addLayout(layout14)
+        layout4.addWidget(self.deleteAttributeButton,2,2)
+        frame4Layout.addLayout(layout4)
         TemplateWidgetDesignLayout.addWidget(self.splitter2)
 
         self.languageChange()
 
-        self.resize(QSize(647,557).expandedTo(self.minimumSizeHint()))
+        self.resize(QSize(660,572).expandedTo(self.minimumSizeHint()))
         self.clearWState(Qt.WState_Polished)
 
         self.connect(self.addTemplateButton,SIGNAL("clicked()"),self.addTemplate)
@@ -173,8 +170,11 @@ class TemplateWidgetDesign(QWidget):
         self.connect(self.addAttributeButton,SIGNAL("clicked()"),self.addAttribute)
         self.connect(self.deleteClassButton,SIGNAL("clicked()"),self.deleteObjectClass)
         self.connect(self.deleteAttributeButton,SIGNAL("clicked()"),self.deleteAttribute)
-        self.connect(self.editAttributeButton,SIGNAL("clicked()"),self.editAttribute)
         self.connect(self.saveTemplateButton,SIGNAL("clicked()"),self.saveTemplates)
+        self.connect(self.attributeView,SIGNAL("itemRenamed(QListViewItem*,int,const QString&)"),self.editAttribute)
+        self.connect(self.deleteTemplateButton,SIGNAL("clicked()"),self.deleteTemplate)
+        self.connect(self.duplicateTemplateButton,SIGNAL("clicked()"),self.duplicateTemplate)
+        self.connect(self.attributeView,SIGNAL("clicked(QListViewItem*)"),self.attributeSelectionChanged)
 
         self.setTabOrder(self.templateView,self.addTemplateButton)
         self.setTabOrder(self.addTemplateButton,self.saveTemplateButton)
@@ -185,8 +185,7 @@ class TemplateWidgetDesign(QWidget):
         self.setTabOrder(self.addClassButton,self.deleteClassButton)
         self.setTabOrder(self.deleteClassButton,self.attributeView)
         self.setTabOrder(self.attributeView,self.addAttributeButton)
-        self.setTabOrder(self.addAttributeButton,self.editAttributeButton)
-        self.setTabOrder(self.editAttributeButton,self.deleteAttributeButton)
+        self.setTabOrder(self.addAttributeButton,self.deleteAttributeButton)
 
 
     def languageChange(self):
@@ -211,14 +210,13 @@ class TemplateWidgetDesign(QWidget):
         self.classView.header().setLabel(0,self.__tr("Name"))
         self.textLabel5.setText(self.__tr("<b>Objectclasses</b>"))
         self.deleteClassButton.setText(self.__tr("Delete"))
+        self.addAttributeButton.setText(self.__tr("Add..."))
         self.attributeView.header().setLabel(0,self.__tr("Name"))
         self.attributeView.header().setLabel(1,self.__tr("Must"))
         self.attributeView.header().setLabel(2,self.__tr("Single"))
         self.attributeView.header().setLabel(3,self.__tr("Binary"))
         self.attributeView.header().setLabel(4,self.__tr("Default value"))
         self.textLabel7.setText(self.__tr("<b>Attributes</b>"))
-        self.addAttributeButton.setText(self.__tr("Add..."))
-        self.editAttributeButton.setText(self.__tr("Edit..."))
         self.deleteAttributeButton.setText(self.__tr("Delete"))
 
 
@@ -248,6 +246,15 @@ class TemplateWidgetDesign(QWidget):
 
     def saveTemplates(self):
         print "TemplateWidgetDesign.saveTemplates(): Not implemented yet"
+
+    def deleteTemplate(self):
+        print "TemplateWidgetDesign.deleteTemplate(): Not implemented yet"
+
+    def duplicateTemplate(self):
+        print "TemplateWidgetDesign.duplicateTemplate(): Not implemented yet"
+
+    def attributeSelectionChanged(self):
+        print "TemplateWidgetDesign.attributeSelectionChanged(): Not implemented yet"
 
     def __tr(self,s,c = None):
         return qApp.translate("TemplateWidgetDesign",s,c)

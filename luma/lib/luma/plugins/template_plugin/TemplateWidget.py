@@ -55,8 +55,8 @@ class TemplateWidget(TemplateWidgetDesign):
     def addTemplate(self):
         dialog = AddTemplateDialog()
         
-        # FIXME: initialisierung der blacklist fehlt
-        #dialog.templateList.append("foo")
+        # Provide the dialog with a list of already existing templates
+        dialog.templateList = map(lambda x: x.name, self.templateList)
         
         dialog.exec_loop()
         if dialog.result() == QDialog.Rejected:
@@ -79,6 +79,10 @@ class TemplateWidget(TemplateWidgetDesign):
         self.templateView.clear()
         self.classView.clear()
         self.attributeView.clear()
+        
+        self.templateLabel.setText("")
+        self.serverLabel.setText("")
+        self.descriptionLabel.setText("")
         
         selected = None
         
@@ -187,7 +191,6 @@ class TemplateWidget(TemplateWidgetDesign):
         self.addClassButton.setEnabled(buttonBool)
         self.deleteClassButton.setEnabled(buttonBool)
         self.addAttributeButton.setEnabled(buttonBool)
-        self.editAttributeButton.setEnabled(buttonBool)
         self.deleteAttributeButton.setEnabled(buttonBool)
         
 ###############################################################################
@@ -303,11 +306,13 @@ class TemplateWidget(TemplateWidgetDesign):
                 item.setPixmap(3, self.okIcon)
             else:
                 item.setPixmap(3, self.noIcon)
+                item.setRenameEnabled(4, True)
                 
             if attribute.defaultValue == None:
                 item.setText(4, "")
             else:
                 item.setText(4, attribute.defaultValue)
+                
 
 ###############################################################################
 
@@ -317,4 +322,132 @@ class TemplateWidget(TemplateWidgetDesign):
         self.saveTemplateButton.setEnabled(False)
         
 ###############################################################################
+
+    def editAttribute(self, item, row, text):
+        attributeName = str(item.text(0))
+        newValue = unicode(text).strip()
+        if newValue == "":
+            newValue = None
+        
+        self.currentTemplate.setAttributeDefaultValue(attributeName, newValue)
+        self.saveTemplateButton.setEnabled(True)
     
+###############################################################################
+
+    def deleteTemplate(self):
+        item = self.templateView.selectedItem()
+        
+        if item == None:
+            return
+            
+        templateName = str(item.text(0))
+        
+        result = QMessageBox.warning(None,
+            self.trUtf8("Delete template"),
+            self.trUtf8("""Do you really want to delete the selected template?"""),
+            self.trUtf8("&OK"),
+            self.trUtf8("&Cancel"),
+            None,
+            0, -1)
+
+        # If cancel was clicked, do nothing
+        if result == 1:
+            return
+            
+        # Create a new template list without the old one
+        self.templateList = filter(lambda x: x.name != templateName, self.templateList)
+        self.currentTemplate = None
+        
+        self.displayTemplates()
+        self.saveTemplateButton.setEnabled(True)
+        
+###############################################################################
+
+    def duplicateTemplate(self):
+        item = self.templateView.selectedItem()
+        
+        if item == None:
+            return
+            
+        template = filter(lambda x: x.name == str(item.text(0)), self.templateList)[0]
+        
+        dialog = AddTemplateDialog()
+        dialog.nameEdit.setText(template.name)
+        dialog.serverBox.setCurrentText(template.serverName)
+        dialog.descriptionEdit.setText(template.description)
+        
+        # Provide the dialog with a list of already existing templates
+        dialog.templateList = map(lambda x: x.name, self.templateList)
+        dialog.valuesChanged()
+        
+        dialog.exec_loop()
+        if dialog.result() == QDialog.Rejected:
+            return
+            
+
+        newTemplate = LdapTemplate()
+        newTemplate.name = strip(unicode(dialog.nameEdit.text()))
+        newTemplate.serverName = unicode(dialog.serverBox.currentText())
+        newTemplate.description = strip(unicode(dialog.descriptionEdit.text()))
+        
+        self.loadServerMeta(newTemplate.serverName)
+        metaInfo = self.preloadedServerMeta[newTemplate.serverName]
+        
+        for x in template.getObjectClasses():
+            if metaInfo.hasObjectClass(x):
+                newTemplate.addObjectClass(x)
+                
+                mustAttributes = metaInfo.getAllMusts([x])
+                for y in mustAttributes:
+                    must = metaInfo.isMust(y, [x])
+                    single = metaInfo.isSingle(y)
+                    binary = metaInfo.isBinary(y)
+                    newTemplate.addAttribute(y, must, single, binary, None)
+        
+        self.templateList.append(newTemplate)
+        self.currentTemplate = newTemplate
+        self.displayTemplates(newTemplate.name)
+        
+        self.saveTemplateButton.setEnabled(True)
+        
+###############################################################################
+
+    def deleteAttribute(self):
+        item = self.attributeView.selectedItem()
+        
+        if item == None:
+            return
+            
+        attributeName = str(item.text(0))
+        
+        result = QMessageBox.warning(None,
+            self.trUtf8("Delete attribute"),
+            self.trUtf8("""Do you really want to delete the attribute?"""),
+            self.trUtf8("&OK"),
+            self.trUtf8("&Cancel"),
+            None,
+            0, -1)
+            
+        if result == 1:
+            return
+
+        
+        self.currentTemplate.deleteAttribute(attributeName)
+        self.displayAttributes()
+        self.saveTemplateButton.setEnabled(True)
+        
+###############################################################################
+
+    def attributeSelectionChanged(self, item):
+        attributeName = str(item.text(0))
+        
+        serverName = self.currentTemplate.serverName
+        self.loadServerMeta(serverName)
+        metaInfo = self.preloadedServerMeta[serverName]
+        
+        mustAttributes = metaInfo.getAllMusts(self.currentTemplate.getObjectClasses())
+        
+        if attributeName in mustAttributes:
+            self.deleteAttributeButton.setEnabled(False)
+        else:
+            self.deleteAttributeButton.setEnabled(True)
