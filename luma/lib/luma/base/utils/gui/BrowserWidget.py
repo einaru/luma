@@ -140,7 +140,7 @@ class BrowserWidget(QListView):
         self.blockSignals(True)
         
         fullPath = self.get_full_path(item)
-        results = self.getLdapItemChildren(fullPath, 0)
+        results = self.getLdapItemChildren(fullPath, 0, ['dn'])
         
         if results == None:
             self.blockSignals(False)
@@ -235,7 +235,7 @@ See console output for more information."""),
 
 ###############################################################################
 
-    def getLdapItemChildren(self, itemPath, allLevel):
+    def getLdapItemChildren(self, itemPath, allLevel, noAttributes=None):
         """ Return a list of children a ldap object has.
         
         allLevel == 1:
@@ -264,7 +264,7 @@ See console output for more information."""),
             searchLevel = ldap.SCOPE_ONELEVEL
             
                 
-        searchResult = conObject.search(ldapObject, searchLevel,self.searchObjectClass, None, 0)
+        searchResult = conObject.search(ldapObject, searchLevel,self.searchObjectClass, noAttributes, 0)
 
         conObject.unbind()
         
