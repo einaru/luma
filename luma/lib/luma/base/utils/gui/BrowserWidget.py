@@ -75,8 +75,9 @@ class BrowserWidget(QListView):
         self.popupMenu.insertSeparator()
         self.popupMenu.insertItem(QIconSet(QPixmap(exportIconFile)), self.trUtf8("Export to LDIF"), self.exportMenu)
         self.popupMenu.insertSeparator()
-        self.popupMenu.insertItem
+        #self.popupMenu.insertItem
         self.popupMenu.insertItem(QIconSet(QPixmap(delIconFile)), self.trUtf8("Delete Item"), self.__delete_item)
+        self.popupMenu.insertItem(QIconSet(QPixmap(delIconFile)), self.trUtf8("Delete Items recursive"), self.__delete_items_recursive)
         
         self.connect(self.addItemMenu, SIGNAL("aboutToShow()"), self.create_add_menu)
 
@@ -286,23 +287,11 @@ class BrowserWidget(QListView):
         if len(ldapObject) == 0:
             return None
             
-        serverMeta = self.serverListObject.get_serverobject(serverName)
-        try:
-            ldapServerObject = ldap.open(serverMeta.host)
-            ldapServerObject.protocol_version = ldap.VERSION3
-            if serverMeta.tls == "1":
-                ldapServerObject.start_tls_s()
-            if len(serverMeta.bindDN) > 0:
-                ldapServerObject.simple_bind_s(serverMeta.bindDN,
-                                serverMeta.bindPassword)
-            ldapServerObject.delete_s(ldapObject)
-            if len(serverMeta.bindDN) > 0:
-                ldapServerObject.unbind()
-            parent.setOpen(0)
-            parent.setOpen(1)
-        except ldap.LDAPError, e:
-            print "Error during LDAP request"
-            print "Reason: " + str(e)
+        self.__delete_ldap_entry(serverName, ldapObject)
+        
+        parent.setOpen(0)
+        parent.setOpen(1)
+        
 
 
 ###############################################################################
@@ -378,9 +367,59 @@ class BrowserWidget(QListView):
         # don't loose reference. normally window will disappear if function is completed
         self.addItemWidgets.append(widget)
         
+###############################################################################
+        
+    def __delete_items_recursive(self):
+        warnString = self.trUtf8('Do you really want to delete the items recursively from the server?')
+        result = QMessageBox.warning(self, self.trUtf8('Delete entry'), warnString, self.trUtf8('Delete'), self.trUtf8('Cancel'))
+        if result == 1:
+            return
+            
+        mainWin = qApp.mainWidget()
+        # set gui busy
+        mainWin.set_busy(1)
+        
+        currentItem = self.selectedItem()
+        
+        parent = currentItem.parent()
+        fullPath = self.get_full_path(currentItem)
+        children = self.__get_ldap_item_children(fullPath, 1)
+        
+        serverName, selectedObject = self.__split_path(fullPath)
+        if len(selectedObject) == 0:
+            return None
+        
+        while ((len(children) > 0) and (not(children == None))) :
+            mainWin.update_ui()
+            print children[-1][0]
+            self.__delete_ldap_entry(serverName, children[-1][0])
+            del children[-1]
+        
+        currentItem.setOpen(0)
+        currentItem.setOpen(1)
+        parent.setOpen(0)
+        parent.setOpen(1)
+        
+        mainWin.set_busy(0)
 
+###############################################################################
 
+    def __delete_ldap_entry(self, serverName, ldapObject):
+        serverMeta = self.serverListObject.get_serverobject(serverName)
+        try:
+            ldapServerObject = ldap.open(serverMeta.host)
+            ldapServerObject.protocol_version = ldap.VERSION3
+            if serverMeta.tls == "1":
+                ldapServerObject.start_tls_s()
+            if len(serverMeta.bindDN) > 0:
+                ldapServerObject.simple_bind_s(serverMeta.bindDN,
+                                serverMeta.bindPassword)
+            ldapServerObject.delete_s(ldapObject)
+            if len(serverMeta.bindDN) > 0:
+                ldapServerObject.unbind()
+        except ldap.LDAPError, e:
+            print "Error during LDAP request"
+            print "Reason: " + str(e)
 
-
-
+###############################################################################
 
