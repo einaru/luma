@@ -399,15 +399,15 @@ vil det muligens kompromittere sikkerheten i systemet ditt.</translation>
     </message>
     <message>
         <source>Missing password</source>
-        <translation type="unfinished"></translation>
+        <translation>Manglende passord</translation>
     </message>
     <message>
         <source>Could not bind to server.&lt;br&gt;&lt;br&gt;Reason: </source>
-        <translation type="unfinished"></translation>
+        <translation>Kunne ikke koble til server. &lt;br&gt;&lt;br&gt;Grunn:</translation>
     </message>
     <message>
         <source>Could not create account.&lt;br&gt;&lt;br&gt;Reason: </source>
-        <translation type="unfinished"></translation>
+        <translation>Kunne ikke opprette konto.&lt;br&gt;&lt;br&gt;Grunn:</translation>
     </message>
 </context>
 <context>
@@ -693,11 +693,11 @@ til høyre viser alle attributter som må legges til i tillegg til valgt objektk
     </message>
     <message>
         <source>Could not bind to server.&lt;br&gt;&lt;br&gt;Reason: </source>
-        <translation type="unfinished"></translation>
+        <translation>Kunne ikke koble til server. &lt;br&gt;&lt;br&gt;Grunn:</translation>
     </message>
     <message>
         <source>Could not save entry.&lt;br&gt;&lt;br&gt;Reason: </source>
-        <translation type="unfinished"></translation>
+        <translation>Kunne ikke lagre.&lt;br&gt;&lt;br&gt;Grunn:</translation>
     </message>
 </context>
 <context>
@@ -981,74 +981,74 @@ til høyre viser alle attributter som må legges til i tillegg til valgt objektk
     <name>AdvancedObjectWidget</name>
     <message>
         <source>Value not set.</source>
-        <translation type="unfinished"></translation>
+        <translation>Verdi ikke satt.</translation>
     </message>
     <message>
         <source>Export binary attribute to file</source>
-        <translation type="unfinished">Eksport binærattributt til fil</translation>
+        <translation>Eksport binærattributt til fil</translation>
     </message>
     <message>
         <source>Export binary attribute</source>
-        <translation type="unfinished">Eksporter binær attributt</translation>
+        <translation>Eksporter binær attributt</translation>
     </message>
     <message>
         <source>&amp;Cancel</source>
-        <translation type="unfinished">&amp;Avbryt</translation>
+        <translation>&amp;Avbryt</translation>
     </message>
     <message>
         <source>&amp;OK</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;OK</translation>
     </message>
     <message>
         <source>Reload</source>
-        <translation type="unfinished">Last om</translation>
+        <translation>Last på nytt</translation>
     </message>
     <message>
         <source>Save</source>
-        <translation type="unfinished">Lagre</translation>
+        <translation>Lagre</translation>
     </message>
     <message>
         <source>Add attribute...</source>
-        <translation type="unfinished">Legg til attributt...</translation>
+        <translation>Legg til attributt...</translation>
     </message>
     <message>
         <source>Delete object</source>
-        <translation type="unfinished">Slett objekt</translation>
+        <translation>Slett objekt</translation>
     </message>
     <message>
         <source>Could not bind to server.&lt;br&gt;&lt;br&gt;Reason: </source>
-        <translation type="unfinished"></translation>
+        <translation>Kunne ikke koble til server. &lt;br&gt;&lt;br&gt;Grunn:</translation>
     </message>
     <message>
         <source>Could not check if object is a leaf in the ldap tree.&lt;br&gt;&lt;br&gt;Reason: </source>
-        <translation type="unfinished"></translation>
+        <translation>Kunne ikke sjekke om objektet er løvnode i ldap-treet.&lt;br&gt;&lt;br&gt;Grunn:</translation>
     </message>
     <message>
         <source>Could not refresh entry.&lt;br&gt;&lt;br&gt;Reason: </source>
-        <translation type="unfinished"></translation>
+        <translation>Kunne ikke late objektet på nytt.&lt;br&gt;&lt;br&gt;Grunn:</translation>
     </message>
     <message>
         <source>Could not add entry.&lt;br&gt;&lt;br&gt;Reason: </source>
-        <translation type="unfinished"></translation>
+        <translation>Kunne ikke legge til objekt.&lt;br&gt;&lt;br&gt;Grunn:</translation>
     </message>
     <message>
         <source>Could not save entry.&lt;br&gt;&lt;br&gt;Reason: </source>
-        <translation type="unfinished"></translation>
+        <translation>Kunne ikke lagre objektet.&lt;br&gt;&lt;br&gt;Grunn:</translation>
     </message>
     <message>
         <source>Do your really want to delete the object?</source>
-        <translation type="unfinished"></translation>
+        <translation>Vil du virkelig slette objektet?</translation>
     </message>
     <message>
         <source>Could not delete entry.&lt;br&gt;&lt;br&gt;Reason: </source>
-        <translation type="unfinished"></translation>
+        <translation>Kunne ikke slette objektet.&lt;br&gt;&lt;br&gt;Grunn:</translation>
     </message>
 </context>
 <context>
     <name>BaseSelector</name>
     <message>
         <source>Could not retrieve baseDN.&lt;br&gt;&lt;br&gt;Reason: </source>
-        <translation type="unfinished"></translation>
+        <translation>Kunne ikke hente baseDN.&lt;br&gt;&lt;br&gt;Grunn:</translation>
     </message>
 </context>
 <context>
@@ -1114,64 +1114,64 @@ til høyre viser alle attributter som må legges til i tillegg til valgt objektk
     <name>BinaryEditor</name>
     <message>
         <source>Given file does not exist. Please check the filename.</source>
-        <translation type="unfinished"></translation>
+        <translation>Oppgitt fil eksisterer ikke. Vennligst sjekk filnavnet.</translation>
     </message>
     <message>
         <source>Given file is a directory. Please check the filename.</source>
-        <translation type="unfinished"></translation>
+        <translation>Oppgitt fil er en katalog. Vennligst sjekk filnavnet.</translation>
     </message>
     <message>
         <source>Can&apos;t open file. Please check file permissions.</source>
-        <translation type="unfinished"></translation>
+        <translation>Kunne ikke åpne filen. Vennligst sjekk filrettigheter.</translation>
     </message>
     <message>
         <source>Select file to change binary value</source>
-        <translation type="unfinished">Velg fil for å endre binærverdi</translation>
+        <translation>Velg fil for å endre binærverdi</translation>
     </message>
 </context>
 <context>
     <name>BinaryEditorDesign</name>
     <message>
         <source>Edit attribute</source>
-        <translation type="unfinished">Rediger attributt</translation>
+        <translation>Rediger attributt</translation>
     </message>
     <message>
         <source>IT</source>
         <comment>DO NOT TRANSLATE</comment>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>&amp;OK</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;OK</translation>
     </message>
     <message>
         <source>Alt+O</source>
-        <translation type="unfinished"></translation>
+        <translation>Alt+O</translation>
     </message>
     <message>
         <source>&amp;Cancel</source>
-        <translation type="unfinished">&amp;Avbryt</translation>
+        <translation>&amp;Avbryt</translation>
     </message>
     <message>
         <source>Alt+C</source>
-        <translation type="unfinished"></translation>
+        <translation>Alt+C</translation>
     </message>
     <message>
         <source>F</source>
         <comment>DO NOT TRANSLATE</comment>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Please enter a file location from where to load binary data for the attribute &lt;b&gt;%1&lt;/b&gt;.</source>
-        <translation type="unfinished"></translation>
+        <translation>Vennligst velg en filsti for å laste binærdata for attributten &lt;b&gt;%1&lt;/b&gt;.</translation>
     </message>
     <message>
         <source>IL</source>
-        <translation type="unfinished"></translation>
+        <translation>IL</translation>
     </message>
     <message>
         <source>Location:</source>
-        <translation type="unfinished">Lokalisering:</translation>
+        <translation>Lokalisering:</translation>
     </message>
 </context>
 <context>
@@ -1220,16 +1220,8 @@ til høyre viser alle attributter som må legges til i tillegg til valgt objektk
         <translation>Slett</translation>
     </message>
     <message>
-        <source>Delete entry</source>
-        <translation>Slett innlegg</translation>
-    </message>
-    <message>
         <source>Add entry</source>
         <translation>Legg til </translation>
-    </message>
-    <message>
-        <source>Delete entries</source>
-        <translation>Slett innlegg</translation>
     </message>
     <message>
         <source>Follow Aliases</source>
@@ -1237,47 +1229,27 @@ til høyre viser alle attributter som må legges til i tillegg til valgt objektk
     </message>
     <message>
         <source>Could not access entry.&lt;br&gt;&lt;br&gt;Reason: </source>
-        <translation type="unfinished"></translation>
+        <translation>Fikk ikke tilgang til objekt.&lt;br&gt;&lt;br&gt;Grunn:</translation>
     </message>
     <message>
         <source>Could not expand entry.&lt;br&gt;&lt;br&gt;Reason: </source>
-        <translation type="unfinished"></translation>
+        <translation>Kunne ikke utvide objekt.&lt;br&gt;&lt;br&gt;Grunn:</translation>
     </message>
     <message>
         <source>Could not retrieve baseDN.&lt;br&gt;&lt;br&gt;Reason: </source>
-        <translation type="unfinished"></translation>
+        <translation>Kunne ikke hente baseDN.&lt;br&gt;&lt;br&gt;Grunn:</translation>
     </message>
     <message>
         <source>Could not export item.&lt;br&gt;&lt;br&gt;Reason: </source>
-        <translation type="unfinished"></translation>
+        <translation>Kunne ikke eksportere objekt.&lt;br&gt;&lt;br&gt;Grunn:</translation>
     </message>
     <message>
         <source>Could not export items.&lt;br&gt;&lt;br&gt;Reason: </source>
-        <translation type="unfinished"></translation>
+        <translation>Kunne ikke eksportere objektene.&lt;br&gt;&lt;br&gt;Grunn:</translation>
     </message>
     <message>
-        <source>Do your really want to delete the entry from the server?</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Could not delete entry.&lt;br&gt;&lt;br&gt;Reason: </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Do your really want to delete the items recursively from the server?</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Could not delete the following entry:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Reason: </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Could not delete items.&lt;br&gt;&lt;br&gt;Reason: </source>
-        <translation type="unfinished"></translation>
+        <source>Could not retrieve entry for deletion.&lt;br&gt;&lt;br&gt;Reason: </source>
+        <translation>Kunne ikke hente objekt for sletting.&lt;br&gt;&lt;br&gt;Grunn:</translation>
     </message>
 </context>
 <context>
@@ -1481,15 +1453,15 @@ til høyre viser alle attributter som må legges til i tillegg til valgt objektk
     </message>
     <message>
         <source>Could not bind to server.&lt;br&gt;&lt;br&gt;Reason: </source>
-        <translation type="unfinished"></translation>
+        <translation>Kunne ikke koble til server. &lt;br&gt;&lt;br&gt;Grunn:</translation>
     </message>
     <message>
         <source>Could not add entry.&lt;br&gt;&lt;br&gt;Reason: </source>
-        <translation type="unfinished"></translation>
+        <translation>Kunne ikke legge til objekt.&lt;br&gt;&lt;br&gt;Grunn:</translation>
     </message>
     <message>
         <source>Incomplete information.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ufullstendig informasjon.</translation>
     </message>
 </context>
 <context>
@@ -1518,6 +1490,61 @@ til høyre viser alle attributter som må legges til i tillegg til valgt objektk
     <message>
         <source>Fill contact data</source>
         <translation>Fyll ut kontaktinformasjon</translation>
+    </message>
+</context>
+<context>
+    <name>DeleteDialog</name>
+    <message>
+        <source>Item deleted successfully.</source>
+        <translation>Objekt slettet.</translation>
+    </message>
+</context>
+<context>
+    <name>DeleteDialogDesign</name>
+    <message>
+        <source>DN</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>Message</source>
+        <translation>Melding</translation>
+    </message>
+    <message>
+        <source>Delete items</source>
+        <translation>Slettede objekter</translation>
+    </message>
+    <message>
+        <source>&amp;Cancel</source>
+        <translation>&amp;Avbryt</translation>
+    </message>
+    <message>
+        <source>Alt+C</source>
+        <translation>Alt+C</translation>
+    </message>
+    <message>
+        <source>DL</source>
+        <translation>DL</translation>
+    </message>
+    <message>
+        <source>The following entries will be deleted from the server. You can remove items from the list if you don&apos;t want them to be deleted. Press start to begin with deletion.</source>
+        <translation>De følgende objektene vil bli slettet fra tjeneren. Du kan fjerne objekter fra listen om du ikke ønsker å slette dem.
+Vennligst trykk start for å begynne slettingen.</translation>
+    </message>
+    <message>
+        <source>&amp;Start</source>
+        <translation>&amp;Start</translation>
+    </message>
+    <message>
+        <source>Alt+S</source>
+        <translation>Alt+S</translation>
+    </message>
+    <message>
+        <source>&amp;Remove</source>
+        <translation>&amp;Fjern</translation>
+    </message>
+    <message>
+        <source>Alt+R</source>
+        <translation>Alt+F</translation>
     </message>
 </context>
 <context>
@@ -1623,11 +1650,11 @@ til høyre viser alle attributter som må legges til i tillegg til valgt objektk
     <name>GroupDialog</name>
     <message>
         <source>Could not bind to server.&lt;br&gt;&lt;br&gt;Reason: </source>
-        <translation type="unfinished"></translation>
+        <translation>Kunne ikke koble til server. &lt;br&gt;&lt;br&gt;Grunn:</translation>
     </message>
     <message>
         <source>Could retrieve other group information.&lt;br&gt;&lt;br&gt;Reason: </source>
-        <translation type="unfinished"></translation>
+        <translation>Kunne ikke hente gruppeinformasjon.&lt;br&gt;&lt;br&gt;Grunn:</translation>
     </message>
 </context>
 <context>
@@ -1733,27 +1760,27 @@ til høyre viser alle attributter som må legges til i tillegg til valgt objektk
     </message>
     <message>
         <source>Could not retrieve baseDN.&lt;br&gt;&lt;br&gt;Reason: </source>
-        <translation type="unfinished"></translation>
+        <translation>Kunne ikke hente baseDN.&lt;br&gt;&lt;br&gt;Grunn:</translation>
     </message>
     <message>
         <source>Could not bind to server.&lt;br&gt;&lt;br&gt;Reason: </source>
-        <translation type="unfinished"></translation>
+        <translation>Kunne ikke koble til server. &lt;br&gt;&lt;br&gt;Grunn:</translation>
     </message>
     <message>
         <source>Could not search entries.&lt;br&gt;&lt;br&gt;Reason: </source>
-        <translation type="unfinished"></translation>
+        <translation>Kunne ikke søke etter objektene.&lt;br&gt;&lt;br&gt;Grunn:</translation>
     </message>
     <message>
         <source>Could not access entry.&lt;br&gt;&lt;br&gt;Reason: </source>
-        <translation type="unfinished"></translation>
+        <translation>Fikk ikke tilgang til objekt.&lt;br&gt;&lt;br&gt;Grunn:</translation>
     </message>
     <message>
         <source>Do your really want to delete the selected contact?</source>
-        <translation type="unfinished"></translation>
+        <translation>Vil du virkelig slette den valgte kontakten?</translation>
     </message>
     <message>
         <source>Could not delete entry.&lt;br&gt;&lt;br&gt;Reason: </source>
-        <translation type="unfinished"></translation>
+        <translation>Kunne ikke slette objekt.&lt;br&gt;&lt;br&gt;Grunn:</translation>
     </message>
 </context>
 <context>
@@ -1812,19 +1839,19 @@ til høyre viser alle attributter som må legges til i tillegg til valgt objektk
     <name>LumaErrorDialogDesign</name>
     <message>
         <source>Error</source>
-        <translation type="unfinished">Feil</translation>
+        <translation>Feil</translation>
     </message>
     <message>
         <source>EL</source>
-        <translation type="unfinished"></translation>
+        <translation>EL</translation>
     </message>
     <message>
         <source>&amp;OK</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;OK</translation>
     </message>
     <message>
         <source>Alt+O</source>
-        <translation type="unfinished"></translation>
+        <translation>Alt+O</translation>
     </message>
 </context>
 <context>
@@ -1959,35 +1986,35 @@ Try increasing the uidNumber range or delete some users from the subtree.</sourc
     </message>
     <message>
         <source>Incomplete information</source>
-        <translation type="unfinished"></translation>
+        <translation>Ufullstendig informasjon</translation>
     </message>
     <message>
         <source>Warning</source>
-        <translation type="unfinished"></translation>
+        <translation>Advarsel</translation>
     </message>
     <message>
         <source>Could not bind to server.&lt;br&gt;&lt;br&gt;Reason: </source>
-        <translation type="unfinished"></translation>
+        <translation>Kunne ikke koble til server. &lt;br&gt;&lt;br&gt;Grunn:</translation>
     </message>
     <message>
         <source>Could not create all users.&lt;br&gt;&lt;br&gt;Reason: </source>
-        <translation type="unfinished"></translation>
+        <translation>Kunne ikke opprette alle brukerene.&lt;br&gt;&lt;br&gt;Grunn:</translation>
     </message>
     <message>
         <source>Could not create all automount information.&lt;br&gt;&lt;br&gt;Reason: </source>
-        <translation type="unfinished"></translation>
+        <translation>Kunne ikke opprette all automount informasjon.&lt;br&gt;&lt;br&gt;Grunn:</translation>
     </message>
     <message>
         <source>Could not retrieve used userid numbers.&lt;br&gt;&lt;br&gt;Reason: </source>
-        <translation type="unfinished"></translation>
+        <translation>Kunne ikke hente brukt brukerid-nummer.&lt;br&gt;&lt;br&gt;Grunn:</translation>
     </message>
     <message>
         <source>Wrong entry</source>
-        <translation type="unfinished"></translation>
+        <translation>Feil objekt</translation>
     </message>
     <message>
         <source>Could not retrieve selected item.&lt;br&gt;&lt;br&gt;Reason: </source>
-        <translation type="unfinished"></translation>
+        <translation>Kunne ikke hente valgt objekt.&lt;br&gt;&lt;br&gt;Grunn:</translation>
     </message>
 </context>
 <context>
@@ -2374,55 +2401,55 @@ Try increasing the uidNumber range or delete some users from the subtree.</sourc
     <name>PasswordEditor</name>
     <message>
         <source>Passwords match</source>
-        <translation type="unfinished">Passord stemmer</translation>
+        <translation>Passord stemmer</translation>
     </message>
     <message>
         <source>Passwords do not match</source>
-        <translation type="unfinished">Passord stemmer ikke</translation>
+        <translation>Passord stemmer ikke</translation>
     </message>
 </context>
 <context>
     <name>PasswordEditorDesign</name>
     <message>
         <source>New password</source>
-        <translation type="unfinished">Nytt passord</translation>
+        <translation>Nytt passord</translation>
     </message>
     <message>
         <source>PW</source>
         <comment>DO NOT TRANSLATE</comment>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>&amp;OK</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;OK</translation>
     </message>
     <message>
         <source>&amp;Cancel</source>
-        <translation type="unfinished">&amp;Avbryt</translation>
+        <translation>&amp;Avbryt</translation>
     </message>
     <message>
         <source>Strength:</source>
-        <translation type="unfinished">Styrke:</translation>
+        <translation>Styrke:</translation>
     </message>
     <message>
         <source>Hash algorithm:</source>
-        <translation type="unfinished">Enveis krypteringalgoritme:</translation>
+        <translation>Enveis krypteringalgoritme:</translation>
     </message>
     <message>
         <source>Password:</source>
-        <translation type="unfinished">Passord:</translation>
+        <translation>Passord:</translation>
     </message>
     <message>
         <source>Verify:</source>
-        <translation type="unfinished">Verifiser:</translation>
+        <translation>Verifiser:</translation>
     </message>
     <message>
         <source>Passwords do not match</source>
-        <translation type="unfinished">Passord stemmer ikke</translation>
+        <translation>Passord stemmer ikke</translation>
     </message>
     <message>
         <source>&lt;b&gt;Please enter a new password.&lt;/b&gt;</source>
-        <translation type="unfinished">&lt;b&gt;Vennligst skriv inn nytt passord.&lt;/b&gt;</translation>
+        <translation>&lt;b&gt;Vennligst skriv inn nytt passord.&lt;/b&gt;</translation>
     </message>
 </context>
 <context>
@@ -2480,59 +2507,59 @@ Try increasing the uidNumber range or delete some users from the subtree.</sourc
     <name>RdnEditorDesign</name>
     <message>
         <source>Edit DN</source>
-        <translation type="unfinished"></translation>
+        <translation>Rediger DN</translation>
     </message>
     <message>
         <source>IT</source>
         <comment>DO NOT TRANSLATE</comment>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>&amp;OK</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;OK</translation>
     </message>
     <message>
         <source>Alt+O</source>
-        <translation type="unfinished"></translation>
+        <translation>Alt+O</translation>
     </message>
     <message>
         <source>&amp;Cancel</source>
-        <translation type="unfinished">&amp;Avbryt</translation>
+        <translation>&amp;Avbryt</translation>
     </message>
     <message>
         <source>Alt+C</source>
-        <translation type="unfinished"></translation>
+        <translation>Alt+C</translation>
     </message>
     <message>
         <source>Value:</source>
-        <translation type="unfinished"></translation>
+        <translation>Verdi:</translation>
     </message>
     <message>
         <source>DN:</source>
-        <translation type="unfinished"></translation>
+        <translation>DN:</translation>
     </message>
     <message>
         <source>Please choose an attribute and enter a value for it. These values will be part of distinguished name for the new object.</source>
-        <translation type="unfinished"></translation>
+        <translation>Vennligst velg et attributt og oppgi verdi for det. Disse verdiene vil være del av DN (unik sti) for det nye objektet.</translation>
     </message>
     <message>
         <source>Attribute:</source>
-        <translation type="unfinished">Attributt:</translation>
+        <translation>Attributt:</translation>
     </message>
 </context>
 <context>
     <name>SearchForm</name>
     <message>
         <source>Could not bind to server.&lt;br&gt;&lt;br&gt;Reason: </source>
-        <translation type="unfinished"></translation>
+        <translation>Kunne ikke koble til server. &lt;br&gt;&lt;br&gt;Grunn:</translation>
     </message>
     <message>
         <source>Error during search operation.&lt;br&gt;&lt;br&gt;Reason: </source>
-        <translation type="unfinished"></translation>
+        <translation>Feil under søking.&lt;br&gt;&lt;br&gt;Grunn:</translation>
     </message>
     <message>
         <source>Could not retrieve baseDN.&lt;br&gt;&lt;br&gt;Reason: </source>
-        <translation type="unfinished"></translation>
+        <translation>Kunne ikke hente baseDN.&lt;br&gt;&lt;br&gt;Grunn:</translation>
     </message>
 </context>
 <context>
@@ -2585,28 +2612,8 @@ Try increasing the uidNumber range or delete some users from the subtree.</sourc
         <translation>Slett valg</translation>
     </message>
     <message>
-        <source>Delete entry</source>
-        <translation>Slett innlegg</translation>
-    </message>
-    <message>
         <source>&lt;u&gt;Binary value&lt;/u&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Do your really want to delete the item(s) from the server?</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Could not bind to server.&lt;br&gt;&lt;br&gt;Reason: </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Could not delete the following entry:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Reason: </source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;u&gt;Binær verdi&lt;/u&gt;</translation>
     </message>
 </context>
 <context>
@@ -2636,7 +2643,7 @@ Try increasing the uidNumber range or delete some users from the subtree.</sourc
     </message>
     <message>
         <source>Could not retrieve baseDN for LDAP server at host/ip:</source>
-        <translation type="unfinished"></translation>
+        <translation>Kunne ikke hente baseDN for LDAP tjener ved maskinnavn/adresse:</translation>
     </message>
 </context>
 <context>
@@ -2790,36 +2797,36 @@ Try increasing the uidNumber range or delete some users from the subtree.</sourc
     <name>StandardEditorDesign</name>
     <message>
         <source>Edit attribute</source>
-        <translation type="unfinished">Rediger attributt</translation>
+        <translation>Rediger attributt</translation>
     </message>
     <message>
         <source>IT</source>
         <comment>DO NOT TRANSLATE</comment>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Please enter a new value for the attribute &lt;b&gt;%1&lt;/b&gt;.</source>
-        <translation type="unfinished"></translation>
+        <translation>Vennligst skriv inn ny verdi for attributt &lt;b&gt;%1&lt;/b&gt;.</translation>
     </message>
     <message>
         <source>&amp;OK</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;OK</translation>
     </message>
     <message>
         <source>Alt+O</source>
-        <translation type="unfinished"></translation>
+        <translation>Alt+O</translation>
     </message>
     <message>
         <source>&amp;Cancel</source>
-        <translation type="unfinished">&amp;Avbryt</translation>
+        <translation>&amp;Avbryt</translation>
     </message>
     <message>
         <source>Alt+C</source>
-        <translation type="unfinished"></translation>
+        <translation>Alt+C</translation>
     </message>
     <message>
         <source>Value:</source>
-        <translation type="unfinished"></translation>
+        <translation>Verdi:</translation>
     </message>
 </context>
 <context>
@@ -2969,19 +2976,19 @@ Try increasing the uidNumber range or delete some users from the subtree.</sourc
     </message>
     <message>
         <source>Could not bind to server.&lt;br&gt;&lt;br&gt;Reason: </source>
-        <translation type="unfinished"></translation>
+        <translation>Kunne ikke koble til server. &lt;br&gt;&lt;br&gt;Grunn:</translation>
     </message>
     <message>
         <source>Could not save entry.&lt;br&gt;&lt;br&gt;Reason: </source>
-        <translation type="unfinished"></translation>
+        <translation>Kunne ikke lagre objektet.&lt;br&gt;&lt;br&gt;Grunn:</translation>
     </message>
     <message>
         <source>Could not update all group information.&lt;br&gt;&lt;br&gt;Reason: </source>
-        <translation type="unfinished"></translation>
+        <translation>Kunne ikke oppdatere gruppeinformasjon.&lt;br&gt;&lt;br&gt;Grunn:</translation>
     </message>
     <message>
         <source>Could not retrieve used userids.&lt;br&gt;&lt;br&gt;Reason: </source>
-        <translation type="unfinished"></translation>
+        <translation>Kunne ikke hente brukt brukerid-nummer.&lt;br&gt;&lt;br&gt;Grunn:</translation>
     </message>
 </context>
 <context>
