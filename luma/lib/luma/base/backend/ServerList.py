@@ -98,7 +98,7 @@ class ServerList:
                 server.baseDN = serverDictionary['BASEDN']
                 server.bindDN = serverDictionary['BINDDN']
                 server.bindPassword = serverDictionary['BINDPW']
-                server.tls = serverDictionary['TLS']
+                server.tls = int(serverDictionary['TLS'])
                 serverList.append(server)
             except KeyError, e:
                 print "Error during import of server preferences."
