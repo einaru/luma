@@ -2,7 +2,7 @@
 
 ###########################################################################
 #    Copyright (C) 2003 by Wido Depping
-#    <wido.depping@tu-clausthal.de>
+#    <widod@users.sourceforge.net>
 #
 # Copyright: See COPYING file that comes with this distribution
 #

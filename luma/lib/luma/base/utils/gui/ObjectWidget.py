@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
+
 ###########################################################################
 #    Copyright (C) 2003 by Wido Depping
-#    <wido.depping@tu-clausthal.de>                                                             
+#    <widod@users.sourceforge.net>                                                             
 #
 # Copyright: See COPYING file that comes with this distribution
 #
@@ -224,6 +225,8 @@ class ObjectWidget(QWidget):
                 value.setPixmap(QPixmap(picture))
                 value.setAlignment(Qt.AlignLeft)
             else:
+                print attribute
+                print  value
                 value = QLineEdit(self.attributeWidget, "LDAP_VALUE")
                 value.setText(valueList[x-offset].decode('utf-8'))
                 value.setAlignment(Qt.AlignLeft)
