@@ -1,11 +1,11 @@
 #
 # Project file for project "luma"
-# Saved: 2003-08-31, 21:40:16
+# Saved: 2003-11-03, 20:05:26
 #
 # Copyright (C) 2003 Wido Depping <wido.depping@tu-clausthal.de>
 #
 
-VERSION = 0.1 
+VERSION = 1.0beta1 
 
 AUTHOR = Wido Depping 
 
@@ -72,7 +72,10 @@ SOURCES = lib%os.sep%luma%os.sep%__init__.py \
 	lib%os.sep%luma%os.sep%plugins%os.sep%mass_creation_plugin%os.sep%MassCreation.py \
 	lib%os.sep%luma%os.sep%base%os.sep%gui%os.sep%LanguageDialog.py \
 	lib%os.sep%luma%os.sep%base%os.sep%gui%os.sep%LanguageDialogDesign.py \
-	install.py 
+	install.py \
+	lib%os.sep%luma%os.sep%plugins%os.sep%ifi_user%os.sep%ifi_user_plugin.py \
+	lib%os.sep%luma%os.sep%plugins%os.sep%ifi_user%os.sep%IfiUser.py \
+	lib%os.sep%luma%os.sep%plugins%os.sep%ifi_user%os.sep%__init__.py 
 
 FORMS = lib%os.sep%luma%os.sep%base%os.sep%gui%os.sep%AboutDialog.ui \
 	lib%os.sep%luma%os.sep%base%os.sep%gui%os.sep%MainWinDesign.ui \
