@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file '/home/wido/src/luma/lib/luma/base/gui/ServerDialogDesign.ui'
 #
-# Created: Sat Jul 3 23:35:31 2004
+# Created: Mon Jul 5 22:17:50 2004
 #      by: The PyQt User Interface Compiler (pyuic) 3.11
 #
 # WARNING! All changes made in this file will be lost!
@@ -92,6 +92,7 @@ class ServerDialogDesign(QDialog):
         layout3.addWidget(self.deleteButton,1,2)
 
         self.infoGroupBox = QGroupBox(self.splitter2,"infoGroupBox")
+        self.infoGroupBox.setFrameShape(QGroupBox.NoFrame)
         self.infoGroupBox.setColumnLayout(0,Qt.Vertical)
         self.infoGroupBox.layout().setSpacing(6)
         self.infoGroupBox.layout().setMargin(11)
@@ -186,12 +187,8 @@ class ServerDialogDesign(QDialog):
         spacer4 = QSpacerItem(41,25,QSizePolicy.Minimum,QSizePolicy.Fixed)
         infoGroupBoxLayout.addMultiCell(spacer4,4,4,3,4)
         ServerDialogDesignLayout.addWidget(self.splitter2)
-
-        self.line3 = QFrame(self,"line3")
-        self.line3.setFrameShape(QFrame.HLine)
-        self.line3.setFrameShadow(QFrame.Sunken)
-        self.line3.setFrameShape(QFrame.HLine)
-        ServerDialogDesignLayout.addWidget(self.line3)
+        spacer5_2 = QSpacerItem(21,20,QSizePolicy.Minimum,QSizePolicy.Fixed)
+        ServerDialogDesignLayout.addItem(spacer5_2)
 
         layout4 = QHBoxLayout(None,0,6,"layout4")
         spacer6 = QSpacerItem(350,21,QSizePolicy.Expanding,QSizePolicy.Minimum)
@@ -210,7 +207,7 @@ class ServerDialogDesign(QDialog):
 
         self.languageChange()
 
-        self.resize(QSize(639,462).expandedTo(self.minimumSizeHint()))
+        self.resize(QSize(639,484).expandedTo(self.minimumSizeHint()))
         self.clearWState(Qt.WState_Polished)
 
         self.connect(self.applyButton,SIGNAL("clicked()"),self.saveServer)

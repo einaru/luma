@@ -216,18 +216,18 @@ class ServerDialog(ServerDialogDesign):
             dnList = None
         
             # Check for openldap
-            result = conObject.search_s("", ldap.SCOPE_BASE, "(objectClass=*)", ["namingContexts"])
+            result = conObject.search("", ldap.SCOPE_BASE, "(objectClass=*)", ["namingContexts"])
             dnList = result[0][1]['namingContexts']
         
             # Check for Novell
             if dnList[0] == '':
-                result = conObject.search_s("", ldap.SCOPE_BASE)
+                result = conObject.search("", ldap.SCOPE_BASE)
                 dnList = result[0][1]['dsaName']
             
             # Univertity of Michigan aka umich
             # not jet tested
             if dnList[0] == '':
-                result = conObject.search_s("", ldap.SCOPE_BASE, "(objectClass=*)",['database'])
+                result = conObject.search("", ldap.SCOPE_BASE, "(objectClass=*)",['database'])
                 dnList = result[0][1]['namingContexts']
                 
             conObject.unbind()
