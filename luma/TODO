@@ -1,0 +1,51 @@
+Admin Utilities
+---------------
+    - Add support for nthash and lmhash
+        Already implemented in the mkpasswd module but has a dependecy on module
+        smbpasswd. Has to be incorporated into Luma so this module is optional.
+        
+        
+        
+Browser
+-------
+    - Add nice wizard to add new entries from templates
+        Currently there is a usability problem with adding entries. The dn is 
+        the one of the parent and many people forget to complete it with an 
+        attribute of the new object.
+        Also do not save, it not all must attributes are specified. Give a 
+        warning.
+        
+    - Move entries to new nodes. Also recursively for complete trees
+        
+
+    
+Schema Browser
+--------------
+    - Create schema browser
+    
+    
+
+Addressbook
+-----------
+    - better group handling
+    - ability to send emails / start email composer
+    
+
+Install Script
+--------------
+    - Do not copy editor backup files  
+    - Add uninstall option
+    - correct version checking
+    - rewrite installer to use distutils 
+               
+
+General
+-------
+    - Import of ldifs
+    
+    - Correct version checking in installer script
+    
+    
+Wishlist by users
+-----------------
+    - create own schemas   
