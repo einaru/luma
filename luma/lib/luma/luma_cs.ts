@@ -319,11 +319,6 @@ POSSIBILITY OF SUCH DAMAGES.
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>&lt;font size=&quot;+2&quot;&gt;&lt;b&gt;Luma 2.0.2&lt;/b&gt;&lt;/font&gt;</source>
-        <comment>DO NOT TRANSLATE</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>&lt;p align=&quot;center&quot;&gt;LDAP management made easy.&lt;br&gt;&lt;br&gt;
 (c) 2003-2005   Wido Depping&lt;br&gt;&lt;br&gt;
 http://luma.sourceforge.net
@@ -359,6 +354,11 @@ Swedish translation
 
 Alexander Novitsky
 Russian translation</source>
+        <comment>DO NOT TRANSLATE</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;font size=&quot;+2&quot;&gt;&lt;b&gt;Luma 2.1&lt;/b&gt;&lt;/font&gt;</source>
         <comment>DO NOT TRANSLATE</comment>
         <translation type="unfinished"></translation>
     </message>
@@ -1854,6 +1854,33 @@ které jsou povinné pro vybranou třídu objektu.&lt;/p&gt;</translation>
     </message>
 </context>
 <context>
+    <name>LoggerWidgetDesign</name>
+    <message>
+        <source>Form</source>
+        <translation type="unfinished">Formulář</translation>
+    </message>
+    <message>
+        <source>Display message types:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Errors</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Debug</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Info</source>
+        <translation type="unfinished">Info</translation>
+    </message>
+    <message>
+        <source>Clear</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>LumaEntryBrowser</name>
     <message>
         <source>Tree</source>
@@ -2068,6 +2095,10 @@ které jsou povinné pro vybranou třídu objektu.&lt;/p&gt;</translation>
     <message>
         <source>Ctrl+P</source>
         <translation></translation>
+    </message>
+    <message>
+        <source>Show logger</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
