@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE Project SYSTEM "Project-3.5.dtd">
 <!-- Project file for project luma -->
-<!-- Saved: 2005-01-29, 23:18:38 -->
+<!-- Saved: 2005-02-18, 23:50:29 -->
 <!-- Copyright (C) 2005 Wido Depping, wido.depping@tu-clausthal.de -->
 <Project version="3.5">
   <Description></Description>
@@ -938,6 +938,30 @@
       <Dir>backend</Dir>
       <Name>ObjectClassAttributeInfo.py</Name>
     </Source>
+    <Source>
+      <Dir>lib</Dir>
+      <Dir>luma</Dir>
+      <Dir>base</Dir>
+      <Dir>utils</Dir>
+      <Dir>backend</Dir>
+      <Name>LogObject.py</Name>
+    </Source>
+    <Source>
+      <Dir>lib</Dir>
+      <Dir>luma</Dir>
+      <Dir>base</Dir>
+      <Dir>utils</Dir>
+      <Dir>gui</Dir>
+      <Name>LoggerWidgetDesign.py</Name>
+    </Source>
+    <Source>
+      <Dir>lib</Dir>
+      <Dir>luma</Dir>
+      <Dir>base</Dir>
+      <Dir>utils</Dir>
+      <Dir>gui</Dir>
+      <Name>LoggerWidget.py</Name>
+    </Source>
   </Sources>
   <Forms>
     <Form>
@@ -1245,6 +1269,14 @@
       <Dir>plugins</Dir>
       <Dir>schemabrowser</Dir>
       <Name>SchemaViewDesign.ui</Name>
+    </Form>
+    <Form>
+      <Dir>lib</Dir>
+      <Dir>luma</Dir>
+      <Dir>base</Dir>
+      <Dir>utils</Dir>
+      <Dir>gui</Dir>
+      <Name>LoggerWidgetDesign.ui</Name>
     </Form>
   </Forms>
   <Translations>

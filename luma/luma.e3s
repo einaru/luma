@@ -2,10 +2,13 @@
 <!DOCTYPE Session SYSTEM "Session-3.5.dtd">
 <!-- eric3 session file for project luma -->
 <!-- This file was generated automatically, do not edit. -->
-<!-- Saved: 2005-02-12, 15:44:17 -->
+<!-- Saved: 2005-02-28, 16:53:31 -->
 <Session version="3.5">
   <Filenames>
+    <Filename cline="52" cindex="59">/home/wido/src/luma/lib/luma/luma.py</Filename>
+    <Filename cline="94" cindex="31">/home/wido/src/luma/lib/luma/base/gui/MainWin.py</Filename>
   </Filenames>
+  <ActiveWindow cline="94" cindex="31">/home/wido/src/luma/lib/luma/base/gui/MainWin.py</ActiveWindow>
   <Breakpoints>
   </Breakpoints>
   <DebugInfo>
