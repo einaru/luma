@@ -121,3 +121,103 @@ def mkpasswd(pwd,sambaver=3,default='ssha'):
             elif sambaver==2:
                 return "{NTPassword}" + smbpasswd.lmhash(pwd)
 
+def check_strength(passwordString=""):
+    
+    def check_length():
+        return 13 * pLength
+        
+    def check_chars():
+        upperBool = False
+        lowerBool = False
+        specialBool = False
+        numberBool = False
+        combination = 0
+        
+        valueDict = {0:50, 1:50, 2:20, 3:0, 4:0}
+        
+        for x in passwordString:
+            if (not lowerBool) and (x in string.ascii_lowercase):
+                lowerBool = True
+                combination += 1
+            if (not upperBool) and (x in string.ascii_uppercase):
+                upperBool = True
+                combination += 1
+            if (not numberBool) and (x in string.digits):
+                numberBool = True
+                combination += 1
+            if (not specialBool) and ((not(x in string.ascii_uppercase)) and (not(x in string.ascii_lowercase)) and (not(x in string.digits))):
+                specialBool = True
+                combination += 1
+            if upperBool and lowerBool and specialBool and numberBool:
+                break
+        
+        #print passwordString, combination, upperBool, lowerBool, numberBool, specialBool
+        return valueDict[combination]
+        
+        
+    def check_distribution():
+        tmpDict = {}
+        for x in passwordString:
+            tmpDict[x] = None
+        
+        ratio = pLength / len(tmpDict.keys())
+        #if 1 == ratio:
+        #    return 0
+        return 13 * (ratio-1)
+        
+    def check_special_characters():
+        tmpVal = 0
+        return tmpVal
+    
+    pLength = len(passwordString)
+    
+    value = check_length()
+    #print "Length: ", value
+    value -= check_distribution()
+    #print "Distribution: ", value
+    value -= check_chars()
+    #print "Chars: ", value
+    
+    if value < 0:
+        value = 0
+    
+    if value > 100:
+        value = 100
+        
+    return value
+
+
+def check_strength_function():
+
+    pwList = ["a", "aA", "aaaaaaaaaaa", "abcdefgh", "aBcDeFgH", "abc123ef",
+        "aBc123Ef", "      ", "abC12 \ *+"]
+        
+    for x in pwList:
+        print x, check_strength(x)
+        
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
