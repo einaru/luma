@@ -12,7 +12,7 @@
 from qt import *
 
 from base.utils.gui.BrowserWidget import BrowserWidget
-from base.utils.gui.ObjectWidget import ObjectWidget
+from base.utils.gui.AdvancedObjectWidget import AdvancedObjectWidget
 
 class BrowserView(QWidget):
 
@@ -25,9 +25,10 @@ class BrowserView(QWidget):
         self.mainLayout = QHBoxLayout(self)
         self.entryList = BrowserWidget(self.splitter)
         self.entryList.setMinimumWidth(200)
-        self.entryView = ObjectWidget(self.splitter)
+        self.entryView = AdvancedObjectWidget(self.splitter)
         self.connect (self.entryList, PYSIGNAL("ldap_result"), self.entryView.initView)
         self.connect (self.entryList, PYSIGNAL("about_to_change"), self.entryView.aboutToChange)
+        self.connect (self.entryView, PYSIGNAL("REOPEN_PARENT"), self.entryList.reopenDN)
         self.mainLayout.addWidget(self.splitter)
 
 ###############################################################################
