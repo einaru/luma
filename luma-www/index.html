@@ -1,0 +1,167 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+
+<head>
+  <title>Luma - LDAP utiliy, browser and more...</title>
+  <link rel="stylesheet" type="text/css" href="lumacss.css">
+  <meta name="GENERATOR" content="Quanta Plus">
+</head>
+<body>
+
+
+<div class="lumatitle" >
+	<font size="+3" color="White"><strong>Luma</strong> - LDAP browser, utility and more.</font>
+</div>
+<p></p>
+	
+
+
+<TABLE>
+	<td width="100" valign="top">
+		<div class="lumamenulinkactive" align="center">
+			<a class="menulink" href="index.html" name="News">News</a>
+		</div>
+		
+		<div class="lumamenulinkinactive" align="center">
+			<a class="menulink" href="about.html" name="About Luma">About Luma</a><br>
+		</div>
+		
+		<div class="lumamenulinkinactive" align="center">
+			<a class="menulink" href="changelog.html">Changelog</a><br>
+		</div>
+		
+		<div class="lumamenulinkinactive" align="center">
+			<a class="menulink" href="screenshots.html">Screenshots</a><br>
+		</div>
+		
+		<div class="lumamenulinkinactive" align="center">
+			<a class="menulink" href="download.html">Download</a><br>
+		</div>
+		
+		<div class="lumamenulinkinactive" align="center">
+			<a class="menulink" href="contact.html">Contact &#038; Support</a>
+		</div>
+		
+		<div class="lumamenulinkinactive" align="center">
+			<a class="menulink" href="documentation.html">Documentation</a>
+		</div>
+	</td>
+	
+	
+	<td valign="top" width="80%">
+	
+		<div class="lumadate">Wed Aug 18 14:54:28 CEST 2004</div>
+		<div class="lumanews">
+			<STRONG>Release of Luma 1.4</STRONG><br>
+			After 3 months of development, the Luma project team releases Luma 1.4 to the public. SASL support for authentication has been added, all network operations are threaded and plugins use the application toolbar now. Additionally the GUI got a cleanup, several bugs were fixed and some features were added to improve the user experience. The complete changelog can be found at <A href="http://luma.sourceforge.net/changelog.html">http://luma.sourceforge.net/changelog.html</A><br>
+			To install Luma you need at least Python 2.3, Qt 3.2, PyQt 3.10 and python-ldap 2.0.1. The tarball can be found at <A href="http://luma.sourceforge.net/download.html">http://luma.sourceforge.net/download.html</A> .
+		</div><br><br>
+		
+	
+		<div class="lumadate">Tue May 18 20:14:42 CEST 2004</div>
+		<div class="lumanews">
+			<STRONG>Release of Luma 1.3</STRONG><br>
+			The Luma project team is pleased to announce the availabilty of Luma 1.3. As a highlight, this release features a new usermanagement plugin which enables easy handling of user accounts.<br>
+			A lot of effort went into improving the usability of some common interface elements. The handling of the server configuration dialog was simplified and should be more intuitive for the user.<br>
+			The widget for displaying LDAP entries is completely redone. Handling with binary data, such as images and certificates, is improved and it is possible to add attributes which are not supported by current objectclasses.<br>
+			Luma supports the creation of LANMAN and NT passwords which are needed for users working with Samba. To enable this, the python smbpasswd module has be installed which can be found at <A href="http://barryp.org/software/py-smbpasswd/">http://barryp.org/software/py-smbpasswd/</A><br>
+			There haven been a number of bugfixes and a complete list can be found at <A href="http://luma.sourceforge.net/changelog.html">http://luma.sourceforge.net/changelog.html</A> .<br>
+			To install Luma you need at least Python 2.3, Qt 3.2, PyQt 3.10 and python-ldap 2.0.0pre13. The tarball can be found at <A href="http://luma.sourceforge.net/download.html">http://luma.sourceforge.net/download.html</A> .
+		</div><br><br>
+	
+	
+		<div class="lumadate">
+			Wed Feb 11 18:16:21 CET 2004
+		</div>
+		
+		<div class="lumanews">
+			<STRONG>Release of Luma 1.2</STRONG><br>
+			After 2 months of development the Luma project team is pleased to announce Luma 1.2. Many important features and bugfixes have been made. <br>
+			Thanks to the translation team Luma is available in 4 languages. Since the last release Norwegian has been added. <br>
+			A new addressbook plugin has been created. It is compatible with most schemas and ldap setups, as it is not dependant on a specific object class. The addressbook detects which object classes are supported by the server and enables the allowed contact fields. Currently Luma works with person, organizationalPerson, inetOrgPerson and evolutionPerson classes.<br>
+			Other changes include support for utf-8 encoded strings, added keyboard shortcuts and many improvements of the user interface.<br>
+			For more changes see the <A href="http://luma.sourceforge.net/changelog.html">changelog</A>.<br>
+			To install Luma you need at least PyQt 3.10 and python-ldap 2.0.0pre13. The mx-datetime module is no longer needed.<br>
+			You can download Luma <a href="download.html">here</a>.<br>
+		</div><br><br>
+	
+		<div class="lumadate">
+			Thu Dec 11 18:33:37 CET 2003
+		</div>
+		<div class="lumanews">
+			<strong>Release of Luma 1.1</strong><br>
+				This is a only bugfix release. Luma should work with Python 2.3 now and the plugin loading code is more robust. Startup won't fail because of a faulty plugin. Also a bug with date calculation in the Admin-Plugin was fixed.<br>
+				Users are welcome to test this release and report eventual bugs. Especially users with Python 2.3 are welcome.
+		</div><br><br>
+		
+		
+		
+		<div class="lumadate">
+			Mon Dec  1 23:46:08 CET 2003
+		</div>
+		
+		<div class="lumanews">
+			<strong>Release of Luma 1.0 Final</strong><br>
+			Luma 1.0 Final has been released. Luma is a graphical utility for accessing and managing data stored on LDAP servers. It is written in Python, using PyQt and python-ldap. Plugin-support is included and useful widgets with LDAP-functionality for easy creation of plugins are delivered.<br>
+			The highlights of this release include support for portuguese, display of image for the jpegPhoto attribute and automatic retrieval of baseDNs in the server dialog. More changes can be found <a href="changelog.html">here</a>.<br>
+			Get this release at the <a href="download.html">download page</a>.<br>
+		</div><br><br>
+		
+		
+		<div class="lumadate">
+			Sun Nov 16 17:34:25 CET 2003
+		</div>
+		
+		<div class="lumanews">
+			<strong>New features for 1.0 Final</strong><br>
+			Thanks to Fernando Maior from Brazil, Luma is available in portugese.<br>
+				With the mkpasswd module from Bjørn Ove Grøtan, the admin utilities can encrypt passwords
+				in cryp, md5, sha and ssha format.<br>
+				JPEG photos are displayed as images, not binary data.<br>
+				More changes for can be found <a href="changelog.html">here</a>.
+		</div><br><br>
+		
+		
+		
+		<div class="lumadate">
+			Mon Nov 10 22:53:05 CET 2003
+		</div>
+		
+		<div class="lumanews">
+			<strong>Beta2</strong><br>
+			A new beta has been released. For a list of changes go to <a href="changelog.html">this site</a>. Bug reports are welcome!<br>
+			Get beta2 <a href="download.html" name="download">here</a>.
+		</div><br><br>
+		
+		
+		
+		<div class="lumadate">
+			Sun Nov  9 03:32:49 CET 2003: Beta1 Update
+		</div>
+		
+		<div class="lumanews">
+			<strong>Beta1 Update</strong><br>
+			Because of missing copyright notices in some source files, a new beta1-release is available. No code changes. Get the release <a href="download.html" name="download">here</a>.
+		</div><br><br>
+		
+		
+		
+		<div class="lumadate">
+			Sat Nov  8 18:37:47 CET 2003
+		</div>
+		
+		<div class="lumanews">
+			<strong>Preparing Luma 1.0 BETA 1</strong><br>
+			The first beta of Luma 1.0 is out! Users are encouraged to test this release and report all bugs. Depending on the number of bugs found, there will be other beta releases, followed by Luma 1.0-FINAL.<br>
+			This is my first bigger project and I was able to test Luma only on one LDAP server. So, if you find any major problems with this software, don't flame me and send me your bugreports :)<br>
+			Get the beta <a href="download.html" name="download">here</a>.
+		</div><br><br>
+		
+	</td>
+	
+</TABLE>
+
+<div align="right"><A href="http://sourceforge.net"> <IMG src="http://sourceforge.net/sflogo.php?group_id=89105&amp;type=5" width="210" height="62" border="0" alt="SourceForge.net Logo" /></A></div>
+
+</body>
+</html>

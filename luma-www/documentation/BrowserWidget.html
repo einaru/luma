@@ -1,0 +1,63 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+
+<head>
+  <title>Luma - LDAP utiliy, browser and more...</title>
+  <link rel="stylesheet" type="text/css" href="../lumacss.css">
+  <meta name="GENERATOR" content="Quanta Plus">
+</head>
+<body>
+
+
+<div class="lumatitle" >
+	<font size="+3" color="White"><strong>Luma</strong> - LDAP browser, utility and more.</font>
+</div>
+<p></p>
+	
+
+
+<TABLE>
+	<td width="150" valign="top">
+		<div class="lumamenulinkinactive" align="center">
+			<a class="menulink" href="../index.html" name="News">News</a>
+		</div>
+		
+		<div class="lumamenulinkinactive" align="center">
+			<a class="menulink" href="browser.html" name="Browser plugin">Browser plugin</a><br>
+		</div>
+		
+		<div class="lumamenulinkactive" align="center">
+			<a class="menulink" href="BrowserWidget.html" name="BrowserWidget">BrowserWidget</a><br>
+		</div>
+		
+	</td>
+	
+	
+	<td valign="top" width="80%">
+		<div class="lumanews">
+			<STRONG>BrowserWidget</STRONG><br>
+			The BrowserWidget displays all LDAP server which are stored and the user is able to browse through the directory structure.<br><br>
+			<A href="images/BrowserWidget-big.png" target="_blank"><IMG src="images/BrowserWidget-small.png" width="105" height="265" border="0"></A><br><br>
+			
+			By clicking on the node symbols the user can expand or collapse the tree structure. If a user tries the expand a node of the tree which is a leaf, a warning will pop up, saying that the node has no children.<br>
+			If the user does a right-click with the mouse on a LDAP item, a menu will pop up.<br><br>
+			<IMG src="images/BrowserWidget-menu1.png" width="199" height="77" border="0"><br><br>
+			
+			There are three options from which the user can choose.The user can add entries, export them to LDIF and delete them. If you select "Add item", a second popup will appear. This is generated automaticly and displays all templates which the user has made with the Template Plugin.<br><br>
+			<IMG src="images/BrowserWidget-menu2.png" width="202" height="94" border="0"><br><br>
+			This is an example how this widget will look. If a template is clicked, a second window will appear with the ObjectWidget. There you can edit the values for the new entry. But the entry will be stored on the server only when the user clicks on the 'Save'-button.<br><br>
+			
+			If the user wants to export LDAP objects to LDIF format, he has several options.<br><br>
+			<IMG src="images/BrowserWidget-menu3.png" width="210" height="71" border="0"><br><br>
+			The first option exports only the selected entry to LDIF. The option 'Subtree' exports the current item and all its children. And the third option exports the current item, its subtree and all parent nodes recursively. This is very usefull if you want to quickly extract certain leaves of your LDAP tree and test them on another server without editing the LDIF file.<br><br>
+			
+			The last option from the popup menu enables deletion of objects.<br><br>
+			<IMG src="images/BrowserWidget-menu4.png" width="217" height="71" border="0"><br><br>
+			The first option deletes the current item. The second deletes the item and its subtree and the third the subtree without the current entry.
+		</div><br><br>
+	</td>
+	
+</TABLE>
+
+</body>
+</html>

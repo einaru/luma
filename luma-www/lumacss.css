@@ -1,0 +1,12 @@
+.lumamenu {background-color:#EAE9E8}
+
+.lumatitle {background-color:#3E91EB; padding:8px}
+
+.lumadate {background-color:#3E91EB; margin-right:10; color:white; padding-left:10; padding-right:10; text-align:right; font-weight:bolder;}
+
+.lumamenulinkactive {background-color:#3E91EB; margin-right:10; color:white; font-size:large; padding-left:10; padding-right:10}
+
+.lumamenulinkinactive {background-color:#EAE9E8; margin-right:10; font-size:large; padding-left:10; padding-right:10}
+a.menulink {text-decoration:none; color:inherit;}
+
+.lumanews {background-color:#EAE9E8; margin-right:10; padding-left:10; padding-right:10}

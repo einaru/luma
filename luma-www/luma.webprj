@@ -1,0 +1,58 @@
+<!DOCTYPE webproject>
+<webproject>
+  <project usePreviewPrefix="0" previewPrefix="file:file%3A" type="Local" name="luma" encoding="iso 8859-15" >
+    <upload remote_host="shell.sourceforge.net" remote_port="" remote_path="/home/groups/l/lu/luma/htdocs" remote_protocol="fish" user="widod" />
+    <author>Wido Depping</author>
+    <email>widod@users.sourceforge.net</email>
+    <defaultDTD>-//w3c//dtd html 4.01 transitional//en</defaultDTD>
+    <item upload_time="1092840339" modified_time="1092840339" url="index.html" uploadstatus="0" />
+    <item upload_time="1076364840" modified_time="1076364840" url="lumacss.css" uploadstatus="0" />
+    <item upload_time="1092863888" modified_time="1092863888" url="luma.webprj" uploadstatus="0" />
+    <templates>templates/</templates>
+    <toolbars>toolbars/</toolbars>
+    <item upload_time="1076453915" modified_time="1076453915" url="about.html" uploadstatus="0" />
+    <item upload_time="1092863591" modified_time="1092863591" url="changelog.html" uploadstatus="0" />
+    <item upload_time="1092861013" modified_time="1092861013" url="screenshots.html" uploadstatus="0" />
+    <item upload_time="1092863747" modified_time="1092863747" url="download.html" uploadstatus="0" />
+    <item upload_time="1076453462" modified_time="1076453462" url="contact.html" uploadstatus="0" />
+    <item upload_time="" url="images/" uploadstatus="0" />
+    <item upload_time="" url="images/screenshots/" uploadstatus="0" />
+    <item upload_time="1068485238" modified_time="1068485238" url="images/screenshots/.xvpics/browserdialog-small.png" uploadstatus="0" />
+    <item upload_time="1068313040" modified_time="1068313040" url="images/logo.png" uploadstatus="0" />
+    <item upload_time="1084225268" modified_time="1084225268" url="documentation.html" uploadstatus="0" />
+    <item upload_time="" url="documentation/" uploadstatus="0" />
+    <item upload_time="1084225276" modified_time="1084225276" url="documentation/browser.html" uploadstatus="0" />
+    <item upload_time="1084227459" modified_time="1084227459" url="documentation/BrowserWidget.html" uploadstatus="0" />
+    <item upload_time="" url="documentation/images/" uploadstatus="0" />
+    <item upload_time="1084225564" modified_time="1084225564" url="documentation/images/BrowserWidget-big.png" uploadstatus="0" />
+    <item upload_time="1084225761" modified_time="1084225761" url="documentation/images/BrowserWidget-menu1.png" uploadstatus="0" />
+    <item upload_time="1084226390" modified_time="1084226390" url="documentation/images/BrowserWidget-menu2.png" uploadstatus="0" />
+    <item upload_time="1084226701" modified_time="1084226701" url="documentation/images/BrowserWidget-menu3.png" uploadstatus="0" />
+    <item upload_time="1084227270" modified_time="1084227270" url="documentation/images/BrowserWidget-menu4.png" uploadstatus="0" />
+    <item upload_time="1084225636" modified_time="1084225636" url="documentation/images/BrowserWidget-small.png" uploadstatus="0" />
+    <item upload_time="1084223660" modified_time="1084223660" url="documentation/images/browser-big.png" uploadstatus="0" />
+    <item upload_time="1084223770" modified_time="1084223770" url="documentation/images/browser-small.png" uploadstatus="0" />
+    <item upload_time="1092857996" modified_time="1092857996" url="images/screenshots/addressbook-small.png" uploadstatus="0" />
+    <item upload_time="1092842056" modified_time="1092842056" url="images/screenshots/addressbook.png" uploadstatus="0" />
+    <item upload_time="1092858017" modified_time="1092858017" url="images/screenshots/admin-utilities-small.png" uploadstatus="0" />
+    <item upload_time="1092841920" modified_time="1092841920" url="images/screenshots/admin-utilities.png" uploadstatus="0" />
+    <item upload_time="1092858046" modified_time="1092858046" url="images/screenshots/admin-utilities2-small.png" uploadstatus="0" />
+    <item upload_time="1092841936" modified_time="1092841936" url="images/screenshots/admin-utilities2.png" uploadstatus="0" />
+    <item upload_time="1092858066" modified_time="1092858066" url="images/screenshots/browserplugin-small.png" uploadstatus="0" />
+    <item upload_time="1092841797" modified_time="1092841797" url="images/screenshots/browserplugin.png" uploadstatus="0" />
+    <item upload_time="1092858243" modified_time="1092858243" url="images/screenshots/password-dialog-small.png" uploadstatus="0" />
+    <item upload_time="1092842289" modified_time="1092842289" url="images/screenshots/password-dialog.png" uploadstatus="0" />
+    <item upload_time="1092858095" modified_time="1092858095" url="images/screenshots/search-plugin-small.png" uploadstatus="0" />
+    <item upload_time="1092842162" modified_time="1092842162" url="images/screenshots/search-plugin.png" uploadstatus="0" />
+    <item upload_time="1092858115" modified_time="1092858115" url="images/screenshots/serverdialog-small.png" uploadstatus="0" />
+    <item upload_time="1092841687" modified_time="1092841687" url="images/screenshots/serverdialog.png" uploadstatus="0" />
+    <item upload_time="1092858191" modified_time="1092858191" url="images/screenshots/usermanagement-small.png" uploadstatus="0" />
+    <item upload_time="1092842227" modified_time="1092842227" url="images/screenshots/usermanagement.png" uploadstatus="0" />
+    <item upload_time="1092858211" modified_time="1092858211" url="images/screenshots/usermanagement2-small.png" uploadstatus="0" />
+    <item upload_time="1092842248" modified_time="1092842248" url="images/screenshots/usermanagement2.png" uploadstatus="0" />
+    <item url="" uploadstatus="1" />
+    <treestatus>
+      <openfolder url="images" />
+    </treestatus>
+  </project>
+</webproject>
