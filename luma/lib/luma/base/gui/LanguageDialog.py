@@ -42,6 +42,11 @@ class LanguageDialog(LanguageDialogDesign):
                 pixmap = QPixmap(self.trDir + "/" + x + ".png")
                 self.languageBox.insertItem(pixmap, "Deutsch")
                 continue
+            if x == 'br':
+                pixmap = QPixmap(self.trDir + "/" + x + ".png")
+                self.languageBox.insertItem(pixmap, "Brazil")
+                continue
+                
 
 ###############################################################################
 
@@ -58,6 +63,8 @@ class LanguageDialog(LanguageDialogDesign):
         
         if tmpText == "Deutsch":
             return self.trDir + "/luma_de.qm"
+        elif tmpText == "Brazil":
+            return self.trDir + "/luma_br.qm"
         elif tmpText == "English (UK)":
             return 'NATIVE'
         
