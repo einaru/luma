@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file '/home/wido/src/luma/lib/luma/base/gui/MainWinDesign.ui'
 #
-# Created: Mon Dec 29 17:43:17 2003
+# Created: Sun Jan 4 22:33:12 2004
 #      by: The PyQt User Interface Compiler (pyuic) 3.8.1
 #
 # WARNING! All changes made in this file will be lost!
@@ -1428,49 +1428,50 @@ class MainWinDesign(QMainWindow):
         self.setCentralWidget(QWidget(self,"qt_central_widget"))
         MainWinDesignLayout = QGridLayout(self.centralWidget(),1,1,11,6,"MainWinDesignLayout")
 
-        self.splitter1 = QSplitter(self.centralWidget(),"splitter1")
-        self.splitter1.setOrientation(QSplitter.Horizontal)
+        self.splitter3 = QSplitter(self.centralWidget(),"splitter3")
+        self.splitter3.setOrientation(QSplitter.Horizontal)
 
-        self.groupBox2 = QGroupBox(self.splitter1,"groupBox2")
-        self.groupBox2.setSizePolicy(QSizePolicy(1,5,0,0,self.groupBox2.sizePolicy().hasHeightForWidth()))
-        self.groupBox2.setMaximumSize(QSize(200,32767))
-        self.groupBox2.setColumnLayout(0,Qt.Vertical)
-        self.groupBox2.layout().setSpacing(6)
-        self.groupBox2.layout().setMargin(11)
-        groupBox2Layout = QVBoxLayout(self.groupBox2.layout())
-        groupBox2Layout.setAlignment(Qt.AlignTop)
+        self.pluginBox = QGroupBox(self.splitter3,"pluginBox")
+        self.pluginBox.setSizePolicy(QSizePolicy(5,5,0,0,self.pluginBox.sizePolicy().hasHeightForWidth()))
+        self.pluginBox.setMaximumSize(QSize(170,32767))
+        self.pluginBox.setColumnLayout(0,Qt.Vertical)
+        self.pluginBox.layout().setSpacing(6)
+        self.pluginBox.layout().setMargin(11)
+        pluginBoxLayout = QGridLayout(self.pluginBox.layout())
+        pluginBoxLayout.setAlignment(Qt.AlignTop)
 
-        self.taskList = QIconView(self.groupBox2,"taskList")
-        self.taskList.setSizePolicy(QSizePolicy(5,7,0,0,self.taskList.sizePolicy().hasHeightForWidth()))
+        self.taskList = QIconView(self.pluginBox,"taskList")
+        self.taskList.setSizePolicy(QSizePolicy(0,3,0,0,self.taskList.sizePolicy().hasHeightForWidth()))
         self.taskList.setMinimumSize(QSize(150,0))
-        self.taskList.setPaletteBackgroundColor(QColor(255,255,255))
-        self.taskList.setResizePolicy(QIconView.Manual)
+        self.taskList.setMaximumSize(QSize(150,32767))
         self.taskList.setDragAutoScroll(0)
         self.taskList.setSelectionMode(QIconView.Single)
-        self.taskList.setGridX(-1)
+        self.taskList.setGridX(100)
         self.taskList.setGridY(-1)
         self.taskList.setArrangement(QIconView.LeftToRight)
-        self.taskList.setResizeMode(QIconView.Fixed)
-        self.taskList.setMaxItemWidth(120)
-        self.taskList.setAutoArrange(1)
+        self.taskList.setResizeMode(QIconView.Adjust)
+        self.taskList.setMaxItemWidth(98)
         self.taskList.setItemsMovable(0)
-        groupBox2Layout.addWidget(self.taskList)
 
-        self.taskBox = QGroupBox(self.splitter1,"taskBox")
+        pluginBoxLayout.addWidget(self.taskList,0,0)
+
+        self.taskBox = QGroupBox(self.splitter3,"taskBox")
+        self.taskBox.setAlignment(QGroupBox.AlignTop)
         self.taskBox.setColumnLayout(0,Qt.Vertical)
         self.taskBox.layout().setSpacing(6)
         self.taskBox.layout().setMargin(11)
-        taskBoxLayout = QVBoxLayout(self.taskBox.layout())
+        taskBoxLayout = QGridLayout(self.taskBox.layout())
         taskBoxLayout.setAlignment(Qt.AlignTop)
 
         self.taskStack = QWidgetStack(self.taskBox,"taskStack")
-        self.taskStack.setSizePolicy(QSizePolicy(7,7,0,0,self.taskStack.sizePolicy().hasHeightForWidth()))
+        self.taskStack.setSizePolicy(QSizePolicy(5,7,0,0,self.taskStack.sizePolicy().hasHeightForWidth()))
 
         self.page = QWidget(self.taskStack,"page")
         self.taskStack.addWidget(self.page,0)
-        taskBoxLayout.addWidget(self.taskStack)
 
-        MainWinDesignLayout.addWidget(self.splitter1,0,0)
+        taskBoxLayout.addWidget(self.taskStack,0,0)
+
+        MainWinDesignLayout.addWidget(self.splitter3,0,0)
 
         self.about = QAction(self,"about")
         self.about.setIconSet(QIconSet(self.image0))
@@ -1484,6 +1485,10 @@ class MainWinDesign(QMainWindow):
         self.reload.setIconSet(QIconSet(self.image4))
         self.select_language = QAction(self,"select_language")
         self.select_language.setIconSet(QIconSet(self.image5))
+        self.togglePluginList = QAction(self,"togglePluginList")
+        self.togglePluginList.setToggleAction(1)
+        self.togglePluginList.setOn(0)
+        self.togglePluginList.setEnabled(1)
 
 
 
@@ -1494,7 +1499,10 @@ class MainWinDesign(QMainWindow):
         self.PopupMenu_3 = QPopupMenu(self)
         self.reload.addTo(self.PopupMenu_3)
         self.PopupMenu_3.insertSeparator()
+        self.togglePluginList.addTo(self.PopupMenu_3)
+        self.PopupMenu_3.insertSeparator()
         self.exitItem.addTo(self.PopupMenu_3)
+        self.PopupMenu_3.insertSeparator()
         self.menubar.insertItem(QString(""),self.PopupMenu_3,1)
 
         self.PopupMenu = QPopupMenu(self)
@@ -1510,22 +1518,23 @@ class MainWinDesign(QMainWindow):
 
         self.languageChange()
 
-        self.resize(QSize(742,606).expandedTo(self.minimumSizeHint()))
+        self.resize(QSize(547,422).expandedTo(self.minimumSizeHint()))
         self.clearWState(Qt.WState_Polished)
 
         self.connect(self.about,SIGNAL("activated()"),self.showAboutLuma)
         self.connect(self.exitItem,SIGNAL("activated()"),self.quit_application)
         self.connect(self.editServerList,SIGNAL("activated()"),self.showServerEditor)
-        self.connect(self.taskList,SIGNAL("clicked(QIconViewItem*)"),self.task_selection_changed)
         self.connect(self.menu_configure_plugins,SIGNAL("activated()"),self.configure_plugins)
         self.connect(self.reload,SIGNAL("activated()"),self.reload_plugins)
         self.connect(self.select_language,SIGNAL("activated()"),self.show_language_dialog)
+        self.connect(self.togglePluginList,SIGNAL("toggled(bool)"),self.pluginBox,SLOT("setHidden(bool)"))
+        self.connect(self.taskList,SIGNAL("clicked(QIconViewItem*)"),self.task_selection_changed)
         self.connect(self.taskList,SIGNAL("selectionChanged(QIconViewItem*)"),self.task_selection_changed)
 
 
     def languageChange(self):
         self.setCaption(self.__tr("Luma"))
-        self.groupBox2.setTitle(self.__tr("Plugins"))
+        self.pluginBox.setTitle(self.__tr("Plugins"))
         self.taskBox.setTitle(self.__tr("Work Area"))
         self.about.setText(self.__tr("About Luma"))
         self.editServerList.setText(self.__tr("Edit Server List"))
@@ -1533,6 +1542,7 @@ class MainWinDesign(QMainWindow):
         self.menu_configure_plugins.setText(self.__tr("Configure Plugins"))
         self.reload.setText(self.__tr("Reload Plugins"))
         self.select_language.setText(self.__tr("Language"))
+        self.togglePluginList.setText(self.__tr("Hide/Show pluginlist"))
         self.menubar.findItem(1).setText(self.__tr("Program"))
         self.menubar.findItem(2).setText(self.__tr("Settings"))
         self.menubar.findItem(3).setText(self.__tr("Help"))
