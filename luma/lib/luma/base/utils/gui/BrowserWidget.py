@@ -46,7 +46,7 @@ class BrowserWidget(QListView):
         #       'dcObject', 'organization'])
 
         tmpDirObject = environment.lumaInstallationPrefix
-        tmpIconFile = os.path.join(tmpDirObject, "lib", "luma", "base", "utils", "icons", "secure.png")
+        tmpIconFile = os.path.join(tmpDirObject, "share", "luma", "icons", "secure.png")
 
         tmpObject = ServerList()
         tmpObject.readServerList()
