@@ -18,7 +18,7 @@
             <x>0</x>
             <y>0</y>
             <width>742</width>
-            <height>598</height>
+            <height>606</height>
         </rect>
     </property>
     <property name="caption">
@@ -86,7 +86,7 @@
                             </color>
                         </property>
                         <property name="resizePolicy">
-                            <enum>AutoOneFit</enum>
+                            <enum>Manual</enum>
                         </property>
                         <property name="dragAutoScroll">
                             <bool>false</bool>
@@ -98,13 +98,19 @@
                             <number>-1</number>
                         </property>
                         <property name="gridY">
-                            <number>1</number>
+                            <number>-1</number>
                         </property>
                         <property name="arrangement">
-                            <enum>TopToBottom</enum>
+                            <enum>LeftToRight</enum>
                         </property>
                         <property name="resizeMode">
                             <enum>Fixed</enum>
+                        </property>
+                        <property name="maxItemWidth">
+                            <number>120</number>
+                        </property>
+                        <property name="autoArrange">
+                            <bool>true</bool>
                         </property>
                         <property name="itemsMovable">
                             <bool>false</bool>
@@ -114,7 +120,7 @@
             </widget>
             <widget class="QGroupBox">
                 <property name="name">
-                    <cstring>groupBox2_2</cstring>
+                    <cstring>taskBox</cstring>
                 </property>
                 <property name="title">
                     <string>Work Area</string>

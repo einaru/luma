@@ -1,13 +1,14 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'MainWinDesign.ui'
+# Form implementation generated from reading ui file '/home/wido/src/luma/lib/luma/base/gui/MainWinDesign.ui'
 #
-# Created: Sun Dec 7 20:02:35 2003
+# Created: Mon Dec 29 17:43:17 2003
 #      by: The PyQt User Interface Compiler (pyuic) 3.8.1
 #
 # WARNING! All changes made in this file will be lost!
 
 
+import sys
 from qt import *
 
 image0_data = [
@@ -1443,29 +1444,31 @@ class MainWinDesign(QMainWindow):
         self.taskList.setSizePolicy(QSizePolicy(5,7,0,0,self.taskList.sizePolicy().hasHeightForWidth()))
         self.taskList.setMinimumSize(QSize(150,0))
         self.taskList.setPaletteBackgroundColor(QColor(255,255,255))
-        self.taskList.setResizePolicy(QIconView.AutoOneFit)
+        self.taskList.setResizePolicy(QIconView.Manual)
         self.taskList.setDragAutoScroll(0)
         self.taskList.setSelectionMode(QIconView.Single)
         self.taskList.setGridX(-1)
-        self.taskList.setGridY(1)
-        self.taskList.setArrangement(QIconView.TopToBottom)
+        self.taskList.setGridY(-1)
+        self.taskList.setArrangement(QIconView.LeftToRight)
         self.taskList.setResizeMode(QIconView.Fixed)
+        self.taskList.setMaxItemWidth(120)
+        self.taskList.setAutoArrange(1)
         self.taskList.setItemsMovable(0)
         groupBox2Layout.addWidget(self.taskList)
 
-        self.groupBox2_2 = QGroupBox(self.splitter1,"groupBox2_2")
-        self.groupBox2_2.setColumnLayout(0,Qt.Vertical)
-        self.groupBox2_2.layout().setSpacing(6)
-        self.groupBox2_2.layout().setMargin(11)
-        groupBox2_2Layout = QVBoxLayout(self.groupBox2_2.layout())
-        groupBox2_2Layout.setAlignment(Qt.AlignTop)
+        self.taskBox = QGroupBox(self.splitter1,"taskBox")
+        self.taskBox.setColumnLayout(0,Qt.Vertical)
+        self.taskBox.layout().setSpacing(6)
+        self.taskBox.layout().setMargin(11)
+        taskBoxLayout = QVBoxLayout(self.taskBox.layout())
+        taskBoxLayout.setAlignment(Qt.AlignTop)
 
-        self.taskStack = QWidgetStack(self.groupBox2_2,"taskStack")
+        self.taskStack = QWidgetStack(self.taskBox,"taskStack")
         self.taskStack.setSizePolicy(QSizePolicy(7,7,0,0,self.taskStack.sizePolicy().hasHeightForWidth()))
 
         self.page = QWidget(self.taskStack,"page")
         self.taskStack.addWidget(self.page,0)
-        groupBox2_2Layout.addWidget(self.taskStack)
+        taskBoxLayout.addWidget(self.taskStack)
 
         MainWinDesignLayout.addWidget(self.splitter1,0,0)
 
@@ -1507,7 +1510,7 @@ class MainWinDesign(QMainWindow):
 
         self.languageChange()
 
-        self.resize(QSize(742,598).expandedTo(self.minimumSizeHint()))
+        self.resize(QSize(742,606).expandedTo(self.minimumSizeHint()))
         self.clearWState(Qt.WState_Polished)
 
         self.connect(self.about,SIGNAL("activated()"),self.showAboutLuma)
@@ -1523,7 +1526,7 @@ class MainWinDesign(QMainWindow):
     def languageChange(self):
         self.setCaption(self.__tr("Luma"))
         self.groupBox2.setTitle(self.__tr("Plugins"))
-        self.groupBox2_2.setTitle(self.__tr("Work Area"))
+        self.taskBox.setTitle(self.__tr("Work Area"))
         self.about.setText(self.__tr("About Luma"))
         self.editServerList.setText(self.__tr("Edit Server List"))
         self.exitItem.setText(self.__tr("Exit"))
@@ -1564,3 +1567,11 @@ class MainWinDesign(QMainWindow):
 
     def __tr(self,s,c = None):
         return qApp.translate("MainWinDesign",s,c)
+
+if __name__ == "__main__":
+    a = QApplication(sys.argv)
+    QObject.connect(a,SIGNAL("lastWindowClosed()"),a,SLOT("quit()"))
+    w = MainWinDesign()
+    a.setMainWidget(w)
+    w.show()
+    a.exec_loop()

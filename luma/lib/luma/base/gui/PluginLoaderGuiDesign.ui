@@ -1,4 +1,4 @@
-<!DOCTYPE UI><UI version="3.1" stdsetdef="1">
+<!DOCTYPE UI><UI version="3.2" stdsetdef="1">
 <class>PluginLoaderGuiDesign</class>
 <comment>###########################################################################
 #    Copyright (C) 2003 by Wido Depping                                      
@@ -17,8 +17,8 @@
         <rect>
             <x>0</x>
             <y>0</y>
-            <width>412</width>
-            <height>346</height>
+            <width>462</width>
+            <height>331</height>
         </rect>
     </property>
     <property name="caption">
@@ -28,23 +28,7 @@
         <property name="name">
             <cstring>unnamed</cstring>
         </property>
-        <widget class="QPushButton" row="3" column="1">
-            <property name="name">
-                <cstring>pushButton1</cstring>
-            </property>
-            <property name="text">
-                <string>Ok</string>
-            </property>
-        </widget>
-        <widget class="QPushButton" row="3" column="2">
-            <property name="name">
-                <cstring>pushButton2</cstring>
-            </property>
-            <property name="text">
-                <string>Cancel</string>
-            </property>
-        </widget>
-        <widget class="QLabel" row="0" column="0" rowspan="1" colspan="3">
+        <widget class="QLabel" row="0" column="0" rowspan="1" colspan="2">
             <property name="name">
                 <cstring>textLabel1</cstring>
             </property>
@@ -60,21 +44,7 @@
                 <string>Available Plugins:</string>
             </property>
         </widget>
-        <widget class="Line" row="1" column="0" rowspan="1" colspan="3">
-            <property name="name">
-                <cstring>line1</cstring>
-            </property>
-            <property name="frameShape">
-                <enum>HLine</enum>
-            </property>
-            <property name="frameShadow">
-                <enum>Sunken</enum>
-            </property>
-            <property name="orientation">
-                <enum>Horizontal</enum>
-            </property>
-        </widget>
-        <spacer row="3" column="0">
+        <spacer row="6" column="0">
             <property name="name">
                 <cstring>spacer1</cstring>
             </property>
@@ -91,10 +61,24 @@
                 </size>
             </property>
         </spacer>
-        <widget class="QListView" row="2" column="0" rowspan="1" colspan="3">
+        <widget class="Line" row="4" column="0" rowspan="2" colspan="3">
+            <property name="name">
+                <cstring>line2</cstring>
+            </property>
+            <property name="frameShape">
+                <enum>HLine</enum>
+            </property>
+            <property name="frameShadow">
+                <enum>Sunken</enum>
+            </property>
+            <property name="orientation">
+                <enum>Horizontal</enum>
+            </property>
+        </widget>
+        <widget class="QListView" row="2" column="0" rowspan="2" colspan="2">
             <column>
                 <property name="text">
-                    <string>Plugins</string>
+                    <string>Load</string>
                 </property>
                 <property name="clickable">
                     <bool>true</bool>
@@ -110,18 +94,59 @@
                 <bool>false</bool>
             </property>
             <property name="resizeMode">
-                <enum>NoColumn</enum>
+                <enum>AllColumns</enum>
+            </property>
+        </widget>
+        <widget class="QPushButton" row="2" column="2">
+            <property name="name">
+                <cstring>pushButton3</cstring>
+            </property>
+            <property name="text">
+                <string>Modify</string>
+            </property>
+        </widget>
+        <widget class="Line" row="1" column="0" rowspan="1" colspan="3">
+            <property name="name">
+                <cstring>line1</cstring>
+            </property>
+            <property name="frameShape">
+                <enum>HLine</enum>
+            </property>
+            <property name="frameShadow">
+                <enum>Sunken</enum>
+            </property>
+            <property name="orientation">
+                <enum>Horizontal</enum>
+            </property>
+        </widget>
+        <spacer row="3" column="2">
+            <property name="name">
+                <cstring>spacer2</cstring>
+            </property>
+            <property name="orientation">
+                <enum>Vertical</enum>
+            </property>
+            <property name="sizeType">
+                <enum>Expanding</enum>
+            </property>
+            <property name="sizeHint">
+                <size>
+                    <width>41</width>
+                    <height>141</height>
+                </size>
+            </property>
+        </spacer>
+        <widget class="QPushButton" row="5" column="1" rowspan="2" colspan="2">
+            <property name="name">
+                <cstring>pushButton1</cstring>
+            </property>
+            <property name="text">
+                <string>Close</string>
             </property>
         </widget>
     </grid>
 </widget>
 <connections>
-    <connection>
-        <sender>pushButton2</sender>
-        <signal>clicked()</signal>
-        <receiver>PluginLoaderGuiDesign</receiver>
-        <slot>close()</slot>
-    </connection>
     <connection>
         <sender>pushButton1</sender>
         <signal>clicked()</signal>

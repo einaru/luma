@@ -154,6 +154,7 @@ class MainWin(MainWinDesign):
             
             if self.__PLUGINS.has_key(fooString):
                 self.taskStack.raiseWidget(self.__PLUGINS[fooString]["WIDGET_ID"])
+                self.taskBox.setTitle(fooString)
 
 ###############################################################################
 
