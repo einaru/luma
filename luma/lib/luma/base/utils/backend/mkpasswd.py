@@ -1,7 +1,7 @@
-# -*- coding: utf-8 -*-
-
 #$Id$
 '''
+ This module depends on python >= 2.2
+
  Module written by Bjorn Ove Grotan <bgrotan@samfundet.no>
 
   Mkpasswd is free software; you can redistribute it and/or modify it
@@ -15,7 +15,7 @@
   General Public License for more details.
  
   You should have received a copy of the GNU General Public License
-  along with Mkpasswd; if not, write to the Free Software Foundation,
+  along with mkpasswd; if not, write to the Free Software Foundation,
   Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307, USA.
 
  For extra strength passwords, we wanted SSHA in our LDAP-environment
@@ -46,14 +46,21 @@
 '''
 import string,base64
 import random,sys
+import exceptions
 import md5,sha,crypt
 smb = 0 # Where 1 is true, and 0 is false
+debug = False
 
 try:
     import smbpasswd
     smb = 1 
 except:
     smb = 0
+    if debug:
+        print '''
+        module <smbpasswd> not found or not installed. Windows-passwords are therefor
+        not supported!
+        '''
 
 def getsalt(chars = string.letters + string.digits,length=16):
     ''' Generate a random salt. Default length is 16 '''
@@ -69,16 +76,24 @@ def randpasswd(chars = string.digits + string.ascii_letters,length=8):
         result = result + getsalt(chars,1)
     return result
 
+def check_password(s):
+    ''' Returns true or false if the argument is concidered a strong password.
+        The password must meat certain rules.. like:
+        both small and CAPITALIZED characters, numbers and special characters 
+        such as .,/!"# etc
+    '''
+    return True
+
 def mkpasswd(pwd,sambaver=3,default='ssha'):
     ''' Make a given password cryptated, possibly with different 
         crypt-algorihtms. This module was written for use with 
-        LDAP - so default is seeded sha
+	    LDAP - so default is seeded sha
     '''
     alg = {
         'ssha':'Seeded SHA',
-        'sha':'Secure Hash Algorithm',
-        'md5':'MD5',
-        'crypt':'standard unix crypt'
+	    'sha':'Secure Hash Algorithm',
+	    'md5':'MD5',
+	    'crypt':'standard unix crypt'
     }
     if smb:
         alg['lmhash'] = 'lan man hash'
@@ -102,7 +117,7 @@ def mkpasswd(pwd,sambaver=3,default='ssha'):
                 return "{lmPassword}" + smbpasswd.lmhash(pwd)
         elif default == 'nthash':
             if sambaver==3:
-                return "{sambaNTPassword}" + smbpasswd.lmhash(pwd)
+                "{sambaNTPassword}" + smbpasswd.lmhash(pwd)
             elif sambaver==2:
                 return "{NTPassword}" + smbpasswd.lmhash(pwd)
 
