@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file '/home/wido/src/luma/lib/luma/plugins/admin_utils/AdminPanelDesign.ui'
 #
-# Created: Mon Apr 5 21:56:38 2004
+# Created: Mon Apr 26 16:00:28 2004
 #      by: The PyQt User Interface Compiler (pyuic) 3.11
 #
 # WARNING! All changes made in this file will be lost!
