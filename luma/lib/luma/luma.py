@@ -15,9 +15,19 @@ from qt import *
 
 import environment
 from base.gui.MainWin import MainWin
+import environment
+import os
 
 
-def run_it():
+
+def startApplication():
+    
+    #Check if configuration directory exists. If not, create it.
+    configPrefix = os.path.join(environment.userHomeDir, ".luma")
+    if not os.path.exists(configPrefix):
+        os.mkdir(configPrefix)
+
+    
     app = QApplication(sys.argv)
     gui = MainWin(None)
     QObject.connect(app, SIGNAL('lastWindowClosed()'), gui.quitApplication)
@@ -28,6 +38,8 @@ def run_it():
     gui.show()
     app.exec_loop()
 
+###############################################################################
+
 if __name__ == '__main__':
-    run_it()
+    startApplication()
 
