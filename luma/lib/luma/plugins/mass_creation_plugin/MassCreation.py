@@ -14,6 +14,7 @@ from base.backend.ServerList import ServerList
 from base.backend.ServerObject import ServerObject
 from base.utils.backend.DateHelper import DateHelper
 from base.utils.backend.CryptPwGenerator import CryptPwGenerator
+from base.utils.gui.BrowserDialog import BrowserDialog
 
 
 class MassCreation(MassCreationDesign):
@@ -171,30 +172,10 @@ Try increasing the uidNumber range or delete some users from the subtree."""),
 ###############################################################################
             
     def browse_server(self):
-        self.tmpDialog = QDialog(self)
-        tmpLayout = QVBoxLayout(self.tmpDialog)
-        tmpButton = QPushButton(self.tmpDialog)
-        tmpButton.setText(self.trUtf8("Ok"))
-        self.tmpBrowser = BrowserWidget(self.tmpDialog)
-        tmpLayout.addWidget(self.tmpBrowser)
-        tmpLayout.addWidget(tmpButton)
-        self.connect(tmpButton, SIGNAL("clicked()"), self.browser_entry_check)
-        self.tmpBrowser.setMinimumWidth(500)
-        self.tmpDialog.exec_loop()
+        dialog = BrowserDialog(self)
+        if dialog.result() == QDialog.Accepted:
+            self.nodeEdit.setText(dialog.getItemPath())
         
-###############################################################################
-
-    def browser_entry_check(self):
-        tmpItem = self.tmpBrowser.selectedItem()
-        tmpText = self.tmpBrowser.get_full_path(tmpItem)
-        if tmpText == None:
-            return
-            
-        if len(tmpText.split(',')) > 1:
-            self.tmpDialog.close()
-            self.nodeEdit.setText(tmpText)
-            self.tmpBrowser = None
-            self.tmpDialog = None
 
 ###############################################################################
 
@@ -268,7 +249,28 @@ Try increasing the uidNumber range or delete some users from the subtree."""),
         else:
             return None
     
-    
+###############################################################################
+
+    def browseGroups(self):
+        ldapItem = None
+        dialog = BrowserDialog(self)
+        if dialog.result() == QDialog.Accepted:
+            ldapItem = dialog.getLdapItem()
+        
+        groupId = None
+        
+        try:
+            groupId = ldapItem[1][0][1]['gidNumber'][0]
+            self.gidBox.setValue(int(groupId))
+        except KeyError:
+            QMessageBox.warning(None,
+                self.trUtf8("Wrong entry!"),
+                self.trUtf8("""The selected ldap entry did not contain the attribute 'gidNumber'."""),
+                self.trUtf8("&OK"),
+                None,
+                None,
+                0, -1)
+
     
     
     
