@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file '/daten/src/cvs/luma/lib/luma/base/gui/PluginLoaderGuiDesign.ui'
+# Form implementation generated from reading ui file '/home/wido/src/luma/lib/luma/base/gui/PluginLoaderGuiDesign.ui'
 #
-# Created: Mon Sep 1 00:18:34 2003
-#      by: The PyQt User Interface Compiler (pyuic) 3.7
+# Created: Thu Dec 4 01:54:09 2003
+#      by: The PyQt User Interface Compiler (pyuic) 3.8.1
 #
 # WARNING! All changes made in this file will be lost!
 
