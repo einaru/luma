@@ -13,7 +13,7 @@
         </rect>
     </property>
     <property name="caption">
-        <string>Form</string>
+        <string>Add objectclass</string>
     </property>
     <grid>
         <property name="name">
@@ -51,7 +51,7 @@
                         <cstring>textLabel1</cstring>
                     </property>
                     <property name="text">
-                        <string>Please choose the objectclasses you want to add to the plugin.</string>
+                        <string>Please choose the objectclasses you want to add to the template.</string>
                     </property>
                     <property name="alignment">
                         <set>WordBreak|AlignTop</set>

@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file '/home/wido/src/luma/lib/luma/plugins/template_plugin/TemplateWidgetDesign.ui'
 #
-# Created: Sun Oct 17 20:39:56 2004
+# Created: Tue Oct 19 15:04:09 2004
 #      by: The PyQt User Interface Compiler (pyuic) 3.13
 #
 # WARNING! All changes made in this file will be lost!
@@ -199,7 +199,7 @@ class TemplateWidgetDesign(QWidget):
         self.duplicateTemplateButton.setText(self.__tr("D&uplicate..."))
         self.duplicateTemplateButton.setAccel(self.__tr("Alt+U"))
         self.nameLabel.setText(self.__tr("<b>Name:</b>"))
-        self.descriptionLabel.setText(self.__tr("This a description of the template you are currently working with."))
+        self.descriptionLabel.setText(self.__tr("This is a description of the template you are currently working with.","DO NOT TRANSLATE"))
         self.templateLabel.setText(self.__tr("foo"))
         self.textLabel2.setText(self.__tr("<b>Description:</b>"))
         self.serverLabel.setText(self.__tr("bar"))

@@ -175,7 +175,8 @@
                                     <cstring>descriptionLabel</cstring>
                                 </property>
                                 <property name="text">
-                                    <string>This a description of the template you are currently working with.</string>
+                                    <string>This is a description of the template you are currently working with.</string>
+                                    <comment>DO NOT TRANSLATE</comment>
                                 </property>
                                 <property name="alignment">
                                     <set>WordBreak|AlignTop</set>

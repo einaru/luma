@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file '/home/wido/src/luma/lib/luma/plugins/template_plugin/AddObjectClassDialogDesign.ui'
 #
-# Created: Fri Oct 1 23:21:55 2004
+# Created: Tue Oct 19 14:47:05 2004
 #      by: The PyQt User Interface Compiler (pyuic) 3.13
 #
 # WARNING! All changes made in this file will be lost!
@@ -389,8 +389,8 @@ class AddObjectClassDialogDesign(QDialog):
 
 
     def languageChange(self):
-        self.setCaption(self.__tr("Form"))
-        self.textLabel1.setText(self.__tr("Please choose the objectclasses you want to add to the plugin."))
+        self.setCaption(self.__tr("Add objectclass"))
+        self.textLabel1.setText(self.__tr("Please choose the objectclasses you want to add to the template."))
         self.okButton.setText(self.__tr("&OK"))
         self.okButton.setAccel(self.__tr("Alt+O"))
         self.cancelButton.setText(self.__tr("&Cancel"))
