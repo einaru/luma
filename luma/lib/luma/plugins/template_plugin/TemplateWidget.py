@@ -148,6 +148,19 @@ class TemplateWidget(TemplateWidgetDesign):
         
         objectClasses = Set(metaInfo.getObjectClasses())
         templateClasses = Set(self.currentTemplate.getObjectClasses())
+        
+        structural = False
+        for x in templateClasses:
+            if metaInfo.isStructural(x):
+                structural = True
+                break
+                
+        tmpClasses = metaInfo.getObjectClasses()
+        if structural:
+            tmpClasses = filter(lambda x: not metaInfo.isStructural(x), tmpClasses)
+                
+        objectClasses = Set(tmpClasses)
+                
         objectClasses -= templateClasses
         
         for x in objectClasses:
