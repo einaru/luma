@@ -13,6 +13,8 @@ from base.utils.gui.BrowserWidget import BrowserWidget
 #from base.backend.ServerObject import ServerObject
 
 class BrowserDialog(QDialog):
+    """ A dialog for browsing available ldap server.
+    """
     
     def __init__(self,parent = None,name = None,fl = 0):
         QDialog.__init__(self,parent,name,fl)
@@ -44,6 +46,7 @@ class BrowserDialog(QDialog):
         
         self.connect(self.okButton, SIGNAL("clicked()"), self.checkInput)
         self.connect(self.cancelButton, SIGNAL("clicked()"), self.cancel)
+        
         self.tmpBrowser.setMinimumWidth(500)
         self.exec_loop()
         
@@ -51,6 +54,9 @@ class BrowserDialog(QDialog):
 ###############################################################################
 
     def getItemPath(self):
+        """ Return the path of the selected item.
+        """
+        
         tmpItem = self.tmpBrowser.selectedItem()
         tmpText = self.tmpBrowser.get_full_path(tmpItem)
         return tmpText
@@ -58,6 +64,8 @@ class BrowserDialog(QDialog):
 ###############################################################################
 
     def getLdapItem(self):
+        """ Return ldap data of the selected item.
+        """  
         tmpItem = self.tmpBrowser.selectedItem()
         tmpText = self.tmpBrowser.get_full_path(tmpItem)
         return self.tmpBrowser.getLdapItem(tmpText)
@@ -65,6 +73,9 @@ class BrowserDialog(QDialog):
 ###############################################################################
 
     def checkInput(self):
+        """ Check if a valid ldap object is selected and then close the dialog.
+        """
+        
         tmpItem = self.tmpBrowser.selectedItem()
         if tmpItem == None:
             pass
@@ -76,6 +87,9 @@ class BrowserDialog(QDialog):
 ###############################################################################
 
     def cancel(self):
+        """ Close the dialog by calling reject().
+        """
+        
         self.reject()
         
         

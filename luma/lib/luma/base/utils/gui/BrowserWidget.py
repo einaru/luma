@@ -18,6 +18,10 @@ from base.utils.gui.TemplateObjectWidget import TemplateObjectWidget
 from base.backend.LumaConnection import LumaConnection
 
 class BrowserWidget(QListView):
+    """ Widget for browsing ldap trees. 
+    
+    It gets all server information from the Luma config file.
+    """
 
     def __init__(self,parent = None,name = None,fl = 0):
         QListView.__init__(self,parent,name,fl)
@@ -98,6 +102,10 @@ class BrowserWidget(QListView):
 ###############################################################################
 
     def item_clicked(self, item):
+        """ Emit the ldap object and the server if a valid object has been
+        clicked.
+        """
+        
         if not(item == None):
             fullPath = self.get_full_path(item)
             try:
@@ -110,6 +118,9 @@ class BrowserWidget(QListView):
 ###############################################################################
 
     def item_expanded(self, item):
+        """ Get all children of the expanded object and display them.
+        """
+        
         fullPath = self.get_full_path(item)
         results = self.getLdapItemChildren(fullPath, 0)
         if results == None:
@@ -129,6 +140,9 @@ class BrowserWidget(QListView):
 ###############################################################################
 
     def item_collapsed(self, item):
+        """ Delete all children if a ldap object collapses.
+        """
+        
         fullPath = self.get_full_path(item)
         serverName, ldapObject = self.__split_path(fullPath)
         if len(ldapObject) == 0:
@@ -139,6 +153,9 @@ class BrowserWidget(QListView):
 ###############################################################################
 
     def get_full_path(self, item):
+        """ Return the full dn of an object, including its server.
+        """
+        
         try:
             fullPath = str(item.text(0))
             while item.parent():
@@ -151,6 +168,9 @@ class BrowserWidget(QListView):
 ###############################################################################
 
     def getLdapItem(self, itemPath):
+        """ Get all data of a ldap object given by its path.
+        """
+        
         serverName, ldapObject = self.__split_path(itemPath)
         if len(ldapObject) == 0:
             return None
@@ -174,6 +194,9 @@ See console output for more information."""),
 ###############################################################################
 
     def __split_path(self, itemPath):
+        """ Return the server and the DN of an items path.
+        """
+        
         tmp = string.split(itemPath, ",")
         serverName = tmp[-1]
         ldapObject = itemPath[:-len(serverName)-1]
@@ -182,6 +205,15 @@ See console output for more information."""),
 ###############################################################################
 
     def getLdapItemChildren(self, itemPath, allLevel):
+        """ Return a list of children a ldap object has.
+        
+        allLevel == 1:
+            get whole subtree
+            
+        allLevel == 0:
+            get only next level
+        """
+        
         serverName, ldapObject = self.__split_path(itemPath)
         if len(ldapObject) == 0:
             return None
@@ -219,6 +251,9 @@ See console output for more information."""),
 ###############################################################################
 
     def set_search_class(self, classList):
+        """ Display only ldap values which are in classList.
+        """
+        
         self.searchObjectClass = "(|"
         for x in classList:
             self.searchObjectClass = self.searchObjectClass + \
@@ -228,6 +263,9 @@ See console output for more information."""),
 ###############################################################################
 
     def __export_item(self):
+        """ Export the selected item to ldif.
+        """
+        
         fullPath = self.get_full_path(self.selectedItem())
         result = self.getLdapItem(fullPath)
         ldifString = self.__convert_to_ldif(result[1])
@@ -236,6 +274,9 @@ See console output for more information."""),
 ###############################################################################
 
     def __export_item_subtree(self):
+        """ Export the whole subtree to ldif.
+        """
+        
         fullPath = self.get_full_path(self.selectedItem())
         results = self.getLdapItemChildren(fullPath, 1)
         resultString = self.__convert_to_ldif(results)
@@ -244,6 +285,9 @@ See console output for more information."""),
 ###############################################################################
 
     def __export_item_all(self):
+        """ Export the whole subtree to ldif, together with all its parents.
+        """
+        
         currentItem = self.selectedItem()
         fullPath = self.get_full_path(currentItem)
         parents = self.__get_parents(currentItem)
@@ -259,6 +303,9 @@ See console output for more information."""),
 ###############################################################################
 
     def deleteItem(self):
+        """ Delete selected item from the server.
+        """
+        
         warnString = self.trUtf8('Do you really want to delete the item from the server?')
         result = QMessageBox.warning(self, self.trUtf8('Delete entry'), warnString, self.trUtf8('Delete'), self.trUtf8('Cancel'))
         if result == 1:
@@ -280,6 +327,9 @@ See console output for more information."""),
 ###############################################################################
 
     def __show_popup(self, tmpItem=None, point=None, itemId=None):
+        """ Display popup menu.
+        """
+        
         if not (tmpItem == None):
             if not (tmpItem.parent() == None):
                 self.popupMenu.exec_loop(point)
@@ -287,6 +337,9 @@ See console output for more information."""),
 ###############################################################################
 
     def __convert_to_ldif(self, data):
+        """ Convert data of a ldap object to ldif format.
+        """
+        
         tmpListe = []
         if data == None:
             data = []
@@ -301,6 +354,9 @@ See console output for more information."""),
 ###############################################################################
 
     def __save_ldif(self, data):
+        """ Save ldif data to file.
+        """
+        
         if not (len(data) == 0):
             fileName = str(QFileDialog.getSaveFileName())
             if fileName == '':
@@ -316,6 +372,9 @@ See console output for more information."""),
 ###############################################################################
 
     def __get_parents(self, item):
+        """ Get all parents of an item.
+        """
+        
         parentList = []
         while (item.parent()):
             item = item.parent()
@@ -327,6 +386,9 @@ See console output for more information."""),
 ###############################################################################
 
     def create_add_menu(self):
+        """ Fill the 'add'-menu with entries from the templates.
+        """
+        
         self.addItemMenu.clear()
         tFile = TemplateFile()
         for x in tFile.tplList:
@@ -335,6 +397,12 @@ See console output for more information."""),
 ###############################################################################
 
     def add_item(self, id):
+        """ Add an item to ldap.
+        
+        id gives the menu entrie which was clicked and which template was 
+        chosen.
+        """
+        
         templateName = str(self.addItemMenu.text(id))
         
         tFile = TemplateFile()
@@ -356,6 +424,15 @@ See console output for more information."""),
 ###############################################################################
         
     def deleteItemsRecursive(self, withParent=1):
+        """ Delete the subtree of the selected item.
+        
+        withParent == 1:
+            delete the selected item, too
+            
+        withParent == 0:
+            do not delete the selected item
+        """
+        
         warnString = self.trUtf8('Do you really want to delete the items recursively from the server?')
         result = QMessageBox.warning(self, self.trUtf8('Delete entries'), warnString, self.trUtf8('Delete'), self.trUtf8('Cancel'))
         if result == 1:
@@ -393,11 +470,18 @@ See console output for more information."""),
 ###############################################################################
 
     def deleteSubtree(self):
+        """ Delete the subtree of the selected item.
+        """
+        
         self.deleteItemsRecursive(0)
 
 ###############################################################################
 
     def __delete_ldap_entry(self, serverName, ldapObject):
+        """ Delete a ldap object from the server given by serverName and
+       ldapObject. 
+        """
+        
         serverMeta = self.serverListObject.get_serverobject(serverName)
         
         try:
