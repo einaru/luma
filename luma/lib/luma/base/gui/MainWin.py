@@ -91,6 +91,7 @@ class MainWin(MainWinDesign):
         """
         
         self.unloadPlugins()
+        self.savePosition()
         qApp.quit()
 
 ###############################################################################
@@ -114,13 +115,18 @@ class MainWin(MainWinDesign):
         
         self.pluginBox.clear()
         
+        pluginNameList = []
+        
         for x in self.PLUGINS.keys():
             tmpObject = self.PLUGINS[x]
             if tmpObject['PLUGIN_LOAD'] == 1:
-                self.pluginBox.insertItem(self.PLUGINS[x]['PLUGIN_NAME'])
+                pluginNameList.append(self.PLUGINS[x]['PLUGIN_NAME'])
                 widgetTmp = tmpObject["PLUGIN_CODE"].getPluginWidget(self.taskStack)
                 tmpObject["WIDGET_REF"] = widgetTmp
                 tmpObject["WIDGET_ID"] = self.taskStack.addWidget(widgetTmp, -1)
+                
+        pluginNameList.sort()
+        map(self.pluginBox.insertItem, pluginNameList)
                 
         pluginName = str(self.pluginBox.currentText())
         if self.PLUGINS.has_key(pluginName):
@@ -293,3 +299,7 @@ class MainWin(MainWinDesign):
                 
             self.reloadPlugins()
 
+###############################################################################
+
+    def savePosition(self):
+        pass 
