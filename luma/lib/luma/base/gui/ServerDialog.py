@@ -27,6 +27,9 @@ class ServerDialog(ServerDialogDesign):
 
     def __init__(self, parent= None):
         ServerDialogDesign.__init__(self, parent)
+        
+        self.authentificationMethods = [u"Simple", u"SASL Plain", u"SASL CRAM-MD5", 
+        u"SASL DIGEST-MD5", u"SASL Login", u"SASL GSSAPI"]
 
         self._PREFIX = environment.lumaInstallationPrefix
         
@@ -95,6 +98,7 @@ class ServerDialog(ServerDialogDesign):
         self.bindLineEdit.blockSignals(True)
         self.passwordLineEdit.blockSignals(True)
         self.tlsCheckBox.blockSignals(True)
+        self.methodBox.blockSignals(True)
         
         self.infoGroupBox.setTitle(x.name)
         self.hostLineEdit.setText(x.host)
@@ -104,6 +108,7 @@ class ServerDialog(ServerDialogDesign):
         self.bindLineEdit.setText(x.bindDN)
         self.passwordLineEdit.setText(x.bindPassword)
         self.tlsCheckBox.setChecked(int(x.tls))
+        self.methodBox.setCurrentItem(self.authentificationMethods.index(x.authMethod))
         self.bindAnonChanged(True, True)
         
         self.hostLineEdit.blockSignals(False)
@@ -113,6 +118,14 @@ class ServerDialog(ServerDialogDesign):
         self.bindLineEdit.blockSignals(False)
         self.passwordLineEdit.blockSignals(False)
         self.tlsCheckBox.blockSignals(False)
+        self.methodBox.blockSignals(False)
+        
+        if self.currentServer.authMethod == u"SASL GSSAPI":
+            self.passwordLineEdit.setEnabled(False)
+            self.bindLineEdit.setEnabled(False)
+        else:
+            self.passwordLineEdit.setEnabled(True)
+            self.bindLineEdit.setEnabled(True)
 
 ###############################################################################
 
@@ -288,9 +301,19 @@ Please see console output for more information."""),
         
         tmpBool = self.bindAnonBox.isChecked()
          
-        tmpVal = int(not tmpBool)
-        self.passwordLineEdit.setEnabled(tmpVal)
-        self.bindLineEdit.setEnabled(tmpVal)
+        #tmpVal = int(not tmpBool)
+        
+        #self.passwordLineEdit.setEnabled(tmpVal)
+        #self.bindLineEdit.setEnabled(tmpVal)
+        #self.methodBox.setEnabled(tmpVal)
+        
+        widgetBool = True
+        if tmpBool or self.currentServer.authMethod == u"SASL GSSAPI":
+            widgetBool = False
+        
+        self.passwordLineEdit.setEnabled(widgetBool)
+        self.bindLineEdit.setEnabled(widgetBool)
+        self.methodBox.setEnabled(not tmpBool)
             
         self.currentServer.bindAnon = tmpBool
 
@@ -311,3 +334,17 @@ Please see console output for more information."""),
     def baseDNChanged(self, tmpString):
         self.applyButton.setEnabled(1)
         self.currentServer.baseDN = unicode(tmpString)
+        
+###############################################################################
+
+    def methodChanged(self, position):
+        self.currentServer.authMethod = self.authentificationMethods[position]
+        
+        if self.currentServer.authMethod == u"SASL GSSAPI":
+            self.passwordLineEdit.setEnabled(False)
+            self.bindLineEdit.setEnabled(False)
+        else:
+            self.passwordLineEdit.setEnabled(True)
+            self.bindLineEdit.setEnabled(True)
+            
+        self.applyButton.setEnabled(1)

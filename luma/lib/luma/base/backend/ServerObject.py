@@ -31,7 +31,11 @@ class ServerObject(object):
     
     """
     
-    __slots__ = ('nameP', 'hostP', 'portP', 'bindAnonP', 'baseDNP', 'bindDNP', 'bindPasswordP', 'tlsP')
+    __slots__ = ('nameP', 'hostP', 'portP', 'bindAnonP', 'baseDNP', 'bindDNP', 
+        'bindPasswordP', 'tlsP', 'authMethodP')
+    
+    authentificationMethods = [u"Simple", u"SASL Plain", u"SASL CRAM-MD5", 
+        u"SASL DIGEST-MD5", u"SASL Login", u"SASL GSSAPI"]
 
 ###############################################################################
 
@@ -44,6 +48,7 @@ class ServerObject(object):
         self.bindDNP = ""
         self.bindPasswordP = ""
         self.tlsP = 0
+        self.authMethodP = "Simple"
         
 ###############################################################################
 
@@ -66,6 +71,8 @@ class ServerObject(object):
         finalString.append(unicode(self.bindPassword))
         finalString.append(unicode("\nTLS: "))
         finalString.append(unicode(self.tls))
+        finalString.append(unicode("\nAuthentification method: "))
+        finalString.append(unicode(self.authMethod))
         finalString.append(unicode("\n"))
 
         return "".join(finalString)
@@ -187,4 +194,19 @@ class ServerObject(object):
     
     tls = property(__getTls, __setTls, None, "Connect with/without tls to the server.")
 
+###############################################################################
 
+    def __setMethod(self, value):
+        if isinstance(value, unicode):
+            self.authMethodP= value
+        else:
+            raise AttributeError, "Expected an unicode string."
+            
+        if not(value in self.authentificationMethods):
+            raise AttributeError, "Not a supported method."
+            
+    def __getMethod(self):
+        return self.authMethodP
+            
+    
+    authMethod = property(__getMethod, __setMethod, None, "Authentification method.")

@@ -13,6 +13,7 @@ import os
 import string
 import os.path
 from ConfigParser import ConfigParser
+from ConfigParser import NoOptionError
 
 from base.backend.ServerObject import ServerObject
 import environment
@@ -83,6 +84,7 @@ class ServerList:
             configParser.set(x.name, "bindDN", x.bindDN)
             configParser.set(x.name, "bindPassword", x.bindPassword)
             configParser.set(x.name, "tls", x.tls)
+            configParser.set(x.name, "authMethod", x.authMethod)
         configParser.write(open(self.configFile, 'w'))
         
         # Only the user should be able to access the file since we store 
@@ -150,11 +152,16 @@ class ServerList:
         for x in sections:
             server = ServerObject()
             server.name = unicode(x)
-            server.host = unicode(configParser.get(x, "hostname"))
-            server.port = configParser.getint(x, "port")
-            server.bindAnon = configParser.getboolean(x, "bindAnon")
-            server.baseDN = unicode(configParser.get(x, "baseDN"))
-            server.bindDN = unicode(configParser.get(x, "bindDN"))
-            server.bindPassword = unicode(configParser.get(x, "bindPassword"))
-            server.tls = configParser.getboolean(x, "tls")
+            try:
+                server.host = unicode(configParser.get(x, "hostname"))
+                server.port = configParser.getint(x, "port")
+                server.bindAnon = configParser.getboolean(x, "bindAnon")
+                server.baseDN = unicode(configParser.get(x, "baseDN"))
+                server.bindDN = unicode(configParser.get(x, "bindDN"))
+                server.bindPassword = unicode(configParser.get(x, "bindPassword"))
+                server.tls = configParser.getboolean(x, "tls")
+                server.authMethod = unicode(configParser.get(x, "authMethod"))
+            except NoOptionError:
+                pass
+                
             self.SERVERLIST.append(server)

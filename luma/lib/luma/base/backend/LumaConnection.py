@@ -10,6 +10,13 @@
 
 import ldap
 import ldapurl
+
+try:
+    import ldap.sasl
+except ImportError, e:
+    print "Python LDAP module has no SASL support"
+    print e
+    
 import threading
 import time
 
@@ -142,27 +149,53 @@ class LumaConnection(object):
         """
         
         try:
-            bindAs = ""
-            password = ""
-            if not (self.serverMeta.bindAnon):
-                bindAs = self.serverMeta.bindDN
-                password = self.serverMeta.bindPassword
-                
-            method = "ldap"
+            urlschemeVal = "ldap"
             if self.serverMeta.tls:
-                method = "ldaps"
+                urlschemeVal = "ldaps"
+              
+            whoVal = None
+            credVal = None
+            if not (self.serverMeta.bindAnon):
+                whoVal = self.serverMeta.bindDN
+                credVal = self.serverMeta.bindPassword
                 
-            url = ldapurl.LDAPUrl(hostport = self.serverMeta.host + ":" + str(self.serverMeta.port),
-                    dn = self.serverMeta.baseDN, who = bindAs, 
-                    cred = password, urlscheme = method)
-                    
-            self.ldapServerObject = ldap.initialize(url.initializeUrl())
-            self.ldapServerObject.simple_bind(bindAs, password)
+            url = ldapurl.LDAPUrl(urlscheme=urlschemeVal, 
+                hostport = self.serverMeta.host + ":" + str(self.serverMeta.port),
+                dn = self.serverMeta.baseDN, who = whoVal,
+                cred = credVal)
             
+            self.ldapServerObject = ldap.initialize(url.initializeUrl())
+            self.ldapServerObject.protocol_version = 3
+            
+            if self.serverMeta.bindAnon:
+                self.ldapServerObject.simple_bind()
+            elif self.serverMeta.authMethod == u"Simple":
+                self.ldapServerObject.simple_bind(whoVal, credVal)
+            elif u"SASL" in self.serverMeta.authMethod:
+                sasl_cb_value_dict = None
+                if not u"GSSAPI" in self.serverMeta.authMethod:
+                    sasl_cb_value_dict = {ldap.sasl.CB_AUTHNAME:whoVal, ldap.sasl.CB_PASS:credVal}
+                    
+                sasl_mech = None
+                if self.serverMeta.authMethod == u"SASL Plain":
+                    sasl_mech = "PLAIN"
+                elif self.serverMeta.authMethod == u"SASL CRAM-MD5":
+                    sasl_mech = "CRAM-MD5"
+                elif self.serverMeta.authMethod == u"SASL DIGEST-MD5":
+                    sasl_mech = "DIGEST-MD5"
+                elif self.serverMeta.authMethod == u"SASL Login":
+                    sasl_mech = "LOGIN"
+                elif self.serverMeta.authMethod == u"SASL GSSAPI":
+                    sasl_mech = "GSSAPI"
+                    
+                sasl_auth = ldap.sasl.sasl(sasl_cb_value_dict,sasl_mech)
+                print sasl_auth.mech
+                self.ldapServerObject.sasl_interactive_bind_s("", sasl_auth)
+                
         except ldap.LDAPError, e:
             print "Error during LDAP bind request"
             print "Reason: " + str(e)
-            
+        
 ###############################################################################
 
     def unbind(self):
