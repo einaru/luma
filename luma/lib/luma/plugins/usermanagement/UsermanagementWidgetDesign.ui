@@ -166,7 +166,6 @@
                     </property>
                     <property name="text">
                         <string>Change password...</string>
-                        <comment>DO NOT TRANSLATE</comment>
                     </property>
                 </widget>
                 <widget class="QSpinBox" row="1" column="2" rowspan="1" colspan="3">
@@ -200,7 +199,6 @@
                     </property>
                     <property name="text">
                         <string>User ID number:</string>
-                        <comment>DO NOT TRANSLATE</comment>
                     </property>
                     <property name="alignment">
                         <set>AlignVCenter</set>
@@ -212,7 +210,6 @@
                     </property>
                     <property name="text">
                         <string>Login shell:</string>
-                        <comment>DO NOT TRANSLATE</comment>
                     </property>
                     <property name="alignment">
                         <set>AlignVCenter</set>
@@ -296,7 +293,6 @@
                     </property>
                     <property name="text">
                         <string>Primary group:</string>
-                        <comment>DO NOT TRANSLATE</comment>
                     </property>
                     <property name="alignment">
                         <set>AlignVCenter</set>
@@ -308,7 +304,6 @@
                     </property>
                     <property name="text">
                         <string>Valid until:</string>
-                        <comment>DO NOT TRANSLATE</comment>
                     </property>
                     <property name="alignment">
                         <set>AlignVCenter</set>
@@ -320,7 +315,6 @@
                     </property>
                     <property name="text">
                         <string>Common name:</string>
-                        <comment>DO NOT TRANSLATE</comment>
                     </property>
                     <property name="alignment">
                         <set>AlignVCenter</set>
@@ -371,7 +365,6 @@
                     </property>
                     <property name="text">
                         <string>Manage group memberships</string>
-                        <comment>DO NOT TRANSLATE</comment>
                     </property>
                 </widget>
                 <widget class="QLayoutWidget" row="18" column="3" rowspan="1" colspan="2">
@@ -388,7 +381,6 @@
                             </property>
                             <property name="text">
                                 <string>Delete</string>
-                                <comment>DO NOT TRANSLATE</comment>
                             </property>
                         </widget>
                         <widget class="QPushButton">
@@ -397,7 +389,6 @@
                             </property>
                             <property name="text">
                                 <string>Add...</string>
-                                <comment>DO NOT TRANSLATE</comment>
                             </property>
                         </widget>
                     </hbox>
@@ -423,7 +414,6 @@
                     </property>
                     <property name="text">
                         <string>User ID:</string>
-                        <comment>DO NOT TRANSLATE</comment>
                     </property>
                     <property name="alignment">
                         <set>AlignVCenter</set>
@@ -499,7 +489,6 @@
                     </property>
                     <property name="text">
                         <string>GR</string>
-                        <comment>DO NOT TRANSLATE</comment>
                     </property>
                 </widget>
                 <widget class="QLabel" row="10" column="0">
@@ -562,7 +551,6 @@
                     </property>
                     <property name="text">
                         <string>Home directory:</string>
-                        <comment>DO NOT TRANSLATE</comment>
                     </property>
                     <property name="alignment">
                         <set>AlignVCenter</set>
@@ -574,7 +562,6 @@
                     </property>
                     <property name="text">
                         <string>Mail:</string>
-                        <comment>DO NOT TRANSLATE</comment>
                     </property>
                     <property name="alignment">
                         <set>AlignVCenter</set>
@@ -624,7 +611,6 @@
                     </property>
                     <property name="text">
                         <string>Group ID number:</string>
-                        <comment>DO NOT TRANSLATE</comment>
                     </property>
                     <property name="alignment">
                         <set>AlignVCenter|AlignRight</set>
@@ -668,7 +654,6 @@
                     </property>
                     <property name="text">
                         <string>Password:</string>
-                        <comment>DO NOT TRANSLATE</comment>
                     </property>
                     <property name="alignment">
                         <set>AlignVCenter</set>

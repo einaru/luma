@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file '/home/wido/src/luma/lib/luma/plugins/usermanagement/UsermanagementWidgetDesign.ui'
 #
-# Created: Thu Apr 29 17:12:30 2004
+# Created: Wed May 12 17:15:44 2004
 #      by: The PyQt User Interface Compiler (pyuic) 3.11
 #
 # WARNING! All changes made in this file will be lost!
@@ -283,25 +283,25 @@ class UsermanagementWidgetDesign(QWidget):
         self.saveButton.setText(self.__tr("...","DO NOT TRANSLATE"))
         self.deleteButton.setText(self.__tr("...","DO NOT TRANSLATE"))
         self.accountLabel.setText(self.__tr("US","DO NOT TRANSLATE"))
-        self.passwordButton.setText(self.__tr("Change password...","DO NOT TRANSLATE"))
-        self.textLabel3.setText(self.__tr("User ID number:","DO NOT TRANSLATE"))
-        self.textLabel10.setText(self.__tr("Login shell:","DO NOT TRANSLATE"))
-        self.textLabel5.setText(self.__tr("Primary group:","DO NOT TRANSLATE"))
-        self.textLabel15.setText(self.__tr("Valid until:","DO NOT TRANSLATE"))
-        self.textLabel18.setText(self.__tr("Common name:","DO NOT TRANSLATE"))
-        self.groupButton.setText(self.__tr("Manage group memberships","DO NOT TRANSLATE"))
-        self.deleteMailButton.setText(self.__tr("Delete","DO NOT TRANSLATE"))
-        self.addMailButton.setText(self.__tr("Add...","DO NOT TRANSLATE"))
+        self.passwordButton.setText(self.__tr("Change password..."))
+        self.textLabel3.setText(self.__tr("User ID number:"))
+        self.textLabel10.setText(self.__tr("Login shell:"))
+        self.textLabel5.setText(self.__tr("Primary group:"))
+        self.textLabel15.setText(self.__tr("Valid until:"))
+        self.textLabel18.setText(self.__tr("Common name:"))
+        self.groupButton.setText(self.__tr("Manage group memberships"))
+        self.deleteMailButton.setText(self.__tr("Delete"))
+        self.addMailButton.setText(self.__tr("Add..."))
         self.shellLabel.setText(self.__tr("SH","DO NOT TRANSLATE"))
-        self.textLabel2.setText(self.__tr("User ID:","DO NOT TRANSLATE"))
+        self.textLabel2.setText(self.__tr("User ID:"))
         self.mailLabel.setText(self.__tr("M","DO NOT TRANSLATE"))
-        self.groupLabel.setText(self.__tr("GR","DO NOT TRANSLATE"))
+        self.groupLabel.setText(self.__tr("GR"))
         self.homeLabel.setText(self.__tr("HO","DO NOT TRANSLATE"))
-        self.textLabel12.setText(self.__tr("Home directory:","DO NOT TRANSLATE"))
-        self.textLabel17.setText(self.__tr("Mail:","DO NOT TRANSLATE"))
-        self.textLabel4.setText(self.__tr("Group ID number:","DO NOT TRANSLATE"))
+        self.textLabel12.setText(self.__tr("Home directory:"))
+        self.textLabel17.setText(self.__tr("Mail:"))
+        self.textLabel4.setText(self.__tr("Group ID number:"))
         self.passwordLabel.setText(self.__tr("PW","DO NOT TRANSLATE"))
-        self.textLabel14.setText(self.__tr("Password:","DO NOT TRANSLATE"))
+        self.textLabel14.setText(self.__tr("Password:"))
 
 
     def editPassword(self):
