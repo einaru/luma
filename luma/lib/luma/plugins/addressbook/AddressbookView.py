@@ -11,11 +11,10 @@
 from qt import *
 import os.path
 
-#import environment
+import environment
 from plugins.addressbook.ContactWizard import ContactWizard
 from plugins.addressbook.AddressbookWidget import AddressbookWidget
 from base.utils.gui.LumaIconView import LumaIconView
-#from base.utils.gui.BrowserWidget import BrowserWidget
 
 
 class AddressbookView(QWidget):
@@ -23,11 +22,14 @@ class AddressbookView(QWidget):
     def __init__(self, parent=None, name=None, fl=0):
         QWidget.__init__(self, parent, name, fl)
 
-        #self.setName("PLUGIN_BROWSER")
 
         self.splitter = QSplitter(self)
         self.mainLayout = QHBoxLayout(self)
         self.entryList = LumaIconView(self.splitter)
+        iconDir = os.path.join (environment.lumaInstallationPrefix, "share", "luma", "icons", "plugins", "addressbook")
+        entryIcon = QPixmap (os.path.join (iconDir, "person.png"))
+        self.entryList.setItemPixmap(entryIcon)
+        self.entryList.initFilterConfig("Addressbook")
         self.entryList.setMinimumWidth(200)
         
         self.addressContainer = QWidget(self.splitter)
