@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ###########################################################################
-#    Copyright (C) 2003 by Wido Depping                                      
+#    Copyright (C) 2003, 2004 by Wido Depping                                      
 #    <widod@users.sourceforge.net>                                                             
 #
 # Copyright: See COPYING file that comes with this distribution
@@ -15,27 +15,29 @@ import environment
 from base.backend.ServerObject import ServerObject
 
 class LumaConnectionException(Exception):
-    """Will be raised is no proper server object is passed to the constructor.
+    """This exception class will be raised if no proper server object is passed 
+    to the constructor.
     """
+    
     pass
 
     
 
 class LumaConnection(object):
-    """ This class is a wrapper around the ldap functions. It is provided to access ldap 
-    data easier.
+    """ This class is a wrapper around the ldap functions. It is provided to 
+    access ldap data easier.
     
-    Parameter is a ServerObject which contains all meta information for accessing servers.
+    Parameter is a ServerObject which contains all meta information for 
+    accessing servers.
     """
     
     def __init__(self, serverMeta=None):
         # Throw exception if no ServerObject is passed.
         if not (isinstance(serverMeta, ServerObject)):
-            exceptionString = "Expected ServerObject type. Passed object was "
-            exceptionString = exceptionString + str(type(serverMeta))
+            exceptionString = u"Expected ServerObject type. Passed object was " + unicode(type(serverMeta))
             raise LumaConnectionException, exceptionString
         
-        self.server = serverMeta
+        self.serverMeta = serverMeta
         
         # This ldap object will be assigned in the methods.
         # This way we have better control over bind, unbind and open sockets.
@@ -48,7 +50,7 @@ class LumaConnection(object):
         """
         
         searchResult = None
-        environment.setBusy(1)
+        environment.setBusy(True)
         
         try:
             searchResult = self.ldapServerObject.search_s(base, scope, filter, attrList)
@@ -56,7 +58,7 @@ class LumaConnection(object):
             print "Error during LDAP search request"
             print "Reason: " + str(e)
             
-        environment.setBusy(0)
+        environment.setBusy(False)
         return searchResult
 
 ###############################################################################
@@ -66,7 +68,7 @@ class LumaConnection(object):
         """
     
         searchResult = []
-        environment.setBusy(1)
+        environment.setBusy(True)
         
         try:
             resultId = self.ldapServerObject.search(base, scope, filter, attrList, attrsonly)
@@ -85,7 +87,7 @@ class LumaConnection(object):
             print "Error during LDAP search request"
             print "Reason: " + str(e)
          
-        environment.setBusy(0)
+        environment.setBusy(False)
             
         if len(searchResult) == 0:
             return None
@@ -102,17 +104,17 @@ class LumaConnection(object):
             return
             
         result = None
-        environment.setBusy(1)
+        environment.setBusy(True)
         
         try:
             self.ldapServerObject.delete_s(dnDelete)
-            environment.setBusy(0)
-            return 1
+            environment.setBusy(False)
+            return True
         except ldap.LDAPError, e:
             print "Error during LDAP delete request"
             print "Reason: " + str(e)
-            environment.setBusy(0)
-            return 0
+            environment.setBusy(False)
+            return False
             
 ###############################################################################
 
@@ -121,18 +123,18 @@ class LumaConnection(object):
         """
         
         if modlist == None:
-            return 0
+            return False
             
-        environment.setBusy(1)
+        environment.setBusy(True)
         try:
             self.ldapServerObject.modify_s(dn, modlist)
-            environment.setBusy(0)
-            return 1
+            environment.setBusy(False)
+            return True
         except ldap.LDAPError, e:
             print "Error during LDAP modify request"
             print "Reason: " + str(e)
-            environment.setBusy(0)
-            return 0
+            environment.setBusy(False)
+            return False
 
 ###############################################################################
 
@@ -140,18 +142,18 @@ class LumaConnection(object):
         """Synchronous add.
         """
         
-        environment.setBusy(1)
+        environment.setBusy(True)
         
         
         try:
             searchResult = self.ldapServerObject.add_s(dn, modlist)
-            environment.setBusy(0)
-            return 1
+            environment.setBusy(False)
+            return True
         except ldap.LDAPError, e:
             print "Error during LDAP add request"
             print "Reason: " + str(e)
-            environment.setBusy(0)
-            return 0
+            environment.setBusy(False)
+            return False
 
 ###############################################################################
 
@@ -162,16 +164,16 @@ class LumaConnection(object):
         try:
             bindAs = ""
             password = ""
-            if not (self.server.bindAnon):
-                bindAs = self.server.bindDN
-                password = self.server.bindPassword
+            if not (self.serverMeta.bindAnon):
+                bindAs = self.serverMeta.bindDN
+                password = self.serverMeta.bindPassword
                 
             method = "ldap"
-            if self.server.tls:
+            if self.serverMeta.tls:
                 method = "ldaps"
                 
-            url = ldapurl.LDAPUrl(hostport = self.server.host + ":" + str(self.server.port),
-                    dn = self.server.baseDN, who = bindAs, 
+            url = ldapurl.LDAPUrl(hostport = self.serverMeta.host + ":" + str(self.serverMeta.port),
+                    dn = self.serverMeta.baseDN, who = bindAs, 
                     cred = password, urlscheme = method)
                     
             self.ldapServerObject = ldap.initialize(url.initializeUrl())
@@ -188,7 +190,7 @@ class LumaConnection(object):
         """
         
         try:
-            if not(self.server.bindAnon):
+            if not(self.serverMeta.bindAnon):
                 self.ldapServerObject.unbind()
         except ldap.LDAPError, e:
             print "Error during LDAP unbind request"
