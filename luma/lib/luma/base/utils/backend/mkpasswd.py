@@ -145,7 +145,10 @@ def check_strength(passwordString=""):
             if (not numberBool) and (x in string.digits):
                 numberBool = True
                 combination += 1
-            if (not specialBool) and ((not(x in string.ascii_uppercase)) and (not(x in string.ascii_lowercase)) and (not(x in string.digits))):
+            if (not specialBool) and ((x in string.punctuation) \
+                    and (not(x in string.ascii_uppercase)) \
+                    and (not(x in string.ascii_lowercase)) \
+                    and (not(x in string.digits))):
                 specialBool = True
                 combination += 1
             if upperBool and lowerBool and specialBool and numberBool:
@@ -196,28 +199,3 @@ def check_strength_function():
         print x, check_strength(x)
         
     
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
