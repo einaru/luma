@@ -89,13 +89,13 @@ class LdapTemplate(object):
 
     def __repr__(self):
         tmpList = []
-        tmpList.append("Name: " + self.name + "\n")
+        tmpList.append("Name: " + self.name.encode("utf-8") + "\n")
         for x in self.tData:
             tmpList.append("class ")
-            tmpList.append(x["CLASSNAME"])
+            tmpList.append(x["CLASSNAME"].encode("utf-8"))
             tmpList.append(" >> ")
             for y in x["ATTRIBUTES"]:
-                tmpList.append(y["NAME"] + ",")
+                tmpList.append(y["NAME"].encode("utf-8") + ",")
                 if y["MUST"]:
                     tmpList.append("MUST,")
                 else:
@@ -144,6 +144,7 @@ class TemplateFile:
         template = LdapTemplate()
         
         for x in content:
+            x = x.decode("utf-8")
             if x == "\n":
                 self.tplList.append(template)
                 template = LdapTemplate()
