@@ -32,7 +32,7 @@ def doImportCheck():
     # Check for python-ldap
     try:
         import ldap
-        vString = "2.0.0pre13"
+        vString = "2.0.1"
         print "python-ldap is installed..."
         print "\tInstalled version: " + ldap.__version__
         print "\tMinimum version: " + vString
@@ -195,7 +195,7 @@ def evalArguments():
 ###############################################################################
 
 
-print "LUMA 1.3 (C) 2003,2004 Wido Depping\n"
+print "LUMA 1.4 (C) 2003,2004 Wido Depping\n"
 
 doImportCheck()
 print ""
