@@ -144,7 +144,7 @@ class TemplateFile:
         template = LdapTemplate()
         
         for x in content:
-            x = x.decode("utf-8")
+            #x = x.decode("utf-8")
             if x == "\n":
                 self.tplList.append(template)
                 template = LdapTemplate()
@@ -152,7 +152,7 @@ class TemplateFile:
                 template.tData = []
                 
             if x[:6] == "Name: ":
-                template.name = x[6:-1]
+                template.name = x[6:-1].decode("utf-8")
                 continue
                 
             if x[:6] == "class ":
