@@ -39,7 +39,7 @@
                 <enum>Plain</enum>
             </property>
             <property name="text">
-                <string>&lt;font size="+2"&gt;&lt;b&gt;Luma 2.0&lt;/b&gt;&lt;/font&gt;</string>
+                <string>&lt;font size="+2"&gt;&lt;b&gt;Luma 2.0.2&lt;/b&gt;&lt;/font&gt;</string>
                 <comment>DO NOT TRANSLATE</comment>
             </property>
         </widget>
@@ -435,7 +435,16 @@ Jan Winhuysen
 My mentor and UI tester :) 
 
 Eric Cote
-Testing guinea pig for python 2.3</string>
+Testing guinea pig for python 2.3
+
+Jirka Jurek (jiri.jurek@trinet.as)
+Czech translation
+
+Magnus Määttä
+Swedish translation
+
+Alexander Novitsky
+Russian translation</string>
                             <comment>DO NOT TRANSLATE</comment>
                         </property>
                     </widget>
