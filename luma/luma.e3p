@@ -1,9 +1,10 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!--Project file for project luma-->
-<!--Saved: 2004-03-28, 15:17:43-->
+<!--Saved: 2004-04-05, 22:13:19-->
 <!--Copyright (C) 2004 Wido Depping, wido.depping@tu-clausthal.de-->
 <Project>
-  <Version>1.0beta1</Version>
+  <Description></Description>
+  <Version>1.3</Version>
   <Author>Wido Depping</Author>
   <Email>wido.depping@tu-clausthal.de</Email>
   <Sources>
@@ -85,13 +86,6 @@
       <Dir>base</Dir>
       <Dir>backend</Dir>
       <Name>__init__.py</Name>
-    </Source>
-    <Source>
-      <Dir>lib</Dir>
-      <Dir>luma</Dir>
-      <Dir>base</Dir>
-      <Dir>backend</Dir>
-      <Name>DirUtils.py</Name>
     </Source>
     <Source>
       <Dir>lib</Dir>
@@ -655,6 +649,56 @@
       <Dir>gui</Dir>
       <Name>AddAttributeWizard.py</Name>
     </Source>
+    <Source>
+      <Dir>lib</Dir>
+      <Dir>luma</Dir>
+      <Dir>plugins</Dir>
+      <Dir>ifi_usermanagement</Dir>
+      <Name>IfIUsermanagement.py</Name>
+    </Source>
+    <Source>
+      <Dir>lib</Dir>
+      <Dir>luma</Dir>
+      <Dir>plugins</Dir>
+      <Dir>ifi_usermanagement</Dir>
+      <Name>IfIUsermanagementWidgetDesign.py</Name>
+    </Source>
+    <Source>
+      <Dir>lib</Dir>
+      <Dir>luma</Dir>
+      <Dir>plugins</Dir>
+      <Dir>ifi_usermanagement</Dir>
+      <Name>ifi_usermanagement_plugin.py</Name>
+    </Source>
+    <Source>
+      <Dir>lib</Dir>
+      <Dir>luma</Dir>
+      <Dir>plugins</Dir>
+      <Dir>ifi_usermanagement</Dir>
+      <Name>IfIUsermanagementWidget.py</Name>
+    </Source>
+    <Source>
+      <Dir>lib</Dir>
+      <Dir>luma</Dir>
+      <Dir>plugins</Dir>
+      <Dir>ifi_usermanagement</Dir>
+      <Name>__init__.py</Name>
+    </Source>
+    <Source>
+      <Dir>lib</Dir>
+      <Dir>luma</Dir>
+      <Dir>plugins</Dir>
+      <Dir>ifi_usermanagement</Dir>
+      <Name>NameDialog.py</Name>
+    </Source>
+    <Source>
+      <Dir>lib</Dir>
+      <Dir>luma</Dir>
+      <Dir>base</Dir>
+      <Dir>utils</Dir>
+      <Dir>backend</Dir>
+      <Name>LdifHelper.py</Name>
+    </Source>
   </Sources>
   <Forms>
     <Form>
@@ -845,6 +889,13 @@
       <Dir>gui</Dir>
       <Name>AddAttributeWizardDesign.ui</Name>
     </Form>
+    <Form>
+      <Dir>lib</Dir>
+      <Dir>luma</Dir>
+      <Dir>plugins</Dir>
+      <Dir>ifi_usermanagement</Dir>
+      <Name>IfIUsermanagementWidgetDesign.ui</Name>
+    </Form>
   </Forms>
   <Translations>
     <Translation>
@@ -871,6 +922,11 @@
       <Dir>lib</Dir>
       <Dir>luma</Dir>
       <Name>luma_fr.ts</Name>
+    </Translation>
+    <Translation>
+      <Dir>lib</Dir>
+      <Dir>luma</Dir>
+      <Name>luma_ru.ts</Name>
     </Translation>
   </Translations>
   <Interfaces>

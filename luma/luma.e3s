@@ -1,12 +1,12 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!--eric3 session file for project luma-->
 <!--This file was generated automatically, do not edit.-->
-<!--Saved: 2004-03-31, 03:00:07-->
+<!--Saved: 2004-04-06, 00:43:05-->
 <Session>
   <Filenames>
-    <Filename>/home/wido/src/luma/lib/luma/plugins/admin_utils/admin_utilities_plugin.py</Filename>
+    <Filename>/home/wido/src/luma/install.py</Filename>
   </Filenames>
-  <ActiveWindow>/home/wido/src/luma/lib/luma/plugins/admin_utils/admin_utilities_plugin.py</ActiveWindow>
+  <ActiveWindow>/home/wido/src/luma/install.py</ActiveWindow>
   <Breakpoints>
   </Breakpoints>
   <DebugInfo>
