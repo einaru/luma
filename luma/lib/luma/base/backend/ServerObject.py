@@ -67,6 +67,8 @@ class ServerObject(object):
         finalString.append(unicode(self.bindAnon))
         finalString.append(unicode("\nBase DN: "))
         map(lambda x: finalString.append(unicode(x) + u", "), self.baseDN)
+        finalString.append(unicode("\nCurrent Base: "))
+        finalString.append(unicode(self.currentBase))
         finalString.append(unicode("\nBind DN: "))
         finalString.append(unicode(self.bindDN))
         finalString.append(unicode("\nBind Password: "))
