@@ -41,19 +41,25 @@ class LanguageDialog(LanguageDialogDesign):
         # Insert all languages which have a language file.
         # IMPORTANT: Has to be edited every time a new languaged is
         # added to luma.
+        stringList = []
         for x in self.languages:
-            if x == 'de':
-                self.languageBox.insertItem("German")
+            if x == 'cs':
+                stringList.append("Czech")
+            elif x == 'de':
+                stringList.append("German")
             elif x == 'no':
-                self.languageBox.insertItem("Norwegian")
+                stringList.append("Norwegian")
             elif x == 'br':
-                self.languageBox.insertItem("Portuguese")
+                stringList.append("Portuguese")
             elif x == 'ru':
-                self.languageBox.insertItem("Russian")
+                stringList.append("Russian")
             elif x == 'es':
-                self.languageBox.insertItem("Spanish")
+                stringList.append("Spanish")
             elif x == 'sv':
-                self.languageBox.insertItem("Swedish")
+                stringList.append("Swedish")
+                
+        stringList.sort()
+        map(self.languageBox.insertItem, stringList)
                 
 
 ###############################################################################
@@ -72,6 +78,8 @@ class LanguageDialog(LanguageDialogDesign):
         
         if tmpText == "English":
             translationFile = 'NATIVE'
+        elif tmpText == 'Czech':
+            translationFile = "luma_cs.qm"
         elif tmpText == "German":
             translationFile = "luma_de.qm"
         elif tmpText == "Norwegian":
