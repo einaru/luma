@@ -39,10 +39,20 @@ def doImportCheck():
         import qt
         print "\tGood: PyQt installed."
     except ImportError:
-        print """\tERROR: PyQt not installed!!!
+        print """\n\tERROR: PyQt not installed!!!
 \tYou can get the module here: http://www.riverbankcomputing.co.uk/pyqt
 """
         myError = 1
+        
+    try:
+        import mx.DateTime
+        print "\tGood: Egenix mx package installed."
+    except ImportError:
+        print """\n\tERROR: Egenix mx package not installed!!!
+\tYou can get the module here: http://www.egenix.com/
+\tNOTE: This package is only needed for the "Massive User Creation"- and the
+\t"Admin Utilities"-Plugin.
+"""
 
     if myError:
         sys.exit(1)
@@ -138,7 +148,7 @@ def doCompile():
          
 
 
-print "LUMA 0.5 (C) 2003 Wido Depping\n"
+print "LUMA 1.0beta1 (C) 2003 Wido Depping\n"
 print "Check for preinstalled modules:"
 doImportCheck()
 print ""
