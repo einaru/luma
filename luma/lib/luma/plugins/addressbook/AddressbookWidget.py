@@ -17,7 +17,7 @@ import ldap
 import environment
 from plugins.addressbook.AddressbookWidgetDesign import AddressbookWidgetDesign
 from plugins.addressbook.NameDialog import NameDialog
-from plugins.addressbook.MailDialog import MailDialog
+from base.utils.gui.MailDialog import MailDialog
 from plugins.addressbook.CategoryEditDialog import CategoryEditDialog
 from base.backend.LumaConnection import LumaConnection
 from base.backend.ServerList import ServerList
@@ -275,7 +275,6 @@ class AddressbookWidget(AddressbookWidgetDesign):
 
     def addMail(self):
         dialog = MailDialog()
-        dialog.mailIconLabel.setPixmap(self.mailIcon)
         
         dialog.exec_loop()
         
