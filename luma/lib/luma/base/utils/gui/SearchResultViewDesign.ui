@@ -18,11 +18,11 @@
             <x>0</x>
             <y>0</y>
             <width>600</width>
-            <height>482</height>
+            <height>484</height>
         </rect>
     </property>
     <property name="caption">
-        <string></string>
+        <string>SearchResultViewDesign</string>
     </property>
     <grid>
         <property name="name">
@@ -37,6 +37,9 @@
             </property>
             <property name="allColumnsShowFocus">
                 <bool>true</bool>
+            </property>
+            <property name="showToolTips">
+                <bool>false</bool>
             </property>
             <property name="resizeMode">
                 <enum>AllColumns</enum>

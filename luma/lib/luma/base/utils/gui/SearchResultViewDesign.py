@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file '/home/wido/src/luma/lib/luma/base/utils/gui/SearchResultViewDesign.ui'
 #
-# Created: Tue Feb 3 23:58:02 2004
+# Created: Mon Feb 9 18:06:58 2004
 #      by: The PyQt User Interface Compiler (pyuic) 3.10
 #
 # WARNING! All changes made in this file will be lost!
@@ -25,20 +25,21 @@ class SearchResultViewDesign(QWidget):
         self.resultListView = QListView(self,"resultListView")
         self.resultListView.setSelectionMode(QListView.Extended)
         self.resultListView.setAllColumnsShowFocus(1)
+        self.resultListView.setShowToolTips(0)
         self.resultListView.setResizeMode(QListView.AllColumns)
 
         SearchResultViewDesignLayout.addWidget(self.resultListView,0,0)
 
         self.languageChange()
 
-        self.resize(QSize(600,482).expandedTo(self.minimumSizeHint()))
+        self.resize(QSize(600,484).expandedTo(self.minimumSizeHint()))
         self.clearWState(Qt.WState_Polished)
 
         self.connect(self.resultListView,SIGNAL("doubleClicked(QListViewItem*)"),self.show_entry)
 
 
     def languageChange(self):
-        self.setCaption(QString.null)
+        self.setCaption(self.__tr("SearchResultViewDesign"))
 
 
     def show_entry(self):
@@ -46,6 +47,9 @@ class SearchResultViewDesign(QWidget):
 
     def set_result(self):
         print "SearchResultViewDesign.set_result(): Not implemented yet"
+
+    def __tr(self,s,c = None):
+        return qApp.translate("SearchResultViewDesign",s,c)
 
 if __name__ == "__main__":
     a = QApplication(sys.argv)
