@@ -23,7 +23,7 @@ from base.backend.LumaConnection import LumaConnection
 from base.utils import lumaStringDecode, lumaStringEncode
 from plugins.usermanagement import addPreProcess, addPostProcess
 from base.backend.SmartDataObject import SmartDataObject
-from base.utils.backend.ObjectClassAttributeInfo import ObjectClassAttributeInfo
+from base.backend.ObjectClassAttributeInfo import ObjectClassAttributeInfo
 from base.utils.gui.LumaErrorDialog import LumaErrorDialog
 
 

@@ -23,7 +23,7 @@ from base.utils.gui.MailDialog import MailDialog
 from plugins.addressbook.CategoryEditDialog import CategoryEditDialog
 from base.backend.LumaConnection import LumaConnection
 from base.backend.ServerList import ServerList
-from base.utils.backend.ObjectClassAttributeInfo import ObjectClassAttributeInfo
+from base.backend.ObjectClassAttributeInfo import ObjectClassAttributeInfo
 from base.utils.gui.LumaErrorDialog import LumaErrorDialog
 
 

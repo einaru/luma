@@ -15,7 +15,7 @@ from base.utils.gui.FilterWizardDesign import FilterWizardDesign
 from base.backend.ServerList import ServerList
 from base.backend.ServerObject import ServerObject
 import environment
-from base.utils.backend.ObjectClassAttributeInfo import ObjectClassAttributeInfo
+from base.backend.ObjectClassAttributeInfo import ObjectClassAttributeInfo
 
 class FilterWizard(FilterWizardDesign):
 

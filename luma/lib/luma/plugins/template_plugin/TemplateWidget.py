@@ -22,7 +22,7 @@ from plugins.template_plugin.AddObjectClassDialog import AddObjectClassDialog
 from plugins.template_plugin.AddAttributeDialog import AddAttributeDialog
 from plugins.template_plugin.ClassDeleteDialog import ClassDeleteDialog
 import environment
-from base.utils.backend.ObjectClassAttributeInfo import ObjectClassAttributeInfo
+from base.backend.ObjectClassAttributeInfo import ObjectClassAttributeInfo
 
 
 class TemplateWidget(TemplateWidgetDesign):

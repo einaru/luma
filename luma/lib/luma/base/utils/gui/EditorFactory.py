@@ -11,7 +11,7 @@
 import string
 
 from base.backend.SmartDataObject import SmartDataObject
-from base.utils.backend.ObjectClassAttributeInfo import ObjectClassAttributeInfo
+from base.backend.ObjectClassAttributeInfo import ObjectClassAttributeInfo
 from base.utils.gui.editors.StandardEditor import StandardEditor
 from base.utils.gui.editors.PasswordEditor import PasswordEditor
 from base.utils.gui.editors.BinaryEditor import BinaryEditor

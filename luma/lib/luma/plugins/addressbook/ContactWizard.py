@@ -22,7 +22,7 @@ from plugins.addressbook.AddressbookWidget import AddressbookWidget
 from base.backend.LumaConnection import LumaConnection
 from base.utils import lumaStringDecode, lumaStringEncode
 from time import strftime
-from base.utils.backend.ObjectClassAttributeInfo import ObjectClassAttributeInfo
+from base.backend.ObjectClassAttributeInfo import ObjectClassAttributeInfo
 from base.backend.SmartDataObject import SmartDataObject
 from base.utils.gui.LumaErrorDialog import LumaErrorDialog
 
