@@ -54,6 +54,6 @@ class ServerObject(object):
         finalString = finalString + "\nBase DN: " + self.baseDN
         finalString = finalString + "\nBind DN: " + self.bindDN
         finalString = finalString + "\nBind Password: " + self.bindPassword
-        finalString = finalString + "\nTLS: " + self.tls + "\n"
+        finalString = finalString + "\nTLS: " + str(self.tls) + "\n"
 
         return finalString
