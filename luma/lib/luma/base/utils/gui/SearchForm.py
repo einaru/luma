@@ -19,6 +19,8 @@ from base.backend.ServerObject import ServerObject
 from base.backend.ServerList import ServerList
 import environment
 from base.backend.LumaConnection import LumaConnection
+from base.backend.SmartDataObject import SmartDataObject
+from base.utils.gui.LumaErrorDialog import LumaErrorDialog
 
 class SearchForm(SearchFormDesign):
 
@@ -37,11 +39,22 @@ class SearchForm(SearchFormDesign):
         
         
         if not (self.serverList == None):
+            tmpDict = {}
             for x in self.serverList:
                 if x.tls == 1:
-                    self.serverBox.insertItem(securePixmap, x.name)
+                    tmpDict[x.name] = True
                 else:
-                    self.serverBox.insertItem(x.name)
+                    tmpDict[x.name] = False
+                    
+            self.serverBox.insertItem("")
+            
+            tmpList = tmpDict.keys()
+            tmpList.sort()
+            for x in tmpList:
+                if tmpDict[x]:
+                    self.serverBox.insertItem(securePixmap, x)
+                else:
+                    self.serverBox.insertItem(x)
 
         self.serverChanged()
         self.initFilterBookmarks()
@@ -61,15 +74,32 @@ class SearchForm(SearchFormDesign):
 
         criteriaList = self.getSearchCriteria()
     
-        self.connection.bind()
+        bindSuccess, exceptionObject = self.connection.bind()
+        
+        if not bindSuccess:
+                dialog = LumaErrorDialog()
+                errorMsg = self.trUtf8("Could not bind to server.<br><br>Reason: ")
+                errorMsg.append(str(exceptionObject))
+                dialog.setErrorMessage(errorMsg)
+                dialog.exec_loop()
+                self.groupBox2.setEnabled(True)
+                return
+                
         self.currentServer.currentBase = unicode(self.baseBox.currentText())
-        searchResult = self.connection.search(self.currentServer.currentBase, ldap.SCOPE_SUBTREE,
+        success, resultList, exceptionObject = self.connection.search(self.currentServer.currentBase, ldap.SCOPE_SUBTREE,
                 unicode(self.searchEdit.currentText()).encode('utf-8'))
         self.connection.unbind()
         
         self.groupBox2.setEnabled(True)
-
-        self.emit(PYSIGNAL("ldap_result"), (self.currentServer.name, searchResult,criteriaList, ))
+        
+        if success:
+            self.emit(PYSIGNAL("ldap_result"), (self.currentServer.name, resultList, criteriaList, ))
+        else:
+            dialog = LumaErrorDialog()
+            errorMsg = self.trUtf8("Error during search operation.<br><br>Reason: ")
+            errorMsg.append(str(exceptionObject))
+            dialog.setErrorMessage(errorMsg)
+            dialog.exec_loop()
 
 ###############################################################################
 
@@ -81,7 +111,7 @@ class SearchForm(SearchFormDesign):
             
         serverMeta = self.serverListObject.getServerObject(server)
             
-        dialog = FilterWizard(server)
+        dialog = FilterWizard(serverMeta)
         dialog.exec_loop()
         
         if dialog.result() == QDialog.Accepted:
@@ -125,6 +155,10 @@ class SearchForm(SearchFormDesign):
 
     def serverChanged(self, serverString=""):
         serverString = unicode(self.serverBox.currentText())
+        
+        if "" == serverString:
+            return 
+            
         self.currentServer = self.serverListObject.getServerObject(serverString)
         
         if None == self.currentServer:
@@ -134,9 +168,23 @@ class SearchForm(SearchFormDesign):
         
         baseList = None
         if self.currentServer.autoBase:
-            baseList = self.connection.getBaseDNList()
+            success, baseList, exceptionObject = self.connection.getBaseDNList()
+            
+            if not success:
+                dialog = LumaErrorDialog()
+                errorMsg = self.trUtf8("Could not retrieve baseDN.<br><br>Reason: ")
+                errorMsg.append(str(exceptionObject))
+                dialog.setErrorMessage(errorMsg)
+                dialog.exec_loop()
+                
         else:
             baseList = self.currentServer.baseDN
+            
+        if None == baseList:
+            self.startButton.setEnabled(False)
+            baseList = []
+        else:
+            self.startButton.setEnabled(True)
             
         self.baseBox.clear()
         for x in baseList:

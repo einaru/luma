@@ -16,9 +16,9 @@
     <property name="geometry">
         <rect>
             <x>0</x>
-            <y>0</y>
+            <y>1</y>
             <width>641</width>
-            <height>118</height>
+            <height>115</height>
         </rect>
     </property>
     <property name="sizePolicy">
@@ -109,6 +109,9 @@
                 <widget class="QPushButton" row="0" column="5">
                     <property name="name">
                         <cstring>startButton</cstring>
+                    </property>
+                    <property name="enabled">
+                        <bool>false</bool>
                     </property>
                     <property name="sizePolicy">
                         <sizepolicy>

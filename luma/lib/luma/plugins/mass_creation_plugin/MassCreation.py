@@ -24,6 +24,8 @@ from base.utils.gui.BrowserDialog import BrowserDialog
 from base.utils.gui.PluginInformation import PluginInformation
 from base.backend.LumaConnection import LumaConnection
 from plugins.mass_creation_plugin import postProcess, preProcess
+from base.backend.SmartDataObject import SmartDataObject
+from base.utils.gui.LumaErrorDialog import LumaErrorDialog
 
 class MassCreation(MassCreationDesign):
 
@@ -32,20 +34,25 @@ class MassCreation(MassCreationDesign):
     def __init__(self,parent = None,name = None,fl = 0):
         MassCreationDesign.__init__(self,parent,name,fl)
         
+        self.iconPath = os.path.join(environment.lumaInstallationPrefix, "share", "luma", "icons")
+        
         self.enableAutomount()
 
 ###############################################################################
 
     def createUsers(self):
         if str(self.nodeEdit.text()) == "":
-            QMessageBox.warning(None,
-                self.trUtf8("Incomplete Information"),
-                self.trUtf8("""Please select a valid node from a ldap server."""),
-                self.trUtf8("&OK"),
-                None,
-                None,
-                0, -1)
-            return None
+            tmpDialog = QMessageBox(self.trUtf8("Incomplete information"),
+                self.trUtf8("Please select a valid node from a ldap server."),
+                QMessageBox.Critical,
+                QMessageBox.Ok,
+                QMessageBox.NoButton,
+                QMessageBox.NoButton,
+                self)
+        
+            tmpDialog.setIconPixmap(QPixmap(os.path.join(self.iconPath, "warning_big.png")))
+            tmpDialog.exec_loop()
+            return
 
         # set gui busy
         environment.setBusy(True)
@@ -66,15 +73,19 @@ class MassCreation(MassCreationDesign):
         
         if freeNumbers == None:
             environment.setBusy(False)
-            QMessageBox.warning(None,
-                self.trUtf8("Conflict"),
+            
+            tmpDialog = QMessageBox(self.trUtf8("Warning"),
                 self.trUtf8("""There are not enough user ids left! 
 Try increasing the uidNumber range or delete some users from the subtree."""),
-                self.trUtf8("&OK"),
-                None,
-                None,
-                0, -1)
-            return None
+                QMessageBox.Critical,
+                QMessageBox.Ok,
+                QMessageBox.NoButton,
+                QMessageBox.NoButton,
+                self)
+        
+            tmpDialog.setIconPixmap(QPixmap(os.path.join(self.iconPath, "warning_big.png")))
+            tmpDialog.exec_loop()
+            return
 
         
         shadowMax = None
@@ -103,11 +114,21 @@ Try increasing the uidNumber range or delete some users from the subtree."""),
         serverMeta = tmpObject.getServerObject(server)
         
         connectionObject = LumaConnection(serverMeta)
-        connectionObject.bind()
+        bindSuccess, exceptionObject = connectionObject.bind()
+        
+        if not bindSuccess:
+                dialog = LumaErrorDialog()
+                errorMsg = self.trUtf8("Could not bind to server.<br><br>Reason: ")
+                errorMsg.append(str(exceptionObject))
+                dialog.setErrorMessage(errorMsg)
+                dialog.exec_loop()
+                return
         
         pwGenerator = CryptPwGenerator()
         self.passwordEdit.clear()
+        
         createResult = True
+        automountSuccess = True
         
         for x in range(userMin, userMax+1):
             environment.updateUI()
@@ -133,21 +154,13 @@ Try increasing the uidNumber range or delete some users from the subtree."""),
             preProcess(serverMeta, values)
             
             tmpDN = 'uid=' + userName + "," + baseDN
-            modList = ldap.modlist.addModlist(values)
-            result = connectionObject.add(tmpDN, modList)
+            dataObject = SmartDataObject((tmpDN, values), serverMeta)
+            success, exceptionObject = connectionObject.addDataObject(dataObject)
             
-            if result == 0:
+            if not success:
                 createResult = False
                 break
-                QMessageBox.critical(None,
-                    self.trUtf8("Error"),
-                    self.trUtf8("""Error during creation of users.
-Please see console output for more information."""),
-                    self.trUtf8("&OK"),
-                    None,
-                    None,
-                    0, -1)
-                    
+
             # create automount entry
             if self.enableNFSBox.isChecked():
                 tmpList = str(self.automountLocationEdit.text()).split(",")
@@ -164,9 +177,12 @@ Please see console output for more information."""),
                 #automountInfo = "-fstype=nfs,rw,quota,soft,intr ciphome.in.tu-clausthal.de:" + values["homeDirectory"][0]
                 mountValues["automountInformation"] = [automountInfo]
                 mountValues["description"] = ["Mountpoint of the home directory from user " + values["cn"][0]]
-                print mountValues
-                modlist = ldap.modlist.addModlist(mountValues)
-                result = connectionObject.add(dn, modlist)
+                dataObject = SmartDataObject((dn, mountValues), serverMeta)
+                success, exceptionObject = connectionObject.addDataObject(dataObject)
+                
+                if not success:
+                    automountSuccess = False
+                    break
             
             postProcess(serverMeta, values)
         
@@ -175,14 +191,29 @@ Please see console output for more information."""),
         connectionObject.unbind()
         environment.setBusy(False)
         
-        if createResult:
-            QMessageBox.information(None,
-                self.trUtf8("Success"),
+        if not createResult:
+            dialog = LumaErrorDialog()
+            errorMsg = self.trUtf8("Could not create all users.<br><br>Reason: ")
+            errorMsg.append(str(exceptionObject))
+            dialog.setErrorMessage(errorMsg)
+            dialog.exec_loop()
+        elif not automountSuccess:
+            dialog = LumaErrorDialog()
+            errorMsg = self.trUtf8("Could not create all automount information.<br><br>Reason: ")
+            errorMsg.append(str(exceptionObject))
+            dialog.setErrorMessage(errorMsg)
+            dialog.exec_loop()
+        else:
+            tmpDialog = QMessageBox(self.trUtf8("Success"),
                 self.trUtf8("""All users were created successfully."""),
-                self.trUtf8("&OK"),
-                None,
-                None,
-                0, -1)
+                QMessageBox.Critical,
+                QMessageBox.Ok,
+                QMessageBox.NoButton,
+                QMessageBox.NoButton,
+                self)
+        
+            tmpDialog.setIconPixmap(QPixmap(os.path.join(self.iconPath, "final.png")))
+            tmpDialog.exec_loop()
 
 ###############################################################################
             
@@ -208,23 +239,39 @@ Please see console output for more information."""),
         environment.setBusy(True)
         
         connectionObject = LumaConnection(serverMeta)
-        connectionObject.bind()
+        bindSuccess, exceptionObject = connectionObject.bind()
         
-        searchResult = connectionObject.search(ldapObject, ldap.SCOPE_SUBTREE,
+        if not bindSuccess:
+                dialog = LumaErrorDialog()
+                errorMsg = self.trUtf8("Could not bind to server.<br><br>Reason: ")
+                errorMsg.append(str(exceptionObject))
+                dialog.setErrorMessage(errorMsg)
+                dialog.exec_loop()
+                return []
+        
+        success, resultList, exceptionObject = connectionObject.search(ldapObject, ldap.SCOPE_SUBTREE,
                 "(objectClass=posixAccount)", ["uidNumber"], 0)
                 
         connectionObject.unbind()
-                
-        if searchResult == None:
-            searchResult = []
-
         environment.setBusy(False)
-        
-        numberList = []
-        for x in searchResult:
-            number = int(x[1]['uidNumber'][0])
-            numberList.append(number)
-        return numberList
+                
+        if success:
+            if resultList == None:
+                resultList = []
+
+            numberList = []
+            for x in resultList:
+                number = int(x.getAttributeValue('uidNumber', 0))
+                numberList.append(number)
+            return numberList
+        else:
+            dialog = LumaErrorDialog()
+            errorMsg = self.trUtf8("Could not retrieve used userid numbers.<br><br>Reason: ")
+            errorMsg.append(str(exceptionObject))
+            dialog.setErrorMessage(errorMsg)
+            dialog.exec_loop()
+            
+            return []
     
 ###############################################################################
 
@@ -243,27 +290,47 @@ Please see console output for more information."""),
 ###############################################################################
 
     def browseGroups(self):
-        ldapItem = None
+        result = None
         dialog = BrowserDialog(self)
         if dialog.result() == QDialog.Accepted:
-            ldapItem = dialog.getLdapItem()
-        else:
-            return 0
+            success, resultList, exceptionObject = dialog.getLdapItem()
+            if success:
+                if len(resultList) > 0:
+                    resultItem = resultList[0]
+                    groupId = None
         
-        groupId = None
+                    if resultItem.hasAttribute('gidNumber'):
+                        groupId = resultItem.getAttributeValue('gidNumber', 0)
+                        self.gidBox.setValue(int(groupId))
+                    else:
+                        tmpDialog = QMessageBox(self.trUtf8("Wrong entry"),
+                            self.trUtf8("""The selected ldap entry did not contain the attribute 'gidNumber'."""),
+                            QMessageBox.Critical,
+                            QMessageBox.Ok,
+                            QMessageBox.NoButton,
+                            QMessageBox.NoButton,
+                            self)
         
-        try:
-            groupId = ldapItem[1][0][1]['gidNumber'][0]
-            self.gidBox.setValue(int(groupId))
-        except KeyError:
-            QMessageBox.warning(None,
-                self.trUtf8("Wrong entry!"),
-                self.trUtf8("""The selected ldap entry did not contain the attribute 'gidNumber'."""),
-                self.trUtf8("&OK"),
-                None,
-                None,
-                0, -1)
-    
+                        tmpDialog.setIconPixmap(QPixmap(os.path.join(self.iconPath, "warning_big.png")))
+                        tmpDialog.exec_loop()
+                        
+                # Search result did not contain any items
+                else:
+                    dialog = LumaErrorDialog(dialog)
+                    errorMsg = self.trUtf8("Could not retrieve selected item.<br><br>Reason: ")
+                    errorMsg.append(str(exceptionObject))
+                    dialog.setErrorMessage(errorMsg)
+                    dialog.exec_loop()
+
+                    
+            # search operation unsuccessful
+            else:
+                dialog = LumaErrorDialog(dialog)
+                errorMsg = self.trUtf8("Could not retrieve selected item.<br><br>Reason: ")
+                errorMsg.append(str(exceptionObject))
+                dialog.setErrorMessage(errorMsg)
+                dialog.exec_loop()
+
 ###############################################################################
 
     def enableAutomount(self):

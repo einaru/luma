@@ -23,6 +23,9 @@
             <property name="name">
                 <cstring>goButton</cstring>
             </property>
+            <property name="enabled">
+                <bool>false</bool>
+            </property>
             <property name="text">
                 <string>&amp;Go</string>
             </property>

@@ -14,6 +14,7 @@ import os.path
 from string import strip
 import ldap
 import copy
+import string
 
 import environment
 from plugins.addressbook.AddressbookWidgetDesign import AddressbookWidgetDesign
@@ -23,6 +24,7 @@ from plugins.addressbook.CategoryEditDialog import CategoryEditDialog
 from base.backend.LumaConnection import LumaConnection
 from base.backend.ServerList import ServerList
 from base.utils.backend.ObjectClassAttributeInfo import ObjectClassAttributeInfo
+from base.utils.gui.LumaErrorDialog import LumaErrorDialog
 
 
 class AddressbookWidget(AddressbookWidgetDesign):
@@ -52,8 +54,8 @@ class AddressbookWidget(AddressbookWidgetDesign):
         self.personalLabel.setPixmap(personIcon)
         self.notesLabel.setPixmap(urlIcon)
         
-        # Will be instance of ObjectClassAttributeInfo
-        self.ocInfo = None
+        # Instance of SmartDataObject
+        self.dataObject = None
         
         self.allowedAttributes = None
         
@@ -105,113 +107,128 @@ class AddressbookWidget(AddressbookWidgetDesign):
         
 ###############################################################################
 
-    def initView(self, dn, data, server):
+    def initView(self, dataObject):
         self.clearView()
         self.enableWidget(1)
         
-        self.dn = dn
-        self.data = data
-        self.serverMeta = server
-        
-        if self.DISABLED:
-            self.ocInfo = ObjectClassAttributeInfo(self.serverMeta.name)
-            self.DISABLED = 0
+        self.dataObject = dataObject
             
-        must, may = self.ocInfo.getAllAttributes(self.data['objectClass'])
+        must, may = self.dataObject.getPossibleAttributes()
         self.enableContactFields(must.union(may))
         
         
         self.addressBox.setEnabled(1)
         
-        for x in self.data.keys():
+        for x in self.dataObject.getAttributeList():
             if x == 'cn':
-                self.cnEdit.setText((self.data[x][0]).decode('utf-8'))
+                value = self.dataObject.getAttributeValue(x, 0)
+                self.cnEdit.setText(value)
                 
             if x == 'title':
-                self.titleEdit.setText(self.data[x][0].decode('utf-8'))
+                value = self.dataObject.getAttributeValue(x, 0)
+                self.titleEdit.setText(value)
                 
             if x == 'o':
-                self.organisationEdit.setText(self.data[x][0].decode('utf-8'))
+                value = self.dataObject.getAttributeValue(x, 0)
+                self.organisationEdit.setText(value)
                 
             if x == 'mail':
-                tmpList = self.data['mail']
+                tmpList = self.dataObject.getAttributeValueList('mail')
                 tmpList.sort()
-                for y in tmpList:
-                    self.mailBox.insertItem(y.decode('utf-8'))
+                map(self.mailBox.insertItem, tmpList)
             
             if x == 'labeledURI':
-                self.labeledURIEdit.setText(self.data[x][0].decode('utf-8'))
+                value = self.dataObject.getAttributeValue(x, 0)
+                self.labeledURIEdit.setText(value)
                 
             if x == 'category':
-                self.categoryEdit.setText(",".join(self.data[x]).decode('utf-8'))
+                tmpString = ",".join(self.dataObject.getAttributeValueList(x))
+                self.categoryEdit.setText(tmpString)
         
             if x == 'homePhone':
-                self.homePhoneEdit.setText(self.data[x][0].decode('utf-8'))
+                value = self.dataObject.getAttributeValue(x, 0)
+                self.homePhoneEdit.setText(value)
                 
             if x == 'telephoneNumber':
-                self.telephoneNumberEdit.setText(self.data[x][0].decode('utf-8'))
+                value = self.dataObject.getAttributeValue(x, 0)
+                self.telephoneNumberEdit.setText(value)
                 
             if x == 'mobile':
-                self.mobileEdit.setText(self.data[x][0].decode('utf-8'))
+                value = self.dataObject.getAttributeValue(x, 0)
+                self.mobileEdit.setText(value)
                
             if x == 'facsimileTelephoneNumber':
-                self.facsimileTelephoneNumberEdit.setText(self.data[x][0].decode('utf-8'))
+                value = self.dataObject.getAttributeValue(x, 0)
+                self.facsimileTelephoneNumberEdit.setText(value)
                 
                 
             if x == 'ou':
-                self.ouEdit.setText(self.data[x][0].decode('utf-8'))
+                value = self.dataObject.getAttributeValue(x, 0)
+                self.ouEdit.setText(value)
                 
             if x == 'roomNumber':
-                self.roomNumberEdit.setText(self.data[x][0].decode('utf-8'))
+                value = self.dataObject.getAttributeValue(x, 0)
+                self.roomNumberEdit.setText(value)
                 
             if x == 'businessRole':
-                self.businessRoleEdit.setText(self.data[x][0].decode('utf-8'))
+                value = self.dataObject.getAttributeValue(x, 0)
+                self.businessRoleEdit.setText(value)
             
             if x == 'managerName':
-                self.managerNameEdit.setText(self.data[x][0].decode('utf-8'))
+                value = self.dataObject.getAttributeValue(x, 0)
+                self.managerNameEdit.setText(value)
                 
             if x == 'assistantName':
-                self.assistantNameEdit.setText(self.data[x][0].decode('utf-8'))
+                value = self.dataObject.getAttributeValue(x, 0)
+                self.assistantNameEdit.setText(value)
                 
             if x == 'displayName':
-                self.displayNameEdit.setText(self.data[x][0].decode('utf-8'))
+                value = self.dataObject.getAttributeValue(x, 0)
+                self.displayNameEdit.setText(value)
                 
             if x == 'spouseName':
-                self.spouseNameEdit.setText(self.data[x][0].decode('utf-8'))
+                value = self.dataObject.getAttributeValue(x, 0)
+                self.spouseNameEdit.setText(value)
                 
             if x == 'note':
-                self.noteEdit.setText(self.data[x][0].decode('utf-8'))
+                value = self.dataObject.getAttributeValue(x, 0)
+                self.noteEdit.setText(value)
                 
             if x == 'birthDate':
-                tmpList = self.data[x][0].split('-')
+                tmpList = self.dataObject.getAttributeValue(x, 0).split('-')
                 self.birthDateEdit.setDate(QDate(int(tmpList[0]), int(tmpList[1]), int(tmpList[2])))
                 
             if x == 'anniversary':
-                tmpList = self.data[x][0].split('-')
+                tmpList = self.dataObject.getAttributeValue(x, 0).split('-')
                 self.birthDateEdit.setDate(QDate(int(tmpList[0]), int(tmpList[1]), int(tmpList[2])))
                 
-        self.initAddress(0, 1)
         self.addressID = 0
+        self.initAddress(0, False)
     
 ###############################################################################
 
     def showNameDialog(self):
         dialog = NameDialog()
         
-        sn = self.data['sn'][0].decode('utf-8')
+        sn = ""
+        if self.dataObject.hasAttribute('sn'):
+            sn = self.dataObject.getAttributeValue('sn', 0)
             
         givenName = None
         suffix = None
         title = None
         middleName = None
         
-        cn = self.data['cn'][0].decode('utf-8')
+        cn = ''
+        if self.dataObject.hasAttribute('cn'):
+            cn = self.dataObject.getAttributeValue('cn', 0)
+        
         tmpList = cn.split(' ')
         sureNamePosition = tmpList.index(sn)
         
         # find the given name
-        if self.data.has_key('givenName'):
-            givenName = strip(self.data['givenName'][0].decode('utf-8'))
+        if self.dataObject.hasAttribute('givenName'):
+            givenName = strip(self.dataObject.getAttributeValue('givenName', 0))
         
         # find the suffix
         if not sureNamePosition == (len(tmpList) - 1):
@@ -264,7 +281,10 @@ class AddressbookWidget(AddressbookWidgetDesign):
             if tmpSn == '':
                 return
                 
-            self.data['sn'][0] = tmpSn.encode('utf-8')
+            if self.dataObject.hasAttribute('sn'):
+                self.dataObject.setAttributeValue('sn', 0, tmpSn)
+            else:
+                self.dataObject.addAttributeValue('sn', [tmpSn])
             
             tmpList = []
             tmpList.append(self.__normalizeQtString(dialog.titleBox.currentText()))
@@ -273,12 +293,21 @@ class AddressbookWidget(AddressbookWidgetDesign):
             tmpList.append(self.__normalizeQtString(dialog.lastEdit.text()))
             tmpList.append(self.__normalizeQtString(dialog.suffixBox.currentText()))
             
-            if "givenName" in self.allowedAttributes:
-                givenName = unicode(dialog.firstEdit.text()).encode('utf-8')
-                givenName = strip(givenName)
-                self.data['givenName'] = [givenName]
+            for x in self.allowedAttributes:
+                if "givenname" == string.lower(x):
+                    givenName = unicode(dialog.firstEdit.text())
+                    givenName = strip(givenName)
+                    if '' == givenName:
+                        self.dataObject.deleteAttribute('givenName')
+                    else:
+                        self.dataObject.addAttributeValue('givenName', [givenName])
             
-            self.cnEdit.setText(''.join(tmpList))
+            value = ''.join(tmpList)
+            self.cnEdit.setText(value)
+            if '' == value:
+                self.dataObject.deleteAttribute('cn')
+            else:
+                self.dataObject.addAttributeValue('cn', [value])
             
 ###############################################################################
 
@@ -317,8 +346,12 @@ class AddressbookWidget(AddressbookWidgetDesign):
                     currentMails.append(unicode(self.mailBox.text(x)))
                     
                 if not (mail in currentMails):
-                    self.mailBox.insertItem(mail)
-                    self.mailBox.setCurrentItem(self.mailBox.count()-1)
+                    currentMails.append(mail)
+                    
+                currentMails.sort()
+                self.mailBox.clear()
+                map(self.mailBox.insertItem, currentMails)
+                self.mailBox.setCurrentItem(self.mailBox.count()-1)
 
 ###############################################################################
 
@@ -345,18 +378,19 @@ class AddressbookWidget(AddressbookWidgetDesign):
                 
 ###############################################################################
 
-    def initAddress(self, id, fresh=0):
+    def initAddress(self, id, saveValue=True):
         # The order os the attributes resembles the order of apearance in the widget
         addressType = ['postalAddress', 'homePostalAddress', 'otherPostalAddress']
         
-        if fresh == 0:
-            self.data[addressType[self.addressID]] = [unicode(self.addressEdit.text()).encode('utf-8')]
+        if saveValue:
+            value = [unicode(self.addressEdit.text())]
+            self.dataObject.addAttributeValue(addressType[self.addressID], value, True)
         
         self.addressID = id
         self.addressEdit.clear()
-        if self.data.has_key(addressType[id]):
-            tmpAddress = self.data[addressType[id]][0]
-            self.addressEdit.setText(tmpAddress.decode('utf-8'))
+        if self.dataObject.hasAttribute(addressType[id]):
+            tmpAddress = self.dataObject.getAttributeValue(addressType[id], 0)
+            self.addressEdit.setText(tmpAddress)
         
         
 ###############################################################################
@@ -367,143 +401,204 @@ class AddressbookWidget(AddressbookWidgetDesign):
         
 ###############################################################################
 
-    def getValues(self):
-        values = {}
-        
+    def updateValues(self):
         if 'cn' in self.allowedAttributes:
-            tmpString = unicode(self.cnEdit.text()).encode('utf-8')
-            values['cn'] = [tmpString]
+            tmpString = unicode(self.cnEdit.text())
+            if not('' == tmpString):
+                self.dataObject.addAttributeValue('cn', [tmpString], True)
+            else:
+                if not self.dataObject.isAttributeMust('cn'):
+                    self.dataObject.deleteAttribute('cn')
         
         if 'title' in self.allowedAttributes:
-            values['title'] = [unicode(self.titleEdit.text()).encode('utf-8')]
+            value = unicode(self.titleEdit.text())
+            if not('' == value):
+                self.dataObject.addAttributeValue('title', [value], True)
+            else:
+                if not self.dataObject.isAttributeMust('title'):
+                    self.dataObject.deleteAttribute('title')
             
         if 'o' in self.allowedAttributes:
-            values['o'] = [unicode(self.organisationEdit.text()).encode('utf-8')]
+            value = unicode(self.organisationEdit.text())
+            if not('' == value):
+                self.dataObject.addAttributeValue('o', [value], True)
+            else:
+                if not self.dataObject.isAttributeMust('o'):
+                    self.dataObject.deleteAttribute('o')
         
         if 'mail' in self.allowedAttributes:
             tmpMail = []
             for x in range(0, self.mailBox.count()):
-                tmpMail.append(unicode(self.mailBox.text(x)).encode('utf-8'))
+                tmpMail.append(unicode(self.mailBox.text(x)))
             if len(tmpMail) == 0:
-                tmpMail = ['']
-            values['mail'] = tmpMail
+                if not self.dataObject.isAttributeMust('mail'):
+                    self.dataObject.deleteAttribute('mail')
+            else:
+                self.dataObject.addAttributeValue('mail', tmpMail, True)
         
         if 'labeledURI' in self.allowedAttributes:
-            values['labeledURI'] = [unicode(self.labeledURIEdit.text()).encode('utf-8')]
+            value = unicode(self.labeledURIEdit.text())
+            if not('' == value):
+                self.dataObject.addAttributeValue('labeledURI', [value], True)
+            else:
+                if not self.dataObject.isAttributeMust('labeledURI'):
+                    self.dataObject.deleteAttribute('labeledURI')
             
         if 'category' in self.allowedAttributes:
-            values['category'] = unicode(self.categoryEdit.text()).encode('utf-8').split(',')
+            valueList = unicode(self.categoryEdit.text()).split(',')
+            valueList = filter(lambda x: not ('' == x), valueList)
+            if 0 == len(valueList):
+                self.dataObject.deleteAttribute('category')
+            else:
+                self.dataObject.addAttributeValue('category',  valueList, True)
             
         if 'homePhone' in self.allowedAttributes:
-            values['homePhone'] = [unicode(self.homePhoneEdit.text()).encode('utf-8')]
+            value = unicode(self.homePhoneEdit.text())
+            if not('' == value):
+                self.dataObject.addAttributeValue('homePhone', [value], True)
+            else:
+                if not self.dataObject.isAttributeMust('homePhone'):
+                    self.dataObject.deleteAttribute('homePhone')
             
         if 'telephoneNumber' in self.allowedAttributes:
-            values['telephoneNumber'] = [unicode(self.telephoneNumberEdit.text()).encode('utf-8')]
+            value = unicode(self.telephoneNumberEdit.text())
+            if not('' == value):
+                self.dataObject.addAttributeValue('telephoneNumber', [value], True)
+            else:
+                if not self.dataObject.isAttributeMust('telephoneNumber'):
+                    self.dataObject.deleteAttribute('telephoneNumber')
             
         if 'mobile' in self.allowedAttributes:
-            values['mobile'] = [unicode(self.mobileEdit.text()).encode('utf-8')]
+            value = unicode(self.mobileEdit.text())
+            if not('' == value):
+                self.dataObject.addAttributeValue('mobile', [value], True)
+            else:
+                if not self.dataObject.isAttributeMust('mobile'):
+                    self.dataObject.deleteAttribute('mobile')
             
         if 'facsimileTelephoneNumber' in self.allowedAttributes:
-            values['facsimileTelephoneNumber'] = [unicode(self.facsimileTelephoneNumberEdit.text()).encode('utf-8')]
+            value = unicode(self.facsimileTelephoneNumberEdit.text())
+            if not('' == value):
+                self.dataObject.addAttributeValue('facsimileTelephoneNumber', [value], True)
+            else:
+                if not self.dataObject.isAttributeMust('facsimileTelephoneNumber'):
+                    self.dataObject.deleteAttribute('facsimileTelephoneNumber')
             
         if 'ou' in self.allowedAttributes:
-            values['ou'] = [unicode(self.ouEdit.text()).encode('utf-8')]
+            value = unicode(self.ouEdit.text())
+            if not('' == value):
+                self.dataObject.addAttributeValue('ou', [value], True)
+            else:
+                if not self.dataObject.isAttributeMust('ou'):
+                    self.dataObject.deleteAttribute('ou')
             
         if 'roomNumber' in self.allowedAttributes:
-            values['roomNumber'] = [unicode(self.roomNumberEdit.text()).encode('utf-8')]
+            value = unicode(self.roomNumberEdit.text())
+            if not('' == value):
+                self.dataObject.addAttributeValue('roomNumber', [value], True)
+            else:
+                if not self.dataObject.isAttributeMust('roomNumber'):
+                    self.dataObject.deleteAttribute('roomNumber')
             
         if 'businessRole' in self.allowedAttributes:
-            values['businessRole'] = [unicode(self.businessRoleEdit.text()).encode('utf-8')]
+            value = unicode(self.businessRoleEdit.text())
+            if not('' == value):
+                self.dataObject.addAttributeValue('businessRole', [value], True)
+            else:
+                if not self.dataObject.isAttributeMust('businessRole'):
+                    self.dataObject.deleteAttribute('businessRole')
             
         if 'managerName' in self.allowedAttributes:
-            values['managerName'] = [unicode(self.managerNameEdit.text()).encode('utf-8')]
+            value = unicode(self.managerNameEdit.text())
+            if not('' == value):
+                self.dataObject.addAttributeValue('managerName', [value], True)
+            else:
+                if not self.dataObject.isAttributeMust('managerName'):
+                    self.dataObject.deleteAttribute('managerName')
             
         if 'assistantName' in self.allowedAttributes:
-            values['assistantName'] = [unicode(self.assistantNameEdit.text()).encode('utf-8')]
+            value = unicode(self.assistantNameEdit.text())
+            if not('' == value):
+                self.dataObject.addAttributeValue('assistantName', [value], True)
+            else:
+                if not self.dataObject.isAttributeMust('assistantName'):
+                    self.dataObject.deleteAttribute('assistantName')
             
         if 'displayName' in self.allowedAttributes:
-            values['displayName'] = [unicode(self.displayNameEdit.text()).encode('utf-8')]
+            value = unicode(self.displayNameEdit.text())
+            if not('' == value):
+                self.dataObject.addAttributeValue('displayName', [value], True)
+            else:
+                if not self.dataObject.isAttributeMust('displayName'):
+                    self.dataObject.deleteAttribute('displayName')
         
         if 'spouseName' in self.allowedAttributes:
-            values['spouseName'] = [unicode(self.spouseNameEdit.text()).encode('utf-8')]
+            value = unicode(self.spouseNameEdit.text())
+            if not('' == value):
+                self.dataObject.addAttributeValue('spouseName', [value], True)
+            else:
+                if not self.dataObject.isAttributeMust('spouseName'):
+                    self.dataObject.deleteAttribute('spouseName')
             
         if 'note' in self.allowedAttributes:
-            values['note'] = [unicode(self.noteEdit.text()).encode('utf-8')]
+            value = unicode(self.noteEdit.text())
+            if not('' == value):
+                self.dataObject.addAttributeValue('note', [value], True)
+            else:
+                if not self.dataObject.isAttributeMust('note'):
+                    self.dataObject.deleteAttribute('note')
         
         if 'birthDate' in self.allowedAttributes:
-            tmpDate = unicode(self.birthDateEdit.date().toString(Qt.ISODate)).encode('utf-8')
-            if not (tmpDate == ''):
-                values['birthDate'] = [tmpDate]
+            tmpDate = unicode(self.birthDateEdit.date().toString(Qt.ISODate))
+            if tmpDate == '':
+                self.dataObject.deleteAttribute('birthDate')
+            else:
+                self.dataObject.addAttributeValue('birthDate', [tmpDate], True)
             
         if 'anniversary' in self.allowedAttributes:
-            tmpDate = unicode(self.anniversaryEdit.date().toString(Qt.ISODate)).encode('utf-8')
-            if not (tmpDate == ''):
-                values['anniversary'] = [tmpDate]
+            tmpDate = unicode(self.anniversaryEdit.date().toString(Qt.ISODate))
+            if tmpDate == '':
+                self.dataObject.deleteAttribute('anniversary')
+            else:
+                self.dataObject.addAttributeValue('anniversary', [tmpDate], True)
         
-        if 'postalAddress' in self.allowedAttributes:
-            if self.data.has_key('postalAddress'):
-                values['postalAddress'] = self.data['postalAddress']
-            
-        if 'homePostalAddress' in self.allowedAttributes:
-            if self.data.has_key('homePostalAddress'):
-                values['homePostalAddress'] = self.data['homePostalAddress']
-            
-        if 'otherPostalAddress' in self.allowedAttributes:
-            if self.data.has_key('otherPostalAddress'):
-                values['otherPostalAddress'] = self.data['otherPostalAddress']
-            
-        
-        values['sn'] = self.data['sn']
-        if "givenName" in self.allowedAttributes:
-            if self.data.has_key('givenName'):
-                values['givenName'] = self.data['givenName']
         
         addressType = ['postalAddress', 'homePostalAddress', 'otherPostalAddress']
         id = self.addressBox.currentItem()
         if addressType[id] in self.allowedAttributes:
-            values[addressType[id]] = [unicode(self.addressEdit.text()).encode('utf-8')]
-        
-        for x in values.keys():
-            if values[x][0] == '':
-                values[x] = []
-                
-        return values
+            value = unicode(self.addressEdit.text())
+            if not('' == value):
+                self.dataObject.addAttributeValue(addressType[id], [value], True)
+            else:
+                self.dataObject.deleteAttribute(addressType[id])
         
 ###############################################################################
 
     def saveEntry(self):
-        values = self.getValues()
+        self.updateValues()
         
-        ldapValues = self.getLdapValues()
-        modlist =  ldap.modlist.modifyModlist(ldapValues, values, [], 1)
+        lumaConnection = LumaConnection(self.dataObject.getServerMeta())
+        bindSuccess, exceptionObject = lumaConnection.bind()
         
-        connection = LumaConnection(self.serverMeta)
-        connection.bind()
-        result = connection.modify(self.dn, modlist)
-        connection.unbind()
+        if not bindSuccess:
+                dialog = LumaErrorDialog()
+                errorMsg = self.trUtf8("Could not bind to server.<br><br>Reason: ")
+                errorMsg.append(str(exceptionObject))
+                dialog.setErrorMessage(errorMsg)
+                dialog.exec_loop()
+                return
+                
+        success, exceptionObject = lumaConnection.updateDataObject(self.dataObject)
+        lumaConnection.unbind()
         
-        if result == 0:
-            QMessageBox.warning(None,
-            self.trUtf8("Error"),
-            self.trUtf8("""Could not save contact data. 
-Please read console output for more information."""),
-            None,
-            None,
-            None,
-            0, -1)
-        else:
+        if success:
             self.emit(PYSIGNAL("contact_saved"), ())
-        
-###############################################################################
-
-    def getLdapValues(self):
-        connection = LumaConnection(self.serverMeta)
-        
-        connection.bind()
-        result = connection.search(self.dn)
-        connection.unbind()
-        
-        return result[0][1]
+        else:
+            dialog = LumaErrorDialog()
+            errorMsg = self.trUtf8("Could not save entry.<br><br>Reason: ")
+            errorMsg.append(str(exceptionObject))
+            dialog.setErrorMessage(errorMsg)
+            dialog.exec_loop()
         
 ###############################################################################
 

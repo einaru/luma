@@ -15,6 +15,7 @@ import ldap
 import environment
 from plugins.usermanagement.GroupDialogDesign import GroupDialogDesign
 from base.backend.LumaConnection import LumaConnection
+from base.utils.gui.LumaErrorDialog import LumaErrorDialog
 
 
 class GroupDialog(GroupDialogDesign):
@@ -27,7 +28,7 @@ class GroupDialog(GroupDialogDesign):
         self.groupLabel.setPixmap(groupPixmap)
         
         
-        self.SERVERMETA = None
+        self.serverMeta = None
         self.userName = None
         
         self.groupData = {}
@@ -41,33 +42,44 @@ class GroupDialog(GroupDialogDesign):
         tmpText = self.infoLabel2.text().arg(self.userName)
         self.infoLabel2.setText(tmpText)
         
-        connectionObject = LumaConnection(self.SERVERMETA)
-        connectionObject.bind()
+        connectionObject = LumaConnection(self.serverMeta)
+        bindSuccess, exceptionObject = connectionObject.bind()
         
-        results = connectionObject.search(self.SERVERMETA.currentBase, ldap.SCOPE_SUBTREE, 
+        if not bindSuccess:
+                dialog = LumaErrorDialog()
+                errorMsg = self.trUtf8("Could not bind to server.<br><br>Reason: ")
+                errorMsg.append(str(exceptionObject))
+                dialog.setErrorMessage(errorMsg)
+                dialog.exec_loop()
+        
+        success, resultList, exceptionObject = connectionObject.search(self.serverMeta.currentBase, ldap.SCOPE_SUBTREE, 
                 "objectClass=posixGroup", )
                 
         connectionObject.unbind()
         
-        self.processResults(results)
+        if success:
+            self.processResults(resultList)
+        else:
+            dialog = LumaErrorDialog()
+            errorMsg = self.trUtf8("Could retrieve other group information.<br><br>Reason: ")
+            errorMsg.append(str(exceptionObject))
+            dialog.setErrorMessage(errorMsg)
+            dialog.exec_loop()
         
 ###############################################################################
 
     def processResults(self, results):
-        if results == None:
-            return
-            
         for x in results:
-            self.groupData[x[0]] = x[1]
+            self.groupData[x.getDN()] = x
            
         tmpList = ['']
         for x in self.groupData.keys():
-            name = self.groupData[x]['cn'][0]
-            groupNumber = self.groupData[x]['gidNumber'][0]
+            name = self.groupData[x].getAttributeValue('cn', 0)
+            groupNumber = self.groupData[x].getAttributeValue('gidNumber', 0)
             
             item = QCheckListItem(self.groupView, name, QCheckListItem.CheckBox)
-            if self.groupData[x].has_key("memberUid"):
-                if self.userName in self.groupData[x]["memberUid"]:
+            if self.groupData[x].hasAttribute("memberUid"):
+                if self.userName in self.groupData[x].getAttributeValueList("memberUid"):
                     item.setOn(True)
             item.setText(1, groupNumber)
             item.setText(2, x)
@@ -83,9 +95,9 @@ class GroupDialog(GroupDialogDesign):
         groupString = unicode(groupString)
         
         for x in self.groupData.keys():
-            if self.groupData[x]['cn'][0] == groupString:
+            if self.groupData[x].getAttributeValue('cn', 0) == groupString:
                 self.groupNumberBox.blockSignals(True)
-                self.groupNumberBox.setValue(int(self.groupData[x]['gidNumber'][0]))
+                self.groupNumberBox.setValue(int(self.groupData[x].getAttributeValue('gidNumber',0)))
                 self.groupNumberBox.blockSignals(False)
         
 ###############################################################################
@@ -94,8 +106,8 @@ class GroupDialog(GroupDialogDesign):
         newGroup = None
         
         for x in self.groupData.keys():
-            if int(self.groupData[x]['gidNumber'][0]) == groupNumber:
-                newGroup = self.groupData[x]['cn'][0]
+            if int(self.groupData[x].getAttributeValue('gidNumber', 0)) == groupNumber:
+                newGroup = self.groupData[x].getAttributeValue('cn', 0)
                 break
                 
         # If the groupnumber belongs to a non-ldap group, reset the group in 

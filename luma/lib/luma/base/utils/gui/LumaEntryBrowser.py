@@ -20,6 +20,7 @@ from base.utils.gui.LumaEntryBrowserDesign import LumaEntryBrowserDesign
 from base.backend.ServerObject import ServerObject
 from base.backend.ServerList import ServerList
 from base.backend.LumaConnection import LumaConnection
+from base.utils.gui.LumaErrorDialog import LumaErrorDialog
 
 class LumaEntryBrowser (LumaEntryBrowserDesign):
 
@@ -35,10 +36,10 @@ class LumaEntryBrowser (LumaEntryBrowserDesign):
         self.deletePreProcess = None
         self.deletePostProcess = None
         
-        lumaIconPath = os.path.join (environment.lumaInstallationPrefix, "share", "luma", "icons")
+        self.iconPath = os.path.join (environment.lumaInstallationPrefix, "share", "luma", "icons")
         
-        listViewIcon = QPixmap(os.path.join(lumaIconPath, "view_tree.png"))
-        iconViewIcon = QPixmap(os.path.join(lumaIconPath, "view_icon.png"))
+        listViewIcon = QPixmap(os.path.join(self.iconPath, "view_tree.png"))
+        iconViewIcon = QPixmap(os.path.join(self.iconPath, "view_icon.png"))
         
         self.listViewButton.setIconSet(QIconSet(listViewIcon))
         QToolTip.add(self.listViewButton, self.trUtf8("Tree"))
@@ -68,7 +69,7 @@ class LumaEntryBrowser (LumaEntryBrowserDesign):
         self.RESULTVIEWID = 1
         
         # Setting up server box
-        tmpFile  = os.path.join(environment.lumaInstallationPrefix, "share", "luma", "icons", "secure.png")
+        tmpFile  = os.path.join(self.iconPath, "secure.png")
         securePixmap = QPixmap(tmpFile)
 
         serverListObject = ServerList()
@@ -77,11 +78,21 @@ class LumaEntryBrowser (LumaEntryBrowserDesign):
         
         self.serverBox.insertItem("")
         if not (self.serverList == None):
+            tmpDict = {}
             for x in self.serverList:
                 if x.tls == 1:
-                    self.serverBox.insertItem(securePixmap, x.name)
+                    tmpDict[x.name] = True
                 else:
-                    self.serverBox.insertItem(x.name)
+                    tmpDict[x.name] = False
+                
+            
+            tmpList = tmpDict.keys()
+            tmpList.sort()
+            for x in tmpList:
+                if tmpDict[x]:
+                    self.serverBox.insertItem(securePixmap, x)
+                else:
+                    self.serverBox.insertItem(x)
         
         # metadata of the current server
         self.SERVERMETA = None
@@ -111,12 +122,23 @@ class LumaEntryBrowser (LumaEntryBrowserDesign):
     def initBaseBox(self):
         baseList = None
         if self.SERVERMETA.autoBase:
-            baseList = self.lumaConnection.getBaseDNList()
+            success, baseList, exceptionObject = self.lumaConnection.getBaseDNList()
+            
+            if not success:
+                dialog = LumaErrorDialog()
+                errorMsg = self.trUtf8("Could not retrieve baseDN.<br><br>Reason: ")
+                errorMsg.append(str(exceptionObject))
+                dialog.setErrorMessage(errorMsg)
+                dialog.exec_loop()
+                
         else:
             baseList = self.SERVERMETA.baseDN
             
         if None == baseList:
+            self.goButton.setEnabled(False)
             return
+        else:
+            self.goButton.setEnabled(True)
             
         self.baseBox.clear()
         for tmpBase in baseList:
@@ -127,7 +149,7 @@ class LumaEntryBrowser (LumaEntryBrowserDesign):
         
 ###############################################################################
 
-    def search(self, filter = None):
+    def search(self, filter=None):
         if self.lumaConnection.serverMeta == None:
             return
             
@@ -149,10 +171,28 @@ class LumaEntryBrowser (LumaEntryBrowserDesign):
         
         self.SERVERMETA.currentBase = unicode(self.baseBox.currentText())
         
-        self.lumaConnection.bind()
-        results = self.lumaConnection.search(self.SERVERMETA.currentBase, ldap.SCOPE_SUBTREE, tmpFilter.encode('utf-8'), [self.primaryKey, 'sn', 'givenName'], 0)
+        bindSuccess, exceptionObject = self.lumaConnection.bind()
+        
+        if not bindSuccess:
+                dialog = LumaErrorDialog()
+                errorMsg = self.trUtf8("Could not bind to server.<br><br>Reason: ")
+                errorMsg.append(str(exceptionObject))
+                dialog.setErrorMessage(errorMsg)
+                dialog.exec_loop()
+                return 
+                
+        success, resultList, exceptionObject = self.lumaConnection.search(self.SERVERMETA.currentBase, ldap.SCOPE_SUBTREE, tmpFilter.encode('utf-8'), [self.primaryKey, 'sn', 'givenName'], 0)
         self.lumaConnection.unbind()
-        self.processResults(results)
+        
+        if success:
+            self.processResults(resultList)
+        else:
+            dialog = LumaErrorDialog()
+            errorMsg = self.trUtf8("Could not search entries.<br><br>Reason: ")
+            errorMsg.append(str(exceptionObject))
+            dialog.setErrorMessage(errorMsg)
+            dialog.exec_loop()
+            
 
 ###############################################################################
 
@@ -160,7 +200,7 @@ class LumaEntryBrowser (LumaEntryBrowserDesign):
         self.data={}
         if not(results == None):
             for x in results:
-                self.data[x[0]] = x[1]
+                self.data[x.getDN()] = x
             
         self.showResults()
             
@@ -179,18 +219,16 @@ class LumaEntryBrowser (LumaEntryBrowserDesign):
         for x in self.data.keys():
             tmpData = self.data[x]
             name = ''
-            if tmpData.has_key(self.primaryKey):
-                name = tmpData[self.primaryKey][0]                
+            if tmpData.hasAttribute(self.primaryKey):
+                name = tmpData.getAttributeValue(self.primaryKey, 0)
             else:
-                if tmpData.has_key('sn') or tmpData.has_key('givenName'):
-                    if tmpData.has_key('sn'):
-                        name = tmpData['sn'][0]
-                    if tmpData.has_key('givenName'):
-                        if not(name == ''):
+                if tmpData.hasAttribute('sn') or tmpData.hasAttribute('givenName'):
+                    if tmpData.hasAttribute('sn'):
+                        name = tmpData.getAttributeValue('sn', 0)
+                    if tmpData.hasAttribute('givenName'):
+                        if not('' == name):
                             name = name + ' '
-                        name = name + tmpData['givenName'][0]
-                        
-            name = name.decode('utf-8')
+                        name += tmpData.getAttributeValue('givenName', 0)
                 
             nameList.append((name, x))
         
@@ -215,14 +253,31 @@ class LumaEntryBrowser (LumaEntryBrowserDesign):
             return
             
         dn = self.entryDict[icon]
-        self.lumaConnection.bind()
-        tmpData = self.lumaConnection.search(dn, ldap.SCOPE_BASE)[0][1]
+        bindSuccess, exceptionObject = self.lumaConnection.bind()
+        
+        if not bindSuccess:
+                dialog = LumaErrorDialog()
+                errorMsg = self.trUtf8("Could not bind to server.<br><br>Reason: ")
+                errorMsg.append(str(exceptionObject))
+                dialog.setErrorMessage(errorMsg)
+                dialog.exec_loop()
+                return 
+                
+        success, resultList, exceptionObject = self.lumaConnection.search(dn, ldap.SCOPE_BASE)
         self.lumaConnection.unbind()
         
         self.itemIconView.blockSignals(False)
         
-        self.emit(PYSIGNAL("about_to_change"), ())
-        self.emit(PYSIGNAL("ldap_result"), (deepcopy(dn), deepcopy(tmpData), deepcopy(self.lumaConnection.serverMeta),))
+        if success:
+            if len(resultList) > 0:
+                self.emit(PYSIGNAL("about_to_change"), ())
+                self.emit(PYSIGNAL("ldap_result"), (deepcopy(resultList[0]),))
+        else:
+            dialog = LumaErrorDialog()
+            errorMsg = self.trUtf8("Could not access entry.<br><br>Reason: ")
+            errorMsg.append(str(exceptionObject))
+            dialog.setErrorMessage(errorMsg)
+            dialog.exec_loop()
         
 ###############################################################################
 
@@ -233,14 +288,31 @@ class LumaEntryBrowser (LumaEntryBrowserDesign):
             return
             
         dn = self.entryDict[entry]
-        self.lumaConnection.bind()
-        tmpData = self.lumaConnection.search(dn, ldap.SCOPE_BASE)[0][1]
+        bindSuccess, exceptionObject = self.lumaConnection.bind()
+        
+        if not bindSuccess:
+                dialog = LumaErrorDialog()
+                errorMsg = self.trUtf8("Could not bind to server.<br><br>Reason: ")
+                errorMsg.append(str(exceptionObject))
+                dialog.setErrorMessage(errorMsg)
+                dialog.exec_loop()
+                return 
+                
+        success, resultList, exceptionObject = self.lumaConnection.search(dn, ldap.SCOPE_BASE)
         self.lumaConnection.unbind()
         
         self.itemListView.blockSignals(False)
         
-        self.emit(PYSIGNAL("about_to_change"), ())
-        self.emit(PYSIGNAL("ldap_result"), (deepcopy(dn), deepcopy(tmpData), deepcopy(self.lumaConnection.serverMeta),))
+        if success:
+            if len(resultList) > 0:
+                self.emit(PYSIGNAL("about_to_change"), ())
+                self.emit(PYSIGNAL("ldap_result"), (deepcopy(resultList[0]),))
+        else:
+            dialog = LumaErrorDialog()
+            errorMsg = self.trUtf8("Could not access entry.<br><br>Reason: ")
+            errorMsg.append(str(exceptionObject))
+            dialog.setErrorMessage(errorMsg)
+            dialog.exec_loop()
 
     
 ###############################################################################
@@ -259,36 +331,47 @@ class LumaEntryBrowser (LumaEntryBrowserDesign):
             
         dn = self.entryDict[item]
         
-        dialogResult = QMessageBox.warning(None,
-            self.trUtf8("Delete contact"),
-            self.trUtf8("""Do you really want to delete the selected contact?"""),
-            self.trUtf8("&Yes"),
-            self.trUtf8("&No"),
-            None,
-            0, -1)
-            
-        if dialogResult == 0:
+        tmpDialog = QMessageBox(self.trUtf8("Delete contact"),
+                self.trUtf8("Do your really want to delete the selected contact?"),
+                QMessageBox.Critical,
+                QMessageBox.Yes,
+                QMessageBox.No,
+                QMessageBox.NoButton,
+                self)
+        
+        tmpDialog.setIconPixmap(QPixmap(os.path.join(self.iconPath, "warning_big.png")))
+        tmpDialog.exec_loop()
+        
+        if not tmpDialog.result() == 4:
             if not self.deletePreProcess == None:
                 self.deletePreProcess(self.SERVERMETA, dn)
                 
-            self.lumaConnection.bind()
-            result = self.lumaConnection.delete(dn)
+            bindSuccess, exceptionObject = self.lumaConnection.bind()
+            
+            if not bindSuccess:
+                dialog = LumaErrorDialog()
+                errorMsg = self.trUtf8("Could not bind to server.<br><br>Reason: ")
+                errorMsg.append(str(exceptionObject))
+                dialog.setErrorMessage(errorMsg)
+                dialog.exec_loop()
+                return
+            
+            success, exceptionObject = self.lumaConnection.delete(dn)
             self.lumaConnection.unbind()
-            if result == 0:
-                QMessageBox.warning(None,
-                    self.trUtf8("Error"),
-                    self.trUtf8("""Could not delete contact. See console output for more information."""),
-                    self.trUtf8("&OK"),
-                    None,
-                    None,
-                    0, -1)
-            else:
+            
+            if success:
                 self.itemListView.setSelected(self.itemListView.firstChild(), True)
                 del self.data[dn]
                 if not self.deletePostProcess == None:
                     self.deletePostProcess(self.SERVERMETA, dn)
                     
                 self.showResults()
+            else:
+                dialog = LumaErrorDialog()
+                errorMsg = self.trUtf8("Could not delete entry.<br><br>Reason: ")
+                errorMsg.append(str(exceptionObject))
+                dialog.setErrorMessage(errorMsg)
+                dialog.exec_loop()
 
 ###############################################################################
 

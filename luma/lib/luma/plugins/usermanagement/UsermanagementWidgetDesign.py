@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file '/home/wido/src/luma/lib/luma/plugins/usermanagement/UsermanagementWidgetDesign.ui'
 #
-# Created: Tue Nov 30 20:48:00 2004
+# Created: Tue Jan 4 20:33:59 2005
 #      by: The PyQt User Interface Compiler (pyuic) 3.13
 #
 # WARNING! All changes made in this file will be lost!
@@ -229,8 +229,10 @@ class UsermanagementWidgetDesign(QWidget):
         self.accountLabel.setText(self.__tr("US","DO NOT TRANSLATE"))
         self.findButton.setText(self.__tr("Find next free"))
         self.textLabel12.setText(self.__tr("Home directory:"))
+        self.homeEdit.setText(QString.null)
         self.textLabel10.setText(self.__tr("Login shell:"))
         self.groupLabel.setText(self.__tr("GR"))
+        self.shellEdit.setText(QString.null)
         self.textLabel17.setText(self.__tr("Mail:"))
         self.passwordLabel.setText(self.__tr("PW","DO NOT TRANSLATE"))
         self.mailLabel.setText(self.__tr("M","DO NOT TRANSLATE"))

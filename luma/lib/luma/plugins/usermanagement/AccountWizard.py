@@ -22,13 +22,17 @@ from plugins.usermanagement.UsermanagementWidget import UsermanagementWidget
 from base.backend.LumaConnection import LumaConnection
 from base.utils import lumaStringDecode, lumaStringEncode
 from plugins.usermanagement import addPreProcess, addPostProcess
+from base.backend.SmartDataObject import SmartDataObject
+from base.utils.backend.ObjectClassAttributeInfo import ObjectClassAttributeInfo
+from base.utils.gui.LumaErrorDialog import LumaErrorDialog
 
 
 class AccountWizard(AccountWizardDesign):
 
     def __init__(self,parent = None,name = None,modal = 0,fl = 0):
         AccountWizardDesign.__init__(self,parent,name,modal,fl)
-
+        
+        self.iconPath = os.path.join (environment.lumaInstallationPrefix, "share", "luma", "icons")
         iconDir = os.path.join (environment.lumaInstallationPrefix, "share", "luma", "icons","plugins", "addressbook")
         locationIcon = QPixmap (os.path.join (iconDir, "location.png"))
         self.locationLabel.setPixmap(locationIcon)
@@ -42,6 +46,7 @@ class AccountWizard(AccountWizardDesign):
         
         self.locationServer = None
         self.locationDN = None
+        self.serverMeta = None
         
         for x in range(0,self.pageCount()):
             self.setHelpEnabled(self.page(x), 0)
@@ -67,136 +72,132 @@ class AccountWizard(AccountWizardDesign):
         
 ###############################################################################
 
-    def updateLocation(self, server, data):
-        self.locationServer = server
-        self.locationDN = data[0][0].decode('utf-8')
+    def updateLocation(self, dataObject):
+        self.locationServer = dataObject.getServerMeta().name
+        self.serverMeta = dataObject.getServerMeta()
+        self.locationDN = dataObject.getPrettyDN()
         tmpString = self.locationDN + "@" + self.locationServer
         self.locationEdit.setText(tmpString)
         
 ###############################################################################
 
     def saveContact(self):
-        uid = unicode(self.accountWidget.uidEdit.text()).strip()
-        if len(uid) == 0:
-            QMessageBox.warning(None,
-                self.trUtf8("Save account"),
-                self.trUtf8("""Please enter a username."""),
-                self.trUtf8("&OK"),
-                None,
-                None,
-                0, -1)
+        dataObject = self.accountWidget.dataObject
+        
+        if not dataObject.hasAttribute('uid'):
+            tmpDialog = QMessageBox(self.trUtf8("Save account"),
+                self.trUtf8("Please enter a username."),
+                QMessageBox.Critical,
+                QMessageBox.Ok,
+                QMessageBox.NoButton,
+                QMessageBox.NoButton,
+                self)
+        
+            tmpDialog.setIconPixmap(QPixmap(os.path.join(self.iconPath, "warning_big.png")))
+            tmpDialog.exec_loop()
             return
 
-        if self.accountWidget.uidBox.value() == 0:
-            QMessageBox.warning(None,
-                self.trUtf8("Save account"),
-                self.trUtf8("""Please enter a uid number."""),
-                self.trUtf8("&OK"),
-                None,
-                None,
-                0, -1)
+        if not dataObject.hasAttribute('uidNumber'):
+            tmpDialog = QMessageBox(self.trUtf8("Save account"),
+                self.trUtf8("Please enter a uid number."),
+                QMessageBox.Critical,
+                QMessageBox.Ok,
+                QMessageBox.NoButton,
+                QMessageBox.NoButton,
+                self)
+        
+            tmpDialog.setIconPixmap(QPixmap(os.path.join(self.iconPath, "warning_big.png")))
+            tmpDialog.exec_loop()
             return
             
-        groupNumber = str(self.accountWidget.groupNumberEdit.text()).strip()
-        if len(groupNumber) == 0:
-            groupNumber = 0
-        else: 
-            groupNumber = int(groupNumber)
-        if groupNumber == 0:
-            QMessageBox.warning(None,
-                self.trUtf8("Save account"),
-                self.trUtf8("""Please assign the user to a group."""),
-                self.trUtf8("&OK"),
-                None,
-                None,
-                0, -1)
+        if not dataObject.hasAttribute('gidNumber'):
+            tmpDialog = QMessageBox(self.trUtf8("Save account"),
+                self.trUtf8("Please assign the user to a group."),
+                QMessageBox.Critical,
+                QMessageBox.Ok,
+                QMessageBox.NoButton,
+                QMessageBox.NoButton,
+                self)
+        
+            tmpDialog.setIconPixmap(QPixmap(os.path.join(self.iconPath, "warning_big.png")))
+            tmpDialog.exec_loop()
             return
         
-        cn = unicode(self.accountWidget.nameEdit.text()).strip()
-        if len(cn) == 0:
-            QMessageBox.warning(None,
-                self.trUtf8("Save account"),
-                self.trUtf8("""Please enter a common name."""),
-                self.trUtf8("&OK"),
-                None,
-                None,
-                0, -1)
+        if not dataObject.hasAttribute('cn'):
+            tmpDialog = QMessageBox(self.trUtf8("Save account"),
+                self.trUtf8("Please enter a common name."),
+                QMessageBox.Critical,
+                QMessageBox.Ok,
+                QMessageBox.NoButton,
+                QMessageBox.NoButton,
+                self)
+        
+            tmpDialog.setIconPixmap(QPixmap(os.path.join(self.iconPath, "warning_big.png")))
+            tmpDialog.exec_loop()
             return
 
-        home = unicode(self.accountWidget.homeEdit.text()).strip()
-        if len(home) == 0:
-            QMessageBox.warning(None,
-                self.trUtf8("Save account"),
-                self.trUtf8("""Please enter a homeDirectory."""),
-                self.trUtf8("&OK"),
-                None,
-                None,
-                0, -1)
+        if not dataObject.hasAttribute('homeDirectory'):
+            tmpDialog = QMessageBox(self.trUtf8("Save account"),
+                self.trUtf8("Please enter a homeDirectory."),
+                QMessageBox.Critical,
+                QMessageBox.Ok,
+                QMessageBox.NoButton,
+                QMessageBox.NoButton,
+                self)
+        
+            tmpDialog.setIconPixmap(QPixmap(os.path.join(self.iconPath, "warning_big.png")))
+            tmpDialog.exec_loop()
             return
         
-        serverList = ServerList()
-        serverList.readServerList()
-        serverMeta = serverList.getServerObject(self.locationServer)
-        dn = "uid=" + self.accountWidget.CURRENTDATA["uid"][0] + "," + self.locationDN
-        values = self.accountWidget.CURRENTDATA
-        
-        objectClasses = ["top", "posixAccount", "shadowAccount", "inetOrgPerson",
-            "organizationalPerson", "person"]
-        values["objectClass"] = objectClasses
-        
-        values["sn"] = values["uid"]
-        
-        if not values.has_key("userPassword"):
-            QMessageBox.warning(None,
-                self.trUtf8("Missing Password"),
+        if not dataObject.hasAttribute("userPassword"):
+            tmpDialog = QMessageBox(self.trUtf8("Missing password"),
                 self.trUtf8("""It is strongly recommended that you choose 
 a password for the new user. Otherwise 
 it might compromise the security of your system."""),
-                self.trUtf8("&OK"),
-                None,
-                None,
-                0, -1)
+                QMessageBox.Critical,
+                QMessageBox.Ok,
+                QMessageBox.NoButton,
+                QMessageBox.NoButton,
+                self)
+        
+            tmpDialog.setIconPixmap(QPixmap(os.path.join(self.iconPath, "warning_big.png")))
+            tmpDialog.exec_loop()
             return
+        
+        dn = "uid=" + dataObject.getAttributeValue('uid', 0) + "," + self.locationDN
+        dataObject.setDN(dn)
+        dataObject.addAttributeValue("sn", dataObject.getAttributeValue("uid", 0))
 
-        
+        # Start preprocessing of usercreation
         groupName = unicode(self.accountWidget.groupEdit.text())
+        addPreProcess(self.serverMeta, dataObject.getDN(), dataObject.data, groupName)
         
-        addPreProcess(serverMeta, dn, values, groupName)
+        connectionObject = LumaConnection(self.serverMeta)
+        bindSuccess, exceptionObject = connectionObject.bind()
         
-        modlist = ldap.modlist.addModlist(values)
+        if not bindSuccess:
+                dialog = LumaErrorDialog()
+                errorMsg = self.trUtf8("Could not bind to server.<br><br>Reason: ")
+                errorMsg.append(str(exceptionObject))
+                dialog.setErrorMessage(errorMsg)
+                dialog.exec_loop()
+                return
         
-        connectionObject = LumaConnection(serverMeta)
-        connectionObject.bind()
+        addSuccess, exceptionObject = connectionObject.addDataObject(dataObject)
         
-        result = connectionObject.add(dn, modlist)
-        if result == 0:
-            QMessageBox.warning(None,
-                self.trUtf8("Create account"),
-                self.trUtf8("""Could not create account. 
-Please see console output for more information."""),
-                self.trUtf8("&OK"),
-                None,
-                None,
-                0, -1)
-            return
-        else:
-            self.accountWidget.SERVERMETA = serverMeta
+        if addSuccess:
             self.accountWidget.saveOtherGroups()
-        
-        result = addPostProcess(serverMeta, dn, values, groupName)
-        
-        if result == 0:
-            QMessageBox.warning(None,
-                self.trUtf8("Create account"),
-                self.trUtf8("""Could not create automount entry. 
-Please see console output for more information."""),
-                self.trUtf8("&OK"),
-                None,
-                None,
-                0, -1)
-            return
-        
-        self.accept()
+            
+            # Start postprocessing of usercreation
+            addPostProcess(self.serverMeta, dataObject.getDN(), dataObject.data, groupName)
+            self.accept()
+            
+        else:
+            dialog = LumaErrorDialog()
+            errorMsg = self.trUtf8("Could not create account.<br><br>Reason: ")
+            errorMsg.append(str(exceptionObject))
+            dialog.setErrorMessage(errorMsg)
+            dialog.exec_loop()
 
 ###############################################################################
 
@@ -215,26 +216,47 @@ Please see console output for more information."""),
         result = self.checkLocation()
         
         if result == 0:
-            QMessageBox.warning(None,
-                self.trUtf8("Warning: Location"),
+            tmpDialog = QMessageBox(self.trUtf8("Warning: Location"),
                 self.trUtf8("""Please select a location where to store the contact."""),
-                None,
-                None,
-                None,
-                0, -1)
+                QMessageBox.Critical,
+                QMessageBox.Ok,
+                QMessageBox.NoButton,
+                QMessageBox.NoButton,
+                self)
+        
+            tmpDialog.setIconPixmap(QPixmap(os.path.join(self.iconPath, "warning_big.png")))
+            tmpDialog.exec_loop()
+            
         elif result ==1:
-            serverList = ServerList()
-            serverList.readServerList()
-            self.accountWidget.SERVERMETA = serverList.getServerObject(self.locationServer)
+            dataObject = SmartDataObject(('', {'objectClass': self.getPossibleClasses()}), self.serverMeta)
+            dataObject.addAttributeValue('uidNumber', ['1024'])
+            dataObject.addAttributeValue('homeDirectory', ['/home'])
+            dataObject.addAttributeValue('loginShell', ['/bin/bash'])
+            
+            self.accountWidget.initView(dataObject)
+            
             self.next()
             
 ###############################################################################
 
     def checkUID(self):
-        uid = unicode(self.accountWidget.uidEdit.text()).encode("utf-8")
-        if len(uid) == 0:
-            return
-        else:
+        uid = unicode(self.accountWidget.uidEdit.text())
+        if len(uid) > 0:
+            self.accountWidget.dataObject.addAttributeValue('uid', [uid], True)
             self.accountWidget.editGroups()
+            
+###############################################################################
+
+    def getPossibleClasses(self):
+        objectClassList = ["top", "posixAccount", "shadowAccount", "inetOrgPerson",
+            "organizationalPerson", "person"]
+        metaInfo = ObjectClassAttributeInfo(self.serverMeta)
+        
+        self.availableClasses = []
+        for x in objectClassList:
+            if metaInfo.hasObjectClass(x):
+                self.availableClasses.append(x)
+        
+        return self.availableClasses
 
         

@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file '/home/wido/src/luma/lib/luma/base/utils/gui/SearchFormDesign.ui'
 #
-# Created: Wed Dec 1 16:28:07 2004
+# Created: Wed Jan 5 22:17:46 2005
 #      by: The PyQt User Interface Compiler (pyuic) 3.13
 #
 # WARNING! All changes made in this file will be lost!
@@ -47,6 +47,7 @@ class SearchFormDesign(QWidget):
         groupBox2Layout.addWidget(self.filterWizardButton,0,4)
 
         self.startButton = QPushButton(self.groupBox2,"startButton")
+        self.startButton.setEnabled(0)
         self.startButton.setSizePolicy(QSizePolicy(0,0,0,0,self.startButton.sizePolicy().hasHeightForWidth()))
 
         groupBox2Layout.addWidget(self.startButton,0,5)
@@ -73,7 +74,7 @@ class SearchFormDesign(QWidget):
 
         self.languageChange()
 
-        self.resize(QSize(641,118).expandedTo(self.minimumSizeHint()))
+        self.resize(QSize(641,115).expandedTo(self.minimumSizeHint()))
         self.clearWState(Qt.WState_Polished)
 
         self.connect(self.filterWizardButton,SIGNAL("clicked()"),self.startFilterWizard)

@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file '/home/wido/src/luma/lib/luma/base/utils/gui/LumaEntryBrowserDesign.ui'
 #
-# Created: Thu Dec 2 22:16:13 2004
+# Created: Wed Jan 5 22:18:01 2005
 #      by: The PyQt User Interface Compiler (pyuic) 3.13
 #
 # WARNING! All changes made in this file will be lost!
@@ -23,6 +23,7 @@ class LumaEntryBrowserDesign(QWidget):
         LumaEntryBrowserDesignLayout = QGridLayout(self,1,1,11,6,"LumaEntryBrowserDesignLayout")
 
         self.goButton = QPushButton(self,"goButton")
+        self.goButton.setEnabled(0)
 
         LumaEntryBrowserDesignLayout.addWidget(self.goButton,2,2)
 

@@ -19,10 +19,12 @@ import base64
 from base.backend.ServerList import ServerList
 import environment
 from base.utils.backend.templateutils import *
-from base.utils.gui.ObjectWidget import ObjectWidget
+from base.utils.gui.AdvancedObjectWidget import AdvancedObjectWidget
 from base.backend.LumaConnection import LumaConnection
 from base.utils import isBinaryAttribute
-from base.utils.backend.LdifHelper import LdifHelper
+from base.utils import escapeSpecialChars
+from base.utils.gui.LumaErrorDialog import LumaErrorDialog
+from base.utils.gui.DeleteDialog import DeleteDialog
 
 class BrowserWidget(QListView):
     """ Widget for browsing ldap trees. 
@@ -43,14 +45,14 @@ class BrowserWidget(QListView):
 
         self.searchObjectClass = "(objectClass=*)"
         # Example for filtering the entries
-        #self.set_search_class(['organizationalUnit', \
-        #       'dcObject', 'organization'])
+        # self.setSearchClass(['organizationalUnit', 'dcObject', 'organization'])
 
         tmpDirObject = environment.lumaInstallationPrefix
         
-        self.secureIcon = QPixmap(os.path.join(tmpDirObject, "share", "luma", "icons", "secure.png"))
-        self.aliasIcon = QPixmap(os.path.join(tmpDirObject, "share", "luma", "icons", "alias.png"))
-        self.secureAliasIcon = QPixmap(os.path.join(tmpDirObject, "share", "luma", "icons", "secure-alias.png"))
+        self.iconPath = os.path.join(tmpDirObject, "share", "luma", "icons")
+        self.secureIcon = QPixmap(os.path.join(self.iconPath, "secure.png"))
+        self.aliasIcon = QPixmap(os.path.join(self.iconPath, "alias.png"))
+        self.secureAliasIcon = QPixmap(os.path.join(self.iconPath, "secure-alias.png"))
 
         tmpObject = ServerList()
         tmpObject.readServerList()
@@ -70,9 +72,6 @@ class BrowserWidget(QListView):
             tmpItem.setExpandable(True)
             self.serverDict[x.name] = tmpItem
             self.aliasDict[x.name] = x.followAliases
-            #if x.tls == 1:
-            #    tmpItem.setPixmap(0, QPixmap(tmpIconFile))
-            #self.insertItem(tmpItem)
 
         self.displayServerIcons()
 
@@ -87,6 +86,9 @@ class BrowserWidget(QListView):
         
         # Menu for adding new objects
         self.addItemMenu = None
+        
+        # The baseDN of the currently selected item
+        self.currentBase = None
 
 ###############################################################################
 
@@ -112,16 +114,25 @@ class BrowserWidget(QListView):
         
         self.blockSignals(True)
         
-        if not(item == None):
+        if not (item == None):
             fullPath = self.getFullPath(item)
-            try:
-                server, result = self.getLdapItem(fullPath)
-                self.blockSignals(False)
-                self.emit(PYSIGNAL("about_to_change"), ())
-                self.emit(PYSIGNAL("ldap_result"), (deepcopy(server), deepcopy(result),))
-            except TypeError:
-                "No result from Server"
-                
+
+            success, resultList, exceptionObject = self.getLdapItem(fullPath)
+            
+            if not (None == success):
+                if success:
+                    if len(resultList) > 0:
+                        result = resultList[0]
+                        result.serverMeta.currentBase = self.currentBase
+                        self.blockSignals(False)
+                        self.emit(PYSIGNAL("about_to_change"), ())
+                        self.emit(PYSIGNAL("ldap_result"), (deepcopy(result),))
+                else:
+                    dialog = LumaErrorDialog()
+                    errorMsg = self.trUtf8("Could not access entry.<br><br>Reason: ")
+                    errorMsg.append(str(exceptionObject))
+                    dialog.setErrorMessage(errorMsg)
+                    dialog.exec_loop()
 
         self.blockSignals(False)
 
@@ -141,45 +152,58 @@ class BrowserWidget(QListView):
             oldAliasValue = self.aliasDict[serverName]
             self.aliasDict[serverName] = False
             
-            results = self.getLdapItemChildren(fullPath, 0, ['dn', 'objectClass'])
+            success, resultList, exceptionObject = self.getLdapItemChildren(fullPath, 0, ['dn', 'objectClass'])
         
-            if results == None:
-                self.aliasDict[serverName] = oldAliasValue
-                self.blockSignals(False)
-                item.setExpandable(0)
-                return None
-            if len(results) == 0:
-                self.aliasDict[serverName] = oldAliasValue
-                self.blockSignals(False)
-                item.setExpandable(0)
-                return None
-    
-            for x in results:
-                tmp = x[0].decode('utf-8')
-                tmp = string.split(tmp, ",")
-                tmpItem = QListViewItem(item, tmp[0])
+            if success:
+                if len(resultList) == 0:
+                    self.aliasDict[serverName] = oldAliasValue
+                    item.setExpandable(0)
+                else:
+                    for x in resultList:
+                        tmp = x.getPrettyRDN()
+                        tmpItem = QListViewItem(item, tmp)
                 
-                # Add the alias icon if the entry belongs to the 
-                # alias objectClass
-                values = x[1]
-                if values.has_key('objectClass'):
-                    for x in values['objectClass']:
-                        if 'alias' == string.lower(x):
+                        # Add the alias icon if the entry belongs to the 
+                        # alias objectClass
+                        if x.isAliasObject():
                             tmpItem.setPixmap(0, self.aliasIcon)
                     
-                tmpItem.setExpandable(1)
-                item.insertItem(tmpItem)
-            
-            self.aliasDict[serverName] = oldAliasValue
+                        tmpItem.setExpandable(1)
+                        item.insertItem(tmpItem)
+                        
+                    self.aliasDict[serverName] = oldAliasValue
+                    
+            else:
+                self.aliasDict[serverName] = oldAliasValue
+                self.blockSignals(False)
+                item.setExpandable(0)
+                
+                dialog = LumaErrorDialog()
+                errorMsg = self.trUtf8("Could not expand entry.<br><br>Reason: ")
+                errorMsg.append(str(exceptionObject))
+                dialog.setErrorMessage(errorMsg)
+                dialog.exec_loop()
+                
         else:
             serverList = ServerList()
             serverList.readServerList()
             serverMeta = serverList.getServerObject(self.getFullPath(item))
-            tmpList = None
+            tmpList = []
             if serverMeta.autoBase:
-                tmpList = LumaConnection(serverMeta).getBaseDNList()
+                success, tmpList, exceptionObject = LumaConnection(serverMeta).getBaseDNList()
+                
+                if not success:
+                    dialog = LumaErrorDialog()
+                    errorMsg = self.trUtf8("Could not retrieve baseDN.<br><br>Reason: ")
+                    errorMsg.append(str(exceptionObject))
+                    dialog.setErrorMessage(errorMsg)
+                    dialog.exec_loop()
+                    
             else:
                 tmpList = serverMeta.baseDN
+                
+            if None == tmpList:
+                tmpList = []
                 
             for base in tmpList:
                 tmpBase = QListViewItem(item, base)
@@ -209,13 +233,30 @@ class BrowserWidget(QListView):
         """
         
         try:
-            fullPath = unicode(item.text(0)).encode('utf-8')
+            tmpList = []
+            
+            pathItem = unicode(item.text(0)).encode('utf-8')
+            pathItem = escapeSpecialChars(pathItem)
+            tmpList.append(pathItem)
+            
             while item.parent():
+                oldItem = item
                 item = item.parent()
-                fullPath = fullPath + "," + unicode(item.text(0)).encode('utf-8')
-            return fullPath
-        except AttributeError:
-            pass
+                
+                # Try to get the currently used baseDN
+                if not (None == item):
+                    tmpItem = item.parent()
+                    if None == tmpItem:
+                        self.currentBase = unicode(oldItem.text(0)).encode('utf-8')
+                    
+                pathItem = unicode(item.text(0)).encode('utf-8')
+                pathItem = escapeSpecialChars(pathItem)
+                tmpList.append(pathItem)
+
+            return ",".join(tmpList)
+        except AttributeError, e:
+            print "Attribute Error in function 'BrowserWidget.getFullPath()'. Reason:"
+            print e
 
 ###############################################################################
 
@@ -225,28 +266,22 @@ class BrowserWidget(QListView):
         
         serverName, ldapObject = self.splitPath(itemPath)
         if len(ldapObject) == 0:
-            return None
+            return (None, None, None)
         
         serverMeta = self.serverListObject.getServerObject(serverName)
         
         serverMeta.followAliases = self.aliasDict[serverName]
         
         conObject = LumaConnection(serverMeta)
-        conObject.bind()
-        searchResult = conObject.search(ldapObject, ldap.SCOPE_BASE)
-        conObject.unbind()
+        bindSuccess, exceptionObject = conObject.bind()
         
-        if searchResult == None:
-            QMessageBox.critical(None,
-                self.trUtf8("Error"),
-                self.trUtf8("""Could not access entry.
-See console output for more information."""),
-                self.trUtf8("&OK"),
-                None,
-                None,
-                0, -1)
-            
-        return serverName, searchResult
+        if not bindSuccess:
+                return (False, None, exceptionObject)
+                
+        success, resultList, exceptionObject = conObject.search(ldapObject, ldap.SCOPE_BASE)
+        conObject.unbind()
+    
+        return (success, resultList, exceptionObject)
         
 ###############################################################################
 
@@ -281,7 +316,10 @@ See console output for more information."""),
         serverMeta.followAliases = self.aliasDict[serverName]
         
         conObject = LumaConnection(serverMeta)
-        conObject.bind()
+        bindSuccess, exceptionObject = conObject.bind()
+        
+        if not bindSuccess:
+            return (False, None, exceptionObject)
         
         # allLevel defines whether the complete subtree is searched or
         # just one level
@@ -292,11 +330,11 @@ See console output for more information."""),
             searchLevel = ldap.SCOPE_ONELEVEL
             
                 
-        searchResult = conObject.search(ldapObject, searchLevel,self.searchObjectClass, noAttributes, 0)
+        success, resultList, exceptionObject = conObject.search(ldapObject, searchLevel,self.searchObjectClass, noAttributes, 0)
 
         conObject.unbind()
         
-        return searchResult
+        return (success, resultList, exceptionObject)
         
 
 
@@ -320,10 +358,18 @@ See console output for more information."""),
         """
         
         fullPath = self.getFullPath(self.selectedItem())
-        serverName = fullPath.split(",")[-1]
-        result = self.getLdapItem(fullPath)
-        ldifHelper = LdifHelper(serverName)
-        self.saveLdif(ldifHelper.convertToLdif(result[1]))
+        success, resultList, exceptionObject = self.getLdapItem(fullPath)
+        
+        if success:
+            if len(resultList) > 0:
+                stringList = map(lambda x: x.convertToLdif(), resultList)
+                self.saveLdif("".join(stringList))
+        else:
+            dialog = LumaErrorDialog()
+            errorMsg = self.trUtf8("Could not export item.<br><br>Reason: ")
+            errorMsg.append(str(exceptionObject))
+            dialog.setErrorMessage(errorMsg)
+            dialog.exec_loop()
 
 ###############################################################################
 
@@ -332,10 +378,19 @@ See console output for more information."""),
         """
         
         fullPath = self.getFullPath(self.selectedItem())
-        serverName = fullPath.split(",")[-1]
-        result = self.getLdapItemChildren(fullPath, 1)
-        ldifHelper = LdifHelper(serverName)
-        self.saveLdif(ldifHelper.convertToLdif(result))
+        success, resultList, exceptionObject = self.getLdapItemChildren(fullPath, 1)
+        
+        if success:
+            if len(resultList) > 0:
+                stringList = map(lambda x: x.convertToLdif(), resultList)
+                self.saveLdif("".join(stringList))
+        else:
+            dialog = LumaErrorDialog()
+            errorMsg = self.trUtf8("Could not export items.<br><br>Reason: ")
+            errorMsg.append(str(exceptionObject))
+            dialog.setErrorMessage(errorMsg)
+            dialog.exec_loop()
+        
 
 ###############################################################################
 
@@ -343,19 +398,42 @@ See console output for more information."""),
         """ Export the whole subtree to ldif, together with all its parents.
         """
         
+        stringList = []
+        searchError = False
+        
         currentItem = self.selectedItem()
         fullPath = self.getFullPath(currentItem)
-        serverName = fullPath.split(",")[-1]
-        ldifHelper = LdifHelper(serverName)
-        parents = self.getParents(currentItem)
-        resultString = ""
-        for x in parents:
-            tmpResult = self.getLdapItem(x)
-            resultString = resultString + ldifHelper.convertToLdif(tmpResult[1])
-        subtree = self.getLdapItemChildren(fullPath, 1)
-        subtreeString = ldifHelper.convertToLdif(subtree)
-        self.saveLdif(resultString + subtreeString)
-
+        
+        parentDNList = self.getParents(currentItem)
+        for x in parentDNList:
+            success, resultList, exceptionObject = self.getLdapItem(x)
+            if success:
+                for y in tmpResult:
+                    stringList.append(y.convertToLdif())
+            else:
+                searchError = True
+                break
+                
+        if not searchError:
+            success, subtreeList, exceptionObject = self.getLdapItemChildren(fullPath, 1)
+            
+            if success:
+                for x in subtreeList:
+                    stringList.append(x.convertToLdif())
+            
+                self.saveLdif("".join(stringList))
+            else:
+                dialog = LumaErrorDialog()
+                errorMsg = self.trUtf8("Could not export items.<br><br>Reason: ")
+                errorMsg.append(str(exceptionObject))
+                dialog.setErrorMessage(errorMsg)
+                dialog.exec_loop()
+        else:
+            dialog = LumaErrorDialog()
+            errorMsg = self.trUtf8("Could not export items.<br><br>Reason: ")
+            errorMsg.append(str(exceptionObject))
+            dialog.setErrorMessage(errorMsg)
+            dialog.exec_loop()
 
 ###############################################################################
 
@@ -363,10 +441,6 @@ See console output for more information."""),
         """ Delete selected item from the server.
         """
         
-        warnString = self.trUtf8('Do you really want to delete the item from the server?')
-        result = QMessageBox.warning(self, self.trUtf8('Delete entry'), warnString, self.trUtf8('Delete'), self.trUtf8('Cancel'))
-        if result == 1:
-            return
         item = self.selectedItem()
         parent = item.parent()
         fullPath = self.getFullPath(item)
@@ -374,11 +448,23 @@ See console output for more information."""),
         if len(ldapObject) == 0:
             return None
             
-        self.deleteLdapEntry(serverName, ldapObject)
+        success, resultList, exceptionObject = self.getLdapItem(fullPath)
         
-        parent.setOpen(0)
-        parent.setOpen(1)
-        
+        if success:
+            if len(resultList) > 0:
+                deleteDialog = DeleteDialog()
+                deleteDialog.initData(resultList)
+                deleteDialog.exec_loop()
+                parent.setOpen(0)
+                parent.setOpen(1)
+                self.setSelected(parent, True)
+                self.itemClicked(parent)
+        else:
+            dialog = LumaErrorDialog()
+            errorMsg = self.trUtf8("Could not retrieve entry for deletion.<br><br>Reason: ")
+            errorMsg.append(str(exceptionObject))
+            dialog.setErrorMessage(errorMsg)
+            dialog.exec_loop()
 
 
 ###############################################################################
@@ -479,33 +565,34 @@ See console output for more information."""),
         chosen.
         """
         
+        # get the template object for the selected template name
         templateName = unicode(self.addItemMenu.text(id))
-        
         templates = TemplateList()
         template = templates.getTemplate(templateName)
-        data = template.getDataObject()
         
-        if template == None:
-            return 
-            
+        # get server name and basedn from where to add
         fqn = self.getFullPath(self.selectedItem())
         tmpList = fqn.split(",")
-        
-        server = tmpList[-1]
+                
+        serverName = tmpList[-1]
         del tmpList[-1]
         
-        dn = ",".join(tmpList)
+        baseDN = ",".join(tmpList)
         
-        fullData = [(dn, data)]
+        tmpObject = ServerList()
+        tmpObject.readServerList()
+        serverMeta = tmpObject.getServerObject(serverName)
+        
+        smartObject = template.getDataObject(serverMeta, baseDN)
         
         floatingWidget = ChildWindow(None)
         self.widgetList.append(floatingWidget)
-        widget = ObjectWidget(floatingWidget, template.name.encode("utf-8"), 0)
+        widget = AdvancedObjectWidget(floatingWidget, template.name.encode("utf-8"), 0)
     
         floatingWidget.setCentralWidget(widget)
         widget.setCaption(self.trUtf8('Add entry'))
         widget.buildToolBar(floatingWidget)
-        widget.initView(server, fullData, True)
+        widget.initView(smartObject, True)
         
         self.connect(floatingWidget, PYSIGNAL("child_closed"), self.cleanChildren)
         floatingWidget.show()
@@ -525,37 +612,39 @@ See console output for more information."""),
             do not delete the selected item
         """
         
-        warnString = self.trUtf8('Do you really want to delete the items recursively from the server?')
-        result = QMessageBox.warning(self, self.trUtf8('Delete entries'), warnString, self.trUtf8('Delete'), self.trUtf8('Cancel'))
-        if result == 1:
-            return
-            
-        # set gui busy
-        environment.setBusy(True)
-        
         currentItem = self.selectedItem()
         
         parent = currentItem.parent()
         fullPath = self.getFullPath(currentItem)
-        children = self.getLdapItemChildren(fullPath, 1)
+        success, childrenList, exceptionObject = self.getLdapItemChildren(fullPath, 1)
         
-        serverName, selectedObject = self.splitPath(fullPath)
-        if len(selectedObject) == 0:
-            return None
+        if success:
+            if len(childrenList) > 0:
+                if (not withParent):
+                    del childrenList[0]
+                
+                childrenList.sort()
+                #print map(lambda x: x.getDN(), childrenList)
+                deleteDialog = DeleteDialog()
+                deleteDialog.initData(childrenList)
+                deleteDialog.exec_loop()
+                parent.setOpen(0)
+                parent.setOpen(1)
+                self.setSelected(parent, True)
+                self.itemClicked(parent)
+            else:
+                dialog = LumaErrorDialog()
+                errorMsg = self.trUtf8("Could not retrieve entry for deletion.<br><br>Reason: ")
+                errorMsg.append(str(exceptionObject))
+                dialog.setErrorMessage(errorMsg)
+                dialog.exec_loop()
             
-        if (not withParent):
-            del children[0]
-        
-        while ((len(children) > 0) and (not(children == None))) :
-            environment.updateUI()
-            self.deleteLdapEntry(serverName, children[-1][0])
-            del children[-1]
-        
-        parent.setOpen(0)
-        parent.setOpen(1)
-        
-        environment.setBusy(False)
-        
+            
+            
+            #serverName, selectedObject = self.splitPath(fullPath)
+            #if len(selectedObject) == 0:
+            #    return
+            
 ###############################################################################
 
     def deleteSubtree(self):
@@ -574,20 +663,15 @@ See console output for more information."""),
         serverMeta = self.serverListObject.getServerObject(serverName)
         
         connectionObject = LumaConnection(serverMeta)
-        connectionObject.bind()
-        result = connectionObject.delete(ldapObject)
+        bindSuccess, exceptionObject = connectionObject.bind()
+        
+        if not bindSuccess:
+            return (False, exceptionObject)
+            
+        success, exceptionObject = connectionObject.delete(ldapObject)
         connectionObject.unbind()
         
-        if result == 0:
-            QMessageBox.critical(None,
-                self.trUtf8("Error "),
-                self.trUtf8("""Delete operation was not succesful.
-See console output for more information."""),
-                self.trUtf8("&OK"),
-                None,
-                None,
-                0, -1)
-
+        return (success, exceptionObject)
 
 ###############################################################################
 
@@ -609,6 +693,27 @@ See console output for more information."""),
         serverMeta = self.serverListObject.getServerObject(serverName)
         serverMeta.followAliases = not serverMeta.followAliases
         self.displayServerIcons()
+        
+###############################################################################
+
+    def reopenDN(self, dnString):
+        """ Reopens the listitem for the given dnString.
+        
+        The dnString consits of the actuacl dn and its server alias appended. Example:
+        ou=foo,o=bar,MyServerAlias
+        """
+        
+        listIterator = QListViewItemIterator(self)
+        while listIterator.current():
+            item = listIterator.current()
+            itemDN = self.getFullPath(item)
+            
+            if dnString == itemDN:
+                item.setOpen(0)
+                item.setOpen(1)
+                break
+                
+            listIterator += 1
         
 ###############################################################################
 

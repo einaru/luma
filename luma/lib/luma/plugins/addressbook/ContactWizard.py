@@ -23,15 +23,18 @@ from base.backend.LumaConnection import LumaConnection
 from base.utils import lumaStringDecode, lumaStringEncode
 from time import strftime
 from base.utils.backend.ObjectClassAttributeInfo import ObjectClassAttributeInfo
+from base.backend.SmartDataObject import SmartDataObject
+from base.utils.gui.LumaErrorDialog import LumaErrorDialog
 
 
 class ContactWizard(ContactWizardDesign):
 
     def __init__(self,parent = None,name = None,modal = 0,fl = 0):
         ContactWizardDesign.__init__(self,parent,name,modal,fl)
-
-        iconDir = os.path.join (environment.lumaInstallationPrefix, "share", "luma", "icons","plugins", "addressbook")
-        locationIcon = QPixmap (os.path.join (iconDir, "location.png"))
+        
+        self.iconPath = os.path.join(environment.lumaInstallationPrefix, "share", "luma", "icons")
+        iconDir = os.path.join(environment.lumaInstallationPrefix, "share", "luma", "icons","plugins", "addressbook")
+        locationIcon = QPixmap(os.path.join (iconDir, "location.png"))
         self.locationLabel.setPixmap(locationIcon)
         
         layout = QHBoxLayout(self.browserFrame)
@@ -43,6 +46,7 @@ class ContactWizard(ContactWizardDesign):
         
         self.locationServer = None
         self.locationDN = None
+        self.serverMeta = None
         
         for x in range(0,self.pageCount()):
             self.setHelpEnabled(self.page(x), False)
@@ -59,64 +63,60 @@ class ContactWizard(ContactWizardDesign):
         tmpLayout.addWidget(self.addressWidget)
         self.addressWidget.setEnabled(1)
         
-        self.addressWidget.data = {'cn': [''], 'sn': ['']}
-        
 ###############################################################################
 
-    def updateLocation(self, server, data):
-        self.locationServer = server
-        self.locationDN = data[0][0].decode('utf-8')
+    def updateLocation(self, dataObject):
+        self.locationServer = dataObject.getServerMeta().name
+        self.serverMeta = dataObject.getServerMeta()
+        self.locationDN = dataObject.getPrettyDN()
         tmpString = self.locationDN + "@" + self.locationServer
         self.locationEdit.setText(tmpString)
         
 ###############################################################################
 
     def saveContact(self):
-        values = self.addressWidget.getValues()
+        dataObject = self.addressWidget.dataObject
         
-        for x in values.keys():
-            if len(values[x]) == 0:
-                del values[x]
-                
-        values['objectClass'] = self.availableClasses
-        if (values.has_key('cn')) and (values.has_key('sn')):
-            description = lumaStringEncode(strip(values['cn'][0]))
+        if (dataObject.hasAttribute('cn')) and (dataObject.hasAttribute('sn')):
+            description = dataObject.getAttributeValue('cn', 0)
             description = description + strftime('%Y%m%d') + str(random.randint(0,100))
-            values['description'] = description
+            dataObject.addAttributeValue('description', [description], True)
+            dataObject.setDN('description=' + description + ',' + self.locationDN)
             
-            modlist = ldap.modlist.addModlist(values)
-            serverList = ServerList()
-            serverList.readServerList()
-            serverMeta = serverList.getServerObject(self.locationServer)
-            connection = LumaConnection(serverMeta)
-    
-            dn = 'description=' + description + ',' + self.locationDN.encode('utf-8')
-
-            connection.bind()
-            result = connection.add(dn, modlist)
+            connection = LumaConnection(dataObject.getServerMeta())
+            bindSuccess, exceptionObject = connection.bind()
+            
+            if not bindSuccess:
+                dialog = LumaErrorDialog()
+                errorMsg = self.trUtf8("Could not bind to server.<br><br>Reason: ")
+                errorMsg.append(str(exceptionObject))
+                dialog.setErrorMessage(errorMsg)
+                dialog.exec_loop()
+                return
+            
+            success, exceptionObject = connection.addDataObject(dataObject)
             connection.unbind()
             
-            if result == 1:
+            if success:
                 self.accept()
-            elif result == 0:
-                QMessageBox.warning(None,
-                    self.trUtf8("Error"),
-                    self.trUtf8("""Could not save entry. Please see console for more infomation."""),
-                    self.trUtf8("&OK"),
-                    None,
-                    None,
-                    0, -1)
+            else:
+                dialog = LumaErrorDialog()
+                errorMsg = self.trUtf8("Could not add entry.<br><br>Reason: ")
+                errorMsg.append(str(exceptionObject))
+                dialog.setErrorMessage(errorMsg)
+                dialog.exec_loop()
 
         else:
-            QMessageBox.warning(None,
-                self.trUtf8("Incomplete Information"),
-                self.trUtf8("""Your contact needs at least a surname."""),
-                self.trUtf8("&OK"),
-                None,
-                None,
-                0, -1)
-
-
+            tmpDialog = QMessageBox(self.trUtf8("Incomplete information."),
+                self.trUtf8("Your contact needs at least a surname."),
+                QMessageBox.Critical,
+                QMessageBox.Ok,
+                QMessageBox.NoButton,
+                QMessageBox.NoButton,
+                self)
+        
+            tmpDialog.setIconPixmap(QPixmap(os.path.join(self.iconPath, "warning_big.png")))
+            tmpDialog.exec_loop()
             
 ###############################################################################
 
@@ -135,15 +135,21 @@ class ContactWizard(ContactWizardDesign):
         result = self.checkLocation()
         
         if result == 0:
-            QMessageBox.warning(None,
-                self.trUtf8("Warning: Location"),
-                self.trUtf8("""Please select a location where to store the contact."""),
-                None,
-                None,
-                None,
-                0, -1)
+            tmpDialog = QMessageBox(self.trUtf8("Warning: Location"),
+                self.trUtf8("Please select a location where to store the contact."),
+                QMessageBox.Critical,
+                QMessageBox.Ok,
+                QMessageBox.NoButton,
+                QMessageBox.NoButton,
+                self)
+        
+            tmpDialog.setIconPixmap(QPixmap(os.path.join(self.iconPath, "warning_big.png")))
+            tmpDialog.exec_loop()
+        
         elif result ==1:
             allowedAttributes = self.getAllowedAttributes()
+            dataObject = SmartDataObject(('', {'objectClass': self.getPossibleClasses()}), self.serverMeta)
+            self.addressWidget.initView(dataObject)
             self.addressWidget.enableContactFields(allowedAttributes)
             self.next()
             
@@ -151,7 +157,7 @@ class ContactWizard(ContactWizardDesign):
 
     def getAllowedAttributes(self):
         objectClassList = ['person', 'organizationalPerson', 'inetOrgPerson', 'evolutionPerson']
-        metaInfo = ObjectClassAttributeInfo(self.locationServer)
+        metaInfo = ObjectClassAttributeInfo(self.serverMeta)
         
         self.availableClasses = []
         for x in objectClassList:
@@ -160,3 +166,16 @@ class ContactWizard(ContactWizardDesign):
         
         must, may = metaInfo.getAllAttributes(objectClassList)
         return must | may
+        
+###############################################################################
+
+    def getPossibleClasses(self):
+        objectClassList = ['person', 'organizationalPerson', 'inetOrgPerson', 'evolutionPerson']
+        metaInfo = ObjectClassAttributeInfo(self.serverMeta)
+        
+        self.availableClasses = []
+        for x in objectClassList:
+            if metaInfo.hasObjectClass(x):
+                self.availableClasses.append(x)
+        
+        return self.availableClasses

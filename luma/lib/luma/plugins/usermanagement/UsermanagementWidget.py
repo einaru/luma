@@ -19,6 +19,7 @@ from base.backend.LumaConnection import LumaConnection
 from base.utils.gui.PasswordDialog import PasswordDialog
 from base.utils.gui.MailDialog import MailDialog
 from plugins.usermanagement.GroupDialog import GroupDialog
+from base.utils.gui.LumaErrorDialog import LumaErrorDialog
 
 from sets import Set
 
@@ -48,13 +49,11 @@ class UsermanagementWidget(UsermanagementWidgetDesign):
         self.passwordLabel.setPixmap(passwordPixmap)
         self.mailLabel.setPixmap(mailPixmap)
         
-        self.DN = None
-        self.CURRENTDATA = {}
-        self.SERVERMETA = None
-        self.OTHERGROUPS = {}
-        self.preloadedServerMeta = {}
+
+        self.otherGroups = {}
         
         self.ENABLED = False
+        self.dataObject = None
         self.enableWidget()
         
         self.EDITED = False
@@ -64,20 +63,19 @@ class UsermanagementWidget(UsermanagementWidgetDesign):
         self.NEWENTRY = False
         
         # a list of user ids which are stored in the ldap tree
-        self.USED_USER_IDS = None
+        self.usedUserIds = None
         
         
         
 
 ###############################################################################
 
-    def initView(self, dn, data, server):
-        self.DN = dn
-        self.CURRENTDATA = data
-        self.SERVERMETA = server
+    def initView(self, dataObject):
+        self.dataObject = dataObject
+        
         self.ENABLED = True
         self.EDITED = False
-        self.USED_USER_IDS = None
+        self.usedUserIds = None
         
         self.enableWidget()
         self.displayValues()
@@ -85,39 +83,27 @@ class UsermanagementWidget(UsermanagementWidgetDesign):
 ###############################################################################
 
     def enableWidget(self):
-        self.setEnabled(self.ENABLED)
-        
-        objectClasses = None
-        if self.CURRENTDATA.has_key("objectClass"):
-            objectClasses = self.CURRENTDATA["objectClass"]
-        
-        if objectClasses == None:
-            return
+        if self.ENABLED:
+            self.setEnabled(True)
             
-        shadowBool = False
-        if "shadowAccount" in objectClasses:
-            shadowBool = True
-        self.expireEdit.setEnabled(shadowBool)
-                
-                
-        posixBool = False
-        if "posixAccount" in objectClasses:
-            posixBool = True
-        self.uidEdit.setEnabled(posixBool)
-        self.uidBox.setEnabled(posixBool)
-        self.nameEdit.setEnabled(posixBool)
-        self.groupNumberEdit.setEnabled(posixBool)
-        self.shellEdit.setEnabled(posixBool)
-        self.homeEdit.setEnabled(posixBool)
-        self.passwordEdit.setEnabled(posixBool)
-        self.passwordButton.setEnabled(posixBool)
+            self.expireEdit.setEnabled(self.dataObject.hasObjectClass('shadowAccount'))
+            
+            posixBool = self.dataObject.hasObjectClass('posixAccount')
+            self.uidEdit.setEnabled(posixBool)
+            self.uidBox.setEnabled(posixBool)
+            self.nameEdit.setEnabled(posixBool)
+            self.groupNumberEdit.setEnabled(posixBool)
+            self.shellEdit.setEnabled(posixBool)
+            self.homeEdit.setEnabled(posixBool)
+            self.passwordEdit.setEnabled(posixBool)
+            self.passwordButton.setEnabled(posixBool)
         
-        inetOrgBool = False
-        if ("inetOrgPerson" in objectClasses) or (self.CURRENTDATA.has_key("mail")):
-            inetOrgBool = True
-        self.mailBox.setEnabled(inetOrgBool)
-        self.deleteMailButton.setEnabled(inetOrgBool)
-        self.addMailButton.setEnabled(inetOrgBool)
+            inetOrgBool = self.dataObject.hasObjectClass('inetOrgPerson') or self.dataObject.hasAttribute('mail')
+            self.mailBox.setEnabled(inetOrgBool)
+            self.deleteMailButton.setEnabled(inetOrgBool)
+            self.addMailButton.setEnabled(inetOrgBool)
+        else:
+            self.setEnabled(False)
         
         
         
@@ -127,38 +113,41 @@ class UsermanagementWidget(UsermanagementWidgetDesign):
         self.ENABLED = False
         self.enableWidget()
         self.clearValues()
-        self.USED_USER_IDS = None
+        self.usedUserIds = None
         
 ###############################################################################
 
     def displayValues(self):
         self.uidEdit.blockSignals(True)
-        if self.CURRENTDATA.has_key('uid'):
-            self.uidEdit.setText(self.CURRENTDATA['uid'][0].decode('utf-8'))
+        if self.dataObject.hasAttribute('uid'):
+            value = self.dataObject.getAttributeValue('uid', 0)
+            self.uidEdit.setText(value)
         else:
             self.uidEdit.setText("")
         self.uidEdit.blockSignals(False)
         
         
         self.uidBox.blockSignals(True)
-        if self.CURRENTDATA.has_key('uidNumber'):
-            self.uidBox.setValue(int(self.CURRENTDATA['uidNumber'][0]))
+        if self.dataObject.hasAttribute('uidNumber'):
+            value = int(self.dataObject.getAttributeValue('uidNumber',0))
+            self.uidBox.setValue(value)
         else:
-            self.uidBox.setValue(0)
+            self.uidBox.setValue(1024)
         self.uidBox.blockSignals(False)
         
         
         self.nameEdit.blockSignals(True)
-        if self.CURRENTDATA.has_key('cn'):
-            self.nameEdit.setText(self.CURRENTDATA['cn'][0].decode('utf-8'))
+        if self.dataObject.hasAttribute('cn'):
+            value = self.dataObject.getAttributeValue('cn', 0)
+            self.nameEdit.setText(value)
         else:
             self.nameEdit.setText("")
         self.nameEdit.blockSignals(False)
         
         
         self.expireEdit.blockSignals(True)
-        if self.CURRENTDATA.has_key('shadowExpire'):
-            days = int(self.CURRENTDATA['shadowExpire'][0])
+        if self.dataObject.hasAttribute('shadowExpire'):
+            days = int(self.dataObject.getAttributeValue('shadowExpire',0))
             date = QDate(1970, 1, 1)
             date = date.addDays(days)
             self.expireEdit.setDate(date)
@@ -168,24 +157,27 @@ class UsermanagementWidget(UsermanagementWidgetDesign):
            
           
         self.shellEdit.blockSignals(True)
-        if self.CURRENTDATA.has_key('loginShell'):
-            self.shellEdit.setText(self.CURRENTDATA['loginShell'][0].decode('utf-8'))
+        if self.dataObject.hasAttribute('loginShell'):
+            value = self.dataObject.getAttributeValue('loginShell', 0)
+            self.shellEdit.setText(value)
         else:
             self.shellEdit.setText("")
         self.shellEdit.blockSignals(False)
             
             
         self.homeEdit.blockSignals(True)
-        if self.CURRENTDATA.has_key('homeDirectory'):
-            self.homeEdit.setText(self.CURRENTDATA['homeDirectory'][0].decode('utf-8'))
+        if self.dataObject.hasAttribute('homeDirectory'):
+            value = self.dataObject.getAttributeValue('homeDirectory', 0)
+            self.homeEdit.setText(value)
         else:
             self.homeEdit.setText("")
         self.homeEdit.blockSignals(False)
 
 
         self.passwordEdit.blockSignals(True)
-        if self.CURRENTDATA.has_key('userPassword'):
-            self.passwordEdit.setText(self.CURRENTDATA['userPassword'][0].decode('utf-8'))
+        if self.dataObject.hasAttribute('userPassword'):
+            value = self.dataObject.getAttributeValue('userPassword', 0)
+            self.passwordEdit.setText(value)
         else:
             self.passwordEdit.setText("")
         self.passwordEdit.blockSignals(False)
@@ -205,22 +197,37 @@ class UsermanagementWidget(UsermanagementWidgetDesign):
     def displayGroupInfo(self):
         self.groupNumberEdit.blockSignals(True)
         
-        if self.CURRENTDATA.has_key('gidNumber'):
-            self.groupNumberEdit.setText(self.CURRENTDATA['gidNumber'][0])
+        if self.dataObject.hasAttribute('gidNumber'):
+            value = self.dataObject.getAttributeValue('gidNumber', 0)
+            self.groupNumberEdit.setText(value)
             self.groupNumberEdit.blockSignals(False)
             
-            connectionObject = LumaConnection(self.SERVERMETA)
-            connectionObject.bind()
-            filter = "(&(objectClass=posixGroup)(gidNumber=" + self.CURRENTDATA['gidNumber'][0] + "))"
-            result = connectionObject.search(self.SERVERMETA.currentBase, 
+            connectionObject = LumaConnection(self.dataObject.getServerMeta())
+            bindSuccess, exceptionObject = connectionObject.bind()
+            
+            if not bindSuccess:
+                dialog = LumaErrorDialog()
+                errorMsg = self.trUtf8("Could not bind to server.<br><br>Reason: ")
+                errorMsg.append(str(exceptionObject))
+                dialog.setErrorMessage(errorMsg)
+                dialog.exec_loop()
+                self.groupNumberEdit.blockSignals(False)
+                return
+            
+            filter = "(&(objectClass=posixGroup)(gidNumber=" + self.dataObject.getAttributeValue('gidNumber', 0) + "))"
+            success, resultList, exceptionObject = connectionObject.search(self.dataObject.getServerMeta().currentBase, 
                         ldap.SCOPE_SUBTREE, filter)
             
-            if result == None:
+            if success:
+                if len(resultList) > 0:
+                    groupName = ''
+                    tmpObject = resultList[0]
+                    if tmpObject.hasAttribute('cn'):
+                        groupName = tmpObject.getAttributeValue('cn', 0)
+                    self.groupEdit.setText(groupName)
+            else:
                 self.groupEdit.setText("")
-                return
                 
-            groupName = result[0][1]['cn'][0]
-            self.groupEdit.setText(groupName)
         else:
             self.groupNumberEdit.setText("")
             self.groupEdit.setText("")
@@ -236,11 +243,10 @@ class UsermanagementWidget(UsermanagementWidgetDesign):
         
         self.mailBox.blockSignals(True)
         
-        if self.CURRENTDATA.has_key('mail'):
-            tmpList = self.CURRENTDATA['mail']
+        if self.dataObject.hasAttribute('mail'):
+            tmpList = self.dataObject.getAttributeValueList('mail')
             tmpList.sort()
-            for y in tmpList:
-                self.mailBox.insertItem(y.decode('utf-8'))
+            map(self.mailBox.insertItem, tmpList)
                 
         self.mailBox.blockSignals(False)
             
@@ -252,10 +258,8 @@ class UsermanagementWidget(UsermanagementWidgetDesign):
         
         if dialog.result() == 1:
             passwordHash = dialog.passwordHash
-            if self.CURRENTDATA.has_key("userPassword"):
-                self.CURRENTDATA["userPassword"][0] = passwordHash
-            else:
-                self.CURRENTDATA["userPassword"] = [passwordHash]
+            if self.dataObject.isAttributeAllowed("userPassword"):
+                self.dataObject.addAttributeValue('userPassword', [passwordHash], True)
             
             self.EDITED = True
             self.displayValues()
@@ -263,15 +267,12 @@ class UsermanagementWidget(UsermanagementWidgetDesign):
 ###############################################################################
 
     def deleteMail(self):
-        if not(self.CURRENTDATA.has_key('mail')):
-            return
-            
-        if len(self.CURRENTDATA['mail']) == 0:
+        if not self.dataObject.hasAttribute('mail'):
             return
             
         mail = unicode(self.mailBox.currentText())
-        position = self.CURRENTDATA['mail'].index(mail.encode('utf-8'))
-        del self.CURRENTDATA['mail'][position]
+        position = self.dataObject.getAttributeValueList('mail').index(mail)
+        self.dataObject.deleteAttributeValue('mail', position)
         
         self.EDITED = True
         self.displayValues()
@@ -287,11 +288,13 @@ class UsermanagementWidget(UsermanagementWidgetDesign):
             if mail == '':
                 return
                 
-            if self.CURRENTDATA.has_key("mail"):
-                if not(mail in self.CURRENTDATA['mail']):
-                    self.CURRENTDATA['mail'].append(mail)
-            else:
-                self.CURRENTDATA['mail'] = [mail]
+            if self.dataObject.isAttributeAllowed('mail'):
+                if self.dataObject.hasAttribute('mail'):
+                    # We only want to have each email address one time.
+                    if not (mail in self.dataObject.getAttributeValueList('mail')):
+                        self.dataObject.addAttributeValue('mail', [mail])
+                else:
+                    self.dataObject.addAttributeValue('mail', [mail])
                 
             self.EDITED = True
             self.displayValues()
@@ -300,26 +303,26 @@ class UsermanagementWidget(UsermanagementWidgetDesign):
 
     def editGroups(self):
         dialog = GroupDialog()
-        dialog.SERVERMETA = self.SERVERMETA
-        dialog.userName = self.CURRENTDATA['uid'][0]
+        dialog.serverMeta = self.dataObject.getServerMeta()
+        dialog.userName = self.dataObject.getAttributeValue('uid', 0)
         dialog.retrieveGroups()
-        if self.CURRENTDATA.has_key("gidNumber"):
-            dialog.groupNumberBox.setValue(int(self.CURRENTDATA['gidNumber'][0]))
+        
+        if self.dataObject.hasAttribute("gidNumber"):
+            value = int(self.dataObject.getAttributeValue('gidNumber', 0))
+            dialog.groupNumberBox.setValue(value)
         dialog.exec_loop()
         
         if (dialog.result() == QDialog.Accepted):
             gid = str(dialog.groupNumberBox.value())
-            if self.CURRENTDATA.has_key("gidNumber"):
-                self.CURRENTDATA['gidNumber'][0] = gid
-            else:
-                self.CURRENTDATA['gidNumber'] = [gid]
+            if self.dataObject.isAttributeAllowed('gidNumber'):
+                self.dataObject.addAttributeValue('gidNumber', [gid], True)
             
-            self.OTHERGROUPS = {}
+            self.otherGroups = {}
             
             listIterator = QListViewItemIterator(dialog.groupView)
             while listIterator.current():
                 item = listIterator.current()
-                self.OTHERGROUPS[unicode(item.text(2)).encode("utf-8")] = item.isOn()
+                self.otherGroups[unicode(item.text(2))] = item.isOn()
                 
                 listIterator += 1
             
@@ -335,12 +338,10 @@ class UsermanagementWidget(UsermanagementWidgetDesign):
 ###############################################################################
 
     def homeChanged(self, newHome):
-        newHome = unicode(newHome).encode("utf-8")
+        newHome = unicode(newHome)
         
-        if self.CURRENTDATA.has_key('homeDirectory'):
-            self.CURRENTDATA['homeDirectory'][0] = newHome
-        else:
-            self.CURRENTDATA['homeDirectory'] = [newHome]
+        if self.dataObject.isAttributeAllowed('homeDirectory'):
+            self.dataObject.addAttributeValue('homeDirectory', [newHome], True)
             
         self.EDITED = True
         self.enableToolBar()
@@ -349,12 +350,10 @@ class UsermanagementWidget(UsermanagementWidgetDesign):
 
         
     def shellChanged(self, newShell):
-        newShell = unicode(newShell).encode("utf-8")
+        newShell = unicode(newShell)
         
-        if self.CURRENTDATA.has_key('loginShell'):
-            self.CURRENTDATA['loginShell'][0] = newShell
-        else:
-            self.CURRENTDATA['loginShell'] = [newShell]
+        if self.dataObject.isAttributeAllowed('loginShell'):
+            self.dataObject.addAttributeValue('loginShell', [newShell], True)
             
         self.EDITED = True
         self.enableToolBar()
@@ -364,10 +363,8 @@ class UsermanagementWidget(UsermanagementWidgetDesign):
     def expireChanged(self, newDate):
         newExpire = str(QDate(1970, 1, 1).daysTo(newDate))
         
-        if self.CURRENTDATA.has_key('shadowExpire'):
-            self.CURRENTDATA['shadowExpire'][0] = newExpire
-        else:
-            self.CURRENTDATA['shadowExpire'] = [newExpire]
+        if self.dataObject.isAttributeAllowed('shadowExpire'):
+            self.dataObject.addAttributeValue('shadowExpire', [newExpire], True)
         
         self.EDITED = True
         self.enableToolBar()
@@ -375,12 +372,10 @@ class UsermanagementWidget(UsermanagementWidgetDesign):
 ###############################################################################
         
     def commonNameChanged(self, newName):
-        newName = unicode(newName).encode('utf-8')
+        newName = unicode(newName)
         
-        if self.CURRENTDATA.has_key('cn'):
-            self.CURRENTDATA['cn'][0] = newName
-        else:
-            self.CURRENTDATA['cn'] = [newName]
+        if self.dataObject.isAttributeAllowed('cn'):
+            self.dataObject.addAttributeValue('cn', [newName], True)
             
         self.EDITED = True
         self.enableToolBar()
@@ -388,12 +383,10 @@ class UsermanagementWidget(UsermanagementWidgetDesign):
 ###############################################################################
 
     def uidChanged(self, newID):
-        newID= unicode(newID).encode("utf-8")
+        newID= unicode(newID)
         
-        if self.CURRENTDATA.has_key('uidNumber'):
-            self.CURRENTDATA['uidNumber'][0] = newID
-        else:
-            self.CURRENTDATA['uidNumber'] = [newID]
+        if self.dataObject.isAttributeAllowed('uidNumber'):
+            self.dataObject.addAttributeValue('uidNumber', [newID], True)
             
         self.EDITED = True
         self.enableToolBar()
@@ -401,12 +394,10 @@ class UsermanagementWidget(UsermanagementWidgetDesign):
 ###############################################################################
 
     def uidNameChanged(self, newName):
-        newName= unicode(newName).encode("utf-8")
+        newName= unicode(newName)
         
-        if self.CURRENTDATA.has_key('uid'):
-            self.CURRENTDATA['uid'][0] = newName
-        else:
-            self.CURRENTDATA['uid'] = [newName]
+        if self.dataObject.isAttributeAllowed('uid'):
+            self.dataObject.addAttributeValue('uid', [newName], True)
             
         self.EDITED = True
         self.enableToolBar()
@@ -414,75 +405,89 @@ class UsermanagementWidget(UsermanagementWidgetDesign):
 ###############################################################################
 
     def saveAccount(self):
-        connectionObject = LumaConnection(self.SERVERMETA)
-        connectionObject.bind()
+        connectionObject = LumaConnection(self.dataObject.getServerMeta())
+        bindSuccess, exceptionObject = connectionObject.bind()
         
-        oldValues = connectionObject.search(self.DN)
-        oldValues = oldValues[0][1]
-        
-        
-        modlist =  ldap.modlist.modifyModlist(oldValues, self.CURRENTDATA, [], 1)
-        entryResult = connectionObject.modify(self.DN, modlist)
-        
-        if not(entryResult == 0):
-            self.saveOtherGroups()
-
+        if not bindSuccess:
+                dialog = LumaErrorDialog()
+                errorMsg = self.trUtf8("Could not bind to server.<br><br>Reason: ")
+                errorMsg.append(str(exceptionObject))
+                dialog.setErrorMessage(errorMsg)
+                dialog.exec_loop()
+                return 
+                
+        success, exceptionObject = connectionObject.updateDataObject(self.dataObject)
         connectionObject.unbind()
         
-        if entryResult == 0:
-            QMessageBox.warning(None,
-            self.trUtf8("Error"),
-            self.trUtf8("""Could not save account data. 
-Please read console output for more information."""),
-            None,
-            None,
-            None,
-            0, -1)
-        else:
+        if success:
+            self.saveOtherGroups()
+
             self.EDITED = False
             self.enableToolBar()
-            self.USED_USER_IDS = None
+            self.usedUserIds = None
             self.emit(PYSIGNAL("account_saved"), ())
+        else:
+            dialog = LumaErrorDialog()
+            errorMsg = self.trUtf8("Could not save entry.<br><br>Reason: ")
+            errorMsg.append(str(exceptionObject))
+            dialog.setErrorMessage(errorMsg)
+            dialog.exec_loop()
         
 ###############################################################################
 
     def saveOtherGroups(self):
-        connectionObject = LumaConnection(self.SERVERMETA)
-        connectionObject.bind()
+        connectionObject = LumaConnection(self.dataObject.getServerMeta())
+        bindSuccess, exceptionObject = connectionObject.bind()
+        
+        if not bindSuccess:
+                dialog = LumaErrorDialog()
+                errorMsg = self.trUtf8("Could not bind to server.<br><br>Reason: ")
+                errorMsg.append(str(exceptionObject))
+                dialog.setErrorMessage(errorMsg)
+                dialog.exec_loop()
+                return 
     
-        groupResult = 1
-        userName = self.CURRENTDATA['uid'][0]
-        for x in self.OTHERGROUPS.keys():
-            searchResult = connectionObject.search(x)
-            dn = searchResult[0][0]
-            data = searchResult[0][1]
-            if data.has_key("memberUid"):
-                if userName in data["memberUid"]:
-                    if not(self.OTHERGROUPS[x]):
-                        index = data["memberUid"].index(userName)
-                        del data["memberUid"][index]
-                else:
-                    if self.OTHERGROUPS[x]:
-                        data["memberUid"].append(userName)
-            else:
-                if self.OTHERGROUPS[x]:
-                    data["memberUid"] = [userName]
+        groupUpdateSuccess = True
+        failureException = None
+        userName = self.dataObject.getAttributeValue('uid', 0)
+        
+        for x in self.otherGroups.keys():
+            success, resultList, exceptionObject = connectionObject.search(x)
+            
+            if success:
+                if len(resultList) > 0:
+                    tmpObject = resultList[0]
+            
+                    if tmpObject.hasAttribute("memberUid"):
+                        if userName in tmpObject.getAttributeValueList("memberUid"):
+                            if not(self.otherGroups[x]):
+                                index = tmpObject.getAttributeValueList("memberUid").index(userName)
+                                tmpObject.deleteAttributeValue('memberUid', index)
+                        else:
+                            if self.otherGroups[x]:
+                                tmpObject.addAttributeValue('memberUid', [userName])
+                    else:
+                        if self.otherGroups[x]:
+                            tmpObject.addAttributeValue("memberUid", [userName])
                         
-            oldData = connectionObject.search(x)[0][1]
-            modlist =  ldap.modlist.modifyModlist(oldData, data, [], 1)
-            result = connectionObject.modify(x, modlist)
-            if result == 0:
-                groupResult = 0
+            
+                    updateSuccess, exceptionObject = connectionObject.updateDataObject(tmpObject)
+            
+                    if not updateSuccess:
+                        groupUpdateSuccess = False
+                        failureException = exceptionObject
+                    
+            else:
+                groupUpdateSuccess = False
+                failureException = exceptionObject
+                    
                 
-        if groupResult == 0:
-            QMessageBox.warning(None,
-                self.trUtf8("Error"),
-                self.trUtf8("""Could not group information. 
-Please read console output for more information."""),
-                None,
-                None,
-                None,
-                0, -1)
+        if not groupUpdateSuccess:
+            dialog = LumaErrorDialog()
+            errorMsg = self.trUtf8("Could not update all group information.<br><br>Reason: ")
+            errorMsg.append(str(failureException))
+            dialog.setErrorMessage(errorMsg)
+            dialog.exec_loop()
         
         connectionObject.unbind()
         
@@ -490,42 +495,52 @@ Please read console output for more information."""),
 ###############################################################################
 
     def nextFreeUserID(self):
-        if self.USED_USER_IDS == None:
+        if self.usedUserIds == None:
             result = self.retrieveUserIDs()
             if result == None:
                 return
             else:
-                self.USED_USER_IDS = result
+                self.usedUserIds = result
             
         uid = self.uidBox.value() + 1
-        while uid in self.USED_USER_IDS:
+        while uid in self.usedUserIds:
             uid = uid + 1
             
         self.uidBox.setValue(uid)
         
-        
-        
-        
-        
-        
 ###############################################################################
 
     def retrieveUserIDs(self):
-        connectionObject = LumaConnection(self.SERVERMETA)
-        connectionObject.bind()
-        results = connectionObject.search(self.SERVERMETA.currentBase, ldap.SCOPE_SUBTREE,
+        connectionObject = LumaConnection(self.dataObject.getServerMeta())
+        bindSuccess, exceptionObject = connectionObject.bind()
+        
+        if not bindSuccess:
+                dialog = LumaErrorDialog()
+                errorMsg = self.trUtf8("Could not bind to server.<br><br>Reason: ")
+                errorMsg.append(str(exceptionObject))
+                dialog.setErrorMessage(errorMsg)
+                dialog.exec_loop()
+                return []
+        
+        success, resultList, exceptionObject = connectionObject.search(self.dataObject.getServerMeta().currentBase, ldap.SCOPE_SUBTREE,
                 "(&(objectClass=*)(uidNumber=*))", ["uidNumber"], 0)
         connectionObject.unbind()
-                
-        if results == None:
-            return None
+        
+        if success:
+            uidList = []
+            for x in resultList:
+                for y in x.getAttributeValueList("uidNumber"):
+                    uidList.append(int(y))
             
-        uidList = []
-        for x in results:
-            for y in x[1]["uidNumber"]:
-                uidList.append(int(y))
+            return uidList
+        else:
+            dialog = LumaErrorDialog()
+            errorMsg = self.trUtf8("Could not retrieve used userids.<br><br>Reason: ")
+            errorMsg.append(str(exceptionObject))
+            dialog.setErrorMessage(errorMsg)
+            dialog.exec_loop()
             
-        return uidList
+            return []
     
 ###############################################################################
 
