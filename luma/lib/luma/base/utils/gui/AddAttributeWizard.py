@@ -12,6 +12,7 @@ from qt import *
 import os.path
 from sets import Set
 import string
+import copy
 
 import environment
 from base.utils.gui.AddAttributeWizardDesign import AddAttributeWizardDesign
@@ -44,6 +45,10 @@ class AddAttributeWizard(AddAttributeWizardDesign):
 ###############################################################################
 
     def setData(self, objectValues, schemaMeta):
+        """ Sets the current object data, schema information and initializes
+        the attribute box and wizard buttons.
+        """
+        
         self.OBJECTVALUES = objectValues
         self.SCHEMAINFO = schemaMeta
         self.processData()
@@ -57,6 +62,10 @@ class AddAttributeWizard(AddAttributeWizardDesign):
 ###############################################################################
 
     def processData(self):
+        """ Compute all attributes which can be added according to the data of
+        the object. Single values which are already given are sorted out.
+        """
+        
         possibleMust, possibleMay = self.SCHEMAINFO.getAllAttributes(self.OBJECTVALUES['objectClass'])
         
         # attributes used by the current objectClass
@@ -85,23 +94,23 @@ class AddAttributeWizard(AddAttributeWizardDesign):
         
         tmpList = None
         if showAll:
-            tmpList = map(None, self.allPossibleAttributes)
-            self.setNextEnabled(currentPageWidget, True)
-            self.setFinishEnabled(currentPageWidget, False)
+            tmpList = copy.deepcopy(self.allPossibleAttributes)
         else:
-            tmpList = map(None, self.possibleAttributes)
-            self.setNextEnabled(currentPageWidget, False)
+            tmpList = copy.deepcopy(self.possibleAttributes)
         
         structural = False
+        structuralClass = []
         for x in self.OBJECTVALUES['objectClass']:
             if self.SCHEMAINFO.isStructural(x):
                 structural = True
-                break
+                structuralClass.append(x)
         
         # only show attributes whose objectclass combinations don't violate 
         # the objectclass chain (not two structural classes)
         if structural:
             classList = filter(lambda x: not self.SCHEMAINFO.isStructural(x), self.SCHEMAINFO.getObjectClasses())
+            for x in structuralClass:
+                classList += self.SCHEMAINFO.getParents(x)
                 
             for x in self.OBJECTVALUES['objectClass']:
                 if not (x in classList):
@@ -117,13 +126,13 @@ class AddAttributeWizard(AddAttributeWizardDesign):
             tmpList.sort()
             map(self.attributeBox.insertItem, tmpList)
         
-        if showAll:
-            self.newSelection(self.attributeBox.currentText())
+        self.newSelection(self.attributeBox.currentText())
+            
         
 ###############################################################################
 
     def newSelection(self, attribute):
-        attribute = str(attribute)
+        attribute = string.lower(str(attribute))
         
         currentPageWidget = self.currentPage()
         
@@ -165,8 +174,17 @@ class AddAttributeWizard(AddAttributeWizardDesign):
             if self.SCHEMAINFO.isStructural(x):
                 structural = True
                 break
+        if structural:
+            structList = filter(lambda x: self.SCHEMAINFO.isStructural(x), classList)
+            classList = filter(lambda x: not self.SCHEMAINFO.isStructural(x), classList)
+            
+            for x in structList:
+                for y in self.OBJECTVALUES['objectClass']:
+                    if self.SCHEMAINFO.sameObjectClassChain(x, y):
+                        classList.append(x)
+                        
+        classList.sort()
                 
-        classList = filter(lambda x: not self.SCHEMAINFO.isStructural(x), classList)
         map(self.classBox.insertItem, classList)
         
 ###############################################################################
