@@ -121,7 +121,7 @@ class BrowserWidget(QListView):
 
             success, resultList, exceptionObject = self.getLdapItem(fullPath)
             
-            if not (None == success):
+            if not (success == None):
                 if success:
                     if len(resultList) > 0:
                         result = resultList[0]
@@ -197,7 +197,7 @@ class BrowserWidget(QListView):
             else:
                 tmpList = serverMeta.baseDN
                 
-            if None == tmpList:
+            if tmpList == None:
                 tmpList = []
                 
             for base in tmpList:
@@ -233,9 +233,9 @@ class BrowserWidget(QListView):
                 item = item.parent()
                 
                 # Try to get the currently used baseDN
-                if not (None == item):
+                if not (item == None):
                     tmpItem = item.parent()
-                    if None == tmpItem:
+                    if tmpItem == None:
                         self.currentBase = unicode(oldItem.text(0)).encode('utf-8')
                     
                 pathItem = unicode(item.text(0)).encode('utf-8')
@@ -357,7 +357,7 @@ class BrowserWidget(QListView):
                 
             listIterator += 1
             
-        if 0 == len(selectedItems):
+        if len(selectedItems) == 0:
             return
             
         entryList = []
@@ -367,7 +367,7 @@ class BrowserWidget(QListView):
             
             # check if we selected a server name
             serverName, ldapObject = self.splitPath(fullPath)
-            if 0 == len(ldapObject):
+            if len(ldapObject) == 0:
                 continue
                 
             success, resultList, exceptionObject = self.getLdapItem(fullPath)
@@ -388,7 +388,7 @@ class BrowserWidget(QListView):
             dialog.exec_loop()
             return
             
-        if 0 == len(entryList):
+        if len(entryList) == 0:
             return
             
         exportDialog = ExportDialog()
@@ -411,7 +411,7 @@ class BrowserWidget(QListView):
                 
             listIterator += 1
             
-        if 0 == len(selectedItems):
+        if len(selectedItems) == 0:
             return
             
         entryList = []
@@ -421,7 +421,7 @@ class BrowserWidget(QListView):
             
             # check if we selected a server name
             serverName, ldapObject = self.splitPath(fullPath)
-            if 0 == len(ldapObject):
+            if len(ldapObject) == 0:
                 continue
                 
             success, resultList, exceptionObject = self.getLdapItemChildren(fullPath, 1)
@@ -442,7 +442,7 @@ class BrowserWidget(QListView):
             dialog.exec_loop()
             return
             
-        if 0 == len(entryList):
+        if len(entryList) == 0:
             return
             
         exportDialog = ExportDialog()
@@ -468,7 +468,7 @@ class BrowserWidget(QListView):
                 
             listIterator += 1
             
-        if 0 == len(selectedItems):
+        if len(selectedItems) == 0:
             return
             
         # remove duplicated items
@@ -497,7 +497,7 @@ class BrowserWidget(QListView):
             
             # check if we selected a server name
             serverName, ldapObject = self.splitPath(fullPath)
-            if 0 == len(ldapObject):
+            if len(ldapObject) == 0:
                 continue
                 
             success, resultList, exceptionObject = self.getLdapItem(fullPath)
@@ -518,7 +518,7 @@ class BrowserWidget(QListView):
             
             # check if we selected a server name
             serverName, ldapObject = self.splitPath(fullPath)
-            if 0 == len(ldapObject):
+            if len(ldapObject) == 0:
                 continue
                 
             success, resultList, exceptionObject = self.getLdapItemChildren(fullPath, 1)
@@ -539,7 +539,7 @@ class BrowserWidget(QListView):
             dialog.exec_loop()
             return
             
-        if 0 == len(entryList):
+        if len(entryList) == 0:
             return
            
         entryList.extend(parentEntries)
@@ -564,7 +564,7 @@ class BrowserWidget(QListView):
                 
             listIterator += 1
             
-        if 0 == len(selectedItems):
+        if len(selectedItems) == 0:
             return
             
         entryList = []
@@ -574,7 +574,7 @@ class BrowserWidget(QListView):
             
             # check if we selected a server name
             serverName, ldapObject = self.splitPath(fullPath)
-            if 0 == len(ldapObject):
+            if len(ldapObject) == 0:
                 continue
                 
             success, resultList, exceptionObject = self.getLdapItem(fullPath)
@@ -595,7 +595,7 @@ class BrowserWidget(QListView):
             dialog.exec_loop()
             return
             
-        if 0 == len(entryList):
+        if len(entryList) == 0:
             return
             
         
@@ -743,7 +743,7 @@ class BrowserWidget(QListView):
                 
             listIterator += 1
             
-        if 0 == len(selectedItems):
+        if len(selectedItems) == 0:
             return
         
         fqn = self.getFullPath(selectedItems[0])
@@ -799,7 +799,7 @@ class BrowserWidget(QListView):
                 
             listIterator += 1
             
-        if 0 == len(selectedItems):
+        if len(selectedItems) == 0:
             return
             
         entryList = []
@@ -809,7 +809,7 @@ class BrowserWidget(QListView):
             
             # check if we selected a server name
             serverName, ldapObject = self.splitPath(fullPath)
-            if 0 == len(ldapObject):
+            if len(ldapObject) == 0:
                 continue
                 
             success, resultList, exceptionObject = self.getLdapItemChildren(fullPath, withParent)
@@ -830,7 +830,7 @@ class BrowserWidget(QListView):
             dialog.exec_loop()
             return
             
-        if 0 == len(entryList):
+        if len(entryList) == 0:
             return
             
         entryList.sort()
@@ -851,7 +851,7 @@ class BrowserWidget(QListView):
     def keyPressEvent(self, keyEvent):
         self.setEnabled(False)
         keyText = unicode(keyEvent.text()).lower()
-        if 0 == len(keyText):
+        if len(keyText) == 0:
             keyEvent.ignore()
             self.setEnabled(True)
             return
@@ -861,7 +861,7 @@ class BrowserWidget(QListView):
         currentItem = None
         
         # Either no item is selected of the can select multiple items.
-        if None == selectedItem:
+        if selectedItem == None:
             listIterator = QListViewItemIterator(self)
             while listIterator.current():
                 item = listIterator.current()
@@ -877,9 +877,9 @@ class BrowserWidget(QListView):
             currentItem = selectedItem.itemBelow()
         
         # Small error prevention
-        if None == currentItem:
+        if currentItem == None:
             currentItem = self.firstChild()
-            if None == currentItem:
+            if currentItem == None:
                 self.setEnabled(True)
                 return
         
@@ -896,11 +896,11 @@ class BrowserWidget(QListView):
                 continue
                     
             tmpString = tmpList[1]
-            if 0 == len(tmpString):
+            if len(tmpString) == 0:
                 listIterator +=1
                 continue
                     
-            if tmpString[0].lower() == keyText:
+            if keyTex == tmpString[0].lower():
                 self.ensureItemVisible(item)
                 self.setSelected(item, True)
                 self.itemClicked(item)
@@ -969,7 +969,7 @@ class BrowserWidget(QListView):
             item = listIterator.current()
             itemDN = self.getFullPath(item)
             
-            if dnString == itemDN:
+            if itemDN == dnString: 
                 item.setOpen(0)
                 item.setOpen(1)
                 break
