@@ -64,8 +64,8 @@ class MainWin(MainWinDesign):
 
         self.__PLUGINS = {}
         self.__ICONPREFIX = os.path.join(environment.lumaInstallationPrefix, "share", "luma", "icons")
-        environment.update_ui = self.update_ui
-        environment.set_busy = self.set_busy
+        environment.updateUI = self.updateUI
+        environment.setBusy = self.setBusy
         self.load_plugins()
 
 ###############################################################################
@@ -209,7 +209,7 @@ class MainWin(MainWinDesign):
 
 ###############################################################################
 
-    def update_ui(self):
+    def updateUI(self):
         """ Updates the progress bar of the GUI and keeps it responsive.
         """
         
@@ -220,7 +220,7 @@ class MainWin(MainWinDesign):
 
 ###############################################################################
 
-    def set_busy(self, busy=1):
+    def setBusy(self, busy=1):
         """ Set the X mouse cursor busy. 
         
         Better for user feedback.
@@ -257,14 +257,20 @@ class MainWin(MainWinDesign):
                
             self.languageChange()
 
+            configParser = ConfigParser()
+            
             try:
-                configParser = ConfigParser()
                 configParser.readfp(open(self.configFile, 'r'))
+            except Exception, errorData:
+                print "Error: Could not open luma config file for storing language settings. Reason:"
+                print errorData
                 
-                if not(configParser.has_section("Defaults")):
-                    configParser.add_section("Defaults")
+            if not(configParser.has_section("Defaults")):
+                configParser.add_section("Defaults")
                     
-                configParser.set("Defaults", "language", trFile)
+            configParser.set("Defaults", "language", trFile)
+            
+            try:
                 configParser.write(open(self.configFile, 'w'))
             except Exception, errorData:
                 print "Error: could not save language settings file. Reason:"
