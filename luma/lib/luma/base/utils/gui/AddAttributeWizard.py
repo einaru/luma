@@ -78,7 +78,6 @@ class AddAttributeWizard(AddAttributeWizardDesign):
         currentPageWidget = self.currentPage()
         
         showAll = self.enableAllBox.isChecked()
-        #self.setNextEnabled(currentPageWidget, True)
         self.setFinishEnabled(currentPageWidget, True)
         self.setHelpEnabled(currentPageWidget, False)
         
