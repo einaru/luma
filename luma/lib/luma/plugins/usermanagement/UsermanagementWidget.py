@@ -134,7 +134,7 @@ class UsermanagementWidget(UsermanagementWidgetDesign):
     def displayValues(self):
         self.uidEdit.blockSignals(True)
         if self.CURRENTDATA.has_key('uid'):
-            self.uidEdit.setText(self.CURRENTDATA['uid'][0])
+            self.uidEdit.setText(self.CURRENTDATA['uid'][0].decode('utf-8'))
         else:
             self.uidEdit.setText("")
         self.uidEdit.blockSignals(False)
@@ -169,7 +169,7 @@ class UsermanagementWidget(UsermanagementWidgetDesign):
           
         self.shellEdit.blockSignals(True)
         if self.CURRENTDATA.has_key('loginShell'):
-            self.shellEdit.setText(self.CURRENTDATA['loginShell'][0])
+            self.shellEdit.setText(self.CURRENTDATA['loginShell'][0].decode('utf-8'))
         else:
             self.shellEdit.setText("")
         self.shellEdit.blockSignals(False)
@@ -177,7 +177,7 @@ class UsermanagementWidget(UsermanagementWidgetDesign):
             
         self.homeEdit.blockSignals(True)
         if self.CURRENTDATA.has_key('homeDirectory'):
-            self.homeEdit.setText(self.CURRENTDATA['homeDirectory'][0])
+            self.homeEdit.setText(self.CURRENTDATA['homeDirectory'][0].decode('utf-8'))
         else:
             self.homeEdit.setText("")
         self.homeEdit.blockSignals(False)
@@ -185,7 +185,7 @@ class UsermanagementWidget(UsermanagementWidgetDesign):
 
         self.passwordEdit.blockSignals(True)
         if self.CURRENTDATA.has_key('userPassword'):
-            self.passwordEdit.setText(self.CURRENTDATA['userPassword'][0])
+            self.passwordEdit.setText(self.CURRENTDATA['userPassword'][0].decode('utf-8'))
         else:
             self.passwordEdit.setText("")
         self.passwordEdit.blockSignals(False)
@@ -270,7 +270,7 @@ class UsermanagementWidget(UsermanagementWidgetDesign):
             return
             
         mail = unicode(self.mailBox.currentText())
-        position = self.CURRENTDATA['mail'].index(mail)
+        position = self.CURRENTDATA['mail'].index(mail.encode('utf-8'))
         del self.CURRENTDATA['mail'][position]
         
         self.EDITED = True
