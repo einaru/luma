@@ -209,7 +209,7 @@ def evalArguments():
 ###############################################################################
 
 
-print "LUMA 1.5 (C) 2003,2004 Wido Depping\n"
+print "Luma 2.0 (C) 2003-2005 Wido Depping\n"
 
 doImportCheck()
 print ""
