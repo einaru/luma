@@ -320,7 +320,15 @@ class LumaConnection(object):
                 #if resultItem.hasAttribute('namingContexts'):
                 #    dnList = resultItem.getAttributeValueList('namingContexts')
                 
-                
+        # Check for Active Directory
+        if None == dnList:
+            success, resultList, exceptionObject = self.search("", ldap.SCOPE_BASE, "(defaultNamingContext=*)" ,['defaultNamingContext'])
+            if success and (len(resultList) > 0):
+                resultItem = resultList[0]
+                if resultItem.hasAttribute('defaultNamingContext'):
+                    dnList = resultItem.getAttributeValueList('defaultNamingContext')
+                    
+                    
         self.unbind()
         environment.setBusy(False)
             
@@ -528,10 +536,8 @@ class WorkerThreadBind(threading.Thread):
                         # Enable Alias support
                         if self.serverMeta.followAliases:
                             self.ldapServerObject.set_option(ldap.OPT_DEREF, ldap.DEREF_ALWAYS)
-                            
-                        self.ldapServerObject.sasl_interactive_bind_s("", sasl_auth)
-                    else:
-                        self.ldapServerObject.sasl_interactive_bind_s("", sasl_auth)
+
+                    self.ldapServerObject.sasl_interactive_bind_s("", sasl_auth)
                 except AttributeError, e:
                     self.result = False
                     self.exceptionObject = e
