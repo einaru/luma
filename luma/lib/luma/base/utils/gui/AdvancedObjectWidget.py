@@ -30,7 +30,8 @@ class AdvancedObjectWidget(QWidget):
         
         # Standard pixmaps used by the widget
         self.iconPath = os.path.join(environment.lumaInstallationPrefix, "share", "luma", "icons")
-        self.binaryPixmap = QPixmap(os.path.join(self.iconPath, "binary.png"))
+        self.binaryPixmap = QPixmap(os.path.join(self.iconPath, "binary_big.png"))
+        self.binaryImage = self.binaryPixmap.convertToImage()
         self.deletePixmap = QPixmap(os.path.join(self.iconPath, "deleteEntry.png"))
         self.deleteSmallPixmap = QPixmap(os.path.join(self.iconPath, "editdelete.png"))
         self.editPixmap = QPixmap(os.path.join(self.iconPath, "edit.png"))
@@ -319,7 +320,7 @@ class AdvancedObjectWidget(QWidget):
             elif attributeIsPassword:
                 tmpList.append("""<td bgcolor="#E5E5E5" width="55%">""" + value + """</td>""")
             else:
-                self.mimeFactory.setImage(univAttributeName, self.binaryPixmap)
+                self.mimeFactory.setImage(univAttributeName, self.binaryImage)
                 tmpList.append("""<td width="55%"><img source=""" + univAttributeName + """></td>""")
         else:
             tmpList.append("""<td bgcolor="#E5E5E5" width="55%">""" + value + """</td>""")
