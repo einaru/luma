@@ -1,0 +1,4 @@
+PLUGIN_NAME=Usermanagement
+PLUGIN_VERSION=0.1
+PLUGIN_AUTHOR=widod@users.sourceforge.net
+PLUGIN_FILE=usermanagement_plugin.py
