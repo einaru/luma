@@ -61,15 +61,19 @@ class ServerList:
 
 ###############################################################################
 
-    def saveSettings(self, serverList):
+    def saveSettings(self, serverList=None):
         """ Save the server list to configuration file.
         """
         
+        if None == serverList:
+            serverList = self.serverList
+            
         document = QDomDocument("LumaServerFile")
         root = document.createElement( "LumaServerList" )
+        root.setAttribute("version", "1.0")
         document.appendChild(root)
         
-        for x in self.serverList:
+        for x in serverList:
             serverNode = document.createElement("LumaLdapServer")
             serverNode.setAttribute("name", x.name)
             serverNode.setAttribute("host", x.host)
@@ -136,6 +140,71 @@ class ServerList:
         """ Read the server list from configuration file.
         """
         
+        if self.checkConfig("CURRENT"):
+            self.readFromXML()
+        elif self.checkConfig("OLD"):
+            self.readFromOld()
+        else:
+            self.serverList = []
+        
+###############################################################################
+
+    def checkConfig(self, formatName="CURRENT"):
+        if "CURRENT" == formatName:
+            if os.path.exists(self.configFile):
+                return True
+            else:
+                return False
+        elif "OLD" == formatName:
+            oldConfig = os.path.join(self.configPrefix, "serverlist")
+            if os.path.exists(oldConfig):
+                return True
+            else:
+                return False
+        else:
+            return False
+            
+###############################################################################
+
+    def readFromOld(self):
+        configParser = ConfigParser()
+        
+        try:
+            oldConfig = os.path.join(self.configPrefix, "serverlist")
+            configParser.readfp(open(oldConfig, 'r'))
+        except IOError, error:
+            print "WARNING: Could not read server config file. Reason:"
+            print error
+            
+        sections = configParser.sections()
+            
+        if len(sections) == 0:
+            return
+            
+        self.serverList = []
+        for x in sections:
+            server = ServerObject()
+            server.name = unicode(x)
+            try:
+                server.host = unicode(configParser.get(x, "hostname"))
+                server.port = configParser.getint(x, "port")
+                server.bindAnon = configParser.getboolean(x, "bindAnon")
+                server.baseDN = [unicode(configParser.get(x, "baseDN"))]
+                server.autoBase = False
+                server.bindDN = unicode(configParser.get(x, "bindDN"))
+                server.bindPassword = unicode(configParser.get(x, "bindPassword"))
+                server.tls = configParser.getboolean(x, "tls")
+                server.authMethod = unicode(configParser.get(x, "authMethod"))
+            except NoOptionError:
+                pass
+                
+            self.serverList.append(server)
+            
+        self.saveSettings()
+        
+###############################################################################
+
+    def readFromXML(self):
         fileContent = ""
         try:
             fileContent = "".join(open(self.configFile, "r").readlines())
@@ -152,6 +221,16 @@ class ServerList:
         root = document.documentElement()
         if not (unicode(root.tagName()) == "LumaServerList"):
             print "Could not parse server file"
+            
+        if "1.0" == root.attribute("version"):
+            self.readFromXMLVersion1_0(fileContent)
+            
+###############################################################################
+
+    def readFromXMLVersion1_0(self, fileContent):
+        document = QDomDocument("LumaServerFile")
+        document.setContent(fileContent)
+        root = document.documentElement()
         
         child = root.firstChild()
         while (not child.isNull()):
