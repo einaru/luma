@@ -23,7 +23,7 @@ class ObjectClassAttributeInfo(object):
 
 ###############################################################################
     
-    def __init__(self, server):
+    def __init__(self, server=None):
         self.BINARY_SYNTAXES = {
             '1.3.6.1.4.1.1466.115.121.1.4':None,  # Audio
             '1.3.6.1.4.1.1466.115.121.1.5':None,  # Binary
@@ -38,8 +38,10 @@ class ObjectClassAttributeInfo(object):
             }
         self.OBJECTCLASSES = {}
         self.ATTRIBUTELIST = {}
-        self.SERVER = server[:]
-        self.retrieve_info_from_server()
+        self.SERVER = server
+        
+        if not (server == None):
+            self.retrieve_info_from_server()
 
 ###############################################################################
 
