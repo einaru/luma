@@ -11,6 +11,7 @@
 from qt import *
 import os.path
 from sets import Set
+import string
 
 import environment
 from base.utils.gui.AddAttributeWizardDesign import AddAttributeWizardDesign
@@ -66,6 +67,7 @@ class AddAttributeWizard(AddAttributeWizardDesign):
         
         # create a set of attributes which may be added
         self.possibleAttributes = (possibleMust.union(possibleMay)).difference(singleAttributes)
+        self.possibleAttributes = map(lambda x: string.lower(x), self.possibleAttributes)
         
         # create a set of attributes which are supported by the server
         self.allPossibleAttributes = Set(self.SCHEMAINFO.attributeDict.keys()).difference(singleAttributes)
@@ -89,11 +91,31 @@ class AddAttributeWizard(AddAttributeWizardDesign):
         else:
             tmpList = map(None, self.possibleAttributes)
             self.setNextEnabled(currentPageWidget, False)
-            
-        tmpList.sort()
         
-        # init combobox with attributes supported by current objectclasses
-        map(self.attributeBox.insertItem, tmpList)
+        structural = False
+        for x in self.OBJECTVALUES['objectClass']:
+            if self.SCHEMAINFO.isStructural(x):
+                structural = True
+                break
+        
+        # only show attributes whose objectclass combinations don't violate 
+        # the objectclass chain (not two structural classes)
+        if structural:
+            classList = filter(lambda x: not self.SCHEMAINFO.isStructural(x), self.SCHEMAINFO.getObjectClasses())
+                
+            for x in self.OBJECTVALUES['objectClass']:
+                if not (x in classList):
+                    classList.append(x)
+                    
+            mustAttributes, mayAttributes = self.SCHEMAINFO.getAllAttributes(classList)
+            attributeList = mustAttributes.union(mayAttributes)
+            
+            cleanList = filter(lambda x: string.lower(x) in tmpList, attributeList)
+            cleanList.sort()
+            map(self.attributeBox.insertItem, cleanList)
+        else:
+            tmpList.sort()
+            map(self.attributeBox.insertItem, tmpList)
         
         if showAll:
             self.newSelection(self.attributeBox.currentText())
@@ -138,6 +160,13 @@ class AddAttributeWizard(AddAttributeWizardDesign):
         
         classList = mustSet.union(maySet)
         
+        structural = False
+        for x in self.OBJECTVALUES['objectClass']:
+            if self.SCHEMAINFO.isStructural(x):
+                structural = True
+                break
+                
+        classList = filter(lambda x: not self.SCHEMAINFO.isStructural(x), classList)
         map(self.classBox.insertItem, classList)
         
 ###############################################################################
