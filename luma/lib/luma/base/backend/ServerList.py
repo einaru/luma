@@ -14,6 +14,7 @@ import string
 import os.path
 from ConfigParser import ConfigParser
 from ConfigParser import NoOptionError
+from qtxml import *
 
 from base.backend.ServerObject import ServerObject
 import environment
@@ -26,11 +27,11 @@ class ServerList:
     
     
     """
-    serverList = None
     
     def __init__(self):
+        self.serverList = None
         self.configPrefix = os.path.join(environment.userHomeDir, ".luma")
-        self.configFile = os.path.join(self.configPrefix, "serverlist")
+        self.configFile = os.path.join(self.configPrefix, "serverlist.xml")
 
 ###############################################################################
 
@@ -63,21 +64,36 @@ class ServerList:
     def saveSettings(self, serverList):
         """ Save the server list to configuration file.
         """
-
-        configParser = ConfigParser()
+        
+        document = QDomDocument("LumaServerFile")
+        root = document.createElement( "LumaServerList" )
+        document.appendChild(root)
+        
+        for x in self.serverList:
+            serverNode = document.createElement("LumaLdapServer")
+            serverNode.setAttribute("name", x.name)
+            serverNode.setAttribute("host", x.host)
+            serverNode.setAttribute("port", unicode(x.port))
+            serverNode.setAttribute("bindAnon", unicode(x.bindAnon))
+            serverNode.setAttribute("bindDN", x.bindDN)
+            serverNode.setAttribute("bindPassword", x.bindPassword)
+            serverNode.setAttribute("tls", unicode(x.tls))
+            serverNode.setAttribute("authMethod", x.authMethod)
+            serverNode.setAttribute("autoBase", unicode(x.autoBase))
             
-        for x in serverList:
-            if not configParser.has_section(x.name):
-                configParser.add_section(x.name)
-            configParser.set(x.name, "hostname", x.host)
-            configParser.set(x.name, "port", x.port)
-            configParser.set(x.name, "bindAnon", x.bindAnon)
-            configParser.set(x.name, "baseDN", x.baseDN)
-            configParser.set(x.name, "bindDN", x.bindDN)
-            configParser.set(x.name, "bindPassword", x.bindPassword)
-            configParser.set(x.name, "tls", x.tls)
-            configParser.set(x.name, "authMethod", x.authMethod)
-        configParser.write(open(self.configFile, 'w'))
+            baseNode = document.createElement("baseDNs")
+            for tmpBase in x.baseDN:
+                tmpNode = document.createElement("base")
+                tmpNode.setAttribute("dn", tmpBase)
+                baseNode.appendChild(tmpNode)
+                
+            serverNode.appendChild(baseNode)
+            
+            root.appendChild(serverNode)
+            
+        fileHandler = open(self.configFile, "w")
+        fileHandler.write(unicode(document.toString()).encode("utf-8"))
+        fileHandler.close()
         
         # Only the user should be able to access the file since we store 
         # passwords in it.
@@ -120,35 +136,69 @@ class ServerList:
         """ Read the server list from configuration file.
         """
         
-        self.serverList = None
-
-        configParser = ConfigParser()
-        
+        fileContent = ""
         try:
-            configParser.readfp(open(self.configFile, 'r'))
-        except IOError, error:
-            print "WARNING: Could not read server config file. Reason:"
-            print error
-            
-        sections = configParser.sections()
-            
-        if len(sections) == 0:
-            return
-            
+            fileContent = "".join(open(self.configFile, "r").readlines())
+            fileContent = fileContent.decode("utf-8")
+        except IOError, e:
+            print "Could not read server configuration file. Reason:"
+            print e
+        
         self.serverList = []
-        for x in sections:
+        
+        document = QDomDocument("LumaServerFile")
+        document.setContent(fileContent)
+        
+        root = document.documentElement()
+        if not (unicode(root.tagName()) == "LumaServerList"):
+            print "Could not parse server file"
+        
+        child = root.firstChild()
+        while (not child.isNull()):
             server = ServerObject()
-            server.name = unicode(x)
-            try:
-                server.host = unicode(configParser.get(x, "hostname"))
-                server.port = configParser.getint(x, "port")
-                server.bindAnon = configParser.getboolean(x, "bindAnon")
-                server.baseDN = unicode(configParser.get(x, "baseDN"))
-                server.bindDN = unicode(configParser.get(x, "bindDN"))
-                server.bindPassword = unicode(configParser.get(x, "bindPassword"))
-                server.tls = configParser.getboolean(x, "tls")
-                server.authMethod = unicode(configParser.get(x, "authMethod"))
-            except NoOptionError:
-                pass
+            element = child.toElement()
+            if unicode(element.tagName()) == "LumaLdapServer":
+                server.name = unicode(element.attribute("name"))
+                server.host = unicode(element.attribute("host"))
+                server.port = int(str(element.attribute("port")))
+                
+                tmpVal = unicode(element.attribute("bindAnon"))
+                if "True" == tmpVal:
+                    server.bindAnon = True
+                else:
+                    server.bindAnon = False
+                    
+                tmpVal = unicode(element.attribute("autoBase"))
+                if "True" == tmpVal:
+                    server.autoBase = True
+                else:
+                    server.autoBase = False
+                    
+                    
+                server.bindDN = unicode(element.attribute("bindDN"))
+                server.bindPassword = unicode(element.attribute("bindPassword"))
+                
+                tmpVal = unicode(element.attribute("tls"))
+                if "True" == tmpVal:
+                    server.tls = True
+                else:
+                    server.tls = False
+                
+                server.authMethod = unicode(element.attribute("authMethod"))
+                
+                serverChild = child.firstChild()
+                serverElement = serverChild.toElement()
+                tagName = unicode(serverElement.tagName())
+                    
+                if "baseDNs" == tagName:
+                    server.baseDN = []
+                    baseNode = serverChild.firstChild()
+                    while (not baseNode.isNull()):
+                        baseElement = baseNode.toElement()
+                        tmpBase = unicode(baseElement.tagName())
+                        if "base" == tmpBase:
+                            server.baseDN.append(unicode(baseElement.attribute("dn")))
+                        baseNode = baseNode.nextSibling()
                 
             self.serverList.append(server)
+            child = child.nextSibling()
