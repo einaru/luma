@@ -85,6 +85,15 @@ class ServerList:
             configParser.set(x.name, "bindPassword", x.bindPassword)
             configParser.set(x.name, "tls", x.tls)
         configParser.write(open(self.__configFile, 'w'))
+        
+        # Only the user should be able to access the file since we store 
+        # passwords in it.
+        # If we can't change it, leave it as it is since the user must have 
+        # changed it manually. 
+        try:
+            os.chmod(self.__configFile, 0600)
+        except:
+            pass
             
 
 ###############################################################################
