@@ -90,6 +90,7 @@ class DeleteDialog(DeleteDialogDesign):
         deleteList = map(lambda x: self.deleteDictionary[x][0], self.deleteDictionary.keys())
         deleteList.sort()
         
+        allDeleted = True
         
         for x in deleteList[::-1]:
             prettyDN = x.getPrettyDN()
@@ -112,6 +113,7 @@ class DeleteDialog(DeleteDialogDesign):
                 self.displayItemStatus(self.deleteDictionary[prettyDN][1], success, exceptionObject)
                 
                 if not success:
+                    allDeleted = False
                     continue
                     
             success, exceptionObject = connectionObject.delete(normalDN)
@@ -119,8 +121,13 @@ class DeleteDialog(DeleteDialogDesign):
             
             if success:
                 self.deletedEntries.append(normalDN)
+            else:
+                allDeleted = False
                 
         environment.setBusy(False)
+        
+        if allDeleted:
+            self.accept()
             
 ###############################################################################
 

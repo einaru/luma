@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file '/home/wido/src/luma/lib/luma/base/utils/gui/ExportDialogDesign.ui'
 #
-# Created: Fri Jan 7 03:18:43 2005
+# Created: Tue Feb 8 21:00:39 2005
 #      by: The PyQt User Interface Compiler (pyuic) 3.13
 #
 # WARNING! All changes made in this file will be lost!
@@ -25,42 +25,14 @@ class ExportDialogDesign(QDialog):
         self.textLabel2 = QLabel(self,"textLabel2")
         self.textLabel2.setAlignment(QLabel.WordBreak | QLabel.AlignVCenter)
 
-        ExportDialogDesignLayout.addMultiCellWidget(self.textLabel2,0,0,1,2)
+        ExportDialogDesignLayout.addWidget(self.textLabel2,0,1)
 
         self.line2 = QFrame(self,"line2")
         self.line2.setFrameShape(QFrame.HLine)
         self.line2.setFrameShadow(QFrame.Sunken)
         self.line2.setFrameShape(QFrame.HLine)
 
-        ExportDialogDesignLayout.addMultiCellWidget(self.line2,1,1,0,2)
-
-        layout3 = QGridLayout(None,1,1,0,6,"layout3")
-
-        self.itemView = QListView(self,"itemView")
-        self.itemView.addColumn(self.__tr("1"))
-        self.itemView.addColumn(self.__tr("DN"))
-        self.itemView.addColumn(self.__tr("Message"))
-        self.itemView.setSizePolicy(QSizePolicy(7,7,0,0,self.itemView.sizePolicy().hasHeightForWidth()))
-        self.itemView.setSelectionMode(QListView.Extended)
-        self.itemView.setAllColumnsShowFocus(1)
-        self.itemView.setShowSortIndicator(1)
-        self.itemView.setResizeMode(QListView.LastColumn)
-
-        layout3.addMultiCellWidget(self.itemView,0,2,0,0)
-
-        self.startButton = QPushButton(self,"startButton")
-        self.startButton.setSizePolicy(QSizePolicy(1,0,0,0,self.startButton.sizePolicy().hasHeightForWidth()))
-
-        layout3.addWidget(self.startButton,0,1)
-        spacer3 = QSpacerItem(21,117,QSizePolicy.Minimum,QSizePolicy.Expanding)
-        layout3.addItem(spacer3,2,1)
-
-        self.removeButton = QPushButton(self,"removeButton")
-        self.removeButton.setSizePolicy(QSizePolicy(1,0,0,0,self.removeButton.sizePolicy().hasHeightForWidth()))
-
-        layout3.addWidget(self.removeButton,1,1)
-
-        ExportDialogDesignLayout.addMultiCellLayout(layout3,4,4,0,2)
+        ExportDialogDesignLayout.addMultiCellWidget(self.line2,1,1,0,1)
 
         self.iconLabel = QLabel(self,"iconLabel")
         self.iconLabel.setSizePolicy(QSizePolicy(0,0,0,0,self.iconLabel.sizePolicy().hasHeightForWidth()))
@@ -68,7 +40,7 @@ class ExportDialogDesign(QDialog):
 
         ExportDialogDesignLayout.addWidget(self.iconLabel,0,0)
         spacer3_2 = QSpacerItem(21,16,QSizePolicy.Minimum,QSizePolicy.Fixed)
-        ExportDialogDesignLayout.addItem(spacer3_2,3,2)
+        ExportDialogDesignLayout.addItem(spacer3_2,3,1)
 
         layout4 = QGridLayout(None,1,1,0,6,"layout4")
 
@@ -96,33 +68,59 @@ class ExportDialogDesign(QDialog):
 
         layout4.addWidget(self.textLabel2_2,1,0)
 
-        ExportDialogDesignLayout.addMultiCellLayout(layout4,2,2,0,2)
+        ExportDialogDesignLayout.addMultiCellLayout(layout4,2,2,0,1)
 
-        layout1 = QHBoxLayout(None,0,6,"layout1")
-        spacer1 = QSpacerItem(321,21,QSizePolicy.Expanding,QSizePolicy.Minimum)
-        layout1.addItem(spacer1)
+        layout4_2 = QHBoxLayout(None,0,6,"layout4_2")
+        spacer1 = QSpacerItem(340,21,QSizePolicy.Expanding,QSizePolicy.Minimum)
+        layout4_2.addItem(spacer1)
+
+        self.startButton = QPushButton(self,"startButton")
+        self.startButton.setSizePolicy(QSizePolicy(1,0,0,0,self.startButton.sizePolicy().hasHeightForWidth()))
+        layout4_2.addWidget(self.startButton)
 
         self.pushButton2 = QPushButton(self,"pushButton2")
-        layout1.addWidget(self.pushButton2)
+        self.pushButton2.setDefault(1)
+        layout4_2.addWidget(self.pushButton2)
 
-        ExportDialogDesignLayout.addMultiCellLayout(layout1,8,8,0,2)
-        spacer4 = QSpacerItem(21,10,QSizePolicy.Minimum,QSizePolicy.Fixed)
-        ExportDialogDesignLayout.addItem(spacer4,5,1)
+        ExportDialogDesignLayout.addMultiCellLayout(layout4_2,6,6,0,1)
 
         self.line1 = QFrame(self,"line1")
         self.line1.setFrameShape(QFrame.HLine)
         self.line1.setFrameShadow(QFrame.Sunken)
         self.line1.setFrameShape(QFrame.HLine)
 
-        ExportDialogDesignLayout.addMultiCellWidget(self.line1,7,7,0,2)
+        ExportDialogDesignLayout.addMultiCellWidget(self.line1,5,5,0,1)
+
+        layout5 = QGridLayout(None,1,1,0,6,"layout5")
 
         self.resultLabel = QLabel(self,"resultLabel")
 
-        ExportDialogDesignLayout.addMultiCellWidget(self.resultLabel,6,6,0,2)
+        layout5.addMultiCellWidget(self.resultLabel,2,2,0,1)
+
+        self.removeButton = QPushButton(self,"removeButton")
+        self.removeButton.setSizePolicy(QSizePolicy(1,0,0,0,self.removeButton.sizePolicy().hasHeightForWidth()))
+
+        layout5.addWidget(self.removeButton,1,1)
+
+        self.itemView = QListView(self,"itemView")
+        self.itemView.addColumn(self.__tr("1"))
+        self.itemView.addColumn(self.__tr("DN"))
+        self.itemView.addColumn(self.__tr("Message"))
+        self.itemView.setSizePolicy(QSizePolicy(7,7,0,0,self.itemView.sizePolicy().hasHeightForWidth()))
+        self.itemView.setSelectionMode(QListView.Extended)
+        self.itemView.setAllColumnsShowFocus(1)
+        self.itemView.setShowSortIndicator(1)
+        self.itemView.setResizeMode(QListView.LastColumn)
+
+        layout5.addMultiCellWidget(self.itemView,0,0,0,1)
+        spacer3 = QSpacerItem(120,21,QSizePolicy.Expanding,QSizePolicy.Minimum)
+        layout5.addItem(spacer3,1,0)
+
+        ExportDialogDesignLayout.addMultiCellLayout(layout5,4,4,0,1)
 
         self.languageChange()
 
-        self.resize(QSize(620,471).expandedTo(self.minimumSizeHint()))
+        self.resize(QSize(543,468).expandedTo(self.minimumSizeHint()))
         self.clearWState(Qt.WState_Polished)
 
         self.connect(self.pushButton2,SIGNAL("clicked()"),self.reject)
@@ -135,13 +133,6 @@ class ExportDialogDesign(QDialog):
     def languageChange(self):
         self.setCaption(self.__tr("Export items"))
         self.textLabel2.setText(self.__tr("The following entries will be exported to the format of your choice. You can remove items from the list if you don't want them to be exported. Press start to begin with export.."))
-        self.itemView.header().setLabel(0,self.__tr("1"))
-        self.itemView.header().setLabel(1,self.__tr("DN"))
-        self.itemView.header().setLabel(2,self.__tr("Message"))
-        self.startButton.setText(self.__tr("&Start"))
-        self.startButton.setAccel(self.__tr("Alt+S"))
-        self.removeButton.setText(self.__tr("&Remove"))
-        self.removeButton.setAccel(self.__tr("Alt+R"))
         self.iconLabel.setText(self.__tr("DL","DO NOT TRANSLATE"))
         self.fileButton.setText(self.__tr("A","DO NOT TRANSLATE"))
         self.textLabel1.setText(self.__tr("Export format:"))
@@ -150,9 +141,16 @@ class ExportDialogDesign(QDialog):
         self.formatBox.insertItem(self.__tr("LDIF"))
         self.formatBox.insertItem(self.__tr("DSML"))
         self.textLabel2_2.setText(self.__tr("Output file:"))
+        self.startButton.setText(self.__tr("&Export"))
+        self.startButton.setAccel(self.__tr("Alt+E"))
         self.pushButton2.setText(self.__tr("&Cancel"))
         self.pushButton2.setAccel(self.__tr("Alt+C"))
         self.resultLabel.setText(self.__tr("foo"))
+        self.removeButton.setText(self.__tr("&Remove from list"))
+        self.removeButton.setAccel(self.__tr("Alt+R"))
+        self.itemView.header().setLabel(0,self.__tr("1"))
+        self.itemView.header().setLabel(1,self.__tr("DN"))
+        self.itemView.header().setLabel(2,self.__tr("Message"))
 
 
     def removeItems(self):

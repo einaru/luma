@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file '/home/wido/src/luma/lib/luma/base/utils/gui/DeleteDialogDesign.ui'
 #
-# Created: Fri Jan 7 03:17:44 2005
+# Created: Tue Feb 8 20:53:49 2005
 #      by: The PyQt User Interface Compiler (pyuic) 3.13
 #
 # WARNING! All changes made in this file will be lost!
@@ -40,14 +40,19 @@ class DeleteDialogDesign(QDialog):
 
         DeleteDialogDesignLayout.addMultiCellWidget(self.line2,1,1,0,1)
 
-        layout1 = QHBoxLayout(None,0,6,"layout1")
-        spacer1 = QSpacerItem(321,21,QSizePolicy.Expanding,QSizePolicy.Minimum)
-        layout1.addItem(spacer1)
+        layout3 = QHBoxLayout(None,0,6,"layout3")
+        spacer1 = QSpacerItem(260,21,QSizePolicy.Expanding,QSizePolicy.Minimum)
+        layout3.addItem(spacer1)
+
+        self.startButton = QPushButton(self,"startButton")
+        self.startButton.setSizePolicy(QSizePolicy(1,0,0,0,self.startButton.sizePolicy().hasHeightForWidth()))
+        layout3.addWidget(self.startButton)
 
         self.pushButton2 = QPushButton(self,"pushButton2")
-        layout1.addWidget(self.pushButton2)
+        self.pushButton2.setDefault(1)
+        layout3.addWidget(self.pushButton2)
 
-        DeleteDialogDesignLayout.addMultiCellLayout(layout1,4,4,0,1)
+        DeleteDialogDesignLayout.addMultiCellLayout(layout3,4,4,0,1)
 
         self.line1 = QFrame(self,"line1")
         self.line1.setFrameShape(QFrame.HLine)
@@ -56,14 +61,12 @@ class DeleteDialogDesign(QDialog):
 
         DeleteDialogDesignLayout.addMultiCellWidget(self.line1,3,3,0,1)
 
-        layout3 = QGridLayout(None,1,1,0,6,"layout3")
-        spacer3 = QSpacerItem(21,117,QSizePolicy.Minimum,QSizePolicy.Expanding)
-        layout3.addItem(spacer3,2,1)
+        layout4 = QGridLayout(None,1,1,0,6,"layout4")
 
         self.removeButton = QPushButton(self,"removeButton")
         self.removeButton.setSizePolicy(QSizePolicy(1,0,0,0,self.removeButton.sizePolicy().hasHeightForWidth()))
 
-        layout3.addWidget(self.removeButton,1,1)
+        layout4.addWidget(self.removeButton,1,1)
 
         self.itemView = QListView(self,"itemView")
         self.itemView.addColumn(QString.null)
@@ -75,18 +78,15 @@ class DeleteDialogDesign(QDialog):
         self.itemView.setShowSortIndicator(1)
         self.itemView.setResizeMode(QListView.LastColumn)
 
-        layout3.addMultiCellWidget(self.itemView,0,2,0,0)
+        layout4.addMultiCellWidget(self.itemView,0,0,0,1)
+        spacer3 = QSpacerItem(122,21,QSizePolicy.Expanding,QSizePolicy.Minimum)
+        layout4.addItem(spacer3,1,0)
 
-        self.startButton = QPushButton(self,"startButton")
-        self.startButton.setSizePolicy(QSizePolicy(1,0,0,0,self.startButton.sizePolicy().hasHeightForWidth()))
-
-        layout3.addWidget(self.startButton,0,1)
-
-        DeleteDialogDesignLayout.addMultiCellLayout(layout3,2,2,0,1)
+        DeleteDialogDesignLayout.addMultiCellLayout(layout4,2,2,0,1)
 
         self.languageChange()
 
-        self.resize(QSize(547,319).expandedTo(self.minimumSizeHint()))
+        self.resize(QSize(524,371).expandedTo(self.minimumSizeHint()))
         self.clearWState(Qt.WState_Polished)
 
         self.connect(self.pushButton2,SIGNAL("clicked()"),self.reject)
@@ -98,15 +98,15 @@ class DeleteDialogDesign(QDialog):
         self.setCaption(self.__tr("Delete items"))
         self.iconLabel.setText(self.__tr("DL"))
         self.textLabel2.setText(self.__tr("The following entries will be deleted from the server. You can remove items from the list if you don't want them to be deleted. Press start to begin with deletion."))
+        self.startButton.setText(self.__tr("&Delete"))
+        self.startButton.setAccel(self.__tr("Alt+D"))
         self.pushButton2.setText(self.__tr("&Cancel"))
         self.pushButton2.setAccel(self.__tr("Alt+C"))
-        self.removeButton.setText(self.__tr("&Remove"))
+        self.removeButton.setText(self.__tr("&Remove from list"))
         self.removeButton.setAccel(self.__tr("Alt+R"))
         self.itemView.header().setLabel(0,QString.null)
         self.itemView.header().setLabel(1,self.__tr("DN"))
         self.itemView.header().setLabel(2,self.__tr("Message"))
-        self.startButton.setText(self.__tr("&Start"))
-        self.startButton.setAccel(self.__tr("Alt+S"))
 
 
     def removeItems(self):

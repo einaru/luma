@@ -70,12 +70,13 @@ class ExportDialog(ExportDialogDesign):
 ###############################################################################
 
     def showFileDialog(self):
-        tmpFileName = QFileDialog.getOpenFileName(\
-                            None,
-                            None,
-                            self, None,
-                            self.trUtf8("Select file to change binary value"),
-                            None, 1)
+        tmpFileName = QFileDialog.getSaveFileName(\
+                        None,
+                        None,
+                        None, None,
+                        self.trUtf8("Select file for exporting"),
+                        None, 1)
+
                             
         self.fileName = unicode(tmpFileName).strip()
         self.fileEdit.setText(self.fileName)
@@ -135,6 +136,8 @@ class ExportDialog(ExportDialogDesign):
         itemList = map(lambda x: self.exportDictionary[x][0], self.exportDictionary.keys())
         itemList.sort()
         
+        allExported = True
+        
         try:
             fileHandler = open(self.fileName, "w")
                 
@@ -146,7 +149,6 @@ class ExportDialog(ExportDialogDesign):
                 dsmlWriter.writeHeader()
                 fileHandler.write(tmpString.getvalue())
             
-            notAllExported = False
             for x in itemList:
                 try:
                     if "LDIF" == format:
@@ -157,7 +159,7 @@ class ExportDialog(ExportDialogDesign):
                     self.displayItemStatus(self.exportDictionary[x.getPrettyDN()][1], True, None)
                 except IOError, e:
                     self.displayItemStatus(self.exportDictionary[x.getPrettyDN()][1], False, None)
-                    notAllExported = True
+                    allExported = False
             
             if "DSML" == format:
                 tmpString = StringIO.StringIO()
@@ -167,7 +169,7 @@ class ExportDialog(ExportDialogDesign):
             
             fileHandler.close()
             
-            if notAllExported:
+            if not allExported:
                 self.resultLabel.setText(self.trUtf8("Could not export all entires. Please check messages."))
             else:
                 self.resultLabel.setText(self.trUtf8("All items exported successfully."))
@@ -176,6 +178,11 @@ class ExportDialog(ExportDialogDesign):
             self.resultLabel.setText(self.trUtf8("Can't open file. Please check file system permissions."))
 
         environment.setBusy(False)
+        
+        if allExported:
+            self.accept()
+        
+        
 
 ###############################################################################
 
