@@ -10,6 +10,8 @@
 
 import ldap
 import ldapurl
+import threading
+import time
 
 import environment
 from base.backend.ServerObject import ServerObject
@@ -45,80 +47,55 @@ class LumaConnection(object):
         
 ###############################################################################
 
-    def search_s(self, base="", scope=ldap.SCOPE_BASE, filter="(objectClass=*)", attrList=None):
-        """Synchronous search.
-        """
-        
-        searchResult = None
-        environment.setBusy(True)
-        
-        try:
-            searchResult = self.ldapServerObject.search_s(base, scope, filter, attrList)
-        except ldap.LDAPError, e:
-            print "Error during LDAP search request"
-            print "Reason: " + str(e)
-            
-        environment.setBusy(False)
-        return searchResult
-
-###############################################################################
-
     def search(self, base="", scope=ldap.SCOPE_BASE, filter="(objectClass=*)", attrList=None, attrsonly=0):
         """Aynchronous search.
         """
     
-        searchResult = []
         environment.setBusy(True)
+        workerThread = WorkerThreadSearch(self.ldapServerObject)
+        workerThread.base = base
+        workerThread.scope = scope
+        workerThread.filter = filter
+        workerThread.attrList = attrList
+        workerThread.attrsonly = attrsonly
+        workerThread.start()
         
-        try:
-            resultId = self.ldapServerObject.search(base, scope, filter, attrList, attrsonly)
+        while not workerThread.FINISHED:
+            environment.updateUI()
+            time.sleep(0.05)
             
-            while 1:
-                environment.updateUI()
-                result_type, result_data = self.ldapServerObject.result(resultId, 0)
-                
-                if (result_data == []):
-                    break
-                else:
-                    if result_type == ldap.RES_SEARCH_ENTRY:
-                        for x in result_data:
-                            searchResult.append(x)
-        except ldap.LDAPError, e:
-            print "Error during LDAP search request"
-            print "Reason: " + str(e)
-         
         environment.setBusy(False)
             
-        if len(searchResult) == 0:
+        if len(workerThread.result) == 0:
             return None
         else:
-            return searchResult
+            return workerThread.result
+            
             
 ###############################################################################
 
-    def delete_s(self, dnDelete=None):
+    def delete(self, dnDelete=None):
         """Synchronous delete.
         """
         
         if dnDelete == None:
             return
             
-        result = None
         environment.setBusy(True)
+        workerThread = WorkerThreadDelete(self.ldapServerObject)
+        workerThread.dnDelete = dnDelete
+        workerThread.start()
         
-        try:
-            self.ldapServerObject.delete_s(dnDelete)
-            environment.setBusy(False)
-            return True
-        except ldap.LDAPError, e:
-            print "Error during LDAP delete request"
-            print "Reason: " + str(e)
-            environment.setBusy(False)
-            return False
+        while not workerThread.FINISHED:
+            environment.updateUI()
+            time.sleep(0.01)
+            
+        environment.setBusy(False)
+        return workerThread.result
             
 ###############################################################################
 
-    def modify_s(self, dn, modlist=None):
+    def modify(self, dn, modlist=None):
         """Synchronous modify.
         """
         
@@ -126,34 +103,37 @@ class LumaConnection(object):
             return False
             
         environment.setBusy(True)
-        try:
-            self.ldapServerObject.modify_s(dn, modlist)
-            environment.setBusy(False)
-            return True
-        except ldap.LDAPError, e:
-            print "Error during LDAP modify request"
-            print "Reason: " + str(e)
-            environment.setBusy(False)
-            return False
+        workerThread = WorkerThreadModify(self.ldapServerObject)
+        workerThread.dn = dn
+        workerThread.modlist = modlist
+        workerThread.start()
+        
+        while not workerThread.FINISHED:
+            environment.updateUI()
+            time.sleep(0.05)
+            
+        environment.setBusy(False)
+        return workerThread.result
 
 ###############################################################################
 
-    def add_s(self, dn, modlist):
+    def add(self, dn, modlist):
         """Synchronous add.
         """
         
+        
         environment.setBusy(True)
+        workerThread = WorkerThreadAdd(self.ldapServerObject)
+        workerThread.dn = dn
+        workerThread.modlist = modlist
+        workerThread.start()
         
-        
-        try:
-            searchResult = self.ldapServerObject.add_s(dn, modlist)
-            environment.setBusy(False)
-            return True
-        except ldap.LDAPError, e:
-            print "Error during LDAP add request"
-            print "Reason: " + str(e)
-            environment.setBusy(False)
-            return False
+        while not workerThread.FINISHED:
+            environment.updateUI()
+            time.sleep(0.05)
+            
+        environment.setBusy(False)
+        return workerThread.result
 
 ###############################################################################
 
@@ -195,3 +175,101 @@ class LumaConnection(object):
         except ldap.LDAPError, e:
             print "Error during LDAP unbind request"
             print "Reason: " + str(e)
+            
+###############################################################################
+
+class WorkerThreadSearch(threading.Thread):
+        
+    def __init__(self, serverObject):
+        threading.Thread.__init__(self)
+        self.ldapServerObject = serverObject
+            
+        self.FINISHED = False
+        self.result = []
+            
+    def run(self):
+        try:
+            resultId = self.ldapServerObject.search(self.base, self.scope, self.filter, self.attrList, self.attrsonly)
+            
+            while 1:
+                # search with a 60 second timeout
+                result_type, result_data = self.ldapServerObject.result(resultId, 0, 60)
+                
+                if (result_data == []):
+                    break
+                else:
+                    if result_type == ldap.RES_SEARCH_ENTRY:
+                        for x in result_data:
+                            self.result.append(x)
+        except ldap.LDAPError, e:
+            print "Error during LDAP search request"
+            print "Reason: " + str(e)
+            
+        self.FINISHED = True
+        
+###############################################################################
+
+class WorkerThreadDelete(threading.Thread):
+        
+    def __init__(self, serverObject):
+        threading.Thread.__init__(self)
+        self.ldapServerObject = serverObject
+            
+        self.FINISHED = False
+        self.result = False
+        
+    def run(self):
+        try:
+            self.ldapServerObject.delete_s(self.dnDelete)
+            self.result = True
+        except ldap.LDAPError, e:
+            print "Error during LDAP delete request"
+            print "Reason: " + str(e)
+            self.result = False
+            
+        self.FINISHED = True
+
+###############################################################################
+
+class WorkerThreadAdd(threading.Thread):
+        
+    def __init__(self, serverObject):
+        threading.Thread.__init__(self)
+        self.ldapServerObject = serverObject
+            
+        self.FINISHED = False
+        self.result = False
+        
+    def run(self):
+        try:
+            searchResult = self.ldapServerObject.add_s(self.dn, self.modlist)
+            self.result = True
+        except ldap.LDAPError, e:
+            print "Error during LDAP add request"
+            print "Reason: " + str(e)
+            self.result = False
+            
+        self.FINISHED = True
+    
+###############################################################################
+    
+class WorkerThreadModify(threading.Thread):
+        
+    def __init__(self, serverObject):
+        threading.Thread.__init__(self)
+        self.ldapServerObject = serverObject
+            
+        self.FINISHED = False
+        self.result = False
+        
+    def run(self):
+        try:
+            self.ldapServerObject.modify_s(self.dn, self.modlist)
+            self.result = True
+        except ldap.LDAPError, e:
+            print "Error during LDAP modify request"
+            print "Reason: " + str(e)
+            self.result = False
+            
+        self.FINISHED = True
+    
