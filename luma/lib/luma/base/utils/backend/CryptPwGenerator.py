@@ -24,7 +24,8 @@ class CryptPwGenerator(object):
 ###############################################################################
 
     def create_random_string(self, stringLength):
-        """ Creates a random string of the length stringLength."""
+        """ Creates a random string of the length stringLength.
+        """
         
         randChars = []
         for x in range(stringLength):
@@ -34,7 +35,8 @@ class CryptPwGenerator(object):
 ###############################################################################
 
     def password_generator(self):
-        """ This is the password generator. Do not call directly."""
+        """ This is the password generator. Do not call directly.
+        """
         
         while 1:
             randPassword = self.create_random_string(8)
@@ -44,14 +46,16 @@ class CryptPwGenerator(object):
 ###############################################################################
 
     def get_random_password(self):
-        """ Returns a random password in cleatext and in crypt format"""
+        """ Returns a random password in cleatext and in crypt format
+        """
         
         return self.pwGen.next()
         
 ###############################################################################
 
     def encrypt_password(self, tmpString):
-        """ Encrypts a given string to crypt format and returns the password in cleartext and in crypt."""
+        """ Encrypts a given string to crypt format and returns the password in cleartext and in crypt.
+        """
         
         salt = "$1$" + self.create_random_string(8)
         return tmpString, crypt.crypt(tmpString, salt)

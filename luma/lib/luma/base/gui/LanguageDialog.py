@@ -29,9 +29,14 @@ class LanguageDialog(LanguageDialogDesign):
             if (x[:5] == 'luma_') and (x[-3:] == '.qm'):
                 self.languages.append(x[5:-3])
         
+        # Since english is the default language, there is no language
+        # file and we have to make the entry manually.
         pixmap = QPixmap(self.trDir + "/gb.png")
         self.languageBox.insertItem(pixmap, "English (UK)")
         
+        # Insert all languages which have a language file.
+        # IMPORTANT: Has to be edited every time a new languaged is
+        # added to luma.
         for x in self.languages:
             if x == 'de':
                 pixmap = QPixmap(self.trDir + "/" + x + ".png")

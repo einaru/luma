@@ -16,7 +16,12 @@ import string
 from base.backend.ServerList import ServerList
 
 class ObjectClassAttributeInfo(object):
+    """ A class for getting information about objectclasses and attributes 
+    from a server.
+    """
 
+###############################################################################
+    
     def __init__(self, server):
         self.OBJECTCLASSES = {}
         self.ATTRIBUTELIST = {}
@@ -26,6 +31,10 @@ class ObjectClassAttributeInfo(object):
 ###############################################################################
 
     def retrieve_info_from_server(self):
+        """ Retrieve all information of objectclasses and attributes from the
+        server.
+        """
+        
         tmpObject = ServerList()
         tmpObject.readServerList()
         serverMeta = ""
@@ -38,32 +47,42 @@ class ObjectClassAttributeInfo(object):
             tmpUrl = "ldap://" + serverMeta.host + ":" + str(serverMeta.port)
             subschemasubentry_dn,schema = ldap.schema.urlfetch(tmpUrl)
             oidList = schema.listall(ldap.schema.ObjectClass)
+            
             for x in oidList:
                 mainWin.update_ui()
                 y = schema.get_obj(ldap.schema.ObjectClass, x)
                 name = y.names[0]
                 desc = ""
+                
                 if not (y.desc == None):
                     desc = y.desc
                 must = []
+                
                 if not (len(y.must) == 0):
                     must = y.must
                 may = []
+                
                 if not (len(y.may) == 0):
                     may = y.may
+                    
                 self.OBJECTCLASSES[name] = {"DESC": desc, "MUST": must, "MAY": may}
 
             oidList = schema.listall(ldap.schema.AttributeType)
+            
             for x in oidList:
                 mainWin.update_ui()
                 y = schema.get_obj(ldap.schema.AttributeType, x)
                 name = y.names
                 desc = ""
+                
                 if not (y.desc == None):
                     desc = y.desc
+                    
                 single = y.single_value
+                
                 for y in name:
                     self.ATTRIBUTELIST[y] = {"DESC": desc, "SINGLE": single}
+                    
         except ldap.LDAPError, e:
             print "Error during LDAP request"
             print "Reason: " + str(e)
@@ -73,11 +92,17 @@ class ObjectClassAttributeInfo(object):
 ###############################################################################
 
     def set_server(self, server):
+        """ Set the server from which we want to get the infos.
+        """
+        
         self.SERVER = server[:]
 
 ###############################################################################
 
     def update(self):
+        """ Re-read all informations.
+        """
+        
         self.OBJECTCLASSES = {}
         self.ATTRIBUTELIST = []
         self.retrieve_info_from_server()
@@ -85,43 +110,66 @@ class ObjectClassAttributeInfo(object):
 ###############################################################################
 
     def get_all_attributes(self, classList = None):
+        """ Return a list of all attributes which the server supports.
+        """
+        
         allAttributes = []
+        
         for x in classList:
             must = self.OBJECTCLASSES[x]["MUST"]
             may = self.OBJECTCLASSES[x]["MAY"]
+            
             if not (len(must) == 0):
                 for y in must:
                     allAttributes.append(y)
+                    
             if not (len(may) == 0):
                 for y in may:
                     allAttributes.append(y)
+                    
         return allAttributes
 
 ###############################################################################
 
     def get_all_musts(self, classList = None):
+        """ Returns a list of all attributes which are needed by the 
+        objectclasses given by classList.
+        """
+        
         allAttributes = []
+        
         for x in classList:
             must = self.OBJECTCLASSES[x]["MUST"]
+            
             if not (len(must) == 0):
                 for y in must:
                     allAttributes.append(y)
+                    
         return allAttributes
 
 ###############################################################################
 
     def get_all_mays(self, classList = None):
+        """ Returns a list of all attributes which are optional for the 
+        objectclasses given by classList.
+        """
+        
         allAttributes = []
         for x in classList:
             may = self.OBJECTCLASSES[x]["MAY"]
+            
             if not (len(may) == 0):
                 for y in may:
                     allAttributes.append(y)
+                    
         return allAttributes
 
 ###############################################################################
 
     def is_single(self, attribute = ""):
+        """ Check if a attribute must be single.
+        """
+        
         if self.ATTRIBUTELIST.has_key(attribute):
              val = self.ATTRIBUTELIST[attribute]["SINGLE"]
              return val
@@ -131,6 +179,9 @@ class ObjectClassAttributeInfo(object):
 ###############################################################################
 
     def is_must(self, attribute="", objectClasses = None):
+        """ Check if the given attribute must be set.
+        """
+        
         if objectClasses == None:
             raise "Missing Arguments to Funktion 'is_must(attribute, objectClasses)"
         else:
@@ -143,7 +194,9 @@ class ObjectClassAttributeInfo(object):
 ###############################################################################
 
     def update_ui(self):
-        """ Updates the progress bar of the GUI and keeps it responsive."""
+        """ Updates the progress bar of the GUI and keeps it responsive.
+        """
+        
         qApp.processEvents()
         progress = self.pBar.progress()
         self.pBar.setProgress(progress + 1)

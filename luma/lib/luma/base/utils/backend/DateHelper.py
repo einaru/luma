@@ -1,7 +1,8 @@
 from mx.DateTime import *
 
 class DateHelper(object):
-    """A class for doing some date calculations."""
+    """A class for doing some date calculations.
+    """
 
 ###############################################################################
 

@@ -6,22 +6,22 @@
         <translation>Über Luma</translation>
     </message>
     <message>
-        <source>&lt;p align=&quot;center&quot;&gt;Luma Version 0.1&lt;/p&gt;
-&lt;p align=&quot;center&quot;&gt;Copyright (C) 2003 Wido Depping. All rights reserved&lt;br&gt;&lt;br&gt;
-This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.&lt;br&gt;&lt;br&gt;
-This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.&lt;br&gt;&lt;br&gt;
-You should have received a copy of the GNU General Public License along with this program; if not, write to the Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
-&lt;/p&gt;</source>
-        <translation>&lt;p align=&quot;center&quot;&gt;Luma Version 0.1&lt;/p&gt;(new line)
-&lt;p align=&quot;center&quot;&gt;Copyright (C) 2003 Wido Depping. All rights reserved&lt;br&gt;&lt;br&gt;(new line)
-This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.&lt;br&gt;&lt;br&gt;(new line)
-This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.&lt;br&gt;&lt;br&gt;(new line)
-You should have received a copy of the GNU General Public License along with this program; if not, write to the Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA(new line)
-&lt;/p&gt;</translation>
-    </message>
-    <message>
         <source>OK</source>
         <translation>Ok</translation>
+    </message>
+    <message>
+        <source>&lt;p align=&quot;center&quot;&gt;Luma Version 1.0&lt;/p&gt;
+&lt;p align=&quot;center&quot;&gt;Copyright (C) 2003 Wido Depping. All rights reserved&lt;br&gt;&lt;br&gt;
+Luma is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.&lt;br&gt;&lt;br&gt;
+Luma is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.&lt;br&gt;&lt;br&gt;
+You should have received a copy of the GNU General Public License along with this program; if not, write to the Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+&lt;/p&gt;</source>
+        <translation>&lt;p align=&quot;center&quot;&gt;Luma Version 1.0&lt;/p&gt;(new line)
+&lt;p align=&quot;center&quot;&gt;Copyright (C) 2003 Wido Depping. All rights reserved&lt;br&gt;&lt;br&gt;(new line)
+Luma is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.&lt;br&gt;&lt;br&gt;(new line)
+Luma is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.&lt;br&gt;&lt;br&gt;(new line)
+You should have received a copy of the GNU General Public License along with this program; if not, write to the Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA(new line)
+&lt;/p&gt;</translation>
     </message>
 </context>
 <context>
@@ -141,6 +141,14 @@ You should have received a copy of the GNU General Public License along with thi
         <source>Add entry</source>
         <translation>Eintrag hinzufügen</translation>
     </message>
+    <message>
+        <source>Delete Items recursive</source>
+        <translation>Einträge rekursiv löschen</translation>
+    </message>
+    <message>
+        <source>Do you really want to delete the items recursively from the server?</source>
+        <translation>Wollen Sie wirklich alle Einträge rekursiv vom Server löschen?</translation>
+    </message>
 </context>
 <context>
     <name>ConfigError</name>
@@ -236,21 +244,6 @@ You should have received a copy of the GNU General Public License along with thi
     </message>
 </context>
 <context>
-    <name>FilterWizard</name>
-    <message>
-        <source>and</source>
-        <translation>und</translation>
-    </message>
-    <message>
-        <source>or</source>
-        <translation>oder</translation>
-    </message>
-    <message>
-        <source>not</source>
-        <translation>nicht</translation>
-    </message>
-</context>
-<context>
     <name>FilterWizardDesign</name>
     <message>
         <source>Search Filter Wizard</source>
@@ -330,11 +323,44 @@ You should have received a copy of the GNU General Public License along with thi
     </message>
 </context>
 <context>
-    <name>LanguageDialogDesign</name>
+    <name>IfiUser</name>
     <message>
-        <source>Form1</source>
+        <source>Incomplete Information</source>
         <translation></translation>
     </message>
+    <message>
+        <source>Please select a valid node from a ldap server.</source>
+        <translation>Bitte einen gültigen Knoten vom LDAP Server wählen.</translation>
+    </message>
+    <message>
+        <source>&amp;OK</source>
+        <translation>&amp;Ok</translation>
+    </message>
+    <message>
+        <source>Conflict</source>
+        <translation>Konflikt</translation>
+    </message>
+    <message>
+        <source>There are not enough user ids left! 
+Try increasing the uidNumber range or delete some users from the subtree.</source>
+        <translation>Es sind nicht genügend user-ids vorhanden!
+Versuchen sie entweder den Bereich für die uids zu erweitern oder löschen sie einige Benutzer aus dem Baum.</translation>
+    </message>
+    <message>
+        <source>Success</source>
+        <translation>Erfolg</translation>
+    </message>
+    <message>
+        <source>User was created successfully.</source>
+        <translation>Benutzer wurde erfolgreich angelegt.</translation>
+    </message>
+    <message>
+        <source>Ok</source>
+        <translation>Ok</translation>
+    </message>
+</context>
+<context>
+    <name>LanguageDialogDesign</name>
     <message>
         <source>Language:</source>
         <translation>Sprache:</translation>
@@ -346,6 +372,10 @@ You should have received a copy of the GNU General Public License along with thi
     <message>
         <source>Ok</source>
         <translation>Ok</translation>
+    </message>
+    <message>
+        <source>Choose Language</source>
+        <translation>Sprache auswählen</translation>
     </message>
 </context>
 <context>
@@ -411,6 +441,36 @@ You should have received a copy of the GNU General Public License along with thi
     <message>
         <source>Ok</source>
         <translation>Ok</translation>
+    </message>
+    <message>
+        <source>Incomplete Information</source>
+        <translation>Unvollständige Informationen</translation>
+    </message>
+    <message>
+        <source>Please select a valid node from a ldap server.</source>
+        <translation>Bitte einen gültigen Knoten vom LDAP Server auswählen.</translation>
+    </message>
+    <message>
+        <source>&amp;OK</source>
+        <translation>&amp;Ok</translation>
+    </message>
+    <message>
+        <source>Conflict</source>
+        <translation>Konflikt</translation>
+    </message>
+    <message>
+        <source>There are not enough user ids left! 
+Try increasing the uidNumber range or delete some users from the subtree.</source>
+        <translation>Es sind nicht genügend user-ids vorhanden!
+Versuchen sie entweder den Bereich für die uids zu erweitern oder löschen sie einige Benutzer aus dem Baum.</translation>
+    </message>
+    <message>
+        <source>Success</source>
+        <translation>Erfolg</translation>
+    </message>
+    <message>
+        <source>All users were created successfully.</source>
+        <translation>Alle Benutzer wurden erfolgreich angelegt.</translation>
     </message>
 </context>
 <context>

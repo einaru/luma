@@ -1,3 +1,11 @@
+###########################################################################
+#    Copyright (C) 2003 by Wido Depping                                      
+#    <wido.depping@tu-clausthal.de>                                                             
+#
+# Copyright: See COPYING file that comes with this distribution
+#
+###########################################################################
+
 import os
 
 from qt import *
@@ -8,6 +16,8 @@ from base.backend.ServerList import ServerList
 from base.backend.DirUtils import DirUtils
 
 class ServerDialog(ServerDialogDesign):
+    """ Show the dialog for managing all server information.
+    """
 
     def __init__(self, parent= None):
         ServerDialogDesign.__init__(self, parent)
@@ -30,6 +40,9 @@ class ServerDialog(ServerDialogDesign):
 ###############################################################################
 
     def serverSelectionChanged(self):
+        """ Change server information if another server has been selected.
+        """
+        
         selectedServerString = str(self.serverIconView.currentItem().text())
 
         x = self.serverListObject.get_serverobject(selectedServerString)
@@ -49,6 +62,9 @@ class ServerDialog(ServerDialogDesign):
 ###############################################################################
 
     def setInputEnabled(self, inputMutex):
+        """ Change attributes of input fields to enable/disable input.
+        """
+        
         self.nameLineEdit.setEnabled(1)
         self.nameLineEdit.setReadOnly(not(inputMutex))
         self.hostLineEdit.setReadOnly(not(inputMutex))
@@ -75,6 +91,9 @@ class ServerDialog(ServerDialogDesign):
 ###############################################################################
 
     def addServer(self):
+        """ Set content of input fields if a new server is created.
+        """
+        
         self.nameLineEdit.setText("")
         self.hostLineEdit.setText("")
         self.portSpinBox.setValue(389)
@@ -90,6 +109,9 @@ class ServerDialog(ServerDialogDesign):
 ###############################################################################
 
     def reloadServer(self):
+        """ Re-read the server list from config file and get updated data.
+        """
+        
         self.serverIconView.clear()
         self.serverListObject.readServerList()
         if self.serverListObject.SERVERLIST == None:
@@ -107,6 +129,9 @@ class ServerDialog(ServerDialogDesign):
 ###############################################################################
 
     def saveServer(self):
+        """ Save the changed values of the currently selected server.
+        """
+        
         if len(self.serverList) > 0:
             self.serverListObject.deleteServer(str(self.nameLineEdit.text()))
         self.serverListObject.addServer(str(self.nameLineEdit.text()),
@@ -122,6 +147,9 @@ class ServerDialog(ServerDialogDesign):
 ###############################################################################
 
     def deleteServer(self):
+        """ Delete the currently selected server.
+        """
+        
         selectedServerString = self.serverIconView.currentItem().text()
         reallyDelete = QMessageBox(self.trUtf8("Delete Server?"),
                 self.trUtf8("Do your really want to delete the Server?"),
@@ -140,6 +168,10 @@ class ServerDialog(ServerDialogDesign):
 ###############################################################################
 
     def bind_anon(self):
+        """ Change authentification info if anonoumus authentification is
+        selected/de-selected.
+        """
+        
         if self.bindAnonBox.isChecked():
             self.passwordLineEdit.setEnabled(0)
             self.bindLineEdit.setEnabled(0)

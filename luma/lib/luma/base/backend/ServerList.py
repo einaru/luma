@@ -24,14 +24,17 @@ class ServerList:
     
     def __init__(self):
         self.SERVERLIST = []
-        self.__serverPrefix = DirUtils().USERDIR + "/.luma"
+        self.__configPrefix = DirUtils().USERDIR + "/.luma"
         self.__configFile = DirUtils().USERDIR + "/.luma/servers"
         self.__checkConfigDir()
 
 ###############################################################################
 
     def __checkConfigDir(self):
-        if not (os.path.exists(self.__serverPrefix)):
+        """ Check if configuration directory exists. If not, create it.
+        """
+        
+        if not (os.path.exists(self.__configPrefix)):
             try:
                 os.mkdir(DirUtils().USERDIR + "/.luma")
             except IOError, e:
@@ -41,13 +44,14 @@ class ServerList:
 ###############################################################################
 
     def readServerList(self):
+        """ Read the server list from configuration file.
+        """
+        
         self.SERVERLIST = None
 
         fileContent = None
         try:
-            datei = open(self.__configFile, 'r')
-            fileContent = datei.readlines()
-            datei.close()
+            fileContent = open(self.__configFile, 'r').readlines()
             self.SERVERLIST = self.__process_data(fileContent)
         except IOError, e:
             print "Could not open configuration file for server-options"
@@ -56,6 +60,9 @@ class ServerList:
 ###############################################################################
 
     def __process_data(self, fileContent):
+        """ Retrieve all server information from fileContent.
+        """
+        
         serverList = []
         serverListRaw = []
         tmpServer = []
@@ -100,6 +107,11 @@ class ServerList:
 ###############################################################################
 
     def addServer(self, serverName, hostName, port, bindAnon, baseDN, bindDN, password, tls):
+        """ Add a server to the server list.
+        
+        Arguments should be self-explationary.
+        """
+        
         server = ServerObject()
         server.name = serverName
         server.host = hostName
@@ -119,6 +131,9 @@ class ServerList:
 ###############################################################################
 
     def save_settings(self, serverList):
+        """ Save the server list to configuration file.
+        """
+        
         try:
             datei = open(self.__configFile, 'w')
             for x in serverList:
@@ -140,6 +155,9 @@ class ServerList:
 ###############################################################################
 
     def deleteServer(self, serverName):
+        """ Delete a server from the server list.
+        """
+        
         newList = []
         for x in self.SERVERLIST:
             if not(x.name == serverName):
@@ -150,6 +168,9 @@ class ServerList:
 ###############################################################################
 
     def __repr__(self):
+        """ String representation for the server list.
+        """
+        
         finalString = ""
         for x in serverList:
             finalString = finalString + str(x) + "\n"
@@ -158,6 +179,9 @@ class ServerList:
 ###############################################################################
 
     def get_serverobject(self, serverName):
+        """ Get a server object by its name.
+        """
+        
         for x in self.SERVERLIST:
             if x.name == serverName:
                 return x

@@ -14,7 +14,8 @@ from os.path import isdir
 import os
 
 class PluginLoaderGui(PluginLoaderGuiDesign):
-    """Dialog for choosing which plugins should be loaded."""
+    """Dialog for choosing which plugins should be loaded.
+    """
 
     def __init__(self, tmpPlugins=None, parent=None):
         PluginLoaderGuiDesign.__init__(self, parent)
@@ -53,12 +54,15 @@ class PluginLoaderGui(PluginLoaderGuiDesign):
                 os.mkdir (self.userHome + "/.luma")
             
             fileHandler = open(self.defaultsHome, 'w')
+            
             for x in self.checkerList:
                 if x.isOn():
                     fileHandler.write(str(x.text()) + "\n")
+                    
             fileHandler.close()
         except IOError, errorData:
             print "Could not open file for plugin defaults :("
             print "Reason: ", errorData
+            
         self.accept()
 
