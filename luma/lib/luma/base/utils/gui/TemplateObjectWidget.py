@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 ###########################################################################
 #    Copyright (C) 2003 by Wido Depping
 #    <wido.depping@tu-clausthal.de>                                                             
@@ -172,7 +174,7 @@ class TemplateObjectWidget(QWidget):
         try:
             ldapServerObject = ldap.open(serverMeta.host, serverMeta.port)
             ldapServerObject.protocol_version = ldap.VERSION3
-            if serverMeta.tls == "1":
+            if serverMeta.tls == 1:
                 ldapServerObject.start_tls_s()
             ldapServerObject.simple_bind_s(serverMeta.bindDN,
                                 serverMeta.bindPassword)

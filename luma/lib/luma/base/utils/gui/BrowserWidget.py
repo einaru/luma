@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 ###########################################################################
 #    Copyright (C) 2003 by Wido Depping                                      
 #    <wido.depping@tu-clausthal.de>                                                             
@@ -54,7 +56,7 @@ class BrowserWidget(QListView):
             
         for x in self.SERVERLIST:
             tmpItem = QListViewItem(self, x.name)
-            if int(x.tls):
+            if x.tls == 1:
                 tmpItem.setPixmap(0, QPixmap(tmpIconFile))
             self.insertItem(tmpItem)
             tmpBase = QListViewItem(tmpItem, x.baseDN)
@@ -487,7 +489,7 @@ See console output for more information."""),
         try:
             ldapServerObject = ldap.open(serverMeta.host)
             ldapServerObject.protocol_version = ldap.VERSION3
-            if serverMeta.tls == "1":
+            if serverMeta.tls == 1:
                 ldapServerObject.start_tls_s()
             if len(serverMeta.bindDN) > 0:
                 ldapServerObject.simple_bind_s(serverMeta.bindDN,

@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 ###########################################################################
 #    Copyright (C) 2003 by Wido Depping
 #    <wido.depping@tu-clausthal.de>
@@ -96,7 +98,7 @@ Try increasing the uidNumber range or delete some users from the subtree."""),
         try:
             ldapServerObject = ldap.open(serverMeta.host, serverMeta.port)
             ldapServerObject.protocol_version = ldap.VERSION3
-            if serverMeta.tls == "1":
+            if serverMeta.tls == 1:
                 ldapServerObject.start_tls_s()
             ldapServerObject.simple_bind_s(serverMeta.bindDN,
                                 serverMeta.bindPassword)
@@ -112,8 +114,12 @@ Try increasing the uidNumber range or delete some users from the subtree."""),
             homeDir = baseHomeDir + "/" + userName
                 
             modList = []
-            modList.append(('objectClass', ['qmailUser', 'posixAccount', 'shadowAccount', 'inetOrgPerson']))
-                
+            
+            # preserved for new ldap server
+            #modList.append(('objectClass', ['qmailUser', 'posixAccount', 'shadowAccount', 'inetOrgPerson']))
+            
+            modList.append(('objectClass', ['posixAccount', 'shadowAccount', 'inetOrgPerson']))
+            
             modList.append(('uid', userName))
             modList.append(('uidNumber', str(uidNumber)))
             modList.append(('cn', sureName + ' ' + givenName))
@@ -125,11 +131,23 @@ Try increasing the uidNumber range or delete some users from the subtree."""),
             modList.append(('gidNumber', groupId))
             modList.append(('homeDirectory', homeDir))
             tmpName = sureName.lower() + "." + givenName.lower()
-            modList.append(('mail', [tmpName + "@in.tu-clausthal.de", userName + "@in.tu-clausthal.de"]))
-            modList.append(('mailAlternateAddress', userName + "@mail.in.tu-clausthal.de"))
+            
+            # preserved for new ldap server
+            #modList.append(('mail', [tmpName + "@in.tu-clausthal.de", userName + "@in.tu-clausthal.de"]))
+            #modList.append(('mailAlternateAddress', userName + "@mail.in.tu-clausthal.de"))
+            
             tmpDN = 'uid=' + userName + "," + baseDN
             searchResult = ldapServerObject.add_s(tmpDN, modList)
-                
+            
+            # creating automount entry
+            modList = []
+            modList.append(('objectClass', 'automount'))
+            modList.append(('cn', userName))
+            modList.append(('automountInformation', '-fstype=nfs,rw,quota,soft,intr home.in.tu-clausthal.de:' + homeDir))
+            modList.append(('description', 'Mountpoint des Homeverzeichnisses von ' + userName))
+            tmpDN = "cn=" + userName + ",ou=home,ou=automount,dc=in.tu-clausthal,dc=de"
+            searchResult = ldapServerObject.add_s(tmpDN, modList)
+            
             self.passwordEdit.append(userName + ': ' + passwordClear + "\n") 
                 
             ldapServerObject.unbind()
@@ -185,7 +203,7 @@ Try increasing the uidNumber range or delete some users from the subtree."""),
         try:
             ldapServerObject = ldap.open(serverMeta.host)
             ldapServerObject.protocol_version = ldap.VERSION3
-            if serverMeta.tls == "1":
+            if serverMeta.tls == 1:
                 ldapServerObject.start_tls_s()
             if len(serverMeta.bindDN) > 0:
                 ldapServerObject.simple_bind_s(serverMeta.bindDN,

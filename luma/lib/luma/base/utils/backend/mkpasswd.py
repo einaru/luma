@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 #$Id$
 '''
  Module written by Bjorn Ove Grotan <bgrotan@samfundet.no>

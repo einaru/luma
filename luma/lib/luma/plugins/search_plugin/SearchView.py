@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 ###########################################################################
 #    Copyright (C) 2003 by Wido Depping                                      
 #    <wido.depping@tu-clausthal.de>                                                             
@@ -13,16 +15,16 @@ from base.utils.gui.SearchResultView import SearchResultView
 
 class SearchView(QWidget):
 
-	def __init__(self, parent=None, name=None, fl=0):
-		QWidget.__init__(self, parent, name, fl)
+    def __init__(self, parent=None, name=None, fl=0):
+        QWidget.__init__(self, parent, name, fl)
 
-		self.vLayout = QVBoxLayout(self)
+        self.vLayout = QVBoxLayout(self)
 
-		self.searchForm = SearchForm(self)
-		self.resultView = SearchResultView(self)
+        self.searchForm = SearchForm(self)
+        self.resultView = SearchResultView(self)
 
-		self.vLayout.addWidget(self.searchForm)
-		self.vLayout.addWidget(self.resultView)
+        self.vLayout.addWidget(self.searchForm)
+        self.vLayout.addWidget(self.resultView)
 
-		self.connect(self.searchForm, PYSIGNAL("ldap_result"), \
-				self.resultView.set_result)
+        self.connect(self.searchForm, PYSIGNAL("ldap_result"), \
+                self.resultView.set_result)

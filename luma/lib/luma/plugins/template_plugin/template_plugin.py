@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 ###########################################################################
 #    Copyright (C) 2003 by Wido Depping
 #    <wido.depping@tu-clausthal.de>
@@ -25,7 +27,7 @@ class TaskPlugin(object):
         try:
             iconPixmap = QPixmap(self.pluginPath + "/icons/plugin.png")
         except:
-            print "Debug: Icon konnte nicht geöffnet werden"
+            print "Debug: Icon konnte nicht geÃ¶ffnet werden"
 
         return iconPixmap
 

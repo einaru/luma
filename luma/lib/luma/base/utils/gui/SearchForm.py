@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 ###########################################################################
 #    Copyright (C) 2003 by Wido Depping
 #    <wido.depping@tu-clausthal.de>
@@ -31,7 +33,7 @@ class SearchForm(SearchFormDesign):
         
         if not (self.serverList == None):
             for x in self.serverList:
-                if int(x.tls):
+                if x.tls == 1:
                     self.serverBox.insertItem(securePixmap, x.name)
                 else:
                     self.serverBox.insertItem(x.name)

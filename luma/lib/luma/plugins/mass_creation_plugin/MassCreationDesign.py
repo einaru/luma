@@ -1,13 +1,14 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'MassCreationDesign.ui'
+# Form implementation generated from reading ui file '/home/wido/src/luma/lib/luma/plugins/mass_creation_plugin/MassCreationDesign.ui'
 #
-# Created: Mon Nov 10 22:12:15 2003
-#      by: The PyQt User Interface Compiler (pyuic) 3.7
+# Created: Thu Dec 4 01:54:12 2003
+#      by: The PyQt User Interface Compiler (pyuic) 3.8.1
 #
 # WARNING! All changes made in this file will be lost!
 
 
+import sys
 from qt import *
 
 image0_data = [
@@ -577,3 +578,11 @@ class MassCreationDesign(QWidget):
 
     def __tr(self,s,c = None):
         return qApp.translate("MassCreationDesign",s,c)
+
+if __name__ == "__main__":
+    a = QApplication(sys.argv)
+    QObject.connect(a,SIGNAL("lastWindowClosed()"),a,SLOT("quit()"))
+    w = MassCreationDesign()
+    a.setMainWidget(w)
+    w.show()
+    a.exec_loop()

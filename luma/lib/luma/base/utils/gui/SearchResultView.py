@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 ###########################################################################
 #    Copyright (C) 2003 by Wido Depping
 #    <wido.depping@tu-clausthal.de>
@@ -139,7 +141,7 @@ class SearchResultView(SearchResultViewDesign):
             ldapServerObject = ldap.open(serverMeta.host, serverMeta.port)
             ldapServerObject.protocol_version = ldap.VERSION3
             
-            if serverMeta.tls == "1":
+            if serverMeta.tls == 1:
                 ldapServerObject.start_tls_s()
                 
             if len(serverMeta.bindDN) > 0:
