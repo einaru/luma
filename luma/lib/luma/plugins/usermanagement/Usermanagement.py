@@ -31,7 +31,7 @@ class Usermanagement(QWidget):
         self.entryList.initFilterConfig("Usermanagement")
         self.entryList.setMinimumWidth(200)
         self.entryList.searchFilterPrefix =  "(&(|(objectClass=posixAccount)(objectClass=shadowAccount))(|"
-        self.entryList.filterElements = ["cn", "sn", "givenName", "uid"]
+        self.entryList.filterElements = ["cn", "sn", "givenName", "uid", "mail"]
         self.entryList.primaryKey = "uid"
         # assign functions which will be executed when an object will be deleted
         self.entryList.deletePreProcess = deletePreProcess
