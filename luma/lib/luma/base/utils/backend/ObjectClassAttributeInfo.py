@@ -28,17 +28,17 @@ class ObjectClassAttributeInfo(object):
     # schema-cache of all servers whose schema has been requested already
     serverMetaCache = {}
     
-    def __init__(self, server=None):
+    def __init__(self, serverMeta=None):
         # Dictionaries with lowercase names of attributes and objectclasses
         self.objectClassesDict = {}
         self.attributeDict = {}
         
         # alias name of the current server
-        self.SERVER = server
+        self.serverMeta = serverMeta
         
         # automaticly retrieve schema info if server data is passed 
         # upon initialization
-        if not (server == None):
+        if not (serverMeta == None):
             self.retrieveInfoFromServer()
 
 ###############################################################################
@@ -51,13 +51,13 @@ class ObjectClassAttributeInfo(object):
         environment.setBusy(True)
         
         # Try to get server schema information from the cache
-        if self.SERVER in self.serverMetaCache.keys():
-            self.objectClassesDict = self.serverMetaCache[self.SERVER]["objectClassesDict"]
-            self.attributeDict = self.serverMetaCache[self.SERVER]["attributeDict"]
+        if self.serverMeta.name in self.serverMetaCache.keys():
+            self.objectClassesDict = self.serverMetaCache[self.serverMeta.name]["objectClassesDict"]
+            self.attributeDict = self.serverMetaCache[self.serverMeta.name]["attributeDict"]
         else:
             tmpObject = ServerList()
             tmpObject.readServerList()
-            serverMeta = tmpObject.getServerObject(self.SERVER)
+            serverMeta = self.serverMeta
 
             try:
                 # FIXME: is this right? it only checks normal and ssl transport
@@ -139,7 +139,7 @@ class ObjectClassAttributeInfo(object):
                 metaData = {}
                 metaData['objectClassesDict'] = self.objectClassesDict
                 metaData['attributeDict'] = self.attributeDict
-                self.__class__.serverMetaCache[self.SERVER] = metaData
+                self.__class__.serverMetaCache[self.serverMeta.name] = metaData
                 
             except ldap.LDAPError, e:
                 print "Error during LDAP request"
@@ -362,4 +362,19 @@ class ObjectClassAttributeInfo(object):
                 allowedBool = False
                         
         return allowedBool
+        
+###############################################################################
+
+    def attributeAllowed(self, attributeName, classList):
+        """ Returns a boolean if the attribute attributeName is allowed with the
+        classes given by classList.
+        """
+        
+        mustSet, maySet = self.getAllAttributes(classList)
+        newSet = mustSet.union(maySet)
+        
+        if attributeName in newSet:
+            return True
+        else:
+            return False
 
