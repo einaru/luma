@@ -19,11 +19,11 @@ class DateHelper(object):
 
     def __init__(self):
         # setting the date for the birth of unix
-        self.unixBirth = Date(1979, 1, 1)
+        self.unixBirth = Date(1970, 1, 1)
         
 ###############################################################################
 
-    def is_valid_date(self, year=1979, month=1, day=1):
+    def is_valid_date(self, year=1970, month=1, day=1):
         """Test  if a given date is valid. Default date is the birth of unix.
         
         If the date is valid 1 is returned, else 0.
