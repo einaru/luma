@@ -9,7 +9,7 @@
             <x>0</x>
             <y>0</y>
             <width>589</width>
-            <height>459</height>
+            <height>463</height>
         </rect>
     </property>
     <property name="caption">
@@ -87,7 +87,7 @@
                             <string>P</string>
                         </property>
                     </widget>
-                    <widget class="QPushButton" row="0" column="1" rowspan="1" colspan="2">
+                    <widget class="QPushButton" row="0" column="1" rowspan="1" colspan="3">
                         <property name="name">
                             <cstring>nameButton</cstring>
                         </property>
@@ -95,7 +95,7 @@
                             <string>Full Name ...</string>
                         </property>
                     </widget>
-                    <widget class="QLabel" row="1" column="1" rowspan="1" colspan="2">
+                    <widget class="QLabel" row="1" column="1" rowspan="1" colspan="3">
                         <property name="name">
                             <cstring>textLabel3_2</cstring>
                         </property>
@@ -123,7 +123,7 @@
                             </size>
                         </property>
                     </spacer>
-                    <widget class="QLabel" row="2" column="1" rowspan="1" colspan="2">
+                    <widget class="QLabel" row="2" column="1" rowspan="1" colspan="3">
                         <property name="name">
                             <cstring>textLabel2_2</cstring>
                         </property>
@@ -134,7 +134,7 @@
                             <set>AlignVCenter|AlignRight</set>
                         </property>
                     </widget>
-                    <widget class="Line" row="3" column="0" rowspan="1" colspan="4">
+                    <widget class="Line" row="3" column="0" rowspan="1" colspan="7">
                         <property name="name">
                             <cstring>line3</cstring>
                         </property>
@@ -148,7 +148,25 @@
                             <enum>Horizontal</enum>
                         </property>
                     </widget>
-                    <spacer row="11" column="3">
+                    <widget class="QLineEdit" row="2" column="4" rowspan="1" colspan="3">
+                        <property name="name">
+                            <cstring>organisationEdit</cstring>
+                        </property>
+                    </widget>
+                    <widget class="QLineEdit" row="1" column="4" rowspan="1" colspan="3">
+                        <property name="name">
+                            <cstring>titleEdit</cstring>
+                        </property>
+                    </widget>
+                    <widget class="QLineEdit" row="0" column="4" rowspan="1" colspan="3">
+                        <property name="name">
+                            <cstring>cnEdit</cstring>
+                        </property>
+                        <property name="readOnly">
+                            <bool>true</bool>
+                        </property>
+                    </widget>
+                    <spacer row="10" column="5">
                         <property name="name">
                             <cstring>spacer4_2</cstring>
                         </property>
@@ -161,13 +179,18 @@
                         <property name="sizeHint">
                             <size>
                                 <width>21</width>
-                                <height>290</height>
+                                <height>50</height>
                             </size>
                         </property>
                     </spacer>
-                    <widget class="QPushButton" row="10" column="1" rowspan="1" colspan="2">
+                    <widget class="QLineEdit" row="9" column="4" rowspan="1" colspan="3">
                         <property name="name">
-                            <cstring>pushButton2</cstring>
+                            <cstring>categoryEdit</cstring>
+                        </property>
+                    </widget>
+                    <widget class="QPushButton" row="9" column="2" rowspan="1" colspan="2">
+                        <property name="name">
+                            <cstring>categoryButton</cstring>
                         </property>
                         <property name="sizePolicy">
                             <sizepolicy>
@@ -181,7 +204,7 @@
                             <string>Categories ...</string>
                         </property>
                     </widget>
-                    <widget class="QLabel" row="10" column="0">
+                    <widget class="QLabel" row="9" column="0" rowspan="1" colspan="2">
                         <property name="name">
                             <cstring>categoryLabel</cstring>
                         </property>
@@ -209,7 +232,7 @@
                             <string>CL</string>
                         </property>
                     </widget>
-                    <widget class="Line" row="8" column="0" rowspan="2" colspan="4">
+                    <widget class="Line" row="8" column="0" rowspan="1" colspan="7">
                         <property name="name">
                             <cstring>line1</cstring>
                         </property>
@@ -223,9 +246,20 @@
                             <enum>Horizontal</enum>
                         </property>
                     </widget>
-                    <widget class="QLineEdit" row="7" column="3">
+                    <widget class="QLineEdit" row="7" column="4" rowspan="1" colspan="3">
                         <property name="name">
                             <cstring>labeledURIEdit</cstring>
+                        </property>
+                    </widget>
+                    <widget class="QLabel" row="7" column="1" rowspan="1" colspan="3">
+                        <property name="name">
+                            <cstring>textLabel1</cstring>
+                        </property>
+                        <property name="text">
+                            <string>Web page address:</string>
+                        </property>
+                        <property name="alignment">
+                            <set>AlignVCenter|AlignRight</set>
                         </property>
                     </widget>
                     <widget class="QLabel" row="7" column="0">
@@ -250,7 +284,21 @@
                             <string>WP</string>
                         </property>
                     </widget>
-                    <widget class="QLabel" row="4" column="0" rowspan="2" colspan="1">
+                    <widget class="Line" row="6" column="0" rowspan="1" colspan="7">
+                        <property name="name">
+                            <cstring>line2</cstring>
+                        </property>
+                        <property name="frameShape">
+                            <enum>HLine</enum>
+                        </property>
+                        <property name="frameShadow">
+                            <enum>Sunken</enum>
+                        </property>
+                        <property name="orientation">
+                            <enum>Horizontal</enum>
+                        </property>
+                    </widget>
+                    <widget class="QLabel" row="4" column="0" rowspan="1" colspan="2">
                         <property name="name">
                             <cstring>mailLabel</cstring>
                         </property>
@@ -272,63 +320,24 @@
                             <string>Ma</string>
                         </property>
                     </widget>
-                    <widget class="QLabel" row="7" column="1" rowspan="1" colspan="2">
+                    <spacer row="4" column="2">
                         <property name="name">
-                            <cstring>textLabel1</cstring>
-                        </property>
-                        <property name="text">
-                            <string>Web page address:</string>
-                        </property>
-                        <property name="alignment">
-                            <set>AlignVCenter|AlignRight</set>
-                        </property>
-                    </widget>
-                    <widget class="QComboBox" row="5" column="3">
-                        <property name="name">
-                            <cstring>mailBox</cstring>
-                        </property>
-                        <property name="editable">
-                            <bool>true</bool>
-                        </property>
-                    </widget>
-                    <widget class="QLineEdit" row="2" column="3">
-                        <property name="name">
-                            <cstring>organisationEdit</cstring>
-                        </property>
-                    </widget>
-                    <widget class="QLineEdit" row="1" column="3">
-                        <property name="name">
-                            <cstring>titleEdit</cstring>
-                        </property>
-                    </widget>
-                    <widget class="QLineEdit" row="0" column="3">
-                        <property name="name">
-                            <cstring>cnEdit</cstring>
-                        </property>
-                        <property name="readOnly">
-                            <bool>true</bool>
-                        </property>
-                    </widget>
-                    <widget class="Line" row="6" column="0" rowspan="1" colspan="4">
-                        <property name="name">
-                            <cstring>line2</cstring>
-                        </property>
-                        <property name="frameShape">
-                            <enum>HLine</enum>
-                        </property>
-                        <property name="frameShadow">
-                            <enum>Sunken</enum>
+                            <cstring>spacer7</cstring>
                         </property>
                         <property name="orientation">
                             <enum>Horizontal</enum>
                         </property>
-                    </widget>
-                    <widget class="QLineEdit" row="9" column="3" rowspan="2" colspan="1">
-                        <property name="name">
-                            <cstring>categoryEdit</cstring>
+                        <property name="sizeType">
+                            <enum>Minimum</enum>
                         </property>
-                    </widget>
-                    <widget class="QLabel" row="5" column="2">
+                        <property name="sizeHint">
+                            <size>
+                                <width>50</width>
+                                <height>21</height>
+                            </size>
+                        </property>
+                    </spacer>
+                    <widget class="QLabel" row="4" column="3">
                         <property name="name">
                             <cstring>textLabel10</cstring>
                         </property>
@@ -347,23 +356,47 @@
                             <set>AlignVCenter|AlignRight</set>
                         </property>
                     </widget>
-                    <spacer row="5" column="1">
+                    <widget class="QComboBox" row="4" column="4" rowspan="1" colspan="3">
                         <property name="name">
-                            <cstring>spacer7</cstring>
+                            <cstring>mailBox</cstring>
+                        </property>
+                        <property name="editable">
+                            <bool>true</bool>
+                        </property>
+                    </widget>
+                    <spacer row="5" column="4">
+                        <property name="name">
+                            <cstring>spacer8</cstring>
                         </property>
                         <property name="orientation">
                             <enum>Horizontal</enum>
                         </property>
                         <property name="sizeType">
-                            <enum>Minimum</enum>
+                            <enum>Expanding</enum>
                         </property>
                         <property name="sizeHint">
                             <size>
-                                <width>51</width>
+                                <width>101</width>
                                 <height>21</height>
                             </size>
                         </property>
                     </spacer>
+                    <widget class="QPushButton" row="5" column="5">
+                        <property name="name">
+                            <cstring>deleteMailButton</cstring>
+                        </property>
+                        <property name="text">
+                            <string>Delete</string>
+                        </property>
+                    </widget>
+                    <widget class="QPushButton" row="5" column="6">
+                        <property name="name">
+                            <cstring>addMailButton</cstring>
+                        </property>
+                        <property name="text">
+                            <string>Add</string>
+                        </property>
+                    </widget>
                 </grid>
             </widget>
             <widget class="QWidget">
@@ -469,23 +502,6 @@
                             <set>AlignVCenter|AlignRight</set>
                         </property>
                     </widget>
-                    <spacer row="7" column="2">
-                        <property name="name">
-                            <cstring>spacer4</cstring>
-                        </property>
-                        <property name="orientation">
-                            <enum>Vertical</enum>
-                        </property>
-                        <property name="sizeType">
-                            <enum>Expanding</enum>
-                        </property>
-                        <property name="sizeHint">
-                            <size>
-                                <width>21</width>
-                                <height>130</height>
-                            </size>
-                        </property>
-                    </spacer>
                     <widget class="Line" row="4" column="0" rowspan="1" colspan="3">
                         <property name="name">
                             <cstring>line4</cstring>
@@ -525,14 +541,6 @@
                                     </size>
                                 </property>
                             </spacer>
-                            <widget class="QPushButton" row="1" column="1">
-                                <property name="name">
-                                    <cstring>pushButton4</cstring>
-                                </property>
-                                <property name="text">
-                                    <string>Address ...</string>
-                                </property>
-                            </widget>
                             <widget class="QComboBox" row="0" column="1">
                                 <item>
                                     <property name="text">
@@ -569,9 +577,9 @@
                             </widget>
                         </grid>
                     </widget>
-                    <widget class="QTextBrowser" row="6" column="2">
+                    <widget class="QTextEdit" row="6" column="2">
                         <property name="name">
-                            <cstring>textBrowser1</cstring>
+                            <cstring>addressEdit</cstring>
                         </property>
                     </widget>
                 </grid>
@@ -852,6 +860,30 @@
         <receiver>AddressbookWidgetDesign</receiver>
         <slot>showNameDialog()</slot>
     </connection>
+    <connection>
+        <sender>deleteMailButton</sender>
+        <signal>clicked()</signal>
+        <receiver>AddressbookWidgetDesign</receiver>
+        <slot>deleteMail()</slot>
+    </connection>
+    <connection>
+        <sender>addMailButton</sender>
+        <signal>clicked()</signal>
+        <receiver>AddressbookWidgetDesign</receiver>
+        <slot>addMail()</slot>
+    </connection>
+    <connection>
+        <sender>categoryButton</sender>
+        <signal>clicked()</signal>
+        <receiver>AddressbookWidgetDesign</receiver>
+        <slot>editCategories()</slot>
+    </connection>
+    <connection>
+        <sender>addressBox</sender>
+        <signal>activated(int)</signal>
+        <receiver>AddressbookWidgetDesign</receiver>
+        <slot>initAddress()</slot>
+    </connection>
 </connections>
 <slots>
     <slot>serverChanged()</slot>
@@ -861,6 +893,10 @@
     <slot>deleteEntry()</slot>
     <slot>saveEntry()</slot>
     <slot>showNameDialog()</slot>
+    <slot>deleteMail()</slot>
+    <slot>addMail()</slot>
+    <slot>editCategories()</slot>
+    <slot>initAddress()</slot>
 </slots>
 <layoutdefaults spacing="6" margin="0"/>
 </UI>

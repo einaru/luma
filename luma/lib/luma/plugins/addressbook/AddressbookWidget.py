@@ -12,16 +12,12 @@
 from qt import *
 import os.path
 from string import strip
-#import ldap
-#from ConfigParser import *
 
 import environment
 from plugins.addressbook.AddressbookWidgetDesign import AddressbookWidgetDesign
 from plugins.addressbook.NameDialog import NameDialog
-#from base.backend.ServerObject import ServerObject
-#from base.backend.ServerList import ServerList
-#from base.backend.LumaConnection import LumaConnection
-
+from plugins.addressbook.MailDialog import MailDialog
+from plugins.addressbook.CategoryEditDialog import CategoryEditDialog
 
 
 class AddressbookWidget(AddressbookWidgetDesign):
@@ -29,13 +25,15 @@ class AddressbookWidget(AddressbookWidgetDesign):
     def __init__(self,parent = None,name = None,fl = 0):
         AddressbookWidgetDesign.__init__(self,parent,name,fl)
         
+        self.INIT = 0
+        
         iconDir = os.path.join (environment.lumaInstallationPrefix, "lib", "luma", "plugins", "addressbook", "icons")
         
         self.entryIcon = QPixmap (os.path.join (iconDir, "person.png"))
         
         personIcon = QPixmap (os.path.join (iconDir, "personal.png"))
         phoneIcon = QPixmap (os.path.join (iconDir, "phone.png"))
-        mailIcon = QPixmap (os.path.join (iconDir, "email.png"))
+        self.mailIcon = QPixmap (os.path.join (iconDir, "email.png"))
         urlIcon = QPixmap (os.path.join (iconDir, "url.png"))
         categoryIcon = QPixmap (os.path.join (iconDir, "category.png"))
         addressIcon = QPixmap (os.path.join (iconDir, "home.png"))
@@ -43,13 +41,15 @@ class AddressbookWidget(AddressbookWidgetDesign):
         
         self.personLabel.setPixmap(personIcon)
         self.phoneLabel.setPixmap(phoneIcon)
-        self.mailLabel.setPixmap(mailIcon)
+        self.mailLabel.setPixmap(self.mailIcon)
         self.webPageLabel.setPixmap(urlIcon)
         self.categoryLabel.setPixmap(categoryIcon)
         self.homeLabel.setPixmap(addressIcon)
         self.workLabel.setPixmap(workIcon)
         self.personalLabel.setPixmap(personIcon)
         self.notesLabel.setPixmap(urlIcon)
+        
+        self.enableWidget(0)
 
 ###############################################################################
 
@@ -68,6 +68,7 @@ class AddressbookWidget(AddressbookWidgetDesign):
         self.telephoneNumberEdit.clear()
         self.mobileEdit.clear()
         self.facsimileTelephoneNumberEdit.clear()
+        self.addressEdit.clear()
         
         self.ouEdit.clear()
         self.roomNumberEdit.clear()
@@ -84,10 +85,13 @@ class AddressbookWidget(AddressbookWidgetDesign):
 
     def init_view(self, dn, data, server):
         self.clearView()
+        self.enableWidget(1)
         
         self.dn = dn
         self.data = data
         self.server = server
+        
+        self.addressBox.setEnabled(1)
         
         for x in self.data.keys():
             if x == 'cn':
@@ -121,6 +125,7 @@ class AddressbookWidget(AddressbookWidgetDesign):
             if x == 'facsimileTelephoneNumber':
                 self.facsimileTelephoneNumberEdit.setText(self.data[x][0])
                 
+                
             if x == 'ou':
                 self.ouEdit.setText(self.data[x][0])
                 
@@ -150,6 +155,10 @@ class AddressbookWidget(AddressbookWidgetDesign):
                 
             if x == 'anniversary':
                 pass
+                
+        self.initAddress()
+        
+        self.INIT = 1
     
 ###############################################################################
 
@@ -161,7 +170,6 @@ class AddressbookWidget(AddressbookWidgetDesign):
             sn = self.data['sn'][0]
             tmpList = str(self.cnEdit.text()).split(sn)
             tmpList[0] = strip(tmpList[0])
-            print tmpList
             
             prefix = tmpList[0].split(' ')
             for x in range(0, len(prefix)):
@@ -187,11 +195,14 @@ class AddressbookWidget(AddressbookWidgetDesign):
             print "Error"
         
         if (dialog.result() == QDialog.Accepted):
-            self.data['sn'][0] = str(dialog.lastEdit.text())
-            print self.data['sn']
+            tmpSn = strip(str(dialog.lastEdit.text()))
+            
+            if tmpSn == '':
+                return
+                
+            self.data['sn'][0] = tmpSn
             
             tmpList = []
-            
             tmpList.append(self.__normalizeQtString(dialog.titleBox.currentText()))
             tmpList.append(self.__normalizeQtString(dialog.firstEdit.text()))
             tmpList.append(self.__normalizeQtString(dialog.middleEdit.text()))
@@ -209,3 +220,75 @@ class AddressbookWidget(AddressbookWidgetDesign):
             tmpString = tmpString + ' '
             
         return tmpString
+
+###############################################################################
+
+    def deleteMail(self):
+        if self.mailBox.count() == 0:
+            return
+            
+        self.mailBox.removeItem(self.mailBox.currentItem())
+        
+        if self.mailBox.count() > 0:
+            self.mailBox.setCurrentItem(0)
+            
+###############################################################################
+
+    def addMail(self):
+        dialog = MailDialog()
+        dialog.mailIconLabel.setPixmap(self.mailIcon)
+        
+        dialog.exec_loop()
+        
+        if (dialog.result() == QDialog.Accepted):
+            mail = strip(str(dialog.mailEdit.text()))
+            
+            if not(mail == ''):
+                currentMails = []
+                for x in range(0, self.mailBox.count()):
+                    currentMails.append(str(self.mailBox.text(x)))
+                    
+                if not (mail in currentMails):
+                    self.mailBox.insertItem(mail)
+                    self.mailBox.setCurrentItem(self.mailBox.count()-1)
+
+###############################################################################
+
+    def editCategories(self):
+        dialog = CategoryEditDialog()
+        dialog.setCategories(str(self.categoryEdit.text()).split(','))
+        
+        dialog.exec_loop()
+        
+        if (dialog.result() == QDialog.Accepted):
+            newCategories = dialog.getCategories()
+            
+            if not(newCategories == None):
+                self.categoryEdit.setText(",".join(newCategories))
+                
+###############################################################################
+
+    def serverChanged(self):
+        self.enableWidget(0)
+        self.clearView()
+                
+###############################################################################
+
+    def initAddress(self):
+        # The order os the attributes resembles the order of apearance in the widget
+        addressType = ['postalAddress', 'homePostalAddress', 'otherPostalAddress']
+        
+        
+        id = self.addressBox.currentItem()
+        
+        if not(self.data.has_key(addressType[id])):
+            self.addressEdit.clear()
+            return
+            
+        tmpAddress = self.data[addressType[id]][0]
+        self.addressEdit.setText(tmpAddress)
+        
+###############################################################################
+
+    def enableWidget(self, val):
+        self.setEnabled(val)

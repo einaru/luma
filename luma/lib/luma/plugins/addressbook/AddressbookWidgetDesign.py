@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file '/home/wido/src/luma/lib/luma/plugins/addressbook/AddressbookWidgetDesign.ui'
 #
-# Created: Fri Jan 30 21:15:54 2004
+# Created: Sun Feb 1 23:40:42 2004
 #      by: The PyQt User Interface Compiler (pyuic) 3.8.1
 #
 # WARNING! All changes made in this file will be lost!
@@ -42,51 +42,73 @@ class AddressbookWidgetDesign(QWidget):
 
         self.nameButton = QPushButton(self.tab,"nameButton")
 
-        tabLayout.addMultiCellWidget(self.nameButton,0,0,1,2)
+        tabLayout.addMultiCellWidget(self.nameButton,0,0,1,3)
 
         self.textLabel3_2 = QLabel(self.tab,"textLabel3_2")
         self.textLabel3_2.setAlignment(QLabel.AlignVCenter | QLabel.AlignRight)
 
-        tabLayout.addMultiCellWidget(self.textLabel3_2,1,1,1,2)
+        tabLayout.addMultiCellWidget(self.textLabel3_2,1,1,1,3)
         spacer_2 = QSpacerItem(21,58,QSizePolicy.Minimum,QSizePolicy.Expanding)
         tabLayout.addMultiCell(spacer_2,1,2,0,0)
 
         self.textLabel2_2 = QLabel(self.tab,"textLabel2_2")
         self.textLabel2_2.setAlignment(QLabel.AlignVCenter | QLabel.AlignRight)
 
-        tabLayout.addMultiCellWidget(self.textLabel2_2,2,2,1,2)
+        tabLayout.addMultiCellWidget(self.textLabel2_2,2,2,1,3)
 
         self.line3 = QFrame(self.tab,"line3")
         self.line3.setFrameShape(QFrame.HLine)
         self.line3.setFrameShadow(QFrame.Sunken)
         self.line3.setFrameShape(QFrame.HLine)
 
-        tabLayout.addMultiCellWidget(self.line3,3,3,0,3)
-        spacer_3 = QSpacerItem(21,290,QSizePolicy.Minimum,QSizePolicy.Expanding)
-        tabLayout.addItem(spacer_3,11,3)
+        tabLayout.addMultiCellWidget(self.line3,3,3,0,6)
 
-        self.pushButton2 = QPushButton(self.tab,"pushButton2")
-        self.pushButton2.setSizePolicy(QSizePolicy(0,0,0,0,self.pushButton2.sizePolicy().hasHeightForWidth()))
+        self.organisationEdit = QLineEdit(self.tab,"organisationEdit")
 
-        tabLayout.addMultiCellWidget(self.pushButton2,10,10,1,2)
+        tabLayout.addMultiCellWidget(self.organisationEdit,2,2,4,6)
+
+        self.titleEdit = QLineEdit(self.tab,"titleEdit")
+
+        tabLayout.addMultiCellWidget(self.titleEdit,1,1,4,6)
+
+        self.cnEdit = QLineEdit(self.tab,"cnEdit")
+        self.cnEdit.setReadOnly(1)
+
+        tabLayout.addMultiCellWidget(self.cnEdit,0,0,4,6)
+        spacer_3 = QSpacerItem(21,50,QSizePolicy.Minimum,QSizePolicy.Expanding)
+        tabLayout.addItem(spacer_3,10,5)
+
+        self.categoryEdit = QLineEdit(self.tab,"categoryEdit")
+
+        tabLayout.addMultiCellWidget(self.categoryEdit,9,9,4,6)
+
+        self.categoryButton = QPushButton(self.tab,"categoryButton")
+        self.categoryButton.setSizePolicy(QSizePolicy(0,0,0,0,self.categoryButton.sizePolicy().hasHeightForWidth()))
+
+        tabLayout.addMultiCellWidget(self.categoryButton,9,9,2,3)
 
         self.categoryLabel = QLabel(self.tab,"categoryLabel")
         self.categoryLabel.setSizePolicy(QSizePolicy(0,0,0,0,self.categoryLabel.sizePolicy().hasHeightForWidth()))
         self.categoryLabel.setMinimumSize(QSize(32,32))
         self.categoryLabel.setMaximumSize(QSize(32,32))
 
-        tabLayout.addWidget(self.categoryLabel,10,0)
+        tabLayout.addMultiCellWidget(self.categoryLabel,9,9,0,1)
 
         self.line1 = QFrame(self.tab,"line1")
         self.line1.setFrameShape(QFrame.HLine)
         self.line1.setFrameShadow(QFrame.Sunken)
         self.line1.setFrameShape(QFrame.HLine)
 
-        tabLayout.addMultiCellWidget(self.line1,8,9,0,3)
+        tabLayout.addMultiCellWidget(self.line1,8,8,0,6)
 
         self.labeledURIEdit = QLineEdit(self.tab,"labeledURIEdit")
 
-        tabLayout.addWidget(self.labeledURIEdit,7,3)
+        tabLayout.addMultiCellWidget(self.labeledURIEdit,7,7,4,6)
+
+        self.textLabel1 = QLabel(self.tab,"textLabel1")
+        self.textLabel1.setAlignment(QLabel.AlignVCenter | QLabel.AlignRight)
+
+        tabLayout.addMultiCellWidget(self.textLabel1,7,7,1,3)
 
         self.webPageLabel = QLabel(self.tab,"webPageLabel")
         self.webPageLabel.setSizePolicy(QSizePolicy(0,0,0,0,self.webPageLabel.sizePolicy().hasHeightForWidth()))
@@ -94,53 +116,41 @@ class AddressbookWidgetDesign(QWidget):
 
         tabLayout.addWidget(self.webPageLabel,7,0)
 
-        self.mailLabel = QLabel(self.tab,"mailLabel")
-        self.mailLabel.setSizePolicy(QSizePolicy(0,0,0,0,self.mailLabel.sizePolicy().hasHeightForWidth()))
-        self.mailLabel.setMinimumSize(QSize(32,32))
-
-        tabLayout.addMultiCellWidget(self.mailLabel,4,5,0,0)
-
-        self.textLabel1 = QLabel(self.tab,"textLabel1")
-        self.textLabel1.setAlignment(QLabel.AlignVCenter | QLabel.AlignRight)
-
-        tabLayout.addMultiCellWidget(self.textLabel1,7,7,1,2)
-
-        self.mailBox = QComboBox(0,self.tab,"mailBox")
-        self.mailBox.setEditable(1)
-
-        tabLayout.addWidget(self.mailBox,5,3)
-
-        self.organisationEdit = QLineEdit(self.tab,"organisationEdit")
-
-        tabLayout.addWidget(self.organisationEdit,2,3)
-
-        self.titleEdit = QLineEdit(self.tab,"titleEdit")
-
-        tabLayout.addWidget(self.titleEdit,1,3)
-
-        self.cnEdit = QLineEdit(self.tab,"cnEdit")
-        self.cnEdit.setReadOnly(1)
-
-        tabLayout.addWidget(self.cnEdit,0,3)
-
         self.line2 = QFrame(self.tab,"line2")
         self.line2.setFrameShape(QFrame.HLine)
         self.line2.setFrameShadow(QFrame.Sunken)
         self.line2.setFrameShape(QFrame.HLine)
 
-        tabLayout.addMultiCellWidget(self.line2,6,6,0,3)
+        tabLayout.addMultiCellWidget(self.line2,6,6,0,6)
 
-        self.categoryEdit = QLineEdit(self.tab,"categoryEdit")
+        self.mailLabel = QLabel(self.tab,"mailLabel")
+        self.mailLabel.setSizePolicy(QSizePolicy(0,0,0,0,self.mailLabel.sizePolicy().hasHeightForWidth()))
+        self.mailLabel.setMinimumSize(QSize(32,32))
 
-        tabLayout.addMultiCellWidget(self.categoryEdit,9,10,3,3)
+        tabLayout.addMultiCellWidget(self.mailLabel,4,4,0,1)
+        spacer_4 = QSpacerItem(50,21,QSizePolicy.Minimum,QSizePolicy.Minimum)
+        tabLayout.addItem(spacer_4,4,2)
 
         self.textLabel10 = QLabel(self.tab,"textLabel10")
         self.textLabel10.setSizePolicy(QSizePolicy(0,5,0,0,self.textLabel10.sizePolicy().hasHeightForWidth()))
         self.textLabel10.setAlignment(QLabel.AlignVCenter | QLabel.AlignRight)
 
-        tabLayout.addWidget(self.textLabel10,5,2)
-        spacer_4 = QSpacerItem(51,21,QSizePolicy.Minimum,QSizePolicy.Minimum)
-        tabLayout.addItem(spacer_4,5,1)
+        tabLayout.addWidget(self.textLabel10,4,3)
+
+        self.mailBox = QComboBox(0,self.tab,"mailBox")
+        self.mailBox.setEditable(1)
+
+        tabLayout.addMultiCellWidget(self.mailBox,4,4,4,6)
+        spacer_5 = QSpacerItem(101,21,QSizePolicy.Expanding,QSizePolicy.Minimum)
+        tabLayout.addItem(spacer_5,5,4)
+
+        self.deleteMailButton = QPushButton(self.tab,"deleteMailButton")
+
+        tabLayout.addWidget(self.deleteMailButton,5,5)
+
+        self.addMailButton = QPushButton(self.tab,"addMailButton")
+
+        tabLayout.addWidget(self.addMailButton,5,6)
         self.tabWidget2.insertTab(self.tab,QString(""))
 
         self.tab_2 = QWidget(self.tabWidget2,"tab_2")
@@ -188,8 +198,6 @@ class AddressbookWidgetDesign(QWidget):
         self.textLabel7.setAlignment(QLabel.AlignVCenter | QLabel.AlignRight)
 
         tabLayout_2.addWidget(self.textLabel7,0,1)
-        spacer_5 = QSpacerItem(21,130,QSizePolicy.Minimum,QSizePolicy.Expanding)
-        tabLayout_2.addItem(spacer_5,7,2)
 
         self.line4 = QFrame(self.tab_2,"line4")
         self.line4.setFrameShape(QFrame.HLine)
@@ -202,10 +210,6 @@ class AddressbookWidgetDesign(QWidget):
         spacer_6 = QSpacerItem(21,30,QSizePolicy.Minimum,QSizePolicy.Expanding)
         layout2.addItem(spacer_6,2,1)
 
-        self.pushButton4 = QPushButton(self.tab_2,"pushButton4")
-
-        layout2.addWidget(self.pushButton4,1,1)
-
         self.addressBox = QComboBox(0,self.tab_2,"addressBox")
 
         layout2.addWidget(self.addressBox,0,1)
@@ -217,9 +221,9 @@ class AddressbookWidgetDesign(QWidget):
 
         tabLayout_2.addMultiCellLayout(layout2,5,6,0,1)
 
-        self.textBrowser1 = QTextBrowser(self.tab_2,"textBrowser1")
+        self.addressEdit = QTextEdit(self.tab_2,"addressEdit")
 
-        tabLayout_2.addWidget(self.textBrowser1,6,2)
+        tabLayout_2.addWidget(self.addressEdit,6,2)
         self.tabWidget2.insertTab(self.tab_2,QString(""))
 
         self.TabPage = QWidget(self.tabWidget2,"TabPage")
@@ -351,11 +355,15 @@ class AddressbookWidgetDesign(QWidget):
 
         self.languageChange()
 
-        self.resize(QSize(589,459).expandedTo(self.minimumSizeHint()))
+        self.resize(QSize(589,463).expandedTo(self.minimumSizeHint()))
         self.clearWState(Qt.WState_Polished)
 
         self.connect(self.saveButton,SIGNAL("clicked()"),self.saveEntry)
         self.connect(self.nameButton,SIGNAL("clicked()"),self.showNameDialog)
+        self.connect(self.deleteMailButton,SIGNAL("clicked()"),self.deleteMail)
+        self.connect(self.addMailButton,SIGNAL("clicked()"),self.addMail)
+        self.connect(self.categoryButton,SIGNAL("clicked()"),self.editCategories)
+        self.connect(self.addressBox,SIGNAL("activated(int)"),self.initAddress)
 
 
     def languageChange(self):
@@ -365,19 +373,20 @@ class AddressbookWidgetDesign(QWidget):
         self.nameButton.setText(self.__tr("Full Name ..."))
         self.textLabel3_2.setText(self.__tr("Job title:"))
         self.textLabel2_2.setText(self.__tr("Organisation:"))
-        self.pushButton2.setText(self.__tr("Categories ..."))
+        self.categoryButton.setText(self.__tr("Categories ..."))
         self.categoryLabel.setText(self.__tr("CL"))
+        self.textLabel1.setText(self.__tr("Web page address:"))
         self.webPageLabel.setText(self.__tr("WP"))
         self.mailLabel.setText(self.__tr("Ma"))
-        self.textLabel1.setText(self.__tr("Web page address:"))
         self.textLabel10.setText(self.__tr("Email:"))
+        self.deleteMailButton.setText(self.__tr("Delete"))
+        self.addMailButton.setText(self.__tr("Add"))
         self.tabWidget2.changeTab(self.tab,self.__tr("General"))
         self.textLabel9.setText(self.__tr("Mobile:"))
         self.textLabel3.setText(self.__tr("Business Fax:"))
         self.phoneLabel.setText(self.__tr("Ph"))
         self.textLabel8.setText(self.__tr("Work:"))
         self.textLabel7.setText(self.__tr("Home:"))
-        self.pushButton4.setText(self.__tr("Address ..."))
         self.addressBox.clear()
         self.addressBox.insertItem(self.__tr("Business"))
         self.addressBox.insertItem(self.__tr("Home"))
@@ -420,6 +429,18 @@ class AddressbookWidgetDesign(QWidget):
 
     def showNameDialog(self):
         print "AddressbookWidgetDesign.showNameDialog(): Not implemented yet"
+
+    def deleteMail(self):
+        print "AddressbookWidgetDesign.deleteMail(): Not implemented yet"
+
+    def addMail(self):
+        print "AddressbookWidgetDesign.addMail(): Not implemented yet"
+
+    def editCategories(self):
+        print "AddressbookWidgetDesign.editCategories(): Not implemented yet"
+
+    def initAddress(self):
+        print "AddressbookWidgetDesign.initAddress(): Not implemented yet"
 
     def __tr(self,s,c = None):
         return qApp.translate("AddressbookWidgetDesign",s,c)
