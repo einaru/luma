@@ -1,12 +1,16 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!--eric3 session file for project luma-->
 <!--This file was generated automatically, do not edit.-->
-<!--Saved: 2004-04-06, 00:43:05-->
+<!--Saved: 2004-05-10, 00:45:08-->
 <Session>
   <Filenames>
-    <Filename>/home/wido/src/luma/install.py</Filename>
+    <Filename cline="0" cindex="0">/home/wido/src/luma/lib/luma/luma.py</Filename>
+    <Filename cline="146" cindex="37">/home/wido/src/luma/lib/luma/base/gui/ServerDialog.py</Filename>
+    <Filename cline="41" cindex="21">/home/wido/src/luma/lib/luma/base/backend/ServerObject.py</Filename>
+    <Filename cline="100" cindex="0">/home/wido/src/luma/lib/luma/base/backend/ServerList.py</Filename>
+    <Filename cline="98" cindex="12">/home/wido/src/luma/lib/luma/base/gui/MainWin.py</Filename>
   </Filenames>
-  <ActiveWindow>/home/wido/src/luma/install.py</ActiveWindow>
+  <ActiveWindow cline="146" cindex="37">/home/wido/src/luma/lib/luma/base/gui/ServerDialog.py</ActiveWindow>
   <Breakpoints>
   </Breakpoints>
   <DebugInfo>
@@ -15,6 +19,7 @@
     <ReportExceptions value="1" />
     <Exceptions>
     </Exceptions>
+    <TracePython value="0" />
   </DebugInfo>
   <Bookmarks>
   </Bookmarks>
