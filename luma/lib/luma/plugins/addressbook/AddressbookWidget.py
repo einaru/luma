@@ -144,7 +144,9 @@ class AddressbookWidget(AddressbookWidgetDesign):
                 self.organisationEdit.setText(self.data[x][0].decode('utf-8'))
                 
             if x == 'mail':
-                for y in self.data[x]:
+                tmpList = self.data['mail']
+                tmpList.sort()
+                for y in tmpList:
                     self.mailBox.insertItem(y.decode('utf-8'))
             
             if x == 'labeledURI':
