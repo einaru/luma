@@ -42,12 +42,12 @@ class LanguageDialog(LanguageDialogDesign):
         # IMPORTANT: Has to be edited every time a new languaged is
         # added to luma.
         for x in self.languages:
-            if x == 'br':
-                self.languageBox.insertItem("Portuguese")
-            elif x == 'de':
-                self.languageBox.insertItem("Deutsch")
+            if x == 'de':
+                self.languageBox.insertItem("German")
             elif x == 'no':
-                self.languageBox.insertItem("Norsk")
+                self.languageBox.insertItem("Norwegian")
+            elif x == 'br':
+                self.languageBox.insertItem("Portuguese")
             elif x == 'ru':
                 self.languageBox.insertItem("Russian")
             elif x == 'es':
@@ -70,18 +70,18 @@ class LanguageDialog(LanguageDialogDesign):
         tmpText = str(self.languageBox.currentText())
         translationFile = 'NATIVE'
         
-        if tmpText == "Deutsch":
-            translationFile = "luma_de.qm"
-        elif tmpText == "Brazilian":
-            translationFile = "luma_br.qm"
-        elif tmpText == "English":
+        if tmpText == "English":
             translationFile = 'NATIVE'
-        elif tmpText == "Spanish":
-            translationFile = "luma_es.qm"
-        elif tmpText == "Norsk":
+        elif tmpText == "German":
+            translationFile = "luma_de.qm"
+        elif tmpText == "Norwegian":
             translationFile = "luma_no.qm"
+        elif tmpText == "Portuguese":
+            translationFile = "luma_br.qm"
         elif tmpText == "Russian":
             translationFile = "luma_ru.qm"
+        elif tmpText == "Spanish":
+            translationFile = "luma_es.qm"
         elif tmpText == "Swedish":
             translationFile = "luma_sv.qm"
         
