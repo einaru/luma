@@ -50,15 +50,15 @@ class ServerObject(object):
     def __repr__(self):
         finalString = ""
 
-        finalString = "Name: " + self.name
-        finalString = finalString + "\nHost: " + self.host
-        portString = str(self.port)
-        finalString = finalString + "\nPort: " + portString
-        finalString = finalString + "\nBind anonymously: " + str(self.bindAnon)
-        finalString = finalString + "\nBase DN: " + self.baseDN
-        finalString = finalString + "\nBind DN: " + self.bindDN
-        finalString = finalString + "\nBind Password: " + self.bindPassword
-        finalString = finalString + "\nTLS: " + str(self.tls) + "\n"
+        finalString = unicode("Name: ") + unicode(self.name)
+        finalString = finalString + unicode("\nHost: ") + unicode(self.host)
+        portString = unicode(self.port)
+        finalString = finalString + unicode("\nPort: ") + unicode(portString)
+        finalString = finalString + unicode("\nBind anonymously: ") + unicode(self.bindAnon)
+        finalString = finalString + unicode("\nBase DN: ") + unicode(self.baseDN)
+        finalString = finalString + unicode("\nBind DN: ") + unicode(self.bindDN)
+        finalString = finalString + unicode("\nBind Password: ") + unicode(self.bindPassword)
+        finalString = finalString + unicode("\nTLS: ") + unicode(self.tls) + unicode("\n")
 
         return finalString
         
@@ -69,7 +69,7 @@ class ServerObject(object):
         if isinstance(name, unicode):
             self.nameP = name
         else:
-            raise AttributeError, "Expected a string."
+            raise AttributeError, "Expected an unicode string."
             
     def __getName(self):
         return self.nameP
@@ -83,7 +83,7 @@ class ServerObject(object):
         if isinstance(host, unicode):
             self.hostP = host
         else:
-            raise AttributeError, "Expected a string."
+            raise AttributeError, "Expected an unicode string."
             
     def __getHost(self):
         return self.hostP
@@ -129,7 +129,7 @@ class ServerObject(object):
         if isinstance(value, unicode):
             self.baseDNP = value
         else:
-            raise AttributeError, "Expected a string."
+            raise AttributeError, "Expected an unicode string."
             
     def __getBaseDN(self):
         return self.baseDNP
@@ -143,7 +143,7 @@ class ServerObject(object):
         if isinstance(value, unicode):
             self.bindDNP = value
         else:
-            raise AttributeError, "Expected a string."
+            raise AttributeError, "Expected an unicode string."
             
     def __getBindDN(self):
         return self.bindDNP
@@ -157,7 +157,7 @@ class ServerObject(object):
         if isinstance(value, unicode):
             self.bindPasswordP = value
         else:
-            raise AttributeError, "Expected a string."
+            raise AttributeError, "Expected an unicode string."
             
     def __getBindPassword(self):
         return self.bindPasswordP
