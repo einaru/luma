@@ -1,3 +1,8 @@
+AUTHOR: Wido Depping <widod@users.sourceforge.net>
+
+INSTALL
+-------
+
 To install Luma, just execute the install script 'install.py'. You must give a
 path as prefix. Example:
 
