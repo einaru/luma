@@ -5,6 +5,8 @@
   <title>Luma - LDAP utiliy, browser and more...</title>
   <link rel="stylesheet" type="text/css" href="lumacss.css">
   <meta name="GENERATOR" content="Quanta Plus">
+  <meta name="author" content="Wido Depping">
+  <meta name="description" content="Luma is a tool / utility / application for easy and userfriendly managment of LDAP data and a platform / framework for developing custom LDAP applications. It's written in Python and uses Qt as its GUI toolkit. Luma is licensed under the terms of the GPL. The following applications are provide as plugins: Usermanagement / User management for unix accounts, Addressbook / Address book, LDAP Browser, Template Manager, Search, Admin Utilities, Schema Browser / Schemabrowser, Massive User Creation. Luma runs on the following platforms Linux, FreeBsd, Unix, Mac Os X .">
 </head>
 <body>
 
@@ -49,8 +51,50 @@
 	
 	
 	<td valign="top" width="80%">
+		<div class="lumadate">Wed Jan 26 14:44:28 CET 2005</div>
+		<div class="lumanews">
+			<STRONG>Luma 2.0.1: Bugfix release</STRONG><br>
+			The Luma project just released Luma 2.0.1. This release only contains bugfixes which are documented at the <A href="http://luma.sourceforge.net/changelog.html">changelog page</A>.<br><br>
+			The tarball can be found <A href="http://luma.sourceforge.net/download.html">here</A>.
+		</div><br><br>
+		
+		
+		<div class="lumadate">Tue Jan 18 19:23 CET 2005</div>
+		<div class="lumanews">
+			<STRONG>Luma 2.0: Download link broken</STRONG><br>
+			The Sourceforge mirrors seem to have problems with distributing the Luma 2.0 tarball. Until this problem is fixed, you can download it from my university homepage.
+			
+			<A href="http://home.tu-clausthal.de/~ifwd/luma/luma-2.0.tar.bz2">http://home.tu-clausthal.de/~ifwd/luma/luma-2.0.tar.bz2</A>
+		</div><br><br>
 	
-		<div class="lumadate">Mon Nov  8 18:16:02 CET 2004</div>
+		
+		<div class="lumadate">Tue Jan 18 00:24 CET 2005</div>
+		<div class="lumanews">
+			<STRONG>Luma 2.0 Released</STRONG><br>
+			The Luma Project is proud to announces the availability of Luma 2.0. This release is a major milestone in making Luma even more userfriendly and powerful, for users and developers alike. 
+End users will be pleased to hear that an advanced schema browser has been integrated and thanks to it's caching, it's very fast to use. Objectclasses and Attributes are inter-connected, allowing easy browsing between them. Search filters help the user in finding the desired information instantly.<br>
+			New dialogs for deleting and exporting LDAP entries have been added. The user has complete control over what will be deleted/exported and gets useful information in case of failure. Additional to LDIF, Luma added support for exporting entries to DSML (a XML based format for storing directory information).<br>
+			The LDAP browser has a new look when browsing entries in the tree. Items with lots of attributes and values are displayed much faster now. Additionaly the components got 'smarter' and prevent the users from many common errors. Schema handling has been vastly improved and the user isn't able any more to edit an attribute if it's the relative distinguished name of the entry.<br>
+			In the case of failure during a LDAP operation, the user gets an error dialog, displaying the reason. It is no longer necessary to restart Luma in the console and try to reproduce the error.<br>
+			Updated translations for English, German, Russian and Swedish are available.<br><br>
+			
+			For a list of requirements to install and download Luma, visit <A href="http://luma.sourceforge.net/download.html">http://luma.sourceforge.net/download.html</A>.
+		</div><br><br>
+	
+		<div class="lumadate">Mon Dec 13 01:21CET 2004</div>
+		<div class="lumanews">
+			<STRONG>Luma 1.6 Released</STRONG><br>
+			The Luma Project is proud to announces the availability of Luma 1.6. This release includes several new features which improve the user experience and make LDAP data management even more easy.<br>
+			Support for multiple base DNs per server has been added and incorporated into all Luma components. The user can decide if the base DNs provided by the server should be used, or he can use his own values.<br>
+			Luma is able to resolve alias objects and presents these entries in an intuitive way now. Global alias handling can be defined for each server and changed during runtime in the browser. <br>
+			One common source of errors by the user is the combination of objectclasses which are structural, but may not belong to the same objectclass chain. Luma checks the schema information of the server and ensures that this error isn't possible any more, saving the user lots of nerves and time. <br>
+			Schema caching has been added to improve the general performance of all plugins. Before that each plugin fetched the schemas for all used servers. Especially users on slow networks will notice the speed difference.<br>
+			Updated translations for English, German, Norwegian, Russian and Swedish are available.<br><br>
+			
+			For a list of requirements to install and download Luma, visit <A href="http://luma.sourceforge.net/download.html">http://luma.sourceforge.net/download.html</A>.
+		</div><br><br>
+	
+		<div class="lumadate">Mon Nov  8 18:16 CET 2004</div>
 		<div class="lumanews">
 			<STRONG>Happy Birthday Luma</STRONG><br>
 			After one year since its first public release, the Luma project team is happy to announce the availability of Luma 1.5. Since Version 1.0 Beta1 Luma has made huge progress in becoming the best Open Source LDAP browser/editor and delivers a framework for easy creation of custom LDAP-enabled applications.<br>
