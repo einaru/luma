@@ -2,12 +2,15 @@
 <!DOCTYPE Session SYSTEM "Session-3.5.dtd">
 <!-- eric3 session file for project luma -->
 <!-- This file was generated automatically, do not edit. -->
-<!-- Saved: 2005-01-09, 17:23:30 -->
+<!-- Saved: 2005-01-17, 01:38:57 -->
 <Session version="3.5">
   <Filenames>
-    <Filename cline="371" cindex="78">/home/wido/src/luma/lib/luma/plugins/schemabrowser/SchemaView.py</Filename>
+    <Filename cline="0" cindex="0">/home/wido/src/luma/lib/luma/luma.py</Filename>
+    <Filename cline="373" cindex="0">/home/wido/src/luma/lib/luma/plugins/usermanagement/UsermanagementWidget.py</Filename>
+    <Filename cline="168" cindex="84">/home/wido/src/luma/lib/luma/plugins/usermanagement/AccountWizard.py</Filename>
+    <Filename cline="220" cindex="0">/home/wido/src/luma/lib/luma/base/backend/SmartDataObject.py</Filename>
   </Filenames>
-  <ActiveWindow cline="371" cindex="78">/home/wido/src/luma/lib/luma/plugins/schemabrowser/SchemaView.py</ActiveWindow>
+  <ActiveWindow cline="168" cindex="84">/home/wido/src/luma/lib/luma/plugins/usermanagement/AccountWizard.py</ActiveWindow>
   <Breakpoints>
   </Breakpoints>
   <DebugInfo>
