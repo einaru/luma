@@ -1,0 +1,134 @@
+<!DOCTYPE UI><UI version="3.3" stdsetdef="1">
+<class>LoggerWidgetDesign</class>
+<widget class="QWidget">
+    <property name="name">
+        <cstring>LoggerWidgetDesign</cstring>
+    </property>
+    <property name="geometry">
+        <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>516</width>
+            <height>217</height>
+        </rect>
+    </property>
+    <property name="caption">
+        <string>Form</string>
+    </property>
+    <vbox>
+        <property name="name">
+            <cstring>unnamed</cstring>
+        </property>
+        <widget class="QTextEdit">
+            <property name="name">
+                <cstring>messageEdit</cstring>
+            </property>
+            <property name="readOnly">
+                <bool>true</bool>
+            </property>
+        </widget>
+        <widget class="QLayoutWidget">
+            <property name="name">
+                <cstring>layout2</cstring>
+            </property>
+            <hbox>
+                <property name="name">
+                    <cstring>unnamed</cstring>
+                </property>
+                <widget class="QLabel">
+                    <property name="name">
+                        <cstring>textLabel1</cstring>
+                    </property>
+                    <property name="text">
+                        <string>Display message types:</string>
+                    </property>
+                </widget>
+                <widget class="QCheckBox">
+                    <property name="name">
+                        <cstring>errorBox</cstring>
+                    </property>
+                    <property name="text">
+                        <string>Errors</string>
+                    </property>
+                    <property name="checked">
+                        <bool>true</bool>
+                    </property>
+                </widget>
+                <widget class="QCheckBox">
+                    <property name="name">
+                        <cstring>debugBox</cstring>
+                    </property>
+                    <property name="text">
+                        <string>Debug</string>
+                    </property>
+                    <property name="checked">
+                        <bool>true</bool>
+                    </property>
+                </widget>
+                <widget class="QCheckBox">
+                    <property name="name">
+                        <cstring>infoBox</cstring>
+                    </property>
+                    <property name="text">
+                        <string>Info</string>
+                    </property>
+                    <property name="checked">
+                        <bool>true</bool>
+                    </property>
+                </widget>
+                <spacer>
+                    <property name="name">
+                        <cstring>spacer2</cstring>
+                    </property>
+                    <property name="orientation">
+                        <enum>Horizontal</enum>
+                    </property>
+                    <property name="sizeType">
+                        <enum>Expanding</enum>
+                    </property>
+                    <property name="sizeHint">
+                        <size>
+                            <width>141</width>
+                            <height>21</height>
+                        </size>
+                    </property>
+                </spacer>
+                <widget class="QToolButton">
+                    <property name="name">
+                        <cstring>clearButton</cstring>
+                    </property>
+                    <property name="text">
+                        <string></string>
+                    </property>
+                    <property name="iconSet">
+                        <iconset>image0</iconset>
+                    </property>
+                    <property name="autoRaise">
+                        <bool>true</bool>
+                    </property>
+                    <property name="toolTip" stdset="0">
+                        <string>Clear</string>
+                    </property>
+                </widget>
+            </hbox>
+        </widget>
+    </vbox>
+</widget>
+<images>
+    <image name="image0">
+        <data format="PNG" length="234">89504e470d0a1a0a0000000d49484452000000100000001008060000001ff3ff61000000b149444154388d95934b0ec3200c449fabde0b7ab29093614e365d901f6943c848ecfcc6635b98a4c80395428ed190f401783d85dd01126696016c34c10e57a53457a3118333bc9bd8fd08d7f00cdceca00f27247d2e0d46e0eb04a5e410609afa30009262f3dce52007ad4a4982a45aded6b757282597189bae41c2ec4fe745ef1e0c309bad497fe07d0717b003a9030398dcb58538988cc03541085b4158ee360a5703e068f20486d3679acdf21318e00bb8bca822acb48f120000000049454e44ae426082</data>
+    </image>
+</images>
+<connections>
+    <connection>
+        <sender>clearButton</sender>
+        <signal>clicked()</signal>
+        <receiver>LoggerWidgetDesign</receiver>
+        <slot>clearLogger()</slot>
+    </connection>
+</connections>
+<slots>
+    <slot>clearLogger()</slot>
+</slots>
+<layoutdefaults spacing="6" margin="6"/>
+</UI>
