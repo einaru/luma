@@ -180,7 +180,8 @@ class MainWin(MainWinDesign):
         try:
             self.PLUGINS[pluginName]["WIDGET_REF"].buildToolBar(self)
         except AttributeError, e:
-            print "Could not build toolbar for plugin ", pluginName
+            #print "Could not build toolbar for plugin ", pluginName
+            pass
 
 ###############################################################################
 
