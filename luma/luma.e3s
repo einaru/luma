@@ -1,14 +1,13 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!--eric3 session file for project luma-->
 <!--This file was generated automatically, do not edit.-->
-<!--Saved: 2004-08-24, 00:35:00-->
+<!--Saved: 2004-08-25, 15:16:28-->
 <Session>
   <Filenames>
-    <Filename cline="0" cindex="0">/home/wido/src/luma/lib/luma/luma.py</Filename>
-    <Filename cline="64" cindex="21">/home/wido/src/luma/lib/luma/plugins/admin_utils/AdminPanel.py</Filename>
-    <Filename cline="55" cindex="50">/home/wido/src/luma/lib/luma/base/gui/LanguageDialog.py</Filename>
+    <Filename cline="0" cindex="0">/home/wido/src/luma/lib/luma/plugins/search_plugin/SearchView.py</Filename>
+    <Filename cline="124" cindex="42">/home/wido/src/luma/lib/luma/base/utils/gui/SearchResultView.py</Filename>
   </Filenames>
-  <ActiveWindow cline="55" cindex="50">/home/wido/src/luma/lib/luma/base/gui/LanguageDialog.py</ActiveWindow>
+  <ActiveWindow cline="124" cindex="42">/home/wido/src/luma/lib/luma/base/utils/gui/SearchResultView.py</ActiveWindow>
   <Breakpoints>
   </Breakpoints>
   <DebugInfo>
