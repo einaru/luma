@@ -125,6 +125,7 @@ class MainWin(MainWinDesign):
         pluginName = str(self.pluginBox.currentText())
         if self.PLUGINS.has_key(pluginName):
             self.taskStack.raiseWidget(self.PLUGINS[pluginName]["WIDGET_ID"])
+            self.PLUGINS[pluginName]["WIDGET_REF"].buildToolBar(self)
             
 
 ###############################################################################
@@ -214,6 +215,13 @@ class MainWin(MainWinDesign):
         """
         
         self.unloadPlugins()
+        
+        toolBars = self.toolBars(Qt.DockTop)
+        
+        for x in toolBars:
+            if not (str(x.name()) == "PLUGINTOOLBAR"):
+                x.deleteLater()
+        
         self.loadPlugins()
 
 ###############################################################################
