@@ -1,17 +1,13 @@
 Admin Utilities
 ---------------
-    - Add explanation for the date2unix utils. Many users ask questions about
-      this.
+    - Add explanation for the date2unix utils. Many users ask questions about this.
         
         
 Browser
 -------
     - Add nice wizard to add new entries from templates
-        Currently there is a usability problem with adding entries. The dn is 
-        the one of the parent and many people forget to complete it with an 
-        attribute of the new object.
-        Also do not save, it not all must attributes are specified. Give a 
-        warning.
+        Currently there is a usability problem with adding entries. The dn is the one of the parent and many people forget to complete it with an attribute of the new object.
+        Also do not save, it not all must attributes are specified. Give a warning.
         
     - Move entries to new nodes. Also recursively for complete trees
         

@@ -5,8 +5,7 @@ AFTER CVS CHECKOUT
 
 If Luma is freshly checked out from cvs, run the 'make-run' script. It creates
 a symlink from bin/luma to lib/luma/luma.py. Alternatively run 
-lib/luma/luma.py directly. Luma does not have to be installed in the system to 
-run. 
+lib/luma/luma.py directly. Luma does not have to be installed in the system to run. 
 
 
 INSTALL
@@ -16,7 +15,7 @@ Luma needs the following library version installed, in order to run:
     QT >= 3.2
     Python >= 2.3
     PyQt >= 3.10
-    python-ldap >= 2.0.0pre13
+    python-ldap >= 2.0.0
     
 Additionally you need the smbpasswd module for python if you want to use nthash
 and lmhash passwords. The module can be found at 
