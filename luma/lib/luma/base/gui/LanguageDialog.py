@@ -45,20 +45,24 @@ class LanguageDialog(LanguageDialogDesign):
         for x in self.languages:
             pixmap = QPixmap(os.path.join(self.trDir, x + ".png"))
             
-            if x == 'de':
-                self.languageBox.insertItem(pixmap, "Deutsch")
-                continue
-            elif x == 'br':
+            
+            if x == 'br':
                 self.languageBox.insertItem(pixmap, "Brazil")
+                continue
+            elif x == 'de':
+                self.languageBox.insertItem(pixmap, "Germany")
+                continue
+            elif x == 'no':
+                self.languageBox.insertItem(pixmap, "Norway")
+                continue
+            elif x == 'ru':
+                self.languageBox.insertItem(pixmap, "Russia")
                 continue
             elif x == 'es':
                 self.languageBox.insertItem(pixmap, "Spain")
                 continue
-            elif x == 'no':
-                self.languageBox.insertItem(pixmap, "Norsk")
-                continue
-            elif x == 'ru':
-                self.languageBox.insertItem(pixmap, "Russian")
+            elif x == 'sv':
+                self.languageBox.insertItem(pixmap, "Sweden")
                 continue
                 
 
@@ -76,7 +80,7 @@ class LanguageDialog(LanguageDialogDesign):
         tmpText = str(self.languageBox.currentText())
         translationFile = 'NATIVE'
         
-        if tmpText == "Deutsch":
+        if tmpText == "Germany":
             translationFile = "luma_de.qm"
         elif tmpText == "Brazil":
             translationFile = "luma_br.qm"
@@ -84,10 +88,12 @@ class LanguageDialog(LanguageDialogDesign):
             translationFile = 'NATIVE'
         elif tmpText == "Spain":
             translationFile = "luma_es.qm"
-        elif tmpText == "Norsk":
+        elif tmpText == "Norway":
             translationFile = "luma_no.qm"
-        elif tmpText == "Russian":
+        elif tmpText == "Russia":
             translationFile = "luma_ru.qm"
+        elif tmpText == "Sweden":
+            translationFile = "luma_sv.qm"
         
         return os.path.join(self.trDir, translationFile)
         
