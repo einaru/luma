@@ -1,15 +1,12 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!--eric3 session file for project luma-->
 <!--This file was generated automatically, do not edit.-->
-<!--Saved: 2004-05-10, 22:39:56-->
+<!--Saved: 2004-05-12, 00:54:45-->
 <Session>
   <Filenames>
-    <Filename cline="0" cindex="0">/home/wido/src/luma/lib/luma/luma.py</Filename>
-    <Filename cline="12" cindex="20">/home/wido/src/luma/lib/luma/environment/__init__.py</Filename>
-    <Filename cline="33" cindex="79">/home/wido/src/luma/lib/luma/plugins/usermanagement/Usermanagement.py</Filename>
-    <Filename cline="112" cindex="84">/home/wido/src/luma/lib/luma/plugins/usermanagement/UsermanagementWidget.py</Filename>
+    <Filename cline="464" cindex="78">/home/wido/src/luma/lib/luma/base/utils/gui/ObjectWidget.py</Filename>
   </Filenames>
-  <ActiveWindow cline="112" cindex="84">/home/wido/src/luma/lib/luma/plugins/usermanagement/UsermanagementWidget.py</ActiveWindow>
+  <ActiveWindow cline="464" cindex="78">/home/wido/src/luma/lib/luma/base/utils/gui/ObjectWidget.py</ActiveWindow>
   <Breakpoints>
   </Breakpoints>
   <DebugInfo>
