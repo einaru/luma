@@ -71,6 +71,8 @@ class LanguageDialog(LanguageDialogDesign):
             translationFile = "luma_cs.qm"
         elif tmpText == "German":
             translationFile = "luma_de.qm"
+        elif tmpText == "French":
+            translationFile = "luma_fr.qm"
         elif tmpText == "Norwegian":
             translationFile = "luma_no.qm"
         elif tmpText == "Portuguese":
@@ -110,5 +112,7 @@ class LanguageDialog(LanguageDialogDesign):
             return "Spanish"
         elif languageCode == 'sv':
             return "Swedish"
+        elif languageCode == 'fr':
+            return "French"
         elif languageCode == 'NATIVE':
             return "English"
