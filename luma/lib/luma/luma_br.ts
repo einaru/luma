@@ -396,6 +396,13 @@ Testing guinea pig for python 2.3</source>
     </message>
 </context>
 <context>
+    <name>AddressbookView</name>
+    <message>
+        <source>&amp;Save</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>AddressbookWidget</name>
     <message>
         <source>Error</source>
@@ -506,14 +513,6 @@ Please read console output for more information.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>&amp;Save</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Alt+S</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>P</source>
         <comment>DO NOT TRANSLATE</comment>
         <translation type="unfinished"></translation>
@@ -588,6 +587,10 @@ Please read console output for more information.</source>
     <message>
         <source>NO</source>
         <comment>DO NOT TRANSLATE</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>AddressbookWidgetDesign</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -807,16 +810,6 @@ Veja mensagens na console para maiores informações.</translation>
         <translation>&amp;OK</translation>
     </message>
     <message>
-        <source>Search Error</source>
-        <translation>Erro na Busca</translation>
-    </message>
-    <message>
-        <source>Could not access children.
-See console output for more information.</source>
-        <translation>Não pude acessar item-filho.
-Veja mensagens na console para maiores informações.</translation>
-    </message>
-    <message>
         <source>Delete entries</source>
         <translation>Deletar entradas</translation>
     </message>
@@ -968,6 +961,65 @@ Veja mensagens na console para maiores informações.</translation>
     </message>
     <message>
         <source>Alt+F</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>ContactWizard</name>
+    <message>
+        <source>Incomplete Information</source>
+        <translation type="unfinished">Informação Incompleta</translation>
+    </message>
+    <message>
+        <source>Your contact needs at least a surename.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;OK</source>
+        <translation type="unfinished">&amp;OK</translation>
+    </message>
+    <message>
+        <source>Warning: Location</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please select a location where to store the contact.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Error</source>
+        <translation type="unfinished">Erro</translation>
+    </message>
+    <message>
+        <source>Could not save entry. Please see console for more infomation.</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>ContactWizardDesign</name>
+    <message>
+        <source>Add Contact</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>LOC</source>
+        <comment>DO NOT TRANSLATE</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please select a location where the new contact should be stored.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Location:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Select location</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Fill contact data</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1239,6 +1291,37 @@ Tente aumentar a faixa de uidNumber ou delete alguns usuários da subtree.</tran
     <message>
         <source>Alt+C</source>
         <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>LumaIconView</name>
+    <message>
+        <source>Delete contact</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Do you really want to delete the selected contact?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;No</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Yes</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Error</source>
+        <translation type="unfinished">Erro</translation>
+    </message>
+    <message>
+        <source>Could not delete contact. See console output for more information.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;OK</source>
+        <translation type="unfinished">&amp;OK</translation>
     </message>
 </context>
 <context>
@@ -1604,10 +1687,6 @@ Tente aumentar a faixa de uidNumber ou deletar alguns usuários da subtree.</tra
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Last:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>First:</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1625,6 +1704,14 @@ Tente aumentar a faixa de uidNumber ou deletar alguns usuários da subtree.</tra
     </message>
     <message>
         <source>Alt+O</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;Last:&lt;/b&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>This attribute must be set.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

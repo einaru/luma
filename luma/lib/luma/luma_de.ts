@@ -392,6 +392,13 @@ Testing guinea pig for python 2.3</source>
     </message>
 </context>
 <context>
+    <name>AddressbookView</name>
+    <message>
+        <source>&amp;Save</source>
+        <translation>&amp;Speichern</translation>
+    </message>
+</context>
+<context>
     <name>AddressbookWidget</name>
     <message>
         <source>Error</source>
@@ -502,14 +509,6 @@ Please read console output for more information.</source>
         <translation>Details</translation>
     </message>
     <message>
-        <source>&amp;Save</source>
-        <translation>&amp;Speichern</translation>
-    </message>
-    <message>
-        <source>Alt+S</source>
-        <translation>Alt+S</translation>
-    </message>
-    <message>
         <source>P</source>
         <comment>DO NOT TRANSLATE</comment>
         <translation></translation>
@@ -584,6 +583,10 @@ Please read console output for more information.</source>
     <message>
         <source>NO</source>
         <comment>DO NOT TRANSLATE</comment>
+        <translation></translation>
+    </message>
+    <message>
+        <source>AddressbookWidgetDesign</source>
         <translation></translation>
     </message>
 </context>
@@ -803,16 +806,6 @@ Mehr Informationen in der Konsolen-Ausgabe.</translation>
         <translation>&amp;Ok</translation>
     </message>
     <message>
-        <source>Search Error</source>
-        <translation>Suchfehler</translation>
-    </message>
-    <message>
-        <source>Could not access children.
-See console output for more information.</source>
-        <translation>Zugriff auf Kinder nicht möglich. 
-Mehr Informationen in der Konsolen-Ausgabe.</translation>
-    </message>
-    <message>
         <source>Delete entries</source>
         <translation>Einträge löschen</translation>
     </message>
@@ -965,6 +958,65 @@ Mehr Informationen in der Konsolen-Ausgabe.</translation>
     <message>
         <source>Alt+F</source>
         <translation>Alt+F</translation>
+    </message>
+</context>
+<context>
+    <name>ContactWizard</name>
+    <message>
+        <source>Incomplete Information</source>
+        <translation>Unvollständige Informationen</translation>
+    </message>
+    <message>
+        <source>Your contact needs at least a surename.</source>
+        <translation>Der Kontakt muss einen Nachnamen haben.</translation>
+    </message>
+    <message>
+        <source>&amp;OK</source>
+        <translation>&amp;Ok</translation>
+    </message>
+    <message>
+        <source>Warning: Location</source>
+        <translation>Warnung: Speicherort</translation>
+    </message>
+    <message>
+        <source>Please select a location where to store the contact.</source>
+        <translation>Bitte geben sie eine Lage an, wo der Kontakt gespeichert werden soll.</translation>
+    </message>
+    <message>
+        <source>Error</source>
+        <translation type="unfinished">Fehler</translation>
+    </message>
+    <message>
+        <source>Could not save entry. Please see console for more infomation.</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>ContactWizardDesign</name>
+    <message>
+        <source>Add Contact</source>
+        <translation>Kontakt hinzufügen</translation>
+    </message>
+    <message>
+        <source>LOC</source>
+        <comment>DO NOT TRANSLATE</comment>
+        <translation></translation>
+    </message>
+    <message>
+        <source>Please select a location where the new contact should be stored.</source>
+        <translation>Bitte geben sie eine Lage an, wo der Kontakt gespeichert werden soll.</translation>
+    </message>
+    <message>
+        <source>Location:</source>
+        <translation>Lage:</translation>
+    </message>
+    <message>
+        <source>Select location</source>
+        <translation>Lage angeben</translation>
+    </message>
+    <message>
+        <source>Fill contact data</source>
+        <translation>Kontaktdaten ausfüllen</translation>
     </message>
 </context>
 <context>
@@ -1235,6 +1287,37 @@ Versuchen sie entweder den Bereich für die uids zu erweitern oder löschen sie 
     <message>
         <source>Alt+C</source>
         <translation>Alt+A</translation>
+    </message>
+</context>
+<context>
+    <name>LumaIconView</name>
+    <message>
+        <source>Delete contact</source>
+        <translation>Kontakt löschen</translation>
+    </message>
+    <message>
+        <source>Do you really want to delete the selected contact?</source>
+        <translation>Wollen Sie wirklich den gewählten Kontakt löschen?</translation>
+    </message>
+    <message>
+        <source>&amp;No</source>
+        <translation>&amp;Nein</translation>
+    </message>
+    <message>
+        <source>&amp;Yes</source>
+        <translation>&amp;Ja</translation>
+    </message>
+    <message>
+        <source>Error</source>
+        <translation>Fehler</translation>
+    </message>
+    <message>
+        <source>Could not delete contact. See console output for more information.</source>
+        <translation>Konnte nicht Kontakt löschen. Mehr Informationen in der Konsole.</translation>
+    </message>
+    <message>
+        <source>&amp;OK</source>
+        <translation>&amp;Ok</translation>
     </message>
 </context>
 <context>
@@ -1600,10 +1683,6 @@ Versuchen sie entweder den Bereich für die uids zu erweitern oder löschen sie 
         <translation>Dr.</translation>
     </message>
     <message>
-        <source>Last:</source>
-        <translation>Nachname:</translation>
-    </message>
-    <message>
         <source>First:</source>
         <translation>Vorname:</translation>
     </message>
@@ -1622,6 +1701,14 @@ Versuchen sie entweder den Bereich für die uids zu erweitern oder löschen sie 
     <message>
         <source>Alt+O</source>
         <translation>Alt+O</translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;Last:&lt;/b&gt;</source>
+        <translation>&lt;b&gt;Nachname:&lt;/b&gt;</translation>
+    </message>
+    <message>
+        <source>This attribute must be set.</source>
+        <translation>Dieses Attribut muss gesetzt sein.</translation>
     </message>
 </context>
 <context>
