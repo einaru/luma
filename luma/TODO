@@ -6,17 +6,16 @@ Admin Utilities
 Browser
 -------
     - Add nice wizard to add new entries from templates
-        Currently there is a usability problem with adding entries. The dn is the one of the parent and many people forget to complete it with an attribute of the new object.
-        Also do not save, it not all must attributes are specified. Give a warning.
+        Currently there is a usability problem with adding entries. 
+        The dn is the one of the parent and many people forget to complete it with an attribute of the new object.
+        Also do not save, if not all must attributes are specified. Give a warning.
         
     - Move entries to new nodes. Also recursively for complete trees
         
 
-    
 Schema Browser
 --------------
     - Create schema browser
-    
     
 
 Addressbook
@@ -35,10 +34,10 @@ Install Script
 
 General
 -------
-    - Import of ldifs
-    
-    
+    - Import of LDIF-files
+    - Import/export DSML-files
     
 Wishlist by users
 -----------------
     - create own schemas   
+    - schema (file) to ldif/dsml converter (for use with iplanet,ibm,oid,xslt etc)
