@@ -18,6 +18,7 @@ cd tmp
 find . -name "CVS" | xargs rm -rf
 find . -name "*.pyc" | xargs rm
 rm -rf luma-$1/lib/luma/plugins/ifi_user
+rm -rf luma-$1/lib/luma/plugins/config_create
 tar -cvjvpf luma-$1.tar.bz2 luma-$1
 mv luma-$1*.bz2 ..
 cd ..
