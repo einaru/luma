@@ -36,6 +36,7 @@ class BrowserWidget(QListView):
 
     def __init__(self,parent = None,name = None,fl = 0):
         QListView.__init__(self,parent,name,fl)
+        self.setSelectionMode(QListView.Extended)
 
         self.connect(self, SIGNAL("clicked(QListViewItem*)"), self.itemClicked)
         self.connect(self, SIGNAL("collapsed(QListViewItem*)"), self.itemCollapsed)
@@ -346,19 +347,53 @@ class BrowserWidget(QListView):
         """ Export the selected item to ldif.
         """
         
-        fullPath = self.getFullPath(self.selectedItem())
-        success, resultList, exceptionObject = self.getLdapItem(fullPath)
-        
-        if success and (len(resultList) > 0):
-                exportDialog = ExportDialog()
-                exportDialog.initData(resultList)
-                exportDialog.exec_loop()
-        else:
+        selectedItems = []
+        listIterator = QListViewItemIterator(self)
+        while listIterator.current():
+            item = listIterator.current()
+            
+            if item.isSelected():
+                selectedItems.append(item)
+                
+            listIterator += 1
+            
+        if 0 == len(selectedItems):
+            return
+            
+        entryList = []
+        partialResults = False
+        for x in selectedItems:
+            fullPath = self.getFullPath(x)
+            
+            # check if we selected a server name
+            serverName, ldapObject = self.splitPath(fullPath)
+            if 0 == len(ldapObject):
+                continue
+                
+            success, resultList, exceptionObject = self.getLdapItem(fullPath)
+            
+            if success:
+                entryList.extend(resultList)
+            else:
+                errorMsg = self.trUtf8("Could not retrieve entry with DN %1 on server %2 for exporting.<br><br>Reason: ")
+                errorMsg = errorMsg.text().arg(ldapObject).arg(serverName)
+                errorMsg.append(str(exceptionObject))
+                environment.logMessage(LogObject("Error", errorMsg))
+                partialResults = True
+               
+        if partialResults:
             dialog = LumaErrorDialog()
-            errorMsg = self.trUtf8("Could not export item.<br><br>Reason: ")
-            errorMsg.append(str(exceptionObject))
+            errorMsg = self.trUtf8("Could not retrieve all entries for exporting. More information in the logger.")
             dialog.setErrorMessage(errorMsg)
             dialog.exec_loop()
+            return
+            
+        if 0 == len(entryList):
+            return
+            
+        exportDialog = ExportDialog()
+        exportDialog.initData(entryList)
+        exportDialog.exec_loop()
 
 ###############################################################################
 
@@ -366,66 +401,152 @@ class BrowserWidget(QListView):
         """ Export the whole subtree to ldif.
         """
         
-        fullPath = self.getFullPath(self.selectedItem())
-        success, resultList, exceptionObject = self.getLdapItemChildren(fullPath, 1)
-        
-        if success and (len(resultList) > 0):
-            exportDialog = ExportDialog()
-            exportDialog.initData(resultList)
-            exportDialog.exec_loop()
-        else:
+        selectedItems = []
+        listIterator = QListViewItemIterator(self)
+        while listIterator.current():
+            item = listIterator.current()
+            
+            if item.isSelected():
+                selectedItems.append(item)
+                
+            listIterator += 1
+            
+        if 0 == len(selectedItems):
+            return
+            
+        entryList = []
+        partialResults = False
+        for x in selectedItems:
+            fullPath = self.getFullPath(x)
+            
+            # check if we selected a server name
+            serverName, ldapObject = self.splitPath(fullPath)
+            if 0 == len(ldapObject):
+                continue
+                
+            success, resultList, exceptionObject = self.getLdapItemChildren(fullPath, 1)
+            
+            if success:
+                entryList.extend(resultList)
+            else:
+                errorMsg = self.trUtf8("Could not retrieve entry with DN %1 on server %2 for exporting.<br><br>Reason: ")
+                errorMsg = errorMsg.text().arg(ldapObject).arg(serverName)
+                errorMsg.append(str(exceptionObject))
+                environment.logMessage(LogObject("Error", errorMsg))
+                partialResults = True
+               
+        if partialResults:
             dialog = LumaErrorDialog()
-            errorMsg = self.trUtf8("Could not export items.<br><br>Reason: ")
-            errorMsg.append(str(exceptionObject))
+            errorMsg = self.trUtf8("Could not retrieve all entries for exporting. More information in the logger.")
             dialog.setErrorMessage(errorMsg)
             dialog.exec_loop()
-        
+            return
+            
+        if 0 == len(entryList):
+            return
+            
+        exportDialog = ExportDialog()
+        exportDialog.initData(entryList)
+        exportDialog.exec_loop()
 
 ###############################################################################
 
     def exportItemAll(self):
         """ Export the whole subtree to ldif, together with all its parents.
+        
+        TODO: The code produces multiple exports of some entries if the 
+        selections are on different levels in the same subtree.
         """
         
-        
-        itemList = []
-        stringList = []
-        searchError = False
-        
-        currentItem = self.selectedItem()
-        fullPath = self.getFullPath(currentItem)
-        exceptionObject = None
-        
-        parentDNList = self.getParents(currentItem)
-        for x in parentDNList:
-            success, resultList, exceptionObject = self.getLdapItem(x)
-            if success:
-                itemList.extend(resultList)
-            else:
-                searchError = True
-                break
+        selectedItems = []
+        listIterator = QListViewItemIterator(self)
+        while listIterator.current():
+            item = listIterator.current()
+            
+            if item.isSelected():
+                selectedItems.append(item)
                 
-        if not searchError:
-            success, subtreeList, exceptionObject = self.getLdapItemChildren(fullPath, 1)
+            listIterator += 1
+            
+        if 0 == len(selectedItems):
+            return
+            
+        # remove duplicated items
+        tmpDict = {}
+        for x in selectedItems:
+            tmpDict[x] = None
+        selectedItems = tmpDict.keys()
+        
+        
+            
+        parentDNList = []
+        for x in selectedItems:
+            parentDNList.extend(self.getParents(x))
+            
+        # remove duplicated items for parents
+        tmpDict = {}
+        for x in parentDNList:
+            tmpDict[x] = None
+        parentDNList = tmpDict.keys()
+        
+        # get ldap entries for the parentsa of the entries to be exported
+        parentEntries = []
+        partialResults = False
+        for x in parentDNList:
+            fullPath = self.getFullPath(x)
+            
+            # check if we selected a server name
+            serverName, ldapObject = self.splitPath(fullPath)
+            if 0 == len(ldapObject):
+                continue
+                
+            success, resultList, exceptionObject = self.getLdapItem(fullPath)
             
             if success:
-                itemList.extend(subtreeList)
-                if len(itemList) > 0:
-                    exportDialog = ExportDialog()
-                    exportDialog.initData(itemList)
-                    exportDialog.exec_loop()
+                parentEntries.extend(resultList)
             else:
-                dialog = LumaErrorDialog()
-                errorMsg = self.trUtf8("Could not export items.<br><br>Reason: ")
+                errorMsg = self.trUtf8("Could not retrieve entry with DN %1 on server %2 for exporting.<br><br>Reason: ")
+                errorMsg = errorMsg.text().arg(ldapObject).arg(serverName)
                 errorMsg.append(str(exceptionObject))
-                dialog.setErrorMessage(errorMsg)
-                dialog.exec_loop()
-        else:
+                environment.logMessage(LogObject("Error", errorMsg))
+                partialResults = True
+        
+        # get ldap entries for the selected items
+        entryList = []
+        for x in selectedItems:
+            fullPath = self.getFullPath(x)
+            
+            # check if we selected a server name
+            serverName, ldapObject = self.splitPath(fullPath)
+            if 0 == len(ldapObject):
+                continue
+                
+            success, resultList, exceptionObject = self.getLdapItemChildren(fullPath, 1)
+            
+            if success:
+                entryList.extend(resultList)
+            else:
+                errorMsg = self.trUtf8("Could not retrieve entry with DN %1 on server %2 for exporting.<br><br>Reason: ")
+                errorMsg = errorMsg.text().arg(ldapObject).arg(serverName)
+                errorMsg.append(str(exceptionObject))
+                environment.logMessage(LogObject("Error", errorMsg))
+                partialResults = True
+               
+        if partialResults:
             dialog = LumaErrorDialog()
-            errorMsg = self.trUtf8("Could not export items.<br><br>Reason: ")
-            errorMsg.append(str(exceptionObject))
+            errorMsg = self.trUtf8("Could not retrieve all entries for exporting. More information in the logger.")
             dialog.setErrorMessage(errorMsg)
             dialog.exec_loop()
+            return
+            
+        if 0 == len(entryList):
+            return
+           
+        entryList.extend(parentEntries)
+        entryList.sort()
+        exportDialog = ExportDialog()
+        exportDialog.initData(entryList)
+        exportDialog.exec_loop()
 
 ###############################################################################
 
@@ -433,31 +554,54 @@ class BrowserWidget(QListView):
         """ Delete selected item from the server.
         """
         
-        item = self.selectedItem()
-        parent = item.parent()
-        fullPath = self.getFullPath(item)
-        serverName, ldapObject = self.splitPath(fullPath)
-        if len(ldapObject) == 0:
-            return None
+        selectedItems = []
+        listIterator = QListViewItemIterator(self)
+        while listIterator.current():
+            item = listIterator.current()
             
-        success, resultList, exceptionObject = self.getLdapItem(fullPath)
-        
-        if success:
-            if len(resultList) > 0:
-                deleteDialog = DeleteDialog()
-                deleteDialog.initData(resultList)
-                deleteDialog.exec_loop()
-                parent.setOpen(0)
-                parent.setOpen(1)
-                self.setSelected(parent, True)
-                self.itemClicked(parent)
-        else:
+            if item.isSelected():
+                selectedItems.append(item)
+                
+            listIterator += 1
+            
+        if 0 == len(selectedItems):
+            return
+            
+        entryList = []
+        partialResults = False
+        for x in selectedItems:
+            fullPath = self.getFullPath(x)
+            
+            # check if we selected a server name
+            serverName, ldapObject = self.splitPath(fullPath)
+            if 0 == len(ldapObject):
+                continue
+                
+            success, resultList, exceptionObject = self.getLdapItem(fullPath)
+            
+            if success:
+                entryList.extend(resultList)
+            else:
+                errorMsg = self.trUtf8("Could not retrieve entry with DN %1 on server %2 for deletion.<br><br>Reason: ")
+                errorMsg = errorMsg.text().arg(ldapObject).arg(serverName)
+                errorMsg.append(str(exceptionObject))
+                environment.logMessage(LogObject("Error", errorMsg))
+                partialResults = True
+               
+        if partialResults:
             dialog = LumaErrorDialog()
-            errorMsg = self.trUtf8("Could not retrieve entry for deletion.<br><br>Reason: ")
-            errorMsg.append(str(exceptionObject))
+            errorMsg = self.trUtf8("Could not retrieve all entries for deletion. More information in the logger.")
             dialog.setErrorMessage(errorMsg)
             dialog.exec_loop()
-
+            return
+            
+        if 0 == len(entryList):
+            return
+            
+        
+        deleteDialog = DeleteDialog()
+        deleteDialog.initData(entryList)
+        deleteDialog.exec_loop()
 
 ###############################################################################
 
@@ -475,6 +619,22 @@ class BrowserWidget(QListView):
         server, dn = self.splitPath(itemPath)
         
         if not (tmpItem == None):
+            # try to find how many items are selected
+            multipleSelected = False
+            listIterator = QListViewItemIterator(self)
+            tmpInt = 0
+            while listIterator.current():
+                item = listIterator.current()
+            
+                if item.isSelected():
+                    tmpInt += 1
+                    
+                if tmpInt >= 2:
+                    multipleSelected = True
+                    break 
+                
+                listIterator += 1
+            
             menuID = popupMenu.insertItem(QIconSet(QPixmap(aliasIconFile)), self.trUtf8("Follow Aliases"), self.enableAliases)
             popupMenu.setItemChecked(menuID, self.aliasDict[server])
                 
@@ -491,15 +651,25 @@ class BrowserWidget(QListView):
         
         
                 # Fill export menu
-                exportMenu.insertItem(self.trUtf8("Item"), self.exportItem)
-                exportMenu.insertItem(self.trUtf8("Subtree"), self.exportItemSubtree)
-                exportMenu.insertItem(self.trUtf8("Subtree with Parents"), self.exportItemAll)
+                if multipleSelected:
+                    exportMenu.insertItem(self.trUtf8("Items"), self.exportItem)
+                    exportMenu.insertItem(self.trUtf8("Subtrees"), self.exportItemSubtree)
+                    exportMenu.insertItem(self.trUtf8("Subtrees with Parents"), self.exportItemAll)
+                else:
+                    exportMenu.insertItem(self.trUtf8("Item"), self.exportItem)
+                    exportMenu.insertItem(self.trUtf8("Subtree"), self.exportItemSubtree)
+                    exportMenu.insertItem(self.trUtf8("Subtree with Parents"), self.exportItemAll)
 
         
                 # Fill delete menu
-                deleteMenu.insertItem(self.trUtf8("Item"), self.deleteItem)
-                deleteMenu.insertItem(self.trUtf8("Subtree"), self.deleteItemsRecursive)
-                deleteMenu.insertItem(self.trUtf8("Subtree without Node"), self.deleteSubtree)
+                if multipleSelected:
+                    deleteMenu.insertItem(self.trUtf8("Items"), self.deleteItem)
+                    deleteMenu.insertItem(self.trUtf8("Subtrees"), self.deleteItemsRecursive)
+                    deleteMenu.insertItem(self.trUtf8("Subtrees without Node"), self.deleteSubtree)
+                else:
+                    deleteMenu.insertItem(self.trUtf8("Item"), self.deleteItem)
+                    deleteMenu.insertItem(self.trUtf8("Subtree"), self.deleteItemsRecursive)
+                    deleteMenu.insertItem(self.trUtf8("Subtree without Node"), self.deleteSubtree)
                 
                 # Fill add menu
                 self.addItemMenu.clear()
@@ -543,7 +713,7 @@ class BrowserWidget(QListView):
         parentList = []
         while (item.parent()):
             item = item.parent()
-            parentList.append(self.getFullPath(item))
+            parentList.append(item)
         parentList.reverse()
         del parentList[0]
         return parentList
@@ -563,7 +733,20 @@ class BrowserWidget(QListView):
         template = templates.getTemplate(templateName)
         
         # get server name and basedn from where to add
-        fqn = self.getFullPath(self.selectedItem())
+        selectedItems = []
+        listIterator = QListViewItemIterator(self)
+        while listIterator.current():
+            item = listIterator.current()
+            
+            if item.isSelected():
+                selectedItems.append(item)
+                
+            listIterator += 1
+            
+        if 0 == len(selectedItems):
+            return
+        
+        fqn = self.getFullPath(selectedItems[0])
         tmpList = fqn.split(",")
                 
         serverName = tmpList[-1]
@@ -606,31 +789,54 @@ class BrowserWidget(QListView):
             do not delete the selected item
         """
         
-        currentItem = self.selectedItem()
-        
-        parent = currentItem.parent()
-        fullPath = self.getFullPath(currentItem)
-        success, childrenList, exceptionObject = self.getLdapItemChildren(fullPath, 1)
-        
-        if success:
-            if len(childrenList) > 0:
-                if (not withParent):
-                    del childrenList[0]
+        selectedItems = []
+        listIterator = QListViewItemIterator(self)
+        while listIterator.current():
+            item = listIterator.current()
+            
+            if item.isSelected():
+                selectedItems.append(item)
                 
-                childrenList.sort()
-                deleteDialog = DeleteDialog()
-                deleteDialog.initData(childrenList)
-                deleteDialog.exec_loop()
-                parent.setOpen(0)
-                parent.setOpen(1)
-                self.setSelected(parent, True)
-                self.itemClicked(parent)
+            listIterator += 1
+            
+        if 0 == len(selectedItems):
+            return
+            
+        entryList = []
+        partialResults = False
+        for x in selectedItems:
+            fullPath = self.getFullPath(x)
+            
+            # check if we selected a server name
+            serverName, ldapObject = self.splitPath(fullPath)
+            if 0 == len(ldapObject):
+                continue
+                
+            success, resultList, exceptionObject = self.getLdapItemChildren(fullPath, withParent)
+            
+            if success:
+                entryList.extend(resultList)
             else:
-                dialog = LumaErrorDialog()
-                errorMsg = self.trUtf8("Could not retrieve entry for deletion.<br><br>Reason: ")
+                errorMsg = self.trUtf8("Could not retrieve entry with DN %1 on server %2 for deletion.<br><br>Reason: ")
+                errorMsg = errorMsg.text().arg(ldapObject).arg(serverName)
                 errorMsg.append(str(exceptionObject))
-                dialog.setErrorMessage(errorMsg)
-                dialog.exec_loop()
+                environment.logMessage(LogObject("Error", errorMsg))
+                partialResults = True
+            
+        if partialResults:
+            dialog = LumaErrorDialog()
+            errorMsg = self.trUtf8("Could not retrieve all entries for deletion. More information in the logger.")
+            dialog.setErrorMessage(errorMsg)
+            dialog.exec_loop()
+            return
+            
+        if 0 == len(entryList):
+            return
+            
+        entryList.sort()
+        deleteDialog = DeleteDialog()
+        deleteDialog.initData(entryList)
+        deleteDialog.exec_loop()
             
 ###############################################################################
 
@@ -640,6 +846,74 @@ class BrowserWidget(QListView):
         
         self.deleteItemsRecursive(0)
 
+###############################################################################
+
+    def keyPressEvent(self, keyEvent):
+        self.setEnabled(False)
+        keyText = unicode(keyEvent.text()).lower()
+        if 0 == len(keyText):
+            keyEvent.ignore()
+            self.setEnabled(True)
+            return
+        
+        # find the first item below the currently selected item
+        selectedItem = self.selectedItem()
+        currentItem = None
+        
+        # Either no item is selected of the can select multiple items.
+        if None == selectedItem:
+            listIterator = QListViewItemIterator(self)
+            while listIterator.current():
+                item = listIterator.current()
+            
+                if item.isSelected():
+                    currentItem = item.itemBelow()
+                    break
+                
+                listIterator += 1
+                
+        # We have one selected item
+        else:
+            currentItem = selectedItem.itemBelow()
+        
+        # Small error prevention
+        if None == currentItem:
+            currentItem = self.firstChild()
+            if None == currentItem:
+                self.setEnabled(True)
+                return
+        
+        # Now we try to find the next item matching our search key.
+        listIterator = QListViewItemIterator(currentItem)
+        item = None
+        while listIterator.current():
+            item = listIterator.current()
+            
+            nodeString = unicode(item.text(0))
+            tmpList = nodeString.split("=")
+            if len(tmpList) < 2:
+                listIterator +=1
+                continue
+                    
+            tmpString = tmpList[1]
+            if 0 == len(tmpString):
+                listIterator +=1
+                continue
+                    
+            if tmpString[0].lower() == keyText:
+                self.ensureItemVisible(item)
+                self.setSelected(item, True)
+                self.itemClicked(item)
+                break
+                
+            listIterator += 1
+            
+        # When re-enabled, we need to get the focus again. Otherwise further 
+        # key presses will be ignored.
+        self.setEnabled(True)
+        self.setFocus()
+        
+        
 ###############################################################################
 
     def deleteLdapEntry(self, serverName, ldapObject):
