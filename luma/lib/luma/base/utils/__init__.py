@@ -3,7 +3,6 @@ import re
 import base64
 
 def lumaStringEncode(tmpString):
-    #tmpString = unicode(tmpString).encode('utf-8')
     tmpString = tmpString.replace("\\", "\\\\")
     tmpString = tmpString.replace(",", r"\\\1")
         
@@ -25,9 +24,9 @@ def isBinaryAttribute(tmpString):
     binaryPattern = re.compile(BINARY_PATTERN)
     
     if binaryPattern.search(tmpString) == None:
-        return 0
+        return False
     else:
-        return 1
+        return True
         
 ###############################################################################
 
