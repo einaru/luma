@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file '/home/wido/src/luma/lib/luma/plugins/addressbook/AddressbookWidgetDesign.ui'
 #
-# Created: Tue Feb 3 23:58:05 2004
+# Created: Sun Feb 8 01:02:29 2004
 #      by: The PyQt User Interface Compiler (pyuic) 3.10
 #
 # WARNING! All changes made in this file will be lost!
@@ -21,12 +21,6 @@ class AddressbookWidgetDesign(QWidget):
 
 
         AddressbookWidgetDesignLayout = QGridLayout(self,1,1,0,6,"AddressbookWidgetDesignLayout")
-
-        self.saveButton = QPushButton(self,"saveButton")
-
-        AddressbookWidgetDesignLayout.addWidget(self.saveButton,1,1)
-        spacer = QSpacerItem(320,21,QSizePolicy.Expanding,QSizePolicy.Minimum)
-        AddressbookWidgetDesignLayout.addItem(spacer,1,0)
 
         self.tabWidget2 = QTabWidget(self,"tabWidget2")
         self.tabWidget2.setMinimumSize(QSize(300,0))
@@ -48,8 +42,8 @@ class AddressbookWidgetDesign(QWidget):
         self.textLabel3_2.setAlignment(QLabel.AlignVCenter | QLabel.AlignRight)
 
         tabLayout.addMultiCellWidget(self.textLabel3_2,1,1,1,3)
-        spacer_2 = QSpacerItem(21,58,QSizePolicy.Minimum,QSizePolicy.Expanding)
-        tabLayout.addMultiCell(spacer_2,1,2,0,0)
+        spacer = QSpacerItem(21,58,QSizePolicy.Minimum,QSizePolicy.Expanding)
+        tabLayout.addMultiCell(spacer,1,2,0,0)
 
         self.textLabel2_2 = QLabel(self.tab,"textLabel2_2")
         self.textLabel2_2.setAlignment(QLabel.AlignVCenter | QLabel.AlignRight)
@@ -75,8 +69,8 @@ class AddressbookWidgetDesign(QWidget):
         self.cnEdit.setReadOnly(1)
 
         tabLayout.addMultiCellWidget(self.cnEdit,0,0,4,6)
-        spacer_3 = QSpacerItem(21,50,QSizePolicy.Minimum,QSizePolicy.Expanding)
-        tabLayout.addItem(spacer_3,10,5)
+        spacer_2 = QSpacerItem(21,50,QSizePolicy.Minimum,QSizePolicy.Expanding)
+        tabLayout.addItem(spacer_2,10,5)
 
         self.categoryEdit = QLineEdit(self.tab,"categoryEdit")
 
@@ -128,8 +122,8 @@ class AddressbookWidgetDesign(QWidget):
         self.mailLabel.setMinimumSize(QSize(32,32))
 
         tabLayout.addMultiCellWidget(self.mailLabel,4,4,0,1)
-        spacer_4 = QSpacerItem(50,21,QSizePolicy.Minimum,QSizePolicy.Minimum)
-        tabLayout.addItem(spacer_4,4,2)
+        spacer_3 = QSpacerItem(50,21,QSizePolicy.Minimum,QSizePolicy.Minimum)
+        tabLayout.addItem(spacer_3,4,2)
 
         self.textLabel10 = QLabel(self.tab,"textLabel10")
         self.textLabel10.setSizePolicy(QSizePolicy(0,5,0,0,self.textLabel10.sizePolicy().hasHeightForWidth()))
@@ -141,8 +135,8 @@ class AddressbookWidgetDesign(QWidget):
         self.mailBox.setEditable(1)
 
         tabLayout.addMultiCellWidget(self.mailBox,4,4,4,6)
-        spacer_5 = QSpacerItem(101,21,QSizePolicy.Expanding,QSizePolicy.Minimum)
-        tabLayout.addItem(spacer_5,5,4)
+        spacer_4 = QSpacerItem(101,21,QSizePolicy.Expanding,QSizePolicy.Minimum)
+        tabLayout.addItem(spacer_4,5,4)
 
         self.deleteMailButton = QPushButton(self.tab,"deleteMailButton")
 
@@ -207,8 +201,8 @@ class AddressbookWidgetDesign(QWidget):
         tabLayout_2.addMultiCellWidget(self.line4,4,4,0,2)
 
         layout2 = QGridLayout(None,1,1,0,6,"layout2")
-        spacer_6 = QSpacerItem(21,30,QSizePolicy.Minimum,QSizePolicy.Expanding)
-        layout2.addItem(spacer_6,2,1)
+        spacer_5 = QSpacerItem(21,30,QSizePolicy.Minimum,QSizePolicy.Expanding)
+        layout2.addItem(spacer_5,2,1)
 
         self.addressBox = QComboBox(0,self.tab_2,"addressBox")
 
@@ -320,8 +314,8 @@ class AddressbookWidgetDesign(QWidget):
         self.notesLabel.setMaximumSize(QSize(32,32))
 
         TabPageLayout.addWidget(self.notesLabel,7,0)
-        spacer_7 = QSpacerItem(21,110,QSizePolicy.Minimum,QSizePolicy.Expanding)
-        TabPageLayout.addItem(spacer_7,8,0)
+        spacer_6 = QSpacerItem(21,110,QSizePolicy.Minimum,QSizePolicy.Expanding)
+        TabPageLayout.addItem(spacer_6,8,0)
 
         self.line6 = QFrame(self.TabPage,"line6")
         self.line6.setFrameShape(QFrame.HLine)
@@ -355,21 +349,45 @@ class AddressbookWidgetDesign(QWidget):
 
         self.languageChange()
 
-        self.resize(QSize(589,469).expandedTo(self.minimumSizeHint()))
+        self.resize(QSize(589,475).expandedTo(self.minimumSizeHint()))
         self.clearWState(Qt.WState_Polished)
 
-        self.connect(self.saveButton,SIGNAL("clicked()"),self.saveEntry)
         self.connect(self.nameButton,SIGNAL("clicked()"),self.showNameDialog)
         self.connect(self.deleteMailButton,SIGNAL("clicked()"),self.deleteMail)
         self.connect(self.addMailButton,SIGNAL("clicked()"),self.addMail)
         self.connect(self.categoryButton,SIGNAL("clicked()"),self.editCategories)
         self.connect(self.addressBox,SIGNAL("activated(int)"),self.initAddress)
 
+        self.setTabOrder(self.tabWidget2,self.nameButton)
+        self.setTabOrder(self.nameButton,self.cnEdit)
+        self.setTabOrder(self.cnEdit,self.titleEdit)
+        self.setTabOrder(self.titleEdit,self.organisationEdit)
+        self.setTabOrder(self.organisationEdit,self.mailBox)
+        self.setTabOrder(self.mailBox,self.deleteMailButton)
+        self.setTabOrder(self.deleteMailButton,self.addMailButton)
+        self.setTabOrder(self.addMailButton,self.labeledURIEdit)
+        self.setTabOrder(self.labeledURIEdit,self.categoryButton)
+        self.setTabOrder(self.categoryButton,self.categoryEdit)
+        self.setTabOrder(self.categoryEdit,self.homePhoneEdit)
+        self.setTabOrder(self.homePhoneEdit,self.telephoneNumberEdit)
+        self.setTabOrder(self.telephoneNumberEdit,self.mobileEdit)
+        self.setTabOrder(self.mobileEdit,self.facsimileTelephoneNumberEdit)
+        self.setTabOrder(self.facsimileTelephoneNumberEdit,self.addressBox)
+        self.setTabOrder(self.addressBox,self.addressEdit)
+        self.setTabOrder(self.addressEdit,self.ouEdit)
+        self.setTabOrder(self.ouEdit,self.managerNameEdit)
+        self.setTabOrder(self.managerNameEdit,self.roomNumberEdit)
+        self.setTabOrder(self.roomNumberEdit,self.assistantNameEdit)
+        self.setTabOrder(self.assistantNameEdit,self.businessRoleEdit)
+        self.setTabOrder(self.businessRoleEdit,self.displayNameEdit)
+        self.setTabOrder(self.displayNameEdit,self.birthDateEdit)
+        self.setTabOrder(self.birthDateEdit,self.spouseNameEdit)
+        self.setTabOrder(self.spouseNameEdit,self.anniversaryEdit)
+        self.setTabOrder(self.anniversaryEdit,self.noteEdit)
+
 
     def languageChange(self):
-        self.setCaption(QString.null)
-        self.saveButton.setText(self.__tr("&Save"))
-        self.saveButton.setAccel(self.__tr("Alt+S"))
+        self.setCaption(self.__tr("AddressbookWidgetDesign"))
         self.personLabel.setText(self.__tr("P","DO NOT TRANSLATE"))
         self.nameButton.setText(self.__tr("&Full Name..."))
         self.nameButton.setAccel(self.__tr("Alt+F"))

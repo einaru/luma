@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file '/home/wido/src/luma/lib/luma/plugins/addressbook/NameDialog.ui'
 #
-# Created: Tue Feb 3 23:58:07 2004
+# Created: Sat Feb 7 19:40:24 2004
 #      by: The PyQt User Interface Compiler (pyuic) 3.10
 #
 # WARNING! All changes made in this file will be lost!
@@ -78,7 +78,7 @@ class NameDialog(QDialog):
         layout3.addWidget(self.titleBox,0,1)
 
         self.textLabel4 = QLabel(self,"textLabel4")
-        self.textLabel4.setAlignment(QLabel.AlignVCenter | QLabel.AlignRight)
+        self.textLabel4.setAlignment(QLabel.WordBreak | QLabel.AlignVCenter | QLabel.AlignRight)
 
         layout3.addWidget(self.textLabel4,3,0)
 
@@ -99,7 +99,7 @@ class NameDialog(QDialog):
 
         self.languageChange()
 
-        self.resize(QSize(280,236).expandedTo(self.minimumSizeHint()))
+        self.resize(QSize(280,238).expandedTo(self.minimumSizeHint()))
         self.clearWState(Qt.WState_Polished)
 
         self.connect(self.cancelButton,SIGNAL("clicked()"),self,SLOT("reject()"))
@@ -137,7 +137,8 @@ class NameDialog(QDialog):
         self.titleBox.insertItem(self.__tr("Ms."))
         self.titleBox.insertItem(self.__tr("Miss"))
         self.titleBox.insertItem(self.__tr("Dr."))
-        self.textLabel4.setText(self.__tr("Last:"))
+        self.textLabel4.setText(self.__tr("<b>Last:</b>"))
+        QToolTip.add(self.textLabel4,self.__tr("This attribute must be set."))
         self.textLabel2.setText(self.__tr("First:"))
 
 

@@ -9,7 +9,7 @@
             <x>0</x>
             <y>0</y>
             <width>280</width>
-            <height>236</height>
+            <height>238</height>
         </rect>
     </property>
     <property name="caption">
@@ -251,10 +251,13 @@
                         <cstring>textLabel4</cstring>
                     </property>
                     <property name="text">
-                        <string>Last:</string>
+                        <string>&lt;b&gt;Last:&lt;/b&gt;</string>
                     </property>
                     <property name="alignment">
-                        <set>AlignVCenter|AlignRight</set>
+                        <set>WordBreak|AlignVCenter|AlignRight</set>
+                    </property>
+                    <property name="toolTip" stdset="0">
+                        <string>This attribute must be set.</string>
                     </property>
                 </widget>
                 <widget class="QLineEdit" row="1" column="1">

@@ -42,7 +42,7 @@ class CategoryEditDialog(CategoryEditDialogDesign):
             itemList.append(curItem)
             
         for x in itemList:
-            categoryList.append(str(x.text(0)))
+            categoryList.append(unicode(x.text(0)))
             
         return categoryList
         
@@ -61,7 +61,7 @@ class CategoryEditDialog(CategoryEditDialogDesign):
         dialog.exec_loop()
         
         if (dialog.result() == QDialog.Accepted):
-            category = strip(str(dialog.categoryBox.currentText()))
+            category = strip(unicode(dialog.categoryBox.currentText()))
             
             if not(category == ''):
                 currentCategoryList = self.getCategories()

@@ -1,5 +1,14 @@
 # -*- coding: utf-8 -*-
 
+###########################################################################
+#    Copyright (C) 2004 by Wido Depping                                      
+#    <wido.depping@tu-clausthal.de>                                                             
+#
+# Copyright: See COPYING file that comes with this distribution
+#
+###########################################################################
+
+
 from qt import *
 from ConfigParser import *
 import os.path

@@ -9,44 +9,16 @@
             <x>0</x>
             <y>0</y>
             <width>589</width>
-            <height>469</height>
+            <height>475</height>
         </rect>
     </property>
     <property name="caption">
-        <string></string>
+        <string>AddressbookWidgetDesign</string>
     </property>
     <grid>
         <property name="name">
             <cstring>unnamed</cstring>
         </property>
-        <widget class="QPushButton" row="1" column="1">
-            <property name="name">
-                <cstring>saveButton</cstring>
-            </property>
-            <property name="text">
-                <string>&amp;Save</string>
-            </property>
-            <property name="accel">
-                <string>Alt+S</string>
-            </property>
-        </widget>
-        <spacer row="1" column="0">
-            <property name="name">
-                <cstring>spacer6</cstring>
-            </property>
-            <property name="orientation">
-                <enum>Horizontal</enum>
-            </property>
-            <property name="sizeType">
-                <enum>Expanding</enum>
-            </property>
-            <property name="sizeHint">
-                <size>
-                    <width>320</width>
-                    <height>21</height>
-                </size>
-            </property>
-        </spacer>
         <widget class="QTabWidget" row="0" column="0" rowspan="1" colspan="2">
             <property name="name">
                 <cstring>tabWidget2</cstring>
@@ -873,12 +845,6 @@
 </widget>
 <connections>
     <connection>
-        <sender>saveButton</sender>
-        <signal>clicked()</signal>
-        <receiver>AddressbookWidgetDesign</receiver>
-        <slot>saveEntry()</slot>
-    </connection>
-    <connection>
         <sender>nameButton</sender>
         <signal>clicked()</signal>
         <receiver>AddressbookWidgetDesign</receiver>
@@ -909,6 +875,35 @@
         <slot>initAddress()</slot>
     </connection>
 </connections>
+<tabstops>
+    <tabstop>tabWidget2</tabstop>
+    <tabstop>nameButton</tabstop>
+    <tabstop>cnEdit</tabstop>
+    <tabstop>titleEdit</tabstop>
+    <tabstop>organisationEdit</tabstop>
+    <tabstop>mailBox</tabstop>
+    <tabstop>deleteMailButton</tabstop>
+    <tabstop>addMailButton</tabstop>
+    <tabstop>labeledURIEdit</tabstop>
+    <tabstop>categoryButton</tabstop>
+    <tabstop>categoryEdit</tabstop>
+    <tabstop>homePhoneEdit</tabstop>
+    <tabstop>telephoneNumberEdit</tabstop>
+    <tabstop>mobileEdit</tabstop>
+    <tabstop>facsimileTelephoneNumberEdit</tabstop>
+    <tabstop>addressBox</tabstop>
+    <tabstop>addressEdit</tabstop>
+    <tabstop>ouEdit</tabstop>
+    <tabstop>managerNameEdit</tabstop>
+    <tabstop>roomNumberEdit</tabstop>
+    <tabstop>assistantNameEdit</tabstop>
+    <tabstop>businessRoleEdit</tabstop>
+    <tabstop>displayNameEdit</tabstop>
+    <tabstop>birthDateEdit</tabstop>
+    <tabstop>spouseNameEdit</tabstop>
+    <tabstop>anniversaryEdit</tabstop>
+    <tabstop>noteEdit</tabstop>
+</tabstops>
 <slots>
     <slot>serverChanged()</slot>
     <slot>search()</slot>

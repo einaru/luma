@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ###########################################################################
-#    Copyright (C) 2003 by Wido Depping
+#    Copyright (C) 2004 by Wido Depping
 #    <wido.depping@tu-clausthal.de>
 #
 # Copyright: See COPYING file that comes with this distribution

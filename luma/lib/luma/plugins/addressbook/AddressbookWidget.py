@@ -51,9 +51,6 @@ class AddressbookWidget(AddressbookWidgetDesign):
         self.personalLabel.setPixmap(personIcon)
         self.notesLabel.setPixmap(urlIcon)
         
-        self.enableWidget(0)
-        self.DISABLED = 1
-        
         self.ocInfo = ObjectClassAttributeInfo()
         self.allowedAttributes = None
         
@@ -81,6 +78,9 @@ class AddressbookWidget(AddressbookWidgetDesign):
                                                 'homePostalAddress': self.addressEdit,
                                                 'otherPostalAddress': self.addressEdit
                                                 }
+                                                
+        self.enableWidget(0)
+        self.DISABLED = 1
 
 ###############################################################################
 
@@ -127,76 +127,74 @@ class AddressbookWidget(AddressbookWidgetDesign):
             self.ocInfo.retrieve_info_from_server()
             self.DISABLED = 0
             
-        self.enableContactFields(self.data['objectClass'])
+        self.enableContactFields(self.ocInfo.get_all_attributes(self.data['objectClass']))
         
         
         self.addressBox.setEnabled(1)
         
         for x in self.data.keys():
             if x == 'cn':
-                self.cnEdit.setText(self.data[x][0])
+                self.cnEdit.setText((self.data[x][0]).decode('utf-8'))
                 
             if x == 'title':
-                self.titleEdit.setText(self.data[x][0])
+                self.titleEdit.setText(self.data[x][0].decode('utf-8'))
                 
             if x == 'o':
-                self.organisationEdit.setText(self.data[x][0])
+                self.organisationEdit.setText(self.data[x][0].decode('utf-8'))
                 
             if x == 'mail':
                 for y in self.data[x]:
-                    self.mailBox.insertItem(y)
+                    self.mailBox.insertItem(y.decode('utf-8'))
             
             if x == 'labeledURI':
-                self.labeledURIEdit.setText(self.data[x][0])
+                self.labeledURIEdit.setText(self.data[x][0].decode('utf-8'))
                 
             if x == 'category':
-                self.categoryEdit.setText(",".join(self.data[x]))
+                self.categoryEdit.setText(",".join(self.data[x]).decode('utf-8'))
         
             if x == 'homePhone':
-                self.homePhoneEdit.setText(self.data[x][0])
+                self.homePhoneEdit.setText(self.data[x][0].decode('utf-8'))
                 
             if x == 'telephoneNumber':
-                self.telephoneNumberEdit.setText(self.data[x][0])
+                self.telephoneNumberEdit.setText(self.data[x][0].decode('utf-8'))
                 
             if x == 'mobile':
-                self.mobileEdit.setText(self.data[x][0])
+                self.mobileEdit.setText(self.data[x][0].decode('utf-8'))
                
             if x == 'facsimileTelephoneNumber':
-                self.facsimileTelephoneNumberEdit.setText(self.data[x][0])
+                self.facsimileTelephoneNumberEdit.setText(self.data[x][0].decode('utf-8'))
                 
                 
             if x == 'ou':
-                self.ouEdit.setText(self.data[x][0])
+                self.ouEdit.setText(self.data[x][0].decode('utf-8'))
                 
             if x == 'roomNumber':
-                self.roomNumberEdit.setText(self.data[x][0])
+                self.roomNumberEdit.setText(self.data[x][0].decode('utf-8'))
                 
             if x == 'businessRole':
-                self.businessRoleEdit.setText(self.data[x][0])
+                self.businessRoleEdit.setText(self.data[x][0].decode('utf-8'))
             
             if x == 'managerName':
-                self.managerNameEdit.setText(self.data[x][0])
+                self.managerNameEdit.setText(self.data[x][0].decode('utf-8'))
                 
             if x == 'assistantName':
-                self.assistantNameEdit.setText(self.data[x][0])
+                self.assistantNameEdit.setText(self.data[x][0].decode('utf-8'))
                 
             if x == 'displayName':
-                self.displayNameEdit.setText(self.data[x][0])
+                self.displayNameEdit.setText(self.data[x][0].decode('utf-8'))
                 
             if x == 'spouseName':
-                self.spouseNameEdit.setText(self.data[x][0])
+                self.spouseNameEdit.setText(self.data[x][0].decode('utf-8'))
                 
             if x == 'note':
-                self.noteEdit.setText(self.data[x][0])
+                self.noteEdit.setText(self.data[x][0].decode('utf-8'))
                 
             if x == 'birthDate':
                 tmpList = self.data[x][0].split('-')
-                #print tmpList
                 self.birthDateEdit.setDate(QDate(int(tmpList[0]), int(tmpList[1]), int(tmpList[2])))
                 
             if x == 'anniversary':
                 tmpList = self.data[x][0].split('-')
-                #self.birthDateEdit.setDate(QDate(tmpList[0], tmpList[1], tmpList[2]))
                 self.birthDateEdit.setDate(QDate(int(tmpList[0]), int(tmpList[1]), int(tmpList[2])))
                 
         self.initAddress(0, 1)
@@ -205,22 +203,20 @@ class AddressbookWidget(AddressbookWidgetDesign):
 ###############################################################################
 
     def showNameDialog(self):
+        dialog = NameDialog()
         try:
-            dialog = NameDialog()
-            
-            
-            sn = self.data['sn'][0]
-            tmpList = str(self.cnEdit.text()).split(sn)
+            sn = self.data['sn'][0].decode('utf-8')
+            tmpList = unicode(self.cnEdit.text()).split(sn)
             tmpList[0] = strip(tmpList[0])
             
             prefix = tmpList[0].split(' ')
-            for x in range(0, len(prefix)):
+            for x in range(0, len(prefix)-1):
                 prefix[x] = strip(prefix[x])
             
             dialog.lastEdit.setText(sn)
             if (len(tmpList) == 2):
                 dialog.suffixBox.setCurrentText(tmpList[1])
-                
+              
             if (len(prefix) == 1):
                 dialog.firstEdit.setText(prefix[0])
             if  (len(prefix) == 2):
@@ -233,16 +229,16 @@ class AddressbookWidget(AddressbookWidgetDesign):
                 dialog.middleEdit.setText(tmpString)
             
             dialog.exec_loop()
-        except:
-            print "Error"
+        except Exception, e:
+            dialog.exec_loop()
         
         if (dialog.result() == QDialog.Accepted):
-            tmpSn = strip(str(dialog.lastEdit.text()))
+            tmpSn = strip(unicode(dialog.lastEdit.text()))
             
             if tmpSn == '':
                 return
                 
-            self.data['sn'][0] = tmpSn
+            self.data['sn'][0] = tmpSn.encode('utf-8')
             
             tmpList = []
             tmpList.append(self.__normalizeQtString(dialog.titleBox.currentText()))
@@ -256,7 +252,7 @@ class AddressbookWidget(AddressbookWidgetDesign):
 ###############################################################################
 
     def __normalizeQtString(self, tmpString):
-        tmpString = strip(str(tmpString))
+        tmpString = strip(unicode(tmpString))
         
         if (len(tmpString) > 0):
             tmpString = tmpString + ' '
@@ -283,12 +279,12 @@ class AddressbookWidget(AddressbookWidgetDesign):
         dialog.exec_loop()
         
         if (dialog.result() == QDialog.Accepted):
-            mail = strip(str(dialog.mailEdit.text()))
+            mail = strip(unicode(dialog.mailEdit.text()))
             
             if not(mail == ''):
                 currentMails = []
                 for x in range(0, self.mailBox.count()):
-                    currentMails.append(str(self.mailBox.text(x)))
+                    currentMails.append(unicode(self.mailBox.text(x)))
                     
                 if not (mail in currentMails):
                     self.mailBox.insertItem(mail)
@@ -298,7 +294,9 @@ class AddressbookWidget(AddressbookWidgetDesign):
 
     def editCategories(self):
         dialog = CategoryEditDialog()
-        dialog.setCategories(str(self.categoryEdit.text()).split(','))
+        tmpString = strip(unicode(self.categoryEdit.text()))
+        if not(tmpString == ''):
+            dialog.setCategories(tmpString.split(','))
         
         dialog.exec_loop()
         
@@ -322,19 +320,20 @@ class AddressbookWidget(AddressbookWidgetDesign):
         addressType = ['postalAddress', 'homePostalAddress', 'otherPostalAddress']
         
         if fresh == 0:
-            self.data[addressType[self.addressID]] = [str(self.addressEdit.text())]
+            self.data[addressType[self.addressID]] = [unicode(self.addressEdit.text()).encode('utf-8')]
         
         self.addressID = id
         self.addressEdit.clear()
         if self.data.has_key(addressType[id]):
             tmpAddress = self.data[addressType[id]][0]
-            self.addressEdit.setText(tmpAddress)
+            self.addressEdit.setText(tmpAddress.decode('utf-8'))
         
         
 ###############################################################################
 
     def enableWidget(self, val):
         self.setEnabled(val)
+        self.emit(PYSIGNAL("enable_save"), (val,))
         
 ###############################################################################
 
@@ -342,69 +341,72 @@ class AddressbookWidget(AddressbookWidgetDesign):
         values = {}
         
         if 'cn' in self.allowedAttributes:
-            values['cn'] = [str(self.cnEdit.text())]
+            tmpString = unicode(self.cnEdit.text()).encode('utf-8')
+            values['cn'] = [tmpString]
         
         if 'title' in self.allowedAttributes:
-            values['title'] = [str(self.titleEdit.text())]
+            values['title'] = [unicode(self.titleEdit.text()).encode('utf-8')]
             
         if 'o' in self.allowedAttributes:
-            values['o'] = [str(self.organisationEdit.text())]
+            values['o'] = [unicode(self.organisationEdit.text()).encode('utf-8')]
         
         if 'mail' in self.allowedAttributes:
             tmpMail = []
             for x in range(0, self.mailBox.count()):
-                tmpMail.append(str(self.mailBox.text(x)))
+                tmpMail.append(unicode(self.mailBox.text(x)).encode('utf-8'))
+            if len(tmpMail) == 0:
+                tmpMail = ['']
             values['mail'] = tmpMail
         
         if 'labeledURI' in self.allowedAttributes:
-            values['labeledURI'] = [str(self.labeledURIEdit.text())]
+            values['labeledURI'] = [unicode(self.labeledURIEdit.text()).encode('utf-8')]
             
         if 'category' in self.allowedAttributes:
-            values['category'] = str(self.categoryEdit.text()).split(',')
+            values['category'] = unicode(self.categoryEdit.text()).encode('utf-8').split(',')
             
         if 'homePhone' in self.allowedAttributes:
-            values['homePhone'] = [str(self.homePhoneEdit.text())]
+            values['homePhone'] = [unicode(self.homePhoneEdit.text()).encode('utf-8')]
             
         if 'telephoneNumber' in self.allowedAttributes:
-            values['telephoneNumber'] = [str(self.telephoneNumberEdit.text())]
+            values['telephoneNumber'] = [unicode(self.telephoneNumberEdit.text()).encode('utf-8')]
             
         if 'mobile' in self.allowedAttributes:
-            values['mobile'] = [str(self.mobileEdit.text())]
+            values['mobile'] = [unicode(self.mobileEdit.text()).encode('utf-8')]
             
         if 'facsimileTelephoneNumber' in self.allowedAttributes:
-            values['facsimileTelephoneNumber'] = [str(self.facsimileTelephoneNumberEdit.text())]
+            values['facsimileTelephoneNumber'] = [unicode(self.facsimileTelephoneNumberEdit.text()).encode('utf-8')]
             
         if 'ou' in self.allowedAttributes:
-            values['ou'] = [str(self.ouEdit.text())]
+            values['ou'] = [unicode(self.ouEdit.text()).encode('utf-8')]
             
         if 'roomNumber' in self.allowedAttributes:
-            values['roomNumber'] = [str(self.roomNumberEdit.text())]
+            values['roomNumber'] = [unicode(self.roomNumberEdit.text()).encode('utf-8')]
             
         if 'businessRole' in self.allowedAttributes:
-            values['businessRole'] = [str(self.businessRoleEdit.text())]
+            values['businessRole'] = [unicode(self.businessRoleEdit.text()).encode('utf-8')]
             
         if 'managerName' in self.allowedAttributes:
-            values['managerName'] = [str(self.managerNameEdit.text())]
+            values['managerName'] = [unicode(self.managerNameEdit.text()).encode('utf-8')]
             
         if 'assistantName' in self.allowedAttributes:
-            values['assistantName'] = [str(self.assistantNameEdit.text())]
+            values['assistantName'] = [unicode(self.assistantNameEdit.text()).encode('utf-8')]
             
         if 'displayName' in self.allowedAttributes:
-            values['displayName'] = [str(self.displayNameEdit.text())]
+            values['displayName'] = [unicode(self.displayNameEdit.text()).encode('utf-8')]
         
         if 'spouseName' in self.allowedAttributes:
-            values['spouseName'] = [str(self.spouseNameEdit.text())]
+            values['spouseName'] = [unicode(self.spouseNameEdit.text()).encode('utf-8')]
             
         if 'note' in self.allowedAttributes:
-            values['note'] = [str(self.noteEdit.text())]
+            values['note'] = [unicode(self.noteEdit.text()).encode('utf-8')]
         
         if 'birthDate' in self.allowedAttributes:
-            tmpDate = str(self.birthDateEdit.date().toString(Qt.ISODate))
+            tmpDate = unicode(self.birthDateEdit.date().toString(Qt.ISODate)).encode('utf-8')
             if not (tmpDate == ''):
                 values['birthDate'] = [tmpDate]
             
         if 'anniversary' in self.allowedAttributes:
-            tmpDate = str(self.anniversaryEdit.date().toString(Qt.ISODate))
+            tmpDate = unicode(self.anniversaryEdit.date().toString(Qt.ISODate)).encode('utf-8')
             if not (tmpDate == ''):
                 values['anniversary'] = [tmpDate]
         
@@ -421,10 +423,11 @@ class AddressbookWidget(AddressbookWidgetDesign):
                 values['otherPostalAddress'] = self.data['otherPostalAddress']
             
         
+        values['sn'] = self.data['sn']
         addressType = ['postalAddress', 'homePostalAddress', 'otherPostalAddress']
         id = self.addressBox.currentItem()
         if addressType[id] in self.allowedAttributes:
-            values[addressType[id]] = [str(self.addressEdit.text())]
+            values[addressType[id]] = [unicode(self.addressEdit.text()).encode('utf-8')]
         
         for x in values.keys():
             if values[x][0] == '':
@@ -452,8 +455,8 @@ Please read console output for more information."""),
             None,
             None,
             0, -1)
-        
-        self.emit(PYSIGNAL("contact_saved"), ())
+        else:
+            self.emit(PYSIGNAL("contact_saved"), ())
         
 ###############################################################################
 
@@ -465,8 +468,9 @@ Please read console output for more information."""),
         
 ###############################################################################
 
-    def enableContactFields(self, classes):
-        self.allowedAttributes = self.ocInfo.get_all_attributes(classes)
+    def enableContactFields(self, attributes):
+        #self.allowedAttributes = self.ocInfo.get_all_attributes(classes)
+        self.allowedAttributes = attributes
         
         for x in self.attributeWidgets.keys():
             widget = self.attributeWidgets[x]
@@ -484,3 +488,6 @@ Please read console output for more information."""),
                     
                 if (x == 'category'):
                     self.categoryButton.setEnabled(0)
+
+
+    
