@@ -124,6 +124,7 @@ class SearchResultView(SearchResultViewDesign):
     def eventFilter(self, object, event):
         if (event.type() == QEvent.Close):
             self.childsToClean.append(object)
+            
         return 0
 
 ###############################################################################
@@ -171,9 +172,8 @@ class SearchResultView(SearchResultViewDesign):
 
     def exportItems(self):
         itemList = self.getSelectedItems()
-        tmpList = []
-        for x in itemList:
-            tmpList.append(self.RESULT[unicode(x.text(0))])
+        
+        tmpList = map(lambda x: self.RESULT[unicode(x.text(0))], itemList)
             
         ldifHelper = LdifHelper(self.SERVER)
         
@@ -193,8 +193,9 @@ class SearchResultView(SearchResultViewDesign):
 ###############################################################################
 
     def getSelectedItems(self):
-        child = self.resultListView.firstChild()
         tmpList = []
+        
+        child = self.resultListView.firstChild()
         if child.isSelected():
                 tmpList.append(child)
         

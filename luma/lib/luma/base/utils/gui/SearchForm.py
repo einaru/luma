@@ -46,14 +46,16 @@ class SearchForm(SearchFormDesign):
 ###############################################################################
 
     def startSearch(self):
-        self.groupBox2.setEnabled(False)
+        """Starts the search for the given server and search filter.
         
-        #parentObject = self
-        #while  parentObject.parentWidget():
-        #    parentObject = parentObject.parentWidget()
-        #tmpStatusBar = parentObject.statusBar()
+        Emits the signal "ldap_result". Given arguments are the servername, the 
+        search result and the criterias used for the filter.
+        """
+        
+        self.groupBox2.setEnabled(False)
 
-        liste = self.getSearchCriteria()
+        criteriaList = self.getSearchCriteria()
+        
         server = unicode(self.serverBox.currentText())
         serverMeta = self.serverListObject.getServerObject(server)
         
@@ -66,7 +68,7 @@ class SearchForm(SearchFormDesign):
         
         self.groupBox2.setEnabled(True)
 
-        self.emit(PYSIGNAL("ldap_result"), (serverMeta.name, searchResult,liste, ))
+        self.emit(PYSIGNAL("ldap_result"), (serverMeta.name, searchResult,criteriaList, ))
 
 ###############################################################################
 
@@ -80,6 +82,7 @@ class SearchForm(SearchFormDesign):
             
         dialog = FilterWizard(server)
         dialog.exec_loop()
+        
         if dialog.result() == QDialog.Accepted:
             self.initFilterBookmarks()
             self.searchEdit.setCurrentText(dialog.searchFilterEdit.text())
@@ -105,10 +108,8 @@ class SearchForm(SearchFormDesign):
         filterString = unicode(self.searchEdit.currentText())
         filterPattern = re.compile("\(\w*=")
         tmpList = filterPattern.findall(filterString)
-        endList = []
-        for x in tmpList:
-            endList.append(x[1:-1])
-        return endList
+
+        return map(lambda x: x[1:-1], tmpList)
 
 ###############################################################################
 
@@ -116,5 +117,6 @@ class SearchForm(SearchFormDesign):
         if (event.type() == QEvent.KeyRelease):
             if (event.key() == Qt.Key_Return):
                 self.startSearch()
+                
         return 0
 
