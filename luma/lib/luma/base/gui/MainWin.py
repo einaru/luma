@@ -134,8 +134,11 @@ class MainWin(MainWinDesign):
 
 ###############################################################################
 
-    def loadPlugins(self):
+    def loadPlugins(self, splash=None):
         """ Load all wanted plugins."""
+        
+        if not (None == splash):
+            splash.message("Loading plugins...", Qt.AlignLeft + Qt.AlignBottom, Qt.white)
         
         pluginObject = PluginLoader(self.checkToLoad())
         self.PLUGINS = pluginObject.PLUGINS
@@ -148,6 +151,10 @@ class MainWin(MainWinDesign):
         for x in self.PLUGINS.keys():
             tmpObject = self.PLUGINS[x]
             if tmpObject['PLUGIN_LOAD'] == 1:
+                if not (None == splash):
+                    tmpMessage = "Loading plugin " + self.PLUGINS[x]['PLUGIN_NAME']
+                    splash.message(tmpMessage, Qt.AlignLeft + Qt.AlignBottom, Qt.white)
+
                 pluginNameList.append(self.PLUGINS[x]['PLUGIN_NAME'])
                 widgetTmp = tmpObject["PLUGIN_CODE"].getPluginWidget(self.taskStack)
                 tmpObject["WIDGET_REF"] = widgetTmp
@@ -163,6 +170,9 @@ class MainWin(MainWinDesign):
                 self.PLUGINS[pluginName]["WIDGET_REF"].buildToolBar(self)
             except AttributeError, e:
                 pass
+                
+        if not (None == splash):
+            splash.message("Finished.", Qt.AlignLeft + Qt.AlignBottom, Qt.white)
             
 
 ###############################################################################
@@ -305,7 +315,7 @@ class MainWin(MainWinDesign):
         try:
             configParser.readfp(open(self.configFile, 'r'))
         except Exception, errorData:
-            tmpString = "Could not load language settings file. Reason:\n"
+            tmpString = "Could not read language settings file. Reason:\n"
             tmpString += str(errorData)
             environment.logMessage(LogObject("Debug", tmpString))
             
