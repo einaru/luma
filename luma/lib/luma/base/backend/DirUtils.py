@@ -8,9 +8,9 @@
 #
 ###########################################################################
 
-import os
+import os.path
 import sys
-import string
+
 
 class DirUtils(object):
     """A class for getting the location of some importan directories.
@@ -23,31 +23,17 @@ class DirUtils(object):
     
     
     """
+    SCRIPTNAME = ""
+    PREFIX= ""
+    USERDIR= ""
     
 ###############################################################################
 
     def __init__(self):
-        self.SCRIPTNAME, self.argumentStrip = self.__split_argument()
-        self.PREFIX = self.__get_prefix()
-        self.USERDIR = os.environ['HOME']
+        tmpList = os.path.split(sys.argv[0])
+        tmpPrefix = os.path.abspath(tmpList[0])
+        self.PREFIX= os.path.split(tmpPrefix)[0]
         
-###############################################################################
-
-    def __split_argument(self):
-        tmpList = sys.argv[0].split("/")
-        scriptname = tmpList[:-1]
-        argumentStrip = "/".join(tmpList[:-1])
-        
-        return scriptname, argumentStrip
-        
-###############################################################################
-
-    def __get_prefix(self):
-        tmp = os.path.abspath(self.argumentStrip)
-        foo = tmp.split("/")
-        lastDir = foo[-1:]
-        prefix = tmp[:-(len(lastDir[0])+1)]
-        
-        return prefix
-
+        self.SCRIPTNAME = tmpList[1]
+        self.USERDIR = os.path.expanduser("~")
     
