@@ -174,11 +174,14 @@ class ObjectClassAttributeInfo(object):
         """ Returns two sets of objectClasses that either MUST
             or MAY use the given attribute
         """
-        
+                
         must = Set()
         may = Set()
         
         attribute = string.lower(attribute)
+        
+        if ";binary" == attribute[-7:]:
+            attribute = attribute[:-7]
         
         for (key,value) in self.objectClassesDict.items():
             for x in value['MUST']:
@@ -200,6 +203,9 @@ class ObjectClassAttributeInfo(object):
         
         attribute = string.lower(attribute)
         
+        if ";binary" == attribute[-7:]:
+            attribute = attribute[:-7]
+        
         if attribute in self.attributeDict:
             return self.attributeDict[attribute]["SINGLE"]
         else:
@@ -215,6 +221,10 @@ class ObjectClassAttributeInfo(object):
             raise "Missing Arguments to Funktion 'isMust(attribute, objectClassesDict)"
 
         attribute = string.lower(attribute)
+        
+        if ";binary" == attribute[-7:]:
+            attribute = attribute[:-7]
+        
         classList = self.getClassesWithParents(classList)
         
         value = False
@@ -253,6 +263,9 @@ class ObjectClassAttributeInfo(object):
             if syntax in ldap.schema.NOT_HUMAN_READABLE_LDAP_SYNTAXES : 
                 retVal = True
             
+        if ";binary" == attribute[-7:]:
+            retVal = True
+            
         return retVal
 
 ###############################################################################
@@ -279,6 +292,10 @@ class ObjectClassAttributeInfo(object):
         """
         
         attribute = string.lower(attribute)
+        
+        if ";binary" == attribute[-7:]:
+            attribute = attribute[:-7]
+        
         if not self.attributeDict.has_key(attribute):
             return None
             
@@ -368,6 +385,9 @@ class ObjectClassAttributeInfo(object):
         
         mustSet, maySet = self.getAllAttributes(classList)
         newSet = mustSet.union(maySet)
+        
+        if ";binary" == attributeName[-7:]:
+            attributeName = attributeName[:-7]
         
         if attributeName in newSet:
             return True

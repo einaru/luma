@@ -49,31 +49,6 @@
                     <comment>DO NOT TRANSLATE</comment>
                 </property>
             </widget>
-            <spacer row="5" column="1">
-                <property name="name">
-                    <cstring>spacer3</cstring>
-                </property>
-                <property name="orientation">
-                    <enum>Vertical</enum>
-                </property>
-                <property name="sizeType">
-                    <enum>Expanding</enum>
-                </property>
-                <property name="sizeHint">
-                    <size>
-                        <width>21</width>
-                        <height>260</height>
-                    </size>
-                </property>
-            </spacer>
-            <widget class="QCheckBox" row="4" column="0" rowspan="1" colspan="2">
-                <property name="name">
-                    <cstring>enableAllBox</cstring>
-                </property>
-                <property name="text">
-                    <string>Enable all attributes which are supported by the server.</string>
-                </property>
-            </widget>
             <widget class="QComboBox" row="3" column="1">
                 <property name="name">
                     <cstring>attributeBox</cstring>
@@ -136,6 +111,39 @@
 objectclasses are displayed. If you want to add an attribute which is 
 supported by other objectclasses, please enable this functionality below.
 &lt;/p&gt;</string>
+                </property>
+            </widget>
+            <widget class="QCheckBox" row="4" column="0" rowspan="1" colspan="2">
+                <property name="name">
+                    <cstring>binaryBox</cstring>
+                </property>
+                <property name="text">
+                    <string>Use binary extension</string>
+                </property>
+            </widget>
+            <spacer row="6" column="1">
+                <property name="name">
+                    <cstring>spacer3</cstring>
+                </property>
+                <property name="orientation">
+                    <enum>Vertical</enum>
+                </property>
+                <property name="sizeType">
+                    <enum>Expanding</enum>
+                </property>
+                <property name="sizeHint">
+                    <size>
+                        <width>21</width>
+                        <height>40</height>
+                    </size>
+                </property>
+            </spacer>
+            <widget class="QCheckBox" row="5" column="0" rowspan="1" colspan="2">
+                <property name="name">
+                    <cstring>enableAllBox</cstring>
+                </property>
+                <property name="text">
+                    <string>Enable all attributes which are supported by the server.</string>
                 </property>
             </widget>
         </grid>

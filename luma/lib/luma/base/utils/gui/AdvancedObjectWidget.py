@@ -235,6 +235,9 @@ class AdvancedObjectWidget(QWidget):
                     
             valueList = self.ldapDataObject.getAttributeValueList(x)
             
+            if None == valueList:
+                continue
+            
             if not (len(valueList) > 0):
                 continue
                 
@@ -626,7 +629,10 @@ class AdvancedObjectWidget(QWidget):
         
         attribute = str(dialog.attributeBox.currentText())
         showAll = dialog.enableAllBox.isChecked()
-        attributeList = Set([attribute])
+        if dialog.binaryBox.isOn():
+            attributeList = Set([attribute + ";binary"])
+        else:
+            attributeList = Set([attribute])
         
         if showAll and not(attribute in dialog.possibleAttributes):
             objectClass = str(dialog.classBox.currentText())

@@ -1,13 +1,14 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file './lib/luma/base/utils/gui/AddAttributeWizardDesign.ui'
+# Form implementation generated from reading ui file '/home/wido/src/luma/lib/luma/base/utils/gui/AddAttributeWizardDesign.ui'
 #
-# Created: Tue Mar 1 22:46:25 2005
+# Created: Wed Mar 16 14:35:07 2005
 #      by: The PyQt User Interface Compiler (pyuic) 3.14
 #
 # WARNING! All changes made in this file will be lost!
 
 
+import sys
 from qt import *
 
 
@@ -28,12 +29,6 @@ class AddAttributeWizardDesign(QWizard):
         self.imageLabel.setMinimumSize(QSize(64,64))
 
         WizardPageLayout.addWidget(self.imageLabel,0,0)
-        spacer3 = QSpacerItem(21,260,QSizePolicy.Minimum,QSizePolicy.Expanding)
-        WizardPageLayout.addItem(spacer3,5,1)
-
-        self.enableAllBox = QCheckBox(self.WizardPage,"enableAllBox")
-
-        WizardPageLayout.addMultiCellWidget(self.enableAllBox,4,4,0,1)
 
         self.attributeBox = QComboBox(0,self.WizardPage,"attributeBox")
 
@@ -56,6 +51,16 @@ class AddAttributeWizardDesign(QWizard):
         self.textLabel2 = QLabel(self.WizardPage,"textLabel2")
 
         WizardPageLayout.addMultiCellWidget(self.textLabel2,0,1,1,1)
+
+        self.binaryBox = QCheckBox(self.WizardPage,"binaryBox")
+
+        WizardPageLayout.addMultiCellWidget(self.binaryBox,4,4,0,1)
+        spacer3 = QSpacerItem(21,40,QSizePolicy.Minimum,QSizePolicy.Expanding)
+        WizardPageLayout.addItem(spacer3,6,1)
+
+        self.enableAllBox = QCheckBox(self.WizardPage,"enableAllBox")
+
+        WizardPageLayout.addMultiCellWidget(self.enableAllBox,5,5,0,1)
         self.addPage(self.WizardPage,QString(""))
 
         self.WizardPage_2 = QWidget(self,"WizardPage_2")
@@ -118,13 +123,14 @@ class AddAttributeWizardDesign(QWizard):
     def languageChange(self):
         self.setCaption(self.__tr("Add Attribute"))
         self.imageLabel.setText(self.__tr("PI","DO NOT TRANSLATE"))
-        self.enableAllBox.setText(self.__tr("Enable all attributes which are supported by the server."))
         self.textLabel4.setText(self.__tr("Attribute:"))
         self.textLabel2.setText(self.__tr("<p>Please select an attribute you want to add to the current entry.</p>\n"
 "<p>By default only attributes which are supported by the current \n"
 "objectclasses are displayed. If you want to add an attribute which is \n"
 "supported by other objectclasses, please enable this functionality below.\n"
 "</p>"))
+        self.binaryBox.setText(self.__tr("Use binary extension"))
+        self.enableAllBox.setText(self.__tr("Enable all attributes which are supported by the server."))
         self.setTitle(self.WizardPage,self.__tr("Select Attribute"))
         self.textLabel2_2.setText(self.__tr("<p>You have chosen to add an attribute which is not supported by the \n"
 "objectclasses for the current entry.</p>\n"
@@ -148,3 +154,11 @@ class AddAttributeWizardDesign(QWizard):
 
     def __tr(self,s,c = None):
         return qApp.translate("AddAttributeWizardDesign",s,c)
+
+if __name__ == "__main__":
+    a = QApplication(sys.argv)
+    QObject.connect(a,SIGNAL("lastWindowClosed()"),a,SLOT("quit()"))
+    w = AddAttributeWizardDesign()
+    a.setMainWidget(w)
+    w.show()
+    a.exec_loop()
