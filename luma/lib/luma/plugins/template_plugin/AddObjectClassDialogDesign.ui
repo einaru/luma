@@ -51,7 +51,7 @@
                         <cstring>textLabel1</cstring>
                     </property>
                     <property name="text">
-                        <string>Please choose the objectclasses you want to add to the template.</string>
+                        <string>Please choose the objectclass you want to add to the template.</string>
                     </property>
                     <property name="alignment">
                         <set>WordBreak|AlignTop</set>
@@ -152,5 +152,8 @@
         <slot>reject()</slot>
     </connection>
 </connections>
+<slots>
+    <slot>displayClasses()</slot>
+</slots>
 <layoutdefaults spacing="6" margin="6"/>
 </UI>
