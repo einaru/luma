@@ -37,7 +37,7 @@ def doImportCheck():
 
     try:
         import qt
-        vString = "3.8"
+        vString = "3.7"
         if qt.PYQT_VERSION_STR >= vString:
             print "\tGood: PyQt (>= " + vString + ") installed."
         else:
@@ -155,7 +155,7 @@ def doCompile():
          
 
 
-print "LUMA 1.0beta2 (C) 2003 Wido Depping\n"
+print "LUMA 1.0 (C) 2003 Wido Depping\n"
 print "Check for preinstalled modules:"
 doImportCheck()
 print ""
