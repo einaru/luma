@@ -17,7 +17,7 @@ from sets import Set
 from base.backend.ServerList import ServerList
 import environment
 
-class UnknownAttribute:
+class UnknownAttribute(object):
     pass
 
 class ObjectClassAttributeInfo(object):
@@ -52,8 +52,8 @@ class ObjectClassAttributeInfo(object):
                 method = "ldaps://"
             tmpUrl = method + serverMeta.host + ":" + str(serverMeta.port)
             subschemasubentry_dn,schema = ldap.schema.urlfetch(tmpUrl)
-            oidList = schema.listall(ldap.schema.ObjectClass)
             
+            oidList = schema.listall(ldap.schema.ObjectClass)
             for x in oidList:
                 environment.updateUI()
                 y = schema.get_obj(ldap.schema.ObjectClass, x)
@@ -77,25 +77,27 @@ class ObjectClassAttributeInfo(object):
                 if not (len(y.may) == 0):
                     may = y.may
                     
-                self.objectClassesDict[name] = {"DESC": desc, "MUST": must, "MAY": may}
+                self.objectClassesDict[string.lower(name)] = {"DESC": desc, 
+                    "MUST": must, "MAY": may, "NAME": name}
 
             oidList = schema.listall(ldap.schema.AttributeType)
-            
             for x in oidList:
                 environment.updateUI()
                 y = schema.get_obj(ldap.schema.AttributeType, x)
                 name = y.names
-                desc = ""
-                
-                if not (y.desc == None):
-                    desc = y.desc
-                    
-                single = y.single_value
                 
                 for z in name:
-                    self.attributeDict[z] = {"DESC": desc, "SINGLE": single, "SYNTAX": y.syntax}
-                    
-                    
+                    self.attributeDict[string.lower(z)] = {"DESC": y.desc, 
+                        "SINGLE": y.single_value, "SYNTAX": y.syntax,
+                        "NAME": z}
+            
+            oidList = schema.listall(ldap.schema.LDAPSyntax)
+            for x in oidList:
+                environment.updateUI()
+                y = schema.get_obj(ldap.schema.LDAPSyntax, x)
+                print y.desc
+                
+                
         except ldap.LDAPError, e:
             print "Error during LDAP request"
             print "Reason: " + str(e)
@@ -129,7 +131,8 @@ class ObjectClassAttributeInfo(object):
         may = Set()
         
         for x in classList:
-            if not (x in self.objectClassesDict):
+            x = string.lower(x)
+            if not x in self.objectClassesDict:
                 continue
             must |= Set(self.objectClassesDict[x]["MUST"])
             may |= Set(self.objectClassesDict[x]["MAY"])
@@ -146,7 +149,7 @@ class ObjectClassAttributeInfo(object):
         must = Set()
         
         for x in classList:
-            must |= Set(self.objectClassesDict[x]["MUST"])
+            must |= Set(self.objectClassesDict[string.lower(x)]["MUST"])
             
         return must
 
@@ -160,7 +163,7 @@ class ObjectClassAttributeInfo(object):
         may = Set()
         
         for x in classList:
-            may |= Set(self.objectClassesDict[x]["MAY"])
+            may |= Set(self.objectClassesDict[string.lower(x)]["MAY"])
             
         return may
 
@@ -172,16 +175,17 @@ class ObjectClassAttributeInfo(object):
         must = Set()
         may = Set()
         
-        if not attribute in self.attributeDict:
-            raise UnknownAttribute, attribute
-            
+        attribute = string.lower(attribute)
+        
         for (key,value) in self.objectClassesDict.items():
-            if attribute in value['MUST']:
-                must.add(key)
-                
-            if attribute in value['MAY']:
-                may.add(key)
-              
+            for x in value['MUST']:
+                if attribute == string.lower(x):
+                    must.add(self.objectClassesDict[key]["NAME"])
+            
+            for x in value['MAY']:
+                if attribute == string.lower(x):
+                    must.add(self.objectClassesDict[key]["NAME"])
+
         return must, may
 
         
@@ -190,6 +194,8 @@ class ObjectClassAttributeInfo(object):
     def isSingle(self, attribute = ""):
         """ Check if a attribute must be single.
         """
+        
+        attribute = string.lower(attribute)
         
         if attribute in self.attributeDict:
             return self.attributeDict[attribute]["SINGLE"]
@@ -201,15 +207,20 @@ class ObjectClassAttributeInfo(object):
     def isMust(self, attribute="", objectClassesDict = None):
         """ Check if the given attribute must be set.
         """
-        
+
         if objectClassesDict == None:
             raise "Missing Arguments to Funktion 'isMust(attribute, objectClassesDict)"
 
+        attribute = string.lower(attribute)
+        value = False
+        
         for x in objectClassesDict:
-            if attribute in self.objectClassesDict[x]["MUST"]:
-                return True
-                    
-        return False
+            x = string.lower(x)
+            for y in self.objectClassesDict[x]["MUST"]:
+                if attribute == string.lower(y):
+                    value == True
+        
+        return value
         
 ###############################################################################
 
@@ -218,6 +229,7 @@ class ObjectClassAttributeInfo(object):
         """
         
         retVal = False
+        attribute = string.lower(attribute)
     
         if attribute in self.attributeDict:
             syntax = self.attributeDict[attribute]["SYNTAX"]
@@ -229,14 +241,24 @@ class ObjectClassAttributeInfo(object):
 ###############################################################################
 
     def hasObjectClass(self, objectClass):
+        objectClass = string.lower(objectClass)
         return objectClass in self.objectClassesDict.keys()
 
 ###############################################################################
 
     def getObjectClasses(self):
-        return self.objectClassesDict.keys()
+        return map(lambda x: self.objectClassesDict[x]["NAME"],self.objectClassesDict.keys())
 
+###############################################################################
 
+    def matchingRule(self, attribute):
+        """ Return which syntax the attribute has.
+        """
+        
+        if not self.attributeDict.has_key(attribute):
+            return None
+            
+        return self.attributeDict[attribute]["SYNTAX"]
 
 
 
