@@ -62,8 +62,6 @@ class ObjectClassAttributeInfo(object):
                 #print y.kind # could be: ( "ABSTRACT" / "STRUCTURAL" / "AUXILIARY" )
                 #print y.schema_attribute
                 #print y.token_defaults
-
-                name = y.names[0]
                 
                 desc = ""
                 if not (y.desc == None):
@@ -76,9 +74,10 @@ class ObjectClassAttributeInfo(object):
                 may = []
                 if not (len(y.may) == 0):
                     may = y.may
-                    
-                self.objectClassesDict[string.lower(name)] = {"DESC": desc, 
-                    "MUST": must, "MAY": may, "NAME": name}
+                
+                for name in y.names:
+                    self.objectClassesDict[string.lower(name)] = {"DESC": desc, 
+                        "MUST": must, "MAY": may, "NAME": name}
 
             oidList = schema.listall(ldap.schema.AttributeType)
             for x in oidList:
@@ -91,7 +90,7 @@ class ObjectClassAttributeInfo(object):
                         "SINGLE": y.single_value, "SYNTAX": y.syntax,
                         "NAME": z}
             
-            oidList = schema.listall(ldap.schema.LDAPSyntax)
+            #oidList = schema.listall(ldap.schema.LDAPSyntax)
             #for x in oidList:
             #    environment.updateUI()
             #    y = schema.get_obj(ldap.schema.LDAPSyntax, x)
@@ -218,7 +217,7 @@ class ObjectClassAttributeInfo(object):
             x = string.lower(x)
             for y in self.objectClassesDict[x]["MUST"]:
                 if attribute == string.lower(y):
-                    value == True
+                    value = True
         
         return value
         
