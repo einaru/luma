@@ -99,24 +99,13 @@ def doInstall():
     print "Copy program files...\n"
     
     try:
-        a = Popen3("cp -R bin " + prefixDir)
-        while a.poll() == -1:
-            pass
-        if a.poll() > 0:
-            raise "CopyError", "Error!!! Could not copy File. Maybe wrong permissions?"
-
-        a = Popen3("cp -R lib " + prefixDir)
-        while a.poll() == -1:
-            pass
-        if a.poll() > 0:
-            raise "CopyError", "Error!!! Could not copy File. Maybe wrong permissions?"
-
-        a = Popen3("cp -R share " + prefixDir)
-        while a.poll() == -1:
-            pass
-        if a.poll() > 0:
-            raise "CopyError", "Error!!! Could not copy File. Maybe wrong permissions?"
-
+        for tmpDir in ["bin", "lib", "share"]:
+            a = Popen3("cp -R " + tmpDir + " " + prefixDir)
+            while a.poll() == -1:
+                pass
+            if a.poll() > 0:
+                raise "CopyError", "Error!!! Could not copy File. Maybe wrong permissions?"
+                
         print "Finished copying program files.\n"
         print "LUMA installed succesfully! :)"
         
