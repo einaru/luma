@@ -31,16 +31,7 @@ class AdminPanel(AdminPanelDesign):
         self.secureLabel.setPixmap (secureIcon)
         self.dateLabel.setPixmap (dateIcon)
         
-        # basic algorithms which are supported by mkpasswd-module
-        self.supportedAlgorithms = Set(['crypt', 'md5', 'sha', 'ssha'])
-        
-        # add lmhash and nthash algorithms if smbpasswd module is present
-        try:
-            import smbpasswd
-            self.supportedAlgorithms = self.supportedAlgorithms.union(Set(['lmhash', 'nthash']))
-        except ImportError, e:
-            pass
-
+        self.supportedAlgorithms = environment.getAvailableHashMethods()
         map(self.methodBox.insertItem, self.supportedAlgorithms)
         
         self.pwHandler = CryptPwGenerator()
