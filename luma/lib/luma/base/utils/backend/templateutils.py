@@ -13,6 +13,7 @@ import environment
 import os.path
 from qtxml import *
 from qt import *
+from copy import deepcopy
 
 class LdapTemplate(object):
     """ A class for storing template information of ldap-objects.
@@ -28,6 +29,11 @@ class LdapTemplate(object):
 
         # this is status data of the template
         self.edited = False
+        
+###############################################################################
+
+    def setAttributeDefaultValue(self, attributeName, value):
+        self.attributes[attributeName].defaultValue = value
 
 ###############################################################################
 
@@ -55,18 +61,6 @@ class LdapTemplate(object):
 
 ###############################################################################
 
-    def getAttributeInfos(self):
-        """ Return a list of attributes together with their propperties.
-        """
-    
-        tmpDict = {}
-        for x in self.templateData:
-            for y in x["ATTRIBUTES"]:
-                tmpDict[y["NAME"]] = {"MUST" : y["MUST"], "SINGLE" : y["SINGLE"] , "SHOW" : y["SHOW"] }
-        return tmpDict
-
-###############################################################################
-
     def getAttributeList(self):
         tmpList = []
         for x in self.attributes.keys():
@@ -74,17 +68,7 @@ class LdapTemplate(object):
             
         return tmpList
         
-###############################################################################
 
-    def setAttributeShow(self, attribute, value):
-        """ Set the property 'SHOW' of attribute to value.
-        """
-    
-        for x in self.templateData:
-            for y in x['ATTRIBUTES']:
-                if y['NAME'] == attribute:
-                    y['SHOW'] = value
-                    
 ###############################################################################
 
     def getDataObject(self):
@@ -92,18 +76,15 @@ class LdapTemplate(object):
         """
     
         dataObject = {}
+        dataObject['objectClass'] = deepcopy(self.objectClasses)
         
-        for x in self.templateData:
-            objectClass = x["CLASSNAME"]
-            if dataObject.has_key(objectClass):
-                dataObject["objectClass"].append(objectClass)
+        for x in self.attributes.keys():
+            attributeObject = self.attributes[x]
+            if attributeObject.defaultValue == None:
+                dataObject[attributeObject.attributeName] = ['']
             else:
-                dataObject["objectClass"] = [objectClass]
-                
-            for y in x["ATTRIBUTES"]:
-                if (y["SHOW"] == 1) or (y["MUST"] == 1):
-                    dataObject[y["NAME"]] = [""]
-        
+                dataObject[attributeObject.attributeName] = [attributeObject.defaultValue.encode("utf-8")]
+            
         return dataObject
         
 ###############################################################################
@@ -145,8 +126,13 @@ class TemplateList:
     
         Templates are stored in self.tplList
         """
-        
-        fileContent = u"".join(open(self.templateFile, "r").readlines())
+        fileContent = ""
+        try:
+            fileContent = "".join(open(self.templateFile, "r").readlines())
+            fileContent = fileContent.decode("utf-8")
+        except IOError, e:
+            print "Could not read template configuration file. Reason:"
+            print e
     
         self.templateList = [] 
         
@@ -175,7 +161,7 @@ class TemplateList:
                         classNode = templateChild.firstChild()
                         while (not classNode.isNull()):
                             classElement = classNode.toElement()
-                            className = unicode (classElement.tagName())
+                            className = str(classElement.tagName())
                             tmpTemplate.objectClasses.append(className)
                             classNode = classNode.nextSibling()
                         
@@ -184,7 +170,7 @@ class TemplateList:
                         while (not attributeNode.isNull()):
                             attributeElement = attributeNode.toElement()
                             
-                            attributeName = unicode(attributeElement.tagName())
+                            attributeName = str(attributeElement.tagName())
                             binaryString = attributeElement.attribute("binary")
                             mustString = attributeElement.attribute("must")
                             singleString = attributeElement.attribute("single")
@@ -255,7 +241,7 @@ class TemplateList:
             root.appendChild(templateNode)
         
         fileHandler = open(self.templateFile, "w")
-        fileHandler.write(unicode(document.toString()))
+        fileHandler.write(unicode(document.toString()).encode("utf-8"))
         fileHandler.close()
 
 ###############################################################################
@@ -274,9 +260,9 @@ class TemplateList:
         """ Get a template given by templateName
         """
         
-        for x in self.tplList:
+        for x in self.templateList:
             if x.name == templateName:
-                return x
+                return deepcopy(x)
     
     
 
