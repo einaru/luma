@@ -27,8 +27,14 @@ class LdapTemplate(object):
     """
 
     def __init__(self, filename=None):
+        # these attributes are the actual template data
         self.name = ""
-        self.tData = []
+        self.description = ""
+        self.serverName = ""
+        self.templateData = []
+
+        # this is status data of the template
+        self.edited = False
 
 ###############################################################################
 
