@@ -14,7 +14,7 @@ import os.path
 import environment
 from plugins.addressbook.ContactWizard import ContactWizard
 from plugins.addressbook.AddressbookWidget import AddressbookWidget
-from base.utils.gui.LumaIconView import LumaIconView
+from base.utils.gui.LumaEntryBrowser import LumaEntryBrowser
 
 
 class AddressbookView(QWidget):
@@ -25,7 +25,8 @@ class AddressbookView(QWidget):
 
         self.splitter = QSplitter(self)
         self.mainLayout = QHBoxLayout(self)
-        self.entryList = LumaIconView(self.splitter)
+        
+        self.entryList = LumaEntryBrowser(self.splitter)
         iconDir = os.path.join (environment.lumaInstallationPrefix, "share", "luma", "icons", "plugins", "addressbook")
         entryIcon = QPixmap (os.path.join (iconDir, "person.png"))
         self.entryList.setItemPixmap(entryIcon)
