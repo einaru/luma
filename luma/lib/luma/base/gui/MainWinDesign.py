@@ -2,8 +2,8 @@
 
 # Form implementation generated from reading ui file '/home/wido/src/luma/lib/luma/base/gui/MainWinDesign.ui'
 #
-# Created: Wed Feb 4 00:06:45 2004
-#      by: The PyQt User Interface Compiler (pyuic) 3.10
+# Created: Thu Mar 25 00:32:36 2004
+#      by: The PyQt User Interface Compiler (pyuic) 3.11
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -1538,21 +1538,31 @@ class MainWinDesign(QMainWindow):
         self.taskBox.setTitle(self.__tr("Work Area"))
         self.about.setText(self.__tr("About Luma..."))
         self.about.setAccel(self.__tr("Ctrl+A"))
+        self.about.setMenuText(self.__tr("About Luma..."))
         self.editServerList.setText(self.__tr("Edit Server List..."))
         self.editServerList.setAccel(self.__tr("Ctrl+E"))
+        self.editServerList.setMenuText(self.__tr("Edit Server List..."))
         self.exitItem.setText(self.__tr("Exit"))
         self.exitItem.setAccel(self.__tr("Ctrl+X"))
+        self.exitItem.setMenuText(self.__tr("Exit"))
         self.menu_configure_plugins.setText(self.__tr("Configure Plugins..."))
         self.menu_configure_plugins.setAccel(self.__tr("Ctrl+C"))
+        self.menu_configure_plugins.setMenuText(self.__tr("Configure Plugins..."))
         self.reload.setText(self.__tr("Reload Plugins"))
         self.reload.setAccel(self.__tr("Ctrl+R"))
+        self.reload.setMenuText(self.__tr("Reload Plugins"))
         self.select_language.setText(self.__tr("Language..."))
         self.select_language.setAccel(self.__tr("Ctrl+L"))
+        self.select_language.setMenuText(self.__tr("Language..."))
         self.togglePluginList.setText(self.__tr("Hide/Show pluginlist"))
         self.togglePluginList.setAccel(self.__tr("Ctrl+P"))
-        self.menubar.findItem(1).setText(self.__tr("Program"))
-        self.menubar.findItem(2).setText(self.__tr("Settings"))
-        self.menubar.findItem(3).setText(self.__tr("Help"))
+        self.togglePluginList.setMenuText(self.__tr("Hide/Show pluginlist"))
+        if self.menubar.findItem(1):
+            self.menubar.findItem(1).setText(self.__tr("Program"))
+        if self.menubar.findItem(2):
+            self.menubar.findItem(2).setText(self.__tr("Settings"))
+        if self.menubar.findItem(3):
+            self.menubar.findItem(3).setText(self.__tr("Help"))
 
 
     def quit_application(self):
