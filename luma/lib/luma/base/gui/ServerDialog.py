@@ -22,78 +22,88 @@ from base.gui.BaseSelector import BaseSelector
 from base.backend.LumaConnection import LumaConnection
 
 class ServerDialog(ServerDialogDesign):
-    """ Show the dialog for managing all server information.
+    """The dialog for managing all server information.
     """
 
     def __init__(self, parent= None):
         ServerDialogDesign.__init__(self, parent)
 
         self._PREFIX = environment.lumaInstallationPrefix
-
+        
+        self.iconPath = os.path.join(self._PREFIX, "share", "luma", "icons")
+        self.networkLabel.setPixmap(QPixmap(os.path.join(self.iconPath, "worldmedium.png")))
+        self.authLabel.setPixmap(QPixmap(os.path.join(self.iconPath, "passwordmedium.png")))
         self.guiParent = parent
 
-        self.saveButton.setEnabled(0)
+        self.applyButton.setEnabled(0)
 
         self.serverListObject = ServerList()
-        self.serverList = self.serverListObject.SERVERLIST
+        self.serverList = None
+        
+        # Server which is currently selected.
+        self.currentServer = None
 
-        self.serverListIconView = []
+        
+        self.serverListObject.readServerList()
+        if self.serverListObject.SERVERLIST == None:
+            self.serverList = []
+        else:
+            self.serverList = self.serverListObject.SERVERLIST
 
-        self.reloadServer()
-
-        self.setInputEnabled(0)
+        self.serverIcon = QPixmap(os.path.join(self._PREFIX, "share", "luma", "icons", "server.png"))
+        
+        self.displayServerList()
         
 ###############################################################################
 
-    def serverSelectionChanged(self):
+    def displayServerList(self):
+        self.serverListView.clear()
+        
+        for x in self.serverList:
+            tmpItem = QListViewItem(self.serverListView, x.name)
+            tmpItem.setPixmap(0, self.serverIcon)
+            self.serverListView.insertItem(tmpItem)
+            
+        self.serverListView.setSelected(self.serverListView.firstChild(), True)
+        
+###############################################################################
+
+    def serverSelectionChanged(self, tmpItem):
         """ Change server information if another server has been selected.
         """
         
-        selectedServerString = str(self.serverIconView.currentItem().text())
-
+        #selectedServerString = unicode(self.serverIconView.currentItem().text())
+        selectedServerString = unicode(tmpItem.text(0))
+        
+        
         x = self.serverListObject.get_serverobject(selectedServerString)
-        self.nameLineEdit.setText(x.name)
+        self.currentServer = x
+        
+        self.hostLineEdit.blockSignals(True)
+        self.portSpinBox.blockSignals(True)
+        self.bindAnonBox.blockSignals(True)
+        self.baseLineEdit.blockSignals(True)
+        self.bindLineEdit.blockSignals(True)
+        self.passwordLineEdit.blockSignals(True)
+        self.tlsCheckBox.blockSignals(True)
+        
+        self.infoGroupBox.setTitle(x.name)
         self.hostLineEdit.setText(x.host)
         self.portSpinBox.setValue(x.port)
         self.bindAnonBox.setChecked(int(x.bindAnon))
         self.baseLineEdit.setText(x.baseDN)
         self.bindLineEdit.setText(x.bindDN)
-        self.bindLineEdit.setEnabled(1)
         self.passwordLineEdit.setText(x.bindPassword)
-        self.passwordLineEdit.setEnabled(1)
         self.tlsCheckBox.setChecked(int(x.tls))
-
-        self.setInputEnabled(0)
+        self.bindAnonChanged(True, True)
         
-###############################################################################
-
-    def setInputEnabled(self, inputMutex):
-        """ Change attributes of input fields to enable/disable input.
-        """
-        
-        self.nameLineEdit.setEnabled(1)
-        self.nameLineEdit.setReadOnly(not(inputMutex))
-        self.hostLineEdit.setReadOnly(not(inputMutex))
-        self.portSpinBox.setEnabled(inputMutex)
-        self.bindAnonBox.setEnabled(inputMutex)
-        if self.bindAnonBox.isChecked():
-            self.passwordLineEdit.setEnabled(0)
-            self.bindLineEdit.setEnabled(0)
-        else:
-            self.passwordLineEdit.setEnabled(1)
-            self.bindLineEdit.setEnabled(1)
-        self.bindLineEdit.setReadOnly(not(inputMutex))
-        self.baseLineEdit.setReadOnly(not(inputMutex))
-        self.passwordLineEdit.setReadOnly(not(inputMutex))
-        self.tlsCheckBox.setEnabled(inputMutex)
-        self.saveButton.setEnabled(inputMutex)
-        self.basednButton.setEnabled(inputMutex)
-        
-###############################################################################
-
-    def modifyServer(self):
-        self.setInputEnabled(1)
-        self.nameLineEdit.setEnabled(0)
+        self.hostLineEdit.blockSignals(False)
+        self.portSpinBox.blockSignals(False)
+        self.bindAnonBox.blockSignals(False)
+        self.baseLineEdit.blockSignals(False)
+        self.bindLineEdit.blockSignals(False)
+        self.passwordLineEdit.blockSignals(False)
+        self.tlsCheckBox.blockSignals(False)
 
 ###############################################################################
 
@@ -101,54 +111,46 @@ class ServerDialog(ServerDialogDesign):
         """ Set content of input fields if a new server is created.
         """
         
-        self.nameLineEdit.setText("")
-        self.hostLineEdit.setText("")
-        self.portSpinBox.setValue(389)
-        self.bindAnonBox.setChecked(1)
-        self.baseLineEdit.setText("")
-        self.bindLineEdit.setText("")
-        self.passwordLineEdit.setReadOnly(1)
-        self.bindLineEdit.setReadOnly(1)
-        self.passwordLineEdit.setText("")
-        self.tlsCheckBox.setChecked(0)
-        self.setInputEnabled(1)
+        result = QInputDialog.getText(\
+            self.trUtf8("New server"),
+            self.trUtf8("Please enter a name for the new server:"),
+            QLineEdit.Normal)
         
-###############################################################################
+        if result[1] == False:
+            return
 
-    def reloadServer(self):
-        """ Re-read the server list from config file and get updated data.
-        """
+        self.infoGroupBox.setTitle(result[0])
         
-        self.serverIconView.clear()
-        self.serverListObject.readServerList()
-        if self.serverListObject.SERVERLIST == None:
-            self.serverList = []
-        else:
-            self.serverList = self.serverListObject.SERVERLIST
-        self.serverListIconView = []
-        tmpIcon = QPixmap(os.path.join(self._PREFIX, "share", "luma", "icons", "server.png"))
-        for x in self.serverList:
-            self.serverListIconView.append(QIconViewItem(self.serverIconView, x.name, tmpIcon))
-        self.serverIconView.setCurrentItem(self.serverIconView.firstItem())
-        self.setInputEnabled(0)
+        serverObject = ServerObject()
+        serverObject.name = unicode(result[0])
+        
+        self.serverList.append(serverObject)
+        #self.displayServerList()
+        
+        self.applyButton.setEnabled(1)
+        
+        tmpItem = QListViewItem(self.serverListView, result[0])
+        tmpItem.setPixmap(0, self.serverIcon)
+        self.serverListView.insertItem(tmpItem)
+        self.serverListView.setSelected(tmpItem, True)
         
 ###############################################################################
 
     def saveServer(self):
-        """ Save the changed values of the currently selected server.
+        """ Save the changed server values.
         """
         
-        if len(self.serverList) > 0:
-            self.serverListObject.deleteServer(str(self.nameLineEdit.text()))
-        self.serverListObject.addServer(str(self.nameLineEdit.text()),
-                str(self.hostLineEdit.text()),
-                int(self.portSpinBox.value()),
-                bool(self.bindAnonBox.isChecked()),
-                str(self.baseLineEdit.text()),
-                str(self.bindLineEdit.text()),
-                str(self.passwordLineEdit.text()),
-                bool(self.tlsCheckBox.isChecked()))
-        self.reloadServer()
+        self.serverListObject.SERVERLIST = self.serverList
+        self.serverListObject.save_settings(self.serverListObject.SERVERLIST)
+        
+        self.displayServerList()
+        self.applyButton.setEnabled(0)
+        
+###############################################################################
+
+    def saveCloseDialog(self):
+        self.saveServer()
+        self.accept()
         
 ###############################################################################
 
@@ -156,7 +158,7 @@ class ServerDialog(ServerDialogDesign):
         """ Delete the currently selected server.
         """
         
-        selectedServerString = self.serverIconView.currentItem().text()
+        selectedServerString = self.serverListView.currentItem().text(0)
         reallyDelete = QMessageBox(self.trUtf8("Delete Server?"),
                 self.trUtf8("Do your really want to delete the Server?"),
                 QMessageBox.Critical,
@@ -168,35 +170,24 @@ class ServerDialog(ServerDialogDesign):
         reallyDelete.exec_loop()
         if (reallyDelete.result() == 1):
             self.serverListObject.deleteServer(str(selectedServerString))
-            self.reloadServer()
-
-###############################################################################
-
-    def bind_anon(self):
-        """ Change authentification info if anonoumus authentification is
-        selected/de-selected.
-        """
-        
-        if self.bindAnonBox.isChecked():
-            self.passwordLineEdit.setEnabled(0)
-            self.bindLineEdit.setEnabled(0)
-        else:
-            self.passwordLineEdit.setEnabled(1)
-            self.bindLineEdit.setEnabled(1)
+            self.serverList = self.serverListObject.SERVERLIST
+            
+            self.displayServerList()
+            self.applyButton.setEnabled(1)
 
 ###############################################################################
 
     def searchBaseDN(self):
         
         serverMeta = ServerObject()
-        serverMeta.name = str(self.hostLineEdit.text())
-        serverMeta.host = str(self.hostLineEdit.text())
+        serverMeta.name = unicode(self.hostLineEdit.text())
+        serverMeta.host = unicode(self.hostLineEdit.text())
         serverMeta.port = int(self.portSpinBox.value())
         serverMeta.tls = bool(self.tlsCheckBox.isChecked())
         serverMeta.bindAnon = True
-        serverMeta.baseDN = ""
-        serverMeta.bindDN = ""
-        serverMeta.bindPassword = ""
+        serverMeta.baseDN = unicode("")
+        serverMeta.bindDN = unicode("")
+        serverMeta.bindPassword = unicode("")
         
         try:
             conObject = LumaConnection(serverMeta)
@@ -226,6 +217,7 @@ class ServerDialog(ServerDialogDesign):
             dialog.exec_loop()
             if dialog.result() == QDialog.Accepted:
                 self.baseLineEdit.setText(dialog.dnBox.currentText())
+                self.applyButton.setEnabled(1)
                 
         except:
             QMessageBox.warning(None,
@@ -238,3 +230,66 @@ Please see console output for more information."""),
                 None,
                 0, -1)
 
+###############################################################################
+
+    def tlsChanged(self, tmpBool):
+        self.applyButton.setEnabled(1)
+        
+        tlsBool = self.tlsCheckBox.isChecked()
+        
+        if tlsBool:
+            self.portSpinBox.setValue(636)
+        else:
+            self.portSpinBox.setValue(389)
+            
+        self.currentServer.tls = tlsBool
+            
+###############################################################################
+
+    def hostChanged(self, tmpString):
+        self.applyButton.setEnabled(1)
+        self.currentServer.host = unicode(tmpString)
+        
+###############################################################################
+
+    def portChanged(self, tmpInt):
+        self.applyButton.setEnabled(1)
+        self.currentServer.port = tmpInt
+        
+###############################################################################
+
+    def bindAnonChanged(self, tmpBool, firstTime=False):
+        """ Change authentification info if anonoumus authentification is
+        selected/de-selected.
+        """
+        
+        if not firstTime:
+            self.applyButton.setEnabled(1)
+        
+        tmpBool = self.bindAnonBox.isChecked()
+        if tmpBool:
+            self.passwordLineEdit.setEnabled(0)
+            self.bindLineEdit.setEnabled(0)
+        else:
+            self.passwordLineEdit.setEnabled(1)
+            self.bindLineEdit.setEnabled(1)
+            
+        self.currentServer.bindAnon = tmpBool
+
+###############################################################################
+
+    def bindDNChanged(self, tmpString):
+        self.applyButton.setEnabled(1)
+        self.currentServer.bindDN = unicode(tmpString)
+        
+###############################################################################
+
+    def bindPasswordChanged(self, tmpString):
+        self.applyButton.setEnabled(1)
+        self.currentServer.bindPassword = unicode(tmpString)
+        
+###############################################################################
+
+    def baseDNChanged(self, tmpString):
+        self.applyButton.setEnabled(1)
+        self.currentServer.baseDN = unicode(tmpString)

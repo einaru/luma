@@ -1,4 +1,4 @@
-<!DOCTYPE UI><UI version="3.2" stdsetdef="1">
+<!DOCTYPE UI><UI version="3.3" stdsetdef="1">
 <class>ServerDialogDesign</class>
 <comment>###########################################################################
 #    Copyright (C) 2003 by Wido Depping                                      
@@ -17,8 +17,8 @@
         <rect>
             <x>0</x>
             <y>0</y>
-            <width>487</width>
-            <height>486</height>
+            <width>700</width>
+            <height>446</height>
         </rect>
     </property>
     <property name="caption">
@@ -28,53 +28,36 @@
         <property name="name">
             <cstring>unnamed</cstring>
         </property>
-        <widget class="QPushButton" row="1" column="1">
+        <widget class="Line" row="1" column="0">
             <property name="name">
-                <cstring>closeButton</cstring>
+                <cstring>line3</cstring>
             </property>
-            <property name="text">
-                <string>&amp;Close</string>
+            <property name="frameShape">
+                <enum>HLine</enum>
             </property>
-            <property name="accel">
-                <string>Alt+C</string>
-            </property>
-        </widget>
-        <spacer row="1" column="0">
-            <property name="name">
-                <cstring>spacer6</cstring>
+            <property name="frameShadow">
+                <enum>Sunken</enum>
             </property>
             <property name="orientation">
                 <enum>Horizontal</enum>
             </property>
-            <property name="sizeType">
-                <enum>Expanding</enum>
-            </property>
-            <property name="sizeHint">
-                <size>
-                    <width>561</width>
-                    <height>21</height>
-                </size>
-            </property>
-        </spacer>
-        <widget class="QSplitter" row="0" column="0" rowspan="1" colspan="2">
+        </widget>
+        <widget class="QSplitter" row="0" column="0">
             <property name="name">
-                <cstring>splitter4</cstring>
+                <cstring>splitter3</cstring>
             </property>
             <property name="orientation">
-                <enum>Vertical</enum>
+                <enum>Horizontal</enum>
             </property>
-            <widget class="QGroupBox">
+            <widget class="QLayoutWidget">
                 <property name="name">
-                    <cstring>groupBox5_2</cstring>
-                </property>
-                <property name="title">
-                    <string>Server List</string>
+                    <cstring>layout3</cstring>
                 </property>
                 <grid>
                     <property name="name">
                         <cstring>unnamed</cstring>
                     </property>
-                    <widget class="QPushButton" row="0" column="1">
+                    <widget class="QPushButton" row="1" column="1">
                         <property name="name">
                             <cstring>addButton</cstring>
                         </property>
@@ -85,7 +68,43 @@
                             <string>Alt+A</string>
                         </property>
                     </widget>
-                    <widget class="QPushButton" row="2" column="1">
+                    <widget class="QListView" row="0" column="0" rowspan="1" colspan="3">
+                        <column>
+                            <property name="text">
+                                <string>Server</string>
+                            </property>
+                            <property name="clickable">
+                                <bool>true</bool>
+                            </property>
+                            <property name="resizable">
+                                <bool>true</bool>
+                            </property>
+                        </column>
+                        <property name="name">
+                            <cstring>serverListView</cstring>
+                        </property>
+                        <property name="resizeMode">
+                            <enum>AllColumns</enum>
+                        </property>
+                    </widget>
+                    <spacer row="1" column="0">
+                        <property name="name">
+                            <cstring>spacer5</cstring>
+                        </property>
+                        <property name="orientation">
+                            <enum>Horizontal</enum>
+                        </property>
+                        <property name="sizeType">
+                            <enum>Expanding</enum>
+                        </property>
+                        <property name="sizeHint">
+                            <size>
+                                <width>32</width>
+                                <height>20</height>
+                            </size>
+                        </property>
+                    </spacer>
+                    <widget class="QPushButton" row="1" column="2">
                         <property name="name">
                             <cstring>deleteButton</cstring>
                         </property>
@@ -96,56 +115,11 @@
                             <string>Alt+D</string>
                         </property>
                     </widget>
-                    <widget class="QPushButton" row="1" column="1">
-                        <property name="name">
-                            <cstring>modifyButton</cstring>
-                        </property>
-                        <property name="text">
-                            <string>&amp;Modify</string>
-                        </property>
-                        <property name="accel">
-                            <string>Alt+M</string>
-                        </property>
-                    </widget>
-                    <spacer row="3" column="1">
-                        <property name="name">
-                            <cstring>spacer5</cstring>
-                        </property>
-                        <property name="orientation">
-                            <enum>Vertical</enum>
-                        </property>
-                        <property name="sizeType">
-                            <enum>Expanding</enum>
-                        </property>
-                        <property name="sizeHint">
-                            <size>
-                                <width>20</width>
-                                <height>22</height>
-                            </size>
-                        </property>
-                    </spacer>
-                    <widget class="QIconView" row="0" column="0" rowspan="4" colspan="1">
-                        <property name="name">
-                            <cstring>serverIconView</cstring>
-                        </property>
-                        <property name="minimumSize">
-                            <size>
-                                <width>0</width>
-                                <height>120</height>
-                            </size>
-                        </property>
-                        <property name="resizeMode">
-                            <enum>Adjust</enum>
-                        </property>
-                        <property name="itemsMovable">
-                            <bool>false</bool>
-                        </property>
-                    </widget>
                 </grid>
             </widget>
             <widget class="QGroupBox">
                 <property name="name">
-                    <cstring>groupBox4</cstring>
+                    <cstring>infoGroupBox</cstring>
                 </property>
                 <property name="title">
                     <string>Server Information</string>
@@ -154,9 +128,28 @@
                     <property name="name">
                         <cstring>unnamed</cstring>
                     </property>
-                    <widget class="QLabel" row="0" column="0">
+                    <widget class="QCheckBox" row="3" column="1">
                         <property name="name">
-                            <cstring>textLabel11</cstring>
+                            <cstring>tlsCheckBox</cstring>
+                        </property>
+                        <property name="sizePolicy">
+                            <sizepolicy>
+                                <hsizetype>0</hsizetype>
+                                <vsizetype>0</vsizetype>
+                                <horstretch>0</horstretch>
+                                <verstretch>0</verstretch>
+                            </sizepolicy>
+                        </property>
+                        <property name="text">
+                            <string>Use TLS</string>
+                        </property>
+                        <property name="toolTip" stdset="0">
+                            <string>User Transport Layer Security</string>
+                        </property>
+                    </widget>
+                    <widget class="QLabel" row="1" column="1">
+                        <property name="name">
+                            <cstring>textLabel8</cstring>
                         </property>
                         <property name="sizePolicy">
                             <sizepolicy>
@@ -166,307 +159,298 @@
                                 <verstretch>0</verstretch>
                             </sizepolicy>
                         </property>
+                        <property name="text">
+                            <string>Host:</string>
+                        </property>
+                    </widget>
+                    <widget class="QLabel" row="2" column="1">
+                        <property name="name">
+                            <cstring>textLabel9</cstring>
+                        </property>
+                        <property name="sizePolicy">
+                            <sizepolicy>
+                                <hsizetype>0</hsizetype>
+                                <vsizetype>5</vsizetype>
+                                <horstretch>0</horstretch>
+                                <verstretch>0</verstretch>
+                            </sizepolicy>
+                        </property>
+                        <property name="text">
+                            <string>Port:</string>
+                        </property>
+                    </widget>
+                    <widget class="QLineEdit" row="1" column="2" rowspan="1" colspan="2">
+                        <property name="name">
+                            <cstring>hostLineEdit</cstring>
+                        </property>
+                    </widget>
+                    <widget class="QSpinBox" row="2" column="2" rowspan="1" colspan="2">
+                        <property name="name">
+                            <cstring>portSpinBox</cstring>
+                        </property>
+                        <property name="sizePolicy">
+                            <sizepolicy>
+                                <hsizetype>7</hsizetype>
+                                <vsizetype>0</vsizetype>
+                                <horstretch>0</horstretch>
+                                <verstretch>0</verstretch>
+                            </sizepolicy>
+                        </property>
+                        <property name="maxValue">
+                            <number>65535</number>
+                        </property>
+                        <property name="minValue">
+                            <number>1</number>
+                        </property>
+                        <property name="value">
+                            <number>389</number>
+                        </property>
+                    </widget>
+                    <widget class="QLabel" row="10" column="1">
+                        <property name="name">
+                            <cstring>textLabel1</cstring>
+                        </property>
+                        <property name="text">
+                            <string>Base DN:</string>
+                        </property>
+                    </widget>
+                    <widget class="QLineEdit" row="10" column="2">
+                        <property name="name">
+                            <cstring>baseLineEdit</cstring>
+                        </property>
+                    </widget>
+                    <widget class="QPushButton" row="10" column="3">
+                        <property name="name">
+                            <cstring>basednButton</cstring>
+                        </property>
+                        <property name="enabled">
+                            <bool>true</bool>
+                        </property>
+                        <property name="text">
+                            <string></string>
+                        </property>
+                        <property name="pixmap">
+                            <pixmap>image0</pixmap>
+                        </property>
+                    </widget>
+                    <widget class="QCheckBox" row="7" column="1" rowspan="1" colspan="2">
+                        <property name="name">
+                            <cstring>bindAnonBox</cstring>
+                        </property>
+                        <property name="text">
+                            <string>Bind anonymously</string>
+                        </property>
+                    </widget>
+                    <widget class="QLabel" row="8" column="1">
+                        <property name="name">
+                            <cstring>textLabel10</cstring>
+                        </property>
+                        <property name="text">
+                            <string>Bind DN:</string>
+                        </property>
+                        <property name="alignment">
+                            <set>WordBreak|AlignVCenter</set>
+                        </property>
+                    </widget>
+                    <widget class="QLabel" row="9" column="1">
+                        <property name="name">
+                            <cstring>textLabel12</cstring>
+                        </property>
+                        <property name="text">
+                            <string>Bind Password:</string>
+                        </property>
+                        <property name="alignment">
+                            <set>AlignVCenter|AlignRight</set>
+                        </property>
+                    </widget>
+                    <widget class="QLineEdit" row="8" column="2" rowspan="1" colspan="2">
+                        <property name="name">
+                            <cstring>bindLineEdit</cstring>
+                        </property>
+                    </widget>
+                    <widget class="QLineEdit" row="9" column="2" rowspan="1" colspan="2">
+                        <property name="name">
+                            <cstring>passwordLineEdit</cstring>
+                        </property>
+                        <property name="echoMode">
+                            <enum>Password</enum>
+                        </property>
+                    </widget>
+                    <widget class="QLabel" row="0" column="0">
+                        <property name="name">
+                            <cstring>networkLabel</cstring>
+                        </property>
+                        <property name="sizePolicy">
+                            <sizepolicy>
+                                <hsizetype>0</hsizetype>
+                                <vsizetype>0</vsizetype>
+                                <horstretch>0</horstretch>
+                                <verstretch>0</verstretch>
+                            </sizepolicy>
+                        </property>
                         <property name="minimumSize">
                             <size>
-                                <width>0</width>
-                                <height>0</height>
+                                <width>48</width>
+                                <height>48</height>
                             </size>
                         </property>
                         <property name="text">
-                            <string>Server Name:</string>
+                            <string>NO</string>
                         </property>
                     </widget>
-                    <widget class="QPushButton" row="0" column="2">
+                    <widget class="Line" row="4" column="0" rowspan="2" colspan="4">
                         <property name="name">
-                            <cstring>saveButton</cstring>
+                            <cstring>line2</cstring>
+                        </property>
+                        <property name="frameShape">
+                            <enum>HLine</enum>
+                        </property>
+                        <property name="frameShadow">
+                            <enum>Sunken</enum>
+                        </property>
+                        <property name="orientation">
+                            <enum>Horizontal</enum>
+                        </property>
+                    </widget>
+                    <widget class="QLabel" row="0" column="1" rowspan="1" colspan="2">
+                        <property name="name">
+                            <cstring>textLabel1_2</cstring>
                         </property>
                         <property name="text">
-                            <string>&amp;Save</string>
-                        </property>
-                        <property name="accel">
-                            <string>Alt+S</string>
+                            <string>Network options</string>
                         </property>
                     </widget>
-                    <widget class="QLineEdit" row="0" column="1">
+                    <widget class="QLabel" row="6" column="0">
                         <property name="name">
-                            <cstring>nameLineEdit</cstring>
+                            <cstring>authLabel</cstring>
+                        </property>
+                        <property name="sizePolicy">
+                            <sizepolicy>
+                                <hsizetype>0</hsizetype>
+                                <vsizetype>0</vsizetype>
+                                <horstretch>0</horstretch>
+                                <verstretch>0</verstretch>
+                            </sizepolicy>
+                        </property>
+                        <property name="minimumSize">
+                            <size>
+                                <width>48</width>
+                                <height>48</height>
+                            </size>
+                        </property>
+                        <property name="text">
+                            <string>AO</string>
                         </property>
                     </widget>
-                    <widget class="QTabWidget" row="1" column="0" rowspan="1" colspan="3">
+                    <widget class="QLabel" row="5" column="1" rowspan="2" colspan="2">
                         <property name="name">
-                            <cstring>tabWidget2</cstring>
+                            <cstring>textLabel4</cstring>
                         </property>
-                        <widget class="QWidget">
-                            <property name="name">
-                                <cstring>tab</cstring>
-                            </property>
-                            <attribute name="title">
-                                <string>Network Options</string>
-                            </attribute>
-                            <grid>
-                                <property name="name">
-                                    <cstring>unnamed</cstring>
-                                </property>
-                                <widget class="QCheckBox" row="1" column="0" rowspan="1" colspan="2">
-                                    <property name="name">
-                                        <cstring>tlsCheckBox</cstring>
-                                    </property>
-                                    <property name="sizePolicy">
-                                        <sizepolicy>
-                                            <hsizetype>0</hsizetype>
-                                            <vsizetype>0</vsizetype>
-                                            <horstretch>0</horstretch>
-                                            <verstretch>0</verstretch>
-                                        </sizepolicy>
-                                    </property>
-                                    <property name="text">
-                                        <string>Use TLS</string>
-                                    </property>
-                                    <property name="toolTip" stdset="0">
-                                        <string>User Transport Layer Security</string>
-                                    </property>
-                                </widget>
-                                <widget class="QLayoutWidget" row="0" column="0">
-                                    <property name="name">
-                                        <cstring>layout1</cstring>
-                                    </property>
-                                    <vbox>
-                                        <property name="name">
-                                            <cstring>unnamed</cstring>
-                                        </property>
-                                        <widget class="QLabel">
-                                            <property name="name">
-                                                <cstring>textLabel8</cstring>
-                                            </property>
-                                            <property name="sizePolicy">
-                                                <sizepolicy>
-                                                    <hsizetype>0</hsizetype>
-                                                    <vsizetype>5</vsizetype>
-                                                    <horstretch>0</horstretch>
-                                                    <verstretch>0</verstretch>
-                                                </sizepolicy>
-                                            </property>
-                                            <property name="text">
-                                                <string>Host:</string>
-                                            </property>
-                                        </widget>
-                                        <widget class="QLabel">
-                                            <property name="name">
-                                                <cstring>textLabel9</cstring>
-                                            </property>
-                                            <property name="sizePolicy">
-                                                <sizepolicy>
-                                                    <hsizetype>0</hsizetype>
-                                                    <vsizetype>5</vsizetype>
-                                                    <horstretch>0</horstretch>
-                                                    <verstretch>0</verstretch>
-                                                </sizepolicy>
-                                            </property>
-                                            <property name="text">
-                                                <string>Port:</string>
-                                            </property>
-                                        </widget>
-                                    </vbox>
-                                </widget>
-                                <spacer row="2" column="0">
-                                    <property name="name">
-                                        <cstring>spacer3</cstring>
-                                    </property>
-                                    <property name="orientation">
-                                        <enum>Vertical</enum>
-                                    </property>
-                                    <property name="sizeType">
-                                        <enum>Expanding</enum>
-                                    </property>
-                                    <property name="sizeHint">
-                                        <size>
-                                            <width>21</width>
-                                            <height>81</height>
-                                        </size>
-                                    </property>
-                                </spacer>
-                                <widget class="QLayoutWidget" row="0" column="1">
-                                    <property name="name">
-                                        <cstring>layout2</cstring>
-                                    </property>
-                                    <vbox>
-                                        <property name="name">
-                                            <cstring>unnamed</cstring>
-                                        </property>
-                                        <widget class="QLineEdit">
-                                            <property name="name">
-                                                <cstring>hostLineEdit</cstring>
-                                            </property>
-                                        </widget>
-                                        <widget class="QSpinBox">
-                                            <property name="name">
-                                                <cstring>portSpinBox</cstring>
-                                            </property>
-                                            <property name="sizePolicy">
-                                                <sizepolicy>
-                                                    <hsizetype>7</hsizetype>
-                                                    <vsizetype>0</vsizetype>
-                                                    <horstretch>0</horstretch>
-                                                    <verstretch>0</verstretch>
-                                                </sizepolicy>
-                                            </property>
-                                            <property name="maxValue">
-                                                <number>65535</number>
-                                            </property>
-                                            <property name="minValue">
-                                                <number>1</number>
-                                            </property>
-                                            <property name="value">
-                                                <number>389</number>
-                                            </property>
-                                        </widget>
-                                    </vbox>
-                                </widget>
-                            </grid>
-                        </widget>
-                        <widget class="QWidget">
-                            <property name="name">
-                                <cstring>tab</cstring>
-                            </property>
-                            <attribute name="title">
-                                <string>Authentification Options</string>
-                            </attribute>
-                            <grid>
-                                <property name="name">
-                                    <cstring>unnamed</cstring>
-                                </property>
-                                <widget class="QLabel" row="0" column="0">
-                                    <property name="name">
-                                        <cstring>textLabel1</cstring>
-                                    </property>
-                                    <property name="text">
-                                        <string>Base DN:</string>
-                                    </property>
-                                </widget>
-                                <widget class="QLineEdit" row="0" column="1">
-                                    <property name="name">
-                                        <cstring>baseLineEdit</cstring>
-                                    </property>
-                                </widget>
-                                <widget class="QPushButton" row="0" column="2">
-                                    <property name="name">
-                                        <cstring>basednButton</cstring>
-                                    </property>
-                                    <property name="enabled">
-                                        <bool>false</bool>
-                                    </property>
-                                    <property name="text">
-                                        <string></string>
-                                    </property>
-                                    <property name="pixmap">
-                                        <pixmap>image0</pixmap>
-                                    </property>
-                                </widget>
-                                <widget class="Line" row="1" column="0" rowspan="1" colspan="3">
-                                    <property name="name">
-                                        <cstring>line3</cstring>
-                                    </property>
-                                    <property name="frameShape">
-                                        <enum>HLine</enum>
-                                    </property>
-                                    <property name="frameShadow">
-                                        <enum>Sunken</enum>
-                                    </property>
-                                    <property name="orientation">
-                                        <enum>Horizontal</enum>
-                                    </property>
-                                </widget>
-                                <widget class="QCheckBox" row="2" column="0" rowspan="1" colspan="2">
-                                    <property name="name">
-                                        <cstring>bindAnonBox</cstring>
-                                    </property>
-                                    <property name="text">
-                                        <string>Bind anonymously</string>
-                                    </property>
-                                </widget>
-                                <spacer row="5" column="1">
-                                    <property name="name">
-                                        <cstring>spacer7</cstring>
-                                    </property>
-                                    <property name="orientation">
-                                        <enum>Vertical</enum>
-                                    </property>
-                                    <property name="sizeType">
-                                        <enum>Expanding</enum>
-                                    </property>
-                                    <property name="sizeHint">
-                                        <size>
-                                            <width>20</width>
-                                            <height>101</height>
-                                        </size>
-                                    </property>
-                                </spacer>
-                                <widget class="QLabel" row="3" column="0">
-                                    <property name="name">
-                                        <cstring>textLabel10</cstring>
-                                    </property>
-                                    <property name="text">
-                                        <string>Bind DN:</string>
-                                    </property>
-                                    <property name="alignment">
-                                        <set>WordBreak|AlignVCenter</set>
-                                    </property>
-                                </widget>
-                                <widget class="QLabel" row="4" column="0">
-                                    <property name="name">
-                                        <cstring>textLabel12</cstring>
-                                    </property>
-                                    <property name="text">
-                                        <string>Bind Password:</string>
-                                    </property>
-                                    <property name="alignment">
-                                        <set>AlignVCenter|AlignRight</set>
-                                    </property>
-                                </widget>
-                                <widget class="QLineEdit" row="3" column="1" rowspan="1" colspan="2">
-                                    <property name="name">
-                                        <cstring>bindLineEdit</cstring>
-                                    </property>
-                                </widget>
-                                <widget class="QLineEdit" row="4" column="1" rowspan="1" colspan="2">
-                                    <property name="name">
-                                        <cstring>passwordLineEdit</cstring>
-                                    </property>
-                                    <property name="echoMode">
-                                        <enum>Password</enum>
-                                    </property>
-                                </widget>
-                            </grid>
-                        </widget>
+                        <property name="text">
+                            <string>Authentification options</string>
+                        </property>
                     </widget>
+                    <spacer row="11" column="1">
+                        <property name="name">
+                            <cstring>spacer7</cstring>
+                        </property>
+                        <property name="orientation">
+                            <enum>Vertical</enum>
+                        </property>
+                        <property name="sizeType">
+                            <enum>Expanding</enum>
+                        </property>
+                        <property name="sizeHint">
+                            <size>
+                                <width>21</width>
+                                <height>30</height>
+                            </size>
+                        </property>
+                    </spacer>
                 </grid>
             </widget>
+        </widget>
+        <widget class="QLayoutWidget" row="2" column="0">
+            <property name="name">
+                <cstring>layout4</cstring>
+            </property>
+            <hbox>
+                <property name="name">
+                    <cstring>unnamed</cstring>
+                </property>
+                <spacer>
+                    <property name="name">
+                        <cstring>spacer6</cstring>
+                    </property>
+                    <property name="orientation">
+                        <enum>Horizontal</enum>
+                    </property>
+                    <property name="sizeType">
+                        <enum>Expanding</enum>
+                    </property>
+                    <property name="sizeHint">
+                        <size>
+                            <width>350</width>
+                            <height>21</height>
+                        </size>
+                    </property>
+                </spacer>
+                <widget class="QPushButton">
+                    <property name="name">
+                        <cstring>okButton</cstring>
+                    </property>
+                    <property name="text">
+                        <string>&amp;OK</string>
+                    </property>
+                    <property name="accel">
+                        <string>Alt+O</string>
+                    </property>
+                </widget>
+                <widget class="QPushButton">
+                    <property name="name">
+                        <cstring>applyButton</cstring>
+                    </property>
+                    <property name="sizePolicy">
+                        <sizepolicy>
+                            <hsizetype>1</hsizetype>
+                            <vsizetype>0</vsizetype>
+                            <horstretch>0</horstretch>
+                            <verstretch>0</verstretch>
+                        </sizepolicy>
+                    </property>
+                    <property name="text">
+                        <string>&amp;Apply</string>
+                    </property>
+                    <property name="accel">
+                        <string>Alt+A</string>
+                    </property>
+                </widget>
+                <widget class="QPushButton">
+                    <property name="name">
+                        <cstring>cancelButton</cstring>
+                    </property>
+                    <property name="text">
+                        <string>&amp;Cancel</string>
+                    </property>
+                    <property name="accel">
+                        <string>Alt+C</string>
+                    </property>
+                </widget>
+            </hbox>
         </widget>
     </grid>
 </widget>
 <images>
     <image name="image0">
-        <data format="XPM.GZ" length="2286">789c85d55953db481007f0773e858b7ea3b63a9a914647a5f2c07d13c84148b6f6613492b001db1c366052fbddd7ee7f4bbb106f0553053fa63dd33ddd32efd67a17a7c7bdb5772b0f133f19845ee8fbfbde5a351d0e677ffef5e1e7caaa497b8bef28e9d9d53f5656cf26bdd03b198fea0568670ef2d65551bc30e70b973e2d4c24eb470b5749961a27eb9138cf6a53cafabed8674984fdc2c2759ce7a691f84f629f3736138fc575d1d85c9c2ddc4485b795785d6cca34957c08b6456c0a597f814396cb7e74277685375ed60b3844b1e4c757e2bca823e4f3435cf810231f03974ee3a770ed4ad4b727f67919c9feb42b2e0b67a45e9ec1f38c70fe993884d8c97dd1a1b82a8291cba7cdce41e2af619feafdd570282cf6bb14d721a4b085ebc4a13fb88fc64716de521b83fb9baa2dee9b6e3aa39e6775acfd6adf9fd854d6676a6f13f1b63a58d4f3049736c2feb7adb11f6da8e308f779a07611f2bd6f8d79e2d019f9b4eff70efdaed4c1625e1b7515637e36d5b5937cf9331ca204f731561b9ddfc7d616f90ed556e751cf0b31ee8349edb49f23756e50ffa433eef7415d607ea954fb18f3ecd595dec7a5bad6fe5ca9f579a1ebce9817adbf8a747dd019e7f5d5469fb79dd6984fd67e564ee76dd23ac37c6afe55e1b0bfd65ff918f3ed3b635e581db0ce65eb0cf5a6eaf98162ed7f6d12f43b51bb04eb779df1bc39759a1871dc19f1dfd5b5c379dfd48d43fc39dc44787ef8abda26a877d0bac4fce83c37718cfbbb68adefffa2f639ea3d52570ef91eaae71f28e2e3ce384fe7ad691ce6f9a033ce3be98cfe3c75c67ecfadf179c9fb9d31af1f3be3bc7e67ccf75eeb0cf59e76463f1e5be7a877d4daa3be9bd601f7bbdbba423fead64d847f3eff7d31bdf6d9e46d0c7b2e39fc26a6e29a9bdfc45c729f077cf5ff317ccd373ce4118fdfc6f02ddff13d3ff084a7fcc84ffccc337ee175dee04dded2986ddee15ddee37d3ee0433ee2e3f9cf13fec8a77cc69ffe3d8b3ff317fecae7fc4d5ee77cc1dff90747aff361c396634ee4e538e58cf35f73e68298165f7efeb3a4f06b5d54514d0d5d529f067445d774b3246648231ad32dddd13d3dd084a64b621ee9899e6936ffed85d669833697c46cd136edb47fa75ddaa3fdd7317440876ffb4d47cbfbb5ecb5faf7fb957f0026a43b01</data>
+        <data format="PNG" length="521">89504e470d0a1a0a0000000d49484452000000100000001008060000001ff3ff61000001d049444154789c9d934d6b135114869f934cd2a6da603f548cc585962e54140d52938d202e22082ec545d7c51f205de517f8239456a4501517e242a82bcd6055c4604568d0d2862a0633261927613299e3226dc958a78a07dec5857b9efb9e8f2b854281b0c8e81535e5b1845e0022a1c97d59e5e03419ebbafe170067028ecd40ff91ddf2c3019ab804e4e1dc0c673f5e0e75f147c0e46a4e257d0dd8804117470e853a106d9c57ea07c0136825c01bc7dd778178ea05b002f4e335a6692e2fa25689a46183d1818d22e6d13b22ba7c5cf14ec0a93c300bd4bbd26857e283789b668781113acf3f507d5da434795b646b8c1937af642f42cb04df00955e9f1005da09dc679ff85c2c53cd2d0880f4ee41dabaa9b1d3fb91481d7adb260acd216a8b2b2cbd5d67efd4936d7aa0896f866e49b35401a7013fb7648363c3f72f34aaf5403280d17bc83853ea0ff681ed831f81a8df2d45156271c6527b58ff6d0a0100f101225a815a146a06ced73603870546374124778c31b8071a816f3f60cd80568c7727ef0b95188d25a052c377edbf0056cbe0a6987b5ac61c9b150073e29ebc4f3f106f6d848e5565f4612eb095db2564acacfaed615ea6eecaf88d1d0ff1eaccbc00241f5d0d0064b7effc2ff10bb371b614bc938f170000000049454e44ae426082</data>
     </image>
 </images>
 <connections>
     <connection>
-        <sender>closeButton</sender>
-        <signal>clicked()</signal>
-        <receiver>ServerDialogDesign</receiver>
-        <slot>close()</slot>
-    </connection>
-    <connection>
-        <sender>saveButton</sender>
+        <sender>applyButton</sender>
         <signal>clicked()</signal>
         <receiver>ServerDialogDesign</receiver>
         <slot>saveServer()</slot>
-    </connection>
-    <connection>
-        <sender>bindAnonBox</sender>
-        <signal>toggled(bool)</signal>
-        <receiver>ServerDialogDesign</receiver>
-        <slot>bind_anon()</slot>
     </connection>
     <connection>
         <sender>basednButton</sender>
@@ -481,46 +465,102 @@
         <slot>addServer()</slot>
     </connection>
     <connection>
-        <sender>modifyButton</sender>
-        <signal>clicked()</signal>
-        <receiver>ServerDialogDesign</receiver>
-        <slot>modifyServer()</slot>
-    </connection>
-    <connection>
-        <sender>serverIconView</sender>
-        <signal>selectionChanged()</signal>
-        <receiver>ServerDialogDesign</receiver>
-        <slot>serverSelectionChanged()</slot>
-    </connection>
-    <connection>
         <sender>deleteButton</sender>
         <signal>clicked()</signal>
         <receiver>ServerDialogDesign</receiver>
         <slot>deleteServer()</slot>
     </connection>
+    <connection>
+        <sender>tlsCheckBox</sender>
+        <signal>toggled(bool)</signal>
+        <receiver>ServerDialogDesign</receiver>
+        <slot>tlsChanged()</slot>
+    </connection>
+    <connection>
+        <sender>cancelButton</sender>
+        <signal>clicked()</signal>
+        <receiver>ServerDialogDesign</receiver>
+        <slot>reject()</slot>
+    </connection>
+    <connection>
+        <sender>hostLineEdit</sender>
+        <signal>textChanged(const QString&amp;)</signal>
+        <receiver>ServerDialogDesign</receiver>
+        <slot>hostChanged()</slot>
+    </connection>
+    <connection>
+        <sender>portSpinBox</sender>
+        <signal>valueChanged(int)</signal>
+        <receiver>ServerDialogDesign</receiver>
+        <slot>portChanged()</slot>
+    </connection>
+    <connection>
+        <sender>tlsCheckBox</sender>
+        <signal>toggled(bool)</signal>
+        <receiver>ServerDialogDesign</receiver>
+        <slot>tlsChanged()</slot>
+    </connection>
+    <connection>
+        <sender>bindAnonBox</sender>
+        <signal>toggled(bool)</signal>
+        <receiver>ServerDialogDesign</receiver>
+        <slot>bindAnonChanged()</slot>
+    </connection>
+    <connection>
+        <sender>bindLineEdit</sender>
+        <signal>textChanged(const QString&amp;)</signal>
+        <receiver>ServerDialogDesign</receiver>
+        <slot>bindDNChanged()</slot>
+    </connection>
+    <connection>
+        <sender>passwordLineEdit</sender>
+        <signal>textChanged(const QString&amp;)</signal>
+        <receiver>ServerDialogDesign</receiver>
+        <slot>bindPasswordChanged()</slot>
+    </connection>
+    <connection>
+        <sender>baseLineEdit</sender>
+        <signal>textChanged(const QString&amp;)</signal>
+        <receiver>ServerDialogDesign</receiver>
+        <slot>baseDNChanged()</slot>
+    </connection>
+    <connection>
+        <sender>serverListView</sender>
+        <signal>selectionChanged(QListViewItem*)</signal>
+        <receiver>ServerDialogDesign</receiver>
+        <slot>serverSelectionChanged()</slot>
+    </connection>
+    <connection>
+        <sender>okButton</sender>
+        <signal>clicked()</signal>
+        <receiver>ServerDialogDesign</receiver>
+        <slot>saveCloseDialog()</slot>
+    </connection>
 </connections>
 <tabstops>
-    <tabstop>serverIconView</tabstop>
     <tabstop>addButton</tabstop>
-    <tabstop>modifyButton</tabstop>
     <tabstop>deleteButton</tabstop>
-    <tabstop>nameLineEdit</tabstop>
     <tabstop>hostLineEdit</tabstop>
     <tabstop>portSpinBox</tabstop>
     <tabstop>baseLineEdit</tabstop>
     <tabstop>bindLineEdit</tabstop>
     <tabstop>passwordLineEdit</tabstop>
-    <tabstop>saveButton</tabstop>
-    <tabstop>closeButton</tabstop>
+    <tabstop>applyButton</tabstop>
 </tabstops>
 <slots>
     <slot>serverSelectionChanged()</slot>
     <slot>deleteServer()</slot>
     <slot>saveServer()</slot>
     <slot>addServer()</slot>
-    <slot>modifyServer()</slot>
-    <slot>bind_anon()</slot>
     <slot>searchBaseDN()</slot>
+    <slot>hostChanged()</slot>
+    <slot>portChanged()</slot>
+    <slot>tlsChanged()</slot>
+    <slot>bindAnonChanged()</slot>
+    <slot>bindDNChanged()</slot>
+    <slot>bindPasswordChanged()</slot>
+    <slot>baseDNChanged()</slot>
+    <slot>saveCloseDialog()</slot>
 </slots>
 <layoutdefaults spacing="6" margin="11"/>
 </UI>
