@@ -2,8 +2,8 @@
 
 # Form implementation generated from reading ui file '/home/wido/src/luma/lib/luma/plugins/usermanagement/UsermanagementWidgetDesign.ui'
 #
-# Created: Sun Aug 29 00:49:14 2004
-#      by: The PyQt User Interface Compiler (pyuic) 3.12
+# Created: Thu Sep 30 18:34:12 2004
+#      by: The PyQt User Interface Compiler (pyuic) 3.13
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -100,8 +100,6 @@ class UsermanagementWidgetDesign(QWidget):
         self.textLabel17.setAlignment(QLabel.AlignVCenter)
 
         UsermanagementWidgetDesignLayout.addWidget(self.textLabel17,14,1)
-        spacer9 = QSpacerItem(20,13,QSizePolicy.Minimum,QSizePolicy.Fixed)
-        UsermanagementWidgetDesignLayout.addItem(spacer9,8,5)
 
         self.passwordLabel = QLabel(self,"passwordLabel")
         self.passwordLabel.setMinimumSize(QSize(32,32))
@@ -155,8 +153,6 @@ class UsermanagementWidgetDesign(QWidget):
         UsermanagementWidgetDesignLayout.addMultiCellWidget(self.groupNumberEdit,6,6,2,5)
         spacer3 = QSpacerItem(21,16,QSizePolicy.Minimum,QSizePolicy.Fixed)
         UsermanagementWidgetDesignLayout.addItem(spacer3,6,0)
-        spacer9_2 = QSpacerItem(21,13,QSizePolicy.Minimum,QSizePolicy.Fixed)
-        UsermanagementWidgetDesignLayout.addItem(spacer9_2,13,4)
 
         self.mailBox = QComboBox(0,self,"mailBox")
 
@@ -190,12 +186,10 @@ class UsermanagementWidgetDesign(QWidget):
         self.passwordButton = QPushButton(self,"passwordButton")
 
         UsermanagementWidgetDesignLayout.addMultiCellWidget(self.passwordButton,12,12,3,5)
-        spacer9_3 = QSpacerItem(21,13,QSizePolicy.Minimum,QSizePolicy.Fixed)
-        UsermanagementWidgetDesignLayout.addItem(spacer9_3,4,5)
 
         self.languageChange()
 
-        self.resize(QSize(494,539).expandedTo(self.minimumSizeHint()))
+        self.resize(QSize(484,461).expandedTo(self.minimumSizeHint()))
         self.clearWState(Qt.WState_Polished)
 
         self.connect(self.addMailButton,SIGNAL("clicked()"),self.addMail)

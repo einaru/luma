@@ -8,8 +8,8 @@
         <rect>
             <x>0</x>
             <y>0</y>
-            <width>494</width>
-            <height>539</height>
+            <width>484</width>
+            <height>461</height>
         </rect>
     </property>
     <property name="caption">
@@ -200,23 +200,6 @@
                 <set>AlignVCenter</set>
             </property>
         </widget>
-        <spacer row="8" column="5">
-            <property name="name">
-                <cstring>spacer9</cstring>
-            </property>
-            <property name="orientation">
-                <enum>Vertical</enum>
-            </property>
-            <property name="sizeType">
-                <enum>Fixed</enum>
-            </property>
-            <property name="sizeHint">
-                <size>
-                    <width>20</width>
-                    <height>13</height>
-                </size>
-            </property>
-        </spacer>
         <widget class="QLabel" row="11" column="0">
             <property name="name">
                 <cstring>passwordLabel</cstring>
@@ -417,23 +400,6 @@
                 </size>
             </property>
         </spacer>
-        <spacer row="13" column="4">
-            <property name="name">
-                <cstring>spacer9_2</cstring>
-            </property>
-            <property name="orientation">
-                <enum>Vertical</enum>
-            </property>
-            <property name="sizeType">
-                <enum>Fixed</enum>
-            </property>
-            <property name="sizeHint">
-                <size>
-                    <width>21</width>
-                    <height>13</height>
-                </size>
-            </property>
-        </spacer>
         <widget class="QComboBox" row="14" column="2" rowspan="1" colspan="4">
             <property name="name">
                 <cstring>mailBox</cstring>
@@ -515,23 +481,6 @@
                 <string>Change password...</string>
             </property>
         </widget>
-        <spacer row="4" column="5">
-            <property name="name">
-                <cstring>spacer9_3</cstring>
-            </property>
-            <property name="orientation">
-                <enum>Vertical</enum>
-            </property>
-            <property name="sizeType">
-                <enum>Fixed</enum>
-            </property>
-            <property name="sizeHint">
-                <size>
-                    <width>21</width>
-                    <height>13</height>
-                </size>
-            </property>
-        </spacer>
     </grid>
 </widget>
 <connections>
