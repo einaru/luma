@@ -6,10 +6,6 @@
         <translation>Über Luma</translation>
     </message>
     <message>
-        <source>&lt;font size=&quot;+2&quot;&gt;&lt;b&gt;Luma 1.0beta2 &lt;/b&gt;&lt;/font&gt;</source>
-        <translation></translation>
-    </message>
-    <message>
         <source>&lt;p align=&quot;center&quot;&gt;LDAP management made easy.&lt;br&gt;&lt;br&gt;
 (c) 2003, Wido Depping&lt;br&gt;&lt;br&gt;
 http://luma.sourceforge.net
@@ -323,6 +319,37 @@ POSSIBILITY OF SUCH DAMAGES.
         <source>&amp;Close</source>
         <translation>&amp;Schließen</translation>
     </message>
+    <message>
+        <source>&lt;font size=&quot;+2&quot;&gt;&lt;b&gt;Luma 1.0 &lt;/b&gt;&lt;/font&gt;</source>
+        <translation></translation>
+    </message>
+    <message encoding="UTF-8">
+        <source>&lt;p&gt;&lt;b&gt;Bjørn Ove Grøtan&lt;/b&gt;&lt;br&gt;
+&lt;i&gt;Contributed his mkpasswd module.&lt;/i&gt;
+&lt;/p&gt;
+
+&lt;p&gt;&lt;b&gt;Kerstin Isebrecht&lt;/b&gt;&lt;br&gt;
+&lt;i&gt;Thanks for the ice and all your patience :)&lt;/i&gt;
+&lt;/p&gt;
+
+&lt;p&gt;&lt;b&gt;Jörn Körner&lt;/b&gt;&lt;br&gt;
+&lt;i&gt;Luma-crash-test-dummy. He also had the idea with the plugin support.&lt;/i&gt;
+&lt;/p&gt;
+
+&lt;p&gt;&lt;b&gt;Fernando Maciel Souto Maior&lt;/b&gt;&lt;br&gt;
+&lt;i&gt;Portuguese translation&lt;/i&gt;
+&lt;/p&gt;
+
+&lt;p&gt;&lt;b&gt;Jan Winhuysen&lt;/b&gt;&lt;br&gt;
+&lt;i&gt;My mentor and UI tester :)&lt;/i&gt;
+&lt;/p&gt;
+</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>Credits</source>
+        <translation></translation>
+    </message>
 </context>
 <context>
     <name>AdminPanelDesign</name>
@@ -339,28 +366,12 @@ POSSIBILITY OF SUCH DAMAGES.
         <translation>Passwort:</translation>
     </message>
     <message>
-        <source>Crypted password:</source>
-        <translation>Verschlüsseltes Passwort:</translation>
-    </message>
-    <message>
         <source>Create</source>
         <translation>Erstellen</translation>
     </message>
     <message>
         <source>Encrypt Password</source>
         <translation>Passwort verschlüsseln</translation>
-    </message>
-    <message>
-        <source>Crypted Password:</source>
-        <translation>Verschlüsseltes Passwort:</translation>
-    </message>
-    <message>
-        <source>Crypt</source>
-        <translation>Verschlüsseln</translation>
-    </message>
-    <message>
-        <source>Crypt Passwords</source>
-        <translation>Crypt Passwörter</translation>
     </message>
     <message>
         <source>Date to Unix</source>
@@ -390,6 +401,42 @@ POSSIBILITY OF SUCH DAMAGES.
         <source>Date/Time</source>
         <translation>Datum/Zeit</translation>
     </message>
+    <message>
+        <source>Encrypted Password:</source>
+        <translation>Verschlüsseltes Passwort:</translation>
+    </message>
+    <message>
+        <source>Encrypt</source>
+        <translation>Verschlüsseln</translation>
+    </message>
+    <message>
+        <source>Encrypted password:</source>
+        <translation>Verschlüsseltes Passwort:</translation>
+    </message>
+    <message>
+        <source>Method:</source>
+        <translation>Methode:</translation>
+    </message>
+    <message>
+        <source>crypt</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>md5</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>sha</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>ssha</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>Passwords</source>
+        <translation>Passwörter</translation>
+    </message>
 </context>
 <context>
     <name>BrowserDialog</name>
@@ -413,24 +460,12 @@ POSSIBILITY OF SUCH DAMAGES.
         <translation>Eintrag</translation>
     </message>
     <message>
-        <source>Item+Subtree</source>
-        <translation>Eintrag+Unterbaum</translation>
-    </message>
-    <message>
-        <source>Item+Subtree+Parents</source>
-        <translation>Eintrag+Unterbaum+Eltern</translation>
-    </message>
-    <message>
         <source>Add Item</source>
         <translation>Eintrag hinzufügen</translation>
     </message>
     <message>
         <source>Export to LDIF</source>
         <translation>Nach LDIF exportieren</translation>
-    </message>
-    <message>
-        <source>Delete Item</source>
-        <translation>Eintrag löschen</translation>
     </message>
     <message>
         <source>Do you really want to delete the item from the server?</source>
@@ -453,12 +488,58 @@ POSSIBILITY OF SUCH DAMAGES.
         <translation>Eintrag hinzufügen</translation>
     </message>
     <message>
-        <source>Delete Items recursive</source>
-        <translation>Einträge rekursiv löschen</translation>
-    </message>
-    <message>
         <source>Do you really want to delete the items recursively from the server?</source>
         <translation>Wollen Sie wirklich alle Einträge rekursiv vom Server löschen?</translation>
+    </message>
+    <message>
+        <source>Subtree</source>
+        <translation>Teilbaum</translation>
+    </message>
+    <message>
+        <source>Subtree with Parents</source>
+        <translation>Teilbaum mit Eltern</translation>
+    </message>
+    <message>
+        <source>Subtree without Node</source>
+        <translation>Teilbaum ohne Knoten</translation>
+    </message>
+    <message>
+        <source>Error</source>
+        <translation>Fehler</translation>
+    </message>
+    <message>
+        <source>Could not access entry.
+See console output for more information.</source>
+        <translation>Zugriff auf Eintrag nicht möglich.
+Mehr Informationen in der Konsolen-Ausgabe.</translation>
+    </message>
+    <message>
+        <source>&amp;OK</source>
+        <translation>&amp;Ok</translation>
+    </message>
+    <message>
+        <source>Search Error</source>
+        <translation>Suchfehler</translation>
+    </message>
+    <message>
+        <source>Could not access children.
+See console output for more information.</source>
+        <translation>Zugriff auf Kinder nicht möglich. 
+Mehr Informationen in der Konsolen-Ausgabe.</translation>
+    </message>
+    <message>
+        <source>Delete entries</source>
+        <translation>Einträge löschen</translation>
+    </message>
+    <message>
+        <source>Error </source>
+        <translation>Fehler</translation>
+    </message>
+    <message>
+        <source>Delete operation was not succesful.
+See console output for more information.</source>
+        <translation>Löschen nicht erfolgreich. 
+Mehr Informationen in der Konsolen-Ausgabe.</translation>
     </message>
 </context>
 <context>
@@ -739,10 +820,6 @@ Versuchen sie entweder den Bereich für die uids zu erweitern oder löschen sie 
         <translation>Plugins neuladen</translation>
     </message>
     <message>
-        <source>Programm</source>
-        <translation>Programm</translation>
-    </message>
-    <message>
         <source>Settings</source>
         <translation>Einstellungen</translation>
     </message>
@@ -753,6 +830,10 @@ Versuchen sie entweder den Bereich für die uids zu erweitern oder löschen sie 
     <message>
         <source>Language</source>
         <translation>Sprache</translation>
+    </message>
+    <message>
+        <source>Program</source>
+        <translation>Programm</translation>
     </message>
 </context>
 <context>
@@ -978,17 +1059,6 @@ Versuchen sie entweder den Bereich für die uids zu erweitern oder löschen sie 
     <message>
         <source>Available Plugins:</source>
         <translation>Verfügbare Plugiins:</translation>
-    </message>
-</context>
-<context>
-    <name>SearchForm</name>
-    <message>
-        <source>Search finished.</source>
-        <translation>Suche beendet.</translation>
-    </message>
-    <message>
-        <source>Error during search!!! Read console output for more infos.</source>
-        <translation>Fehler bei der Suche!!! Für mehr Informationen die Konsolenausgabe lesen.</translation>
     </message>
 </context>
 <context>
