@@ -218,13 +218,17 @@ class AddressbookWidget(AddressbookWidgetDesign):
         suffix = None
         title = None
         middleName = None
+        sureNamePosition = None
         
         cn = ''
         if self.dataObject.hasAttribute('cn'):
             cn = self.dataObject.getAttributeValue('cn', 0)
         
         tmpList = cn.split(' ')
-        sureNamePosition = tmpList.index(sn)
+        if sn in tmpList:
+            sureNamePosition = tmpList.index(sn)
+        else:
+            sureNamePosition = len(tmpList) - 1
         
         # find the given name
         if self.dataObject.hasAttribute('givenName'):
@@ -300,7 +304,7 @@ class AddressbookWidget(AddressbookWidgetDesign):
                     if '' == givenName:
                         self.dataObject.deleteAttribute('givenName')
                     else:
-                        self.dataObject.addAttributeValue('givenName', [givenName])
+                        self.dataObject.addAttributeValue('givenName', [givenName], True)
             
             value = ''.join(tmpList)
             self.cnEdit.setText(value)
@@ -406,6 +410,8 @@ class AddressbookWidget(AddressbookWidgetDesign):
             tmpString = unicode(self.cnEdit.text())
             if not('' == tmpString):
                 self.dataObject.addAttributeValue('cn', [tmpString], True)
+                if self.dataObject.isAttributeAllowed('gecos'):
+                    self.dataObject.addAttributeValue('gecos', [tmpString], True)
             else:
                 if not self.dataObject.isAttributeMust('cn'):
                     self.dataObject.deleteAttribute('cn')
@@ -575,12 +581,14 @@ class AddressbookWidget(AddressbookWidgetDesign):
 ###############################################################################
 
     def saveEntry(self):
+        self.setEnabled(False)
         self.updateValues()
         
         lumaConnection = LumaConnection(self.dataObject.getServerMeta())
         bindSuccess, exceptionObject = lumaConnection.bind()
         
         if not bindSuccess:
+                self.setEnabled(True)
                 dialog = LumaErrorDialog()
                 errorMsg = self.trUtf8("Could not bind to server.<br><br>Reason: ")
                 errorMsg.append(str(exceptionObject))
@@ -592,8 +600,10 @@ class AddressbookWidget(AddressbookWidgetDesign):
         lumaConnection.unbind()
         
         if success:
+            self.setEnabled(True)
             self.emit(PYSIGNAL("contact_saved"), ())
         else:
+            self.setEnabled(True)
             dialog = LumaErrorDialog()
             errorMsg = self.trUtf8("Could not save entry.<br><br>Reason: ")
             errorMsg.append(str(exceptionObject))
