@@ -472,5 +472,15 @@ Please read console output for more information."""),
             widget = self.attributeWidgets[x]
             if x in self.allowedAttributes:
                 widget.setEnabled(1)
+                if (x == 'cn'):
+                    self.nameButton.setEnabled(1)
+                    
+                if (x == 'category'):
+                    self.categoryButton.setEnabled(1)
             else:
                 widget.setEnabled(0)
+                if (x == 'cn'):
+                    self.nameButton.setEnabled(0)
+                    
+                if (x == 'category'):
+                    self.categoryButton.setEnabled(0)
