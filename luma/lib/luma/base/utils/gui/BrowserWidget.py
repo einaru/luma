@@ -583,6 +583,7 @@ class BrowserWidget(QListView):
         widget.initView(smartObject, True)
         
         self.connect(floatingWidget, PYSIGNAL("child_closed"), self.cleanChildren)
+        floatingWidget.resize(500, 400)
         floatingWidget.show()
         
         # don't loose reference. normally window will disappear if function is completed

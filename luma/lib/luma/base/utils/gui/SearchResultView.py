@@ -98,6 +98,7 @@ class SearchResultView(SearchResultViewDesign):
             self.connect(floatingWidget, PYSIGNAL("child_closed"), self.cleanChildren)
         
             widget.setCaption(listItem.text(0))
+            floatingWidget.resize(500, 400)
             floatingWidget.show()
         
             # don't loose reference. normally window will disappear if function is completed
