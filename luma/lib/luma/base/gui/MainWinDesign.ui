@@ -1,4 +1,4 @@
-<!DOCTYPE UI><UI version="3.1" stdsetdef="1">
+<!DOCTYPE UI><UI version="3.2" stdsetdef="1">
 <class>MainWinDesign</class>
 <comment>###########################################################################
 #    Copyright (C) 2003 by Wido Depping                                      
@@ -18,7 +18,7 @@
             <x>0</x>
             <y>0</y>
             <width>742</width>
-            <height>594</height>
+            <height>598</height>
         </rect>
     </property>
     <property name="caption">
@@ -94,14 +94,17 @@
                         <property name="selectionMode">
                             <enum>Single</enum>
                         </property>
+                        <property name="gridX">
+                            <number>-1</number>
+                        </property>
                         <property name="gridY">
                             <number>1</number>
                         </property>
                         <property name="arrangement">
-                            <enum>LeftToRight</enum>
+                            <enum>TopToBottom</enum>
                         </property>
                         <property name="resizeMode">
-                            <enum>Adjust</enum>
+                            <enum>Fixed</enum>
                         </property>
                         <property name="itemsMovable">
                             <bool>false</bool>
