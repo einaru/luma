@@ -370,11 +370,29 @@ Please read console output for more information."""),
     def eventFilter(self, object, event):
         if (event.type() == QEvent.MouseButtonPress):
             name = unicode(object.name())
-            position = int(name[-1])
+            
+            # i don't like part of code.
+            # the position of the current element of an attribute in the list 
+            # is stored as an integer at the end of the widget's name. we need
+            # to find out, how many chars belong to this number. there may be more
+            # than nine elements for an attribute.
+            # WARNING: this assumes that no attributes exist which end with a
+            #          number!!!!!!!!!!!!
+            numberLength = 1
+            try:
+                while True:
+                    foo = int(name[-(numberLength)])
+                    numberLength += 1
+            except:
+                numberLength -= 1
+                
+            position = int(name[-numberLength:])
+            
+            
             if name[:9] == "LDAP_EDIT":
-                attribute = name[9:-1]
+                attribute = name[9:-numberLength]
                 binary = False
-                if self.SERVERMETA.isBinary(attribute) or (name[-8:-1] == ";binary"):
+                if self.SERVERMETA.isBinary(attribute) or (name[-8:-numberLength] == ";binary"):
                     binary = True
 
                 if attribute == "userPassword":
@@ -385,11 +403,11 @@ Please read console output for more information."""),
                     self.editAttribute(attribute, position)
                     
             if name[:11] == "LDAP_DELETE":
-                attribute = name[11:-1]
+                attribute = name[11:-numberLength]
                 self.deleteAttribute(attribute, position)
                 
             if name[:11] == "LDAP_EXPORT":
-                attribute = name[11:-1]
+                attribute = name[11:-numberLength]
                 self.exportBinaryAttribute(attribute, position)
         
         # Fixes a bug with buttons. After the dialog is shown, the button
@@ -397,6 +415,7 @@ Please read console output for more information."""),
         # I don't know the exact reason but this fix should cause no problems.
         if "setDown" in dir(object):
             object.setDown(False)
+            
         return False
         
 ###############################################################################
