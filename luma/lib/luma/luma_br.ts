@@ -324,10 +324,6 @@ POSSIBILITY OF SUCH DAMAGES.
         <translation>&amp;Fechar</translation>
     </message>
     <message>
-        <source>&lt;font size=&quot;+2&quot;&gt;&lt;b&gt;Luma 1.0 &lt;/b&gt;&lt;/font&gt;</source>
-        <translation>&lt;font size=&quot;+2&quot;&gt;&lt;b&gt;Luma 1.0 &lt;/b&gt;&lt;/font&gt;</translation>
-    </message>
-    <message>
         <source>Credits</source>
         <translation>Créditos</translation>
     </message>
@@ -349,6 +345,196 @@ My mentor and UI tester :)
 
 Eric Cote
 Testing guinea pig for python 2.3</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;font size=&quot;+2&quot;&gt;&lt;b&gt;Luma 1.2 &lt;/b&gt;&lt;/font&gt;</source>
+        <translation type="unfinished">&lt;font size=&quot;+2&quot;&gt;&lt;b&gt;Luma 1.2 &lt;/b&gt;&lt;/font&gt;</translation>
+    </message>
+</context>
+<context>
+    <name>AddressbookSettingsDesign</name>
+    <message>
+        <source>Attributes</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Addressbook Settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add</source>
+        <translation type="unfinished">Adicionar</translation>
+    </message>
+    <message>
+        <source>Delete</source>
+        <translation type="unfinished">Deletar</translation>
+    </message>
+    <message>
+        <source>Search Criteria</source>
+        <translation type="unfinished">Critério de Busca</translation>
+    </message>
+    <message>
+        <source>Save</source>
+        <translation type="unfinished">Salvar</translation>
+    </message>
+</context>
+<context>
+    <name>AddressbookWidgetDesign</name>
+    <message>
+        <source>Form1</source>
+        <translation type="unfinished">Form1</translation>
+    </message>
+    <message>
+        <source>Save</source>
+        <translation type="unfinished">Salvar</translation>
+    </message>
+    <message>
+        <source>P</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Full Name ...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Job title:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Organisation:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Categories ...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>CL</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Web page address:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>WP</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ma</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Email:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Delete</source>
+        <translation type="unfinished">Deletar</translation>
+    </message>
+    <message>
+        <source>Add</source>
+        <translation type="unfinished">Adicionar</translation>
+    </message>
+    <message>
+        <source>General</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Mobile:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Business Fax:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ph</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Work:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Home:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Business</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Home</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Other</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>HI</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Phone/Address</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>ME</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Profession:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Office:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Assistant&apos;s name:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Manager&apos;s name:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>WO</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Departement:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Spouse:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Nickname:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Birthday:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Anniversary:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>NO</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Notes:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Details</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -437,6 +623,14 @@ Testing guinea pig for python 2.3</source>
     <message>
         <source>Passwords</source>
         <translation>Senhas</translation>
+    </message>
+    <message>
+        <source>Secure</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Date</source>
+        <translation type="unfinished">Data</translation>
     </message>
 </context>
 <context>
@@ -560,6 +754,33 @@ Veja mensagens na console para maiores informações.</translation>
 See console output for more information.</source>
         <translation>Operação de deleção não foi completada.
 Veja mensagens na console para maiores informações.</translation>
+    </message>
+</context>
+<context>
+    <name>CategoryEditDialogDesign</name>
+    <message>
+        <source>Categories</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Edit categories</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <translation type="unfinished">Cancelar</translation>
+    </message>
+    <message>
+        <source>Ok</source>
+        <translation type="unfinished">Ok</translation>
+    </message>
+    <message>
+        <source>Delete</source>
+        <translation type="unfinished">Deletar</translation>
+    </message>
+    <message>
+        <source>Add</source>
+        <translation type="unfinished">Adicionar</translation>
     </message>
 </context>
 <context>
@@ -902,6 +1123,56 @@ Tente aumentar a faixa de uidNumber ou delete alguns usuários da subtree.</tran
     </message>
 </context>
 <context>
+    <name>LumaIconViewDesign</name>
+    <message>
+        <source>Form1</source>
+        <translation type="unfinished">Form1</translation>
+    </message>
+    <message>
+        <source>Delete</source>
+        <translation type="unfinished">Deletar</translation>
+    </message>
+    <message>
+        <source>Add</source>
+        <translation type="unfinished">Adicionar</translation>
+    </message>
+    <message>
+        <source>Go</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Search:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Server:</source>
+        <translation type="unfinished">Servidor:</translation>
+    </message>
+</context>
+<context>
+    <name>MailDialog</name>
+    <message>
+        <source>New mail</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ok</source>
+        <translation type="unfinished">Ok</translation>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <translation type="unfinished">Cancelar</translation>
+    </message>
+    <message>
+        <source>ML</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>New mail:</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>MainWin</name>
     <message>
         <source>Choose Language</source>
@@ -959,19 +1230,7 @@ Tente aumentar a faixa de uidNumber ou delete alguns usuários da subtree.</tran
         <translation>Programa</translation>
     </message>
     <message>
-        <source>Alt+X</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Alt+R</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Hide/Show pluginlist</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Alt+H</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1116,6 +1375,188 @@ Tente aumentar a faixa de uidNumber ou deletar alguns usuários da subtree.</tra
     </message>
 </context>
 <context>
+    <name>NameDialog</name>
+    <message>
+        <source>Full name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <translation type="unfinished">Cancelar</translation>
+    </message>
+    <message>
+        <source>Ok</source>
+        <translation type="unfinished">Ok</translation>
+    </message>
+    <message>
+        <source>Sr.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Jr.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>I</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>II</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>III</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Esq.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Middle:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Title:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Suffix:</source>
+        <translation type="unfinished">Sufixo:</translation>
+    </message>
+    <message>
+        <source>Mr.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Mrs.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ms.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Miss</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Dr.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Last:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>First:</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>NewCategoryDialog</name>
+    <message>
+        <source>Add category</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ok</source>
+        <translation type="unfinished">Ok</translation>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <translation type="unfinished">Cancelar</translation>
+    </message>
+    <message>
+        <source>Add Category:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Birthday</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Business</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Competition</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Favorites</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Gifts</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Goals/Objectives</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Holiday</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Holiday Cards</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Hot Contacts</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ideas</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>International</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Key Customer</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Miscellaneous</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Personal</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Phones Calls</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Status</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Strategies</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Suppliers</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Time &amp; Expenses</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>VIP</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Waiting</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>OClassDialogDesign</name>
     <message>
         <source>ObjectClass</source>
@@ -1178,11 +1619,26 @@ Tente aumentar a faixa de uidNumber ou deletar alguns usuários da subtree.</tra
     </message>
 </context>
 <context>
-    <name>PluginLoaderGuiDesign</name>
+    <name>PluginInformation</name>
     <message>
-        <source>Configure Plugins</source>
-        <translation>Configurar Plugins</translation>
+        <source>Plugin Information</source>
+        <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>Icon</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Information about this plugin:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Close</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>PluginLoaderGuiDesign</name>
     <message>
         <source>Available Plugins:</source>
         <translation>Plugins Disponíveis:</translation>
@@ -1192,11 +1648,15 @@ Tente aumentar a faixa de uidNumber ou deletar alguns usuários da subtree.</tra
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Modify</source>
+        <source>Close</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Close</source>
+        <source>Plugin settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Settings Box</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1309,10 +1769,6 @@ Please see console output for more information.</source>
         <translation>Modificar Servidor</translation>
     </message>
     <message>
-        <source>Close Dialog</source>
-        <translation>Fechar Diálogo</translation>
-    </message>
-    <message>
         <source>Server Info</source>
         <translation>Informações sobre o Servidor</translation>
     </message>
@@ -1367,6 +1823,10 @@ Please see console output for more information.</source>
     <message>
         <source>Save Server Information</source>
         <translation>Salvar Informações do Servidor</translation>
+    </message>
+    <message>
+        <source>Close</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
