@@ -1,16 +1,15 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!--eric3 session file for project luma-->
 <!--This file was generated automatically, do not edit.-->
-<!--Saved: 2004-05-10, 00:45:08-->
+<!--Saved: 2004-05-10, 22:39:56-->
 <Session>
   <Filenames>
     <Filename cline="0" cindex="0">/home/wido/src/luma/lib/luma/luma.py</Filename>
-    <Filename cline="146" cindex="37">/home/wido/src/luma/lib/luma/base/gui/ServerDialog.py</Filename>
-    <Filename cline="41" cindex="21">/home/wido/src/luma/lib/luma/base/backend/ServerObject.py</Filename>
-    <Filename cline="100" cindex="0">/home/wido/src/luma/lib/luma/base/backend/ServerList.py</Filename>
-    <Filename cline="98" cindex="12">/home/wido/src/luma/lib/luma/base/gui/MainWin.py</Filename>
+    <Filename cline="12" cindex="20">/home/wido/src/luma/lib/luma/environment/__init__.py</Filename>
+    <Filename cline="33" cindex="79">/home/wido/src/luma/lib/luma/plugins/usermanagement/Usermanagement.py</Filename>
+    <Filename cline="112" cindex="84">/home/wido/src/luma/lib/luma/plugins/usermanagement/UsermanagementWidget.py</Filename>
   </Filenames>
-  <ActiveWindow cline="146" cindex="37">/home/wido/src/luma/lib/luma/base/gui/ServerDialog.py</ActiveWindow>
+  <ActiveWindow cline="112" cindex="84">/home/wido/src/luma/lib/luma/plugins/usermanagement/UsermanagementWidget.py</ActiveWindow>
   <Breakpoints>
   </Breakpoints>
   <DebugInfo>
