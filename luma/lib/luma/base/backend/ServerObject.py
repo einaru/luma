@@ -66,7 +66,7 @@ class ServerObject(object):
 
 
     def __setName(self, name):
-        if isinstance(name, str):
+        if isinstance(name, unicode):
             self.nameP = name
         else:
             raise AttributeError, "Expected a string."
@@ -80,7 +80,7 @@ class ServerObject(object):
 ###############################################################################
 
     def __setHost(self, host):
-        if isinstance(host, str):
+        if isinstance(host, unicode):
             self.hostP = host
         else:
             raise AttributeError, "Expected a string."
@@ -126,7 +126,7 @@ class ServerObject(object):
 ###############################################################################
 
     def __setBaseDN(self, value):
-        if isinstance(value, str):
+        if isinstance(value, unicode):
             self.baseDNP = value
         else:
             raise AttributeError, "Expected a string."
@@ -140,7 +140,7 @@ class ServerObject(object):
 ###############################################################################
 
     def __setBindDN(self, value):
-        if isinstance(value, str):
+        if isinstance(value, unicode):
             self.bindDNP = value
         else:
             raise AttributeError, "Expected a string."
@@ -154,7 +154,7 @@ class ServerObject(object):
 ###############################################################################
 
     def __setBindPassword(self, value):
-        if isinstance(value, str):
+        if isinstance(value, unicode):
             self.bindPasswordP = value
         else:
             raise AttributeError, "Expected a string."

@@ -99,8 +99,7 @@ class ServerList:
             if not(x.name == serverName):
                 newList.append(x)
 
-        self.save_settings(newList)
-        self.readServerList()
+        self.SERVERLIST = newList
 
 
 ###############################################################################
@@ -142,12 +141,12 @@ class ServerList:
         self.SERVERLIST = []
         for x in sections:
             server = ServerObject()
-            server.name = x
-            server.host = configParser.get(x, "hostname")
+            server.name = unicode(x)
+            server.host = unicode(configParser.get(x, "hostname"))
             server.port = configParser.getint(x, "port")
             server.bindAnon = configParser.getboolean(x, "bindAnon")
-            server.baseDN = configParser.get(x, "baseDN")
-            server.bindDN = configParser.get(x, "bindDN")
-            server.bindPassword = configParser.get(x, "bindPassword")
+            server.baseDN = unicode(configParser.get(x, "baseDN"))
+            server.bindDN = unicode(configParser.get(x, "bindDN"))
+            server.bindPassword = unicode(configParser.get(x, "bindPassword"))
             server.tls = configParser.getboolean(x, "tls")
             self.SERVERLIST.append(server)
