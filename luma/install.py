@@ -37,15 +37,31 @@ You can get the module here: http://python-ldap.sourceforge.net
 
     try:
         import qt
-        vString = "3.10"
+        pyqtVersionString = "3.10"
+        qtVersionString = "3.2"
         print "PyQt is installed..."
         print "\tInstalled version: " + qt.PYQT_VERSION_STR
-        print "\tMinimum version: " + vString
+        print "\tMinimum version: " + pyqtVersionString
+        print ""
+        print "Qt version..."
+        print "\tInstalled version: " + qt.QT_VERSION_STR
+        print "\tMinimum version: " + qtVersionString
         print ""
     except ImportError:
         print """\nERROR: PyQt not installed!!!
 You can get the module here: http://www.riverbankcomputing.co.uk/pyqt
 """
+
+    try:
+        import smbpasswd
+        print "smbpasswd module is installed."
+    except ImportError:
+        print """\nWARNING: smbpasswd module is not installed.
+You will be able to tun Luma, but no nthash and lmhash passwords are available.
+You can get the module here: http://barryp.org/software/py-smbpasswd
+"""
+
+    print ""
 
 ###############################################################################
 
