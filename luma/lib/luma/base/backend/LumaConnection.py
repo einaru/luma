@@ -63,7 +63,7 @@ class LumaConnection(object):
             if len(self.server.bindDN) > 0:
                 ldapServerObject.simple_bind_s(self.server.bindDN,self.server.bindPassword)
             
-            resultId = ldapServerObject.search(base, scope, filter, attrList)
+            resultId = ldapServerObject.search(base, scope, filter, attrList, attrsonly)
             
             while 1:
                 environment.update_ui()
@@ -93,7 +93,7 @@ class LumaConnection(object):
 
     def delete_s(self, dnDelete=None):
         if dnDelete == None:
-            return None
+            return
             
         result = None
         
