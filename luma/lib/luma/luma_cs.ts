@@ -32,36 +32,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Bjorn Ove Grotan
-Contributed his mkpasswd module.
-Translation into Norwegian.
-
-Kerstin Isebrecht
-Thanks for the ice and all your patience :) 
-
-Joern Koerner
-Luma-crash-test-dummy. He also had the idea with the plugin support. 
-
-Fernando Maciel Souto Maior
-Portuguese translation 
-
-Jan Winhuysen
-My mentor and UI tester :) 
-
-Eric Cote
-Testing guinea pig for python 2.3</source>
-        <comment>DO NOT TRANSLATE</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&lt;p align=&quot;center&quot;&gt;LDAP management made easy.&lt;br&gt;&lt;br&gt;
-(c) 2003, 2004   Wido Depping&lt;br&gt;&lt;br&gt;
-http://luma.sourceforge.net
-&lt;/p&gt;</source>
-        <comment>DO NOT TRANSLATE</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>This program is distributed under the terms of the GPL v2.
 
 <byte value="x9"/><byte value="x9"/>    GNU GENERAL PUBLIC LICENSE
@@ -349,7 +319,46 @@ POSSIBILITY OF SUCH DAMAGES.
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>&lt;font size=&quot;+2&quot;&gt;&lt;b&gt;Luma 1.6 CVS&lt;/b&gt;&lt;/font&gt;</source>
+        <source>&lt;font size=&quot;+2&quot;&gt;&lt;b&gt;Luma 2.0.2&lt;/b&gt;&lt;/font&gt;</source>
+        <comment>DO NOT TRANSLATE</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;p align=&quot;center&quot;&gt;LDAP management made easy.&lt;br&gt;&lt;br&gt;
+(c) 2003-2005   Wido Depping&lt;br&gt;&lt;br&gt;
+http://luma.sourceforge.net
+&lt;/p&gt;</source>
+        <comment>DO NOT TRANSLATE</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message encoding="UTF-8">
+        <source>Bjorn Ove Grotan
+Contributed his mkpasswd module.
+Translation into Norwegian.
+
+Kerstin Isebrecht
+Thanks for the ice and all your patience :) 
+
+Joern Koerner
+Luma-crash-test-dummy. He also had the idea with the plugin support. 
+
+Fernando Maciel Souto Maior
+Portuguese translation 
+
+Jan Winhuysen
+My mentor and UI tester :) 
+
+Eric Cote
+Testing guinea pig for python 2.3
+
+Jirka Jurek (jiri.jurek@trinet.as)
+Czech translation
+
+Magnus Määttä
+Swedish translation
+
+Alexander Novitsky
+Russian translation</source>
         <comment>DO NOT TRANSLATE</comment>
         <translation type="unfinished"></translation>
     </message>
@@ -931,7 +940,7 @@ které jsou povinné pro vybranou třídu objektu.&lt;/p&gt;</translation>
     <message>
         <source>Date</source>
         <comment>DO NOT TRANSLATE</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Datum</translation>
     </message>
     <message>
         <source>&amp;Convert</source>
@@ -1336,7 +1345,7 @@ které jsou povinné pro vybranou třídu objektu.&lt;/p&gt;</translation>
     <message>
         <source>&amp;Ok</source>
         <comment>DO NOT TRANSLATE</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">&amp;Potvrdit</translation>
     </message>
 </context>
 <context>
@@ -1416,7 +1425,7 @@ které jsou povinné pro vybranou třídu objektu.&lt;/p&gt;</translation>
     <message>
         <source>Help</source>
         <comment>DO NOT TRANSLATE</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Nápověda</translation>
     </message>
     <message>
         <source>Save Options</source>
@@ -1527,28 +1536,24 @@ které jsou povinné pro vybranou třídu objektu.&lt;/p&gt;</translation>
         <translation>Následující záznamy budou budou smazány ze serveru. Ze seznamu můžete odstranit ty položky, které nechcete smazat. Stiskněte tlačítko start pro mazání.</translation>
     </message>
     <message>
-        <source>&amp;Start</source>
-        <translation>&amp;Start</translation>
-    </message>
-    <message>
-        <source>Alt+S</source>
-        <translation>Alt+S</translation>
-    </message>
-    <message>
-        <source>&amp;Remove</source>
-        <translation>&amp;Odstranit</translation>
-    </message>
-    <message>
         <source>Alt+R</source>
         <translation>Alt+O</translation>
+    </message>
+    <message>
+        <source>&amp;Delete</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Alt+D</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Remove from list</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>ExportDialog</name>
-    <message>
-        <source>Select file to change binary value</source>
-        <translation type="unfinished"></translation>
-    </message>
     <message>
         <source>Given file is a directory. Please check the filename.</source>
         <translation>Zadaná cesta je adresář. Prosím, zadejte jméno souboru.</translation>
@@ -1569,6 +1574,10 @@ které jsou povinné pro vybranou třídu objektu.&lt;/p&gt;</translation>
         <source>Item exported successfully.</source>
         <translation>Položka byla úspěšne vyexportována.</translation>
     </message>
+    <message>
+        <source>Select file for exporting</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ExportDialogDesign</name>
@@ -1578,7 +1587,7 @@ které jsou povinné pro vybranou třídu objektu.&lt;/p&gt;</translation>
     </message>
     <message>
         <source>DN</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Rozlišující jméno (DN)</translation>
     </message>
     <message>
         <source>Message</source>
@@ -1591,18 +1600,6 @@ které jsou povinné pro vybranou třídu objektu.&lt;/p&gt;</translation>
     <message>
         <source>The following entries will be exported to the format of your choice. You can remove items from the list if you don&apos;t want them to be exported. Press start to begin with export..</source>
         <translation>Následující záznamy budou vyexportovány do formátu, který si zvolíte. Můžete odstranit ze seznamu ty položky, které exportovat nechcete. Stiskněte tlačítko start na zahájení exportu..</translation>
-    </message>
-    <message>
-        <source>&amp;Start</source>
-        <translation>&amp;Start</translation>
-    </message>
-    <message>
-        <source>Alt+S</source>
-        <translation>Alt+S</translation>
-    </message>
-    <message>
-        <source>&amp;Remove</source>
-        <translation>&amp;Odstranit</translation>
     </message>
     <message>
         <source>Alt+R</source>
@@ -1645,6 +1642,18 @@ které jsou povinné pro vybranou třídu objektu.&lt;/p&gt;</translation>
     <message>
         <source>Alt+C</source>
         <translation>Alt+Z</translation>
+    </message>
+    <message>
+        <source>&amp;Export</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Alt+E</source>
+        <translation type="unfinished">Alt-Z</translation>
+    </message>
+    <message>
+        <source>&amp;Remove from list</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2813,10 +2822,6 @@ Popis</translation>
 <context>
     <name>SearchFormDesign</name>
     <message>
-        <source>Search</source>
-        <translation>Hledej</translation>
-    </message>
-    <message>
         <source>Filter:</source>
         <translation>Filtr:</translation>
     </message>
@@ -2911,10 +2916,6 @@ Popis</translation>
     <message>
         <source>Alt+C</source>
         <translation>Alt+Z</translation>
-    </message>
-    <message>
-        <source>&amp;Add</source>
-        <translation>&amp;Přidat</translation>
     </message>
     <message>
         <source>Alt+A</source>
@@ -3047,6 +3048,14 @@ Popis</translation>
     <message>
         <source>Security</source>
         <translation>Zabezpečení</translation>
+    </message>
+    <message>
+        <source>&amp;Add...</source>
+        <translation type="unfinished">&amp;Přidat...</translation>
+    </message>
+    <message>
+        <source>SASL EXTERNAL</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -3288,7 +3297,7 @@ Popis</translation>
     </message>
     <message>
         <source>Login shell:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Login shell:</translation>
     </message>
     <message>
         <source>Primary group:</source>

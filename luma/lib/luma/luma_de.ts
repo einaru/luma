@@ -319,6 +319,19 @@ POSSIBILITY OF SUCH DAMAGES.
         <translation></translation>
     </message>
     <message>
+        <source>&lt;font size=&quot;+2&quot;&gt;&lt;b&gt;Luma 2.0.2&lt;/b&gt;&lt;/font&gt;</source>
+        <comment>DO NOT TRANSLATE</comment>
+        <translation></translation>
+    </message>
+    <message>
+        <source>&lt;p align=&quot;center&quot;&gt;LDAP management made easy.&lt;br&gt;&lt;br&gt;
+(c) 2003-2005   Wido Depping&lt;br&gt;&lt;br&gt;
+http://luma.sourceforge.net
+&lt;/p&gt;</source>
+        <comment>DO NOT TRANSLATE</comment>
+        <translation></translation>
+    </message>
+    <message encoding="UTF-8">
         <source>Bjorn Ove Grotan
 Contributed his mkpasswd module.
 Translation into Norwegian.
@@ -336,20 +349,16 @@ Jan Winhuysen
 My mentor and UI tester :) 
 
 Eric Cote
-Testing guinea pig for python 2.3</source>
-        <comment>DO NOT TRANSLATE</comment>
-        <translation></translation>
-    </message>
-    <message>
-        <source>&lt;p align=&quot;center&quot;&gt;LDAP management made easy.&lt;br&gt;&lt;br&gt;
-(c) 2003, 2004   Wido Depping&lt;br&gt;&lt;br&gt;
-http://luma.sourceforge.net
-&lt;/p&gt;</source>
-        <comment>DO NOT TRANSLATE</comment>
-        <translation></translation>
-    </message>
-    <message>
-        <source>&lt;font size=&quot;+2&quot;&gt;&lt;b&gt;Luma 1.6 CVS&lt;/b&gt;&lt;/font&gt;</source>
+Testing guinea pig for python 2.3
+
+Jirka Jurek (jiri.jurek@trinet.as)
+Czech translation
+
+Magnus Määttä
+Swedish translation
+
+Alexander Novitsky
+Russian translation</source>
         <comment>DO NOT TRANSLATE</comment>
         <translation></translation>
     </message>
@@ -1523,28 +1532,24 @@ the selected objectclass.&lt;/p&gt;</source>
         <translation>Die folgenden Einträge werden vom Server gelöscht. Sie können einzelne Einträge von der Liste entfernen, damit sie nicht gelöscht werden. Drücken Sie &apos;Start&apos; um mit dem Löschen zu beginnen.</translation>
     </message>
     <message>
-        <source>&amp;Start</source>
-        <translation>&amp;Start</translation>
-    </message>
-    <message>
-        <source>Alt+S</source>
-        <translation>Alt+S</translation>
-    </message>
-    <message>
-        <source>&amp;Remove</source>
-        <translation>&amp;Entfernen</translation>
-    </message>
-    <message>
         <source>Alt+R</source>
         <translation>Alt+E</translation>
+    </message>
+    <message>
+        <source>&amp;Delete</source>
+        <translation>&amp;Löschen</translation>
+    </message>
+    <message>
+        <source>Alt+D</source>
+        <translation>Alt+L</translation>
+    </message>
+    <message>
+        <source>&amp;Remove from list</source>
+        <translation>&amp;Von Liste entfernen</translation>
     </message>
 </context>
 <context>
     <name>ExportDialog</name>
-    <message>
-        <source>Select file to change binary value</source>
-        <translation>Wählen Sie eine Datei aus, um binären Wert zu ändern</translation>
-    </message>
     <message>
         <source>Given file is a directory. Please check the filename.</source>
         <translation>Die angegebene Datei ist ein Verzeichnis. Bitte überprüfen Sie den Dateinamen.</translation>
@@ -1564,6 +1569,10 @@ the selected objectclass.&lt;/p&gt;</source>
     <message>
         <source>Item exported successfully.</source>
         <translation>Eintrag erfolgreich exportiert.</translation>
+    </message>
+    <message>
+        <source>Select file for exporting</source>
+        <translation>Datei zum exportieren wählen</translation>
     </message>
 </context>
 <context>
@@ -1587,18 +1596,6 @@ the selected objectclass.&lt;/p&gt;</source>
     <message>
         <source>The following entries will be exported to the format of your choice. You can remove items from the list if you don&apos;t want them to be exported. Press start to begin with export..</source>
         <translation>Die folgenden Einträge werden in das von Ihnen gewählte Format exportiert. Sie können einzelne Einträge von der Liste entfernen, wenn sie nicht exportiert werden sollen. Drücken Sie &apos;Start&apos; um mit dem Exportieren zu beginnen.</translation>
-    </message>
-    <message>
-        <source>&amp;Start</source>
-        <translation>&amp;Start</translation>
-    </message>
-    <message>
-        <source>Alt+S</source>
-        <translation>Alt+S</translation>
-    </message>
-    <message>
-        <source>&amp;Remove</source>
-        <translation>&amp;Entfernen</translation>
     </message>
     <message>
         <source>Alt+R</source>
@@ -1641,6 +1638,18 @@ the selected objectclass.&lt;/p&gt;</source>
     <message>
         <source>Alt+C</source>
         <translation>Alt+A</translation>
+    </message>
+    <message>
+        <source>&amp;Export</source>
+        <translation>&amp;Exportieren</translation>
+    </message>
+    <message>
+        <source>Alt+E</source>
+        <translation>Alt+E</translation>
+    </message>
+    <message>
+        <source>&amp;Remove from list</source>
+        <translation>&amp;Von Liste entfernen</translation>
     </message>
 </context>
 <context>
@@ -2804,10 +2813,6 @@ Description</source>
 <context>
     <name>SearchFormDesign</name>
     <message>
-        <source>Search</source>
-        <translation>Suche</translation>
-    </message>
-    <message>
         <source>Filter:</source>
         <translation>Filter:</translation>
     </message>
@@ -2902,10 +2907,6 @@ Description</source>
     <message>
         <source>Alt+C</source>
         <translation>Alt+S</translation>
-    </message>
-    <message>
-        <source>&amp;Add</source>
-        <translation>&amp;Hinzufügen</translation>
     </message>
     <message>
         <source>Alt+A</source>
@@ -3038,6 +3039,14 @@ Description</source>
     <message>
         <source>Security</source>
         <translation>Sicherheit</translation>
+    </message>
+    <message>
+        <source>&amp;Add...</source>
+        <translation>&amp;Hinzufügen...</translation>
+    </message>
+    <message>
+        <source>SASL EXTERNAL</source>
+        <translation>SASL EXTERNAL</translation>
     </message>
 </context>
 <context>

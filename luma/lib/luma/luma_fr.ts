@@ -319,6 +319,19 @@ POSSIBILITY OF SUCH DAMAGES.
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <source>&lt;font size=&quot;+2&quot;&gt;&lt;b&gt;Luma 2.0.2&lt;/b&gt;&lt;/font&gt;</source>
+        <comment>DO NOT TRANSLATE</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;p align=&quot;center&quot;&gt;LDAP management made easy.&lt;br&gt;&lt;br&gt;
+(c) 2003-2005   Wido Depping&lt;br&gt;&lt;br&gt;
+http://luma.sourceforge.net
+&lt;/p&gt;</source>
+        <comment>DO NOT TRANSLATE</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message encoding="UTF-8">
         <source>Bjorn Ove Grotan
 Contributed his mkpasswd module.
 Translation into Norwegian.
@@ -336,20 +349,16 @@ Jan Winhuysen
 My mentor and UI tester :) 
 
 Eric Cote
-Testing guinea pig for python 2.3</source>
-        <comment>DO NOT TRANSLATE</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&lt;p align=&quot;center&quot;&gt;LDAP management made easy.&lt;br&gt;&lt;br&gt;
-(c) 2003, 2004   Wido Depping&lt;br&gt;&lt;br&gt;
-http://luma.sourceforge.net
-&lt;/p&gt;</source>
-        <comment>DO NOT TRANSLATE</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&lt;font size=&quot;+2&quot;&gt;&lt;b&gt;Luma 1.6 CVS&lt;/b&gt;&lt;/font&gt;</source>
+Testing guinea pig for python 2.3
+
+Jirka Jurek (jiri.jurek@trinet.as)
+Czech translation
+
+Magnus Määttä
+Swedish translation
+
+Alexander Novitsky
+Russian translation</source>
         <comment>DO NOT TRANSLATE</comment>
         <translation type="unfinished"></translation>
     </message>
@@ -1520,28 +1529,24 @@ the selected objectclass.&lt;/p&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>&amp;Start</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Alt+S</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&amp;Remove</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Alt+R</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Delete</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Alt+D</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Remove from list</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>ExportDialog</name>
-    <message>
-        <source>Select file to change binary value</source>
-        <translation type="unfinished"></translation>
-    </message>
     <message>
         <source>Given file is a directory. Please check the filename.</source>
         <translation type="unfinished"></translation>
@@ -1560,6 +1565,10 @@ the selected objectclass.&lt;/p&gt;</source>
     </message>
     <message>
         <source>Item exported successfully.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Select file for exporting</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1583,18 +1592,6 @@ the selected objectclass.&lt;/p&gt;</source>
     </message>
     <message>
         <source>The following entries will be exported to the format of your choice. You can remove items from the list if you don&apos;t want them to be exported. Press start to begin with export..</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&amp;Start</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Alt+S</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&amp;Remove</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1637,6 +1634,18 @@ the selected objectclass.&lt;/p&gt;</source>
     </message>
     <message>
         <source>Alt+C</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Export</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Alt+E</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Remove from list</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2800,10 +2809,6 @@ Description</source>
 <context>
     <name>SearchFormDesign</name>
     <message>
-        <source>Search</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Filter:</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2897,10 +2902,6 @@ Description</source>
     </message>
     <message>
         <source>Alt+C</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&amp;Add</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -3033,6 +3034,14 @@ Description</source>
     </message>
     <message>
         <source>Security</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Add...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>SASL EXTERNAL</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

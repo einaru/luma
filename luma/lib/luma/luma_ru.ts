@@ -311,6 +311,27 @@ POSSIBILITY OF SUCH DAMAGES.
         <translation>Лицензионное соглашение</translation>
     </message>
     <message>
+        <source>Credits</source>
+        <translation>Благодарности</translation>
+    </message>
+    <message>
+        <source>&amp;Close</source>
+        <translation>&amp;Закрыть</translation>
+    </message>
+    <message>
+        <source>&lt;font size=&quot;+2&quot;&gt;&lt;b&gt;Luma 2.0.2&lt;/b&gt;&lt;/font&gt;</source>
+        <comment>DO NOT TRANSLATE</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;p align=&quot;center&quot;&gt;LDAP management made easy.&lt;br&gt;&lt;br&gt;
+(c) 2003-2005   Wido Depping&lt;br&gt;&lt;br&gt;
+http://luma.sourceforge.net
+&lt;/p&gt;</source>
+        <comment>DO NOT TRANSLATE</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message encoding="UTF-8">
         <source>Bjorn Ove Grotan
 Contributed his mkpasswd module.
 Translation into Norwegian.
@@ -328,30 +349,18 @@ Jan Winhuysen
 My mentor and UI tester :) 
 
 Eric Cote
-Testing guinea pig for python 2.3</source>
+Testing guinea pig for python 2.3
+
+Jirka Jurek (jiri.jurek@trinet.as)
+Czech translation
+
+Magnus Määttä
+Swedish translation
+
+Alexander Novitsky
+Russian translation</source>
         <comment>DO NOT TRANSLATE</comment>
-        <translation></translation>
-    </message>
-    <message>
-        <source>Credits</source>
-        <translation>Благодарности</translation>
-    </message>
-    <message>
-        <source>&amp;Close</source>
-        <translation>&amp;Закрыть</translation>
-    </message>
-    <message>
-        <source>&lt;p align=&quot;center&quot;&gt;LDAP management made easy.&lt;br&gt;&lt;br&gt;
-(c) 2003, 2004   Wido Depping&lt;br&gt;&lt;br&gt;
-http://luma.sourceforge.net
-&lt;/p&gt;</source>
-        <comment>DO NOT TRANSLATE</comment>
-        <translation></translation>
-    </message>
-    <message>
-        <source>&lt;font size=&quot;+2&quot;&gt;&lt;b&gt;Luma 1.6 CVS&lt;/b&gt;&lt;/font&gt;</source>
-        <comment>DO NOT TRANSLATE</comment>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1526,28 +1535,24 @@ the selected objectclass.&lt;/p&gt;</source>
         <translation>Следующие записи будут удалены с сервера. Вы можете убрать отдельные элементы из списка исли Вы не хотите их удалять. Нажмите Старт для начала удаления.</translation>
     </message>
     <message>
-        <source>&amp;Start</source>
-        <translation>&amp;Старт</translation>
-    </message>
-    <message>
-        <source>Alt+S</source>
-        <translation>Alt+С</translation>
-    </message>
-    <message>
-        <source>&amp;Remove</source>
-        <translation>&amp;Удалить</translation>
-    </message>
-    <message>
         <source>Alt+R</source>
         <translation>Alt+У</translation>
+    </message>
+    <message>
+        <source>&amp;Delete</source>
+        <translation type="unfinished">&amp;Удалить</translation>
+    </message>
+    <message>
+        <source>Alt+D</source>
+        <translation type="unfinished">Alt+У</translation>
+    </message>
+    <message>
+        <source>&amp;Remove from list</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>ExportDialog</name>
-    <message>
-        <source>Select file to change binary value</source>
-        <translation>Выберите файл для замены двоичного значения</translation>
-    </message>
     <message>
         <source>Given file is a directory. Please check the filename.</source>
         <translation>Указанное имя принадлежит директории. Пожалуйста проверьте имя файла.</translation>
@@ -1567,6 +1572,10 @@ the selected objectclass.&lt;/p&gt;</source>
     <message>
         <source>Item exported successfully.</source>
         <translation>Запись успешно экспортирована.</translation>
+    </message>
+    <message>
+        <source>Select file for exporting</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1590,18 +1599,6 @@ the selected objectclass.&lt;/p&gt;</source>
     <message>
         <source>The following entries will be exported to the format of your choice. You can remove items from the list if you don&apos;t want them to be exported. Press start to begin with export..</source>
         <translation>Следующие записи будут экспортированы в файл выбранного Вами формата. Вы можете убрать отдельные элементы из списка если Вы не хотите их экспортировать. Нажмите Старт для начала экспорта.</translation>
-    </message>
-    <message>
-        <source>&amp;Start</source>
-        <translation>&amp;Старт</translation>
-    </message>
-    <message>
-        <source>Alt+S</source>
-        <translation>Alt+С</translation>
-    </message>
-    <message>
-        <source>&amp;Remove</source>
-        <translation>&amp;Удалить</translation>
     </message>
     <message>
         <source>Alt+R</source>
@@ -1644,6 +1641,18 @@ the selected objectclass.&lt;/p&gt;</source>
     <message>
         <source>Alt+C</source>
         <translation>Alt+О</translation>
+    </message>
+    <message>
+        <source>&amp;Export</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Alt+E</source>
+        <translation type="unfinished">Alt+З</translation>
+    </message>
+    <message>
+        <source>&amp;Remove from list</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2813,10 +2822,6 @@ Description</source>
 <context>
     <name>SearchFormDesign</name>
     <message>
-        <source>Search</source>
-        <translation>Поиск</translation>
-    </message>
-    <message>
         <source>Filter:</source>
         <translation>Фильтр:</translation>
     </message>
@@ -2911,10 +2916,6 @@ Description</source>
     <message>
         <source>Alt+C</source>
         <translation>Alt+О</translation>
-    </message>
-    <message>
-        <source>&amp;Add</source>
-        <translation>&amp;Добавить</translation>
     </message>
     <message>
         <source>Alt+A</source>
@@ -3047,6 +3048,14 @@ Description</source>
     <message>
         <source>Security</source>
         <translation>Секретность</translation>
+    </message>
+    <message>
+        <source>&amp;Add...</source>
+        <translation type="unfinished">&amp;Добавить...</translation>
+    </message>
+    <message>
+        <source>SASL EXTERNAL</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
