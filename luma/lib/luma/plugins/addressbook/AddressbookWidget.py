@@ -21,7 +21,6 @@ from base.utils.gui.MailDialog import MailDialog
 from plugins.addressbook.CategoryEditDialog import CategoryEditDialog
 from base.backend.LumaConnection import LumaConnection
 from base.backend.ServerList import ServerList
-from base.utils.backend.ObjectClassAttributeInfo import ObjectClassAttributeInfo
 
 
 class AddressbookWidget(AddressbookWidgetDesign):
@@ -51,7 +50,9 @@ class AddressbookWidget(AddressbookWidgetDesign):
         self.personalLabel.setPixmap(personIcon)
         self.notesLabel.setPixmap(urlIcon)
         
-        self.ocInfo = ObjectClassAttributeInfo()
+        # Will be instance of ObjectClassAttributeInfo
+        self.ocInfo = None
+        
         self.allowedAttributes = None
         
         self.attributeWidgets = {'cn': self.cnEdit,
@@ -123,8 +124,7 @@ class AddressbookWidget(AddressbookWidgetDesign):
         self.serverMeta = server
         
         if (self.DISABLED == 1):
-            self.ocInfo.setServer(self.serverMeta.name)
-            self.ocInfo.retrieveInfoFromServer()
+            self.ocInfo = environment.getServerMeta(self.serverMeta.name)
             self.DISABLED = 0
             
         must, may = self.ocInfo.getAllAttributes(self.data['objectClass'])

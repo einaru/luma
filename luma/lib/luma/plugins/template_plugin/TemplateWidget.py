@@ -17,7 +17,6 @@ from plugins.template_plugin.TemplateWidgetDesign import TemplateWidgetDesign
 from plugins.template_plugin.AddTemplateDialog import AddTemplateDialog
 from base.backend.ServerList import ServerList
 from base.backend.ServerObject import ServerObject
-from base.utils.backend.ObjectClassAttributeInfo import ObjectClassAttributeInfo
 from base.utils.backend.templateutils import *
 from plugins.template_plugin.AddObjectClassDialog import AddObjectClassDialog
 from plugins.template_plugin.AddAttributeDialog import AddAttributeDialog
@@ -99,8 +98,7 @@ class TemplateWidget(TemplateWidgetDesign):
 ###############################################################################
 
     def loadServerMeta(self, serverName):
-        if not (serverName in self.preloadedServerMeta.keys()):
-            self.preloadedServerMeta[serverName] = ObjectClassAttributeInfo(serverName)
+        self.preloadedServerMeta[serverName] = environment.getServerMeta(serverName)
     
 ###############################################################################
 

@@ -12,7 +12,6 @@ from qt import *
 import os.path
 
 from base.utils.gui.FilterWizardDesign import FilterWizardDesign
-from base.utils.backend.ObjectClassAttributeInfo import ObjectClassAttributeInfo
 from base.backend.ServerList import ServerList
 from base.backend.ServerObject import ServerObject
 import environment
@@ -24,8 +23,7 @@ class FilterWizard(FilterWizardDesign):
     def __init__(self,server = None, parent = None,name = None,modal = 0,fl = 0):
         FilterWizardDesign.__init__(self,parent,name,modal,fl)
 
-        self.objectInfo = ObjectClassAttributeInfo(server)
-        #self.objectInfo.retrieveInfoFromServer()
+        self.objectInfo = environment.getServerMeta(server)
 
         self.objectSelection = "CLASS"
         self.classButton.setChecked(1)

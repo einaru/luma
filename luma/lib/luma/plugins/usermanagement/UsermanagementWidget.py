@@ -19,7 +19,6 @@ from base.backend.LumaConnection import LumaConnection
 from base.utils.gui.PasswordDialog import PasswordDialog
 from base.utils.gui.MailDialog import MailDialog
 from plugins.usermanagement.GroupDialog import GroupDialog
-from base.utils.backend.ObjectClassAttributeInfo import ObjectClassAttributeInfo
 
 from sets import Set
 
@@ -287,20 +286,6 @@ class UsermanagementWidget(UsermanagementWidgetDesign):
             
             if mail == '':
                 return
-                
-            #serverName = self.SERVERMETA.name
-            
-            #if not (serverName in self.preloadedServerMeta.keys()):
-            #    self.preloadedServerMeta[serverName] = ObjectClassAttributeInfo(serverName)
-    
-            #metaInfo = self.preloadedServerMeta[serverName]
-            #allowedAttributes = metaInfo.getAllAttributes(self.CURRENTDATA['objectClass'])
-            #print metaInfo.getAllObjectclassesForAttr('mail')
-            
-            #if not ('mail' in allowedAttributes):
-            #    self.CURRENTDATA['objectClass'].append("inetOrgPerson")
-            #    self.CURRENTDATA['objectClass'] = filter(lambda x: x != 'account', self.CURRENTDATA['objectClass'])
-            #    print self.CURRENTDATA['objectClass']
                 
             if self.CURRENTDATA.has_key("mail"):
                 if not(mail in self.CURRENTDATA['mail']):

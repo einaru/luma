@@ -16,7 +16,6 @@ import random
 
 from plugins.addressbook.ContactWizardDesign import ContactWizardDesign
 from base.backend.ServerList import ServerList
-from base.utils.backend.ObjectClassAttributeInfo import ObjectClassAttributeInfo
 import environment
 from base.utils.gui.BrowserWidget import BrowserWidget
 from plugins.addressbook.AddressbookWidget import AddressbookWidget
@@ -151,7 +150,7 @@ class ContactWizard(ContactWizardDesign):
 
     def getAllowedAttributes(self):
         objectClassList = ['person', 'organizationalPerson', 'inetOrgPerson', 'evolutionPerson']
-        metaInfo = ObjectClassAttributeInfo(self.locationServer)
+        metaInfo = environment.getServerMeta(self.locationServer)
         
         self.availableClasses = []
         for x in objectClassList:

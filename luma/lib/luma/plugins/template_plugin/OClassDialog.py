@@ -15,7 +15,6 @@ from plugins.template_plugin.OClassDialogDesign import OClassDialogDesign
 import environment
 from base.backend.ServerObject import ServerObject
 from base.backend.ServerList import ServerList
-from base.utils.backend.ObjectClassAttributeInfo import ObjectClassAttributeInfo
 from base.utils.backend.templateutils import *
 
 
@@ -101,8 +100,7 @@ class OClassDialog(OClassDialogDesign):
 
     def server_selected(self, serverName):
         self.classBox.clear()
-        self.objectInfo = ObjectClassAttributeInfo(str(serverName))
-        #self.objectInfo.retrieveInfoFromServer()
+        self.objectInfo = environment.getServerMeta(str(serverName))
 
         tmpList = self.objectInfo.objectClassesDict.keys()
         tmpList.sort()

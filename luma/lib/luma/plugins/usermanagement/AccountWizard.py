@@ -16,7 +16,6 @@ import random
 
 from plugins.usermanagement.AccountWizardDesign import AccountWizardDesign
 from base.backend.ServerList import ServerList
-from base.utils.backend.ObjectClassAttributeInfo import ObjectClassAttributeInfo
 import environment
 from base.utils.gui.BrowserWidget import BrowserWidget
 from plugins.usermanagement.UsermanagementWidget import UsermanagementWidget

@@ -11,14 +11,14 @@
 import base64
 
 from base.utils import isBinaryAttribute
-from base.utils.backend.ObjectClassAttributeInfo import ObjectClassAttributeInfo
+import environment
 
 class LdifHelper(object):
 
     def __init__(self, serverName):
         self.SERVERNAME = serverName
         
-        self.SCHEMAMETA = ObjectClassAttributeInfo(self.SERVERNAME)
+        self.SCHEMAMETA = environment.getServerMeta(self.SERVERNAME)
         
 ###############################################################################
 
