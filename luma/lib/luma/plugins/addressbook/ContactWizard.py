@@ -45,7 +45,7 @@ class ContactWizard(ContactWizardDesign):
         self.locationDN = None
         
         for x in range(0,self.pageCount()):
-            self.setHelpEnabled(self.page(x), 0)
+            self.setHelpEnabled(self.page(x), False)
             
         self.setFinishEnabled(self.page(1), 1)
         self.disconnect(self.finishButton(), SIGNAL("clicked()"), self, SLOT("accept()"))
@@ -54,12 +54,12 @@ class ContactWizard(ContactWizardDesign):
         self.connect(self.nextButton(),SIGNAL("clicked()"), self.checkNext)
             
         tmpWidget = self.page(1)
-        self.addressWidget = AddressbookWidget(tmpWidget)
+        self.addressWidget = AddressbookWidget(self.contactFrame)
+        tmpLayout = QHBoxLayout(self.contactFrame)
+        tmpLayout.addWidget(self.addressWidget)
         self.addressWidget.setEnabled(1)
         
         self.addressWidget.data = {'cn': [''], 'sn': ['']}
-        
-        
         
 ###############################################################################
 
@@ -151,8 +151,7 @@ class ContactWizard(ContactWizardDesign):
 
     def getAllowedAttributes(self):
         objectClassList = ['person', 'organizationalPerson', 'inetOrgPerson', 'evolutionPerson']
-        metaInfo = ObjectClassAttributeInfo()
-        metaInfo.setServer(self.locationServer)
+        metaInfo = ObjectClassAttributeInfo(self.locationServer)
         
         self.availableClasses = []
         for x in objectClassList:
