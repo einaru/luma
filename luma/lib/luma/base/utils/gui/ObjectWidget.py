@@ -17,11 +17,11 @@ from qt import *
 import os.path
 import base64
 from sets import Set
+import string
 
 from base.backend.ServerList import ServerList
 from base.utils import isBinaryAttribute, encodeBase64
 import environment
-from base.utils.backend.ObjectClassAttributeInfo import ObjectClassAttributeInfo
 from base.utils.gui.AddAttributeWizard import AddAttributeWizard
 from base.backend.LumaConnection import LumaConnection
 from base.utils.gui.PasswordDialog import PasswordDialog
@@ -318,7 +318,7 @@ Please read console output for more information."""),
     def setServer(self, server):
         if not (server == self.SERVER):
             self.SERVER = server
-            self.SERVERMETA = ObjectClassAttributeInfo(self.SERVER)
+            self.SERVERMETA = environment.getServerMeta(self.SERVER)
 
 
 ###############################################################################
@@ -396,7 +396,7 @@ Please read console output for more information."""),
                 if self.SERVERMETA.isBinary(attribute) or (name[-8:-numberLength] == ";binary"):
                     binary = True
 
-                if attribute == "userPassword":
+                if "password" in string.lower(attribute):
                     self.editPasswordAttribute(attribute, position)
                 elif binary:
                     self.editBinaryAttribute(attribute, position)
