@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file '/home/wido/src/luma/lib/luma/plugins/mass_creation_plugin/MassCreationDesign.ui'
 #
-# Created: Mon Oct 18 00:47:54 2004
+# Created: Mon Oct 18 20:16:32 2004
 #      by: The PyQt User Interface Compiler (pyuic) 3.13
 #
 # WARNING! All changes made in this file will be lost!
@@ -239,23 +239,23 @@ class MassCreationDesign(QWidget):
 
         TabPageLayout.addMultiCellWidget(self.enableNFSBox,0,0,0,2)
 
-        self.textLabel1_4 = QLabel(self.TabPage,"textLabel1_4")
+        self.automountLabel = QLabel(self.TabPage,"automountLabel")
 
-        TabPageLayout.addMultiCellWidget(self.textLabel1_4,1,1,0,2)
+        TabPageLayout.addMultiCellWidget(self.automountLabel,1,1,0,2)
         spacer8_2 = QSpacerItem(16,21,QSizePolicy.Fixed,QSizePolicy.Minimum)
         TabPageLayout.addItem(spacer8_2,2,0)
 
-        self.textLabel2_4 = QLabel(self.TabPage,"textLabel2_4")
+        self.serverLabel = QLabel(self.TabPage,"serverLabel")
 
-        TabPageLayout.addWidget(self.textLabel2_4,2,1)
+        TabPageLayout.addWidget(self.serverLabel,2,1)
 
-        self.textLabel3_4 = QLabel(self.TabPage,"textLabel3_4")
+        self.argLabel = QLabel(self.TabPage,"argLabel")
 
-        TabPageLayout.addWidget(self.textLabel3_4,3,1)
+        TabPageLayout.addWidget(self.argLabel,3,1)
 
-        self.textLabel5_3 = QLabel(self.TabPage,"textLabel5_3")
+        self.locationLabel = QLabel(self.TabPage,"locationLabel")
 
-        TabPageLayout.addWidget(self.textLabel5_3,5,1)
+        TabPageLayout.addWidget(self.locationLabel,5,1)
 
         self.automountLocationEdit = QLineEdit(self.TabPage,"automountLocationEdit")
         self.automountLocationEdit.setReadOnly(1)
@@ -330,10 +330,10 @@ class MassCreationDesign(QWidget):
         self.textLabel3.setText(self.__tr("Maximum:"))
         self.tabWidget2.changeTab(self.tab,self.__tr("Account"))
         self.enableNFSBox.setText(self.__tr("Enable automount support"))
-        self.textLabel1_4.setText(self.__tr("<b>Automount options</b>"))
-        self.textLabel2_4.setText(self.__tr("Server:"))
-        self.textLabel3_4.setText(self.__tr("Arguments:"))
-        self.textLabel5_3.setText(self.__tr("Location:"))
+        self.automountLabel.setText(self.__tr("<b>Automount options</b>"))
+        self.serverLabel.setText(self.__tr("Server:"))
+        self.argLabel.setText(self.__tr("Arguments:"))
+        self.locationLabel.setText(self.__tr("Location:"))
         self.browseAutomountButton.setText(QString.null)
         self.nfsArgumentsEdit.setText(self.__tr("-fstype=nfs,rw,quota,soft,intr"))
         self.tabWidget2.changeTab(self.TabPage,self.__tr("Automount"))

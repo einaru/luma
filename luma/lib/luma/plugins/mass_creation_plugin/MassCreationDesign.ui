@@ -551,7 +551,7 @@
                     </widget>
                     <widget class="QLabel" row="1" column="0" rowspan="1" colspan="3">
                         <property name="name">
-                            <cstring>textLabel1_4</cstring>
+                            <cstring>automountLabel</cstring>
                         </property>
                         <property name="text">
                             <string>&lt;b&gt;Automount options&lt;/b&gt;</string>
@@ -576,7 +576,7 @@
                     </spacer>
                     <widget class="QLabel" row="2" column="1">
                         <property name="name">
-                            <cstring>textLabel2_4</cstring>
+                            <cstring>serverLabel</cstring>
                         </property>
                         <property name="text">
                             <string>Server:</string>
@@ -584,7 +584,7 @@
                     </widget>
                     <widget class="QLabel" row="3" column="1">
                         <property name="name">
-                            <cstring>textLabel3_4</cstring>
+                            <cstring>argLabel</cstring>
                         </property>
                         <property name="text">
                             <string>Arguments:</string>
@@ -592,7 +592,7 @@
                     </widget>
                     <widget class="QLabel" row="5" column="1">
                         <property name="name">
-                            <cstring>textLabel5_3</cstring>
+                            <cstring>locationLabel</cstring>
                         </property>
                         <property name="text">
                             <string>Location:</string>

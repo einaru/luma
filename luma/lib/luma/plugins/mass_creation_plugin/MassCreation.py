@@ -298,6 +298,10 @@ Please see console output for more information."""),
         self.nfsArgumentsEdit.setEnabled(state)
         self.automountLocationEdit.setEnabled(state)
         self.browseAutomountButton.setEnabled(state)
+        self.automountLabel.setEnabled(state)
+        self.serverLabel.setEnabled(state)
+        self.argLabel.setEnabled(state)
+        self.locationLabel.setEnabled(state)
         
 ###############################################################################
 
