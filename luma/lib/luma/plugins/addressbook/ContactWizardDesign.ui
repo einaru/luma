@@ -1,4 +1,4 @@
-<!DOCTYPE UI><UI version="3.2" stdsetdef="1">
+<!DOCTYPE UI><UI version="3.3" stdsetdef="1">
 <class>ContactWizardDesign</class>
 <widget class="QWizard">
     <property name="name">
@@ -8,7 +8,7 @@
         <rect>
             <x>0</x>
             <y>0</y>
-            <width>600</width>
+            <width>613</width>
             <height>486</height>
         </rect>
     </property>
@@ -115,6 +115,28 @@
         <attribute name="title">
             <string>Fill contact data</string>
         </attribute>
+        <vbox>
+            <property name="name">
+                <cstring>unnamed</cstring>
+            </property>
+            <property name="margin">
+                <number>0</number>
+            </property>
+            <property name="spacing">
+                <number>0</number>
+            </property>
+            <widget class="QFrame">
+                <property name="name">
+                    <cstring>contactFrame</cstring>
+                </property>
+                <property name="frameShape">
+                    <enum>NoFrame</enum>
+                </property>
+                <property name="frameShadow">
+                    <enum>Plain</enum>
+                </property>
+            </widget>
+        </vbox>
     </widget>
 </widget>
 <layoutdefaults spacing="6" margin="11"/>

@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file '/home/wido/src/luma/lib/luma/plugins/addressbook/ContactWizardDesign.ui'
 #
-# Created: Mon Apr 5 21:56:43 2004
+# Created: Thu Apr 29 22:22:49 2004
 #      by: The PyQt User Interface Compiler (pyuic) 3.11
 #
 # WARNING! All changes made in this file will be lost!
@@ -59,11 +59,17 @@ class ContactWizardDesign(QWizard):
         self.addPage(self.WizardPage,QString(""))
 
         self.WizardPage_2 = QWidget(self,"WizardPage_2")
+        WizardPageLayout_2 = QVBoxLayout(self.WizardPage_2,0,0,"WizardPageLayout_2")
+
+        self.contactFrame = QFrame(self.WizardPage_2,"contactFrame")
+        self.contactFrame.setFrameShape(QFrame.NoFrame)
+        self.contactFrame.setFrameShadow(QFrame.Plain)
+        WizardPageLayout_2.addWidget(self.contactFrame)
         self.addPage(self.WizardPage_2,QString(""))
 
         self.languageChange()
 
-        self.resize(QSize(600,486).expandedTo(self.minimumSizeHint()))
+        self.resize(QSize(613,486).expandedTo(self.minimumSizeHint()))
         self.clearWState(Qt.WState_Polished)
 
 
