@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE Project SYSTEM "Project-3.5.dtd">
 <!-- Project file for project luma -->
-<!-- Saved: 2005-01-06, 15:03:25 -->
+<!-- Saved: 2005-01-09, 17:39:54 -->
 <!-- Copyright (C) 2005 Wido Depping, wido.depping@tu-clausthal.de -->
 <Project version="3.5">
   <Description></Description>
@@ -123,14 +123,6 @@
       <Dir>utils</Dir>
       <Dir>backend</Dir>
       <Name>__init__.py</Name>
-    </Source>
-    <Source>
-      <Dir>lib</Dir>
-      <Dir>luma</Dir>
-      <Dir>base</Dir>
-      <Dir>utils</Dir>
-      <Dir>backend</Dir>
-      <Name>ObjectClassAttributeInfo.py</Name>
     </Source>
     <Source>
       <Dir>lib</Dir>
@@ -872,6 +864,80 @@
       <Dir>gui</Dir>
       <Name>LumaWarningDialog.py</Name>
     </Source>
+    <Source>
+      <Dir>lib</Dir>
+      <Dir>luma</Dir>
+      <Dir>base</Dir>
+      <Dir>utils</Dir>
+      <Dir>gui</Dir>
+      <Name>DeleteDialogDesign.py</Name>
+    </Source>
+    <Source>
+      <Dir>lib</Dir>
+      <Dir>luma</Dir>
+      <Dir>base</Dir>
+      <Dir>utils</Dir>
+      <Dir>gui</Dir>
+      <Name>DeleteDialog.py</Name>
+    </Source>
+    <Source>
+      <Dir>lib</Dir>
+      <Dir>luma</Dir>
+      <Dir>base</Dir>
+      <Dir>utils</Dir>
+      <Dir>gui</Dir>
+      <Name>ExportDialogDesign.py</Name>
+    </Source>
+    <Source>
+      <Dir>lib</Dir>
+      <Dir>luma</Dir>
+      <Dir>base</Dir>
+      <Dir>utils</Dir>
+      <Dir>gui</Dir>
+      <Name>ExportDialog.py</Name>
+    </Source>
+    <Source>
+      <Dir>lib</Dir>
+      <Dir>luma</Dir>
+      <Dir>plugins</Dir>
+      <Dir>schemabrowser</Dir>
+      <Name>SearchView.py</Name>
+    </Source>
+    <Source>
+      <Dir>lib</Dir>
+      <Dir>luma</Dir>
+      <Dir>plugins</Dir>
+      <Dir>schemabrowser</Dir>
+      <Name>__init__.py</Name>
+    </Source>
+    <Source>
+      <Dir>lib</Dir>
+      <Dir>luma</Dir>
+      <Dir>plugins</Dir>
+      <Dir>schemabrowser</Dir>
+      <Name>schemabrowser.py</Name>
+    </Source>
+    <Source>
+      <Dir>lib</Dir>
+      <Dir>luma</Dir>
+      <Dir>plugins</Dir>
+      <Dir>schemabrowser</Dir>
+      <Name>SchemaViewDesign.py</Name>
+    </Source>
+    <Source>
+      <Dir>lib</Dir>
+      <Dir>luma</Dir>
+      <Dir>plugins</Dir>
+      <Dir>schemabrowser</Dir>
+      <Name>SchemaView.py</Name>
+    </Source>
+    <Source>
+      <Dir>lib</Dir>
+      <Dir>luma</Dir>
+      <Dir>base</Dir>
+      <Dir>backend</Dir>
+      <Name>ObjectClassAttributeInfo.py</Name>
+    </Source>
   </Sources>
   <Forms>
     <Form>
@@ -1156,6 +1222,29 @@
       <Dir>utils</Dir>
       <Dir>gui</Dir>
       <Name>LumaErrorDialogDesign.ui</Name>
+    </Form>
+    <Form>
+      <Dir>lib</Dir>
+      <Dir>luma</Dir>
+      <Dir>base</Dir>
+      <Dir>utils</Dir>
+      <Dir>gui</Dir>
+      <Name>DeleteDialogDesign.ui</Name>
+    </Form>
+    <Form>
+      <Dir>lib</Dir>
+      <Dir>luma</Dir>
+      <Dir>base</Dir>
+      <Dir>utils</Dir>
+      <Dir>gui</Dir>
+      <Name>ExportDialogDesign.ui</Name>
+    </Form>
+    <Form>
+      <Dir>lib</Dir>
+      <Dir>luma</Dir>
+      <Dir>plugins</Dir>
+      <Dir>schemabrowser</Dir>
+      <Name>SchemaViewDesign.ui</Name>
     </Form>
   </Forms>
   <Translations>

@@ -2,10 +2,12 @@
 <!DOCTYPE Session SYSTEM "Session-3.5.dtd">
 <!-- eric3 session file for project luma -->
 <!-- This file was generated automatically, do not edit. -->
-<!-- Saved: 2005-01-06, 02:05:34 -->
+<!-- Saved: 2005-01-09, 17:23:30 -->
 <Session version="3.5">
   <Filenames>
+    <Filename cline="371" cindex="78">/home/wido/src/luma/lib/luma/plugins/schemabrowser/SchemaView.py</Filename>
   </Filenames>
+  <ActiveWindow cline="371" cindex="78">/home/wido/src/luma/lib/luma/plugins/schemabrowser/SchemaView.py</ActiveWindow>
   <Breakpoints>
   </Breakpoints>
   <DebugInfo>
