@@ -346,7 +346,6 @@ class SmartDataObject (object):
         if (None == attributeName) or (None == valueIndex) or (None == newValue):
             raise FunctionArgumentException("Function setAttributeValue( attributeName, valueIndex, newValue ) called without correct parameters.")
             
-            
         if self.data.has_key(attributeName):
             # Is the data length of the attribute compatible with the given index?
             if valueIndex < len(self.data[attributeName]):
@@ -368,7 +367,7 @@ class SmartDataObject (object):
                         
                 raise LdapDataException("".join(errorList))
         elif "rdn" == string.lower(attributeName):
-            self.dn = newValue
+            self.setDN(newValue)
         else:
             errorList = []
             errorList.append("Can't set value for attribute. Object has no attribute " + attributeName + ".")

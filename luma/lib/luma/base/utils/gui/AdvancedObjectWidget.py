@@ -411,6 +411,11 @@ class AdvancedObjectWidget(QWidget):
 ###############################################################################
 
     def editAttribute(self, attributeName, index):
+        oldDN = self.ldapDataObject.getDN()
+        
+        if 'RDN' == attributeName:
+            self.ldapDataObject.setDN(self.baseDN)
+            
         dialog = EditorFactory.getEditorWidget(self, self.ldapDataObject, attributeName, index)
         
         dialog.exec_loop()
@@ -421,6 +426,9 @@ class AdvancedObjectWidget(QWidget):
                 self.ldapDataObject.setAttributeValue(attributeName, index, newValue)
                 self.EDITED = True
                 self.displayValues()
+        else:
+            if 'RDN' == attributeName:
+                self.ldapDataObject.setDN(oldDN)
 
 ###############################################################################
 
