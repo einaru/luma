@@ -20,6 +20,7 @@ from base.backend.ServerList import ServerList
 import environment
 from base.utils import isBinaryAttribute, encodeBase64
 from base.utils.backend.LdifHelper import LdifHelper
+from base.backend.LumaConnection import LumaConnection
 
 
 
@@ -143,28 +144,16 @@ class SearchResultView(SearchResultViewDesign):
         # set gui busy
         environment.setBusy(1)
         
-        try:
-            ldapServerObject = ldap.open(serverMeta.host, serverMeta.port)
-            ldapServerObject.protocol_version = ldap.VERSION3
-            
-            if serverMeta.tls == 1:
-                ldapServerObject.start_tls_s()
-                
-            if len(serverMeta.bindDN) > 0:
-                ldapServerObject.simple_bind_s(serverMeta.bindDN,
-                                serverMeta.bindPassword)
-            for x in itemList:
-                # keep UI responsive
-                environment.updateUI()
-                
-                ldapServerObject.delete(unicode(x.text(0)).encode('utf-8'))
-                
-            if len(serverMeta.bindDN) > 0:
-                ldapServerObject.unbind()
-        except ldap.LDAPError, e:
-            print "Error during LDAP request"
-            print "Reason: " + unicode(e)
+        connectionObject = LumaConnection(serverMeta)
+        connectionObject.bind()
         
+        # delete items from directory
+        for x in itemList:
+            connectionObject.delete(unicode(x.text(0)).encode('utf-8'))
+        
+        connectionObject.unbind()
+        
+        # remove items from widget
         for x in itemList:
             self.resultListView.takeItem(x)
             
