@@ -742,6 +742,23 @@ class SmartDataObject (object):
         
 ###############################################################################
 
+    def convertToDsml(self):
+        """ Return the current object into DSML format.
+        """
+
+        tmpString = StringIO.StringIO()
+        dsmlWriter = dsml.DSMLWriter(tmpString)
+        dsmlWriter.writeRecord(self.dn, self.data)
+
+        return tmpString.getvalue()
+
+###############################################################################
+
+    def importFromDsml(self):
+        pass
+
+###############################################################################
+
     def getCompatibleAttributes(self):
         """ Returns all attributes which are supported by the server and can be 
         added without violating the objectclass chain (keyword: structural).
