@@ -52,10 +52,6 @@ try:
     smb = 1 
 except:
     smb = 0
-    print '''
-    module <smbpasswd> not found or not installed. Windows-passwords are therefor
-    not supported!
-     '''
 
 def getsalt(chars = string.letters + string.digits,length=16):
     ''' Generate a random salt. Default length is 16 '''
@@ -74,13 +70,13 @@ def randpasswd(chars = string.digits + string.ascii_letters,length=8):
 def mkpasswd(pwd,sambaver=3,default='ssha'):
     ''' Make a given password cryptated, possibly with different 
         crypt-algorihtms. This module was written for use with 
-	    LDAP - so default is seeded sha
+        LDAP - so default is seeded sha
     '''
     alg = {
         'ssha':'Seeded SHA',
-	    'sha':'Secure Hash Algorithm',
-	    'md5':'MD5',
-	    'crypt':'standard unix crypt'
+        'sha':'Secure Hash Algorithm',
+        'md5':'MD5',
+        'crypt':'standard unix crypt'
     }
     if smb:
         alg['lmhash'] = 'lan man hash'
@@ -96,7 +92,7 @@ def mkpasswd(pwd,sambaver=3,default='ssha'):
         elif default =='md5':
             return "{MD5}" + base64.encodestring(md5.new(str(pwd)).digest())
         elif default =='crypt':
-            return "{CRYPT}" + crypt.crypt(str(pwd),getsalt(2)) # crypt only uses a salt of length 2
+            return "{CRYPT}" + crypt.crypt(str(pwd),getsalt(length=2)) # crypt only uses a salt of length 2
         elif default == 'lmhash':
             if sambaver==3:
                 return "{sambaLMPassword}" + smbpasswd.lmhash(pwd)
