@@ -256,14 +256,15 @@ See console output for more information."""),
         conObject.bind()
         
         # allLevel defines whether the complete subtree is searched or
-            # just one level
+        # just one level
         searchLevel = None
         if allLevel:
             searchLevel = ldap.SCOPE_SUBTREE
         else:
             searchLevel = ldap.SCOPE_ONELEVEL
+            
                 
-        searchResult = conObject.search(ldapObject.encode('utf-8'), searchLevel,self.searchObjectClass, None, 0)
+        searchResult = conObject.search(ldapObject, searchLevel,self.searchObjectClass, None, 0)
 
         conObject.unbind()
         
