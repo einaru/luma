@@ -16,7 +16,7 @@ import copy
 
 import environment
 from base.utils.gui.AddAttributeWizardDesign import AddAttributeWizardDesign
-from base.utils.backend.ObjectClassAttributeInfo import ObjectClassAttributeInfo
+from base.backend.ObjectClassAttributeInfo import ObjectClassAttributeInfo
 
 
 class AddAttributeWizard(AddAttributeWizardDesign):

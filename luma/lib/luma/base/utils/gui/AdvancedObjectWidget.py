@@ -16,7 +16,7 @@ from sets import Set
 
 from base.backend.ServerList import ServerList
 from base.backend.LumaConnection import LumaConnection
-from base.utils.backend.ObjectClassAttributeInfo import ObjectClassAttributeInfo
+from base.backend.ObjectClassAttributeInfo import ObjectClassAttributeInfo
 from base.utils.gui.AddAttributeWizard import AddAttributeWizard
 from base.utils.gui.LumaErrorDialog import LumaErrorDialog
 import environment
