@@ -1,8 +1,9 @@
-<?xml version='1.0' encoding='UTF-8'?>
-<!--Project file for project luma-->
-<!--Saved: 2004-09-28, 04:40:39-->
-<!--Copyright (C) 2004 Wido Depping, wido.depping@tu-clausthal.de-->
-<Project>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE Project SYSTEM "Project-3.5.dtd">
+<!-- Project file for project luma -->
+<!-- Saved: 2004-10-17, 01:44:34 -->
+<!-- Copyright (C) 2004 Wido Depping, wido.depping@tu-clausthal.de -->
+<Project version="3.5">
   <Description></Description>
   <Version>1.5</Version>
   <Author>Wido Depping</Author>
@@ -276,20 +277,6 @@
       <Dir>plugins</Dir>
       <Dir>search_plugin</Dir>
       <Name>__init__.py</Name>
-    </Source>
-    <Source>
-      <Dir>lib</Dir>
-      <Dir>luma</Dir>
-      <Dir>plugins</Dir>
-      <Dir>template_plugin</Dir>
-      <Name>TemplateFormDesign.py</Name>
-    </Source>
-    <Source>
-      <Dir>lib</Dir>
-      <Dir>luma</Dir>
-      <Dir>plugins</Dir>
-      <Dir>template_plugin</Dir>
-      <Name>TemplateForm.py</Name>
     </Source>
     <Source>
       <Dir>lib</Dir>
@@ -796,6 +783,41 @@
       <Dir>template_plugin</Dir>
       <Name>AddTemplateDialog.py</Name>
     </Source>
+    <Source>
+      <Dir>lib</Dir>
+      <Dir>luma</Dir>
+      <Dir>plugins</Dir>
+      <Dir>template_plugin</Dir>
+      <Name>AddObjectClassDialogDesign.py</Name>
+    </Source>
+    <Source>
+      <Dir>lib</Dir>
+      <Dir>luma</Dir>
+      <Dir>plugins</Dir>
+      <Dir>template_plugin</Dir>
+      <Name>AddObjectClassDialog.py</Name>
+    </Source>
+    <Source>
+      <Dir>lib</Dir>
+      <Dir>luma</Dir>
+      <Dir>plugins</Dir>
+      <Dir>template_plugin</Dir>
+      <Name>AddAttributeDialogDesign.py</Name>
+    </Source>
+    <Source>
+      <Dir>lib</Dir>
+      <Dir>luma</Dir>
+      <Dir>plugins</Dir>
+      <Dir>template_plugin</Dir>
+      <Name>AddAttributeDialog.py</Name>
+    </Source>
+    <Source>
+      <Dir>lib</Dir>
+      <Dir>luma</Dir>
+      <Dir>plugins</Dir>
+      <Dir>template_plugin</Dir>
+      <Name>ClassDeleteDialog.py</Name>
+    </Source>
   </Sources>
   <Forms>
     <Form>
@@ -870,13 +892,6 @@
       <Dir>plugins</Dir>
       <Dir>template_plugin</Dir>
       <Name>OClassDialogDesign.ui</Name>
-    </Form>
-    <Form>
-      <Dir>lib</Dir>
-      <Dir>luma</Dir>
-      <Dir>plugins</Dir>
-      <Dir>template_plugin</Dir>
-      <Name>TemplateFormDesign.ui</Name>
     </Form>
     <Form>
       <Dir>lib</Dir>
@@ -1045,6 +1060,27 @@
       <Dir>template_plugin</Dir>
       <Name>AddTemplateDialogDesign.ui</Name>
     </Form>
+    <Form>
+      <Dir>lib</Dir>
+      <Dir>luma</Dir>
+      <Dir>plugins</Dir>
+      <Dir>template_plugin</Dir>
+      <Name>AddObjectClassDialogDesign.ui</Name>
+    </Form>
+    <Form>
+      <Dir>lib</Dir>
+      <Dir>luma</Dir>
+      <Dir>plugins</Dir>
+      <Dir>template_plugin</Dir>
+      <Name>AddAttributeDialogDesign.ui</Name>
+    </Form>
+    <Form>
+      <Dir>lib</Dir>
+      <Dir>luma</Dir>
+      <Dir>plugins</Dir>
+      <Dir>template_plugin</Dir>
+      <Name>ClassDeleteDialog.ui</Name>
+    </Form>
   </Forms>
   <Translations>
     <Translation>
@@ -1092,6 +1128,17 @@
       <Dir>doc</Dir>
       <Name>massive.help</Name>
     </Other>
+    <Other>
+      <Dir></Dir>
+      <Dir>home</Dir>
+      <Dir>wido</Dir>
+      <Name>test</Name>
+    </Other>
+    <Other>
+      <Dir></Dir>
+      <Dir>home</Dir>
+      <Name>wido</Name>
+    </Other>
   </Others>
   <MainScript>
     <Dir>lib</Dir>
@@ -1101,4 +1148,10 @@
   <Vcs>
     <VcsType>None</VcsType>
   </Vcs>
+  <Eric3Doc>
+    <Eric3DocParams>{'noempty': True, 'useRecursion': True, 'filenamePrefix': u'luma', 'outputDirectory': u'/home/wido/test'}</Eric3DocParams>
+  </Eric3Doc>
+  <Eric3Api>
+    <Eric3ApiParams>{'outputFile': u'/home/wido/test', 'useRecursion': True}</Eric3ApiParams>
+  </Eric3Api>
 </Project>
