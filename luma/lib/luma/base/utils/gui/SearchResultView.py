@@ -50,18 +50,14 @@ class SearchResultView(SearchResultViewDesign):
 
     def show_entry(self, listItem):
         while len(self.childsToClean) > 0:
-            number = -1
-            for x in range(0, len(self.childWidgets)):
-                name1 = self.childWidgets[x].name()
-                name2 = self.childsToClean[0]
-                if name1 == name2:
-                    number = x
-            if not(number == -1):
-                del self.childWidgets[number]
-                del self.childsToClean[0]
+            childName = self.childsToClean[0]
+            childIndex = self.childWidgets.index(childName)
+            del self.childWidgets[childIndex]
+            del self.childsToClean[0]
 
-        floatingWidget = ChildWindow(None)
+        floatingWidget = ChildWindow(None, unicode(listItem.text(0)).encode('utf-8'))
         widget = ObjectWidget(floatingWidget, unicode(listItem.text(0)).encode('utf-8'), 0)
+    
         floatingWidget.setCentralWidget(widget)
         widget.buildToolBar(floatingWidget)
         values = [self.RESULT[unicode(listItem.text(0)).encode('utf-8')]]
@@ -127,8 +123,7 @@ class SearchResultView(SearchResultViewDesign):
 
     def eventFilter(self, object, event):
         if (event.type() == QEvent.Close):
-            name = object.name()
-            self.childsToClean.append(name)
+            self.childsToClean.append(object)
         return 0
 
 ###############################################################################
@@ -252,8 +247,8 @@ class SearchResultView(SearchResultViewDesign):
 
 class ChildWindow(QMainWindow):
     
-    def __init__(self, parent = None):
-        QMainWindow.__init__(self)
+    def __init__(self, parent = None, name= None):
+        QMainWindow.__init__(self, parent, name)
         
         
     def closeEvent(self, event):
