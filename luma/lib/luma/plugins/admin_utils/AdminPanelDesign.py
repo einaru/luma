@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file '/home/wido/src/luma/lib/luma/plugins/admin_utils/AdminPanelDesign.ui'
 #
-# Created: Thu Mar 25 00:32:39 2004
+# Created: Mon Apr 5 21:56:38 2004
 #      by: The PyQt User Interface Compiler (pyuic) 3.11
 #
 # WARNING! All changes made in this file will be lost!
@@ -207,7 +207,7 @@ class AdminPanelDesign(QWidget):
 
 
     def languageChange(self):
-        self.setCaption(QString.null)
+        self.setCaption(self.__tr("AdminPanelDesign"))
         self.groupBox2.setTitle(self.__tr("Encrypt Password"))
         self.textLabel4.setText(self.__tr("Encrypted Password:"))
         self.cryptButton.setText(self.__tr("&Encrypt"))
@@ -218,11 +218,6 @@ class AdminPanelDesign(QWidget):
         self.textLabel2.setText(self.__tr("Encrypted password:"))
         self.createButton.setText(self.__tr("&Create"))
         self.createButton.setAccel(self.__tr("Alt+C"))
-        self.methodBox.clear()
-        self.methodBox.insertItem(self.__tr("crypt"))
-        self.methodBox.insertItem(self.__tr("md5"))
-        self.methodBox.insertItem(self.__tr("sha"))
-        self.methodBox.insertItem(self.__tr("ssha"))
         self.textLabel1_2.setText(self.__tr("Method:"))
         self.secureLabel.setText(self.__tr("Secure","DO NOT TRANSLATE"))
         self.tabWidget2.changeTab(self.tab,self.__tr("Passwords"))
