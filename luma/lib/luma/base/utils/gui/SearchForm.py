@@ -93,7 +93,7 @@ class SearchForm(SearchFormDesign):
         self.groupBox2.setEnabled(True)
         
         if success:
-            self.emit(PYSIGNAL("ldap_result"), (self.currentServer.name, resultList, criteriaList, ))
+            self.emit(PYSIGNAL("ldap_result"), (self.currentServer, resultList, criteriaList, ))
         else:
             dialog = LumaErrorDialog()
             errorMsg = self.trUtf8("Error during search operation.<br><br>Reason: ")
@@ -136,7 +136,7 @@ class SearchForm(SearchFormDesign):
 ###############################################################################
 
     def getSearchCriteria(self):
-        filterString = unicode(self.searchEdit.currentText())
+        filterString = unicode(self.searchEdit.currentText()).encode('utf-8')
         filterPattern = re.compile("\(\w*=")
         tmpList = filterPattern.findall(filterString)
 
