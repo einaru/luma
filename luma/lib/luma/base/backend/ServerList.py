@@ -18,6 +18,7 @@ from qtxml import *
 
 from base.backend.ServerObject import ServerObject
 import environment
+from base.utils.backend.LogObject import LogObject
 
 
 class ServerList:
@@ -28,8 +29,12 @@ class ServerList:
     
     """
     
+    serverCache = []
+    
+    modifyTime = None
+    
     def __init__(self):
-        self.serverList = None
+        self.serverList = []
         self.configPrefix = os.path.join(environment.userHomeDir, ".luma")
         self.configFile = os.path.join(self.configPrefix, "serverlist.xml")
 
@@ -144,12 +149,51 @@ class ServerList:
         """ Read the server list from configuration file.
         """
         
-        if self.checkConfig("CURRENT"):
-            self.readFromXML()
-        elif self.checkConfig("OLD"):
-            self.readFromOld()
+        serverList = None
+        
+        modificationTime = None
+        try:
+            modificationTime = os.stat(self.configFile).st_mtime
+        except OSError, e:
+            pass
+        
+        if None == self.modifyTime:
+            if self.checkConfig("CURRENT"):
+                serverList = self.readFromXML()
+            elif self.checkConfig("OLD"):
+                serverList = self.readFromOld()
+                self.saveSettings()
+                modificationTime = os.stat(self.configFile).st_mtime
+            else:
+                serverList = []
+                
+            self.serverList = serverList
+            
+            # write cache information
+            self.serverCache = self.serverList
+            self.modifyTime = modificationTime
         else:
+            if not (modificationTime == self.modifyTime):
+                if self.checkConfig("CURRENT"):
+                    serverList = self.readFromXML()
+                elif self.checkConfig("OLD"):
+                    serverList = self.readFromOld()
+                    self.saveSettings()
+                    modificationTime = os.stat(self.configFile).st_mtime
+                else:
+                    serverList = []
+                
+                self.serverList = serverList
+            
+                # write cache information
+                self.serverCache = self.serverList
+                self.modifyTime = modificationTime
+            else:
+                self.serverList = self.serverCache
+                
+        if None == self.serverList:
             self.serverList = []
+                
         
 ###############################################################################
 
@@ -177,15 +221,16 @@ class ServerList:
             oldConfig = os.path.join(self.configPrefix, "serverlist")
             configParser.readfp(open(oldConfig, 'r'))
         except IOError, error:
-            print "WARNING: Could not read server config file. Reason:"
-            print error
+            tmpString = "Could not read server config file. Reason:"
+            tmpString += str(error)
+            environment.logMessage(LogObject("Debug", tmpString))
             
         sections = configParser.sections()
             
         if len(sections) == 0:
             return
             
-        self.serverList = []
+        serverList = []
         for x in sections:
             server = ServerObject()
             server.name = unicode(x)
@@ -202,9 +247,10 @@ class ServerList:
             except NoOptionError:
                 pass
                 
-            self.serverList.append(server)
+            serverList.append(server)
             
-        self.saveSettings()
+        return serverList
+        
         
 ###############################################################################
 
@@ -214,20 +260,24 @@ class ServerList:
             fileContent = "".join(open(self.configFile, "r").readlines())
             fileContent = fileContent.decode("utf-8")
         except IOError, e:
-            print "Could not read server configuration file. Reason:"
-            print e
-        
-        self.serverList = []
+            errorString = "Could not read server configuration file. Reason:\n"
+            errorString += str(e)
+            environment.logMessage(LogObject("Error", errorString))
         
         document = QDomDocument("LumaServerFile")
         document.setContent(fileContent)
         
         root = document.documentElement()
         if not (unicode(root.tagName()) == "LumaServerList"):
-            print "Could not parse server file"
+            errorString = "Could not parse server configuration file."
+            environment.logMessage(LogObject("Error", errorString))
             
+        serverList = None
+        
         if "1.0" == root.attribute("version"):
-            self.readFromXMLVersion1_0(fileContent)
+            serverList = self.readFromXMLVersion1_0(fileContent)
+            
+        return serverList
             
 ###############################################################################
 
@@ -235,6 +285,8 @@ class ServerList:
         document = QDomDocument("LumaServerFile")
         document.setContent(fileContent)
         root = document.documentElement()
+        
+        serverList = []
         
         child = root.firstChild()
         while (not child.isNull()):
@@ -289,5 +341,7 @@ class ServerList:
                             server.baseDN.append(unicode(baseElement.attribute("dn")))
                         baseNode = baseNode.nextSibling()
                 
-            self.serverList.append(server)
+            serverList.append(server)
             child = child.nextSibling()
+        
+        return serverList
