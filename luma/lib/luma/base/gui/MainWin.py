@@ -35,7 +35,7 @@ class MainWin(MainWinDesign):
         try:
             trFile = open(DirUtils().USERDIR + "/.luma/language", 'r').readline()
         except IOError, errorData:
-            print "Error: could not read language settings file."
+            print "Debug: Could not read language settings file. Using default language"
             print "Reason: " + str(errorData)
             trFile = 'NATIVE'
         
@@ -178,7 +178,7 @@ class MainWin(MainWinDesign):
             for x in tmpStrings:
                 pluginList.append(x[:-1])
         except IOError, errorData:
-            print "Could not open file for plugin defaults :("
+            print "Debug: Could not open file for plugin defaults."
             print "Reason: ", errorData
             
             # If there is no configuration file for the plugins present,
