@@ -366,12 +366,6 @@
     </connection>
     <connection>
         <sender>taskList</sender>
-        <signal>clicked(QIconViewItem*)</signal>
-        <receiver>MainWinDesign</receiver>
-        <slot>taskSelectionChanged()</slot>
-    </connection>
-    <connection>
-        <sender>taskList</sender>
         <signal>selectionChanged(QIconViewItem*)</signal>
         <receiver>MainWinDesign</receiver>
         <slot>taskSelectionChanged()</slot>

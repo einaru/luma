@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file '/home/wido/src/luma/lib/luma/base/gui/MainWinDesign.ui'
 #
-# Created: Sat Jun 5 23:21:11 2004
+# Created: Tue Jul 6 14:26:01 2004
 #      by: The PyQt User Interface Compiler (pyuic) 3.11
 #
 # WARNING! All changes made in this file will be lost!
@@ -654,7 +654,6 @@ class MainWinDesign(QMainWindow):
         self.connect(self.reload,SIGNAL("activated()"),self.reloadPlugins)
         self.connect(self.selectLanguage,SIGNAL("activated()"),self.showLanguageDialog)
         self.connect(self.togglePluginList,SIGNAL("toggled(bool)"),self.pluginBox,SLOT("setHidden(bool)"))
-        self.connect(self.taskList,SIGNAL("clicked(QIconViewItem*)"),self.taskSelectionChanged)
         self.connect(self.taskList,SIGNAL("selectionChanged(QIconViewItem*)"),self.taskSelectionChanged)
 
 

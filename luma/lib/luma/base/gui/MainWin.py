@@ -66,7 +66,6 @@ class MainWin(MainWinDesign):
         self.ICONPREFIX = os.path.join(environment.lumaInstallationPrefix, "share", "luma", "icons")
         environment.updateUI = self.updateUI
         environment.setBusy = self.setBusy
-        self.loadPlugins()
 
 ###############################################################################
 
@@ -120,10 +119,11 @@ class MainWin(MainWinDesign):
                 tmpObject["WIDGET_ID"] = self.taskStack.addWidget(widgetTmp, -1)
                 
                 self.taskList.insertItem(iconTmp)
-                
-        self.taskList.emit(SIGNAL("clicked()"), (iconTmp,))
+        
         if not(iconTmp == None):
             iconTmp.setSelected(1, 0)
+        
+        self.taskSelectionChanged(iconTmp)
             
         self.PLUGINS_LOADED = 1
 
@@ -162,6 +162,17 @@ class MainWin(MainWinDesign):
             
             if self.PLUGINS.has_key(fooString):
                 self.taskStack.raiseWidget(self.PLUGINS[fooString]["WIDGET_ID"])
+                
+                toolBars = self.toolBars(Qt.DockTop)
+                for x in toolBars:
+                    x.deleteLater()
+
+                #build the toolbar for the selected plugin
+                try:
+                    self.PLUGINS[fooString]["WIDGET_REF"].buildToolBar(self)
+                except AttributeError, e:
+                    pass
+                    
                 self.taskBox.setTitle(fooString)
 
 ###############################################################################
