@@ -8,8 +8,8 @@
         <rect>
             <x>0</x>
             <y>0</y>
-            <width>495</width>
-            <height>570</height>
+            <width>556</width>
+            <height>574</height>
         </rect>
     </property>
     <property name="caption">
@@ -18,13 +18,341 @@
     <property name="sizeGripEnabled">
         <bool>true</bool>
     </property>
-    <vbox>
+    <grid>
         <property name="name">
             <cstring>unnamed</cstring>
         </property>
-        <widget class="QLayoutWidget">
+        <widget class="QLayoutWidget" row="11" column="0" rowspan="1" colspan="4">
             <property name="name">
-                <cstring>layout6</cstring>
+                <cstring>layout7</cstring>
+            </property>
+            <hbox>
+                <property name="name">
+                    <cstring>unnamed</cstring>
+                </property>
+                <spacer>
+                    <property name="name">
+                        <cstring>Horizontal Spacing2</cstring>
+                    </property>
+                    <property name="orientation">
+                        <enum>Horizontal</enum>
+                    </property>
+                    <property name="sizeType">
+                        <enum>Expanding</enum>
+                    </property>
+                    <property name="sizeHint">
+                        <size>
+                            <width>290</width>
+                            <height>20</height>
+                        </size>
+                    </property>
+                </spacer>
+                <widget class="QPushButton">
+                    <property name="name">
+                        <cstring>okButton</cstring>
+                    </property>
+                    <property name="text">
+                        <string>&amp;OK</string>
+                    </property>
+                    <property name="accel">
+                        <string></string>
+                    </property>
+                    <property name="autoDefault">
+                        <bool>false</bool>
+                    </property>
+                    <property name="default">
+                        <bool>false</bool>
+                    </property>
+                </widget>
+                <widget class="QPushButton">
+                    <property name="name">
+                        <cstring>cancelButton</cstring>
+                    </property>
+                    <property name="text">
+                        <string>&amp;Cancel</string>
+                    </property>
+                    <property name="accel">
+                        <string></string>
+                    </property>
+                    <property name="autoDefault">
+                        <bool>false</bool>
+                    </property>
+                </widget>
+            </hbox>
+        </widget>
+        <widget class="Line" row="10" column="0" rowspan="1" colspan="4">
+            <property name="name">
+                <cstring>line1</cstring>
+            </property>
+            <property name="frameShape">
+                <enum>HLine</enum>
+            </property>
+            <property name="frameShadow">
+                <enum>Sunken</enum>
+            </property>
+            <property name="orientation">
+                <enum>Horizontal</enum>
+            </property>
+        </widget>
+        <spacer row="9" column="0">
+            <property name="name">
+                <cstring>spacer7</cstring>
+            </property>
+            <property name="orientation">
+                <enum>Horizontal</enum>
+            </property>
+            <property name="sizeType">
+                <enum>Fixed</enum>
+            </property>
+            <property name="sizeHint">
+                <size>
+                    <width>20</width>
+                    <height>31</height>
+                </size>
+            </property>
+        </spacer>
+        <widget class="QLabel" row="2" column="0" rowspan="1" colspan="4">
+            <property name="name">
+                <cstring>textLabel2</cstring>
+            </property>
+            <property name="text">
+                <string>&lt;b&gt;Primary Group&lt;/b&gt;</string>
+            </property>
+        </widget>
+        <widget class="QSpinBox" row="5" column="2">
+            <property name="name">
+                <cstring>groupNumberBox</cstring>
+            </property>
+            <property name="minimumSize">
+                <size>
+                    <width>70</width>
+                    <height>0</height>
+                </size>
+            </property>
+            <property name="maxValue">
+                <number>655535</number>
+            </property>
+        </widget>
+        <widget class="QLabel" row="4" column="1">
+            <property name="name">
+                <cstring>textLabel1</cstring>
+            </property>
+            <property name="sizePolicy">
+                <sizepolicy>
+                    <hsizetype>0</hsizetype>
+                    <vsizetype>5</vsizetype>
+                    <horstretch>0</horstretch>
+                    <verstretch>0</verstretch>
+                </sizepolicy>
+            </property>
+            <property name="text">
+                <string>LDAP Groups:</string>
+            </property>
+            <property name="alignment">
+                <set>AlignVCenter|AlignRight</set>
+            </property>
+            <property name="buddy" stdset="0">
+                <cstring>comboBox1</cstring>
+            </property>
+        </widget>
+        <widget class="QLabel" row="3" column="1" rowspan="1" colspan="3">
+            <property name="name">
+                <cstring>infoLabel</cstring>
+            </property>
+            <property name="text">
+                <string>You may select from the groups available in the LDAP database or enter any ID that is valid on the system below.</string>
+            </property>
+            <property name="textFormat">
+                <enum>PlainText</enum>
+            </property>
+            <property name="alignment">
+                <set>WordBreak|AlignVCenter</set>
+            </property>
+        </widget>
+        <spacer row="3" column="0">
+            <property name="name">
+                <cstring>spacer4</cstring>
+            </property>
+            <property name="orientation">
+                <enum>Horizontal</enum>
+            </property>
+            <property name="sizeType">
+                <enum>Fixed</enum>
+            </property>
+            <property name="sizeHint">
+                <size>
+                    <width>20</width>
+                    <height>31</height>
+                </size>
+            </property>
+        </spacer>
+        <spacer row="4" column="0" rowspan="2" colspan="1">
+            <property name="name">
+                <cstring>spacer5</cstring>
+            </property>
+            <property name="orientation">
+                <enum>Horizontal</enum>
+            </property>
+            <property name="sizeType">
+                <enum>Fixed</enum>
+            </property>
+            <property name="sizeHint">
+                <size>
+                    <width>20</width>
+                    <height>31</height>
+                </size>
+            </property>
+        </spacer>
+        <spacer row="8" column="0">
+            <property name="name">
+                <cstring>spacer6</cstring>
+            </property>
+            <property name="orientation">
+                <enum>Horizontal</enum>
+            </property>
+            <property name="sizeType">
+                <enum>Fixed</enum>
+            </property>
+            <property name="sizeHint">
+                <size>
+                    <width>20</width>
+                    <height>31</height>
+                </size>
+            </property>
+        </spacer>
+        <widget class="QLabel" row="8" column="1" rowspan="1" colspan="3">
+            <property name="name">
+                <cstring>infoLabel2</cstring>
+            </property>
+            <property name="text">
+                <string>Select any additional groups the &lt;b&gt;%1&lt;/b&gt; user should belong to from the list below.</string>
+            </property>
+            <property name="buddy" stdset="0">
+                <cstring>groupView</cstring>
+            </property>
+        </widget>
+        <widget class="QComboBox" row="4" column="2">
+            <property name="name">
+                <cstring>groupNameBox</cstring>
+            </property>
+            <property name="editable">
+                <bool>false</bool>
+            </property>
+        </widget>
+        <spacer row="4" column="3" rowspan="2" colspan="1">
+            <property name="name">
+                <cstring>spacer2</cstring>
+            </property>
+            <property name="orientation">
+                <enum>Horizontal</enum>
+            </property>
+            <property name="sizeType">
+                <enum>Preferred</enum>
+            </property>
+            <property name="sizeHint">
+                <size>
+                    <width>217</width>
+                    <height>50</height>
+                </size>
+            </property>
+        </spacer>
+        <widget class="QListView" row="9" column="1" rowspan="1" colspan="3">
+            <column>
+                <property name="text">
+                    <string>Group</string>
+                </property>
+                <property name="clickable">
+                    <bool>true</bool>
+                </property>
+                <property name="resizable">
+                    <bool>true</bool>
+                </property>
+            </column>
+            <column>
+                <property name="text">
+                    <string>ID</string>
+                </property>
+                <property name="clickable">
+                    <bool>true</bool>
+                </property>
+                <property name="resizable">
+                    <bool>true</bool>
+                </property>
+            </column>
+            <column>
+                <property name="text">
+                    <string>Location</string>
+                </property>
+                <property name="clickable">
+                    <bool>true</bool>
+                </property>
+                <property name="resizable">
+                    <bool>true</bool>
+                </property>
+            </column>
+            <property name="name">
+                <cstring>groupView</cstring>
+            </property>
+            <property name="resizeMode">
+                <enum>LastColumn</enum>
+            </property>
+        </widget>
+        <widget class="QLabel" row="7" column="0" rowspan="1" colspan="4">
+            <property name="name">
+                <cstring>textLabel1_2</cstring>
+            </property>
+            <property name="text">
+                <string>&lt;b&gt;Additional Groups&lt;/b&gt;</string>
+            </property>
+        </widget>
+        <widget class="QLabel" row="5" column="1">
+            <property name="name">
+                <cstring>textLabel3</cstring>
+            </property>
+            <property name="text">
+                <string>Group ID:</string>
+            </property>
+            <property name="alignment">
+                <set>AlignVCenter</set>
+            </property>
+            <property name="buddy" stdset="0">
+                <cstring>groupBox</cstring>
+            </property>
+        </widget>
+        <spacer row="6" column="2">
+            <property name="name">
+                <cstring>spacer3</cstring>
+            </property>
+            <property name="orientation">
+                <enum>Vertical</enum>
+            </property>
+            <property name="sizeType">
+                <enum>Fixed</enum>
+            </property>
+            <property name="sizeHint">
+                <size>
+                    <width>31</width>
+                    <height>25</height>
+                </size>
+            </property>
+        </spacer>
+        <widget class="Line" row="1" column="0" rowspan="1" colspan="4">
+            <property name="name">
+                <cstring>line2</cstring>
+            </property>
+            <property name="frameShape">
+                <enum>HLine</enum>
+            </property>
+            <property name="frameShadow">
+                <enum>Sunken</enum>
+            </property>
+            <property name="orientation">
+                <enum>Horizontal</enum>
+            </property>
+        </widget>
+        <widget class="QLayoutWidget" row="0" column="0" rowspan="1" colspan="4">
+            <property name="name">
+                <cstring>layout10</cstring>
             </property>
             <hbox>
                 <property name="name">
@@ -63,257 +391,7 @@
                 </widget>
             </hbox>
         </widget>
-        <widget class="Line">
-            <property name="name">
-                <cstring>line2</cstring>
-            </property>
-            <property name="frameShape">
-                <enum>HLine</enum>
-            </property>
-            <property name="frameShadow">
-                <enum>Sunken</enum>
-            </property>
-            <property name="orientation">
-                <enum>Horizontal</enum>
-            </property>
-        </widget>
-        <widget class="QLabel">
-            <property name="name">
-                <cstring>infoLabel</cstring>
-            </property>
-            <property name="text">
-                <string>&lt;b&gt;Primary Group&lt;/b&gt;&lt;br&gt;
-You may select from the groups available in the LDAP database or enter any ID that is valid on the system below.</string>
-            </property>
-        </widget>
-        <widget class="QLayoutWidget">
-            <property name="name">
-                <cstring>layout4</cstring>
-            </property>
-            <grid>
-                <property name="name">
-                    <cstring>unnamed</cstring>
-                </property>
-                <widget class="QSpinBox" row="1" column="1">
-                    <property name="name">
-                        <cstring>groupNumberBox</cstring>
-                    </property>
-                    <property name="minimumSize">
-                        <size>
-                            <width>70</width>
-                            <height>0</height>
-                        </size>
-                    </property>
-                    <property name="maxValue">
-                        <number>655535</number>
-                    </property>
-                </widget>
-                <widget class="QComboBox" row="0" column="1">
-                    <property name="name">
-                        <cstring>groupNameBox</cstring>
-                    </property>
-                    <property name="editable">
-                        <bool>false</bool>
-                    </property>
-                </widget>
-                <widget class="QLabel" row="1" column="0">
-                    <property name="name">
-                        <cstring>textLabel3</cstring>
-                    </property>
-                    <property name="text">
-                        <string>Group ID:</string>
-                    </property>
-                    <property name="alignment">
-                        <set>AlignVCenter|AlignRight</set>
-                    </property>
-                    <property name="buddy" stdset="0">
-                        <cstring>groupBox</cstring>
-                    </property>
-                </widget>
-                <widget class="QLabel" row="0" column="0">
-                    <property name="name">
-                        <cstring>textLabel1</cstring>
-                    </property>
-                    <property name="sizePolicy">
-                        <sizepolicy>
-                            <hsizetype>0</hsizetype>
-                            <vsizetype>5</vsizetype>
-                            <horstretch>0</horstretch>
-                            <verstretch>0</verstretch>
-                        </sizepolicy>
-                    </property>
-                    <property name="text">
-                        <string>LDAP Groups:</string>
-                    </property>
-                    <property name="alignment">
-                        <set>AlignVCenter|AlignRight</set>
-                    </property>
-                    <property name="buddy" stdset="0">
-                        <cstring>comboBox1</cstring>
-                    </property>
-                </widget>
-                <spacer row="0" column="2">
-                    <property name="name">
-                        <cstring>spacer2</cstring>
-                    </property>
-                    <property name="orientation">
-                        <enum>Horizontal</enum>
-                    </property>
-                    <property name="sizeType">
-                        <enum>Preferred</enum>
-                    </property>
-                    <property name="sizeHint">
-                        <size>
-                            <width>236</width>
-                            <height>31</height>
-                        </size>
-                    </property>
-                </spacer>
-            </grid>
-        </widget>
-        <widget class="Line">
-            <property name="name">
-                <cstring>line4</cstring>
-            </property>
-            <property name="frameShape">
-                <enum>HLine</enum>
-            </property>
-            <property name="frameShadow">
-                <enum>Sunken</enum>
-            </property>
-            <property name="orientation">
-                <enum>Horizontal</enum>
-            </property>
-        </widget>
-        <widget class="QLabel">
-            <property name="name">
-                <cstring>infoLabel2</cstring>
-            </property>
-            <property name="text">
-                <string>&lt;b&gt;Additional Groups&lt;/b&gt;&lt;br&gt;
-Select any additional groups the &lt;b&gt;%1&lt;/b&gt; user should belong to from the list below.</string>
-            </property>
-            <property name="buddy" stdset="0">
-                <cstring>groupView</cstring>
-            </property>
-        </widget>
-        <widget class="QListView">
-            <column>
-                <property name="text">
-                    <string>Group</string>
-                </property>
-                <property name="clickable">
-                    <bool>true</bool>
-                </property>
-                <property name="resizable">
-                    <bool>true</bool>
-                </property>
-            </column>
-            <column>
-                <property name="text">
-                    <string>ID</string>
-                </property>
-                <property name="clickable">
-                    <bool>true</bool>
-                </property>
-                <property name="resizable">
-                    <bool>true</bool>
-                </property>
-            </column>
-            <column>
-                <property name="text">
-                    <string>Location</string>
-                </property>
-                <property name="clickable">
-                    <bool>true</bool>
-                </property>
-                <property name="resizable">
-                    <bool>true</bool>
-                </property>
-            </column>
-            <property name="name">
-                <cstring>groupView</cstring>
-            </property>
-            <property name="allColumnsShowFocus">
-                <bool>true</bool>
-            </property>
-            <property name="resizeMode">
-                <enum>LastColumn</enum>
-            </property>
-        </widget>
-        <widget class="QLayoutWidget">
-            <property name="name">
-                <cstring>layout3</cstring>
-            </property>
-            <grid>
-                <property name="name">
-                    <cstring>unnamed</cstring>
-                </property>
-                <spacer row="1" column="0">
-                    <property name="name">
-                        <cstring>Horizontal Spacing2</cstring>
-                    </property>
-                    <property name="orientation">
-                        <enum>Horizontal</enum>
-                    </property>
-                    <property name="sizeType">
-                        <enum>Expanding</enum>
-                    </property>
-                    <property name="sizeHint">
-                        <size>
-                            <width>348</width>
-                            <height>20</height>
-                        </size>
-                    </property>
-                </spacer>
-                <widget class="Line" row="0" column="0" rowspan="1" colspan="3">
-                    <property name="name">
-                        <cstring>line1</cstring>
-                    </property>
-                    <property name="frameShape">
-                        <enum>HLine</enum>
-                    </property>
-                    <property name="frameShadow">
-                        <enum>Sunken</enum>
-                    </property>
-                    <property name="orientation">
-                        <enum>Horizontal</enum>
-                    </property>
-                </widget>
-                <widget class="QPushButton" row="1" column="2">
-                    <property name="name">
-                        <cstring>cancelButton</cstring>
-                    </property>
-                    <property name="text">
-                        <string>&amp;Cancel</string>
-                    </property>
-                    <property name="accel">
-                        <string></string>
-                    </property>
-                    <property name="autoDefault">
-                        <bool>false</bool>
-                    </property>
-                </widget>
-                <widget class="QPushButton" row="1" column="1">
-                    <property name="name">
-                        <cstring>okButton</cstring>
-                    </property>
-                    <property name="text">
-                        <string>&amp;OK</string>
-                    </property>
-                    <property name="accel">
-                        <string></string>
-                    </property>
-                    <property name="autoDefault">
-                        <bool>false</bool>
-                    </property>
-                    <property name="default">
-                        <bool>false</bool>
-                    </property>
-                </widget>
-            </grid>
-        </widget>
-    </vbox>
+    </grid>
 </widget>
 <connections>
     <connection>

@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file '/home/wido/src/luma/lib/luma/plugins/usermanagement/GroupDialogDesign.ui'
 #
-# Created: Mon Apr 26 16:00:33 2004
+# Created: Sat Jul 3 23:31:13 2004
 #      by: The PyQt User Interface Compiler (pyuic) 3.11
 #
 # WARNING! All changes made in this file will be lost!
@@ -21,98 +21,112 @@ class GroupDialogDesign(QDialog):
 
         self.setSizeGripEnabled(1)
 
-        GroupDialogDesignLayout = QVBoxLayout(self,11,6,"GroupDialogDesignLayout")
+        GroupDialogDesignLayout = QGridLayout(self,1,1,11,6,"GroupDialogDesignLayout")
 
-        layout6 = QHBoxLayout(None,0,6,"layout6")
+        layout7 = QHBoxLayout(None,0,6,"layout7")
+        Horizontal_Spacing2 = QSpacerItem(290,20,QSizePolicy.Expanding,QSizePolicy.Minimum)
+        layout7.addItem(Horizontal_Spacing2)
 
-        self.groupLabel = QLabel(self,"groupLabel")
-        self.groupLabel.setSizePolicy(QSizePolicy(0,0,0,0,self.groupLabel.sizePolicy().hasHeightForWidth()))
-        self.groupLabel.setMinimumSize(QSize(64,64))
-        layout6.addWidget(self.groupLabel)
+        self.okButton = QPushButton(self,"okButton")
+        self.okButton.setAutoDefault(0)
+        self.okButton.setDefault(0)
+        layout7.addWidget(self.okButton)
 
-        self.textLabel = QLabel(self,"textLabel")
-        layout6.addWidget(self.textLabel)
-        GroupDialogDesignLayout.addLayout(layout6)
+        self.cancelButton = QPushButton(self,"cancelButton")
+        self.cancelButton.setAutoDefault(0)
+        layout7.addWidget(self.cancelButton)
 
-        self.line2 = QFrame(self,"line2")
-        self.line2.setFrameShape(QFrame.HLine)
-        self.line2.setFrameShadow(QFrame.Sunken)
-        self.line2.setFrameShape(QFrame.HLine)
-        GroupDialogDesignLayout.addWidget(self.line2)
-
-        self.infoLabel = QLabel(self,"infoLabel")
-        GroupDialogDesignLayout.addWidget(self.infoLabel)
-
-        layout4 = QGridLayout(None,1,1,0,6,"layout4")
-
-        self.groupNumberBox = QSpinBox(self,"groupNumberBox")
-        self.groupNumberBox.setMinimumSize(QSize(70,0))
-        self.groupNumberBox.setMaxValue(655535)
-
-        layout4.addWidget(self.groupNumberBox,1,1)
-
-        self.groupNameBox = QComboBox(0,self,"groupNameBox")
-        self.groupNameBox.setEditable(0)
-
-        layout4.addWidget(self.groupNameBox,0,1)
-
-        self.textLabel3 = QLabel(self,"textLabel3")
-        self.textLabel3.setAlignment(QLabel.AlignVCenter | QLabel.AlignRight)
-
-        layout4.addWidget(self.textLabel3,1,0)
-
-        self.textLabel1 = QLabel(self,"textLabel1")
-        self.textLabel1.setSizePolicy(QSizePolicy(0,5,0,0,self.textLabel1.sizePolicy().hasHeightForWidth()))
-        self.textLabel1.setAlignment(QLabel.AlignVCenter | QLabel.AlignRight)
-
-        layout4.addWidget(self.textLabel1,0,0)
-        spacer2 = QSpacerItem(236,31,QSizePolicy.Preferred,QSizePolicy.Minimum)
-        layout4.addItem(spacer2,0,2)
-        GroupDialogDesignLayout.addLayout(layout4)
-
-        self.line4 = QFrame(self,"line4")
-        self.line4.setFrameShape(QFrame.HLine)
-        self.line4.setFrameShadow(QFrame.Sunken)
-        self.line4.setFrameShape(QFrame.HLine)
-        GroupDialogDesignLayout.addWidget(self.line4)
-
-        self.infoLabel2 = QLabel(self,"infoLabel2")
-        GroupDialogDesignLayout.addWidget(self.infoLabel2)
-
-        self.groupView = QListView(self,"groupView")
-        self.groupView.addColumn(self.__tr("Group"))
-        self.groupView.addColumn(self.__tr("ID"))
-        self.groupView.addColumn(self.__tr("Location"))
-        self.groupView.setAllColumnsShowFocus(1)
-        self.groupView.setResizeMode(QListView.LastColumn)
-        GroupDialogDesignLayout.addWidget(self.groupView)
-
-        layout3 = QGridLayout(None,1,1,0,6,"layout3")
-        Horizontal_Spacing2 = QSpacerItem(348,20,QSizePolicy.Expanding,QSizePolicy.Minimum)
-        layout3.addItem(Horizontal_Spacing2,1,0)
+        GroupDialogDesignLayout.addMultiCellLayout(layout7,11,11,0,3)
 
         self.line1 = QFrame(self,"line1")
         self.line1.setFrameShape(QFrame.HLine)
         self.line1.setFrameShadow(QFrame.Sunken)
         self.line1.setFrameShape(QFrame.HLine)
 
-        layout3.addMultiCellWidget(self.line1,0,0,0,2)
+        GroupDialogDesignLayout.addMultiCellWidget(self.line1,10,10,0,3)
+        spacer7 = QSpacerItem(20,31,QSizePolicy.Fixed,QSizePolicy.Minimum)
+        GroupDialogDesignLayout.addItem(spacer7,9,0)
 
-        self.cancelButton = QPushButton(self,"cancelButton")
-        self.cancelButton.setAutoDefault(0)
+        self.textLabel2 = QLabel(self,"textLabel2")
 
-        layout3.addWidget(self.cancelButton,1,2)
+        GroupDialogDesignLayout.addMultiCellWidget(self.textLabel2,2,2,0,3)
 
-        self.okButton = QPushButton(self,"okButton")
-        self.okButton.setAutoDefault(0)
-        self.okButton.setDefault(0)
+        self.groupNumberBox = QSpinBox(self,"groupNumberBox")
+        self.groupNumberBox.setMinimumSize(QSize(70,0))
+        self.groupNumberBox.setMaxValue(655535)
 
-        layout3.addWidget(self.okButton,1,1)
-        GroupDialogDesignLayout.addLayout(layout3)
+        GroupDialogDesignLayout.addWidget(self.groupNumberBox,5,2)
+
+        self.textLabel1 = QLabel(self,"textLabel1")
+        self.textLabel1.setSizePolicy(QSizePolicy(0,5,0,0,self.textLabel1.sizePolicy().hasHeightForWidth()))
+        self.textLabel1.setAlignment(QLabel.AlignVCenter | QLabel.AlignRight)
+
+        GroupDialogDesignLayout.addWidget(self.textLabel1,4,1)
+
+        self.infoLabel = QLabel(self,"infoLabel")
+        self.infoLabel.setTextFormat(QLabel.PlainText)
+        self.infoLabel.setAlignment(QLabel.WordBreak | QLabel.AlignVCenter)
+
+        GroupDialogDesignLayout.addMultiCellWidget(self.infoLabel,3,3,1,3)
+        spacer4 = QSpacerItem(20,31,QSizePolicy.Fixed,QSizePolicy.Minimum)
+        GroupDialogDesignLayout.addItem(spacer4,3,0)
+        spacer5 = QSpacerItem(20,31,QSizePolicy.Fixed,QSizePolicy.Minimum)
+        GroupDialogDesignLayout.addMultiCell(spacer5,4,5,0,0)
+        spacer6 = QSpacerItem(20,31,QSizePolicy.Fixed,QSizePolicy.Minimum)
+        GroupDialogDesignLayout.addItem(spacer6,8,0)
+
+        self.infoLabel2 = QLabel(self,"infoLabel2")
+
+        GroupDialogDesignLayout.addMultiCellWidget(self.infoLabel2,8,8,1,3)
+
+        self.groupNameBox = QComboBox(0,self,"groupNameBox")
+        self.groupNameBox.setEditable(0)
+
+        GroupDialogDesignLayout.addWidget(self.groupNameBox,4,2)
+        spacer2 = QSpacerItem(217,50,QSizePolicy.Preferred,QSizePolicy.Minimum)
+        GroupDialogDesignLayout.addMultiCell(spacer2,4,5,3,3)
+
+        self.groupView = QListView(self,"groupView")
+        self.groupView.addColumn(self.__tr("Group"))
+        self.groupView.addColumn(self.__tr("ID"))
+        self.groupView.addColumn(self.__tr("Location"))
+        self.groupView.setResizeMode(QListView.LastColumn)
+
+        GroupDialogDesignLayout.addMultiCellWidget(self.groupView,9,9,1,3)
+
+        self.textLabel1_2 = QLabel(self,"textLabel1_2")
+
+        GroupDialogDesignLayout.addMultiCellWidget(self.textLabel1_2,7,7,0,3)
+
+        self.textLabel3 = QLabel(self,"textLabel3")
+        self.textLabel3.setAlignment(QLabel.AlignVCenter)
+
+        GroupDialogDesignLayout.addWidget(self.textLabel3,5,1)
+        spacer3 = QSpacerItem(31,25,QSizePolicy.Minimum,QSizePolicy.Fixed)
+        GroupDialogDesignLayout.addItem(spacer3,6,2)
+
+        self.line2 = QFrame(self,"line2")
+        self.line2.setFrameShape(QFrame.HLine)
+        self.line2.setFrameShadow(QFrame.Sunken)
+        self.line2.setFrameShape(QFrame.HLine)
+
+        GroupDialogDesignLayout.addMultiCellWidget(self.line2,1,1,0,3)
+
+        layout10 = QHBoxLayout(None,0,6,"layout10")
+
+        self.groupLabel = QLabel(self,"groupLabel")
+        self.groupLabel.setSizePolicy(QSizePolicy(0,0,0,0,self.groupLabel.sizePolicy().hasHeightForWidth()))
+        self.groupLabel.setMinimumSize(QSize(64,64))
+        layout10.addWidget(self.groupLabel)
+
+        self.textLabel = QLabel(self,"textLabel")
+        layout10.addWidget(self.textLabel)
+
+        GroupDialogDesignLayout.addMultiCellLayout(layout10,0,0,0,3)
 
         self.languageChange()
 
-        self.resize(QSize(495,570).expandedTo(self.minimumSizeHint()))
+        self.resize(QSize(556,574).expandedTo(self.minimumSizeHint()))
         self.clearWState(Qt.WState_Polished)
 
         self.connect(self.cancelButton,SIGNAL("clicked()"),self,SLOT("reject()"))
@@ -125,21 +139,21 @@ class GroupDialogDesign(QDialog):
 
     def languageChange(self):
         self.setCaption(self.__tr("Edit group membership"))
-        self.groupLabel.setText(self.__tr("GR","DO NOT TRANSLATE"))
-        self.textLabel.setText(self.__tr("Select the groups the <strong>%1</strong> user should belong to."))
-        self.infoLabel.setText(self.__tr("<b>Primary Group</b><br>\n"
-"You may select from the groups available in the LDAP database or enter any ID that is valid on the system below."))
-        self.textLabel3.setText(self.__tr("Group ID:"))
+        self.okButton.setText(self.__tr("&OK"))
+        self.okButton.setAccel(QString.null)
+        self.cancelButton.setText(self.__tr("&Cancel"))
+        self.cancelButton.setAccel(QString.null)
+        self.textLabel2.setText(self.__tr("<b>Primary Group</b>"))
         self.textLabel1.setText(self.__tr("LDAP Groups:"))
-        self.infoLabel2.setText(self.__tr("<b>Additional Groups</b><br>\n"
-"Select any additional groups the <b>%1</b> user should belong to from the list below."))
+        self.infoLabel.setText(self.__tr("You may select from the groups available in the LDAP database or enter any ID that is valid on the system below."))
+        self.infoLabel2.setText(self.__tr("Select any additional groups the <b>%1</b> user should belong to from the list below."))
         self.groupView.header().setLabel(0,self.__tr("Group"))
         self.groupView.header().setLabel(1,self.__tr("ID"))
         self.groupView.header().setLabel(2,self.__tr("Location"))
-        self.cancelButton.setText(self.__tr("&Cancel"))
-        self.cancelButton.setAccel(QString.null)
-        self.okButton.setText(self.__tr("&OK"))
-        self.okButton.setAccel(QString.null)
+        self.textLabel1_2.setText(self.__tr("<b>Additional Groups</b>"))
+        self.textLabel3.setText(self.__tr("Group ID:"))
+        self.groupLabel.setText(self.__tr("GR","DO NOT TRANSLATE"))
+        self.textLabel.setText(self.__tr("Select the groups the <strong>%1</strong> user should belong to."))
 
 
     def groupNameChanged(self):
