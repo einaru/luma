@@ -95,7 +95,8 @@ class MainWin(MainWinDesign):
         
         dialog = ServerDialog()
         dialog.exec_loop()
-        self.reload_plugins()
+        if dialog.result() == QDialog.Accepted:
+            self.reload_plugins()
 
 ###############################################################################
 
