@@ -30,22 +30,13 @@ class LumaIconView (LumaIconViewDesign):
     def __init__(self,parent = None,name = None,fl = 0):
         LumaIconViewDesign.__init__(self,parent,name,fl)
         
-        configFile = os.path.join(environment.userHomeDir,  ".luma", "plugins")
-        config = ConfigParser()
-        try:
-            config.readfp(open(configFile, 'r'))
-        except IOError, e:
-            print "Could not read configuration file. Reason: "
-            print e
+        self.searchFilter = "(&(objectClass=inetOrgPerson)(|(cn=*)(sn=*)(givenName=*)(mail=*) ) )"
+        self.searchFilterPrefix =  "(&(objectClass=inetOrgPerson)(|"
+        self.searchFilterSuffix = "))"
         
         self.filterElements = ["cn", "sn", "givenName", "mail"]
         
-        if config.has_option('Addressbook', 'filter'):
-            filter = config.get('Addressbook', 'filter')
-            foo = filter.split(",")
-            if not(foo[0] == ''):
-                self.filterElements = foo
-            
+        self.primaryKey = "cn"
         
         self.data = {}
         self.iconDict = {}
@@ -53,9 +44,10 @@ class LumaIconView (LumaIconViewDesign):
         searchFilter = "(objectClass=inetOrgPerson)"
         self.lumaConnection = None
         
-        iconDir = os.path.join (environment.lumaInstallationPrefix, "share", "luma", "icons", "plugins", "addressbook")
+        #iconDir = os.path.join (environment.lumaInstallationPrefix, "share", "luma", "icons", "plugins", "addressbook")
         
-        self.entryIcon = QPixmap (os.path.join (iconDir, "person.png"))
+        #self.entryIcon = QPixmap (os.path.join (iconDir, "person.png"))
+        
         
         # Setting up server box
         tmpFile  = os.path.join(environment.lumaInstallationPrefix, "share", "luma", "icons", "secure.png")
@@ -110,7 +102,7 @@ class LumaIconView (LumaIconViewDesign):
         tmpFilter = self.searchFilterPrefix + tmpString + self.searchFilterSuffix
         
         self.lumaConnection.bind()
-        results = self.lumaConnection.search(self.lumaConnection.server.baseDN, ldap.SCOPE_SUBTREE, tmpFilter.encode('utf-8'), ['cn', 'sn', 'givenName'], 0)
+        results = self.lumaConnection.search(self.lumaConnection.server.baseDN, ldap.SCOPE_SUBTREE, tmpFilter.encode('utf-8'), [self.primaryKey, 'sn', 'givenName'], 0)
         self.lumaConnection.unbind()
         self.processResults(results)
 
@@ -138,8 +130,8 @@ class LumaIconView (LumaIconViewDesign):
         for x in self.data.keys():
             tmpData = self.data[x]
             name = ''
-            if tmpData.has_key('cn'):
-                name = tmpData['cn'][0]
+            if tmpData.has_key(self.primaryKey):
+                name = tmpData[self.primaryKey][0]
             else:
                 if tmpData.has_key('sn') or tmpData.has_key('givenName'):
                     if tmpData.has_key('sn'):
@@ -220,4 +212,26 @@ class LumaIconView (LumaIconViewDesign):
     def addItem(self):
         self.emit(PYSIGNAL("add_entry"), ())
             
-            
+###############################################################################
+
+    def initFilterConfig(self, pluginName):
+        configFile = os.path.join(environment.userHomeDir,  ".luma", "plugins")
+        config = ConfigParser()
+        try:
+            config.readfp(open(configFile, 'r'))
+        except IOError, e:
+            print "Could not read configuration file. Reason: "
+            print e
+        
+        self.filterElements = ["cn", "sn", "givenName", "mail"]
+        
+        if config.has_option(pluginName, 'filter'):
+            filter = config.get(pluginName, 'filter')
+            foo = filter.split(",")
+            if not(foo[0] == ''):
+                self.filterElements = foo
+
+###############################################################################
+
+    def setItemPixmap(self, pixmap):
+        self.entryIcon = pixmap
