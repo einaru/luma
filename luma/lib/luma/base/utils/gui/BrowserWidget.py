@@ -47,7 +47,10 @@ class BrowserWidget(QListView):
         #       'dcObject', 'organization'])
 
         tmpDirObject = environment.lumaInstallationPrefix
-        tmpIconFile = os.path.join(tmpDirObject, "share", "luma", "icons", "secure.png")
+        
+        self.secureIcon = QPixmap(os.path.join(tmpDirObject, "share", "luma", "icons", "secure.png"))
+        self.aliasIcon = QPixmap(os.path.join(tmpDirObject, "share", "luma", "icons", "alias.png"))
+        self.secureAliasIcon = QPixmap(os.path.join(tmpDirObject, "share", "luma", "icons", "secure-alias.png"))
 
         tmpObject = ServerList()
         tmpObject.readServerList()
@@ -58,57 +61,47 @@ class BrowserWidget(QListView):
             self.serverList = []
         else:
             self.serverList = tmpObject.serverList[:]
+                
+        self.serverDict = {}
+        self.aliasDict = {}
             
         for x in self.serverList:
             tmpItem = QListViewItem(self, x.name)
-            if x.tls == 1:
-                tmpItem.setPixmap(0, QPixmap(tmpIconFile))
             tmpItem.setExpandable(True)
-            self.insertItem(tmpItem)
-            #for base in LumaConnection(x).getBaseDNList():
-            #    tmpBase = QListViewItem(tmpItem, base)
-            #    tmpBase.setExpandable(1)
-            #    tmpItem.insertItem(tmpBase)
+            self.serverDict[x.name] = tmpItem
+            self.aliasDict[x.name] = x.followAliases
+            #if x.tls == 1:
+            #    tmpItem.setPixmap(0, QPixmap(tmpIconFile))
+            #self.insertItem(tmpItem)
 
-            
-        # different menus for right click
-        self.popupMenu = QPopupMenu()
-        self.exportMenu = QPopupMenu()
-        self.addItemMenu = QPopupMenu()
-        self.deleteMenu = QPopupMenu()
-        
-        # Icon files for the menu entries
-        addIconFile = os.path.join(tmpDirObject, "share", "luma", "icons", "newEntry.png")
-        delIconFile = os.path.join(tmpDirObject, "share", "luma", "icons", "deleteEntry.png")
-        exportIconFile = os.path.join(tmpDirObject, "share", "luma", "icons", "exportLdif.png")
-        
-        
-        # Fill export menu
-        self.exportMenu.insertItem(self.trUtf8("Item"), self.exportItem)
-        self.exportMenu.insertItem(self.trUtf8("Subtree"), self.exportItemSubtree)
-        self.exportMenu.insertItem(self.trUtf8("Subtree with Parents"), self.exportItemAll)
-
-        
-        # Fill delete menu
-        self.deleteMenu.insertItem(self.trUtf8("Item"), self.deleteItem)
-        self.deleteMenu.insertItem(self.trUtf8("Subtree"), self.deleteItemsRecursive)
-        self.deleteMenu.insertItem(self.trUtf8("Subtree without Node"), self.deleteSubtree)
-        
-        
-        self.popupMenu.insertItem(QIconSet(QPixmap(addIconFile)), self.trUtf8("Add Item"), self.addItemMenu)
-        self.popupMenu.insertSeparator()
-        self.popupMenu.insertItem(QIconSet(QPixmap(exportIconFile)), self.trUtf8("Export to LDIF"), self.exportMenu)
-        self.popupMenu.insertSeparator()
-        self.popupMenu.insertItem(QIconSet(QPixmap(delIconFile)), self.trUtf8("Delete"), self.deleteMenu)
-        
-        
-        self.connect(self.addItemMenu, SIGNAL("aboutToShow()"), self.createAddMenu)
+        self.displayServerIcons()
 
         self.addItemWidgets = []
 
         self.connect(self, SIGNAL("rightButtonPressed(QListViewItem*, const QPoint&, int)"), self.showPopup)
         
         self.widgetList = []
+        
+        # Item for which a popup menu was openend
+        self.popupItem = None
+        
+        # Menu for adding new objects
+        self.addItemMenu = None
+
+###############################################################################
+
+    def displayServerIcons(self):
+        for server in self.aliasDict.keys():
+            serverMeta = self.serverListObject.getServerObject(server)
+            tmpItem = self.serverDict[server]
+            if serverMeta.tls and self.aliasDict[server]:
+                tmpItem.setPixmap(0, self.secureAliasIcon)
+            elif serverMeta.tls:
+                tmpItem.setPixmap(0, self.secureIcon)
+            elif self.aliasDict[server]:
+                tmpItem.setPixmap(0, self.aliasIcon)
+            else:
+                tmpItem.setPixmap(0, QPixmap())
 
 ###############################################################################
 
@@ -143,13 +136,20 @@ class BrowserWidget(QListView):
         
         if item.parent():
             fullPath = self.getFullPath(item)
-            results = self.getLdapItemChildren(fullPath, 0, ['dn'])
+            
+            serverName, dn = self.splitPath(fullPath)
+            oldAliasValue = self.aliasDict[serverName]
+            self.aliasDict[serverName] = False
+            
+            results = self.getLdapItemChildren(fullPath, 0, ['dn', 'objectClass'])
         
             if results == None:
+                self.aliasDict[serverName] = oldAliasValue
                 self.blockSignals(False)
                 item.setExpandable(0)
                 return None
             if len(results) == 0:
+                self.aliasDict[serverName] = oldAliasValue
                 self.blockSignals(False)
                 item.setExpandable(0)
                 return None
@@ -158,8 +158,19 @@ class BrowserWidget(QListView):
                 tmp = x[0].decode('utf-8')
                 tmp = string.split(tmp, ",")
                 tmpItem = QListViewItem(item, tmp[0])
+                
+                # Add the alias icon if the entry belongs to the 
+                # alias objectClass
+                values = x[1]
+                if values.has_key('objectClass'):
+                    for x in values['objectClass']:
+                        if 'alias' == string.lower(x):
+                            tmpItem.setPixmap(0, self.aliasIcon)
+                    
                 tmpItem.setExpandable(1)
                 item.insertItem(tmpItem)
+            
+            self.aliasDict[serverName] = oldAliasValue
         else:
             serverList = ServerList()
             serverList.readServerList()
@@ -218,6 +229,8 @@ class BrowserWidget(QListView):
         
         serverMeta = self.serverListObject.getServerObject(serverName)
         
+        serverMeta.followAliases = self.aliasDict[serverName]
+        
         conObject = LumaConnection(serverMeta)
         conObject.bind()
         searchResult = conObject.search(ldapObject, ldap.SCOPE_BASE)
@@ -264,6 +277,8 @@ See console output for more information."""),
             
         serverMeta = self.serverListObject.getServerObject(serverName)
         searchResult = None
+        
+        serverMeta.followAliases = self.aliasDict[serverName]
         
         conObject = LumaConnection(serverMeta)
         conObject.bind()
@@ -372,9 +387,56 @@ See console output for more information."""),
         """ Display popup menu.
         """
         
+        self.popupItem = tmpItem
+        
+        tmpDirObject = environment.lumaInstallationPrefix
+        aliasIconFile = os.path.join(tmpDirObject, "share", "luma", "icons", "alias.png")
+        popupMenu = QPopupMenu()
+        
+        itemPath = self.getFullPath(tmpItem)
+        server, dn = self.splitPath(itemPath)
+        
         if not (tmpItem == None):
+            menuID = popupMenu.insertItem(QIconSet(QPixmap(aliasIconFile)), self.trUtf8("Follow Aliases"), self.enableAliases)
+            popupMenu.setItemChecked(menuID, self.aliasDict[server])
+                
             if not (tmpItem.parent() == None):
-                self.popupMenu.exec_loop(point)
+                # different menus for right click
+                exportMenu = QPopupMenu()
+                self.addItemMenu = QPopupMenu()
+                deleteMenu = QPopupMenu()
+        
+                # Icon files for the menu entries
+                addIconFile = os.path.join(tmpDirObject, "share", "luma", "icons", "newEntry.png")
+                delIconFile = os.path.join(tmpDirObject, "share", "luma", "icons", "deleteEntry.png")
+                exportIconFile = os.path.join(tmpDirObject, "share", "luma", "icons", "exportLdif.png")
+        
+        
+                # Fill export menu
+                exportMenu.insertItem(self.trUtf8("Item"), self.exportItem)
+                exportMenu.insertItem(self.trUtf8("Subtree"), self.exportItemSubtree)
+                exportMenu.insertItem(self.trUtf8("Subtree with Parents"), self.exportItemAll)
+
+        
+                # Fill delete menu
+                deleteMenu.insertItem(self.trUtf8("Item"), self.deleteItem)
+                deleteMenu.insertItem(self.trUtf8("Subtree"), self.deleteItemsRecursive)
+                deleteMenu.insertItem(self.trUtf8("Subtree without Node"), self.deleteSubtree)
+                
+                # Fill add menu
+                self.addItemMenu.clear()
+                templates = TemplateList()
+                for x in templates.templateList:
+                    self.addItemMenu.insertItem(x.name, self.addItem)
+                    
+                popupMenu.insertSeparator()
+                popupMenu.insertItem(QIconSet(QPixmap(addIconFile)), self.trUtf8("Add Item"), self.addItemMenu)
+                popupMenu.insertSeparator()
+                popupMenu.insertItem(QIconSet(QPixmap(exportIconFile)), self.trUtf8("Export to LDIF"), exportMenu)
+                popupMenu.insertSeparator()
+                popupMenu.insertItem(QIconSet(QPixmap(delIconFile)), self.trUtf8("Delete"), deleteMenu)
+                
+            popupMenu.exec_loop(point)
 
 ###############################################################################
 
@@ -408,17 +470,6 @@ See console output for more information."""),
         del parentList[0]
         return parentList
 
-###############################################################################
-
-    def createAddMenu(self):
-        """ Fill the 'add'-menu with entries from the templates.
-        """
-        
-        self.addItemMenu.clear()
-        templates = TemplateList()
-        for x in templates.templateList:
-            self.addItemMenu.insertItem(x.name, self.addItem)
-            
 ###############################################################################
 
     def addItem(self, id):
@@ -480,7 +531,7 @@ See console output for more information."""),
             return
             
         # set gui busy
-        environment.setBusy(1)
+        environment.setBusy(True)
         
         currentItem = self.selectedItem()
         
@@ -503,7 +554,7 @@ See console output for more information."""),
         parent.setOpen(0)
         parent.setOpen(1)
         
-        environment.setBusy(0)
+        environment.setBusy(False)
         
 ###############################################################################
 
@@ -545,6 +596,20 @@ See console output for more information."""),
         del self.widgetList[index]
         
 
+###############################################################################
+        
+    def enableAliases(self):
+        itemPath = self.getFullPath(self.popupItem)
+        serverName, dn = self.splitPath(itemPath)
+        
+        self.aliasDict[serverName] = not self.aliasDict[serverName]
+        
+        tmpItem = self.serverDict[serverName]
+        self.setOpen(tmpItem, False)
+        serverMeta = self.serverListObject.getServerObject(serverName)
+        serverMeta.followAliases = not serverMeta.followAliases
+        self.displayServerIcons()
+        
 ###############################################################################
 
 
