@@ -25,6 +25,18 @@ class ObjectClassAttributeInfo(object):
 ###############################################################################
     
     def __init__(self, server):
+        self.BINARY_SYNTAXES = {
+            '1.3.6.1.4.1.1466.115.121.1.4':None,  # Audio
+            '1.3.6.1.4.1.1466.115.121.1.5':None,  # Binary
+            '1.3.6.1.4.1.1466.115.121.1.6':None,  # Bit String
+            '1.3.6.1.4.1.1466.115.121.1.8':None,  # Certificate
+            '1.3.6.1.4.1.1466.115.121.1.9':None,  # Certificate List
+            '1.3.6.1.4.1.1466.115.121.1.10':None, # Certificate Pair
+            '1.3.6.1.4.1.1466.115.121.1.23':None, # G3 FAX
+            '1.3.6.1.4.1.1466.115.121.1.28':None, # JPEG
+            '1.3.6.1.4.1.1466.115.121.1.40':None, # Octet String
+            '1.3.6.1.4.1.1466.115.121.1.49':None, # Supported Algorithm
+            }
         self.OBJECTCLASSES = {}
         self.ATTRIBUTELIST = {}
         self.SERVER = server[:]
@@ -56,6 +68,7 @@ class ObjectClassAttributeInfo(object):
                 name = y.names[0]
                 desc = ""
                 
+                
                 if not (y.desc == None):
                     desc = y.desc
                 must = []
@@ -82,8 +95,9 @@ class ObjectClassAttributeInfo(object):
                     
                 single = y.single_value
                 
-                for y in name:
-                    self.ATTRIBUTELIST[y] = {"DESC": desc, "SINGLE": single}
+                for z in name:
+                    self.ATTRIBUTELIST[z] = {"DESC": desc, "SINGLE": single, "SYNTAX": y.syntax}
+                    
                     
         except ldap.LDAPError, e:
             print "Error during LDAP request"
@@ -192,6 +206,21 @@ class ObjectClassAttributeInfo(object):
                     if y == attribute:
                         return 1
         return 0
+        
+###############################################################################
+
+    def is_binary(self, attribute=""):
+        """ Check if the given attribute has binary values.
+        """
+    
+        if self.ATTRIBUTELIST.has_key(attribute):
+            syntax = self.ATTRIBUTELIST[attribute]["SYNTAX"]
+            if self.BINARY_SYNTAXES.has_key(syntax):
+                return 1
+            else:
+                return 0
+        else:
+            return 0
 
 ###############################################################################
 
