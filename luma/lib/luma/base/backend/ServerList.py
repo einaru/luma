@@ -9,7 +9,7 @@
 ###########################################################################
 
 from os import listdir
-from os import remove
+import os
 import string
 import os.path
 from ConfigParser import ConfigParser
@@ -75,9 +75,14 @@ class ServerList:
     def save_settings(self, serverList):
         """ Save the server list to configuration file.
         """
+
         try:
+            #if len(serverList) == 0:
+            #    os.remove(self.__configFile)
+            #   return
+                
             configParser = ConfigParser()
-            for x in self.SERVERLIST:
+            for x in serverList:
                 if not configParser.has_section(x.name):
                     configParser.add_section(x.name)
                 configParser.set(x.name, "hostname", x.host)
