@@ -156,7 +156,7 @@ def doCompile():
          
 
 
-print "LUMA 1.0 (C) 2003 Wido Depping\n"
+print "LUMA 1.2 (C) 2003 Wido Depping\n"
 print "Check for preinstalled modules:"
 doImportCheck()
 print ""
