@@ -31,14 +31,14 @@ class FilterWizard(FilterWizardDesign):
         self.classButton.setChecked(1)
         self.filterTypeBox.setEnabled(0)
         self.expressionEdit.setEnabled(0)
-        self.init_object_combo()
+        self.initObjectCombo()
 
         self.bookmarkFile = os.path.join(environment.userHomeDir, ".luma", "filterBookmarks")
-        self.init_filter_bookmarks()
+        self.initFilterBookmarks()
 
 ###############################################################################
 
-    def class_choice_changed(self):
+    def classChoiceChanged(self):
         if self.classButton.isChecked():
             self.attributeButton.setChecked(0)
             self.objectSelection = "CLASS"
@@ -50,11 +50,11 @@ class FilterWizard(FilterWizardDesign):
             self.objectSelection = "ATTRIBUTE"
             self.filterTypeBox.setEnabled(1)
             self.expressionEdit.setEnabled(1)
-        self.init_object_combo()
+        self.initObjectCombo()
 
 ###############################################################################
 
-    def attribute_choice_changed(self):
+    def attributeChoiceChanged(self):
         if self.attributeButton.isChecked():
             self.classButton.setChecked(0)
             self.objectSelection = "ATTRIBUTE"
@@ -66,11 +66,11 @@ class FilterWizard(FilterWizardDesign):
             self.objectSelection = "CLASS"
             self.filterTypeBox.setEnabled(0)
             self.expressionEdit.setEnabled(0)
-        self.init_object_combo()
+        self.initObjectCombo()
 
 ###############################################################################
 
-    def init_object_combo(self):
+    def initObjectCombo(self):
         if self.objectSelection == "CLASS":
             self.objectBox.clear()
             tmpList = self.objectInfo.objectClassesDict.keys()
@@ -87,7 +87,7 @@ class FilterWizard(FilterWizardDesign):
 
 ###############################################################################
 
-    def add_criteria(self):
+    def addCriteria(self):
         if self.objectSelection == "CLASS":
             tmpString = "(objectClass=" + str(self.objectBox.currentText()) + ")"
             position = self.searchFilterEdit.cursorPosition()
@@ -108,7 +108,7 @@ class FilterWizard(FilterWizardDesign):
 
 ###############################################################################
 
-    def add_concat(self):
+    def addConcat(self):
         position = self.searchFilterEdit.cursorPosition()
         text = str(self.searchFilterEdit.text())
 
@@ -126,7 +126,7 @@ class FilterWizard(FilterWizardDesign):
 
 ###############################################################################
 
-    def init_filter_bookmarks(self):
+    def initFilterBookmarks(self):
         try:
             fileHandler = open(self.bookmarkFile, 'r')
             text = fileHandler.readlines()
@@ -139,28 +139,28 @@ class FilterWizard(FilterWizardDesign):
 
 ###############################################################################
 
-    def bookmark_selected(self):
+    def bookmarkSelected(self):
         self.searchFilterEdit.setText(self.bookmarkBox.currentText())
 
 ###############################################################################
 
-    def add_bookmark(self):
+    def addBookmark(self):
         self.bookmarkBox.insertItem(self.searchFilterEdit.text())
-        self.save_bookmarks()
+        self.saveBookmarks()
         self.bookmarkBox.setCurrentItem(self.bookmarkBox.count()-1)
 
 ###############################################################################
 
-    def delete_bookmark(self):
+    def deleteBookmark(self):
         if not(self.bookmarkBox.count() == 0):
             self.bookmarkBox.removeItem(self.bookmarkBox.currentItem())
-            self.save_bookmarks()
+            self.saveBookmarks()
             if not (self.bookmarkBox.count() == 0):
                 self.bookmarkBox.setCurrentItem(0)
 
 ###############################################################################
 
-    def save_bookmarks(self):
+    def saveBookmarks(self):
         try:
             fileHandler = open(self.bookmarkFile, 'w')
             for x in range(0, self.bookmarkBox.count()):

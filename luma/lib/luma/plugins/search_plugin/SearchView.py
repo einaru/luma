@@ -27,4 +27,4 @@ class SearchView(QWidget):
         self.vLayout.addWidget(self.resultView)
 
         self.connect(self.searchForm, PYSIGNAL("ldap_result"), \
-                self.resultView.set_result)
+                self.resultView.setResult)

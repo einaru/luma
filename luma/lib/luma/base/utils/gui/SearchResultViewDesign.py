@@ -2,8 +2,8 @@
 
 # Form implementation generated from reading ui file '/home/wido/src/luma/lib/luma/base/utils/gui/SearchResultViewDesign.ui'
 #
-# Created: Sun Aug 29 00:49:07 2004
-#      by: The PyQt User Interface Compiler (pyuic) 3.12
+# Created: Sat Oct 30 00:08:50 2004
+#      by: The PyQt User Interface Compiler (pyuic) 3.13
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -35,18 +35,18 @@ class SearchResultViewDesign(QWidget):
         self.resize(QSize(600,484).expandedTo(self.minimumSizeHint()))
         self.clearWState(Qt.WState_Polished)
 
-        self.connect(self.resultListView,SIGNAL("doubleClicked(QListViewItem*)"),self.show_entry)
+        self.connect(self.resultListView,SIGNAL("doubleClicked(QListViewItem*)"),self.showEntry)
 
 
     def languageChange(self):
         self.setCaption(self.__tr("SearchResultViewDesign"))
 
 
-    def show_entry(self):
-        print "SearchResultViewDesign.show_entry(): Not implemented yet"
+    def showEntry(self):
+        print "SearchResultViewDesign.showEntry(): Not implemented yet"
 
-    def set_result(self):
-        print "SearchResultViewDesign.set_result(): Not implemented yet"
+    def setResult(self):
+        print "SearchResultViewDesign.setResult(): Not implemented yet"
 
     def __tr(self,s,c = None):
         return qApp.translate("SearchResultViewDesign",s,c)

@@ -16,9 +16,9 @@
     <property name="geometry">
         <rect>
             <x>0</x>
-            <y>0</y>
+            <y>1</y>
             <width>609</width>
-            <height>121</height>
+            <height>118</height>
         </rect>
     </property>
     <property name="sizePolicy">
@@ -155,18 +155,18 @@
         <sender>filterWizardButton</sender>
         <signal>clicked()</signal>
         <receiver>SearchFormDesign</receiver>
-        <slot>start_filter_wizard()</slot>
+        <slot>startFilterWizard()</slot>
     </connection>
     <connection>
         <sender>startButton</sender>
         <signal>clicked()</signal>
         <receiver>SearchFormDesign</receiver>
-        <slot>start_search()</slot>
+        <slot>startSearch()</slot>
     </connection>
 </connections>
 <slots>
-    <slot>start_filter_wizard()</slot>
-    <slot>start_search()</slot>
+    <slot>startFilterWizard()</slot>
+    <slot>startSearch()</slot>
 </slots>
 <layoutdefaults spacing="6" margin="11"/>
 </UI>

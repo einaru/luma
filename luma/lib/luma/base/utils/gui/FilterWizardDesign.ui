@@ -527,43 +527,43 @@
         <sender>addObjectButton</sender>
         <signal>clicked()</signal>
         <receiver>FilterWizardDesign</receiver>
-        <slot>add_criteria()</slot>
+        <slot>addCriteria()</slot>
     </connection>
     <connection>
         <sender>concatButton</sender>
         <signal>clicked()</signal>
         <receiver>FilterWizardDesign</receiver>
-        <slot>add_concat()</slot>
+        <slot>addConcat()</slot>
     </connection>
     <connection>
         <sender>attributeButton</sender>
         <signal>clicked()</signal>
         <receiver>FilterWizardDesign</receiver>
-        <slot>attribute_choice_changed()</slot>
+        <slot>attributeChoiceChanged()</slot>
     </connection>
     <connection>
         <sender>classButton</sender>
         <signal>clicked()</signal>
         <receiver>FilterWizardDesign</receiver>
-        <slot>class_choice_changed()</slot>
+        <slot>classChoiceChanged()</slot>
     </connection>
     <connection>
         <sender>bookmarkBox</sender>
         <signal>activated(const QString&amp;)</signal>
         <receiver>FilterWizardDesign</receiver>
-        <slot>bookmark_selected()</slot>
+        <slot>bookmarkSelected()</slot>
     </connection>
     <connection>
         <sender>delBookmarkButton</sender>
         <signal>clicked()</signal>
         <receiver>FilterWizardDesign</receiver>
-        <slot>delete_bookmark()</slot>
+        <slot>deleteBookmark()</slot>
     </connection>
     <connection>
         <sender>addBookmarkButton</sender>
         <signal>clicked()</signal>
         <receiver>FilterWizardDesign</receiver>
-        <slot>add_bookmark()</slot>
+        <slot>addBookmark()</slot>
     </connection>
     <connection>
         <sender>pushButton6</sender>
@@ -573,13 +573,13 @@
     </connection>
 </connections>
 <slots>
-    <slot>class_choice_changed()</slot>
-    <slot>add_criteria()</slot>
-    <slot>add_concat()</slot>
-    <slot>attribute_choice_changed()</slot>
-    <slot>bookmark_selected()</slot>
-    <slot>delete_bookmark()</slot>
-    <slot>add_bookmark()</slot>
+    <slot>classChoiceChanged()</slot>
+    <slot>addCriteria()</slot>
+    <slot>addConcat()</slot>
+    <slot>attributeChoiceChanged()</slot>
+    <slot>bookmarkSelected()</slot>
+    <slot>deleteBookmark()</slot>
+    <slot>addBookmark()</slot>
 </slots>
 <layoutdefaults spacing="6" margin="11"/>
 </UI>

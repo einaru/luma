@@ -41,15 +41,15 @@ class SearchResultView(SearchResultViewDesign):
         exportIconFile = os.path.join(tmpDirObject, "exportLdif.png")
         
         self.popupMenu = QPopupMenu()
-        self.popupMenu.insertItem(QIconSet(QPixmap(exportIconFile)), self.trUtf8("Export selected"), self.export_items)
+        self.popupMenu.insertItem(QIconSet(QPixmap(exportIconFile)), self.trUtf8("Export selected"), self.exportItems)
         self.popupMenu.insertSeparator()
-        self.popupMenu.insertItem(QIconSet(QPixmap(delIconFile)), self.trUtf8("Delete selected"), self.delete_items)
+        self.popupMenu.insertItem(QIconSet(QPixmap(delIconFile)), self.trUtf8("Delete selected"), self.deleteItems)
         
-        self.connect(self.resultListView, SIGNAL("rightButtonPressed(QListViewItem*, const QPoint&, int)"), self.show_popup)
+        self.connect(self.resultListView, SIGNAL("rightButtonPressed(QListViewItem*, const QPoint&, int)"), self.showPopup)
 
 ###############################################################################
 
-    def show_entry(self, listItem):
+    def showEntry(self, listItem):
         while len(self.childsToClean) > 0:
             childName = self.childsToClean[0]
             childIndex = self.childWidgets.index(childName)
@@ -76,15 +76,15 @@ class SearchResultView(SearchResultViewDesign):
 
 ###############################################################################
 
-    def set_result(self, server=None, resultData=None, filterList=None):
+    def setResult(self, server=None, resultData=None, filterList=None):
         self.SERVER = server
-        self.process_data(resultData)
+        self.processData(resultData)
         self.FILTER_LIST = filterList
-        self.display_results()
+        self.displayResults()
 
 ###############################################################################
 
-    def process_data(self, data):
+    def processData(self, data):
         self.RESULT = {}
         if not(data == None):
             for x in data:
@@ -92,7 +92,7 @@ class SearchResultView(SearchResultViewDesign):
 
 ###############################################################################
 
-    def display_results(self):
+    def displayResults(self):
         self.resultListView.clear()
         while self.resultListView.columns():
             self.resultListView.removeColumn(0)
@@ -128,13 +128,13 @@ class SearchResultView(SearchResultViewDesign):
 
 ###############################################################################
 
-    def delete_items(self):
+    def deleteItems(self):
         warnString = self.trUtf8('Do you really want to delete the item(s) from the server?')
         result = QMessageBox.warning(self, self.trUtf8('Delete entry'), warnString, self.trUtf8('Delete'), self.trUtf8('Cancel'))
         if result == 1:
             return
         
-        itemList = self.get_selected_items()
+        itemList = self.getSelectedItems()
         
         serverList = ServerList()
         serverList.readServerList()
@@ -163,14 +163,14 @@ class SearchResultView(SearchResultViewDesign):
         
 ###############################################################################
     
-    def show_popup(self, tmpItem=None, point=None, itemId=None):
+    def showPopup(self, tmpItem=None, point=None, itemId=None):
         if not (tmpItem == None):
             self.popupMenu.exec_loop(point)
 
 ###############################################################################
 
-    def export_items(self):
-        itemList = self.get_selected_items()
+    def exportItems(self):
+        itemList = self.getSelectedItems()
         tmpList = []
         for x in itemList:
             tmpList.append(self.RESULT[unicode(x.text(0))])
@@ -192,7 +192,7 @@ class SearchResultView(SearchResultViewDesign):
         
 ###############################################################################
 
-    def get_selected_items(self):
+    def getSelectedItems(self):
         child = self.resultListView.firstChild()
         tmpList = []
         if child.isSelected():
@@ -207,7 +207,7 @@ class SearchResultView(SearchResultViewDesign):
         
 ###############################################################################
 
-    def convert_to_ldif(self, data):
+    def convertToLdif(self, data):
         SAFE_STRING_PATTERN = '(^(\000|\n|\r| |:|<)|[\000\n\r\200-\377]+|[ ]+$)'
         safe_string_re = re.compile(SAFE_STRING_PATTERN)
 

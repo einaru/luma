@@ -82,9 +82,9 @@ class BrowserWidget(QListView):
         
         
         # Fill export menu
-        self.exportMenu.insertItem(self.trUtf8("Item"), self.__export_item)
-        self.exportMenu.insertItem(self.trUtf8("Subtree"), self.__export_item_subtree)
-        self.exportMenu.insertItem(self.trUtf8("Subtree with Parents"), self.__export_item_all)
+        self.exportMenu.insertItem(self.trUtf8("Item"), self.exportItem)
+        self.exportMenu.insertItem(self.trUtf8("Subtree"), self.exportItemSubtree)
+        self.exportMenu.insertItem(self.trUtf8("Subtree with Parents"), self.exportItemAll)
 
         
         # Fill delete menu
@@ -104,7 +104,7 @@ class BrowserWidget(QListView):
 
         self.addItemWidgets = []
 
-        self.connect(self, SIGNAL("rightButtonPressed(QListViewItem*, const QPoint&, int)"), self.__show_popup)
+        self.connect(self, SIGNAL("rightButtonPressed(QListViewItem*, const QPoint&, int)"), self.showPopup)
         
         self.widgetList = []
 
@@ -169,7 +169,7 @@ class BrowserWidget(QListView):
         self.blockSignals(True)
         
         fullPath = self.getFullPath(item)
-        serverName, ldapObject = self.__split_path(fullPath)
+        serverName, ldapObject = self.splitPath(fullPath)
         if len(ldapObject) == 0:
             self.blockSignals(False)
             return None
@@ -199,7 +199,7 @@ class BrowserWidget(QListView):
         """ Get all data of a ldap object given by its path.
         """
         
-        serverName, ldapObject = self.__split_path(itemPath)
+        serverName, ldapObject = self.splitPath(itemPath)
         if len(ldapObject) == 0:
             return None
         
@@ -224,7 +224,7 @@ See console output for more information."""),
         
 ###############################################################################
 
-    def __split_path(self, itemPath):
+    def splitPath(self, itemPath):
         """ Return the server and the DN of an items path.
         """
         
@@ -245,7 +245,7 @@ See console output for more information."""),
             get only next level
         """
         
-        serverName, ldapObject = self.__split_path(itemPath)
+        serverName, ldapObject = self.splitPath(itemPath)
         if len(ldapObject) == 0:
             return None
             
@@ -287,7 +287,7 @@ See console output for more information."""),
 
 ###############################################################################
 
-    def __export_item(self):
+    def exportItem(self):
         """ Export the selected item to ldif.
         """
         
@@ -295,11 +295,11 @@ See console output for more information."""),
         serverName = fullPath.split(",")[-1]
         result = self.getLdapItem(fullPath)
         ldifHelper = LdifHelper(serverName)
-        self.__save_ldif(ldifHelper.convertToLdif(result[1]))
+        self.saveLdif(ldifHelper.convertToLdif(result[1]))
 
 ###############################################################################
 
-    def __export_item_subtree(self):
+    def exportItemSubtree(self):
         """ Export the whole subtree to ldif.
         """
         
@@ -307,11 +307,11 @@ See console output for more information."""),
         serverName = fullPath.split(",")[-1]
         result = self.getLdapItemChildren(fullPath, 1)
         ldifHelper = LdifHelper(serverName)
-        self.__save_ldif(ldifHelper.convertToLdif(result))
+        self.saveLdif(ldifHelper.convertToLdif(result))
 
 ###############################################################################
 
-    def __export_item_all(self):
+    def exportItemAll(self):
         """ Export the whole subtree to ldif, together with all its parents.
         """
         
@@ -319,14 +319,14 @@ See console output for more information."""),
         fullPath = self.getFullPath(currentItem)
         serverName = fullPath.split(",")[-1]
         ldifHelper = LdifHelper(serverName)
-        parents = self.__get_parents(currentItem)
+        parents = self.getParents(currentItem)
         resultString = ""
         for x in parents:
             tmpResult = self.getLdapItem(x)
             resultString = resultString + ldifHelper.convertToLdif(tmpResult[1])
         subtree = self.getLdapItemChildren(fullPath, 1)
         subtreeString = ldifHelper.convertToLdif(subtree)
-        self.__save_ldif(resultString + subtreeString)
+        self.saveLdif(resultString + subtreeString)
 
 
 ###############################################################################
@@ -342,11 +342,11 @@ See console output for more information."""),
         item = self.selectedItem()
         parent = item.parent()
         fullPath = self.getFullPath(item)
-        serverName, ldapObject = self.__split_path(fullPath)
+        serverName, ldapObject = self.splitPath(fullPath)
         if len(ldapObject) == 0:
             return None
             
-        self.__delete_ldap_entry(serverName, ldapObject)
+        self.deleteLdapEntry(serverName, ldapObject)
         
         parent.setOpen(0)
         parent.setOpen(1)
@@ -355,7 +355,7 @@ See console output for more information."""),
 
 ###############################################################################
 
-    def __show_popup(self, tmpItem=None, point=None, itemId=None):
+    def showPopup(self, tmpItem=None, point=None, itemId=None):
         """ Display popup menu.
         """
         
@@ -365,7 +365,7 @@ See console output for more information."""),
 
 ###############################################################################
 
-    def __save_ldif(self, data):
+    def saveLdif(self, data):
         """ Save ldif data to file.
         """
         
@@ -383,7 +383,7 @@ See console output for more information."""),
 
 ###############################################################################
 
-    def __get_parents(self, item):
+    def getParents(self, item):
         """ Get all parents of an item.
         """
         
@@ -475,7 +475,7 @@ See console output for more information."""),
         fullPath = self.getFullPath(currentItem)
         children = self.getLdapItemChildren(fullPath, 1)
         
-        serverName, selectedObject = self.__split_path(fullPath)
+        serverName, selectedObject = self.splitPath(fullPath)
         if len(selectedObject) == 0:
             return None
             
@@ -484,7 +484,7 @@ See console output for more information."""),
         
         while ((len(children) > 0) and (not(children == None))) :
             environment.updateUI()
-            self.__delete_ldap_entry(serverName, children[-1][0])
+            self.deleteLdapEntry(serverName, children[-1][0])
             del children[-1]
         
         parent.setOpen(0)
@@ -502,7 +502,7 @@ See console output for more information."""),
 
 ###############################################################################
 
-    def __delete_ldap_entry(self, serverName, ldapObject):
+    def deleteLdapEntry(self, serverName, ldapObject):
         """ Delete a ldap object from the server given by serverName and
        ldapObject. 
         """

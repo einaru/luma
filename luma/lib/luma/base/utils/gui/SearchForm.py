@@ -39,13 +39,13 @@ class SearchForm(SearchFormDesign):
                 else:
                     self.serverBox.insertItem(x.name)
 
-        self.init_filter_bookmarks()
+        self.initFilterBookmarks()
 
         self.searchEdit.installEventFilter(self)
 
 ###############################################################################
 
-    def start_search(self):
+    def startSearch(self):
         self.groupBox2.setEnabled(False)
         
         #parentObject = self
@@ -53,7 +53,7 @@ class SearchForm(SearchFormDesign):
         #    parentObject = parentObject.parentWidget()
         #tmpStatusBar = parentObject.statusBar()
 
-        liste = self.__get_search_criteria()
+        liste = self.getSearchCriteria()
         server = unicode(self.serverBox.currentText())
         serverMeta = self.serverListObject.getServerObject(server)
         
@@ -70,7 +70,7 @@ class SearchForm(SearchFormDesign):
 
 ###############################################################################
 
-    def start_filter_wizard(self):
+    def startFilterWizard(self):
         server = unicode(self.serverBox.currentText())
         if self.serverList == None:
             print "Warning: Please set up some servers to connect to."
@@ -81,13 +81,13 @@ class SearchForm(SearchFormDesign):
         dialog = FilterWizard(server)
         dialog.exec_loop()
         if dialog.result() == QDialog.Accepted:
-            self.init_filter_bookmarks()
+            self.initFilterBookmarks()
             self.searchEdit.setCurrentText(dialog.searchFilterEdit.text())
 
 
 ###############################################################################
 
-    def init_filter_bookmarks(self):
+    def initFilterBookmarks(self):
         bookmarkFile = os.path.join(environment.userHomeDir, ".luma", "filterBookmarks")
         try:
             fileHandler = open(bookmarkFile, 'r')
@@ -101,7 +101,7 @@ class SearchForm(SearchFormDesign):
 
 ###############################################################################
 
-    def __get_search_criteria(self):
+    def getSearchCriteria(self):
         filterString = unicode(self.searchEdit.currentText())
         filterPattern = re.compile("\(\w*=")
         tmpList = filterPattern.findall(filterString)
@@ -115,6 +115,6 @@ class SearchForm(SearchFormDesign):
     def eventFilter(self, object, event):
         if (event.type() == QEvent.KeyRelease):
             if (event.key() == Qt.Key_Return):
-                self.start_search()
+                self.startSearch()
         return 0
 

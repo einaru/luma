@@ -2,8 +2,8 @@
 
 # Form implementation generated from reading ui file '/home/wido/src/luma/lib/luma/base/utils/gui/FilterWizardDesign.ui'
 #
-# Created: Sun Aug 29 00:49:06 2004
-#      by: The PyQt User Interface Compiler (pyuic) 3.12
+# Created: Sat Oct 30 00:26:57 2004
+#      by: The PyQt User Interface Compiler (pyuic) 3.13
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -151,15 +151,15 @@ class FilterWizardDesign(QDialog):
         self.resize(QSize(423,451).expandedTo(self.minimumSizeHint()))
         self.clearWState(Qt.WState_Polished)
 
-        self.connect(self.pushButton11,SIGNAL("clicked()"),self,SLOT("accept()"))
-        self.connect(self.addObjectButton,SIGNAL("clicked()"),self.add_criteria)
-        self.connect(self.concatButton,SIGNAL("clicked()"),self.add_concat)
-        self.connect(self.attributeButton,SIGNAL("clicked()"),self.attribute_choice_changed)
-        self.connect(self.classButton,SIGNAL("clicked()"),self.class_choice_changed)
-        self.connect(self.bookmarkBox,SIGNAL("activated(const QString&)"),self.bookmark_selected)
-        self.connect(self.delBookmarkButton,SIGNAL("clicked()"),self.delete_bookmark)
-        self.connect(self.addBookmarkButton,SIGNAL("clicked()"),self.add_bookmark)
-        self.connect(self.pushButton6,SIGNAL("clicked()"),self,SLOT("reject()"))
+        self.connect(self.pushButton11,SIGNAL("clicked()"),self.accept)
+        self.connect(self.addObjectButton,SIGNAL("clicked()"),self.addCriteria)
+        self.connect(self.concatButton,SIGNAL("clicked()"),self.addConcat)
+        self.connect(self.attributeButton,SIGNAL("clicked()"),self.attributeChoiceChanged)
+        self.connect(self.classButton,SIGNAL("clicked()"),self.classChoiceChanged)
+        self.connect(self.bookmarkBox,SIGNAL("activated(const QString&)"),self.bookmarkSelected)
+        self.connect(self.delBookmarkButton,SIGNAL("clicked()"),self.deleteBookmark)
+        self.connect(self.addBookmarkButton,SIGNAL("clicked()"),self.addBookmark)
+        self.connect(self.pushButton6,SIGNAL("clicked()"),self.reject)
 
 
     def languageChange(self):
@@ -192,26 +192,26 @@ class FilterWizardDesign(QDialog):
         self.pushButton6.setAccel(self.__tr("Alt+C"))
 
 
-    def class_choice_changed(self):
-        print "FilterWizardDesign.class_choice_changed(): Not implemented yet"
+    def classChoiceChanged(self):
+        print "FilterWizardDesign.classChoiceChanged(): Not implemented yet"
 
-    def add_criteria(self):
-        print "FilterWizardDesign.add_criteria(): Not implemented yet"
+    def addCriteria(self):
+        print "FilterWizardDesign.addCriteria(): Not implemented yet"
 
-    def add_concat(self):
-        print "FilterWizardDesign.add_concat(): Not implemented yet"
+    def addConcat(self):
+        print "FilterWizardDesign.addConcat(): Not implemented yet"
 
-    def attribute_choice_changed(self):
-        print "FilterWizardDesign.attribute_choice_changed(): Not implemented yet"
+    def attributeChoiceChanged(self):
+        print "FilterWizardDesign.attributeChoiceChanged(): Not implemented yet"
 
-    def bookmark_selected(self):
-        print "FilterWizardDesign.bookmark_selected(): Not implemented yet"
+    def bookmarkSelected(self):
+        print "FilterWizardDesign.bookmarkSelected(): Not implemented yet"
 
-    def delete_bookmark(self):
-        print "FilterWizardDesign.delete_bookmark(): Not implemented yet"
+    def deleteBookmark(self):
+        print "FilterWizardDesign.deleteBookmark(): Not implemented yet"
 
-    def add_bookmark(self):
-        print "FilterWizardDesign.add_bookmark(): Not implemented yet"
+    def addBookmark(self):
+        print "FilterWizardDesign.addBookmark(): Not implemented yet"
 
     def __tr(self,s,c = None):
         return qApp.translate("FilterWizardDesign",s,c)

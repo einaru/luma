@@ -2,8 +2,8 @@
 
 # Form implementation generated from reading ui file '/home/wido/src/luma/lib/luma/base/utils/gui/SearchFormDesign.ui'
 #
-# Created: Sun Aug 29 00:49:06 2004
-#      by: The PyQt User Interface Compiler (pyuic) 3.12
+# Created: Sat Oct 30 00:16:19 2004
+#      by: The PyQt User Interface Compiler (pyuic) 3.13
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -64,11 +64,11 @@ class SearchFormDesign(QWidget):
 
         self.languageChange()
 
-        self.resize(QSize(609,121).expandedTo(self.minimumSizeHint()))
+        self.resize(QSize(609,118).expandedTo(self.minimumSizeHint()))
         self.clearWState(Qt.WState_Polished)
 
-        self.connect(self.filterWizardButton,SIGNAL("clicked()"),self.start_filter_wizard)
-        self.connect(self.startButton,SIGNAL("clicked()"),self.start_search)
+        self.connect(self.filterWizardButton,SIGNAL("clicked()"),self.startFilterWizard)
+        self.connect(self.startButton,SIGNAL("clicked()"),self.startSearch)
 
 
     def languageChange(self):
@@ -82,11 +82,11 @@ class SearchFormDesign(QWidget):
         self.startButton.setAccel(self.__tr("Alt+S"))
 
 
-    def start_filter_wizard(self):
-        print "SearchFormDesign.start_filter_wizard(): Not implemented yet"
+    def startFilterWizard(self):
+        print "SearchFormDesign.startFilterWizard(): Not implemented yet"
 
-    def start_search(self):
-        print "SearchFormDesign.start_search(): Not implemented yet"
+    def startSearch(self):
+        print "SearchFormDesign.startSearch(): Not implemented yet"
 
     def __tr(self,s,c = None):
         return qApp.translate("SearchFormDesign",s,c)
