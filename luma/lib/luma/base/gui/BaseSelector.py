@@ -10,6 +10,7 @@
 
 from qt import *
 from base.gui.BaseSelectorDesign import BaseSelectorDesign
+from base.utils.gui.LumaErrorDialog import LumaErrorDialog
 
 
 class BaseSelector(BaseSelectorDesign):
@@ -45,12 +46,20 @@ class BaseSelector(BaseSelectorDesign):
 ###############################################################################
 
     def addServerBase(self):
-        serverBaseList = self.connection.getBaseDNList()
-        for x in serverBaseList:
-            if not (x in self.baseList):
-                self.baseList.append(x)
-                self.baseList.sort()
-        self.displayBase()
+        success, serverBaseList, exceptionObject = self.connection.getBaseDNList()
+        
+        if success:
+            for x in serverBaseList:
+                if not (x in self.baseList):
+                    self.baseList.append(x)
+                    self.baseList.sort()
+            self.displayBase()
+        else:
+            dialog = LumaErrorDialog()
+            errorMsg = self.trUtf8("Could not retrieve baseDN.<br><br>Reason: ")
+            errorMsg.append(str(exceptionObject))
+            dialog.setErrorMessage(errorMsg)
+            dialog.exec_loop()
         
 ###############################################################################
 

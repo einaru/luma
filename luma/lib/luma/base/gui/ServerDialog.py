@@ -21,6 +21,7 @@ from base.backend.ServerList import ServerList
 import environment
 from base.gui.BaseSelector import BaseSelector
 from base.backend.LumaConnection import LumaConnection
+from base.utils.gui.LumaErrorDialog import LumaErrorDialog
 
 class ServerDialog(ServerDialogDesign):
     """The dialog for managing all server information.
@@ -64,6 +65,8 @@ class ServerDialog(ServerDialogDesign):
         
         # Will be set to the currently selected server
         self.currentServer = None
+        
+        self.disableBaseLookup = False
         
         self.displayServerList()
         
@@ -165,7 +168,12 @@ class ServerDialog(ServerDialogDesign):
         tmpItem = QListViewItem(self.serverListView, result[0])
         tmpItem.setPixmap(0, self.serverIcon)
         self.serverListView.insertItem(tmpItem)
+        
+        self.currentServer = serverObject
+        
+        self.disableBaseLookup = True
         self.serverListView.setSelected(tmpItem, True)
+        self.disableBaseLookup = False
         
 ###############################################################################
 
@@ -199,16 +207,16 @@ class ServerDialog(ServerDialogDesign):
         """
         
         selectedServerString = self.serverListView.currentItem().text(0)
-        reallyDelete = QMessageBox(self.trUtf8("Delete Server?"),
+        tmpDialog = QMessageBox(self.trUtf8("Delete Server?"),
                 self.trUtf8("Do your really want to delete the Server?"),
                 QMessageBox.Critical,
                 QMessageBox.Ok,
                 QMessageBox.Cancel,
                 QMessageBox.NoButton,
                 self)
-        reallyDelete.setIconPixmap(QPixmap(os.path.join(self._PREFIX, "share", "luma", "icons", "error.png")))
-        reallyDelete.exec_loop()
-        if (reallyDelete.result() == 1):
+        tmpDialog.setIconPixmap(QPixmap(os.path.join(self._PREFIX, "share", "luma", "icons", "warning_big.png")))
+        tmpDialog.exec_loop()
+        if (tmpDialog.result() == 1):
             self.serverListObject.deleteServer(unicode(selectedServerString))
             if len(self.serverListObject.serverList) == 0:
                 self.serverWidget.setEnabled(False)
@@ -225,20 +233,19 @@ class ServerDialog(ServerDialogDesign):
         """
 
         connection = LumaConnection(self.currentServer)
-        baseList = connection.getBaseDNList()
-        if None == baseList:
-            QMessageBox.warning(None,
-                self.trUtf8("Error"),
-                self.trUtf8("""Could not retrieve BaseDN for server. 
-Maybe the server data is not correct. 
-Please see console output for more information."""),
-                self.trUtf8("&OK"),
-                None,
-                None,
-                0, -1)
-            return []
-        else:
+        success, baseList, exceptionObject = connection.getBaseDNList()
+        
+        if success:
             return baseList
+        else:
+            dialog = LumaErrorDialog()
+            errorMsg = self.trUtf8("Could not retrieve baseDN for LDAP server at host/ip:")
+            errorMsg.append("<br><b>" + unicode(self.currentServer.host) + "</b><br><br>")
+            errorMsg.append("Reason: ")
+            errorMsg.append(str(exceptionObject))
+            dialog.setErrorMessage(errorMsg)
+            dialog.exec_loop()
+            return []
 
 ###############################################################################
 
@@ -343,6 +350,10 @@ Please see console output for more information."""),
 
     def displayBase(self):
         self.baseDNView.clear()
+        
+        if self.disableBaseLookup:
+            return
+            
         if self.currentServer.autoBase:
             baseList = self.searchBaseDN()
             for x in baseList:
