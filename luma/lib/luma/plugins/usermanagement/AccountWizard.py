@@ -141,20 +141,24 @@ class AccountWizard(AccountWizardDesign):
         dn = "uid=" + self.accountWidget.CURRENTDATA["uid"][0] + "," + self.locationDN
         values = self.accountWidget.CURRENTDATA
         
-        objectClasses = ["posixAccount"]
-        if values.has_key("shadowExpire"):
-            objectClasses.append("shadowAccount")
-        if values.has_key("mail"):
-            objectClasses.append("inetOrgPerson")
-            # UGLY HACK
-            values["sn"] = values["uid"]
-        else:
-            objectClasses.append("account")
-        
+        objectClasses = ["top", "posixAccount", "shadowAccount", "inetOrgPerson",
+            "organizationalPerson", "person"]
         values["objectClass"] = objectClasses
-        #values["objectClass"] = ["posixAccount", "shadowAccount", 
-        #    "organizationalPerson", "inetOrgPerson", "qmailUser"]
-        #values["mailAlternateAddress"] = [values["uid"][0] + "@mail.in.tu-clausthal.de"]
+        
+        values["sn"] = values["uid"]
+        
+        if not values.has_key("userPassword"):
+            QMessageBox.warning(None,
+                self.trUtf8("Missing Password"),
+                self.trUtf8("""It is strongly recommended that you choose 
+a password a password for the new user. Otherwise 
+it might compromise the security of your system."""),
+                self.trUtf8("&OK"),
+                None,
+                None,
+                0, -1)
+            return
+
         
         groupName = unicode(self.accountWidget.groupEdit.text())
         
