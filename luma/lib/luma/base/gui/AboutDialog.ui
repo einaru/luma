@@ -17,8 +17,8 @@
         <rect>
             <x>0</x>
             <y>0</y>
-            <width>613</width>
-            <height>432</height>
+            <width>545</width>
+            <height>450</height>
         </rect>
     </property>
     <property name="caption">
@@ -33,7 +33,7 @@
                 <cstring>textLabel5</cstring>
             </property>
             <property name="text">
-                <string>&lt;font size="+2"&gt;&lt;b&gt;Luma 1.0beta2 &lt;/b&gt;&lt;/font&gt;</string>
+                <string>&lt;font size="+2"&gt;&lt;b&gt;Luma 1.0beta3 &lt;/b&gt;&lt;/font&gt;</string>
             </property>
         </widget>
         <widget class="QTabWidget">
@@ -384,6 +384,46 @@ PROGRAMS), EVEN IF SUCH HOLDER OR OTHER PARTY HAS BEEN ADVISED OF THE
 POSSIBILITY OF SUCH DAMAGES.
 
 		     END OF TERMS AND CONDITIONS
+</string>
+                        </property>
+                    </widget>
+                </vbox>
+            </widget>
+            <widget class="QWidget">
+                <property name="name">
+                    <cstring>tab</cstring>
+                </property>
+                <attribute name="title">
+                    <string>Credits</string>
+                </attribute>
+                <vbox>
+                    <property name="name">
+                        <cstring>unnamed</cstring>
+                    </property>
+                    <widget class="QTextBrowser">
+                        <property name="name">
+                            <cstring>textBrowser4_2</cstring>
+                        </property>
+                        <property name="text">
+                            <string>&lt;p&gt;&lt;b&gt;Bjørn Ove Grøtan&lt;/b&gt;&lt;br&gt;
+&lt;i&gt;Contributed his mkpasswd module.&lt;/i&gt;
+&lt;/p&gt;
+
+&lt;p&gt;&lt;b&gt;Kerstin Isebrecht&lt;/b&gt;&lt;br&gt;
+&lt;i&gt;Thanks for the ice and all your patience :)&lt;/i&gt;
+&lt;/p&gt;
+
+&lt;p&gt;&lt;b&gt;Jörn Körner&lt;/b&gt;&lt;br&gt;
+&lt;i&gt;Luma-crash-test-dummy. He also had the idea with the plugin support.&lt;/i&gt;
+&lt;/p&gt;
+
+&lt;p&gt;&lt;b&gt;Fernando Maciel Souto Maior&lt;/b&gt;&lt;br&gt;
+&lt;i&gt;Portuguese translation&lt;/i&gt;
+&lt;/p&gt;
+
+&lt;p&gt;&lt;b&gt;Jan Winhuysen&lt;/b&gt;&lt;br&gt;
+&lt;i&gt;My mentor and UI tester.&lt;/i&gt;
+&lt;/p&gt;
 </string>
                         </property>
                     </widget>
