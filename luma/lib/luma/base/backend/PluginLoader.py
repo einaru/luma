@@ -55,15 +55,18 @@ class PluginLoader(object):
 ###############################################################################
 
     def __get_plugin_list(self):
-        """ Returns a list of diretories, where possible plugins a stored"""
+        """ Returns a list of diretories, where possible plugins a stored.
+        """
         
         tmpList = []
         try:
             # test for every file listed, if it is a directory
             for x in listdir(self.__pluginBaseDir):
                 tmp = os.path.join (self.__pluginBaseDir, x)
+                
                 if os.path.isdir(tmp):
                     tmpList.append(tmp)
+                    
             return tmpList
         except OSError, errorData:
             print "Error: could not read from directory where plugins are stored"
@@ -102,6 +105,9 @@ class PluginLoader(object):
                 
                 tmpObject = TaskPlugin()
                 tmpObject.pluginPath = tmpPlugin["PLUGIN_PATH"]
+                tmpDir = os.path.split(tmpPlugin["PLUGIN_PATH"])[1]
+                tmpObject.pluginIconPath = os.path.join(environment.lumaInstallationPrefix, 
+                    "share", "luma", "icons", "plugins", tmpDir)
                 
                 
                 if self.__plugin_ok(tmpPlugin["PLUGIN_NAME"], dir(tmpObject)):
@@ -121,6 +127,7 @@ class PluginLoader(object):
         
         for x in self.__pluginDirList:
             pluginMetaObject = {}
+            
             try:
                 pluginMetaObject = self.__read_meta_info(x, pluginsToLoad)
                 self.PLUGINS[pluginMetaObject["PLUGIN_NAME"]] = pluginMetaObject
@@ -141,6 +148,7 @@ class PluginLoader(object):
                             "PLUGIN_FILE", "PLUGIN_LOAD", "PLUGIN_PATH",
                             "PLUGIN_CODE"]
         META_INFO = {}
+        
         try:
             metaHandler = open(os.path.join(pluginPath,  "plugin.meta"), 'r')
             metaText = metaHandler.readlines()
@@ -190,7 +198,8 @@ class PluginLoader(object):
 ###############################################################################
 
     def __plugin_ok(self, name, values):
-        """Test if all needed functions are present in the plugin code. """
+        """Test if all needed functions are present in the plugin code. 
+        """
         
         neededFunctions = ["__init__", "get_icon", "pluginName", "getHelpText",
             "postprocess", "pluginPath", "getPluginWidget", "pluginWidget", "getPluginSettingsWidget"]
