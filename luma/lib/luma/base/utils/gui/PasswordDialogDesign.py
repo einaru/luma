@@ -2,8 +2,8 @@
 
 # Form implementation generated from reading ui file '/home/wido/src/luma/lib/luma/base/utils/gui/PasswordDialogDesign.ui'
 #
-# Created: Sun Aug 29 00:49:13 2004
-#      by: The PyQt User Interface Compiler (pyuic) 3.12
+# Created: Tue Oct 5 20:02:21 2004
+#      by: The PyQt User Interface Compiler (pyuic) 3.13
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -97,13 +97,18 @@ class PasswordDialogDesign(QDialog):
 
         self.languageChange()
 
-        self.resize(QSize(405,239).expandedTo(self.minimumSizeHint()))
+        self.resize(QSize(405,255).expandedTo(self.minimumSizeHint()))
         self.clearWState(Qt.WState_Polished)
 
         self.connect(self.okButton,SIGNAL("clicked()"),self.checkPassword)
-        self.connect(self.cancelButton,SIGNAL("clicked()"),self,SLOT("reject()"))
+        self.connect(self.cancelButton,SIGNAL("clicked()"),self.reject)
         self.connect(self.passwordEdit,SIGNAL("textChanged(const QString&)"),self.passwordChanged)
         self.connect(self.passwordSaveEdit,SIGNAL("textChanged(const QString&)"),self.passwordChanged)
+
+        self.setTabOrder(self.methodBox,self.passwordEdit)
+        self.setTabOrder(self.passwordEdit,self.passwordSaveEdit)
+        self.setTabOrder(self.passwordSaveEdit,self.okButton)
+        self.setTabOrder(self.okButton,self.cancelButton)
 
 
     def languageChange(self):
