@@ -132,6 +132,8 @@ class ObjectClassAttributeInfo(object):
         allAttributes = []
         
         for x in classList:
+            if not(self.OBJECTCLASSES.has_key(x)):
+                continue
             must = self.OBJECTCLASSES[x]["MUST"]
             may = self.OBJECTCLASSES[x]["MAY"]
             
@@ -222,6 +224,14 @@ class ObjectClassAttributeInfo(object):
         else:
             return 0
 
+###############################################################################
+
+    def has_objectClass(self, objectClass):
+        if objectClass in self.OBJECTCLASSES.keys():
+            return 1
+        else:
+            return 0
+        
 ###############################################################################
 
     def update_ui(self):
