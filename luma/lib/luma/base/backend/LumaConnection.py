@@ -86,8 +86,19 @@ class LumaConnection(object):
             environment.setBusy(False)
             return (True, resultList, None)
         else:
-            environment.setBusy(False)
-            return (False, None, workerThread.exceptionObject)
+            # Did we hit the server side search limit?
+            if isinstance(workerThread.exceptionObject, ldap.SIZELIMIT_EXCEEDED):
+                resultList = []
+                for x in workerThread.result:
+                    copyItem = copy.deepcopy(x)
+                    resultList.append(SmartDataObject(copyItem, self.serverMeta))
+                
+                environment.setBusy(False)
+                environment.displaySizeLimitWarning()
+                return (True, resultList, None)
+            else:
+                environment.setBusy(False)
+                return (False, None, workerThread.exceptionObject)
             
             
             
