@@ -11,61 +11,65 @@
 import environment
 
 import os.path
+from qtxml import *
 
 class LdapTemplate(object):
     """ A class for storing template information of ldap-objects.
-
-    self.name is the name of the template.
-    self.tData contains the template data.
-
-    self.tdata has the following structure:
-    [{'CLASSNAME': 'fooclassname', 'ATTRIBUTES': {'NAME': 'attributename', 
-    {'MUST': int, 'SINGLE': int, 'SHOW': int}}}, 
-    {...}, ...]
-
-    This is really ugly. There must be something better.
     """
 
     def __init__(self, filename=None):
-        # these attributes are the actual template data
+        # Template name
         self.name = ""
         self.description = ""
         self.serverName = ""
-        self.templateData = []
+        self.objectClasses = []
+        self.attributes = {}
 
         # this is status data of the template
         self.edited = False
 
 ###############################################################################
 
-    def get_objectclasses(self):
+    def getObjectClasses(self):
         """ Return a list of objectclasses.
         """
-    
-        tmpList = []
-        for x in self.tData:
-            tmpList.append(x["CLASSNAME"])
-        return tmpList
+        
+        return self.objectClasses
+        
+###############################################################################
+
+    def addObjectClass(self, className):
+        if not (className in self.objectClasses):
+            self.objectClasses.append(className)
 
 ###############################################################################
 
-    def get_attributeinfos(self):
+    def getAttributeInfos(self):
         """ Return a list of attributes together with their propperties.
         """
     
         tmpDict = {}
-        for x in self.tData:
+        for x in self.templateData:
             for y in x["ATTRIBUTES"]:
                 tmpDict[y["NAME"]] = {"MUST" : y["MUST"], "SINGLE" : y["SINGLE"] , "SHOW" : y["SHOW"] }
         return tmpDict
 
 ###############################################################################
 
-    def set_attribute_show(self, attribute, value):
+    def getAttributeList(self):
+        tmpList = []
+        for x in self.attributes.keys():
+            tmpList.append(x)
+            
+        return tmpList
+        
+###############################################################################
+
+    def setAttributeShow(self, attribute, value):
         """ Set the property 'SHOW' of attribute to value.
         """
     
-        for x in self.tData:
+        for x in self.templateData:
             for y in x['ATTRIBUTES']:
                 if y['NAME'] == attribute:
                     y['SHOW'] = value
@@ -78,7 +82,7 @@ class LdapTemplate(object):
     
         dataObject = {}
         
-        for x in self.tData:
+        for x in self.templateData:
             objectClass = x["CLASSNAME"]
             if dataObject.has_key(objectClass):
                 dataObject["objectClass"].append(objectClass)
@@ -90,56 +94,44 @@ class LdapTemplate(object):
                     dataObject[y["NAME"]] = [""]
         
         return dataObject
+        
+###############################################################################
+
+    def addAttribute(self, name, must, single, binary, defaultValue):
+        self.attributes[name] = AttributeObject(name, must, single, binary, defaultValue)
+    
+###############################################################################
+
+class AttributeObject(object):
+
+    def __init__(self, name="", must=False, single=False, binary=False, defaultValue=None):
+        self.attributeName = name
+        self.must = must
+        self.single = single
+        self.binary = binary
+        self.defaultValue = defaultValue
+
 
 ###############################################################################
 
-    def __repr__(self):
-        tmpList = []
-        tmpList.append("Name: " + self.name.encode("utf-8") + "\n")
-        for x in self.tData:
-            tmpList.append("class ")
-            tmpList.append(x["CLASSNAME"].encode("utf-8"))
-            tmpList.append(" >> ")
-            for y in x["ATTRIBUTES"]:
-                tmpList.append(y["NAME"].encode("utf-8") + ",")
-                if y["MUST"]:
-                    tmpList.append("MUST,")
-                else:
-                    tmpList.append("NOMUST,")
-                if y["SINGLE"]:
-                    tmpList.append("SINGLE,")
-                else:
-                    tmpList.append("NOSINGLE,")
-                if y["SHOW"]:
-                    tmpList.append("SHOW")
-                else:
-                    tmpList.append("NOSHOW")
-                tmpList.append(" || ")
 
-            del tmpList[-1]
-            tmpList.append("\n")
-        tmpList.append("\n")
-        return "".join(tmpList)
-
-###############################################################################
-
-class TemplateFile:
+class TemplateList:
     """ A class for loading and saving template data to file.
     """
 
-    def __init__(self):
-        self.tplFile = os.path.join (environment.userHomeDir, ".luma", "templates")
+    def __init__(self, tmpList):
+        self.templateFile = os.path.join (environment.userHomeDir, ".luma", "templates")
 
-        self.tplList = []
+        self.templateList = tmpList
 
-        try:
-            self.read_list()
-        except IOError, data:
-            print "Template file could not be read. \nReason: " + str(data)
+        #try:
+        #    self.read_list()
+        #except IOError, data:
+        #    print "Template file could not be read. \nReason: " + str(data)
 
 ###############################################################################
 
-    def read_list(self):
+    def readList(self):
         """ Read template Info from file.
     
         Templates are stored in self.tplList
@@ -196,27 +188,59 @@ class TemplateFile:
 
 ###############################################################################
 
-    def save_to_file(self):
+    def save(self):
         """ Save template list to file.
         """
-        fileHandler = open(self.tplFile, "w")
-        for x in self.tplList:
-            fileHandler.write(str(x))
+        
+        document = QDomDocument("Luma template file")
+        root = document.createElement( "Luma templates" )
+        document.appendChild(root)
+        
+        for x in self.templateList:
+            templateNode = document.createElement("template")
+            templateNode.setAttribute("name", x.name)
+            templateNode.setAttribute("server", x.serverName)
+            templateNode.setAttribute("description", x.description)
+            
+            templateClasses = document.createElement("objectClasses")
+            for y in x.objectClasses:
+                classNode = document.createElement(y)
+                templateClasses.appendChild(classNode)
+            templateNode.appendChild(templateClasses)
+            
+            templateAttributes = document.createElement("attributes")
+            for y in x.attributes.keys():
+                attribute = x.attributes[y]
+                attributeNode = document.createElement(attribute.attributeName)
+                attributeNode.setAttribute("must", str(attribute.must))
+                attributeNode.setAttribute("single", str(attribute.single))
+                attributeNode.setAttribute("binary", str(attribute.binary))
+                if not (attribute.defaultValue == None):
+                    attributeNode.setAttribute("defaultValue", unicode(attribute.defaultValue))
+                templateAttributes.appendChild(attributeNode)
+            templateNode.appendChild(templateAttributes)
+            
+            
+            root.appendChild(templateNode)
+        
+        
+        fileHandler = open(self.templateFile, "w")
+        fileHandler.write(unicode(document.toString()))
         fileHandler.close()
 
 ###############################################################################
 
-    def add_template(self, name):
+    def addTemplate(self, name):
         pass
 
 ###############################################################################
 
-    def delete_template(self, name):
+    def deleteTemplate(self, name):
         pass
         
 ###############################################################################
 
-    def get_templateobject(self, templateName):
+    def getTemplate(self, templateName):
         """ Get a template given by templateName
         """
         
