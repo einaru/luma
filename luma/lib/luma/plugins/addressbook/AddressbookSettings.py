@@ -53,9 +53,9 @@ class AddressbookSettings(AddressbookSettingsDesign):
             filter = config.get('Addressbook', 'filter')
             filterSplit = filter.split(",")
             if filterSplit[0] == "":
-                config.set("Addressbook", "filter", "inetOrgPerson,cn,sn,givenName")
+                config.set("Addressbook", "filter", "inetOrgPerson,cn,sn,givenName,mail")
                 config.write(open(self.configFile, 'w'))
-                filterSplit = "inetOrgPerson,cn,sn,givenName".split(",")
+                filterSplit = "inetOrgPerson,cn,sn,givenName,mail".split(",")
             
             for x in filterSplit:
                 tmpItem = QListViewItem(self.attributeView, x)
@@ -65,7 +65,7 @@ class AddressbookSettings(AddressbookSettingsDesign):
         else:
             config.add_section("Addressbook")
             config.set("Addressbook", "load", "1")
-            config.set("Addressbook", "filter", "inetOrgPerson,cn,sn,givenName")
+            config.set("Addressbook", "filter", "inetOrgPerson,cn,sn,givenName,mail")
             config.write(open(self.configFile, 'w'))
         
 ###############################################################################
