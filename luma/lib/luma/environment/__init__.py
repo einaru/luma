@@ -86,6 +86,17 @@ def getAvailableHashMethods():
     return tmpList
 
 ###############################################################################
+
+def displaySizeLimitWarning():
+    """ This is only a dummy function. MainWin sets its displaySizeLimitWarning 
+    function to this one.
+    
+    This way these functions can be accessed globally. No need to import qt and use qApp
+    """
+    
+    pass
+    
+###############################################################################
   
 setPaths()
 sys.path.append(os.path.join(userHomeDir, ".luma", "scripts"))

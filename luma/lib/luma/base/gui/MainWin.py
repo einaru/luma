@@ -72,6 +72,7 @@ class MainWin(MainWinDesign):
         self.ICONPREFIX = os.path.join(environment.lumaInstallationPrefix, "share", "luma", "icons")
         environment.updateUI = self.updateUI
         environment.setBusy = self.setBusy
+        environment.displaySizeLimitWarning = self.displaySizeLimitWarning
 
 ###############################################################################
 
@@ -313,6 +314,13 @@ class MainWin(MainWinDesign):
                 
             self.reloadPlugins()
 
+###############################################################################
+
+    def displaySizeLimitWarning(self):
+        statusBar = self.statusBar()
+        statusBar.message("Search request reached server side size limit!", 10000)
+        
+        
 ###############################################################################
 
     def savePosition(self):
