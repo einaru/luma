@@ -1,0 +1,44 @@
+Bjørn Ove Grøtan
+Contributed his mkpasswd module. 
+
+Kerstin Isebrecht
+Thanks for the ice and all your patience :) 
+
+Jörn Körner
+Luma-crash-test-dummy. He also had the idea with the plugin support. 
+
+Fernando Maciel Souto Maior
+Portuguese translation 
+
+Jan Winhuysen
+My mentor and UI tester :) 
+
+Eric Côté
+Testing guinea pig for python 2.3 
+
+
+
+
+<p><b>Bjørn Ove Grøtan</b><br>
+<i>Contributed his mkpasswd module.</i>
+</p>
+
+<p><b>Kerstin Isebrecht</b><br>
+<i>Thanks for the ice and all your patience :)</i>
+</p>
+
+<p><b>Jörn Körner</b><br>
+<i>Luma-crash-test-dummy. He also had the idea with the plugin support.</i>
+</p>
+
+<p><b>Fernando Maciel Souto Maior</b><br>
+<i>Portuguese translation</i>
+</p>
+
+<p><b>Jan Winhuysen</b><br>
+<i>My mentor and UI tester :)</i>
+</p>
+
+<p><b>Eric Côté</b><br>
+<i>Testing guinea pig for python 2.3</i>
+</p>
