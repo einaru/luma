@@ -24,10 +24,12 @@ class PluginLoaderGui(PluginLoaderGuiDesign):
     def __init__(self, tmpPlugins=None, parent=None):
         PluginLoaderGuiDesign.__init__(self, parent)
         
+        self.defaultsHome = os.path.join(environment.userHomeDir, ".luma", "plugins")
+        firstStart = not (os.path.exists(self.defaultsHome))
+        
         self.fooWidget = QWidget(self.settingsStack)
         self.settingsStack.addWidget(self.fooWidget)
         
-        self.defaultsHome = os.path.join(environment.userHomeDir, ".luma", "plugins")
         self.checkerList = []
         self.PLUGINS = tmpPlugins
         
@@ -44,7 +46,14 @@ class PluginLoaderGui(PluginLoaderGuiDesign):
                 widgetTmp = QWidget(self.settingsStack)
             id = self.settingsStack.addWidget(widgetTmp, -1)
             tmpObject["SETTINGS_WIDGET_ID"] = id
-            
+
+        
+        # This is executed if Luma is started for the first time. It ensures 
+        # that all plugins are selected altough no plugins files exists.
+        if firstStart:
+            for x in self.checkerList:
+                x.setOn(1)
+        
         # Read the plugin config from disk. This does not get the specific plugin settings.
         # It is only determined, which plugins should be loaded.
         try:
