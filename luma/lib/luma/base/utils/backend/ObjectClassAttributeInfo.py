@@ -165,7 +165,7 @@ class ObjectClassAttributeInfo(object):
         return may
 
 ###############################################################################
-    def getAllobjectClassesDictForAttr(self,attribute=""):
+    def getAllObjectclassesForAttr(self,attribute=""):
         """ Returns two sets of objectClassesDict that either MUST
             or MAY use a given attribute
         """
