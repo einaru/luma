@@ -1202,23 +1202,11 @@ the selected objectclass.&lt;/p&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Export to LDIF</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Delete</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Delete entry</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Add entry</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Delete entries</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1246,27 +1234,11 @@ the selected objectclass.&lt;/p&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Do your really want to delete the entry from the server?</source>
+        <source>Could not retrieve entry for deletion.&lt;br&gt;&lt;br&gt;Reason: </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Could not delete entry.&lt;br&gt;&lt;br&gt;Reason: </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Do your really want to delete the items recursively from the server?</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Could not delete the following entry:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Reason: </source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Could not delete items.&lt;br&gt;&lt;br&gt;Reason: </source>
+        <source>Export</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1507,6 +1479,164 @@ the selected objectclass.&lt;/p&gt;</source>
     </message>
     <message>
         <source>Fill contact data</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>DeleteDialog</name>
+    <message>
+        <source>Item deleted successfully.</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>DeleteDialogDesign</name>
+    <message>
+        <source>DN</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Message</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Delete items</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Cancel</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Alt+C</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>DL</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The following entries will be deleted from the server. You can remove items from the list if you don&apos;t want them to be deleted. Press start to begin with deletion.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Start</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Alt+S</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Remove</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Alt+R</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>ExportDialog</name>
+    <message>
+        <source>Select file to change binary value</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Given file is a directory. Please check the filename.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Can&apos;t open file. Please check file system permissions.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Could not export all entires. Please check messages.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>All items exported successfully.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Item exported successfully.</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>ExportDialogDesign</name>
+    <message>
+        <source>1</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>DN</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Message</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Export items</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The following entries will be exported to the format of your choice. You can remove items from the list if you don&apos;t want them to be exported. Press start to begin with export..</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Start</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Alt+S</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Remove</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Alt+R</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>DL</source>
+        <comment>DO NOT TRANSLATE</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>A</source>
+        <comment>DO NOT TRANSLATE</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Export format:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>foo</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>LDIF</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>DSML</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Output file:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Cancel</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Alt+C</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -2511,6 +2641,148 @@ Try increasing the uidNumber range or delete some users from the subtree.</sourc
     </message>
 </context>
 <context>
+    <name>SchemaView</name>
+    <message>
+        <source>Could not fetch schema information from server.&lt;br&gt;&lt;br&gt;Reason: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;Attribute name&lt;/b&gt;&lt;br&gt;Description</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;Class Name&lt;/b&gt;&lt;br&gt;Description</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;Syntax&lt;/b&gt;&lt;br&gt;Description</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;Matching rule&lt;/b&gt;&lt;br&gt;Description</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>SchemaViewDesign</name>
+    <message>
+        <source>Form</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Server:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Filter:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>ObjectClasses</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Attributes</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Matching rules</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>LDAP syntaxes</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;Class Name&lt;/b&gt;&lt;br&gt;
+Description</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Kind:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>OID:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Superior:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;Required attributes&lt;/b&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;Allowed attributes&lt;/b&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;Attribute name&lt;/b&gt;&lt;br&gt;
+Description</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;Used in ObjectClasses&lt;/b&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Single value</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Collective</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Obsolete</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Syntax {length}:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ordering:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Usage:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Equality:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;Matching rule&lt;/b&gt;&lt;br&gt;
+Description</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Syntax:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;Used in Attribute&lt;/b&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;Syntax&lt;/b&gt;&lt;br&gt;
+Description</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;Used in attributes&lt;/b&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;Used in matching rules&lt;/b&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>SearchForm</name>
     <message>
         <source>Could not bind to server.&lt;br&gt;&lt;br&gt;Reason: </source>
@@ -2575,15 +2847,7 @@ Try increasing the uidNumber range or delete some users from the subtree.</sourc
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Delete entry</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>&lt;u&gt;Binary value&lt;/u&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Do your really want to delete the item(s) from the server?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2591,11 +2855,7 @@ Try increasing the uidNumber range or delete some users from the subtree.</sourc
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Could not delete the following entry:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Reason: </source>
+        <source>Could not access entry.&lt;br&gt;&lt;br&gt;Reason: </source>
         <translation type="unfinished"></translation>
     </message>
 </context>
