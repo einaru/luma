@@ -2,8 +2,8 @@
 
 # Form implementation generated from reading ui file '/home/wido/src/luma/lib/luma/base/gui/PluginLoaderGuiDesign.ui'
 #
-# Created: Tue Feb 3 23:58:01 2004
-#      by: The PyQt User Interface Compiler (pyuic) 3.10
+# Created: Thu Mar 25 00:32:37 2004
+#      by: The PyQt User Interface Compiler (pyuic) 3.11
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -64,8 +64,8 @@ class PluginLoaderGuiDesign(QDialog):
         PluginLoaderGuiDesignLayout.addWidget(self.line2)
 
         layout1 = QHBoxLayout(None,0,6,"layout1")
-        spacer = QSpacerItem(458,21,QSizePolicy.Expanding,QSizePolicy.Minimum)
-        layout1.addItem(spacer)
+        spacer1 = QSpacerItem(458,21,QSizePolicy.Expanding,QSizePolicy.Minimum)
+        layout1.addItem(spacer1)
 
         self.closeButton = QPushButton(self,"closeButton")
         self.closeButton.setFocusPolicy(QPushButton.ClickFocus)

@@ -2,8 +2,8 @@
 
 # Form implementation generated from reading ui file '/home/wido/src/luma/lib/luma/base/gui/ServerDialogDesign.ui'
 #
-# Created: Tue Feb 3 23:58:01 2004
-#      by: The PyQt User Interface Compiler (pyuic) 3.10
+# Created: Thu Mar 25 00:32:37 2004
+#      by: The PyQt User Interface Compiler (pyuic) 3.11
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -150,8 +150,8 @@ class ServerDialogDesign(QDialog):
         self.closeButton = QPushButton(self,"closeButton")
 
         ServerDialogDesignLayout.addWidget(self.closeButton,1,1)
-        spacer = QSpacerItem(561,21,QSizePolicy.Expanding,QSizePolicy.Minimum)
-        ServerDialogDesignLayout.addItem(spacer,1,0)
+        spacer6 = QSpacerItem(561,21,QSizePolicy.Expanding,QSizePolicy.Minimum)
+        ServerDialogDesignLayout.addItem(spacer6,1,0)
 
         self.splitter4 = QSplitter(self,"splitter4")
         self.splitter4.setOrientation(QSplitter.Vertical)
@@ -174,8 +174,8 @@ class ServerDialogDesign(QDialog):
         self.modifyButton = QPushButton(self.groupBox5_2,"modifyButton")
 
         groupBox5_2Layout.addWidget(self.modifyButton,1,1)
-        spacer_2 = QSpacerItem(20,22,QSizePolicy.Minimum,QSizePolicy.Expanding)
-        groupBox5_2Layout.addItem(spacer_2,3,1)
+        spacer5 = QSpacerItem(20,22,QSizePolicy.Minimum,QSizePolicy.Expanding)
+        groupBox5_2Layout.addItem(spacer5,3,1)
 
         self.serverIconView = QIconView(self.groupBox5_2,"serverIconView")
         self.serverIconView.setMinimumSize(QSize(0,120))
@@ -226,8 +226,8 @@ class ServerDialogDesign(QDialog):
         layout1.addWidget(self.textLabel9)
 
         tabLayout.addLayout(layout1,0,0)
-        spacer_3 = QSpacerItem(21,81,QSizePolicy.Minimum,QSizePolicy.Expanding)
-        tabLayout.addItem(spacer_3,2,0)
+        spacer3 = QSpacerItem(21,81,QSizePolicy.Minimum,QSizePolicy.Expanding)
+        tabLayout.addItem(spacer3,2,0)
 
         layout2 = QVBoxLayout(None,0,6,"layout2")
 
@@ -271,8 +271,8 @@ class ServerDialogDesign(QDialog):
         self.bindAnonBox = QCheckBox(self.tab_2,"bindAnonBox")
 
         tabLayout_2.addMultiCellWidget(self.bindAnonBox,2,2,0,1)
-        spacer_4 = QSpacerItem(20,101,QSizePolicy.Minimum,QSizePolicy.Expanding)
-        tabLayout_2.addItem(spacer_4,5,1)
+        spacer7 = QSpacerItem(20,101,QSizePolicy.Minimum,QSizePolicy.Expanding)
+        tabLayout_2.addItem(spacer7,5,1)
 
         self.textLabel10 = QLabel(self.tab_2,"textLabel10")
         self.textLabel10.setAlignment(QLabel.WordBreak | QLabel.AlignVCenter)
