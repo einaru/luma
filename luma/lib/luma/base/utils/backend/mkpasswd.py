@@ -15,7 +15,7 @@
   General Public License for more details.
  
   You should have received a copy of the GNU General Public License
-  along with Cerebrum; if not, write to the Free Software Foundation,
+  along with Mkpasswd; if not, write to the Free Software Foundation,
   Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307, USA.
 
  For extra strength passwords, we wanted SSHA in our LDAP-environment
