@@ -346,19 +346,25 @@ My mentor and UI tester :)
 Eric Cote
 Testing guinea pig for python 2.3
 
-Jirka Jurek (jiri.jurek@trinet.as)
+Jirka Jurek (jiri.jurek at trinet.as)
 Czech translation
 
 Magnus Määttä
 Swedish translation
 
 Alexander Novitsky
-Russian translation</source>
+Russian translation
+
+Nextgens (nextgens at users.sourceforge.net)
+French translation
+
+Rebekka Golombek (rebekkagolombe at web.de)
+Luma logo</source>
         <comment>DO NOT TRANSLATE</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>&lt;font size=&quot;+2&quot;&gt;&lt;b&gt;Luma 2.1&lt;/b&gt;&lt;/font&gt;</source>
+        <source>&lt;font size=&quot;+2&quot;&gt;&lt;b&gt;Luma 2.1.1&lt;/b&gt;&lt;/font&gt;</source>
         <comment>DO NOT TRANSLATE</comment>
         <translation type="unfinished"></translation>
     </message>
@@ -1049,6 +1055,14 @@ které jsou povinné pro vybranou třídu objektu.&lt;/p&gt;</translation>
         <source>Could not delete entry.&lt;br&gt;&lt;br&gt;Reason: </source>
         <translation>Nelze smazat záznam.&lt;br&gt;&lt;br&gt;Důvod:</translation>
     </message>
+    <message>
+        <source>Save entry</source>
+        <translation type="unfinished">Uložit záznam</translation>
+    </message>
+    <message>
+        <source>Do you want to save the entry?</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>BaseSelector</name>
@@ -1202,10 +1216,6 @@ které jsou povinné pro vybranou třídu objektu.&lt;/p&gt;</translation>
         <translation>Položky</translation>
     </message>
     <message>
-        <source>Add Item</source>
-        <translation>Přidej položku</translation>
-    </message>
-    <message>
         <source>Delete</source>
         <translation>Smazat</translation>
     </message>
@@ -1242,20 +1252,48 @@ které jsou povinné pro vybranou třídu objektu.&lt;/p&gt;</translation>
         <translation>Nelze získat základní rozlišovací jméno (baseDN).&lt;br&gt;&lt;br&gt;Důvod:</translation>
     </message>
     <message>
-        <source>Could not export item.&lt;br&gt;&lt;br&gt;Reason: </source>
-        <translation>Nelze exportovat položku.&lt;br&gt;&lt;br&gt;Důvod:</translation>
-    </message>
-    <message>
-        <source>Could not export items.&lt;br&gt;&lt;br&gt;Reason: </source>
-        <translation>Nelze exportovat položky.&lt;br&gt;&lt;br&gt;Důvod:</translation>
-    </message>
-    <message>
-        <source>Could not retrieve entry for deletion.&lt;br&gt;&lt;br&gt;Reason: </source>
-        <translation>Nelze získat záznam pro smazání.&lt;br&gt;&lt;br&gt;Důvod:</translation>
-    </message>
-    <message>
         <source>Export</source>
         <translation>Exportovat</translation>
+    </message>
+    <message>
+        <source>Could not retrieve entry with DN %1 on server %2 for exporting.&lt;br&gt;&lt;br&gt;Reason: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Could not retrieve all entries for exporting. More information in the logger.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Could not retrieve entry with DN %1 on server %2 for deletion.&lt;br&gt;&lt;br&gt;Reason: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Could not retrieve all entries for deletion. More information in the logger.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Items</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Subtrees</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Subtrees with Parents</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Subtrees without Node</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Attribute</source>
+        <translation type="unfinished">Atribut</translation>
+    </message>
+    <message>
+        <source>Add</source>
+        <translation type="unfinished">Přidat</translation>
     </message>
 </context>
 <context>
@@ -2049,16 +2087,8 @@ které jsou povinné pro vybranou třídu objektu.&lt;/p&gt;</translation>
         <translation>Program</translation>
     </message>
     <message>
-        <source>Hide/Show pluginlist</source>
-        <translation>Skrýt/ukázat seznam modulů</translation>
-    </message>
-    <message>
         <source>About Luma...</source>
         <translation>O programu Luma...</translation>
-    </message>
-    <message>
-        <source>Ctrl+A</source>
-        <translation></translation>
     </message>
     <message>
         <source>Edit Server List...</source>
@@ -2066,10 +2096,6 @@ které jsou povinné pro vybranou třídu objektu.&lt;/p&gt;</translation>
     </message>
     <message>
         <source>Ctrl+E</source>
-        <translation></translation>
-    </message>
-    <message>
-        <source>Ctrl+X</source>
         <translation></translation>
     </message>
     <message>
@@ -2093,11 +2119,11 @@ které jsou povinné pro vybranou třídu objektu.&lt;/p&gt;</translation>
         <translation></translation>
     </message>
     <message>
-        <source>Ctrl+P</source>
-        <translation></translation>
+        <source>Show logger</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Show logger</source>
+        <source>Ctrl+Q</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

@@ -346,19 +346,25 @@ My mentor and UI tester :)
 Eric Cote
 Testing guinea pig for python 2.3
 
-Jirka Jurek (jiri.jurek@trinet.as)
+Jirka Jurek (jiri.jurek at trinet.as)
 Czech translation
 
 Magnus Määttä
 Swedish translation
 
 Alexander Novitsky
-Russian translation</source>
+Russian translation
+
+Nextgens (nextgens at users.sourceforge.net)
+French translation
+
+Rebekka Golombek (rebekkagolombe at web.de)
+Luma logo</source>
         <comment>DO NOT TRANSLATE</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>&lt;font size=&quot;+2&quot;&gt;&lt;b&gt;Luma 2.1&lt;/b&gt;&lt;/font&gt;</source>
+        <source>&lt;font size=&quot;+2&quot;&gt;&lt;b&gt;Luma 2.1.1&lt;/b&gt;&lt;/font&gt;</source>
         <comment>DO NOT TRANSLATE</comment>
         <translation type="unfinished"></translation>
     </message>
@@ -1052,6 +1058,14 @@ com a classe selecionada.&lt;/p&gt;</translation>
         <source>Could not delete entry.&lt;br&gt;&lt;br&gt;Reason: </source>
         <translation>Não pude deletar registro.&lt;br&gt;&lt;br&gt;Motivo:</translation>
     </message>
+    <message>
+        <source>Save entry</source>
+        <translation type="unfinished">Salvar dados</translation>
+    </message>
+    <message>
+        <source>Do you want to save the entry?</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>BaseSelector</name>
@@ -1205,10 +1219,6 @@ com a classe selecionada.&lt;/p&gt;</translation>
         <translation>Item</translation>
     </message>
     <message>
-        <source>Add Item</source>
-        <translation>Adicionar Item</translation>
-    </message>
-    <message>
         <source>Delete</source>
         <translation>Deletar</translation>
     </message>
@@ -1245,20 +1255,48 @@ com a classe selecionada.&lt;/p&gt;</translation>
         <translation>Não pude recuperar baseDN.&lt;br&gt;&lt;br&gt;Motivo:</translation>
     </message>
     <message>
-        <source>Could not export item.&lt;br&gt;&lt;br&gt;Reason: </source>
-        <translation>Não pude exportar item.&lt;br&gt;&lt;br&gt;Motivo:</translation>
-    </message>
-    <message>
-        <source>Could not export items.&lt;br&gt;&lt;br&gt;Reason: </source>
-        <translation>Não pude exportar itens.&lt;br&gt;&lt;br&gt;Motivo:</translation>
-    </message>
-    <message>
-        <source>Could not retrieve entry for deletion.&lt;br&gt;&lt;br&gt;Reason: </source>
-        <translation>Não pude recuperar registro para deleção.&lt;br&gt;&lt;br&gt;Motivo:</translation>
-    </message>
-    <message>
         <source>Export</source>
         <translation>Exportar</translation>
+    </message>
+    <message>
+        <source>Could not retrieve entry with DN %1 on server %2 for exporting.&lt;br&gt;&lt;br&gt;Reason: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Could not retrieve all entries for exporting. More information in the logger.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Could not retrieve entry with DN %1 on server %2 for deletion.&lt;br&gt;&lt;br&gt;Reason: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Could not retrieve all entries for deletion. More information in the logger.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Items</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Subtrees</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Subtrees with Parents</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Subtrees without Node</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Attribute</source>
+        <translation type="unfinished">Atributo</translation>
+    </message>
+    <message>
+        <source>Add</source>
+        <translation type="unfinished">Adicionar</translation>
     </message>
 </context>
 <context>
@@ -2052,16 +2090,8 @@ com a classe selecionada.&lt;/p&gt;</translation>
         <translation>Programa</translation>
     </message>
     <message>
-        <source>Hide/Show pluginlist</source>
-        <translation>Esconder/Mostrar lista de plugins</translation>
-    </message>
-    <message>
         <source>About Luma...</source>
         <translation>Sobre Luma...</translation>
-    </message>
-    <message>
-        <source>Ctrl+A</source>
-        <translation>Ctrl+A</translation>
     </message>
     <message>
         <source>Edit Server List...</source>
@@ -2070,10 +2100,6 @@ com a classe selecionada.&lt;/p&gt;</translation>
     <message>
         <source>Ctrl+E</source>
         <translation>Ctrl+E</translation>
-    </message>
-    <message>
-        <source>Ctrl+X</source>
-        <translation>Ctrl+X</translation>
     </message>
     <message>
         <source>Configure Plugins...</source>
@@ -2096,11 +2122,11 @@ com a classe selecionada.&lt;/p&gt;</translation>
         <translation>Ctrl+L</translation>
     </message>
     <message>
-        <source>Ctrl+P</source>
-        <translation>Ctrl+P</translation>
+        <source>Show logger</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Show logger</source>
+        <source>Ctrl+Q</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

@@ -346,19 +346,25 @@ My mentor and UI tester :)
 Eric Cote
 Testing guinea pig for python 2.3
 
-Jirka Jurek (jiri.jurek@trinet.as)
+Jirka Jurek (jiri.jurek at trinet.as)
 Czech translation
 
 Magnus Määttä
 Swedish translation
 
 Alexander Novitsky
-Russian translation</source>
+Russian translation
+
+Nextgens (nextgens at users.sourceforge.net)
+French translation
+
+Rebekka Golombek (rebekkagolombe at web.de)
+Luma logo</source>
         <comment>DO NOT TRANSLATE</comment>
         <translation></translation>
     </message>
     <message>
-        <source>&lt;font size=&quot;+2&quot;&gt;&lt;b&gt;Luma 2.1&lt;/b&gt;&lt;/font&gt;</source>
+        <source>&lt;font size=&quot;+2&quot;&gt;&lt;b&gt;Luma 2.1.1&lt;/b&gt;&lt;/font&gt;</source>
         <comment>DO NOT TRANSLATE</comment>
         <translation></translation>
     </message>
@@ -1045,6 +1051,14 @@ the selected objectclass.&lt;/p&gt;</source>
         <source>Could not delete entry.&lt;br&gt;&lt;br&gt;Reason: </source>
         <translation>Eintrag konnte nicht gelöscht werden.&lt;br&gt;&lt;br&gt;Grund:</translation>
     </message>
+    <message>
+        <source>Save entry</source>
+        <translation>Eintrag speichern</translation>
+    </message>
+    <message>
+        <source>Do you want to save the entry?</source>
+        <translation>Soll der Eintrag gespeichert werden?</translation>
+    </message>
 </context>
 <context>
     <name>BaseSelector</name>
@@ -1198,10 +1212,6 @@ the selected objectclass.&lt;/p&gt;</source>
         <translation>Eintrag</translation>
     </message>
     <message>
-        <source>Add Item</source>
-        <translation>Eintrag hinzufügen</translation>
-    </message>
-    <message>
         <source>Delete</source>
         <translation>Löschen</translation>
     </message>
@@ -1238,20 +1248,48 @@ the selected objectclass.&lt;/p&gt;</source>
         <translation>Basis DN konnte nicht gefunden werden.&lt;br&gt;&lt;br&gt;Grund:</translation>
     </message>
     <message>
-        <source>Could not export item.&lt;br&gt;&lt;br&gt;Reason: </source>
-        <translation>Eintrag konnte nicht exportiert werden.&lt;br&gt;&lt;br&gt;Grund:</translation>
-    </message>
-    <message>
-        <source>Could not export items.&lt;br&gt;&lt;br&gt;Reason: </source>
-        <translation>Einträge konnten nicht exportiert werden.&lt;br&gt;&lt;br&gt;Grund:</translation>
-    </message>
-    <message>
-        <source>Could not retrieve entry for deletion.&lt;br&gt;&lt;br&gt;Reason: </source>
-        <translation>Konnte zu löschenden Eintrag nicht finden.&lt;br&gt;&lt;br&gt;Grund:</translation>
-    </message>
-    <message>
         <source>Export</source>
         <translation>Exportieren</translation>
+    </message>
+    <message>
+        <source>Could not retrieve entry with DN %1 on server %2 for exporting.&lt;br&gt;&lt;br&gt;Reason: </source>
+        <translation>Der Eintrag mit der DN %1 vom Server %2 konnte für das Exportieren nicht abgefragt werden. &lt;br&gt;&lt;br&gt;Grund: </translation>
+    </message>
+    <message>
+        <source>Could not retrieve all entries for exporting. More information in the logger.</source>
+        <translation>Es konnten nicht alle Einträge zum Exportieren abgefragt werden. Mehr Informationen stehen im Logger.</translation>
+    </message>
+    <message>
+        <source>Could not retrieve entry with DN %1 on server %2 for deletion.&lt;br&gt;&lt;br&gt;Reason: </source>
+        <translation>Der Eintrag mit der DN %1 vom Server %2 konnte für das Löschen nicht abgefragt werden. &lt;br&gt;&lt;br&gt;Grund: </translation>
+    </message>
+    <message>
+        <source>Could not retrieve all entries for deletion. More information in the logger.</source>
+        <translation>Es konnten nicht alle Einträge zum Löschen abgefragt werden. Mehr Informationen stehen im Logger.</translation>
+    </message>
+    <message>
+        <source>Items</source>
+        <translation>Einträge</translation>
+    </message>
+    <message>
+        <source>Subtrees</source>
+        <translation>Teilbäume</translation>
+    </message>
+    <message>
+        <source>Subtrees with Parents</source>
+        <translation>Teilbäume mit Eltern</translation>
+    </message>
+    <message>
+        <source>Subtrees without Node</source>
+        <translation>Teilbäume ohne Knoten</translation>
+    </message>
+    <message>
+        <source>Attribute</source>
+        <translation>Attribut</translation>
+    </message>
+    <message>
+        <source>Add</source>
+        <translation>Hinzufügen</translation>
     </message>
 </context>
 <context>
@@ -2045,16 +2083,8 @@ the selected objectclass.&lt;/p&gt;</source>
         <translation>Programm</translation>
     </message>
     <message>
-        <source>Hide/Show pluginlist</source>
-        <translation>Plugins ausblenden/anzeigen</translation>
-    </message>
-    <message>
         <source>About Luma...</source>
         <translation>Über Luma...</translation>
-    </message>
-    <message>
-        <source>Ctrl+A</source>
-        <translation>Ctrl+L</translation>
     </message>
     <message>
         <source>Edit Server List...</source>
@@ -2063,10 +2093,6 @@ the selected objectclass.&lt;/p&gt;</source>
     <message>
         <source>Ctrl+E</source>
         <translation>Ctrl+E</translation>
-    </message>
-    <message>
-        <source>Ctrl+X</source>
-        <translation>Ctrl+B</translation>
     </message>
     <message>
         <source>Configure Plugins...</source>
@@ -2089,12 +2115,12 @@ the selected objectclass.&lt;/p&gt;</source>
         <translation>Ctrl+S</translation>
     </message>
     <message>
-        <source>Ctrl+P</source>
-        <translation>Ctrl+P</translation>
-    </message>
-    <message>
         <source>Show logger</source>
         <translation>Logfenster anzeigen</translation>
+    </message>
+    <message>
+        <source>Ctrl+Q</source>
+        <translation>Ctrl+Q</translation>
     </message>
 </context>
 <context>

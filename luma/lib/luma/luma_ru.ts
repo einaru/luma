@@ -346,21 +346,27 @@ My mentor and UI tester :)
 Eric Cote
 Testing guinea pig for python 2.3
 
-Jirka Jurek (jiri.jurek@trinet.as)
+Jirka Jurek (jiri.jurek at trinet.as)
 Czech translation
 
 Magnus Määttä
 Swedish translation
 
 Alexander Novitsky
-Russian translation</source>
+Russian translation
+
+Nextgens (nextgens at users.sourceforge.net)
+French translation
+
+Rebekka Golombek (rebekkagolombe at web.de)
+Luma logo</source>
         <comment>DO NOT TRANSLATE</comment>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>&lt;font size=&quot;+2&quot;&gt;&lt;b&gt;Luma 2.0.3&lt;/b&gt;&lt;/font&gt;</source>
+        <source>&lt;font size=&quot;+2&quot;&gt;&lt;b&gt;Luma 2.1.1&lt;/b&gt;&lt;/font&gt;</source>
         <comment>DO NOT TRANSLATE</comment>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1048,6 +1054,14 @@ the selected objectclass.&lt;/p&gt;</source>
         <source>Could not delete entry.&lt;br&gt;&lt;br&gt;Reason: </source>
         <translation>Не могу удалить запись.&lt;br&gt;&lt;br&gt;Причина:</translation>
     </message>
+    <message>
+        <source>Save entry</source>
+        <translation type="unfinished">Сохранить запись</translation>
+    </message>
+    <message>
+        <source>Do you want to save the entry?</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>BaseSelector</name>
@@ -1213,10 +1227,6 @@ the selected objectclass.&lt;/p&gt;</source>
         <translation>Поддерево без Узла</translation>
     </message>
     <message>
-        <source>Add Item</source>
-        <translation>Добавить Элемент</translation>
-    </message>
-    <message>
         <source>Delete</source>
         <translation>Удалить</translation>
     </message>
@@ -1241,20 +1251,48 @@ the selected objectclass.&lt;/p&gt;</source>
         <translation>Не могу получить базовое DN.&lt;br&gt;&lt;br&gt;Причина:</translation>
     </message>
     <message>
-        <source>Could not export item.&lt;br&gt;&lt;br&gt;Reason: </source>
-        <translation>Не могу экспортировать запись.&lt;br&gt;&lt;br&gt;Причина:</translation>
-    </message>
-    <message>
-        <source>Could not export items.&lt;br&gt;&lt;br&gt;Reason: </source>
-        <translation>Не могу экспортировать записи.&lt;br&gt;&lt;br&gt;Причина:</translation>
-    </message>
-    <message>
-        <source>Could not retrieve entry for deletion.&lt;br&gt;&lt;br&gt;Reason: </source>
-        <translation>Не могу получить запись для удаления.&lt;br&gt;&lt;br&gt;Причина:</translation>
-    </message>
-    <message>
         <source>Export</source>
         <translation>Экспорт</translation>
+    </message>
+    <message>
+        <source>Could not retrieve entry with DN %1 on server %2 for exporting.&lt;br&gt;&lt;br&gt;Reason: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Could not retrieve all entries for exporting. More information in the logger.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Could not retrieve entry with DN %1 on server %2 for deletion.&lt;br&gt;&lt;br&gt;Reason: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Could not retrieve all entries for deletion. More information in the logger.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Items</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Subtrees</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Subtrees with Parents</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Subtrees without Node</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Attribute</source>
+        <translation type="unfinished">Атрибут</translation>
+    </message>
+    <message>
+        <source>Add</source>
+        <translation type="unfinished">Добавить</translation>
     </message>
 </context>
 <context>
@@ -1876,6 +1914,10 @@ the selected objectclass.&lt;/p&gt;</source>
         <source>Info</source>
         <translation>Информация</translation>
     </message>
+    <message>
+        <source>Clear</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>LumaEntryBrowser</name>
@@ -2030,10 +2072,6 @@ the selected objectclass.&lt;/p&gt;</source>
         <translation>О программе Luma...</translation>
     </message>
     <message>
-        <source>Ctrl+A</source>
-        <translation>Ctrl+A</translation>
-    </message>
-    <message>
         <source>Edit Server List...</source>
         <translation>Редактировать список серверов...</translation>
     </message>
@@ -2044,10 +2082,6 @@ the selected objectclass.&lt;/p&gt;</source>
     <message>
         <source>Exit</source>
         <translation>Выход</translation>
-    </message>
-    <message>
-        <source>Ctrl+X</source>
-        <translation>Ctrl+X</translation>
     </message>
     <message>
         <source>Configure Plugins...</source>
@@ -2074,14 +2108,6 @@ the selected objectclass.&lt;/p&gt;</source>
         <translation>Ctrl+L</translation>
     </message>
     <message>
-        <source>Hide/Show pluginlist</source>
-        <translation>Скрыть/Показать список подключаемых модулей</translation>
-    </message>
-    <message>
-        <source>Ctrl+P</source>
-        <translation>Ctrl+P</translation>
-    </message>
-    <message>
         <source>Program</source>
         <translation>Программа</translation>
     </message>
@@ -2096,6 +2122,10 @@ the selected objectclass.&lt;/p&gt;</source>
     <message>
         <source>Show logger</source>
         <translation>Показать протокол</translation>
+    </message>
+    <message>
+        <source>Ctrl+Q</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

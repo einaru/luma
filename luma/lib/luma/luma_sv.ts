@@ -346,19 +346,25 @@ My mentor and UI tester :)
 Eric Cote
 Testing guinea pig for python 2.3
 
-Jirka Jurek (jiri.jurek@trinet.as)
+Jirka Jurek (jiri.jurek at trinet.as)
 Czech translation
 
 Magnus Määttä
 Swedish translation
 
 Alexander Novitsky
-Russian translation</source>
+Russian translation
+
+Nextgens (nextgens at users.sourceforge.net)
+French translation
+
+Rebekka Golombek (rebekkagolombe at web.de)
+Luma logo</source>
         <comment>DO NOT TRANSLATE</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>&lt;font size=&quot;+2&quot;&gt;&lt;b&gt;Luma 2.1&lt;/b&gt;&lt;/font&gt;</source>
+        <source>&lt;font size=&quot;+2&quot;&gt;&lt;b&gt;Luma 2.1.1&lt;/b&gt;&lt;/font&gt;</source>
         <comment>DO NOT TRANSLATE</comment>
         <translation type="unfinished"></translation>
     </message>
@@ -1050,6 +1056,14 @@ alla attribut som även dem måste läggas till för vald objektklass.&lt;/p&gt;
         <source>Could not delete entry.&lt;br&gt;&lt;br&gt;Reason: </source>
         <translation>Kunde inte ta bort post.&lt;br&gt;&lt;br&gt;Anledning:</translation>
     </message>
+    <message>
+        <source>Save entry</source>
+        <translation type="unfinished">Spara post</translation>
+    </message>
+    <message>
+        <source>Do you want to save the entry?</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>BaseSelector</name>
@@ -1215,10 +1229,6 @@ alla attribut som även dem måste läggas till för vald objektklass.&lt;/p&gt;
         <translation>Underträd utan nod</translation>
     </message>
     <message>
-        <source>Add Item</source>
-        <translation>Lägg till post</translation>
-    </message>
-    <message>
         <source>Delete</source>
         <translation>Ta bort</translation>
     </message>
@@ -1243,20 +1253,48 @@ alla attribut som även dem måste läggas till för vald objektklass.&lt;/p&gt;
         <translation>Kunde inte hämta baseDN.&lt;br&gt;&lt;br&gt;Anledning:</translation>
     </message>
     <message>
-        <source>Could not export item.&lt;br&gt;&lt;br&gt;Reason: </source>
-        <translation>Kunde inte exportera post.&lt;br&gt;&lt;br&gt;Anledning:</translation>
-    </message>
-    <message>
-        <source>Could not export items.&lt;br&gt;&lt;br&gt;Reason: </source>
-        <translation>Kunde inte exportera poster.&lt;br&gt;&lt;br&gt;Anledning:</translation>
-    </message>
-    <message>
-        <source>Could not retrieve entry for deletion.&lt;br&gt;&lt;br&gt;Reason: </source>
-        <translation>Kunde inte hämta post för borttagning.&lt;br&gt;&lt;br&gt;Anledning:</translation>
-    </message>
-    <message>
         <source>Export</source>
         <translation>Exportera</translation>
+    </message>
+    <message>
+        <source>Could not retrieve entry with DN %1 on server %2 for exporting.&lt;br&gt;&lt;br&gt;Reason: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Could not retrieve all entries for exporting. More information in the logger.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Could not retrieve entry with DN %1 on server %2 for deletion.&lt;br&gt;&lt;br&gt;Reason: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Could not retrieve all entries for deletion. More information in the logger.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Items</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Subtrees</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Subtrees with Parents</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Subtrees without Node</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Attribute</source>
+        <translation type="unfinished">Attribut</translation>
+    </message>
+    <message>
+        <source>Add</source>
+        <translation type="unfinished">Lägg till</translation>
     </message>
 </context>
 <context>
@@ -2034,10 +2072,6 @@ alla attribut som även dem måste läggas till för vald objektklass.&lt;/p&gt;
         <translation>Om Luma...</translation>
     </message>
     <message>
-        <source>Ctrl+A</source>
-        <translation>Ctrl+A</translation>
-    </message>
-    <message>
         <source>Edit Server List...</source>
         <translation>Ändra i server listan...</translation>
     </message>
@@ -2048,10 +2082,6 @@ alla attribut som även dem måste läggas till för vald objektklass.&lt;/p&gt;
     <message>
         <source>Exit</source>
         <translation>Avsluta</translation>
-    </message>
-    <message>
-        <source>Ctrl+X</source>
-        <translation>Ctrl+X</translation>
     </message>
     <message>
         <source>Configure Plugins...</source>
@@ -2078,14 +2108,6 @@ alla attribut som även dem måste läggas till för vald objektklass.&lt;/p&gt;
         <translation>Ctrl+L</translation>
     </message>
     <message>
-        <source>Hide/Show pluginlist</source>
-        <translation>Dölj/Visa tilläggslista</translation>
-    </message>
-    <message>
-        <source>Ctrl+P</source>
-        <translation>Ctrl+P</translation>
-    </message>
-    <message>
         <source>Program</source>
         <translation>Program</translation>
     </message>
@@ -2099,6 +2121,10 @@ alla attribut som även dem måste läggas till för vald objektklass.&lt;/p&gt;
     </message>
     <message>
         <source>Show logger</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ctrl+Q</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

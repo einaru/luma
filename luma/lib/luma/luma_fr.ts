@@ -346,21 +346,27 @@ My mentor and UI tester :)
 Eric Cote
 Testing guinea pig for python 2.3
 
-Jirka Jurek (jiri.jurek@trinet.as)
+Jirka Jurek (jiri.jurek at trinet.as)
 Czech translation
 
 Magnus Määttä
 Swedish translation
 
 Alexander Novitsky
-Russian translation</source>
+Russian translation
+
+Nextgens (nextgens at users.sourceforge.net)
+French translation
+
+Rebekka Golombek (rebekkagolombe at web.de)
+Luma logo</source>
         <comment>DO NOT TRANSLATE</comment>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>&lt;font size=&quot;+2&quot;&gt;&lt;b&gt;Luma 2.0.3&lt;/b&gt;&lt;/font&gt;</source>
+        <source>&lt;font size=&quot;+2&quot;&gt;&lt;b&gt;Luma 2.1.1&lt;/b&gt;&lt;/font&gt;</source>
         <comment>DO NOT TRANSLATE</comment>
-        <translation></translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1048,6 +1054,14 @@ the selected objectclass.&lt;/p&gt;</source>
         <source>Could not delete entry.&lt;br&gt;&lt;br&gt;Reason: </source>
         <translation>Impossible de supprimer l&apos;entrée.&lt;br&gt;&lt;br&gt;Raison:</translation>
     </message>
+    <message>
+        <source>Save entry</source>
+        <translation type="unfinished">Enregistrer l&apos;entrée</translation>
+    </message>
+    <message>
+        <source>Do you want to save the entry?</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>BaseSelector</name>
@@ -1213,10 +1227,6 @@ the selected objectclass.&lt;/p&gt;</source>
         <translation>Sous-branche sans noeud</translation>
     </message>
     <message>
-        <source>Add Item</source>
-        <translation>Ajouter un Item</translation>
-    </message>
-    <message>
         <source>Delete</source>
         <translation>Supprimer</translation>
     </message>
@@ -1237,24 +1247,52 @@ the selected objectclass.&lt;/p&gt;</source>
         <translation>Impossible de récupérer baseDN.&lt;br&gt;&lt;br&gt;Raison:</translation>
     </message>
     <message>
-        <source>Could not export item.&lt;br&gt;&lt;br&gt;Reason: </source>
-        <translation>Impossible d&apos;exporter l&apos;objet.&lt;br&gt;&lt;br&gt;Raison:</translation>
-    </message>
-    <message>
-        <source>Could not export items.&lt;br&gt;&lt;br&gt;Reason: </source>
-        <translation>Impossible d&apos;exporter les objets.&lt;br&gt;&lt;br&gt;Raison:</translation>
-    </message>
-    <message>
-        <source>Could not retrieve entry for deletion.&lt;br&gt;&lt;br&gt;Reason: </source>
-        <translation>Impossible les entrées à supprimer.&lt;br&gt;&lt;br&gt;Raison:</translation>
-    </message>
-    <message>
         <source>Follow Aliases</source>
         <translation>Suivre les alias</translation>
     </message>
     <message>
         <source>Export</source>
         <translation>Exporter</translation>
+    </message>
+    <message>
+        <source>Could not retrieve entry with DN %1 on server %2 for exporting.&lt;br&gt;&lt;br&gt;Reason: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Could not retrieve all entries for exporting. More information in the logger.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Could not retrieve entry with DN %1 on server %2 for deletion.&lt;br&gt;&lt;br&gt;Reason: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Could not retrieve all entries for deletion. More information in the logger.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Items</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Subtrees</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Subtrees with Parents</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Subtrees without Node</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Attribute</source>
+        <translation type="unfinished">Attribut</translation>
+    </message>
+    <message>
+        <source>Add</source>
+        <translation type="unfinished">Ajouter</translation>
     </message>
 </context>
 <context>
@@ -1874,6 +1912,10 @@ the selected objectclass.&lt;/p&gt;</source>
         <source>Info</source>
         <translation>Informations</translation>
     </message>
+    <message>
+        <source>Clear</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>LumaEntryBrowser</name>
@@ -2028,10 +2070,6 @@ the selected objectclass.&lt;/p&gt;</source>
         <translation>À propos de Luma...</translation>
     </message>
     <message>
-        <source>Ctrl+A</source>
-        <translation>Ctrl+A</translation>
-    </message>
-    <message>
         <source>Edit Server List...</source>
         <translation>Éditer la Liste de Serveur...</translation>
     </message>
@@ -2042,10 +2080,6 @@ the selected objectclass.&lt;/p&gt;</source>
     <message>
         <source>Exit</source>
         <translation>Quitter</translation>
-    </message>
-    <message>
-        <source>Ctrl+X</source>
-        <translation>Ctrl+X</translation>
     </message>
     <message>
         <source>Configure Plugins...</source>
@@ -2072,14 +2106,6 @@ the selected objectclass.&lt;/p&gt;</source>
         <translation>Ctrl+L</translation>
     </message>
     <message>
-        <source>Hide/Show pluginlist</source>
-        <translation>Cacher/Montrer la liste de plugins</translation>
-    </message>
-    <message>
-        <source>Ctrl+P</source>
-        <translation>Ctrl+P</translation>
-    </message>
-    <message>
         <source>Program</source>
         <translation>Programme</translation>
     </message>
@@ -2094,6 +2120,10 @@ the selected objectclass.&lt;/p&gt;</source>
     <message>
         <source>Show logger</source>
         <translation>Afficher la console</translation>
+    </message>
+    <message>
+        <source>Ctrl+Q</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
