@@ -127,6 +127,9 @@ class SearchForm(SearchFormDesign):
         serverString = unicode(self.serverBox.currentText())
         self.currentServer = self.serverListObject.getServerObject(serverString)
         
+        if None == self.currentServer:
+            return
+        
         self.connection = LumaConnection(self.currentServer)
         
         baseList = None
