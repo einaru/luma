@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ###########################################################################
-#    Copyright (C) 2003 by Wido Depping                                      
+#    Copyright (C) 2003, 2004 by Wido Depping                                      
 #    <widod@users.sourceforge.net>                                                             
 #
 # Copyright: See COPYING file that comes with this distribution
@@ -25,13 +25,19 @@ class ObjectClassAttributeInfo(object):
     from a server.
     """
     
+    # schema-cache of all servers whose schema has been requested already
     serverMetaCache = {}
     
     def __init__(self, server=None):
+        # Dictionaries with lowercase names of attributes and objectclasses
         self.objectClassesDict = {}
         self.attributeDict = {}
+        
+        # alias name of the current server
         self.SERVER = server
         
+        # automaticly retrieve schema info if server data is passed 
+        # upon initialization
         if not (server == None):
             self.retrieveInfoFromServer()
 
@@ -42,7 +48,9 @@ class ObjectClassAttributeInfo(object):
         server.
         """
         
-        # Try to get server schema information from the cache.
+        environment.setBusy(True)
+        
+        # Try to get server schema information from the cache
         if self.SERVER in self.serverMetaCache.keys():
             self.objectClassesDict = self.serverMetaCache[self.SERVER]["objectClassesDict"]
             self.attributeDict = self.serverMetaCache[self.SERVER]["attributeDict"]
@@ -51,21 +59,23 @@ class ObjectClassAttributeInfo(object):
             tmpObject.readServerList()
             serverMeta = tmpObject.getServerObject(self.SERVER)
 
-            environment.setBusy(1)
-
             try:
+                # FIXME: is this right? it only checks normal and ssl transport
+                # what about other methods?
                 method = "ldap://"
                 if serverMeta.tls:
                     method = "ldaps://"
                 tmpUrl = method + serverMeta.host + ":" + str(serverMeta.port)
+                
                 subschemasubentry_dn,schema = ldap.schema.urlfetch(tmpUrl)
-            
+                
+                # get objectclass information
                 oidList = schema.listall(ldap.schema.ObjectClass)
                 for x in oidList:
                     environment.updateUI()
                     y = schema.get_obj(ldap.schema.ObjectClass, x)
                 
-                
+                    # detect kind of objectclass
                     kind = ""
                     if 0 == y.kind:
                         kind = "STRUCTURAL"
@@ -74,30 +84,47 @@ class ObjectClassAttributeInfo(object):
                     elif 2 == y.kind:
                         kind = "AUXILIARY"
                 
+                    # name of objectclass
                     desc = ""
                     if not (y.desc == None):
                         desc = y.desc
                     
+                    # must attributes of the objectclass
                     must = []
                     if not (len(y.must) == 0):
                         must = y.must
                     
+                    # may attributes of the objectclass
                     may = []
                     if not (len(y.may) == 0):
                         may = y.may
-                
+                     
+                    # parents of the objectclass
+                    # beware that not the whole class chain is given. only
+                    # the first class above the current
+                    parents = []
+                    for parent in y.sup:
+                        # filter out objectclass top. all classes are 
+                        # derived from top
+                        if not ("top" == string.lower(parent)):
+                            parents.append(string.lower(parent))
+                    
+                    # store values for each name the current class has.
+                    # IMPORTANT: the key is always lowercase
                     for name in y.names:
                         self.objectClassesDict[string.lower(name)] = {"DESC": desc, 
-                            "MUST": must, "MAY": may, "NAME": name, "KIND": kind}
+                            "MUST": must, "MAY": may, "NAME": name, "KIND": kind,
+                            "PARENTS": parents}
                                 
-
+                
+                # get attribute information
                 oidList = schema.listall(ldap.schema.AttributeType)
                 for x in oidList:
                     environment.updateUI()
                     y = schema.get_obj(ldap.schema.AttributeType, x)
-                    name = y.names
-                
-                    for z in name:
+                    
+                    nameList = y.names
+                    for z in nameList:
                         self.attributeDict[string.lower(z)] = {"DESC": y.desc, 
                             "SINGLE": y.single_value, "SYNTAX": y.syntax,
                             "NAME": z}
@@ -108,6 +135,7 @@ class ObjectClassAttributeInfo(object):
                 #    y = schema.get_obj(ldap.schema.LDAPSyntax, x)
                 #    print y.desc
                 
+                # store retrieved information in the cache
                 metaData = {}
                 metaData['objectClassesDict'] = self.objectClassesDict
                 metaData['attributeDict'] = self.attributeDict
@@ -117,31 +145,15 @@ class ObjectClassAttributeInfo(object):
                 print "Error during LDAP request"
                 print "Reason: " + str(e)
             
-            environment.setBusy(0)
-
-###############################################################################
-
-    def setServer(self, server):
-        """ Set the server from which we want to get the infos.
-        """
-        
-        self.SERVER = server[:]
-
-###############################################################################
-
-    def update(self):
-        """ Re-read all informations.
-        """
-        
-        self.objectClassesDict = {}
-        self.attributeDict = []
-        self.retrieveInfoFromServer()
+        environment.setBusy(False)
 
 ###############################################################################
 
     def getAllAttributes(self, classList = None):
-        """ Return two sets of all attributes which the server supports.
+        """ Return two sets of all attributes which the server supports for the 
+        given classList.
         """
+        
         must = Set()
         may = Set()
         
@@ -184,9 +196,10 @@ class ObjectClassAttributeInfo(object):
 
 ###############################################################################
     def getAllObjectclassesForAttr(self,attribute=""):
-        """ Returns two sets of objectClassesDict that either MUST
-            or MAY use a given attribute
+        """ Returns two sets of objectClasses that either MUST
+            or MAY use the given attribute
         """
+        
         must = Set()
         may = Set()
         
@@ -199,7 +212,7 @@ class ObjectClassAttributeInfo(object):
             
             for x in value['MAY']:
                 if attribute == string.lower(x):
-                    must.add(self.objectClassesDict[key]["NAME"])
+                    may.add(self.objectClassesDict[key]["NAME"])
 
         return must, may
 
@@ -207,7 +220,7 @@ class ObjectClassAttributeInfo(object):
 ###############################################################################
 
     def isSingle(self, attribute = ""):
-        """ Check if a attribute must be single.
+        """ Check if an attribute is single.
         """
         
         attribute = string.lower(attribute)
@@ -227,19 +240,23 @@ class ObjectClassAttributeInfo(object):
             raise "Missing Arguments to Funktion 'isMust(attribute, objectClassesDict)"
 
         attribute = string.lower(attribute)
-        value = False
         
+        value = False
         for x in objectClassesDict:
-            x = string.lower(x)
-            for y in self.objectClassesDict[x]["MUST"]:
-                if attribute == string.lower(y):
-                    value = True
+            tmpList = self.objectClassesDict[string.lower(x)]["MUST"]
+            tmpList = map(lambda tmpString: string.lower(tmpString), tmpList)
+            if attribute in tmpList:
+                value = True
+                break
         
         return value
         
 ###############################################################################
 
     def isStructural(self, objectClass):
+        """ Check if the given objectClass is structural.
+        """
+        
         objectClass = string.lower(objectClass)
         if "STRUCTURAL" == self.objectClassesDict[objectClass]["KIND"]:
             return True
@@ -265,12 +282,18 @@ class ObjectClassAttributeInfo(object):
 ###############################################################################
 
     def hasObjectClass(self, objectClass):
-        objectClass = string.lower(objectClass)
-        return objectClass in self.objectClassesDict.keys()
+        """ Returns a boolean wether the given objectClass is present 
+        in the schema.
+        """
+
+        return self.objectClassesDict.has_key(string.lower(objectClass))
 
 ###############################################################################
 
     def getObjectClasses(self):
+        """ Returns a list of all objectClasses the schema supports.
+        """
+        
         return map(lambda x: self.objectClassesDict[x]["NAME"],self.objectClassesDict.keys())
 
 ###############################################################################
@@ -279,6 +302,7 @@ class ObjectClassAttributeInfo(object):
         """ Return which syntax the attribute has.
         """
         
+        attribute = string.lower(attribute)
         if not self.attributeDict.has_key(attribute):
             return None
             
@@ -286,33 +310,56 @@ class ObjectClassAttributeInfo(object):
 
 ###############################################################################
 
-    def encodeAttributeValue(self, attribute=None, value=None):
-        if (attribute == None) or (value == None):
+    def getParents(self, className=None):
+        """ Returns the complete parentclass chain for className, except 'top'.
+        """
+        
+        if None == className:
             return None
-
-        returnValue = None
+          
+        className = string.lower(className)
+    
+        parentList = []
+        tmpList = self.objectClassesDict[className]["PARENTS"]
         
-        if false:
-            pass
-        else:
-            returnValue = value
+        while len(tmpList) > 0:
+            currentClass = string.lower(tmpList[0])
+            tmpList += self.objectClassesDict[currentClass]["PARENTS"]
+            parentList.append(self.objectClassesDict[currentClass]['NAME'])
+            del tmpList[0]
         
-        return returnValue
+        return parentList
+        
 ###############################################################################
 
-    def decodeAttributeValue(self, attribute=None, value=None):
-        if (attribute == None) or (value == None):
-            return None
-            
-        returnValue = None
+    def sameObjectClassChain(self, firstClass, secondClass):
+        """ Returns if two objectClasses belong to the same class chain.
+        """
         
-        if false:
-            pass
+        firstClass = string.lower(firstClass)
+        secondClass = string.lower(secondClass)
+        
+        firstParents = self.getParents(firstClass)
+        secondParents = self.getParents(secondClass)
+        
+        if self.objectClassesDict[firstClass]['NAME'] in secondParents:
+            return True
+        elif self.objectClassesDict[secondClass]['NAME'] in firstParents:
+            return True
         else:
-            returnValue = value
+            return False
+
+###############################################################################
+
+    def classAllowed(self, className, classList):
+        """ Returns if className can be added to classList.
+        """
         
-        return returnValue
-            
-
-
+        allowedBool = True
+                
+        for x in classList:
+            if not self.sameObjectClassChain(className, x):
+                allowedBool = False
+                        
+        return allowedBool
 
