@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!--Project file for project luma-->
-<!--Saved: 2004-01-30, 22:02:39-->
+<!--Saved: 2004-02-01, 23:57:18-->
 <!--Copyright (C) 2004 Wido Depping, wido.depping@tu-clausthal.de-->
 <Project>
   <Version>1.0beta1</Version>
@@ -597,6 +597,34 @@
       <Dir>addressbook</Dir>
       <Name>NameDialog.py</Name>
     </Source>
+    <Source>
+      <Dir>lib</Dir>
+      <Dir>luma</Dir>
+      <Dir>plugins</Dir>
+      <Dir>addressbook</Dir>
+      <Name>MailDialog.py</Name>
+    </Source>
+    <Source>
+      <Dir>lib</Dir>
+      <Dir>luma</Dir>
+      <Dir>plugins</Dir>
+      <Dir>addressbook</Dir>
+      <Name>CategoryEditDialogDesign.py</Name>
+    </Source>
+    <Source>
+      <Dir>lib</Dir>
+      <Dir>luma</Dir>
+      <Dir>plugins</Dir>
+      <Dir>addressbook</Dir>
+      <Name>NewCategoryDialog.py</Name>
+    </Source>
+    <Source>
+      <Dir>lib</Dir>
+      <Dir>luma</Dir>
+      <Dir>plugins</Dir>
+      <Dir>addressbook</Dir>
+      <Name>CategoryEditDialog.py</Name>
+    </Source>
   </Sources>
   <Forms>
     <Form>
@@ -750,6 +778,27 @@
       <Dir>plugins</Dir>
       <Dir>addressbook</Dir>
       <Name>NameDialog.ui</Name>
+    </Form>
+    <Form>
+      <Dir>lib</Dir>
+      <Dir>luma</Dir>
+      <Dir>plugins</Dir>
+      <Dir>addressbook</Dir>
+      <Name>MailDialog.ui</Name>
+    </Form>
+    <Form>
+      <Dir>lib</Dir>
+      <Dir>luma</Dir>
+      <Dir>plugins</Dir>
+      <Dir>addressbook</Dir>
+      <Name>CategoryEditDialogDesign.ui</Name>
+    </Form>
+    <Form>
+      <Dir>lib</Dir>
+      <Dir>luma</Dir>
+      <Dir>plugins</Dir>
+      <Dir>addressbook</Dir>
+      <Name>NewCategoryDialog.ui</Name>
     </Form>
   </Forms>
   <Translations>
