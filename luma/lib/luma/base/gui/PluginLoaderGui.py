@@ -44,15 +44,7 @@ class PluginLoaderGui(PluginLoaderGuiDesign):
                 widgetTmp = QWidget(self.settingsStack)
             id = self.settingsStack.addWidget(widgetTmp, -1)
             tmpObject["SETTINGS_WIDGET_ID"] = id
-            #self.settingsStack.raiseWidget(id)
             
-            #tmpObject["WIDGET_REF"] = widgetTmp
-            #tmpObject["ICON_REF"] = iconTmp
-            #tmpObject["WIDGET_ID"] = self.taskStack.addWidget(widgetTmp, -1)
-                
-            #self.taskList.insertItem(iconTmp)
-                
-        
         # Read the plugin config from disk. This does not get the specific plugin settings.
         # It is only determined, which plugins should be loaded.
         try:
