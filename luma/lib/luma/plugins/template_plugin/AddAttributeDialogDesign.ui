@@ -1,0 +1,317 @@
+<!DOCTYPE UI><UI version="3.3" stdsetdef="1">
+<class>AddAttributeDialogDesign</class>
+<widget class="QDialog">
+    <property name="name">
+        <cstring>AddAttributeDialogDesign</cstring>
+    </property>
+    <property name="geometry">
+        <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>563</width>
+            <height>361</height>
+        </rect>
+    </property>
+    <property name="caption">
+        <string>Add attribute</string>
+    </property>
+    <grid>
+        <property name="name">
+            <cstring>unnamed</cstring>
+        </property>
+        <widget class="QLabel" row="0" column="0">
+            <property name="name">
+                <cstring>pixmapLabel1</cstring>
+            </property>
+            <property name="sizePolicy">
+                <sizepolicy>
+                    <hsizetype>0</hsizetype>
+                    <vsizetype>0</vsizetype>
+                    <horstretch>0</horstretch>
+                    <verstretch>0</verstretch>
+                </sizepolicy>
+            </property>
+            <property name="pixmap">
+                <pixmap>image0</pixmap>
+            </property>
+            <property name="scaledContents">
+                <bool>true</bool>
+            </property>
+        </widget>
+        <widget class="QLabel" row="0" column="1">
+            <property name="name">
+                <cstring>textLabel1</cstring>
+            </property>
+            <property name="text">
+                <string>Please select the attributes you want to add.</string>
+            </property>
+            <property name="alignment">
+                <set>WordBreak|AlignTop</set>
+            </property>
+        </widget>
+        <widget class="Line" row="2" column="0" rowspan="1" colspan="2">
+            <property name="name">
+                <cstring>line1</cstring>
+            </property>
+            <property name="frameShape">
+                <enum>HLine</enum>
+            </property>
+            <property name="frameShadow">
+                <enum>Sunken</enum>
+            </property>
+            <property name="orientation">
+                <enum>Horizontal</enum>
+            </property>
+        </widget>
+        <widget class="QLayoutWidget" row="3" column="0" rowspan="1" colspan="2">
+            <property name="name">
+                <cstring>layout4</cstring>
+            </property>
+            <hbox>
+                <property name="name">
+                    <cstring>unnamed</cstring>
+                </property>
+                <spacer>
+                    <property name="name">
+                        <cstring>spacer1</cstring>
+                    </property>
+                    <property name="orientation">
+                        <enum>Horizontal</enum>
+                    </property>
+                    <property name="sizeType">
+                        <enum>MinimumExpanding</enum>
+                    </property>
+                    <property name="sizeHint">
+                        <size>
+                            <width>100</width>
+                            <height>21</height>
+                        </size>
+                    </property>
+                </spacer>
+                <widget class="QPushButton">
+                    <property name="name">
+                        <cstring>okButton</cstring>
+                    </property>
+                    <property name="sizePolicy">
+                        <sizepolicy>
+                            <hsizetype>4</hsizetype>
+                            <vsizetype>0</vsizetype>
+                            <horstretch>0</horstretch>
+                            <verstretch>0</verstretch>
+                        </sizepolicy>
+                    </property>
+                    <property name="text">
+                        <string>&amp;OK</string>
+                    </property>
+                    <property name="accel">
+                        <string>Alt+O</string>
+                    </property>
+                </widget>
+                <widget class="QPushButton">
+                    <property name="name">
+                        <cstring>cancelButton</cstring>
+                    </property>
+                    <property name="sizePolicy">
+                        <sizepolicy>
+                            <hsizetype>4</hsizetype>
+                            <vsizetype>0</vsizetype>
+                            <horstretch>0</horstretch>
+                            <verstretch>0</verstretch>
+                        </sizepolicy>
+                    </property>
+                    <property name="text">
+                        <string>&amp;Cancel</string>
+                    </property>
+                    <property name="accel">
+                        <string>Alt+C</string>
+                    </property>
+                </widget>
+            </hbox>
+        </widget>
+        <widget class="QSplitter" row="1" column="0" rowspan="1" colspan="2">
+            <property name="name">
+                <cstring>splitter2</cstring>
+            </property>
+            <property name="orientation">
+                <enum>Horizontal</enum>
+            </property>
+            <widget class="QListView">
+                <column>
+                    <property name="text">
+                        <string>Attributes</string>
+                    </property>
+                    <property name="clickable">
+                        <bool>true</bool>
+                    </property>
+                    <property name="resizable">
+                        <bool>true</bool>
+                    </property>
+                </column>
+                <property name="name">
+                    <cstring>attributeView</cstring>
+                </property>
+                <property name="minimumSize">
+                    <size>
+                        <width>200</width>
+                        <height>0</height>
+                    </size>
+                </property>
+                <property name="resizeMode">
+                    <enum>LastColumn</enum>
+                </property>
+            </widget>
+            <widget class="QLayoutWidget">
+                <property name="name">
+                    <cstring>layout3</cstring>
+                </property>
+                <grid>
+                    <property name="name">
+                        <cstring>unnamed</cstring>
+                    </property>
+                    <spacer row="5" column="2">
+                        <property name="name">
+                            <cstring>spacer3</cstring>
+                        </property>
+                        <property name="orientation">
+                            <enum>Vertical</enum>
+                        </property>
+                        <property name="sizeType">
+                            <enum>Expanding</enum>
+                        </property>
+                        <property name="sizeHint">
+                            <size>
+                                <width>21</width>
+                                <height>20</height>
+                            </size>
+                        </property>
+                    </spacer>
+                    <widget class="QLineEdit" row="4" column="2">
+                        <property name="name">
+                            <cstring>defaultEdit</cstring>
+                        </property>
+                    </widget>
+                    <widget class="QLabel" row="0" column="0" rowspan="1" colspan="3">
+                        <property name="name">
+                            <cstring>textLabel3</cstring>
+                        </property>
+                        <property name="text">
+                            <string>&lt;b&gt;Attribute information&lt;/b&gt;</string>
+                        </property>
+                    </widget>
+                    <widget class="QLabel" row="3" column="1">
+                        <property name="name">
+                            <cstring>textLabel1_2</cstring>
+                        </property>
+                        <property name="text">
+                            <string>Binary:</string>
+                        </property>
+                    </widget>
+                    <widget class="QLabel" row="2" column="2">
+                        <property name="name">
+                            <cstring>singleLabel</cstring>
+                        </property>
+                        <property name="text">
+                            <string>B</string>
+                            <comment>DO NOT TRANSLATE</comment>
+                        </property>
+                    </widget>
+                    <widget class="QLabel" row="3" column="2">
+                        <property name="name">
+                            <cstring>binaryLabel</cstring>
+                        </property>
+                        <property name="text">
+                            <string>C</string>
+                        </property>
+                    </widget>
+                    <spacer row="1" column="0">
+                        <property name="name">
+                            <cstring>spacer2</cstring>
+                        </property>
+                        <property name="orientation">
+                            <enum>Horizontal</enum>
+                        </property>
+                        <property name="sizeType">
+                            <enum>Fixed</enum>
+                        </property>
+                        <property name="sizeHint">
+                            <size>
+                                <width>16</width>
+                                <height>20</height>
+                            </size>
+                        </property>
+                    </spacer>
+                    <widget class="QLabel" row="1" column="1">
+                        <property name="name">
+                            <cstring>textLabel2</cstring>
+                        </property>
+                        <property name="text">
+                            <string>Must:</string>
+                        </property>
+                    </widget>
+                    <widget class="QLabel" row="4" column="1">
+                        <property name="name">
+                            <cstring>textLabel5</cstring>
+                        </property>
+                        <property name="text">
+                            <string>Default value:</string>
+                        </property>
+                    </widget>
+                    <widget class="QLabel" row="2" column="1">
+                        <property name="name">
+                            <cstring>textLabel4</cstring>
+                        </property>
+                        <property name="text">
+                            <string>Single:</string>
+                        </property>
+                    </widget>
+                    <widget class="QLabel" row="1" column="2">
+                        <property name="name">
+                            <cstring>mustLabel</cstring>
+                        </property>
+                        <property name="text">
+                            <string>A</string>
+                            <comment>DO NOT TRANSLATE</comment>
+                        </property>
+                    </widget>
+                </grid>
+            </widget>
+        </widget>
+    </grid>
+</widget>
+<images>
+    <image name="image0">
+        <data format="PNG" length="3133">89504e470d0a1a0a0000000d4948445200000040000000400806000000aa6971de00000c0449444154789ce59b797454d51dc73f6fb6642633c9b02484004264b12e684ed55a5ca8e8f1b4a2884b51abad0a1e7bdc8a0b48b5f558adb6f5d453173cd615518f952e8a68052da2a0b882ec12c2be6519c84266cb64de76fbc79dc92cc94c26c9404afd9d734ff26e5ededceff7f7fd2defbe378a1082efb259fa7b01fd6ddf79026cdd9da028cae15dc1cd07bde8da0c5a77bfc79b67ef020c20af71992dccfb570137fba623c47aca0bff82e7d8d59cfbd2f9801338ccac274ce92e091e1605dce29b04ca938c709cccd94530d20eeb22f06663881dffba96af662f0322e44909d9301e59026eabaf04eb2b14db27729613c617a6fe7d6d1b2c6a0ab3f7eb39acb8f235a00d30fbfab1fd4fc09d2d5e4ce3291cd6ebf87e219ce5cc7c6ebd06cf1c80dab5bf65c5d46780207d24a1ff0898d5eac5d0ee06cb4caa0a4b98e084c21cae57a7c25c1fec5bf5005f4c7b1a08d00712fa878059cdd3417982918e12ce7142710ff36d9d0a2ff8a0aeee5d969f3903f0037a6f96726409b8a7791258e733c03a921f164245b79536b3454c78aa1676ec7d8fcf26de08b4d00b128e0c01731a2b516caf50649bc878078c71f4648d992d62c2dcfdb063ffa7ec7df6261aded80d683db944368c7d704f9a99a2b278887d22e7b908284a0f9798c56c16b86504bcc844cc3bdfc3884ee5e05b3b01351f97cf5f23a4452d011b50aa70620192807c0d9b056e190967548c65d8ec771974c958202f12cba70240080202f67b60b80eb5c1bc5d5dda55c3701b624cc8b87f19cdef9e01f8e8a312f2a7004348128080805a2f9c3080fc2a2104a1c9c34138ca816300775f979d6705a44e55bbe104a0baae8fd78e136001acc4892e210f61903f02444201c956ed86e20aa016023d2d607a6c2848e04a6cc8cf891ff5c9f2160297473f18d5a182b41170434525b297cb45ea517047e4cf8e55268f2e88eeadf59980b62ba8d4a6f1ceedeaeb2f628884d7d2468d1518051e0b59811306da2164d019f86120a0d721605e8957173c6473d8662aa347a00c3a095a45f63ecd019eb1c036088613d31e2b04db63075632038f0fa39f09d0a7f190803b6cc7949728e346426101b42a52e2ddc4793d40258cab87a01f1a42f2760f2ba9e0e311febfa4006d1ad32d0abf5306958c548e1f0d1e975c8ca6cb6108b9a195830d1d05ac87064176af7745c49126409dc624051eb4ba0a262ae3c7c18062304d50f558f6374133e4c272ccf4410b6c0bc456d09de4e3447484409ff7483aac5b028c2b59a4d86c5395e3464145a904a96a89b267c609882920d75217f77a36a9675243fef0e7b02b0c53952ba6c0c13ae971d3ec0c5e08d00d29ff5c0948f77cae24f44b195483307088f4bca64b22543de5d86bf8e1a00a7ba3194b61f2105d95b95cd570c409d04d888660e80810d64ee05175aaac35bc3de03ebc0b77c0b721a986ee464f125f0a01f98b811c0930e408b542d910f97bba12549d4b0b56b07ce8aff07eb81b56fbb3ab201b01d9c262931f0cb5ad1f083065f60df9a1b4140add12bc96a604cb169697dd8af7d33db0e460cf42209b1a36fbe1de4d30ef1d98fd385c5252491eee07baaf0226d8f458a28b273f6180b7044261088712095198600aaa942dac2bbb86cbb6fd99f5faa9b82f2c97ad6dca85c92dde9ba3307f37d46d86d9f3e067ef83afc845d5e0b94c7015735fc35c6403ddabb8e85601ba49220434534ee806b485a0d80d1e6f42094921314aec67f9c09ba8aa59c5d08f1a206ca4c47f870232c57bbb01cfed807b3f81731e83353f95e001cac37056031c6f7b8487cbee008a73c1d23b028c180b9a9920224e8629c05304de815d5706fd10cb47df45d1b64db0600fee7623730e8813d16ec03bb570c75a38ed51587d05dcf372e78595a830f1001c6f7f98c786fc09b93f60cd3f01c90a88e7023d898cf676703aa0b824a6841811562b8c1f87b7aa827517fe9e1b5c1fe3fec76eca752373125cee8339ebc0f63c7c3c1566cd83e250e6c57955f8b10fbe67decc1365af0203e8617bdfedb678d3c58a187cd629b17bfbe43c101f49f385c5d0dc024516282f95e52aa9619afec5743e50cf2774c1088ead74b25147faec9b26585c07955fc2fd4fc209db7a8201540b2c1b00db59cc9ca619a43d3fe8d37301df858a283f737c12e03801a4ce09e4fcf893a1a92e0dbc2460bdcb64d2fe1bd157fe880bee1ccbd2833ae1b7f6816b03cc7a124e5fd733e0c9a629b0c2030dca761686a7f069fb6e621ba67d7a2ea0c54320dde3e92a881f07fd10d53b791f53d05a28a8bafe7356985ff3f6837741693d5cff325cb4447e585baff258c27e10864d056399e27c8f76f35256a9dbe324f49a00dd040c4316996c2a881fab0644b54edec710e08a5df4940f61f80eaace2d60bd6735847b9cbb32db711a4419c365ce45ac52cf030e908584dc08d0cc34f0642643d5630a48036f0a295300ab80613bd953574449d900fc05febc60074081a2931c84f7a96380114088be1010d1d95cbbdd77e2f0518353a59e898c6c04a831895b055805ad66109a05e7549ccecaf0da3e02175020c06912b685c0b4037881826cffd62d01cfede5e26ba2c1a59176636ce5c881d82c4af65c904240127853806691e75893876065cb3a4a1c1efc91d846614f6ef61428721512b687c021c0161bf28e31de61f49e8067f752bfaf8dcb6ed3da5e0f86b4aa93c70d4e90608ace64a84622092683374d506d08d3ec50801c9208bf25c08983c7b0bfbe998096a5f6275b81009749d81a067b12f80401dd5a2e69575ddcc8f6c96b9952d3a2bdbfbaba09cd56d0755364180905b4c77e260fd59025c9dad580cd623b94abd06e9189b18be1563da02bd2db05a6049b0ede2e72de39ceb5eea8c0816b373363db216df1276b7cf803aa049cde21aabaac0229e063c7aa8e30458afcd347c019c033de4285a30cc296d4a129849410149a12a45d80ddec0c3ecf0a889b0634dd50c38cad4d91bf7fbcc5cf21c3d15905aad1b5f7e30a480901ba2423e80c103ccd87c7e3949ed7950eb977c47987d7491c272be1301000b2bd6cb97d1733d7f8c5431f6c6ca1d9e64eba414a0a8124ef47c23affd9d5cebceaf69802ba0e816432820541dc17e8dc38e1921870b3b397331ddb44cebb46bd69bd74a0e50ff5ccddd8127de0cdcf6aa909db13b7ca69047cd3a0f2f8c67616ecd3d72d2db3bf248499d1f3e96434587cac69ac4e056acfe2f5e4b91c15d0db476306d0faa88fa76f1d4430bce9d023c6a91545276a8d1d55a0da6ff2ef3a835d11b175bdcec25506aba8b08f1add4901dd11d103af2787c5612600640b14f86b33f32f77b32ff255fd6be1aa2145657e9d8f76687c1b14cdeb75de58a1f109d0081c60b4c34ab721903a2f7a0c5ec8a6e80810102721b830c452d3e4dae83707fea619281b35162c89b2146846bec67210085264119b5b7781db0a563d272284a587e0ad31e03996c17cbc206102e1456d7cb808aa806131084d31e07ee4836f93db6b7706e656dccd10cfe30c0ec1a068961090f3c26a26649d29de93e7e27ddf115240dc04f2edee5ae01072196d403ba99b952633eb5fe406ef3ece73bd8acd2c624834b710e82e0cec24bc1f4176a639581f6fc0534cc4003723bddfd59bde0268e395d6a52c6ffb393b9ce1a1be1199cba14520ac3978dd9e24fd95c01f817a3e44f62e599f57e7ef1da1dccd0442cc6f5d0ae29a86a8f10261e7104e0d770e03855402b2c5ff5a60a9023bc53a56f01abbd989cc3f916c8be90f02201e32f3fdcbd85030995fb8ff39da72fc68df843d84ad2109de223dda91033281df2fe003056ac4563688857ccd2a64d56940aa31eb53a4fe2200e224ac8d5663e3b29dd3f62f2c0ab8c6f093b06c7be327593348be41c097c0569ad920de608548945b1982416408644d06fd4900c4f3c6aae856109786271bcf95468e399b69611a9d07e51956214f8b838f08f8dc848da28d6fcd05bc2f3a975b79f396532fdc3fdf19eada1c4029bf297aa174f4e0c9e2aa369a5c8d1cb7b98aade636d9dcac35608bd9c61e73191f99efd0441d52eaa9e536cdfaff2b33b99b1d18c8af5df35c839d170dbada8db3c5cbb69aad5063c23ee30b1699f369167548d00790653742168f1f4d04800ccb81fcb2e05e67a5eb2e4c41c417deca12fd79768a9d48d03ee4c38f0839bc9372b4110092042f57dbaea35138f8c8a84602f621135c881e7c73e4682400642be4413eef53905f9c0a9043664fb7a39500909daa0d09d8a097ef00f48980ff77fb2f2156f169e42f96d30000000049454e44ae426082</data>
+    </image>
+</images>
+<connections>
+    <connection>
+        <sender>okButton</sender>
+        <signal>clicked()</signal>
+        <receiver>AddAttributeDialogDesign</receiver>
+        <slot>accept()</slot>
+    </connection>
+    <connection>
+        <sender>cancelButton</sender>
+        <signal>clicked()</signal>
+        <receiver>AddAttributeDialogDesign</receiver>
+        <slot>reject()</slot>
+    </connection>
+    <connection>
+        <sender>attributeView</sender>
+        <signal>selectionChanged(QListViewItem*)</signal>
+        <receiver>AddAttributeDialogDesign</receiver>
+        <slot>attributeChanged()</slot>
+    </connection>
+    <connection>
+        <sender>defaultEdit</sender>
+        <signal>textChanged(const QString&amp;)</signal>
+        <receiver>AddAttributeDialogDesign</receiver>
+        <slot>defaultChanged()</slot>
+    </connection>
+</connections>
+<slots>
+    <slot>attributeChanged()</slot>
+    <slot>defaultChanged()</slot>
+</slots>
+<layoutdefaults spacing="6" margin="6"/>
+</UI>
