@@ -25,7 +25,7 @@ def addPostProcess(serverMeta, dn, objectValues, groupName):
         import UsermanagementExtra
         UsermanagementExtra.addPostProcess(serverMeta, dn, objectValues, groupName)
     except ImportError, e:
-        print "Could not execute addPreProcess. Reason:"
+        print "Could not execute addPostProcess. Reason:"
         print e
         
 ###############################################################################
@@ -45,7 +45,7 @@ def deletePostProcess(serverMeta, dn):
         import UsermanagementExtra
         UsermanagementExtra.deletePostProcess(serverMeta, dn)
     except ImportError, e:
-        print "Could not execute deletePreProcess. Reason:"
+        print "Could not execute deletePostProcess. Reason:"
         print e
 
 ###############################################################################
@@ -65,5 +65,5 @@ def modifyPostProcess(serverMeta, dn, objectValues):
         import UsermanagementExtra
         UsermanagementExtra.modifyPostProcess(serverMeta, dn, objectValues)
     except ImportError, e:
-        print "Could not execute modifyPreProcess. Reason:"
+        print "Could not execute modifyPostProcess. Reason:"
         print e
