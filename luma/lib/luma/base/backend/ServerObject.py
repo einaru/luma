@@ -47,6 +47,7 @@ class ServerObject(object):
         self.bindPassword = u""
         self.tls = False
         self.authMethod = u"Simple"
+        self.followAliases = False
         
         # This value will only set during runtime
         self.currentBase = u""

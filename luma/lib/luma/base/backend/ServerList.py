@@ -35,7 +35,8 @@ class ServerList:
 
 ###############################################################################
 
-    def addServer(self, serverName, hostName, port, bindAnon, baseDN, bindDN, password, tls):
+    def addServer(self, serverName, hostName, port, bindAnon, baseDN, bindDN, 
+        password, tls, autoBase, followAliases):
         """ Add a server to the server list.
         
         Arguments should be self-explationary.
@@ -50,6 +51,8 @@ class ServerList:
         server.bindDN = bindDN
         server.bindPassword = password
         server.tls = tls
+        server.autoBase = autoBase
+        server.followAliases = followAliases
         
         if self.serverList == None:
             self.serverList = [server]
@@ -84,6 +87,7 @@ class ServerList:
             serverNode.setAttribute("tls", unicode(x.tls))
             serverNode.setAttribute("authMethod", x.authMethod)
             serverNode.setAttribute("autoBase", unicode(x.autoBase))
+            serverNode.setAttribute("followAliases", unicode(x.followAliases))
             
             baseNode = document.createElement("baseDNs")
             for tmpBase in x.baseDN:
@@ -262,6 +266,12 @@ class ServerList:
                     server.tls = True
                 else:
                     server.tls = False
+                    
+                tmpVal = unicode(element.attribute("followAliases"))
+                if "True" == tmpVal:
+                    server.followAliases = True
+                else:
+                    server.followAliases = False
                 
                 server.authMethod = unicode(element.attribute("authMethod"))
                 

@@ -170,6 +170,10 @@ class LumaConnection(object):
             self.ldapServerObject = ldap.initialize(url.initializeUrl())
             self.ldapServerObject.protocol_version = 3
             
+            # Enable Alias support
+            if self.serverMeta.followAliases:
+                self.ldapServerObject.set_option(ldap.OPT_DEREF, ldap.DEREF_ALWAYS)
+            
             if self.serverMeta.bindAnon:
                 self.ldapServerObject.simple_bind()
             elif self.serverMeta.authMethod == u"Simple":
