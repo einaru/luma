@@ -130,8 +130,6 @@ Try increasing the uidNumber range or delete some users from the subtree."""),
             values['gidNumber'] = [groupId]
             values["homeDirectory"] = [homeDir]
             
-            print values
-            
             preProcess(serverMeta, values)
             
             tmpDN = 'uid=' + userName + "," + baseDN
@@ -207,42 +205,19 @@ Please see console output for more information."""),
         serverList.readServerList()
         serverMeta = serverList.getServerObject(serverName)
         
-        searchResult = []
-        
-        # set gui busy
         environment.setBusy()
-
-        try:
-            ldapServerObject = ldap.open(serverMeta.host)
-            ldapServerObject.protocol_version = ldap.VERSION3
-            if serverMeta.tls == 1:
-                ldapServerObject.start_tls_s()
-            if len(serverMeta.bindDN) > 0:
-                ldapServerObject.simple_bind_s(serverMeta.bindDN,
-                                serverMeta.bindPassword)
-
-
-            resultId = ldapServerObject.search(ldapObject, ldap.SCOPE_SUBTREE,
-                "(objectClass=posixAccount)", ["uidNumber"], 0)
-
-            while 1:
-                # keep UI responsive
-                environment.updateUI()
-
-                result_type, result_data = ldapServerObject.result(resultId, 0)
-                if (result_data == []):
-                    break
-                else:
-                    if result_type == ldap.RES_SEARCH_ENTRY:
-                        for x in result_data:
-                            searchResult.append(x)
-
-            if len(serverMeta.bindDN) > 0:
-                ldapServerObject.unbind()
-        except ldap.LDAPError, e:
-            print "Error during LDAP request"
-            print "Reason: " + str(e)
         
+        connectionObject = LumaConnection(serverMeta)
+        connectionObject.bind()
+        
+        searchResult = connectionObject.search(ldapObject, ldap.SCOPE_SUBTREE,
+                "(objectClass=posixAccount)", ["uidNumber"], 0)
+                
+        connectionObject.unbind()
+                
+        if searchResult == None:
+            searchResult = []
+
         environment.setBusy(0)
         
         numberList = []
