@@ -41,7 +41,7 @@ class BrowserWidget(QListView):
         self.connect(self, SIGNAL("expanded(QListViewItem*)"), self.itemExpanded)
         #self.connect(self, SIGNAL("doubleClicked(QListViewItem*)"), self.itemExpanded)
 
-        self.setRootIsDecorated(1)
+        self.setRootIsDecorated(True)
         self.addColumn(self.trUtf8("Entries"))
         self.setResizeMode(QListView.AllColumns)
 
@@ -123,6 +123,7 @@ class BrowserWidget(QListView):
                 if success:
                     if len(resultList) > 0:
                         result = resultList[0]
+                        #print result.dn, result.data
                         result.serverMeta.currentBase = self.currentBase
                         self.emit(PYSIGNAL("about_to_change"), ())
                         self.emit(PYSIGNAL("ldap_result"), (deepcopy(result),))
