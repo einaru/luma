@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 ###########################################################################
-#    Copyright (C) 2003 by Wido Depping
+#    Copyright (C) 2003, 2004 by Wido Depping
 #    <widod@users.sourceforge.net>
 #
 # Copyright: See COPYING file that comes with this distribution
@@ -16,13 +16,20 @@ import string
 from popen2 import Popen3
 import py_compile
 
-prefixDir = ""
+# This is the prefix directory where luma will be installed.
+prefixDir = os.path.join("usr", "local")
+
+# Determines if python source files are only compiled and not installed
 compileOnly = False
 
 
 def doImportCheck():
+    """ Checks for installed modules which are needed in order to run Luma.
+    """
+    
     print "Check for preinstalled modules:\n"
     
+    # Check for python-ldap
     try:
         import ldap
         vString = "2.0.0pre13"
@@ -35,6 +42,7 @@ def doImportCheck():
 You can get the module here: http://python-ldap.sourceforge.net
 """
 
+    # Check for PyQt. If successful, check for Qt, too.
     try:
         import qt
         pyqtVersionString = "3.10"
@@ -52,6 +60,8 @@ You can get the module here: http://python-ldap.sourceforge.net
 You can get the module here: http://www.riverbankcomputing.co.uk/pyqt
 """
 
+    # Check for the smbpasswd module. Needed for lmhash and nthash password
+    # creation. No version checking needed.
     try:
         import smbpasswd
         print "smbpasswd module is installed."
@@ -67,7 +77,7 @@ You can get the module here: http://barryp.org/software/py-smbpasswd
 
 def doChecks():
 
-    # Check ob Prefix existiert
+    # Check if prefix exists. Then compile and install.
     if os.path.exists(prefixDir):
         doCompile()
         doInstall()
@@ -109,17 +119,16 @@ def doInstall():
 ###############################################################################
 
 def checkPath():
+    """ Checks if the install directory for luma is in the local PATH of the user.
+    """
+    
+    
     pathVariable = os.environ['PATH']
-
     pathValues = string.split(pathVariable, ':')
-
-    good = False
-    for x in pathValues:
-        if x == (prefixDir+"/bin"):
-            good = True
-            break
-
-    if good:
+    tmpPath = os.path.join(prefixDir, "bin")
+    
+    
+    if tmpPath in pathValues:
         print """
 Good: The specified prefix is present in your PATH variable.
 Start LUMA by typing 'luma' from anywhere in the console.
@@ -135,10 +144,12 @@ anywhere in the console.
 
 def printHelp():
     helpString = """Install options:
- --prefix=PATH \t\t Install path (e.g. /usr/local)
+ --prefix=PATH \t\t Install path (default is /usr/local)
  --compile-only \t Just compile source files. No installation.
  \n"""
+ 
     print helpString
+    
     sys.exit(1)
     
 ###############################################################################
@@ -153,7 +164,7 @@ def doCompile():
         if x[:11] == "./lib/luma/":
             fileList.append(x[:-1])
     for x in fileList:
-        print "compile " + x
+        print "compiling " + x
         py_compile.compile(x)
         
     print "\nFinished compiling.\n"
@@ -161,6 +172,9 @@ def doCompile():
 ###############################################################################
 
 def evalArguments():
+    """ Evaluate the user given options to the install script.
+    """
+    
     if len(sys.argv) == 1:
         printHelp()
         return
@@ -181,20 +195,20 @@ def evalArguments():
 ###############################################################################
 
 
-print "LUMA 1.3pre4 (C) 2003,2004 Wido Depping\n"
+print "LUMA 1.3 (C) 2003,2004 Wido Depping\n"
 
 doImportCheck()
 print ""
 
 evalArguments()
-
-# Check if prefixDir exists
-if not(os.path.exists(prefixDir)):
-    print "Prefix directory does not exist!"
-    sys.exit(1)
     
 doCompile()
 
 if not compileOnly:
+    # Check if prefixDir exists
+    if not(os.path.exists(prefixDir)):
+        print "Prefix directory does not exist!"
+        sys.exit(1)
+
     doInstall()
     checkPath()
