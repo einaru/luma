@@ -33,7 +33,7 @@ class AdminPanel(AdminPanelDesign):
         tmpPassword = self.pwHandler.create_random_string(8)
         self.randomPwEdit.setText(tmpPassword)
         method = str(self.methodBox.currentText())
-        password = mkpasswd(tmpPassword, method)
+        password = mkpasswd(tmpPassword, 3, method)
         self.randomCryptEdit.setText(password)
         
 ###############################################################################
@@ -42,7 +42,7 @@ class AdminPanel(AdminPanelDesign):
         tmpPassword = str(self.pwEdit.text())
         #self.cryptEdit.setText(self.pwHandler.encrypt_password(tmpPassword)[1])
         method = str(self.methodBox.currentText())
-        password = mkpasswd(tmpPassword, method)
+        password = mkpasswd(tmpPassword, 3, method)
         self.cryptEdit.setText(password)
         
 ###############################################################################
