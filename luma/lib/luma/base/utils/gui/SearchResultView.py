@@ -143,7 +143,7 @@ class SearchResultView(SearchResultViewDesign):
         serverMeta = serverList.getServerObject(self.SERVER)
 
         # set gui busy
-        environment.setBusy(1)
+        environment.setBusy(True)
         
         connectionObject = LumaConnection(serverMeta)
         connectionObject.bind()
@@ -159,7 +159,7 @@ class SearchResultView(SearchResultViewDesign):
             self.resultListView.takeItem(x)
             
         # set GUI not busy
-        environment.setBusy(0)
+        environment.setBusy(False)
         
         
 ###############################################################################

@@ -48,7 +48,7 @@ class MassCreation(MassCreationDesign):
             return None
 
         # set gui busy
-        environment.setBusy(1)
+        environment.setBusy(True)
         
         # get data for usernames
         userMax = self.prefixMaxBox.value()
@@ -65,7 +65,7 @@ class MassCreation(MassCreationDesign):
         freeNumbers = self.getUidNumbers(uidNumMin, uidNumMax, usedNumbers, userCount)
         
         if freeNumbers == None:
-            environment.setBusy(0)
+            environment.setBusy(False)
             QMessageBox.warning(None,
                 self.trUtf8("Conflict"),
                 self.trUtf8("""There are not enough user ids left! 
@@ -173,7 +173,7 @@ Please see console output for more information."""),
             self.passwordEdit.append(userName + ': ' + passwordClear + "\n")
         
         connectionObject.unbind()
-        environment.setBusy(0)
+        environment.setBusy(False)
         
         if createResult:
             QMessageBox.information(None,
@@ -205,7 +205,7 @@ Please see console output for more information."""),
         serverList.readServerList()
         serverMeta = serverList.getServerObject(serverName)
         
-        environment.setBusy()
+        environment.setBusy(True)
         
         connectionObject = LumaConnection(serverMeta)
         connectionObject.bind()
@@ -218,7 +218,7 @@ Please see console output for more information."""),
         if searchResult == None:
             searchResult = []
 
-        environment.setBusy(0)
+        environment.setBusy(False)
         
         numberList = []
         for x in searchResult:
