@@ -1,0 +1,35 @@
+The Massive User Creation plugin crates many user-accounts at once.
+Users will have 'posixAccount' and 'shadowAccount' as their objectclasses.
+
+You set a 'Prefix', followed by a 'Minimum'- and a 'Maximum'-number. For 
+example:
+Prefix = testuser
+Minimum = 1
+Maximum = 100
+-> testuser1, testuser2, ..., testuser100 are created.
+
+In the 'Directory Settings' you define, at which position in your ldap tree
+your accounts are created. If you choose 'o=NOVELL,Novell' as your base node, 
+all new entries are created below this node.
+The icon next to the text fields aids with choosing the right entry. It shows 
+a dialog with a browser component. It displays all server you have set up and you 
+can select any entry from it. After that simply click 'Ok' and the DN of the
+selected entry will be displayed in the textfield.
+
+In the 'Expiration date' field you can choose up until when the created 
+accounts are valid.
+
+In the 'Account settings' field you set the base directory for the homes of 
+your users. If you choose "/home/", the users will have "/home/testuser1", 
+"/home/testuser2", etc. as their homes.
+The 'Group Id' field defines the groupId to which the users will belong. The 
+button to the right opens a dialog from which you can select all ldap entries 
+which have a 'gidNumber' attribute.
+The 'Login shell' defines the login shell of the users.
+
+In the 'uid number range field' you define minimum and maximum uids of your 
+users. Luma will look up all uids which are below the base node you selected 
+and uses only uids which are not yet assigned.
+
+Finally click on 'Create' and go to the 'Account Passwords'-tab. The passwords 
+for each new user are stored there.

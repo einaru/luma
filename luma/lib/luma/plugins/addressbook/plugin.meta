@@ -1,0 +1,4 @@
+PLUGIN_NAME=Addressbook
+PLUGIN_VERSION=0.1
+PLUGIN_AUTHOR=wido.depping@tu-clausthal.de
+PLUGIN_FILE=addressbook_plugin.py
