@@ -1,6 +1,6 @@
 #
 # Project file for project "luma"
-# Saved: 2003-11-13, 13:49:00
+# Saved: 2003-11-29, 17:34:22
 #
 # Copyright (C) 2003 Wido Depping <wido.depping@tu-clausthal.de>
 #
@@ -78,7 +78,8 @@ SOURCES = lib%os.sep%luma%os.sep%__init__.py \
 	lib%os.sep%luma%os.sep%plugins%os.sep%ifi_user%os.sep%__init__.py \
 	lib%os.sep%luma%os.sep%base%os.sep%utils%os.sep%gui%os.sep%BrowserDialog.py \
 	lib%os.sep%luma%os.sep%base%os.sep%gui%os.sep%BaseSelector.py \
-	lib%os.sep%luma%os.sep%base%os.sep%backend%os.sep%LumaConnection.py 
+	lib%os.sep%luma%os.sep%base%os.sep%backend%os.sep%LumaConnection.py \
+	lib%os.sep%luma%os.sep%base%os.sep%utils%os.sep%backend%os.sep%mkpasswd.py 
 
 FORMS = lib%os.sep%luma%os.sep%base%os.sep%gui%os.sep%AboutDialog.ui \
 	lib%os.sep%luma%os.sep%base%os.sep%gui%os.sep%MainWinDesign.ui \
