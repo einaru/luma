@@ -1,5 +1,14 @@
 AUTHOR: Wido Depping <widod@users.sourceforge.net>
 
+AFTER CVS CHECKOUT
+------------------
+
+If Luma is freshly checked out from cvs, run the 'make-run' script. It creates
+a symlink from bin/luma to lib/luma/luma.py. Alternatively run 
+lib/luma/luma.py directly. Luma does not have to be installed in the system to 
+run. 
+
+
 INSTALL
 -------
 
