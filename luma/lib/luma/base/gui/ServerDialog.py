@@ -142,12 +142,12 @@ class ServerDialog(ServerDialogDesign):
             self.serverListObject.deleteServer(str(self.nameLineEdit.text()))
         self.serverListObject.addServer(str(self.nameLineEdit.text()),
                 str(self.hostLineEdit.text()),
-                str(self.portSpinBox.value()),
-                int(self.bindAnonBox.isChecked()),
+                int(self.portSpinBox.value()),
+                bool(self.bindAnonBox.isChecked()),
                 str(self.baseLineEdit.text()),
                 str(self.bindLineEdit.text()),
                 str(self.passwordLineEdit.text()),
-                int(self.tlsCheckBox.isChecked()))
+                bool(self.tlsCheckBox.isChecked()))
         self.reloadServer()
         
 ###############################################################################
@@ -187,20 +187,21 @@ class ServerDialog(ServerDialogDesign):
 ###############################################################################
 
     def searchBaseDN(self):
-        server = str(self.hostLineEdit.text())
-        tls = int(self.tlsCheckBox.isChecked())
+        
         serverMeta = ServerObject()
+        serverMeta.name = str(self.hostLineEdit.text())
         serverMeta.host = str(self.hostLineEdit.text())
-        serverMeta.port = self.portSpinBox.value()
-        serverMeta.tls = int(self.tlsCheckBox.isChecked())
-        serverMeta.bindAnon = 1
+        serverMeta.port = int(self.portSpinBox.value())
+        serverMeta.tls = bool(self.tlsCheckBox.isChecked())
+        serverMeta.bindAnon = True
         serverMeta.baseDN = ""
         serverMeta.bindDN = ""
         serverMeta.bindPassword = ""
         
         try:
             conObject = LumaConnection(serverMeta)
-        
+            conObject.bind()
+            
             dnList = None
         
             # Check for openldap
@@ -217,12 +218,15 @@ class ServerDialog(ServerDialogDesign):
             if dnList[0] == '':
                 result = conObject.search_s("", ldap.SCOPE_BASE, "(objectClass=*)",['database'])
                 dnList = result[0][1]['namingContexts']
+                
+            conObject.unbind()
         
             dialog = BaseSelector()
             dialog.setList(dnList)
             dialog.exec_loop()
             if dialog.result() == QDialog.Accepted:
                 self.baseLineEdit.setText(dialog.dnBox.currentText())
+                
         except:
             QMessageBox.warning(None,
                 self.trUtf8("Error"),
