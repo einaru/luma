@@ -2,8 +2,8 @@
 
 # Form implementation generated from reading ui file '/home/wido/src/luma/lib/luma/base/gui/AboutDialog.ui'
 #
-# Created: Wed Feb 11 18:07:51 2004
-#      by: The PyQt User Interface Compiler (pyuic) 3.10
+# Created: Thu Mar 25 00:32:36 2004
+#      by: The PyQt User Interface Compiler (pyuic) 3.11
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -61,8 +61,8 @@ class AboutDialog(QDialog):
         AboutDialogLayout.addWidget(self.tabWidget2)
 
         layout2 = QHBoxLayout(None,0,6,"layout2")
-        spacer = QSpacerItem(210,21,QSizePolicy.Expanding,QSizePolicy.Minimum)
-        layout2.addItem(spacer)
+        spacer5 = QSpacerItem(210,21,QSizePolicy.Expanding,QSizePolicy.Minimum)
+        layout2.addItem(spacer5)
 
         self.pushButton1 = QPushButton(self,"pushButton1")
         self.pushButton1.setSizePolicy(QSizePolicy(0,0,0,0,self.pushButton1.sizePolicy().hasHeightForWidth()))
