@@ -45,8 +45,6 @@ class TaskPlugin(object):
 ###############################################################################
 
     def getPluginSettingsWidget(self, parent):
-        #self.pluginSettingsWidget = essbookSettings(parent)
-        #return self.pluginSettingsWidget
         return
         
 ###############################################################################
