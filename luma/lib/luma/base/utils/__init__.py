@@ -30,6 +30,9 @@ def lumaStringDecode(tmpString):
 ###############################################################################
 
 def isBinaryAttribute(tmpString):
+    if tmpString == None:
+        return False
+        
     BINARY_PATTERN = '(^(\000|\n|\r| |:|<)|[\000\n\r\200-\377]+|[ ]+$)'
     binaryPattern = re.compile(BINARY_PATTERN)
     
