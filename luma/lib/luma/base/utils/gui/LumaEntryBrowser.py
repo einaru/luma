@@ -99,6 +99,7 @@ class LumaEntryBrowser (LumaEntryBrowserDesign):
         
         self.search()
         
+        self.emit(PYSIGNAL("about_to_change"), ())
         self.emit(PYSIGNAL("server_changed"), ())
         
 ###############################################################################
@@ -195,6 +196,7 @@ class LumaEntryBrowser (LumaEntryBrowserDesign):
         
         self.itemIconView.blockSignals(False)
         
+        self.emit(PYSIGNAL("about_to_change"), ())
         self.emit(PYSIGNAL("ldap_result"), (deepcopy(dn), deepcopy(tmpData), deepcopy(self.lumaConnection.serverMeta),))
         
 ###############################################################################
@@ -212,6 +214,7 @@ class LumaEntryBrowser (LumaEntryBrowserDesign):
         
         self.itemListView.blockSignals(False)
         
+        self.emit(PYSIGNAL("about_to_change"), ())
         self.emit(PYSIGNAL("ldap_result"), (deepcopy(dn), deepcopy(tmpData), deepcopy(self.lumaConnection.serverMeta),))
 
     
