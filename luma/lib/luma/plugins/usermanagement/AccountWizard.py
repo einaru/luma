@@ -166,7 +166,7 @@ it might compromise the security of your system."""),
         
         dn = "uid=" + dataObject.getAttributeValue('uid', 0) + "," + self.locationDN
         dataObject.setDN(dn)
-        dataObject.addAttributeValue("sn", dataObject.getAttributeValue("uid", 0))
+        dataObject.addAttributeValue("sn", [dataObject.getAttributeValue("uid", 0)])
 
         # Start preprocessing of usercreation
         groupName = unicode(self.accountWidget.groupEdit.text())
