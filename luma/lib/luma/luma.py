@@ -23,9 +23,9 @@ def run_it():
     QObject.connect(app, SIGNAL('lastWindowClosed()'), gui.quitApplication)
     
     
-    #app.setMainWidget(gui)
-    gui.show()
+    app.setMainWidget(gui)
     gui.loadPlugins()
+    gui.show()
     app.exec_loop()
 
 if __name__ == '__main__':
