@@ -113,14 +113,20 @@ class BrowserWidget(QListView):
         clicked.
         """
         
+        self.blockSignals(True)
+        
         if not(item == None):
             fullPath = self.get_full_path(item)
             try:
                 server, result = self.getLdapItem(fullPath)
+                self.blockSignals(False)
                 self.emit(PYSIGNAL("about_to_change"), ())
                 self.emit(PYSIGNAL("ldap_result"), (deepcopy(server), deepcopy(result),))
             except TypeError:
                 "No result from Server"
+                
+
+        self.blockSignals(False)
 
 
 ###############################################################################
@@ -129,14 +135,20 @@ class BrowserWidget(QListView):
         """ Get all children of the expanded object and display them.
         """
         
+        self.blockSignals(True)
+        
         fullPath = self.get_full_path(item)
         results = self.getLdapItemChildren(fullPath, 0)
+        
         if results == None:
+            self.blockSignals(False)
             return None
             item.setExpandable(0)
         if len(results) == 0:
+            self.blockSignals(False)
             item.setExpandable(0)
             return None
+    
         for x in results:
             tmp = x[0].decode('utf-8')
             tmp = string.split(tmp, ",")
@@ -144,19 +156,25 @@ class BrowserWidget(QListView):
             tmpItem.setExpandable(1)
             item.insertItem(tmpItem)
 
-
+        self.blockSignals(False)
+            
 ###############################################################################
 
     def item_collapsed(self, item):
         """ Delete all children if a ldap object collapses.
         """
         
+        self.blockSignals(True)
+        
         fullPath = self.get_full_path(item)
         serverName, ldapObject = self.__split_path(fullPath)
         if len(ldapObject) == 0:
+            self.blockSignals(False)
             return None
         while item.childCount() > 0:
             item.takeItem(item.firstChild())
+            
+        self.blockSignals(False)
 
 ###############################################################################
 
@@ -483,20 +501,12 @@ See console output for more information."""),
         
         serverMeta = self.serverListObject.get_serverobject(serverName)
         
-        try:
-            ldapServerObject = ldap.open(serverMeta.host)
-            ldapServerObject.protocol_version = ldap.VERSION3
-            if serverMeta.tls == 1:
-                ldapServerObject.start_tls_s()
-            if len(serverMeta.bindDN) > 0:
-                ldapServerObject.simple_bind_s(serverMeta.bindDN,
-                                serverMeta.bindPassword)
-            ldapServerObject.delete_s(ldapObject)
-            if len(serverMeta.bindDN) > 0:
-                ldapServerObject.unbind()
-        except ldap.LDAPError, e:
-            print "Error during LDAP request"
-            print "Reason: " + unicode(e)
+        connectionObject = LumaConnection(serverMeta)
+        connectionObject.bind()
+        result = connectionObject.delete_s(ldapObject)
+        connectionObject.unbind()
+        
+        if result == 0:
             QMessageBox.critical(None,
                 self.trUtf8("Error "),
                 self.trUtf8("""Delete operation was not succesful.
