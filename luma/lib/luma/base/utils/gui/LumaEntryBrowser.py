@@ -21,6 +21,7 @@ from base.backend.ServerObject import ServerObject
 from base.backend.ServerList import ServerList
 from base.backend.LumaConnection import LumaConnection
 from base.utils.gui.LumaErrorDialog import LumaErrorDialog
+from base.utils.backend.LogObject import LogObject
 
 class LumaEntryBrowser (LumaEntryBrowserDesign):
 
@@ -402,9 +403,10 @@ class LumaEntryBrowser (LumaEntryBrowserDesign):
         try:
             config.readfp(open(configFile, 'r'))
         except IOError, e:
-            print "Could not read configuration file. Reason: "
-            print e
-        
+            tmpString =  "Could not read configuration file. Reason:\n"
+            tmpString += str(e)
+            environment.logMessage(LogObject("Debug", tmpString))
+            
         self.filterElements = ["cn", "sn", "givenName", "mail"]
         
         if config.has_option(pluginName, 'filter'):

@@ -21,6 +21,7 @@ import environment
 from base.backend.LumaConnection import LumaConnection
 from base.backend.SmartDataObject import SmartDataObject
 from base.utils.gui.LumaErrorDialog import LumaErrorDialog
+from base.utils.backend.LogObject import LogObject
 
 class SearchForm(SearchFormDesign):
 
@@ -135,8 +136,10 @@ class SearchForm(SearchFormDesign):
             self.searchEdit.clear()
             for x in text:
                 self.searchEdit.insertItem(x[:-1])
-        except:
-            print "Bookmark loading failed"
+        except IOError, e:
+            logMessage = "Search filter bookmark loading failed. Reason:\n"
+            logMessage += str(e)
+            environment.logMessage(LogObject("Debug", logMessage))
 
 ###############################################################################
 

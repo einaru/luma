@@ -204,7 +204,6 @@ class SchemaView(SchemaViewDesign):
             
         self.oidAttributeEdit.setText(attributeDataDict['OID'])
         
-        #print attributeDataDict['USAGE'], type(attributeDataDict['USAGE']
         usageValue = attributeDataDict['USAGE']
         self.usageAttributeEdit.setText(self.usageDict[usageValue])
         self.equalityAttributeEdit.setText(attributeDataDict['EQUALITY'])

@@ -97,6 +97,10 @@ def displaySizeLimitWarning():
     pass
     
 ###############################################################################
+
+def logMessage(self, messageType):
+    """ Dumm function for logging messages. Implemented in MainWin.py.
+    """
   
 setPaths()
 sys.path.append(os.path.join(userHomeDir, ".luma", "scripts"))

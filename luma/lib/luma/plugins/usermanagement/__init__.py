@@ -9,14 +9,17 @@
 ###########################################################################
 
 from base.backend.ServerObject import ServerObject
+import environment
+from base.utils.backend.LogObject import LogObject
 
 def addPreProcess(serverMeta, dn, objectValues, groupName):
     try:
         import UsermanagementExtra
         UsermanagementExtra.addPreProcess(serverMeta, dn, objectValues, groupName)
     except ImportError, e:
-        print "Could not execute addPreProcess. Reason:"
-        print e
+        tmpString = "Could not execute addPreProcess. Reason:\n"
+        tmpString += str(e)
+        environment.logMessage(LogObject("Debug", tmpString))
     
 ###############################################################################
 
@@ -25,8 +28,9 @@ def addPostProcess(serverMeta, dn, objectValues, groupName):
         import UsermanagementExtra
         UsermanagementExtra.addPostProcess(serverMeta, dn, objectValues, groupName)
     except ImportError, e:
-        print "Could not execute addPostProcess. Reason:"
-        print e
+        tmpString = "Could not execute addPostProcess. Reason:\n"
+        tmpString += str(e)
+        environment.logMessage(LogObject("Debug", tmpString))
         
 ###############################################################################
 
@@ -35,8 +39,9 @@ def deletePreProcess(serverMeta, dn):
         import UsermanagementExtra
         UsermanagementExtra.deletePreProcess(serverMeta, dn)
     except ImportError, e:
-        print "Could not execute deletePreProcess. Reason:"
-        print e
+        tmpString = "Could not execute deletePreProcess. Reason:\n"
+        tmpString += str(e)
+        environment.logMessage(LogObject("Debug", tmpString))
     
 ###############################################################################
 
@@ -45,8 +50,9 @@ def deletePostProcess(serverMeta, dn):
         import UsermanagementExtra
         UsermanagementExtra.deletePostProcess(serverMeta, dn)
     except ImportError, e:
-        print "Could not execute deletePostProcess. Reason:"
-        print e
+        tmpString = "Could not execute deletePostProcess. Reason:\n"
+        tmpString += str(e)
+        environment.logMessage(LogObject("Debug", tmpString))
 
 ###############################################################################
 
@@ -55,8 +61,9 @@ def modifyPreProcess(serverMeta, dn, objectValues):
         import UsermanagementExtra
         UsermanagementExtra.modifyPreProcess(serverMeta, dn, objectValues)
     except ImportError, e:
-        print "Could not execute modifyPreProcess. Reason:"
-        print e
+        tmpString = "Could not execute modifyPreProcess. Reason:\n"
+        tmpString += str(e)
+        environment.logMessage(LogObject("Debug", tmpString))
     
 ###############################################################################
 
@@ -65,5 +72,6 @@ def modifyPostProcess(serverMeta, dn, objectValues):
         import UsermanagementExtra
         UsermanagementExtra.modifyPostProcess(serverMeta, dn, objectValues)
     except ImportError, e:
-        print "Could not execute modifyPostProcess. Reason:"
-        print e
+        tmpString = "Could not execute modifyPostProcess. Reason:\n"
+        tmpString += str(e)
+        environment.logMessage(LogObject("Debug", tmpString))

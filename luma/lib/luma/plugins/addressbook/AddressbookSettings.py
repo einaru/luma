@@ -15,6 +15,7 @@ import os.path
 
 from plugins.addressbook.AddressbookSettingsDesign import AddressbookSettingsDesign
 import environment
+from base.utils.backend.LogObject import LogObject
 
 class AddressbookSettings(AddressbookSettingsDesign):
 
@@ -64,8 +65,9 @@ class AddressbookSettings(AddressbookSettingsDesign):
         try:
             config.readfp(open(self.configFile, 'r'))
         except IOError, e:
-            print "Could not read addressbook settings. Reason: "
-            print e
+            tmpString = "Could not read addressbook settings. Reason:\n"
+            tmpString += str(e)
+            environment.logMessage(LogObject("Debug", tmpString))
         
         filter = None
         
@@ -83,8 +85,9 @@ class AddressbookSettings(AddressbookSettingsDesign):
         try:
             config.write(open(self.configFile, 'w'))
         except IOError, e:
-            print "Error: Could not write to " + self.configFile + ". Reason:"
-            print e
+            tmpString = "Error: Could not write to " + self.configFile + ". Reason:\n"
+            tmpString += str(e)
+            environment.logMessage(LogObject("Debug", tmpString))
         
         filterSplit = filter.split(",")
         for x in filterSplit:
@@ -108,7 +111,8 @@ class AddressbookSettings(AddressbookSettingsDesign):
         
             config.write(open(self.configFile, 'w'))
         except IOError, e:
-            print "Error: Could not read/write to " + self.configFile + ". Reason:"
-            print e
+            tmpString = "Error: Could not read/write to " + self.configFile + ". Reason:\n"
+            tmpString += str(e)
+            environment.logMessage(LogObject("Debug", tmpString))
         
         

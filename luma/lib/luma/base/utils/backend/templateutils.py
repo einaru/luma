@@ -16,6 +16,7 @@ from qt import *
 from copy import deepcopy
 
 from base.backend.SmartDataObject import SmartDataObject
+from base.utils.backend.LogObject import LogObject
 
 class LdapTemplate(object):
     """ A class for storing template information of ldap-objects.
@@ -132,8 +133,9 @@ class TemplateList:
             fileContent = "".join(open(self.templateFile, "r").readlines())
             fileContent = fileContent.decode("utf-8")
         except IOError, e:
-            print "Could not read template configuration file. Reason:"
-            print e
+            tmpString = "Could not read template configuration file. Reason:\n"
+            tmpString += str(e)
+            environment.logMessage(LogObject("Debug", tmpString))
     
         self.templateList = [] 
         

@@ -11,16 +11,19 @@
 
 
 import sys
+import traceback
+import threading
+import time
+import StringIO
 from qt import *
 
 import environment
 from base.gui.MainWin import MainWin
+from base.utils.backend.LogObject import LogObject
 import environment
 import os
 
-
 def startApplication():
-    
     #Check if configuration directory exists. If not, create it.
     configPrefix = os.path.join(environment.userHomeDir, ".luma")
     if not os.path.exists(configPrefix):
@@ -38,6 +41,22 @@ def startApplication():
 
 ###############################################################################
 
+def unhandledException(exceptionType, exceptionValue, exceptionTraceback):
+    tmpString = StringIO.StringIO()
+    traceback.print_tb(exceptionTraceback, None, tmpString)
+    errorString = """An unhandled exception occured. This is most likely a bug 
+in the programming of Luma. In order to fix this, send an email with the 
+following text and a detailed description of what you were doing to
+luma-users@lists.sourceforge.net.\n"""
+    errorString = errorString + tmpString.getvalue()
+    errorString = errorString + "Reason: " + str(exceptionValue)
+    environment.logMessage(LogObject("Error", errorString))
+
+###############################################################################
+    
+sys.excepthook = unhandledException
+
 if __name__ == '__main__':
     startApplication()
+
 

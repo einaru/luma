@@ -26,6 +26,7 @@ from base.utils import escapeSpecialChars
 from base.utils.gui.LumaErrorDialog import LumaErrorDialog
 from base.utils.gui.DeleteDialog import DeleteDialog
 from base.utils.gui.ExportDialog import ExportDialog
+from base.utils.backend.LogObject import LogObject
 
 class BrowserWidget(QListView):
     """ Widget for browsing ldap trees. 
@@ -123,7 +124,6 @@ class BrowserWidget(QListView):
                 if success:
                     if len(resultList) > 0:
                         result = resultList[0]
-                        #print result.dn, result.data
                         result.serverMeta.currentBase = self.currentBase
                         self.emit(PYSIGNAL("about_to_change"), ())
                         self.emit(PYSIGNAL("ldap_result"), (deepcopy(result),))
@@ -243,8 +243,9 @@ class BrowserWidget(QListView):
 
             return ",".join(tmpList)
         except AttributeError, e:
-            print "Attribute Error in function 'BrowserWidget.getFullPath()'. Reason:"
-            print e
+            tmpString = "Attribute Error in function 'BrowserWidget.getFullPath()'. Reason:\n"
+            tmpString += str(e)
+            environment.logMessage(LogObject("Error", tmpString))
 
 ###############################################################################
 
@@ -617,7 +618,6 @@ class BrowserWidget(QListView):
                     del childrenList[0]
                 
                 childrenList.sort()
-                #print map(lambda x: x.getDN(), childrenList)
                 deleteDialog = DeleteDialog()
                 deleteDialog.initData(childrenList)
                 deleteDialog.exec_loop()
@@ -631,12 +631,6 @@ class BrowserWidget(QListView):
                 errorMsg.append(str(exceptionObject))
                 dialog.setErrorMessage(errorMsg)
                 dialog.exec_loop()
-            
-            
-            
-            #serverName, selectedObject = self.splitPath(fullPath)
-            #if len(selectedObject) == 0:
-            #    return
             
 ###############################################################################
 
