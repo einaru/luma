@@ -11,6 +11,7 @@
 
 from qt import *
 import os.path
+from sets import Set
 
 import environment
 from plugins.admin_utils.AdminPanelDesign import AdminPanelDesign
@@ -19,8 +20,6 @@ from base.utils.backend.DateHelper import DateHelper
 from base.utils.backend.mkpasswd import mkpasswd
 
 class AdminPanel(AdminPanelDesign):
-
-###############################################################################
 
     def __init__(self,parent = None,name = None,fl = 0):
         AdminPanelDesign.__init__(self,parent,name,fl)
@@ -32,16 +31,24 @@ class AdminPanel(AdminPanelDesign):
         self.secureLabel.setPixmap (secureIcon)
         self.dateLabel.setPixmap (dateIcon)
         
+        # basic algorithms which are supported by mkpasswd-module
+        self.supportedAlgorithms = Set(['crypt', 'md5', 'sha', 'ssha'])
+        
+        # add lmhash and nthash algorithms if smbpasswd module is present
+        try:
+            import smbpasswd
+            self.supportedAlgorithms = self.supportedAlgorithms.union(Set(['lmhash', 'nthash']))
+        except ImportError, e:
+            pass
+
+        map(self.methodBox.insertItem, self.supportedAlgorithms)
+        
         self.pwHandler = CryptPwGenerator()
         self.dateHandler = DateHelper()
         
 ###############################################################################
 
     def create_random(self):
-        #password, cryptPw = self.pwHandler.get_random_password()
-        #self.randomPwEdit.setText(password)
-        #self.randomCryptEdit.setText(cryptPw)
-        
         tmpPassword = self.pwHandler.create_random_string(10)
         self.randomPwEdit.setText(tmpPassword)
         method = str(self.methodBox.currentText())
