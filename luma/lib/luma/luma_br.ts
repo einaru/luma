@@ -29,7 +29,7 @@
         <source>Wido Depping&lt;br&gt;
 &lt;blockquote&gt;widod@users.sourceforge.net&lt;/blockquote&gt;</source>
         <comment>DO NOT TRANSLATE</comment>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Bjorn Ove Grotan
@@ -51,7 +51,7 @@ My mentor and UI tester :)
 Eric Cote
 Testing guinea pig for python 2.3</source>
         <comment>DO NOT TRANSLATE</comment>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>&lt;p align=&quot;center&quot;&gt;LDAP management made easy.&lt;br&gt;&lt;br&gt;
@@ -59,7 +59,7 @@ Testing guinea pig for python 2.3</source>
 http://luma.sourceforge.net
 &lt;/p&gt;</source>
         <comment>DO NOT TRANSLATE</comment>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>This program is distributed under the terms of the GPL v2.
@@ -346,12 +346,12 @@ POSSIBILITY OF SUCH DAMAGES.
 <byte value="x9"/><byte value="x9"/>     END OF TERMS AND CONDITIONS
 </source>
         <comment>DO NOT TRANSLATE</comment>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>&lt;font size=&quot;+2&quot;&gt;&lt;b&gt;Luma 1.6 CVS&lt;/b&gt;&lt;/font&gt;</source>
         <comment>DO NOT TRANSLATE</comment>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
 </context>
 <context>
@@ -392,19 +392,21 @@ POSSIBILITY OF SUCH DAMAGES.
         <source>It is strongly recommended that you choose 
 a password for the new user. Otherwise 
 it might compromise the security of your system.</source>
-        <translation type="unfinished"></translation>
+        <translation>É fortemente recomendável que você escolha
+uma senha para o novo usuário. Caso contrário,
+isto pode comprometer a segurança do sistema.</translation>
     </message>
     <message>
         <source>Missing password</source>
-        <translation type="unfinished"></translation>
+        <translation>Senha não encontrada</translation>
     </message>
     <message>
         <source>Could not bind to server.&lt;br&gt;&lt;br&gt;Reason: </source>
-        <translation type="unfinished"></translation>
+        <translation>Não pude executar bind ao servidor.&lt;br&gt;&lt;br&gt;Motivo:</translation>
     </message>
     <message>
         <source>Could not create account.&lt;br&gt;&lt;br&gt;Reason: </source>
-        <translation type="unfinished"></translation>
+        <translation>Não pude criar a nova conta.&lt;br&gt;&lt;br&gt;Motivo:</translation>
     </message>
 </context>
 <context>
@@ -416,7 +418,7 @@ it might compromise the security of your system.</source>
     <message>
         <source>LOC</source>
         <comment>DO NOT TRANSLATE</comment>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Please select a location where the new account should be stored.</source>
@@ -439,65 +441,65 @@ it might compromise the security of your system.</source>
     <name>AddAttributeDialogDesign</name>
     <message>
         <source>Attributes</source>
-        <translation type="unfinished">Atributos</translation>
+        <translation>Atributos</translation>
     </message>
     <message>
         <source>Add attribute</source>
-        <translation type="unfinished"></translation>
+        <translation>Adicionar atributo</translation>
     </message>
     <message>
         <source>Please select the attributes you want to add.</source>
-        <translation type="unfinished"></translation>
+        <translation>Selecione os atributos que deseja adicionar.</translation>
     </message>
     <message>
         <source>&amp;OK</source>
-        <translation type="unfinished">&amp;OK</translation>
+        <translation>&amp;OK</translation>
     </message>
     <message>
         <source>Alt+O</source>
-        <translation type="unfinished"></translation>
+        <translation>Alt+O</translation>
     </message>
     <message>
         <source>&amp;Cancel</source>
-        <translation type="unfinished">&amp;Cancelar</translation>
+        <translation>&amp;Cancelar</translation>
     </message>
     <message>
         <source>Alt+C</source>
-        <translation type="unfinished">Alt+F</translation>
+        <translation>Alt+C</translation>
     </message>
     <message>
         <source>&lt;b&gt;Attribute information&lt;/b&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;Informação sobre atributo&lt;/b&gt;</translation>
     </message>
     <message>
         <source>Binary:</source>
-        <translation type="unfinished"></translation>
+        <translation>Binário:</translation>
     </message>
     <message>
         <source>B</source>
         <comment>DO NOT TRANSLATE</comment>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>C</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Must:</source>
-        <translation type="unfinished"></translation>
+        <translation>Necessário:</translation>
     </message>
     <message>
         <source>Default value:</source>
-        <translation type="unfinished"></translation>
+        <translation>Valor padrão:</translation>
     </message>
     <message>
         <source>Single:</source>
-        <translation type="unfinished"></translation>
+        <translation>Único:</translation>
     </message>
     <message>
         <source>A</source>
         <comment>DO NOT TRANSLATE</comment>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
 </context>
 <context>
@@ -509,7 +511,7 @@ it might compromise the security of your system.</source>
     <message>
         <source>PI</source>
         <comment>DO NOT TRANSLATE</comment>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Enable all attributes which are supported by the server.</source>
@@ -545,7 +547,7 @@ por outras classes, habilite esta funcionalidade abaixo.
     </message>
     <message>
         <source>CL</source>
-        <translation type="unfinished"></translation>
+        <translation>CL</translation>
     </message>
     <message>
         <source>Choose objectclass</source>
@@ -568,88 +570,88 @@ com a classe selecionada.&lt;/p&gt;</translation>
     <name>AddObjectClassDialogDesign</name>
     <message>
         <source>Objectclass</source>
-        <translation type="unfinished"></translation>
+        <translation>ObjectClass</translation>
     </message>
     <message>
         <source>&amp;OK</source>
-        <translation type="unfinished">&amp;OK</translation>
+        <translation>&amp;OK</translation>
     </message>
     <message>
         <source>Alt+O</source>
-        <translation type="unfinished"></translation>
+        <translation>Alt+O</translation>
     </message>
     <message>
         <source>&amp;Cancel</source>
-        <translation type="unfinished">&amp;Cancelar</translation>
+        <translation>&amp;Cancelar</translation>
     </message>
     <message>
         <source>Alt+C</source>
-        <translation type="unfinished">Alt+F</translation>
+        <translation>Alt+C</translation>
     </message>
     <message>
         <source>Add objectclass</source>
-        <translation type="unfinished"></translation>
+        <translation>Adicionar ObjectClass</translation>
     </message>
     <message>
         <source>Please choose the objectclass you want to add to the template.</source>
-        <translation type="unfinished"></translation>
+        <translation>Selecione os ObjectClass que deseja adicionar ao template.</translation>
     </message>
 </context>
 <context>
     <name>AddTemplateDialog</name>
     <message>
         <source>A template with this name already exists.</source>
-        <translation type="unfinished"></translation>
+        <translation>Já existe um template com esse nome.</translation>
     </message>
     <message>
         <source>Please supply a template name.</source>
-        <translation type="unfinished"></translation>
+        <translation>Informe o nome do template.</translation>
     </message>
 </context>
 <context>
     <name>AddTemplateDialogDesign</name>
     <message>
         <source>New Template</source>
-        <translation type="unfinished"></translation>
+        <translation>Novo Template</translation>
     </message>
     <message>
         <source>Please choose a template name, a description and a server with which the template is associated.</source>
-        <translation type="unfinished"></translation>
+        <translation>Informe um nome para o template, descrição e servidor ao qual será associado.</translation>
     </message>
     <message>
         <source>&amp;OK</source>
-        <translation type="unfinished">&amp;OK</translation>
+        <translation>&amp;OK</translation>
     </message>
     <message>
         <source>&amp;Cancel</source>
-        <translation type="unfinished">&amp;Cancelar</translation>
+        <translation>&amp;Cancelar</translation>
     </message>
     <message>
         <source>Template name:</source>
-        <translation type="unfinished"></translation>
+        <translation>Nome do template:</translation>
     </message>
     <message>
         <source>Server:</source>
-        <translation type="unfinished">Servidor:</translation>
+        <translation>Servidor:</translation>
     </message>
     <message>
         <source>Description:</source>
-        <translation type="unfinished"></translation>
+        <translation>Descrição:</translation>
     </message>
     <message>
         <source>Please supply a template name.</source>
-        <translation type="unfinished"></translation>
+        <translation>Informe um nome para o template.</translation>
     </message>
 </context>
 <context>
     <name>AddressbookSettings</name>
     <message>
         <source>New search criteria</source>
-        <translation type="unfinished"></translation>
+        <translation>Novo critério de busca</translation>
     </message>
     <message>
         <source>Attribute:</source>
-        <translation type="unfinished">Atributo:</translation>
+        <translation>Atributo:</translation>
     </message>
 </context>
 <context>
@@ -664,7 +666,7 @@ com a classe selecionada.&lt;/p&gt;</translation>
     </message>
     <message>
         <source>Alt+A</source>
-        <translation type="unfinished"></translation>
+        <translation>Alt+A</translation>
     </message>
     <message>
         <source>&amp;Delete</source>
@@ -672,15 +674,15 @@ com a classe selecionada.&lt;/p&gt;</translation>
     </message>
     <message>
         <source>Alt+D</source>
-        <translation type="unfinished"></translation>
+        <translation>Alt+D</translation>
     </message>
     <message>
         <source>&lt;b&gt;Search criteria&lt;/b&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;Critério de busca&lt;/b&gt;</translation>
     </message>
     <message>
         <source>&amp;Add...</source>
-        <translation type="unfinished">&amp;Adicionar...</translation>
+        <translation>&amp;Adicionar...</translation>
     </message>
 </context>
 <context>
@@ -691,11 +693,11 @@ com a classe selecionada.&lt;/p&gt;</translation>
     </message>
     <message>
         <source>Could not bind to server.&lt;br&gt;&lt;br&gt;Reason: </source>
-        <translation type="unfinished"></translation>
+        <translation>Não pude executar bind ao servidor.&lt;br&gt;&lt;br&gt;Motivo:</translation>
     </message>
     <message>
         <source>Could not save entry.&lt;br&gt;&lt;br&gt;Reason: </source>
-        <translation type="unfinished"></translation>
+        <translation>Não pude salvar o registro.&lt;br&gt;&lt;br&gt;Motivo:</translation>
     </message>
 </context>
 <context>
@@ -799,7 +801,7 @@ com a classe selecionada.&lt;/p&gt;</translation>
     <message>
         <source>P</source>
         <comment>DO NOT TRANSLATE</comment>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>&amp;Full Name...</source>
@@ -815,22 +817,22 @@ com a classe selecionada.&lt;/p&gt;</translation>
     </message>
     <message>
         <source>Alt+C</source>
-        <translation type="unfinished">Alt+F</translation>
+        <translation>Alt+C</translation>
     </message>
     <message>
         <source>CL</source>
         <comment>DO NOT TRANSLATE</comment>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>WP</source>
         <comment>DO NOT TRANSLATE</comment>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Ma</source>
         <comment>DO NOT TRANSLATE</comment>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>&amp;Delete</source>
@@ -838,7 +840,7 @@ com a classe selecionada.&lt;/p&gt;</translation>
     </message>
     <message>
         <source>Alt+D</source>
-        <translation type="unfinished"></translation>
+        <translation>Alt+D</translation>
     </message>
     <message>
         <source>&amp;Add...</source>
@@ -846,36 +848,36 @@ com a classe selecionada.&lt;/p&gt;</translation>
     </message>
     <message>
         <source>Alt+A</source>
-        <translation type="unfinished"></translation>
+        <translation>Alt+A</translation>
     </message>
     <message>
         <source>Ph</source>
         <comment>DO NOT TRANSLATE</comment>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>HI</source>
         <comment>DO NOT TRANSLATE</comment>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>ME</source>
         <comment>DO NOT TRANSLATE</comment>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>WO</source>
         <comment>DO NOT TRANSLATE</comment>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>NO</source>
         <comment>DO NOT TRANSLATE</comment>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>AddressbookWidgetDesign</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
 </context>
 <context>
@@ -922,7 +924,7 @@ com a classe selecionada.&lt;/p&gt;</translation>
     </message>
     <message>
         <source>Alt+C</source>
-        <translation type="unfinished">Alt+F</translation>
+        <translation>Alt+C</translation>
     </message>
     <message>
         <source>Secure</source>
@@ -948,105 +950,105 @@ com a classe selecionada.&lt;/p&gt;</translation>
     </message>
     <message>
         <source>Alt+O</source>
-        <translation type="unfinished"></translation>
+        <translation>Alt+O</translation>
     </message>
     <message>
         <source>AdminPanelDesign</source>
-        <translation type="unfinished"></translation>
+        <translation>AdminPanelDesign</translation>
     </message>
     <message>
         <source>&lt;b&gt;Hash method:&lt;/b&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;Método hash:&lt;/b&gt;</translation>
     </message>
     <message>
         <source>&lt;b&gt;Encrypt password&lt;/b&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;Senha encriptada&lt;/b&gt;</translation>
     </message>
     <message>
         <source>&lt;b&gt;Create random password&lt;/b&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;Criar senha aleatória&lt;/b&gt;</translation>
     </message>
     <message>
         <source>&lt;b&gt;Date to Unix date&lt;/b&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;Date para Unix date&lt;/b&gt;</translation>
     </message>
     <message>
         <source>&lt;b&gt;Duration to Unix date&lt;/b&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;Duração para Unix date&lt;/b&gt;</translation>
     </message>
 </context>
 <context>
     <name>AdvancedObjectWidget</name>
     <message>
         <source>Value not set.</source>
-        <translation type="unfinished"></translation>
+        <translation>Valor inexistente.</translation>
     </message>
     <message>
         <source>Export binary attribute to file</source>
-        <translation type="unfinished">Exportar atributo binário para arquivo</translation>
+        <translation>Exportar atributo binário para arquivo</translation>
     </message>
     <message>
         <source>Export binary attribute</source>
-        <translation type="unfinished">Exportar atributo binário</translation>
+        <translation>Exportar atributo binário</translation>
     </message>
     <message>
         <source>&amp;Cancel</source>
-        <translation type="unfinished">&amp;Cancelar</translation>
+        <translation>&amp;Cancelar</translation>
     </message>
     <message>
         <source>&amp;OK</source>
-        <translation type="unfinished">&amp;OK</translation>
+        <translation>&amp;OK</translation>
     </message>
     <message>
         <source>Reload</source>
-        <translation type="unfinished">Recarregar</translation>
+        <translation>Recarregar</translation>
     </message>
     <message>
         <source>Save</source>
-        <translation type="unfinished">Salvar</translation>
+        <translation>Salvar</translation>
     </message>
     <message>
         <source>Add attribute...</source>
-        <translation type="unfinished">Adicionar atributo...</translation>
+        <translation>Adicionar atributo...</translation>
     </message>
     <message>
         <source>Delete object</source>
-        <translation type="unfinished">Deletar objeto</translation>
+        <translation>Deletar objeto</translation>
     </message>
     <message>
         <source>Could not bind to server.&lt;br&gt;&lt;br&gt;Reason: </source>
-        <translation type="unfinished"></translation>
+        <translation>Não pude executar bind ao servidor.&lt;br&gt;&lt;br&gt;Motivo:</translation>
     </message>
     <message>
         <source>Could not check if object is a leaf in the ldap tree.&lt;br&gt;&lt;br&gt;Reason: </source>
-        <translation type="unfinished"></translation>
+        <translation>Não pude checar se o objeto é uma folha no LDAP.&lt;br&gt;&lt;br&gt;Motivo:</translation>
     </message>
     <message>
         <source>Could not refresh entry.&lt;br&gt;&lt;br&gt;Reason: </source>
-        <translation type="unfinished"></translation>
+        <translation>Não pude executar refresh do registro.&lt;br&gt;&lt;br&gt;Motivo:</translation>
     </message>
     <message>
         <source>Could not add entry.&lt;br&gt;&lt;br&gt;Reason: </source>
-        <translation type="unfinished"></translation>
+        <translation>Não pude adicionar registro.&lt;br&gt;&lt;br&gt;Motivo:</translation>
     </message>
     <message>
         <source>Could not save entry.&lt;br&gt;&lt;br&gt;Reason: </source>
-        <translation type="unfinished"></translation>
+        <translation>Não pude salvar registro.&lt;br&gt;&lt;br&gt;Motivo:</translation>
     </message>
     <message>
         <source>Do your really want to delete the object?</source>
-        <translation type="unfinished"></translation>
+        <translation>Deseja realmente deletar o objeto?</translation>
     </message>
     <message>
         <source>Could not delete entry.&lt;br&gt;&lt;br&gt;Reason: </source>
-        <translation type="unfinished"></translation>
+        <translation>Não pude deletar registro.&lt;br&gt;&lt;br&gt;Motivo:</translation>
     </message>
 </context>
 <context>
     <name>BaseSelector</name>
     <message>
         <source>Could not retrieve baseDN.&lt;br&gt;&lt;br&gt;Reason: </source>
-        <translation type="unfinished"></translation>
+        <translation>Não pude recuperar baseDN.&lt;br&gt;&lt;br&gt;Motivo:</translation>
     </message>
 </context>
 <context>
@@ -1057,119 +1059,119 @@ com a classe selecionada.&lt;/p&gt;</translation>
     </message>
     <message>
         <source>Alt+C</source>
-        <translation type="unfinished">Alt+F</translation>
+        <translation>Alt+C</translation>
     </message>
     <message>
         <source>Alt+O</source>
-        <translation type="unfinished"></translation>
+        <translation>Alt+O</translation>
     </message>
     <message>
         <source>Base DN</source>
-        <translation type="unfinished"></translation>
+        <translation>Base DN</translation>
     </message>
     <message>
         <source>Select Base DNs</source>
-        <translation type="unfinished"></translation>
+        <translation>Selecione Base DNs</translation>
     </message>
     <message>
         <source>Manage the base distinguished names you want to use with server &lt;b&gt;%1&lt;/b&gt;.</source>
-        <translation type="unfinished"></translation>
+        <translation>Gerenciar as Base DNs que deseja usar com servidor &lt;b&gt;%1&lt;/b&gt;.</translation>
     </message>
     <message>
         <source>Custom:</source>
-        <translation type="unfinished"></translation>
+        <translation>Nome:</translation>
     </message>
     <message>
         <source>&amp;Delete</source>
-        <translation type="unfinished">&amp;Deletar</translation>
+        <translation>&amp;Deletar</translation>
     </message>
     <message>
         <source>Alt+D</source>
-        <translation type="unfinished"></translation>
+        <translation>Alt+D</translation>
     </message>
     <message>
         <source>&amp;Add</source>
-        <translation type="unfinished">&amp;Adicionar</translation>
+        <translation>&amp;Adicionar</translation>
     </message>
     <message>
         <source>Alt+A</source>
-        <translation type="unfinished"></translation>
+        <translation>Alt+A</translation>
     </message>
     <message>
         <source>&amp;Update from server</source>
-        <translation type="unfinished"></translation>
+        <translation>Rec&amp;uperar do servidor</translation>
     </message>
     <message>
         <source>Alt+U</source>
-        <translation type="unfinished"></translation>
+        <translation>Alt+U</translation>
     </message>
     <message>
         <source>&amp;OK</source>
-        <translation type="unfinished">&amp;OK</translation>
+        <translation>&amp;OK</translation>
     </message>
 </context>
 <context>
     <name>BinaryEditor</name>
     <message>
         <source>Given file does not exist. Please check the filename.</source>
-        <translation type="unfinished"></translation>
+        <translation>O arquivo informado não existe. Verifique o nome do arquivo.</translation>
     </message>
     <message>
         <source>Given file is a directory. Please check the filename.</source>
-        <translation type="unfinished"></translation>
+        <translation>O arquivo informado é um diretório. Verifique o nome do arquivo.</translation>
     </message>
     <message>
         <source>Can&apos;t open file. Please check file permissions.</source>
-        <translation type="unfinished"></translation>
+        <translation>Não pude abrir o arquivo. Verifique as permissões de acesso do mesmo.</translation>
     </message>
     <message>
         <source>Select file to change binary value</source>
-        <translation type="unfinished">Selecione arquivo para alterar o valor do atributo binário</translation>
+        <translation>Selecione arquivo para alterar o valor do atributo binário</translation>
     </message>
 </context>
 <context>
     <name>BinaryEditorDesign</name>
     <message>
         <source>Edit attribute</source>
-        <translation type="unfinished">Editar atributo</translation>
+        <translation>Editar atributo</translation>
     </message>
     <message>
         <source>IT</source>
         <comment>DO NOT TRANSLATE</comment>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>&amp;OK</source>
-        <translation type="unfinished">&amp;OK</translation>
+        <translation>&amp;OK</translation>
     </message>
     <message>
         <source>Alt+O</source>
-        <translation type="unfinished"></translation>
+        <translation>Alt+O</translation>
     </message>
     <message>
         <source>&amp;Cancel</source>
-        <translation type="unfinished">&amp;Cancelar</translation>
+        <translation>&amp;Cancelar</translation>
     </message>
     <message>
         <source>Alt+C</source>
-        <translation type="unfinished">Alt+F</translation>
+        <translation>Alt+C</translation>
     </message>
     <message>
         <source>F</source>
         <comment>DO NOT TRANSLATE</comment>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Please enter a file location from where to load binary data for the attribute &lt;b&gt;%1&lt;/b&gt;.</source>
-        <translation type="unfinished"></translation>
+        <translation>Informe o nome do arquivo de onde serão carregados os dados binários para o atributo &lt;b&gt;%1&lt;/b&gt;.</translation>
     </message>
     <message>
         <source>IL</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Location:</source>
-        <translation type="unfinished">Localização:</translation>
+        <translation>Localização:</translation>
     </message>
 </context>
 <context>
@@ -1219,35 +1221,35 @@ com a classe selecionada.&lt;/p&gt;</translation>
     </message>
     <message>
         <source>Follow Aliases</source>
-        <translation type="unfinished"></translation>
+        <translation>Seguir Aliases</translation>
     </message>
     <message>
         <source>Could not access entry.&lt;br&gt;&lt;br&gt;Reason: </source>
-        <translation type="unfinished"></translation>
+        <translation>Não pude acessar o registro.&lt;br&gt;&lt;br&gt;Motivo:</translation>
     </message>
     <message>
         <source>Could not expand entry.&lt;br&gt;&lt;br&gt;Reason: </source>
-        <translation type="unfinished"></translation>
+        <translation>Não pude expandir o registro.&lt;br&gt;&lt;br&gt;Motivo:</translation>
     </message>
     <message>
         <source>Could not retrieve baseDN.&lt;br&gt;&lt;br&gt;Reason: </source>
-        <translation type="unfinished"></translation>
+        <translation>Não pude recuperar baseDN.&lt;br&gt;&lt;br&gt;Motivo:</translation>
     </message>
     <message>
         <source>Could not export item.&lt;br&gt;&lt;br&gt;Reason: </source>
-        <translation type="unfinished"></translation>
+        <translation>Não pude exportar item.&lt;br&gt;&lt;br&gt;Motivo:</translation>
     </message>
     <message>
         <source>Could not export items.&lt;br&gt;&lt;br&gt;Reason: </source>
-        <translation type="unfinished"></translation>
+        <translation>Não pude exportar itens.&lt;br&gt;&lt;br&gt;Motivo:</translation>
     </message>
     <message>
         <source>Could not retrieve entry for deletion.&lt;br&gt;&lt;br&gt;Reason: </source>
-        <translation type="unfinished"></translation>
+        <translation>Não pude recuperar registro para deleção.&lt;br&gt;&lt;br&gt;Motivo:</translation>
     </message>
     <message>
         <source>Export</source>
-        <translation type="unfinished"></translation>
+        <translation>Exportar</translation>
     </message>
 </context>
 <context>
@@ -1266,7 +1268,7 @@ com a classe selecionada.&lt;/p&gt;</translation>
     </message>
     <message>
         <source>Alt+C</source>
-        <translation type="unfinished">Alt+F</translation>
+        <translation>Alt+C</translation>
     </message>
     <message>
         <source>&amp;Ok</source>
@@ -1274,7 +1276,7 @@ com a classe selecionada.&lt;/p&gt;</translation>
     </message>
     <message>
         <source>Alt+O</source>
-        <translation type="unfinished"></translation>
+        <translation>Alt+O</translation>
     </message>
     <message>
         <source>&amp;Delete</source>
@@ -1282,46 +1284,46 @@ com a classe selecionada.&lt;/p&gt;</translation>
     </message>
     <message>
         <source>Alt+D</source>
-        <translation type="unfinished"></translation>
+        <translation>Alt+D</translation>
     </message>
     <message>
         <source>Alt+A</source>
-        <translation type="unfinished"></translation>
+        <translation>Alt+A</translation>
     </message>
     <message>
         <source>&amp;Add...</source>
-        <translation type="unfinished">&amp;Adicionar...</translation>
+        <translation>&amp;Adicionar...</translation>
     </message>
 </context>
 <context>
     <name>ClassDeleteDialog</name>
     <message>
         <source>Attribute</source>
-        <translation type="unfinished">Atributo</translation>
+        <translation>Atributo</translation>
     </message>
     <message>
         <source>Attribute warning</source>
-        <translation type="unfinished"></translation>
+        <translation>Aviso de Atributo</translation>
     </message>
     <message>
         <source>&amp;Cancel</source>
-        <translation type="unfinished">&amp;Cancelar</translation>
+        <translation>&amp;Cancelar</translation>
     </message>
     <message>
         <source>Alt+C</source>
-        <translation type="unfinished">Alt+F</translation>
+        <translation>Alt+C</translation>
     </message>
     <message>
         <source>&amp;OK</source>
-        <translation type="unfinished">&amp;OK</translation>
+        <translation>&amp;OK</translation>
     </message>
     <message>
         <source>Alt+O</source>
-        <translation type="unfinished"></translation>
+        <translation>Alt+O</translation>
     </message>
     <message>
         <source>&lt;b&gt;Warning:&lt;/b&gt; The follwing attributes will be removed when deleting objectclass &lt;b&gt;%1&lt;/b&gt;. Do you want to continue?</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;Atenção:&lt;/b&gt; Os seguintes atributos serão removidos ao deletar o objectclass &lt;b&gt;%1&lt;/b&gt;. Deseja continuar?</translation>
     </message>
 </context>
 <context>
@@ -1332,7 +1334,7 @@ com a classe selecionada.&lt;/p&gt;</translation>
     </message>
     <message>
         <source>Alt+O</source>
-        <translation type="unfinished"></translation>
+        <translation>Alt+O</translation>
     </message>
     <message>
         <source>&amp;Ok</source>
@@ -1383,11 +1385,11 @@ com a classe selecionada.&lt;/p&gt;</translation>
     </message>
     <message>
         <source>Alt+F</source>
-        <translation type="unfinished">Alt+N</translation>
+        <translation>Alt+F</translation>
     </message>
     <message>
         <source>ConfigPanelDesign</source>
-        <translation type="unfinished"></translation>
+        <translation>ConfigPanelDesign</translation>
     </message>
     <message>
         <source>Base DN:</source>
@@ -1451,15 +1453,15 @@ com a classe selecionada.&lt;/p&gt;</translation>
     </message>
     <message>
         <source>Could not bind to server.&lt;br&gt;&lt;br&gt;Reason: </source>
-        <translation type="unfinished"></translation>
+        <translation>Não pude executar bind ao servidor.&lt;br&gt;&lt;br&gt;Motivo:</translation>
     </message>
     <message>
         <source>Could not add entry.&lt;br&gt;&lt;br&gt;Reason: </source>
-        <translation type="unfinished"></translation>
+        <translation>Não pude adicionar registro.&lt;br&gt;&lt;br&gt;Motivo:</translation>
     </message>
     <message>
         <source>Incomplete information.</source>
-        <translation type="unfinished"></translation>
+        <translation>Informação incompleta.</translation>
     </message>
 </context>
 <context>
@@ -1471,7 +1473,7 @@ com a classe selecionada.&lt;/p&gt;</translation>
     <message>
         <source>LOC</source>
         <comment>DO NOT TRANSLATE</comment>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Please select a location where the new contact should be stored.</source>
@@ -1494,158 +1496,158 @@ com a classe selecionada.&lt;/p&gt;</translation>
     <name>DeleteDialog</name>
     <message>
         <source>Item deleted successfully.</source>
-        <translation type="unfinished"></translation>
+        <translation>Item deletado com sucesso.</translation>
     </message>
 </context>
 <context>
     <name>DeleteDialogDesign</name>
     <message>
         <source>DN</source>
-        <translation type="unfinished"></translation>
+        <translation>DN</translation>
     </message>
     <message>
         <source>Message</source>
-        <translation type="unfinished"></translation>
+        <translation>Mensagem</translation>
     </message>
     <message>
         <source>Delete items</source>
-        <translation type="unfinished"></translation>
+        <translation>Deletar itens</translation>
     </message>
     <message>
         <source>&amp;Cancel</source>
-        <translation type="unfinished">&amp;Cancelar</translation>
+        <translation>&amp;Cancelar</translation>
     </message>
     <message>
         <source>Alt+C</source>
-        <translation type="unfinished">Alt+F</translation>
+        <translation>Alt+C</translation>
     </message>
     <message>
         <source>DL</source>
-        <translation type="unfinished"></translation>
+        <translation>DL</translation>
     </message>
     <message>
         <source>The following entries will be deleted from the server. You can remove items from the list if you don&apos;t want them to be deleted. Press start to begin with deletion.</source>
-        <translation type="unfinished"></translation>
+        <translation>Os seguintes registros serão deletados do servidor. Você pode remover itens da lista, se não quiser que sejam deletados. Pressione iniciar para começar a deleção.</translation>
     </message>
     <message>
         <source>&amp;Start</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Iniciar</translation>
     </message>
     <message>
         <source>Alt+S</source>
-        <translation type="unfinished">Alt+I</translation>
+        <translation>Alt+I</translation>
     </message>
     <message>
         <source>&amp;Remove</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Remover</translation>
     </message>
     <message>
         <source>Alt+R</source>
-        <translation type="unfinished"></translation>
+        <translation>Alt+R</translation>
     </message>
 </context>
 <context>
     <name>ExportDialog</name>
     <message>
         <source>Select file to change binary value</source>
-        <translation type="unfinished"></translation>
+        <translation>Selecione o arquivo para alterar o valor binário</translation>
     </message>
     <message>
         <source>Given file is a directory. Please check the filename.</source>
-        <translation type="unfinished"></translation>
+        <translation>Arquivo informado é um diretório. Verifique o nome do arquivo.</translation>
     </message>
     <message>
         <source>Can&apos;t open file. Please check file system permissions.</source>
-        <translation type="unfinished"></translation>
+        <translation>Não pude abrir o arquivo. Verifique as permissões de acesso do mesmo.</translation>
     </message>
     <message>
         <source>Could not export all entires. Please check messages.</source>
-        <translation type="unfinished"></translation>
+        <translation>Não pude exportar todos os itens. Verifique as mensagens.</translation>
     </message>
     <message>
         <source>All items exported successfully.</source>
-        <translation type="unfinished"></translation>
+        <translation>Todos os itens foram exportados com sucesso.</translation>
     </message>
     <message>
         <source>Item exported successfully.</source>
-        <translation type="unfinished"></translation>
+        <translation>Item exportado com sucesso.</translation>
     </message>
 </context>
 <context>
     <name>ExportDialogDesign</name>
     <message>
         <source>1</source>
-        <translation type="unfinished"></translation>
+        <translation>1</translation>
     </message>
     <message>
         <source>DN</source>
-        <translation type="unfinished"></translation>
+        <translation>DN</translation>
     </message>
     <message>
         <source>Message</source>
-        <translation type="unfinished"></translation>
+        <translation>Mensagem</translation>
     </message>
     <message>
         <source>Export items</source>
-        <translation type="unfinished"></translation>
+        <translation>Exportar itens</translation>
     </message>
     <message>
         <source>The following entries will be exported to the format of your choice. You can remove items from the list if you don&apos;t want them to be exported. Press start to begin with export..</source>
-        <translation type="unfinished"></translation>
+        <translation>Os seguintes registros serão exportados no formato que você escolher. Você pode remover itens da lista se não quiser que sejam exportados. Pressione iniciar para começar a exportação..</translation>
     </message>
     <message>
         <source>&amp;Start</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Iniciar</translation>
     </message>
     <message>
         <source>Alt+S</source>
-        <translation type="unfinished">Alt+I</translation>
+        <translation>Alt+I</translation>
     </message>
     <message>
         <source>&amp;Remove</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Remover</translation>
     </message>
     <message>
         <source>Alt+R</source>
-        <translation type="unfinished"></translation>
+        <translation>Alt+R</translation>
     </message>
     <message>
         <source>DL</source>
         <comment>DO NOT TRANSLATE</comment>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>A</source>
         <comment>DO NOT TRANSLATE</comment>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Export format:</source>
-        <translation type="unfinished"></translation>
+        <translation>Formato de exportação:</translation>
     </message>
     <message>
         <source>foo</source>
-        <translation type="unfinished"></translation>
+        <translation>foo</translation>
     </message>
     <message>
         <source>LDIF</source>
-        <translation type="unfinished"></translation>
+        <translation>LDIF</translation>
     </message>
     <message>
         <source>DSML</source>
-        <translation type="unfinished"></translation>
+        <translation>DSML</translation>
     </message>
     <message>
         <source>Output file:</source>
-        <translation type="unfinished"></translation>
+        <translation>Arquivo de saída:</translation>
     </message>
     <message>
         <source>&amp;Cancel</source>
-        <translation type="unfinished">&amp;Cancelar</translation>
+        <translation>&amp;Cancelar</translation>
     </message>
     <message>
         <source>Alt+C</source>
-        <translation type="unfinished">Alt+F</translation>
+        <translation>Alt+C</translation>
     </message>
 </context>
 <context>
@@ -1700,11 +1702,11 @@ com a classe selecionada.&lt;/p&gt;</translation>
     </message>
     <message>
         <source>Alt+D</source>
-        <translation type="unfinished"></translation>
+        <translation>Alt+D</translation>
     </message>
     <message>
         <source>Alt+A</source>
-        <translation type="unfinished"></translation>
+        <translation>Alt+A</translation>
     </message>
     <message>
         <source>&amp;Ok</source>
@@ -1712,50 +1714,50 @@ com a classe selecionada.&lt;/p&gt;</translation>
     </message>
     <message>
         <source>Alt+O</source>
-        <translation type="unfinished"></translation>
+        <translation>Alt+O</translation>
     </message>
     <message>
         <source>&amp;Add current filter</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Adicionar filtro atual</translation>
     </message>
     <message>
         <source>&lt;b&gt;Filter bookmarks&lt;/b&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;Bookmarks de filtros&lt;/b&gt;</translation>
     </message>
     <message>
         <source>Filter:</source>
-        <translation type="unfinished">Filtro:</translation>
+        <translation>Filtro:</translation>
     </message>
     <message>
         <source>&lt;b&gt;Search Criteria&lt;/b&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;br&gt;Critério de Busca&lt;/b&gt;</translation>
     </message>
     <message>
         <source>&lt;b&gt;Concatenation&lt;/b&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;Concatenação&lt;/b&gt;</translation>
     </message>
     <message>
         <source>&lt;b&gt;Current filter&lt;/b&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;Filtro atual&lt;/b&gt;</translation>
     </message>
     <message>
         <source>&amp;Cancel</source>
-        <translation type="unfinished">&amp;Cancelar</translation>
+        <translation>&amp;Cancelar</translation>
     </message>
     <message>
         <source>Alt+C</source>
-        <translation type="unfinished">Alt+F</translation>
+        <translation>Alt+C</translation>
     </message>
 </context>
 <context>
     <name>GroupDialog</name>
     <message>
         <source>Could not bind to server.&lt;br&gt;&lt;br&gt;Reason: </source>
-        <translation type="unfinished"></translation>
+        <translation>Não pude executar bind ao servidor.&lt;br&gt;&lt;br&gt;Motivo:</translation>
     </message>
     <message>
         <source>Could retrieve other group information.&lt;br&gt;&lt;br&gt;Reason: </source>
-        <translation type="unfinished"></translation>
+        <translation>Não pude recuperar informações de outros grupos.&lt;br&gt;&lt;br&gt;Motivo:</translation>
     </message>
 </context>
 <context>
@@ -1766,7 +1768,7 @@ com a classe selecionada.&lt;/p&gt;</translation>
     </message>
     <message>
         <source>ID</source>
-        <translation type="unfinished"></translation>
+        <translation>ID</translation>
     </message>
     <message>
         <source>Location</source>
@@ -1779,7 +1781,7 @@ com a classe selecionada.&lt;/p&gt;</translation>
     <message>
         <source>GR</source>
         <comment>DO NOT TRANSLATE</comment>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Select the groups the &lt;strong&gt;%1&lt;/strong&gt; user should belong to.</source>
@@ -1834,7 +1836,7 @@ com a classe selecionada.&lt;/p&gt;</translation>
     </message>
     <message>
         <source>Alt+O</source>
-        <translation type="unfinished"></translation>
+        <translation>Alt+O</translation>
     </message>
     <message>
         <source>&amp;Cancel</source>
@@ -1842,7 +1844,7 @@ com a classe selecionada.&lt;/p&gt;</translation>
     </message>
     <message>
         <source>Alt+C</source>
-        <translation type="unfinished">Alt+F</translation>
+        <translation>Alt+C</translation>
     </message>
 </context>
 <context>
@@ -1861,27 +1863,27 @@ com a classe selecionada.&lt;/p&gt;</translation>
     </message>
     <message>
         <source>Could not retrieve baseDN.&lt;br&gt;&lt;br&gt;Reason: </source>
-        <translation type="unfinished"></translation>
+        <translation>Não pude recuperar base DN.&lt;br&gt;&lt;br&gt;Motivo:</translation>
     </message>
     <message>
         <source>Could not bind to server.&lt;br&gt;&lt;br&gt;Reason: </source>
-        <translation type="unfinished"></translation>
+        <translation>Não pude executar bind ao servidor.&lt;br&gt;&lt;br&gt;Motivo:</translation>
     </message>
     <message>
         <source>Could not search entries.&lt;br&gt;&lt;br&gt;Reason: </source>
-        <translation type="unfinished"></translation>
+        <translation>Não pude executar busca.&lt;br&gt;&lt;br&gt;Motivo:</translation>
     </message>
     <message>
         <source>Could not access entry.&lt;br&gt;&lt;br&gt;Reason: </source>
-        <translation type="unfinished"></translation>
+        <translation>Não pude acessar o registro.&lt;br&gt;&lt;br&gt;Motivo:</translation>
     </message>
     <message>
         <source>Do your really want to delete the selected contact?</source>
-        <translation type="unfinished"></translation>
+        <translation>Deseja realmente deletar o contato selecionado?</translation>
     </message>
     <message>
         <source>Could not delete entry.&lt;br&gt;&lt;br&gt;Reason: </source>
-        <translation type="unfinished"></translation>
+        <translation>Não pude deletar registro.&lt;br&gt;&lt;br&gt;Motivo:</translation>
     </message>
 </context>
 <context>
@@ -1892,7 +1894,7 @@ com a classe selecionada.&lt;/p&gt;</translation>
     </message>
     <message>
         <source>LumaIconViewDesign</source>
-        <translation type="unfinished"></translation>
+        <translation>LumaIconViewDesign</translation>
     </message>
     <message>
         <source>&amp;Go</source>
@@ -1916,7 +1918,7 @@ com a classe selecionada.&lt;/p&gt;</translation>
     </message>
     <message>
         <source>Alt+A</source>
-        <translation type="unfinished"></translation>
+        <translation>Alt+A</translation>
     </message>
     <message>
         <source>&amp;Delete</source>
@@ -1924,7 +1926,7 @@ com a classe selecionada.&lt;/p&gt;</translation>
     </message>
     <message>
         <source>Alt+D</source>
-        <translation type="unfinished"></translation>
+        <translation>Alt+D</translation>
     </message>
     <message>
         <source>...</source>
@@ -1933,26 +1935,26 @@ com a classe selecionada.&lt;/p&gt;</translation>
     </message>
     <message>
         <source>Base DN:</source>
-        <translation type="unfinished">DN Base:</translation>
+        <translation>DN Base:</translation>
     </message>
 </context>
 <context>
     <name>LumaErrorDialogDesign</name>
     <message>
         <source>Error</source>
-        <translation type="unfinished">Erro</translation>
+        <translation>Erro</translation>
     </message>
     <message>
         <source>EL</source>
-        <translation type="unfinished"></translation>
+        <translation>EL</translation>
     </message>
     <message>
         <source>&amp;OK</source>
-        <translation type="unfinished">&amp;OK</translation>
+        <translation>&amp;OK</translation>
     </message>
     <message>
         <source>Alt+O</source>
-        <translation type="unfinished"></translation>
+        <translation>Alt+O</translation>
     </message>
 </context>
 <context>
@@ -1964,7 +1966,7 @@ com a classe selecionada.&lt;/p&gt;</translation>
     <message>
         <source>ML</source>
         <comment>DO NOT TRANSLATE</comment>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>New mail:</source>
@@ -1976,7 +1978,7 @@ com a classe selecionada.&lt;/p&gt;</translation>
     </message>
     <message>
         <source>Alt+O</source>
-        <translation type="unfinished"></translation>
+        <translation>Alt+O</translation>
     </message>
     <message>
         <source>&amp;Cancel</source>
@@ -1984,7 +1986,7 @@ com a classe selecionada.&lt;/p&gt;</translation>
     </message>
     <message>
         <source>Alt+C</source>
-        <translation type="unfinished">Alt+F</translation>
+        <translation>Alt+C</translation>
     </message>
 </context>
 <context>
@@ -2023,7 +2025,7 @@ com a classe selecionada.&lt;/p&gt;</translation>
     </message>
     <message>
         <source>Ctrl+A</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+A</translation>
     </message>
     <message>
         <source>Edit Server List...</source>
@@ -2031,11 +2033,11 @@ com a classe selecionada.&lt;/p&gt;</translation>
     </message>
     <message>
         <source>Ctrl+E</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+E</translation>
     </message>
     <message>
         <source>Ctrl+X</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+X</translation>
     </message>
     <message>
         <source>Configure Plugins...</source>
@@ -2043,11 +2045,11 @@ com a classe selecionada.&lt;/p&gt;</translation>
     </message>
     <message>
         <source>Ctrl+C</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+C</translation>
     </message>
     <message>
         <source>Ctrl+R</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+R</translation>
     </message>
     <message>
         <source>Language...</source>
@@ -2055,11 +2057,11 @@ com a classe selecionada.&lt;/p&gt;</translation>
     </message>
     <message>
         <source>Ctrl+L</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+L</translation>
     </message>
     <message>
         <source>Ctrl+P</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+P</translation>
     </message>
 </context>
 <context>
@@ -2088,35 +2090,35 @@ Tente aumentar a faixa de uidNumber ou deletar alguns usuários da subtree.</tra
     </message>
     <message>
         <source>Incomplete information</source>
-        <translation type="unfinished"></translation>
+        <translation>Informação incompleta</translation>
     </message>
     <message>
         <source>Warning</source>
-        <translation type="unfinished"></translation>
+        <translation>Aviso</translation>
     </message>
     <message>
         <source>Could not bind to server.&lt;br&gt;&lt;br&gt;Reason: </source>
-        <translation type="unfinished"></translation>
+        <translation>Não pude executar bind ao servidor.&lt;br&gt;&lt;br&gt;Motivo:</translation>
     </message>
     <message>
         <source>Could not create all users.&lt;br&gt;&lt;br&gt;Reason: </source>
-        <translation type="unfinished"></translation>
+        <translation>Não pude criar todos os usuários.&lt;br&gt;&lt;br&gt;Motivo:</translation>
     </message>
     <message>
         <source>Could not create all automount information.&lt;br&gt;&lt;br&gt;Reason: </source>
-        <translation type="unfinished"></translation>
+        <translation>Não pude criar todas as informações de automount.&lt;br&gt;&lt;br&gt;Motivo:</translation>
     </message>
     <message>
         <source>Could not retrieve used userid numbers.&lt;br&gt;&lt;br&gt;Reason: </source>
-        <translation type="unfinished"></translation>
+        <translation>Não pude recuperar números usados de UID.&lt;br&gt;&lt;br&gt;Motivo:</translation>
     </message>
     <message>
         <source>Wrong entry</source>
-        <translation type="unfinished"></translation>
+        <translation>Registro incorreto</translation>
     </message>
     <message>
         <source>Could not retrieve selected item.&lt;br&gt;&lt;br&gt;Reason: </source>
-        <translation type="unfinished"></translation>
+        <translation>Não pude recuperar registro selecionado.&lt;br&gt;&lt;br&gt;Motivo:</translation>
     </message>
 </context>
 <context>
@@ -2175,71 +2177,71 @@ Tente aumentar a faixa de uidNumber ou deletar alguns usuários da subtree.</tra
     </message>
     <message>
         <source>Alt+C</source>
-        <translation type="unfinished">Alt+F</translation>
+        <translation>Alt+C</translation>
     </message>
     <message>
         <source>MassCreationDesign</source>
-        <translation type="unfinished"></translation>
+        <translation>MassCreationDesign</translation>
     </message>
     <message>
         <source>&lt;b&gt;Usernames&lt;/b&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;Nomes de Usuários&lt;/b&gt;</translation>
     </message>
     <message>
         <source>&lt;b&gt;UID number range&lt;/b&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;Faixa de números de UID&lt;/b&gt;</translation>
     </message>
     <message>
         <source>&lt;b&gt;Account settings&lt;/b&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;Características das contas&lt;/b&gt;</translation>
     </message>
     <message>
         <source>&lt;b&gt;Expiration date&lt;/b&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;Data de expiração&lt;/b&gt;</translation>
     </message>
     <message>
         <source>&lt;b&gt;Directory location&lt;/b&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;Localização no LDAP&lt;/b&gt;</translation>
     </message>
     <message>
         <source>Account</source>
-        <translation type="unfinished"></translation>
+        <translation>Conta</translation>
     </message>
     <message>
         <source>Enable automount support</source>
-        <translation type="unfinished"></translation>
+        <translation>Ativar suporte ao automount</translation>
     </message>
     <message>
         <source>&lt;b&gt;Automount options&lt;/b&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;Opções do automount&lt;/b&gt;</translation>
     </message>
     <message>
         <source>Server:</source>
-        <translation type="unfinished">Servidor:</translation>
+        <translation>Servidor:</translation>
     </message>
     <message>
         <source>Arguments:</source>
-        <translation type="unfinished"></translation>
+        <translation>Argumentos:</translation>
     </message>
     <message>
         <source>Location:</source>
-        <translation type="unfinished">Localização:</translation>
+        <translation>Localização:</translation>
     </message>
     <message>
         <source>-fstype=nfs,rw,quota,soft,intr</source>
-        <translation type="unfinished"></translation>
+        <translation>-fstype=nfs,rw,quota,soft,intr</translation>
     </message>
     <message>
         <source>Automount</source>
-        <translation type="unfinished"></translation>
+        <translation>Automount</translation>
     </message>
     <message>
         <source>&lt;b&gt;Account Passwords&lt;/b&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;Senhas de Contas&lt;/b&gt;</translation>
     </message>
     <message>
         <source>Passwords</source>
-        <translation type="unfinished">Senhas</translation>
+        <translation>Senhas</translation>
     </message>
 </context>
 <context>
@@ -2314,7 +2316,7 @@ Tente aumentar a faixa de uidNumber ou deletar alguns usuários da subtree.</tra
     </message>
     <message>
         <source>Alt+C</source>
-        <translation type="unfinished">Alt+F</translation>
+        <translation>Alt+C</translation>
     </message>
     <message>
         <source>&amp;Ok</source>
@@ -2322,7 +2324,7 @@ Tente aumentar a faixa de uidNumber ou deletar alguns usuários da subtree.</tra
     </message>
     <message>
         <source>Alt+O</source>
-        <translation type="unfinished"></translation>
+        <translation>Alt+O</translation>
     </message>
     <message>
         <source>&lt;b&gt;Last:&lt;/b&gt;</source>
@@ -2417,7 +2419,7 @@ Tente aumentar a faixa de uidNumber ou deletar alguns usuários da subtree.</tra
     </message>
     <message>
         <source>VIP</source>
-        <translation type="unfinished"></translation>
+        <translation>VIP</translation>
     </message>
     <message>
         <source>Waiting</source>
@@ -2429,7 +2431,7 @@ Tente aumentar a faixa de uidNumber ou deletar alguns usuários da subtree.</tra
     </message>
     <message>
         <source>Alt+O</source>
-        <translation type="unfinished"></translation>
+        <translation>Alt+O</translation>
     </message>
     <message>
         <source>&amp;Cancel</source>
@@ -2437,11 +2439,11 @@ Tente aumentar a faixa de uidNumber ou deletar alguns usuários da subtree.</tra
     </message>
     <message>
         <source>Alt+C</source>
-        <translation type="unfinished">Alt+F</translation>
+        <translation>Alt+C</translation>
     </message>
     <message>
         <source>Category:</source>
-        <translation type="unfinished"></translation>
+        <translation>Categoria:</translation>
     </message>
 </context>
 <context>
@@ -2464,7 +2466,7 @@ Tente aumentar a faixa de uidNumber ou deletar alguns usuários da subtree.</tra
     <message>
         <source>PW</source>
         <comment>DO NOT TRANSLATE</comment>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>&amp;OK</source>
@@ -2484,74 +2486,74 @@ Tente aumentar a faixa de uidNumber ou deletar alguns usuários da subtree.</tra
     </message>
     <message>
         <source>&lt;b&gt;Please enter a new password.&lt;/b&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;Informe a nova senha.&lt;/b&gt;</translation>
     </message>
     <message>
         <source>Strength:</source>
-        <translation type="unfinished"></translation>
+        <translation>Resistência:</translation>
     </message>
     <message>
         <source>Hash algorithm:</source>
-        <translation type="unfinished"></translation>
+        <translation>Algoritmo de hash:</translation>
     </message>
     <message>
         <source>Password:</source>
-        <translation type="unfinished">Senha:</translation>
+        <translation>Senha:</translation>
     </message>
 </context>
 <context>
     <name>PasswordEditor</name>
     <message>
         <source>Passwords match</source>
-        <translation type="unfinished">Senhas iguais</translation>
+        <translation>Senhas iguais</translation>
     </message>
     <message>
         <source>Passwords do not match</source>
-        <translation type="unfinished">Senhas não são iguais</translation>
+        <translation>Senhas não são iguais</translation>
     </message>
 </context>
 <context>
     <name>PasswordEditorDesign</name>
     <message>
         <source>New password</source>
-        <translation type="unfinished">Nova senha</translation>
+        <translation>Nova senha</translation>
     </message>
     <message>
         <source>PW</source>
         <comment>DO NOT TRANSLATE</comment>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>&amp;OK</source>
-        <translation type="unfinished">&amp;OK</translation>
+        <translation>&amp;OK</translation>
     </message>
     <message>
         <source>&amp;Cancel</source>
-        <translation type="unfinished">&amp;Cancelar</translation>
+        <translation>&amp;Cancelar</translation>
     </message>
     <message>
         <source>Strength:</source>
-        <translation type="unfinished"></translation>
+        <translation>Resistência:</translation>
     </message>
     <message>
         <source>Hash algorithm:</source>
-        <translation type="unfinished"></translation>
+        <translation>Algoritmo de hash:</translation>
     </message>
     <message>
         <source>Password:</source>
-        <translation type="unfinished">Senha:</translation>
+        <translation>Senha:</translation>
     </message>
     <message>
         <source>Verify:</source>
-        <translation type="unfinished">Redigite:</translation>
+        <translation>Redigite:</translation>
     </message>
     <message>
         <source>Passwords do not match</source>
-        <translation type="unfinished">Senhas não são iguais</translation>
+        <translation>Senhas não são iguais</translation>
     </message>
     <message>
         <source>&lt;b&gt;Please enter a new password.&lt;/b&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;Informe a nova senha.&lt;/b&gt;</translation>
     </message>
 </context>
 <context>
@@ -2567,7 +2569,7 @@ Tente aumentar a faixa de uidNumber ou deletar alguns usuários da subtree.</tra
     <message>
         <source>Icon</source>
         <comment>DO NOT TRANSLATE</comment>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>&amp;Close</source>
@@ -2609,201 +2611,205 @@ Tente aumentar a faixa de uidNumber ou deletar alguns usuários da subtree.</tra
     <name>RdnEditorDesign</name>
     <message>
         <source>Edit DN</source>
-        <translation type="unfinished"></translation>
+        <translation>Editar DN</translation>
     </message>
     <message>
         <source>IT</source>
         <comment>DO NOT TRANSLATE</comment>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>&amp;OK</source>
-        <translation type="unfinished">&amp;OK</translation>
+        <translation>&amp;OK</translation>
     </message>
     <message>
         <source>Alt+O</source>
-        <translation type="unfinished"></translation>
+        <translation>Alt+O</translation>
     </message>
     <message>
         <source>&amp;Cancel</source>
-        <translation type="unfinished">&amp;Cancelar</translation>
+        <translation>&amp;Cancelar</translation>
     </message>
     <message>
         <source>Alt+C</source>
-        <translation type="unfinished">Alt+F</translation>
+        <translation>Alt+C</translation>
     </message>
     <message>
         <source>Value:</source>
-        <translation type="unfinished"></translation>
+        <translation>Valor:</translation>
     </message>
     <message>
         <source>DN:</source>
-        <translation type="unfinished"></translation>
+        <translation>DN:</translation>
     </message>
     <message>
         <source>Please choose an attribute and enter a value for it. These values will be part of distinguished name for the new object.</source>
-        <translation type="unfinished"></translation>
+        <translation>Escolha um atributo e informe o valor dele. Os valores farão parte do distinguished name (DN) para o novo objeto.</translation>
     </message>
     <message>
         <source>Attribute:</source>
-        <translation type="unfinished">Atributo:</translation>
+        <translation>Atributo:</translation>
     </message>
 </context>
 <context>
     <name>SchemaView</name>
     <message>
         <source>Could not fetch schema information from server.&lt;br&gt;&lt;br&gt;Reason: </source>
-        <translation type="unfinished"></translation>
+        <translation>Não pude recuperar informações sobre schemas do servidor.&lt;br&gt;&lt;br&gt;Motivo:</translation>
     </message>
     <message>
         <source>&lt;b&gt;Attribute name&lt;/b&gt;&lt;br&gt;Description</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;Nome do atributo&lt;/b&gt;&lt;br&gt;Descrição</translation>
     </message>
     <message>
         <source>&lt;b&gt;Class Name&lt;/b&gt;&lt;br&gt;Description</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;Nome da classe&lt;/b&gt;&lt;br&gt;Descrição</translation>
     </message>
     <message>
         <source>&lt;b&gt;Syntax&lt;/b&gt;&lt;br&gt;Description</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;Sintaxe&lt;/b&gt;&lt;br&gt;Descrição</translation>
     </message>
     <message>
         <source>&lt;b&gt;Matching rule&lt;/b&gt;&lt;br&gt;Description</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;Regra de referência&lt;/b&gt;&lt;br&gt;Descrição</translation>
     </message>
 </context>
 <context>
     <name>SchemaViewDesign</name>
     <message>
         <source>Form</source>
-        <translation type="unfinished"></translation>
+        <translation>Formulário</translation>
     </message>
     <message>
         <source>Server:</source>
-        <translation type="unfinished">Servidor:</translation>
+        <translation>Servidor:</translation>
     </message>
     <message>
         <source>Filter:</source>
-        <translation type="unfinished">Filtro:</translation>
+        <translation>Filtro:</translation>
     </message>
     <message>
         <source>ObjectClasses</source>
-        <translation type="unfinished"></translation>
+        <translation>ObjectClasses</translation>
     </message>
     <message>
         <source>Attributes</source>
-        <translation type="unfinished">Atributos</translation>
+        <translation>Atributos</translation>
     </message>
     <message>
         <source>Matching rules</source>
-        <translation type="unfinished"></translation>
+        <translation>Regras de referência</translation>
     </message>
     <message>
         <source>LDAP syntaxes</source>
-        <translation type="unfinished"></translation>
+        <translation>Sintaxes LDAP</translation>
     </message>
     <message>
         <source>&lt;b&gt;Class Name&lt;/b&gt;&lt;br&gt;
 Description</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;Nome da classe&lt;/b&gt;&lt;br&gt;
+Descrição</translation>
     </message>
     <message>
         <source>Kind:</source>
-        <translation type="unfinished"></translation>
+        <translation>Tipo:</translation>
     </message>
     <message>
         <source>OID:</source>
-        <translation type="unfinished"></translation>
+        <translation>OID:</translation>
     </message>
     <message>
         <source>Superior:</source>
-        <translation type="unfinished"></translation>
+        <translation>Superior:</translation>
     </message>
     <message>
         <source>&lt;b&gt;Required attributes&lt;/b&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;Atributos requeridos&lt;/b&gt;</translation>
     </message>
     <message>
         <source>&lt;b&gt;Allowed attributes&lt;/b&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;Atributos permitidos&lt;/b&gt;</translation>
     </message>
     <message>
         <source>&lt;b&gt;Attribute name&lt;/b&gt;&lt;br&gt;
 Description</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;Nome do atributo&lt;/b&gt;&lt;br&gt;
+Descrição</translation>
     </message>
     <message>
         <source>&lt;b&gt;Used in ObjectClasses&lt;/b&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;Usado nas ObjectClasses&lt;/b&gt;</translation>
     </message>
     <message>
         <source>Single value</source>
-        <translation type="unfinished"></translation>
+        <translation>Valor único</translation>
     </message>
     <message>
         <source>Collective</source>
-        <translation type="unfinished"></translation>
+        <translation>Coletivo</translation>
     </message>
     <message>
         <source>Obsolete</source>
-        <translation type="unfinished"></translation>
+        <translation>Obsoleto</translation>
     </message>
     <message>
         <source>Syntax {length}:</source>
-        <translation type="unfinished"></translation>
+        <translation>Sintaxe {tamanho}:</translation>
     </message>
     <message>
         <source>Ordering:</source>
-        <translation type="unfinished"></translation>
+        <translation>Ordenação:</translation>
     </message>
     <message>
         <source>Usage:</source>
-        <translation type="unfinished"></translation>
+        <translation>Utilização:</translation>
     </message>
     <message>
         <source>Equality:</source>
-        <translation type="unfinished"></translation>
+        <translation>Igualdade:</translation>
     </message>
     <message>
         <source>&lt;b&gt;Matching rule&lt;/b&gt;&lt;br&gt;
 Description</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;Regra de referência&lt;/b&gt;&lt;br&gt;
+Descrição</translation>
     </message>
     <message>
         <source>Syntax:</source>
-        <translation type="unfinished"></translation>
+        <translation>Sintaxe:</translation>
     </message>
     <message>
         <source>&lt;b&gt;Used in Attribute&lt;/b&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;Usado no atributo&lt;/b&gt;</translation>
     </message>
     <message>
         <source>&lt;b&gt;Syntax&lt;/b&gt;&lt;br&gt;
 Description</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;Sintaxe&lt;/b&gt;&lt;br&gt;
+Descrição</translation>
     </message>
     <message>
         <source>&lt;b&gt;Used in attributes&lt;/b&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;Usado nos atributos&lt;/b&gt;</translation>
     </message>
     <message>
         <source>&lt;b&gt;Used in matching rules&lt;/b&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;Usado nas regras de referência&lt;/b&gt;</translation>
     </message>
 </context>
 <context>
     <name>SearchForm</name>
     <message>
         <source>Could not bind to server.&lt;br&gt;&lt;br&gt;Reason: </source>
-        <translation type="unfinished"></translation>
+        <translation>Não pude executar bind ao servidor.&lt;br&gt;&lt;br&gt;Motivo:</translation>
     </message>
     <message>
         <source>Error during search operation.&lt;br&gt;&lt;br&gt;Reason: </source>
-        <translation type="unfinished"></translation>
+        <translation>Erro durante a operação de busca.&lt;br&gt;&lt;br&gt;Motivo:</translation>
     </message>
     <message>
         <source>Could not retrieve baseDN.&lt;br&gt;&lt;br&gt;Reason: </source>
-        <translation type="unfinished"></translation>
+        <translation>Não pude recuperar baseDN.&lt;br&gt;&lt;br&gt;Motivo:</translation>
     </message>
 </context>
 <context>
@@ -2826,23 +2832,23 @@ Description</source>
     </message>
     <message>
         <source>SearchFormDesign</source>
-        <translation type="unfinished"></translation>
+        <translation>SearchFormDesign</translation>
     </message>
     <message>
         <source>&amp;Filter wizard</source>
-        <translation type="unfinished"></translation>
+        <translation>Wizard de &amp;filtros</translation>
     </message>
     <message>
         <source>Alt+F</source>
-        <translation type="unfinished">Alt+N</translation>
+        <translation>Alt+F</translation>
     </message>
     <message>
         <source>&amp;Search</source>
-        <translation type="unfinished"></translation>
+        <translation>Bu&amp;sca</translation>
     </message>
     <message>
         <source>Base DN:</source>
-        <translation type="unfinished">DN Base:</translation>
+        <translation>DN Base:</translation>
     </message>
 </context>
 <context>
@@ -2857,22 +2863,22 @@ Description</source>
     </message>
     <message>
         <source>&lt;u&gt;Binary value&lt;/u&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;u&gt;Valor binário&lt;/u&gt;</translation>
     </message>
     <message>
         <source>Could not bind to server.&lt;br&gt;&lt;br&gt;Reason: </source>
-        <translation type="unfinished"></translation>
+        <translation>Não pude executar bind ao servidor.&lt;br&gt;&lt;br&gt;Motivo:</translation>
     </message>
     <message>
         <source>Could not access entry.&lt;br&gt;&lt;br&gt;Reason: </source>
-        <translation type="unfinished"></translation>
+        <translation>Não pude acessar o registro.&lt;br&gt;&lt;br&gt;Motivo:</translation>
     </message>
 </context>
 <context>
     <name>SearchResultViewDesign</name>
     <message>
         <source>SearchResultViewDesign</source>
-        <translation type="unfinished"></translation>
+        <translation>SearchResultViewDesign</translation>
     </message>
 </context>
 <context>
@@ -2895,7 +2901,7 @@ Description</source>
     </message>
     <message>
         <source>Could not retrieve baseDN for LDAP server at host/ip:</source>
-        <translation type="unfinished"></translation>
+        <translation>Não pude recuperar base DN para o servidor LDAP no host/ip:</translation>
     </message>
 </context>
 <context>
@@ -2906,7 +2912,7 @@ Description</source>
     </message>
     <message>
         <source>Alt+C</source>
-        <translation type="unfinished">Alt+F</translation>
+        <translation>Alt+C</translation>
     </message>
     <message>
         <source>&amp;Add</source>
@@ -2914,7 +2920,7 @@ Description</source>
     </message>
     <message>
         <source>Alt+A</source>
-        <translation type="unfinished"></translation>
+        <translation>Alt+A</translation>
     </message>
     <message>
         <source>&amp;Delete</source>
@@ -2922,7 +2928,7 @@ Description</source>
     </message>
     <message>
         <source>Alt+D</source>
-        <translation type="unfinished"></translation>
+        <translation>Alt+D</translation>
     </message>
     <message>
         <source>Host:</source>
@@ -2938,7 +2944,7 @@ Description</source>
     </message>
     <message>
         <source>NO</source>
-        <translation type="unfinished"></translation>
+        <translation>NO</translation>
     </message>
     <message>
         <source>&amp;OK</source>
@@ -2946,7 +2952,7 @@ Description</source>
     </message>
     <message>
         <source>Alt+O</source>
-        <translation type="unfinished"></translation>
+        <translation>Alt+O</translation>
     </message>
     <message>
         <source>&amp;Apply</source>
@@ -2962,11 +2968,11 @@ Description</source>
     </message>
     <message>
         <source>SO</source>
-        <translation type="unfinished"></translation>
+        <translation>SO</translation>
     </message>
     <message>
         <source>Anonymous bind</source>
-        <translation>Conectar como anônimo</translation>
+        <translation>Bind anônimo</translation>
     </message>
     <message>
         <source>&lt;b&gt;Security options&lt;/b&gt;</source>
@@ -2990,11 +2996,11 @@ Description</source>
     </message>
     <message>
         <source>SASL CRAM-MD5</source>
-        <translation>SASL CRAM MD5</translation>
+        <translation>SASL CRAM-MD5</translation>
     </message>
     <message>
         <source>SASL DIGEST-MD5</source>
-        <translation>SASL DIGEST MD5</translation>
+        <translation>SASL DIGEST-MD5</translation>
     </message>
     <message>
         <source>SASL Login</source>
@@ -3018,190 +3024,190 @@ Description</source>
     </message>
     <message>
         <source>Base DNs</source>
-        <translation type="unfinished"></translation>
+        <translation>Base DNs</translation>
     </message>
     <message>
         <source>Follow aliases</source>
-        <translation type="unfinished"></translation>
+        <translation>Seguir Aliases</translation>
     </message>
     <message>
         <source>Use Base DNs provided by the server</source>
-        <translation type="unfinished"></translation>
+        <translation>Usar as Base DNs indicadas pelo servidor</translation>
     </message>
     <message>
         <source>Manage Base DN list</source>
-        <translation type="unfinished"></translation>
+        <translation>Gerenciar a Lista de Base DNs</translation>
     </message>
     <message>
         <source>&lt;b&gt;LDAP options&lt;/b&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;Opções LDAP&lt;/b&gt;</translation>
     </message>
     <message>
         <source>Network</source>
-        <translation type="unfinished"></translation>
+        <translation>Rede</translation>
     </message>
     <message>
         <source>Security</source>
-        <translation type="unfinished"></translation>
+        <translation>Segurança</translation>
     </message>
 </context>
 <context>
     <name>StandardEditorDesign</name>
     <message>
         <source>Edit attribute</source>
-        <translation type="unfinished">Editar atributo</translation>
+        <translation>Editar atributo</translation>
     </message>
     <message>
         <source>IT</source>
         <comment>DO NOT TRANSLATE</comment>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Please enter a new value for the attribute &lt;b&gt;%1&lt;/b&gt;.</source>
-        <translation type="unfinished"></translation>
+        <translation>Informe um novo valor para o atributo &lt;b&gt;%1&lt;/b&gt;.</translation>
     </message>
     <message>
         <source>&amp;OK</source>
-        <translation type="unfinished">&amp;OK</translation>
+        <translation>&amp;OK</translation>
     </message>
     <message>
         <source>Alt+O</source>
-        <translation type="unfinished"></translation>
+        <translation>Alt+O</translation>
     </message>
     <message>
         <source>&amp;Cancel</source>
-        <translation type="unfinished">&amp;Cancelar</translation>
+        <translation>&amp;Cancelar</translation>
     </message>
     <message>
         <source>Alt+C</source>
-        <translation type="unfinished">Alt+F</translation>
+        <translation>Alt+C</translation>
     </message>
     <message>
         <source>Value:</source>
-        <translation type="unfinished"></translation>
+        <translation>Valor:</translation>
     </message>
 </context>
 <context>
     <name>TemplateWidget</name>
     <message>
         <source>Delete template</source>
-        <translation type="unfinished"></translation>
+        <translation>Deletar template</translation>
     </message>
     <message>
         <source>Do you really want to delete the selected template?</source>
-        <translation type="unfinished"></translation>
+        <translation>Deseja realmente deletar o template selecionado?</translation>
     </message>
     <message>
         <source>Delete attribute</source>
-        <translation type="unfinished"></translation>
+        <translation>Deletar atributo</translation>
     </message>
     <message>
         <source>Do you really want to delete the attribute?</source>
-        <translation type="unfinished"></translation>
+        <translation>Deseja realmente deletar o atributo?</translation>
     </message>
 </context>
 <context>
     <name>TemplateWidgetDesign</name>
     <message>
         <source>Name</source>
-        <translation type="unfinished">Nome</translation>
+        <translation>Nome</translation>
     </message>
     <message>
         <source>Must</source>
-        <translation type="unfinished">Precisa</translation>
+        <translation>Obrigatório</translation>
     </message>
     <message>
         <source>Single</source>
-        <translation type="unfinished">Único</translation>
+        <translation>Único</translation>
     </message>
     <message>
         <source>Binary</source>
-        <translation type="unfinished"></translation>
+        <translation>Binário</translation>
     </message>
     <message>
         <source>Default value</source>
-        <translation type="unfinished"></translation>
+        <translation>Valor padrão</translation>
     </message>
     <message>
         <source>Form1</source>
-        <translation type="unfinished"></translation>
+        <translation>Form1</translation>
     </message>
     <message>
         <source>&lt;b&gt;Templates&lt;/b&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;Templates&lt;/b&gt;</translation>
     </message>
     <message>
         <source>&amp;Add...</source>
-        <translation type="unfinished">&amp;Adicionar...</translation>
+        <translation>&amp;Adicionar...</translation>
     </message>
     <message>
         <source>Alt+A</source>
-        <translation type="unfinished"></translation>
+        <translation>Alt+A</translation>
     </message>
     <message>
         <source>&amp;Save</source>
-        <translation type="unfinished">&amp;Salvar</translation>
+        <translation>&amp;Salvar</translation>
     </message>
     <message>
         <source>Alt+S</source>
-        <translation type="unfinished">Alt+I</translation>
+        <translation>Alt+S</translation>
     </message>
     <message>
         <source>&amp;Delete...</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Deletar...</translation>
     </message>
     <message>
         <source>Alt+D</source>
-        <translation type="unfinished"></translation>
+        <translation>Alt+D</translation>
     </message>
     <message>
         <source>D&amp;uplicate...</source>
-        <translation type="unfinished"></translation>
+        <translation>D&amp;uplicar...</translation>
     </message>
     <message>
         <source>Alt+U</source>
-        <translation type="unfinished"></translation>
+        <translation>Alt+U</translation>
     </message>
     <message>
         <source>&lt;b&gt;Name:&lt;/b&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;Nome:&lt;/b&gt;</translation>
     </message>
     <message>
         <source>foo</source>
-        <translation type="unfinished"></translation>
+        <translation>foo</translation>
     </message>
     <message>
         <source>&lt;b&gt;Description:&lt;/b&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;Descrição:&lt;/b&gt;</translation>
     </message>
     <message>
         <source>bar</source>
-        <translation type="unfinished"></translation>
+        <translation>bar</translation>
     </message>
     <message>
         <source>&lt;b&gt;Server:&lt;/b&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;Servidor:&lt;/b&gt;</translation>
     </message>
     <message>
         <source>Add...</source>
-        <translation type="unfinished">Adicionar...</translation>
+        <translation>Adicionar...</translation>
     </message>
     <message>
         <source>&lt;b&gt;Objectclasses&lt;/b&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;ObjectClasses&lt;/b&gt;</translation>
     </message>
     <message>
         <source>Delete</source>
-        <translation type="unfinished">Deletar</translation>
+        <translation>Deletar</translation>
     </message>
     <message>
         <source>&lt;b&gt;Attributes&lt;/b&gt;</source>
-        <translation type="unfinished">&lt;b&gt;Atributos&lt;/b&gt;</translation>
+        <translation>&lt;b&gt;Atributos&lt;/b&gt;</translation>
     </message>
     <message>
         <source>This is a description of the template you are currently working with.</source>
         <comment>DO NOT TRANSLATE</comment>
-        <translation type="unfinished"></translation>
+        <translation>Esta é a descrição do template no qual você está trabalhando, neste momento.</translation>
     </message>
 </context>
 <context>
@@ -3228,19 +3234,19 @@ Description</source>
     </message>
     <message>
         <source>Could not bind to server.&lt;br&gt;&lt;br&gt;Reason: </source>
-        <translation type="unfinished"></translation>
+        <translation>Não pude executar bind ao servidor.&lt;br&gt;&lt;br&gt;Motivo:</translation>
     </message>
     <message>
         <source>Could not save entry.&lt;br&gt;&lt;br&gt;Reason: </source>
-        <translation type="unfinished"></translation>
+        <translation>Não pude salvar o registro.&lt;br&gt;&lt;br&gt;Motivo:</translation>
     </message>
     <message>
         <source>Could not update all group information.&lt;br&gt;&lt;br&gt;Reason: </source>
-        <translation type="unfinished"></translation>
+        <translation>Não pude atualizar informações de outros grupos.&lt;br&gt;&lt;br&gt;Motivo:</translation>
     </message>
     <message>
         <source>Could not retrieve used userids.&lt;br&gt;&lt;br&gt;Reason: </source>
-        <translation type="unfinished"></translation>
+        <translation>Não pude recuperar números usados de UID.&lt;br&gt;&lt;br&gt;Motivo:</translation>
     </message>
 </context>
 <context>
@@ -3252,27 +3258,27 @@ Description</source>
     <message>
         <source>US</source>
         <comment>DO NOT TRANSLATE</comment>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>SH</source>
         <comment>DO NOT TRANSLATE</comment>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>M</source>
         <comment>DO NOT TRANSLATE</comment>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>HO</source>
         <comment>DO NOT TRANSLATE</comment>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>PW</source>
         <comment>DO NOT TRANSLATE</comment>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Change password...</source>
@@ -3316,7 +3322,7 @@ Description</source>
     </message>
     <message>
         <source>GR</source>
-        <translation type="unfinished"></translation>
+        <translation>GR</translation>
     </message>
     <message>
         <source>Home directory:</source>
