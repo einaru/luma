@@ -103,6 +103,7 @@ Try increasing the uidNumber range or delete some users from the subtree."""),
             
             
             pwGenerator = CryptPwGenerator()
+            self.passwordEdit.clear()
             for x in range(userMin, userMax+1):
                 mainWin.update_ui()
                 
@@ -127,6 +128,7 @@ Try increasing the uidNumber range or delete some users from the subtree."""),
                 tmpDN = 'uid=' + userName + "," + baseDN
                 searchResult = ldapServerObject.add_s(tmpDN, modList)
                 
+                self.passwordEdit.append(userName + ': ' + passwordClear + "\n") 
                 
             ldapServerObject.unbind()
         except ldap.LDAPError, e:

@@ -1,14 +1,13 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file '/daten/src/cvs/luma/lib/luma/plugins/mass_creation_plugin/MassCreationDesign.ui'
+# Form implementation generated from reading ui file 'MassCreationDesign.ui'
 #
-# Created: Mon Sep 1 00:18:40 2003
+# Created: Mon Nov 3 20:02:39 2003
 #      by: The PyQt User Interface Compiler (pyuic) 3.7
 #
 # WARNING! All changes made in this file will be lost!
 
 
-import sys
 from qt import *
 
 image0_data = [
@@ -331,63 +330,7 @@ class MassCreationDesign(QWidget):
             self.setName("MassCreationDesign")
 
 
-        MassCreationDesignLayout = QGridLayout(self,1,1,11,6,"MassCreationDesignLayout")
-
-        self.pushButton1 = QPushButton(self,"pushButton1")
-
-        MassCreationDesignLayout.addMultiCellWidget(self.pushButton1,5,5,0,1)
-        spacer = QSpacerItem(41,16,QSizePolicy.Minimum,QSizePolicy.Expanding)
-        MassCreationDesignLayout.addItem(spacer,4,1)
-
-        self.groupBox5 = QGroupBox(self,"groupBox5")
-        self.groupBox5.setColumnLayout(0,Qt.Vertical)
-        self.groupBox5.layout().setSpacing(6)
-        self.groupBox5.layout().setMargin(11)
-        groupBox5Layout = QGridLayout(self.groupBox5.layout())
-        groupBox5Layout.setAlignment(Qt.AlignTop)
-
-        self.textLabel4 = QLabel(self.groupBox5,"textLabel4")
-
-        groupBox5Layout.addWidget(self.textLabel4,0,0)
-
-        self.nodeEdit = QLineEdit(self.groupBox5,"nodeEdit")
-
-        groupBox5Layout.addWidget(self.nodeEdit,0,1)
-
-        self.browseButton = QPushButton(self.groupBox5,"browseButton")
-        self.browseButton.setPixmap(self.image0)
-
-        groupBox5Layout.addWidget(self.browseButton,0,2)
-
-        MassCreationDesignLayout.addMultiCellWidget(self.groupBox5,3,3,0,1)
-
-        self.groupBox2 = QGroupBox(self,"groupBox2")
-        self.groupBox2.setColumnLayout(0,Qt.Vertical)
-        self.groupBox2.layout().setSpacing(6)
-        self.groupBox2.layout().setMargin(11)
-        groupBox2Layout = QGridLayout(self.groupBox2.layout())
-        groupBox2Layout.setAlignment(Qt.AlignTop)
-
-        self.textLabel2_2 = QLabel(self.groupBox2,"textLabel2_2")
-
-        groupBox2Layout.addWidget(self.textLabel2_2,0,0)
-
-        self.uidNumMinBox = QSpinBox(self.groupBox2,"uidNumMinBox")
-        self.uidNumMinBox.setMaxValue(65535)
-
-        groupBox2Layout.addWidget(self.uidNumMinBox,0,1)
-
-        self.textLabel3_2 = QLabel(self.groupBox2,"textLabel3_2")
-
-        groupBox2Layout.addWidget(self.textLabel3_2,1,0)
-
-        self.uidNumMaxBox = QSpinBox(self.groupBox2,"uidNumMaxBox")
-        self.uidNumMaxBox.setMaxValue(65535)
-        self.uidNumMaxBox.setValue(65535)
-
-        groupBox2Layout.addWidget(self.uidNumMaxBox,1,1)
-
-        MassCreationDesignLayout.addWidget(self.groupBox2,1,0)
+        MassCreationDesignLayout = QVBoxLayout(self,11,6,"MassCreationDesignLayout")
 
         self.groupBox1 = QGroupBox(self,"groupBox1")
         self.groupBox1.setFrameShape(QGroupBox.GroupBoxPanel)
@@ -415,8 +358,8 @@ class MassCreationDesign(QWidget):
         self.textLabel3 = QLabel(self.groupBox1,"textLabel3")
 
         groupBox1Layout.addWidget(self.textLabel3,1,4)
-        spacer_2 = QSpacerItem(51,21,QSizePolicy.Expanding,QSizePolicy.Minimum)
-        groupBox1Layout.addItem(spacer_2,1,3)
+        spacer = QSpacerItem(51,21,QSizePolicy.Expanding,QSizePolicy.Minimum)
+        groupBox1Layout.addItem(spacer,1,3)
 
         self.prefixEdit = QLineEdit(self.groupBox1,"prefixEdit")
 
@@ -425,8 +368,34 @@ class MassCreationDesign(QWidget):
         self.textLabel1 = QLabel(self.groupBox1,"textLabel1")
 
         groupBox1Layout.addWidget(self.textLabel1,0,0)
+        MassCreationDesignLayout.addWidget(self.groupBox1)
 
-        MassCreationDesignLayout.addMultiCellWidget(self.groupBox1,0,0,0,1)
+        self.groupBox2 = QGroupBox(self,"groupBox2")
+        self.groupBox2.setColumnLayout(0,Qt.Vertical)
+        self.groupBox2.layout().setSpacing(6)
+        self.groupBox2.layout().setMargin(11)
+        groupBox2Layout = QGridLayout(self.groupBox2.layout())
+        groupBox2Layout.setAlignment(Qt.AlignTop)
+
+        self.textLabel2_2 = QLabel(self.groupBox2,"textLabel2_2")
+
+        groupBox2Layout.addWidget(self.textLabel2_2,0,0)
+
+        self.uidNumMinBox = QSpinBox(self.groupBox2,"uidNumMinBox")
+        self.uidNumMinBox.setMaxValue(65535)
+
+        groupBox2Layout.addWidget(self.uidNumMinBox,0,1)
+
+        self.textLabel3_2 = QLabel(self.groupBox2,"textLabel3_2")
+
+        groupBox2Layout.addWidget(self.textLabel3_2,1,0)
+
+        self.uidNumMaxBox = QSpinBox(self.groupBox2,"uidNumMaxBox")
+        self.uidNumMaxBox.setMaxValue(65535)
+        self.uidNumMaxBox.setValue(65535)
+
+        groupBox2Layout.addWidget(self.uidNumMaxBox,1,1)
+        MassCreationDesignLayout.addWidget(self.groupBox2)
 
         self.groupBox3 = QGroupBox(self,"groupBox3")
         self.groupBox3.setColumnLayout(0,Qt.Vertical)
@@ -455,8 +424,7 @@ class MassCreationDesign(QWidget):
         self.dayBox.setValue(1)
 
         groupBox3Layout.addWidget(self.dayBox,1,1)
-
-        MassCreationDesignLayout.addWidget(self.groupBox3,1,1)
+        MassCreationDesignLayout.addWidget(self.groupBox3)
 
         self.groupBox4 = QGroupBox(self,"groupBox4")
         self.groupBox4.setColumnLayout(0,Qt.Vertical)
@@ -490,12 +458,38 @@ class MassCreationDesign(QWidget):
         self.textLabel7 = QLabel(self.groupBox4,"textLabel7")
 
         groupBox4Layout.addWidget(self.textLabel7,2,0)
+        MassCreationDesignLayout.addWidget(self.groupBox4)
 
-        MassCreationDesignLayout.addMultiCellWidget(self.groupBox4,2,2,0,1)
+        self.groupBox5 = QGroupBox(self,"groupBox5")
+        self.groupBox5.setColumnLayout(0,Qt.Vertical)
+        self.groupBox5.layout().setSpacing(6)
+        self.groupBox5.layout().setMargin(11)
+        groupBox5Layout = QGridLayout(self.groupBox5.layout())
+        groupBox5Layout.setAlignment(Qt.AlignTop)
+
+        self.textLabel4 = QLabel(self.groupBox5,"textLabel4")
+
+        groupBox5Layout.addWidget(self.textLabel4,0,0)
+
+        self.nodeEdit = QLineEdit(self.groupBox5,"nodeEdit")
+
+        groupBox5Layout.addWidget(self.nodeEdit,0,1)
+
+        self.browseButton = QPushButton(self.groupBox5,"browseButton")
+        self.browseButton.setPixmap(self.image0)
+
+        groupBox5Layout.addWidget(self.browseButton,0,2)
+        MassCreationDesignLayout.addWidget(self.groupBox5)
+
+        self.passwordEdit = QTextEdit(self,"passwordEdit")
+        MassCreationDesignLayout.addWidget(self.passwordEdit)
+
+        self.pushButton1 = QPushButton(self,"pushButton1")
+        MassCreationDesignLayout.addWidget(self.pushButton1)
 
         self.languageChange()
 
-        self.resize(QSize(502,459).expandedTo(self.minimumSizeHint()))
+        self.resize(QSize(718,744).expandedTo(self.minimumSizeHint()))
         self.clearWState(Qt.WState_Polished)
 
         self.connect(self.dateButton,SIGNAL("clicked()"),self.radioButton2,SLOT("toggle()"))
@@ -510,17 +504,13 @@ class MassCreationDesign(QWidget):
 
     def languageChange(self):
         self.setCaption(self.__tr("Form1"))
-        self.pushButton1.setText(self.__tr("Create"))
-        self.groupBox5.setTitle(self.__tr("Directory Settings"))
-        self.textLabel4.setText(self.__tr("Base node:"))
-        self.browseButton.setText(QString.null)
-        self.groupBox2.setTitle(self.__tr("uid number range"))
-        self.textLabel2_2.setText(self.__tr("Minimum:"))
-        self.textLabel3_2.setText(self.__tr("Maximum:"))
         self.groupBox1.setTitle(self.__tr("Usernames"))
         self.textLabel2.setText(self.__tr("Minimum:"))
         self.textLabel3.setText(self.__tr("Maximum:"))
         self.textLabel1.setText(self.__tr("Prefix:"))
+        self.groupBox2.setTitle(self.__tr("uid number range"))
+        self.textLabel2_2.setText(self.__tr("Minimum:"))
+        self.textLabel3_2.setText(self.__tr("Maximum:"))
         self.groupBox3.setTitle(self.__tr("Expiration date"))
         self.dateButton.setText(self.__tr("Date"))
         self.radioButton2.setText(self.__tr("Days from now"))
@@ -530,6 +520,10 @@ class MassCreationDesign(QWidget):
         self.textLabel6.setText(self.__tr("Group Id:"))
         self.shellEdit.setText(self.__tr("/bin/bash"))
         self.textLabel7.setText(self.__tr("Login shell:"))
+        self.groupBox5.setTitle(self.__tr("Directory Settings"))
+        self.textLabel4.setText(self.__tr("Base node:"))
+        self.browseButton.setText(QString.null)
+        self.pushButton1.setText(self.__tr("Create"))
 
 
     def create_users(self):
@@ -540,11 +534,3 @@ class MassCreationDesign(QWidget):
 
     def __tr(self,s,c = None):
         return qApp.translate("MassCreationDesign",s,c)
-
-if __name__ == "__main__":
-    a = QApplication(sys.argv)
-    QObject.connect(a,SIGNAL("lastWindowClosed()"),a,SLOT("quit()"))
-    w = MassCreationDesign()
-    a.setMainWidget(w)
-    w.show()
-    a.exec_loop()
