@@ -47,6 +47,8 @@ def startApplication():
     splash.finish(gui)
     del splash
     
+    sys.excepthook = unhandledException
+    
     app.exec_loop()
 
 ###############################################################################
@@ -64,8 +66,6 @@ luma-users@lists.sourceforge.net.\n"""
 
 ###############################################################################
     
-sys.excepthook = unhandledException
-
 if __name__ == '__main__':
     startApplication()
 
