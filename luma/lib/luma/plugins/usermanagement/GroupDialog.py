@@ -98,8 +98,10 @@ class GroupDialog(GroupDialogDesign):
                 newGroup = self.groupData[x]['cn'][0]
                 break
                 
+        # If the groupnumber belongs to a non-ldap group, reset the group in 
+        # the toolbox.
         if newGroup == None:
-            return
+            newGroup = ""
             
         self.groupNameBox.blockSignals(True)
         self.groupNameBox.setCurrentText(newGroup)
