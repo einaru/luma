@@ -53,6 +53,10 @@ def stripSpecialChars(tmpString):
     tmpString = tmpString.replace(r'\2C', ',')
     tmpString = tmpString.replace(r'\3D', '=')
     tmpString = tmpString.replace(r'\2B', '+')
+    tmpString = tmpString.replace(r'\"', '"')
+    tmpString = tmpString.replace(r'\3C', '<')
+    tmpString = tmpString.replace(r'\3E', '>')
+    tmpString = tmpString.replace(r'\3B', ';')
         
     return tmpString
         
@@ -63,15 +67,34 @@ def escapeSpecialChars(tmpString):
     
     if 2 == len(tmpList):
         attribute = tmpList[0]
-        value = tmpList[1]
+        value = "=".join(tmpList[1:])
         value = value.replace('\\', r'\5C')
         value = value.replace(',', r'\2C')
         value = value.replace('=', r'\3D')
         value = value.replace('+', r'\2B')
+        value = value.replace('"', r'\22')
+        value = value.replace('<', r'\3C')
+        value = value.replace('>', r'\3E')
+        value = value.replace(';', r'\3B')
         
         tmpString = attribute + '=' + value
         
     return tmpString
+    
+###############################################################################
+
+def testEscaping():
+    assert r"cn=foo" == escapeSpecialChars("cn=foo")
+    assert r"cn=foo\2C" == escapeSpecialChars("cn=foo,")
+    assert r"cn=foo\5C" == escapeSpecialChars("cn=foo\\")
+    assert r"cn=foo\5C\2C" == escapeSpecialChars("cn=foo\\,")
+    assert r"cn=\22foo\22" == escapeSpecialChars("cn=\"foo\"")
+    
+    assert "cn=foo" == stripSpecialChars(r"cn=foo")
+    assert "cn=foo," == stripSpecialChars(r"cn=foo\2C")
+    assert "cn=foo\\" == stripSpecialChars(r"cn=foo\5C")
+    assert "cn=foo\\," == stripSpecialChars(r"cn=foo\5C\2C")
+    assert "cn=\"foo\"" == stripSpecialChars(r"cn=\22foo\22")
     
 ###############################################################################
 
@@ -112,3 +135,8 @@ def __dnCompare(firstDN, secondDN):
     secondList = explodeDN(secondDN)
     
     return cmp(len(firstList), len(secondList))
+    
+###############################################################################
+
+if __name__ == "__main__":
+    testEscaping()
