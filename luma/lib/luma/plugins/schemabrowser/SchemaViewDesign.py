@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file '/home/wido/src/luma/lib/luma/plugins/schemabrowser/SchemaViewDesign.ui'
 #
-# Created: Sun Jan 9 17:55:00 2005
+# Created: Tue Feb 8 21:39:32 2005
 #      by: The PyQt User Interface Compiler (pyuic) 3.13
 #
 # WARNING! All changes made in this file will be lost!
@@ -38,7 +38,7 @@ class SchemaViewDesign(QWidget):
         layout2.addWidget(self.textLabel1,0,0)
 
         self.toolBox = QToolBox(LayoutWidget,"toolBox")
-        self.toolBox.setCurrentIndex(0)
+        self.toolBox.setCurrentIndex(3)
 
         self.page1 = QWidget(self.toolBox,"page1")
         self.page1.setBackgroundMode(QWidget.PaletteBackground)
@@ -391,6 +391,36 @@ class SchemaViewDesign(QWidget):
         self.connect(self.singleAttributeBox,SIGNAL("clicked()"),self.singleAttributeBox.toggle)
         self.connect(self.collectiveAttributeBox,SIGNAL("clicked()"),self.collectiveAttributeBox.toggle)
         self.connect(self.obsoleteAttributeBox,SIGNAL("clicked()"),self.obsoleteAttributeBox.toggle)
+
+        self.setTabOrder(self.serverBox,self.classFilterEdit)
+        self.setTabOrder(self.classFilterEdit,self.classBox)
+        self.setTabOrder(self.classBox,self.attributeFilterEdit)
+        self.setTabOrder(self.attributeFilterEdit,self.attributeBox)
+        self.setTabOrder(self.attributeBox,self.matchingFilterEdit)
+        self.setTabOrder(self.matchingFilterEdit,self.matchingBox)
+        self.setTabOrder(self.matchingBox,self.syntaxFilterEdi)
+        self.setTabOrder(self.syntaxFilterEdi,self.syntaxBox)
+        self.setTabOrder(self.syntaxBox,self.superiorClassEdit)
+        self.setTabOrder(self.superiorClassEdit,self.oidClassEdit)
+        self.setTabOrder(self.oidClassEdit,self.kindClassEdit)
+        self.setTabOrder(self.kindClassEdit,self.mustAttributeBox)
+        self.setTabOrder(self.mustAttributeBox,self.mayAttributeBox)
+        self.setTabOrder(self.mayAttributeBox,self.oidAttributeEdit)
+        self.setTabOrder(self.oidAttributeEdit,self.superiorAttributeEdit)
+        self.setTabOrder(self.superiorAttributeEdit,self.equalityAttributeEdit)
+        self.setTabOrder(self.equalityAttributeEdit,self.usageAttributeEdit)
+        self.setTabOrder(self.usageAttributeEdit,self.syntaxAttributeEdit)
+        self.setTabOrder(self.syntaxAttributeEdit,self.orderingAttributeEdit)
+        self.setTabOrder(self.orderingAttributeEdit,self.singleAttributeBox)
+        self.setTabOrder(self.singleAttributeBox,self.collectiveAttributeBox)
+        self.setTabOrder(self.collectiveAttributeBox,self.obsoleteAttributeBox)
+        self.setTabOrder(self.obsoleteAttributeBox,self.usedInClassBox)
+        self.setTabOrder(self.usedInClassBox,self.oidMatchingEdit)
+        self.setTabOrder(self.oidMatchingEdit,self.syntaxMatchingEdit)
+        self.setTabOrder(self.syntaxMatchingEdit,self.attributeMatchingBox)
+        self.setTabOrder(self.attributeMatchingBox,self.oidSyntaxEdit)
+        self.setTabOrder(self.oidSyntaxEdit,self.attributeSyntaxlistBox)
+        self.setTabOrder(self.attributeSyntaxlistBox,self.matchingSyntaxBox)
 
 
     def languageChange(self):

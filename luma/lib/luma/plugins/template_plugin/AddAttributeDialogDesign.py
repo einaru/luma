@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file '/home/wido/src/luma/lib/luma/plugins/template_plugin/AddAttributeDialogDesign.ui'
 #
-# Created: Sat Oct 2 18:24:12 2004
+# Created: Tue Feb 8 21:39:56 2005
 #      by: The PyQt User Interface Compiler (pyuic) 3.13
 #
 # WARNING! All changes made in this file will be lost!
@@ -382,6 +382,10 @@ class AddAttributeDialogDesign(QDialog):
         self.connect(self.cancelButton,SIGNAL("clicked()"),self.reject)
         self.connect(self.attributeView,SIGNAL("selectionChanged(QListViewItem*)"),self.attributeChanged)
         self.connect(self.defaultEdit,SIGNAL("textChanged(const QString&)"),self.defaultChanged)
+
+        self.setTabOrder(self.attributeView,self.defaultEdit)
+        self.setTabOrder(self.defaultEdit,self.okButton)
+        self.setTabOrder(self.okButton,self.cancelButton)
 
 
     def languageChange(self):

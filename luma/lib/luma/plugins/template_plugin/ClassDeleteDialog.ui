@@ -37,6 +37,9 @@
             <property name="accel">
                 <string>Alt+C</string>
             </property>
+            <property name="default">
+                <bool>true</bool>
+            </property>
         </widget>
         <widget class="QPushButton" row="2" column="2">
             <property name="name">
@@ -141,5 +144,10 @@
         <slot>reject()</slot>
     </connection>
 </connections>
+<tabstops>
+    <tabstop>attributeView</tabstop>
+    <tabstop>okButton</tabstop>
+    <tabstop>cancelButton</tabstop>
+</tabstops>
 <layoutdefaults spacing="6" margin="6"/>
 </UI>

@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file '/home/wido/src/luma/lib/luma/plugins/mass_creation_plugin/MassCreationDesign.ui'
 #
-# Created: Tue Jan 25 19:30:41 2005
+# Created: Tue Feb 8 21:38:06 2005
 #      by: The PyQt User Interface Compiler (pyuic) 3.13
 #
 # WARNING! All changes made in this file will be lost!
@@ -302,7 +302,7 @@ class MassCreationDesign(QWidget):
         self.connect(self.enableNFSBox,SIGNAL("clicked()"),self.enableAutomount)
         self.connect(self.browseAutomountButton,SIGNAL("clicked()"),self.browseAutomount)
 
-        self.setTabOrder(self.createButton,self.prefixEdit)
+        self.setTabOrder(self.tabWidget2,self.prefixEdit)
         self.setTabOrder(self.prefixEdit,self.prefixMinBox)
         self.setTabOrder(self.prefixMinBox,self.prefixMaxBox)
         self.setTabOrder(self.prefixMaxBox,self.uidNumMinBox)
@@ -317,8 +317,8 @@ class MassCreationDesign(QWidget):
         self.setTabOrder(self.daysButton,self.dayBox)
         self.setTabOrder(self.dayBox,self.nodeEdit)
         self.setTabOrder(self.nodeEdit,self.browseButton)
-        self.setTabOrder(self.browseButton,self.tabWidget2)
-        self.setTabOrder(self.tabWidget2,self.enableNFSBox)
+        self.setTabOrder(self.browseButton,self.createButton)
+        self.setTabOrder(self.createButton,self.enableNFSBox)
         self.setTabOrder(self.enableNFSBox,self.nfsServerEdit)
         self.setTabOrder(self.nfsServerEdit,self.nfsArgumentsEdit)
         self.setTabOrder(self.nfsArgumentsEdit,self.automountLocationEdit)

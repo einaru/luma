@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file '/home/wido/src/luma/lib/luma/base/utils/gui/editors/RdnEditorDesign.ui'
 #
-# Created: Tue Jan 4 00:19:48 2005
+# Created: Tue Feb 8 21:13:45 2005
 #      by: The PyQt User Interface Compiler (pyuic) 3.13
 #
 # WARNING! All changes made in this file will be lost!
@@ -35,9 +35,11 @@ class RdnEditorDesign(QDialog):
         layout1.addItem(spacer1)
 
         self.okButton = QPushButton(self,"okButton")
+        self.okButton.setDefault(1)
         layout1.addWidget(self.okButton)
 
         self.cancelButton = QPushButton(self,"cancelButton")
+        self.cancelButton.setDefault(0)
         layout1.addWidget(self.cancelButton)
 
         RdnEditorDesignLayout.addMultiCellLayout(layout1,7,7,0,2)
@@ -84,7 +86,7 @@ class RdnEditorDesign(QDialog):
 
         self.languageChange()
 
-        self.resize(QSize(436,245).expandedTo(self.minimumSizeHint()))
+        self.resize(QSize(436,246).expandedTo(self.minimumSizeHint()))
         self.clearWState(Qt.WState_Polished)
 
         self.connect(self.okButton,SIGNAL("clicked()"),self.accept)

@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file '/home/wido/src/luma/lib/luma/base/gui/ServerDialogDesign.ui'
 #
-# Created: Fri Jan 28 16:27:13 2005
+# Created: Tue Feb 8 22:53:37 2005
 #      by: The PyQt User Interface Compiler (pyuic) 3.13
 #
 # WARNING! All changes made in this file will be lost!
@@ -34,6 +34,7 @@ class ServerDialogDesign(QDialog):
         layout4.addItem(spacer6)
 
         self.okButton = QPushButton(self,"okButton")
+        self.okButton.setDefault(1)
         layout4.addWidget(self.okButton)
 
         self.applyButton = QPushButton(self,"applyButton")
@@ -227,7 +228,7 @@ class ServerDialogDesign(QDialog):
 
         self.languageChange()
 
-        self.resize(QSize(615,444).expandedTo(self.minimumSizeHint()))
+        self.resize(QSize(621,444).expandedTo(self.minimumSizeHint()))
         self.clearWState(Qt.WState_Polished)
 
         self.connect(self.applyButton,SIGNAL("clicked()"),self.saveServer)
@@ -247,12 +248,23 @@ class ServerDialogDesign(QDialog):
         self.connect(self.baseBox,SIGNAL("clicked()"),self.useServerBase)
         self.connect(self.aliasBox,SIGNAL("clicked()"),self.aliasesChanged)
 
+        self.setTabOrder(self.serverListView,self.addButton)
         self.setTabOrder(self.addButton,self.deleteButton)
-        self.setTabOrder(self.deleteButton,self.hostLineEdit)
+        self.setTabOrder(self.deleteButton,self.serverWidget)
+        self.setTabOrder(self.serverWidget,self.hostLineEdit)
         self.setTabOrder(self.hostLineEdit,self.portSpinBox)
-        self.setTabOrder(self.portSpinBox,self.bindLineEdit)
+        self.setTabOrder(self.portSpinBox,self.aliasBox)
+        self.setTabOrder(self.aliasBox,self.baseBox)
+        self.setTabOrder(self.baseBox,self.baseDNView)
+        self.setTabOrder(self.baseDNView,self.manageBaseBaseButton)
+        self.setTabOrder(self.manageBaseBaseButton,self.tlsCheckBox)
+        self.setTabOrder(self.tlsCheckBox,self.bindAnonBox)
+        self.setTabOrder(self.bindAnonBox,self.methodBox)
+        self.setTabOrder(self.methodBox,self.bindLineEdit)
         self.setTabOrder(self.bindLineEdit,self.passwordLineEdit)
-        self.setTabOrder(self.passwordLineEdit,self.applyButton)
+        self.setTabOrder(self.passwordLineEdit,self.okButton)
+        self.setTabOrder(self.okButton,self.applyButton)
+        self.setTabOrder(self.applyButton,self.cancelButton)
 
 
     def languageChange(self):

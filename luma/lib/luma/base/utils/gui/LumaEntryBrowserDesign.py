@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file '/home/wido/src/luma/lib/luma/base/utils/gui/LumaEntryBrowserDesign.ui'
 #
-# Created: Wed Jan 5 22:18:01 2005
+# Created: Tue Feb 8 21:16:20 2005
 #      by: The PyQt User Interface Compiler (pyuic) 3.13
 #
 # WARNING! All changes made in this file will be lost!
@@ -120,7 +120,7 @@ class LumaEntryBrowserDesign(QWidget):
 
         self.languageChange()
 
-        self.resize(QSize(215,508).expandedTo(self.minimumSizeHint()))
+        self.resize(QSize(218,508).expandedTo(self.minimumSizeHint()))
         self.clearWState(Qt.WState_Polished)
 
         self.connect(self.serverBox,SIGNAL("activated(const QString&)"),self.serverChanged)
@@ -133,6 +133,14 @@ class LumaEntryBrowserDesign(QWidget):
         self.connect(self.iconViewButton,SIGNAL("clicked()"),self.raiseIconView)
         self.connect(self.itemListView,SIGNAL("selectionChanged(QListViewItem*)"),self.listItemClicked)
         self.connect(self.baseBox,SIGNAL("activated(const QString&)"),self.baseChanged)
+
+        self.setTabOrder(self.serverBox,self.baseBox)
+        self.setTabOrder(self.baseBox,self.searchEdit)
+        self.setTabOrder(self.searchEdit,self.goButton)
+        self.setTabOrder(self.goButton,self.itemListView)
+        self.setTabOrder(self.itemListView,self.addButton)
+        self.setTabOrder(self.addButton,self.deleteButton)
+        self.setTabOrder(self.deleteButton,self.itemIconView)
 
 
     def languageChange(self):

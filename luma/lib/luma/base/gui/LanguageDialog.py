@@ -43,20 +43,9 @@ class LanguageDialog(LanguageDialogDesign):
         # added to luma.
         stringList = []
         for x in self.languages:
-            if x == 'cs':
-                stringList.append("Czech")
-            elif x == 'de':
-                stringList.append("German")
-            elif x == 'no':
-                stringList.append("Norwegian")
-            elif x == 'br':
-                stringList.append("Portuguese")
-            elif x == 'ru':
-                stringList.append("Russian")
-            elif x == 'es':
-                stringList.append("Spanish")
-            elif x == 'sv':
-                stringList.append("Swedish")
+            langName = self.getLanguageName(x)
+            if not (None == langName):
+                stringList.append(langName)
                 
         stringList.sort()
         map(self.languageBox.insertItem, stringList)
@@ -95,3 +84,31 @@ class LanguageDialog(LanguageDialogDesign):
         
         return os.path.join(self.trDir, translationFile)
         
+###############################################################################
+
+    def setCurrentLanguage(self, languageFile):
+        if not ("NATIVE" == languageFile):
+            if (languageFile[:5] == 'luma_') and (languageFile[-3:] == '.qm'):
+                languageFile = languageFile[5:-3]
+        
+        self.languageBox.setCurrentText(self.getLanguageName(languageFile))
+        
+###############################################################################
+
+    def getLanguageName(self, languageCode):
+        if languageCode == 'cs':
+            return "Czech"
+        elif languageCode == 'de':
+            return "German"
+        elif languageCode == 'no':
+            return "Norwegian"
+        elif languageCode == 'br':
+            return "Portuguese"
+        elif languageCode == 'ru':
+            return "Russian"
+        elif languageCode == 'es':
+            return "Spanish"
+        elif languageCode == 'sv':
+            return "Swedish"
+        elif languageCode == 'NATIVE':
+            return "English"

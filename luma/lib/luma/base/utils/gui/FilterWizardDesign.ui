@@ -500,6 +500,9 @@
                     <property name="accel">
                         <string>Alt+O</string>
                     </property>
+                    <property name="default">
+                        <bool>true</bool>
+                    </property>
                 </widget>
                 <widget class="QPushButton">
                     <property name="name">
@@ -572,6 +575,22 @@
         <slot>reject()</slot>
     </connection>
 </connections>
+<tabstops>
+    <tabstop>bookmarkBox</tabstop>
+    <tabstop>addBookmarkButton</tabstop>
+    <tabstop>delBookmarkButton</tabstop>
+    <tabstop>classButton</tabstop>
+    <tabstop>attributeButton</tabstop>
+    <tabstop>objectBox</tabstop>
+    <tabstop>filterTypeBox</tabstop>
+    <tabstop>expressionEdit</tabstop>
+    <tabstop>addObjectButton</tabstop>
+    <tabstop>concatBox</tabstop>
+    <tabstop>concatButton</tabstop>
+    <tabstop>searchFilterEdit</tabstop>
+    <tabstop>pushButton11</tabstop>
+    <tabstop>pushButton6</tabstop>
+</tabstops>
 <slots>
     <slot>classChoiceChanged()</slot>
     <slot>addCriteria()</slot>

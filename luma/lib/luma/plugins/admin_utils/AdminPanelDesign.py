@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file '/home/wido/src/luma/lib/luma/plugins/admin_utils/AdminPanelDesign.ui'
 #
-# Created: Sun Oct 17 22:53:37 2004
+# Created: Tue Feb 8 21:36:50 2005
 #      by: The PyQt User Interface Compiler (pyuic) 3.13
 #
 # WARNING! All changes made in this file will be lost!
@@ -201,7 +201,7 @@ class AdminPanelDesign(QWidget):
 
         self.languageChange()
 
-        self.resize(QSize(417,408).expandedTo(self.minimumSizeHint()))
+        self.resize(QSize(419,408).expandedTo(self.minimumSizeHint()))
         self.clearWState(Qt.WState_Polished)
 
         self.connect(self.createButton,SIGNAL("clicked()"),self.createRandom)
@@ -211,6 +211,20 @@ class AdminPanelDesign(QWidget):
         self.connect(self.durationButton,SIGNAL("clicked()"),self.convertDuration)
         self.connect(self.durationBox,SIGNAL("valueChanged(int)"),self.convertDuration)
         self.connect(self.dateEdit,SIGNAL("valueChanged(const QDate&)"),self.convertDate)
+
+        self.setTabOrder(self.tabWidget2,self.methodBox)
+        self.setTabOrder(self.methodBox,self.randomPwEdit)
+        self.setTabOrder(self.randomPwEdit,self.randomCryptEdit)
+        self.setTabOrder(self.randomCryptEdit,self.createButton)
+        self.setTabOrder(self.createButton,self.pwEdit)
+        self.setTabOrder(self.pwEdit,self.cryptEdit)
+        self.setTabOrder(self.cryptEdit,self.cryptButton)
+        self.setTabOrder(self.cryptButton,self.dateEdit)
+        self.setTabOrder(self.dateEdit,self.dateButton)
+        self.setTabOrder(self.dateButton,self.convDateEdit)
+        self.setTabOrder(self.convDateEdit,self.durationBox)
+        self.setTabOrder(self.durationBox,self.durationButton)
+        self.setTabOrder(self.durationButton,self.convDurationEdit)
 
 
     def languageChange(self):

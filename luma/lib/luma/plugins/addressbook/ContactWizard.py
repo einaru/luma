@@ -164,7 +164,7 @@ class ContactWizard(ContactWizardDesign):
             if metaInfo.hasObjectClass(x):
                 self.availableClasses.append(x)
         
-        must, may = metaInfo.getAllAttributes(objectClassList)
+        must, may = metaInfo.getAllAttributes(self.availableClasses)
         return must | may
         
 ###############################################################################

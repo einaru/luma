@@ -63,7 +63,7 @@
                             <cstring>toolBox</cstring>
                         </property>
                         <property name="currentIndex">
-                            <number>0</number>
+                            <number>3</number>
                         </property>
                         <widget class="QWidget">
                             <property name="name">
@@ -1048,6 +1048,38 @@ Description</string>
         <slot>toggle()</slot>
     </connection>
 </connections>
+<tabstops>
+    <tabstop>serverBox</tabstop>
+    <tabstop>classFilterEdit</tabstop>
+    <tabstop>classBox</tabstop>
+    <tabstop>attributeFilterEdit</tabstop>
+    <tabstop>attributeBox</tabstop>
+    <tabstop>matchingFilterEdit</tabstop>
+    <tabstop>matchingBox</tabstop>
+    <tabstop>syntaxFilterEdi</tabstop>
+    <tabstop>syntaxBox</tabstop>
+    <tabstop>superiorClassEdit</tabstop>
+    <tabstop>oidClassEdit</tabstop>
+    <tabstop>kindClassEdit</tabstop>
+    <tabstop>mustAttributeBox</tabstop>
+    <tabstop>mayAttributeBox</tabstop>
+    <tabstop>oidAttributeEdit</tabstop>
+    <tabstop>superiorAttributeEdit</tabstop>
+    <tabstop>equalityAttributeEdit</tabstop>
+    <tabstop>usageAttributeEdit</tabstop>
+    <tabstop>syntaxAttributeEdit</tabstop>
+    <tabstop>orderingAttributeEdit</tabstop>
+    <tabstop>singleAttributeBox</tabstop>
+    <tabstop>collectiveAttributeBox</tabstop>
+    <tabstop>obsoleteAttributeBox</tabstop>
+    <tabstop>usedInClassBox</tabstop>
+    <tabstop>oidMatchingEdit</tabstop>
+    <tabstop>syntaxMatchingEdit</tabstop>
+    <tabstop>attributeMatchingBox</tabstop>
+    <tabstop>oidSyntaxEdit</tabstop>
+    <tabstop>attributeSyntaxlistBox</tabstop>
+    <tabstop>matchingSyntaxBox</tabstop>
+</tabstops>
 <slots>
     <slot>serverChanged()</slot>
     <slot>toolBoxChanged()</slot>

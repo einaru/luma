@@ -2,8 +2,8 @@
 
 # Form implementation generated from reading ui file '/home/wido/src/luma/lib/luma/plugins/addressbook/CategoryEditDialogDesign.ui'
 #
-# Created: Sun Aug 29 00:49:11 2004
-#      by: The PyQt User Interface Compiler (pyuic) 3.12
+# Created: Tue Feb 8 21:34:30 2005
+#      by: The PyQt User Interface Compiler (pyuic) 3.13
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -50,6 +50,7 @@ class CategoryEditDialogDesign(QDialog):
         layout2.addItem(spacer12)
 
         self.okButton = QPushButton(self,"okButton")
+        self.okButton.setDefault(1)
         layout2.addWidget(self.okButton)
 
         self.cancelButton = QPushButton(self,"cancelButton")
@@ -62,8 +63,8 @@ class CategoryEditDialogDesign(QDialog):
         self.resize(QSize(283,514).expandedTo(self.minimumSizeHint()))
         self.clearWState(Qt.WState_Polished)
 
-        self.connect(self.cancelButton,SIGNAL("clicked()"),self,SLOT("reject()"))
-        self.connect(self.okButton,SIGNAL("clicked()"),self,SLOT("accept()"))
+        self.connect(self.cancelButton,SIGNAL("clicked()"),self.reject)
+        self.connect(self.okButton,SIGNAL("clicked()"),self.accept)
         self.connect(self.deleteButton,SIGNAL("clicked()"),self.deleteCategory)
         self.connect(self.addButton,SIGNAL("clicked()"),self.addCategory)
 

@@ -270,7 +270,26 @@ class MainWin(MainWinDesign):
         would have no effect.
         """
         
+        configParser = ConfigParser()
+            
+        try:
+            configParser.readfp(open(self.configFile, 'r'))
+        except Exception, errorData:
+            print "Error: could not load language settings file. Reason:"
+            print errorData
+            
+        if not(configParser.has_section("Defaults")):
+            configParser.add_section("Defaults")
+            
+        language = "NATIVE"
+        
+        if configParser.has_option("Defaults", "language"):
+            language = configParser.get("Defaults", "language")
+            
+        language = os.path.split(language)[-1]
+        
         dialog = LanguageDialog()
+        dialog.setCurrentLanguage(language)
         dialog.exec_loop()
         
         if dialog.result() == QDialog.Accepted:
@@ -282,17 +301,6 @@ class MainWin(MainWinDesign):
                 qApp.installTranslator(self.translator)
                
             self.languageChange()
-
-            configParser = ConfigParser()
-            
-            try:
-                configParser.readfp(open(self.configFile, 'r'))
-            except Exception, errorData:
-                print "Error: could not load language settings file. Reason:"
-                print errorData
-                
-            if not(configParser.has_section("Defaults")):
-                configParser.add_section("Defaults")
                 
             configParser.set("Defaults", "language", trFile)
             

@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file '/home/wido/src/luma/lib/luma/base/utils/gui/editors/StandardEditorDesign.ui'
 #
-# Created: Tue Jan 4 00:19:49 2005
+# Created: Tue Feb 8 21:13:52 2005
 #      by: The PyQt User Interface Compiler (pyuic) 3.13
 #
 # WARNING! All changes made in this file will be lost!
@@ -30,9 +30,9 @@ class StandardEditorDesign(QDialog):
 
         self.attributeLabel = QLabel(self,"attributeLabel")
 
-        StandardEditorDesignLayout.addMultiCellWidget(self.attributeLabel,0,0,1,3)
-        spacer4 = QSpacerItem(20,201,QSizePolicy.Minimum,QSizePolicy.Expanding)
-        StandardEditorDesignLayout.addMultiCell(spacer4,2,3,0,0)
+        StandardEditorDesignLayout.addWidget(self.attributeLabel,0,1)
+        spacer4_2 = QSpacerItem(21,16,QSizePolicy.Minimum,QSizePolicy.Fixed)
+        StandardEditorDesignLayout.addItem(spacer4_2,1,1)
 
         layout1 = QHBoxLayout(None,0,6,"layout1")
         spacer1 = QSpacerItem(390,21,QSizePolicy.Expanding,QSizePolicy.Minimum)
@@ -44,30 +44,33 @@ class StandardEditorDesign(QDialog):
         self.cancelButton = QPushButton(self,"cancelButton")
         layout1.addWidget(self.cancelButton)
 
-        StandardEditorDesignLayout.addMultiCellLayout(layout1,5,5,0,3)
+        StandardEditorDesignLayout.addMultiCellLayout(layout1,5,5,0,1)
 
         self.line2 = QFrame(self,"line2")
         self.line2.setFrameShape(QFrame.HLine)
         self.line2.setFrameShadow(QFrame.Sunken)
         self.line2.setFrameShape(QFrame.HLine)
 
-        StandardEditorDesignLayout.addMultiCellWidget(self.line2,4,4,0,3)
+        StandardEditorDesignLayout.addMultiCellWidget(self.line2,4,4,0,1)
 
-        self.valueEdit = QLineEdit(self,"valueEdit")
-
-        StandardEditorDesignLayout.addMultiCellWidget(self.valueEdit,2,2,2,3)
-        spacer5 = QSpacerItem(21,121,QSizePolicy.Minimum,QSizePolicy.Expanding)
-        StandardEditorDesignLayout.addItem(spacer5,3,3)
+        layout2 = QHBoxLayout(None,0,6,"layout2")
 
         self.textLabel3 = QLabel(self,"textLabel3")
+        self.textLabel3.setSizePolicy(QSizePolicy(5,5,0,0,self.textLabel3.sizePolicy().hasHeightForWidth()))
+        layout2.addWidget(self.textLabel3)
 
-        StandardEditorDesignLayout.addWidget(self.textLabel3,2,1)
-        spacer4_2 = QSpacerItem(21,10,QSizePolicy.Minimum,QSizePolicy.Fixed)
-        StandardEditorDesignLayout.addItem(spacer4_2,1,2)
+        self.valueEdit = QLineEdit(self,"valueEdit")
+        layout2.addWidget(self.valueEdit)
+
+        StandardEditorDesignLayout.addLayout(layout2,2,1)
+        spacer4 = QSpacerItem(20,90,QSizePolicy.Minimum,QSizePolicy.Expanding)
+        StandardEditorDesignLayout.addMultiCell(spacer4,2,3,0,0)
+        spacer5 = QSpacerItem(21,16,QSizePolicy.Minimum,QSizePolicy.Expanding)
+        StandardEditorDesignLayout.addItem(spacer5,3,1)
 
         self.languageChange()
 
-        self.resize(QSize(416,184).expandedTo(self.minimumSizeHint()))
+        self.resize(QSize(441,191).expandedTo(self.minimumSizeHint()))
         self.clearWState(Qt.WState_Polished)
 
         self.connect(self.okButton,SIGNAL("clicked()"),self.accept)

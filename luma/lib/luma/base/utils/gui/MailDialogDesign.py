@@ -2,8 +2,8 @@
 
 # Form implementation generated from reading ui file '/home/wido/src/luma/lib/luma/base/utils/gui/MailDialogDesign.ui'
 #
-# Created: Sun Aug 29 00:49:13 2004
-#      by: The PyQt User Interface Compiler (pyuic) 3.12
+# Created: Tue Feb 8 21:17:12 2005
+#      by: The PyQt User Interface Compiler (pyuic) 3.13
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -59,14 +59,14 @@ class MailDialogDesign(QDialog):
 
         self.languageChange()
 
-        self.resize(QSize(364,111).expandedTo(self.minimumSizeHint()))
+        self.resize(QSize(439,105).expandedTo(self.minimumSizeHint()))
         self.clearWState(Qt.WState_Polished)
 
-        self.connect(self.cancelButton,SIGNAL("clicked()"),self,SLOT("reject()"))
-        self.connect(self.okButton,SIGNAL("clicked()"),self,SLOT("accept()"))
+        self.connect(self.cancelButton,SIGNAL("clicked()"),self.reject)
+        self.connect(self.okButton,SIGNAL("clicked()"),self.accept)
 
-        self.setTabOrder(self.mailEdit,self.cancelButton)
-        self.setTabOrder(self.cancelButton,self.okButton)
+        self.setTabOrder(self.mailEdit,self.okButton)
+        self.setTabOrder(self.okButton,self.cancelButton)
 
 
     def languageChange(self):

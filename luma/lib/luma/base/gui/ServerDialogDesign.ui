@@ -17,7 +17,7 @@
         <rect>
             <x>0</x>
             <y>0</y>
-            <width>615</width>
+            <width>621</width>
             <height>444</height>
         </rect>
     </property>
@@ -76,6 +76,9 @@
                     </property>
                     <property name="accel">
                         <string>Alt+O</string>
+                    </property>
+                    <property name="default">
+                        <bool>true</bool>
                     </property>
                 </widget>
                 <widget class="QPushButton">
@@ -864,13 +867,24 @@
     </connection>
 </connections>
 <tabstops>
+    <tabstop>serverListView</tabstop>
     <tabstop>addButton</tabstop>
     <tabstop>deleteButton</tabstop>
+    <tabstop>serverWidget</tabstop>
     <tabstop>hostLineEdit</tabstop>
     <tabstop>portSpinBox</tabstop>
+    <tabstop>aliasBox</tabstop>
+    <tabstop>baseBox</tabstop>
+    <tabstop>baseDNView</tabstop>
+    <tabstop>manageBaseBaseButton</tabstop>
+    <tabstop>tlsCheckBox</tabstop>
+    <tabstop>bindAnonBox</tabstop>
+    <tabstop>methodBox</tabstop>
     <tabstop>bindLineEdit</tabstop>
     <tabstop>passwordLineEdit</tabstop>
+    <tabstop>okButton</tabstop>
     <tabstop>applyButton</tabstop>
+    <tabstop>cancelButton</tabstop>
 </tabstops>
 <slots>
     <slot>serverSelectionChanged()</slot>

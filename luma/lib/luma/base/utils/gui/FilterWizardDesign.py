@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file '/home/wido/src/luma/lib/luma/base/utils/gui/FilterWizardDesign.ui'
 #
-# Created: Sat Oct 30 00:26:57 2004
+# Created: Tue Feb 8 21:15:17 2005
 #      by: The PyQt User Interface Compiler (pyuic) 3.13
 #
 # WARNING! All changes made in this file will be lost!
@@ -140,6 +140,7 @@ class FilterWizardDesign(QDialog):
         layout27.addItem(spacer3)
 
         self.pushButton11 = QPushButton(self,"pushButton11")
+        self.pushButton11.setDefault(1)
         layout27.addWidget(self.pushButton11)
 
         self.pushButton6 = QPushButton(self,"pushButton6")
@@ -160,6 +161,20 @@ class FilterWizardDesign(QDialog):
         self.connect(self.delBookmarkButton,SIGNAL("clicked()"),self.deleteBookmark)
         self.connect(self.addBookmarkButton,SIGNAL("clicked()"),self.addBookmark)
         self.connect(self.pushButton6,SIGNAL("clicked()"),self.reject)
+
+        self.setTabOrder(self.bookmarkBox,self.addBookmarkButton)
+        self.setTabOrder(self.addBookmarkButton,self.delBookmarkButton)
+        self.setTabOrder(self.delBookmarkButton,self.classButton)
+        self.setTabOrder(self.classButton,self.attributeButton)
+        self.setTabOrder(self.attributeButton,self.objectBox)
+        self.setTabOrder(self.objectBox,self.filterTypeBox)
+        self.setTabOrder(self.filterTypeBox,self.expressionEdit)
+        self.setTabOrder(self.expressionEdit,self.addObjectButton)
+        self.setTabOrder(self.addObjectButton,self.concatBox)
+        self.setTabOrder(self.concatBox,self.concatButton)
+        self.setTabOrder(self.concatButton,self.searchFilterEdit)
+        self.setTabOrder(self.searchFilterEdit,self.pushButton11)
+        self.setTabOrder(self.pushButton11,self.pushButton6)
 
 
     def languageChange(self):

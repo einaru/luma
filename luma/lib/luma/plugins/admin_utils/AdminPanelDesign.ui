@@ -17,7 +17,7 @@
         <rect>
             <x>0</x>
             <y>0</y>
-            <width>417</width>
+            <width>419</width>
             <height>408</height>
         </rect>
     </property>
@@ -648,6 +648,22 @@
         <slot>convertDate()</slot>
     </connection>
 </connections>
+<tabstops>
+    <tabstop>tabWidget2</tabstop>
+    <tabstop>methodBox</tabstop>
+    <tabstop>randomPwEdit</tabstop>
+    <tabstop>randomCryptEdit</tabstop>
+    <tabstop>createButton</tabstop>
+    <tabstop>pwEdit</tabstop>
+    <tabstop>cryptEdit</tabstop>
+    <tabstop>cryptButton</tabstop>
+    <tabstop>dateEdit</tabstop>
+    <tabstop>dateButton</tabstop>
+    <tabstop>convDateEdit</tabstop>
+    <tabstop>durationBox</tabstop>
+    <tabstop>durationButton</tabstop>
+    <tabstop>convDurationEdit</tabstop>
+</tabstops>
 <slots>
     <slot>createRandom()</slot>
     <slot>cryptPassword()</slot>

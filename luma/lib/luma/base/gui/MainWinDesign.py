@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file '/home/wido/src/luma/lib/luma/base/gui/MainWinDesign.ui'
 #
-# Created: Fri Oct 1 16:37:34 2004
+# Created: Mon Jan 31 21:41:17 2005
 #      by: The PyQt User Interface Compiler (pyuic) 3.13
 #
 # WARNING! All changes made in this file will be lost!

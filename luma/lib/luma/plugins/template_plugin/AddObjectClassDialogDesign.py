@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file '/home/wido/src/luma/lib/luma/plugins/template_plugin/AddObjectClassDialogDesign.ui'
 #
-# Created: Mon Dec 6 18:12:31 2004
+# Created: Tue Feb 8 21:40:20 2005
 #      by: The PyQt User Interface Compiler (pyuic) 3.13
 #
 # WARNING! All changes made in this file will be lost!
@@ -359,6 +359,7 @@ class AddObjectClassDialogDesign(QDialog):
         AddObjectClassDialogDesignLayout.addItem(spacer1,3,0)
 
         self.okButton = QPushButton(self,"okButton")
+        self.okButton.setDefault(1)
 
         AddObjectClassDialogDesignLayout.addWidget(self.okButton,3,1)
 
@@ -386,6 +387,9 @@ class AddObjectClassDialogDesign(QDialog):
 
         self.connect(self.okButton,SIGNAL("clicked()"),self.accept)
         self.connect(self.cancelButton,SIGNAL("clicked()"),self.reject)
+
+        self.setTabOrder(self.classView,self.okButton)
+        self.setTabOrder(self.okButton,self.cancelButton)
 
 
     def languageChange(self):

@@ -315,8 +315,8 @@
     <tabstop>middleEdit</tabstop>
     <tabstop>lastEdit</tabstop>
     <tabstop>suffixBox</tabstop>
-    <tabstop>cancelButton</tabstop>
     <tabstop>okButton</tabstop>
+    <tabstop>cancelButton</tabstop>
 </tabstops>
 <layoutdefaults spacing="6" margin="11"/>
 </UI>

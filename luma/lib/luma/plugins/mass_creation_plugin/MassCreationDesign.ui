@@ -724,7 +724,7 @@
     </connection>
 </connections>
 <tabstops>
-    <tabstop>createButton</tabstop>
+    <tabstop>tabWidget2</tabstop>
     <tabstop>prefixEdit</tabstop>
     <tabstop>prefixMinBox</tabstop>
     <tabstop>prefixMaxBox</tabstop>
@@ -740,7 +740,7 @@
     <tabstop>dayBox</tabstop>
     <tabstop>nodeEdit</tabstop>
     <tabstop>browseButton</tabstop>
-    <tabstop>tabWidget2</tabstop>
+    <tabstop>createButton</tabstop>
     <tabstop>enableNFSBox</tabstop>
     <tabstop>nfsServerEdit</tabstop>
     <tabstop>nfsArgumentsEdit</tabstop>

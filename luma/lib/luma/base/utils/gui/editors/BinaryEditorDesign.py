@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file '/home/wido/src/luma/lib/luma/base/utils/gui/editors/BinaryEditorDesign.ui'
 #
-# Created: Tue Jan 4 00:22:18 2005
+# Created: Tue Feb 8 21:13:49 2005
 #      by: The PyQt User Interface Compiler (pyuic) 3.13
 #
 # WARNING! All changes made in this file will be lost!
@@ -35,6 +35,7 @@ class BinaryEditorDesign(QDialog):
         layout1.addItem(spacer1)
 
         self.okButton = QPushButton(self,"okButton")
+        self.okButton.setDefault(1)
         layout1.addWidget(self.okButton)
 
         self.cancelButton = QPushButton(self,"cancelButton")
@@ -89,7 +90,8 @@ class BinaryEditorDesign(QDialog):
         self.connect(self.valueEdit,SIGNAL("textChanged(const QString&)"),self.updateValue)
         self.connect(self.fileButton,SIGNAL("clicked()"),self.showFileDialog)
 
-        self.setTabOrder(self.valueEdit,self.okButton)
+        self.setTabOrder(self.valueEdit,self.fileButton)
+        self.setTabOrder(self.fileButton,self.okButton)
         self.setTabOrder(self.okButton,self.cancelButton)
 
 

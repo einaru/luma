@@ -2,8 +2,8 @@
 
 # Form implementation generated from reading ui file '/home/wido/src/luma/lib/luma/plugins/addressbook/AddressbookWidgetDesign.ui'
 #
-# Created: Sun Aug 29 00:49:10 2004
-#      by: The PyQt User Interface Compiler (pyuic) 3.12
+# Created: Tue Feb 8 21:57:44 2005
+#      by: The PyQt User Interface Compiler (pyuic) 3.13
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -24,6 +24,7 @@ class AddressbookWidgetDesign(QWidget):
 
         self.tabWidget2 = QTabWidget(self,"tabWidget2")
         self.tabWidget2.setMinimumSize(QSize(300,0))
+        self.tabWidget2.setFocusPolicy(QTabWidget.TabFocus)
 
         self.tab = QWidget(self.tabWidget2,"tab")
         tabLayout = QGridLayout(self.tab,1,1,0,6,"tabLayout")

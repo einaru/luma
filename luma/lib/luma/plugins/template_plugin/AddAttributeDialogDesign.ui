@@ -309,6 +309,12 @@
         <slot>defaultChanged()</slot>
     </connection>
 </connections>
+<tabstops>
+    <tabstop>attributeView</tabstop>
+    <tabstop>defaultEdit</tabstop>
+    <tabstop>okButton</tabstop>
+    <tabstop>cancelButton</tabstop>
+</tabstops>
 <slots>
     <slot>attributeChanged()</slot>
     <slot>defaultChanged()</slot>

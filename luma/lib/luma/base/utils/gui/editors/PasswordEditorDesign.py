@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file '/home/wido/src/luma/lib/luma/base/utils/gui/editors/PasswordEditorDesign.ui'
 #
-# Created: Tue Jan 4 00:19:46 2005
+# Created: Tue Feb 8 21:13:47 2005
 #      by: The PyQt User Interface Compiler (pyuic) 3.13
 #
 # WARNING! All changes made in this file will be lost!
@@ -36,12 +36,12 @@ class PasswordEditorDesign(QDialog):
         Layout1.addItem(Horizontal_Spacing2)
 
         self.okButton = QPushButton(self,"okButton")
-        self.okButton.setAutoDefault(1)
         self.okButton.setDefault(1)
         Layout1.addWidget(self.okButton)
 
         self.cancelButton = QPushButton(self,"cancelButton")
         self.cancelButton.setAutoDefault(1)
+        self.cancelButton.setDefault(0)
         Layout1.addWidget(self.cancelButton)
 
         PasswordEditorDesignLayout.addMultiCellLayout(Layout1,4,4,0,1)

@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file '/home/wido/src/luma/lib/luma/plugins/usermanagement/UsermanagementWidgetDesign.ui'
 #
-# Created: Tue Jan 4 20:33:59 2005
+# Created: Tue Feb 8 21:43:27 2005
 #      by: The PyQt User Interface Compiler (pyuic) 3.13
 #
 # WARNING! All changes made in this file will be lost!
@@ -190,7 +190,7 @@ class UsermanagementWidgetDesign(QWidget):
 
         self.languageChange()
 
-        self.resize(QSize(546,485).expandedTo(self.minimumSizeHint()))
+        self.resize(QSize(548,485).expandedTo(self.minimumSizeHint()))
         self.clearWState(Qt.WState_Polished)
 
         self.connect(self.addMailButton,SIGNAL("clicked()"),self.addMail)
@@ -206,7 +206,8 @@ class UsermanagementWidgetDesign(QWidget):
         self.connect(self.findButton,SIGNAL("clicked()"),self.nextFreeUserID)
 
         self.setTabOrder(self.uidEdit,self.uidBox)
-        self.setTabOrder(self.uidBox,self.nameEdit)
+        self.setTabOrder(self.uidBox,self.findButton)
+        self.setTabOrder(self.findButton,self.nameEdit)
         self.setTabOrder(self.nameEdit,self.expireEdit)
         self.setTabOrder(self.expireEdit,self.groupEdit)
         self.setTabOrder(self.groupEdit,self.groupNumberEdit)
@@ -216,8 +217,8 @@ class UsermanagementWidgetDesign(QWidget):
         self.setTabOrder(self.homeEdit,self.passwordEdit)
         self.setTabOrder(self.passwordEdit,self.passwordButton)
         self.setTabOrder(self.passwordButton,self.mailBox)
-        self.setTabOrder(self.mailBox,self.deleteMailButton)
-        self.setTabOrder(self.deleteMailButton,self.addMailButton)
+        self.setTabOrder(self.mailBox,self.addMailButton)
+        self.setTabOrder(self.addMailButton,self.deleteMailButton)
 
 
     def languageChange(self):

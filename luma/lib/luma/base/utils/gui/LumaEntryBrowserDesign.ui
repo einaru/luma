@@ -8,7 +8,7 @@
         <rect>
             <x>0</x>
             <y>0</y>
-            <width>215</width>
+            <width>218</width>
             <height>508</height>
         </rect>
     </property>
@@ -382,6 +382,16 @@
         <slot>baseChanged()</slot>
     </connection>
 </connections>
+<tabstops>
+    <tabstop>serverBox</tabstop>
+    <tabstop>baseBox</tabstop>
+    <tabstop>searchEdit</tabstop>
+    <tabstop>goButton</tabstop>
+    <tabstop>itemListView</tabstop>
+    <tabstop>addButton</tabstop>
+    <tabstop>deleteButton</tabstop>
+    <tabstop>itemIconView</tabstop>
+</tabstops>
 <slots>
     <slot>serverChanged()</slot>
     <slot>search()</slot>

@@ -8,7 +8,7 @@
         <rect>
             <x>0</x>
             <y>0</y>
-            <width>546</width>
+            <width>548</width>
             <height>485</height>
         </rect>
     </property>
@@ -563,6 +563,7 @@
 <tabstops>
     <tabstop>uidEdit</tabstop>
     <tabstop>uidBox</tabstop>
+    <tabstop>findButton</tabstop>
     <tabstop>nameEdit</tabstop>
     <tabstop>expireEdit</tabstop>
     <tabstop>groupEdit</tabstop>
@@ -573,8 +574,8 @@
     <tabstop>passwordEdit</tabstop>
     <tabstop>passwordButton</tabstop>
     <tabstop>mailBox</tabstop>
-    <tabstop>deleteMailButton</tabstop>
     <tabstop>addMailButton</tabstop>
+    <tabstop>deleteMailButton</tabstop>
 </tabstops>
 <slots>
     <slot>editPassword()</slot>

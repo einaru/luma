@@ -2,8 +2,8 @@
 
 # Form implementation generated from reading ui file '/home/wido/src/luma/lib/luma/plugins/addressbook/NameDialog.ui'
 #
-# Created: Sun Aug 29 00:49:11 2004
-#      by: The PyQt User Interface Compiler (pyuic) 3.12
+# Created: Tue Feb 8 21:35:25 2005
+#      by: The PyQt User Interface Compiler (pyuic) 3.13
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -101,15 +101,15 @@ class NameDialog(QDialog):
         self.resize(QSize(331,234).expandedTo(self.minimumSizeHint()))
         self.clearWState(Qt.WState_Polished)
 
-        self.connect(self.cancelButton,SIGNAL("clicked()"),self,SLOT("reject()"))
-        self.connect(self.okButton,SIGNAL("clicked()"),self,SLOT("accept()"))
+        self.connect(self.cancelButton,SIGNAL("clicked()"),self.reject)
+        self.connect(self.okButton,SIGNAL("clicked()"),self.accept)
 
         self.setTabOrder(self.titleBox,self.firstEdit)
         self.setTabOrder(self.firstEdit,self.middleEdit)
         self.setTabOrder(self.middleEdit,self.lastEdit)
         self.setTabOrder(self.lastEdit,self.suffixBox)
-        self.setTabOrder(self.suffixBox,self.cancelButton)
-        self.setTabOrder(self.cancelButton,self.okButton)
+        self.setTabOrder(self.suffixBox,self.okButton)
+        self.setTabOrder(self.okButton,self.cancelButton)
 
 
     def languageChange(self):

@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file '/home/wido/src/luma/lib/luma/base/gui/BaseSelectorDesign.ui'
 #
-# Created: Thu Dec 2 18:33:07 2004
+# Created: Tue Feb 8 21:31:32 2005
 #      by: The PyQt User Interface Compiler (pyuic) 3.13
 #
 # WARNING! All changes made in this file will be lost!
@@ -279,11 +279,12 @@ class BaseSelectorDesign(QDialog):
         layout7.addItem(spacer8,1,0)
 
         self.cancelButton = QPushButton(self,"cancelButton")
-        self.cancelButton.setDefault(1)
+        self.cancelButton.setDefault(0)
 
         layout7.addWidget(self.cancelButton,1,2)
 
         self.okButton = QPushButton(self,"okButton")
+        self.okButton.setDefault(1)
 
         layout7.addWidget(self.okButton,1,1)
         BaseSelectorDesignLayout.addLayout(layout7)

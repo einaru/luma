@@ -1,4 +1,4 @@
-<!DOCTYPE UI><UI version="3.2" stdsetdef="1">
+<!DOCTYPE UI><UI version="3.3" stdsetdef="1">
 <class>PluginInformation</class>
 <widget class="QDialog">
     <property name="name">
@@ -173,5 +173,9 @@
         <slot>accept()</slot>
     </connection>
 </connections>
+<tabstops>
+    <tabstop>informationEdit</tabstop>
+    <tabstop>closeButton</tabstop>
+</tabstops>
 <layoutdefaults spacing="6" margin="11"/>
 </UI>

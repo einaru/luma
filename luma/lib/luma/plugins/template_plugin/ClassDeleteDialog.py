@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file '/home/wido/src/luma/lib/luma/plugins/template_plugin/ClassDeleteDialog.ui'
 #
-# Created: Sat Oct 9 20:05:49 2004
+# Created: Tue Feb 8 21:41:07 2005
 #      by: The PyQt User Interface Compiler (pyuic) 3.13
 #
 # WARNING! All changes made in this file will be lost!
@@ -258,6 +258,7 @@ class ClassDeleteDialog(QDialog):
 
         self.cancelButton = QPushButton(self,"cancelButton")
         self.cancelButton.setSizePolicy(QSizePolicy(0,0,0,0,self.cancelButton.sizePolicy().hasHeightForWidth()))
+        self.cancelButton.setDefault(1)
 
         ClassDeleteDialogLayout.addWidget(self.cancelButton,2,3)
 
@@ -292,6 +293,9 @@ class ClassDeleteDialog(QDialog):
 
         self.connect(self.okButton,SIGNAL("clicked()"),self.accept)
         self.connect(self.cancelButton,SIGNAL("clicked()"),self.reject)
+
+        self.setTabOrder(self.attributeView,self.okButton)
+        self.setTabOrder(self.okButton,self.cancelButton)
 
 
     def languageChange(self):

@@ -375,7 +375,7 @@
                         <bool>false</bool>
                     </property>
                     <property name="default">
-                        <bool>false</bool>
+                        <bool>true</bool>
                     </property>
                 </widget>
                 <widget class="QPushButton">
@@ -436,6 +436,13 @@
         <slot>groupNumberChanged()</slot>
     </connection>
 </connections>
+<tabstops>
+    <tabstop>groupNameBox</tabstop>
+    <tabstop>groupNumberBox</tabstop>
+    <tabstop>groupView</tabstop>
+    <tabstop>okButton</tabstop>
+    <tabstop>cancelButton</tabstop>
+</tabstops>
 <slots>
     <slot>groupNameChanged()</slot>
     <slot>groupNumberChanged()</slot>

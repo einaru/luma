@@ -94,6 +94,9 @@
                     <property name="accel">
                         <string>Alt+O</string>
                     </property>
+                    <property name="default">
+                        <bool>true</bool>
+                    </property>
                 </widget>
                 <widget class="QPushButton">
                     <property name="name">
@@ -243,6 +246,7 @@
 </connections>
 <tabstops>
     <tabstop>valueEdit</tabstop>
+    <tabstop>fileButton</tabstop>
     <tabstop>okButton</tabstop>
     <tabstop>cancelButton</tabstop>
 </tabstops>
