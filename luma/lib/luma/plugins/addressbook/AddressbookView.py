@@ -35,25 +35,15 @@ class AddressbookView(QWidget):
         
         self.addressContainer = QWidget(self.splitter)
         containerLayout = QGridLayout(self.addressContainer,1,1,0,6,"AddressbookWidgetDesignLayout")
-        #self.saveButton = QPushButton(self.addressContainer,"saveButton")
-        #self.saveButton.setText(self.trUtf8("&Save"))
-        #containerLayout.addWidget(self.saveButton,1,1)
-        #spacer = QSpacerItem(320,21,QSizePolicy.Expanding,QSizePolicy.Minimum)
-        #containerLayout.addItem(spacer,1,0)
         
         self.addressBookWidget = AddressbookWidget(self.addressContainer)
         containerLayout.addMultiCellWidget(self.addressBookWidget,0,0,0,1)
         
-        #self.addressBookWidget = AddressbookWidget(self.splitter)
         self.connect (self.entryList, PYSIGNAL("ldap_result"), self.addressBookWidget.initView)
         self.connect(self.entryList, PYSIGNAL("server_changed"), self.addressBookWidget.serverChanged)
         self.connect(self.addressBookWidget, PYSIGNAL("contact_saved"), self.entryList.search)
-        #self.connect(self.saveButton,SIGNAL("clicked()"), self.addressBookWidget.saveEntry)
-        #self.connect(self.addressBookWidget, PYSIGNAL("enable_save"), self.enableSave)
         self.connect(self.entryList, PYSIGNAL("add_entry"), self.addEntry)
         self.mainLayout.addWidget(self.splitter)
-        
-        #self.enableSave(0)
         
 ###############################################################################
 
