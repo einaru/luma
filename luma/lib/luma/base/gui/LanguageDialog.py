@@ -47,22 +47,22 @@ class LanguageDialog(LanguageDialogDesign):
             
             
             if x == 'br':
-                self.languageBox.insertItem(pixmap, "Brazil")
+                self.languageBox.insertItem(pixmap, "Brazilian")
                 continue
             elif x == 'de':
-                self.languageBox.insertItem(pixmap, "Germany")
+                self.languageBox.insertItem(pixmap, "German")
                 continue
             elif x == 'no':
-                self.languageBox.insertItem(pixmap, "Norway")
+                self.languageBox.insertItem(pixmap, "Norwegian")
                 continue
             elif x == 'ru':
-                self.languageBox.insertItem(pixmap, "Russia")
+                self.languageBox.insertItem(pixmap, "Russian")
                 continue
             elif x == 'es':
-                self.languageBox.insertItem(pixmap, "Spain")
+                self.languageBox.insertItem(pixmap, "Spanish")
                 continue
             elif x == 'sv':
-                self.languageBox.insertItem(pixmap, "Sweden")
+                self.languageBox.insertItem(pixmap, "Swedish")
                 continue
                 
 
