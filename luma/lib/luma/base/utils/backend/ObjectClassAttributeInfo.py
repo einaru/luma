@@ -21,15 +21,15 @@ class UnknownAttribute:
     pass
 
 class ObjectClassAttributeInfo(object):
-    """ A class for getting information about objectclasses and attributes 
+    """ A class for getting information about objectClassesDict and attributes 
     from a server.
     """
 
 ###############################################################################
     
     def __init__(self, server=None):
-        self.OBJECTCLASSES = {}
-        self.ATTRIBUTELIST = {}
+        self.objectClassesDict = {}
+        self.attributeDict = {}
         self.SERVER = server
         
         # delete oid for userPassword attribute
@@ -42,13 +42,12 @@ class ObjectClassAttributeInfo(object):
 ###############################################################################
 
     def retrieveInfoFromServer(self):
-        """ Retrieve all information of objectclasses and attributes from the
+        """ Retrieve all information of objectClassesDict and attributes from the
         server.
         """
         
         tmpObject = ServerList()
         tmpObject.readServerList()
-        serverMeta = ""
         serverMeta = tmpObject.getServerObject(self.SERVER)
 
         environment.setBusy(1)
@@ -78,7 +77,7 @@ class ObjectClassAttributeInfo(object):
                 if not (len(y.may) == 0):
                     may = y.may
                     
-                self.OBJECTCLASSES[name] = {"DESC": desc, "MUST": must, "MAY": may}
+                self.objectClassesDict[name] = {"DESC": desc, "MUST": must, "MAY": may}
 
             oidList = schema.listall(ldap.schema.AttributeType)
             
@@ -94,7 +93,7 @@ class ObjectClassAttributeInfo(object):
                 single = y.single_value
                 
                 for z in name:
-                    self.ATTRIBUTELIST[z] = {"DESC": desc, "SINGLE": single, "SYNTAX": y.syntax}
+                    self.attributeDict[z] = {"DESC": desc, "SINGLE": single, "SYNTAX": y.syntax}
                     
                     
         except ldap.LDAPError, e:
@@ -117,8 +116,8 @@ class ObjectClassAttributeInfo(object):
         """ Re-read all informations.
         """
         
-        self.OBJECTCLASSES = {}
-        self.ATTRIBUTELIST = []
+        self.objectClassesDict = {}
+        self.attributeDict = []
         self.retrieveInfoFromServer()
 
 ###############################################################################
@@ -130,10 +129,10 @@ class ObjectClassAttributeInfo(object):
         may = Set()
         
         for x in classList:
-            if not (x in self.OBJECTCLASSES):
+            if not (x in self.objectClassesDict):
                 continue
-            must = must.union(Set(self.OBJECTCLASSES[x]["MUST"]))
-            may = may.union(Set(self.OBJECTCLASSES[x]["MAY"]))
+            must = must.union(Set(self.objectClassesDict[x]["MUST"]))
+            may = may.union(Set(self.objectClassesDict[x]["MAY"]))
            
         return must, may
 
@@ -141,13 +140,13 @@ class ObjectClassAttributeInfo(object):
 
     def getAllMusts(self, classList = None):
         """ Returns a set of all attributes which are needed by the 
-        objectclasses given by classList.
+        objectClassesDict given by classList.
         """
         
         must = Set()
         
         for x in classList:
-            must = must.union(Set(self.OBJECTCLASSES[x]["MUST"]))
+            must = must.union(Set(self.objectClassesDict[x]["MUST"]))
             
         return must
 
@@ -155,28 +154,28 @@ class ObjectClassAttributeInfo(object):
 
     def getAllMays(self, classList = None):
         """ Returns a set of all attributes which are optional for the 
-        objectclasses given by classList.
+        objectClassesDict given by classList.
         """
         
         may = Set()
         
         for x in classList:
-            may = may | Set(self.OBJECTCLASSES[x]["MAY"])
+            may = may | Set(self.objectClassesDict[x]["MAY"])
             
         return may
 
 ###############################################################################
-    def getAllObjectclassesForAttr(self,attribute=""):
-        """ Returns two sets of objectclasses that either MUST
+    def getAllobjectClassesDictForAttr(self,attribute=""):
+        """ Returns two sets of objectClassesDict that either MUST
             or MAY use a given attribute
         """
         must = Set()
         may = Set()
         
-        if not attribute in self.ATTRIBUTELIST:
+        if not attribute in self.attributeDict:
             raise UnknownAttribute, attribute
             
-        for (key,value) in self.OBJECTCLASSES.items():
+        for (key,value) in self.objectClassesDict.items():
             if attribute in value['MUST']:
                 must.add(key)
                 
@@ -192,23 +191,23 @@ class ObjectClassAttributeInfo(object):
         """ Check if a attribute must be single.
         """
         
-        if attribute in self.ATTRIBUTELIST:
-            return self.ATTRIBUTELIST[attribute]["SINGLE"]
+        if attribute in self.attributeDict:
+            return self.attributeDict[attribute]["SINGLE"]
         else:
             return False
 
 ###############################################################################
 
-    def isMust(self, attribute="", objectClasses = None):
+    def isMust(self, attribute="", objectClassesDict = None):
         """ Check if the given attribute must be set.
         """
         
-        if objectClasses == None:
-            raise "Missing Arguments to Funktion 'isMust(attribute, objectClasses)"
+        if objectClassesDict == None:
+            raise "Missing Arguments to Funktion 'isMust(attribute, objectClassesDict)"
             
         else:
-            for x in objectClasses:
-                if attribute in self.OBJECTCLASSES[x]["MUST"]:
+            for x in objectClassesDict:
+                if attribute in self.objectClassesDict[x]["MUST"]:
                     return True
                     
         return False
@@ -221,8 +220,8 @@ class ObjectClassAttributeInfo(object):
         
         retVal = False
     
-        if attribute in self.ATTRIBUTELIST:
-            syntax = self.ATTRIBUTELIST[attribute]["SYNTAX"]
+        if attribute in self.attributeDict:
+            syntax = self.attributeDict[attribute]["SYNTAX"]
             if syntax in ldap.schema.NOT_HUMAN_READABLE_LDAP_SYNTAXES : 
                 retVal = True
             
@@ -231,7 +230,7 @@ class ObjectClassAttributeInfo(object):
 ###############################################################################
 
     def hasObjectClass(self, objectClass):
-        if objectClass in self.OBJECTCLASSES.keys():
+        if objectClass in self.objectClassesDict.keys():
             return True
         else:
             return False
