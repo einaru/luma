@@ -10,6 +10,7 @@
 
 import os.path
 import sys
+from sets import Set
 
 lumaInstallationPrefix = None
 lumaScriptName = None
@@ -55,4 +56,27 @@ def setBusy(self, busy):
     
 ###############################################################################
   
+def getAvailableHashMethods():
+    # basic algorithms which are supported by mkpasswd-module
+    supportedAlgorithms = Set(['crypt', 'md5', 'sha', 'ssha', 'cleartext'])
+        
+    # add lmhash and nthash algorithms if smbpasswd module is present
+    try:
+        import smbpasswd
+        supportedAlgorithms.union_update(Set(['lmhash', 'nthash']))
+    except ImportError, e:
+        pass
+        
+    
+    # create a sorted list
+    tmpList = []
+    while len(supportedAlgorithms) > 0:
+        tmpList.append(supportedAlgorithms.pop())
+    tmpList.sort()
+    
+    return tmpList
+
+###############################################################################
+  
 setPaths()
+sys.path.append(os.path.join(userHomeDir, ".luma", "scripts"))
