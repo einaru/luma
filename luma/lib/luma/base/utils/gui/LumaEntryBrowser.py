@@ -103,6 +103,8 @@ class LumaEntryBrowser (LumaEntryBrowserDesign):
 ###############################################################################
 
     def serverChanged(self, serverName):
+        self.setEnabled(False)
+        
         if self.serverList == None:
             return
         
@@ -112,19 +114,26 @@ class LumaEntryBrowser (LumaEntryBrowserDesign):
                 self.lumaConnection = LumaConnection(x)
                 break
         
-        self.initBaseBox()
+        self.setEnabled(True)
         
-        self.emit(PYSIGNAL("about_to_change"), ())
-        self.emit(PYSIGNAL("server_changed"), ())
+        if not (None == self.SERVERMETA):
+            self.initBaseBox()
+        
+            self.emit(PYSIGNAL("about_to_change"), ())
+            self.emit(PYSIGNAL("server_changed"), ())
         
 ###############################################################################
 
     def initBaseBox(self):
+        self.setEnabled(False)
+        
         baseList = None
+            
         if self.SERVERMETA.autoBase:
             success, baseList, exceptionObject = self.lumaConnection.getBaseDNList()
             
             if not success:
+                self.setEnabled(True)
                 dialog = LumaErrorDialog()
                 errorMsg = self.trUtf8("Could not retrieve baseDN.<br><br>Reason: ")
                 errorMsg.append(str(exceptionObject))
@@ -133,7 +142,9 @@ class LumaEntryBrowser (LumaEntryBrowserDesign):
                 
         else:
             baseList = self.SERVERMETA.baseDN
-            
+          
+        self.setEnabled(True)
+        
         if None == baseList:
             self.goButton.setEnabled(False)
             return
@@ -150,6 +161,8 @@ class LumaEntryBrowser (LumaEntryBrowserDesign):
 ###############################################################################
 
     def search(self, filter=None):
+        self.setEnabled(False)
+        
         if self.lumaConnection.serverMeta == None:
             return
             
@@ -174,19 +187,22 @@ class LumaEntryBrowser (LumaEntryBrowserDesign):
         bindSuccess, exceptionObject = self.lumaConnection.bind()
         
         if not bindSuccess:
-                dialog = LumaErrorDialog()
-                errorMsg = self.trUtf8("Could not bind to server.<br><br>Reason: ")
-                errorMsg.append(str(exceptionObject))
-                dialog.setErrorMessage(errorMsg)
-                dialog.exec_loop()
-                return 
+            self.setEnabled(True)
+            dialog = LumaErrorDialog()
+            errorMsg = self.trUtf8("Could not bind to server.<br><br>Reason: ")
+            errorMsg.append(str(exceptionObject))
+            dialog.setErrorMessage(errorMsg)
+            dialog.exec_loop()
+            return 
                 
         success, resultList, exceptionObject = self.lumaConnection.search(self.SERVERMETA.currentBase, ldap.SCOPE_SUBTREE, tmpFilter.encode('utf-8'), [self.primaryKey, 'sn', 'givenName'], 0)
         self.lumaConnection.unbind()
         
         if success:
+            self.setEnabled(True)
             self.processResults(resultList)
         else:
+            self.setEnabled(True)
             dialog = LumaErrorDialog()
             errorMsg = self.trUtf8("Could not search entries.<br><br>Reason: ")
             errorMsg.append(str(exceptionObject))

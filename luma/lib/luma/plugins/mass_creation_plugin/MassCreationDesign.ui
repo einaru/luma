@@ -723,6 +723,31 @@
         <slot>browseAutomount()</slot>
     </connection>
 </connections>
+<tabstops>
+    <tabstop>createButton</tabstop>
+    <tabstop>prefixEdit</tabstop>
+    <tabstop>prefixMinBox</tabstop>
+    <tabstop>prefixMaxBox</tabstop>
+    <tabstop>uidNumMinBox</tabstop>
+    <tabstop>uidNumMaxBox</tabstop>
+    <tabstop>homeEdit</tabstop>
+    <tabstop>gidBox</tabstop>
+    <tabstop>browseGroupButton</tabstop>
+    <tabstop>shellEdit</tabstop>
+    <tabstop>dateButton</tabstop>
+    <tabstop>dateEdit</tabstop>
+    <tabstop>daysButton</tabstop>
+    <tabstop>dayBox</tabstop>
+    <tabstop>nodeEdit</tabstop>
+    <tabstop>browseButton</tabstop>
+    <tabstop>tabWidget2</tabstop>
+    <tabstop>enableNFSBox</tabstop>
+    <tabstop>nfsServerEdit</tabstop>
+    <tabstop>nfsArgumentsEdit</tabstop>
+    <tabstop>automountLocationEdit</tabstop>
+    <tabstop>browseAutomountButton</tabstop>
+    <tabstop>passwordEdit</tabstop>
+</tabstops>
 <slots>
     <slot>createUsers()</slot>
     <slot>browseServer()</slot>

@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file '/home/wido/src/luma/lib/luma/plugins/mass_creation_plugin/MassCreationDesign.ui'
 #
-# Created: Mon Oct 18 20:16:32 2004
+# Created: Tue Jan 25 19:30:41 2005
 #      by: The PyQt User Interface Compiler (pyuic) 3.13
 #
 # WARNING! All changes made in this file will be lost!
@@ -301,6 +301,29 @@ class MassCreationDesign(QWidget):
         self.connect(self.browseGroupButton,SIGNAL("clicked()"),self.browseGroups)
         self.connect(self.enableNFSBox,SIGNAL("clicked()"),self.enableAutomount)
         self.connect(self.browseAutomountButton,SIGNAL("clicked()"),self.browseAutomount)
+
+        self.setTabOrder(self.createButton,self.prefixEdit)
+        self.setTabOrder(self.prefixEdit,self.prefixMinBox)
+        self.setTabOrder(self.prefixMinBox,self.prefixMaxBox)
+        self.setTabOrder(self.prefixMaxBox,self.uidNumMinBox)
+        self.setTabOrder(self.uidNumMinBox,self.uidNumMaxBox)
+        self.setTabOrder(self.uidNumMaxBox,self.homeEdit)
+        self.setTabOrder(self.homeEdit,self.gidBox)
+        self.setTabOrder(self.gidBox,self.browseGroupButton)
+        self.setTabOrder(self.browseGroupButton,self.shellEdit)
+        self.setTabOrder(self.shellEdit,self.dateButton)
+        self.setTabOrder(self.dateButton,self.dateEdit)
+        self.setTabOrder(self.dateEdit,self.daysButton)
+        self.setTabOrder(self.daysButton,self.dayBox)
+        self.setTabOrder(self.dayBox,self.nodeEdit)
+        self.setTabOrder(self.nodeEdit,self.browseButton)
+        self.setTabOrder(self.browseButton,self.tabWidget2)
+        self.setTabOrder(self.tabWidget2,self.enableNFSBox)
+        self.setTabOrder(self.enableNFSBox,self.nfsServerEdit)
+        self.setTabOrder(self.nfsServerEdit,self.nfsArgumentsEdit)
+        self.setTabOrder(self.nfsArgumentsEdit,self.automountLocationEdit)
+        self.setTabOrder(self.automountLocationEdit,self.browseAutomountButton)
+        self.setTabOrder(self.browseAutomountButton,self.passwordEdit)
 
 
     def languageChange(self):

@@ -42,6 +42,7 @@ class MassCreation(MassCreationDesign):
 
     def createUsers(self):
         if str(self.nodeEdit.text()) == "":
+            self.createButton.setEnabled(True)
             tmpDialog = QMessageBox(self.trUtf8("Incomplete information"),
                 self.trUtf8("Please select a valid node from a ldap server."),
                 QMessageBox.Critical,
@@ -56,6 +57,7 @@ class MassCreation(MassCreationDesign):
 
         # set gui busy
         environment.setBusy(True)
+        self.createButton.setEnabled(False)
         
         # get data for usernames
         userMax = self.prefixMaxBox.value()
@@ -73,6 +75,7 @@ class MassCreation(MassCreationDesign):
         
         if freeNumbers == None:
             environment.setBusy(False)
+            self.createButton.setEnabled(True)
             
             tmpDialog = QMessageBox(self.trUtf8("Warning"),
                 self.trUtf8("""There are not enough user ids left! 
@@ -118,6 +121,7 @@ Try increasing the uidNumber range or delete some users from the subtree."""),
         
         if not bindSuccess:
             environment.setBusy(False)
+            self.createButton.setEnabled(True)
             
             dialog = LumaErrorDialog()
             errorMsg = self.trUtf8("Could not bind to server.<br><br>Reason: ")
@@ -192,6 +196,7 @@ Try increasing the uidNumber range or delete some users from the subtree."""),
         
         connectionObject.unbind()
         environment.setBusy(False)
+        self.createButton.setEnabled(True)
         
         if not createResult:
             dialog = LumaErrorDialog()
