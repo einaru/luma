@@ -28,8 +28,8 @@ class LdapTemplate(object):
 
         # WARNING: dead code.
         # no method init_from_file
-        if filename != None:
-            self.init_from_file(filename)
+        #if filename != None:
+        #    self.init_from_file(filename)
 
 ###############################################################################
 
