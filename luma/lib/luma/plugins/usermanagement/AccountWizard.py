@@ -150,7 +150,7 @@ class AccountWizard(AccountWizardDesign):
             QMessageBox.warning(None,
                 self.trUtf8("Missing Password"),
                 self.trUtf8("""It is strongly recommended that you choose 
-a password a password for the new user. Otherwise 
+a password for the new user. Otherwise 
 it might compromise the security of your system."""),
                 self.trUtf8("&OK"),
                 None,
