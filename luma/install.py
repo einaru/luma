@@ -37,7 +37,7 @@ You can get the module here: http://python-ldap.sourceforge.net
 
     try:
         import qt
-        vString = "3.7"
+        vString = "3.10"
         print "PyQt is installed..."
         print "\tInstalled version: " + qt.PYQT_VERSION_STR
         print "\tMinimum version: " + vString
@@ -165,7 +165,7 @@ def evalArguments():
 ###############################################################################
 
 
-print "LUMA 1.3 (C) 2003,2004 Wido Depping\n"
+print "LUMA 1.3pre4 (C) 2003,2004 Wido Depping\n"
 
 doImportCheck()
 print ""
