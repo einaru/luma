@@ -1541,15 +1541,15 @@ které jsou povinné pro vybranou třídu objektu.&lt;/p&gt;</translation>
     </message>
     <message>
         <source>&amp;Delete</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Odstranit</translation>
     </message>
     <message>
         <source>Alt+D</source>
-        <translation type="unfinished"></translation>
+        <translation>Alt+O</translation>
     </message>
     <message>
         <source>&amp;Remove from list</source>
-        <translation type="unfinished"></translation>
+        <translation>O&amp;dstranit ze seznamu</translation>
     </message>
 </context>
 <context>
@@ -1576,7 +1576,7 @@ které jsou povinné pro vybranou třídu objektu.&lt;/p&gt;</translation>
     </message>
     <message>
         <source>Select file for exporting</source>
-        <translation type="unfinished"></translation>
+        <translation>Vyber soubor pro exportování</translation>
     </message>
 </context>
 <context>
@@ -1653,7 +1653,7 @@ které jsou povinné pro vybranou třídu objektu.&lt;/p&gt;</translation>
     </message>
     <message>
         <source>&amp;Remove from list</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">O&amp;dstranit ze seznamu</translation>
     </message>
 </context>
 <context>

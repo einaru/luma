@@ -321,7 +321,7 @@ POSSIBILITY OF SUCH DAMAGES.
     <message>
         <source>&lt;font size=&quot;+2&quot;&gt;&lt;b&gt;Luma 2.0.2&lt;/b&gt;&lt;/font&gt;</source>
         <comment>DO NOT TRANSLATE</comment>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>&lt;p align=&quot;center&quot;&gt;LDAP management made easy.&lt;br&gt;&lt;br&gt;
@@ -329,7 +329,7 @@ POSSIBILITY OF SUCH DAMAGES.
 http://luma.sourceforge.net
 &lt;/p&gt;</source>
         <comment>DO NOT TRANSLATE</comment>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message encoding="UTF-8">
         <source>Bjorn Ove Grotan
@@ -360,7 +360,7 @@ Swedish translation
 Alexander Novitsky
 Russian translation</source>
         <comment>DO NOT TRANSLATE</comment>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
 </context>
 <context>
@@ -1536,19 +1536,19 @@ the selected objectclass.&lt;/p&gt;</source>
     </message>
     <message>
         <source>Alt+R</source>
-        <translation>Alt+У</translation>
+        <translation>Alt+C</translation>
     </message>
     <message>
         <source>&amp;Delete</source>
-        <translation type="unfinished">&amp;Удалить</translation>
+        <translation>&amp;Удалить</translation>
     </message>
     <message>
         <source>Alt+D</source>
-        <translation type="unfinished">Alt+У</translation>
+        <translation>Alt+У</translation>
     </message>
     <message>
         <source>&amp;Remove from list</source>
-        <translation type="unfinished"></translation>
+        <translation>Удалить из &amp;Списка</translation>
     </message>
 </context>
 <context>
@@ -1575,7 +1575,7 @@ the selected objectclass.&lt;/p&gt;</source>
     </message>
     <message>
         <source>Select file for exporting</source>
-        <translation type="unfinished"></translation>
+        <translation>Выберите файл для экспорта</translation>
     </message>
 </context>
 <context>
@@ -1644,15 +1644,15 @@ the selected objectclass.&lt;/p&gt;</source>
     </message>
     <message>
         <source>&amp;Export</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Экспортировать</translation>
     </message>
     <message>
         <source>Alt+E</source>
-        <translation type="unfinished">Alt+З</translation>
+        <translation>Alt+Э</translation>
     </message>
     <message>
         <source>&amp;Remove from list</source>
-        <translation type="unfinished"></translation>
+        <translation>Удалить из &amp;Списка</translation>
     </message>
 </context>
 <context>
@@ -3051,11 +3051,11 @@ Description</source>
     </message>
     <message>
         <source>&amp;Add...</source>
-        <translation type="unfinished">&amp;Добавить...</translation>
+        <translation>&amp;Добавить...</translation>
     </message>
     <message>
         <source>SASL EXTERNAL</source>
-        <translation type="unfinished"></translation>
+        <translation>SASL EXTERNAL</translation>
     </message>
 </context>
 <context>
