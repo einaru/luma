@@ -24,7 +24,8 @@ compileOnly = False
 
 
 def doImportCheck():
-    """ Checks for installed modules which are needed in order to run Luma.
+    """ Checks for installed packages which are needed in order to run Luma.
+    Gives only a warning for missing packages.
     """
     
     print "Check for preinstalled modules:\n"
@@ -76,8 +77,12 @@ You can get the module here: http://barryp.org/software/py-smbpasswd
 ###############################################################################
 
 def doChecks():
+    """Checks if prefix diretory exists. After that Luma will be compiled and installed. 
+    Installation fails if prefix directory doesn't exist.
+    
+    TODO: try to create the installation directory
+    """
 
-    # Check if prefix exists. Then compile and install.
     if os.path.exists(prefixDir):
         doCompile()
         doInstall()
@@ -88,6 +93,9 @@ def doChecks():
 ###############################################################################
 
 def doInstall():
+    """Installs compiled sourcefiles to the installation directory.
+    """
+    
     print "Copy program files...\n"
     
     try:
@@ -119,7 +127,7 @@ def doInstall():
 ###############################################################################
 
 def checkPath():
-    """ Checks if the install directory for luma is in the local PATH of the user.
+    """ Checks if the install directory for luma is in the local PATH of the user and give him feedback.
     """
     
     
@@ -143,6 +151,9 @@ anywhere in the console.
 ###############################################################################
 
 def printHelp():
+    """Prints a help text for the Luma installation program.
+    """
+    
     helpString = """Install options:
  --prefix=PATH \t\t Install path (default is /usr/local)
  --compile-only \t Just compile source files. No installation.
@@ -155,6 +166,9 @@ def printHelp():
 ###############################################################################
     
 def doCompile():
+    """Compiles all source files to python bytecode.
+    """
+    
     print "Compiling python source files ...\n"
     
     input, output = os.popen2("find . -name \"*.py\"")
@@ -172,7 +186,7 @@ def doCompile():
 ###############################################################################
 
 def evalArguments():
-    """ Evaluate the user given options to the install script.
+    """ Evaluate options given to the install script by the user.
     """
     
     if len(sys.argv) == 1:
