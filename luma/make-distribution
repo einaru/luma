@@ -14,6 +14,7 @@ cp -R share tmp/luma-$1
 cp install.py tmp/luma-$1
 cp README tmp/luma-$1
 cp COPYING tmp/luma-$1
+cp LICENSE tmp/luma-$1
 cd tmp
 
 find . -name "CVS" | xargs rm -rf
