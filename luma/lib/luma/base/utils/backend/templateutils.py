@@ -8,18 +8,35 @@
 
 from base.backend.DirUtils import DirUtils
 
-class LdapTemplate:
+class LdapTemplate(object):
+    """ A class for storing template information of ldap-objects.
+
+    self.name is the name of the template.
+    self.tData contains the template data.
+
+    self.tdata has the following structure:
+    [{'CLASSNAME': 'fooclassname', 'ATTRIBUTES': {'NAME': 'attributename', 
+    {'MUST': int, 'SINGLE': int, 'SHOW': int}}}, 
+    {...}, ...]
+
+    This is really ugly. There must be something better.
+    """
 
     def __init__(self, filename=None):
         self.name = ""
         self.tData = []
 
+        # WARNING: dead code.
+        # no method init_from_file
         if filename != None:
             self.init_from_file(filename)
 
 ###############################################################################
 
     def get_objectclasses(self):
+        """ Return a list of objectclasses.
+        """
+    
         tmpList = []
         for x in self.tData:
             tmpList.append(x["CLASSNAME"])
@@ -28,6 +45,9 @@ class LdapTemplate:
 ###############################################################################
 
     def get_attributeinfos(self):
+        """ Return a list of attributes together with their propperties.
+        """
+    
         tmpDict = {}
         for x in self.tData:
             for y in x["ATTRIBUTES"]:
@@ -37,6 +57,9 @@ class LdapTemplate:
 ###############################################################################
 
     def set_attribute_show(self, attribute, value):
+        """ Set the property 'SHOW' of attribute to value.
+        """
+    
         for x in self.tData:
             for y in x['ATTRIBUTES']:
                 if y['NAME'] == attribute:
@@ -75,6 +98,8 @@ class LdapTemplate:
 ###############################################################################
 
 class TemplateFile:
+    """ A class for loading and saving template data to file.
+    """
 
     def __init__(self):
         self.tplFile = DirUtils().USERDIR + "/.luma/templates"
@@ -89,20 +114,26 @@ class TemplateFile:
 ###############################################################################
 
     def read_list(self):
+        """ Read template Info from file.
+    
+        Templates are stored in self.tplList
+        """
+    
         self.tplList = []
         content = open(self.tplFile, 'r').readlines()
         template = LdapTemplate()
-        template.name = ""
-        template.tData = []
+        
         for x in content:
             if x == "\n":
                 self.tplList.append(template)
                 template = LdapTemplate()
                 template.name = []
                 template.tData = []
+                
             if x[:6] == "Name: ":
                 template.name = x[6:-1]
                 continue
+                
             if x[:6] == "class ":
                 tmpString = x[6:-1]
                 tmpList = tmpString.split(" >> ")
@@ -110,10 +141,12 @@ class TemplateFile:
                 data['CLASSNAME'] = tmpList[0]
                 tmpList = tmpList[1].split(" || ")
                 attributeList = []
+                
                 for y in tmpList:
                     attrInfo = y.split(",")
                     tmpDict = {}
                     tmpDict["NAME"] = attrInfo[0]
+                    
                     if attrInfo[1] == "MUST":
                         tmpDict["MUST"] = 1
                     else:
@@ -128,13 +161,17 @@ class TemplateFile:
                         tmpDict["SHOW"] = 1
                     else:
                         tmpDict["SHOW"] = 0
+                        
                     attributeList.append(tmpDict)
+                    
                 data["ATTRIBUTES"] = attributeList
                 template.tData.append(data)
 
 ###############################################################################
 
     def save_to_file(self):
+        """ Save template list to file.
+        """
         fileHandler = open(self.tplFile, "w")
         for x in self.tplList:
             fileHandler.write(str(x))
@@ -153,6 +190,9 @@ class TemplateFile:
 ###############################################################################
 
     def get_templateobject(self, templateName):
+        """ Get a template given by templateName
+        """
+        
         for x in self.tplList:
             if x.name == templateName:
                 return x
