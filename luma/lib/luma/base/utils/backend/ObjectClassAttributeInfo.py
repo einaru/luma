@@ -12,9 +12,13 @@ import ldap
 import ldap.schema
 import re
 import string
+from sets import Set
 
 from base.backend.ServerList import ServerList
 import environment
+
+class UnknownAttribute:
+    pass
 
 class ObjectClassAttributeInfo(object):
     """ A class for getting information about objectclasses and attributes 
@@ -24,28 +28,20 @@ class ObjectClassAttributeInfo(object):
 ###############################################################################
     
     def __init__(self, server=None):
-        self.BINARY_SYNTAXES = {
-            '1.3.6.1.4.1.1466.115.121.1.4':None,  # Audio
-            '1.3.6.1.4.1.1466.115.121.1.5':None,  # Binary
-            '1.3.6.1.4.1.1466.115.121.1.6':None,  # Bit String
-            '1.3.6.1.4.1.1466.115.121.1.8':None,  # Certificate
-            '1.3.6.1.4.1.1466.115.121.1.9':None,  # Certificate List
-            '1.3.6.1.4.1.1466.115.121.1.10':None, # Certificate Pair
-            '1.3.6.1.4.1.1466.115.121.1.23':None, # G3 FAX
-            '1.3.6.1.4.1.1466.115.121.1.28':None, # JPEG
-            '1.3.6.1.4.1.1466.115.121.1.40':None, # Octet String
-            '1.3.6.1.4.1.1466.115.121.1.49':None, # Supported Algorithm
-            }
         self.OBJECTCLASSES = {}
         self.ATTRIBUTELIST = {}
         self.SERVER = server
         
+        # delete oid for userPassword attribute
+        if ldap.schema.NOT_HUMAN_READABLE_LDAP_SYNTAXES.has_key('1.3.6.1.4.1.1466.115.121.1.40'):
+            del ldap.schema.NOT_HUMAN_READABLE_LDAP_SYNTAXES['1.3.6.1.4.1.1466.115.121.1.40']
+        
         if not (server == None):
-            self.retrieve_info_from_server()
+            self.retrieveInfoFromServer()
 
 ###############################################################################
 
-    def retrieve_info_from_server(self):
+    def retrieveInfoFromServer(self):
         """ Retrieve all information of objectclasses and attributes from the
         server.
         """
@@ -55,7 +51,7 @@ class ObjectClassAttributeInfo(object):
         serverMeta = ""
         serverMeta = tmpObject.get_serverobject(self.SERVER)
 
-        environment.set_busy(1)
+        environment.setBusy(1)
 
         try:
             tmpUrl = "ldap://" + serverMeta.host + ":" + str(serverMeta.port)
@@ -63,11 +59,10 @@ class ObjectClassAttributeInfo(object):
             oidList = schema.listall(ldap.schema.ObjectClass)
             
             for x in oidList:
-                environment.update_ui()
+                environment.updateUI()
                 y = schema.get_obj(ldap.schema.ObjectClass, x)
                 name = y.names[0]
                 desc = ""
-                
                 
                 if not (y.desc == None):
                     desc = y.desc
@@ -85,7 +80,7 @@ class ObjectClassAttributeInfo(object):
             oidList = schema.listall(ldap.schema.AttributeType)
             
             for x in oidList:
-                environment.update_ui()
+                environment.updateUI()
                 y = schema.get_obj(ldap.schema.AttributeType, x)
                 name = y.names
                 desc = ""
@@ -103,11 +98,11 @@ class ObjectClassAttributeInfo(object):
             print "Error during LDAP request"
             print "Reason: " + str(e)
             
-        environment.set_busy(0)
+        environment.setBusy(0)
 
 ###############################################################################
 
-    def set_server(self, server):
+    def setServer(self, server):
         """ Set the server from which we want to get the infos.
         """
         
@@ -121,126 +116,122 @@ class ObjectClassAttributeInfo(object):
         
         self.OBJECTCLASSES = {}
         self.ATTRIBUTELIST = []
-        self.retrieve_info_from_server()
+        self.retrieveInfoFromServer()
 
 ###############################################################################
 
-    def get_all_attributes(self, classList = None):
-        """ Return a list of all attributes which the server supports.
+    def getAllAttributes(self, classList = None):
+        """ Return two sets of all attributes which the server supports.
         """
-        
-        allAttributes = []
+        must = Set()
+        may = Set()
         
         for x in classList:
-            if not(self.OBJECTCLASSES.has_key(x)):
+            if not x in self.OBJECTCLASSES:
                 continue
-            must = self.OBJECTCLASSES[x]["MUST"]
-            may = self.OBJECTCLASSES[x]["MAY"]
+            must = must | Set(self.OBJECTCLASSES[x]["MUST"])
+            may = may | Set(self.OBJECTCLASSES[x]["MAY"])
             
-            if not (len(must) == 0):
-                for y in must:
-                    allAttributes.append(y)
-                    
-            if not (len(may) == 0):
-                for y in may:
-                    allAttributes.append(y)
-                    
-        return allAttributes
+        return must, may
 
 ###############################################################################
 
-    def get_all_musts(self, classList = None):
-        """ Returns a list of all attributes which are needed by the 
+    def getAllMusts(self, classList = None):
+        """ Returns a set of all attributes which are needed by the 
         objectclasses given by classList.
         """
         
-        allAttributes = []
+        must = Set()
         
         for x in classList:
-            must = self.OBJECTCLASSES[x]["MUST"]
+            must = must | Set(self.OBJECTCLASSES[x]["MUST"])
             
-            if not (len(must) == 0):
-                for y in must:
-                    allAttributes.append(y)
-                    
-        return allAttributes
+        return must
 
 ###############################################################################
 
-    def get_all_mays(self, classList = None):
-        """ Returns a list of all attributes which are optional for the 
+    def getAllMays(self, classList = None):
+        """ Returns a set of all attributes which are optional for the 
         objectclasses given by classList.
         """
         
-        allAttributes = []
+        may = Set()
+        
         for x in classList:
-            may = self.OBJECTCLASSES[x]["MAY"]
+            may = may | Set(self.OBJECTCLASSES[x]["MAY"])
             
-            if not (len(may) == 0):
-                for y in may:
-                    allAttributes.append(y)
-                    
-        return allAttributes
+        return may
 
 ###############################################################################
+    def getAllObjectclassesForAttr(self,attribute=""):
+        """ Returns two sets of objectclasses that either MUST
+            or MAY use a given attribute
+        """
+        must = Set()
+        may = Set()
+        
+        if not attribute in self.ATTRIBUTELIST:
+            raise UnknownAttribute, attribute
+            
+        for (key,value) in self.OBJECTCLASSES.items():
+            if attribute in value['MUST']:
+                must.add(key)
+                
+            if attribute in value['MAY']:
+                may.add(key)
+              
+        return must, may
 
-    def is_single(self, attribute = ""):
+        
+###############################################################################
+
+    def isSingle(self, attribute = ""):
         """ Check if a attribute must be single.
         """
         
-        if self.ATTRIBUTELIST.has_key(attribute):
-             val = self.ATTRIBUTELIST[attribute]["SINGLE"]
-             return val
+        if attribute in self.ATTRIBUTELIST:
+            return self.ATTRIBUTELIST[attribute]["SINGLE"]
         else:
-            return 0
+            return False
 
 ###############################################################################
 
-    def is_must(self, attribute="", objectClasses = None):
+    def isMust(self, attribute="", objectClasses = None):
         """ Check if the given attribute must be set.
         """
         
         if objectClasses == None:
-            raise "Missing Arguments to Funktion 'is_must(attribute, objectClasses)"
+            raise "Missing Arguments to Funktion 'isMust(attribute, objectClasses)"
+            
         else:
             for x in objectClasses:
-                for y in self.OBJECTCLASSES[x]["MUST"]:
-                    if y == attribute:
-                        return 1
-        return 0
+                if attribute in self.OBJECTCLASSES[x]["MUST"]:
+                    return True
+                    
+        return False
         
 ###############################################################################
 
-    def is_binary(self, attribute=""):
+    def isBinary(self, attribute=""):
         """ Check if the given attribute has binary values.
         """
+        
+        retVal = False
     
-        if self.ATTRIBUTELIST.has_key(attribute):
+        if attribute in self.ATTRIBUTELIST:
             syntax = self.ATTRIBUTELIST[attribute]["SYNTAX"]
-            if self.BINARY_SYNTAXES.has_key(syntax):
-                return 1
-            else:
-                return 0
-        else:
-            return 0
+            if syntax in ldap.schema.NOT_HUMAN_READABLE_LDAP_SYNTAXES : 
+                retVal = True
+            
+        return retVal
 
 ###############################################################################
 
-    def has_objectClass(self, objectClass):
+    def hasObjectClass(self, objectClass):
         if objectClass in self.OBJECTCLASSES.keys():
-            return 1
+            return True
         else:
-            return 0
-        
-###############################################################################
-
-    def update_ui(self):
-        """ Updates the progress bar of the GUI and keeps it responsive.
-        """
-        
-        qApp.processEvents()
-        progress = self.pBar.progress()
-        self.pBar.setProgress(progress + 1)
+            return False
 
 
 

@@ -25,7 +25,7 @@ class FilterWizard(FilterWizardDesign):
         FilterWizardDesign.__init__(self,parent,name,modal,fl)
 
         self.objectInfo = ObjectClassAttributeInfo(server)
-        self.objectInfo.retrieve_info_from_server()
+        #self.objectInfo.retrieveInfoFromServer()
 
         self.objectSelection = "CLASS"
         self.classButton.setChecked(1)

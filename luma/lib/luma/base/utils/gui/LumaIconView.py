@@ -51,9 +51,9 @@ class LumaIconView (LumaIconViewDesign):
         self.iconDict = {}
         
         searchFilter = "(objectClass=inetOrgPerson)"
-        self.lumaConnection = LumaConnection()
+        self.lumaConnection = None
         
-        iconDir = os.path.join (environment.lumaInstallationPrefix, "lib", "luma", "plugins", "addressbook", "icons")
+        iconDir = os.path.join (environment.lumaInstallationPrefix, "share", "luma", "icons", "plugins", "addressbook")
         
         self.entryIcon = QPixmap (os.path.join (iconDir, "person.png"))
         
@@ -81,7 +81,7 @@ class LumaIconView (LumaIconViewDesign):
         
         for x in self.serverList:
             if x.name == str(serverName):
-                self.lumaConnection.server = x
+                self.lumaConnection = LumaConnection(x)
         
         self.search()
         
@@ -109,7 +109,9 @@ class LumaIconView (LumaIconViewDesign):
                 
         tmpFilter = self.searchFilterPrefix + tmpString + self.searchFilterSuffix
         
+        self.lumaConnection.bind()
         results = self.lumaConnection.search(self.lumaConnection.server.baseDN, ldap.SCOPE_SUBTREE, tmpFilter.encode('utf-8'), ['cn', 'sn', 'givenName'], 0)
+        self.lumaConnection.unbind()
         self.processResults(results)
 
 ###############################################################################
@@ -165,7 +167,9 @@ class LumaIconView (LumaIconViewDesign):
             return
             
         dn = self.iconDict[icon]
+        self.lumaConnection.bind()
         tmpData = self.lumaConnection.search(dn, ldap.SCOPE_BASE)[0][1]
+        self.lumaConnection.unbind()
         
         self.emit(PYSIGNAL("ldap_result"), (deepcopy(dn), deepcopy(tmpData), deepcopy(self.lumaConnection.server),))
         
@@ -196,7 +200,9 @@ class LumaIconView (LumaIconViewDesign):
             
             
         if dialogResult == 1:
+            self.lumaConnection.bind()
             result = self.lumaConnection.delete_s(dn)
+            self.lumaConnection.unbind()
             if result == 0:
                 QMessageBox.warning(None,
                     self.trUtf8("Error"),

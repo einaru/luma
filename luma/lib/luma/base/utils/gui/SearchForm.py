@@ -57,8 +57,10 @@ class SearchForm(SearchFormDesign):
         
 
         conObject = LumaConnection(serverMeta)
+        conObject.bind()
         searchResult = conObject.search(serverMeta.baseDN.encode('utf-8'), ldap.SCOPE_SUBTREE,
                 unicode(self.searchEdit.currentText()).encode('utf-8'))
+        conObject.unbind()
 
         self.emit(PYSIGNAL("ldap_result"), (serverMeta.name, searchResult,liste, ))
 

@@ -2,8 +2,8 @@
 
 # Form implementation generated from reading ui file '/home/wido/src/luma/lib/luma/base/utils/gui/PluginInformation.ui'
 #
-# Created: Tue Feb 3 23:58:06 2004
-#      by: The PyQt User Interface Compiler (pyuic) 3.10
+# Created: Thu Mar 25 00:32:42 2004
+#      by: The PyQt User Interface Compiler (pyuic) 3.11
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -32,8 +32,8 @@ class PluginInformation(QDialog):
         self.iconLabel.setMaximumSize(QSize(64,64))
 
         layout5.addWidget(self.iconLabel,0,0)
-        spacer = QSpacerItem(21,190,QSizePolicy.Minimum,QSizePolicy.Expanding)
-        layout5.addItem(spacer,1,0)
+        spacer7 = QSpacerItem(21,190,QSizePolicy.Minimum,QSizePolicy.Expanding)
+        layout5.addItem(spacer7,1,0)
         layout8.addLayout(layout5)
 
         layout6 = QVBoxLayout(None,0,6,"layout6")
@@ -54,8 +54,8 @@ class PluginInformation(QDialog):
         PluginInformationLayout.addWidget(self.line1)
 
         layout7 = QHBoxLayout(None,0,6,"layout7")
-        spacer_2 = QSpacerItem(421,21,QSizePolicy.Expanding,QSizePolicy.Minimum)
-        layout7.addItem(spacer_2)
+        spacer8 = QSpacerItem(421,21,QSizePolicy.Expanding,QSizePolicy.Minimum)
+        layout7.addItem(spacer8)
 
         self.closeButton = QPushButton(self,"closeButton")
         layout7.addWidget(self.closeButton)

@@ -116,6 +116,7 @@ class BrowserWidget(QListView):
             fullPath = self.get_full_path(item)
             try:
                 server, result = self.getLdapItem(fullPath)
+                self.emit(PYSIGNAL("about_to_change"), ())
                 self.emit(PYSIGNAL("ldap_result"), (deepcopy(server), deepcopy(result),))
             except TypeError:
                 "No result from Server"
@@ -184,7 +185,10 @@ class BrowserWidget(QListView):
         serverMeta = self.serverListObject.get_serverobject(serverName)
         
         conObject = LumaConnection(serverMeta)
+        conObject.bind()
         searchResult = conObject.search_s(ldapObject, ldap.SCOPE_BASE)
+        conObject.unbind()
+        
         if searchResult == None:
             QMessageBox.critical(None,
                 self.trUtf8("Error"),
@@ -228,6 +232,7 @@ See console output for more information."""),
         searchResult = None
         
         conObject = LumaConnection(serverMeta)
+        conObject.bind()
         
         # allLevel defines whether the complete subtree is searched or
             # just one level
@@ -239,6 +244,8 @@ See console output for more information."""),
                 
         searchResult = conObject.search(ldapObject.encode('utf-8'), searchLevel,self.searchObjectClass, None, 0)
 
+        conObject.unbind()
+        
         return searchResult
         
 
@@ -420,7 +427,7 @@ See console output for more information."""),
         widget = TemplateObjectWidget(None, template.name, 0)
         widget.setMinimumHeight(350)
         widget.setCaption(self.trUtf8('Add entry'))
-        widget.init_view(fqn, template)
+        widget.initView(fqn, template)
         widget.show()
         
         # don't loose reference. normally window will disappear if function is completed
@@ -444,7 +451,7 @@ See console output for more information."""),
             return
             
         # set gui busy
-        environment.set_busy(1)
+        environment.setBusy(1)
         
         currentItem = self.selectedItem()
         
@@ -460,14 +467,14 @@ See console output for more information."""),
             del children[0]
         
         while ((len(children) > 0) and (not(children == None))) :
-            environment.update_ui()
+            environment.updateUI()
             self.__delete_ldap_entry(serverName, children[-1][0])
             del children[-1]
         
         parent.setOpen(0)
         parent.setOpen(1)
         
-        environment.set_busy(0)
+        environment.setBusy(0)
         
 ###############################################################################
 

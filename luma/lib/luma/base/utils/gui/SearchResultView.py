@@ -61,7 +61,7 @@ class SearchResultView(SearchResultViewDesign):
         widget = ObjectWidget(None, unicode(listItem.text(0)).encode('utf-8'), 0)
         values = [self.RESULT[unicode(listItem.text(0)).encode('utf-8')]]
         #print values
-        widget.init_view(self.SERVER, values)
+        widget.initView(self.SERVER, values)
         widget.setMinimumHeight(500)
         widget.show()
         widget.setCaption(listItem.text(0))
@@ -141,7 +141,7 @@ class SearchResultView(SearchResultViewDesign):
         serverMeta = serverList.get_serverobject(self.SERVER)
 
         # set gui busy
-        environment.set_busy(1)
+        environment.setBusy(1)
         
         try:
             ldapServerObject = ldap.open(serverMeta.host, serverMeta.port)
@@ -155,7 +155,7 @@ class SearchResultView(SearchResultViewDesign):
                                 serverMeta.bindPassword)
             for x in itemList:
                 # keep UI responsive
-                environment.update_ui()
+                environment.updateUI()
                 
                 ldapServerObject.delete_s(unicode(x.text(0)))
                 
@@ -169,7 +169,7 @@ class SearchResultView(SearchResultViewDesign):
             self.resultListView.takeItem(x)
             
         # set GUI not busy
-        environment.set_busy(0)
+        environment.setBusy(0)
         
         
 ###############################################################################

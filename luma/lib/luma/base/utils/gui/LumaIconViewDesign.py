@@ -2,8 +2,8 @@
 
 # Form implementation generated from reading ui file '/home/wido/src/luma/lib/luma/base/utils/gui/LumaIconViewDesign.ui'
 #
-# Created: Wed Feb 4 23:47:11 2004
-#      by: The PyQt User Interface Compiler (pyuic) 3.10
+# Created: Thu Mar 25 00:32:42 2004
+#      by: The PyQt User Interface Compiler (pyuic) 3.11
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -22,26 +22,13 @@ class LumaIconViewDesign(QWidget):
 
         LumaIconViewDesignLayout = QGridLayout(self,1,1,11,6,"LumaIconViewDesignLayout")
 
-        self.addButton = QPushButton(self,"addButton")
-
-        LumaIconViewDesignLayout.addWidget(self.addButton,3,3)
-
-        self.resultView = QIconView(self,"resultView")
-        self.resultView.setResizePolicy(QIconView.AutoOneFit)
-        self.resultView.setGridX(100)
-        self.resultView.setGridY(100)
-        self.resultView.setResizeMode(QIconView.Adjust)
-        self.resultView.setItemsMovable(0)
-
-        LumaIconViewDesignLayout.addMultiCellWidget(self.resultView,2,2,0,3)
-
         self.goButton = QPushButton(self,"goButton")
 
-        LumaIconViewDesignLayout.addWidget(self.goButton,1,3)
+        LumaIconViewDesignLayout.addWidget(self.goButton,1,2)
 
         self.searchEdit = QLineEdit(self,"searchEdit")
 
-        LumaIconViewDesignLayout.addMultiCellWidget(self.searchEdit,1,1,1,2)
+        LumaIconViewDesignLayout.addWidget(self.searchEdit,1,1)
 
         self.textLabel13 = QLabel(self,"textLabel13")
         self.textLabel13.setFrameShape(QLabel.NoFrame)
@@ -51,21 +38,38 @@ class LumaIconViewDesign(QWidget):
 
         self.serverBox = QComboBox(0,self,"serverBox")
 
-        LumaIconViewDesignLayout.addMultiCellWidget(self.serverBox,0,0,1,3)
+        LumaIconViewDesignLayout.addMultiCellWidget(self.serverBox,0,0,1,2)
 
         self.textLabel12 = QLabel(self,"textLabel12")
 
         LumaIconViewDesignLayout.addWidget(self.textLabel12,0,0)
 
-        self.deleteButton = QPushButton(self,"deleteButton")
+        layout1 = QHBoxLayout(None,0,6,"layout1")
+        spacer5 = QSpacerItem(150,21,QSizePolicy.Expanding,QSizePolicy.Minimum)
+        layout1.addItem(spacer5)
 
-        LumaIconViewDesignLayout.addWidget(self.deleteButton,3,2)
-        spacer = QSpacerItem(80,21,QSizePolicy.Expanding,QSizePolicy.Minimum)
-        LumaIconViewDesignLayout.addMultiCell(spacer,3,3,0,1)
+        self.addButton = QPushButton(self,"addButton")
+        self.addButton.setSizePolicy(QSizePolicy(0,0,0,0,self.addButton.sizePolicy().hasHeightForWidth()))
+        layout1.addWidget(self.addButton)
+
+        self.deleteButton = QPushButton(self,"deleteButton")
+        self.deleteButton.setSizePolicy(QSizePolicy(0,0,0,0,self.deleteButton.sizePolicy().hasHeightForWidth()))
+        layout1.addWidget(self.deleteButton)
+
+        LumaIconViewDesignLayout.addMultiCellLayout(layout1,3,3,0,2)
+
+        self.resultView = QIconView(self,"resultView")
+        self.resultView.setResizePolicy(QIconView.AutoOneFit)
+        self.resultView.setGridX(100)
+        self.resultView.setGridY(100)
+        self.resultView.setResizeMode(QIconView.Adjust)
+        self.resultView.setItemsMovable(0)
+
+        LumaIconViewDesignLayout.addMultiCellWidget(self.resultView,2,2,0,2)
 
         self.languageChange()
 
-        self.resize(QSize(238,376).expandedTo(self.minimumSizeHint()))
+        self.resize(QSize(247,465).expandedTo(self.minimumSizeHint()))
         self.clearWState(Qt.WState_Polished)
 
         self.connect(self.serverBox,SIGNAL("activated(const QString&)"),self.serverChanged)
@@ -78,12 +82,12 @@ class LumaIconViewDesign(QWidget):
 
     def languageChange(self):
         self.setCaption(self.__tr("LumaIconViewDesign"))
-        self.addButton.setText(self.__tr("&Add..."))
-        self.addButton.setAccel(self.__tr("Alt+A"))
         self.goButton.setText(self.__tr("&Go"))
         self.goButton.setAccel(self.__tr("Alt+G"))
         self.textLabel13.setText(self.__tr("Filter:"))
         self.textLabel12.setText(self.__tr("Server:"))
+        self.addButton.setText(self.__tr("&Add..."))
+        self.addButton.setAccel(self.__tr("Alt+A"))
         self.deleteButton.setText(self.__tr("&Delete"))
         self.deleteButton.setAccel(self.__tr("Alt+D"))
 

@@ -2,8 +2,8 @@
 
 # Form implementation generated from reading ui file '/home/wido/src/luma/lib/luma/base/utils/gui/FilterWizardDesign.ui'
 #
-# Created: Tue Feb 3 23:58:01 2004
-#      by: The PyQt User Interface Compiler (pyuic) 3.10
+# Created: Thu Mar 25 00:32:37 2004
+#      by: The PyQt User Interface Compiler (pyuic) 3.11
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -120,16 +120,16 @@ class FilterWizardDesign(QDialog):
         groupBox5Layout.addWidget(self.searchFilterEdit)
 
         layout4 = QHBoxLayout(None,0,6,"layout4")
-        spacer = QSpacerItem(301,21,QSizePolicy.Expanding,QSizePolicy.Minimum)
-        layout4.addItem(spacer)
+        spacer3 = QSpacerItem(301,21,QSizePolicy.Expanding,QSizePolicy.Minimum)
+        layout4.addItem(spacer3)
 
         self.addBookmarkButton = QPushButton(self.groupBox5,"addBookmarkButton")
         self.addBookmarkButton.setSizePolicy(QSizePolicy(0,0,0,0,self.addBookmarkButton.sizePolicy().hasHeightForWidth()))
         layout4.addWidget(self.addBookmarkButton)
         groupBox5Layout.addLayout(layout4)
         FilterWizardDesignLayout.addWidget(self.groupBox5)
-        spacer_2 = QSpacerItem(41,110,QSizePolicy.Minimum,QSizePolicy.Expanding)
-        FilterWizardDesignLayout.addItem(spacer_2)
+        spacer9 = QSpacerItem(41,110,QSizePolicy.Minimum,QSizePolicy.Expanding)
+        FilterWizardDesignLayout.addItem(spacer9)
 
         self.pushButton11 = QPushButton(self,"pushButton11")
         FilterWizardDesignLayout.addWidget(self.pushButton11)
