@@ -21,7 +21,7 @@ import environment
 from base.utils.backend.templateutils import *
 from base.utils.gui.TemplateObjectWidget import TemplateObjectWidget
 from base.backend.LumaConnection import LumaConnection
-#from base.utils import lumaStringDecode, lumaStringEncode
+from base.utils import isBinaryAttribute
 
 class BrowserWidget(QListView):
     """ Widget for browsing ldap trees. 
@@ -184,7 +184,7 @@ class BrowserWidget(QListView):
         serverMeta = self.serverListObject.get_serverobject(serverName)
         
         conObject = LumaConnection(serverMeta)
-        searchResult = conObject.search_s(ldapObject.encode('utf-8'), ldap.SCOPE_BASE)
+        searchResult = conObject.search_s(ldapObject, ldap.SCOPE_BASE)
         if searchResult == None:
             QMessageBox.critical(None,
                 self.trUtf8("Error"),
@@ -336,18 +336,19 @@ See console output for more information."""),
         """ Convert data of a ldap object to ldif format.
         """
         
-        SAFE_STRING_PATTERN = '(^(\000|\n|\r| |:|<)|[\000\n\r\200-\377]+|[ ]+$)'
-        safe_string_re = re.compile(SAFE_STRING_PATTERN)
-
-        
         tmpListe = []
         if data == None:
             data = []
         for a in data:
-            tmpListe.append("dn: " + a[0] + "\n")
+            tmpCN = a[0]
+            if isBinaryAttribute(a[0]) == 1:
+                tmpCN = base64.encodestring(tmpCN)
+                tmpListe.append("dn:: " + tmpCN)
+            else:
+                tmpListe.append("dn: " + tmpCN)
             for x in a[1].keys():
                 for y in a[1][x]:
-                    if not (safe_string_re.search(y) == None):
+                    if isBinaryAttribute(y) == 1:
                         tmpListe.append(x + ":: " + base64.encodestring(y))
                     else:
                         tmpListe.append(x + ": " + y + "\n")
