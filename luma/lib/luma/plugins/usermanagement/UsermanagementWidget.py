@@ -534,5 +534,26 @@ Please read console output for more information."""),
             
         return uidList
     
+###############################################################################
+
+    def aboutToChange(self):
+        """Is called as a slot when new data arrives. 
         
+        This way we are able to save the changed values.
+        """
+    
+        if not self.EDITED:
+            return
+            
+        value =QMessageBox.question(None,
+            self.trUtf8("Save entry"),
+            self.trUtf8("""The account has been modified. Do you want to save it?"""),
+            self.trUtf8("&Yes"),
+            self.trUtf8("&No"),
+            None,
+            0, -1)
+            
+        # button order says, that 'yes' is zero
+        if value == 0:
+            self.saveAccount()
         
