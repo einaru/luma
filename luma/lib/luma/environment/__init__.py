@@ -11,7 +11,11 @@
 import os.path
 import sys
 
-def set_paths():
+lumaInstallationPrefix = None
+lumaScriptName = None
+userHomeDir = None
+
+def setPaths():
     global lumaInstallationPrefix 
     global lumaScriptName 
     global userHomeDir 
@@ -33,8 +37,8 @@ def set_paths():
     
 ###############################################################################
 
-def update_ui():
-    """ This is only a function dummy. The MainWin sets its update_ui function to this one.
+def updateUI():
+    """ This is only a function dummy. The MainWin sets its updateUI function to this one.
     
     This way these functions can be accessed globally. No need to import qt and use qApp
     """
@@ -42,8 +46,8 @@ def update_ui():
 
 ###############################################################################
 
-def set_busy(self, busy):
-    """ This is only a function dummy. The MainWin sets its update_ui function to this one.
+def setBusy(self, busy):
+    """ This is only a function dummy. The MainWin sets its updateUI function to this one.
     
     This way these functions can be accessed globally. No need to import qt and use qApp
     """
@@ -51,9 +55,4 @@ def set_busy(self, busy):
     
 ###############################################################################
   
-lumaInstallationPrefix = None
-lumaScriptName = None
-userHomeDir = None
-  
-set_paths()
-
+setPaths()
