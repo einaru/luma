@@ -9,28 +9,30 @@
 ###########################################################################
 
 import ldap
-from qt import *
+
+import environment
+
 
 class LumaConnection(object):
     
     def __init__(self, serverMeta=None):
         self.server = None
+        
         if not (serverMeta == None):
             self.server = serverMeta
         
-        self.mainWin = qApp.mainWidget()
             
 ###############################################################################
 
     def search_s(self, base="", scope=ldap.SCOPE_BASE, filter="(objectClass=*)", attrList=None):
         searchResult = None
         
-        self.mainWin.set_busy(1)
+        environment.set_busy(1)
         
         try:
             ldapServerObject = ldap.open(self.server.host, self.server.port)
             ldapServerObject.protocol_version = ldap.VERSION3
-            if self.server.tls:
+            if self.server.tls == 1:
                 ldapServerObject.start_tls_s()
             if len(self.server.bindDN) > 0:
                 ldapServerObject.simple_bind_s(self.server.bindDN,self.server.bindPassword)
@@ -38,12 +40,12 @@ class LumaConnection(object):
             searchResult = ldapServerObject.search_s(base, scope, filter, attrList)
             if len(self.server.bindDN) > 0:
                 ldapServerObject.unbind()
-            self.mainWin.set_busy(0)
         except ldap.LDAPError, e:
             print "Error during LDAP request"
             print "Reason: " + str(e)
-            self.mainWin.set_busy(0)
             
+        environment.set_busy(0)
+        
         return searchResult
 
 ###############################################################################
@@ -51,12 +53,12 @@ class LumaConnection(object):
     def search(self, base="", scope=ldap.SCOPE_BASE, filter="(objectClass=*)", attrList=None, attrsonly=0):
         searchResult = []
         
-        self.mainWin.set_busy(1)
+        environment.set_busy(1)
         
         try:
             ldapServerObject = ldap.open(self.server.host, self.server.port)
             ldapServerObject.protocol_version = ldap.VERSION3
-            if self.server.tls:
+            if self.server.tls == 1:
                 ldapServerObject.start_tls_s()
             if len(self.server.bindDN) > 0:
                 ldapServerObject.simple_bind_s(self.server.bindDN,self.server.bindPassword)
@@ -64,7 +66,7 @@ class LumaConnection(object):
             resultId = ldapServerObject.search(base, scope, filter, attrList)
             
             while 1:
-                self.mainWin.update_ui()
+                environment.update_ui()
 
                 result_type, result_data = ldapServerObject.result(resultId, 0)
                 if (result_data == []):
@@ -76,11 +78,11 @@ class LumaConnection(object):
                 
             if len(self.server.bindDN) > 0:
                 ldapServerObject.unbind()
-            self.mainWin.set_busy(0)
         except ldap.LDAPError, e:
             print "Error during LDAP request"
             print "Reason: " + str(e)
-            self.mainWin.set_busy(0)
+            
+        environment.set_busy(0)
             
         if len(searchResult) == 0:
             return None
@@ -95,13 +97,13 @@ class LumaConnection(object):
             
         result = None
         
-        self.mainWin.set_busy(1)
+        environment.set_busy(1)
         
         try:
             ldapServerObject = ldap.open(self.server.host, self.server.port)
             ldapServerObject.protocol_version = ldap.VERSION3
             
-            if self.server.tls:
+            if self.server.tls == 1:
                 ldapServerObject.start_tls_s()
                 
             if len(self.server.bindDN) > 0:
@@ -112,12 +114,12 @@ class LumaConnection(object):
             if len(self.server.bindDN) > 0:
                 ldapServerObject.unbind()
                 
-            self.mainWin.set_busy(0)
+            environment.set_busy(0)
             return 1
         except ldap.LDAPError, e:
             print "Error during LDAP request"
             print "Reason: " + str(e)
-            self.mainWin.set_busy(0)
+            environment.set_busy(0)
             return 0
             
     
