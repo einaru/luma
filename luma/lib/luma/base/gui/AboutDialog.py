@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file '/home/wido/src/luma/lib/luma/base/gui/AboutDialog.ui'
 #
-# Created: Tue Feb 3 23:58:00 2004
+# Created: Wed Feb 11 18:07:51 2004
 #      by: The PyQt User Interface Compiler (pyuic) 3.10
 #
 # WARNING! All changes made in this file will be lost!
@@ -71,7 +71,7 @@ class AboutDialog(QDialog):
 
         self.languageChange()
 
-        self.resize(QSize(546,457).expandedTo(self.minimumSizeHint()))
+        self.resize(QSize(546,459).expandedTo(self.minimumSizeHint()))
         self.clearWState(Qt.WState_Polished)
 
         self.connect(self.pushButton1,SIGNAL("clicked()"),self,SLOT("close()"))
@@ -373,7 +373,8 @@ class AboutDialog(QDialog):
 "","DO NOT TRANSLATE"))
         self.tabWidget2.changeTab(self.tab_3,self.__tr("License Agreement"))
         self.textBrowser4_2.setText(self.__tr("Bjorn Ove Grotan\n"
-"Contributed his mkpasswd module. \n"
+"Contributed his mkpasswd module.\n"
+"Translation into Norwegian.\n"
 "\n"
 "Kerstin Isebrecht\n"
 "Thanks for the ice and all your patience :) \n"

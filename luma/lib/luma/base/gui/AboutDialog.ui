@@ -18,7 +18,7 @@
             <x>0</x>
             <y>0</y>
             <width>546</width>
-            <height>457</height>
+            <height>459</height>
         </rect>
     </property>
     <property name="caption">
@@ -418,7 +418,8 @@ POSSIBILITY OF SUCH DAMAGES.
                         </property>
                         <property name="text">
                             <string>Bjorn Ove Grotan
-Contributed his mkpasswd module. 
+Contributed his mkpasswd module.
+Translation into Norwegian.
 
 Kerstin Isebrecht
 Thanks for the ice and all your patience :) 
