@@ -12,6 +12,7 @@ from os import listdir
 from os import remove
 import string
 import os.path
+from ConfigParser import ConfigParser
 
 from base.backend.ServerObject import ServerObject
 from base.backend.DirUtils import DirUtils
@@ -23,11 +24,12 @@ class ServerList:
     
     
     """
+    SERVERLIST = None
     
     def __init__(self):
-        self.SERVERLIST = []
-        self.__configPrefix = DirUtils().USERDIR + "/.luma"
-        self.__configFile = DirUtils().USERDIR + "/.luma/servers"
+        userdir = DirUtils().USERDIR
+        self.__configPrefix = os.path.join(userdir, ".luma")
+        self.__configFile = os.path.join(self.__configPrefix,  "serverlist")
         self.__checkConfigDir()
 
 ###############################################################################
@@ -38,73 +40,10 @@ class ServerList:
         
         if not (os.path.exists(self.__configPrefix)):
             try:
-                os.mkdir(DirUtils().USERDIR + "/.luma")
+                os.mkdir(self.__configPrefix)
             except IOError, e:
                 print "Could not create directory for storing settings"
                 print "Reason: " + str(e)
-
-###############################################################################
-
-    def readServerList(self):
-        """ Read the server list from configuration file.
-        """
-        
-        self.SERVERLIST = None
-
-        fileContent = None
-        try:
-            fileContent = open(self.__configFile, 'r').readlines()
-            self.SERVERLIST = self.__process_data(fileContent)
-        except IOError, e:
-            print "Could not open configuration file for server-options"
-            print "Reason: " + str(e)
-
-###############################################################################
-
-    def __process_data(self, fileContent):
-        """ Retrieve all server information from fileContent.
-        """
-        
-        serverList = []
-        serverListRaw = []
-        tmpServer = []
-        process = 0
-        for x in fileContent:
-            if x == "SERVER BEGIN\n":
-                process = 1
-            elif x == "SERVER END\n":
-                process = 0
-                serverListRaw.append(tmpServer)
-                tmpServer = []
-            elif x == "\n":
-                continue
-            elif process:
-                tmpServer.append(x[:-1])
-
-        serverDictionary = {}
-        for x in serverListRaw:
-            for y in x:
-                pairs = string.split(y, ":=")
-                if not (len(pairs) == 2):
-                    continue
-                else:
-                    serverDictionary[pairs[0]] = pairs[1]
-            server = ServerObject()
-            try:
-                server.name = serverDictionary['NAME']
-                server.host = serverDictionary['HOSTNAME']
-                server.port = string.atoi(serverDictionary['PORT'])
-                server.bindAnon = int(serverDictionary['BINDANON'])
-                server.baseDN = serverDictionary['BASEDN']
-                server.bindDN = serverDictionary['BINDDN']
-                server.bindPassword = serverDictionary['BINDPW']
-                server.tls = int(serverDictionary['TLS'])
-                serverList.append(server)
-            except KeyError, e:
-                print "Error during import of server preferences."
-                print "The following option was not given: " + str(e)
-            serverDictionary = {}
-        return serverList
 
 ###############################################################################
 
@@ -135,24 +74,22 @@ class ServerList:
     def save_settings(self, serverList):
         """ Save the server list to configuration file.
         """
-        
         try:
-            datei = open(self.__configFile, 'w')
-            for x in serverList:
-                datei.write("SERVER BEGIN\n")
-                datei.write("NAME:=" + x.name + "\n")
-                datei.write("HOSTNAME:=" + x.host + "\n")
-                datei.write("PORT:=" + str(x.port) + "\n")
-                datei.write("BINDANON:=" + str(x.bindAnon) + "\n")
-                datei.write("BASEDN:=" + x.baseDN + "\n")
-                datei.write("BINDDN:=" + x.bindDN + "\n")
-                datei.write("BINDPW:=" + x.bindPassword + "\n")
-                datei.write("TLS:=" + str(x.tls) + "\n")
-                datei.write("SERVER END\n\n")
-            datei.close()
-        except IOError, e:
-            print "Could not save server prefernces."
-            print "Reason: " + str(e)
+            configParser = ConfigParser()
+            for x in self.SERVERLIST:
+                configParser.add_section(x.name)
+                configParser.set(x.name, "hostname", x.host)
+                configParser.set(x.name, "port", x.port)
+                configParser.set(x.name, "bindAnon", x.bindAnon)
+                configParser.set(x.name, "baseDN", x.baseDN)
+                configParser.set(x.name, "bindDN", x.bindDN)
+                configParser.set(x.name, "bindPassword", x.bindPassword)
+                configParser.set(x.name, "tls", x.tls)
+            configParser.write(open(self.__configFile, 'w'))
+        except Exception, e:
+            print "Could not save server settings. Reason:"
+            print e
+        
 
 ###############################################################################
 
@@ -188,3 +125,31 @@ class ServerList:
             if x.name == serverName:
                 return x
 
+###############################################################################
+
+    def readServerList(self):
+        """ Read the server list from configuration file.
+        """
+        
+        self.SERVERLIST = None
+
+        try:
+            configParser = ConfigParser()
+            configParser.readfp(open(self.__configFile, 'r'))
+            sections = configParser.sections()
+            if len(sections) > 0:
+                self.SERVERLIST = []
+                for x in sections:
+                    server = ServerObject()
+                    server.name = x
+                    server.host = configParser.get(x, "hostname")
+                    server.port = configParser.getint(x, "port")
+                    server.bindAnon = configParser.getint(x, "bindAnon")
+                    server.baseDN = configParser.get(x, "baseDN")
+                    server.bindDN = configParser.get(x, "bindDN")
+                    server.bindPassword = configParser.get(x, "bindPassword")
+                    server.tls = configParser.getint(x, "tls")
+                    self.SERVERLIST.append(server)
+        except Exception, e:
+            print "Could not read server settings. Reason:"
+            print e
