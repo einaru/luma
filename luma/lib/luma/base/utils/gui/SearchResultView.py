@@ -77,8 +77,9 @@ class SearchResultView(SearchResultViewDesign):
 
     def process_data(self, data):
         self.RESULT = {}
-        for x in data:
-            self.RESULT[x[0]] = x
+        if not(data == None):
+            for x in data:
+                self.RESULT[x[0]] = x
 
 ###############################################################################
 

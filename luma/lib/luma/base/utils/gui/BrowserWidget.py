@@ -15,6 +15,7 @@ from base.backend.ServerList import ServerList
 from base.backend.DirUtils import DirUtils
 from base.utils.backend.templateutils import *
 from base.utils.gui.TemplateObjectWidget import TemplateObjectWidget
+from base.backend.LumaConnection import LumaConnection
 
 class BrowserWidget(QListView):
 
@@ -155,28 +156,10 @@ class BrowserWidget(QListView):
             return None
         
         serverMeta = self.serverListObject.get_serverobject(serverName)
-                
-        mainWin = qApp.mainWidget()
-        # set gui busy
-        mainWin.set_busy()
         
-        try:
-            ldapServerObject = ldap.open(serverMeta.host)
-            ldapServerObject.protocol_version = ldap.VERSION3
-            if serverMeta.tls == "1":
-                ldapServerObject.start_tls_s()
-            if len(serverMeta.bindDN) > 0:
-                ldapServerObject.simple_bind_s(serverMeta.bindDN,
-                                    serverMeta.bindPassword)
-            searchResult = ldapServerObject.search_s(ldapObject, ldap.SCOPE_BASE)
-            if len(serverMeta.bindDN) > 0:
-                ldapServerObject.unbind()
-            mainWin.set_busy(0)
-            return serverName, searchResult[:]
-        except ldap.LDAPError, e:
-            print "Error during LDAP request"
-            print "Reason: " + str(e)
-            mainWin.set_busy(0)
+        conObject = LumaConnection(serverMeta)
+        searchResult = conObject.search_s(ldapObject, ldap.SCOPE_BASE)
+        if searchResult == None:
             QMessageBox.critical(None,
                 self.trUtf8("Error"),
                 self.trUtf8("""Could not access entry.
@@ -185,8 +168,9 @@ See console output for more information."""),
                 None,
                 None,
                 0, -1)
-
-
+            
+        return serverName, searchResult
+        
 ###############################################################################
 
     def __split_path(self, itemPath):
@@ -203,55 +187,21 @@ See console output for more information."""),
             return None
             
         serverMeta = self.serverListObject.get_serverobject(serverName)
-        searchResult = []
-
-        mainWin = qApp.mainWidget()
-        # set gui busy
-        mainWin.set_busy()
-
-        try:
-            ldapServerObject = ldap.open(serverMeta.host)
-            ldapServerObject.protocol_version = ldap.VERSION3
-            if serverMeta.tls == "1":
-                ldapServerObject.start_tls_s()
-            if len(serverMeta.bindDN) > 0:
-                ldapServerObject.simple_bind_s(serverMeta.bindDN,
-                                serverMeta.bindPassword)
-
-            # allLevel defines whether the complete subtree is searched or
+        searchResult = None
+        
+        conObject = LumaConnection(serverMeta)
+        
+        # allLevel defines whether the complete subtree is searched or
             # just one level
-            searchLevel = None
-            if allLevel:
-                searchLevel = ldap.SCOPE_SUBTREE
-            else:
-                searchLevel = ldap.SCOPE_ONELEVEL
-
-            resultId = ldapServerObject.search(ldapObject, searchLevel,
-                self.searchObjectClass, None, 0)
-
-            while 1:
-                # keep UI responsive
-                mainWin.update_ui()
-
-                result_type, result_data = ldapServerObject.result(resultId, 0)
-                if (result_data == []):
-                    break
-                else:
-                    if result_type == ldap.RES_SEARCH_ENTRY:
-                        for x in result_data:
-                            searchResult.append(x)
-
-            if len(serverMeta.bindDN) > 0:
-                ldapServerObject.unbind()
+        searchLevel = None
+        if allLevel:
+            searchLevel = ldap.SCOPE_SUBTREE
+        else:
+            searchLevel = ldap.SCOPE_ONELEVEL
                 
-            mainWin.set_busy(0)
-            return searchResult[:]
-        except ldap.LDAPError, e:
-            print "Error during LDAP request"
-            print "Reason: " + str(e)
-            
-            mainWin.set_busy(0)
-            
+        searchResult = conObject.search(ldapObject, searchLevel,self.searchObjectClass, None, 0)
+
+        if searchResult == None:
             QMessageBox.critical(None,
                 self.trUtf8("Search Error"),
                 self.trUtf8("""Could not access children.
@@ -260,6 +210,9 @@ See console output for more information."""),
                 None,
                 None,
                 0, -1)
+        
+        return searchResult
+        
 
 
 
@@ -335,6 +288,8 @@ See console output for more information."""),
 
     def __convert_to_ldif(self, data):
         tmpListe = []
+        if data == None:
+            data = []
         for a in data:
             tmpListe.append("dn: " + a[0] + "\n")
             for x in a[1].keys():
@@ -346,16 +301,17 @@ See console output for more information."""),
 ###############################################################################
 
     def __save_ldif(self, data):
-        fileName = str(QFileDialog.getSaveFileName())
-        if fileName == '':
-            return
-        try:
-            fileHandler = open(fileName, 'w')
-            fileHandler.write(data)
-            fileHandler.close()
-        except IOError, e:
-            print "Could not save Data"
-            print "Reason: " + str(e)
+        if not (len(data) == 0):
+            fileName = str(QFileDialog.getSaveFileName())
+            if fileName == '':
+                return
+            try:
+                fileHandler = open(fileName, 'w')
+                fileHandler.write(data)
+                fileHandler.close()
+            except IOError, e:
+                print "Could not save Data"
+                print "Reason: " + str(e)
 
 ###############################################################################
 

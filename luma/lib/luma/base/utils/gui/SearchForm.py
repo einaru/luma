@@ -15,6 +15,7 @@ from base.utils.gui.FilterWizard import FilterWizard
 from base.backend.ServerObject import ServerObject
 from base.backend.ServerList import ServerList
 from base.backend.DirUtils import DirUtils
+from base.backend.LumaConnection import LumaConnection
 
 class SearchForm(SearchFormDesign):
 
@@ -50,46 +51,13 @@ class SearchForm(SearchFormDesign):
         liste = self.__get_search_criteria()
         server = str(self.serverBox.currentText())
         serverMeta = self.serverListObject.get_serverobject(server)
+        
 
-        searchResult = []
-
-        mainWin = qApp.mainWidget()
-        mainWin.set_busy()
-
-        try:
-            ldapServerObject = ldap.open(serverMeta.host, serverMeta.port)
-            ldapServerObject.protocol_version = ldap.VERSION3
-            if serverMeta.tls == "1":
-                ldapServerObject.start_tls_s()
-            ldapServerObject.simple_bind_s(serverMeta.bindDN,
-                                serverMeta.bindPassword)
-
-
-            resultId = ldapServerObject.search(serverMeta.baseDN, ldap.SCOPE_SUBTREE,
+        conObject = LumaConnection(serverMeta)
+        searchResult = conObject.search(serverMeta.baseDN, ldap.SCOPE_SUBTREE,
                 str(self.searchEdit.currentText()))
 
-            while 1:
-                # keep UI responsive
-                mainWin.update_ui()
-
-                result_type, result_data = ldapServerObject.result(resultId, 0)
-                if (result_data == []):
-                    break
-                else:
-                    if result_type == ldap.RES_SEARCH_ENTRY:
-                        for x in result_data:
-                            searchResult.append(x)
-
-            ldapServerObject.unbind()
-            tmpStatusBar.message(self.trUtf8("Search finished."), 5000)
-        except ldap.LDAPError, e:
-            print "Error during LDAP request"
-            print "Reason: " + str(e)
-            tmpStatusBar.message(self.trUtf8("Error during search!!! Read console output for more infos."), 5000)
-
-        mainWin.set_busy(0)
-
-        self.emit(PYSIGNAL("ldap_result"), (serverMeta.name[:], searchResult[:],liste, ))
+        self.emit(PYSIGNAL("ldap_result"), (serverMeta.name, searchResult,liste, ))
 
 ###############################################################################
 
