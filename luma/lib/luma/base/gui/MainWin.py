@@ -64,7 +64,7 @@ class MainWin(MainWinDesign):
         """Shows the about dialog of Luma."""
         
         a = AboutDialog(self)
-        a.aboutLogo.setPixmap(QPixmap(self.__ICONPREFIX+"luma.png"))
+        #a.aboutLogo.setPixmap(QPixmap(self.__ICONPREFIX+"luma.png"))
         a.show()
 
 ###############################################################################
