@@ -47,31 +47,11 @@ class AddressbookView(QWidget):
         
 ###############################################################################
 
-    #def enableSave(self, val):
-    #    self.saveButton.setEnabled(val)
-        
-###############################################################################
-
     def addEntry(self):
         dialog = ContactWizard()
         dialog.exec_loop()
 
         dialog.result()
-
-###############################################################################
-
-    def createDialog(self):
-        iconDir = os.path.join (environment.lumaInstallationPrefix, "share", "luma", "icons", "plugins", "addressbook")
-        locationIcon = QPixmap (os.path.join (iconDir, "location.png"))
-        dialog = ContactWizard()
-        dialog.locationLabel.setPixmap(locationIcon)
-        
-        layout = QHBoxLayout(dialog.browserFrame)
-        browserWidget = BrowserWidget(dialog.browserFrame)
-        layout.addWidget(browserWidget)
-        
-        
-        return dialog
 
 ###############################################################################
 

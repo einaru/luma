@@ -13,6 +13,7 @@ from qt import *
 import os.path
 from string import strip
 import ldap
+import copy
 
 import environment
 from plugins.addressbook.AddressbookWidgetDesign import AddressbookWidgetDesign
@@ -21,6 +22,7 @@ from base.utils.gui.MailDialog import MailDialog
 from plugins.addressbook.CategoryEditDialog import CategoryEditDialog
 from base.backend.LumaConnection import LumaConnection
 from base.backend.ServerList import ServerList
+from base.utils.backend.ObjectClassAttributeInfo import ObjectClassAttributeInfo
 
 
 class AddressbookWidget(AddressbookWidgetDesign):
@@ -56,29 +58,29 @@ class AddressbookWidget(AddressbookWidgetDesign):
         self.allowedAttributes = None
         
         self.attributeWidgets = {'cn': self.cnEdit,
-                                                'title': self.titleEdit,
-                                                'o': self.organisationEdit,
-                                                'mail': self.mailBox,
-                                                'labeledURI': self.labeledURIEdit,
-                                                'category': self.categoryEdit,
-                                                'homePhone': self.homePhoneEdit,
-                                                'telephoneNumber': self.telephoneNumberEdit,
-                                                'mobile': self.mobileEdit,
-                                                'facsimileTelephoneNumber': self.facsimileTelephoneNumberEdit,
-                                                'ou': self.ouEdit,
-                                                'roomNumber': self.roomNumberEdit,
-                                                'businessRole': self.businessRoleEdit,
-                                                'managerName': self.managerNameEdit,
-                                                'assistantName': self.assistantNameEdit,
-                                                'displayName': self.displayNameEdit,
-                                                'spouseName': self.spouseNameEdit,
-                                                'note': self.noteEdit,
-                                                'birthDate': self.birthDateEdit,
-                                                'anniversary': self.anniversaryEdit,
-                                                'postalAddress': self.addressEdit,
-                                                'homePostalAddress': self.addressEdit,
-                                                'otherPostalAddress': self.addressEdit
-                                                }
+            'title': self.titleEdit,
+            'o': self.organisationEdit,
+            'mail': self.mailBox,
+            'labeledURI': self.labeledURIEdit,
+            'category': self.categoryEdit,
+            'homePhone': self.homePhoneEdit,
+            'telephoneNumber': self.telephoneNumberEdit,
+            'mobile': self.mobileEdit,
+            'facsimileTelephoneNumber': self.facsimileTelephoneNumberEdit,
+            'ou': self.ouEdit,
+            'roomNumber': self.roomNumberEdit,
+            'businessRole': self.businessRoleEdit,
+            'managerName': self.managerNameEdit,
+            'assistantName': self.assistantNameEdit,
+            'displayName': self.displayNameEdit,
+            'spouseName': self.spouseNameEdit,
+            'note': self.noteEdit,
+            'birthDate': self.birthDateEdit,
+            'anniversary': self.anniversaryEdit,
+            'postalAddress': self.addressEdit,
+            'homePostalAddress': self.addressEdit,
+            'otherPostalAddress': self.addressEdit
+            }
                                                 
         self.enableWidget(0)
         self.DISABLED = 1
@@ -86,30 +88,18 @@ class AddressbookWidget(AddressbookWidgetDesign):
 ###############################################################################
 
     def clearView(self):
-        self.cnEdit.clear()
-        self.titleEdit.clear()
-        self.organisationEdit.clear()
+        """Clear all input fields from possible content.
+        """
         
-        self.mailBox.clear()
+        # Create a list of all inputs fields with method 'clear' and call it
+        tmpList = self.attributeWidgets.values()
         
-        self.labeledURIEdit.clear()
+        tmpList.remove(self.birthDateEdit)
+        tmpList.remove(self.anniversaryEdit)
         
-        self.categoryEdit.clear()
+        map (lambda x: x.clear(), tmpList)
         
-        self.homePhoneEdit.clear()
-        self.telephoneNumberEdit.clear()
-        self.mobileEdit.clear()
-        self.facsimileTelephoneNumberEdit.clear()
-        self.addressEdit.clear()
-        
-        self.ouEdit.clear()
-        self.roomNumberEdit.clear()
-        self.businessRoleEdit.clear()
-        self.managerNameEdit.clear()
-        self.assistantNameEdit.clear()
-        self.displayNameEdit.clear()
-        self.spouseNameEdit.clear()
-        self.noteEdit.clear()
+        # Clear date fields
         self.birthDateEdit.setDate(QDate())
         self.anniversaryEdit.setDate(QDate())
         
@@ -123,8 +113,8 @@ class AddressbookWidget(AddressbookWidgetDesign):
         self.data = data
         self.serverMeta = server
         
-        if (self.DISABLED == 1):
-            self.ocInfo = environment.getServerMeta(self.serverMeta.name)
+        if self.DISABLED:
+            self.ocInfo = ObjectClassAttributeInfo(self.serverMeta.name)
             self.DISABLED = 0
             
         must, may = self.ocInfo.getAllAttributes(self.data['objectClass'])

@@ -69,19 +69,16 @@ class AddressbookSettings(AddressbookSettingsDesign):
         
         filter = None
         
-        if not(config.has_section("Addressbook")):
+        if not config.has_section("Addressbook"):
             config.add_section("Addressbook")
         
-        if not(config.has_option("Addressbook", "filter")):
+        if not config.has_option("Addressbook", "filter"):
             config.set("Addressbook", "filter", "mail,givenName,cn,sn,uid")
         
         filter = config.get("Addressbook", "filter").strip()
         
         if (filter.split(",")[0] == "") or (filter == None):
             config.set("Addressbook", "filter", "mail,givenName,cn,sn,uid")
-            
-        if config.has_option('Addressbook', 'filter'):
-            filter = config.get('Addressbook', 'filter')
         
         try:
             config.write(open(self.configFile, 'w'))
@@ -106,7 +103,6 @@ class AddressbookSettings(AddressbookSettingsDesign):
         
             if not config.has_section("Addressbook"):
                 config.add_section("Addressbook")
-                #config.set("Addressbook", "load", "1")
             
             config.set("Addressbook", "filter", val)
         
