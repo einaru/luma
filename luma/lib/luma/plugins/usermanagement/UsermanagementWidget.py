@@ -70,6 +70,11 @@ class UsermanagementWidget(UsermanagementWidgetDesign):
         self.EDITED = False
         self.ENABLEDELETE = True
         
+        # a list of user ids which are stored in the ldap tree
+        self.USED_USER_IDS = None
+        
+        
+        
 
 ###############################################################################
 
@@ -79,6 +84,7 @@ class UsermanagementWidget(UsermanagementWidgetDesign):
         self.SERVERMETA = server
         self.ENABLED = True
         self.EDITED = False
+        self.USED_USER_IDS = None
         
         self.enableWidget()
         self.displayValues()
@@ -128,6 +134,7 @@ class UsermanagementWidget(UsermanagementWidgetDesign):
         self.ENABLED = False
         self.enableWidget()
         self.clearValues()
+        self.USED_USER_IDS = None
         
 ###############################################################################
 
@@ -441,6 +448,7 @@ Please read console output for more information."""),
         else:
             self.EDITED = False
             self.enableToolBar()
+            self.USED_USER_IDS = None
             self.emit(PYSIGNAL("account_saved"), ())
         
 ###############################################################################
@@ -486,11 +494,45 @@ Please read console output for more information."""),
         connectionObject.unbind()
         
         
+###############################################################################
+
+    def nextFreeUserID(self):
+        if self.USED_USER_IDS == None:
+            result = self.retrieveUserIDs()
+            if result == None:
+                return
+            else:
+                self.USED_USER_IDS = result
+            
+        uid = self.uidBox.value() + 1
+        while uid in self.USED_USER_IDS:
+            uid = uid + 1
+            
+        self.uidBox.setValue(uid)
         
         
         
         
         
         
+###############################################################################
+
+    def retrieveUserIDs(self):
+        connectionObject = LumaConnection(self.SERVERMETA)
+        connectionObject.bind()
+        results = connectionObject.search(self.SERVERMETA.baseDN, ldap.SCOPE_SUBTREE,
+                "(&(objectClass=*)(uidNumber=*))", ["uidNumber"], 0)
+        connectionObject.unbind()
+                
+        if results == None:
+            return None
+            
+        uidList = []
+        for x in results:
+            for y in x[1]["uidNumber"]:
+                uidList.append(int(y))
+            
+        return uidList
+    
         
         
