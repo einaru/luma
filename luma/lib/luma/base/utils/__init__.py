@@ -1,3 +1,13 @@
+# -*- coding: utf-8 -*-
+
+###########################################################################
+#    Copyright (C) 2004 by Wido Depping
+#    <widod@users.sourceforge.net>
+#
+# Copyright: See COPYING file that comes with this distribution
+#
+###########################################################################
+
 from qt import *
 import re
 import base64
