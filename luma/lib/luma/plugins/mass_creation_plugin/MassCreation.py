@@ -12,6 +12,8 @@ import ldap
 import os.path
 
 from qt import *
+
+import environment
 from plugins.mass_creation_plugin.MassCreationDesign import MassCreationDesign
 from base.utils.gui.BrowserWidget import BrowserWidget
 from base.backend.ServerList import ServerList
@@ -20,7 +22,8 @@ from base.utils.backend.DateHelper import DateHelper
 from base.utils.backend.CryptPwGenerator import CryptPwGenerator
 from base.utils.gui.BrowserDialog import BrowserDialog
 from base.utils.gui.PluginInformation import PluginInformation
-
+from base.backend.LumaConnection import LumaConnection
+from plugins.mass_creation_plugin import postProcess, preProcess
 
 class MassCreation(MassCreationDesign):
 
@@ -97,69 +100,142 @@ Try increasing the uidNumber range or delete some users from the subtree."""),
         tmpObject.readServerList()
         serverMeta = tmpObject.get_serverobject(server)
         
-        try:
-            ldapServerObject = ldap.open(serverMeta.host, serverMeta.port)
-            ldapServerObject.protocol_version = ldap.VERSION3
-            if serverMeta.tls == 1:
-                ldapServerObject.start_tls_s()
-            ldapServerObject.simple_bind_s(serverMeta.bindDN,
-                                serverMeta.bindPassword)
+        connectionObject = LumaConnection(serverMeta)
+        connectionObject.bind()
+        
+        pwGenerator = CryptPwGenerator()
+        self.passwordEdit.clear()
+        createResult = True
+        
+        for x in range(userMin, userMax+1):
+            environment.updateUI()
             
+            userName = userPrefix + str(x)
+            uidNumber = freeNumbers[0]
+            del freeNumbers[0]
+            passwordClear, passwordCrypt = pwGenerator.get_random_password()
+            homeDir = baseHomeDir + "/" + userName
             
-            pwGenerator = CryptPwGenerator()
-            self.passwordEdit.clear()
-            for x in range(userMin, userMax+1):
-                environment.updateUI()
-                
-                userName = userPrefix + str(x)
-                uidNumber = freeNumbers[0]
-                del freeNumbers[0]
-                passwordClear, passwordCrypt = pwGenerator.get_random_password()
-                homeDir = baseHomeDir + "/" + userName
-                
-                modList = []
-                modList.append(('objectClass', ['posixAccount', 'shadowAccount']))
-                
-                modList.append(('uid', userName))
-                modList.append(('uidNumber', str(uidNumber)))
-                modList.append(('cn', userName))
-                modList.append(('userPassword', "{crypt}" + passwordCrypt))
-                modList.append(('loginShell', loginShell))
-                modList.append(('shadowExpire', str(shadowMax)))
-                modList.append(('gidNumber', groupId))
-                modList.append(('homeDirectory', homeDir))
-                
-                tmpDN = 'uid=' + userName + "," + baseDN
-                searchResult = ldapServerObject.add_s(tmpDN, modList)
-                
-                self.passwordEdit.append(userName + ': ' + passwordClear + "\n") 
-                
-            ldapServerObject.unbind()
+            values = {}
+            values['objectClass'] =  ["account", 'posixAccount', 'shadowAccount']
+            values['uid'] = [userName]
+            values['uidNumber'] = [str(uidNumber)]
+            values['cn'] = [userName]
+            values['userPassword'] = ["{crypt}" + passwordCrypt]
+            values['loginShell'] = [loginShell]
+            values['shadowExpire'] = [str(shadowMax)]
+            values['gidNumber'] = [groupId]
+            values["homeDirectory"] = [homeDir]
             
-            # set GUI not busy
-            environment.setBusy(0)
+            preProcess(serverMeta, values)
+            
+            tmpDN = 'uid=' + userName + "," + baseDN
+            modList = ldap.modlist.addModlist(values)
+            result = connectionObject.add_s(tmpDN, modList)
+            
+            if result == 0:
+                createResult = False
+                break
+                QMessageBox.critical(None,
+                    self.trUtf8("Error"),
+                    self.trUtf8("""Error during creation of users.
+Please see console output for more information."""),
+                    self.trUtf8("&OK"),
+                    None,
+                    None,
+                    0, -1)
+                    
+            # create automount entry
+            dn = "cn=" + values["uid"][0] + ",ou=home,ou=automount," + serverMeta.baseDN
+            mountValues = {}
+            mountValues["objectClass"] = ["automount"]
+            mountValues["cn"] = [values["uid"][0]]
+            automountInfo = "-fstype=nfs,rw,quota,soft,intr ciphome.in.tu-clausthal.de:" + values["homeDirectory"][0]
+            mountValues["automountInformation"] = [automountInfo]
+            mountValues["description"] = ["Mountpoint des Homeverzeichnisses von " + values["cn"][0]]
+            modlist = ldap.modlist.addModlist(mountValues)
+            result = connectionObject.add_s(dn, modlist)
+            
+            postProcess(serverMeta, values)
+        
+            self.passwordEdit.append(userName + ': ' + passwordClear + "\n")
+        
+        connectionObject.unbind()
+        environment.setBusy(0)
+        
+        if createResult:
             QMessageBox.information(None,
-            self.trUtf8("Success"),
-            self.trUtf8("""All users were created successfully."""),
-            self.trUtf8("&OK"),
-            None,
-            None,
-            0, -1)
-        except ldap.LDAPError, e:
-            print "Error during LDAP request"
-            print "Reason: " + str(e[0]['desc'])
-            
-            # set GUI not busy
-            environment.setBusy(0)
-            
-            QMessageBox.critical(None,
-                self.trUtf8("Error"),
-                self.trUtf8("""Error during creation of users.\nReason: """ + 
-                            str(e[0]['desc'])),
+                self.trUtf8("Success"),
+                self.trUtf8("""All users were created successfully."""),
                 self.trUtf8("&OK"),
                 None,
                 None,
                 0, -1)
+        
+        #try:
+        #    ldapServerObject = ldap.open(serverMeta.host, serverMeta.port)
+        #    ldapServerObject.protocol_version = ldap.VERSION3
+        #    if serverMeta.tls == 1:
+        #        ldapServerObject.start_tls_s()
+        #    ldapServerObject.simple_bind_s(serverMeta.bindDN,
+        #                        serverMeta.bindPassword)
+        #    
+        #    
+        #    pwGenerator = CryptPwGenerator()
+        #    self.passwordEdit.clear()
+        #    for x in range(userMin, userMax+1):
+        #        environment.updateUI()
+        #        
+        #        userName = userPrefix + str(x)
+        #        uidNumber = freeNumbers[0]
+        #        del freeNumbers[0]
+        #        passwordClear, passwordCrypt = pwGenerator.get_random_password()
+        #        homeDir = baseHomeDir + "/" + userName
+        #        
+        #        modList = []
+        #        modList.append(('objectClass', ['posixAccount', 'shadowAccount']))
+        #        
+        #        modList.append(('uid', userName))
+        #        modList.append(('uidNumber', str(uidNumber)))
+        #        modList.append(('cn', userName))
+        #        modList.append(('userPassword', "{crypt}" + passwordCrypt))
+        #        modList.append(('loginShell', loginShell))
+        #        modList.append(('shadowExpire', str(shadowMax)))
+        #        modList.append(('gidNumber', groupId))
+        #        modList.append(('homeDirectory', homeDir))
+        #        
+        #        tmpDN = 'uid=' + userName + "," + baseDN
+        #        print tmpDN, modList
+        #        searchResult = ldapServerObject.add_s(tmpDN, modList)
+        #        
+        #        self.passwordEdit.append(userName + ': ' + passwordClear + "\n") 
+        #        
+        #    ldapServerObject.unbind()
+        #    
+        #    # set GUI not busy
+        #    environment.setBusy(0)
+        #    QMessageBox.information(None,
+        #    self.trUtf8("Success"),
+        #    self.trUtf8("""All users were created successfully."""),
+        #    self.trUtf8("&OK"),
+        #    None,
+        #    None,
+        #    0, -1)
+        #except ldap.LDAPError, e:
+        #    print "Error during LDAP request"
+        #    print "Reason: " + str(e[0]['desc'])
+        #    
+        #    # set GUI not busy
+        #    environment.setBusy(0)
+        #    
+        #    QMessageBox.critical(None,
+        #        self.trUtf8("Error"),
+        #        self.trUtf8("""Error during creation of users.\nReason: """ + 
+        #                    str(e[0]['desc'])),
+        #        self.trUtf8("&OK"),
+        #        None,
+        #        None,
+        #        0, -1)
 
 ###############################################################################
             
