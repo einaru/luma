@@ -54,7 +54,7 @@ class RdnEditor(RdnEditorDesign):
 ###############################################################################
 
     def getValue(self):
-        return self.value.encode('utf-8')
+        return self.value
         
 ###############################################################################
 
@@ -62,6 +62,6 @@ class RdnEditor(RdnEditorDesign):
         tmpValue = unicode(self.valueEdit.text())
         attributeName = unicode(self.attributeBox.currentText())
         
-        self.value = attributeName + "=" + tmpValue + "," + self.baseDN
+        self.value = attributeName + u"=" + tmpValue + u"," + unicode(self.baseDN)
         
         self.dnLabel.setText(self.value)
