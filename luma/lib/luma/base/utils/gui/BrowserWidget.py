@@ -38,10 +38,13 @@ class BrowserWidget(QListView):
         QListView.__init__(self,parent,name,fl)
         self.setSelectionMode(QListView.Extended)
 
-        self.connect(self, SIGNAL("clicked(QListViewItem*)"), self.itemClicked)
+        #self.connect(self, SIGNAL("clicked(QListViewItem*)"), self.itemClicked)
+        self.connect(self, SIGNAL("mouseButtonPressed(int, QListViewItem*, const QPoint&, int)"), self.itemClicked)
+        #self.connect(self, SIGNAL("currentChanged ( QListViewItem * )"), self.itemClicked)
         self.connect(self, SIGNAL("collapsed(QListViewItem*)"), self.itemCollapsed)
         self.connect(self, SIGNAL("expanded(QListViewItem*)"), self.itemExpanded)
-        #self.connect(self, SIGNAL("doubleClicked(QListViewItem*)"), self.itemExpanded)
+        self.connect(self, SIGNAL("rightButtonPressed(QListViewItem*, const QPoint&, int)"), self.showPopup)
+
 
         self.setRootIsDecorated(True)
         self.addColumn(self.trUtf8("Entries"))
@@ -80,9 +83,6 @@ class BrowserWidget(QListView):
         self.displayServerIcons()
 
         self.addItemWidgets = []
-
-        self.connect(self, SIGNAL("rightButtonPressed(QListViewItem*, const QPoint&, int)"), self.showPopup)
-        
         self.widgetList = []
         
         # Item for which a popup menu was openend
@@ -111,16 +111,18 @@ class BrowserWidget(QListView):
 
 ###############################################################################
 
-    def itemClicked(self, item):
+    def itemClicked(self, buttonNumber, item):
         """ Emit the ldap object and the server if a valid object has been
         clicked.
         """
         
+        if not (buttonNumber ==1):
+            return
+            
         if not (item == None):
             fullPath = self.getFullPath(item)
 
             success, resultList, exceptionObject = self.getLdapItem(fullPath)
-            
             if not (success == None):
                 if success:
                     if len(resultList) > 0:
@@ -210,10 +212,12 @@ class BrowserWidget(QListView):
         """ Delete all children if a ldap object collapses.
         """
         
-        fullPath = self.getFullPath(item)
-        serverName, ldapObject = self.splitPath(fullPath)
+        #fullPath = self.getFullPath(item)
+        #serverName, ldapObject = self.splitPath(fullPath)
+        
         while item.childCount() > 0:
             item.takeItem(item.firstChild())
+        
 
 ###############################################################################
 
@@ -609,6 +613,8 @@ class BrowserWidget(QListView):
         """ Display popup menu.
         """
         
+        #self.itemClicked(tmpItem)
+        #self.emit(SIGNAL("clicked(QListViewItem*)"), (tmpItem,))
         self.popupItem = tmpItem
         
         tmpDirObject = environment.lumaInstallationPrefix
@@ -673,17 +679,20 @@ class BrowserWidget(QListView):
                 
                 # Fill add menu
                 self.addItemMenu.clear()
+                self.addItemMenu.insertItem(self.trUtf8("Attribute"), self.addAttribute)
+                self.addItemMenu.insertSeparator()
                 templates = TemplateList()
                 for x in templates.templateList:
                     self.addItemMenu.insertItem(x.name, self.addItem)
                     
                 popupMenu.insertSeparator()
-                popupMenu.insertItem(QIconSet(QPixmap(addIconFile)), self.trUtf8("Add Item"), self.addItemMenu)
+                popupMenu.insertItem(QIconSet(QPixmap(addIconFile)), self.trUtf8("Add"), self.addItemMenu)
                 popupMenu.insertSeparator()
                 popupMenu.insertItem(QIconSet(QPixmap(exportIconFile)), self.trUtf8("Export"), exportMenu)
                 popupMenu.insertSeparator()
                 popupMenu.insertItem(QIconSet(QPixmap(delIconFile)), self.trUtf8("Delete"), deleteMenu)
-                
+             
+            self.itemClicked(1, tmpItem)
             popupMenu.exec_loop(point)
 
 ###############################################################################
@@ -978,7 +987,14 @@ class BrowserWidget(QListView):
         
 ###############################################################################
 
-
+    def addAttribute(self):
+        """ Emits a signal that an attribute is to be added to the current
+        entry.
+        """
+        
+        self.emit(PYSIGNAL("ADD_ATTRIBUTE"), ())
+        
+###############################################################################
 
 class ChildWindow(QMainWindow):
     
