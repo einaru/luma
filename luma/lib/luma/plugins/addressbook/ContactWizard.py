@@ -110,7 +110,7 @@ class ContactWizard(ContactWizardDesign):
         else:
             QMessageBox.warning(None,
                 self.trUtf8("Incomplete Information"),
-                self.trUtf8("""Your contact needs at least a surename."""),
+                self.trUtf8("""Your contact needs at least a surname."""),
                 self.trUtf8("&OK"),
                 None,
                 None,
