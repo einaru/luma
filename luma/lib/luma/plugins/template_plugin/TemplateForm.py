@@ -95,6 +95,8 @@ class TemplateForm(TemplateFormDesign):
             self.tplFile = TemplateFile()
         
         x = self.tplFile.get_templateobject(curItem)
+        if x == None:
+            return
         for y in x.get_objectclasses():
             tmpItem = QListViewItem(self.infoView, "objectClass", y)
         tmpDict = x.get_attributeinfos()
