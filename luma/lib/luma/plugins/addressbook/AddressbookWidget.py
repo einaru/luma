@@ -29,7 +29,7 @@ class AddressbookWidget(AddressbookWidgetDesign):
     def __init__(self,parent = None,name = None,fl = 0):
         AddressbookWidgetDesign.__init__(self,parent,name,fl)
         
-        iconDir = os.path.join (environment.lumaInstallationPrefix, "lib", "luma", "plugins", "addressbook", "icons")
+        iconDir = os.path.join (environment.lumaInstallationPrefix, "share", "luma", "icons", "plugins", "addressbook")
         
         self.entryIcon = QPixmap (os.path.join (iconDir, "person.png"))
         
@@ -114,7 +114,7 @@ class AddressbookWidget(AddressbookWidgetDesign):
         
 ###############################################################################
 
-    def init_view(self, dn, data, server):
+    def initView(self, dn, data, server):
         self.clearView()
         self.enableWidget(1)
         
@@ -123,11 +123,11 @@ class AddressbookWidget(AddressbookWidgetDesign):
         self.serverMeta = server
         
         if (self.DISABLED == 1):
-            self.ocInfo.set_server(self.serverMeta.name)
-            self.ocInfo.retrieve_info_from_server()
+            self.ocInfo.setServer(self.serverMeta.name)
             self.DISABLED = 0
             
-        self.enableContactFields(self.ocInfo.get_all_attributes(self.data['objectClass']))
+        must, may = self.ocInfo.getAllAttributes(self.data['objectClass'])
+        self.enableContactFields(must | may)
         
         
         self.addressBox.setEnabled(1)
@@ -442,9 +442,11 @@ class AddressbookWidget(AddressbookWidgetDesign):
         
         ldapValues = self.getLdapValues()
         modlist =  ldap.modlist.modifyModlist(ldapValues, values, [], 1)
-
+        
         connection = LumaConnection(self.serverMeta)
+        connection.bind()
         result = connection.modify_s(self.dn, modlist)
+        connection.unbind()
         
         if result == 0:
             QMessageBox.warning(None,
@@ -463,13 +465,15 @@ Please read console output for more information."""),
     def getLdapValues(self):
         connection = LumaConnection(self.serverMeta)
         
+        connection.bind()
         result = connection.search_s(self.dn)
+        connection.unbind()
+        
         return result[0][1]
         
 ###############################################################################
 
     def enableContactFields(self, attributes):
-        #self.allowedAttributes = self.ocInfo.get_all_attributes(classes)
         self.allowedAttributes = attributes
         
         for x in self.attributeWidgets.keys():

@@ -43,7 +43,7 @@ class MassCreation(MassCreationDesign):
             return None
 
         # set gui busy
-        environment.set_busy(1)
+        environment.setBusy(1)
         
         # get data for usernames
         userMax = self.prefixMaxBox.value()
@@ -60,7 +60,7 @@ class MassCreation(MassCreationDesign):
         freeNumbers = self.get_uidNumbers(uidNumMin, uidNumMax, usedNumbers, userCount)
         
         if freeNumbers == None:
-            environment.set_busy(0)
+            environment.setBusy(0)
             QMessageBox.warning(None,
                 self.trUtf8("Conflict"),
                 self.trUtf8("""There are not enough user ids left! 
@@ -109,7 +109,7 @@ Try increasing the uidNumber range or delete some users from the subtree."""),
             pwGenerator = CryptPwGenerator()
             self.passwordEdit.clear()
             for x in range(userMin, userMax+1):
-                environment.update_ui()
+                environment.updateUI()
                 
                 userName = userPrefix + str(x)
                 uidNumber = freeNumbers[0]
@@ -137,7 +137,7 @@ Try increasing the uidNumber range or delete some users from the subtree."""),
             ldapServerObject.unbind()
             
             # set GUI not busy
-            environment.set_busy(0)
+            environment.setBusy(0)
             QMessageBox.information(None,
             self.trUtf8("Success"),
             self.trUtf8("""All users were created successfully."""),
@@ -150,7 +150,7 @@ Try increasing the uidNumber range or delete some users from the subtree."""),
             print "Reason: " + str(e[0]['desc'])
             
             # set GUI not busy
-            environment.set_busy(0)
+            environment.setBusy(0)
             
             QMessageBox.critical(None,
                 self.trUtf8("Error"),
@@ -185,7 +185,7 @@ Try increasing the uidNumber range or delete some users from the subtree."""),
         searchResult = []
         
         # set gui busy
-        environment.set_busy()
+        environment.setBusy()
 
         try:
             ldapServerObject = ldap.open(serverMeta.host)
@@ -202,7 +202,7 @@ Try increasing the uidNumber range or delete some users from the subtree."""),
 
             while 1:
                 # keep UI responsive
-                environment.update_ui()
+                environment.updateUI()
 
                 result_type, result_data = ldapServerObject.result(resultId, 0)
                 if (result_data == []):
@@ -218,7 +218,7 @@ Try increasing the uidNumber range or delete some users from the subtree."""),
             print "Error during LDAP request"
             print "Reason: " + str(e)
         
-        environment.set_busy(0)
+        environment.setBusy(0)
         
         numberList = []
         for x in searchResult:

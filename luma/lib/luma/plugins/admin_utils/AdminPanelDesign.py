@@ -2,8 +2,8 @@
 
 # Form implementation generated from reading ui file '/home/wido/src/luma/lib/luma/plugins/admin_utils/AdminPanelDesign.ui'
 #
-# Created: Tue Feb 3 23:58:04 2004
-#      by: The PyQt User Interface Compiler (pyuic) 3.10
+# Created: Thu Mar 25 00:32:39 2004
+#      by: The PyQt User Interface Compiler (pyuic) 3.11
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -26,8 +26,8 @@ class AdminPanelDesign(QWidget):
 
         self.tab = QWidget(self.tabWidget2,"tab")
         tabLayout = QGridLayout(self.tab,1,1,11,6,"tabLayout")
-        spacer = QSpacerItem(41,16,QSizePolicy.Minimum,QSizePolicy.Expanding)
-        tabLayout.addItem(spacer,3,2)
+        spacer2 = QSpacerItem(41,16,QSizePolicy.Minimum,QSizePolicy.Expanding)
+        tabLayout.addItem(spacer2,3,2)
 
         self.groupBox2 = QGroupBox(self.tab,"groupBox2")
         self.groupBox2.setColumnLayout(0,Qt.Vertical)
@@ -86,8 +86,8 @@ class AdminPanelDesign(QWidget):
         self.createButton = QPushButton(self.groupBox1,"createButton")
 
         groupBox1Layout.addWidget(self.createButton,2,2)
-        spacer_2 = QSpacerItem(191,21,QSizePolicy.Expanding,QSizePolicy.Minimum)
-        groupBox1Layout.addItem(spacer_2,2,1)
+        spacer1 = QSpacerItem(191,21,QSizePolicy.Expanding,QSizePolicy.Minimum)
+        groupBox1Layout.addItem(spacer1,2,1)
 
         tabLayout.addMultiCellWidget(self.groupBox1,1,1,0,2)
 
@@ -148,8 +148,8 @@ class AdminPanelDesign(QWidget):
         groupBox3Layout.addWidget(self.textLabel6,1,0)
 
         tabLayout_2.addWidget(self.groupBox3,1,0)
-        spacer_3 = QSpacerItem(21,141,QSizePolicy.Minimum,QSizePolicy.Expanding)
-        tabLayout_2.addItem(spacer_3,3,0)
+        spacer3 = QSpacerItem(21,141,QSizePolicy.Minimum,QSizePolicy.Expanding)
+        tabLayout_2.addItem(spacer3,3,0)
 
         self.groupBox4 = QGroupBox(self.tab_2,"groupBox4")
         self.groupBox4.setColumnLayout(0,Qt.Vertical)

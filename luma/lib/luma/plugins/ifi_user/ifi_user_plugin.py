@@ -18,6 +18,7 @@ class TaskPlugin(object):
     def __init__(self):
         self.pluginName = "Ifi user creation"
         self.pluginPath = ""
+        self.pluginIconPath = ""
         self.pluginWidget = None
 
     def postprocess (self):
@@ -25,7 +26,7 @@ class TaskPlugin(object):
 
     def get_icon(self):
         try:
-            iconPixmap = QPixmap (os.path.join(self.pluginPath, "icons", "ifi_user.png"))
+            iconPixmap = QPixmap (os.path.join(self.pluginIconPath, "ifi_user.png"))
         except:
             print "Debug: Icon konnte nicht geöffnet werden"
 

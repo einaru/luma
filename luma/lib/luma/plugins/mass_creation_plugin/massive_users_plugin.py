@@ -19,6 +19,7 @@ class TaskPlugin(object):
     def __init__(self):
         self.pluginName = "Massive user creation"
         self.pluginPath = ""
+        self.pluginIconPath = ""
         self.pluginWidget = None
 
 ###############################################################################
@@ -31,7 +32,7 @@ class TaskPlugin(object):
     def get_icon(self):
         iconPixmap = None
         try:
-            iconPixmap = QPixmap (os.path.join (self.pluginPath, "icons", "massive_users.png"))
+            iconPixmap = QPixmap (os.path.join (self.pluginIconPath, "massive_users.png"))
         except:
             print "Debug: Icon konnte nicht geöffnet werden"
 

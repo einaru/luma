@@ -26,5 +26,6 @@ class BrowserView(QWidget):
         self.entryList = BrowserWidget(self.splitter)
         self.entryList.setMinimumWidth(200)
         self.entryView = ObjectWidget(self.splitter)
-        self.connect (self.entryList, PYSIGNAL("ldap_result"), self.entryView.init_view)
+        self.connect (self.entryList, PYSIGNAL("ldap_result"), self.entryView.initView)
+        self.connect (self.entryList, PYSIGNAL("about_to_change"), self.entryView.aboutToChange)
         self.mainLayout.addWidget(self.splitter)

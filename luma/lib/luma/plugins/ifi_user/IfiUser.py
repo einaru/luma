@@ -43,7 +43,7 @@ class IfiUser(IfiUserDesign):
 
     
         # set gui busy
-        environment.set_busy()
+        environment.setBusy()
         
         # get data for usernames
         userName = str(self.usernameEdit.text())
@@ -59,7 +59,7 @@ class IfiUser(IfiUserDesign):
         freeNumbers = self.get_uidNumbers(uidNumMin, uidNumMax, usedNumbers, 1)
         
         if freeNumbers == None:
-            environment.set_busy(0)
+            environment.setBusy(0)
             QMessageBox.warning(None,
                 self.trUtf8("Conflict"),
                 self.trUtf8("""There are not enough user ids left! 
@@ -108,7 +108,7 @@ Try increasing the uidNumber range or delete some users from the subtree."""),
             pwGenerator = CryptPwGenerator()
             self.passwordEdit.clear()
             
-            environment.update_ui()
+            environment.updateUI()
                 
             uidNumber = freeNumbers[0]
             passwordClear, passwordCrypt = pwGenerator.get_random_password()
@@ -152,7 +152,7 @@ Try increasing the uidNumber range or delete some users from the subtree."""),
             self.passwordEdit.append(userName + ': ' + passwordClear + "\n") 
                 
             ldapServerObject.unbind()
-            environment.set_busy(0)
+            environment.setBusy(0)
             QMessageBox.information(None,
                 self.trUtf8("Success"),
                 self.trUtf8("""User was created successfully."""),
@@ -163,7 +163,7 @@ Try increasing the uidNumber range or delete some users from the subtree."""),
         except ldap.LDAPError, e:
             print "Error during LDAP request"
             print "Reason: " + str(e)
-            environment.set_busy(0)
+            environment.setBusy(0)
             QMessageBox.critical(None,
                 self.trUtf8("Error"),
                 self.trUtf8("""Error during creation of user.\nReason: """ + 
@@ -198,7 +198,7 @@ Try increasing the uidNumber range or delete some users from the subtree."""),
         searchResult = []
 
         # set gui busy
-        environment.set_busy(1)
+        environment.setBusy(1)
 
         try:
             ldapServerObject = ldap.open(serverMeta.host)
@@ -215,7 +215,7 @@ Try increasing the uidNumber range or delete some users from the subtree."""),
 
             while 1:
                 # keep UI responsive
-                environment.update_ui()
+                environment.updateUI()
 
                 result_type, result_data = ldapServerObject.result(resultId, 0)
                 if (result_data == []):
@@ -231,7 +231,7 @@ Try increasing the uidNumber range or delete some users from the subtree."""),
             print "Error during LDAP request"
             print "Reason: " + str(e)
         
-        environment.set_busy(0)
+        environment.setBusy(0)
         
         numberList = []
         for x in searchResult:

@@ -18,6 +18,7 @@ class TaskPlugin(object):
     def __init__(self):
         self.pluginName = "Create Config File"
         self.pluginPath = ""
+        self.pluginIconPath = ""
         self.pluginWidget = None
 
     def postprocess (self):
@@ -25,7 +26,7 @@ class TaskPlugin(object):
 
     def get_icon(self):
         try:
-            iconPixmap = QPixmap (os.path.join (self.pluginPath, "icons", "config.png"))
+            iconPixmap = QPixmap (os.path.join (self.pluginIconPath, "config.png"))
         except:
             print "Debug: Icon konnte nicht geöffnet werden"
 

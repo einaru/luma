@@ -18,6 +18,7 @@ class TaskPlugin(object):
 
     def __init__(self):
         self.pluginName = "Addressbook"
+        self.pluginIconPath = ""
         self.pluginPath = ""
         self.pluginWidget = None
 
@@ -30,7 +31,7 @@ class TaskPlugin(object):
         
     def get_icon(self):
         try:
-            iconPixmap = QPixmap (os.path.join(self.pluginPath, "icons", "addressbook.png"))
+            iconPixmap = QPixmap (os.path.join(self.pluginIconPath, "addressbook.png"))
         except:
             print "Debug: Icon konnte nicht geöffnet werden"
 

@@ -18,6 +18,7 @@ class TaskPlugin(object):
     def __init__(self):
         self.pluginName = "Admin Utilities"
         self.pluginPath = ""
+        self.pluginIconPath = ""
         self.pluginWidget = None
 
     def postprocess (self):
@@ -25,7 +26,7 @@ class TaskPlugin(object):
 
     def get_icon(self):
         try:
-            iconPixmap = QPixmap (os.path.join (self.pluginPath, "icons", "admin_utils.png"))
+            iconPixmap = QPixmap (os.path.join(self.pluginIconPath, "admin_utils.png"))
         except:
             print "Debug: Icon could not be opened."
 

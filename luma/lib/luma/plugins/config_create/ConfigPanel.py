@@ -27,7 +27,7 @@ class ConfigPanel(ConfigPanelDesign):
         self.setName("PLUGIN_CONFIG_CREATOR")
 
         self.prefix = os.path.join( environment.lumaInstallationPrefix, "lib", "luma", "plugins", "config_create")
-        iconPrefix = self.prefix + "/icons"
+        iconPrefix = os.path.join( environment.lumaInstallationPrefix, "share", "luma", "icons", "plugins", "config_create")
 
         helpIcon = QPixmap(os.path.join(iconPrefix, "help.png"))
         

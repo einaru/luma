@@ -30,7 +30,7 @@ class ContactWizard(ContactWizardDesign):
     def __init__(self,parent = None,name = None,modal = 0,fl = 0):
         ContactWizardDesign.__init__(self,parent,name,modal,fl)
 
-        iconDir = os.path.join (environment.lumaInstallationPrefix, "lib", "luma", "plugins", "addressbook", "icons")
+        iconDir = os.path.join (environment.lumaInstallationPrefix, "share", "luma", "icons","plugins", "addressbook")
         locationIcon = QPixmap (os.path.join (iconDir, "location.png"))
         self.locationLabel.setPixmap(locationIcon)
         
@@ -80,15 +80,22 @@ class ContactWizard(ContactWizardDesign):
                 
         values['objectClass'] = self.availableClasses
         if (values.has_key('cn')) and (values.has_key('sn')):
+            description = lumaStringEncode(strip(values['cn'][0]))
+            description = description + strftime('%Y%m%d') + str(random.randint(0,100))
+            values['description'] = description
+            
             modlist = ldap.modlist.addModlist(values)
             serverList = ServerList()
             serverList.readServerList()
             serverMeta = serverList.get_serverobject(self.locationServer)
             connection = LumaConnection(serverMeta)
-            tmpString = lumaStringEncode(strip(values['cn'][0]))
-            tmpString = tmpString + strftime('%Y%m%d') + str(random.randint(0,100))
-            dn = 'cn=' + tmpString + ',' + self.locationDN.encode('utf-8')
+    
+            dn = 'description=' + description + ',' + self.locationDN.encode('utf-8')
+
+            connection.bind()
             result = connection.add_s(dn, modlist)
+            connection.unbind()
+            
             if result == 1:
                 self.accept()
             elif result == 0:
@@ -145,12 +152,12 @@ class ContactWizard(ContactWizardDesign):
     def getAllowedAttributes(self):
         objectClassList = ['person', 'organizationalPerson', 'inetOrgPerson', 'evolutionPerson']
         metaInfo = ObjectClassAttributeInfo()
-        metaInfo.set_server(self.locationServer)
-        metaInfo.retrieve_info_from_server()
+        metaInfo.setServer(self.locationServer)
         
         self.availableClasses = []
         for x in objectClassList:
-            if metaInfo.has_objectClass(x):
+            if metaInfo.hasObjectClass(x):
                 self.availableClasses.append(x)
         
-        return metaInfo.get_all_attributes(objectClassList)
+        must, may = metaInfo.getAllAttributes(objectClassList)
+        return must | may

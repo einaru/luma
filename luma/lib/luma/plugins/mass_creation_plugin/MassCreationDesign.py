@@ -2,8 +2,8 @@
 
 # Form implementation generated from reading ui file '/home/wido/src/luma/lib/luma/plugins/mass_creation_plugin/MassCreationDesign.ui'
 #
-# Created: Tue Feb 3 23:58:04 2004
-#      by: The PyQt User Interface Compiler (pyuic) 3.10
+# Created: Thu Mar 25 00:32:40 2004
+#      by: The PyQt User Interface Compiler (pyuic) 3.11
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -364,8 +364,8 @@ class MassCreationDesign(QWidget):
         self.textLabel3 = QLabel(self.groupBox1,"textLabel3")
 
         groupBox1Layout.addWidget(self.textLabel3,1,4)
-        spacer = QSpacerItem(51,21,QSizePolicy.Expanding,QSizePolicy.Minimum)
-        groupBox1Layout.addItem(spacer,1,3)
+        spacer1 = QSpacerItem(51,21,QSizePolicy.Expanding,QSizePolicy.Minimum)
+        groupBox1Layout.addItem(spacer1,1,3)
 
         self.prefixEdit = QLineEdit(self.groupBox1,"prefixEdit")
 
@@ -396,8 +396,8 @@ class MassCreationDesign(QWidget):
 
         groupBox5Layout.addWidget(self.browseButton,0,2)
         tabLayout.addWidget(self.groupBox5)
-        spacer_2 = QSpacerItem(21,131,QSizePolicy.Minimum,QSizePolicy.Expanding)
-        tabLayout.addItem(spacer_2)
+        spacer2 = QSpacerItem(21,131,QSizePolicy.Minimum,QSizePolicy.Expanding)
+        tabLayout.addItem(spacer2)
         self.tabWidget2.insertTab(self.tab,QString(""))
 
         self.tab_2 = QWidget(self.tabWidget2,"tab_2")
@@ -503,8 +503,8 @@ class MassCreationDesign(QWidget):
 
         groupBox2Layout.addWidget(self.uidNumMaxBox,1,1)
         tabLayout_2.addWidget(self.groupBox2)
-        spacer_3 = QSpacerItem(21,20,QSizePolicy.Minimum,QSizePolicy.Expanding)
-        tabLayout_2.addItem(spacer_3)
+        spacer4 = QSpacerItem(21,20,QSizePolicy.Minimum,QSizePolicy.Expanding)
+        tabLayout_2.addItem(spacer4)
         self.tabWidget2.insertTab(self.tab_2,QString(""))
 
         self.tab_3 = QWidget(self.tabWidget2,"tab_3")
@@ -522,8 +522,8 @@ class MassCreationDesign(QWidget):
         self.pushButton1 = QPushButton(self,"pushButton1")
 
         MassCreationDesignLayout.addWidget(self.pushButton1,1,2)
-        spacer_4 = QSpacerItem(130,21,QSizePolicy.Expanding,QSizePolicy.Minimum)
-        MassCreationDesignLayout.addItem(spacer_4,1,1)
+        spacer4_2 = QSpacerItem(130,21,QSizePolicy.Expanding,QSizePolicy.Minimum)
+        MassCreationDesignLayout.addItem(spacer4_2,1,1)
 
         self.languageChange()
 

@@ -2,8 +2,8 @@
 
 # Form implementation generated from reading ui file '/home/wido/src/luma/lib/luma/plugins/addressbook/MailDialog.ui'
 #
-# Created: Tue Feb 3 23:58:07 2004
-#      by: The PyQt User Interface Compiler (pyuic) 3.10
+# Created: Thu Mar 25 00:32:43 2004
+#      by: The PyQt User Interface Compiler (pyuic) 3.11
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -22,26 +22,14 @@ class MailDialog(QDialog):
 
         MailDialogLayout = QGridLayout(self,1,1,11,6,"MailDialogLayout")
 
-        self.okButton = QPushButton(self,"okButton")
-        self.okButton.setDefault(1)
-
-        MailDialogLayout.addWidget(self.okButton,3,2)
-
-        self.cancelButton = QPushButton(self,"cancelButton")
-        self.cancelButton.setAutoDefault(0)
-
-        MailDialogLayout.addWidget(self.cancelButton,3,1)
-        spacer = QSpacerItem(311,21,QSizePolicy.Expanding,QSizePolicy.Minimum)
-        MailDialogLayout.addItem(spacer,3,0)
-
         self.line7 = QFrame(self,"line7")
         self.line7.setFrameShape(QFrame.HLine)
         self.line7.setFrameShadow(QFrame.Sunken)
         self.line7.setFrameShape(QFrame.HLine)
 
-        MailDialogLayout.addMultiCellWidget(self.line7,2,2,0,2)
-        spacer_2 = QSpacerItem(21,231,QSizePolicy.Minimum,QSizePolicy.Expanding)
-        MailDialogLayout.addItem(spacer_2,1,1)
+        MailDialogLayout.addWidget(self.line7,2,0)
+        spacer10 = QSpacerItem(21,16,QSizePolicy.Minimum,QSizePolicy.Expanding)
+        MailDialogLayout.addItem(spacer10,1,0)
 
         layout2 = QHBoxLayout(None,0,6,"layout2")
 
@@ -56,11 +44,25 @@ class MailDialog(QDialog):
         self.mailEdit = QLineEdit(self,"mailEdit")
         layout2.addWidget(self.mailEdit)
 
-        MailDialogLayout.addMultiCellLayout(layout2,0,0,0,2)
+        MailDialogLayout.addLayout(layout2,0,0)
+
+        layout2_2 = QHBoxLayout(None,0,6,"layout2_2")
+        spacer9 = QSpacerItem(311,21,QSizePolicy.Expanding,QSizePolicy.Minimum)
+        layout2_2.addItem(spacer9)
+
+        self.okButton = QPushButton(self,"okButton")
+        self.okButton.setDefault(1)
+        layout2_2.addWidget(self.okButton)
+
+        self.cancelButton = QPushButton(self,"cancelButton")
+        self.cancelButton.setAutoDefault(0)
+        layout2_2.addWidget(self.cancelButton)
+
+        MailDialogLayout.addLayout(layout2_2,3,0)
 
         self.languageChange()
 
-        self.resize(QSize(411,112).expandedTo(self.minimumSizeHint()))
+        self.resize(QSize(412,116).expandedTo(self.minimumSizeHint()))
         self.clearWState(Qt.WState_Polished)
 
         self.connect(self.cancelButton,SIGNAL("clicked()"),self,SLOT("reject()"))
@@ -72,12 +74,12 @@ class MailDialog(QDialog):
 
     def languageChange(self):
         self.setCaption(self.__tr("New mail"))
+        self.mailIconLabel.setText(self.__tr("ML","DO NOT TRANSLATE"))
+        self.textLabel2.setText(self.__tr("New mail:"))
         self.okButton.setText(self.__tr("&Ok"))
         self.okButton.setAccel(self.__tr("Alt+O"))
         self.cancelButton.setText(self.__tr("&Cancel"))
         self.cancelButton.setAccel(self.__tr("Alt+C"))
-        self.mailIconLabel.setText(self.__tr("ML"))
-        self.textLabel2.setText(self.__tr("New mail:"))
 
 
     def __tr(self,s,c = None):

@@ -2,8 +2,8 @@
 
 # Form implementation generated from reading ui file '/home/wido/src/luma/lib/luma/plugins/template_plugin/TemplateFormDesign.ui'
 #
-# Created: Wed Feb 4 00:10:55 2004
-#      by: The PyQt User Interface Compiler (pyuic) 3.10
+# Created: Tue Mar 30 20:12:09 2004
+#      by: The PyQt User Interface Compiler (pyuic) 3.11
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -47,8 +47,8 @@ class TemplateFormDesign(QWidget):
         self.classButton = QPushButton(self.groupBox2,"classButton")
 
         groupBox2Layout.addWidget(self.classButton,1,1)
-        spacer = QSpacerItem(220,20,QSizePolicy.Expanding,QSizePolicy.Minimum)
-        groupBox2Layout.addItem(spacer,1,0)
+        spacer6 = QSpacerItem(220,20,QSizePolicy.Expanding,QSizePolicy.Minimum)
+        groupBox2Layout.addItem(spacer6,1,0)
 
         TemplateFormDesignLayout.addWidget(self.groupBox2,1,0)
 
@@ -63,8 +63,8 @@ class TemplateFormDesign(QWidget):
         self.delTemplateButton = QPushButton(self.groupBox2_2,"delTemplateButton")
 
         groupBox2_2Layout.addWidget(self.delTemplateButton,1,1)
-        spacer_2 = QSpacerItem(31,7,QSizePolicy.Minimum,QSizePolicy.Preferred)
-        groupBox2_2Layout.addItem(spacer_2,2,1)
+        spacer5 = QSpacerItem(31,7,QSizePolicy.Minimum,QSizePolicy.Preferred)
+        groupBox2_2Layout.addItem(spacer5,2,1)
 
         self.addTemplateButton = QPushButton(self.groupBox2_2,"addTemplateButton")
 

@@ -2,8 +2,8 @@
 
 # Form implementation generated from reading ui file '/home/wido/src/luma/lib/luma/plugins/ifi_user/IfiUserDesign.ui'
 #
-# Created: Tue Feb 3 23:58:05 2004
-#      by: The PyQt User Interface Compiler (pyuic) 3.10
+# Created: Thu Mar 25 00:32:40 2004
+#      by: The PyQt User Interface Compiler (pyuic) 3.11
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -395,8 +395,8 @@ class IfiUserDesign(QWidget):
 
         groupBox5Layout.addWidget(self.browseButton,0,2)
         tabLayout.addWidget(self.groupBox5)
-        spacer = QSpacerItem(31,91,QSizePolicy.Minimum,QSizePolicy.Expanding)
-        tabLayout.addItem(spacer)
+        spacer8 = QSpacerItem(31,91,QSizePolicy.Minimum,QSizePolicy.Expanding)
+        tabLayout.addItem(spacer8)
         self.tabWidget2.insertTab(self.tab,QString(""))
 
         self.tab_2 = QWidget(self.tabWidget2,"tab_2")
@@ -508,8 +508,8 @@ class IfiUserDesign(QWidget):
 
         groupBox2Layout.addWidget(self.uidNumMaxBox,1,1)
         tabLayout_2.addWidget(self.groupBox2)
-        spacer_2 = QSpacerItem(21,101,QSizePolicy.Minimum,QSizePolicy.Expanding)
-        tabLayout_2.addItem(spacer_2)
+        spacer9 = QSpacerItem(21,101,QSizePolicy.Minimum,QSizePolicy.Expanding)
+        tabLayout_2.addItem(spacer9)
         self.tabWidget2.insertTab(self.tab_2,QString(""))
 
         self.tab_3 = QWidget(self.tabWidget2,"tab_3")
@@ -527,8 +527,8 @@ class IfiUserDesign(QWidget):
         self.pushButton1 = QPushButton(self,"pushButton1")
 
         IfiUserDesignLayout.addWidget(self.pushButton1,1,1)
-        spacer_3 = QSpacerItem(301,21,QSizePolicy.Expanding,QSizePolicy.Minimum)
-        IfiUserDesignLayout.addItem(spacer_3,1,0)
+        spacer3 = QSpacerItem(301,21,QSizePolicy.Expanding,QSizePolicy.Minimum)
+        IfiUserDesignLayout.addItem(spacer3,1,0)
 
         self.languageChange()
 

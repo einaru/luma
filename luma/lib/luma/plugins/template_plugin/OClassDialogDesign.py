@@ -2,8 +2,8 @@
 
 # Form implementation generated from reading ui file '/home/wido/src/luma/lib/luma/plugins/template_plugin/OClassDialogDesign.ui'
 #
-# Created: Tue Feb 3 23:58:03 2004
-#      by: The PyQt User Interface Compiler (pyuic) 3.10
+# Created: Tue Mar 30 20:13:10 2004
+#      by: The PyQt User Interface Compiler (pyuic) 3.11
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -62,18 +62,20 @@ class OClassDialogDesign(QDialog):
         self.deleteButton.setSizePolicy(QSizePolicy(1,1,0,0,self.deleteButton.sizePolicy().hasHeightForWidth()))
 
         OClassDialogDesignLayout.addWidget(self.deleteButton,2,2)
-        spacer = QSpacerItem(250,21,QSizePolicy.Expanding,QSizePolicy.Minimum)
-        OClassDialogDesignLayout.addItem(spacer,2,1)
+        spacer6_2 = QSpacerItem(250,21,QSizePolicy.Expanding,QSizePolicy.Minimum)
+        OClassDialogDesignLayout.addItem(spacer6_2,2,1)
+
+        layout1 = QHBoxLayout(None,0,6,"layout1")
+        spacer4 = QSpacerItem(330,21,QSizePolicy.Expanding,QSizePolicy.Minimum)
+        layout1.addItem(spacer4)
 
         self.okButton = QPushButton(self,"okButton")
-
-        OClassDialogDesignLayout.addWidget(self.okButton,4,3)
+        layout1.addWidget(self.okButton)
 
         self.cancelButton = QPushButton(self,"cancelButton")
+        layout1.addWidget(self.cancelButton)
 
-        OClassDialogDesignLayout.addWidget(self.cancelButton,4,2)
-        spacer_2 = QSpacerItem(340,21,QSizePolicy.Expanding,QSizePolicy.Minimum)
-        OClassDialogDesignLayout.addMultiCell(spacer_2,4,4,0,1)
+        OClassDialogDesignLayout.addMultiCellLayout(layout1,4,4,0,3)
 
         self.languageChange()
 

@@ -2,8 +2,8 @@
 
 # Form implementation generated from reading ui file '/home/wido/src/luma/lib/luma/plugins/config_create/ConfigError.ui'
 #
-# Created: Tue Feb 3 23:58:02 2004
-#      by: The PyQt User Interface Compiler (pyuic) 3.10
+# Created: Thu Mar 25 00:32:38 2004
+#      by: The PyQt User Interface Compiler (pyuic) 3.11
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -377,8 +377,8 @@ class ConfigError(QDialog):
         self.suffixIcon.setScaledContents(1)
 
         ConfigErrorLayout.addWidget(self.suffixIcon,0,0)
-        spacer = QSpacerItem(41,131,QSizePolicy.Minimum,QSizePolicy.Expanding)
-        ConfigErrorLayout.addItem(spacer,1,0)
+        spacer3 = QSpacerItem(41,131,QSizePolicy.Minimum,QSizePolicy.Expanding)
+        ConfigErrorLayout.addItem(spacer3,1,0)
 
         self.errorLabel = QLabel(self,"errorLabel")
 
@@ -387,8 +387,8 @@ class ConfigError(QDialog):
         self.pushButton6 = QPushButton(self,"pushButton6")
 
         ConfigErrorLayout.addWidget(self.pushButton6,3,2)
-        spacer_2 = QSpacerItem(261,31,QSizePolicy.Expanding,QSizePolicy.Minimum)
-        ConfigErrorLayout.addMultiCell(spacer_2,3,3,0,1)
+        spacer2 = QSpacerItem(261,31,QSizePolicy.Expanding,QSizePolicy.Minimum)
+        ConfigErrorLayout.addMultiCell(spacer2,3,3,0,1)
 
         self.line1 = QFrame(self,"line1")
         self.line1.setFrameShape(QFrame.HLine)

@@ -2,8 +2,8 @@
 
 # Form implementation generated from reading ui file '/home/wido/src/luma/lib/luma/plugins/addressbook/AddressbookSettingsDesign.ui'
 #
-# Created: Tue Feb 3 23:58:06 2004
-#      by: The PyQt User Interface Compiler (pyuic) 3.10
+# Created: Thu Mar 25 00:32:41 2004
+#      by: The PyQt User Interface Compiler (pyuic) 3.11
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -48,14 +48,14 @@ class AddressbookSettingsDesign(QWidget):
         self.deleteButton = QPushButton(self.tab,"deleteButton")
 
         tabLayout.addWidget(self.deleteButton,0,2)
-        spacer = QSpacerItem(41,260,QSizePolicy.Minimum,QSizePolicy.Expanding)
-        tabLayout.addItem(spacer,1,2)
+        spacer6 = QSpacerItem(41,260,QSizePolicy.Minimum,QSizePolicy.Expanding)
+        tabLayout.addItem(spacer6,1,2)
         self.tabWidget2.insertTab(self.tab,QString(""))
         AddressbookSettingsDesignLayout.addWidget(self.tabWidget2)
 
         layout2 = QHBoxLayout(None,0,6,"layout2")
-        spacer_2 = QSpacerItem(300,20,QSizePolicy.Expanding,QSizePolicy.Minimum)
-        layout2.addItem(spacer_2)
+        Horizontal_Spacing2 = QSpacerItem(300,20,QSizePolicy.Expanding,QSizePolicy.Minimum)
+        layout2.addItem(Horizontal_Spacing2)
 
         self.saveButton = QPushButton(self,"saveButton")
         self.saveButton.setFocusPolicy(QPushButton.ClickFocus)

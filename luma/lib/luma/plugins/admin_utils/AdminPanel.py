@@ -25,7 +25,7 @@ class AdminPanel(AdminPanelDesign):
     def __init__(self,parent = None,name = None,fl = 0):
         AdminPanelDesign.__init__(self,parent,name,fl)
         
-        iconDir = os.path.join (environment.lumaInstallationPrefix, "lib", "luma", "plugins", "admin_utils", "icons")
+        iconDir = os.path.join (environment.lumaInstallationPrefix, "share", "luma", "icons", "plugins", "admin_utils")
         secureIcon = QPixmap (os.path.join (iconDir, "secure.png"))
         dateIcon = QPixmap (os.path.join (iconDir, "date.png"))
         
@@ -42,7 +42,7 @@ class AdminPanel(AdminPanelDesign):
         #self.randomPwEdit.setText(password)
         #self.randomCryptEdit.setText(cryptPw)
         
-        tmpPassword = self.pwHandler.create_random_string(8)
+        tmpPassword = self.pwHandler.create_random_string(10)
         self.randomPwEdit.setText(tmpPassword)
         method = str(self.methodBox.currentText())
         password = mkpasswd(tmpPassword, 3, method)

@@ -2,8 +2,8 @@
 
 # Form implementation generated from reading ui file '/home/wido/src/luma/lib/luma/plugins/addressbook/AddressbookWidgetDesign.ui'
 #
-# Created: Sun Feb 8 01:02:29 2004
-#      by: The PyQt User Interface Compiler (pyuic) 3.10
+# Created: Thu Mar 25 00:32:41 2004
+#      by: The PyQt User Interface Compiler (pyuic) 3.11
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -42,8 +42,8 @@ class AddressbookWidgetDesign(QWidget):
         self.textLabel3_2.setAlignment(QLabel.AlignVCenter | QLabel.AlignRight)
 
         tabLayout.addMultiCellWidget(self.textLabel3_2,1,1,1,3)
-        spacer = QSpacerItem(21,58,QSizePolicy.Minimum,QSizePolicy.Expanding)
-        tabLayout.addMultiCell(spacer,1,2,0,0)
+        spacer1 = QSpacerItem(21,58,QSizePolicy.Minimum,QSizePolicy.Expanding)
+        tabLayout.addMultiCell(spacer1,1,2,0,0)
 
         self.textLabel2_2 = QLabel(self.tab,"textLabel2_2")
         self.textLabel2_2.setAlignment(QLabel.AlignVCenter | QLabel.AlignRight)
@@ -69,8 +69,8 @@ class AddressbookWidgetDesign(QWidget):
         self.cnEdit.setReadOnly(1)
 
         tabLayout.addMultiCellWidget(self.cnEdit,0,0,4,6)
-        spacer_2 = QSpacerItem(21,50,QSizePolicy.Minimum,QSizePolicy.Expanding)
-        tabLayout.addItem(spacer_2,10,5)
+        spacer4_2 = QSpacerItem(21,50,QSizePolicy.Minimum,QSizePolicy.Expanding)
+        tabLayout.addItem(spacer4_2,10,5)
 
         self.categoryEdit = QLineEdit(self.tab,"categoryEdit")
 
@@ -122,8 +122,8 @@ class AddressbookWidgetDesign(QWidget):
         self.mailLabel.setMinimumSize(QSize(32,32))
 
         tabLayout.addMultiCellWidget(self.mailLabel,4,4,0,1)
-        spacer_3 = QSpacerItem(50,21,QSizePolicy.Minimum,QSizePolicy.Minimum)
-        tabLayout.addItem(spacer_3,4,2)
+        spacer7 = QSpacerItem(50,21,QSizePolicy.Minimum,QSizePolicy.Minimum)
+        tabLayout.addItem(spacer7,4,2)
 
         self.textLabel10 = QLabel(self.tab,"textLabel10")
         self.textLabel10.setSizePolicy(QSizePolicy(0,5,0,0,self.textLabel10.sizePolicy().hasHeightForWidth()))
@@ -135,8 +135,8 @@ class AddressbookWidgetDesign(QWidget):
         self.mailBox.setEditable(1)
 
         tabLayout.addMultiCellWidget(self.mailBox,4,4,4,6)
-        spacer_4 = QSpacerItem(101,21,QSizePolicy.Expanding,QSizePolicy.Minimum)
-        tabLayout.addItem(spacer_4,5,4)
+        spacer8 = QSpacerItem(101,21,QSizePolicy.Expanding,QSizePolicy.Minimum)
+        tabLayout.addItem(spacer8,5,4)
 
         self.deleteMailButton = QPushButton(self.tab,"deleteMailButton")
 
@@ -201,8 +201,8 @@ class AddressbookWidgetDesign(QWidget):
         tabLayout_2.addMultiCellWidget(self.line4,4,4,0,2)
 
         layout2 = QGridLayout(None,1,1,0,6,"layout2")
-        spacer_5 = QSpacerItem(21,30,QSizePolicy.Minimum,QSizePolicy.Expanding)
-        layout2.addItem(spacer_5,2,1)
+        spacer5 = QSpacerItem(21,30,QSizePolicy.Minimum,QSizePolicy.Expanding)
+        layout2.addItem(spacer5,2,1)
 
         self.addressBox = QComboBox(0,self.tab_2,"addressBox")
 
@@ -314,8 +314,8 @@ class AddressbookWidgetDesign(QWidget):
         self.notesLabel.setMaximumSize(QSize(32,32))
 
         TabPageLayout.addWidget(self.notesLabel,7,0)
-        spacer_6 = QSpacerItem(21,110,QSizePolicy.Minimum,QSizePolicy.Expanding)
-        TabPageLayout.addItem(spacer_6,8,0)
+        spacer6_2 = QSpacerItem(21,110,QSizePolicy.Minimum,QSizePolicy.Expanding)
+        TabPageLayout.addItem(spacer6_2,8,0)
 
         self.line6 = QFrame(self.TabPage,"line6")
         self.line6.setFrameShape(QFrame.HLine)

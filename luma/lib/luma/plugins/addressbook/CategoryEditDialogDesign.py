@@ -2,8 +2,8 @@
 
 # Form implementation generated from reading ui file '/home/wido/src/luma/lib/luma/plugins/addressbook/CategoryEditDialogDesign.ui'
 #
-# Created: Tue Feb 3 23:58:07 2004
-#      by: The PyQt User Interface Compiler (pyuic) 3.10
+# Created: Thu Mar 25 00:32:43 2004
+#      by: The PyQt User Interface Compiler (pyuic) 3.11
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -26,24 +26,14 @@ class CategoryEditDialogDesign(QDialog):
         self.categoryView.addColumn(self.__tr("Categories"))
         self.categoryView.setResizeMode(QListView.AllColumns)
 
-        CategoryEditDialogDesignLayout.addMultiCellWidget(self.categoryView,3,3,0,2)
+        CategoryEditDialogDesignLayout.addWidget(self.categoryView,0,0)
 
         self.line11 = QFrame(self,"line11")
         self.line11.setFrameShape(QFrame.HLine)
         self.line11.setFrameShadow(QFrame.Sunken)
         self.line11.setFrameShape(QFrame.HLine)
 
-        CategoryEditDialogDesignLayout.addMultiCellWidget(self.line11,5,5,0,2)
-        spacer = QSpacerItem(321,31,QSizePolicy.Expanding,QSizePolicy.Minimum)
-        CategoryEditDialogDesignLayout.addMultiCell(spacer,6,7,0,0)
-
-        self.cancelButton = QPushButton(self,"cancelButton")
-
-        CategoryEditDialogDesignLayout.addWidget(self.cancelButton,7,1)
-
-        self.okButton = QPushButton(self,"okButton")
-
-        CategoryEditDialogDesignLayout.addWidget(self.okButton,7,2)
+        CategoryEditDialogDesignLayout.addWidget(self.line11,2,0)
 
         layout4 = QHBoxLayout(None,0,6,"layout4")
 
@@ -53,11 +43,23 @@ class CategoryEditDialogDesign(QDialog):
         self.addButton = QPushButton(self,"addButton")
         layout4.addWidget(self.addButton)
 
-        CategoryEditDialogDesignLayout.addMultiCellLayout(layout4,4,4,0,2)
+        CategoryEditDialogDesignLayout.addLayout(layout4,1,0)
+
+        layout2 = QHBoxLayout(None,0,6,"layout2")
+        spacer12 = QSpacerItem(120,20,QSizePolicy.Expanding,QSizePolicy.Minimum)
+        layout2.addItem(spacer12)
+
+        self.okButton = QPushButton(self,"okButton")
+        layout2.addWidget(self.okButton)
+
+        self.cancelButton = QPushButton(self,"cancelButton")
+        layout2.addWidget(self.cancelButton)
+
+        CategoryEditDialogDesignLayout.addLayout(layout2,3,0)
 
         self.languageChange()
 
-        self.resize(QSize(309,308).expandedTo(self.minimumSizeHint()))
+        self.resize(QSize(291,376).expandedTo(self.minimumSizeHint()))
         self.clearWState(Qt.WState_Polished)
 
         self.connect(self.cancelButton,SIGNAL("clicked()"),self,SLOT("reject()"))
@@ -69,14 +71,14 @@ class CategoryEditDialogDesign(QDialog):
     def languageChange(self):
         self.setCaption(self.__tr("Edit categories"))
         self.categoryView.header().setLabel(0,self.__tr("Categories"))
-        self.cancelButton.setText(self.__tr("&Cancel"))
-        self.cancelButton.setAccel(self.__tr("Alt+C"))
-        self.okButton.setText(self.__tr("&Ok"))
-        self.okButton.setAccel(self.__tr("Alt+O"))
         self.deleteButton.setText(self.__tr("&Delete"))
         self.deleteButton.setAccel(self.__tr("Alt+D"))
         self.addButton.setText(self.__tr("&Add"))
         self.addButton.setAccel(self.__tr("Alt+A"))
+        self.okButton.setText(self.__tr("&Ok"))
+        self.okButton.setAccel(self.__tr("Alt+O"))
+        self.cancelButton.setText(self.__tr("&Cancel"))
+        self.cancelButton.setAccel(self.__tr("Alt+C"))
 
 
     def deleteCategory(self):

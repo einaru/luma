@@ -2,8 +2,8 @@
 
 # Form implementation generated from reading ui file '/home/wido/src/luma/lib/luma/plugins/config_create/ConfigPanelDesign.ui'
 #
-# Created: Tue Feb 3 23:58:03 2004
-#      by: The PyQt User Interface Compiler (pyuic) 3.10
+# Created: Thu Mar 25 00:32:38 2004
+#      by: The PyQt User Interface Compiler (pyuic) 3.11
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -390,8 +390,8 @@ class ConfigPanelDesign(QWidget):
         self.helpAdminName = QPushButton(self.groupBox4,"helpAdminName")
 
         layout5.addWidget(self.helpAdminName,1,1)
-        spacer = QSpacerItem(58,20,QSizePolicy.Minimum,QSizePolicy.Minimum)
-        layout5.addItem(spacer,3,1)
+        spacer4 = QSpacerItem(58,20,QSizePolicy.Minimum,QSizePolicy.Minimum)
+        layout5.addItem(spacer4,3,1)
 
         self.helpPassword = QPushButton(self.groupBox4,"helpPassword")
 
@@ -424,8 +424,8 @@ class ConfigPanelDesign(QWidget):
         layout10.addWidget(self.fileChooserButton)
         groupBox5Layout.addLayout(layout10)
         ConfigPanelDesignLayout.addWidget(self.groupBox5)
-        spacer_2 = QSpacerItem(21,191,QSizePolicy.Minimum,QSizePolicy.Expanding)
-        ConfigPanelDesignLayout.addItem(spacer_2)
+        spacer1 = QSpacerItem(21,191,QSizePolicy.Minimum,QSizePolicy.Expanding)
+        ConfigPanelDesignLayout.addItem(spacer1)
 
         self.finishConfig = QPushButton(self,"finishConfig")
         ConfigPanelDesignLayout.addWidget(self.finishConfig)

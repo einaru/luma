@@ -2,8 +2,8 @@
 
 # Form implementation generated from reading ui file '/home/wido/src/luma/lib/luma/plugins/addressbook/NameDialog.ui'
 #
-# Created: Sat Feb 7 19:40:24 2004
-#      by: The PyQt User Interface Compiler (pyuic) 3.10
+# Created: Thu Mar 25 00:32:42 2004
+#      by: The PyQt User Interface Compiler (pyuic) 3.11
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -22,28 +22,14 @@ class NameDialog(QDialog):
 
         NameDialogLayout = QGridLayout(self,1,1,11,6,"NameDialogLayout")
 
-        self.cancelButton = QPushButton(self,"cancelButton")
-        self.cancelButton.setSizePolicy(QSizePolicy(0,0,0,0,self.cancelButton.sizePolicy().hasHeightForWidth()))
-        self.cancelButton.setAutoDefault(0)
-
-        NameDialogLayout.addWidget(self.cancelButton,3,1)
-        spacer = QSpacerItem(271,21,QSizePolicy.Expanding,QSizePolicy.Minimum)
-        NameDialogLayout.addItem(spacer,3,0)
-
-        self.okButton = QPushButton(self,"okButton")
-        self.okButton.setSizePolicy(QSizePolicy(0,0,0,0,self.okButton.sizePolicy().hasHeightForWidth()))
-        self.okButton.setDefault(1)
-
-        NameDialogLayout.addWidget(self.okButton,3,2)
-
         self.line7 = QFrame(self,"line7")
         self.line7.setFrameShape(QFrame.HLine)
         self.line7.setFrameShadow(QFrame.Sunken)
         self.line7.setFrameShape(QFrame.HLine)
 
-        NameDialogLayout.addMultiCellWidget(self.line7,2,2,0,2)
-        spacer_2 = QSpacerItem(31,61,QSizePolicy.Minimum,QSizePolicy.Expanding)
-        NameDialogLayout.addItem(spacer_2,1,1)
+        NameDialogLayout.addWidget(self.line7,2,0)
+        spacer10 = QSpacerItem(31,16,QSizePolicy.Minimum,QSizePolicy.Expanding)
+        NameDialogLayout.addItem(spacer10,1,0)
 
         layout3 = QGridLayout(None,1,1,0,6,"layout3")
 
@@ -95,11 +81,27 @@ class NameDialog(QDialog):
 
         layout3.addWidget(self.textLabel2,1,0)
 
-        NameDialogLayout.addMultiCellLayout(layout3,0,0,0,2)
+        NameDialogLayout.addLayout(layout3,0,0)
+
+        layout2 = QHBoxLayout(None,0,6,"layout2")
+        spacer9 = QSpacerItem(271,21,QSizePolicy.Expanding,QSizePolicy.Minimum)
+        layout2.addItem(spacer9)
+
+        self.okButton = QPushButton(self,"okButton")
+        self.okButton.setSizePolicy(QSizePolicy(0,0,0,0,self.okButton.sizePolicy().hasHeightForWidth()))
+        self.okButton.setDefault(1)
+        layout2.addWidget(self.okButton)
+
+        self.cancelButton = QPushButton(self,"cancelButton")
+        self.cancelButton.setSizePolicy(QSizePolicy(0,0,0,0,self.cancelButton.sizePolicy().hasHeightForWidth()))
+        self.cancelButton.setAutoDefault(0)
+        layout2.addWidget(self.cancelButton)
+
+        NameDialogLayout.addLayout(layout2,3,0)
 
         self.languageChange()
 
-        self.resize(QSize(280,238).expandedTo(self.minimumSizeHint()))
+        self.resize(QSize(321,238).expandedTo(self.minimumSizeHint()))
         self.clearWState(Qt.WState_Polished)
 
         self.connect(self.cancelButton,SIGNAL("clicked()"),self,SLOT("reject()"))
@@ -115,10 +117,6 @@ class NameDialog(QDialog):
 
     def languageChange(self):
         self.setCaption(self.__tr("Full name"))
-        self.cancelButton.setText(self.__tr("&Cancel"))
-        self.cancelButton.setAccel(self.__tr("Alt+C"))
-        self.okButton.setText(self.__tr("&Ok"))
-        self.okButton.setAccel(self.__tr("Alt+O"))
         self.suffixBox.clear()
         self.suffixBox.insertItem(QString.null)
         self.suffixBox.insertItem(self.__tr("Sr."))
@@ -140,6 +138,10 @@ class NameDialog(QDialog):
         self.textLabel4.setText(self.__tr("<b>Last:</b>"))
         QToolTip.add(self.textLabel4,self.__tr("This attribute must be set."))
         self.textLabel2.setText(self.__tr("First:"))
+        self.okButton.setText(self.__tr("&Ok"))
+        self.okButton.setAccel(self.__tr("Alt+O"))
+        self.cancelButton.setText(self.__tr("&Cancel"))
+        self.cancelButton.setAccel(self.__tr("Alt+C"))
 
 
     def __tr(self,s,c = None):

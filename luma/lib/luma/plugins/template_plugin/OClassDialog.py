@@ -51,11 +51,11 @@ class OClassDialog(OClassDialogDesign):
             tmpDict['CLASSNAME'] = tmpText
             tmpDict['ATTRIBUTES'] = []
             for x in attrDict['MUST']:
-                isSingle = self.objectInfo.is_single(x)
+                isSingle = self.objectInfo.isSingle(x)
                 tmpDict['ATTRIBUTES'].append({'NAME' : x, 'MUST': 1 , 'SINGLE': isSingle, 'SHOW': 0 })
 
             for x in attrDict['MAY']:
-                isSingle = self.objectInfo.is_single(x)
+                isSingle = self.objectInfo.isSingle(x)
                 tmpDict['ATTRIBUTES'].append({'NAME' : x, 'MUST': 0 , 'SINGLE': isSingle, 'SHOW': 0 })
 
             self.template.tData.append(tmpDict)
@@ -102,7 +102,7 @@ class OClassDialog(OClassDialogDesign):
     def server_selected(self, serverName):
         self.classBox.clear()
         self.objectInfo = ObjectClassAttributeInfo(str(serverName))
-        self.objectInfo.retrieve_info_from_server()
+        #self.objectInfo.retrieveInfoFromServer()
 
         tmpList = self.objectInfo.OBJECTCLASSES.keys()
         tmpList.sort()

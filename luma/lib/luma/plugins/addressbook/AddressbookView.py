@@ -42,7 +42,7 @@ class AddressbookView(QWidget):
         containerLayout.addMultiCellWidget(self.addressBookWidget,0,0,0,1)
         
         #self.addressBookWidget = AddressbookWidget(self.splitter)
-        self.connect (self.entryList, PYSIGNAL("ldap_result"), self.addressBookWidget.init_view)
+        self.connect (self.entryList, PYSIGNAL("ldap_result"), self.addressBookWidget.initView)
         self.connect(self.entryList, PYSIGNAL("server_changed"), self.addressBookWidget.serverChanged)
         self.connect(self.addressBookWidget, PYSIGNAL("contact_saved"), self.entryList.search)
         self.connect(self.saveButton,SIGNAL("clicked()"), self.addressBookWidget.saveEntry)
@@ -68,7 +68,7 @@ class AddressbookView(QWidget):
 ###############################################################################
 
     def createDialog(self):
-        iconDir = os.path.join (environment.lumaInstallationPrefix, "lib", "luma", "plugins", "addressbook", "icons")
+        iconDir = os.path.join (environment.lumaInstallationPrefix, "share", "luma", "icons", "plugins", "addressbook")
         locationIcon = QPixmap (os.path.join (iconDir, "location.png"))
         dialog = ContactWizard()
         dialog.locationLabel.setPixmap(locationIcon)
