@@ -6,28 +6,46 @@
         <translation>Sobre Luma</translation>
     </message>
     <message>
+        <source>About</source>
+        <translation>Sobre</translation>
+    </message>
+    <message>
+        <source>Authors</source>
+        <translation>Autores</translation>
+    </message>
+    <message>
+        <source>License Agreement</source>
+        <translation>Acordo de Licenciamento</translation>
+    </message>
+    <message>
+        <source>&amp;Close</source>
+        <translation>&amp;Fechar</translation>
+    </message>
+    <message>
+        <source>Credits</source>
+        <translation>Créditos</translation>
+    </message>
+    <message>
+        <source>&lt;font size=&quot;+2&quot;&gt;&lt;b&gt;Luma 1.2 &lt;/b&gt;&lt;/font&gt;</source>
+        <translation type="unfinished">&lt;font size=&quot;+2&quot;&gt;&lt;b&gt;Luma 1.2 &lt;/b&gt;&lt;/font&gt;</translation>
+    </message>
+    <message>
         <source>&lt;p align=&quot;center&quot;&gt;LDAP management made easy.&lt;br&gt;&lt;br&gt;
 (c) 2003, Wido Depping&lt;br&gt;&lt;br&gt;
 http://luma.sourceforge.net
 &lt;/p&gt;</source>
-        <translation>&lt;p align=&quot;center&quot;&gt;Gerenciamento LDAP fácil.&lt;br&gt;&lt;br&gt;(new line)
+        <comment>DO NOT TRANSLATE</comment>
+        <translation type="unfinished">&lt;p align=&quot;center&quot;&gt;Gerenciamento LDAP fácil.&lt;br&gt;&lt;br&gt;(new line)
 (c) 2003, Wido Depping&lt;br&gt;&lt;br&gt;(new line)
 http://luma.sourceforge.net(new line)
 &lt;/p&gt;</translation>
     </message>
     <message>
-        <source>About</source>
-        <translation>Sobre</translation>
-    </message>
-    <message>
         <source>Wido Depping&lt;br&gt;
 &lt;blockquote&gt;widod@users.sourceforge.net&lt;/blockquote&gt;</source>
-        <translation>Wido Depping&lt;br&gt;(new line)
+        <comment>DO NOT TRANSLATE</comment>
+        <translation type="unfinished">Wido Depping&lt;br&gt;(new line)
 &lt;blockquote&gt;widod@users.sourceforge.net&lt;/blockquote&gt;</translation>
-    </message>
-    <message>
-        <source>Authors</source>
-        <translation>Autores</translation>
     </message>
     <message>
         <source>This program is distributed under the terms of the GPL v2.
@@ -313,19 +331,8 @@ POSSIBILITY OF SUCH DAMAGES.
 
 <byte value="x9"/><byte value="x9"/>     END OF TERMS AND CONDITIONS
 </source>
-        <translation></translation>
-    </message>
-    <message>
-        <source>License Agreement</source>
-        <translation>Acordo de Licenciamento</translation>
-    </message>
-    <message>
-        <source>&amp;Close</source>
-        <translation>&amp;Fechar</translation>
-    </message>
-    <message>
-        <source>Credits</source>
-        <translation>Créditos</translation>
+        <comment>DO NOT TRANSLATE</comment>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Bjorn Ove Grotan
@@ -345,11 +352,8 @@ My mentor and UI tester :)
 
 Eric Cote
 Testing guinea pig for python 2.3</source>
+        <comment>DO NOT TRANSLATE</comment>
         <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&lt;font size=&quot;+2&quot;&gt;&lt;b&gt;Luma 1.2 &lt;/b&gt;&lt;/font&gt;</source>
-        <translation type="unfinished">&lt;font size=&quot;+2&quot;&gt;&lt;b&gt;Luma 1.2 &lt;/b&gt;&lt;/font&gt;</translation>
     </message>
 </context>
 <context>
@@ -363,40 +367,48 @@ Testing guinea pig for python 2.3</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Add</source>
-        <translation type="unfinished">Adicionar</translation>
-    </message>
-    <message>
-        <source>Delete</source>
-        <translation type="unfinished">Deletar</translation>
-    </message>
-    <message>
         <source>Search Criteria</source>
         <translation type="unfinished">Critério de Busca</translation>
     </message>
     <message>
-        <source>Save</source>
-        <translation type="unfinished">Salvar</translation>
+        <source>&amp;Add</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Alt+A</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Delete</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Alt+D</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Save</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Alt+S</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>AddressbookWidget</name>
+    <message>
+        <source>Error</source>
+        <translation type="unfinished">Erro</translation>
+    </message>
+    <message>
+        <source>Could not save contact data. 
+Please read console output for more information.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>AddressbookWidgetDesign</name>
-    <message>
-        <source>Form1</source>
-        <translation type="unfinished">Form1</translation>
-    </message>
-    <message>
-        <source>Save</source>
-        <translation type="unfinished">Salvar</translation>
-    </message>
-    <message>
-        <source>P</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Full Name ...</source>
-        <translation type="unfinished"></translation>
-    </message>
     <message>
         <source>Job title:</source>
         <translation type="unfinished"></translation>
@@ -406,36 +418,12 @@ Testing guinea pig for python 2.3</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Categories ...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>CL</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Web page address:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>WP</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Ma</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Email:</source>
         <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Delete</source>
-        <translation type="unfinished">Deletar</translation>
-    </message>
-    <message>
-        <source>Add</source>
-        <translation type="unfinished">Adicionar</translation>
     </message>
     <message>
         <source>General</source>
@@ -447,10 +435,6 @@ Testing guinea pig for python 2.3</source>
     </message>
     <message>
         <source>Business Fax:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Ph</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -474,15 +458,7 @@ Testing guinea pig for python 2.3</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>HI</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Phone/Address</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>ME</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -499,10 +475,6 @@ Testing guinea pig for python 2.3</source>
     </message>
     <message>
         <source>Manager&apos;s name:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>WO</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -526,10 +498,6 @@ Testing guinea pig for python 2.3</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>NO</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Notes:</source>
         <translation type="unfinished"></translation>
     </message>
@@ -537,48 +505,105 @@ Testing guinea pig for python 2.3</source>
         <source>Details</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>&amp;Save</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Alt+S</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>P</source>
+        <comment>DO NOT TRANSLATE</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Full Name...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Alt+F</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Categories...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Alt+C</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>CL</source>
+        <comment>DO NOT TRANSLATE</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>WP</source>
+        <comment>DO NOT TRANSLATE</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ma</source>
+        <comment>DO NOT TRANSLATE</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Delete</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Alt+D</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Add...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Alt+A</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ph</source>
+        <comment>DO NOT TRANSLATE</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>HI</source>
+        <comment>DO NOT TRANSLATE</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>ME</source>
+        <comment>DO NOT TRANSLATE</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>WO</source>
+        <comment>DO NOT TRANSLATE</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>NO</source>
+        <comment>DO NOT TRANSLATE</comment>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>AdminPanelDesign</name>
     <message>
-        <source>Form1</source>
-        <translation>Form1</translation>
-    </message>
-    <message>
-        <source>Create random Password</source>
-        <translation>Criar Senha randômica</translation>
-    </message>
-    <message>
         <source>Password:</source>
         <translation>Senha:</translation>
-    </message>
-    <message>
-        <source>Create</source>
-        <translation>Criar</translation>
     </message>
     <message>
         <source>Encrypt Password</source>
         <translation>Criptografar Senha</translation>
     </message>
     <message>
-        <source>Date to Unix</source>
-        <translation>Data para Unix</translation>
-    </message>
-    <message>
         <source>Date:</source>
         <translation>Data:</translation>
-    </message>
-    <message>
-        <source>Convert</source>
-        <translation>Converter</translation>
-    </message>
-    <message>
-        <source>Days since birth of Unix:</source>
-        <translation>Dias desde o nascimento do Unix:</translation>
-    </message>
-    <message>
-        <source>Duration to Unix</source>
-        <translation>Duração para Unix</translation>
     </message>
     <message>
         <source>Days from now:</source>
@@ -591,10 +616,6 @@ Testing guinea pig for python 2.3</source>
     <message>
         <source>Encrypted Password:</source>
         <translation>Senha criptografada:</translation>
-    </message>
-    <message>
-        <source>Encrypt</source>
-        <translation>Criptografar</translation>
     </message>
     <message>
         <source>Encrypted password:</source>
@@ -625,31 +646,85 @@ Testing guinea pig for python 2.3</source>
         <translation>Senhas</translation>
     </message>
     <message>
+        <source>&amp;Encrypt</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Alt+E</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Create Random Password</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Create</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Alt+C</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Secure</source>
+        <comment>DO NOT TRANSLATE</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Date</source>
+        <comment>DO NOT TRANSLATE</comment>
         <translation type="unfinished">Data</translation>
+    </message>
+    <message>
+        <source>Date to Unix Date</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Convert</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Unix Date:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Duration to Unix Date</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>C&amp;onvert</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Alt+O</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>BaseSelectorDesign</name>
     <message>
-        <source>Available Base DN</source>
+        <source>Select Base DN</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Select Base DN:</source>
+        <source>Available Base DNs:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Cancel</source>
-        <translation type="unfinished">Cancelar</translation>
+        <source>&amp;Cancel</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Ok</source>
-        <translation type="unfinished">Ok</translation>
+        <source>Alt+C</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Ok</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Alt+O</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -767,20 +842,36 @@ Veja mensagens na console para maiores informações.</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Cancel</source>
-        <translation type="unfinished">Cancelar</translation>
+        <source>&amp;Cancel</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Ok</source>
-        <translation type="unfinished">Ok</translation>
+        <source>Alt+C</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Delete</source>
-        <translation type="unfinished">Deletar</translation>
+        <source>&amp;Ok</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Add</source>
-        <translation type="unfinished">Adicionar</translation>
+        <source>Alt+O</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Delete</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Alt+D</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Add</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Alt+A</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -790,8 +881,12 @@ Veja mensagens na console para maiores informações.</translation>
         <translation>Info</translation>
     </message>
     <message>
-        <source>Ok</source>
-        <translation>Ok</translation>
+        <source>&amp;Ok</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Alt+O</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -832,16 +927,8 @@ Veja mensagens na console para maiores informações.</translation>
 <context>
     <name>ConfigPanelDesign</name>
     <message>
-        <source>Form3</source>
-        <translation>Form3</translation>
-    </message>
-    <message>
         <source>Server Options</source>
         <translation>Opções do Servidor</translation>
-    </message>
-    <message>
-        <source>Suffix:</source>
-        <translation>Sufixo:</translation>
     </message>
     <message>
         <source>Admin Name:</source>
@@ -872,8 +959,16 @@ Veja mensagens na console para maiores informações.</translation>
         <translation>Salvar para arquivo:</translation>
     </message>
     <message>
-        <source>Finish</source>
-        <translation>Terminar</translation>
+        <source>Base DN:</source>
+        <translation type="unfinished">DN Base:</translation>
+    </message>
+    <message>
+        <source>&amp;Finish</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Alt+F</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -943,16 +1038,28 @@ Veja mensagens na console para maiores informações.</translation>
         <translation>MarcaTexto:</translation>
     </message>
     <message>
-        <source>Delete</source>
-        <translation>Deletar</translation>
+        <source>&amp;Delete</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Add to Bookmarks</source>
-        <translation>Adicionar ao MarcaTexto</translation>
+        <source>Alt+D</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Ok</source>
-        <translation>Ok</translation>
+        <source>&amp;Add to Bookmarks</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Alt+A</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Ok</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Alt+O</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1002,10 +1109,6 @@ Tente aumentar a faixa de uidNumber ou delete alguns usuários da subtree.</tran
 </context>
 <context>
     <name>IfiUserDesign</name>
-    <message>
-        <source>Form1</source>
-        <translation type="unfinished">Form1</translation>
-    </message>
     <message>
         <source>General Information</source>
         <translation type="unfinished"></translation>
@@ -1063,10 +1166,6 @@ Tente aumentar a faixa de uidNumber ou delete alguns usuários da subtree.</tran
         <translation type="unfinished">Shell de login:</translation>
     </message>
     <message>
-        <source>Home directory:</source>
-        <translation type="unfinished">Diretório pessoal:</translation>
-    </message>
-    <message>
         <source>Group Id:</source>
         <translation type="unfinished">Id de Grupo:</translation>
     </message>
@@ -1099,8 +1198,20 @@ Tente aumentar a faixa de uidNumber ou delete alguns usuários da subtree.</tran
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Create</source>
-        <translation type="unfinished">Criar</translation>
+        <source>IfiUserDesign</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Home:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Create</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Alt+C</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1114,39 +1225,59 @@ Tente aumentar a faixa de uidNumber ou delete alguns usuários da subtree.</tran
         <translation>Idioma:</translation>
     </message>
     <message>
-        <source>Cancel</source>
-        <translation>Cancelar</translation>
+        <source>&amp;Ok</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Ok</source>
-        <translation>Ok</translation>
+        <source>Alt+O</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Cancel</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Alt+C</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>LumaIconViewDesign</name>
     <message>
-        <source>Form1</source>
-        <translation type="unfinished">Form1</translation>
-    </message>
-    <message>
-        <source>Delete</source>
-        <translation type="unfinished">Deletar</translation>
-    </message>
-    <message>
-        <source>Add</source>
-        <translation type="unfinished">Adicionar</translation>
-    </message>
-    <message>
-        <source>Go</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Search:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Server:</source>
         <translation type="unfinished">Servidor:</translation>
+    </message>
+    <message>
+        <source>LumaIconViewDesign</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Add...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Alt+A</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Go</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Alt+G</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Filter:</source>
+        <translation type="unfinished">Filtro:</translation>
+    </message>
+    <message>
+        <source>&amp;Delete</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Alt+D</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1156,19 +1287,27 @@ Tente aumentar a faixa de uidNumber ou delete alguns usuários da subtree.</tran
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Ok</source>
-        <translation type="unfinished">Ok</translation>
-    </message>
-    <message>
-        <source>Cancel</source>
-        <translation type="unfinished">Cancelar</translation>
-    </message>
-    <message>
         <source>ML</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <source>New mail:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Ok</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Alt+O</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Cancel</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Alt+C</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1194,28 +1333,12 @@ Tente aumentar a faixa de uidNumber ou delete alguns usuários da subtree.</tran
         <translation>Área de Trabalho</translation>
     </message>
     <message>
-        <source>About Luma</source>
-        <translation>Sobre Luma</translation>
-    </message>
-    <message>
-        <source>Edit Server List</source>
-        <translation>Editar a Lista de Servidores</translation>
-    </message>
-    <message>
         <source>Exit</source>
         <translation>Sair</translation>
     </message>
     <message>
-        <source>Configure Plugins</source>
-        <translation>Configurar Plugins</translation>
-    </message>
-    <message>
         <source>Reload Plugins</source>
         <translation>Recarregar Plugins</translation>
-    </message>
-    <message>
-        <source>Language</source>
-        <translation>Idioma</translation>
     </message>
     <message>
         <source>Settings</source>
@@ -1231,6 +1354,50 @@ Tente aumentar a faixa de uidNumber ou delete alguns usuários da subtree.</tran
     </message>
     <message>
         <source>Hide/Show pluginlist</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>About Luma...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ctrl+A</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Edit Server List...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ctrl+E</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ctrl+X</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Configure Plugins...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ctrl+C</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ctrl+R</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Language...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ctrl+L</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ctrl+P</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1281,10 +1448,6 @@ Tente aumentar a faixa de uidNumber ou deletar alguns usuários da subtree.</tra
 </context>
 <context>
     <name>MassCreationDesign</name>
-    <message>
-        <source>Form1</source>
-        <translation>Form1</translation>
-    </message>
     <message>
         <source>Usernames</source>
         <translation>Nomes de usuários</translation>
@@ -1342,20 +1505,12 @@ Tente aumentar a faixa de uidNumber ou deletar alguns usuários da subtree.</tra
         <translation>Shell de login:</translation>
     </message>
     <message>
-        <source>Home directory:</source>
-        <translation>Diretório pessoal:</translation>
-    </message>
-    <message>
         <source>Group Id:</source>
         <translation>Id de Grupo:</translation>
     </message>
     <message>
         <source>Select group from LDAP</source>
         <translation>Selecione um grupo do LDAP</translation>
-    </message>
-    <message>
-        <source>uid number range</source>
-        <translation>faixa de números uid</translation>
     </message>
     <message>
         <source>Account Settings</source>
@@ -1370,8 +1525,20 @@ Tente aumentar a faixa de uidNumber ou deletar alguns usuários da subtree.</tra
         <translation>Senhas da conta</translation>
     </message>
     <message>
-        <source>Create</source>
-        <translation>Criar</translation>
+        <source>Home prefix:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Uid number range</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Create</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Alt+C</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1379,14 +1546,6 @@ Tente aumentar a faixa de uidNumber ou deletar alguns usuários da subtree.</tra
     <message>
         <source>Full name</source>
         <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Cancel</source>
-        <translation type="unfinished">Cancelar</translation>
-    </message>
-    <message>
-        <source>Ok</source>
-        <translation type="unfinished">Ok</translation>
     </message>
     <message>
         <source>Sr.</source>
@@ -1452,20 +1611,28 @@ Tente aumentar a faixa de uidNumber ou deletar alguns usuários da subtree.</tra
         <source>First:</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>&amp;Cancel</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Alt+C</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Ok</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Alt+O</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>NewCategoryDialog</name>
     <message>
         <source>Add category</source>
         <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Ok</source>
-        <translation type="unfinished">Ok</translation>
-    </message>
-    <message>
-        <source>Cancel</source>
-        <translation type="unfinished">Cancelar</translation>
     </message>
     <message>
         <source>Add Category:</source>
@@ -1555,6 +1722,22 @@ Tente aumentar a faixa de uidNumber ou deletar alguns usuários da subtree.</tra
         <source>Waiting</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>&amp;Ok</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Alt+O</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Cancel</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Alt+C</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>OClassDialogDesign</name>
@@ -1571,40 +1754,48 @@ Tente aumentar a faixa de uidNumber ou deletar alguns usuários da subtree.</tra
         <translation>Luma</translation>
     </message>
     <message>
-        <source>Ok</source>
-        <translation>Ok</translation>
-    </message>
-    <message>
-        <source>Cancel</source>
-        <translation>Cancelar</translation>
-    </message>
-    <message>
-        <source>ObjectClass:</source>
-        <translation>Classe de Objeto:</translation>
-    </message>
-    <message>
         <source>Server:</source>
         <translation>Servidor:</translation>
     </message>
     <message>
-        <source>Add ObjectClass</source>
-        <translation>Adicionar Classe de Objeto</translation>
+        <source>Object Class:</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Delete selected Class</source>
-        <translation>Deletar Classe selecionada</translation>
+        <source>&amp;Add</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Alt+A</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Delete</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Alt+D</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Ok</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Alt+O</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Cancel</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Alt+C</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>ObjectWidget</name>
-    <message>
-        <source>Apply</source>
-        <translation>Aplicar</translation>
-    </message>
-    <message>
-        <source>Refresh</source>
-        <translation>Refresh</translation>
-    </message>
     <message>
         <source>&lt;b&gt;Attributes&lt;/b&gt;</source>
         <translation>&lt;b&gt;Atributos&lt;/b&gt;</translation>
@@ -1614,7 +1805,15 @@ Tente aumentar a faixa de uidNumber ou deletar alguns usuários da subtree.</tra
         <translation>&lt;b&gt;Valores&lt;/b&gt;</translation>
     </message>
     <message>
-        <source>Display all</source>
+        <source>&amp;Apply</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Display all</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Refresh</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1625,15 +1824,20 @@ Tente aumentar a faixa de uidNumber ou deletar alguns usuários da subtree.</tra
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Icon</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Information about this plugin:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Close</source>
+        <source>Icon</source>
+        <comment>DO NOT TRANSLATE</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Close</source>
+        <translation type="unfinished">&amp;Fechar</translation>
+    </message>
+    <message>
+        <source>Alt+C</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1648,24 +1852,24 @@ Tente aumentar a faixa de uidNumber ou deletar alguns usuários da subtree.</tra
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Close</source>
+        <source>Plugin Settings</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Plugin settings</source>
-        <translation type="unfinished"></translation>
+        <source>Settings</source>
+        <translation type="unfinished">Ajustes</translation>
     </message>
     <message>
-        <source>Settings Box</source>
+        <source>&amp;Close</source>
+        <translation type="unfinished">&amp;Fechar</translation>
+    </message>
+    <message>
+        <source>Alt+C</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>SearchFormDesign</name>
-    <message>
-        <source>Form1</source>
-        <translation>Form1</translation>
-    </message>
     <message>
         <source>Search</source>
         <translation>Busca</translation>
@@ -1679,12 +1883,20 @@ Tente aumentar a faixa de uidNumber ou deletar alguns usuários da subtree.</tra
         <translation>Servidor:</translation>
     </message>
     <message>
-        <source>Wizard</source>
-        <translation>Wizard</translation>
+        <source>&amp;Wizard</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Start</source>
-        <translation>Iniciar</translation>
+        <source>Alt+W</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Start</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Alt+S</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1712,13 +1924,6 @@ Tente aumentar a faixa de uidNumber ou deletar alguns usuários da subtree.</tra
     <message>
         <source>Cancel</source>
         <translation>Cancelar</translation>
-    </message>
-</context>
-<context>
-    <name>SearchResultViewDesign</name>
-    <message>
-        <source>Form1</source>
-        <translation>Form1</translation>
     </message>
 </context>
 <context>
@@ -1757,32 +1962,8 @@ Please see console output for more information.</source>
         <translation>Lista de Servidores</translation>
     </message>
     <message>
-        <source>Add Server</source>
-        <translation>Adicionar Servidor</translation>
-    </message>
-    <message>
-        <source>Delete Server</source>
-        <translation>Deletar Servidor</translation>
-    </message>
-    <message>
-        <source>Modify Server</source>
-        <translation>Modificar Servidor</translation>
-    </message>
-    <message>
-        <source>Server Info</source>
-        <translation>Informações sobre o Servidor</translation>
-    </message>
-    <message>
         <source>Server Name:</source>
         <translation>Nome do Servidor:</translation>
-    </message>
-    <message>
-        <source>LDAP Host:</source>
-        <translation>Host LDAP:</translation>
-    </message>
-    <message>
-        <source>LDAP Port:</source>
-        <translation>Porta LDAP:</translation>
     </message>
     <message>
         <source>Use TLS</source>
@@ -1793,16 +1974,8 @@ Please see console output for more information.</source>
         <translation>Transport Layer Security de Usuário</translation>
     </message>
     <message>
-        <source>Server Options</source>
-        <translation>Opções do Servidor</translation>
-    </message>
-    <message>
         <source>Base DN:</source>
         <translation>DN Base:</translation>
-    </message>
-    <message>
-        <source>Authentification Method</source>
-        <translation>Método de Autenticação</translation>
     </message>
     <message>
         <source>Bind anonymously</source>
@@ -1817,15 +1990,63 @@ Please see console output for more information.</source>
         <translation>Senha para Bind:</translation>
     </message>
     <message>
-        <source>Connection Options</source>
-        <translation>Opções de Conexão</translation>
+        <source>&amp;Close</source>
+        <translation type="unfinished">&amp;Fechar</translation>
     </message>
     <message>
-        <source>Save Server Information</source>
-        <translation>Salvar Informações do Servidor</translation>
+        <source>Alt+C</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Close</source>
+        <source>&amp;Add</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Alt+A</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Delete</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Alt+D</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Modify</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Alt+M</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Server Information</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Save</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Alt+S</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Host:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Port:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Network Options</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Authentification Options</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1871,31 +2092,47 @@ Please see console output for more information.</source>
         <translation>Nome do modelo</translation>
     </message>
     <message>
-        <source>Form2</source>
-        <translation>Form2</translation>
-    </message>
-    <message>
         <source>Template Info</source>
         <translation>Informações do Modelo</translation>
     </message>
     <message>
-        <source>Edit</source>
-        <translation>Editar</translation>
-    </message>
-    <message>
-        <source>Save </source>
-        <translation>Salvar</translation>
-    </message>
-    <message>
-        <source>Add</source>
-        <translation>Adicionar</translation>
-    </message>
-    <message>
-        <source>Delete</source>
-        <translation>Deletar</translation>
-    </message>
-    <message>
         <source>Template List</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>TemplateFormDesign</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Save</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Alt+S</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Edit...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Alt+E</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Delete</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Alt+D</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Add...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Alt+A</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

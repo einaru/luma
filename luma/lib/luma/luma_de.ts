@@ -6,23 +6,41 @@
         <translation>Über Luma</translation>
     </message>
     <message>
-        <source>&lt;p align=&quot;center&quot;&gt;LDAP management made easy.&lt;br&gt;&lt;br&gt;
-(c) 2003, Wido Depping&lt;br&gt;&lt;br&gt;
-http://luma.sourceforge.net
-&lt;/p&gt;</source>
-        <translation></translation>
-    </message>
-    <message>
         <source>About</source>
         <translation>Über</translation>
     </message>
     <message>
-        <source>Wido Depping&lt;br&gt;
-&lt;blockquote&gt;widod@users.sourceforge.net&lt;/blockquote&gt;</source>
+        <source>Authors</source>
+        <translation>Autoren</translation>
+    </message>
+    <message>
+        <source>License Agreement</source>
+        <translation>Lizenbedingungen</translation>
+    </message>
+    <message>
+        <source>&amp;Close</source>
+        <translation>&amp;Schließen</translation>
+    </message>
+    <message>
+        <source>Credits</source>
+        <translation>Danksagungen</translation>
+    </message>
+    <message>
+        <source>&lt;font size=&quot;+2&quot;&gt;&lt;b&gt;Luma 1.2 &lt;/b&gt;&lt;/font&gt;</source>
         <translation></translation>
     </message>
     <message>
-        <source>Authors</source>
+        <source>&lt;p align=&quot;center&quot;&gt;LDAP management made easy.&lt;br&gt;&lt;br&gt;
+(c) 2003, Wido Depping&lt;br&gt;&lt;br&gt;
+http://luma.sourceforge.net
+&lt;/p&gt;</source>
+        <comment>DO NOT TRANSLATE</comment>
+        <translation></translation>
+    </message>
+    <message>
+        <source>Wido Depping&lt;br&gt;
+&lt;blockquote&gt;widod@users.sourceforge.net&lt;/blockquote&gt;</source>
+        <comment>DO NOT TRANSLATE</comment>
         <translation></translation>
     </message>
     <message>
@@ -309,18 +327,7 @@ POSSIBILITY OF SUCH DAMAGES.
 
 <byte value="x9"/><byte value="x9"/>     END OF TERMS AND CONDITIONS
 </source>
-        <translation></translation>
-    </message>
-    <message>
-        <source>License Agreement</source>
-        <translation></translation>
-    </message>
-    <message>
-        <source>&amp;Close</source>
-        <translation>&amp;Schließen</translation>
-    </message>
-    <message>
-        <source>Credits</source>
+        <comment>DO NOT TRANSLATE</comment>
         <translation></translation>
     </message>
     <message>
@@ -341,240 +348,258 @@ My mentor and UI tester :)
 
 Eric Cote
 Testing guinea pig for python 2.3</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&lt;font size=&quot;+2&quot;&gt;&lt;b&gt;Luma 1.2 &lt;/b&gt;&lt;/font&gt;</source>
-        <translation type="unfinished"></translation>
+        <comment>DO NOT TRANSLATE</comment>
+        <translation></translation>
     </message>
 </context>
 <context>
     <name>AddressbookSettingsDesign</name>
     <message>
         <source>Attributes</source>
-        <translation type="unfinished"></translation>
+        <translation>Attribute</translation>
     </message>
     <message>
         <source>Addressbook Settings</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Add</source>
-        <translation type="unfinished">Hinzufügen</translation>
-    </message>
-    <message>
-        <source>Delete</source>
-        <translation type="unfinished">Löschen</translation>
+        <translation>Addressbuch Einstellungen</translation>
     </message>
     <message>
         <source>Search Criteria</source>
-        <translation type="unfinished">Suchkriterium</translation>
+        <translation>Suchkriterium</translation>
     </message>
     <message>
-        <source>Save</source>
-        <translation type="unfinished">Speichern</translation>
+        <source>&amp;Add</source>
+        <translation>&amp;Hinzufügen</translation>
+    </message>
+    <message>
+        <source>Alt+A</source>
+        <translation>Alt+H</translation>
+    </message>
+    <message>
+        <source>&amp;Delete</source>
+        <translation>&amp;Löschen</translation>
+    </message>
+    <message>
+        <source>Alt+D</source>
+        <translation>Alt+L</translation>
+    </message>
+    <message>
+        <source>&amp;Save</source>
+        <translation>&amp;Speichern</translation>
+    </message>
+    <message>
+        <source>Alt+S</source>
+        <translation>Alt+S</translation>
+    </message>
+</context>
+<context>
+    <name>AddressbookWidget</name>
+    <message>
+        <source>Error</source>
+        <translation>Fehler</translation>
+    </message>
+    <message>
+        <source>Could not save contact data. 
+Please read console output for more information.</source>
+        <translation>Kontaktdaten konnten nicht gespeichert werden. Siehe Konsolenausgabe für mehr Details.</translation>
     </message>
 </context>
 <context>
     <name>AddressbookWidgetDesign</name>
     <message>
-        <source>Form1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Save</source>
-        <translation type="unfinished">Speichern</translation>
-    </message>
-    <message>
-        <source>P</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Full Name ...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Job title:</source>
-        <translation type="unfinished"></translation>
+        <translation>Beruf:</translation>
     </message>
     <message>
         <source>Organisation:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Categories ...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>CL</source>
-        <translation type="unfinished"></translation>
+        <translation>Organisation:</translation>
     </message>
     <message>
         <source>Web page address:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>WP</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Ma</source>
-        <translation type="unfinished"></translation>
+        <translation>Homepage:</translation>
     </message>
     <message>
         <source>Email:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Delete</source>
-        <translation type="unfinished">Löschen</translation>
-    </message>
-    <message>
-        <source>Add</source>
-        <translation type="unfinished">Hinzufügen</translation>
+        <translation>Email:</translation>
     </message>
     <message>
         <source>General</source>
-        <translation type="unfinished"></translation>
+        <translation>Allgemeines</translation>
     </message>
     <message>
         <source>Mobile:</source>
-        <translation type="unfinished"></translation>
+        <translation>Handy:</translation>
     </message>
     <message>
         <source>Business Fax:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Ph</source>
-        <translation type="unfinished"></translation>
+        <translation>Fax:</translation>
     </message>
     <message>
         <source>Work:</source>
-        <translation type="unfinished"></translation>
+        <translation>Arbeit:</translation>
     </message>
     <message>
         <source>Home:</source>
-        <translation type="unfinished"></translation>
+        <translation>Privat:</translation>
     </message>
     <message>
         <source>Business</source>
-        <translation type="unfinished"></translation>
+        <translation>Arbeit</translation>
     </message>
     <message>
         <source>Home</source>
-        <translation type="unfinished"></translation>
+        <translation>Privat</translation>
     </message>
     <message>
         <source>Other</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>HI</source>
-        <translation type="unfinished"></translation>
+        <translation>Andere</translation>
     </message>
     <message>
         <source>Phone/Address</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>ME</source>
-        <translation type="unfinished"></translation>
+        <translation>Telefon/Anschrift</translation>
     </message>
     <message>
         <source>Profession:</source>
-        <translation type="unfinished"></translation>
+        <translation>Beruf:</translation>
     </message>
     <message>
         <source>Office:</source>
-        <translation type="unfinished"></translation>
+        <translation>Raum:</translation>
     </message>
     <message>
         <source>Assistant&apos;s name:</source>
-        <translation type="unfinished"></translation>
+        <translation>Assistent:</translation>
     </message>
     <message>
         <source>Manager&apos;s name:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>WO</source>
-        <translation type="unfinished"></translation>
+        <translation>Vorgesetzter:</translation>
     </message>
     <message>
         <source>Departement:</source>
-        <translation type="unfinished"></translation>
+        <translation>Abteilung:</translation>
     </message>
     <message>
         <source>Spouse:</source>
-        <translation type="unfinished"></translation>
+        <translation>Ehepartner:</translation>
     </message>
     <message>
         <source>Nickname:</source>
-        <translation type="unfinished"></translation>
+        <translation>Spitzname:</translation>
     </message>
     <message>
         <source>Birthday:</source>
-        <translation type="unfinished"></translation>
+        <translation>Geburtstag:</translation>
     </message>
     <message>
         <source>Anniversary:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>NO</source>
-        <translation type="unfinished"></translation>
+        <translation>Jubiläum:</translation>
     </message>
     <message>
         <source>Notes:</source>
-        <translation type="unfinished"></translation>
+        <translation>Anmerkungen:</translation>
     </message>
     <message>
         <source>Details</source>
-        <translation type="unfinished"></translation>
+        <translation>Details</translation>
+    </message>
+    <message>
+        <source>&amp;Save</source>
+        <translation>&amp;Speichern</translation>
+    </message>
+    <message>
+        <source>Alt+S</source>
+        <translation>Alt+S</translation>
+    </message>
+    <message>
+        <source>P</source>
+        <comment>DO NOT TRANSLATE</comment>
+        <translation></translation>
+    </message>
+    <message>
+        <source>&amp;Full Name...</source>
+        <translation>&amp;Name...</translation>
+    </message>
+    <message>
+        <source>Alt+F</source>
+        <translation>Alt+N</translation>
+    </message>
+    <message>
+        <source>&amp;Categories...</source>
+        <translation>&amp;Kategorien...</translation>
+    </message>
+    <message>
+        <source>Alt+C</source>
+        <translation>Alt+K</translation>
+    </message>
+    <message>
+        <source>CL</source>
+        <comment>DO NOT TRANSLATE</comment>
+        <translation></translation>
+    </message>
+    <message>
+        <source>WP</source>
+        <comment>DO NOT TRANSLATE</comment>
+        <translation></translation>
+    </message>
+    <message>
+        <source>Ma</source>
+        <comment>DO NOT TRANSLATE</comment>
+        <translation></translation>
+    </message>
+    <message>
+        <source>&amp;Delete</source>
+        <translation>&amp;Löschen</translation>
+    </message>
+    <message>
+        <source>Alt+D</source>
+        <translation>Alt+L</translation>
+    </message>
+    <message>
+        <source>&amp;Add...</source>
+        <translation>&amp;Hinzufügen...</translation>
+    </message>
+    <message>
+        <source>Alt+A</source>
+        <translation>Alt+H</translation>
+    </message>
+    <message>
+        <source>Ph</source>
+        <comment>DO NOT TRANSLATE</comment>
+        <translation></translation>
+    </message>
+    <message>
+        <source>HI</source>
+        <comment>DO NOT TRANSLATE</comment>
+        <translation></translation>
+    </message>
+    <message>
+        <source>ME</source>
+        <comment>DO NOT TRANSLATE</comment>
+        <translation></translation>
+    </message>
+    <message>
+        <source>WO</source>
+        <comment>DO NOT TRANSLATE</comment>
+        <translation></translation>
+    </message>
+    <message>
+        <source>NO</source>
+        <comment>DO NOT TRANSLATE</comment>
+        <translation></translation>
     </message>
 </context>
 <context>
     <name>AdminPanelDesign</name>
     <message>
-        <source>Form1</source>
-        <translation></translation>
-    </message>
-    <message>
-        <source>Create random Password</source>
-        <translation>Zufallspasswort erstellen</translation>
-    </message>
-    <message>
         <source>Password:</source>
         <translation>Passwort:</translation>
-    </message>
-    <message>
-        <source>Create</source>
-        <translation>Erstellen</translation>
     </message>
     <message>
         <source>Encrypt Password</source>
         <translation>Passwort verschlüsseln</translation>
     </message>
     <message>
-        <source>Date to Unix</source>
-        <translation>Datum zu Unix</translation>
-    </message>
-    <message>
         <source>Date:</source>
         <translation>Datum:</translation>
-    </message>
-    <message>
-        <source>Convert</source>
-        <translation>Konvertieren</translation>
-    </message>
-    <message>
-        <source>Days since birth of Unix:</source>
-        <translation>Tage seit Beginn der Unix-Epoche:</translation>
-    </message>
-    <message>
-        <source>Duration to Unix</source>
-        <translation>Tagen von jetzt an zu Unix</translation>
     </message>
     <message>
         <source>Days from now:</source>
@@ -587,10 +612,6 @@ Testing guinea pig for python 2.3</source>
     <message>
         <source>Encrypted Password:</source>
         <translation>Verschlüsseltes Passwort:</translation>
-    </message>
-    <message>
-        <source>Encrypt</source>
-        <translation>Verschlüsseln</translation>
     </message>
     <message>
         <source>Encrypted password:</source>
@@ -621,31 +642,85 @@ Testing guinea pig for python 2.3</source>
         <translation>Passwörter</translation>
     </message>
     <message>
+        <source>&amp;Encrypt</source>
+        <translation>&amp;Verschlüsseln</translation>
+    </message>
+    <message>
+        <source>Alt+E</source>
+        <translation>Alt+V</translation>
+    </message>
+    <message>
+        <source>Create Random Password</source>
+        <translation>Zufallspasswort erstellen</translation>
+    </message>
+    <message>
+        <source>&amp;Create</source>
+        <translation>&amp;Erstellen</translation>
+    </message>
+    <message>
+        <source>Alt+C</source>
+        <translation>Alt+E</translation>
+    </message>
+    <message>
         <source>Secure</source>
-        <translation type="unfinished"></translation>
+        <comment>DO NOT TRANSLATE</comment>
+        <translation></translation>
     </message>
     <message>
         <source>Date</source>
-        <translation type="unfinished">Datum</translation>
+        <comment>DO NOT TRANSLATE</comment>
+        <translation>Datum</translation>
+    </message>
+    <message>
+        <source>Date to Unix Date</source>
+        <translation>Datum nach Unix Datum</translation>
+    </message>
+    <message>
+        <source>&amp;Convert</source>
+        <translation>&amp;Konvertieren</translation>
+    </message>
+    <message>
+        <source>Unix Date:</source>
+        <translation>Unix Datum:</translation>
+    </message>
+    <message>
+        <source>Duration to Unix Date</source>
+        <translation>Zeitspanne nach Unix Datum</translation>
+    </message>
+    <message>
+        <source>C&amp;onvert</source>
+        <translation>Ko&amp;nvertieren</translation>
+    </message>
+    <message>
+        <source>Alt+O</source>
+        <translation>Alt+N</translation>
     </message>
 </context>
 <context>
     <name>BaseSelectorDesign</name>
     <message>
-        <source>Available Base DN</source>
-        <translation type="unfinished"></translation>
+        <source>Select Base DN</source>
+        <translation>Basis DN auswählen</translation>
     </message>
     <message>
-        <source>Select Base DN:</source>
-        <translation type="unfinished"></translation>
+        <source>Available Base DNs:</source>
+        <translation>Verfügbare Basis DNs:</translation>
     </message>
     <message>
-        <source>Cancel</source>
-        <translation type="unfinished">Abbrechen</translation>
+        <source>&amp;Cancel</source>
+        <translation>&amp;Abbrechen</translation>
     </message>
     <message>
-        <source>Ok</source>
-        <translation type="unfinished">Ok</translation>
+        <source>Alt+C</source>
+        <translation>Alt+A</translation>
+    </message>
+    <message>
+        <source>&amp;Ok</source>
+        <translation>&amp;Ok</translation>
+    </message>
+    <message>
+        <source>Alt+O</source>
+        <translation>Alt+O</translation>
     </message>
 </context>
 <context>
@@ -756,27 +831,43 @@ Mehr Informationen in der Konsolen-Ausgabe.</translation>
     <name>CategoryEditDialogDesign</name>
     <message>
         <source>Categories</source>
-        <translation type="unfinished"></translation>
+        <translation>Kategorien</translation>
     </message>
     <message>
         <source>Edit categories</source>
-        <translation type="unfinished"></translation>
+        <translation>Editiere Kategorien</translation>
     </message>
     <message>
-        <source>Cancel</source>
-        <translation type="unfinished">Abbrechen</translation>
+        <source>&amp;Cancel</source>
+        <translation>&amp;Abbrechen</translation>
     </message>
     <message>
-        <source>Ok</source>
-        <translation type="unfinished">Ok</translation>
+        <source>Alt+C</source>
+        <translation>Alt+A</translation>
     </message>
     <message>
-        <source>Delete</source>
-        <translation type="unfinished">Löschen</translation>
+        <source>&amp;Ok</source>
+        <translation>&amp;Ok</translation>
     </message>
     <message>
-        <source>Add</source>
-        <translation type="unfinished">Hinzufügen</translation>
+        <source>Alt+O</source>
+        <translation>Alt+O</translation>
+    </message>
+    <message>
+        <source>&amp;Delete</source>
+        <translation>&amp;Löschen</translation>
+    </message>
+    <message>
+        <source>Alt+D</source>
+        <translation>Alt+L</translation>
+    </message>
+    <message>
+        <source>&amp;Add</source>
+        <translation>&amp;Hinzufügen</translation>
+    </message>
+    <message>
+        <source>Alt+A</source>
+        <translation>Alt+H</translation>
     </message>
 </context>
 <context>
@@ -786,8 +877,12 @@ Mehr Informationen in der Konsolen-Ausgabe.</translation>
         <translation>Info</translation>
     </message>
     <message>
-        <source>Ok</source>
-        <translation>Ok</translation>
+        <source>&amp;Ok</source>
+        <translation>&amp;Ok</translation>
+    </message>
+    <message>
+        <source>Alt+O</source>
+        <translation>Alt+O</translation>
     </message>
 </context>
 <context>
@@ -828,16 +923,8 @@ Mehr Informationen in der Konsolen-Ausgabe.</translation>
 <context>
     <name>ConfigPanelDesign</name>
     <message>
-        <source>Form3</source>
-        <translation></translation>
-    </message>
-    <message>
         <source>Server Options</source>
         <translation>Server Optionen</translation>
-    </message>
-    <message>
-        <source>Suffix:</source>
-        <translation>Suffix:</translation>
     </message>
     <message>
         <source>Admin Name:</source>
@@ -868,8 +955,16 @@ Mehr Informationen in der Konsolen-Ausgabe.</translation>
         <translation>Nach Datei speichern:</translation>
     </message>
     <message>
-        <source>Finish</source>
-        <translation>Fertig stellen</translation>
+        <source>Base DN:</source>
+        <translation>Basis DN:</translation>
+    </message>
+    <message>
+        <source>&amp;Finish</source>
+        <translation>&amp;Fertig stellen</translation>
+    </message>
+    <message>
+        <source>Alt+F</source>
+        <translation>Alt+F</translation>
     </message>
 </context>
 <context>
@@ -939,16 +1034,28 @@ Mehr Informationen in der Konsolen-Ausgabe.</translation>
         <translation>Lesezeichen:</translation>
     </message>
     <message>
-        <source>Delete</source>
-        <translation>Löschen</translation>
+        <source>&amp;Delete</source>
+        <translation>&amp;Löschen</translation>
     </message>
     <message>
-        <source>Add to Bookmarks</source>
-        <translation>Zu Lesezeichen hinzufügen</translation>
+        <source>Alt+D</source>
+        <translation>Alt+L</translation>
     </message>
     <message>
-        <source>Ok</source>
-        <translation>Ok</translation>
+        <source>&amp;Add to Bookmarks</source>
+        <translation>&amp;Zu Lesezeichen hinzufügen</translation>
+    </message>
+    <message>
+        <source>Alt+A</source>
+        <translation>Alt+Z</translation>
+    </message>
+    <message>
+        <source>&amp;Ok</source>
+        <translation>&amp;Ok</translation>
+    </message>
+    <message>
+        <source>Alt+O</source>
+        <translation>Alt+O</translation>
     </message>
 </context>
 <context>
@@ -999,104 +1106,108 @@ Versuchen sie entweder den Bereich für die uids zu erweitern oder löschen sie 
 <context>
     <name>IfiUserDesign</name>
     <message>
-        <source>Form1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>General Information</source>
-        <translation type="unfinished"></translation>
+        <translation>Allgemeine Informationen</translation>
     </message>
     <message>
         <source>Username:</source>
-        <translation type="unfinished"></translation>
+        <translation>Benutzername:</translation>
     </message>
     <message>
         <source>Surename:</source>
-        <translation type="unfinished"></translation>
+        <translation>Nachname:</translation>
     </message>
     <message>
         <source>Given Name:</source>
-        <translation type="unfinished"></translation>
+        <translation>Vorname:</translation>
     </message>
     <message>
         <source>Directory Settings</source>
-        <translation type="unfinished">Verzeichniseinstellungen</translation>
+        <translation>Verzeichniseinstellungen</translation>
     </message>
     <message>
         <source>Base node:</source>
-        <translation type="unfinished">Basisknoten:</translation>
+        <translation>Basisknoten:</translation>
     </message>
     <message>
         <source>Basic</source>
-        <translation type="unfinished">Basis</translation>
+        <translation>Allgemeines</translation>
     </message>
     <message>
         <source>Expiration date</source>
-        <translation type="unfinished">Auslaufdatum</translation>
+        <translation>Ablaufdatum</translation>
     </message>
     <message>
         <source>Date</source>
-        <translation type="unfinished">Datum</translation>
+        <translation>Datum</translation>
     </message>
     <message>
         <source>Days from now</source>
-        <translation type="unfinished">Tage von jetzt an</translation>
+        <translation>Tage von jetzt an</translation>
     </message>
     <message>
         <source>Account settings</source>
-        <translation type="unfinished">Kontoeinstellungen</translation>
+        <translation>Kontoeinstellungen</translation>
     </message>
     <message>
         <source>/home</source>
-        <translation type="unfinished">/home</translation>
+        <translation>/home</translation>
     </message>
     <message>
         <source>/bin/bash</source>
-        <translation type="unfinished">/bin/bash</translation>
+        <translation>/bin/bash</translation>
     </message>
     <message>
         <source>Login shell:</source>
-        <translation type="unfinished">Login Shell:</translation>
-    </message>
-    <message>
-        <source>Home directory:</source>
-        <translation type="unfinished">Benutzerverzeichnis:</translation>
+        <translation>Login Shell:</translation>
     </message>
     <message>
         <source>Group Id:</source>
-        <translation type="unfinished">Gruppen Id:</translation>
+        <translation>Gruppen Id:</translation>
     </message>
     <message>
         <source>Select group from LDAP</source>
-        <translation type="unfinished">Gruppe auswählen</translation>
+        <translation>Gruppe auswählen</translation>
     </message>
     <message>
         <source>uid number range</source>
-        <translation type="unfinished">UserId Nummernbereich</translation>
+        <translation>UserId Nummernbereich</translation>
     </message>
     <message>
         <source>Minimum:</source>
-        <translation type="unfinished">Minimum:</translation>
+        <translation>Minimum:</translation>
     </message>
     <message>
         <source>Maximum:</source>
-        <translation type="unfinished">Maximum:</translation>
+        <translation>Maximum:</translation>
     </message>
     <message>
         <source>Account Settings</source>
-        <translation type="unfinished">Accounteinstellungen</translation>
+        <translation>Kontoeinstellungen</translation>
     </message>
     <message>
         <source>Account Password:</source>
-        <translation type="unfinished"></translation>
+        <translation>Kontopassword:</translation>
     </message>
     <message>
         <source>Account Password</source>
-        <translation type="unfinished"></translation>
+        <translation>Kontopassword</translation>
     </message>
     <message>
-        <source>Create</source>
-        <translation type="unfinished">Erstellen</translation>
+        <source>IfiUserDesign</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>Home:</source>
+        <translation>Home:</translation>
+    </message>
+    <message>
+        <source>&amp;Create</source>
+        <translation>&amp;Erstellen</translation>
+    </message>
+    <message>
+        <source>Alt+C</source>
+        <translation>Alt+E</translation>
     </message>
 </context>
 <context>
@@ -1106,66 +1217,94 @@ Versuchen sie entweder den Bereich für die uids zu erweitern oder löschen sie 
         <translation>Sprache:</translation>
     </message>
     <message>
-        <source>Cancel</source>
-        <translation>Abbrechen</translation>
-    </message>
-    <message>
-        <source>Ok</source>
-        <translation>Ok</translation>
-    </message>
-    <message>
         <source>Choose Language</source>
         <translation>Sprache auswählen</translation>
+    </message>
+    <message>
+        <source>&amp;Ok</source>
+        <translation>&amp;Ok</translation>
+    </message>
+    <message>
+        <source>Alt+O</source>
+        <translation>Alt+O</translation>
+    </message>
+    <message>
+        <source>&amp;Cancel</source>
+        <translation>&amp;Abbrechen</translation>
+    </message>
+    <message>
+        <source>Alt+C</source>
+        <translation>Alt+A</translation>
     </message>
 </context>
 <context>
     <name>LumaIconViewDesign</name>
     <message>
-        <source>Form1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Delete</source>
-        <translation type="unfinished">Löschen</translation>
-    </message>
-    <message>
-        <source>Add</source>
-        <translation type="unfinished">Hinzufügen</translation>
-    </message>
-    <message>
-        <source>Go</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Search:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>Server:</source>
-        <translation type="unfinished">Server:</translation>
+        <translation>Server:</translation>
+    </message>
+    <message>
+        <source>LumaIconViewDesign</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>&amp;Add...</source>
+        <translation>&amp;Hinzufügen...</translation>
+    </message>
+    <message>
+        <source>Alt+A</source>
+        <translation>Alt+H</translation>
+    </message>
+    <message>
+        <source>&amp;Go</source>
+        <translation>&amp;Los</translation>
+    </message>
+    <message>
+        <source>Alt+G</source>
+        <translation>Alt+L</translation>
+    </message>
+    <message>
+        <source>Filter:</source>
+        <translation>Filter:</translation>
+    </message>
+    <message>
+        <source>&amp;Delete</source>
+        <translation>&amp;Löschen</translation>
+    </message>
+    <message>
+        <source>Alt+D</source>
+        <translation>Alt+L</translation>
     </message>
 </context>
 <context>
     <name>MailDialog</name>
     <message>
         <source>New mail</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Ok</source>
-        <translation type="unfinished">Ok</translation>
-    </message>
-    <message>
-        <source>Cancel</source>
-        <translation type="unfinished">Abbrechen</translation>
+        <translation>Neue Mailaddresse</translation>
     </message>
     <message>
         <source>ML</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>New mail:</source>
-        <translation type="unfinished"></translation>
+        <translation>Neue Mailaddresse:</translation>
+    </message>
+    <message>
+        <source>&amp;Ok</source>
+        <translation>&amp;Ok</translation>
+    </message>
+    <message>
+        <source>Alt+O</source>
+        <translation>Alt+O</translation>
+    </message>
+    <message>
+        <source>&amp;Cancel</source>
+        <translation>&amp;Abbrechen</translation>
+    </message>
+    <message>
+        <source>Alt+C</source>
+        <translation>Alt+A</translation>
     </message>
 </context>
 <context>
@@ -1190,20 +1329,8 @@ Versuchen sie entweder den Bereich für die uids zu erweitern oder löschen sie 
         <translation>Arbeitsbereich</translation>
     </message>
     <message>
-        <source>About Luma</source>
-        <translation>Über Luma</translation>
-    </message>
-    <message>
-        <source>Edit Server List</source>
-        <translation>Serverliste editieren</translation>
-    </message>
-    <message>
         <source>Exit</source>
         <translation>Schließen</translation>
-    </message>
-    <message>
-        <source>Configure Plugins</source>
-        <translation>Plugins konfigurieren</translation>
     </message>
     <message>
         <source>Reload Plugins</source>
@@ -1218,16 +1345,56 @@ Versuchen sie entweder den Bereich für die uids zu erweitern oder löschen sie 
         <translation>Hilfe</translation>
     </message>
     <message>
-        <source>Language</source>
-        <translation>Sprache</translation>
-    </message>
-    <message>
         <source>Program</source>
         <translation>Programm</translation>
     </message>
     <message>
         <source>Hide/Show pluginlist</source>
-        <translation type="unfinished"></translation>
+        <translation>Plugins ausblenden/anzeigen</translation>
+    </message>
+    <message>
+        <source>About Luma...</source>
+        <translation>Über Luma...</translation>
+    </message>
+    <message>
+        <source>Ctrl+A</source>
+        <translation>Ctrl+L</translation>
+    </message>
+    <message>
+        <source>Edit Server List...</source>
+        <translation>Editiere Serverliste...</translation>
+    </message>
+    <message>
+        <source>Ctrl+E</source>
+        <translation>Ctrl+E</translation>
+    </message>
+    <message>
+        <source>Ctrl+X</source>
+        <translation>Ctrl+B</translation>
+    </message>
+    <message>
+        <source>Configure Plugins...</source>
+        <translation>Plugins konfigurieren...</translation>
+    </message>
+    <message>
+        <source>Ctrl+C</source>
+        <translation>Ctrl+K</translation>
+    </message>
+    <message>
+        <source>Ctrl+R</source>
+        <translation>Ctrl+N</translation>
+    </message>
+    <message>
+        <source>Language...</source>
+        <translation>Sprache...</translation>
+    </message>
+    <message>
+        <source>Ctrl+L</source>
+        <translation>Ctrl+S</translation>
+    </message>
+    <message>
+        <source>Ctrl+P</source>
+        <translation>Ctrl+P</translation>
     </message>
 </context>
 <context>
@@ -1278,24 +1445,12 @@ Versuchen sie entweder den Bereich für die uids zu erweitern oder löschen sie 
 <context>
     <name>MassCreationDesign</name>
     <message>
-        <source>Form1</source>
-        <translation></translation>
-    </message>
-    <message>
-        <source>Create</source>
-        <translation>Erstellen</translation>
-    </message>
-    <message>
         <source>Directory Settings</source>
         <translation>Verzeichniseinstellungen</translation>
     </message>
     <message>
         <source>Base node:</source>
         <translation>Basisknoten:</translation>
-    </message>
-    <message>
-        <source>uid number range</source>
-        <translation>UserId Nummernbereich</translation>
     </message>
     <message>
         <source>Minimum:</source>
@@ -1328,10 +1483,6 @@ Versuchen sie entweder den Bereich für die uids zu erweitern oder löschen sie 
     <message>
         <source>Account settings</source>
         <translation>Kontoeinstellungen</translation>
-    </message>
-    <message>
-        <source>Home directory:</source>
-        <translation>Benutzerverzeichnis:</translation>
     </message>
     <message>
         <source>/home</source>
@@ -1369,40 +1520,48 @@ Versuchen sie entweder den Bereich für die uids zu erweitern oder löschen sie 
         <source>Account Passwords</source>
         <translation>Accountpasswörter</translation>
     </message>
+    <message>
+        <source>Home prefix:</source>
+        <translation>Home Präfix:</translation>
+    </message>
+    <message>
+        <source>Uid number range</source>
+        <translation>UserId Nummernbereich</translation>
+    </message>
+    <message>
+        <source>&amp;Create</source>
+        <translation>&amp;Erstellen</translation>
+    </message>
+    <message>
+        <source>Alt+C</source>
+        <translation>Alt+E</translation>
+    </message>
 </context>
 <context>
     <name>NameDialog</name>
     <message>
         <source>Full name</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Cancel</source>
-        <translation type="unfinished">Abbrechen</translation>
-    </message>
-    <message>
-        <source>Ok</source>
-        <translation type="unfinished">Ok</translation>
+        <translation>Name</translation>
     </message>
     <message>
         <source>Sr.</source>
-        <translation type="unfinished"></translation>
+        <translation>Senior</translation>
     </message>
     <message>
         <source>Jr.</source>
-        <translation type="unfinished"></translation>
+        <translation>Junior</translation>
     </message>
     <message>
         <source>I</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>II</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>III</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Esq.</source>
@@ -1414,7 +1573,7 @@ Versuchen sie entweder den Bereich für die uids zu erweitern oder löschen sie 
     </message>
     <message>
         <source>Title:</source>
-        <translation type="unfinished"></translation>
+        <translation>Titel:</translation>
     </message>
     <message>
         <source>Suffix:</source>
@@ -1422,134 +1581,158 @@ Versuchen sie entweder den Bereich für die uids zu erweitern oder löschen sie 
     </message>
     <message>
         <source>Mr.</source>
-        <translation type="unfinished"></translation>
+        <translation>Herr</translation>
     </message>
     <message>
         <source>Mrs.</source>
-        <translation type="unfinished"></translation>
+        <translation>Frau</translation>
     </message>
     <message>
         <source>Ms.</source>
-        <translation type="unfinished"></translation>
+        <translation>Fr.</translation>
     </message>
     <message>
         <source>Miss</source>
-        <translation type="unfinished"></translation>
+        <translation>Fräulein</translation>
     </message>
     <message>
         <source>Dr.</source>
-        <translation type="unfinished"></translation>
+        <translation>Dr.</translation>
     </message>
     <message>
         <source>Last:</source>
-        <translation type="unfinished"></translation>
+        <translation>Nachname:</translation>
     </message>
     <message>
         <source>First:</source>
-        <translation type="unfinished"></translation>
+        <translation>Vorname:</translation>
+    </message>
+    <message>
+        <source>&amp;Cancel</source>
+        <translation>&amp;Abbrechen</translation>
+    </message>
+    <message>
+        <source>Alt+C</source>
+        <translation>Alt+A</translation>
+    </message>
+    <message>
+        <source>&amp;Ok</source>
+        <translation>&amp;Ok</translation>
+    </message>
+    <message>
+        <source>Alt+O</source>
+        <translation>Alt+O</translation>
     </message>
 </context>
 <context>
     <name>NewCategoryDialog</name>
     <message>
         <source>Add category</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Ok</source>
-        <translation type="unfinished">Ok</translation>
-    </message>
-    <message>
-        <source>Cancel</source>
-        <translation type="unfinished">Abbrechen</translation>
+        <translation>Neue Kategorie</translation>
     </message>
     <message>
         <source>Add Category:</source>
-        <translation type="unfinished"></translation>
+        <translation>Neue Kategorie:</translation>
     </message>
     <message>
         <source>Birthday</source>
-        <translation type="unfinished"></translation>
+        <translation>Geburtstag</translation>
     </message>
     <message>
         <source>Business</source>
-        <translation type="unfinished"></translation>
+        <translation>Firma</translation>
     </message>
     <message>
         <source>Competition</source>
-        <translation type="unfinished"></translation>
+        <translation>Wettbewerb</translation>
     </message>
     <message>
         <source>Favorites</source>
-        <translation type="unfinished"></translation>
+        <translation>Favorit</translation>
     </message>
     <message>
         <source>Gifts</source>
-        <translation type="unfinished"></translation>
+        <translation>Geschenk</translation>
     </message>
     <message>
         <source>Goals/Objectives</source>
-        <translation type="unfinished"></translation>
+        <translation>Ziele</translation>
     </message>
     <message>
         <source>Holiday</source>
-        <translation type="unfinished"></translation>
+        <translation>Ferien</translation>
     </message>
     <message>
         <source>Holiday Cards</source>
-        <translation type="unfinished"></translation>
+        <translation>Urlaubskarten</translation>
     </message>
     <message>
         <source>Hot Contacts</source>
-        <translation type="unfinished"></translation>
+        <translation>Besondere Kontakte</translation>
     </message>
     <message>
         <source>Ideas</source>
-        <translation type="unfinished"></translation>
+        <translation>Ideen</translation>
     </message>
     <message>
         <source>International</source>
-        <translation type="unfinished"></translation>
+        <translation>International</translation>
     </message>
     <message>
         <source>Key Customer</source>
-        <translation type="unfinished"></translation>
+        <translation>Hauptkunde</translation>
     </message>
     <message>
         <source>Miscellaneous</source>
-        <translation type="unfinished"></translation>
+        <translation>Diverse</translation>
     </message>
     <message>
         <source>Personal</source>
-        <translation type="unfinished"></translation>
+        <translation>Persönlich</translation>
     </message>
     <message>
         <source>Phones Calls</source>
-        <translation type="unfinished"></translation>
+        <translation>Telefonanrufe</translation>
     </message>
     <message>
         <source>Status</source>
-        <translation type="unfinished"></translation>
+        <translation>Status</translation>
     </message>
     <message>
         <source>Strategies</source>
-        <translation type="unfinished"></translation>
+        <translation>Strategien</translation>
     </message>
     <message>
         <source>Suppliers</source>
-        <translation type="unfinished"></translation>
+        <translation>Zulieferer</translation>
     </message>
     <message>
         <source>Time &amp; Expenses</source>
-        <translation type="unfinished"></translation>
+        <translation>Zeit &amp; Ausgaben</translation>
     </message>
     <message>
         <source>VIP</source>
-        <translation type="unfinished"></translation>
+        <translation>VIP</translation>
     </message>
     <message>
         <source>Waiting</source>
-        <translation type="unfinished"></translation>
+        <translation>Warten</translation>
+    </message>
+    <message>
+        <source>&amp;Ok</source>
+        <translation>&amp;Ok</translation>
+    </message>
+    <message>
+        <source>Alt+O</source>
+        <translation>Alt+O</translation>
+    </message>
+    <message>
+        <source>&amp;Cancel</source>
+        <translation>&amp;Abbrechen</translation>
+    </message>
+    <message>
+        <source>Alt+C</source>
+        <translation>Alt+A</translation>
     </message>
 </context>
 <context>
@@ -1567,40 +1750,48 @@ Versuchen sie entweder den Bereich für die uids zu erweitern oder löschen sie 
         <translation>Luma</translation>
     </message>
     <message>
-        <source>Ok</source>
-        <translation>Ok</translation>
-    </message>
-    <message>
-        <source>Cancel</source>
-        <translation>Abbrechen</translation>
-    </message>
-    <message>
-        <source>ObjectClass:</source>
-        <translation>Objektklasse:</translation>
-    </message>
-    <message>
         <source>Server:</source>
         <translation>Server:</translation>
     </message>
     <message>
-        <source>Add ObjectClass</source>
-        <translation>Objektklasse hinzufügen</translation>
+        <source>Object Class:</source>
+        <translation>Objektklasse</translation>
     </message>
     <message>
-        <source>Delete selected Class</source>
-        <translation>Objektklasse löschen</translation>
+        <source>&amp;Add</source>
+        <translation>&amp;Hinzufügen</translation>
+    </message>
+    <message>
+        <source>Alt+A</source>
+        <translation>Alt+H</translation>
+    </message>
+    <message>
+        <source>&amp;Delete</source>
+        <translation>&amp;Löschen</translation>
+    </message>
+    <message>
+        <source>Alt+D</source>
+        <translation>Alt+L</translation>
+    </message>
+    <message>
+        <source>&amp;Ok</source>
+        <translation>&amp;Ok</translation>
+    </message>
+    <message>
+        <source>Alt+O</source>
+        <translation>Alt+O</translation>
+    </message>
+    <message>
+        <source>&amp;Cancel</source>
+        <translation>&amp;Abbrechen</translation>
+    </message>
+    <message>
+        <source>Alt+C</source>
+        <translation>Alt+A</translation>
     </message>
 </context>
 <context>
     <name>ObjectWidget</name>
-    <message>
-        <source>Apply</source>
-        <translation>Übernehmen</translation>
-    </message>
-    <message>
-        <source>Refresh</source>
-        <translation>Erneuern</translation>
-    </message>
     <message>
         <source>&lt;b&gt;Attributes&lt;/b&gt;</source>
         <translation>&lt;b&gt;Attribute&lt;/b&gt;</translation>
@@ -1610,27 +1801,40 @@ Versuchen sie entweder den Bereich für die uids zu erweitern oder löschen sie 
         <translation>&lt;b&gt;Werte&lt;/b&gt;</translation>
     </message>
     <message>
-        <source>Display all</source>
-        <translation type="unfinished"></translation>
+        <source>&amp;Apply</source>
+        <translation>&amp;Anwenden</translation>
+    </message>
+    <message>
+        <source>&amp;Display all</source>
+        <translation>Alles an&amp;zeigen</translation>
+    </message>
+    <message>
+        <source>&amp;Refresh</source>
+        <translation>Au&amp;ffrischen</translation>
     </message>
 </context>
 <context>
     <name>PluginInformation</name>
     <message>
         <source>Plugin Information</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Icon</source>
-        <translation type="unfinished"></translation>
+        <translation>Plugin Informationen</translation>
     </message>
     <message>
         <source>Information about this plugin:</source>
-        <translation type="unfinished"></translation>
+        <translation>Informationen über dieses Plugin:</translation>
     </message>
     <message>
-        <source>Close</source>
-        <translation type="unfinished"></translation>
+        <source>Icon</source>
+        <comment>DO NOT TRANSLATE</comment>
+        <translation></translation>
+    </message>
+    <message>
+        <source>&amp;Close</source>
+        <translation>&amp;Schließen&amp;Schließen</translation>
+    </message>
+    <message>
+        <source>Alt+C</source>
+        <translation>Alt+S</translation>
     </message>
 </context>
 <context>
@@ -1641,27 +1845,27 @@ Versuchen sie entweder den Bereich für die uids zu erweitern oder löschen sie 
     </message>
     <message>
         <source>Load</source>
-        <translation type="unfinished"></translation>
+        <translation>Laden</translation>
     </message>
     <message>
-        <source>Close</source>
-        <translation type="unfinished"></translation>
+        <source>Plugin Settings</source>
+        <translation>Plugin Einstellungen</translation>
     </message>
     <message>
-        <source>Plugin settings</source>
-        <translation type="unfinished"></translation>
+        <source>Settings</source>
+        <translation>Einstellungen</translation>
     </message>
     <message>
-        <source>Settings Box</source>
-        <translation type="unfinished"></translation>
+        <source>&amp;Close</source>
+        <translation>&amp;Schließen</translation>
+    </message>
+    <message>
+        <source>Alt+C</source>
+        <translation>Alt+S</translation>
     </message>
 </context>
 <context>
     <name>SearchFormDesign</name>
-    <message>
-        <source>Form1</source>
-        <translation></translation>
-    </message>
     <message>
         <source>Search</source>
         <translation>Suche</translation>
@@ -1675,12 +1879,20 @@ Versuchen sie entweder den Bereich für die uids zu erweitern oder löschen sie 
         <translation>Server:</translation>
     </message>
     <message>
-        <source>Wizard</source>
-        <translation>Assistent</translation>
+        <source>&amp;Wizard</source>
+        <translation>&amp;Assistent</translation>
     </message>
     <message>
-        <source>Start</source>
-        <translation>Start</translation>
+        <source>Alt+W</source>
+        <translation>Alt+A</translation>
+    </message>
+    <message>
+        <source>&amp;Start</source>
+        <translation>&amp;Start</translation>
+    </message>
+    <message>
+        <source>Alt+S</source>
+        <translation>Alt+S</translation>
     </message>
 </context>
 <context>
@@ -1711,13 +1923,6 @@ Versuchen sie entweder den Bereich für die uids zu erweitern oder löschen sie 
     </message>
 </context>
 <context>
-    <name>SearchResultViewDesign</name>
-    <message>
-        <source>Form1</source>
-        <translation></translation>
-    </message>
-</context>
-<context>
     <name>ServerDialog</name>
     <message>
         <source>Delete Server?</source>
@@ -1729,17 +1934,17 @@ Versuchen sie entweder den Bereich für die uids zu erweitern oder löschen sie 
     </message>
     <message>
         <source>Error</source>
-        <translation type="unfinished">Fehler</translation>
+        <translation>Fehler</translation>
     </message>
     <message>
         <source>Could not retrieve BaseDN for server. 
 Maybe the server data is not correct. 
 Please see console output for more information.</source>
-        <translation type="unfinished"></translation>
+        <translation>Konnte nicht Basis DN vom Server empfangen. Vielleicht wurden falsche Verbindungsdaten angegeben. Siehe Konsolenausgabe für mehr Details.</translation>
     </message>
     <message>
         <source>&amp;OK</source>
-        <translation type="unfinished">&amp;Ok</translation>
+        <translation>&amp;Ok</translation>
     </message>
 </context>
 <context>
@@ -1753,32 +1958,8 @@ Please see console output for more information.</source>
         <translation>Serverliste</translation>
     </message>
     <message>
-        <source>Add Server</source>
-        <translation>Server hinzufügen</translation>
-    </message>
-    <message>
-        <source>Delete Server</source>
-        <translation>Server entfernen</translation>
-    </message>
-    <message>
-        <source>Modify Server</source>
-        <translation>Server modifizieren</translation>
-    </message>
-    <message>
-        <source>Server Info</source>
-        <translation>Server Informationen</translation>
-    </message>
-    <message>
         <source>Server Name:</source>
         <translation>Servername:</translation>
-    </message>
-    <message>
-        <source>LDAP Host:</source>
-        <translation>LDAP Rechner:</translation>
-    </message>
-    <message>
-        <source>LDAP Port:</source>
-        <translation>LDAP Port:</translation>
     </message>
     <message>
         <source>Use TLS</source>
@@ -1789,16 +1970,8 @@ Please see console output for more information.</source>
         <translation>Transport Layer Security benutzen</translation>
     </message>
     <message>
-        <source>Server Options</source>
-        <translation>Server Einstellungen</translation>
-    </message>
-    <message>
         <source>Base DN:</source>
         <translation>Basis DN:</translation>
-    </message>
-    <message>
-        <source>Authentification Method</source>
-        <translation>Authentifizierungsmethode</translation>
     </message>
     <message>
         <source>Bind anonymously</source>
@@ -1813,16 +1986,64 @@ Please see console output for more information.</source>
         <translation>Verbindungs Passwort:</translation>
     </message>
     <message>
-        <source>Connection Options</source>
-        <translation>Verbindungsoptionen</translation>
+        <source>&amp;Close</source>
+        <translation>&amp;Schließen</translation>
     </message>
     <message>
-        <source>Save Server Information</source>
-        <translation>Serverinformationen speichern</translation>
+        <source>Alt+C</source>
+        <translation>Alt+S</translation>
     </message>
     <message>
-        <source>Close</source>
-        <translation type="unfinished"></translation>
+        <source>&amp;Add</source>
+        <translation>&amp;Hinzufügen</translation>
+    </message>
+    <message>
+        <source>Alt+A</source>
+        <translation>Alt+H</translation>
+    </message>
+    <message>
+        <source>&amp;Delete</source>
+        <translation>&amp;Löschen</translation>
+    </message>
+    <message>
+        <source>Alt+D</source>
+        <translation>Alt+L</translation>
+    </message>
+    <message>
+        <source>&amp;Modify</source>
+        <translation>&amp;Verändern</translation>
+    </message>
+    <message>
+        <source>Alt+M</source>
+        <translation>Alt+V</translation>
+    </message>
+    <message>
+        <source>Server Information</source>
+        <translation>Server Informationen</translation>
+    </message>
+    <message>
+        <source>&amp;Save</source>
+        <translation>&amp;Speichern</translation>
+    </message>
+    <message>
+        <source>Alt+S</source>
+        <translation>Alt+S</translation>
+    </message>
+    <message>
+        <source>Host:</source>
+        <translation>Rechner:</translation>
+    </message>
+    <message>
+        <source>Port:</source>
+        <translation>Port:</translation>
+    </message>
+    <message>
+        <source>Network Options</source>
+        <translation>Netzwerkeinstellungen</translation>
+    </message>
+    <message>
+        <source>Authentification Options</source>
+        <translation>Authentifizierungsoptionen</translation>
     </message>
 </context>
 <context>
@@ -1867,32 +2088,48 @@ Please see console output for more information.</source>
         <translation>Template Name</translation>
     </message>
     <message>
-        <source>Form2</source>
-        <translation></translation>
-    </message>
-    <message>
         <source>Template Info</source>
         <translation>Template Informationen</translation>
     </message>
     <message>
-        <source>Edit</source>
-        <translation>Editieren</translation>
-    </message>
-    <message>
-        <source>Save </source>
-        <translation>Speichern</translation>
-    </message>
-    <message>
-        <source>Add</source>
-        <translation>Hinzufügen</translation>
-    </message>
-    <message>
-        <source>Delete</source>
-        <translation>Löschen</translation>
-    </message>
-    <message>
         <source>Template List</source>
-        <translation type="unfinished"></translation>
+        <translation>Vorlagenliste</translation>
+    </message>
+    <message>
+        <source>TemplateFormDesign</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>&amp;Save</source>
+        <translation>&amp;Speichern</translation>
+    </message>
+    <message>
+        <source>Alt+S</source>
+        <translation>Alt+S</translation>
+    </message>
+    <message>
+        <source>&amp;Edit...</source>
+        <translation>&amp;Editieren</translation>
+    </message>
+    <message>
+        <source>Alt+E</source>
+        <translation>Alt+E</translation>
+    </message>
+    <message>
+        <source>&amp;Delete</source>
+        <translation>&amp;Löschen</translation>
+    </message>
+    <message>
+        <source>Alt+D</source>
+        <translation>Alt+L</translation>
+    </message>
+    <message>
+        <source>&amp;Add...</source>
+        <translation>&amp;Hinzufügen...</translation>
+    </message>
+    <message>
+        <source>Alt+A</source>
+        <translation>Alt+H</translation>
     </message>
 </context>
 <context>
