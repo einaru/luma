@@ -575,6 +575,7 @@ class BrowserWidget(QListView):
         floatingWidget = ChildWindow(None)
         self.widgetList.append(floatingWidget)
         widget = AdvancedObjectWidget(floatingWidget, template.name.encode("utf-8"), 0)
+        widget.baseDN = baseDN
     
         floatingWidget.setCentralWidget(widget)
         widget.setCaption(self.trUtf8('Add entry'))
