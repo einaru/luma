@@ -1112,10 +1112,6 @@ Vea los mensajes en la consola para más información.</translation>
         <translation>Información Incompleta</translation>
     </message>
     <message>
-        <source>Your contact needs at least a surename.</source>
-        <translation>Su contacto necesita al menos de un apellido.</translation>
-    </message>
-    <message>
         <source>&amp;OK</source>
         <translation>&amp;OK</translation>
     </message>
@@ -1134,6 +1130,10 @@ Vea los mensajes en la consola para más información.</translation>
     <message>
         <source>Could not save entry. Please see console for more infomation.</source>
         <translation>No ha sido posible guardar la entrada. Por favor, mire la consola para más información.</translation>
+    </message>
+    <message>
+        <source>Your contact needs at least a surname.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2717,57 +2717,7 @@ Please read console output for more information.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Change password...</source>
-        <comment>DO NOT TRANSLATE</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>User ID number:</source>
-        <comment>DO NOT TRANSLATE</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Login shell:</source>
-        <comment>DO NOT TRANSLATE</comment>
-        <translation type="unfinished">Shell de login:</translation>
-    </message>
-    <message>
-        <source>Primary group:</source>
-        <comment>DO NOT TRANSLATE</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Valid until:</source>
-        <comment>DO NOT TRANSLATE</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Common name:</source>
-        <comment>DO NOT TRANSLATE</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Manage group memberships</source>
-        <comment>DO NOT TRANSLATE</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Delete</source>
-        <comment>DO NOT TRANSLATE</comment>
-        <translation type="unfinished">Eliminar</translation>
-    </message>
-    <message>
-        <source>Add...</source>
-        <comment>DO NOT TRANSLATE</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>SH</source>
-        <comment>DO NOT TRANSLATE</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>User ID:</source>
         <comment>DO NOT TRANSLATE</comment>
         <translation type="unfinished"></translation>
     </message>
@@ -2777,27 +2727,7 @@ Please read console output for more information.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>GR</source>
-        <comment>DO NOT TRANSLATE</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>HO</source>
-        <comment>DO NOT TRANSLATE</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Home directory:</source>
-        <comment>DO NOT TRANSLATE</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Mail:</source>
-        <comment>DO NOT TRANSLATE</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Group ID number:</source>
         <comment>DO NOT TRANSLATE</comment>
         <translation type="unfinished"></translation>
     </message>
@@ -2807,8 +2737,63 @@ Please read console output for more information.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <source>Change password...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>User ID number:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Login shell:</source>
+        <translation type="unfinished">Shell de login:</translation>
+    </message>
+    <message>
+        <source>Primary group:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Valid until:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Common name:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Manage group memberships</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Delete</source>
+        <translation type="unfinished">Eliminar</translation>
+    </message>
+    <message>
+        <source>Add...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>User ID:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>GR</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Home directory:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Mail:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Group ID number:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Password:</source>
-        <comment>DO NOT TRANSLATE</comment>
         <translation type="unfinished">Contraseña:</translation>
     </message>
 </context>

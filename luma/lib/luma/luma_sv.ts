@@ -3,11 +3,11 @@
     <name>AboutDialog</name>
     <message>
         <source>About Luma</source>
-        <translation type="unfinished"></translation>
+        <translation>Om Luma</translation>
     </message>
     <message>
         <source>&lt;font size=&quot;+2&quot;&gt;&lt;b&gt;Luma 1.3pre4 &lt;/b&gt;&lt;/font&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>&lt;p align=&quot;center&quot;&gt;LDAP management made easy.&lt;br&gt;&lt;br&gt;
@@ -15,21 +15,21 @@
 http://luma.sourceforge.net
 &lt;/p&gt;</source>
         <comment>DO NOT TRANSLATE</comment>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>About</source>
-        <translation type="unfinished"></translation>
+        <translation>Om</translation>
     </message>
     <message>
         <source>Wido Depping&lt;br&gt;
 &lt;blockquote&gt;widod@users.sourceforge.net&lt;/blockquote&gt;</source>
         <comment>DO NOT TRANSLATE</comment>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Authors</source>
-        <translation type="unfinished"></translation>
+        <translation>Skapare</translation>
     </message>
     <message>
         <source>This program is distributed under the terms of the GPL v2.
@@ -316,11 +316,11 @@ POSSIBILITY OF SUCH DAMAGES.
 <byte value="x9"/><byte value="x9"/>     END OF TERMS AND CONDITIONS
 </source>
         <comment>DO NOT TRANSLATE</comment>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>License Agreement</source>
-        <translation type="unfinished"></translation>
+        <translation>License Avtal</translation>
     </message>
     <message>
         <source>Bjorn Ove Grotan
@@ -342,116 +342,118 @@ My mentor and UI tester :)
 Eric Cote
 Testing guinea pig for python 2.3</source>
         <comment>DO NOT TRANSLATE</comment>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Credits</source>
-        <translation type="unfinished"></translation>
+        <translation>Tack Till</translation>
     </message>
     <message>
         <source>&amp;Close</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Stäng</translation>
     </message>
 </context>
 <context>
     <name>AccountWizard</name>
     <message>
         <source>Save account</source>
-        <translation type="unfinished"></translation>
+        <translation>Spara konto</translation>
     </message>
     <message>
         <source>Please enter a username.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ange ett användarnamn.</translation>
     </message>
     <message>
         <source>&amp;OK</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;OK</translation>
     </message>
     <message>
         <source>Please enter a uid number.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ange ett uid nummer.</translation>
     </message>
     <message>
         <source>Please assign the user to a group.</source>
-        <translation type="unfinished"></translation>
+        <translation>Användaren måste tillhöra en grupp.</translation>
     </message>
     <message>
         <source>Please enter a common name.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ange common name.</translation>
     </message>
     <message>
         <source>Please enter a homeDirectory.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ange homeDirectory.</translation>
     </message>
     <message>
         <source>Create account</source>
-        <translation type="unfinished"></translation>
+        <translation>Skapa konto</translation>
     </message>
     <message>
         <source>Could not create account. 
 Please see console output for more information.</source>
-        <translation type="unfinished"></translation>
+        <translation>Kunde inte skapa konto.
+Se konsolen för mer information.</translation>
     </message>
     <message>
         <source>Could not create automount entry. 
 Please see console output for more information.</source>
-        <translation type="unfinished"></translation>
+        <translation>Kunde inte skapa automount post.
+Se konsolen för mer information.</translation>
     </message>
     <message>
         <source>Warning: Location</source>
-        <translation type="unfinished"></translation>
+        <translation>Varning: Destination</translation>
     </message>
     <message>
         <source>Please select a location where to store the contact.</source>
-        <translation type="unfinished"></translation>
+        <translation>Välj en destination var kontakten skall sparas.</translation>
     </message>
 </context>
 <context>
     <name>AccountWizardDesign</name>
     <message>
         <source>Add Contact</source>
-        <translation type="unfinished"></translation>
+        <translation>Lägg till kontakt</translation>
     </message>
     <message>
         <source>LOC</source>
         <comment>DO NOT TRANSLATE</comment>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Please select a location where the new account should be stored.</source>
-        <translation type="unfinished"></translation>
+        <translation>Välj en destination vars det nya kontot skall sparas.</translation>
     </message>
     <message>
         <source>Location:</source>
-        <translation type="unfinished"></translation>
+        <translation>Destination:</translation>
     </message>
     <message>
         <source>Select location</source>
-        <translation type="unfinished"></translation>
+        <translation>Välj destination</translation>
     </message>
     <message>
         <source>Fill contact data</source>
-        <translation type="unfinished"></translation>
+        <translation>Ange kontakt information</translation>
     </message>
 </context>
 <context>
     <name>AddAttributeWizardDesign</name>
     <message>
         <source>Add Attribute</source>
-        <translation type="unfinished"></translation>
+        <translation>Lägg till attribut</translation>
     </message>
     <message>
         <source>PI</source>
         <comment>DO NOT TRANSLATE</comment>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Enable all attributes which are supported by the server.</source>
-        <translation type="unfinished"></translation>
+        <translation>Visa alla attribut servern har stöd för.</translation>
     </message>
     <message>
         <source>Attribute:</source>
-        <translation type="unfinished"></translation>
+        <translation>Attribut:</translation>
     </message>
     <message>
         <source>&lt;p&gt;Please select an attribute you want to add to the current entry.&lt;/p&gt;
@@ -459,11 +461,14 @@ Please see console output for more information.</source>
 objectclasses are displayed. If you want to add an attribute which is 
 supported by other objectclasses, please enable this functionality below.
 &lt;/p&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;p&gt;Välj attribut du vill lägga till till nuvarande post.&lt;/p&gt;
+&lt;p&gt;Som standard visas enbart attribut som stödjs av nuvarande objekt
+klasser (objectClass). Om du du vill lägga till attribut som stödjs av andra
+objekt klasser måste denna funktion vara påslagen.&lt;/p&gt;</translation>
     </message>
     <message>
         <source>Select Attribute</source>
-        <translation type="unfinished"></translation>
+        <translation>Välj Attribut</translation>
     </message>
     <message>
         <source>&lt;p&gt;You have chosen to add an attribute which is not supported by the 
@@ -471,587 +476,593 @@ objectclasses for the current entry.&lt;/p&gt;
 &lt;p&gt;Please select an objectclass which supports the new attribute. The 
 list on the right shows all attributes which must be added additionally with
 the selected objectclass.&lt;/p&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;p&gt;Du har valt att lägga till ett attribut som inte stödjs av de objektklasser
+som den valda posten har.&lt;/p&gt;
+&lt;p&gt;Välj en objektklass som stödjer det nya attributet. Listan till höger visar
+alla attribut som även dem måste läggas till för vald objektklass.&lt;/p&gt;</translation>
     </message>
     <message>
         <source>&lt;b&gt;Objectclass&lt;/b&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;Objectclass&lt;/b&gt;</translation>
     </message>
     <message>
         <source>&lt;b&gt;Additional attributes&lt;/b&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;Ytterligare attribut&lt;/b&gt;</translation>
     </message>
     <message>
         <source>CL</source>
-        <translation type="unfinished"></translation>
+        <translation>CL</translation>
     </message>
     <message>
         <source>Choose objectclass</source>
-        <translation type="unfinished"></translation>
+        <translation>Välj objectclass</translation>
     </message>
 </context>
 <context>
     <name>AddressbookSettingsDesign</name>
     <message>
         <source>Attributes</source>
-        <translation type="unfinished"></translation>
+        <translation>Attribut</translation>
     </message>
     <message>
         <source>Addressbook Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Adressboks Inställningar</translation>
     </message>
     <message>
         <source>&amp;Add</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Lägg till</translation>
     </message>
     <message>
         <source>Alt+A</source>
-        <translation type="unfinished"></translation>
+        <translation>Alt+L</translation>
     </message>
     <message>
         <source>&amp;Delete</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Ta bort</translation>
     </message>
     <message>
         <source>Alt+D</source>
-        <translation type="unfinished"></translation>
+        <translation>Alt+T</translation>
     </message>
     <message>
         <source>Search Criteria</source>
-        <translation type="unfinished"></translation>
+        <translation>Sök kriteria</translation>
     </message>
     <message>
         <source>&amp;Save</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Spara</translation>
     </message>
     <message>
         <source>Alt+S</source>
-        <translation type="unfinished"></translation>
+        <translation>Alt+S</translation>
     </message>
 </context>
 <context>
     <name>AddressbookView</name>
     <message>
         <source>&amp;Save</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Spara</translation>
     </message>
 </context>
 <context>
     <name>AddressbookWidget</name>
     <message>
         <source>Error</source>
-        <translation type="unfinished"></translation>
+        <translation>Fel</translation>
     </message>
     <message>
         <source>Could not save contact data. 
 Please read console output for more information.</source>
-        <translation type="unfinished"></translation>
+        <translation>Kunde inte spara kontakt information.
+Se konsolen för mer information.</translation>
     </message>
 </context>
 <context>
     <name>AddressbookWidgetDesign</name>
     <message>
         <source>AddressbookWidgetDesign</source>
-        <translation type="unfinished"></translation>
+        <translation>AddressbookWidgetDesign</translation>
     </message>
     <message>
         <source>P</source>
         <comment>DO NOT TRANSLATE</comment>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>&amp;Full Name...</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Fullständigt Namn...</translation>
     </message>
     <message>
         <source>Alt+F</source>
-        <translation type="unfinished"></translation>
+        <translation>Alt+F</translation>
     </message>
     <message>
         <source>&amp;Categories...</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Kategorier...</translation>
     </message>
     <message>
         <source>Alt+C</source>
-        <translation type="unfinished"></translation>
+        <translation>Alt+C</translation>
     </message>
     <message>
         <source>CL</source>
         <comment>DO NOT TRANSLATE</comment>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>WP</source>
         <comment>DO NOT TRANSLATE</comment>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>&amp;Delete</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Ta bort</translation>
     </message>
     <message>
         <source>Alt+D</source>
-        <translation type="unfinished"></translation>
+        <translation>Alt+T</translation>
     </message>
     <message>
         <source>&amp;Add...</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Lägg till...</translation>
     </message>
     <message>
         <source>Alt+A</source>
-        <translation type="unfinished"></translation>
+        <translation>Alt+L</translation>
     </message>
     <message>
         <source>Ma</source>
         <comment>DO NOT TRANSLATE</comment>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Email:</source>
-        <translation type="unfinished"></translation>
+        <translation>E-post adress:</translation>
     </message>
     <message>
         <source>Web page address:</source>
-        <translation type="unfinished"></translation>
+        <translation>Hemsida:</translation>
     </message>
     <message>
         <source>Organisation:</source>
-        <translation type="unfinished"></translation>
+        <translation>Organisation:</translation>
     </message>
     <message>
         <source>Job title:</source>
-        <translation type="unfinished"></translation>
+        <translation>Jobb titel:</translation>
     </message>
     <message>
         <source>General</source>
-        <translation type="unfinished"></translation>
+        <translation>Allmänt</translation>
     </message>
     <message>
         <source>Mobile:</source>
-        <translation type="unfinished"></translation>
+        <translation>Mobiltelefon:</translation>
     </message>
     <message>
         <source>Business Fax:</source>
-        <translation type="unfinished"></translation>
+        <translation>Fax, arbete:</translation>
     </message>
     <message>
         <source>Ph</source>
         <comment>DO NOT TRANSLATE</comment>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Work:</source>
-        <translation type="unfinished"></translation>
+        <translation>Arbete:</translation>
     </message>
     <message>
         <source>Home:</source>
-        <translation type="unfinished"></translation>
+        <translation>Hem:</translation>
     </message>
     <message>
         <source>Business</source>
-        <translation type="unfinished"></translation>
+        <translation>Arbete</translation>
     </message>
     <message>
         <source>Home</source>
-        <translation type="unfinished"></translation>
+        <translation>Hem</translation>
     </message>
     <message>
         <source>Other</source>
-        <translation type="unfinished"></translation>
+        <translation>Övrigt</translation>
     </message>
     <message>
         <source>HI</source>
         <comment>DO NOT TRANSLATE</comment>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Phone/Address</source>
-        <translation type="unfinished"></translation>
+        <translation>Telefon/Adress</translation>
     </message>
     <message>
         <source>ME</source>
         <comment>DO NOT TRANSLATE</comment>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Profession:</source>
-        <translation type="unfinished"></translation>
+        <translation>Yrke:</translation>
     </message>
     <message>
         <source>Office:</source>
-        <translation type="unfinished"></translation>
+        <translation>Kontor:</translation>
     </message>
     <message>
         <source>WO</source>
         <comment>DO NOT TRANSLATE</comment>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Departement:</source>
-        <translation type="unfinished"></translation>
+        <translation>Avdelning:</translation>
     </message>
     <message>
         <source>Manager&apos;s name:</source>
-        <translation type="unfinished"></translation>
+        <translation>Chef:</translation>
     </message>
     <message>
         <source>Assistant&apos;s name:</source>
-        <translation type="unfinished"></translation>
+        <translation>Assistent:</translation>
     </message>
     <message>
         <source>Notes:</source>
-        <translation type="unfinished"></translation>
+        <translation>Noteringar:</translation>
     </message>
     <message>
         <source>Anniversary:</source>
-        <translation type="unfinished"></translation>
+        <translation>Bröllopsdag:</translation>
     </message>
     <message>
         <source>Birthday:</source>
-        <translation type="unfinished"></translation>
+        <translation>Födelsedag:</translation>
     </message>
     <message>
         <source>Nickname:</source>
-        <translation type="unfinished"></translation>
+        <translation>Smeknamn:</translation>
     </message>
     <message>
         <source>Spouse:</source>
-        <translation type="unfinished"></translation>
+        <translation>Make/Maka:</translation>
     </message>
     <message>
         <source>NO</source>
         <comment>DO NOT TRANSLATE</comment>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Details</source>
-        <translation type="unfinished"></translation>
+        <translation>Detaljer</translation>
     </message>
 </context>
 <context>
     <name>AdminPanelDesign</name>
     <message>
         <source>AdminPanelDesign</source>
-        <translation type="unfinished"></translation>
+        <translation>AdminPanelDesign</translation>
     </message>
     <message>
         <source>Encrypt Password</source>
-        <translation type="unfinished"></translation>
+        <translation>Kryptera Lösenord</translation>
     </message>
     <message>
         <source>Encrypted Password:</source>
-        <translation type="unfinished"></translation>
+        <translation>Krypterat Lösenord:</translation>
     </message>
     <message>
         <source>&amp;Encrypt</source>
-        <translation type="unfinished"></translation>
+        <translation>Krypt&amp;era</translation>
     </message>
     <message>
         <source>Alt+E</source>
-        <translation type="unfinished"></translation>
+        <translation>Alt+E</translation>
     </message>
     <message>
         <source>Password:</source>
-        <translation type="unfinished"></translation>
+        <translation>Lösenord:</translation>
     </message>
     <message>
         <source>Create Random Password</source>
-        <translation type="unfinished"></translation>
+        <translation>Skapa Slumpmässigt Lösenord</translation>
     </message>
     <message>
         <source>Encrypted password:</source>
-        <translation type="unfinished"></translation>
+        <translation>Krypterat Lösenord:</translation>
     </message>
     <message>
         <source>&amp;Create</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Skapa</translation>
     </message>
     <message>
         <source>Alt+C</source>
-        <translation type="unfinished"></translation>
+        <translation>Alt+S</translation>
     </message>
     <message>
         <source>Method:</source>
-        <translation type="unfinished"></translation>
+        <translation>Metod:</translation>
     </message>
     <message>
         <source>Secure</source>
         <comment>DO NOT TRANSLATE</comment>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Passwords</source>
-        <translation type="unfinished"></translation>
+        <translation>Lösenord</translation>
     </message>
     <message>
         <source>Date</source>
         <comment>DO NOT TRANSLATE</comment>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Date to Unix Date</source>
-        <translation type="unfinished"></translation>
+        <translation>Datum Till UNIX Tid</translation>
     </message>
     <message>
         <source>&amp;Convert</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Konvertera</translation>
     </message>
     <message>
         <source>Date:</source>
-        <translation type="unfinished"></translation>
+        <translation>Datum:</translation>
     </message>
     <message>
         <source>Unix Date:</source>
-        <translation type="unfinished"></translation>
+        <translation>UNIX Tid:</translation>
     </message>
     <message>
         <source>Duration to Unix Date</source>
-        <translation type="unfinished"></translation>
+        <translation>Varaktighet Till UNIX Tid</translation>
     </message>
     <message>
         <source>C&amp;onvert</source>
-        <translation type="unfinished"></translation>
+        <translation>K&amp;onvertera</translation>
     </message>
     <message>
         <source>Alt+O</source>
-        <translation type="unfinished"></translation>
+        <translation>Alt+O</translation>
     </message>
     <message>
         <source>Days from now:</source>
-        <translation type="unfinished"></translation>
+        <translation>Dagar från idag:</translation>
     </message>
     <message>
         <source>Date/Time</source>
-        <translation type="unfinished"></translation>
+        <translation>Datum/Tid</translation>
     </message>
 </context>
 <context>
     <name>BaseSelectorDesign</name>
     <message>
         <source>Select Base DN</source>
-        <translation type="unfinished"></translation>
+        <translation>Välj Base DN</translation>
     </message>
     <message>
         <source>Available Base DNs:</source>
-        <translation type="unfinished"></translation>
+        <translation>Tillgängliga Base DNs:</translation>
     </message>
     <message>
         <source>&amp;Cancel</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Avbryt</translation>
     </message>
     <message>
         <source>Alt+C</source>
-        <translation type="unfinished"></translation>
+        <translation>Alt+A</translation>
     </message>
     <message>
         <source>&amp;Ok</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Ok</translation>
     </message>
     <message>
         <source>Alt+O</source>
-        <translation type="unfinished"></translation>
+        <translation>Alt+O</translation>
     </message>
 </context>
 <context>
     <name>BrowserDialog</name>
     <message>
         <source>Ok</source>
-        <translation type="unfinished"></translation>
+        <translation>Ok</translation>
     </message>
     <message>
         <source>Cancel</source>
-        <translation type="unfinished"></translation>
+        <translation>Avbryt</translation>
     </message>
 </context>
 <context>
     <name>BrowserWidget</name>
     <message>
         <source>Entries</source>
-        <translation type="unfinished"></translation>
+        <translation>Poster</translation>
     </message>
     <message>
         <source>Item</source>
-        <translation type="unfinished"></translation>
+        <translation>Post</translation>
     </message>
     <message>
         <source>Subtree</source>
-        <translation type="unfinished"></translation>
+        <translation>Underträd</translation>
     </message>
     <message>
         <source>Subtree with Parents</source>
-        <translation type="unfinished"></translation>
+        <translation>Underträd med föräldrar</translation>
     </message>
     <message>
         <source>Subtree without Node</source>
-        <translation type="unfinished"></translation>
+        <translation>Underträd utan nod</translation>
     </message>
     <message>
         <source>Add Item</source>
-        <translation type="unfinished"></translation>
+        <translation>Lägg till post</translation>
     </message>
     <message>
         <source>Export to LDIF</source>
-        <translation type="unfinished"></translation>
+        <translation>Exportera till LDIF</translation>
     </message>
     <message>
         <source>Delete</source>
-        <translation type="unfinished"></translation>
+        <translation>Ta bort</translation>
     </message>
     <message>
         <source>Error</source>
-        <translation type="unfinished"></translation>
+        <translation>Fel</translation>
     </message>
     <message>
         <source>Could not access entry.
 See console output for more information.</source>
-        <translation type="unfinished"></translation>
+        <translation>Kunde inte komma åt post.
+Se konsolen för mer information.</translation>
     </message>
     <message>
         <source>&amp;OK</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;OK</translation>
     </message>
     <message>
         <source>Do you really want to delete the item from the server?</source>
-        <translation type="unfinished"></translation>
+        <translation>Vill du verkligen ta bort posten från servern?</translation>
     </message>
     <message>
         <source>Delete entry</source>
-        <translation type="unfinished"></translation>
+        <translation>Ta bort post</translation>
     </message>
     <message>
         <source>Cancel</source>
-        <translation type="unfinished"></translation>
+        <translation>Avbryt</translation>
     </message>
     <message>
         <source>Add entry</source>
-        <translation type="unfinished"></translation>
+        <translation>Lägg till post</translation>
     </message>
     <message>
         <source>Do you really want to delete the items recursively from the server?</source>
-        <translation type="unfinished"></translation>
+        <translation>Vill du verkligen rekursivt ta bort posterna från servern?</translation>
     </message>
     <message>
         <source>Delete entries</source>
-        <translation type="unfinished"></translation>
+        <translation>Ta bort poster</translation>
     </message>
     <message>
         <source>Error </source>
-        <translation type="unfinished"></translation>
+        <translation>Fel</translation>
     </message>
     <message>
         <source>Delete operation was not succesful.
 See console output for more information.</source>
-        <translation type="unfinished"></translation>
+        <translation>Kunde inte ta bort.
+Se konsolen för mer information.</translation>
     </message>
 </context>
 <context>
     <name>CategoryEditDialogDesign</name>
     <message>
         <source>Categories</source>
-        <translation type="unfinished"></translation>
+        <translation>Kategorier</translation>
     </message>
     <message>
         <source>Edit categories</source>
-        <translation type="unfinished"></translation>
+        <translation>Ändra kategorier</translation>
     </message>
     <message>
         <source>&amp;Delete</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Ta bort</translation>
     </message>
     <message>
         <source>Alt+D</source>
-        <translation type="unfinished"></translation>
+        <translation>Alt+T</translation>
     </message>
     <message>
         <source>&amp;Add</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Lägg till</translation>
     </message>
     <message>
         <source>Alt+A</source>
-        <translation type="unfinished"></translation>
+        <translation>Alt+L</translation>
     </message>
     <message>
         <source>&amp;Ok</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Ok</translation>
     </message>
     <message>
         <source>Alt+O</source>
-        <translation type="unfinished"></translation>
+        <translation>Alt+O</translation>
     </message>
     <message>
         <source>&amp;Cancel</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Avbryt</translation>
     </message>
     <message>
         <source>Alt+C</source>
-        <translation type="unfinished"></translation>
+        <translation>Alt+A</translation>
     </message>
 </context>
 <context>
     <name>ConfigError</name>
     <message>
         <source>Info</source>
-        <translation type="unfinished"></translation>
+        <translation>Information</translation>
     </message>
     <message>
         <source>&amp;Ok</source>
         <comment>DO NOT TRANSLATE</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">&amp;Ok</translation>
     </message>
     <message>
         <source>Alt+O</source>
-        <translation type="unfinished"></translation>
+        <translation>Alt+O</translation>
     </message>
 </context>
 <context>
     <name>ConfigPanel</name>
     <message>
         <source>Help for Suffix:</source>
-        <translation type="unfinished"></translation>
+        <translation>Hjälp för sufix:</translation>
     </message>
     <message>
         <source>Help for Admin Name:</source>
-        <translation type="unfinished"></translation>
+        <translation>Hjälp för admin namn:</translation>
     </message>
     <message>
         <source>Help for Distribution:</source>
-        <translation type="unfinished"></translation>
+        <translation>Hjälp för distribution:</translation>
     </message>
     <message>
         <source>Help for Password:</source>
-        <translation type="unfinished"></translation>
+        <translation>Hjälp för lösenord:</translation>
     </message>
     <message>
         <source>Bad Suffix!</source>
-        <translation type="unfinished"></translation>
+        <translation>Ogiltigt sufix!</translation>
     </message>
     <message>
         <source>Bad Admin Name!</source>
-        <translation type="unfinished"></translation>
+        <translation>Ogiltigt admin namn!</translation>
     </message>
     <message>
         <source>Bad Password!</source>
-        <translation type="unfinished"></translation>
+        <translation>Ogiltigt lösenord!</translation>
     </message>
     <message>
         <source>Bad File Name!</source>
-        <translation type="unfinished"></translation>
+        <translation>Ogiltigt filnamn!</translation>
     </message>
 </context>
 <context>
     <name>ConfigPanelDesign</name>
     <message>
         <source>ConfigPanelDesign</source>
-        <translation type="unfinished"></translation>
+        <translation>ConfigPanelDesign</translation>
     </message>
     <message>
         <source>Server Options</source>
-        <translation type="unfinished"></translation>
+        <translation>Server Inställningar</translation>
     </message>
     <message>
         <source>Base DN:</source>
         <comment>DO NOT TRANSLATE</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Base ND:</translation>
     </message>
     <message>
         <source>Admin Name:</source>
@@ -1076,7 +1087,7 @@ See console output for more information.</source>
     <message>
         <source>Help</source>
         <comment>DO NOT TRANSLATE</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Hjälp</translation>
     </message>
     <message>
         <source>Save Options</source>
@@ -1095,37 +1106,37 @@ See console output for more information.</source>
     </message>
     <message>
         <source>Alt+F</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Alt+F</translation>
     </message>
 </context>
 <context>
     <name>ContactWizard</name>
     <message>
         <source>Error</source>
-        <translation type="unfinished"></translation>
+        <translation>Fel</translation>
     </message>
     <message>
         <source>Could not save entry. Please see console for more infomation.</source>
-        <translation type="unfinished"></translation>
+        <translation>Kunde inte spara post. Se konsolen för mer information.</translation>
     </message>
     <message>
         <source>&amp;OK</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;OK</translation>
     </message>
     <message>
         <source>Incomplete Information</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Your contact needs at least a surename.</source>
-        <translation type="unfinished"></translation>
+        <translation>Inkomplett Information</translation>
     </message>
     <message>
         <source>Warning: Location</source>
-        <translation type="unfinished"></translation>
+        <translation>Varning: Plats</translation>
     </message>
     <message>
         <source>Please select a location where to store the contact.</source>
+        <translation>Ange en destination vars kontakten skall sparas.</translation>
+    </message>
+    <message>
+        <source>Your contact needs at least a surname.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1133,138 +1144,138 @@ See console output for more information.</source>
     <name>ContactWizardDesign</name>
     <message>
         <source>Add Contact</source>
-        <translation type="unfinished"></translation>
+        <translation>Lägg till Kontakt</translation>
     </message>
     <message>
         <source>LOC</source>
         <comment>DO NOT TRANSLATE</comment>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Please select a location where the new contact should be stored.</source>
-        <translation type="unfinished"></translation>
+        <translation>Välj en destination var den nya kontakten ska sparas.</translation>
     </message>
     <message>
         <source>Location:</source>
-        <translation type="unfinished"></translation>
+        <translation>Destination:</translation>
     </message>
     <message>
         <source>Select location</source>
-        <translation type="unfinished"></translation>
+        <translation>Välj destination</translation>
     </message>
     <message>
         <source>Fill contact data</source>
-        <translation type="unfinished"></translation>
+        <translation>Fyll i kontakt information</translation>
     </message>
 </context>
 <context>
     <name>FilterWizardDesign</name>
     <message>
         <source>Search Filter Wizard</source>
-        <translation type="unfinished"></translation>
+        <translation>Sök Filter Guide</translation>
     </message>
     <message>
         <source>Search Criteria</source>
-        <translation type="unfinished"></translation>
+        <translation>Sök Kriteria</translation>
     </message>
     <message>
         <source>ObjectClass</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Attribute</source>
-        <translation type="unfinished"></translation>
+        <translation>Attribut</translation>
     </message>
     <message>
         <source>=  (equal)</source>
-        <translation type="unfinished"></translation>
+        <translation>=  (lika med)</translation>
     </message>
     <message>
         <source>-=  (approx)</source>
-        <translation type="unfinished"></translation>
+        <translation>-=  (ungefär)</translation>
     </message>
     <message>
         <source>&gt;=  (greater)</source>
-        <translation type="unfinished"></translation>
+        <translation>&gt;=  (större än)</translation>
     </message>
     <message>
         <source>&lt;=  (less)</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;= (mindre än)</translation>
     </message>
     <message>
         <source>Expression:</source>
-        <translation type="unfinished"></translation>
+        <translation>Uttryck:</translation>
     </message>
     <message>
         <source>Add</source>
-        <translation type="unfinished"></translation>
+        <translation>Lägg till</translation>
     </message>
     <message>
         <source>Concatenation:</source>
-        <translation type="unfinished"></translation>
+        <translation>Sammanlänkning:</translation>
     </message>
     <message>
         <source>and</source>
-        <translation type="unfinished"></translation>
+        <translation>och</translation>
     </message>
     <message>
         <source>or</source>
-        <translation type="unfinished"></translation>
+        <translation>eller</translation>
     </message>
     <message>
         <source>not</source>
-        <translation type="unfinished"></translation>
+        <translation>inte</translation>
     </message>
     <message>
         <source>Search Filter</source>
-        <translation type="unfinished"></translation>
+        <translation>Sökfilter</translation>
     </message>
     <message>
         <source>Bookmark:</source>
-        <translation type="unfinished"></translation>
+        <translation>Bokmärke:</translation>
     </message>
     <message>
         <source>&amp;Delete</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Ta bort</translation>
     </message>
     <message>
         <source>Alt+D</source>
-        <translation type="unfinished"></translation>
+        <translation>Alt+T</translation>
     </message>
     <message>
         <source>&amp;Add to Bookmarks</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Lägg till bokmärke</translation>
     </message>
     <message>
         <source>Alt+A</source>
-        <translation type="unfinished"></translation>
+        <translation>Alt+L</translation>
     </message>
     <message>
         <source>&amp;Ok</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Ok</translation>
     </message>
     <message>
         <source>Alt+O</source>
-        <translation type="unfinished"></translation>
+        <translation>Alt+O</translation>
     </message>
 </context>
 <context>
     <name>GroupDialogDesign</name>
     <message>
         <source>Group</source>
-        <translation type="unfinished"></translation>
+        <translation>Grupp</translation>
     </message>
     <message>
         <source>ID</source>
-        <translation type="unfinished"></translation>
+        <translation>ID</translation>
     </message>
     <message>
         <source>Location</source>
-        <translation type="unfinished"></translation>
+        <translation>Sökväg</translation>
     </message>
     <message>
         <source>Edit group membership</source>
-        <translation type="unfinished"></translation>
+        <translation>Ändra grupp medlemskap</translation>
     </message>
     <message>
         <source>GR</source>
@@ -1273,89 +1284,92 @@ See console output for more information.</source>
     </message>
     <message>
         <source>Select the groups the &lt;strong&gt;%1&lt;/strong&gt; user should belong to.</source>
-        <translation type="unfinished"></translation>
+        <translation>Välj grupper användaren &lt;strong&gt;%1&lt;/strong&gt; ska tillhöra.</translation>
     </message>
     <message>
         <source>&lt;b&gt;Primary Group&lt;/b&gt;&lt;br&gt;
 You may select from the groups available in the LDAP database or enter any ID that is valid on the system below.</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;Primär Grupp&lt;/b&gt;&lt;br&gt;
+Du kan välja bland grupperna som finns i LDAP eller ange ett ID som är giltigt på systemet.</translation>
     </message>
     <message>
         <source>Group ID:</source>
-        <translation type="unfinished"></translation>
+        <translation>Grupp ID:</translation>
     </message>
     <message>
         <source>LDAP Groups:</source>
-        <translation type="unfinished"></translation>
+        <translation>LDAP Grupper:</translation>
     </message>
     <message>
         <source>&lt;b&gt;Additional Groups&lt;/b&gt;&lt;br&gt;
 Select any additional groups the &lt;b&gt;%1&lt;/b&gt; user should belong to from the list below.</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;Ytterliggare Grupper&lt;/b&gt;&lt;br&gt;
+V&apos;älj ytterliggare grupper användaren &lt;b&gt;%1&lt;/b&gt; ska tillhöra från listan nedan.</translation>
     </message>
     <message>
         <source>&amp;Cancel</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Avbryt</translation>
     </message>
     <message>
         <source>&amp;OK</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;OK</translation>
     </message>
 </context>
 <context>
     <name>IfiUser</name>
     <message>
         <source>Incomplete Information</source>
-        <translation type="unfinished"></translation>
+        <translation>Inkomplett Information</translation>
     </message>
     <message>
         <source>Please select a valid node from a ldap server.</source>
-        <translation type="unfinished"></translation>
+        <translation>Välj en giltig nod från en LDAP server.</translation>
     </message>
     <message>
         <source>&amp;OK</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;OK</translation>
     </message>
     <message>
         <source>Conflict</source>
-        <translation type="unfinished"></translation>
+        <translation>Konflikt</translation>
     </message>
     <message>
         <source>There are not enough user ids left! 
 Try increasing the uidNumber range or delete some users from the subtree.</source>
-        <translation type="unfinished"></translation>
+        <translation>Det finns inte tillräckligt många användare IDn kvar!
+Testa öka uidNumber omfånget eller ta bort användare från underträdet.</translation>
     </message>
     <message>
         <source>Success</source>
-        <translation type="unfinished"></translation>
+        <translation>Färdigt</translation>
     </message>
     <message>
         <source>User was created successfully.</source>
-        <translation type="unfinished"></translation>
+        <translation>Användaren skapades korrekt.</translation>
     </message>
     <message>
         <source>Error</source>
-        <translation type="unfinished"></translation>
+        <translation>Fel</translation>
     </message>
     <message>
         <source>Wrong entry!</source>
-        <translation type="unfinished"></translation>
+        <translation>Fel post!</translation>
     </message>
     <message>
         <source>The selected ldap entry did not contain the attribute &apos;gidNumber&apos;.</source>
-        <translation type="unfinished"></translation>
+        <translation>Den valda LDAP posten innehåller inte attributet gidNumber.</translation>
     </message>
 </context>
 <context>
     <name>IfiUserDesign</name>
     <message>
         <source>IfiUserDesign</source>
-        <translation type="unfinished"></translation>
+        <translation>IfiUserDesign</translation>
     </message>
     <message>
         <source>General Information</source>
         <comment>DO NOT TRANSLATE</comment>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Username:</source>
@@ -1375,21 +1389,21 @@ Try increasing the uidNumber range or delete some users from the subtree.</sourc
     <message>
         <source>Directory Settings</source>
         <comment>DO NOT TRANSLATE</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Katalog Inställningar</translation>
     </message>
     <message>
         <source>Base node:</source>
         <comment>DO NOT TRANSLATE</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Huvud nod:</translation>
     </message>
     <message>
         <source>Basic</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Grundläggande</translation>
     </message>
     <message>
         <source>Expiration date</source>
         <comment>DO NOT TRANSLATE</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Utgångsdatum</translation>
     </message>
     <message>
         <source>Date</source>
@@ -1399,39 +1413,39 @@ Try increasing the uidNumber range or delete some users from the subtree.</sourc
     <message>
         <source>Days from now</source>
         <comment>DO NOT TRANSLATE</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Dagar från idag</translation>
     </message>
     <message>
         <source>Account settings</source>
         <comment>DO NOT TRANSLATE</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Konto inställningar</translation>
     </message>
     <message>
         <source>/home</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">/home</translation>
     </message>
     <message>
         <source>/bin/bash</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">/bin/bash</translation>
     </message>
     <message>
         <source>Login shell:</source>
         <comment>DO NOT TRANSLATE</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Inloggnings skal:</translation>
     </message>
     <message>
         <source>Home:</source>
         <comment>DO NOT TRANSLATE</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Hem:</translation>
     </message>
     <message>
         <source>Group Id:</source>
         <comment>DO NOT TRANSLATE</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Grupp ID:</translation>
     </message>
     <message>
         <source>Select group from LDAP</source>
-        <translation type="unfinished"></translation>
+        <translation>Välj grupp från LDAP</translation>
     </message>
     <message>
         <source>uid number range</source>
@@ -1441,16 +1455,16 @@ Try increasing the uidNumber range or delete some users from the subtree.</sourc
     <message>
         <source>Minimum:</source>
         <comment>DO NOT TRANSLATE</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Minimum:</translation>
     </message>
     <message>
         <source>Maximum:</source>
         <comment>DO NOT TRANSLATE</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Maximum:</translation>
     </message>
     <message>
         <source>Account Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Konto Inställningar</translation>
     </message>
     <message>
         <source>Account Password:</source>
@@ -1459,12 +1473,12 @@ Try increasing the uidNumber range or delete some users from the subtree.</sourc
     </message>
     <message>
         <source>Account Password</source>
-        <translation type="unfinished"></translation>
+        <translation>Konto Lösenord</translation>
     </message>
     <message>
         <source>&amp;Create</source>
         <comment>DO NOT TRANSLATE</comment>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">&amp;Skapa</translation>
     </message>
     <message>
         <source>Alt+C</source>
@@ -1475,77 +1489,77 @@ Try increasing the uidNumber range or delete some users from the subtree.</sourc
     <name>LanguageDialogDesign</name>
     <message>
         <source>Choose Language</source>
-        <translation type="unfinished"></translation>
+        <translation>Välj Språk</translation>
     </message>
     <message>
         <source>Language:</source>
-        <translation type="unfinished"></translation>
+        <translation>Språk:</translation>
     </message>
     <message>
         <source>&amp;Ok</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Ok</translation>
     </message>
     <message>
         <source>Alt+O</source>
-        <translation type="unfinished"></translation>
+        <translation>Alt+O</translation>
     </message>
     <message>
         <source>&amp;Cancel</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Avbryt</translation>
     </message>
     <message>
         <source>Alt+C</source>
-        <translation type="unfinished"></translation>
+        <translation>Alt+A</translation>
     </message>
 </context>
 <context>
     <name>LumaEntryBrowser</name>
     <message>
         <source>Tree</source>
-        <translation type="unfinished"></translation>
+        <translation>Träd</translation>
     </message>
     <message>
         <source>Icons</source>
-        <translation type="unfinished"></translation>
+        <translation>Ikoner</translation>
     </message>
     <message>
         <source>Delete contact</source>
-        <translation type="unfinished"></translation>
+        <translation>Ta bort kontakt</translation>
     </message>
     <message>
         <source>Do you really want to delete the selected contact?</source>
-        <translation type="unfinished"></translation>
+        <translation>VIll du verkligen ta bort valda kontakter ?</translation>
     </message>
     <message>
         <source>&amp;Yes</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Ja</translation>
     </message>
     <message>
         <source>&amp;No</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Nej</translation>
     </message>
     <message>
         <source>Error</source>
-        <translation type="unfinished"></translation>
+        <translation>Fel</translation>
     </message>
     <message>
         <source>Could not delete contact. See console output for more information.</source>
-        <translation type="unfinished"></translation>
+        <translation>Kunde inte ta bort kontakt. Se konsolen för mer information.</translation>
     </message>
     <message>
         <source>&amp;OK</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;OK</translation>
     </message>
 </context>
 <context>
     <name>LumaEntryBrowserDesign</name>
     <message>
         <source>Object</source>
-        <translation type="unfinished"></translation>
+        <translation>Objekt</translation>
     </message>
     <message>
         <source>LumaIconViewDesign</source>
-        <translation type="unfinished"></translation>
+        <translation>LumaIconViewDesign</translation>
     </message>
     <message>
         <source>&amp;Go</source>
@@ -1557,27 +1571,27 @@ Try increasing the uidNumber range or delete some users from the subtree.</sourc
     </message>
     <message>
         <source>Filter:</source>
-        <translation type="unfinished"></translation>
+        <translation>Filter:</translation>
     </message>
     <message>
         <source>Server:</source>
-        <translation type="unfinished"></translation>
+        <translation>Server:</translation>
     </message>
     <message>
         <source>&amp;Add...</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Lägg till...</translation>
     </message>
     <message>
         <source>Alt+A</source>
-        <translation type="unfinished"></translation>
+        <translation>Alt+L</translation>
     </message>
     <message>
         <source>&amp;Delete</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Ta bort</translation>
     </message>
     <message>
         <source>Alt+D</source>
-        <translation type="unfinished"></translation>
+        <translation>Alt+T</translation>
     </message>
     <message>
         <source>...</source>
@@ -1589,38 +1603,38 @@ Try increasing the uidNumber range or delete some users from the subtree.</sourc
     <name>LumaIconView</name>
     <message>
         <source>Delete contact</source>
-        <translation type="unfinished"></translation>
+        <translation>Ta bort kontakt</translation>
     </message>
     <message>
         <source>Do you really want to delete the selected contact?</source>
-        <translation type="unfinished"></translation>
+        <translation>VIll du verkligen ta bort vald kontakt ?</translation>
     </message>
     <message>
         <source>&amp;No</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Nej</translation>
     </message>
     <message>
         <source>&amp;Yes</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Ja</translation>
     </message>
     <message>
         <source>Error</source>
-        <translation type="unfinished"></translation>
+        <translation>Fel</translation>
     </message>
     <message>
         <source>Could not delete contact. See console output for more information.</source>
-        <translation type="unfinished"></translation>
+        <translation>Kunde inte ta bort kontakt. Se konsolen för mer information.</translation>
     </message>
     <message>
         <source>&amp;OK</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;OK</translation>
     </message>
 </context>
 <context>
     <name>LumaIconViewDesign</name>
     <message>
         <source>LumaIconViewDesign</source>
-        <translation type="unfinished"></translation>
+        <translation>LumaIconViewDesign</translation>
     </message>
     <message>
         <source>&amp;Go</source>
@@ -1632,34 +1646,34 @@ Try increasing the uidNumber range or delete some users from the subtree.</sourc
     </message>
     <message>
         <source>Filter:</source>
-        <translation type="unfinished"></translation>
+        <translation>Filter:</translation>
     </message>
     <message>
         <source>Server:</source>
-        <translation type="unfinished"></translation>
+        <translation>Server:</translation>
     </message>
     <message>
         <source>&amp;Add...</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Lägg till...</translation>
     </message>
     <message>
         <source>Alt+A</source>
-        <translation type="unfinished"></translation>
+        <translation>Alt+L</translation>
     </message>
     <message>
         <source>&amp;Delete</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Ta bort</translation>
     </message>
     <message>
         <source>Alt+D</source>
-        <translation type="unfinished"></translation>
+        <translation>Alt+T</translation>
     </message>
 </context>
 <context>
     <name>MailDialogDesign</name>
     <message>
         <source>New mail</source>
-        <translation type="unfinished"></translation>
+        <translation>Ny e-post adress</translation>
     </message>
     <message>
         <source>ML</source>
@@ -1668,264 +1682,266 @@ Try increasing the uidNumber range or delete some users from the subtree.</sourc
     </message>
     <message>
         <source>New mail:</source>
-        <translation type="unfinished"></translation>
+        <translation>Ny e-post adress:</translation>
     </message>
     <message>
         <source>&amp;Ok</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Ok</translation>
     </message>
     <message>
         <source>Alt+O</source>
-        <translation type="unfinished"></translation>
+        <translation>Alt+O</translation>
     </message>
     <message>
         <source>&amp;Cancel</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Avbryt</translation>
     </message>
     <message>
         <source>Alt+C</source>
-        <translation type="unfinished"></translation>
+        <translation>Alt+A</translation>
     </message>
 </context>
 <context>
     <name>MainWin</name>
     <message>
         <source>Choose Language</source>
-        <translation type="unfinished"></translation>
+        <translation>Välj Språk</translation>
     </message>
 </context>
 <context>
     <name>MainWinDesign</name>
     <message>
         <source>Luma</source>
-        <translation type="unfinished"></translation>
+        <translation>Luma</translation>
     </message>
     <message>
         <source>Plugins</source>
-        <translation type="unfinished"></translation>
+        <translation>Tillägg</translation>
     </message>
     <message>
         <source>Work Area</source>
-        <translation type="unfinished"></translation>
+        <translation>Arbetsyta</translation>
     </message>
     <message>
         <source>About Luma...</source>
-        <translation type="unfinished"></translation>
+        <translation>Om Luma...</translation>
     </message>
     <message>
         <source>Ctrl+A</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+A</translation>
     </message>
     <message>
         <source>Edit Server List...</source>
-        <translation type="unfinished"></translation>
+        <translation>Ändra i server listan...</translation>
     </message>
     <message>
         <source>Ctrl+E</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+E</translation>
     </message>
     <message>
         <source>Exit</source>
-        <translation type="unfinished"></translation>
+        <translation>Avsluta</translation>
     </message>
     <message>
         <source>Ctrl+X</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+X</translation>
     </message>
     <message>
         <source>Configure Plugins...</source>
-        <translation type="unfinished"></translation>
+        <translation>Konfigurera tillägg...</translation>
     </message>
     <message>
         <source>Ctrl+C</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+C</translation>
     </message>
     <message>
         <source>Reload Plugins</source>
-        <translation type="unfinished"></translation>
+        <translation>Ladda Om Tillägg</translation>
     </message>
     <message>
         <source>Ctrl+R</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+R</translation>
     </message>
     <message>
         <source>Language...</source>
-        <translation type="unfinished"></translation>
+        <translation>Språk...</translation>
     </message>
     <message>
         <source>Ctrl+L</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+L</translation>
     </message>
     <message>
         <source>Hide/Show pluginlist</source>
-        <translation type="unfinished"></translation>
+        <translation>Dölj/Visa tilläggslista</translation>
     </message>
     <message>
         <source>Ctrl+P</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+P</translation>
     </message>
     <message>
         <source>Program</source>
-        <translation type="unfinished"></translation>
+        <translation>Program</translation>
     </message>
     <message>
         <source>Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Inställningar</translation>
     </message>
     <message>
         <source>Help</source>
-        <translation type="unfinished"></translation>
+        <translation>Hjälp</translation>
     </message>
 </context>
 <context>
     <name>MassCreation</name>
     <message>
         <source>Incomplete Information</source>
-        <translation type="unfinished"></translation>
+        <translation>Inkomplett Information</translation>
     </message>
     <message>
         <source>Please select a valid node from a ldap server.</source>
-        <translation type="unfinished"></translation>
+        <translation>Välj en giltig nod från en LDAP server.</translation>
     </message>
     <message>
         <source>&amp;OK</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;OK</translation>
     </message>
     <message>
         <source>Conflict</source>
-        <translation type="unfinished"></translation>
+        <translation>Konflikt</translation>
     </message>
     <message>
         <source>There are not enough user ids left! 
 Try increasing the uidNumber range or delete some users from the subtree.</source>
-        <translation type="unfinished"></translation>
+        <translation>Det finns inte tillräckligt många användare IDn kvar!
+Testa öka uidNumber eller ta bort användare från trädet.</translation>
     </message>
     <message>
         <source>Error</source>
-        <translation type="unfinished"></translation>
+        <translation>Fel</translation>
     </message>
     <message>
         <source>Error during creation of users.
 Please see console output for more information.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ett fel uppstog under skapandet av användarna.
+Se konsolen för mer information.</translation>
     </message>
     <message>
         <source>Success</source>
-        <translation type="unfinished"></translation>
+        <translation>Färdigt</translation>
     </message>
     <message>
         <source>All users were created successfully.</source>
-        <translation type="unfinished"></translation>
+        <translation>Alla användare skapades korrekt.</translation>
     </message>
     <message>
         <source>Wrong entry!</source>
-        <translation type="unfinished"></translation>
+        <translation>Fel post!</translation>
     </message>
     <message>
         <source>The selected ldap entry did not contain the attribute &apos;gidNumber&apos;.</source>
-        <translation type="unfinished"></translation>
+        <translation>Den markerad ldap posten innehåller inte attributet gidNumber.</translation>
     </message>
 </context>
 <context>
     <name>MassCreationDesign</name>
     <message>
         <source>Usernames</source>
-        <translation type="unfinished"></translation>
+        <translation>Användarnamn</translation>
     </message>
     <message>
         <source>Minimum:</source>
-        <translation type="unfinished"></translation>
+        <translation>Minimum:</translation>
     </message>
     <message>
         <source>Maximum:</source>
-        <translation type="unfinished"></translation>
+        <translation>Maximum:</translation>
     </message>
     <message>
         <source>Prefix:</source>
-        <translation type="unfinished"></translation>
+        <translation>Prefix:</translation>
     </message>
     <message>
         <source>Directory Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Katalog Inställningar</translation>
     </message>
     <message>
         <source>Base node:</source>
-        <translation type="unfinished"></translation>
+        <translation>Huvud nod:</translation>
     </message>
     <message>
         <source>Basic</source>
-        <translation type="unfinished"></translation>
+        <translation>Grundläggande</translation>
     </message>
     <message>
         <source>Expiration date</source>
-        <translation type="unfinished"></translation>
+        <translation>Utgångsdatum</translation>
     </message>
     <message>
         <source>Date</source>
-        <translation type="unfinished"></translation>
+        <translation>Datum</translation>
     </message>
     <message>
         <source>Days from now</source>
-        <translation type="unfinished"></translation>
+        <translation>Dagar från idag</translation>
     </message>
     <message>
         <source>Account settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Konto inställningar</translation>
     </message>
     <message>
         <source>/home</source>
-        <translation type="unfinished"></translation>
+        <translation>/home</translation>
     </message>
     <message>
         <source>Select group from LDAP</source>
-        <translation type="unfinished"></translation>
+        <translation>Välj grupp från LDAP</translation>
     </message>
     <message>
         <source>Home prefix:</source>
-        <translation type="unfinished"></translation>
+        <translation>Prefix för hemmakataloger:</translation>
     </message>
     <message>
         <source>Group Id:</source>
-        <translation type="unfinished"></translation>
+        <translation>Grupp ID:</translation>
     </message>
     <message>
         <source>Login shell:</source>
-        <translation type="unfinished"></translation>
+        <translation>Inloggnings skal:</translation>
     </message>
     <message>
         <source>/bin/bash</source>
-        <translation type="unfinished"></translation>
+        <translation>/bin/bash</translation>
     </message>
     <message>
         <source>Uid number range</source>
-        <translation type="unfinished"></translation>
+        <translation>Omfång för UID nummer</translation>
     </message>
     <message>
         <source>Account Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Konto Inställningar</translation>
     </message>
     <message>
         <source>Account Passwords:</source>
-        <translation type="unfinished"></translation>
+        <translation>Konto Lösenord:</translation>
     </message>
     <message>
         <source>Account Passwords</source>
-        <translation type="unfinished"></translation>
+        <translation>Konto Lösenord</translation>
     </message>
     <message>
         <source>&amp;Create</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Skapa</translation>
     </message>
     <message>
         <source>Alt+C</source>
-        <translation type="unfinished"></translation>
+        <translation>Alt+S</translation>
     </message>
 </context>
 <context>
     <name>NameDialog</name>
     <message>
         <source>Full name</source>
-        <translation type="unfinished"></translation>
+        <translation>Fullständigt namn</translation>
     </message>
     <message>
         <source>Sr.</source>
@@ -1953,15 +1969,15 @@ Please see console output for more information.</source>
     </message>
     <message>
         <source>Middle:</source>
-        <translation type="unfinished"></translation>
+        <translation>Mellan:</translation>
     </message>
     <message>
         <source>Title:</source>
-        <translation type="unfinished"></translation>
+        <translation>Titel:</translation>
     </message>
     <message>
         <source>Suffix:</source>
-        <translation type="unfinished"></translation>
+        <translation>Sufix:</translation>
     </message>
     <message>
         <source>Mr.</source>
@@ -1985,50 +2001,50 @@ Please see console output for more information.</source>
     </message>
     <message>
         <source>&lt;b&gt;Last:&lt;/b&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;Efternamn:&lt;/b&gt;</translation>
     </message>
     <message>
         <source>This attribute must be set.</source>
-        <translation type="unfinished"></translation>
+        <translation>Denna attribut måste vara satt.</translation>
     </message>
     <message>
         <source>First:</source>
-        <translation type="unfinished"></translation>
+        <translation>Förnamn:</translation>
     </message>
     <message>
         <source>&amp;Ok</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Ok</translation>
     </message>
     <message>
         <source>Alt+O</source>
-        <translation type="unfinished"></translation>
+        <translation>Alt+O</translation>
     </message>
     <message>
         <source>&amp;Cancel</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Avbryt</translation>
     </message>
     <message>
         <source>Alt+C</source>
-        <translation type="unfinished"></translation>
+        <translation>Alt+A</translation>
     </message>
 </context>
 <context>
     <name>NewCategoryDialog</name>
     <message>
         <source>Add category</source>
-        <translation type="unfinished"></translation>
+        <translation>Lägg till kategori</translation>
     </message>
     <message>
         <source>Add Category:</source>
-        <translation type="unfinished"></translation>
+        <translation>Lägg Till Kategori:</translation>
     </message>
     <message>
         <source>Birthday</source>
-        <translation type="unfinished"></translation>
+        <translation>Födelsedag</translation>
     </message>
     <message>
         <source>Business</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Arbete</translation>
     </message>
     <message>
         <source>Competition</source>
@@ -2036,7 +2052,7 @@ Please see console output for more information.</source>
     </message>
     <message>
         <source>Favorites</source>
-        <translation type="unfinished"></translation>
+        <translation>Favoriter</translation>
     </message>
     <message>
         <source>Gifts</source>
@@ -2060,7 +2076,7 @@ Please see console output for more information.</source>
     </message>
     <message>
         <source>Ideas</source>
-        <translation type="unfinished"></translation>
+        <translation>Idéer</translation>
     </message>
     <message>
         <source>International</source>
@@ -2076,15 +2092,15 @@ Please see console output for more information.</source>
     </message>
     <message>
         <source>Personal</source>
-        <translation type="unfinished"></translation>
+        <translation>Personligt</translation>
     </message>
     <message>
         <source>Phones Calls</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Telefon</translation>
     </message>
     <message>
         <source>Status</source>
-        <translation type="unfinished"></translation>
+        <translation>Status</translation>
     </message>
     <message>
         <source>Strategies</source>
@@ -2104,186 +2120,187 @@ Please see console output for more information.</source>
     </message>
     <message>
         <source>Waiting</source>
-        <translation type="unfinished"></translation>
+        <translation>Väntar</translation>
     </message>
     <message>
         <source>&amp;Ok</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Ok</translation>
     </message>
     <message>
         <source>Alt+O</source>
-        <translation type="unfinished"></translation>
+        <translation>Alt+O</translation>
     </message>
     <message>
         <source>&amp;Cancel</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Avbryt</translation>
     </message>
     <message>
         <source>Alt+C</source>
-        <translation type="unfinished"></translation>
+        <translation>Alt+A</translation>
     </message>
 </context>
 <context>
     <name>OClassDialogDesign</name>
     <message>
         <source>ObjectClass</source>
-        <translation type="unfinished"></translation>
+        <translation>ObjectClass</translation>
     </message>
     <message>
         <source>Attribute</source>
-        <translation type="unfinished"></translation>
+        <translation>Attribut</translation>
     </message>
     <message>
         <source>Luma</source>
-        <translation type="unfinished"></translation>
+        <translation>Luma</translation>
     </message>
     <message>
         <source>Object Class:</source>
-        <translation type="unfinished"></translation>
+        <translation>Objektklass:</translation>
     </message>
     <message>
         <source>Server:</source>
-        <translation type="unfinished"></translation>
+        <translation>Server:</translation>
     </message>
     <message>
         <source>&amp;Add</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Lägg till</translation>
     </message>
     <message>
         <source>Alt+A</source>
-        <translation type="unfinished"></translation>
+        <translation>Alt+L</translation>
     </message>
     <message>
         <source>&amp;Delete</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Ta bort</translation>
     </message>
     <message>
         <source>Alt+D</source>
-        <translation type="unfinished"></translation>
+        <translation>Alt+T</translation>
     </message>
     <message>
         <source>&amp;Ok</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Ok</translation>
     </message>
     <message>
         <source>Alt+O</source>
-        <translation type="unfinished"></translation>
+        <translation>Alt+O</translation>
     </message>
     <message>
         <source>&amp;Cancel</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Avbryt</translation>
     </message>
     <message>
         <source>Alt+C</source>
-        <translation type="unfinished"></translation>
+        <translation>Alt+A</translation>
     </message>
 </context>
 <context>
     <name>ObjectWidget</name>
     <message>
         <source>Reload</source>
-        <translation type="unfinished"></translation>
+        <translation>Ladda om</translation>
     </message>
     <message>
         <source>Save</source>
-        <translation type="unfinished"></translation>
+        <translation>Spara</translation>
     </message>
     <message>
         <source>Add attribute...</source>
-        <translation type="unfinished"></translation>
+        <translation>Lägg till attribut...</translation>
     </message>
     <message>
         <source>Delete object</source>
-        <translation type="unfinished"></translation>
+        <translation>Ta bort objekt</translation>
     </message>
     <message>
         <source>&lt;b&gt;Attributes&lt;/b&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;Attribut&lt;/b&gt;</translation>
     </message>
     <message>
         <source>&lt;b&gt;Values&lt;/b&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;Värde&lt;/b&gt;</translation>
     </message>
     <message>
         <source>Error</source>
-        <translation type="unfinished"></translation>
+        <translation>Fel</translation>
     </message>
     <message>
         <source>Could not save object data. 
 Please read console output for more information.</source>
-        <translation type="unfinished"></translation>
+        <translation>Kunde inte spara objekt data. Se konsolen för mer information.</translation>
     </message>
     <message>
         <source>Binary value</source>
-        <translation type="unfinished"></translation>
+        <translation>Binär värde</translation>
     </message>
     <message>
         <source>Edit...</source>
-        <translation type="unfinished"></translation>
+        <translation>Ändra...</translation>
     </message>
     <message>
         <source>Delete</source>
-        <translation type="unfinished"></translation>
+        <translation>Ta bort</translation>
     </message>
     <message>
         <source>Export...</source>
-        <translation type="unfinished"></translation>
+        <translation>Exportera...</translation>
     </message>
     <message>
         <source>Select file to change binary value</source>
-        <translation type="unfinished"></translation>
+        <translation>Välj en fil för att ändra binära värdet</translation>
     </message>
     <message>
         <source>Edit attribute</source>
-        <translation type="unfinished"></translation>
+        <translation>Ändra attribut</translation>
     </message>
     <message>
         <source>Export binary attribute to file</source>
-        <translation type="unfinished"></translation>
+        <translation>Exportera binära attributet till fil</translation>
     </message>
     <message>
         <source>Export binary attribute</source>
-        <translation type="unfinished"></translation>
+        <translation>Exportera binärt attribut</translation>
     </message>
     <message>
         <source>&amp;Cancel</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Avbryt</translation>
     </message>
     <message>
         <source>&amp;OK</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;OK</translation>
     </message>
     <message>
         <source>Save entry</source>
-        <translation type="unfinished"></translation>
+        <translation>Spara post</translation>
     </message>
     <message>
         <source>The entry has been modified. Do you want to save it?</source>
-        <translation type="unfinished"></translation>
+        <translation>Posten har ändrats. Vill du spara den?</translation>
     </message>
     <message>
         <source>&amp;Yes</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Ja</translation>
     </message>
     <message>
         <source>&amp;No</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Nej</translation>
     </message>
     <message>
         <source>Do you really want to delete the object?</source>
-        <translation type="unfinished"></translation>
+        <translation>Vill du verkligen ta bort objektet?</translation>
     </message>
     <message>
         <source>Could not delete object. 
 Please read console output for more information.</source>
-        <translation type="unfinished"></translation>
+        <translation>Kunde inte ta bort objektet.
+Se konsolen för mer information.</translation>
     </message>
 </context>
 <context>
     <name>PasswordDialogDesign</name>
     <message>
         <source>New password</source>
-        <translation type="unfinished"></translation>
+        <translation>Nytt lösenord</translation>
     </message>
     <message>
         <source>PW</source>
@@ -2292,34 +2309,34 @@ Please read console output for more information.</source>
     </message>
     <message>
         <source>Please enter a new password.</source>
-        <translation type="unfinished"></translation>
+        <translation>Ange ett nytt lösenord.</translation>
     </message>
     <message>
         <source>&amp;OK</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;OK</translation>
     </message>
     <message>
         <source>&amp;Cancel</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Avbryt</translation>
     </message>
     <message>
         <source>Retype new password:</source>
-        <translation type="unfinished"></translation>
+        <translation>Skriv det nya lösenordet igen:</translation>
     </message>
     <message>
         <source>New password:</source>
-        <translation type="unfinished"></translation>
+        <translation>Nytt lösenord:</translation>
     </message>
     <message>
         <source>Method:</source>
-        <translation type="unfinished"></translation>
+        <translation>Metod:</translation>
     </message>
 </context>
 <context>
     <name>PluginInformation</name>
     <message>
         <source>Plugin Information</source>
-        <translation type="unfinished"></translation>
+        <translation>Tilläggs Information</translation>
     </message>
     <message>
         <source>Icon</source>
@@ -2328,211 +2345,213 @@ Please read console output for more information.</source>
     </message>
     <message>
         <source>Information about this plugin:</source>
-        <translation type="unfinished"></translation>
+        <translation>Information om detta tillägg:</translation>
     </message>
     <message>
         <source>&amp;Close</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Stäng</translation>
     </message>
     <message>
         <source>Alt+C</source>
-        <translation type="unfinished"></translation>
+        <translation>Alt+S</translation>
     </message>
 </context>
 <context>
     <name>PluginLoaderGuiDesign</name>
     <message>
         <source>Load</source>
-        <translation type="unfinished"></translation>
+        <translation>Ladda</translation>
     </message>
     <message>
         <source>Plugin Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Tilläggsinställningar</translation>
     </message>
     <message>
         <source>Available Plugins:</source>
-        <translation type="unfinished"></translation>
+        <translation>Tillgängliga Tillägg:</translation>
     </message>
     <message>
         <source>Settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Inställningar</translation>
     </message>
     <message>
         <source>&amp;Close</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Stäng</translation>
     </message>
     <message>
         <source>Alt+C</source>
-        <translation type="unfinished"></translation>
+        <translation>Alt+S</translation>
     </message>
 </context>
 <context>
     <name>SearchFormDesign</name>
     <message>
         <source>Search</source>
-        <translation type="unfinished"></translation>
+        <translation>Sök</translation>
     </message>
     <message>
         <source>Filter:</source>
-        <translation type="unfinished"></translation>
+        <translation>Filter:</translation>
     </message>
     <message>
         <source>Server:</source>
-        <translation type="unfinished"></translation>
+        <translation>Server:</translation>
     </message>
     <message>
         <source>&amp;Wizard</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Guide</translation>
     </message>
     <message>
         <source>Alt+W</source>
-        <translation type="unfinished"></translation>
+        <translation>Alt+G</translation>
     </message>
     <message>
         <source>&amp;Start</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Starta</translation>
     </message>
     <message>
         <source>Alt+S</source>
-        <translation type="unfinished"></translation>
+        <translation>Alt+S</translation>
     </message>
 </context>
 <context>
     <name>SearchResultView</name>
     <message>
         <source>Export selected</source>
-        <translation type="unfinished"></translation>
+        <translation>Exportera markerad</translation>
     </message>
     <message>
         <source>Delete selected</source>
-        <translation type="unfinished"></translation>
+        <translation>Ta bort markerad</translation>
     </message>
     <message>
         <source>Do you really want to delete the item(s) from the server?</source>
-        <translation type="unfinished"></translation>
+        <translation>Vill du verkligen ta bort objekten från servern?</translation>
     </message>
     <message>
         <source>Delete entry</source>
-        <translation type="unfinished"></translation>
+        <translation>Ta bort objekt</translation>
     </message>
     <message>
         <source>Delete</source>
-        <translation type="unfinished"></translation>
+        <translation>Ta bort</translation>
     </message>
     <message>
         <source>Cancel</source>
-        <translation type="unfinished"></translation>
+        <translation>Avbryt</translation>
     </message>
 </context>
 <context>
     <name>SearchResultViewDesign</name>
     <message>
         <source>SearchResultViewDesign</source>
-        <translation type="unfinished"></translation>
+        <translation>SearchResultViewDesign</translation>
     </message>
 </context>
 <context>
     <name>ServerDialog</name>
     <message>
         <source>New server</source>
-        <translation type="unfinished"></translation>
+        <translation>Ny server</translation>
     </message>
     <message>
         <source>Please enter a name for the new server:</source>
-        <translation type="unfinished"></translation>
+        <translation>Ange ett namn för servern:</translation>
     </message>
     <message>
         <source>Delete Server?</source>
-        <translation type="unfinished"></translation>
+        <translation>Ta bort servern?</translation>
     </message>
     <message>
         <source>Do your really want to delete the Server?</source>
-        <translation type="unfinished"></translation>
+        <translation>Vill du verkligen ta bort servern?</translation>
     </message>
     <message>
         <source>Error</source>
-        <translation type="unfinished"></translation>
+        <translation>Fel</translation>
     </message>
     <message>
         <source>Could not retrieve BaseDN for server. 
 Maybe the server data is not correct. 
 Please see console output for more information.</source>
-        <translation type="unfinished"></translation>
+        <translation>Kunde inte hämta Base DN från servern.
+Server informationen kan vara felaktig.
+Se konsolen för mer information.</translation>
     </message>
     <message>
         <source>&amp;OK</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;OK</translation>
     </message>
 </context>
 <context>
     <name>ServerDialogDesign</name>
     <message>
         <source>Server</source>
-        <translation type="unfinished"></translation>
+        <translation>Server</translation>
     </message>
     <message>
         <source>Manage Server List</source>
-        <translation type="unfinished"></translation>
+        <translation>Hantera Server Listan</translation>
     </message>
     <message>
         <source>&amp;Add</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Lägg till</translation>
     </message>
     <message>
         <source>Alt+A</source>
-        <translation type="unfinished"></translation>
+        <translation>Alt+L</translation>
     </message>
     <message>
         <source>&amp;Delete</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Ta bort</translation>
     </message>
     <message>
         <source>Alt+D</source>
-        <translation type="unfinished"></translation>
+        <translation>Alt+T</translation>
     </message>
     <message>
         <source>Server Information</source>
-        <translation type="unfinished"></translation>
+        <translation>Server Information</translation>
     </message>
     <message>
         <source>Use TLS</source>
-        <translation type="unfinished"></translation>
+        <translation>Använd TLS</translation>
     </message>
     <message>
         <source>User Transport Layer Security</source>
-        <translation type="unfinished"></translation>
+        <translation>Använd Transport Layer Security för bättre säkerhet</translation>
     </message>
     <message>
         <source>Host:</source>
-        <translation type="unfinished"></translation>
+        <translation>Värddatornamn:</translation>
     </message>
     <message>
         <source>Port:</source>
-        <translation type="unfinished"></translation>
+        <translation>Port:</translation>
     </message>
     <message>
         <source>Base DN:</source>
-        <translation type="unfinished"></translation>
+        <translation>Base ND:</translation>
     </message>
     <message>
         <source>Bind anonymously</source>
-        <translation type="unfinished"></translation>
+        <translation>Anslut anonymt</translation>
     </message>
     <message>
         <source>Bind DN:</source>
-        <translation type="unfinished"></translation>
+        <translation>Bind DN:</translation>
     </message>
     <message>
         <source>Bind Password:</source>
-        <translation type="unfinished"></translation>
+        <translation>Bind Lösenord:</translation>
     </message>
     <message>
         <source>NO</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Network options</source>
-        <translation type="unfinished"></translation>
+        <translation>Nätverks val</translation>
     </message>
     <message>
         <source>AO</source>
@@ -2544,156 +2563,158 @@ Please see console output for more information.</source>
     </message>
     <message>
         <source>&amp;OK</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;OK</translation>
     </message>
     <message>
         <source>Alt+O</source>
-        <translation type="unfinished"></translation>
+        <translation>Alt+O</translation>
     </message>
     <message>
         <source>&amp;Apply</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Verkställ</translation>
     </message>
     <message>
         <source>&amp;Cancel</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Avbryt</translation>
     </message>
     <message>
         <source>Alt+C</source>
-        <translation type="unfinished"></translation>
+        <translation>Alt+A</translation>
     </message>
 </context>
 <context>
     <name>TemplateForm</name>
     <message>
         <source>Add Template</source>
-        <translation type="unfinished"></translation>
+        <translation>Lägg Till Maill</translation>
     </message>
     <message>
         <source>Enter template name:</source>
-        <translation type="unfinished"></translation>
+        <translation>Namn på mall:</translation>
     </message>
     <message>
         <source>Template name already exists!</source>
-        <translation type="unfinished"></translation>
+        <translation>En mall med samma namn finns redan!</translation>
     </message>
 </context>
 <context>
     <name>TemplateFormDesign</name>
     <message>
         <source>Type</source>
-        <translation type="unfinished"></translation>
+        <translation>Typ</translation>
     </message>
     <message>
         <source>Name</source>
-        <translation type="unfinished"></translation>
+        <translation>Namn</translation>
     </message>
     <message>
         <source>Must</source>
-        <translation type="unfinished"></translation>
+        <translation>Måste</translation>
     </message>
     <message>
         <source>Single</source>
-        <translation type="unfinished"></translation>
+        <translation>Singel</translation>
     </message>
     <message>
         <source>Show</source>
-        <translation type="unfinished"></translation>
+        <translation>Visa</translation>
     </message>
     <message>
         <source>Template Name</source>
-        <translation type="unfinished"></translation>
+        <translation>Mall Namn</translation>
     </message>
     <message>
         <source>TemplateFormDesign</source>
-        <translation type="unfinished"></translation>
+        <translation>TemplateFormDesign</translation>
     </message>
     <message>
         <source>Template Info</source>
-        <translation type="unfinished"></translation>
+        <translation>Mall Info</translation>
     </message>
     <message>
         <source>&amp;Save</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Spara</translation>
     </message>
     <message>
         <source>Alt+S</source>
-        <translation type="unfinished"></translation>
+        <translation>Alt+S</translation>
     </message>
     <message>
         <source>&amp;Edit...</source>
-        <translation type="unfinished"></translation>
+        <translation>Ä&amp;ndra...</translation>
     </message>
     <message>
         <source>Alt+E</source>
-        <translation type="unfinished"></translation>
+        <translation>Alt+N</translation>
     </message>
     <message>
         <source>Template List</source>
-        <translation type="unfinished"></translation>
+        <translation>Mall Lista</translation>
     </message>
     <message>
         <source>&amp;Delete</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Ta bort</translation>
     </message>
     <message>
         <source>Alt+D</source>
-        <translation type="unfinished"></translation>
+        <translation>Alt+T</translation>
     </message>
     <message>
         <source>&amp;Add...</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Lägg till...</translation>
     </message>
     <message>
         <source>Alt+A</source>
-        <translation type="unfinished"></translation>
+        <translation>Alt+L</translation>
     </message>
 </context>
 <context>
     <name>TemplateObjectWidget</name>
     <message>
         <source>Reset Values</source>
-        <translation type="unfinished"></translation>
+        <translation>Återställ Värden</translation>
     </message>
     <message>
         <source>Display all Attributes</source>
-        <translation type="unfinished"></translation>
+        <translation>Visa alla attribut</translation>
     </message>
     <message>
         <source>Save</source>
-        <translation type="unfinished"></translation>
+        <translation>Spara</translation>
     </message>
 </context>
 <context>
     <name>UsermanagementWidget</name>
     <message>
         <source>Save</source>
-        <translation type="unfinished"></translation>
+        <translation>Spara</translation>
     </message>
     <message>
         <source>Delete entry</source>
-        <translation type="unfinished"></translation>
+        <translation>Ta bort post</translation>
     </message>
     <message>
         <source>Error</source>
-        <translation type="unfinished"></translation>
+        <translation>Fel</translation>
     </message>
     <message>
         <source>Could not save account data. 
 Please read console output for more information.</source>
-        <translation type="unfinished"></translation>
+        <translation>Kunde inte spara konto information.
+Se konsolen för mer information.</translation>
     </message>
     <message>
         <source>Could not group information. 
 Please read console output for more information.</source>
-        <translation type="unfinished"></translation>
+        <translation>Kunde inte gruppera informationen.
+Se konsolen för mer information.</translation>
     </message>
 </context>
 <context>
     <name>UsermanagementWidgetDesign</name>
     <message>
         <source>Usermanagement</source>
-        <translation type="unfinished"></translation>
+        <translation>Användar Hantering</translation>
     </message>
     <message>
         <source>...</source>
@@ -2706,57 +2727,7 @@ Please read console output for more information.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Change password...</source>
-        <comment>DO NOT TRANSLATE</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>User ID number:</source>
-        <comment>DO NOT TRANSLATE</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Login shell:</source>
-        <comment>DO NOT TRANSLATE</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Primary group:</source>
-        <comment>DO NOT TRANSLATE</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Valid until:</source>
-        <comment>DO NOT TRANSLATE</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Common name:</source>
-        <comment>DO NOT TRANSLATE</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Manage group memberships</source>
-        <comment>DO NOT TRANSLATE</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Delete</source>
-        <comment>DO NOT TRANSLATE</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Add...</source>
-        <comment>DO NOT TRANSLATE</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>SH</source>
-        <comment>DO NOT TRANSLATE</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>User ID:</source>
         <comment>DO NOT TRANSLATE</comment>
         <translation type="unfinished"></translation>
     </message>
@@ -2766,27 +2737,7 @@ Please read console output for more information.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>GR</source>
-        <comment>DO NOT TRANSLATE</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>HO</source>
-        <comment>DO NOT TRANSLATE</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Home directory:</source>
-        <comment>DO NOT TRANSLATE</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Mail:</source>
-        <comment>DO NOT TRANSLATE</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Group ID number:</source>
         <comment>DO NOT TRANSLATE</comment>
         <translation type="unfinished"></translation>
     </message>
@@ -2796,9 +2747,64 @@ Please read console output for more information.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Password:</source>
-        <comment>DO NOT TRANSLATE</comment>
+        <source>Change password...</source>
         <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>User ID number:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Login shell:</source>
+        <translation type="unfinished">Inloggnings skal:</translation>
+    </message>
+    <message>
+        <source>Primary group:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Valid until:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Common name:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Manage group memberships</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Delete</source>
+        <translation type="unfinished">Ta bort</translation>
+    </message>
+    <message>
+        <source>Add...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>User ID:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>GR</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Home directory:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Mail:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Group ID number:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Password:</source>
+        <translation type="unfinished">Lösenord:</translation>
     </message>
 </context>
 </TS>
