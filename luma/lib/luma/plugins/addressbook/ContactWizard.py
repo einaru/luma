@@ -1,0 +1,156 @@
+# -*- coding: utf-8 -*-
+
+###########################################################################
+#    Copyright (C) 2004 by Wido Depping                                      
+#    <wido.depping@tu-clausthal.de>                                                             
+#
+# Copyright: See COPYING file that comes with this distribution
+#
+###########################################################################
+
+from qt import *
+import os.path
+import ldap
+from string import strip
+import random
+
+from plugins.addressbook.ContactWizardDesign import ContactWizardDesign
+from base.backend.ServerList import ServerList
+from base.utils.backend.ObjectClassAttributeInfo import ObjectClassAttributeInfo
+import environment
+from base.utils.gui.BrowserWidget import BrowserWidget
+from plugins.addressbook.AddressbookWidget import AddressbookWidget
+from base.backend.LumaConnection import LumaConnection
+from base.utils import lumaStringDecode, lumaStringEncode
+from time import strftime
+
+
+class ContactWizard(ContactWizardDesign):
+
+    def __init__(self,parent = None,name = None,modal = 0,fl = 0):
+        ContactWizardDesign.__init__(self,parent,name,modal,fl)
+
+        iconDir = os.path.join (environment.lumaInstallationPrefix, "lib", "luma", "plugins", "addressbook", "icons")
+        locationIcon = QPixmap (os.path.join (iconDir, "location.png"))
+        self.locationLabel.setPixmap(locationIcon)
+        
+        layout = QHBoxLayout(self.browserFrame)
+        self.browserWidget = BrowserWidget(self.browserFrame)
+        layout.addWidget(self.browserWidget)
+        
+        self.connect(self.browserWidget, PYSIGNAL("ldap_result"), self.updateLocation)
+        self.connect(self.finishButton(), SIGNAL("clicked()"), self.saveContact)
+        
+        self.locationServer = None
+        self.locationDN = None
+        
+        for x in range(0,self.pageCount()):
+            self.setHelpEnabled(self.page(x), 0)
+            
+        self.setFinishEnabled(self.page(1), 1)
+        self.disconnect(self.finishButton(), SIGNAL("clicked()"), self, SLOT("accept()"))
+        self.disconnect(self.nextButton(), SIGNAL("clicked()"), self, SLOT("next()"))
+        
+        self.connect(self.nextButton(),SIGNAL("clicked()"), self.checkNext)
+            
+        tmpWidget = self.page(1)
+        self.addressWidget = AddressbookWidget(tmpWidget)
+        self.addressWidget.setEnabled(1)
+        
+        self.addressWidget.data = {'cn': [''], 'sn': ['']}
+        
+        
+        
+###############################################################################
+
+    def updateLocation(self, server, data):
+        self.locationServer = server
+        self.locationDN = data[0][0].decode('utf-8')
+        tmpString = self.locationDN + "@" + self.locationServer
+        self.locationEdit.setText(tmpString)
+        
+###############################################################################
+
+    def saveContact(self):
+        values = self.addressWidget.getValues()
+        
+        for x in values.keys():
+            if len(values[x]) == 0:
+                del values[x]
+                
+        values['objectClass'] = self.availableClasses
+        if (values.has_key('cn')) and (values.has_key('sn')):
+            modlist = ldap.modlist.addModlist(values)
+            serverList = ServerList()
+            serverList.readServerList()
+            serverMeta = serverList.get_serverobject(self.locationServer)
+            connection = LumaConnection(serverMeta)
+            tmpString = lumaStringEncode(strip(values['cn'][0]))
+            tmpString = tmpString + strftime('%Y%m%d') + unicode(random.randint(0,100))
+            dn = 'cn=' + tmpString + ',' + self.locationDN.encode('utf-8')
+            result = connection.add_s(dn, modlist)
+            if result == 1:
+                self.accept()
+            elif result == 0:
+                QMessageBox.warning(None,
+                    self.trUtf8("Error"),
+                    self.trUtf8("""Could not save entry. Please see console for more infomation."""),
+                    self.trUtf8("&OK"),
+                    None,
+                    None,
+                    0, -1)
+
+        else:
+            QMessageBox.warning(None,
+                self.trUtf8("Incomplete Information"),
+                self.trUtf8("""Your contact needs at least a surename."""),
+                self.trUtf8("&OK"),
+                None,
+                None,
+                0, -1)
+
+
+            
+###############################################################################
+
+    def checkLocation(self):
+        if self.currentPage() == None:
+            return 1
+        
+        if (self.locationServer == None) or (self.locationDN == None):
+            return 0
+        else:
+            return 1
+            
+###############################################################################
+
+    def checkNext(self):
+        result = self.checkLocation()
+        
+        if result == 0:
+            QMessageBox.warning(None,
+                self.trUtf8("Warning: Location"),
+                self.trUtf8("""Please select a location where to store the contact."""),
+                None,
+                None,
+                None,
+                0, -1)
+        elif result ==1:
+            allowedAttributes = self.getAllowedAttributes()
+            self.addressWidget.enableContactFields(allowedAttributes)
+            self.next()
+            
+###############################################################################
+
+    def getAllowedAttributes(self):
+        objectClassList = ['person', 'organizationalPerson', 'inetOrgPerson', 'evolutionPerson']
+        metaInfo = ObjectClassAttributeInfo()
+        metaInfo.set_server(self.locationServer)
+        metaInfo.retrieve_info_from_server()
+        
+        self.availableClasses = []
+        for x in objectClassList:
+            if metaInfo.has_objectClass(x):
+                self.availableClasses.append(x)
+        
+        return metaInfo.get_all_attributes(objectClassList)

@@ -1,0 +1,121 @@
+<!DOCTYPE UI><UI version="3.2" stdsetdef="1">
+<class>ContactWizardDesign</class>
+<widget class="QWizard">
+    <property name="name">
+        <cstring>ContactWizardDesign</cstring>
+    </property>
+    <property name="geometry">
+        <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>600</width>
+            <height>486</height>
+        </rect>
+    </property>
+    <property name="caption">
+        <string>Add Contact</string>
+    </property>
+    <widget class="QWidget">
+        <property name="name">
+            <cstring>WizardPage</cstring>
+        </property>
+        <attribute name="title">
+            <string>Select location</string>
+        </attribute>
+        <grid>
+            <property name="name">
+                <cstring>unnamed</cstring>
+            </property>
+            <widget class="QLabel" row="0" column="0">
+                <property name="name">
+                    <cstring>locationLabel</cstring>
+                </property>
+                <property name="sizePolicy">
+                    <sizepolicy>
+                        <hsizetype>0</hsizetype>
+                        <vsizetype>0</vsizetype>
+                        <horstretch>0</horstretch>
+                        <verstretch>0</verstretch>
+                    </sizepolicy>
+                </property>
+                <property name="minimumSize">
+                    <size>
+                        <width>64</width>
+                        <height>64</height>
+                    </size>
+                </property>
+                <property name="text">
+                    <string>LOC</string>
+                    <comment>DO NOT TRANSLATE</comment>
+                </property>
+            </widget>
+            <widget class="Line" row="1" column="0" rowspan="1" colspan="3">
+                <property name="name">
+                    <cstring>line1</cstring>
+                </property>
+                <property name="frameShape">
+                    <enum>HLine</enum>
+                </property>
+                <property name="frameShadow">
+                    <enum>Sunken</enum>
+                </property>
+                <property name="orientation">
+                    <enum>Horizontal</enum>
+                </property>
+            </widget>
+            <widget class="QLabel" row="0" column="1" rowspan="1" colspan="2">
+                <property name="name">
+                    <cstring>textLabel2</cstring>
+                </property>
+                <property name="sizePolicy">
+                    <sizepolicy>
+                        <hsizetype>5</hsizetype>
+                        <vsizetype>1</vsizetype>
+                        <horstretch>0</horstretch>
+                        <verstretch>0</verstretch>
+                    </sizepolicy>
+                </property>
+                <property name="text">
+                    <string>Please select a location where the new contact should be stored.</string>
+                </property>
+            </widget>
+            <widget class="QFrame" row="2" column="0" rowspan="1" colspan="3">
+                <property name="name">
+                    <cstring>browserFrame</cstring>
+                </property>
+                <property name="frameShape">
+                    <enum>NoFrame</enum>
+                </property>
+                <property name="frameShadow">
+                    <enum>Raised</enum>
+                </property>
+            </widget>
+            <widget class="QLineEdit" row="3" column="2">
+                <property name="name">
+                    <cstring>locationEdit</cstring>
+                </property>
+                <property name="readOnly">
+                    <bool>true</bool>
+                </property>
+            </widget>
+            <widget class="QLabel" row="3" column="0" rowspan="1" colspan="2">
+                <property name="name">
+                    <cstring>textLabel3</cstring>
+                </property>
+                <property name="text">
+                    <string>Location:</string>
+                </property>
+            </widget>
+        </grid>
+    </widget>
+    <widget class="QWidget">
+        <property name="name">
+            <cstring>WizardPage</cstring>
+        </property>
+        <attribute name="title">
+            <string>Fill contact data</string>
+        </attribute>
+    </widget>
+</widget>
+<layoutdefaults spacing="6" margin="11"/>
+</UI>
