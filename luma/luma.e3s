@@ -1,14 +1,11 @@
-<?xml version='1.0' encoding='UTF-8'?>
-<!--eric3 session file for project luma-->
-<!--This file was generated automatically, do not edit.-->
-<!--Saved: 2004-09-23, 21:15:47-->
-<Session>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE Session SYSTEM "Session-3.5.dtd">
+<!-- eric3 session file for project luma -->
+<!-- This file was generated automatically, do not edit. -->
+<!-- Saved: 2005-01-06, 02:05:34 -->
+<Session version="3.5">
   <Filenames>
-    <Filename cline="23" cindex="4">/home/wido/src/luma/lib/luma/luma.py</Filename>
-    <Filename cline="0" cindex="0">/home/wido/src/luma/lib/luma/plugins/template_plugin/TemplateWidgetDesign.py</Filename>
-    <Filename cline="13" cindex="21">/home/wido/src/luma/lib/luma/plugins/template_plugin/TemplateWidget.py</Filename>
   </Filenames>
-  <ActiveWindow cline="13" cindex="21">/home/wido/src/luma/lib/luma/plugins/template_plugin/TemplateWidget.py</ActiveWindow>
   <Breakpoints>
   </Breakpoints>
   <DebugInfo>

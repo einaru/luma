@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE Project SYSTEM "Project-3.5.dtd">
 <!-- Project file for project luma -->
-<!-- Saved: 2004-10-30, 00:31:13 -->
-<!-- Copyright (C) 2004 Wido Depping, wido.depping@tu-clausthal.de -->
+<!-- Saved: 2005-01-06, 15:03:25 -->
+<!-- Copyright (C) 2005 Wido Depping, wido.depping@tu-clausthal.de -->
 <Project version="3.5">
   <Description></Description>
   <Version>1.5</Version>
@@ -183,14 +183,6 @@
     <Source>
       <Dir>lib</Dir>
       <Dir>luma</Dir>
-      <Dir>base</Dir>
-      <Dir>utils</Dir>
-      <Dir>gui</Dir>
-      <Name>ObjectWidget.py</Name>
-    </Source>
-    <Source>
-      <Dir>lib</Dir>
-      <Dir>luma</Dir>
       <Dir>plugins</Dir>
       <Name>__init__.py</Name>
     </Source>
@@ -291,20 +283,6 @@
       <Dir>plugins</Dir>
       <Dir>template_plugin</Dir>
       <Name>template_plugin.py</Name>
-    </Source>
-    <Source>
-      <Dir>lib</Dir>
-      <Dir>luma</Dir>
-      <Dir>plugins</Dir>
-      <Dir>template_plugin</Dir>
-      <Name>OClassDialogDesign.py</Name>
-    </Source>
-    <Source>
-      <Dir>lib</Dir>
-      <Dir>luma</Dir>
-      <Dir>plugins</Dir>
-      <Dir>template_plugin</Dir>
-      <Name>OClassDialog.py</Name>
     </Source>
     <Source>
       <Dir>lib</Dir>
@@ -491,14 +469,6 @@
     <Source>
       <Dir>lib</Dir>
       <Dir>luma</Dir>
-      <Dir>base</Dir>
-      <Dir>utils</Dir>
-      <Dir>gui</Dir>
-      <Name>LumaIconView.py</Name>
-    </Source>
-    <Source>
-      <Dir>lib</Dir>
-      <Dir>luma</Dir>
       <Dir>plugins</Dir>
       <Dir>addressbook</Dir>
       <Name>AddressbookView.py</Name>
@@ -552,14 +522,6 @@
       <Dir>utils</Dir>
       <Dir>gui</Dir>
       <Name>AddAttributeWizard.py</Name>
-    </Source>
-    <Source>
-      <Dir>lib</Dir>
-      <Dir>luma</Dir>
-      <Dir>base</Dir>
-      <Dir>utils</Dir>
-      <Dir>backend</Dir>
-      <Name>LdifHelper.py</Name>
     </Source>
     <Source>
       <Dir>lib</Dir>
@@ -693,14 +655,6 @@
       <Dir>base</Dir>
       <Dir>utils</Dir>
       <Dir>gui</Dir>
-      <Name>LumaIconViewDesign.py</Name>
-    </Source>
-    <Source>
-      <Dir>lib</Dir>
-      <Dir>luma</Dir>
-      <Dir>base</Dir>
-      <Dir>utils</Dir>
-      <Dir>gui</Dir>
       <Name>AddAttributeWizardDesign.py</Name>
     </Source>
     <Source>
@@ -782,6 +736,142 @@
       <Dir>template_plugin</Dir>
       <Name>ClassDeleteDialog.py</Name>
     </Source>
+    <Source>
+      <Dir>lib</Dir>
+      <Dir>luma</Dir>
+      <Dir>base</Dir>
+      <Dir>utils</Dir>
+      <Dir>backend</Dir>
+      <Name>mkpasswd2.py</Name>
+    </Source>
+    <Source>
+      <Dir>lib</Dir>
+      <Dir>luma</Dir>
+      <Dir>base</Dir>
+      <Dir>backend</Dir>
+      <Name>SmartDataObject.py</Name>
+    </Source>
+    <Source>
+      <Dir>lib</Dir>
+      <Dir>luma</Dir>
+      <Dir>base</Dir>
+      <Dir>utils</Dir>
+      <Dir>gui</Dir>
+      <Name>AdvancedObjectWidget.py</Name>
+    </Source>
+    <Source>
+      <Dir>lib</Dir>
+      <Dir>luma</Dir>
+      <Dir>base</Dir>
+      <Dir>utils</Dir>
+      <Dir>gui</Dir>
+      <Name>EditorFactory.py</Name>
+    </Source>
+    <Source>
+      <Dir>lib</Dir>
+      <Dir>luma</Dir>
+      <Dir>base</Dir>
+      <Dir>utils</Dir>
+      <Dir>gui</Dir>
+      <Dir>editors</Dir>
+      <Name>__init__.py</Name>
+    </Source>
+    <Source>
+      <Dir>lib</Dir>
+      <Dir>luma</Dir>
+      <Dir>base</Dir>
+      <Dir>utils</Dir>
+      <Dir>gui</Dir>
+      <Dir>editors</Dir>
+      <Name>StandardEditorDesign.py</Name>
+    </Source>
+    <Source>
+      <Dir>lib</Dir>
+      <Dir>luma</Dir>
+      <Dir>base</Dir>
+      <Dir>utils</Dir>
+      <Dir>gui</Dir>
+      <Dir>editors</Dir>
+      <Name>PasswordEditorDesign.py</Name>
+    </Source>
+    <Source>
+      <Dir>lib</Dir>
+      <Dir>luma</Dir>
+      <Dir>base</Dir>
+      <Dir>utils</Dir>
+      <Dir>gui</Dir>
+      <Dir>editors</Dir>
+      <Name>PasswordEditor.py</Name>
+    </Source>
+    <Source>
+      <Dir>lib</Dir>
+      <Dir>luma</Dir>
+      <Dir>base</Dir>
+      <Dir>utils</Dir>
+      <Dir>gui</Dir>
+      <Dir>editors</Dir>
+      <Name>StandardEditor.py</Name>
+    </Source>
+    <Source>
+      <Dir>lib</Dir>
+      <Dir>luma</Dir>
+      <Dir>base</Dir>
+      <Dir>utils</Dir>
+      <Dir>gui</Dir>
+      <Dir>editors</Dir>
+      <Name>BinaryEditorDesign.py</Name>
+    </Source>
+    <Source>
+      <Dir>lib</Dir>
+      <Dir>luma</Dir>
+      <Dir>base</Dir>
+      <Dir>utils</Dir>
+      <Dir>gui</Dir>
+      <Dir>editors</Dir>
+      <Name>BinaryEditor.py</Name>
+    </Source>
+    <Source>
+      <Dir>lib</Dir>
+      <Dir>luma</Dir>
+      <Dir>base</Dir>
+      <Dir>utils</Dir>
+      <Dir>gui</Dir>
+      <Dir>editors</Dir>
+      <Name>RdnEditorDesign.py</Name>
+    </Source>
+    <Source>
+      <Dir>lib</Dir>
+      <Dir>luma</Dir>
+      <Dir>base</Dir>
+      <Dir>utils</Dir>
+      <Dir>gui</Dir>
+      <Dir>editors</Dir>
+      <Name>RdnEditor.py</Name>
+    </Source>
+    <Source>
+      <Dir>lib</Dir>
+      <Dir>luma</Dir>
+      <Dir>base</Dir>
+      <Dir>utils</Dir>
+      <Dir>gui</Dir>
+      <Name>LumaErrorDialogDesign.py</Name>
+    </Source>
+    <Source>
+      <Dir>lib</Dir>
+      <Dir>luma</Dir>
+      <Dir>base</Dir>
+      <Dir>utils</Dir>
+      <Dir>gui</Dir>
+      <Name>LumaErrorDialog.py</Name>
+    </Source>
+    <Source>
+      <Dir>lib</Dir>
+      <Dir>luma</Dir>
+      <Dir>base</Dir>
+      <Dir>utils</Dir>
+      <Dir>gui</Dir>
+      <Name>LumaWarningDialog.py</Name>
+    </Source>
   </Sources>
   <Forms>
     <Form>
@@ -854,13 +944,6 @@
       <Dir>lib</Dir>
       <Dir>luma</Dir>
       <Dir>plugins</Dir>
-      <Dir>template_plugin</Dir>
-      <Name>OClassDialogDesign.ui</Name>
-    </Form>
-    <Form>
-      <Dir>lib</Dir>
-      <Dir>luma</Dir>
-      <Dir>plugins</Dir>
       <Dir>admin_utils</Dir>
       <Name>AdminPanelDesign.ui</Name>
     </Form>
@@ -906,14 +989,6 @@
       <Dir>utils</Dir>
       <Dir>gui</Dir>
       <Name>PluginInformation.ui</Name>
-    </Form>
-    <Form>
-      <Dir>lib</Dir>
-      <Dir>luma</Dir>
-      <Dir>base</Dir>
-      <Dir>utils</Dir>
-      <Dir>gui</Dir>
-      <Name>LumaIconViewDesign.ui</Name>
     </Form>
     <Form>
       <Dir>lib</Dir>
@@ -1037,6 +1112,50 @@
       <Dir>plugins</Dir>
       <Dir>template_plugin</Dir>
       <Name>ClassDeleteDialog.ui</Name>
+    </Form>
+    <Form>
+      <Dir>lib</Dir>
+      <Dir>luma</Dir>
+      <Dir>base</Dir>
+      <Dir>utils</Dir>
+      <Dir>gui</Dir>
+      <Dir>editors</Dir>
+      <Name>StandardEditorDesign.ui</Name>
+    </Form>
+    <Form>
+      <Dir>lib</Dir>
+      <Dir>luma</Dir>
+      <Dir>base</Dir>
+      <Dir>utils</Dir>
+      <Dir>gui</Dir>
+      <Dir>editors</Dir>
+      <Name>PasswordEditorDesign.ui</Name>
+    </Form>
+    <Form>
+      <Dir>lib</Dir>
+      <Dir>luma</Dir>
+      <Dir>base</Dir>
+      <Dir>utils</Dir>
+      <Dir>gui</Dir>
+      <Dir>editors</Dir>
+      <Name>BinaryEditorDesign.ui</Name>
+    </Form>
+    <Form>
+      <Dir>lib</Dir>
+      <Dir>luma</Dir>
+      <Dir>base</Dir>
+      <Dir>utils</Dir>
+      <Dir>gui</Dir>
+      <Dir>editors</Dir>
+      <Name>RdnEditorDesign.ui</Name>
+    </Form>
+    <Form>
+      <Dir>lib</Dir>
+      <Dir>luma</Dir>
+      <Dir>base</Dir>
+      <Dir>utils</Dir>
+      <Dir>gui</Dir>
+      <Name>LumaErrorDialogDesign.ui</Name>
     </Form>
   </Forms>
   <Translations>
