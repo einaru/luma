@@ -68,7 +68,7 @@ class AddAttributeWizard(AddAttributeWizardDesign):
         self.possibleAttributes = (possibleMust.union(possibleMay)).difference(singleAttributes)
         
         # create a set of attributes which are supported by the server
-        self.allPossibleAttributes = Set(self.SCHEMAINFO.ATTRIBUTELIST).difference(singleAttributes)
+        self.allPossibleAttributes = Set(self.SCHEMAINFO.attributeDict.keys()).difference(singleAttributes)
 
 ###############################################################################
 
