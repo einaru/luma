@@ -37,7 +37,7 @@ class LanguageDialog(LanguageDialogDesign):
         # Since english is the default language, there is no language
         # file and we have to make the entry manually.
         pixmap = QPixmap(os.path.join(self.trDir, "gb.png"))
-        self.languageBox.insertItem(pixmap, "English (UK)")
+        self.languageBox.insertItem("English")
         
         # Insert all languages which have a language file.
         # IMPORTANT: Has to be edited every time a new languaged is
@@ -47,22 +47,22 @@ class LanguageDialog(LanguageDialogDesign):
             
             
             if x == 'br':
-                self.languageBox.insertItem(pixmap, "Brazilian")
+                self.languageBox.insertItem("Portuguese")
                 continue
             elif x == 'de':
-                self.languageBox.insertItem(pixmap, "German")
+                self.languageBox.insertItem("Deutsch")
                 continue
             elif x == 'no':
-                self.languageBox.insertItem(pixmap, "Norwegian")
+                self.languageBox.insertItem("Norsk")
                 continue
             elif x == 'ru':
-                self.languageBox.insertItem(pixmap, "Russian")
+                self.languageBox.insertItem("Russian")
                 continue
             elif x == 'es':
-                self.languageBox.insertItem(pixmap, "Spanish")
+                self.languageBox.insertItem("Spanish")
                 continue
             elif x == 'sv':
-                self.languageBox.insertItem(pixmap, "Swedish")
+                self.languageBox.insertItem("Swedish")
                 continue
                 
 
@@ -80,15 +80,15 @@ class LanguageDialog(LanguageDialogDesign):
         tmpText = str(self.languageBox.currentText())
         translationFile = 'NATIVE'
         
-        if tmpText == "German":
+        if tmpText == "Deutsch":
             translationFile = "luma_de.qm"
         elif tmpText == "Brazilian":
             translationFile = "luma_br.qm"
-        elif tmpText == "English (UK)":
+        elif tmpText == "English":
             translationFile = 'NATIVE'
         elif tmpText == "Spanish":
             translationFile = "luma_es.qm"
-        elif tmpText == "Norwegian":
+        elif tmpText == "Norsk":
             translationFile = "luma_no.qm"
         elif tmpText == "Russian":
             translationFile = "luma_ru.qm"

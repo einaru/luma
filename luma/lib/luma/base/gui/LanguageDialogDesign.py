@@ -2,8 +2,8 @@
 
 # Form implementation generated from reading ui file '/home/wido/src/luma/lib/luma/base/gui/LanguageDialogDesign.ui'
 #
-# Created: Mon Apr 26 16:00:28 2004
-#      by: The PyQt User Interface Compiler (pyuic) 3.11
+# Created: Mon Aug 23 14:40:10 2004
+#      by: The PyQt User Interface Compiler (pyuic) 3.12
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -20,41 +20,37 @@ class LanguageDialogDesign(QDialog):
             self.setName("LanguageDialogDesign")
 
 
-        LanguageDialogDesignLayout = QGridLayout(self,1,1,11,6,"LanguageDialogDesignLayout")
-
-        layout3 = QHBoxLayout(None,0,6,"layout3")
+        LanguageDialogDesignLayout = QVBoxLayout(self,11,6,"LanguageDialogDesignLayout")
 
         self.textLabel1 = QLabel(self,"textLabel1")
         self.textLabel1.setSizePolicy(QSizePolicy(4,5,0,0,self.textLabel1.sizePolicy().hasHeightForWidth()))
-        layout3.addWidget(self.textLabel1)
+        LanguageDialogDesignLayout.addWidget(self.textLabel1)
 
         self.languageBox = QComboBox(0,self,"languageBox")
-        layout3.addWidget(self.languageBox)
-
-        LanguageDialogDesignLayout.addMultiCellLayout(layout3,0,0,0,2)
+        LanguageDialogDesignLayout.addWidget(self.languageBox)
         spacer9 = QSpacerItem(21,16,QSizePolicy.Minimum,QSizePolicy.Expanding)
-        LanguageDialogDesignLayout.addItem(spacer9,1,0)
-
-        self.okButton = QPushButton(self,"okButton")
-
-        LanguageDialogDesignLayout.addWidget(self.okButton,3,1)
-
-        self.cancelButton = QPushButton(self,"cancelButton")
-
-        LanguageDialogDesignLayout.addWidget(self.cancelButton,3,2)
-        spacer7 = QSpacerItem(146,20,QSizePolicy.Expanding,QSizePolicy.Minimum)
-        LanguageDialogDesignLayout.addItem(spacer7,3,0)
+        LanguageDialogDesignLayout.addItem(spacer9)
 
         self.line1 = QFrame(self,"line1")
         self.line1.setFrameShape(QFrame.HLine)
         self.line1.setFrameShadow(QFrame.Sunken)
         self.line1.setFrameShape(QFrame.HLine)
+        LanguageDialogDesignLayout.addWidget(self.line1)
 
-        LanguageDialogDesignLayout.addMultiCellWidget(self.line1,2,2,0,2)
+        layout2 = QHBoxLayout(None,0,6,"layout2")
+        spacer7 = QSpacerItem(146,20,QSizePolicy.Expanding,QSizePolicy.Minimum)
+        layout2.addItem(spacer7)
+
+        self.okButton = QPushButton(self,"okButton")
+        layout2.addWidget(self.okButton)
+
+        self.cancelButton = QPushButton(self,"cancelButton")
+        layout2.addWidget(self.cancelButton)
+        LanguageDialogDesignLayout.addLayout(layout2)
 
         self.languageChange()
 
-        self.resize(QSize(329,132).expandedTo(self.minimumSizeHint()))
+        self.resize(QSize(302,132).expandedTo(self.minimumSizeHint()))
         self.clearWState(Qt.WState_Polished)
 
         self.connect(self.okButton,SIGNAL("clicked()"),self,SLOT("accept()"))
