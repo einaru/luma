@@ -87,9 +87,6 @@
         <property name="menuText">
             <string>About Luma...</string>
         </property>
-        <property name="accel">
-            <string>Ctrl+A</string>
-        </property>
     </action>
     <action>
         <property name="name">
@@ -122,7 +119,7 @@
             <string>Exit</string>
         </property>
         <property name="accel">
-            <string>Ctrl+X</string>
+            <string>Ctrl+Q</string>
         </property>
     </action>
     <action>
@@ -178,29 +175,6 @@
     </action>
     <action>
         <property name="name">
-            <cstring>togglePluginList</cstring>
-        </property>
-        <property name="toggleAction">
-            <bool>true</bool>
-        </property>
-        <property name="on">
-            <bool>false</bool>
-        </property>
-        <property name="enabled">
-            <bool>true</bool>
-        </property>
-        <property name="text">
-            <string>Hide/Show pluginlist</string>
-        </property>
-        <property name="menuText">
-            <string>Hide/Show pluginlist</string>
-        </property>
-        <property name="accel">
-            <string>Ctrl+P</string>
-        </property>
-    </action>
-    <action>
-        <property name="name">
             <cstring>showLogger</cstring>
         </property>
         <property name="toggleAction">
@@ -211,6 +185,9 @@
         </property>
         <property name="text">
             <string>Show logger</string>
+        </property>
+        <property name="accel">
+            <string>Ctrl+L</string>
         </property>
     </action>
 </actions>

@@ -1,13 +1,14 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file './lib/luma/base/gui/MainWinDesign.ui'
+# Form implementation generated from reading ui file '/home/wido/src/luma/lib/luma/base/gui/MainWinDesign.ui'
 #
-# Created: Tue Mar 1 22:41:56 2005
+# Created: Sun Mar 13 19:25:44 2005
 #      by: The PyQt User Interface Compiler (pyuic) 3.14
 #
 # WARNING! All changes made in this file will be lost!
 
 
+import sys
 from qt import *
 
 image0_data = \
@@ -655,10 +656,6 @@ class MainWinDesign(QMainWindow):
         self.reload.setIconSet(QIconSet(self.image4))
         self.selectLanguage = QAction(self,"selectLanguage")
         self.selectLanguage.setIconSet(QIconSet(self.image5))
-        self.togglePluginList = QAction(self,"togglePluginList")
-        self.togglePluginList.setToggleAction(1)
-        self.togglePluginList.setOn(0)
-        self.togglePluginList.setEnabled(1)
         self.showLogger = QAction(self,"showLogger")
         self.showLogger.setToggleAction(0)
         self.showLogger.setIconSet(QIconSet(self.image6))
@@ -706,13 +703,12 @@ class MainWinDesign(QMainWindow):
         self.setCaption(self.__tr("Luma"))
         self.about.setText(self.__tr("About Luma..."))
         self.about.setMenuText(self.__tr("About Luma..."))
-        self.about.setAccel(self.__tr("Ctrl+A"))
         self.editServerList.setText(self.__tr("Edit Server List..."))
         self.editServerList.setMenuText(self.__tr("Edit Server List..."))
         self.editServerList.setAccel(self.__tr("Ctrl+E"))
         self.exitItem.setText(self.__tr("Exit"))
         self.exitItem.setMenuText(self.__tr("Exit"))
-        self.exitItem.setAccel(self.__tr("Ctrl+X"))
+        self.exitItem.setAccel(self.__tr("Ctrl+Q"))
         self.menuConfigurePlugins.setText(self.__tr("Configure Plugins..."))
         self.menuConfigurePlugins.setMenuText(self.__tr("Configure Plugins..."))
         self.menuConfigurePlugins.setAccel(self.__tr("Ctrl+C"))
@@ -722,10 +718,8 @@ class MainWinDesign(QMainWindow):
         self.selectLanguage.setText(self.__tr("Language..."))
         self.selectLanguage.setMenuText(self.__tr("Language..."))
         self.selectLanguage.setAccel(self.__tr("Ctrl+L"))
-        self.togglePluginList.setText(self.__tr("Hide/Show pluginlist"))
-        self.togglePluginList.setMenuText(self.__tr("Hide/Show pluginlist"))
-        self.togglePluginList.setAccel(self.__tr("Ctrl+P"))
         self.showLogger.setText(self.__tr("Show logger"))
+        self.showLogger.setAccel(self.__tr("Ctrl+L"))
         if self.menubar.findItem(1):
             self.menubar.findItem(1).setText(self.__tr("Program"))
         if self.menubar.findItem(2):
@@ -763,3 +757,11 @@ class MainWinDesign(QMainWindow):
 
     def __tr(self,s,c = None):
         return qApp.translate("MainWinDesign",s,c)
+
+if __name__ == "__main__":
+    a = QApplication(sys.argv)
+    QObject.connect(a,SIGNAL("lastWindowClosed()"),a,SLOT("quit()"))
+    w = MainWinDesign()
+    a.setMainWidget(w)
+    w.show()
+    a.exec_loop()
