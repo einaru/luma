@@ -552,7 +552,7 @@ Se konsolen för mer information.</translation>
     </message>
     <message>
         <source>Save</source>
-        <translation type="unfinished">Spara</translation>
+        <translation>Spara</translation>
     </message>
 </context>
 <context>
@@ -1005,7 +1005,7 @@ Se konsolen för mer information.</translation>
     <message>
         <source>&amp;Ok</source>
         <comment>DO NOT TRANSLATE</comment>
-        <translation type="unfinished">&amp;Ok</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Alt+O</source>
@@ -1060,7 +1060,7 @@ Se konsolen för mer information.</translation>
     <message>
         <source>Base DN:</source>
         <comment>DO NOT TRANSLATE</comment>
-        <translation type="unfinished">Base ND:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Admin Name:</source>
@@ -1085,7 +1085,7 @@ Se konsolen för mer information.</translation>
     <message>
         <source>Help</source>
         <comment>DO NOT TRANSLATE</comment>
-        <translation type="unfinished">Hjälp</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Save Options</source>
@@ -1104,7 +1104,7 @@ Se konsolen för mer information.</translation>
     </message>
     <message>
         <source>Alt+F</source>
-        <translation type="unfinished">Alt+F</translation>
+        <translation>Alt+F</translation>
     </message>
 </context>
 <context>
@@ -1135,7 +1135,7 @@ Se konsolen för mer information.</translation>
     </message>
     <message>
         <source>Your contact needs at least a surname.</source>
-        <translation type="unfinished"></translation>
+        <translation>Din kontakt måste åtminstone ha ett efternamn.</translation>
     </message>
 </context>
 <context>
@@ -1302,19 +1302,19 @@ Se konsolen för mer information.</translation>
     </message>
     <message>
         <source>&lt;b&gt;Primary Group&lt;/b&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;Primär Grupp&lt;/b&gt;</translation>
     </message>
     <message>
         <source>You may select from the groups available in the LDAP database or enter any ID that is valid on the system below.</source>
-        <translation type="unfinished"></translation>
+        <translation>Du kan välja bland grupperna tillgängliga i LDAP databasen eller skriva in något ID som är gilltigt nedan.</translation>
     </message>
     <message>
         <source>Select any additional groups the &lt;b&gt;%1&lt;/b&gt; user should belong to from the list below.</source>
-        <translation type="unfinished"></translation>
+        <translation>Välj ytterliggare grupper som &lt;b&gt;%1&lt;/b&gt; skall tillhöra från listan nedan.</translation>
     </message>
     <message>
         <source>&lt;b&gt;Additional Groups&lt;/b&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;Ytterliggare Grupper&lt;/b&gt;</translation>
     </message>
 </context>
 <context>
@@ -1391,12 +1391,12 @@ Testa öka uidNumber omfånget eller ta bort användare från underträdet.</tra
     <message>
         <source>Directory Settings</source>
         <comment>DO NOT TRANSLATE</comment>
-        <translation type="unfinished">Katalog Inställningar</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Base node:</source>
         <comment>DO NOT TRANSLATE</comment>
-        <translation type="unfinished">Huvud nod:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Basic</source>
@@ -1405,7 +1405,7 @@ Testa öka uidNumber omfånget eller ta bort användare från underträdet.</tra
     <message>
         <source>Expiration date</source>
         <comment>DO NOT TRANSLATE</comment>
-        <translation type="unfinished">Utgångsdatum</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Date</source>
@@ -1415,12 +1415,12 @@ Testa öka uidNumber omfånget eller ta bort användare från underträdet.</tra
     <message>
         <source>Days from now</source>
         <comment>DO NOT TRANSLATE</comment>
-        <translation type="unfinished">Dagar från idag</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Account settings</source>
         <comment>DO NOT TRANSLATE</comment>
-        <translation type="unfinished">Konto inställningar</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>/home</source>
@@ -1433,17 +1433,17 @@ Testa öka uidNumber omfånget eller ta bort användare från underträdet.</tra
     <message>
         <source>Login shell:</source>
         <comment>DO NOT TRANSLATE</comment>
-        <translation type="unfinished">Inloggnings skal:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Home:</source>
         <comment>DO NOT TRANSLATE</comment>
-        <translation type="unfinished">Hem:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Group Id:</source>
         <comment>DO NOT TRANSLATE</comment>
-        <translation type="unfinished">Grupp ID:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Select group from LDAP</source>
@@ -1457,12 +1457,12 @@ Testa öka uidNumber omfånget eller ta bort användare från underträdet.</tra
     <message>
         <source>Minimum:</source>
         <comment>DO NOT TRANSLATE</comment>
-        <translation type="unfinished">Minimum:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Maximum:</source>
         <comment>DO NOT TRANSLATE</comment>
-        <translation type="unfinished">Maximum:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Account Settings</source>
@@ -1480,11 +1480,11 @@ Testa öka uidNumber omfånget eller ta bort användare från underträdet.</tra
     <message>
         <source>&amp;Create</source>
         <comment>DO NOT TRANSLATE</comment>
-        <translation type="unfinished">&amp;Skapa</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Alt+C</source>
-        <translation type="unfinished"></translation>
+        <translation>Alt+C</translation>
     </message>
 </context>
 <context>
@@ -1565,11 +1565,11 @@ Testa öka uidNumber omfånget eller ta bort användare från underträdet.</tra
     </message>
     <message>
         <source>&amp;Go</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Sök</translation>
     </message>
     <message>
         <source>Alt+G</source>
-        <translation type="unfinished"></translation>
+        <translation>Alt+S</translation>
     </message>
     <message>
         <source>Filter:</source>
@@ -1640,11 +1640,11 @@ Testa öka uidNumber omfånget eller ta bort användare från underträdet.</tra
     </message>
     <message>
         <source>&amp;Go</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Sök</translation>
     </message>
     <message>
         <source>Alt+G</source>
-        <translation type="unfinished"></translation>
+        <translation>Alt+S</translation>
     </message>
     <message>
         <source>Filter:</source>
@@ -2050,7 +2050,7 @@ Se konsolen för mer information.</translation>
     </message>
     <message>
         <source>Business</source>
-        <translation type="unfinished">Arbete</translation>
+        <translation>Arbete</translation>
     </message>
     <message>
         <source>Competition</source>
@@ -2062,11 +2062,11 @@ Se konsolen för mer information.</translation>
     </message>
     <message>
         <source>Gifts</source>
-        <translation type="unfinished"></translation>
+        <translation>Gåvor</translation>
     </message>
     <message>
         <source>Goals/Objectives</source>
-        <translation type="unfinished"></translation>
+        <translation>Mål</translation>
     </message>
     <message>
         <source>Holiday</source>
@@ -2086,15 +2086,15 @@ Se konsolen för mer information.</translation>
     </message>
     <message>
         <source>International</source>
-        <translation type="unfinished"></translation>
+        <translation>Internationell</translation>
     </message>
     <message>
         <source>Key Customer</source>
-        <translation type="unfinished"></translation>
+        <translation>Huvud kund</translation>
     </message>
     <message>
         <source>Miscellaneous</source>
-        <translation type="unfinished"></translation>
+        <translation>Övriga</translation>
     </message>
     <message>
         <source>Personal</source>
@@ -2102,7 +2102,7 @@ Se konsolen för mer information.</translation>
     </message>
     <message>
         <source>Phones Calls</source>
-        <translation type="unfinished">Telefon</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Status</source>
@@ -2110,7 +2110,7 @@ Se konsolen för mer information.</translation>
     </message>
     <message>
         <source>Strategies</source>
-        <translation type="unfinished"></translation>
+        <translation>Strategier</translation>
     </message>
     <message>
         <source>Suppliers</source>
@@ -2122,7 +2122,7 @@ Se konsolen för mer information.</translation>
     </message>
     <message>
         <source>VIP</source>
-        <translation type="unfinished"></translation>
+        <translation>VIP</translation>
     </message>
     <message>
         <source>Waiting</source>
@@ -2306,11 +2306,11 @@ Se konsolen för mer information.</translation>
     <name>PasswordDialog</name>
     <message>
         <source>Passwords match</source>
-        <translation type="unfinished"></translation>
+        <translation>Lösenorden stämmer överens</translation>
     </message>
     <message>
         <source>Passwords do not match</source>
-        <translation type="unfinished"></translation>
+        <translation>Lösenordern stämmer inte överens</translation>
     </message>
 </context>
 <context>
@@ -2346,11 +2346,11 @@ Se konsolen för mer information.</translation>
     </message>
     <message>
         <source>Verify:</source>
-        <translation type="unfinished"></translation>
+        <translation>Verifiera:</translation>
     </message>
     <message>
         <source>Passwords do not match</source>
-        <translation type="unfinished"></translation>
+        <translation>Lösenordern stämmer inte överens</translation>
     </message>
 </context>
 <context>
@@ -2572,11 +2572,11 @@ Se konsolen för mer information.</translation>
     </message>
     <message>
         <source>&lt;b&gt;Network options&lt;/b&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;Nätverks inställningar&lt;/b&gt;</translation>
     </message>
     <message>
         <source>Fetch Base DNs</source>
-        <translation type="unfinished"></translation>
+        <translation>Hämta Base DNs</translation>
     </message>
     <message>
         <source>SO</source>
@@ -2584,55 +2584,55 @@ Se konsolen för mer information.</translation>
     </message>
     <message>
         <source>Anonymous bind</source>
-        <translation type="unfinished"></translation>
+        <translation>Anonym anslutning</translation>
     </message>
     <message>
         <source>&lt;b&gt;Security options&lt;/b&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;Säkerhets inställningar&lt;/b&gt;</translation>
     </message>
     <message>
         <source>Use secure connection (SSL)</source>
-        <translation type="unfinished"></translation>
+        <translation>Använd säker anslutning (SSL)</translation>
     </message>
     <message>
         <source>&lt;b&gt;Authentification mechanism&lt;/b&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;Inloggnings metod&lt;/b&gt;</translation>
     </message>
     <message>
         <source>Simple</source>
-        <translation type="unfinished"></translation>
+        <translation>Simpel</translation>
     </message>
     <message>
         <source>SASL Plain</source>
-        <translation type="unfinished"></translation>
+        <translation>SASL Plain</translation>
     </message>
     <message>
         <source>SASL CRAM-MD5</source>
-        <translation type="unfinished"></translation>
+        <translation>SASL CRAM-MD5</translation>
     </message>
     <message>
         <source>SASL DIGEST-MD5</source>
-        <translation type="unfinished"></translation>
+        <translation>SASL DIGEST-MD5</translation>
     </message>
     <message>
         <source>SASL Login</source>
-        <translation type="unfinished"></translation>
+        <translation>SASL Login</translation>
     </message>
     <message>
         <source>SASL GSSAPI</source>
-        <translation type="unfinished"></translation>
+        <translation>SASL GSSAPI</translation>
     </message>
     <message>
         <source>Password:</source>
-        <translation type="unfinished">Lösenord:</translation>
+        <translation>Lösenord:</translation>
     </message>
     <message>
         <source>Bind as:</source>
-        <translation type="unfinished"></translation>
+        <translation>Anslut som:</translation>
     </message>
     <message>
         <source>&lt;b&gt;Credentials&lt;/b&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;Anslutnings Information&lt;/b&gt;</translation>
     </message>
 </context>
 <context>
@@ -2760,19 +2760,19 @@ Se konsolen för mer information.</translation>
     </message>
     <message>
         <source>Save entry</source>
-        <translation type="unfinished">Spara post</translation>
+        <translation>Spara post</translation>
     </message>
     <message>
         <source>The account has been modified. Do you want to save it?</source>
-        <translation type="unfinished"></translation>
+        <translation>Kontot har ändrats. Vill du spara ändringarna ?</translation>
     </message>
     <message>
         <source>&amp;Yes</source>
-        <translation type="unfinished">&amp;Ja</translation>
+        <translation>&amp;Ja</translation>
     </message>
     <message>
         <source>&amp;No</source>
-        <translation type="unfinished">&amp;Nej</translation>
+        <translation>&amp;Nej</translation>
     </message>
 </context>
 <context>
@@ -2808,67 +2808,67 @@ Se konsolen för mer information.</translation>
     </message>
     <message>
         <source>Change password...</source>
-        <translation type="unfinished"></translation>
+        <translation>Byt lösenord...</translation>
     </message>
     <message>
         <source>User ID number:</source>
-        <translation type="unfinished"></translation>
+        <translation>Använda ID nummer:</translation>
     </message>
     <message>
         <source>Login shell:</source>
-        <translation type="unfinished">Inloggnings skal:</translation>
+        <translation>Inloggnings skal:</translation>
     </message>
     <message>
         <source>Primary group:</source>
-        <translation type="unfinished"></translation>
+        <translation>Primär grupp:</translation>
     </message>
     <message>
         <source>Valid until:</source>
-        <translation type="unfinished"></translation>
+        <translation>Giltig t.o.m.:</translation>
     </message>
     <message>
         <source>Common name:</source>
-        <translation type="unfinished"></translation>
+        <translation>Allmänt namn:</translation>
     </message>
     <message>
         <source>Manage group memberships</source>
-        <translation type="unfinished"></translation>
+        <translation>Ändra gruppmedlemskap</translation>
     </message>
     <message>
         <source>Delete</source>
-        <translation type="unfinished">Ta bort</translation>
+        <translation>Ta bort</translation>
     </message>
     <message>
         <source>Add...</source>
-        <translation type="unfinished"></translation>
+        <translation>Lägg till...</translation>
     </message>
     <message>
         <source>User ID:</source>
-        <translation type="unfinished"></translation>
+        <translation>Användar ID:</translation>
     </message>
     <message>
         <source>GR</source>
-        <translation type="unfinished"></translation>
+        <translation>GR</translation>
     </message>
     <message>
         <source>Home directory:</source>
-        <translation type="unfinished"></translation>
+        <translation>Hemma katalog:</translation>
     </message>
     <message>
         <source>Mail:</source>
-        <translation type="unfinished"></translation>
+        <translation>Mail:</translation>
     </message>
     <message>
         <source>Group ID number:</source>
-        <translation type="unfinished"></translation>
+        <translation>Grupp ID nummer:</translation>
     </message>
     <message>
         <source>Password:</source>
-        <translation type="unfinished">Lösenord:</translation>
+        <translation>Lösenord:</translation>
     </message>
     <message>
         <source>Find next free</source>
-        <translation type="unfinished"></translation>
+        <translation>Hitta nästa lediga</translation>
     </message>
 </context>
 </TS>
