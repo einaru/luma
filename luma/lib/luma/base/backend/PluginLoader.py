@@ -93,7 +93,9 @@ class PluginLoader(object):
                     print "Could not read file for plugin ",
                     print tmpPlugin['PLUGIN_NAME']
                     print "Reason: " + str(errorData)
-                    
+                except ImportError:
+                    print "Plugin " + x + " has internal errors. It will not be loaded."
+                
                 tmpObject = TaskPlugin()
                 tmpObject.pluginPath = tmpPlugin["PLUGIN_PATH"]
                 
@@ -102,7 +104,6 @@ class PluginLoader(object):
                     tmpPlugin["PLUGIN_CODE"] = tmpObject
                 else:
                     del self.PLUGINS[x]
-
 
 
 ###############################################################################
