@@ -201,7 +201,7 @@ class PluginLoader(object):
         """Test if all needed functions are present in the plugin code. 
         """
         
-        neededFunctions = ["__init__", "get_icon", "pluginName", "getHelpText",
+        neededFunctions = ["__init__", "getIcon", "pluginName",
             "postprocess", "pluginPath", "getPluginWidget", "pluginWidget", "getPluginSettingsWidget"]
             
         for x in neededFunctions:
