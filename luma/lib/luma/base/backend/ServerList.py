@@ -30,7 +30,7 @@ class ServerList:
     def __init__(self):
         userdir = environment.userHomeDir
         self.__configPrefix = os.path.join(userdir, ".luma")
-        self.__configFile = os.path.join(self.__configPrefix,  "serverlist")
+        self.__configFile = os.path.join(self.__configPrefix, "serverlist")
         self.__checkConfigDir()
 
 ###############################################################################
@@ -40,11 +40,7 @@ class ServerList:
         """
         
         if not (os.path.exists(self.__configPrefix)):
-            try:
-                os.mkdir(self.__configPrefix)
-            except IOError, e:
-                print "Could not create directory for storing settings"
-                print "Reason: " + str(e)
+            os.mkdir(self.__configPrefix)
 
 ###############################################################################
 
@@ -76,27 +72,20 @@ class ServerList:
         """ Save the server list to configuration file.
         """
 
-        try:
-            #if len(serverList) == 0:
-            #    os.remove(self.__configFile)
-            #   return
-                
-            configParser = ConfigParser()
-            for x in serverList:
-                if not configParser.has_section(x.name):
-                    configParser.add_section(x.name)
-                configParser.set(x.name, "hostname", x.host)
-                configParser.set(x.name, "port", x.port)
-                configParser.set(x.name, "bindAnon", x.bindAnon)
-                configParser.set(x.name, "baseDN", x.baseDN)
-                configParser.set(x.name, "bindDN", x.bindDN)
-                configParser.set(x.name, "bindPassword", x.bindPassword)
-                configParser.set(x.name, "tls", x.tls)
-            configParser.write(open(self.__configFile, 'w'))
-        except Exception, e:
-            print "Could not save server settings. Reason:"
-            print e
-        
+        configParser = ConfigParser()
+            
+        for x in serverList:
+            if not configParser.has_section(x.name):
+                configParser.add_section(x.name)
+            configParser.set(x.name, "hostname", x.host)
+            configParser.set(x.name, "port", x.port)
+            configParser.set(x.name, "bindAnon", x.bindAnon)
+            configParser.set(x.name, "baseDN", x.baseDN)
+            configParser.set(x.name, "bindDN", x.bindDN)
+            configParser.set(x.name, "bindPassword", x.bindPassword)
+            configParser.set(x.name, "tls", x.tls)
+        configParser.write(open(self.__configFile, 'w'))
+            
 
 ###############################################################################
 
@@ -105,22 +94,14 @@ class ServerList:
         """
         
         newList = []
+        
         for x in self.SERVERLIST:
             if not(x.name == serverName):
                 newList.append(x)
+
         self.save_settings(newList)
         self.readServerList()
 
-###############################################################################
-
-    def __repr__(self):
-        """ String representation for the server list.
-        """
-        
-        finalString = ""
-        for x in serverList:
-            finalString = finalString + str(x) + "\n"
-        return finalString
 
 ###############################################################################
 
@@ -128,9 +109,14 @@ class ServerList:
         """ Get a server object by its name.
         """
         
+        retVal = None
+        
         for x in self.SERVERLIST:
             if x.name == serverName:
-                return x
+                retVal = x
+                break
+                
+        return retVal
 
 ###############################################################################
 
@@ -140,23 +126,28 @@ class ServerList:
         
         self.SERVERLIST = None
 
+        configParser = ConfigParser()
+        
         try:
-            configParser = ConfigParser()
             configParser.readfp(open(self.__configFile, 'r'))
-            sections = configParser.sections()
-            if len(sections) > 0:
-                self.SERVERLIST = []
-                for x in sections:
-                    server = ServerObject()
-                    server.name = x
-                    server.host = configParser.get(x, "hostname")
-                    server.port = configParser.getint(x, "port")
-                    server.bindAnon = configParser.getint(x, "bindAnon")
-                    server.baseDN = configParser.get(x, "baseDN")
-                    server.bindDN = configParser.get(x, "bindDN")
-                    server.bindPassword = configParser.get(x, "bindPassword")
-                    server.tls = configParser.getint(x, "tls")
-                    self.SERVERLIST.append(server)
-        except Exception, e:
-            print "Could not read server settings. Reason:"
-            print e
+        except IOError, error:
+            print "WARNING: Could not read server config file. Reason:"
+            print error
+            
+        sections = configParser.sections()
+            
+        if len(sections) == 0:
+            return
+            
+        self.SERVERLIST = []
+        for x in sections:
+            server = ServerObject()
+            server.name = x
+            server.host = configParser.get(x, "hostname")
+            server.port = configParser.getint(x, "port")
+            server.bindAnon = configParser.getboolean(x, "bindAnon")
+            server.baseDN = configParser.get(x, "baseDN")
+            server.bindDN = configParser.get(x, "bindDN")
+            server.bindPassword = configParser.get(x, "bindPassword")
+            server.tls = configParser.getboolean(x, "tls")
+            self.SERVERLIST.append(server)
