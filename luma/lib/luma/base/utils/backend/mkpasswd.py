@@ -1,15 +1,15 @@
 #$Id$
 '''
- This module depends on python >= 2.2
+ This module depends on python >= 2.3
 
- Module written by Bjorn Ove Grotan <bgrotan@samfundet.no>
+ Module written by Bjorn Ove Grotan <bgrotan@grotan.com>
 
-  Mkpasswd is free software; you can redistribute it and/or modify it
+  mkpasswd is free software; you can redistribute it and/or modify it
   under the terms of the GNU General Public License as published by
   the Free Software Foundation; either version 2 of the License, or
   (at your option) any later version.
  
-  Mkpasswd is distributed in the hope that it will be useful, but
+  mkpasswd is distributed in the hope that it will be useful, but
   WITHOUT ANY WARRANTY; without even the implied warranty of
   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
   General Public License for more details.
@@ -27,22 +27,16 @@
      the bytes are randomly chosen - followed by the same salt bytes
  For LDAP-use, the SHA1 and SSHA-digest has to be base64-encoded. 
 
- SHA and SSHA are described at:
- http://developer.netscape.com/docs/technote/ldap/pass-sha.html
- This page have examples for Perl and Java if one would prefer that.
-
  Example-LDIF:
      {SSHA}oaEG3PJ10sHxGcSxsDRRooTifL55/2NOdN3nU1VEV+NFzc9Q
  
  This package should now support passwords compatible with [1] Samba using the [2]
- smbpasswd module for [3] Python. You should find a recent copy of this software 
- at the project [4] webpage. The samba compability is added for use with Samba as
- PDC with storing user and host-information in LDAP.
+ smbpasswd module for [3] Python. The samba compability is added for use with Samba 
+ as PDC with storing user and host-information in LDAP.
 
  [1] http://www.samba.org
  [2] http://barryp.org/software/py-smbpasswd/
  [3] http://www.python.org
- [4] http://www.grotan.com/project/python
 '''
 import string,base64
 import random,sys
