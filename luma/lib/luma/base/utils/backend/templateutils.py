@@ -30,11 +30,6 @@ class LdapTemplate(object):
         self.name = ""
         self.tData = []
 
-        # WARNING: dead code.
-        # no method init_from_file
-        #if filename != None:
-        #    self.init_from_file(filename)
-
 ###############################################################################
 
     def get_objectclasses(self):
@@ -68,6 +63,27 @@ class LdapTemplate(object):
             for y in x['ATTRIBUTES']:
                 if y['NAME'] == attribute:
                     y['SHOW'] = value
+                    
+###############################################################################
+
+    def getDataObject(self):
+        """ Create a data structure which can be used by python-ldap and return it.
+        """
+    
+        dataObject = {}
+        
+        for x in self.tData:
+            objectClass = x["CLASSNAME"]
+            if dataObject.has_key(objectClass):
+                dataObject["objectClass"].append(objectClass)
+            else:
+                dataObject["objectClass"] = [objectClass]
+                
+            for y in x["ATTRIBUTES"]:
+                if (y["SHOW"] == 1) or (y["MUST"] == 1):
+                    dataObject[y["NAME"]] = [""]
+        
+        return dataObject
 
 ###############################################################################
 
