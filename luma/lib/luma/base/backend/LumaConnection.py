@@ -22,6 +22,7 @@ import time
 
 import environment
 from base.backend.ServerObject import ServerObject
+from base.backend.SmartDataObject import SmartDataObject
 
 
 class LumaConnectionException(Exception):
@@ -211,6 +212,38 @@ class LumaConnection(object):
             print "Error during LDAP unbind request"
             print "Reason: " + str(e)
             
+###############################################################################
+
+    def getBaseDNList(self):
+        environment.setBusy(True)
+        try:
+            self.bind()
+            
+            dnList = None
+        
+            # Check for openldap
+            result = self.search("", ldap.SCOPE_BASE, "(objectClass=*)", ["namingContexts"])
+            dnList = result[0][1]['namingContexts']
+        
+            # Check for Novell
+            if dnList[0] == '':
+                result = self.search("", ldap.SCOPE_BASE)
+                dnList = result[0][1]['dsaName']
+            
+            # Univertity of Michigan aka umich
+            # not jet tested
+            if dnList[0] == '':
+                result = self.search("", ldap.SCOPE_BASE, "(objectClass=*)",['database'])
+                dnList = result[0][1]['namingContexts']
+                
+            self.unbind()
+            environment.setBusy(False)
+            return dnList
+        except Exception, e:
+            environment.setBusy(False)
+            print e
+            return None
+        
 ###############################################################################
 
 class WorkerThreadSearch(threading.Thread):
