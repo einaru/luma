@@ -21,10 +21,10 @@ class FilterWizard(FilterWizardDesign):
 
     bookmarkFile = None
 
-    def __init__(self,server = None, parent = None,name = None,modal = 0,fl = 0):
+    def __init__(self,serverMeta=None, parent=None, name=None, modal=0, fl=0):
         FilterWizardDesign.__init__(self,parent,name,modal,fl)
 
-        self.objectInfo = ObjectClassAttributeInfo(server)
+        self.objectInfo = ObjectClassAttributeInfo(serverMeta)
 
         self.objectSelection = "CLASS"
         self.classButton.setChecked(1)

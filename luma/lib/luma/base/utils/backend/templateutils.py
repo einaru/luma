@@ -15,6 +15,8 @@ from qtxml import *
 from qt import *
 from copy import deepcopy
 
+from base.backend.SmartDataObject import SmartDataObject
+
 class LdapTemplate(object):
     """ A class for storing template information of ldap-objects.
     """
@@ -67,7 +69,7 @@ class LdapTemplate(object):
 
 ###############################################################################
 
-    def getDataObject(self):
+    def getDataObject(self, serverMeta, baseDN):
         """ Create a data structure which can be used by python-ldap and return it.
         """
     
@@ -80,8 +82,11 @@ class LdapTemplate(object):
                 dataObject[attributeObject.attributeName] = [None]
             else:
                 dataObject[attributeObject.attributeName] = [attributeObject.defaultValue.encode("utf-8")]
-            
-        return dataObject
+        
+        smartObject = SmartDataObject((baseDN, dataObject), serverMeta)
+        
+        return smartObject
+        
         
 ###############################################################################
 
