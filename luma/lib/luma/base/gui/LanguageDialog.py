@@ -80,19 +80,19 @@ class LanguageDialog(LanguageDialogDesign):
         tmpText = str(self.languageBox.currentText())
         translationFile = 'NATIVE'
         
-        if tmpText == "Germany":
+        if tmpText == "German":
             translationFile = "luma_de.qm"
-        elif tmpText == "Brazil":
+        elif tmpText == "Brazilian":
             translationFile = "luma_br.qm"
         elif tmpText == "English (UK)":
             translationFile = 'NATIVE'
-        elif tmpText == "Spain":
+        elif tmpText == "Spanish":
             translationFile = "luma_es.qm"
-        elif tmpText == "Norway":
+        elif tmpText == "Norwegian":
             translationFile = "luma_no.qm"
-        elif tmpText == "Russia":
+        elif tmpText == "Russian":
             translationFile = "luma_ru.qm"
-        elif tmpText == "Sweden":
+        elif tmpText == "Swedish":
             translationFile = "luma_sv.qm"
         
         return os.path.join(self.trDir, translationFile)
