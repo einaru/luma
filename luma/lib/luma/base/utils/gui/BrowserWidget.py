@@ -61,23 +61,32 @@ class BrowserWidget(QListView):
         self.popupMenu = QPopupMenu()
         self.exportMenu = QPopupMenu()
         self.addItemMenu = QPopupMenu()
+        self.deleteMenu = QPopupMenu()
         
-        # icon files for the menu entries
+        # Icon files for the menu entries
         addIconFile = tmpDirObject.PREFIX + "/share/luma/icons/newEntry.png"
         delIconFile = tmpDirObject.PREFIX + "/share/luma/icons/deleteEntry.png"
         exportIconFile = tmpDirObject.PREFIX + "/share/luma/icons/exportLdif.png"
         
+        
+        # Fill export menu
         self.exportMenu.insertItem(self.trUtf8("Item"), self.__export_item)
-        self.exportMenu.insertItem(self.trUtf8("Item+Subtree"), self.__export_item_subtree)
-        self.exportMenu.insertItem(self.trUtf8("Item+Subtree+Parents"), self.__export_item_all)
+        self.exportMenu.insertItem(self.trUtf8("Subtree"), self.__export_item_subtree)
+        self.exportMenu.insertItem(self.trUtf8("Subtree with Parents"), self.__export_item_all)
 
+        
+        # Fill delete menu
+        self.deleteMenu.insertItem(self.trUtf8("Item"), self.deleteItem)
+        self.deleteMenu.insertItem(self.trUtf8("Subtree"), self.deleteItemsRecursive)
+        self.deleteMenu.insertItem(self.trUtf8("Subtree without Node"), self.deleteSubtree)
+        
+        
         self.popupMenu.insertItem(QIconSet(QPixmap(addIconFile)), self.trUtf8("Add Item"), self.addItemMenu)
         self.popupMenu.insertSeparator()
         self.popupMenu.insertItem(QIconSet(QPixmap(exportIconFile)), self.trUtf8("Export to LDIF"), self.exportMenu)
         self.popupMenu.insertSeparator()
-        #self.popupMenu.insertItem
-        self.popupMenu.insertItem(QIconSet(QPixmap(delIconFile)), self.trUtf8("Delete Item"), self.__delete_item)
-        self.popupMenu.insertItem(QIconSet(QPixmap(delIconFile)), self.trUtf8("Delete Items recursive"), self.__delete_items_recursive)
+        self.popupMenu.insertItem(QIconSet(QPixmap(delIconFile)), self.trUtf8("Delete"), self.deleteMenu)
+        
         
         self.connect(self.addItemMenu, SIGNAL("aboutToShow()"), self.create_add_menu)
 
@@ -168,6 +177,15 @@ class BrowserWidget(QListView):
             print "Error during LDAP request"
             print "Reason: " + str(e)
             mainWin.set_busy(0)
+            QMessageBox.critical(None,
+                self.trUtf8("Error"),
+                self.trUtf8("""Could not access entry.
+See console output for more information."""),
+                self.trUtf8("&OK"),
+                None,
+                None,
+                0, -1)
+
 
 ###############################################################################
 
@@ -225,13 +243,25 @@ class BrowserWidget(QListView):
 
             if len(serverMeta.bindDN) > 0:
                 ldapServerObject.unbind()
+                
+            mainWin.set_busy(0)
+            return searchResult[:]
         except ldap.LDAPError, e:
             print "Error during LDAP request"
             print "Reason: " + str(e)
+            
+            mainWin.set_busy(0)
+            
+            QMessageBox.critical(None,
+                self.trUtf8("Search Error"),
+                self.trUtf8("""Could not access children.
+See console output for more information."""),
+                self.trUtf8("&OK"),
+                None,
+                None,
+                0, -1)
 
-        # set GUI not busy
-        mainWin.set_busy(0)
-        return searchResult[:]
+
 
 ###############################################################################
 
@@ -275,7 +305,7 @@ class BrowserWidget(QListView):
 
 ###############################################################################
 
-    def __delete_item(self):
+    def deleteItem(self):
         warnString = self.trUtf8('Do you really want to delete the item from the server?')
         result = QMessageBox.warning(self, self.trUtf8('Delete entry'), warnString, self.trUtf8('Delete'), self.trUtf8('Cancel'))
         if result == 1:
@@ -369,9 +399,9 @@ class BrowserWidget(QListView):
         
 ###############################################################################
         
-    def __delete_items_recursive(self):
+    def deleteItemsRecursive(self, withParent=1):
         warnString = self.trUtf8('Do you really want to delete the items recursively from the server?')
-        result = QMessageBox.warning(self, self.trUtf8('Delete entry'), warnString, self.trUtf8('Delete'), self.trUtf8('Cancel'))
+        result = QMessageBox.warning(self, self.trUtf8('Delete entries'), warnString, self.trUtf8('Delete'), self.trUtf8('Cancel'))
         if result == 1:
             return
             
@@ -388,19 +418,26 @@ class BrowserWidget(QListView):
         serverName, selectedObject = self.__split_path(fullPath)
         if len(selectedObject) == 0:
             return None
+            
+        if (not withParent):
+            del children[0]
         
         while ((len(children) > 0) and (not(children == None))) :
             mainWin.update_ui()
-            print children[-1][0]
             self.__delete_ldap_entry(serverName, children[-1][0])
             del children[-1]
         
-        currentItem.setOpen(0)
-        currentItem.setOpen(1)
+        #currentItem.setOpen(0)
+        #currentItem.setOpen(1)
         parent.setOpen(0)
         parent.setOpen(1)
         
         mainWin.set_busy(0)
+        
+###############################################################################
+
+    def deleteSubtree(self):
+        self.deleteItemsRecursive(0)
 
 ###############################################################################
 
@@ -420,6 +457,15 @@ class BrowserWidget(QListView):
         except ldap.LDAPError, e:
             print "Error during LDAP request"
             print "Reason: " + str(e)
+            QMessageBox.critical(None,
+                self.trUtf8("Error "),
+                self.trUtf8("""Delete operation was not succesful.
+See console output for more information."""),
+                self.trUtf8("&OK"),
+                None,
+                None,
+                0, -1)
+
 
 ###############################################################################
 
