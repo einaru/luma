@@ -24,6 +24,7 @@ import environment
 from base.utils.backend.ObjectClassAttributeInfo import ObjectClassAttributeInfo
 from base.utils.gui.AddAttributeWizard import AddAttributeWizard
 from base.backend.LumaConnection import LumaConnection
+from base.utils.gui.PasswordDialog import PasswordDialog
 
 
 class ObjectWidget(QWidget):
@@ -34,7 +35,7 @@ class ObjectWidget(QWidget):
         self.iconPath = os.path.join(environment.lumaInstallationPrefix, "share", "luma", "icons")
         addPixmap = QPixmap(os.path.join(self.iconPath, "single.png"))
         self.deletePixmap = QPixmap(os.path.join(self.iconPath, "deleteEntry.png"))
-        self.deleteSmallPixmap = QPixmap(os.path.join(self.iconPath, "delete_small.png"))
+        self.deleteSmallPixmap = QPixmap(os.path.join(self.iconPath, "editdelete.png"))
         savePixmap = QPixmap(os.path.join(self.iconPath, "save.png"))
         displayAllPixmap = QPixmap(os.path.join(self.iconPath, "displayall.png"))
         reloadPixmap = QPixmap(os.path.join(self.iconPath, "reload.png"))
@@ -56,6 +57,7 @@ class ObjectWidget(QWidget):
         self.reloadButton.setIconSet(QIconSet(reloadPixmap))
         self.reloadButton.setSizePolicy(QSizePolicy(QSizePolicy.Fixed, QSizePolicy.Fixed))
         self.reloadButton.setAutoRaise(True)
+        self.reloadButton.setBackgroundMode(self.backgroundMode())
         QToolTip.add(self.reloadButton, self.trUtf8("Reload"))
         self.connect(self.reloadButton, SIGNAL("clicked()"), self.refreshView)
         hboxLayout.addWidget(self.reloadButton)
@@ -65,6 +67,7 @@ class ObjectWidget(QWidget):
         self.saveButton.setIconSet(QIconSet(savePixmap))
         self.saveButton.setSizePolicy(QSizePolicy(QSizePolicy.Fixed, QSizePolicy.Fixed))
         self.saveButton.setAutoRaise(True)
+        self.saveButton.setBackgroundMode(self.backgroundMode())
         QToolTip.add(self.saveButton, self.trUtf8("Save"))
         self.connect(self.saveButton, SIGNAL("clicked()"), self.saveView)
         hboxLayout.addWidget(self.saveButton)
@@ -80,30 +83,37 @@ class ObjectWidget(QWidget):
         self.addAttributeButton.setIconSet(QIconSet(addPixmap))
         self.addAttributeButton.setSizePolicy(QSizePolicy(QSizePolicy.Fixed, QSizePolicy.Fixed))
         self.addAttributeButton.setAutoRaise(True)
+        self.addAttributeButton.setBackgroundMode(self.backgroundMode())
         QToolTip.add(self.addAttributeButton, self.trUtf8("Add attribute..."))
         self.connect(self.addAttributeButton, SIGNAL("clicked()"), self.addAttribute)
         hboxLayout.addWidget(self.addAttributeButton)
         
         # spacer for the "toolbar"
-        spacer = QSpacerItem(10, 5)
-        hboxLayout.addItem(spacer)
+        #spacer = QSpacerItem(10, 5)
+        #hboxLayout.addItem(spacer)
         
         # vertical line for the "toolbar"
-        self.line2 = QFrame(self,"line2")
-        self.line2.setFrameShadow(QFrame.Sunken)
-        self.line2.setFrameShape(QFrame.VLine)
-        hboxLayout.addWidget(self.line2)
+        #self.line2 = QFrame(self,"line2")
+        #self.line2.setFrameShadow(QFrame.Sunken)
+        #self.line2.setFrameShape(QFrame.VLine)
+        #hboxLayout.addWidget(self.line2)
         
         # delete ldap object
         self.deleteObjectButton = QToolButton(self)
         self.deleteObjectButton.setIconSet(QIconSet(self.deleteSmallPixmap))
         self.deleteObjectButton.setSizePolicy(QSizePolicy(QSizePolicy.Fixed, QSizePolicy.Fixed))
         self.deleteObjectButton.setAutoRaise(True)
+        self.deleteObjectButton.setBackgroundMode(self.backgroundMode())
         QToolTip.add(self.deleteObjectButton, self.trUtf8("Delete object"))
         self.connect(self.deleteObjectButton, SIGNAL("clicked()"), self.deleteObject)
         hboxLayout.addWidget(self.deleteObjectButton)
+        
+        # spacer for the "toolbar"
+        spacer = QSpacerItem(10, 5)
+        hboxLayout.addItem(spacer)
     
         self.mainGrid.addLayout(hboxLayout, 0, 0)
+        
         
         #create a scrollable frame
         self.attributeFrame = QScrollView(self,"attributeFrame")
@@ -241,7 +251,7 @@ class ObjectWidget(QWidget):
         lumaConnection.unbind()
         
         if result == 0:
-            QMessageBox.warning(None,
+            QMessageBox.warning(self,
             self.trUtf8("Error"),
             self.trUtf8("""Could not save object data. 
 Please read console output for more information."""),
@@ -434,10 +444,10 @@ Please read console output for more information."""),
                 binary = False
                 if self.SERVERMETA.isBinary(attribute) or (name[-8:-1] == ";binary"):
                     binary = True
-                    
-    
-                    
-                if binary:
+
+                if attribute == "userPassword":
+                    self.editPasswordAttribute(attribute, position)
+                elif binary:
                     self.editBinaryAttribute(attribute, position)
                 else:
                     self.editAttribute(attribute, position)
@@ -475,7 +485,7 @@ Please read console output for more information."""),
 ###############################################################################
 
     def addAttribute(self):
-        dialog = AddAttributeWizard()
+        dialog = AddAttributeWizard(self)
         dialog.setData(copy.deepcopy(self.CURRENTVALUES), self.SERVERMETA)
         
         dialog.exec_loop()
@@ -510,7 +520,7 @@ Please read console output for more information."""),
         fileName = QFileDialog.getOpenFileName(\
                                 None,
                                 None,
-                                None, None,
+                                self, None,
                                 self.trUtf8("Select file to change binary value"),
                                 None, 1)
                                 
@@ -529,8 +539,6 @@ Please read console output for more information."""),
     def editAttribute(self, attribute, position):
         oldValue = None
         
-        
-        
         if self.CREATE and (attribute == "dn"):
             oldValue = self.DN
         else:
@@ -540,7 +548,9 @@ Please read console output for more information."""),
                     self.trUtf8("Edit attribute"),
                     unicode(attribute) + unicode(":"),
                     QLineEdit.Normal,
-                    oldValue.decode("utf-8"))
+                    oldValue.decode("utf-8"), None, None)
+                    
+
         
         # if cancel button has been pressed, leave function
         if text[1] == False:
@@ -556,6 +566,19 @@ Please read console output for more information."""),
             
         self.displayValues()
         
+###############################################################################
+
+    def editPasswordAttribute(self, attribute, position):
+        dialog = PasswordDialog(self)
+        dialog.exec_loop()
+        
+        if dialog.result() == 1:
+            passwordHash = dialog.passwordHash
+            self.CURRENTVALUES[attribute][position] = passwordHash
+            self.EDITED = True
+
+        self.displayValues()
+
 ###############################################################################
 
     def deleteAttribute(self, attribute, position):
@@ -578,7 +601,7 @@ Please read console output for more information."""),
             fileName = unicode(QFileDialog.getSaveFileName(\
                                 None,
                                 None,
-                                None, None,
+                                self, None,
                                 self.trUtf8("Export binary attribute to file"),
                                 None, 1))
 
@@ -643,7 +666,7 @@ Please read console output for more information."""),
         """Delete the current object.
         """
         
-        reallyDelete = QMessageBox.question(None,
+        reallyDelete = QMessageBox.question(self,
             self.trUtf8("Delete object"),
             self.trUtf8("""Do you really want to delete the object?"""),
             self.trUtf8("&Yes"),
