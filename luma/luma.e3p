@@ -1,107 +1,651 @@
-#
-# Project file for project "luma"
-# Saved: 2003-11-29, 17:34:22
-#
-# Copyright (C) 2003 Wido Depping <wido.depping@tu-clausthal.de>
-#
-
-VERSION = 1.0beta1 
-
-AUTHOR = Wido Depping 
-
-EMAIL = wido.depping@tu-clausthal.de 
-
-SOURCES = lib%os.sep%luma%os.sep%__init__.py \
-	lib%os.sep%luma%os.sep%luma.py \
-	lib%os.sep%luma%os.sep%base%os.sep%__init__.py \
-	lib%os.sep%luma%os.sep%base%os.sep%gui%os.sep%MainWinDesign.py \
-	lib%os.sep%luma%os.sep%base%os.sep%gui%os.sep%__init__.py \
-	lib%os.sep%luma%os.sep%base%os.sep%gui%os.sep%MainWin.py \
-	lib%os.sep%luma%os.sep%base%os.sep%gui%os.sep%AboutDialog.py \
-	lib%os.sep%luma%os.sep%base%os.sep%gui%os.sep%ServerDialog.py \
-	lib%os.sep%luma%os.sep%base%os.sep%gui%os.sep%ServerDialogDesign.py \
-	lib%os.sep%luma%os.sep%base%os.sep%gui%os.sep%PluginLoaderGuiDesign.py \
-	lib%os.sep%luma%os.sep%base%os.sep%gui%os.sep%PluginLoaderGui.py \
-	lib%os.sep%luma%os.sep%base%os.sep%backend%os.sep%__init__.py \
-	lib%os.sep%luma%os.sep%base%os.sep%backend%os.sep%DirUtils.py \
-	lib%os.sep%luma%os.sep%base%os.sep%backend%os.sep%ServerObject.py \
-	lib%os.sep%luma%os.sep%base%os.sep%backend%os.sep%ServerList.py \
-	lib%os.sep%luma%os.sep%base%os.sep%backend%os.sep%PluginLoader.py \
-	lib%os.sep%luma%os.sep%base%os.sep%utils%os.sep%__init__.py \
-	lib%os.sep%luma%os.sep%base%os.sep%utils%os.sep%backend%os.sep%__init__.py \
-	lib%os.sep%luma%os.sep%base%os.sep%utils%os.sep%backend%os.sep%ObjectClassAttributeInfo.py \
-	lib%os.sep%luma%os.sep%base%os.sep%utils%os.sep%backend%os.sep%templateutils.py \
-	lib%os.sep%luma%os.sep%base%os.sep%utils%os.sep%gui%os.sep%BrowserWidget.py \
-	lib%os.sep%luma%os.sep%base%os.sep%utils%os.sep%gui%os.sep%__init__.py \
-	lib%os.sep%luma%os.sep%base%os.sep%utils%os.sep%gui%os.sep%SearchForm.py \
-	lib%os.sep%luma%os.sep%base%os.sep%utils%os.sep%gui%os.sep%SearchFormDesign.py \
-	lib%os.sep%luma%os.sep%base%os.sep%utils%os.sep%gui%os.sep%FilterWizardDesign.py \
-	lib%os.sep%luma%os.sep%base%os.sep%utils%os.sep%gui%os.sep%FilterWizard.py \
-	lib%os.sep%luma%os.sep%base%os.sep%utils%os.sep%gui%os.sep%SearchResultView.py \
-	lib%os.sep%luma%os.sep%base%os.sep%utils%os.sep%gui%os.sep%SearchResultViewDesign.py \
-	lib%os.sep%luma%os.sep%base%os.sep%utils%os.sep%gui%os.sep%ObjectWidget.py \
-	lib%os.sep%luma%os.sep%plugins%os.sep%__init__.py \
-	lib%os.sep%luma%os.sep%plugins%os.sep%config_create%os.sep%__init__.py \
-	lib%os.sep%luma%os.sep%plugins%os.sep%config_create%os.sep%ConfigPanelDesign.py \
-	lib%os.sep%luma%os.sep%plugins%os.sep%config_create%os.sep%ConfigError.py \
-	lib%os.sep%luma%os.sep%plugins%os.sep%config_create%os.sep%config_create_plugin.py \
-	lib%os.sep%luma%os.sep%plugins%os.sep%config_create%os.sep%ConfigPanel.py \
-	lib%os.sep%luma%os.sep%plugins%os.sep%config_create%os.sep%ConfigFileObject.py \
-	lib%os.sep%luma%os.sep%plugins%os.sep%browser_plugin%os.sep%__init__.py \
-	lib%os.sep%luma%os.sep%plugins%os.sep%browser_plugin%os.sep%browser_plugin.py \
-	lib%os.sep%luma%os.sep%plugins%os.sep%browser_plugin%os.sep%BrowserView.py \
-	lib%os.sep%luma%os.sep%plugins%os.sep%search_plugin%os.sep%search_plugin.py \
-	lib%os.sep%luma%os.sep%plugins%os.sep%search_plugin%os.sep%SearchView.py \
-	lib%os.sep%luma%os.sep%plugins%os.sep%search_plugin%os.sep%__init__.py \
-	lib%os.sep%luma%os.sep%plugins%os.sep%template_plugin%os.sep%TemplateFormDesign.py \
-	lib%os.sep%luma%os.sep%plugins%os.sep%template_plugin%os.sep%TemplateForm.py \
-	lib%os.sep%luma%os.sep%plugins%os.sep%template_plugin%os.sep%__init__.py \
-	lib%os.sep%luma%os.sep%plugins%os.sep%template_plugin%os.sep%template_plugin.py \
-	lib%os.sep%luma%os.sep%plugins%os.sep%template_plugin%os.sep%OClassDialogDesign.py \
-	lib%os.sep%luma%os.sep%plugins%os.sep%template_plugin%os.sep%OClassDialog.py \
-	lib%os.sep%luma%os.sep%base%os.sep%utils%os.sep%gui%os.sep%TemplateObjectWidget.py \
-	lib%os.sep%luma%os.sep%base%os.sep%utils%os.sep%backend%os.sep%CryptPwGenerator.py \
-	lib%os.sep%luma%os.sep%plugins%os.sep%admin_utils%os.sep%AdminPanelDesign.py \
-	lib%os.sep%luma%os.sep%plugins%os.sep%admin_utils%os.sep%AdminPanel.py \
-	lib%os.sep%luma%os.sep%plugins%os.sep%admin_utils%os.sep%__init__.py \
-	lib%os.sep%luma%os.sep%plugins%os.sep%admin_utils%os.sep%admin_utilities_plugin.py \
-	lib%os.sep%luma%os.sep%base%os.sep%utils%os.sep%backend%os.sep%DateHelper.py \
-	lib%os.sep%luma%os.sep%plugins%os.sep%mass_creation_plugin%os.sep%__init__.py \
-	lib%os.sep%luma%os.sep%plugins%os.sep%mass_creation_plugin%os.sep%massive_users_plugin.py \
-	lib%os.sep%luma%os.sep%plugins%os.sep%mass_creation_plugin%os.sep%MassCreationDesign.py \
-	lib%os.sep%luma%os.sep%plugins%os.sep%mass_creation_plugin%os.sep%MassCreation.py \
-	lib%os.sep%luma%os.sep%base%os.sep%gui%os.sep%LanguageDialog.py \
-	lib%os.sep%luma%os.sep%base%os.sep%gui%os.sep%LanguageDialogDesign.py \
-	install.py \
-	lib%os.sep%luma%os.sep%plugins%os.sep%ifi_user%os.sep%ifi_user_plugin.py \
-	lib%os.sep%luma%os.sep%plugins%os.sep%ifi_user%os.sep%IfiUser.py \
-	lib%os.sep%luma%os.sep%plugins%os.sep%ifi_user%os.sep%__init__.py \
-	lib%os.sep%luma%os.sep%base%os.sep%utils%os.sep%gui%os.sep%BrowserDialog.py \
-	lib%os.sep%luma%os.sep%base%os.sep%gui%os.sep%BaseSelector.py \
-	lib%os.sep%luma%os.sep%base%os.sep%backend%os.sep%LumaConnection.py \
-	lib%os.sep%luma%os.sep%base%os.sep%utils%os.sep%backend%os.sep%mkpasswd.py 
-
-FORMS = lib%os.sep%luma%os.sep%base%os.sep%gui%os.sep%AboutDialog.ui \
-	lib%os.sep%luma%os.sep%base%os.sep%gui%os.sep%MainWinDesign.ui \
-	lib%os.sep%luma%os.sep%base%os.sep%gui%os.sep%PluginLoaderGuiDesign.ui \
-	lib%os.sep%luma%os.sep%base%os.sep%gui%os.sep%ServerDialogDesign.ui \
-	lib%os.sep%luma%os.sep%base%os.sep%utils%os.sep%gui%os.sep%FilterWizardDesign.ui \
-	lib%os.sep%luma%os.sep%base%os.sep%utils%os.sep%gui%os.sep%SearchFormDesign.ui \
-	lib%os.sep%luma%os.sep%base%os.sep%utils%os.sep%gui%os.sep%SearchResultViewDesign.ui \
-	lib%os.sep%luma%os.sep%plugins%os.sep%config_create%os.sep%ConfigError.ui \
-	lib%os.sep%luma%os.sep%plugins%os.sep%config_create%os.sep%ConfigPanelDesign.ui \
-	lib%os.sep%luma%os.sep%plugins%os.sep%template_plugin%os.sep%OClassDialogDesign.ui \
-	lib%os.sep%luma%os.sep%plugins%os.sep%template_plugin%os.sep%TemplateFormDesign.ui \
-	lib%os.sep%luma%os.sep%plugins%os.sep%admin_utils%os.sep%AdminPanelDesign.ui \
-	lib%os.sep%luma%os.sep%plugins%os.sep%mass_creation_plugin%os.sep%MassCreationDesign.ui \
-	lib%os.sep%luma%os.sep%base%os.sep%gui%os.sep%LanguageDialogDesign.ui \
-	lib%os.sep%luma%os.sep%plugins%os.sep%ifi_user%os.sep%IfiUserDesign.ui \
-	lib%os.sep%luma%os.sep%base%os.sep%gui%os.sep%BaseSelectorDesign.ui 
-
-TRANSLATIONS = lib/luma/luma_de.ts \
-	lib/luma/luma_br.ts 
-
-MAINSCRIPT = lib/luma/luma.py 
-
-VCS = None 
-
+<?xml version='1.0' encoding='UTF-8'?>
+<!--Project file for project luma-->
+<!--Saved: 2003-12-29, 18:13:01-->
+<!--Copyright (C) 2003 Wido Depping, wido.depping@tu-clausthal.de-->
+<Project>
+  <Version>1.0beta1</Version>
+  <Author>Wido Depping</Author>
+  <Email>wido.depping@tu-clausthal.de</Email>
+  <Sources>
+    <Source>
+      <Dir>lib</Dir>
+      <Dir>luma</Dir>
+      <Name>__init__.py</Name>
+    </Source>
+    <Source>
+      <Dir>lib</Dir>
+      <Dir>luma</Dir>
+      <Name>luma.py</Name>
+    </Source>
+    <Source>
+      <Dir>lib</Dir>
+      <Dir>luma</Dir>
+      <Dir>base</Dir>
+      <Name>__init__.py</Name>
+    </Source>
+    <Source>
+      <Dir>lib</Dir>
+      <Dir>luma</Dir>
+      <Dir>base</Dir>
+      <Dir>gui</Dir>
+      <Name>MainWinDesign.py</Name>
+    </Source>
+    <Source>
+      <Dir>lib</Dir>
+      <Dir>luma</Dir>
+      <Dir>base</Dir>
+      <Dir>gui</Dir>
+      <Name>__init__.py</Name>
+    </Source>
+    <Source>
+      <Dir>lib</Dir>
+      <Dir>luma</Dir>
+      <Dir>base</Dir>
+      <Dir>gui</Dir>
+      <Name>MainWin.py</Name>
+    </Source>
+    <Source>
+      <Dir>lib</Dir>
+      <Dir>luma</Dir>
+      <Dir>base</Dir>
+      <Dir>gui</Dir>
+      <Name>AboutDialog.py</Name>
+    </Source>
+    <Source>
+      <Dir>lib</Dir>
+      <Dir>luma</Dir>
+      <Dir>base</Dir>
+      <Dir>gui</Dir>
+      <Name>ServerDialog.py</Name>
+    </Source>
+    <Source>
+      <Dir>lib</Dir>
+      <Dir>luma</Dir>
+      <Dir>base</Dir>
+      <Dir>gui</Dir>
+      <Name>ServerDialogDesign.py</Name>
+    </Source>
+    <Source>
+      <Dir>lib</Dir>
+      <Dir>luma</Dir>
+      <Dir>base</Dir>
+      <Dir>gui</Dir>
+      <Name>PluginLoaderGuiDesign.py</Name>
+    </Source>
+    <Source>
+      <Dir>lib</Dir>
+      <Dir>luma</Dir>
+      <Dir>base</Dir>
+      <Dir>gui</Dir>
+      <Name>PluginLoaderGui.py</Name>
+    </Source>
+    <Source>
+      <Dir>lib</Dir>
+      <Dir>luma</Dir>
+      <Dir>base</Dir>
+      <Dir>backend</Dir>
+      <Name>__init__.py</Name>
+    </Source>
+    <Source>
+      <Dir>lib</Dir>
+      <Dir>luma</Dir>
+      <Dir>base</Dir>
+      <Dir>backend</Dir>
+      <Name>DirUtils.py</Name>
+    </Source>
+    <Source>
+      <Dir>lib</Dir>
+      <Dir>luma</Dir>
+      <Dir>base</Dir>
+      <Dir>backend</Dir>
+      <Name>ServerObject.py</Name>
+    </Source>
+    <Source>
+      <Dir>lib</Dir>
+      <Dir>luma</Dir>
+      <Dir>base</Dir>
+      <Dir>backend</Dir>
+      <Name>ServerList.py</Name>
+    </Source>
+    <Source>
+      <Dir>lib</Dir>
+      <Dir>luma</Dir>
+      <Dir>base</Dir>
+      <Dir>backend</Dir>
+      <Name>PluginLoader.py</Name>
+    </Source>
+    <Source>
+      <Dir>lib</Dir>
+      <Dir>luma</Dir>
+      <Dir>base</Dir>
+      <Dir>utils</Dir>
+      <Name>__init__.py</Name>
+    </Source>
+    <Source>
+      <Dir>lib</Dir>
+      <Dir>luma</Dir>
+      <Dir>base</Dir>
+      <Dir>utils</Dir>
+      <Dir>backend</Dir>
+      <Name>__init__.py</Name>
+    </Source>
+    <Source>
+      <Dir>lib</Dir>
+      <Dir>luma</Dir>
+      <Dir>base</Dir>
+      <Dir>utils</Dir>
+      <Dir>backend</Dir>
+      <Name>ObjectClassAttributeInfo.py</Name>
+    </Source>
+    <Source>
+      <Dir>lib</Dir>
+      <Dir>luma</Dir>
+      <Dir>base</Dir>
+      <Dir>utils</Dir>
+      <Dir>backend</Dir>
+      <Name>templateutils.py</Name>
+    </Source>
+    <Source>
+      <Dir>lib</Dir>
+      <Dir>luma</Dir>
+      <Dir>base</Dir>
+      <Dir>utils</Dir>
+      <Dir>gui</Dir>
+      <Name>BrowserWidget.py</Name>
+    </Source>
+    <Source>
+      <Dir>lib</Dir>
+      <Dir>luma</Dir>
+      <Dir>base</Dir>
+      <Dir>utils</Dir>
+      <Dir>gui</Dir>
+      <Name>__init__.py</Name>
+    </Source>
+    <Source>
+      <Dir>lib</Dir>
+      <Dir>luma</Dir>
+      <Dir>base</Dir>
+      <Dir>utils</Dir>
+      <Dir>gui</Dir>
+      <Name>SearchForm.py</Name>
+    </Source>
+    <Source>
+      <Dir>lib</Dir>
+      <Dir>luma</Dir>
+      <Dir>base</Dir>
+      <Dir>utils</Dir>
+      <Dir>gui</Dir>
+      <Name>SearchFormDesign.py</Name>
+    </Source>
+    <Source>
+      <Dir>lib</Dir>
+      <Dir>luma</Dir>
+      <Dir>base</Dir>
+      <Dir>utils</Dir>
+      <Dir>gui</Dir>
+      <Name>FilterWizardDesign.py</Name>
+    </Source>
+    <Source>
+      <Dir>lib</Dir>
+      <Dir>luma</Dir>
+      <Dir>base</Dir>
+      <Dir>utils</Dir>
+      <Dir>gui</Dir>
+      <Name>FilterWizard.py</Name>
+    </Source>
+    <Source>
+      <Dir>lib</Dir>
+      <Dir>luma</Dir>
+      <Dir>base</Dir>
+      <Dir>utils</Dir>
+      <Dir>gui</Dir>
+      <Name>SearchResultView.py</Name>
+    </Source>
+    <Source>
+      <Dir>lib</Dir>
+      <Dir>luma</Dir>
+      <Dir>base</Dir>
+      <Dir>utils</Dir>
+      <Dir>gui</Dir>
+      <Name>SearchResultViewDesign.py</Name>
+    </Source>
+    <Source>
+      <Dir>lib</Dir>
+      <Dir>luma</Dir>
+      <Dir>base</Dir>
+      <Dir>utils</Dir>
+      <Dir>gui</Dir>
+      <Name>ObjectWidget.py</Name>
+    </Source>
+    <Source>
+      <Dir>lib</Dir>
+      <Dir>luma</Dir>
+      <Dir>plugins</Dir>
+      <Name>__init__.py</Name>
+    </Source>
+    <Source>
+      <Dir>lib</Dir>
+      <Dir>luma</Dir>
+      <Dir>plugins</Dir>
+      <Dir>config_create</Dir>
+      <Name>__init__.py</Name>
+    </Source>
+    <Source>
+      <Dir>lib</Dir>
+      <Dir>luma</Dir>
+      <Dir>plugins</Dir>
+      <Dir>config_create</Dir>
+      <Name>ConfigPanelDesign.py</Name>
+    </Source>
+    <Source>
+      <Dir>lib</Dir>
+      <Dir>luma</Dir>
+      <Dir>plugins</Dir>
+      <Dir>config_create</Dir>
+      <Name>ConfigError.py</Name>
+    </Source>
+    <Source>
+      <Dir>lib</Dir>
+      <Dir>luma</Dir>
+      <Dir>plugins</Dir>
+      <Dir>config_create</Dir>
+      <Name>config_create_plugin.py</Name>
+    </Source>
+    <Source>
+      <Dir>lib</Dir>
+      <Dir>luma</Dir>
+      <Dir>plugins</Dir>
+      <Dir>config_create</Dir>
+      <Name>ConfigPanel.py</Name>
+    </Source>
+    <Source>
+      <Dir>lib</Dir>
+      <Dir>luma</Dir>
+      <Dir>plugins</Dir>
+      <Dir>config_create</Dir>
+      <Name>ConfigFileObject.py</Name>
+    </Source>
+    <Source>
+      <Dir>lib</Dir>
+      <Dir>luma</Dir>
+      <Dir>plugins</Dir>
+      <Dir>browser_plugin</Dir>
+      <Name>__init__.py</Name>
+    </Source>
+    <Source>
+      <Dir>lib</Dir>
+      <Dir>luma</Dir>
+      <Dir>plugins</Dir>
+      <Dir>browser_plugin</Dir>
+      <Name>browser_plugin.py</Name>
+    </Source>
+    <Source>
+      <Dir>lib</Dir>
+      <Dir>luma</Dir>
+      <Dir>plugins</Dir>
+      <Dir>browser_plugin</Dir>
+      <Name>BrowserView.py</Name>
+    </Source>
+    <Source>
+      <Dir>lib</Dir>
+      <Dir>luma</Dir>
+      <Dir>plugins</Dir>
+      <Dir>search_plugin</Dir>
+      <Name>search_plugin.py</Name>
+    </Source>
+    <Source>
+      <Dir>lib</Dir>
+      <Dir>luma</Dir>
+      <Dir>plugins</Dir>
+      <Dir>search_plugin</Dir>
+      <Name>SearchView.py</Name>
+    </Source>
+    <Source>
+      <Dir>lib</Dir>
+      <Dir>luma</Dir>
+      <Dir>plugins</Dir>
+      <Dir>search_plugin</Dir>
+      <Name>__init__.py</Name>
+    </Source>
+    <Source>
+      <Dir>lib</Dir>
+      <Dir>luma</Dir>
+      <Dir>plugins</Dir>
+      <Dir>template_plugin</Dir>
+      <Name>TemplateFormDesign.py</Name>
+    </Source>
+    <Source>
+      <Dir>lib</Dir>
+      <Dir>luma</Dir>
+      <Dir>plugins</Dir>
+      <Dir>template_plugin</Dir>
+      <Name>TemplateForm.py</Name>
+    </Source>
+    <Source>
+      <Dir>lib</Dir>
+      <Dir>luma</Dir>
+      <Dir>plugins</Dir>
+      <Dir>template_plugin</Dir>
+      <Name>__init__.py</Name>
+    </Source>
+    <Source>
+      <Dir>lib</Dir>
+      <Dir>luma</Dir>
+      <Dir>plugins</Dir>
+      <Dir>template_plugin</Dir>
+      <Name>template_plugin.py</Name>
+    </Source>
+    <Source>
+      <Dir>lib</Dir>
+      <Dir>luma</Dir>
+      <Dir>plugins</Dir>
+      <Dir>template_plugin</Dir>
+      <Name>OClassDialogDesign.py</Name>
+    </Source>
+    <Source>
+      <Dir>lib</Dir>
+      <Dir>luma</Dir>
+      <Dir>plugins</Dir>
+      <Dir>template_plugin</Dir>
+      <Name>OClassDialog.py</Name>
+    </Source>
+    <Source>
+      <Dir>lib</Dir>
+      <Dir>luma</Dir>
+      <Dir>base</Dir>
+      <Dir>utils</Dir>
+      <Dir>gui</Dir>
+      <Name>TemplateObjectWidget.py</Name>
+    </Source>
+    <Source>
+      <Dir>lib</Dir>
+      <Dir>luma</Dir>
+      <Dir>base</Dir>
+      <Dir>utils</Dir>
+      <Dir>backend</Dir>
+      <Name>CryptPwGenerator.py</Name>
+    </Source>
+    <Source>
+      <Dir>lib</Dir>
+      <Dir>luma</Dir>
+      <Dir>plugins</Dir>
+      <Dir>admin_utils</Dir>
+      <Name>AdminPanelDesign.py</Name>
+    </Source>
+    <Source>
+      <Dir>lib</Dir>
+      <Dir>luma</Dir>
+      <Dir>plugins</Dir>
+      <Dir>admin_utils</Dir>
+      <Name>AdminPanel.py</Name>
+    </Source>
+    <Source>
+      <Dir>lib</Dir>
+      <Dir>luma</Dir>
+      <Dir>plugins</Dir>
+      <Dir>admin_utils</Dir>
+      <Name>__init__.py</Name>
+    </Source>
+    <Source>
+      <Dir>lib</Dir>
+      <Dir>luma</Dir>
+      <Dir>plugins</Dir>
+      <Dir>admin_utils</Dir>
+      <Name>admin_utilities_plugin.py</Name>
+    </Source>
+    <Source>
+      <Dir>lib</Dir>
+      <Dir>luma</Dir>
+      <Dir>base</Dir>
+      <Dir>utils</Dir>
+      <Dir>backend</Dir>
+      <Name>DateHelper.py</Name>
+    </Source>
+    <Source>
+      <Dir>lib</Dir>
+      <Dir>luma</Dir>
+      <Dir>plugins</Dir>
+      <Dir>mass_creation_plugin</Dir>
+      <Name>__init__.py</Name>
+    </Source>
+    <Source>
+      <Dir>lib</Dir>
+      <Dir>luma</Dir>
+      <Dir>plugins</Dir>
+      <Dir>mass_creation_plugin</Dir>
+      <Name>massive_users_plugin.py</Name>
+    </Source>
+    <Source>
+      <Dir>lib</Dir>
+      <Dir>luma</Dir>
+      <Dir>plugins</Dir>
+      <Dir>mass_creation_plugin</Dir>
+      <Name>MassCreationDesign.py</Name>
+    </Source>
+    <Source>
+      <Dir>lib</Dir>
+      <Dir>luma</Dir>
+      <Dir>plugins</Dir>
+      <Dir>mass_creation_plugin</Dir>
+      <Name>MassCreation.py</Name>
+    </Source>
+    <Source>
+      <Dir>lib</Dir>
+      <Dir>luma</Dir>
+      <Dir>base</Dir>
+      <Dir>gui</Dir>
+      <Name>LanguageDialog.py</Name>
+    </Source>
+    <Source>
+      <Dir>lib</Dir>
+      <Dir>luma</Dir>
+      <Dir>base</Dir>
+      <Dir>gui</Dir>
+      <Name>LanguageDialogDesign.py</Name>
+    </Source>
+    <Source>
+      <Name>install.py</Name>
+    </Source>
+    <Source>
+      <Dir>lib</Dir>
+      <Dir>luma</Dir>
+      <Dir>plugins</Dir>
+      <Dir>ifi_user</Dir>
+      <Name>ifi_user_plugin.py</Name>
+    </Source>
+    <Source>
+      <Dir>lib</Dir>
+      <Dir>luma</Dir>
+      <Dir>plugins</Dir>
+      <Dir>ifi_user</Dir>
+      <Name>IfiUser.py</Name>
+    </Source>
+    <Source>
+      <Dir>lib</Dir>
+      <Dir>luma</Dir>
+      <Dir>plugins</Dir>
+      <Dir>ifi_user</Dir>
+      <Name>__init__.py</Name>
+    </Source>
+    <Source>
+      <Dir>lib</Dir>
+      <Dir>luma</Dir>
+      <Dir>base</Dir>
+      <Dir>utils</Dir>
+      <Dir>gui</Dir>
+      <Name>BrowserDialog.py</Name>
+    </Source>
+    <Source>
+      <Dir>lib</Dir>
+      <Dir>luma</Dir>
+      <Dir>base</Dir>
+      <Dir>gui</Dir>
+      <Name>BaseSelector.py</Name>
+    </Source>
+    <Source>
+      <Dir>lib</Dir>
+      <Dir>luma</Dir>
+      <Dir>base</Dir>
+      <Dir>backend</Dir>
+      <Name>LumaConnection.py</Name>
+    </Source>
+    <Source>
+      <Dir>lib</Dir>
+      <Dir>luma</Dir>
+      <Dir>base</Dir>
+      <Dir>utils</Dir>
+      <Dir>backend</Dir>
+      <Name>mkpasswd.py</Name>
+    </Source>
+    <Source>
+      <Dir>lib</Dir>
+      <Dir>luma</Dir>
+      <Dir>plugins</Dir>
+      <Dir>ifi_user</Dir>
+      <Name>IfiUserDesign.py</Name>
+    </Source>
+  </Sources>
+  <Forms>
+    <Form>
+      <Dir>lib</Dir>
+      <Dir>luma</Dir>
+      <Dir>base</Dir>
+      <Dir>gui</Dir>
+      <Name>AboutDialog.ui</Name>
+    </Form>
+    <Form>
+      <Dir>lib</Dir>
+      <Dir>luma</Dir>
+      <Dir>base</Dir>
+      <Dir>gui</Dir>
+      <Name>MainWinDesign.ui</Name>
+    </Form>
+    <Form>
+      <Dir>lib</Dir>
+      <Dir>luma</Dir>
+      <Dir>base</Dir>
+      <Dir>gui</Dir>
+      <Name>PluginLoaderGuiDesign.ui</Name>
+    </Form>
+    <Form>
+      <Dir>lib</Dir>
+      <Dir>luma</Dir>
+      <Dir>base</Dir>
+      <Dir>gui</Dir>
+      <Name>ServerDialogDesign.ui</Name>
+    </Form>
+    <Form>
+      <Dir>lib</Dir>
+      <Dir>luma</Dir>
+      <Dir>base</Dir>
+      <Dir>utils</Dir>
+      <Dir>gui</Dir>
+      <Name>FilterWizardDesign.ui</Name>
+    </Form>
+    <Form>
+      <Dir>lib</Dir>
+      <Dir>luma</Dir>
+      <Dir>base</Dir>
+      <Dir>utils</Dir>
+      <Dir>gui</Dir>
+      <Name>SearchFormDesign.ui</Name>
+    </Form>
+    <Form>
+      <Dir>lib</Dir>
+      <Dir>luma</Dir>
+      <Dir>base</Dir>
+      <Dir>utils</Dir>
+      <Dir>gui</Dir>
+      <Name>SearchResultViewDesign.ui</Name>
+    </Form>
+    <Form>
+      <Dir>lib</Dir>
+      <Dir>luma</Dir>
+      <Dir>plugins</Dir>
+      <Dir>config_create</Dir>
+      <Name>ConfigError.ui</Name>
+    </Form>
+    <Form>
+      <Dir>lib</Dir>
+      <Dir>luma</Dir>
+      <Dir>plugins</Dir>
+      <Dir>config_create</Dir>
+      <Name>ConfigPanelDesign.ui</Name>
+    </Form>
+    <Form>
+      <Dir>lib</Dir>
+      <Dir>luma</Dir>
+      <Dir>plugins</Dir>
+      <Dir>template_plugin</Dir>
+      <Name>OClassDialogDesign.ui</Name>
+    </Form>
+    <Form>
+      <Dir>lib</Dir>
+      <Dir>luma</Dir>
+      <Dir>plugins</Dir>
+      <Dir>template_plugin</Dir>
+      <Name>TemplateFormDesign.ui</Name>
+    </Form>
+    <Form>
+      <Dir>lib</Dir>
+      <Dir>luma</Dir>
+      <Dir>plugins</Dir>
+      <Dir>admin_utils</Dir>
+      <Name>AdminPanelDesign.ui</Name>
+    </Form>
+    <Form>
+      <Dir>lib</Dir>
+      <Dir>luma</Dir>
+      <Dir>plugins</Dir>
+      <Dir>mass_creation_plugin</Dir>
+      <Name>MassCreationDesign.ui</Name>
+    </Form>
+    <Form>
+      <Dir>lib</Dir>
+      <Dir>luma</Dir>
+      <Dir>base</Dir>
+      <Dir>gui</Dir>
+      <Name>LanguageDialogDesign.ui</Name>
+    </Form>
+    <Form>
+      <Dir>lib</Dir>
+      <Dir>luma</Dir>
+      <Dir>plugins</Dir>
+      <Dir>ifi_user</Dir>
+      <Name>IfiUserDesign.ui</Name>
+    </Form>
+    <Form>
+      <Dir>lib</Dir>
+      <Dir>luma</Dir>
+      <Dir>base</Dir>
+      <Dir>gui</Dir>
+      <Name>BaseSelectorDesign.ui</Name>
+    </Form>
+  </Forms>
+  <Translations>
+    <Translation>
+      <Dir>lib</Dir>
+      <Dir>luma</Dir>
+      <Name>luma_de.ts</Name>
+    </Translation>
+    <Translation>
+      <Dir>lib</Dir>
+      <Dir>luma</Dir>
+      <Name>luma_br.ts</Name>
+    </Translation>
+  </Translations>
+  <Interfaces>
+  </Interfaces>
+  <Others>
+  </Others>
+  <MainScript>
+    <Dir>lib</Dir>
+    <Dir>luma</Dir>
+    <Name>luma.py</Name>
+  </MainScript>
+  <Vcs>
+    <VcsType>None</VcsType>
+  </Vcs>
+  <HappyDoc>
+  </HappyDoc>
+</Project>
