@@ -122,6 +122,8 @@ class LumaEntryBrowser (LumaEntryBrowserDesign):
         for tmpBase in baseList:
             self.baseBox.insertItem(tmpBase)
             
+        self.search()
+            
         
 ###############################################################################
 
@@ -332,7 +334,10 @@ class LumaEntryBrowser (LumaEntryBrowserDesign):
         self.widgetStack.raiseWidget(1)
         self.showResults()
         
-        
+###############################################################################
+
+    def baseChanged(self, itemText):
+        self.search()
         
         
         

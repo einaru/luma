@@ -8,7 +8,7 @@
         <rect>
             <x>0</x>
             <y>0</y>
-            <width>281</width>
+            <width>215</width>
             <height>508</height>
         </rect>
     </property>
@@ -372,6 +372,12 @@
         <receiver>LumaEntryBrowserDesign</receiver>
         <slot>listItemClicked()</slot>
     </connection>
+    <connection>
+        <sender>baseBox</sender>
+        <signal>activated(const QString&amp;)</signal>
+        <receiver>LumaEntryBrowserDesign</receiver>
+        <slot>baseChanged()</slot>
+    </connection>
 </connections>
 <slots>
     <slot>serverChanged()</slot>
@@ -382,6 +388,7 @@
     <slot>raiseListView()</slot>
     <slot>raiseIconView()</slot>
     <slot>listItemClicked()</slot>
+    <slot>baseChanged()</slot>
 </slots>
 <layoutdefaults spacing="6" margin="11"/>
 </UI>

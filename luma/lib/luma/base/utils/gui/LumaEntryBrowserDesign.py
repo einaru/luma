@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file '/home/wido/src/luma/lib/luma/base/utils/gui/LumaEntryBrowserDesign.ui'
 #
-# Created: Wed Dec 1 15:52:30 2004
+# Created: Thu Dec 2 22:16:13 2004
 #      by: The PyQt User Interface Compiler (pyuic) 3.13
 #
 # WARNING! All changes made in this file will be lost!
@@ -119,7 +119,7 @@ class LumaEntryBrowserDesign(QWidget):
 
         self.languageChange()
 
-        self.resize(QSize(281,508).expandedTo(self.minimumSizeHint()))
+        self.resize(QSize(215,508).expandedTo(self.minimumSizeHint()))
         self.clearWState(Qt.WState_Polished)
 
         self.connect(self.serverBox,SIGNAL("activated(const QString&)"),self.serverChanged)
@@ -131,6 +131,7 @@ class LumaEntryBrowserDesign(QWidget):
         self.connect(self.listViewButton,SIGNAL("clicked()"),self.raiseListView)
         self.connect(self.iconViewButton,SIGNAL("clicked()"),self.raiseIconView)
         self.connect(self.itemListView,SIGNAL("selectionChanged(QListViewItem*)"),self.listItemClicked)
+        self.connect(self.baseBox,SIGNAL("activated(const QString&)"),self.baseChanged)
 
 
     def languageChange(self):
@@ -172,6 +173,9 @@ class LumaEntryBrowserDesign(QWidget):
 
     def listItemClicked(self):
         print "LumaEntryBrowserDesign.listItemClicked(): Not implemented yet"
+
+    def baseChanged(self):
+        print "LumaEntryBrowserDesign.baseChanged(): Not implemented yet"
 
     def __tr(self,s,c = None):
         return qApp.translate("LumaEntryBrowserDesign",s,c)
