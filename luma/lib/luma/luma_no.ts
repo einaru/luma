@@ -6,10 +6,6 @@
         <translation>Om Luma</translation>
     </message>
     <message>
-        <source>&lt;font size=&quot;+2&quot;&gt;&lt;b&gt;Luma 1.2 &lt;/b&gt;&lt;/font&gt;</source>
-        <translation>Luma 1.2</translation>
-    </message>
-    <message>
         <source>About</source>
         <translation>Om</translation>
     </message>
@@ -356,6 +352,91 @@ Testing guinea pig for python 2.3</source>
         <comment>DO NOT TRANSLATE</comment>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <source>&lt;font size=&quot;+2&quot;&gt;&lt;b&gt;Luma 1.3pre4 &lt;/b&gt;&lt;/font&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>AccountWizard</name>
+    <message>
+        <source>Save account</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please enter a username.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;OK</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please enter a uid number.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please assign the user to a group.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please enter a common name.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please enter a homeDirectory.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Create account</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Could not create account. 
+Please see console output for more information.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Could not create automount entry. 
+Please see console output for more information.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Warning: Location</source>
+        <translation type="unfinished">Advarsel: Lokalisering</translation>
+    </message>
+    <message>
+        <source>Please select a location where to store the contact.</source>
+        <translation type="unfinished">Vennligst vel en lokalisering å lagre kontakten.</translation>
+    </message>
+</context>
+<context>
+    <name>AccountWizardDesign</name>
+    <message>
+        <source>Add Contact</source>
+        <translation type="unfinished">Legg til kontakt</translation>
+    </message>
+    <message>
+        <source>LOC</source>
+        <comment>DO NOT TRANSLATE</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please select a location where the new account should be stored.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Location:</source>
+        <translation type="unfinished">Lokalisering:</translation>
+    </message>
+    <message>
+        <source>Select location</source>
+        <translation type="unfinished">Velg lokalisering</translation>
+    </message>
+    <message>
+        <source>Fill contact data</source>
+        <translation type="unfinished">Fyll ut kontaktinformasjon</translation>
+    </message>
 </context>
 <context>
     <name>AddAttributeWizardDesign</name>
@@ -389,14 +470,6 @@ supported by other objectclasses, please enable this functionality below.
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>&lt;p&gt;You haven chosen to add an attribute which is not supported by the 
-objectclasses for the current entry.&lt;/p&gt;
-&lt;p&gt;Please select an objectclass which supports the new attribute. The 
-list on the right shows all attributes which must be added additionally with
-the selected objectclass.&lt;/p&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <source>&lt;b&gt;Objectclass&lt;/b&gt;</source>
         <translation type="unfinished"></translation>
     </message>
@@ -410,6 +483,14 @@ the selected objectclass.&lt;/p&gt;</source>
     </message>
     <message>
         <source>Choose objectclass</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;p&gt;You have chosen to add an attribute which is not supported by the 
+objectclasses for the current entry.&lt;/p&gt;
+&lt;p&gt;Please select an objectclass which supports the new attribute. The 
+list on the right shows all attributes which must be added additionally with
+the selected objectclass.&lt;/p&gt;</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1175,39 +1256,21 @@ Se utskrift i konsollet for mer informasjon.</translation>
     </message>
 </context>
 <context>
-    <name>IfIUsermanagementWidgetDesign</name>
+    <name>GroupDialogDesign</name>
     <message>
-        <source>Form</source>
+        <source>Group</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Valid until:</source>
-        <comment>DO NOT TRANSLATE</comment>
+        <source>ID</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>US</source>
-        <comment>DO NOT TRANSLATE</comment>
+        <source>Location</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>User ID Number:</source>
-        <comment>DO NOT TRANSLATE</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>User ID:</source>
-        <comment>DO NOT TRANSLATE</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Common name:</source>
-        <comment>DO NOT TRANSLATE</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Change Group...</source>
-        <comment>DO NOT TRANSLATE</comment>
+        <source>Edit group membership</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1216,68 +1279,33 @@ Se utskrift i konsollet for mer informasjon.</translation>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Group ID Number:</source>
-        <comment>DO NOT TRANSLATE</comment>
+        <source>Select the groups the &lt;strong&gt;%1&lt;/strong&gt; user should belong to.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Group:</source>
-        <comment>DO NOT TRANSLATE</comment>
+        <source>&lt;b&gt;Primary Group&lt;/b&gt;&lt;br&gt;
+You may select from the groups available in the LDAP database or enter any ID that is valid on the system below.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>HO</source>
-        <comment>DO NOT TRANSLATE</comment>
+        <source>Group ID:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Login Shell:</source>
-        <comment>DO NOT TRANSLATE</comment>
+        <source>LDAP Groups:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>SH</source>
-        <comment>DO NOT TRANSLATE</comment>
+        <source>&lt;b&gt;Additional Groups&lt;/b&gt;&lt;br&gt;
+Select any additional groups the &lt;b&gt;%1&lt;/b&gt; user should belong to from the list below.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Home Directory:</source>
-        <comment>DO NOT TRANSLATE</comment>
-        <translation type="unfinished"></translation>
+        <source>&amp;Cancel</source>
+        <translation type="unfinished">&amp;Avbryt</translation>
     </message>
     <message>
-        <source>Password:</source>
-        <comment>DO NOT TRANSLATE</comment>
-        <translation type="unfinished">Passord:</translation>
-    </message>
-    <message>
-        <source>Change Password...</source>
-        <comment>DO NOT TRANSLATE</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>PW</source>
-        <comment>DO NOT TRANSLATE</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Add...</source>
-        <comment>DO NOT TRANSLATE</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>M</source>
-        <comment>DO NOT TRANSLATE</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Mail:</source>
-        <comment>DO NOT TRANSLATE</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Delete...</source>
-        <comment>DO NOT TRANSLATE</comment>
+        <source>&amp;OK</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1478,6 +1506,93 @@ Try increasing the uidNumber range or delete some users from the subtree.</sourc
     </message>
 </context>
 <context>
+    <name>LumaEntryBrowser</name>
+    <message>
+        <source>Tree</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Icons</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Delete contact</source>
+        <translation type="unfinished">Slett kontakt</translation>
+    </message>
+    <message>
+        <source>Do you really want to delete the selected contact?</source>
+        <translation type="unfinished">Vil du virkelig slette de valgte kontaktene?</translation>
+    </message>
+    <message>
+        <source>&amp;Yes</source>
+        <translation type="unfinished">&amp;Ja</translation>
+    </message>
+    <message>
+        <source>&amp;No</source>
+        <translation type="unfinished">&amp;Nei</translation>
+    </message>
+    <message>
+        <source>Error</source>
+        <translation type="unfinished">Feil</translation>
+    </message>
+    <message>
+        <source>Could not delete contact. See console output for more information.</source>
+        <translation type="unfinished">Kunne ikke slette kontakt. Se utskrift i konsoll for mer informasjon.</translation>
+    </message>
+    <message>
+        <source>&amp;OK</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>LumaEntryBrowserDesign</name>
+    <message>
+        <source>Object</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>LumaIconViewDesign</source>
+        <translation type="unfinished">LumaIconVisDesign</translation>
+    </message>
+    <message>
+        <source>&amp;Go</source>
+        <translation type="unfinished">&amp;Utfør</translation>
+    </message>
+    <message>
+        <source>Alt+G</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Filter:</source>
+        <translation type="unfinished">Filter:</translation>
+    </message>
+    <message>
+        <source>Server:</source>
+        <translation type="unfinished">Tjener:</translation>
+    </message>
+    <message>
+        <source>&amp;Add...</source>
+        <translation type="unfinished">&amp;Legg til...</translation>
+    </message>
+    <message>
+        <source>Alt+A</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Delete</source>
+        <translation type="unfinished">&amp;Slett</translation>
+    </message>
+    <message>
+        <source>Alt+D</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>...</source>
+        <comment>DO NOT TRANSLATE</comment>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>LumaIconView</name>
     <message>
         <source>Delete contact</source>
@@ -1548,34 +1663,34 @@ Try increasing the uidNumber range or delete some users from the subtree.</sourc
     </message>
 </context>
 <context>
-    <name>MailDialog</name>
+    <name>MailDialogDesign</name>
     <message>
         <source>New mail</source>
-        <translation>Ny epost</translation>
-    </message>
-    <message>
-        <source>New mail:</source>
-        <translation>Ny epost:</translation>
-    </message>
-    <message>
-        <source>&amp;Ok</source>
-        <translation>&amp;Ok</translation>
-    </message>
-    <message>
-        <source>Alt+O</source>
-        <translation></translation>
-    </message>
-    <message>
-        <source>&amp;Cancel</source>
-        <translation>&amp;Avbryt</translation>
-    </message>
-    <message>
-        <source>Alt+C</source>
-        <translation></translation>
+        <translation type="unfinished">Ny epost</translation>
     </message>
     <message>
         <source>ML</source>
         <comment>DO NOT TRANSLATE</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>New mail:</source>
+        <translation type="unfinished">Ny epost:</translation>
+    </message>
+    <message>
+        <source>&amp;Ok</source>
+        <translation type="unfinished">&amp;Ok</translation>
+    </message>
+    <message>
+        <source>Alt+O</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Cancel</source>
+        <translation type="unfinished">&amp;Avbryt</translation>
+    </message>
+    <message>
+        <source>Alt+C</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1711,6 +1826,11 @@ Try increasing the uidNumber range or delete some users from the subtree.</sourc
     <message>
         <source>The selected ldap entry did not contain the attribute &apos;gidNumber&apos;.</source>
         <translation>Valgt ldap-object hadde ikke attributtet &apos;gidNumber&apos;.</translation>
+    </message>
+    <message>
+        <source>Error during creation of users.
+Please see console output for more information.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2167,6 +2287,42 @@ Please read console output for more information.</source>
     </message>
 </context>
 <context>
+    <name>PasswordDialogDesign</name>
+    <message>
+        <source>New password</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>PW</source>
+        <comment>DO NOT TRANSLATE</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please enter a new password.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;OK</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Cancel</source>
+        <translation type="unfinished">&amp;Avbryt</translation>
+    </message>
+    <message>
+        <source>Retype new password:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>New password:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Method:</source>
+        <translation type="unfinished">Metode:</translation>
+    </message>
+</context>
+<context>
     <name>PluginInformation</name>
     <message>
         <source>Plugin Information</source>
@@ -2308,20 +2464,20 @@ Vennligst se utskrift i konsollet for mer informasjon.</translation>
         <source>&amp;OK</source>
         <translation>&amp;Ok</translation>
     </message>
+    <message>
+        <source>New server</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Please enter a name for the new server:</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ServerDialogDesign</name>
     <message>
         <source>Manage Server List</source>
         <translation>Vedlikehold tjenerliste</translation>
-    </message>
-    <message>
-        <source>Server List</source>
-        <translation>Tjenerliste</translation>
-    </message>
-    <message>
-        <source>Server Name:</source>
-        <translation>Tjenernavn:</translation>
     </message>
     <message>
         <source>Use TLS</source>
@@ -2348,10 +2504,6 @@ Vennligst se utskrift i konsollet for mer informasjon.</translation>
         <translation>Passord for tilkobling:</translation>
     </message>
     <message>
-        <source>&amp;Close</source>
-        <translation>&amp;Lukk</translation>
-    </message>
-    <message>
         <source>Alt+C</source>
         <translation></translation>
     </message>
@@ -2372,24 +2524,8 @@ Vennligst se utskrift i konsollet for mer informasjon.</translation>
         <translation></translation>
     </message>
     <message>
-        <source>&amp;Modify</source>
-        <translation>&amp;Endre</translation>
-    </message>
-    <message>
-        <source>Alt+M</source>
-        <translation></translation>
-    </message>
-    <message>
         <source>Server Information</source>
         <translation>Tjenerinformasjon</translation>
-    </message>
-    <message>
-        <source>&amp;Save</source>
-        <translation>&amp;Lagre</translation>
-    </message>
-    <message>
-        <source>Alt+S</source>
-        <translation></translation>
     </message>
     <message>
         <source>Host:</source>
@@ -2400,12 +2536,40 @@ Vennligst se utskrift i konsollet for mer informasjon.</translation>
         <translation>Port:</translation>
     </message>
     <message>
-        <source>Network Options</source>
-        <translation>Nettverksvalg</translation>
+        <source>Server</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Authentification Options</source>
-        <translation>Valg for autentisering</translation>
+        <source>NO</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Network options</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>AO</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Authentification options</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;OK</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Alt+O</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Apply</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Cancel</source>
+        <translation type="unfinished">&amp;Avbryt</translation>
     </message>
 </context>
 <context>
@@ -2507,6 +2671,143 @@ Vennligst se utskrift i konsollet for mer informasjon.</translation>
     <message>
         <source>Save</source>
         <translation>Lagre</translation>
+    </message>
+</context>
+<context>
+    <name>UsermanagementWidget</name>
+    <message>
+        <source>Save</source>
+        <translation type="unfinished">Lagre</translation>
+    </message>
+    <message>
+        <source>Delete entry</source>
+        <translation type="unfinished">Slett innlegg</translation>
+    </message>
+    <message>
+        <source>Error</source>
+        <translation type="unfinished">Feil</translation>
+    </message>
+    <message>
+        <source>Could not save account data. 
+Please read console output for more information.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Could not group information. 
+Please read console output for more information.</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>UsermanagementWidgetDesign</name>
+    <message>
+        <source>Usermanagement</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>...</source>
+        <comment>DO NOT TRANSLATE</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>US</source>
+        <comment>DO NOT TRANSLATE</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Change password...</source>
+        <comment>DO NOT TRANSLATE</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>User ID number:</source>
+        <comment>DO NOT TRANSLATE</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Login shell:</source>
+        <comment>DO NOT TRANSLATE</comment>
+        <translation type="unfinished">Login-skall:</translation>
+    </message>
+    <message>
+        <source>Primary group:</source>
+        <comment>DO NOT TRANSLATE</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Valid until:</source>
+        <comment>DO NOT TRANSLATE</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Common name:</source>
+        <comment>DO NOT TRANSLATE</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Manage group memberships</source>
+        <comment>DO NOT TRANSLATE</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Delete</source>
+        <comment>DO NOT TRANSLATE</comment>
+        <translation type="unfinished">Slett</translation>
+    </message>
+    <message>
+        <source>Add...</source>
+        <comment>DO NOT TRANSLATE</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>SH</source>
+        <comment>DO NOT TRANSLATE</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>User ID:</source>
+        <comment>DO NOT TRANSLATE</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>M</source>
+        <comment>DO NOT TRANSLATE</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>GR</source>
+        <comment>DO NOT TRANSLATE</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>HO</source>
+        <comment>DO NOT TRANSLATE</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Home directory:</source>
+        <comment>DO NOT TRANSLATE</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Mail:</source>
+        <comment>DO NOT TRANSLATE</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Group ID number:</source>
+        <comment>DO NOT TRANSLATE</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>PW</source>
+        <comment>DO NOT TRANSLATE</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Password:</source>
+        <comment>DO NOT TRANSLATE</comment>
+        <translation type="unfinished">Passord:</translation>
     </message>
 </context>
 </TS>
