@@ -26,6 +26,7 @@ from base.utils import explodeDN
 from base.utils import getSortedDnList
 from base.utils.gui.LumaErrorDialog import LumaErrorDialog
 from base.utils.gui.DeleteDialog import DeleteDialog
+from base.utils.gui.ExportDialog import ExportDialog
 from base.utils import getSortedDnList
 
 
@@ -61,29 +62,54 @@ class SearchResultView(SearchResultViewDesign):
     def showEntry(self, listItem):
         """ Show the double-clicked listitem in an own window.
         """
-
-        floatingWidget = ChildWindow(None, unicode(listItem.text(0)).encode('utf-8'))
-        widget = AdvancedObjectWidget(floatingWidget, unicode(listItem.text(0)).encode('utf-8'), 0)
-    
-        floatingWidget.setCentralWidget(widget)
-        widget.buildToolBar(floatingWidget)
         
-        tmpString = unicode(listItem.text(0)).encode('utf-8')
-        tmpList = explodeDN(tmpString)
+        normalDN = unicode(listItem.text(0)).encode('utf-8')
+        tmpList = explodeDN(normalDN)
         newList = map(escapeSpecialChars, tmpList)
-        tmpString = ",".join(newList)
+        normalDN = ",".join(newList)
         
-        widget.initView(self.RESULT[tmpString])
+        dataObject = self.RESULT[normalDN]
+        serverMeta = dataObject.getServerMeta()
+        connection = LumaConnection(serverMeta)
         
-        # needed if window is closed. gets deletetd from the list
-        self.connect(floatingWidget, PYSIGNAL("child_closed"), self.cleanChildren)
+        bindSuccess, exceptionObject = connection.bind()
         
-        #widget.show()
-        widget.setCaption(listItem.text(0))
-        floatingWidget.show()
+        if not bindSuccess:
+                dialog = LumaErrorDialog()
+                errorMsg = self.trUtf8("Could not bind to server.<br><br>Reason: ")
+                errorMsg.append(str(exceptionObject))
+                dialog.setErrorMessage(errorMsg)
+                dialog.exec_loop()
+                return
+                
+        success, resultList, exceptionObject = connection.search(dataObject.getDN(), ldap.SCOPE_BASE)
+        connection.unbind()
         
-        # don't loose reference. normally window will disappear if function is completed
-        self.childWidgets.append(floatingWidget)
+        if success and (len(resultList) > 0):
+            floatingWidget = ChildWindow(None, normalDN)
+            widget = AdvancedObjectWidget(floatingWidget, normalDN, 0)
+    
+            floatingWidget.setCentralWidget(widget)
+            widget.buildToolBar(floatingWidget)
+        
+            widget.initView(resultList[0])
+        
+            # needed if window is closed. gets deletetd from the list
+            self.connect(floatingWidget, PYSIGNAL("child_closed"), self.cleanChildren)
+        
+            widget.setCaption(listItem.text(0))
+            floatingWidget.show()
+        
+            # don't loose reference. normally window will disappear if function is completed
+            self.childWidgets.append(floatingWidget)
+            
+        # Couldn't load selected item
+        else:
+            dialog = LumaErrorDialog()
+            errorMsg = self.trUtf8("Could not access entry.<br><br>Reason: ")
+            errorMsg.append(str(exceptionObject))
+            dialog.setErrorMessage(errorMsg)
+            dialog.exec_loop()
         
 ###############################################################################
 
@@ -96,8 +122,9 @@ class SearchResultView(SearchResultViewDesign):
 
 ###############################################################################
 
-    def setResult(self, server=None, resultData=None, filterList=None):
-        self.SERVER = server
+    def setResult(self, serverMeta=None, resultData=None, filterList=None):
+        self.serverMeta = serverMeta
+        self.SERVER = serverMeta.name
         self.rawResultList = resultData
         self.processData(resultData)
         self.FILTER_LIST = filterList
@@ -191,43 +218,7 @@ class SearchResultView(SearchResultViewDesign):
         for x in realDeletedEntries:
             self.resultListView.takeItem(itemDict[x])
             del self.RESULT[x]
-        
-        #serverList = ServerList()
-        #serverList.readServerList()
-        #serverMeta = serverList.getServerObject(self.SERVER)
 
-        
-        #connectionObject = LumaConnection(serverMeta)
-        #bindSuccess, exceptionObject = connectionObject.bind()
-        
-        #if not bindSuccess:
-        #        dialog = LumaErrorDialog()
-        #        errorMsg = self.trUtf8("Could not bind to server.<br><br>Reason: ")
-        #        errorMsg.append(str(exceptionObject))
-        #        dialog.setErrorMessage(errorMsg)
-        #        dialog.exec_loop()
-        #        environment.setBusy(False)
-        #        return
-        
-        #deleteFailure = False
-        #deleteException = None
-        #failedDN = None
-        
-        ## delete items from directory
-        #for x in getSortedDnList(dnList)[::-1]:
-        #    success, exceptionObject = connectionObject.delete(x)
-        #    if success:
-        #        # remove items from widget
-        #        self.resultListView.takeItem(itemDict[x])
-        #    else:
-        #        deleteFailure = True
-        #        deleteException = exceptionObject
-        #        failedDN = x
-        #        break
-                
-        #connectionObject.unbind()
-    
-        
 ###############################################################################
     
     def showPopup(self, tmpItem=None, point=None, itemId=None):
@@ -239,19 +230,21 @@ class SearchResultView(SearchResultViewDesign):
     def exportItems(self):
         itemList = self.getSelectedItems()
         
-        tmpList = map(lambda x: self.RESULT[unicode(x.text(0))], itemList)
-        ldifList = map(lambda x: x.convertToLdif(), tmpList)
-        
-        fileName = unicode(QFileDialog.getSaveFileName())
-        if fileName == '':
-            return
-        try:
-            fileHandler = open(fileName, 'w')
-            fileHandler.write("".join(ldifList))
-            fileHandler.close()
-        except IOError, e:
-            print "Could not save Data"
-            print "Reason: " + unicode(e)
+        # create list of encoded dns
+        dnList = []
+        for x in itemList:
+            # create the real string of the dn.
+            normalDN = unicode(x.text(0)).encode('utf-8')
+            tmpList = explodeDN(normalDN)
+            newList = map(escapeSpecialChars, tmpList)
+            normalDN = ",".join(newList)
+            
+            dnList.append(normalDN)
+         
+        exportList = map(lambda x: self.RESULT[x], dnList)
+        dialog = ExportDialog()
+        dialog.initData(exportList)
+        dialog.exec_loop()
         
 ###############################################################################
 
