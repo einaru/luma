@@ -44,25 +44,25 @@ class PluginLoader(object):
         self.PLUGINS = {}
         
         # get the base diretory of the plugins as a string
-        self.__pluginBaseDir = os.path.join(environment.lumaInstallationPrefix,  "lib", "luma", "plugins")
+        self.pluginBaseDir = os.path.join(environment.lumaInstallationPrefix,  "lib", "luma", "plugins")
         
-        self.__pluginDirList = []
-        self.__pluginDirList = self.__get_plugin_list()
+        self.pluginDirList = []
+        self.pluginDirList = self.getPluginList()
 
-        self.__import_plugin_metas(pluginsToLoad)
-        self.__load_plugin_code()
+        self.importPluginMetas(pluginsToLoad)
+        self.loadPluginCode()
 
 ###############################################################################
 
-    def __get_plugin_list(self):
+    def getPluginList(self):
         """ Returns a list of diretories, where possible plugins a stored.
         """
         
         tmpList = []
         try:
             # test for every file listed, if it is a directory
-            for x in listdir(self.__pluginBaseDir):
-                tmp = os.path.join (self.__pluginBaseDir, x)
+            for x in listdir(self.pluginBaseDir):
+                tmp = os.path.join (self.pluginBaseDir, x)
                 
                 if os.path.isdir(tmp):
                     tmpList.append(tmp)
@@ -74,7 +74,7 @@ class PluginLoader(object):
 
 ###############################################################################
 
-    def __load_plugin_code(self):
+    def loadPluginCode(self):
         """ Load the plugin source code and try to import it.
         """
         
@@ -110,7 +110,7 @@ class PluginLoader(object):
                     "share", "luma", "icons", "plugins", tmpDir)
                 
                 
-                if self.__plugin_ok(tmpPlugin["PLUGIN_NAME"], dir(tmpObject)):
+                if self.pluginOK(tmpPlugin["PLUGIN_NAME"], dir(tmpObject)):
                     tmpPlugin["PLUGIN_CODE"] = tmpObject
                 else:
                     del self.PLUGINS[x]
@@ -118,18 +118,18 @@ class PluginLoader(object):
 
 ###############################################################################
 
-    def __import_plugin_metas(self, pluginsToLoad=[]):
+    def importPluginMetas(self, pluginsToLoad=[]):
         """ Read the meta information for every plugin directory which is 
         found.
         
         pluginsToLoad is a list of plugins which should be loaded.
         """
         
-        for x in self.__pluginDirList:
+        for x in self.pluginDirList:
             pluginMetaObject = {}
             
             try:
-                pluginMetaObject = self.__read_meta_info(x, pluginsToLoad)
+                pluginMetaObject = self.readMetaInfo(x, pluginsToLoad)
                 self.PLUGINS[pluginMetaObject["PLUGIN_NAME"]] = pluginMetaObject
             except PluginMetaError, x:
                 print "Plugin from the following directory could not be loaded:"
@@ -137,7 +137,7 @@ class PluginLoader(object):
 
 ###############################################################################
 
-    def __read_meta_info(self, pluginPath, pluginsToLoad):
+    def readMetaInfo(self, pluginPath, pluginsToLoad):
         """ Read the meta information for a plugin given by its directory.
         
         If the plugin is in pluginsToLoad, the flag for using this plugin will 
@@ -197,7 +197,7 @@ class PluginLoader(object):
 
 ###############################################################################
 
-    def __plugin_ok(self, name, values):
+    def pluginOK(self, name, values):
         """Test if all needed functions are present in the plugin code. 
         """
         

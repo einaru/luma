@@ -28,19 +28,18 @@ class ServerList:
     SERVERLIST = None
     
     def __init__(self):
-        userdir = environment.userHomeDir
-        self.__configPrefix = os.path.join(userdir, ".luma")
-        self.__configFile = os.path.join(self.__configPrefix, "serverlist")
-        self.__checkConfigDir()
+        self.configPrefix = os.path.join(environment.userHomeDir, ".luma")
+        self.configFile = os.path.join(self.configPrefix, "serverlist")
+        self.checkConfigDir()
 
 ###############################################################################
 
-    def __checkConfigDir(self):
+    def checkConfigDir(self):
         """ Check if configuration directory exists. If not, create it.
         """
         
-        if not (os.path.exists(self.__configPrefix)):
-            os.mkdir(self.__configPrefix)
+        if not (os.path.exists(self.configPrefix)):
+            os.mkdir(self.configPrefix)
 
 ###############################################################################
 
@@ -63,12 +62,12 @@ class ServerList:
             self.SERVERLIST = [server]
         else:
             self.SERVERLIST.append(server)
-        self.save_settings(self.SERVERLIST)
+        self.saveSettings(self.SERVERLIST)
         self.readServerList()
 
 ###############################################################################
 
-    def save_settings(self, serverList):
+    def saveSettings(self, serverList):
         """ Save the server list to configuration file.
         """
 
@@ -84,14 +83,14 @@ class ServerList:
             configParser.set(x.name, "bindDN", x.bindDN)
             configParser.set(x.name, "bindPassword", x.bindPassword)
             configParser.set(x.name, "tls", x.tls)
-        configParser.write(open(self.__configFile, 'w'))
+        configParser.write(open(self.configFile, 'w'))
         
         # Only the user should be able to access the file since we store 
         # passwords in it.
         # If we can't change it, leave it as it is since the user must have 
         # changed it manually. 
         try:
-            os.chmod(self.__configFile, 0600)
+            os.chmod(self.configFile, 0600)
         except:
             pass
             
@@ -113,7 +112,7 @@ class ServerList:
 
 ###############################################################################
 
-    def get_serverobject(self, serverName):
+    def getServerObject(self, serverName):
         """ Get a server object by its name.
         """
         
@@ -137,7 +136,7 @@ class ServerList:
         configParser = ConfigParser()
         
         try:
-            configParser.readfp(open(self.__configFile, 'r'))
+            configParser.readfp(open(self.configFile, 'r'))
         except IOError, error:
             print "WARNING: Could not read server config file. Reason:"
             print error
