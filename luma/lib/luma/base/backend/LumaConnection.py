@@ -174,9 +174,10 @@ class LumaConnection(object):
             elif self.serverMeta.authMethod == u"Simple":
                 self.ldapServerObject.simple_bind(whoVal, credVal)
             elif u"SASL" in self.serverMeta.authMethod:
-                sasl_cb_value_dict = None
+                sasl_cb_value_dict = {}
                 if not u"GSSAPI" in self.serverMeta.authMethod:
-                    sasl_cb_value_dict = {ldap.sasl.CB_AUTHNAME:whoVal, ldap.sasl.CB_PASS:credVal}
+                    sasl_cb_value_dict[ldap.sasl.CB_AUTHNAME] = whoVal
+                    sasl_cb_value_dict[ldap.sasl.CB_PASS] = credVal
                     
                 sasl_mech = None
                 if self.serverMeta.authMethod == u"SASL Plain":
