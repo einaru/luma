@@ -30,9 +30,9 @@ class TemplateWidget(TemplateWidgetDesign):
     def __init__(self,parent = None,name = None,fl = 0):
         TemplateWidgetDesign.__init__(self,parent,name,fl)
         
-        iconPrefix = os.path.join(environment.lumaInstallationPrefix, "share", "luma", "icons")
-        self.okIcon = QPixmap(os.path.join(iconPrefix, "ok.png"))
-        self.noIcon = QPixmap(os.path.join(iconPrefix, "no.png"))
+        self.iconPath = os.path.join(environment.lumaInstallationPrefix, "share", "luma", "icons")
+        self.okIcon = QPixmap(os.path.join(self.iconPath, "ok.png"))
+        self.noIcon = QPixmap(os.path.join(self.iconPath, "no.png"))
         
         self.templateList = []
         self.preloadedServerMeta = {}
@@ -99,7 +99,10 @@ class TemplateWidget(TemplateWidgetDesign):
 ###############################################################################
 
     def loadServerMeta(self, serverName):
-        self.preloadedServerMeta[serverName] = ObjectClassAttributeInfo(serverName)
+        serverList = ServerList()
+        serverList.readServerList()
+        serverMeta = serverList.getServerObject(serverName)
+        self.preloadedServerMeta[serverName] = ObjectClassAttributeInfo(serverMeta)
     
 ###############################################################################
 
@@ -374,17 +377,19 @@ class TemplateWidget(TemplateWidgetDesign):
             return
             
         templateName = str(item.text(0))
+            
+        tmpDialog = QMessageBox(self.trUtf8("Delete template"),
+            self.trUtf8("Do you really want to delete the selected template?"),
+            QMessageBox.Critical,
+            QMessageBox.Yes,
+            QMessageBox.No,
+            QMessageBox.NoButton,
+            self)
         
-        result = QMessageBox.warning(None,
-            self.trUtf8("Delete template"),
-            self.trUtf8("""Do you really want to delete the selected template?"""),
-            self.trUtf8("&OK"),
-            self.trUtf8("&Cancel"),
-            None,
-            0, -1)
-
-        # If cancel was clicked, do nothing
-        if result == 1:
+        tmpDialog.setIconPixmap(QPixmap(os.path.join(self.iconPath, "warning_big.png")))
+        tmpDialog.exec_loop()
+        
+        if tmpDialog.result() == 4:
             return
             
         # Create a new template list without the old one
@@ -453,17 +458,19 @@ class TemplateWidget(TemplateWidgetDesign):
             
         attributeName = str(item.text(0))
         
-        result = QMessageBox.warning(None,
-            self.trUtf8("Delete attribute"),
-            self.trUtf8("""Do you really want to delete the attribute?"""),
-            self.trUtf8("&OK"),
-            self.trUtf8("&Cancel"),
-            None,
-            0, -1)
-            
-        if result == 1:
+        tmpDialog = QMessageBox(self.trUtf8("Delete attribute"),
+            self.trUtf8("Do you really want to delete the attribute?"),
+            QMessageBox.Critical,
+            QMessageBox.Yes,
+            QMessageBox.No,
+            QMessageBox.NoButton,
+            self)
+        
+        tmpDialog.setIconPixmap(QPixmap(os.path.join(self.iconPath, "warning_big.png")))
+        tmpDialog.exec_loop()
+        
+        if tmpDialog.result() == 4:
             return
-
         
         self.currentTemplate.deleteAttribute(attributeName)
         self.displayAttributes()
