@@ -8,7 +8,7 @@
         <rect>
             <x>0</x>
             <y>0</y>
-            <width>488</width>
+            <width>493</width>
             <height>505</height>
         </rect>
     </property>
@@ -170,7 +170,7 @@ supported by other objectclasses, please enable this functionality below.
                     <cstring>textLabel2_2</cstring>
                 </property>
                 <property name="text">
-                    <string>&lt;p&gt;You haven chosen to add an attribute which is not supported by the 
+                    <string>&lt;p&gt;You have chosen to add an attribute which is not supported by the 
 objectclasses for the current entry.&lt;/p&gt;
 &lt;p&gt;Please select an objectclass which supports the new attribute. The 
 list on the right shows all attributes which must be added additionally with

@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file '/home/wido/src/luma/lib/luma/base/utils/gui/AddAttributeWizardDesign.ui'
 #
-# Created: Mon Apr 5 21:56:43 2004
+# Created: Thu Apr 29 18:00:27 2004
 #      by: The PyQt User Interface Compiler (pyuic) 3.11
 #
 # WARNING! All changes made in this file will be lost!
@@ -108,7 +108,7 @@ class AddAttributeWizardDesign(QWizard):
 
         self.languageChange()
 
-        self.resize(QSize(488,505).expandedTo(self.minimumSizeHint()))
+        self.resize(QSize(493,505).expandedTo(self.minimumSizeHint()))
         self.clearWState(Qt.WState_Polished)
 
         self.connect(self.enableAllBox,SIGNAL("toggled(bool)"),self.initAttributeBox)
@@ -127,7 +127,7 @@ class AddAttributeWizardDesign(QWizard):
 "supported by other objectclasses, please enable this functionality below.\n"
 "</p>"))
         self.setTitle(self.WizardPage,self.__tr("Select Attribute"))
-        self.textLabel2_2.setText(self.__tr("<p>You haven chosen to add an attribute which is not supported by the \n"
+        self.textLabel2_2.setText(self.__tr("<p>You have chosen to add an attribute which is not supported by the \n"
 "objectclasses for the current entry.</p>\n"
 "<p>Please select an objectclass which supports the new attribute. The \n"
 "list on the right shows all attributes which must be added additionally with\n"
