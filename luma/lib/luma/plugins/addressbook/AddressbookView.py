@@ -27,4 +27,5 @@ class AddressbookView(QWidget):
         self.addressBookWidget = AddressbookWidget(self.splitter)
         self.connect (self.entryList, PYSIGNAL("ldap_result"), self.addressBookWidget.init_view)
         self.connect(self.entryList, PYSIGNAL("server_changed"), self.addressBookWidget.serverChanged)
+        self.connect(self.addressBookWidget, PYSIGNAL("contact_saved"), self.entryList.search)
         self.mainLayout.addWidget(self.splitter)

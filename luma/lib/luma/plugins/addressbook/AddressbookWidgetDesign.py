@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file '/home/wido/src/luma/lib/luma/plugins/addressbook/AddressbookWidgetDesign.ui'
 #
-# Created: Sun Feb 1 23:40:42 2004
+# Created: Mon Feb 2 22:05:51 2004
 #      by: The PyQt User Interface Compiler (pyuic) 3.8.1
 #
 # WARNING! All changes made in this file will be lost!
@@ -355,7 +355,7 @@ class AddressbookWidgetDesign(QWidget):
 
         self.languageChange()
 
-        self.resize(QSize(589,463).expandedTo(self.minimumSizeHint()))
+        self.resize(QSize(589,465).expandedTo(self.minimumSizeHint()))
         self.clearWState(Qt.WState_Polished)
 
         self.connect(self.saveButton,SIGNAL("clicked()"),self.saveEntry)

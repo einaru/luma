@@ -12,20 +12,22 @@
 from qt import *
 import os.path
 from string import strip
+import ldap
 
 import environment
 from plugins.addressbook.AddressbookWidgetDesign import AddressbookWidgetDesign
 from plugins.addressbook.NameDialog import NameDialog
 from plugins.addressbook.MailDialog import MailDialog
 from plugins.addressbook.CategoryEditDialog import CategoryEditDialog
+from base.backend.LumaConnection import LumaConnection
+from base.backend.ServerList import ServerList
+from base.utils.backend.ObjectClassAttributeInfo import ObjectClassAttributeInfo
 
 
 class AddressbookWidget(AddressbookWidgetDesign):
 
     def __init__(self,parent = None,name = None,fl = 0):
         AddressbookWidgetDesign.__init__(self,parent,name,fl)
-        
-        self.INIT = 0
         
         iconDir = os.path.join (environment.lumaInstallationPrefix, "lib", "luma", "plugins", "addressbook", "icons")
         
@@ -50,6 +52,35 @@ class AddressbookWidget(AddressbookWidgetDesign):
         self.notesLabel.setPixmap(urlIcon)
         
         self.enableWidget(0)
+        self.DISABLED = 1
+        
+        self.ocInfo = ObjectClassAttributeInfo()
+        self.allowedAttributes = None
+        
+        self.attributeWidgets = {'cn': self.cnEdit,
+                                                'title': self.titleEdit,
+                                                'o': self.organisationEdit,
+                                                'mail': self.mailBox,
+                                                'labeledURI': self.labeledURIEdit,
+                                                'category': self.categoryEdit,
+                                                'homePhone': self.homePhoneEdit,
+                                                'telephoneNumber': self.telephoneNumberEdit,
+                                                'mobile': self.mobileEdit,
+                                                'facsimileTelephoneNumber': self.facsimileTelephoneNumberEdit,
+                                                'ou': self.ouEdit,
+                                                'roomNumber': self.roomNumberEdit,
+                                                'businessRole': self.businessRoleEdit,
+                                                'managerName': self.managerNameEdit,
+                                                'assistantName': self.assistantNameEdit,
+                                                'displayName': self.displayNameEdit,
+                                                'spouseName': self.spouseNameEdit,
+                                                'note': self.noteEdit,
+                                                'birthDate': self.birthDateEdit,
+                                                'anniversary': self.anniversaryEdit,
+                                                'postalAddress': self.addressEdit,
+                                                'homePostalAddress': self.addressEdit,
+                                                'otherPostalAddress': self.addressEdit
+                                                }
 
 ###############################################################################
 
@@ -89,7 +120,15 @@ class AddressbookWidget(AddressbookWidgetDesign):
         
         self.dn = dn
         self.data = data
-        self.server = server
+        self.serverMeta = server
+        
+        if (self.DISABLED == 1):
+            self.ocInfo.set_server(self.serverMeta.name)
+            self.ocInfo.retrieve_info_from_server()
+            self.DISABLED = 0
+            
+        self.enableContactFields(self.data['objectClass'])
+        
         
         self.addressBox.setEnabled(1)
         
@@ -151,14 +190,17 @@ class AddressbookWidget(AddressbookWidgetDesign):
                 self.noteEdit.setText(self.data[x][0])
                 
             if x == 'birthDate':
-                pass
+                tmpList = self.data[x][0].split('-')
+                #print tmpList
+                self.birthDateEdit.setDate(QDate(int(tmpList[0]), int(tmpList[1]), int(tmpList[2])))
                 
             if x == 'anniversary':
-                pass
+                tmpList = self.data[x][0].split('-')
+                #self.birthDateEdit.setDate(QDate(tmpList[0], tmpList[1], tmpList[2]))
+                self.birthDateEdit.setDate(QDate(int(tmpList[0]), int(tmpList[1]), int(tmpList[2])))
                 
-        self.initAddress()
-        
-        self.INIT = 1
+        self.initAddress(0, 1)
+        self.addressID = 0
     
 ###############################################################################
 
@@ -271,24 +313,164 @@ class AddressbookWidget(AddressbookWidgetDesign):
     def serverChanged(self):
         self.enableWidget(0)
         self.clearView()
+        self.DISABLED = 1
                 
 ###############################################################################
 
-    def initAddress(self):
+    def initAddress(self, id, fresh=0):
         # The order os the attributes resembles the order of apearance in the widget
         addressType = ['postalAddress', 'homePostalAddress', 'otherPostalAddress']
         
+        if fresh == 0:
+            self.data[addressType[self.addressID]] = [str(self.addressEdit.text())]
         
-        id = self.addressBox.currentItem()
+        self.addressID = id
+        self.addressEdit.clear()
+        if self.data.has_key(addressType[id]):
+            tmpAddress = self.data[addressType[id]][0]
+            self.addressEdit.setText(tmpAddress)
         
-        if not(self.data.has_key(addressType[id])):
-            self.addressEdit.clear()
-            return
-            
-        tmpAddress = self.data[addressType[id]][0]
-        self.addressEdit.setText(tmpAddress)
         
 ###############################################################################
 
     def enableWidget(self, val):
         self.setEnabled(val)
+        
+###############################################################################
+
+    def getValues(self):
+        values = {}
+        
+        if 'cn' in self.allowedAttributes:
+            values['cn'] = [str(self.cnEdit.text())]
+        
+        if 'title' in self.allowedAttributes:
+            values['title'] = [str(self.titleEdit.text())]
+            
+        if 'o' in self.allowedAttributes:
+            values['o'] = [str(self.organisationEdit.text())]
+        
+        if 'mail' in self.allowedAttributes:
+            tmpMail = []
+            for x in range(0, self.mailBox.count()):
+                tmpMail.append(str(self.mailBox.text(x)))
+            values['mail'] = tmpMail
+        
+        if 'labeledURI' in self.allowedAttributes:
+            values['labeledURI'] = [str(self.labeledURIEdit.text())]
+            
+        if 'category' in self.allowedAttributes:
+            values['category'] = str(self.categoryEdit.text()).split(',')
+            
+        if 'homePhone' in self.allowedAttributes:
+            values['homePhone'] = [str(self.homePhoneEdit.text())]
+            
+        if 'telephoneNumber' in self.allowedAttributes:
+            values['telephoneNumber'] = [str(self.telephoneNumberEdit.text())]
+            
+        if 'mobile' in self.allowedAttributes:
+            values['mobile'] = [str(self.mobileEdit.text())]
+            
+        if 'facsimileTelephoneNumber' in self.allowedAttributes:
+            values['facsimileTelephoneNumber'] = [str(self.facsimileTelephoneNumberEdit.text())]
+            
+        if 'ou' in self.allowedAttributes:
+            values['ou'] = [str(self.ouEdit.text())]
+            
+        if 'roomNumber' in self.allowedAttributes:
+            values['roomNumber'] = [str(self.roomNumberEdit.text())]
+            
+        if 'businessRole' in self.allowedAttributes:
+            values['businessRole'] = [str(self.businessRoleEdit.text())]
+            
+        if 'managerName' in self.allowedAttributes:
+            values['managerName'] = [str(self.managerNameEdit.text())]
+            
+        if 'assistantName' in self.allowedAttributes:
+            values['assistantName'] = [str(self.assistantNameEdit.text())]
+            
+        if 'displayName' in self.allowedAttributes:
+            values['displayName'] = [str(self.displayNameEdit.text())]
+        
+        if 'spouseName' in self.allowedAttributes:
+            values['spouseName'] = [str(self.spouseNameEdit.text())]
+            
+        if 'note' in self.allowedAttributes:
+            values['note'] = [str(self.noteEdit.text())]
+        
+        if 'birthDate' in self.allowedAttributes:
+            tmpDate = str(self.birthDateEdit.date().toString(Qt.ISODate))
+            if not (tmpDate == ''):
+                values['birthDate'] = [tmpDate]
+            
+        if 'anniversary' in self.allowedAttributes:
+            tmpDate = str(self.anniversaryEdit.date().toString(Qt.ISODate))
+            if not (tmpDate == ''):
+                values['anniversary'] = [tmpDate]
+        
+        if 'postalAddress' in self.allowedAttributes:
+            if self.data.has_key('postalAddress'):
+                values['postalAddress'] = self.data['postalAddress']
+            
+        if 'homePostalAddress' in self.allowedAttributes:
+            if self.data.has_key('homePostalAddress'):
+                values['homePostalAddress'] = self.data['homePostalAddress']
+            
+        if 'otherPostalAddress' in self.allowedAttributes:
+            if self.data.has_key('otherPostalAddress'):
+                values['otherPostalAddress'] = self.data['otherPostalAddress']
+            
+        
+        addressType = ['postalAddress', 'homePostalAddress', 'otherPostalAddress']
+        id = self.addressBox.currentItem()
+        if addressType[id] in self.allowedAttributes:
+            values[addressType[id]] = [str(self.addressEdit.text())]
+        
+        for x in values.keys():
+            if values[x][0] == '':
+                values[x] = []
+                
+        return values
+        
+###############################################################################
+
+    def saveEntry(self):
+        values = self.getValues()
+        
+        ldapValues = self.getLdapValues()
+        modlist =  ldap.modlist.modifyModlist(ldapValues, values, [], 1)
+
+        connection = LumaConnection(self.serverMeta)
+        result = connection.modify_s(self.dn, modlist)
+        
+        if result == 0:
+            QMessageBox.warning(None,
+            self.trUtf8("Error"),
+            self.trUtf8("""Could not save contact data. 
+Please read console output for more information."""),
+            None,
+            None,
+            None,
+            0, -1)
+        
+        self.emit(PYSIGNAL("contact_saved"), ())
+        
+###############################################################################
+
+    def getLdapValues(self):
+        connection = LumaConnection(self.serverMeta)
+        
+        result = connection.search_s(self.dn)
+        return result[0][1]
+        
+###############################################################################
+
+    def enableContactFields(self, classes):
+        self.allowedAttributes = self.ocInfo.get_all_attributes(classes)
+        
+        for x in self.attributeWidgets.keys():
+            widget = self.attributeWidgets[x]
+            if x in self.allowedAttributes:
+                widget.setEnabled(1)
+            else:
+                widget.setEnabled(0)
