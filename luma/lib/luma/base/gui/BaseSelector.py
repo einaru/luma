@@ -21,9 +21,11 @@ class BaseSelector(BaseSelectorDesign):
 
 ###############################################################################
 
-    def setList(self, dnList=None):
+    def setList(self, dnList):
         """ Fill the combobox with possible baseDNs specified by dnList.
         """
-        if not (dnList==None):
-            for x in dnList:
-                self.dnBox.insertItem(x)
+        if not (type(dnList) == list):
+            raise TypeError
+
+        for x in dnList:
+            self.dnBox.insertItem(x)
