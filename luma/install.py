@@ -89,19 +89,19 @@ def doChecks():
 def doInstall():
     print "Copy programm files ..."
     try:
-        a = Popen3("cp -pR bin " + prefixDir)
+        a = Popen3("cp -R bin " + prefixDir)
         while a.poll() == -1:
             pass
         if a.poll() > 0:
             raise "CopyError", "Error!!! Could not copy File. Maybe wrong permissions?"
 
-        a = Popen3("cp -pR lib " + prefixDir)
+        a = Popen3("cp -R lib " + prefixDir)
         while a.poll() == -1:
             pass
         if a.poll() > 0:
             raise "CopyError", "Error!!! Could not copy File. Maybe wrong permissions?"
 
-        a = Popen3("cp -pR share " + prefixDir)
+        a = Popen3("cp -R share " + prefixDir)
         while a.poll() == -1:
             pass
         if a.poll() > 0:
