@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE Project SYSTEM "Project-3.5.dtd">
 <!-- Project file for project luma -->
-<!-- Saved: 2004-10-17, 01:44:34 -->
+<!-- Saved: 2004-10-30, 00:31:13 -->
 <!-- Copyright (C) 2004 Wido Depping, wido.depping@tu-clausthal.de -->
 <Project version="3.5">
   <Description></Description>
@@ -311,14 +311,6 @@
       <Dir>luma</Dir>
       <Dir>base</Dir>
       <Dir>utils</Dir>
-      <Dir>gui</Dir>
-      <Name>TemplateObjectWidget.py</Name>
-    </Source>
-    <Source>
-      <Dir>lib</Dir>
-      <Dir>luma</Dir>
-      <Dir>base</Dir>
-      <Dir>utils</Dir>
       <Dir>backend</Dir>
       <Name>CryptPwGenerator.py</Name>
     </Source>
@@ -406,27 +398,6 @@
     <Source>
       <Dir>lib</Dir>
       <Dir>luma</Dir>
-      <Dir>plugins</Dir>
-      <Dir>ifi_user</Dir>
-      <Name>ifi_user_plugin.py</Name>
-    </Source>
-    <Source>
-      <Dir>lib</Dir>
-      <Dir>luma</Dir>
-      <Dir>plugins</Dir>
-      <Dir>ifi_user</Dir>
-      <Name>IfiUser.py</Name>
-    </Source>
-    <Source>
-      <Dir>lib</Dir>
-      <Dir>luma</Dir>
-      <Dir>plugins</Dir>
-      <Dir>ifi_user</Dir>
-      <Name>__init__.py</Name>
-    </Source>
-    <Source>
-      <Dir>lib</Dir>
-      <Dir>luma</Dir>
       <Dir>base</Dir>
       <Dir>utils</Dir>
       <Dir>gui</Dir>
@@ -453,13 +424,6 @@
       <Dir>utils</Dir>
       <Dir>backend</Dir>
       <Name>mkpasswd.py</Name>
-    </Source>
-    <Source>
-      <Dir>lib</Dir>
-      <Dir>luma</Dir>
-      <Dir>plugins</Dir>
-      <Dir>ifi_user</Dir>
-      <Name>IfiUserDesign.py</Name>
     </Source>
     <Source>
       <Dir>lib</Dir>
@@ -913,13 +877,6 @@
       <Dir>base</Dir>
       <Dir>gui</Dir>
       <Name>LanguageDialogDesign.ui</Name>
-    </Form>
-    <Form>
-      <Dir>lib</Dir>
-      <Dir>luma</Dir>
-      <Dir>plugins</Dir>
-      <Dir>ifi_user</Dir>
-      <Name>IfiUserDesign.ui</Name>
     </Form>
     <Form>
       <Dir>lib</Dir>
