@@ -437,7 +437,6 @@ Please read console output for more information."""),
 
     def eventFilter(self, object, event):
         if (event.type() == QEvent.MouseButtonPress):
-            object.setDown(False)
             name = unicode(object.name())
             position = int(name[-1])
             if name[:9] == "LDAP_EDIT":
@@ -460,8 +459,12 @@ Please read console output for more information."""),
             if name[:11] == "LDAP_EXPORT":
                 attribute = name[11:-1]
                 self.exportBinaryAttribute(attribute, position)
-                
-        object.setDown(False)
+        
+        # Fixes a bug with buttons. After the dialog is shown, the button
+        # is pressed forever. We don't want that.
+        # I don't know the exact reason but this fix should cause no problems.
+        if "setDown" in dir(object):
+            object.setDown(False)
         return False
         
 ###############################################################################
