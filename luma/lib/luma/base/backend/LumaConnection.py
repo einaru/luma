@@ -201,72 +201,22 @@ class LumaConnection(object):
         """Bind to server.
         """
         
-        try:
-            environment.setBusy(True)
-            
-            urlschemeVal = "ldap"
-            if self.serverMeta.tls:
-                urlschemeVal = "ldaps"
-              
-            whoVal = None
-            credVal = None
-            if not (self.serverMeta.bindAnon):
-                whoVal = self.serverMeta.bindDN
-                credVal = self.serverMeta.bindPassword
-                
-            url = ldapurl.LDAPUrl(urlscheme=urlschemeVal, 
-                hostport = self.serverMeta.host + ":" + str(self.serverMeta.port),
-                dn = self.serverMeta.baseDN, who = whoVal,
-                cred = credVal)
-            
-            self.ldapServerObject = ldap.initialize(url.initializeUrl())
-            self.ldapServerObject.protocol_version = 3
-            
-            # Enable Alias support
-            if self.serverMeta.followAliases:
-                self.ldapServerObject.set_option(ldap.OPT_DEREF, ldap.DEREF_ALWAYS)
-            
-            if self.serverMeta.bindAnon:
-                self.ldapServerObject.simple_bind()
-            elif self.serverMeta.authMethod == u"Simple":
-                self.ldapServerObject.simple_bind(whoVal, credVal)
-            elif u"SASL" in self.serverMeta.authMethod:
-                sasl_cb_value_dict = {}
-                if not u"GSSAPI" in self.serverMeta.authMethod:
-                    sasl_cb_value_dict[ldap.sasl.CB_AUTHNAME] = whoVal
-                    sasl_cb_value_dict[ldap.sasl.CB_PASS] = credVal
-                    
-                sasl_mech = None
-                if self.serverMeta.authMethod == u"SASL Plain":
-                    sasl_mech = "PLAIN"
-                elif self.serverMeta.authMethod == u"SASL CRAM-MD5":
-                    sasl_mech = "CRAM-MD5"
-                elif self.serverMeta.authMethod == u"SASL DIGEST-MD5":
-                    sasl_mech = "DIGEST-MD5"
-                elif self.serverMeta.authMethod == u"SASL Login":
-                    sasl_mech = "LOGIN"
-                elif self.serverMeta.authMethod == u"SASL GSSAPI":
-                    sasl_mech = "GSSAPI"
-                    
-                sasl_auth = ldap.sasl.sasl(sasl_cb_value_dict,sasl_mech)
-                
-                # If python-ldap has no support for SASL, it doesn't have 
-                # sasl_interactive_bind_s as a method.
-                try:
-                    self.ldapServerObject.sasl_interactive_bind_s("", sasl_auth)
-                except AttributeError, e:
-                    environment.setBusy(False)
-                    return (False, "Python-LDAP is not build with SASL support.")
-                    
-                    
-            environment.setBusy(False)
+        environment.setBusy(True)
+        
+        workerThread = WorkerThreadBind(self.serverMeta)
+        workerThread.start()
+        
+        while not workerThread.FINISHED:
+            environment.updateUI()
+            time.sleep(0.05)
+        
+        environment.setBusy(False)
+        
+        if None == workerThread.exceptionObject:
+            self.ldapServerObject = workerThread.ldapServerObject
             return (True, None)
-                
-        except ldap.LDAPError, e:
-            environment.setBusy(False)
-            print "Error during LDAP bind request"
-            print "Reason: " + str(e)
-            return (False, e)
+        else:
+            return (False, workerThread.exceptionObject)
         
 ###############################################################################
 
@@ -461,3 +411,102 @@ class WorkerThreadModify(threading.Thread):
             
         self.FINISHED = True
     
+###############################################################################
+
+class WorkerThreadBind(threading.Thread):
+    
+    def __init__(self, serverMeta):
+        threading.Thread.__init__(self)
+        self.ldapServerObject = None
+        self.serverMeta = serverMeta
+        
+        self.FINISHED = False
+        self.result = False
+        self.exceptionObject = None
+        
+    def run(self):
+        try:
+            urlschemeVal = "ldap"
+            if self.serverMeta.tls:
+                urlschemeVal = "ldaps"
+              
+            whoVal = None
+            credVal = None
+            if not (self.serverMeta.bindAnon):
+                whoVal = self.serverMeta.bindDN
+                credVal = self.serverMeta.bindPassword
+                
+            url = ldapurl.LDAPUrl(urlscheme=urlschemeVal, 
+                hostport = self.serverMeta.host + ":" + str(self.serverMeta.port),
+                dn = self.serverMeta.baseDN, who = whoVal,
+                cred = credVal)
+            
+            self.ldapServerObject = ldap.initialize(url.initializeUrl())
+            self.ldapServerObject.protocol_version = 3
+            
+            # Enable Alias support
+            if self.serverMeta.followAliases:
+                self.ldapServerObject.set_option(ldap.OPT_DEREF, ldap.DEREF_ALWAYS)
+            
+            if self.serverMeta.bindAnon:
+                self.ldapServerObject.simple_bind()
+            elif self.serverMeta.authMethod == u"Simple":
+                self.ldapServerObject.simple_bind(whoVal, credVal)
+            elif u"SASL" in self.serverMeta.authMethod:
+                sasl_cb_value_dict = {}
+                if not u"GSSAPI" in self.serverMeta.authMethod:
+                    sasl_cb_value_dict[ldap.sasl.CB_AUTHNAME] = whoVal
+                    sasl_cb_value_dict[ldap.sasl.CB_PASS] = credVal
+                    
+                sasl_mech = None
+                if self.serverMeta.authMethod == u"SASL Plain":
+                    sasl_mech = "PLAIN"
+                elif self.serverMeta.authMethod == u"SASL CRAM-MD5":
+                    sasl_mech = "CRAM-MD5"
+                elif self.serverMeta.authMethod == u"SASL DIGEST-MD5":
+                    sasl_mech = "DIGEST-MD5"
+                elif self.serverMeta.authMethod == u"SASL Login":
+                    sasl_mech = "LOGIN"
+                elif self.serverMeta.authMethod == u"SASL GSSAPI":
+                    sasl_mech = "GSSAPI"
+                elif self.serverMeta.authMethod == u"SASL EXTERNAL":
+                    sasl_mech = "EXTERNAL"
+                    
+                sasl_auth = ldap.sasl.sasl(sasl_cb_value_dict,sasl_mech)
+                
+                # If python-ldap has no support for SASL, it doesn't have 
+                # sasl_interactive_bind_s as a method.
+                try:
+                    if "EXTERNAL" == sasl_mech:
+                        #url = ldapurl.LDAPUrl(urlscheme="ldapi", 
+                        #    hostport = self.serverMeta.host.replace("/", "%2f"),
+                        #    dn = self.serverMeta.baseDN)
+                            
+                        url = "ldapi://" + self.serverMeta.host.replace("/", "%2F").replace(",", "%2C")
+            
+                        #self.ldapServerObject = ldap.initialize(url.initializeUrl())
+                        self.ldapServerObject = ldap.initialize(url)
+                        self.ldapServerObject.protocol_version = 3
+            
+                        # Enable Alias support
+                        if self.serverMeta.followAliases:
+                            self.ldapServerObject.set_option(ldap.OPT_DEREF, ldap.DEREF_ALWAYS)
+                            
+                        self.ldapServerObject.sasl_interactive_bind_s("", sasl_auth)
+                    else:
+                        self.ldapServerObject.sasl_interactive_bind_s("", sasl_auth)
+                except AttributeError, e:
+                    self.result = False
+                    self.exceptionObject = e
+                    self.FINISHED = True
+                    return
+                    
+            self.result = True
+            self.FINISHED = True
+                
+        except ldap.LDAPError, e:
+            print "Error during LDAP bind request"
+            print "Reason: " + str(e)
+            self.result = False
+            self.exceptionObject = e
+            self.FINISHED = True
