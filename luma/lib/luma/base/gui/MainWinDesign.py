@@ -2,8 +2,8 @@
 
 # Form implementation generated from reading ui file 'MainWinDesign.ui'
 #
-# Created: Sat Nov 15 02:04:03 2003
-#      by: The PyQt User Interface Compiler (pyuic) 3.7
+# Created: Sun Dec 7 20:02:35 2003
+#      by: The PyQt User Interface Compiler (pyuic) 3.8.1
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -1446,9 +1446,10 @@ class MainWinDesign(QMainWindow):
         self.taskList.setResizePolicy(QIconView.AutoOneFit)
         self.taskList.setDragAutoScroll(0)
         self.taskList.setSelectionMode(QIconView.Single)
+        self.taskList.setGridX(-1)
         self.taskList.setGridY(1)
-        self.taskList.setArrangement(QIconView.LeftToRight)
-        self.taskList.setResizeMode(QIconView.Adjust)
+        self.taskList.setArrangement(QIconView.TopToBottom)
+        self.taskList.setResizeMode(QIconView.Fixed)
         self.taskList.setItemsMovable(0)
         groupBox2Layout.addWidget(self.taskList)
 
@@ -1486,27 +1487,27 @@ class MainWinDesign(QMainWindow):
 
         self.menubar = QMenuBar(self,"menubar")
 
+
         self.PopupMenu_3 = QPopupMenu(self)
         self.reload.addTo(self.PopupMenu_3)
         self.PopupMenu_3.insertSeparator()
         self.exitItem.addTo(self.PopupMenu_3)
-        self.menubar.insertItem(QString(""),self.PopupMenu_3,0)
+        self.menubar.insertItem(QString(""),self.PopupMenu_3,1)
 
         self.PopupMenu = QPopupMenu(self)
         self.editServerList.addTo(self.PopupMenu)
         self.menu_configure_plugins.addTo(self.PopupMenu)
         self.select_language.addTo(self.PopupMenu)
-        self.menubar.insertItem(QString(""),self.PopupMenu,1)
+        self.menubar.insertItem(QString(""),self.PopupMenu,2)
 
         self.PopupMenu_2 = QPopupMenu(self)
         self.about.addTo(self.PopupMenu_2)
-        self.menubar.insertItem(QString(""),self.PopupMenu_2,2)
-
+        self.menubar.insertItem(QString(""),self.PopupMenu_2,3)
 
 
         self.languageChange()
 
-        self.resize(QSize(742,594).expandedTo(self.minimumSizeHint()))
+        self.resize(QSize(742,598).expandedTo(self.minimumSizeHint()))
         self.clearWState(Qt.WState_Polished)
 
         self.connect(self.about,SIGNAL("activated()"),self.showAboutLuma)
@@ -1529,9 +1530,9 @@ class MainWinDesign(QMainWindow):
         self.menu_configure_plugins.setText(self.__tr("Configure Plugins"))
         self.reload.setText(self.__tr("Reload Plugins"))
         self.select_language.setText(self.__tr("Language"))
-        self.menubar.findItem(0).setText(self.__tr("Program"))
-        self.menubar.findItem(1).setText(self.__tr("Settings"))
-        self.menubar.findItem(2).setText(self.__tr("Help"))
+        self.menubar.findItem(1).setText(self.__tr("Program"))
+        self.menubar.findItem(2).setText(self.__tr("Settings"))
+        self.menubar.findItem(3).setText(self.__tr("Help"))
 
 
     def quit_application(self):

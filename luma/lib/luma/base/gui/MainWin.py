@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 ###########################################################################
 #    Copyright (C) 2003 by Wido Depping                                      
 #    <wido.depping@tu-clausthal.de>                                                             
@@ -141,7 +143,7 @@ class MainWin(MainWinDesign):
 
 ###############################################################################
 
-    def task_selection_changed(self, taskSender = None):
+    def task_selection_changed(self, taskSender=None):
         """If a plugin icon is clicked, the corresponding plugin widget is
         raised.
         """ 
