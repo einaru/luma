@@ -25,6 +25,7 @@ from base.utils import isBinaryAttribute
 from base.utils import escapeSpecialChars
 from base.utils.gui.LumaErrorDialog import LumaErrorDialog
 from base.utils.gui.DeleteDialog import DeleteDialog
+from base.utils.gui.ExportDialog import ExportDialog
 
 class BrowserWidget(QListView):
     """ Widget for browsing ldap trees. 
@@ -38,6 +39,7 @@ class BrowserWidget(QListView):
         self.connect(self, SIGNAL("clicked(QListViewItem*)"), self.itemClicked)
         self.connect(self, SIGNAL("collapsed(QListViewItem*)"), self.itemCollapsed)
         self.connect(self, SIGNAL("expanded(QListViewItem*)"), self.itemExpanded)
+        #self.connect(self, SIGNAL("doubleClicked(QListViewItem*)"), self.itemExpanded)
 
         self.setRootIsDecorated(1)
         self.addColumn(self.trUtf8("Entries"))
@@ -112,8 +114,6 @@ class BrowserWidget(QListView):
         clicked.
         """
         
-        self.blockSignals(True)
-        
         if not (item == None):
             fullPath = self.getFullPath(item)
 
@@ -124,7 +124,6 @@ class BrowserWidget(QListView):
                     if len(resultList) > 0:
                         result = resultList[0]
                         result.serverMeta.currentBase = self.currentBase
-                        self.blockSignals(False)
                         self.emit(PYSIGNAL("about_to_change"), ())
                         self.emit(PYSIGNAL("ldap_result"), (deepcopy(result),))
                 else:
@@ -134,16 +133,11 @@ class BrowserWidget(QListView):
                     dialog.setErrorMessage(errorMsg)
                     dialog.exec_loop()
 
-        self.blockSignals(False)
-
-
 ###############################################################################
 
     def itemExpanded(self, item):
         """ Get all children of the expanded object and display them.
         """
-        
-        self.blockSignals(True)
         
         if item.parent():
             fullPath = self.getFullPath(item)
@@ -175,7 +169,6 @@ class BrowserWidget(QListView):
                     
             else:
                 self.aliasDict[serverName] = oldAliasValue
-                self.blockSignals(False)
                 item.setExpandable(0)
                 
                 dialog = LumaErrorDialog()
@@ -208,8 +201,6 @@ class BrowserWidget(QListView):
             for base in tmpList:
                 tmpBase = QListViewItem(item, base)
                 tmpBase.setExpandable(1)
-
-        self.blockSignals(False)
             
 ###############################################################################
 
@@ -217,14 +208,10 @@ class BrowserWidget(QListView):
         """ Delete all children if a ldap object collapses.
         """
         
-        self.blockSignals(True)
-        
         fullPath = self.getFullPath(item)
         serverName, ldapObject = self.splitPath(fullPath)
         while item.childCount() > 0:
             item.takeItem(item.firstChild())
-            
-        self.blockSignals(False)
 
 ###############################################################################
 
@@ -360,10 +347,10 @@ class BrowserWidget(QListView):
         fullPath = self.getFullPath(self.selectedItem())
         success, resultList, exceptionObject = self.getLdapItem(fullPath)
         
-        if success:
-            if len(resultList) > 0:
-                stringList = map(lambda x: x.convertToLdif(), resultList)
-                self.saveLdif("".join(stringList))
+        if success and (len(resultList) > 0):
+                exportDialog = ExportDialog()
+                exportDialog.initData(resultList)
+                exportDialog.exec_loop()
         else:
             dialog = LumaErrorDialog()
             errorMsg = self.trUtf8("Could not export item.<br><br>Reason: ")
@@ -380,10 +367,10 @@ class BrowserWidget(QListView):
         fullPath = self.getFullPath(self.selectedItem())
         success, resultList, exceptionObject = self.getLdapItemChildren(fullPath, 1)
         
-        if success:
-            if len(resultList) > 0:
-                stringList = map(lambda x: x.convertToLdif(), resultList)
-                self.saveLdif("".join(stringList))
+        if success and (len(resultList) > 0):
+            exportDialog = ExportDialog()
+            exportDialog.initData(resultList)
+            exportDialog.exec_loop()
         else:
             dialog = LumaErrorDialog()
             errorMsg = self.trUtf8("Could not export items.<br><br>Reason: ")
@@ -518,7 +505,7 @@ class BrowserWidget(QListView):
                 popupMenu.insertSeparator()
                 popupMenu.insertItem(QIconSet(QPixmap(addIconFile)), self.trUtf8("Add Item"), self.addItemMenu)
                 popupMenu.insertSeparator()
-                popupMenu.insertItem(QIconSet(QPixmap(exportIconFile)), self.trUtf8("Export to LDIF"), exportMenu)
+                popupMenu.insertItem(QIconSet(QPixmap(exportIconFile)), self.trUtf8("Export"), exportMenu)
                 popupMenu.insertSeparator()
                 popupMenu.insertItem(QIconSet(QPixmap(delIconFile)), self.trUtf8("Delete"), deleteMenu)
                 
