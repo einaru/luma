@@ -29,8 +29,6 @@ rm -rf luma-$1/share/luma/icons/plugins/ifi_user
 rm -rf luma-$1/lib/luma/plugins/config_create
 rm -rf luma-$1/share/luma/icons/plugins/config_create
 
-rm -rf luma-$1/lib/luma/plugins/ifi_usermanagement
-rm -rf luma-$1/share/luma/icons/plugins/ifi_usermanagement
 
 tar -cvjvpf luma-$1.tar.bz2 luma-$1
 mv luma-$1*.bz2 ..
