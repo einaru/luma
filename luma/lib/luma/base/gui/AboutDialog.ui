@@ -1,4 +1,4 @@
-<!DOCTYPE UI><UI version="3.1" stdsetdef="1">
+<!DOCTYPE UI><UI version="3.2" stdsetdef="1">
 <class>AboutDialog</class>
 <comment>###########################################################################
 #    Copyright (C) 2003 by Wido Depping                                      
@@ -17,8 +17,8 @@
         <rect>
             <x>0</x>
             <y>0</y>
-            <width>545</width>
-            <height>450</height>
+            <width>565</width>
+            <height>498</height>
         </rect>
     </property>
     <property name="caption">
@@ -410,6 +410,9 @@ POSSIBILITY OF SUCH DAMAGES.
                         <property name="name">
                             <cstring>textBrowser4_2</cstring>
                         </property>
+                        <property name="textFormat">
+                            <enum>RichText</enum>
+                        </property>
                         <property name="text">
                             <string>&lt;p&gt;&lt;b&gt;Bjørn Ove Grøtan&lt;/b&gt;&lt;br&gt;
 &lt;i&gt;Contributed his mkpasswd module.&lt;/i&gt;
@@ -430,7 +433,10 @@ POSSIBILITY OF SUCH DAMAGES.
 &lt;p&gt;&lt;b&gt;Jan Winhuysen&lt;/b&gt;&lt;br&gt;
 &lt;i&gt;My mentor and UI tester :)&lt;/i&gt;
 &lt;/p&gt;
-</string>
+
+&lt;p&gt;&lt;b&gt;Eric Côté&lt;/b&gt;&lt;br&gt;
+&lt;i&gt;Testing guinea pig for python 2.3&lt;/i&gt;
+&lt;/p&gt;</string>
                         </property>
                     </widget>
                 </vbox>
