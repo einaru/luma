@@ -9,6 +9,7 @@
 ###########################################################################
 
 import ldap
+import ldapurl
 
 import environment
 from base.backend.ServerObject import ServerObject
@@ -52,7 +53,7 @@ class LumaConnection(object):
         try:
             searchResult = self.ldapServerObject.search_s(base, scope, filter, attrList)
         except ldap.LDAPError, e:
-            print "Error during LDAP request"
+            print "Error during LDAP search request"
             print "Reason: " + str(e)
             
         environment.setBusy(0)
@@ -80,9 +81,8 @@ class LumaConnection(object):
                     if result_type == ldap.RES_SEARCH_ENTRY:
                         for x in result_data:
                             searchResult.append(x)
-
         except ldap.LDAPError, e:
-            print "Error during LDAP request"
+            print "Error during LDAP search request"
             print "Reason: " + str(e)
          
         environment.setBusy(0)
@@ -109,7 +109,7 @@ class LumaConnection(object):
             environment.setBusy(0)
             return 1
         except ldap.LDAPError, e:
-            print "Error during LDAP request"
+            print "Error during LDAP delete request"
             print "Reason: " + str(e)
             environment.setBusy(0)
             return 0
@@ -129,7 +129,7 @@ class LumaConnection(object):
             environment.setBusy(0)
             return 1
         except ldap.LDAPError, e:
-            print "Error during LDAP request"
+            print "Error during LDAP modify request"
             print "Reason: " + str(e)
             environment.setBusy(0)
             return 0
@@ -148,7 +148,7 @@ class LumaConnection(object):
             environment.setBusy(0)
             return 1
         except ldap.LDAPError, e:
-            print "Error during LDAP request"
+            print "Error during LDAP add request"
             print "Reason: " + str(e)
             environment.setBusy(0)
             return 0
@@ -160,14 +160,25 @@ class LumaConnection(object):
         """
         
         try:
-            self.ldapServerObject = ldap.open(self.server.host, self.server.port)
-            self.ldapServerObject.protocol_version = ldap.VERSION3
+            bindAs = ""
+            password = ""
+            if not (self.server.bindAnon):
+                bindAs = self.server.bindDN
+                password = self.server.bindPassword
+                
+            method = "ldap"
             if self.server.tls:
-                self.ldapServerObject.start_tls_s()
-            if not(self.server.bindAnon):
-                self.ldapServerObject.simple_bind_s(self.server.bindDN,self.server.bindPassword)
+                method = "ldaps"
+                
+            url = ldapurl.LDAPUrl(hostport = self.server.host + ":" + str(self.server.port),
+                    dn = self.server.baseDN, who = bindAs, 
+                    cred = password, urlscheme = method)
+                    
+            self.ldapServerObject = ldap.initialize(url.initializeUrl())
+            self.ldapServerObject.simple_bind(bindAs, password)
+            
         except ldap.LDAPError, e:
-            print "Error during LDAP request"
+            print "Error during LDAP bind request"
             print "Reason: " + str(e)
             
 ###############################################################################
@@ -180,5 +191,5 @@ class LumaConnection(object):
             if not(self.server.bindAnon):
                 self.ldapServerObject.unbind()
         except ldap.LDAPError, e:
-            print "Error during LDAP request"
+            print "Error during LDAP unbind request"
             print "Reason: " + str(e)
