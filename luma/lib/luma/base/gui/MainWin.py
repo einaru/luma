@@ -123,7 +123,8 @@ class MainWin(MainWinDesign):
                 tmpObject["WIDGET_ID"] = self.taskStack.addWidget(widgetTmp, -1)
                 
         pluginName = str(self.pluginBox.currentText())
-        self.taskStack.raiseWidget(self.PLUGINS[pluginName]["WIDGET_ID"])
+        if self.PLUGINS.has_key(pluginName):
+            self.taskStack.raiseWidget(self.PLUGINS[pluginName]["WIDGET_ID"])
             
 
 ###############################################################################
