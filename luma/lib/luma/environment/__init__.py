@@ -12,8 +12,6 @@ import os.path
 import sys
 from sets import Set
 
-from base.utils.backend.ObjectClassAttributeInfo import ObjectClassAttributeInfo
-
 # The prefix where Luma is installed.
 lumaInstallationPrefix = None
 
@@ -22,19 +20,6 @@ lumaScriptName = None
 
 # The home directory of the user.
 userHomeDir = None
-
-###############################################################################
-
-# Cache of loaded server meta information
-serverMetaCache = {}
-
-def getServerMeta(serverName):
-    global serverMetaCache
-    
-    if not (serverName in serverMetaCache.keys()):
-        serverMetaCache[serverName] = ObjectClassAttributeInfo(serverName)
-        
-    return serverMetaCache[serverName]
     
 ###############################################################################
 
