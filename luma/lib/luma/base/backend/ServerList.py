@@ -94,7 +94,7 @@ class ServerList:
                 server.name = serverDictionary['NAME']
                 server.host = serverDictionary['HOSTNAME']
                 server.port = string.atoi(serverDictionary['PORT'])
-                server.bindAnon = serverDictionary['BINDANON']
+                server.bindAnon = int(serverDictionary['BINDANON'])
                 server.baseDN = serverDictionary['BASEDN']
                 server.bindDN = serverDictionary['BINDDN']
                 server.bindPassword = serverDictionary['BINDPW']
