@@ -43,13 +43,16 @@ class LanguageDialog(LanguageDialogDesign):
         # IMPORTANT: Has to be edited every time a new languaged is
         # added to luma.
         for x in self.languages:
+            pixmap = QPixmap(os.path.join(self.trDir, x + ".png"))
+            
             if x == 'de':
-                pixmap = QPixmap(os.path.join(self.trDir, x + ".png"))
                 self.languageBox.insertItem(pixmap, "Deutsch")
                 continue
-            if x == 'br':
-                pixmap = QPixmap(os.path.join(self.trDir, x + ".png"))
+            elif x == 'br':
                 self.languageBox.insertItem(pixmap, "Brazil")
+                continue
+            elif x == 'es':
+                self.languageBox.insertItem(pixmap, "Spain")
                 continue
                 
 
@@ -65,11 +68,16 @@ class LanguageDialog(LanguageDialogDesign):
         """
         
         tmpText = str(self.languageBox.currentText())
+        translationFile = 'NATIVE'
         
         if tmpText == "Deutsch":
-            return os.path.join(self.trDir, "luma_de.qm")
+            translationFile = "luma_de.qm"
         elif tmpText == "Brazil":
-            return os.path.join(self.trDir, "luma_br.qm")
+            translationFile = "luma_br.qm"
         elif tmpText == "English (UK)":
-            return 'NATIVE'
+            translationFile = 'NATIVE'
+        elif tmpText == "Spain":
+            translationFile = "luma_es.qm"
+        
+        return os.path.join(self.trDir, translationFile)
         
