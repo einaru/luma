@@ -1,9 +1,7 @@
 Admin Utilities
 ---------------
-    - Add support for nthash and lmhash
-        Already implemented in the mkpasswd module but has a dependecy on module
-        smbpasswd. Has to be incorporated into Luma so this module is optional.
-        
+    - Add explanation for the date2unix utils. Many users ask questions about
+      this.
         
         
 Browser
@@ -43,7 +41,6 @@ General
 -------
     - Import of ldifs
     
-    - Correct version checking in installer script
     
     
 Wishlist by users
