@@ -54,7 +54,10 @@ class ObjectClassAttributeInfo(object):
         environment.setBusy(1)
 
         try:
-            tmpUrl = "ldap://" + serverMeta.host + ":" + str(serverMeta.port)
+            method = "ldap://"
+            if serverMeta.tls:
+                method = "ldaps://"
+            tmpUrl = method + serverMeta.host + ":" + str(serverMeta.port)
             subschemasubentry_dn,schema = ldap.schema.urlfetch(tmpUrl)
             oidList = schema.listall(ldap.schema.ObjectClass)
             
