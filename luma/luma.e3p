@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!--Project file for project luma-->
-<!--Saved: 2004-01-10, 19:20:19-->
+<!--Saved: 2004-01-30, 22:02:39-->
 <!--Copyright (C) 2004 Wido Depping, wido.depping@tu-clausthal.de-->
 <Project>
   <Version>1.0beta1</Version>
@@ -567,6 +567,36 @@
       <Dir>environment</Dir>
       <Name>__init__.py</Name>
     </Source>
+    <Source>
+      <Dir>lib</Dir>
+      <Dir>luma</Dir>
+      <Dir>base</Dir>
+      <Dir>utils</Dir>
+      <Dir>gui</Dir>
+      <Name>LumaIconViewDesign.py</Name>
+    </Source>
+    <Source>
+      <Dir>lib</Dir>
+      <Dir>luma</Dir>
+      <Dir>base</Dir>
+      <Dir>utils</Dir>
+      <Dir>gui</Dir>
+      <Name>LumaIconView.py</Name>
+    </Source>
+    <Source>
+      <Dir>lib</Dir>
+      <Dir>luma</Dir>
+      <Dir>plugins</Dir>
+      <Dir>addressbook</Dir>
+      <Name>AddressbookView.py</Name>
+    </Source>
+    <Source>
+      <Dir>lib</Dir>
+      <Dir>luma</Dir>
+      <Dir>plugins</Dir>
+      <Dir>addressbook</Dir>
+      <Name>NameDialog.py</Name>
+    </Source>
   </Sources>
   <Forms>
     <Form>
@@ -705,6 +735,21 @@
       <Dir>utils</Dir>
       <Dir>gui</Dir>
       <Name>PluginInformation.ui</Name>
+    </Form>
+    <Form>
+      <Dir>lib</Dir>
+      <Dir>luma</Dir>
+      <Dir>base</Dir>
+      <Dir>utils</Dir>
+      <Dir>gui</Dir>
+      <Name>LumaIconViewDesign.ui</Name>
+    </Form>
+    <Form>
+      <Dir>lib</Dir>
+      <Dir>luma</Dir>
+      <Dir>plugins</Dir>
+      <Dir>addressbook</Dir>
+      <Name>NameDialog.ui</Name>
     </Form>
   </Forms>
   <Translations>
