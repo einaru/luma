@@ -46,7 +46,7 @@ class OClassDialog(OClassDialogDesign):
         if not(tmpText in self.get_class_list()):
             tmpItem  = QListViewItem(self.classView, tmpText)
 
-            attrDict = self.objectInfo.OBJECTCLASSES[tmpText]
+            attrDict = self.objectInfo.objectClassesDict[tmpText]
             tmpDict = {}
             tmpDict['CLASSNAME'] = tmpText
             tmpDict['ATTRIBUTES'] = []
@@ -104,7 +104,7 @@ class OClassDialog(OClassDialogDesign):
         self.objectInfo = ObjectClassAttributeInfo(str(serverName))
         #self.objectInfo.retrieveInfoFromServer()
 
-        tmpList = self.objectInfo.OBJECTCLASSES.keys()
+        tmpList = self.objectInfo.objectClassesDict.keys()
         tmpList.sort()
         for x in tmpList:
             self.classBox.insertItem(x)

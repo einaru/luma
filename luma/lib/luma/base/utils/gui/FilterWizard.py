@@ -73,14 +73,14 @@ class FilterWizard(FilterWizardDesign):
     def init_object_combo(self):
         if self.objectSelection == "CLASS":
             self.objectBox.clear()
-            tmpList = self.objectInfo.OBJECTCLASSES.keys()
+            tmpList = self.objectInfo.objectClassesDict.keys()
             tmpList.sort()
             self.objectBox.insertItem("*")
             for x in tmpList:
                 self.objectBox.insertItem(x)
         else:
             self.objectBox.clear()
-            tmpList = self.objectInfo.ATTRIBUTELIST.keys()
+            tmpList = self.objectInfo.attributeDict.keys()
             tmpList.sort()
             for x in tmpList:
                 self.objectBox.insertItem(x)
