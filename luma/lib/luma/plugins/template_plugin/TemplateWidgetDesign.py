@@ -2,8 +2,8 @@
 
 # Form implementation generated from reading ui file '/home/wido/src/luma/lib/luma/plugins/template_plugin/TemplateWidgetDesign.ui'
 #
-# Created: Do Sep 23 20:53:14 2004
-#      by: The PyQt User Interface Compiler (pyuic) 3.11
+# Created: Tue Sep 28 04:56:03 2004
+#      by: The PyQt User Interface Compiler (pyuic) 3.13
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -167,6 +167,23 @@ class TemplateWidgetDesign(QWidget):
 
         self.connect(self.addTemplateButton,SIGNAL("clicked()"),self.addTemplate)
         self.connect(self.templateView,SIGNAL("selectionChanged(QListViewItem*)"),self.displayTemplateInfo)
+        self.connect(self.addClassButton,SIGNAL("clicked()"),self.addObjectClass)
+        self.connect(self.addAttributeButton,SIGNAL("clicked()"),self.addAttribute)
+        self.connect(self.deleteClassButton,SIGNAL("clicked()"),self.deleteObjectClass)
+        self.connect(self.deleteAttributeButton,SIGNAL("clicked()"),self.deleteAttribute)
+        self.connect(self.editAttributeButton,SIGNAL("clicked()"),self.editAttribute)
+
+        self.setTabOrder(self.templateView,self.addTemplateButton)
+        self.setTabOrder(self.addTemplateButton,self.saveTemplateButton)
+        self.setTabOrder(self.saveTemplateButton,self.duplicateTemplateButton)
+        self.setTabOrder(self.duplicateTemplateButton,self.deleteTemplateButton)
+        self.setTabOrder(self.deleteTemplateButton,self.classView)
+        self.setTabOrder(self.classView,self.addClassButton)
+        self.setTabOrder(self.addClassButton,self.deleteClassButton)
+        self.setTabOrder(self.deleteClassButton,self.attributeView)
+        self.setTabOrder(self.attributeView,self.addAttributeButton)
+        self.setTabOrder(self.addAttributeButton,self.editAttributeButton)
+        self.setTabOrder(self.editAttributeButton,self.deleteAttributeButton)
 
 
     def languageChange(self):
@@ -209,6 +226,21 @@ class TemplateWidgetDesign(QWidget):
 
     def displayTemplateInfo(self):
         print "TemplateWidgetDesign.displayTemplateInfo(): Not implemented yet"
+
+    def addObjectClass(self):
+        print "TemplateWidgetDesign.addObjectClass(): Not implemented yet"
+
+    def addAttribute(self):
+        print "TemplateWidgetDesign.addAttribute(): Not implemented yet"
+
+    def deleteObjectClass(self):
+        print "TemplateWidgetDesign.deleteObjectClass(): Not implemented yet"
+
+    def deleteAttribute(self):
+        print "TemplateWidgetDesign.deleteAttribute(): Not implemented yet"
+
+    def editAttribute(self):
+        print "TemplateWidgetDesign.editAttribute(): Not implemented yet"
 
     def __tr(self,s,c = None):
         return qApp.translate("TemplateWidgetDesign",s,c)

@@ -1,4 +1,4 @@
-<!DOCTYPE UI><UI version="3.2" stdsetdef="1">
+<!DOCTYPE UI><UI version="3.3" stdsetdef="1">
 <class>TemplateWidgetDesign</class>
 <widget class="QWidget">
     <property name="name">
@@ -506,11 +506,60 @@
         <receiver>TemplateWidgetDesign</receiver>
         <slot>displayTemplateInfo()</slot>
     </connection>
+    <connection>
+        <sender>addClassButton</sender>
+        <signal>clicked()</signal>
+        <receiver>TemplateWidgetDesign</receiver>
+        <slot>addObjectClass()</slot>
+    </connection>
+    <connection>
+        <sender>addAttributeButton</sender>
+        <signal>clicked()</signal>
+        <receiver>TemplateWidgetDesign</receiver>
+        <slot>addAttribute()</slot>
+    </connection>
+    <connection>
+        <sender>deleteClassButton</sender>
+        <signal>clicked()</signal>
+        <receiver>TemplateWidgetDesign</receiver>
+        <slot>deleteObjectClass()</slot>
+    </connection>
+    <connection>
+        <sender>deleteAttributeButton</sender>
+        <signal>clicked()</signal>
+        <receiver>TemplateWidgetDesign</receiver>
+        <slot>deleteAttribute()</slot>
+    </connection>
+    <connection>
+        <sender>editAttributeButton</sender>
+        <signal>clicked()</signal>
+        <receiver>TemplateWidgetDesign</receiver>
+        <slot>editAttribute()</slot>
+    </connection>
 </connections>
+<tabstops>
+    <tabstop>templateView</tabstop>
+    <tabstop>addTemplateButton</tabstop>
+    <tabstop>saveTemplateButton</tabstop>
+    <tabstop>duplicateTemplateButton</tabstop>
+    <tabstop>deleteTemplateButton</tabstop>
+    <tabstop>classView</tabstop>
+    <tabstop>addClassButton</tabstop>
+    <tabstop>deleteClassButton</tabstop>
+    <tabstop>attributeView</tabstop>
+    <tabstop>addAttributeButton</tabstop>
+    <tabstop>editAttributeButton</tabstop>
+    <tabstop>deleteAttributeButton</tabstop>
+</tabstops>
 <slots>
     <slot>addTemplate()</slot>
     <slot>typeChanged()</slot>
     <slot>displayTemplateInfo()</slot>
+    <slot>addObjectClass()</slot>
+    <slot>addAttribute()</slot>
+    <slot>deleteObjectClass()</slot>
+    <slot>deleteAttribute()</slot>
+    <slot>editAttribute()</slot>
 </slots>
 <layoutdefaults spacing="6" margin="11"/>
 </UI>
