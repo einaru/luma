@@ -96,7 +96,7 @@ class DeleteDialog(DeleteDialogDesign):
             prettyDN = x.getPrettyDN()
             normalDN = x.getDN()
             
-            if None == connectionObject:
+            if connectionObject == None:
                 currentServerMeta = x.getServerMeta()
                 connectionObject = LumaConnection(currentServerMeta)
                 
