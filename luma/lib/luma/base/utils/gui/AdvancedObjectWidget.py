@@ -140,6 +140,7 @@ class AdvancedObjectWidget(QWidget):
 ###############################################################################
 
     def displayValues(self):
+        environment.setBusy(True)
         self.objectWidget.setText("")
         
         # Something went wrong. We have no data object.
@@ -180,6 +181,7 @@ class AdvancedObjectWidget(QWidget):
         self.objectWidget.setText(self.currentDocument)
         
         self.enableToolButtons(True)
+        environment.setBusy(False)
         
 ###############################################################################
 
@@ -217,6 +219,7 @@ class AdvancedObjectWidget(QWidget):
         tmpList.append("""<table border="0" cellpadding="1" cellspacing="1" width="100%">""")
         
         for x in attributeList:
+            environment.updateUI()
             attributeIsBinary = self.ldapDataObject.isAttributeBinary(x)
             attributeIsImage = self.ldapDataObject.isAttributeImage(x)
             attributeIsPassword = self.ldapDataObject.isAttributePassword(x)
@@ -232,7 +235,7 @@ class AdvancedObjectWidget(QWidget):
                     
             valueList = self.ldapDataObject.getAttributeValueList(x)
             
-            if len(valueList) == 0:
+            if not (len(valueList) > 0):
                 continue
                 
             
@@ -279,6 +282,7 @@ class AdvancedObjectWidget(QWidget):
             
             
             for y in valueList[1:]:
+                environment.updateUI()
                 attributeIndex += 1
                 univAttributeName = x + "__" + unicode(attributeIndex)
                 
@@ -466,7 +470,20 @@ class AdvancedObjectWidget(QWidget):
 ###############################################################################
 
     def aboutToChange(self):
-        pass
+        if not self.EDITED:
+            return
+            
+        result = QMessageBox.warning(None,
+            self.trUtf8("Save entry"),
+            self.trUtf8("""Do you want to save the entry?"""),
+            self.trUtf8("&OK"),
+            self.trUtf8("&Cancel"),
+            None,
+            0, -1)
+            
+        if 0 == result:
+            self.saveView()
+
         
 ###############################################################################
 
