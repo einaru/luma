@@ -12,7 +12,8 @@
 from qt import *
 import os.path
 
-from plugins.template_plugin.TemplateForm import TemplateForm
+#from plugins.template_plugin.TemplateForm import TemplateForm
+from plugins.template_plugin.TemplateWidget import TemplateWidget
 
 class TaskPlugin(object):
 
@@ -35,7 +36,7 @@ class TaskPlugin(object):
 
 
     def getPluginWidget(self, parent):
-        self.pluginWidget = TemplateForm()
+        self.pluginWidget = TemplateWidget()
         return self.pluginWidget
 
 ###############################################################################
