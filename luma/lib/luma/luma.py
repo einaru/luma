@@ -29,14 +29,24 @@ def startApplication():
     if not os.path.exists(configPrefix):
         os.mkdir(configPrefix)
     
+    iconPath = os.path.join(environment.lumaInstallationPrefix, "share", "luma", "icons")
     app = QApplication(sys.argv)
+    
+    logoPixmap = QPixmap(os.path.join(iconPath, "luma-250.png"))
+    splash = QSplashScreen(logoPixmap)
+    splash.show()
+    
     gui = MainWin(None)
     QObject.connect(app, SIGNAL('lastWindowClosed()'), gui.quitApplication)
     
     
     app.setMainWidget(gui)
-    gui.loadPlugins()
+    gui.loadPlugins(splash)
     gui.show()
+    
+    splash.finish(gui)
+    del splash
+    
     app.exec_loop()
 
 ###############################################################################
