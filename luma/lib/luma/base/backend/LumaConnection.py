@@ -84,3 +84,38 @@ class LumaConnection(object):
             return None
         else:
             return searchResult
+            
+###############################################################################
+
+    def delete_s(self, dnDelete=None):
+        if dnDelete == None:
+            return None
+            
+        result = None
+        
+        self.mainWin.set_busy(1)
+        
+        try:
+            ldapServerObject = ldap.open(self.server.host, self.server.port)
+            ldapServerObject.protocol_version = ldap.VERSION3
+            
+            if int(self.server.tls) == 1:
+                ldapServerObject.start_tls_s()
+                
+            if len(self.server.bindDN) > 0:
+                ldapServerObject.simple_bind_s(self.server.bindDN,self.server.bindPassword)
+                
+            ldapServerObject.delete_s(dnDelete)
+            
+            if len(self.server.bindDN) > 0:
+                ldapServerObject.unbind()
+                
+            self.mainWin.set_busy(0)
+            return 1
+        except ldap.LDAPError, e:
+            print "Error during LDAP request"
+            print "Reason: " + str(e)
+            self.mainWin.set_busy(0)
+            return 0
+            
+    
