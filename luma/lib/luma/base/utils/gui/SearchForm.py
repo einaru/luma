@@ -52,20 +52,20 @@ class SearchForm(SearchFormDesign):
         tmpStatusBar = parentObject.statusBar()
 
         liste = self.__get_search_criteria()
-        server = str(self.serverBox.currentText())
+        server = unicode(self.serverBox.currentText())
         serverMeta = self.serverListObject.get_serverobject(server)
         
 
         conObject = LumaConnection(serverMeta)
-        searchResult = conObject.search(serverMeta.baseDN, ldap.SCOPE_SUBTREE,
-                str(self.searchEdit.currentText()))
+        searchResult = conObject.search(serverMeta.baseDN.encode('utf-8'), ldap.SCOPE_SUBTREE,
+                unicode(self.searchEdit.currentText()).encode('utf-8'))
 
         self.emit(PYSIGNAL("ldap_result"), (serverMeta.name, searchResult,liste, ))
 
 ###############################################################################
 
     def start_filter_wizard(self):
-        server = str(self.serverBox.currentText())
+        server = unicode(self.serverBox.currentText())
         if self.serverList == None:
             print "Warning: Please set up some servers to connect to."
             return
@@ -95,7 +95,7 @@ class SearchForm(SearchFormDesign):
 ###############################################################################
 
     def __get_search_criteria(self):
-        filterString = str(self.searchEdit.currentText())
+        filterString = unicode(self.searchEdit.currentText())
         filterPattern = re.compile("\(\w*=")
         tmpList = filterPattern.findall(filterString)
         endList = []

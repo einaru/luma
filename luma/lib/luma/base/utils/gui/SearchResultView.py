@@ -49,7 +49,7 @@ class SearchResultView(SearchResultViewDesign):
         while len(self.childsToClean) > 0:
             number = -1
             for x in range(0, len(self.childWidgets)):
-                name1 = str(self.childWidgets[x].name())
+                name1 = self.childWidgets[x].name()
                 name2 = self.childsToClean[0]
                 if name1 == name2:
                     number = x
@@ -57,8 +57,8 @@ class SearchResultView(SearchResultViewDesign):
                 del self.childWidgets[number]
                 del self.childsToClean[0]
 
-        widget = ObjectWidget(None, str(listItem.text(0)), 0)
-        values = [self.RESULT[str(listItem.text(0))]]
+        widget = ObjectWidget(None, unicode(listItem.text(0)).encode('utf-8'), 0)
+        values = [self.RESULT[unicode(listItem.text(0)).encode('utf-8')]]
         #print values
         widget.init_view(self.SERVER, values)
         widget.setMinimumHeight(500)
@@ -101,13 +101,13 @@ class SearchResultView(SearchResultViewDesign):
             self.FILTER_COLUMN_POS[x] = position
         for x in self.RESULT.keys():
             listItem = QListViewItem(self.resultListView, x)
-            listItem.setText(0, x)
+            listItem.setText(0, x.decode('utf-8'))
             for y in self.RESULT[x][1].keys():
                 if (self.FILTER_COLUMN_POS.has_key(y)) and (not (y == 'dn')):
                     showString = ""
                     for z in self.RESULT[x][1][y]:
                         showString = showString + z + ", "
-                    listItem.setText(self.FILTER_COLUMN_POS[y], showString[:-2])
+                    listItem.setText(self.FILTER_COLUMN_POS[y], showString[:-2].decode('utf-8'))
             self.resultListView.insertItem(listItem)
         self.resultListView.setColumnWidth(0, 250)
         self.resultListView.triggerUpdate()
@@ -117,7 +117,7 @@ class SearchResultView(SearchResultViewDesign):
 
     def eventFilter(self, object, event):
         if (event.type() == QEvent.Close):
-            name = str(object.name())
+            name = object.name()
             self.childsToClean.append(name)
         return 0
 
@@ -153,13 +153,13 @@ class SearchResultView(SearchResultViewDesign):
                 # keep UI responsive
                 environment.update_ui()
                 
-                ldapServerObject.delete_s(str(x.text(0)))
+                ldapServerObject.delete_s(unicode(x.text(0)))
                 
             if len(serverMeta.bindDN) > 0:
                 ldapServerObject.unbind()
         except ldap.LDAPError, e:
             print "Error during LDAP request"
-            print "Reason: " + str(e)
+            print "Reason: " + unicode(e)
         
         for x in itemList:
             self.resultListView.takeItem(x)
@@ -180,10 +180,10 @@ class SearchResultView(SearchResultViewDesign):
         itemList = self.get_selected_items()
         tmpList = []
         for x in itemList:
-            tmpList.append(self.RESULT[str(x.text(0))])
+            tmpList.append(self.RESULT[unicode(x.text(0))])
         exportString = self.convert_to_ldif(tmpList)
         
-        fileName = str(QFileDialog.getSaveFileName())
+        fileName = unicode(QFileDialog.getSaveFileName())
         if fileName == '':
             return
         try:
@@ -192,7 +192,7 @@ class SearchResultView(SearchResultViewDesign):
             fileHandler.close()
         except IOError, e:
             print "Could not save Data"
-            print "Reason: " + str(e)
+            print "Reason: " + unicode(e)
         
 ###############################################################################
 

@@ -21,6 +21,7 @@ import environment
 from base.utils.backend.templateutils import *
 from base.utils.gui.TemplateObjectWidget import TemplateObjectWidget
 from base.backend.LumaConnection import LumaConnection
+#from base.utils import lumaStringDecode, lumaStringEncode
 
 class BrowserWidget(QListView):
     """ Widget for browsing ldap trees. 
@@ -135,7 +136,7 @@ class BrowserWidget(QListView):
             item.setExpandable(0)
             return None
         for x in results:
-            tmp = x[0]
+            tmp = x[0].decode('utf-8')
             tmp = string.split(tmp, ",")
             tmpItem = QListViewItem(item, tmp[0])
             tmpItem.setExpandable(1)
@@ -162,10 +163,10 @@ class BrowserWidget(QListView):
         """
         
         try:
-            fullPath = str(item.text(0))
+            fullPath = unicode(item.text(0)).encode('utf-8')
             while item.parent():
                 item = item.parent()
-                fullPath = fullPath + "," + str(item.text(0))
+                fullPath = fullPath + "," + unicode(item.text(0)).encode('utf-8')
             return fullPath
         except AttributeError:
             pass
@@ -183,7 +184,7 @@ class BrowserWidget(QListView):
         serverMeta = self.serverListObject.get_serverobject(serverName)
         
         conObject = LumaConnection(serverMeta)
-        searchResult = conObject.search_s(ldapObject, ldap.SCOPE_BASE)
+        searchResult = conObject.search_s(ldapObject.encode('utf-8'), ldap.SCOPE_BASE)
         if searchResult == None:
             QMessageBox.critical(None,
                 self.trUtf8("Error"),
@@ -236,7 +237,7 @@ See console output for more information."""),
         else:
             searchLevel = ldap.SCOPE_ONELEVEL
                 
-        searchResult = conObject.search(ldapObject, searchLevel,self.searchObjectClass, None, 0)
+        searchResult = conObject.search(ldapObject.encode('utf-8'), searchLevel,self.searchObjectClass, None, 0)
 
         return searchResult
         
@@ -361,7 +362,7 @@ See console output for more information."""),
         """
         
         if not (len(data) == 0):
-            fileName = str(QFileDialog.getSaveFileName())
+            fileName = unicode(QFileDialog.getSaveFileName())
             if fileName == '':
                 return
             try:
@@ -370,7 +371,7 @@ See console output for more information."""),
                 fileHandler.close()
             except IOError, e:
                 print "Could not save Data"
-                print "Reason: " + str(e)
+                print "Reason: " + unicode(e)
 
 ###############################################################################
 
@@ -406,7 +407,7 @@ See console output for more information."""),
         chosen.
         """
         
-        templateName = str(self.addItemMenu.text(id))
+        templateName = unicode(self.addItemMenu.text(id))
         
         tFile = TemplateFile()
         template = tFile.get_templateobject(templateName)
@@ -497,7 +498,7 @@ See console output for more information."""),
                 ldapServerObject.unbind()
         except ldap.LDAPError, e:
             print "Error during LDAP request"
-            print "Reason: " + str(e)
+            print "Reason: " + unicode(e)
             QMessageBox.critical(None,
                 self.trUtf8("Error "),
                 self.trUtf8("""Delete operation was not succesful.

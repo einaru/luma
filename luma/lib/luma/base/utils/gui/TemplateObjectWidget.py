@@ -279,7 +279,7 @@ class TemplateObjectWidget(QWidget):
         self.SERVER = copy.copy(tmpList[-1])
         
         #reconstruct the dn without server
-        self.DN = ','.join(tmpList[:-1])
+        self.DN = ','.join(tmpList[:-1]).decode('utf-8')
         
         self.template = template
         self.convert_values(copy.deepcopy(template))

@@ -19,6 +19,7 @@ from base.backend.ServerList import ServerList
 import environment
 from base.utils.backend.ObjectClassAttributeInfo import ObjectClassAttributeInfo
 
+
 class ObjectWidget(QWidget):
     def __init__(self,parent = None,name = None,fl = 0):
         QWidget.__init__(self,parent,name,fl)
@@ -81,7 +82,7 @@ class ObjectWidget(QWidget):
     def display_values(self):
         self.WIDGETLIST = []
         for x in  self.attributeWidget.children():
-            name = str(x.name())
+            name = unicode(x.name())
             if name[:4] == "LDAP":
                 x.deleteLater()
 
@@ -130,10 +131,10 @@ class ObjectWidget(QWidget):
     def apply_view(self):
         modListDict = {}
         for x in self.WIDGETLIST[2:]:
-            labelText = str(x[0].text())
+            labelText = unicode(x[0].text()).encode('utf-8')
             if (labelText[0:3] == "<b>"):
                 labelText = labelText[3:-4]
-            valueText = str(x[1].text())
+            valueText = unicode(x[1].text()).encode('utf-8')
             if not ((labelText in modListDict.keys()) and (valueText == '')):
                 if modListDict.has_key(labelText):
                     modListDict[labelText].append(valueText)
@@ -172,7 +173,7 @@ class ObjectWidget(QWidget):
             ldapServerObject.unbind()
         except ldap.LDAPError, e:
             print "Error during LDAP request"
-            print "Reason: " + str(e)
+            print "Reason: " + unicode(e)
         self.refresh_view()
 
 
@@ -197,7 +198,7 @@ class ObjectWidget(QWidget):
             self.display_values()
         except ldap.LDAPError, e:
             print "Error during LDAP request"
-            print "Reason: " + str(e)
+            print "Reason: " + unicode(e)
 
 ###############################################################################
 
@@ -224,7 +225,7 @@ class ObjectWidget(QWidget):
                 value.setAlignment(Qt.AlignLeft)
             else:
                 value = QLineEdit(self.attributeWidget, "LDAP_VALUE")
-                value.setText(valueList[x-offset])
+                value.setText(valueList[x-offset].decode('utf-8'))
                 value.setAlignment(Qt.AlignLeft)
                 if not editable:
                     value.setReadOnly(1)
@@ -283,6 +284,6 @@ class ObjectWidget(QWidget):
 
     def eventFilter(self, object, event):
         if (event.type() == QEvent.MouseButtonPress):
-            name = str(object.name())
+            name = unicode(object.name())
             self.CURRENTVALUES[name[5:]].append('')
         return 0
