@@ -31,10 +31,12 @@ class MassCreation(MassCreationDesign):
 
     def __init__(self,parent = None,name = None,fl = 0):
         MassCreationDesign.__init__(self,parent,name,fl)
+        
+        self.enableAutomount()
 
 ###############################################################################
 
-    def create_users(self):
+    def createUsers(self):
         if str(self.nodeEdit.text()) == "":
             QMessageBox.warning(None,
                 self.trUtf8("Incomplete Information"),
@@ -54,13 +56,13 @@ class MassCreation(MassCreationDesign):
         userCount = userMax - userMin + 1
         userPrefix = str(self.prefixEdit.text())
             
-        usedNumbers = self.get_used_uidNumbers()
+        usedNumbers = self.getUsedUidNumbers()
         
         uidNumMin = self.uidNumMinBox.value()
         uidNumMax = self.uidNumMaxBox.value()
         
         # list of free uidNumbers to use for our users
-        freeNumbers = self.get_uidNumbers(uidNumMin, uidNumMax, usedNumbers, userCount)
+        freeNumbers = self.getUidNumbers(uidNumMin, uidNumMax, usedNumbers, userCount)
         
         if freeNumbers == None:
             environment.setBusy(0)
@@ -82,10 +84,10 @@ Try increasing the uidNumber range or delete some users from the subtree."""),
             year = date.year()
             month = date.month()
             day = date.day()
-            shadowMax = dateHelper.date_to_unix(year, month, day)
+            shadowMax = dateHelper.dateToUnix(year, month, day)
         else:
             days = self.dayBox.value()
-            shadowMax = dateHelper.dateduration_to_unix(days)
+            shadowMax = dateHelper.datedurationToUnix(days)
             
         baseHomeDir = str(self.homeEdit.text())
         groupId = str(self.gidBox.value())
@@ -113,10 +115,11 @@ Try increasing the uidNumber range or delete some users from the subtree."""),
             userName = userPrefix + str(x)
             uidNumber = freeNumbers[0]
             del freeNumbers[0]
-            passwordClear, passwordCrypt = pwGenerator.get_random_password()
+            passwordClear, passwordCrypt = pwGenerator.getRandomPassword()
             homeDir = baseHomeDir + "/" + userName
             
             values = {}
+            # removed 'account' class
             values['objectClass'] =  ["account", 'posixAccount', 'shadowAccount']
             values['uid'] = [userName]
             values['uidNumber'] = [str(uidNumber)]
@@ -126,6 +129,8 @@ Try increasing the uidNumber range or delete some users from the subtree."""),
             values['shadowExpire'] = [str(shadowMax)]
             values['gidNumber'] = [groupId]
             values["homeDirectory"] = [homeDir]
+            
+            print values
             
             preProcess(serverMeta, values)
             
@@ -146,15 +151,24 @@ Please see console output for more information."""),
                     0, -1)
                     
             # create automount entry
-            dn = "cn=" + values["uid"][0] + ",ou=home,ou=automount," + serverMeta.baseDN
-            mountValues = {}
-            mountValues["objectClass"] = ["automount"]
-            mountValues["cn"] = [values["uid"][0]]
-            automountInfo = "-fstype=nfs,rw,quota,soft,intr ciphome.in.tu-clausthal.de:" + values["homeDirectory"][0]
-            mountValues["automountInformation"] = [automountInfo]
-            mountValues["description"] = ["Mountpoint des Homeverzeichnisses von " + values["cn"][0]]
-            modlist = ldap.modlist.addModlist(mountValues)
-            result = connectionObject.add(dn, modlist)
+            if self.enableNFSBox.isChecked():
+                tmpList = str(self.automountLocationEdit.text()).split(",")
+                del tmpList[-1]
+                automountDN = ",".join(tmpList)
+        
+                dn = "cn=" + values["uid"][0] + "," + automountDN
+                mountValues = {}
+                mountValues["objectClass"] = ["automount"]
+                mountValues["cn"] = [values["uid"][0]]
+                automountServer = str(self.nfsServerEdit.text())
+                automountOptions = str(self.nfsArgumentsEdit.text())
+                automountInfo = automountOptions + " " + automountServer + ":" + values["homeDirectory"][0]
+                #automountInfo = "-fstype=nfs,rw,quota,soft,intr ciphome.in.tu-clausthal.de:" + values["homeDirectory"][0]
+                mountValues["automountInformation"] = [automountInfo]
+                mountValues["description"] = ["Mountpoint of the home directory from user " + values["cn"][0]]
+                print mountValues
+                modlist = ldap.modlist.addModlist(mountValues)
+                result = connectionObject.add(dn, modlist)
             
             postProcess(serverMeta, values)
         
@@ -174,7 +188,7 @@ Please see console output for more information."""),
 
 ###############################################################################
             
-    def browse_server(self):
+    def browseServer(self):
         dialog = BrowserDialog(self)
         if dialog.result() == QDialog.Accepted:
             self.nodeEdit.setText(dialog.getItemPath())
@@ -182,7 +196,7 @@ Please see console output for more information."""),
 
 ###############################################################################
 
-    def get_used_uidNumbers(self):
+    def getUsedUidNumbers(self):
         baseString = str(self.nodeEdit.text())
         tmpList = baseString.split(',')
         serverName = tmpList[-1]
@@ -239,7 +253,7 @@ Please see console output for more information."""),
     
 ###############################################################################
 
-    def get_uidNumbers(self, uidNumMin, uidNumMax, usedNumbers, userCount):
+    def getUidNumbers(self, uidNumMin, uidNumMax, usedNumbers, userCount):
         tmpList = []
         for x in range(uidNumMin, uidNumMax + 1):
             if len(tmpList) == userCount:
@@ -274,22 +288,23 @@ Please see console output for more information."""),
                 None,
                 None,
                 0, -1)
-
+    
 ###############################################################################
 
-    def showHelp(self):
-        dialog = PluginInformation(self)
+    def enableAutomount(self):
+        state = self.enableNFSBox.isChecked()
         
-        # set icon
-        if not(self.pluginIcon == None):
-            dialog.iconLabel.setPixmap(self.pluginIcon)
-            
-        # read plugin description
-        if not(self.pluginHelpText == None):
-            dialog.informationEdit.setText(self.pluginHelpText)
+        self.nfsServerEdit.setEnabled(state)
+        self.nfsArgumentsEdit.setEnabled(state)
+        self.automountLocationEdit.setEnabled(state)
+        self.browseAutomountButton.setEnabled(state)
+        
+###############################################################################
 
-        dialog.show()
-    
+    def browseAutomount(self):
+        dialog = BrowserDialog(self)
+        if dialog.result() == QDialog.Accepted:
+            self.automountLocationEdit.setText(dialog.getItemPath())
     
     
     

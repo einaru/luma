@@ -2,8 +2,8 @@
 
 # Form implementation generated from reading ui file '/home/wido/src/luma/lib/luma/plugins/mass_creation_plugin/MassCreationDesign.ui'
 #
-# Created: Sun Aug 29 00:49:09 2004
-#      by: The PyQt User Interface Compiler (pyuic) 3.12
+# Created: Mon Oct 18 00:47:54 2004
+#      by: The PyQt User Interface Compiler (pyuic) 3.13
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -13,91 +13,43 @@ from qt import *
 
 image0_data = \
     "\x89\x50\x4e\x47\x0d\x0a\x1a\x0a\x00\x00\x00\x0d" \
-    "\x49\x48\x44\x52\x00\x00\x00\x16\x00\x00\x00\x16" \
-    "\x08\x06\x00\x00\x00\xc4\xb4\x6c\x3b\x00\x00\x03" \
-    "\xc5\x49\x44\x41\x54\x78\x9c\xb5\x95\x4b\x68\x9c" \
-    "\x55\x14\xc7\x7f\xdf\x37\xdf\x34\x93\x36\xaf\x46" \
-    "\xd3\xb4\xd6\x36\xd1\x62\x15\x69\x2b\x05\x4b\x4b" \
-    "\x35\x45\x24\x5d\xf8\x40\x6b\x11\xa4\xae\x14\x17" \
-    "\xe2\x03\x97\x5d\xf8\x5c\x08\xee\x54\x2a\x08\x6e" \
-    "\x94\x2e\x44\x41\xc4\x17\x48\x91\xa6\xd6\x5a\x99" \
-    "\xda\x60\xa9\x8f\x56\x65\x8c\xa5\xd3\x34\x69\x92" \
-    "\x79\x64\x26\x33\xf3\x3d\xee\xe3\x5c\x17\x13\x9b" \
-    "\x0e\x11\x45\x25\x17\x2e\xf7\xc0\xe5\xfc\xee\xb9" \
-    "\xe7\xfe\xcf\xb9\x5e\x36\x9b\x65\x29\x86\xbf\x24" \
-    "\x54\x20\xf8\xb7\x0e\x9f\x1e\x4e\x39\x31\x8e\xf4" \
-    "\x32\x9f\x5a\x4d\xb3\x6f\x8f\xe7\xfd\x6f\xf0\x67" \
-    "\x23\x29\xd7\xdb\x9d\xe1\xbe\xbb\x37\x90\x4e\xfb" \
-    "\xbc\xf6\xe6\x29\x20\xf5\xdf\x23\x3e\x74\x34\x70" \
-    "\x56\x60\xf7\xae\xf5\xec\xd8\xd6\x4f\xa3\x61\x48" \
-    "\xa7\x7d\x36\xdf\xdc\xcf\xdb\xef\x4f\xb9\xc7\xf6" \
-    "\x05\x8b\xa2\xf6\x06\x1e\xfd\xc5\xed\xb9\x63\x15" \
-    "\x22\xa0\x2c\x68\x23\x28\x03\x1f\x1e\x9a\xe0\xcb" \
-    "\xe7\x42\xef\x8b\xaf\xd3\x6e\xf0\xda\x1e\x76\xdf" \
-    "\x39\x40\x77\x67\x1a\x63\x1c\x5a\x5b\x8c\x71\x64" \
-    "\x32\x29\x9e\x7f\xe5\x24\xd5\xb9\x84\xa7\x1e\x69" \
-    "\x6b\x81\x7b\x43\xfb\xcf\xb9\xd7\x5f\xba\x0e\x65" \
-    "\x20\xb6\xa0\x0c\x24\x1a\x26\xc6\x22\xf2\x27\x72" \
-    "\xec\x1d\x5e\xc7\xad\x5b\x7b\xd1\x1a\x94\x02\x6b" \
-    "\x17\xc0\xce\x39\x7e\x1f\xaf\xf3\xf2\x1b\x3f\x72" \
-    "\xf8\x8c\x47\xf6\xad\x65\x97\xe1\x81\x73\xae\xe5" \
-    "\x0a\x46\xc1\xe4\xe8\x04\x9d\x26\xe6\xc5\x67\x6e" \
-    "\x61\x79\x3b\x58\xfb\xd7\x29\x12\x71\x6c\xda\xd8" \
-    "\xc3\xd0\xd6\x5e\x44\x4a\xad\x39\xb6\xb2\x00\xae" \
-    "\x5c\x88\x98\x38\x75\x9e\x7b\x87\x07\x19\x5c\xdf" \
-    "\xfe\xb7\x79\x9f\xad\x1b\x0e\x7c\x32\x0d\xce\xa1" \
-    "\xf5\x0a\x72\xe5\x59\x76\x3e\xa1\x1d\x22\xe0\x1c" \
-    "\xc1\x95\xd1\xcc\x4d\xcd\xb1\x73\xdb\x9a\x7f\x84" \
-    "\x56\x1a\xc2\x3d\x2f\xe4\x18\xbe\xfd\x1a\xae\x5f" \
-    "\xd7\x81\x08\x0c\xde\xb8\x9a\x5a\xc3\xa2\x0d\x1c" \
-    "\x78\xf5\x3b\x02\x2b\x0b\x0e\xfe\xda\x55\x3c\xfb" \
-    "\xce\x19\xb6\x6f\x13\x9c\x05\x2b\x16\x6b\x05\x31" \
-    "\x0e\xb1\x0e\x33\x6f\x7f\xfe\x6d\x99\x07\xef\x1a" \
-    "\x60\x59\x5f\x0f\xc7\xf2\x20\x02\x6d\x19\xf8\xe1" \
-    "\x74\x95\xf1\x23\x63\x8b\x53\xf1\xf1\x48\x81\xc1" \
-    "\x1b\xfa\xd8\xb2\x36\x60\xe5\xd5\xcb\x09\xc5\x11" \
-    "\x29\x47\xa4\x20\x8c\x1d\xa1\x16\xe2\x18\x1e\xdf" \
-    "\xb8\x9a\x24\x1d\x30\x7a\xae\x09\xf5\x7c\x28\xe5" \
-    "\x23\x66\x4e\x9c\x07\xa9\x83\xe7\x5a\xc1\x23\xc7" \
-    "\x67\xc8\xbd\xbb\x89\xd2\x8c\xa6\xfb\xaa\x00\xe9" \
-    "\x80\x42\x0d\x8a\x35\xc8\x5f\x82\xfa\x2c\x14\x13" \
-    "\x28\xce\x40\xb9\x62\x29\x16\x12\xc2\x52\x9d\x4b" \
-    "\x67\x67\xa8\x4c\x36\x20\xf6\xa0\xd3\x82\xef\x08" \
-    "\x8c\x69\x42\x8f\x8e\x46\x0c\x6d\xee\xa2\x3d\x03" \
-    "\xe9\x55\x69\x4e\xe7\xe6\xe8\x5b\xdf\x45\xee\x22" \
-    "\x8c\xe5\x61\xaa\x60\x28\x14\x2d\xd3\x45\x43\xa1" \
-    "\x68\x08\x2b\x11\x51\xa5\x41\x65\x72\x16\xa7\x1c" \
-    "\x84\x40\x60\x01\x4b\xf6\x60\x87\x17\xc8\xbc\xdc" \
-    "\x8e\x9d\x2c\xb3\xf7\xb6\x5e\x1a\x02\xd3\x09\xcc" \
-    "\xf8\x5d\xfc\xfa\xbd\x45\x5c\x8a\x30\x76\x28\x05" \
-    "\xb1\x12\x12\xe5\x88\x13\xa1\x58\x08\xd1\xa1\x86" \
-    "\x15\x2b\xc0\x26\x40\x02\x29\x05\xae\xf9\x68\xbe" \
-    "\x58\x61\xae\x01\x3f\xfd\x5c\xe1\xa1\xe1\x0e\x72" \
-    "\x65\xb8\x58\x86\x18\x28\xd7\x84\x6a\x5d\x48\xb4" \
-    "\x23\x56\x0e\xa5\xa1\x52\xd5\x4c\x4d\x85\xd8\xa0" \
-    "\x0d\x3f\xd3\xd6\x2a\x97\x94\x01\x7b\x59\xc7\x30" \
-    "\x72\xa2\xc6\xae\x2d\xdd\x4c\xd5\xa1\x23\x80\x35" \
-    "\x19\xe8\xb0\xd0\xb5\x26\xa0\x5a\x56\x98\xc0\xa3" \
-    "\x57\x0c\x5d\x3a\xa6\xb3\x5f\xb1\xa1\x27\x85\x24" \
-    "\x09\x12\x26\x98\x44\x13\x85\x86\x42\x49\xc8\x8f" \
-    "\x6b\xb2\xef\x75\x7b\x00\x81\xb1\x8e\xaf\xb2\x25" \
-    "\xf6\x3f\xd0\xcf\x4d\x9d\xf3\x27\xaf\x04\xad\x21" \
-    "\x8e\x1d\x5a\xfb\x24\x89\x21\x49\x2c\x4a\xf9\x28" \
-    "\x15\x10\xc7\x06\xad\x03\xe2\xb8\x1d\xa5\xd2\x28" \
-    "\x95\xe1\xa3\xe3\x55\x0e\x5e\x58\x10\x82\xdf\x08" \
-    "\x0d\xe7\xf3\x35\xee\xdf\xde\x5a\x14\xbe\x0f\x41" \
-    "\xe0\x93\x4a\x79\xf8\xbe\x3f\x6f\xfb\x97\x6d\xdf" \
-    "\x6f\xee\xfd\x69\x7f\x73\x36\x82\x2b\x14\x16\x94" \
-    "\x26\x1b\x3c\xf9\xf0\xc0\xa2\xea\x4a\xa5\x9a\xd3" \
-    "\xe1\x10\x31\x24\x4a\x13\xc5\x09\x51\xa4\x09\x43" \
-    "\x45\x9c\x24\xc4\x91\x46\x6b\x21\xd1\x86\xb1\xdf" \
-    "\x42\xb2\x1f\xac\x5c\x68\x42\xf8\x1e\x47\x4e\x95" \
-    "\xd9\xf1\x74\x15\x27\xcd\x52\x47\x1c\x22\x82\xb5" \
-    "\x82\xd5\x82\x31\x06\x6b\x04\x6b\x0c\xc6\x58\x8c" \
-    "\xb6\x88\x91\xe6\x2a\x96\x46\xe8\x20\x6c\x6d\x66" \
-    "\xde\x52\x7d\xa6\x7f\x00\xba\xf7\x3c\x74\xbf\xb0" \
-    "\xe0\xa8\x00\x00\x00\x00\x49\x45\x4e\x44\xae\x42" \
-    "\x60\x82"
+    "\x49\x48\x44\x52\x00\x00\x00\x10\x00\x00\x00\x10" \
+    "\x08\x06\x00\x00\x00\x1f\xf3\xff\x61\x00\x00\x01" \
+    "\x8e\x49\x44\x41\x54\x38\x8d\x95\x93\x3f\x4b\x1c" \
+    "\x51\x14\xc5\x7f\x77\x33\x96\xe2\x07\x90\x94\x62" \
+    "\x67\xd4\xc2\xef\x20\x49\x13\x05\x0b\x0b\x21\x85" \
+    "\x88\x85\xa8\x20\x82\xb0\x04\x02\x2a\x04\x44\x12" \
+    "\x2c\x6c\xfc\x0a\x82\x5b\xd9\xa4\xb1\x14\x82\xa2" \
+    "\xec\x6e\x63\x67\x48\x61\xa1\x2b\x2e\xb3\x6f\xfe" \
+    "\xbd\xbd\x16\x6f\x66\x67\x75\xd8\x15\x0f\x0c\x97" \
+    "\xfb\xee\xdc\x73\xcf\x3d\x33\x4f\x48\x31\xb9\x71" \
+    "\xa3\x28\x08\xa0\x22\x80\x02\x70\xb1\x37\x22\xbc" \
+    "\x85\x89\xb5\xba\xfa\xb1\x55\x3f\xb4\x79\x4c\x9f" \
+    "\x89\xb5\xba\xf6\xeb\xf5\xc6\x57\xae\xf5\x74\x67" \
+    "\x94\x66\x94\x9e\xa4\xc3\x33\x0d\x63\x83\x37\xb0" \
+    "\x72\xa5\x2a\x20\x08\x8a\x76\xea\x97\x07\x9f\xc4" \
+    "\xc3\x46\x34\xe3\x22\xb3\xb6\x41\x4a\x50\x5e\xff" \
+    "\xe2\x72\x5c\x4e\x1b\x28\xb9\x7c\xce\xfe\x55\x4f" \
+    "\x93\x88\xc7\xa0\x8f\x46\x81\xf9\xcd\x6a\x8f\xe2" \
+    "\x00\x9e\xda\x88\x87\x54\xfe\x07\xc0\x66\x51\x5d" \
+    "\x5c\xfe\x5e\x65\x6b\xe9\x23\x0b\x53\x43\x2f\x5a" \
+    "\x4f\x6a\xb0\xb5\x5f\xc5\xd3\xb6\x75\x0a\x04\xca" \
+    "\xdb\xc5\x49\xdf\xe6\x87\x59\x98\x1a\xe2\xd7\x19" \
+    "\xd8\xec\x7b\x74\xd9\xea\xa9\x8d\x79\x0c\xe1\xe7" \
+    "\xee\x05\xd3\x5f\x27\xf9\x3d\x53\x14\xba\x7a\x4c" \
+    "\xee\x6a\x17\x6c\x14\xe3\x69\x12\xd2\x08\xc0\x86" \
+    "\x11\xff\x1f\x60\xf6\x28\x9f\x22\x52\xe8\xc9\x79" \
+    "\x14\x92\x30\x74\x2b\x3c\x85\x60\x4d\xc0\x5d\x23" \
+    "\x7d\x23\x93\xd9\x3d\xb5\xfb\x77\x4a\x6b\xd6\x04" \
+    "\xce\xc4\x66\x04\x89\x09\x68\xf8\x3d\x9a\x5f\x1d" \
+    "\x65\x5c\xb6\x15\x38\x0f\xfc\x10\x62\xe3\x53\xfb" \
+    "\x51\xdc\xbf\x17\x2a\x95\x73\x16\xff\x18\x4a\xb4" \
+    "\x93\x0e\xdb\x7b\x61\x5b\x2d\x3c\xb5\x09\xf7\x06" \
+    "\xe2\xc0\x50\xa9\x9c\xbf\x8b\x20\x09\x8c\x5b\x67" \
+    "\xf4\xf3\xa1\xde\x5e\x47\x79\x45\xe0\xc5\xd6\x2a" \
+    "\x20\xaf\xdc\x54\x30\xff\x56\x45\x54\xfb\x5e\xb6" \
+    "\x37\xf1\x0c\xc3\x88\xd2\x50\xff\x19\x2d\xeb\x00" \
+    "\x00\x00\x00\x49\x45\x4e\x44\xae\x42\x60\x82"
 
 class MassCreationDesign(QWidget):
     def __init__(self,parent = None,name = None,fl = 0):
@@ -110,258 +62,302 @@ class MassCreationDesign(QWidget):
 
 
         MassCreationDesignLayout = QGridLayout(self,1,1,11,6,"MassCreationDesignLayout")
+        spacer4_2 = QSpacerItem(130,21,QSizePolicy.Expanding,QSizePolicy.Minimum)
+        MassCreationDesignLayout.addItem(spacer4_2,1,0)
+
+        self.createButton = QPushButton(self,"createButton")
+
+        MassCreationDesignLayout.addWidget(self.createButton,1,1)
 
         self.tabWidget2 = QTabWidget(self,"tabWidget2")
 
         self.tab = QWidget(self.tabWidget2,"tab")
-        tabLayout = QVBoxLayout(self.tab,11,6,"tabLayout")
+        tabLayout = QGridLayout(self.tab,1,1,11,6,"tabLayout")
 
-        self.groupBox1 = QGroupBox(self.tab,"groupBox1")
-        self.groupBox1.setFrameShape(QGroupBox.GroupBoxPanel)
-        self.groupBox1.setFrameShadow(QGroupBox.Sunken)
-        self.groupBox1.setColumnLayout(0,Qt.Vertical)
-        self.groupBox1.layout().setSpacing(6)
-        self.groupBox1.layout().setMargin(11)
-        groupBox1Layout = QGridLayout(self.groupBox1.layout())
-        groupBox1Layout.setAlignment(Qt.AlignTop)
+        self.textLabel2_3 = QLabel(self.tab,"textLabel2_3")
 
-        self.textLabel2 = QLabel(self.groupBox1,"textLabel2")
+        tabLayout.addMultiCellWidget(self.textLabel2_3,0,0,0,3)
+        spacer5 = QSpacerItem(16,21,QSizePolicy.Fixed,QSizePolicy.Minimum)
+        tabLayout.addItem(spacer5,1,0)
 
-        groupBox1Layout.addWidget(self.textLabel2,1,1)
+        self.textLabel5_2 = QLabel(self.tab,"textLabel5_2")
 
-        self.prefixMinBox = QSpinBox(self.groupBox1,"prefixMinBox")
-        self.prefixMinBox.setMaxValue(65535)
+        tabLayout.addMultiCellWidget(self.textLabel5_2,3,3,0,3)
+        spacer9 = QSpacerItem(16,21,QSizePolicy.Fixed,QSizePolicy.Minimum)
+        tabLayout.addItem(spacer9,4,0)
+        spacer8 = QSpacerItem(16,21,QSizePolicy.Fixed,QSizePolicy.Minimum)
+        tabLayout.addItem(spacer8,6,0)
 
-        groupBox1Layout.addWidget(self.prefixMinBox,1,2)
+        self.textLabel4_2 = QLabel(self.tab,"textLabel4_2")
 
-        self.prefixMaxBox = QSpinBox(self.groupBox1,"prefixMaxBox")
+        tabLayout.addMultiCellWidget(self.textLabel4_2,5,5,0,5)
+
+        self.textLabel7 = QLabel(self.tab,"textLabel7")
+        self.textLabel7.setSizePolicy(QSizePolicy(4,5,0,0,self.textLabel7.sizePolicy().hasHeightForWidth()))
+
+        tabLayout.addWidget(self.textLabel7,8,1)
+
+        self.textLabel6 = QLabel(self.tab,"textLabel6")
+        self.textLabel6.setSizePolicy(QSizePolicy(4,5,0,0,self.textLabel6.sizePolicy().hasHeightForWidth()))
+
+        tabLayout.addWidget(self.textLabel6,7,1)
+
+        self.homeEdit = QLineEdit(self.tab,"homeEdit")
+
+        tabLayout.addMultiCellWidget(self.homeEdit,6,6,2,6)
+
+        self.gidBox = QSpinBox(self.tab,"gidBox")
+        self.gidBox.setMaxValue(65535)
+        self.gidBox.setValue(100)
+
+        tabLayout.addMultiCellWidget(self.gidBox,7,7,2,5)
+
+        self.shellEdit = QLineEdit(self.tab,"shellEdit")
+
+        tabLayout.addMultiCellWidget(self.shellEdit,8,8,2,6)
+
+        self.browseGroupButton = QPushButton(self.tab,"browseGroupButton")
+        self.browseGroupButton.setSizePolicy(QSizePolicy(4,5,0,0,self.browseGroupButton.sizePolicy().hasHeightForWidth()))
+        self.browseGroupButton.setPixmap(self.image0)
+
+        tabLayout.addWidget(self.browseGroupButton,7,6)
+
+        self.textLabel5 = QLabel(self.tab,"textLabel5")
+        self.textLabel5.setSizePolicy(QSizePolicy(4,5,0,0,self.textLabel5.sizePolicy().hasHeightForWidth()))
+
+        tabLayout.addWidget(self.textLabel5,6,1)
+
+        self.textLabel2 = QLabel(self.tab,"textLabel2")
+        self.textLabel2.setSizePolicy(QSizePolicy(4,5,0,0,self.textLabel2.sizePolicy().hasHeightForWidth()))
+
+        tabLayout.addWidget(self.textLabel2,2,1)
+
+        self.textLabel1 = QLabel(self.tab,"textLabel1")
+        self.textLabel1.setSizePolicy(QSizePolicy(4,5,0,0,self.textLabel1.sizePolicy().hasHeightForWidth()))
+
+        tabLayout.addWidget(self.textLabel1,1,1)
+
+        self.textLabel2_2 = QLabel(self.tab,"textLabel2_2")
+        self.textLabel2_2.setSizePolicy(QSizePolicy(4,5,0,0,self.textLabel2_2.sizePolicy().hasHeightForWidth()))
+
+        tabLayout.addWidget(self.textLabel2_2,4,1)
+
+        self.uidNumMaxBox = QSpinBox(self.tab,"uidNumMaxBox")
+        self.uidNumMaxBox.setMaxValue(65535)
+        self.uidNumMaxBox.setValue(65535)
+
+        tabLayout.addMultiCellWidget(self.uidNumMaxBox,4,4,5,6)
+
+        self.prefixMaxBox = QSpinBox(self.tab,"prefixMaxBox")
         self.prefixMaxBox.setMaxValue(65535)
 
-        groupBox1Layout.addWidget(self.prefixMaxBox,1,5)
+        tabLayout.addMultiCellWidget(self.prefixMaxBox,2,2,5,6)
 
-        self.textLabel3 = QLabel(self.groupBox1,"textLabel3")
-
-        groupBox1Layout.addWidget(self.textLabel3,1,4)
-        spacer1 = QSpacerItem(51,21,QSizePolicy.Expanding,QSizePolicy.Minimum)
-        groupBox1Layout.addItem(spacer1,1,3)
-
-        self.prefixEdit = QLineEdit(self.groupBox1,"prefixEdit")
-
-        groupBox1Layout.addMultiCellWidget(self.prefixEdit,0,0,1,5)
-
-        self.textLabel1 = QLabel(self.groupBox1,"textLabel1")
-
-        groupBox1Layout.addWidget(self.textLabel1,0,0)
-        tabLayout.addWidget(self.groupBox1)
-
-        self.groupBox5 = QGroupBox(self.tab,"groupBox5")
-        self.groupBox5.setColumnLayout(0,Qt.Vertical)
-        self.groupBox5.layout().setSpacing(6)
-        self.groupBox5.layout().setMargin(11)
-        groupBox5Layout = QGridLayout(self.groupBox5.layout())
-        groupBox5Layout.setAlignment(Qt.AlignTop)
-
-        self.textLabel4 = QLabel(self.groupBox5,"textLabel4")
-
-        groupBox5Layout.addWidget(self.textLabel4,0,0)
-
-        self.nodeEdit = QLineEdit(self.groupBox5,"nodeEdit")
-
-        groupBox5Layout.addWidget(self.nodeEdit,0,1)
-
-        self.browseButton = QPushButton(self.groupBox5,"browseButton")
-        self.browseButton.setPixmap(self.image0)
-
-        groupBox5Layout.addWidget(self.browseButton,0,2)
-        tabLayout.addWidget(self.groupBox5)
-        spacer2 = QSpacerItem(21,131,QSizePolicy.Minimum,QSizePolicy.Expanding)
-        tabLayout.addItem(spacer2)
-        self.tabWidget2.insertTab(self.tab,QString(""))
-
-        self.tab_2 = QWidget(self.tabWidget2,"tab_2")
-        tabLayout_2 = QVBoxLayout(self.tab_2,11,6,"tabLayout_2")
-
-        self.groupBox3 = QGroupBox(self.tab_2,"groupBox3")
-        self.groupBox3.setColumnLayout(0,Qt.Vertical)
-        self.groupBox3.layout().setSpacing(6)
-        self.groupBox3.layout().setMargin(11)
-        groupBox3Layout = QGridLayout(self.groupBox3.layout())
-        groupBox3Layout.setAlignment(Qt.AlignTop)
-
-        self.dateButton = QRadioButton(self.groupBox3,"dateButton")
+        self.dateButton = QRadioButton(self.tab,"dateButton")
         self.dateButton.setSizePolicy(QSizePolicy(4,0,0,0,self.dateButton.sizePolicy().hasHeightForWidth()))
         self.dateButton.setChecked(0)
 
-        groupBox3Layout.addWidget(self.dateButton,0,0)
+        tabLayout.addWidget(self.dateButton,10,1)
 
-        self.radioButton2 = QRadioButton(self.groupBox3,"radioButton2")
-        self.radioButton2.setSizePolicy(QSizePolicy(4,0,0,0,self.radioButton2.sizePolicy().hasHeightForWidth()))
-        self.radioButton2.setChecked(1)
+        self.daysButton = QRadioButton(self.tab,"daysButton")
+        self.daysButton.setSizePolicy(QSizePolicy(4,0,0,0,self.daysButton.sizePolicy().hasHeightForWidth()))
+        self.daysButton.setChecked(1)
 
-        groupBox3Layout.addWidget(self.radioButton2,1,0)
+        tabLayout.addMultiCellWidget(self.daysButton,11,11,1,2)
+        spacer7 = QSpacerItem(16,21,QSizePolicy.Fixed,QSizePolicy.Minimum)
+        tabLayout.addItem(spacer7,10,0)
 
-        self.dateEdit = QDateEdit(self.groupBox3,"dateEdit")
+        self.textLabel3_3 = QLabel(self.tab,"textLabel3_3")
+
+        tabLayout.addMultiCellWidget(self.textLabel3_3,9,9,0,6)
+
+        self.dateEdit = QDateEdit(self.tab,"dateEdit")
         self.dateEdit.setEnabled(0)
 
-        groupBox3Layout.addWidget(self.dateEdit,0,1)
+        tabLayout.addMultiCellWidget(self.dateEdit,10,10,2,6)
 
-        self.dayBox = QSpinBox(self.groupBox3,"dayBox")
+        self.textLabel1_3 = QLabel(self.tab,"textLabel1_3")
+
+        tabLayout.addMultiCellWidget(self.textLabel1_3,12,12,0,5)
+        spacer6 = QSpacerItem(16,20,QSizePolicy.Fixed,QSizePolicy.Minimum)
+        tabLayout.addItem(spacer6,13,0)
+
+        self.browseButton = QPushButton(self.tab,"browseButton")
+        self.browseButton.setSizePolicy(QSizePolicy(1,5,0,0,self.browseButton.sizePolicy().hasHeightForWidth()))
+        self.browseButton.setPixmap(self.image0)
+
+        tabLayout.addWidget(self.browseButton,13,6)
+
+        self.nodeEdit = QLineEdit(self.tab,"nodeEdit")
+        self.nodeEdit.setReadOnly(1)
+
+        tabLayout.addMultiCellWidget(self.nodeEdit,13,13,2,5)
+
+        self.textLabel4 = QLabel(self.tab,"textLabel4")
+
+        tabLayout.addWidget(self.textLabel4,13,1)
+        spacer2 = QSpacerItem(21,16,QSizePolicy.Minimum,QSizePolicy.Expanding)
+        tabLayout.addItem(spacer2,14,3)
+
+        self.prefixEdit = QLineEdit(self.tab,"prefixEdit")
+
+        tabLayout.addMultiCellWidget(self.prefixEdit,1,1,2,6)
+
+        self.uidNumMinBox = QSpinBox(self.tab,"uidNumMinBox")
+        self.uidNumMinBox.setMaxValue(65535)
+        self.uidNumMinBox.setValue(1000)
+
+        tabLayout.addMultiCellWidget(self.uidNumMinBox,4,4,2,3)
+
+        self.prefixMinBox = QSpinBox(self.tab,"prefixMinBox")
+        self.prefixMinBox.setMaxValue(65535)
+
+        tabLayout.addMultiCellWidget(self.prefixMinBox,2,2,2,3)
+
+        self.dayBox = QSpinBox(self.tab,"dayBox")
         self.dayBox.setEnabled(1)
         self.dayBox.setMaxValue(65535)
         self.dayBox.setValue(120)
 
-        groupBox3Layout.addWidget(self.dayBox,1,1)
-        tabLayout_2.addWidget(self.groupBox3)
+        tabLayout.addMultiCellWidget(self.dayBox,11,11,3,6)
 
-        self.groupBox4 = QGroupBox(self.tab_2,"groupBox4")
-        self.groupBox4.setColumnLayout(0,Qt.Vertical)
-        self.groupBox4.layout().setSpacing(6)
-        self.groupBox4.layout().setMargin(11)
-        groupBox4Layout = QGridLayout(self.groupBox4.layout())
-        groupBox4Layout.setAlignment(Qt.AlignTop)
-
-        self.homeEdit = QLineEdit(self.groupBox4,"homeEdit")
-
-        groupBox4Layout.addMultiCellWidget(self.homeEdit,0,0,1,2)
-
-        self.browseGroupButton = QPushButton(self.groupBox4,"browseGroupButton")
-        self.browseGroupButton.setSizePolicy(QSizePolicy(0,0,0,0,self.browseGroupButton.sizePolicy().hasHeightForWidth()))
-        self.browseGroupButton.setPixmap(self.image0)
-
-        groupBox4Layout.addWidget(self.browseGroupButton,1,2)
-
-        self.textLabel5 = QLabel(self.groupBox4,"textLabel5")
-
-        groupBox4Layout.addWidget(self.textLabel5,0,0)
-
-        self.textLabel6 = QLabel(self.groupBox4,"textLabel6")
-
-        groupBox4Layout.addWidget(self.textLabel6,1,0)
-
-        self.textLabel7 = QLabel(self.groupBox4,"textLabel7")
-
-        groupBox4Layout.addWidget(self.textLabel7,2,0)
-
-        self.gidBox = QSpinBox(self.groupBox4,"gidBox")
-        self.gidBox.setMaxValue(65535)
-        self.gidBox.setValue(100)
-
-        groupBox4Layout.addWidget(self.gidBox,1,1)
-
-        self.shellEdit = QLineEdit(self.groupBox4,"shellEdit")
-
-        groupBox4Layout.addMultiCellWidget(self.shellEdit,2,2,1,2)
-        tabLayout_2.addWidget(self.groupBox4)
-
-        self.groupBox2 = QGroupBox(self.tab_2,"groupBox2")
-        self.groupBox2.setColumnLayout(0,Qt.Vertical)
-        self.groupBox2.layout().setSpacing(6)
-        self.groupBox2.layout().setMargin(11)
-        groupBox2Layout = QGridLayout(self.groupBox2.layout())
-        groupBox2Layout.setAlignment(Qt.AlignTop)
-
-        self.textLabel2_2 = QLabel(self.groupBox2,"textLabel2_2")
-        self.textLabel2_2.setSizePolicy(QSizePolicy(4,5,0,0,self.textLabel2_2.sizePolicy().hasHeightForWidth()))
-
-        groupBox2Layout.addWidget(self.textLabel2_2,0,0)
-
-        self.uidNumMinBox = QSpinBox(self.groupBox2,"uidNumMinBox")
-        self.uidNumMinBox.setMaxValue(65535)
-        self.uidNumMinBox.setValue(1000)
-
-        groupBox2Layout.addWidget(self.uidNumMinBox,0,1)
-
-        self.textLabel3_2 = QLabel(self.groupBox2,"textLabel3_2")
+        self.textLabel3_2 = QLabel(self.tab,"textLabel3_2")
         self.textLabel3_2.setSizePolicy(QSizePolicy(4,5,0,0,self.textLabel3_2.sizePolicy().hasHeightForWidth()))
 
-        groupBox2Layout.addWidget(self.textLabel3_2,1,0)
+        tabLayout.addWidget(self.textLabel3_2,4,4)
 
-        self.uidNumMaxBox = QSpinBox(self.groupBox2,"uidNumMaxBox")
-        self.uidNumMaxBox.setMaxValue(65535)
-        self.uidNumMaxBox.setValue(65535)
+        self.textLabel3 = QLabel(self.tab,"textLabel3")
+        self.textLabel3.setSizePolicy(QSizePolicy(4,5,0,0,self.textLabel3.sizePolicy().hasHeightForWidth()))
 
-        groupBox2Layout.addWidget(self.uidNumMaxBox,1,1)
-        tabLayout_2.addWidget(self.groupBox2)
-        spacer4 = QSpacerItem(21,20,QSizePolicy.Minimum,QSizePolicy.Expanding)
-        tabLayout_2.addItem(spacer4)
+        tabLayout.addWidget(self.textLabel3,2,4)
+        self.tabWidget2.insertTab(self.tab,QString(""))
+
+        self.TabPage = QWidget(self.tabWidget2,"TabPage")
+        TabPageLayout = QGridLayout(self.TabPage,1,1,11,6,"TabPageLayout")
+
+        self.enableNFSBox = QCheckBox(self.TabPage,"enableNFSBox")
+
+        TabPageLayout.addMultiCellWidget(self.enableNFSBox,0,0,0,2)
+
+        self.textLabel1_4 = QLabel(self.TabPage,"textLabel1_4")
+
+        TabPageLayout.addMultiCellWidget(self.textLabel1_4,1,1,0,2)
+        spacer8_2 = QSpacerItem(16,21,QSizePolicy.Fixed,QSizePolicy.Minimum)
+        TabPageLayout.addItem(spacer8_2,2,0)
+
+        self.textLabel2_4 = QLabel(self.TabPage,"textLabel2_4")
+
+        TabPageLayout.addWidget(self.textLabel2_4,2,1)
+
+        self.textLabel3_4 = QLabel(self.TabPage,"textLabel3_4")
+
+        TabPageLayout.addWidget(self.textLabel3_4,3,1)
+
+        self.textLabel5_3 = QLabel(self.TabPage,"textLabel5_3")
+
+        TabPageLayout.addWidget(self.textLabel5_3,5,1)
+
+        self.automountLocationEdit = QLineEdit(self.TabPage,"automountLocationEdit")
+        self.automountLocationEdit.setReadOnly(1)
+
+        TabPageLayout.addWidget(self.automountLocationEdit,5,2)
+
+        self.browseAutomountButton = QPushButton(self.TabPage,"browseAutomountButton")
+        self.browseAutomountButton.setSizePolicy(QSizePolicy(4,5,0,0,self.browseAutomountButton.sizePolicy().hasHeightForWidth()))
+        self.browseAutomountButton.setPixmap(self.image0)
+
+        TabPageLayout.addWidget(self.browseAutomountButton,5,3)
+
+        self.nfsArgumentsEdit = QLineEdit(self.TabPage,"nfsArgumentsEdit")
+
+        TabPageLayout.addMultiCellWidget(self.nfsArgumentsEdit,3,3,2,3)
+
+        self.nfsServerEdit = QLineEdit(self.TabPage,"nfsServerEdit")
+
+        TabPageLayout.addMultiCellWidget(self.nfsServerEdit,2,2,2,3)
+        spacer10 = QSpacerItem(41,111,QSizePolicy.Minimum,QSizePolicy.Expanding)
+        TabPageLayout.addItem(spacer10,6,2)
+        self.tabWidget2.insertTab(self.TabPage,QString(""))
+
+        self.tab_2 = QWidget(self.tabWidget2,"tab_2")
+        tabLayout_2 = QVBoxLayout(self.tab_2,11,6,"tabLayout_2")
+
+        self.textLabel1_2 = QLabel(self.tab_2,"textLabel1_2")
+        tabLayout_2.addWidget(self.textLabel1_2)
+
+        self.passwordEdit = QTextEdit(self.tab_2,"passwordEdit")
+        tabLayout_2.addWidget(self.passwordEdit)
         self.tabWidget2.insertTab(self.tab_2,QString(""))
 
-        self.tab_3 = QWidget(self.tabWidget2,"tab_3")
-        tabLayout_3 = QVBoxLayout(self.tab_3,11,6,"tabLayout_3")
-
-        self.textLabel1_2 = QLabel(self.tab_3,"textLabel1_2")
-        tabLayout_3.addWidget(self.textLabel1_2)
-
-        self.passwordEdit = QTextEdit(self.tab_3,"passwordEdit")
-        tabLayout_3.addWidget(self.passwordEdit)
-        self.tabWidget2.insertTab(self.tab_3,QString(""))
-
-        MassCreationDesignLayout.addMultiCellWidget(self.tabWidget2,0,0,0,2)
-
-        self.pushButton1 = QPushButton(self,"pushButton1")
-
-        MassCreationDesignLayout.addWidget(self.pushButton1,1,2)
-        spacer4_2 = QSpacerItem(130,21,QSizePolicy.Expanding,QSizePolicy.Minimum)
-        MassCreationDesignLayout.addItem(spacer4_2,1,1)
+        MassCreationDesignLayout.addMultiCellWidget(self.tabWidget2,0,0,0,1)
 
         self.languageChange()
 
-        self.resize(QSize(461,458).expandedTo(self.minimumSizeHint()))
+        self.resize(QSize(494,547).expandedTo(self.minimumSizeHint()))
         self.clearWState(Qt.WState_Polished)
 
-        self.connect(self.dateButton,SIGNAL("clicked()"),self.radioButton2,SLOT("toggle()"))
-        self.connect(self.radioButton2,SIGNAL("clicked()"),self.dateButton,SLOT("toggle()"))
-        self.connect(self.radioButton2,SIGNAL("toggled(bool)"),self.dateEdit,SLOT("setDisabled(bool)"))
-        self.connect(self.dateButton,SIGNAL("toggled(bool)"),self.dayBox,SLOT("setDisabled(bool)"))
-        self.connect(self.radioButton2,SIGNAL("toggled(bool)"),self.dayBox,SLOT("setEnabled(bool)"))
-        self.connect(self.dateButton,SIGNAL("toggled(bool)"),self.dateEdit,SLOT("setEnabled(bool)"))
-        self.connect(self.pushButton1,SIGNAL("clicked()"),self.create_users)
-        self.connect(self.browseButton,SIGNAL("clicked()"),self.browse_server)
+        self.connect(self.createButton,SIGNAL("clicked()"),self.createUsers)
+        self.connect(self.browseButton,SIGNAL("clicked()"),self.browseServer)
         self.connect(self.browseGroupButton,SIGNAL("clicked()"),self.browseGroups)
+        self.connect(self.enableNFSBox,SIGNAL("clicked()"),self.enableAutomount)
+        self.connect(self.browseAutomountButton,SIGNAL("clicked()"),self.browseAutomount)
 
 
     def languageChange(self):
         self.setCaption(self.__tr("MassCreationDesign"))
-        self.groupBox1.setTitle(self.__tr("Usernames"))
-        self.textLabel2.setText(self.__tr("Minimum:"))
-        self.textLabel3.setText(self.__tr("Maximum:"))
-        self.textLabel1.setText(self.__tr("Prefix:"))
-        self.groupBox5.setTitle(self.__tr("Directory Settings"))
-        self.textLabel4.setText(self.__tr("Base node:"))
-        self.browseButton.setText(QString.null)
-        self.tabWidget2.changeTab(self.tab,self.__tr("Basic"))
-        self.groupBox3.setTitle(self.__tr("Expiration date"))
-        self.dateButton.setText(self.__tr("Date"))
-        self.radioButton2.setText(self.__tr("Days from now"))
-        self.groupBox4.setTitle(self.__tr("Account settings"))
+        self.createButton.setText(self.__tr("&Create"))
+        self.createButton.setAccel(self.__tr("Alt+C"))
+        self.textLabel2_3.setText(self.__tr("<b>Usernames</b>"))
+        self.textLabel5_2.setText(self.__tr("<b>UID number range</b>"))
+        self.textLabel4_2.setText(self.__tr("<b>Account settings</b>"))
+        self.textLabel7.setText(self.__tr("Login shell:"))
+        self.textLabel6.setText(self.__tr("Group Id:"))
         self.homeEdit.setText(self.__tr("/home"))
+        self.shellEdit.setText(self.__tr("/bin/bash"))
         self.browseGroupButton.setText(QString.null)
         QToolTip.add(self.browseGroupButton,self.__tr("Select group from LDAP"))
         self.textLabel5.setText(self.__tr("Home prefix:"))
-        self.textLabel6.setText(self.__tr("Group Id:"))
-        self.textLabel7.setText(self.__tr("Login shell:"))
-        self.shellEdit.setText(self.__tr("/bin/bash"))
-        self.groupBox2.setTitle(self.__tr("Uid number range"))
+        self.textLabel2.setText(self.__tr("Minimum:"))
+        self.textLabel1.setText(self.__tr("Prefix:"))
         self.textLabel2_2.setText(self.__tr("Minimum:"))
+        self.dateButton.setText(self.__tr("Date"))
+        self.daysButton.setText(self.__tr("Days from now"))
+        self.textLabel3_3.setText(self.__tr("<b>Expiration date</b>"))
+        self.textLabel1_3.setText(self.__tr("<b>Directory location</b>"))
+        self.browseButton.setText(QString.null)
+        self.textLabel4.setText(self.__tr("Base node:"))
         self.textLabel3_2.setText(self.__tr("Maximum:"))
-        self.tabWidget2.changeTab(self.tab_2,self.__tr("Account Settings"))
-        self.textLabel1_2.setText(self.__tr("Account Passwords:"))
-        self.tabWidget2.changeTab(self.tab_3,self.__tr("Account Passwords"))
-        self.pushButton1.setText(self.__tr("&Create"))
-        self.pushButton1.setAccel(self.__tr("Alt+C"))
+        self.textLabel3.setText(self.__tr("Maximum:"))
+        self.tabWidget2.changeTab(self.tab,self.__tr("Account"))
+        self.enableNFSBox.setText(self.__tr("Enable automount support"))
+        self.textLabel1_4.setText(self.__tr("<b>Automount options</b>"))
+        self.textLabel2_4.setText(self.__tr("Server:"))
+        self.textLabel3_4.setText(self.__tr("Arguments:"))
+        self.textLabel5_3.setText(self.__tr("Location:"))
+        self.browseAutomountButton.setText(QString.null)
+        self.nfsArgumentsEdit.setText(self.__tr("-fstype=nfs,rw,quota,soft,intr"))
+        self.tabWidget2.changeTab(self.TabPage,self.__tr("Automount"))
+        self.textLabel1_2.setText(self.__tr("<b>Account Passwords</b>"))
+        self.tabWidget2.changeTab(self.tab_2,self.__tr("Passwords"))
 
 
-    def create_users(self):
-        print "MassCreationDesign.create_users(): Not implemented yet"
+    def createUsers(self):
+        print "MassCreationDesign.createUsers(): Not implemented yet"
 
-    def browse_server(self):
-        print "MassCreationDesign.browse_server(): Not implemented yet"
+    def browseServer(self):
+        print "MassCreationDesign.browseServer(): Not implemented yet"
 
     def browseGroups(self):
         print "MassCreationDesign.browseGroups(): Not implemented yet"
 
     def showHelp(self):
         print "MassCreationDesign.showHelp(): Not implemented yet"
+
+    def browseAutomount(self):
+        print "MassCreationDesign.browseAutomount(): Not implemented yet"
+
+    def enableAutomount(self):
+        print "MassCreationDesign.enableAutomount(): Not implemented yet"
 
     def __tr(self,s,c = None):
         return qApp.translate("MassCreationDesign",s,c)
