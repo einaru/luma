@@ -154,8 +154,13 @@ class TemplateObjectWidget(QWidget):
     def save_view(self):
         self.get_values()
         tmpModlist = []
-        for x in self.objectClasses:
-            tmpModlist.append(('objectClass', x))
+        
+        # commented out because it wouldn't work. but it did before
+        # maybe a change in python-ldap???
+        #for x in self.objectClasses:
+        #    tmpModlist.append(('objectClass', x))
+        tmpModlist.append(('objectClass', self.objectClasses))
+        
         for x in self.attributes.keys():
             if len(self.attributes[x]['VALUES']) > 0:
                 tmpModlist.append((x, self.attributes[x]['VALUES']))
