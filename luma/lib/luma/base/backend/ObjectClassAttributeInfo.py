@@ -13,6 +13,7 @@ import ldap.schema
 import re
 import string
 from sets import Set
+from copy import copy
 
 from base.backend.ServerList import ServerList
 import environment
@@ -76,7 +77,12 @@ class ObjectClassAttributeInfo(object):
                 method = "ldap://"
                 if serverMeta.tls:
                     method = "ldaps://"
-                tmpUrl = method + serverMeta.host + ":" + str(serverMeta.port)
+                    
+                tmpUrl = ""
+                if u"SASL EXTERNAL" == serverMeta.authMethod:
+                    tmpUrl = "ldapi://" + serverMeta.host.replace("/", "%2F").replace(",", "%2C")
+                else:
+                    tmpUrl = method + serverMeta.host + ":" + str(serverMeta.port)
                 
                 subschemasubentry_dn,schema = ldap.schema.urlfetch(tmpUrl)
                 
@@ -284,7 +290,7 @@ class ObjectClassAttributeInfo(object):
     def isMust(self, attribute="", classList = None):
         """ Check if the given attribute must be set.
         """
-
+        
         if classList == None:
             raise "Missing Arguments to Funktion 'isMust(attribute, objectClassesDict)"
 
@@ -366,11 +372,11 @@ class ObjectClassAttributeInfo(object):
         
         if None == className:
             return None
-          
+        
         className = string.lower(className)
     
         parentList = []
-        tmpList = self.objectClassesDict[className]["PARENTS"]
+        tmpList = copy(self.objectClassesDict[className]["PARENTS"])
         
         while len(tmpList) > 0:
             currentClass = string.lower(tmpList[0])
