@@ -26,9 +26,10 @@ class BrowserView(QWidget):
         self.entryList = BrowserWidget(self.splitter)
         self.entryList.setMinimumWidth(200)
         self.entryView = AdvancedObjectWidget(self.splitter)
-        self.connect (self.entryList, PYSIGNAL("ldap_result"), self.entryView.initView)
-        self.connect (self.entryList, PYSIGNAL("about_to_change"), self.entryView.aboutToChange)
-        self.connect (self.entryView, PYSIGNAL("REOPEN_PARENT"), self.entryList.reopenDN)
+        self.connect(self.entryList, PYSIGNAL("ldap_result"), self.entryView.initView)
+        self.connect(self.entryList, PYSIGNAL("about_to_change"), self.entryView.aboutToChange)
+        self.connect(self.entryView, PYSIGNAL("REOPEN_PARENT"), self.entryList.reopenDN)
+        self.connect(self.entryList, PYSIGNAL("ADD_ATTRIBUTE"), self.entryView.addAttribute)
         self.mainLayout.addWidget(self.splitter)
 
 ###############################################################################
