@@ -1,0 +1,4 @@
+PLUGIN_NAME=Schema browser
+PLUGIN_VERSION=1.0
+PLUGIN_AUTHOR=wido.depping@gmail.com
+PLUGIN_FILE=schemabrowser.py
