@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file '/home/wido/src/luma/lib/luma/base/gui/AboutDialog.ui'
 #
-# Created: Mon Jan 31 17:12:06 2005
+# Created: Mon Feb 28 15:38:06 2005
 #      by: The PyQt User Interface Compiler (pyuic) 3.13
 #
 # WARNING! All changes made in this file will be lost!
@@ -79,7 +79,7 @@ class AboutDialog(QDialog):
 
     def languageChange(self):
         self.setCaption(self.__tr("About Luma"))
-        self.textLabel5.setText(self.__tr("<font size=\"+2\"><b>Luma 2.0.2</b></font>","DO NOT TRANSLATE"))
+        self.textLabel5.setText(self.__tr("<font size=\"+2\"><b>Luma 2.1</b></font>","DO NOT TRANSLATE"))
         self.textLabel4.setText(self.__tr("<p align=\"center\">LDAP management made easy.<br><br>\n"
 "(c) 2003-2005   Wido Depping<br><br>\n"
 "http://luma.sourceforge.net\n"
