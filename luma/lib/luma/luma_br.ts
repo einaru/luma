@@ -336,7 +336,8 @@ POSSIBILITY OF SUCH DAMAGES.
     </message>
     <message>
         <source>Bjorn Ove Grotan
-Contributed his mkpasswd module. 
+Contributed his mkpasswd module.
+Translation into Norwegian.
 
 Kerstin Isebrecht
 Thanks for the ice and all your patience :) 
@@ -353,7 +354,63 @@ My mentor and UI tester :)
 Eric Cote
 Testing guinea pig for python 2.3</source>
         <comment>DO NOT TRANSLATE</comment>
-        <translation></translation>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>AddAttributeWizardDesign</name>
+    <message>
+        <source>Add Attribute</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>PI</source>
+        <comment>DO NOT TRANSLATE</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Enable all attributes which are supported by the server.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Attribute:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;p&gt;Please select an attribute you want to add to the current entry.&lt;/p&gt;
+&lt;p&gt;By default only attributes which are supported by the current 
+objectclasses are displayed. If you want to add an attribute which is 
+supported by other objectclasses, please enable this functionality below.
+&lt;/p&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Select Attribute</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;p&gt;You haven chosen to add an attribute which is not supported by the 
+objectclasses for the current entry.&lt;/p&gt;
+&lt;p&gt;Please select an objectclass which supports the new attribute. The 
+list on the right shows all attributes which must be added additionally with
+the selected objectclass.&lt;/p&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;Objectclass&lt;/b&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;Additional attributes&lt;/b&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>CL</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Choose objectclass</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -630,22 +687,6 @@ Veja mais informações na console.</translation>
         <translation>Método:</translation>
     </message>
     <message>
-        <source>crypt</source>
-        <translation>crypt</translation>
-    </message>
-    <message>
-        <source>md5</source>
-        <translation>md5</translation>
-    </message>
-    <message>
-        <source>sha</source>
-        <translation>sha</translation>
-    </message>
-    <message>
-        <source>ssha</source>
-        <translation>ssha</translation>
-    </message>
-    <message>
         <source>Passwords</source>
         <translation>Senhas</translation>
     </message>
@@ -702,6 +743,10 @@ Veja mais informações na console.</translation>
     <message>
         <source>Alt+O</source>
         <translation></translation>
+    </message>
+    <message>
+        <source>AdminPanelDesign</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -875,12 +920,13 @@ Veja mensagens na console para maiores informações.</translation>
         <translation>Info</translation>
     </message>
     <message>
-        <source>&amp;Ok</source>
-        <translation>&amp;Ok</translation>
-    </message>
-    <message>
         <source>Alt+O</source>
         <translation></translation>
+    </message>
+    <message>
+        <source>&amp;Ok</source>
+        <comment>DO NOT TRANSLATE</comment>
+        <translation type="unfinished">&amp;Ok</translation>
     </message>
 </context>
 <context>
@@ -925,44 +971,57 @@ Veja mensagens na console para maiores informações.</translation>
         <translation>Opções do Servidor</translation>
     </message>
     <message>
-        <source>Admin Name:</source>
-        <translation>Nome do Admin:</translation>
+        <source>Alt+F</source>
+        <translation></translation>
     </message>
     <message>
-        <source>Admin Password:</source>
-        <translation>Senha do Admin:</translation>
-    </message>
-    <message>
-        <source>Admin Password (Re-Type):</source>
-        <translation>Senha do Admin (redigitar):</translation>
-    </message>
-    <message>
-        <source>Distribution:</source>
-        <translation>Distribuição:</translation>
-    </message>
-    <message>
-        <source>Help</source>
-        <translation>Ajuda</translation>
-    </message>
-    <message>
-        <source>Save Options</source>
-        <translation>Salvar Opções</translation>
-    </message>
-    <message>
-        <source>Save to file:</source>
-        <translation>Salvar para arquivo:</translation>
+        <source>ConfigPanelDesign</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Base DN:</source>
-        <translation>Base DN:</translation>
+        <comment>DO NOT TRANSLATE</comment>
+        <translation type="unfinished">DN Base:</translation>
+    </message>
+    <message>
+        <source>Admin Name:</source>
+        <comment>DO NOT TRANSLATE</comment>
+        <translation type="unfinished">Nome do Admin:</translation>
+    </message>
+    <message>
+        <source>Admin Password:</source>
+        <comment>DO NOT TRANSLATE</comment>
+        <translation type="unfinished">Senha do Admin:</translation>
+    </message>
+    <message>
+        <source>Admin Password (Re-Type):</source>
+        <comment>DO NOT TRANSLATE</comment>
+        <translation type="unfinished">Senha do Admin (redigitar):</translation>
+    </message>
+    <message>
+        <source>Distribution:</source>
+        <comment>DO NOT TRANSLATE</comment>
+        <translation type="unfinished">Distribuição:</translation>
+    </message>
+    <message>
+        <source>Help</source>
+        <comment>DO NOT TRANSLATE</comment>
+        <translation type="unfinished">Ajuda</translation>
+    </message>
+    <message>
+        <source>Save Options</source>
+        <comment>DO NOT TRANSLATE</comment>
+        <translation type="unfinished">Salvar Opções</translation>
+    </message>
+    <message>
+        <source>Save to file:</source>
+        <comment>DO NOT TRANSLATE</comment>
+        <translation type="unfinished">Salvar para arquivo:</translation>
     </message>
     <message>
         <source>&amp;Finish</source>
-        <translation>&amp;Fim</translation>
-    </message>
-    <message>
-        <source>Alt+F</source>
-        <translation></translation>
+        <comment>DO NOT TRANSLATE</comment>
+        <translation type="unfinished">&amp;Fim</translation>
     </message>
 </context>
 <context>
@@ -1116,6 +1175,113 @@ Veja mensagens na console para maiores informações.</translation>
     </message>
 </context>
 <context>
+    <name>IfIUsermanagementWidgetDesign</name>
+    <message>
+        <source>Form</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Valid until:</source>
+        <comment>DO NOT TRANSLATE</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>US</source>
+        <comment>DO NOT TRANSLATE</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>User ID Number:</source>
+        <comment>DO NOT TRANSLATE</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>User ID:</source>
+        <comment>DO NOT TRANSLATE</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Common name:</source>
+        <comment>DO NOT TRANSLATE</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Change Group...</source>
+        <comment>DO NOT TRANSLATE</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>GR</source>
+        <comment>DO NOT TRANSLATE</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Group ID Number:</source>
+        <comment>DO NOT TRANSLATE</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Group:</source>
+        <comment>DO NOT TRANSLATE</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>HO</source>
+        <comment>DO NOT TRANSLATE</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Login Shell:</source>
+        <comment>DO NOT TRANSLATE</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>SH</source>
+        <comment>DO NOT TRANSLATE</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Home Directory:</source>
+        <comment>DO NOT TRANSLATE</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Password:</source>
+        <comment>DO NOT TRANSLATE</comment>
+        <translation type="unfinished">Senha:</translation>
+    </message>
+    <message>
+        <source>Change Password...</source>
+        <comment>DO NOT TRANSLATE</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>PW</source>
+        <comment>DO NOT TRANSLATE</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Add...</source>
+        <comment>DO NOT TRANSLATE</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>M</source>
+        <comment>DO NOT TRANSLATE</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Mail:</source>
+        <comment>DO NOT TRANSLATE</comment>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Delete...</source>
+        <comment>DO NOT TRANSLATE</comment>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>IfiUser</name>
     <message>
         <source>Incomplete Information</source>
@@ -1163,48 +1329,8 @@ Tente aumentar a faixa de uidNumber ou delete alguns usuários da subtree.</tran
 <context>
     <name>IfiUserDesign</name>
     <message>
-        <source>General Information</source>
-        <translation>Informação genérica</translation>
-    </message>
-    <message>
-        <source>Username:</source>
-        <translation>Nome do usuário:</translation>
-    </message>
-    <message>
-        <source>Surename:</source>
-        <translation>Sobrenome:</translation>
-    </message>
-    <message>
-        <source>Given Name:</source>
-        <translation>Nome de batismo:</translation>
-    </message>
-    <message>
-        <source>Directory Settings</source>
-        <translation>Ajustes de Diretório</translation>
-    </message>
-    <message>
-        <source>Base node:</source>
-        <translation>Nó base:</translation>
-    </message>
-    <message>
         <source>Basic</source>
         <translation>Básico</translation>
-    </message>
-    <message>
-        <source>Expiration date</source>
-        <translation>Data de expiração</translation>
-    </message>
-    <message>
-        <source>Date</source>
-        <translation>Data</translation>
-    </message>
-    <message>
-        <source>Days from now</source>
-        <translation>Dias a partir de agora</translation>
-    </message>
-    <message>
-        <source>Account settings</source>
-        <translation>Ajustes de conta</translation>
     </message>
     <message>
         <source>/home</source>
@@ -1215,36 +1341,12 @@ Tente aumentar a faixa de uidNumber ou delete alguns usuários da subtree.</tran
         <translation>/bin/bash</translation>
     </message>
     <message>
-        <source>Login shell:</source>
-        <translation>Shell de login:</translation>
-    </message>
-    <message>
-        <source>Group Id:</source>
-        <translation>Id de Grupo:</translation>
-    </message>
-    <message>
         <source>Select group from LDAP</source>
         <translation>Selecione um grupo do LDAP</translation>
     </message>
     <message>
-        <source>uid number range</source>
-        <translation>faixa de números uid</translation>
-    </message>
-    <message>
-        <source>Minimum:</source>
-        <translation>Mínimo:</translation>
-    </message>
-    <message>
-        <source>Maximum:</source>
-        <translation>Máximo:</translation>
-    </message>
-    <message>
         <source>Account Settings</source>
         <translation>Ajustes da conta</translation>
-    </message>
-    <message>
-        <source>Account Password:</source>
-        <translation>Senha da conta:</translation>
     </message>
     <message>
         <source>Account Password</source>
@@ -1255,16 +1357,98 @@ Tente aumentar a faixa de uidNumber ou delete alguns usuários da subtree.</tran
         <translation></translation>
     </message>
     <message>
+        <source>Alt+C</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>General Information</source>
+        <comment>DO NOT TRANSLATE</comment>
+        <translation type="unfinished">Informação genérica</translation>
+    </message>
+    <message>
+        <source>Username:</source>
+        <comment>DO NOT TRANSLATE</comment>
+        <translation type="unfinished">Nome do usuário:</translation>
+    </message>
+    <message>
+        <source>Surename:</source>
+        <comment>DO NOT TRANSLATE</comment>
+        <translation type="unfinished">Sobrenome:</translation>
+    </message>
+    <message>
+        <source>Given Name:</source>
+        <comment>DO NOT TRANSLATE</comment>
+        <translation type="unfinished">Nome de batismo:</translation>
+    </message>
+    <message>
+        <source>Directory Settings</source>
+        <comment>DO NOT TRANSLATE</comment>
+        <translation type="unfinished">Ajustes de Diretório</translation>
+    </message>
+    <message>
+        <source>Base node:</source>
+        <comment>DO NOT TRANSLATE</comment>
+        <translation type="unfinished">Nó base:</translation>
+    </message>
+    <message>
+        <source>Expiration date</source>
+        <comment>DO NOT TRANSLATE</comment>
+        <translation type="unfinished">Data de expiração</translation>
+    </message>
+    <message>
+        <source>Date</source>
+        <comment>DO NOT TRANSLATE</comment>
+        <translation type="unfinished">Data</translation>
+    </message>
+    <message>
+        <source>Days from now</source>
+        <comment>DO NOT TRANSLATE</comment>
+        <translation type="unfinished">Dias a partir de agora</translation>
+    </message>
+    <message>
+        <source>Account settings</source>
+        <comment>DO NOT TRANSLATE</comment>
+        <translation type="unfinished">Ajustes de conta</translation>
+    </message>
+    <message>
+        <source>Login shell:</source>
+        <comment>DO NOT TRANSLATE</comment>
+        <translation type="unfinished">Shell de login:</translation>
+    </message>
+    <message>
         <source>Home:</source>
-        <translation>Home:</translation>
+        <comment>DO NOT TRANSLATE</comment>
+        <translation type="unfinished">Residência:</translation>
+    </message>
+    <message>
+        <source>Group Id:</source>
+        <comment>DO NOT TRANSLATE</comment>
+        <translation type="unfinished">Id de Grupo:</translation>
+    </message>
+    <message>
+        <source>uid number range</source>
+        <comment>DO NOT TRANSLATE</comment>
+        <translation type="unfinished">faixa de números uid</translation>
+    </message>
+    <message>
+        <source>Minimum:</source>
+        <comment>DO NOT TRANSLATE</comment>
+        <translation type="unfinished">Mínimo:</translation>
+    </message>
+    <message>
+        <source>Maximum:</source>
+        <comment>DO NOT TRANSLATE</comment>
+        <translation type="unfinished">Máximo:</translation>
+    </message>
+    <message>
+        <source>Account Password:</source>
+        <comment>DO NOT TRANSLATE</comment>
+        <translation type="unfinished">Senha da conta:</translation>
     </message>
     <message>
         <source>&amp;Create</source>
-        <translation>&amp;Criar</translation>
-    </message>
-    <message>
-        <source>Alt+C</source>
-        <translation></translation>
+        <comment>DO NOT TRANSLATE</comment>
+        <translation type="unfinished">&amp;Criar</translation>
     </message>
 </context>
 <context>
@@ -1371,10 +1555,6 @@ Tente aumentar a faixa de uidNumber ou delete alguns usuários da subtree.</tran
         <translation>Novo email</translation>
     </message>
     <message>
-        <source>ML</source>
-        <translation></translation>
-    </message>
-    <message>
         <source>New mail:</source>
         <translation>Novo email:</translation>
     </message>
@@ -1393,6 +1573,11 @@ Tente aumentar a faixa de uidNumber ou delete alguns usuários da subtree.</tran
     <message>
         <source>Alt+C</source>
         <translation></translation>
+    </message>
+    <message>
+        <source>ML</source>
+        <comment>DO NOT TRANSLATE</comment>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1893,16 +2078,94 @@ Tente aumentar a faixa de uidNumber ou deletar alguns usuários da subtree.</tra
         <translation>&lt;b&gt;Valores&lt;/b&gt;</translation>
     </message>
     <message>
-        <source>&amp;Apply</source>
-        <translation>&amp;Aplicar</translation>
+        <source>Reload</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>&amp;Display all</source>
-        <translation>&amp;Mostrar todos</translation>
+        <source>Save</source>
+        <translation type="unfinished">Salvar</translation>
     </message>
     <message>
-        <source>&amp;Refresh</source>
-        <translation>&amp;Reapresentar</translation>
+        <source>Add attribute...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Delete object</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Error</source>
+        <translation type="unfinished">Erro</translation>
+    </message>
+    <message>
+        <source>Could not save object data. 
+Please read console output for more information.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Binary value</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Edit...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Delete</source>
+        <translation type="unfinished">Deletar</translation>
+    </message>
+    <message>
+        <source>Export...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Select file to change binary value</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Edit attribute</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Export binary attribute to file</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Export binary attribute</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Cancel</source>
+        <translation type="unfinished">&amp;Cancelar</translation>
+    </message>
+    <message>
+        <source>&amp;OK</source>
+        <translation type="unfinished">&amp;OK</translation>
+    </message>
+    <message>
+        <source>Save entry</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>The entry has been modified. Do you want to save it?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Yes</source>
+        <translation type="unfinished">&amp;Sim</translation>
+    </message>
+    <message>
+        <source>&amp;No</source>
+        <translation type="unfinished">&amp;Não</translation>
+    </message>
+    <message>
+        <source>Do you really want to delete the object?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Could not delete object. 
+Please read console output for more information.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -2012,6 +2275,13 @@ Tente aumentar a faixa de uidNumber ou deletar alguns usuários da subtree.</tra
     <message>
         <source>Cancel</source>
         <translation>Cancelar</translation>
+    </message>
+</context>
+<context>
+    <name>SearchResultViewDesign</name>
+    <message>
+        <source>SearchResultViewDesign</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
