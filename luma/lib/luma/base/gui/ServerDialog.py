@@ -209,6 +209,12 @@ class ServerDialog(ServerDialogDesign):
         if dnList[0] == '':
             result = conObject.search_s("", ldap.SCOPE_BASE)
             dnList = result[0][1]['dsaName']
+            
+        # Univertity of Michigan aka umich
+        # not jet tested
+        if dnList[0] == '':
+            result = conObject.search_s("", ldap.SCOPE_BASE, "(objectClass=*)",['database'])
+            dnList = result[0][1]['namingContexts']
         
         dialog = BaseSelector()
         dialog.setList(dnList)
