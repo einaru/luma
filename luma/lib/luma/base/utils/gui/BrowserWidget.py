@@ -9,6 +9,7 @@
 ###########################################################################
 
 from qt import *
+from copy import deepcopy
 import string
 import ldap
 import os.path
@@ -114,7 +115,7 @@ class BrowserWidget(QListView):
             fullPath = self.get_full_path(item)
             try:
                 server, result = self.getLdapItem(fullPath)
-                self.emit(PYSIGNAL("ldap_result"), (server, result[:],))
+                self.emit(PYSIGNAL("ldap_result"), (deepcopy(server), deepcopy(result),))
             except TypeError:
                 "No result from Server"
 
@@ -471,8 +472,6 @@ See console output for more information."""),
             self.__delete_ldap_entry(serverName, children[-1][0])
             del children[-1]
         
-        #currentItem.setOpen(0)
-        #currentItem.setOpen(1)
         parent.setOpen(0)
         parent.setOpen(1)
         
