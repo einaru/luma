@@ -102,18 +102,7 @@ class ObjectWidget(QWidget):
         QToolTip.add(self.deleteObjectButton, self.trUtf8("Delete object"))
         self.connect(self.deleteObjectButton, SIGNAL("clicked()"), self.deleteObject)
         hboxLayout.addWidget(self.deleteObjectButton)
-        
-        
-        # "display all attributes" toolbutton
-        #self.displayAllButton = QToolButton(self)
-        #self.displayAllButton.setIconSet(QIconSet(displayAllPixmap))
-        #self.displayAllButton.setSizePolicy(QSizePolicy(QSizePolicy.Fixed, QSizePolicy.Fixed))
-        #self.displayAllButton.setAutoRaise(True)
-        #QToolTip.add(self.displayAllButton, self.trUtf8("Display all attributes"))
-        #self.connect(self.displayAllButton, SIGNAL("clicked()"), self.display_all_attributes)
-        #hboxLayout.addWidget(self.displayAllButton)
     
-        
         self.mainGrid.addLayout(hboxLayout, 0, 0)
         
         #create a scrollable frame
@@ -154,6 +143,9 @@ class ObjectWidget(QWidget):
         # is the current object a leaf of the ldap tree?
         self.ISLEAF = False
         
+        # do we create a completely new object?
+        self.CREATE = False
+        
         # indicates if the list of objectClasses has changed
         # important for saving. a simple modify doesn't work. object has to
         # be recreated from scratch
@@ -190,19 +182,20 @@ class ObjectWidget(QWidget):
         offset = 1
         
         # create dn
-        offset = self.addEntries("dn", [self.DN], offset, 0, 1, None)
+        editable = self.CREATE
+        offset = self.addEntries("dn", [self.DN], offset, editable, 1, None)
 
         # use a temporary copy of data values to create the widgets
         dataCopy = copy.deepcopy(self.CURRENTVALUES)
         
         # add objectclasses
-        offset = self.addEntries("objectClass", dataCopy["objectClass"], offset, 0, 1, None)
+        offset = self.addEntries("objectClass", dataCopy["objectClass"], offset, False, 1, None)
         tmpObjectClasses = copy.deepcopy(dataCopy["objectClass"])
         del dataCopy["objectClass"]
 
         # create entries for all attributes
         for x in dataCopy.keys():
-            offset = self.addEntries(x, dataCopy[x], offset, 1, 0, tmpObjectClasses)
+            offset = self.addEntries(x, dataCopy[x], offset, True, 0, tmpObjectClasses)
 
         # create a foo label and destroy it.
         # otherwise widgets don't have a proper layout.
@@ -226,13 +219,20 @@ class ObjectWidget(QWidget):
         
         lumaConnection.bind()
         
-        result = 0
+        result = 1
         
-        if self.OBJECTCLASS_CHANGED:
-            result = lumaConnection.delete_s(self.DN)
+        if self.OBJECTCLASS_CHANGED or self.CREATE:
+            oldEntry = lumaConnection.search_s(self.DN, ldap.SCOPE_BASE)[0][1]
+            
+            if not self.CREATE:
+                result = lumaConnection.delete_s(self.DN)
+                
             if not(result == 0):
                 modlist = ldap.modlist.addModlist(self.CURRENTVALUES)
                 result = lumaConnection.add_s(self.DN, modlist)
+                if result == 0:
+                    modlist = ldap.modlist.addModlist(self.oldEntry)
+                    lumaConnection.add_s(self.DN, modlist)
         else:
             oldEntry = lumaConnection.search_s(self.DN, ldap.SCOPE_BASE)[0][1]
             modlist =  ldap.modlist.modifyModlist(oldEntry, self.CURRENTVALUES, [], 0)
@@ -271,7 +271,7 @@ Please read console output for more information."""),
 
 ###############################################################################
 
-    def addEntries(self, attribute, valueList=[], offset=0, editable=0, bold=0, objectClasses=None):
+    def addEntries(self, attribute, valueList=[], offset=0, editable=False, bold=0, objectClasses=None):
         laenge = range(offset, len(valueList)+offset)
         
         for x in laenge:
@@ -291,8 +291,11 @@ Please read console output for more information."""),
             label.setText(text)
             label.setAlignment(Qt.AlignLeft)
             
-            if isBinaryAttribute(data):
+            isBinary = False
+            
+            if self.SERVERMETA.isBinary(attribute) or isBinaryAttribute(data):
                 if attribute == 'jpegPhoto':
+                    isBinary = True
                     picture = QImage()
                     picture.loadFromData(data)
                     value = QLabel(self.attributeWidget, "LDAP_ATTRIBUTE")
@@ -306,6 +309,7 @@ Please read console output for more information."""),
                         value.setAlignment(Qt.AlignLeft)
                         value.setReadOnly(1)
                     except UnicodeDecodeError, e:
+                        isBinary = True
                         value = QLabel(self.attributeWidget, "LDAP_ATTRIBUTE")
                         value.setPixmap(QPixmap(self.binaryPixmap))
                         value.setAlignment(Qt.AlignLeft)
@@ -333,7 +337,7 @@ Please read console output for more information."""),
             
             tmpList = [label, value]
             
-            if not ( (attribute=="objectClass") or (attribute=="dn") ):
+            if editable:
                 editButton  = QPushButton(self.attributeWidget, "LDAP_EDIT" + attribute + str(x-offset))
                 editButton.setPixmap(self.editPixmap)
                 editButton.installEventFilter(self)
@@ -351,7 +355,8 @@ Please read console output for more information."""),
                 self.attributeGrid.addWidget(deleteButton, x, 3)
                 tmpList.append(deleteButton)
                 
-            if isBinaryAttribute(data):
+            #if self.SERVERMETA.isBinary(attribute) or isBinaryAttribute(data):
+            if isBinary:
                 exportBinaryButton = QPushButton(self.attributeWidget, "LDAP_EXPORT" + attribute + str(x-offset))
                 exportBinaryButton.setPixmap(self.exportBinaryPixmap)
                 exportBinaryButton.installEventFilter(self)
@@ -382,31 +387,39 @@ Please read console output for more information."""),
 
 ###############################################################################
 
-    def initView(self, server, values):
+    def initView(self, server, values, create=False):
         self.setServer(server)
         self.convertValues(values)
-        self.displayValues()
-        self.EDITED = False
         
-        # check if current object is a leaf of the ldap tree
-        isLeave = False
+        if create:
+            self.EDITED = True
+            self.ISLEAF = False
+            self.CREATE = True
+        else:
+            self.EDITED = False
         
-        try:
-            tmpObject = ServerList()
-            tmpObject.readServerList()
-            serverMeta = tmpObject.get_serverobject(self.SERVER)
+            # check if current object is a leaf of the ldap tree
+            isLeave = False
         
-            lumaConnection = LumaConnection(serverMeta)
+            try:
+                tmpObject = ServerList()
+                tmpObject.readServerList()
+                serverMeta = tmpObject.get_serverobject(self.SERVER)
         
-            lumaConnection.bind()
-            result = lumaConnection.search(self.DN, ldap.SCOPE_ONELEVEL, filter="(objectClass=*)", attrList=None, attrsonly=1)
-            lumaConnection.unbind()
-            if result == None:
-                isLeave = True
-        except Exception:
-            print "Could not check if object is a leaf in the ldap tree."
+                lumaConnection = LumaConnection(serverMeta)
+        
+                lumaConnection.bind()
+                result = lumaConnection.search(self.DN, ldap.SCOPE_ONELEVEL, filter="(objectClass=*)", attrList=None, attrsonly=1)
+                lumaConnection.unbind()
+                if result == None:
+                    isLeave = True
+            except Exception:
+                print "Could not check if object is a leaf in the ldap tree."
+          
+            self.ISLEAF = isLeave
+            self.CREATE = False
             
-        self.ISLEAF = isLeave
+        self.displayValues()
         
         self.enableToolButtons(True)
 
@@ -451,8 +464,12 @@ Please read console output for more information."""),
             self.deleteObjectButton.setEnabled(enable)
         else:
             self.deleteObjectButton.setEnabled(False)
+           
+        if self.CREATE:
+            self.reloadButton.setEnabled(False)
+        else:
+            self.reloadButton.setEnabled(enable)
             
-        self.reloadButton.setEnabled(enable)
         self.addAttributeButton.setEnabled(enable)
         
 ###############################################################################
@@ -471,11 +488,12 @@ Please read console output for more information."""),
         
         attributeList = Set([attribute])
         
-        if showAll:
+        if showAll and not(attribute in dialog.possibleAttributes):
             self.OBJECTCLASS_CHANGED = True
             objectclass = str(dialog.classBox.currentText())
             self.CURRENTVALUES['objectClass'].append(objectclass)
             mustAttributes = self.SERVERMETA.getAllMusts([objectclass])
+            mustAttributes = mustAttributes.difference(Set(self.CURRENTVALUES.keys()))
             attributeList = mustAttributes.union(Set([attribute]))
             
         for x in attributeList:
@@ -509,20 +527,33 @@ Please read console output for more information."""),
 ###############################################################################
 
     def editAttribute(self, attribute, position):
-        oldValue = self.CURRENTVALUES[attribute][position]
+        oldValue = None
+        
+        
+        
+        if self.CREATE and (attribute == "dn"):
+            oldValue = self.DN
+        else:
+            oldValue = self.CURRENTVALUES[attribute][position]
+            
         text = QInputDialog.getText(\
                     self.trUtf8("Edit attribute"),
                     unicode(attribute) + unicode(":"),
                     QLineEdit.Normal,
-                    oldValue)
+                    oldValue.decode("utf-8"))
         
         # if cancel button has been pressed, leave function
         if text[1] == False:
             return
             
         val = unicode(text[0]).encode("utf-8")
-        self.CURRENTVALUES[attribute][position] = val
-        self.EDITED = True
+        
+        if self.CREATE and (attribute == "dn"):
+            self.DN = val
+        else:
+            self.CURRENTVALUES[attribute][position] = val
+            self.EDITED = True
+            
         self.displayValues()
         
 ###############################################################################
