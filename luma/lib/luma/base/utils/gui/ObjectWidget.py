@@ -17,6 +17,7 @@ from qt import *
 import os.path
 
 from base.backend.ServerList import ServerList
+from base.utils import isBinaryAttribute, encodeBase64
 import environment
 from base.utils.backend.ObjectClassAttributeInfo import ObjectClassAttributeInfo
 
@@ -217,21 +218,31 @@ class ObjectWidget(QWidget):
             label.setAlignment(Qt.AlignLeft)
 
             value = None
-            if attribute == 'jpegPhoto':
-                picture = QImage()
-                data = valueList[x-offset]
-                picture.loadFromData(data)
-                value = QLabel(self.attributeWidget, "LDAP_ATTRIBUTE")
-                value.setPixmap(QPixmap(picture))
-                value.setAlignment(Qt.AlignLeft)
+            data = valueList[x-offset]
+            
+            if isBinaryAttribute(data) >= 1:
+                if attribute == 'jpegPhoto':
+                    picture = QImage()
+                    picture.loadFromData(data)
+                    value = QLabel(self.attributeWidget, "LDAP_ATTRIBUTE")
+                    value.setPixmap(QPixmap(picture))
+                    value.setAlignment(Qt.AlignLeft)
+                else:
+                    try:
+                        data = data.decode('utf-8')
+                    except UnicodeDecodeError, e:
+                        data = encodeBase64(data)
+                    
+                    value = QLineEdit(self.attributeWidget, "LDAP_VALUE")
+                    value.setText(data)
+                    value.setAlignment(Qt.AlignLeft)
             else:
-                print attribute
-                print  value
+                data = data.decode('utf-8')
                 value = QLineEdit(self.attributeWidget, "LDAP_VALUE")
-                value.setText(valueList[x-offset].decode('utf-8'))
+                value.setText(data)
                 value.setAlignment(Qt.AlignLeft)
-                if not editable:
-                    value.setReadOnly(1)
+            if not editable:
+                value.setReadOnly(1)
 
             self.attributeGrid.addWidget(label, x, 0)
             self.attributeGrid.addWidget(value, x, 1)
