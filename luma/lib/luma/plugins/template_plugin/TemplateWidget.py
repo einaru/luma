@@ -21,6 +21,7 @@ from base.utils.backend.ObjectClassAttributeInfo import ObjectClassAttributeInfo
 from base.utils.backend.templateutils import *
 from plugins.template_plugin.AddObjectClassDialog import AddObjectClassDialog
 from plugins.template_plugin.AddAttributeDialog import AddAttributeDialog
+from plugins.template_plugin.ClassDeleteDialog import ClassDeleteDialog
 import environment
 
 
@@ -39,7 +40,15 @@ class TemplateWidget(TemplateWidgetDesign):
         self.clearTemplateFields()
         self.enableButtons(False)
         
+        self.loadTemplates()
+        self.displayTemplates()
+        
         self.saveTemplateButton.setEnabled(False)
+        
+###############################################################################
+
+    def loadTemplates(self):
+        self.templateList = TemplateList().templateList
         
 ###############################################################################
 
@@ -107,6 +116,17 @@ class TemplateWidget(TemplateWidgetDesign):
         self.serverLabel.setText(self.currentTemplate.serverName)
         self.descriptionLabel.setText(self.currentTemplate.description)
         
+        self.displayAttributes()
+        self.displayObjectClasses()
+        
+###############################################################################
+
+    def displayObjectClasses(self):
+        self.classView.clear()
+        
+        for x in self.currentTemplate.objectClasses:
+            item = QListViewItem(self.classView, x)
+        
 ###############################################################################
 
     def clearTemplateFields(self):
@@ -173,8 +193,40 @@ class TemplateWidget(TemplateWidgetDesign):
 ###############################################################################
 
     def deleteObjectClass(self):
-        item = self.classView.currentItem()
-        self.saveTemplateButton.setEnabled(True)
+        serverName = self.currentTemplate.serverName
+        self.loadServerMeta(serverName)
+        metaInfo = self.preloadedServerMeta[serverName]
+        
+        item = self.classView.selectedItem()
+        if item == None:
+            return
+            
+        currentAttributes = self.currentTemplate.getAttributeList()
+        
+        className = str(item.text(0))
+        mustSet, maySet = metaInfo.getAllAttributes([className])
+        
+        obsoleteAttributes = filter(lambda x: x in (mustSet|maySet), currentAttributes)
+        remainingAttributes = filter(lambda x: not x in (mustSet|maySet), currentAttributes)
+            
+        dialog = ClassDeleteDialog()
+        tmpText = dialog.textLabel.text().arg(className)
+        dialog.textLabel.setText(tmpText)
+        
+        for x in obsoleteAttributes:
+            QListViewItem(dialog.attributeView, x)
+        dialog.exec_loop()
+        
+        if dialog.result() == QDialog.Accepted:
+            for x in obsoleteAttributes:
+                self.currentTemplate.deleteAttribute(x)
+                
+            self.currentTemplate.deleteObjectClass(className)
+            
+            self.displayObjectClasses()
+            self.displayAttributes()
+        
+            self.saveTemplateButton.setEnabled(True)
         
 ###############################################################################
 
@@ -263,4 +315,6 @@ class TemplateWidget(TemplateWidgetDesign):
         templates = TemplateList(copy.deepcopy(self.templateList))
         templates.save()
         self.saveTemplateButton.setEnabled(False)
+        
+###############################################################################
     
