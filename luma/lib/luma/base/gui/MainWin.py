@@ -287,11 +287,16 @@ class MainWin(MainWinDesign):
             
             try:
                 configParser.readfp(open(self.configFile, 'r'))
+            except Exception, errorData:
+                print "Error: could not load language settings file. Reason:"
+                print errorData
                 
-                if not(configParser.has_section("Defaults")):
-                    configParser.add_section("Defaults")
+            if not(configParser.has_section("Defaults")):
+                configParser.add_section("Defaults")
                 
-                configParser.set("Defaults", "language", trFile)
+            configParser.set("Defaults", "language", trFile)
+            
+            try:
                 configParser.write(open(self.configFile, 'w'))
             except Exception, errorData:
                 print "Error: could not save language settings file. Reason:"
