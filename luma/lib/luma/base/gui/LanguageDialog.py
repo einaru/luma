@@ -51,11 +51,14 @@ class LanguageDialog(LanguageDialogDesign):
             elif x == 'br':
                 self.languageBox.insertItem(pixmap, "Brazil")
                 continue
-            #elif x == 'es':
-            #    self.languageBox.insertItem(pixmap, "Spain")
-            #    continue
+            elif x == 'es':
+                self.languageBox.insertItem(pixmap, "Spain")
+                continue
             elif x == 'no':
                 self.languageBox.insertItem(pixmap, "Norsk")
+                continue
+            elif x == 'ru':
+                self.languageBox.insertItem(pixmap, "Russian")
                 continue
                 
 
@@ -79,10 +82,12 @@ class LanguageDialog(LanguageDialogDesign):
             translationFile = "luma_br.qm"
         elif tmpText == "English (UK)":
             translationFile = 'NATIVE'
-        #elif tmpText == "Spain":
-        #    translationFile = "luma_es.qm"
+        elif tmpText == "Spain":
+            translationFile = "luma_es.qm"
         elif tmpText == "Norsk":
             translationFile = "luma_no.qm"
+        elif tmpText == "Russian":
+            translationFile = "luma_ru.qm"
         
         return os.path.join(self.trDir, translationFile)
         
