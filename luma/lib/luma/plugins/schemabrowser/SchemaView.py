@@ -355,7 +355,7 @@ class SchemaView(SchemaViewDesign):
         """ Raise the widget for attribute information when an attribute item 
         has been double-clicked somewhere in the schemabrowser.
         """
-        
+        self.attributeFilterEdit.clear()
         self.toolBox.setCurrentItem(self.toolBox.item(1))
         tmpItem = self.attributeBox.findItem(str(boxItem.text()), Qt.ExactMatch)
         self.attributeBox.setSelected(tmpItem, True)
@@ -368,6 +368,7 @@ class SchemaView(SchemaViewDesign):
         has been double-clicked somewhere in the schemabrowser.
         """
         
+        self.classFilterEdit.clear()
         self.toolBox.setCurrentItem(self.toolBox.item(0))
         tmpItem = self.classBox.findItem(str(boxItem.text()), Qt.ExactMatch)
         self.classBox.setSelected(tmpItem, True)
@@ -380,6 +381,7 @@ class SchemaView(SchemaViewDesign):
         has been double-clicked somewhere in the schemabrowser.
         """
         
+        self.matchingFilterEdit.clear()
         self.toolBox.setCurrentItem(self.toolBox.item(2))
         tmpItem = self.matchingBox.findItem(str(boxItem.text()), Qt.ExactMatch)
         self.matchingBox.setSelected(tmpItem, True)
