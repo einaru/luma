@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!--Project file for project luma-->
-<!--Saved: 2004-02-01, 23:57:18-->
+<!--Saved: 2004-02-02, 19:15:28-->
 <!--Copyright (C) 2004 Wido Depping, wido.depping@tu-clausthal.de-->
 <Project>
   <Version>1.0beta1</Version>
@@ -811,6 +811,11 @@
       <Dir>lib</Dir>
       <Dir>luma</Dir>
       <Name>luma_br.ts</Name>
+    </Translation>
+    <Translation>
+      <Dir>lib</Dir>
+      <Dir>luma</Dir>
+      <Name>luma_es.ts</Name>
     </Translation>
   </Translations>
   <Interfaces>
