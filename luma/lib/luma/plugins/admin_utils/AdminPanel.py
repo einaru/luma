@@ -11,7 +11,7 @@ from qt import *
 from plugins.admin_utils.AdminPanelDesign import AdminPanelDesign
 from base.utils.backend.CryptPwGenerator import CryptPwGenerator
 from base.utils.backend.DateHelper import DateHelper
-
+from base.utils.backend.mkpasswd import mkpasswd
 
 class AdminPanel(AdminPanelDesign):
 
@@ -26,15 +26,24 @@ class AdminPanel(AdminPanelDesign):
 ###############################################################################
 
     def create_random(self):
-        password, cryptPw = self.pwHandler.get_random_password()
-        self.randomPwEdit.setText(password)
-        self.randomCryptEdit.setText(cryptPw)
+        #password, cryptPw = self.pwHandler.get_random_password()
+        #self.randomPwEdit.setText(password)
+        #self.randomCryptEdit.setText(cryptPw)
+        
+        tmpPassword = self.pwHandler.create_random_string(8)
+        self.randomPwEdit.setText(tmpPassword)
+        method = str(self.methodBox.currentText())
+        password = mkpasswd(tmpPassword, method)
+        self.randomCryptEdit.setText(password)
         
 ###############################################################################
 
     def crypt_password(self):
         tmpPassword = str(self.pwEdit.text())
-        self.cryptEdit.setText(self.pwHandler.encrypt_password(tmpPassword)[1])
+        #self.cryptEdit.setText(self.pwHandler.encrypt_password(tmpPassword)[1])
+        method = str(self.methodBox.currentText())
+        password = mkpasswd(tmpPassword, method)
+        self.cryptEdit.setText(password)
         
 ###############################################################################
 

@@ -17,8 +17,8 @@
         <rect>
             <x>0</x>
             <y>0</y>
-            <width>742</width>
-            <height>488</height>
+            <width>448</width>
+            <height>380</height>
         </rect>
     </property>
     <property name="caption">
@@ -37,13 +37,77 @@
                     <cstring>tab</cstring>
                 </property>
                 <attribute name="title">
-                    <string>Crypt Passwords</string>
+                    <string>Passwords</string>
                 </attribute>
-                <vbox>
+                <grid>
                     <property name="name">
                         <cstring>unnamed</cstring>
                     </property>
-                    <widget class="QGroupBox">
+                    <spacer row="3" column="1">
+                        <property name="name">
+                            <cstring>spacer2</cstring>
+                        </property>
+                        <property name="orientation">
+                            <enum>Vertical</enum>
+                        </property>
+                        <property name="sizeType">
+                            <enum>Expanding</enum>
+                        </property>
+                        <property name="sizeHint">
+                            <size>
+                                <width>41</width>
+                                <height>90</height>
+                            </size>
+                        </property>
+                    </spacer>
+                    <widget class="QGroupBox" row="2" column="0" rowspan="1" colspan="2">
+                        <property name="name">
+                            <cstring>groupBox2</cstring>
+                        </property>
+                        <property name="title">
+                            <string>Encrypt Password</string>
+                        </property>
+                        <grid>
+                            <property name="name">
+                                <cstring>unnamed</cstring>
+                            </property>
+                            <widget class="QLabel" row="1" column="0">
+                                <property name="name">
+                                    <cstring>textLabel4</cstring>
+                                </property>
+                                <property name="text">
+                                    <string>Encrypted Password:</string>
+                                </property>
+                            </widget>
+                            <widget class="QPushButton" row="0" column="2">
+                                <property name="name">
+                                    <cstring>cryptButton</cstring>
+                                </property>
+                                <property name="text">
+                                    <string>Encrypt</string>
+                                </property>
+                            </widget>
+                            <widget class="QLineEdit" row="0" column="1">
+                                <property name="name">
+                                    <cstring>pwEdit</cstring>
+                                </property>
+                            </widget>
+                            <widget class="QLabel" row="0" column="0">
+                                <property name="name">
+                                    <cstring>textLabel3</cstring>
+                                </property>
+                                <property name="text">
+                                    <string>Password:</string>
+                                </property>
+                            </widget>
+                            <widget class="QLineEdit" row="1" column="1">
+                                <property name="name">
+                                    <cstring>cryptEdit</cstring>
+                                </property>
+                            </widget>
+                        </grid>
+                    </widget>
+                    <widget class="QGroupBox" row="1" column="0" rowspan="1" colspan="2">
                         <property name="name">
                             <cstring>groupBox1</cstring>
                         </property>
@@ -67,7 +131,7 @@
                                     <cstring>textLabel2</cstring>
                                 </property>
                                 <property name="text">
-                                    <string>Crypted password:</string>
+                                    <string>Encrypted password:</string>
                                 </property>
                             </widget>
                             <widget class="QLineEdit" row="0" column="1" rowspan="1" colspan="2">
@@ -107,71 +171,48 @@
                             </spacer>
                         </grid>
                     </widget>
-                    <widget class="QGroupBox">
+                    <widget class="QLabel" row="0" column="0">
                         <property name="name">
-                            <cstring>groupBox2</cstring>
+                            <cstring>textLabel1_2</cstring>
                         </property>
-                        <property name="title">
-                            <string>Encrypt Password</string>
+                        <property name="sizePolicy">
+                            <sizepolicy>
+                                <hsizetype>4</hsizetype>
+                                <vsizetype>5</vsizetype>
+                                <horstretch>0</horstretch>
+                                <verstretch>0</verstretch>
+                            </sizepolicy>
                         </property>
-                        <grid>
-                            <property name="name">
-                                <cstring>unnamed</cstring>
-                            </property>
-                            <widget class="QLabel" row="1" column="0">
-                                <property name="name">
-                                    <cstring>textLabel4</cstring>
-                                </property>
-                                <property name="text">
-                                    <string>Crypted Password:</string>
-                                </property>
-                            </widget>
-                            <widget class="QPushButton" row="0" column="2">
-                                <property name="name">
-                                    <cstring>cryptButton</cstring>
-                                </property>
-                                <property name="text">
-                                    <string>Crypt</string>
-                                </property>
-                            </widget>
-                            <widget class="QLineEdit" row="0" column="1">
-                                <property name="name">
-                                    <cstring>pwEdit</cstring>
-                                </property>
-                            </widget>
-                            <widget class="QLabel" row="0" column="0">
-                                <property name="name">
-                                    <cstring>textLabel3</cstring>
-                                </property>
-                                <property name="text">
-                                    <string>Password:</string>
-                                </property>
-                            </widget>
-                            <widget class="QLineEdit" row="1" column="1">
-                                <property name="name">
-                                    <cstring>cryptEdit</cstring>
-                                </property>
-                            </widget>
-                        </grid>
+                        <property name="text">
+                            <string>Method:</string>
+                        </property>
                     </widget>
-                    <spacer>
+                    <widget class="QComboBox" row="0" column="1">
+                        <item>
+                            <property name="text">
+                                <string>crypt</string>
+                            </property>
+                        </item>
+                        <item>
+                            <property name="text">
+                                <string>md5</string>
+                            </property>
+                        </item>
+                        <item>
+                            <property name="text">
+                                <string>sha</string>
+                            </property>
+                        </item>
+                        <item>
+                            <property name="text">
+                                <string>ssha</string>
+                            </property>
+                        </item>
                         <property name="name">
-                            <cstring>spacer2</cstring>
+                            <cstring>methodBox</cstring>
                         </property>
-                        <property name="orientation">
-                            <enum>Vertical</enum>
-                        </property>
-                        <property name="sizeType">
-                            <enum>Expanding</enum>
-                        </property>
-                        <property name="sizeHint">
-                            <size>
-                                <width>41</width>
-                                <height>111</height>
-                            </size>
-                        </property>
-                    </spacer>
-                </vbox>
+                    </widget>
+                </grid>
             </widget>
             <widget class="QWidget">
                 <property name="name">
