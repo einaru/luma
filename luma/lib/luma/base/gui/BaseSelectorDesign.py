@@ -1,13 +1,14 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'BaseSelectorDesign.ui'
+# Form implementation generated from reading ui file '/home/wido/src/luma/lib/luma/base/gui/BaseSelectorDesign.ui'
 #
-# Created: Thu Nov 13 02:17:50 2003
-#      by: The PyQt User Interface Compiler (pyuic) 3.7
+# Created: Thu Dec 4 01:54:13 2003
+#      by: The PyQt User Interface Compiler (pyuic) 3.8.1
 #
 # WARNING! All changes made in this file will be lost!
 
 
+import sys
 from qt import *
 
 
@@ -59,3 +60,11 @@ class BaseSelectorDesign(QDialog):
 
     def __tr(self,s,c = None):
         return qApp.translate("BaseSelectorDesign",s,c)
+
+if __name__ == "__main__":
+    a = QApplication(sys.argv)
+    QObject.connect(a,SIGNAL("lastWindowClosed()"),a,SLOT("quit()"))
+    w = BaseSelectorDesign()
+    a.setMainWidget(w)
+    w.show()
+    a.exec_loop()

@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 ###########################################################################
 #    Copyright (C) 2003 by Wido Depping                                      
 #    <wido.depping@tu-clausthal.de>                                                             
@@ -28,7 +30,7 @@ class LumaConnection(object):
         try:
             ldapServerObject = ldap.open(self.server.host, self.server.port)
             ldapServerObject.protocol_version = ldap.VERSION3
-            if int(self.server.tls) == 1:
+            if self.server.tls:
                 ldapServerObject.start_tls_s()
             if len(self.server.bindDN) > 0:
                 ldapServerObject.simple_bind_s(self.server.bindDN,self.server.bindPassword)
@@ -54,7 +56,7 @@ class LumaConnection(object):
         try:
             ldapServerObject = ldap.open(self.server.host, self.server.port)
             ldapServerObject.protocol_version = ldap.VERSION3
-            if int(self.server.tls) == 1:
+            if self.server.tls:
                 ldapServerObject.start_tls_s()
             if len(self.server.bindDN) > 0:
                 ldapServerObject.simple_bind_s(self.server.bindDN,self.server.bindPassword)
@@ -99,7 +101,7 @@ class LumaConnection(object):
             ldapServerObject = ldap.open(self.server.host, self.server.port)
             ldapServerObject.protocol_version = ldap.VERSION3
             
-            if int(self.server.tls) == 1:
+            if self.server.tls:
                 ldapServerObject.start_tls_s()
                 
             if len(self.server.bindDN) > 0:
