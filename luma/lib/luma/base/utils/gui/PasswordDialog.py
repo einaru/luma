@@ -14,6 +14,7 @@ import os.path
 from base.utils.gui.PasswordDialogDesign import PasswordDialogDesign
 import environment
 from base.utils.backend.mkpasswd import mkpasswd
+from base.utils.backend.mkpasswd import check_strength
 
 class PasswordDialog(PasswordDialogDesign):
 
@@ -60,6 +61,8 @@ class PasswordDialog(PasswordDialogDesign):
             self.passwordLabel.setText(self.trUtf8("Passwords match"))
         else:
             self.passwordLabel.setText(self.trUtf8("Passwords do not match"))
+            
+        self.strengthBar.setProgress(check_strength(firstPW))
         
         self.okButton.setEnabled(enable)
 
