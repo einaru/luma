@@ -135,7 +135,7 @@ class SearchResultView(SearchResultViewDesign):
         mainWin.set_busy()
         
         try:
-            ldapServerObject = ldap.open(serverMeta.host)
+            ldapServerObject = ldap.open(serverMeta.host, serverMeta.port)
             ldapServerObject.protocol_version = ldap.VERSION3
             
             if serverMeta.tls == "1":
