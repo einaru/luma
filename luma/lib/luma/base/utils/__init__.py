@@ -72,7 +72,7 @@ def escapeSpecialChars(tmpString):
         value = value.replace(',', r'\2C')
         value = value.replace('=', r'\3D')
         value = value.replace('+', r'\2B')
-        value = value.replace('"', r'\22')
+        value = value.replace('"', r'\"')
         value = value.replace('<', r'\3C')
         value = value.replace('>', r'\3E')
         value = value.replace(';', r'\3B')
