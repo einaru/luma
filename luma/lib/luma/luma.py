@@ -13,7 +13,6 @@
 import sys
 from qt import *
 
-
 import environment
 from base.gui.MainWin import MainWin
 
@@ -24,7 +23,7 @@ def run_it():
     QObject.connect(app, SIGNAL('lastWindowClosed()'), gui.quitApplication)
     
     
-    app.setMainWidget(gui)
+    #app.setMainWidget(gui)
     gui.show()
     gui.loadPlugins()
     app.exec_loop()
