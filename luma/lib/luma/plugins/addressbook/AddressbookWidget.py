@@ -207,33 +207,57 @@ class AddressbookWidget(AddressbookWidgetDesign):
 
     def showNameDialog(self):
         dialog = NameDialog()
-        try:
-            sn = self.data['sn'][0].decode('utf-8')
-            tmpList = unicode(self.cnEdit.text()).split(sn)
-            tmpList[0] = strip(tmpList[0])
+        
+        sn = self.data['sn'][0].decode('utf-8')
             
-            prefix = tmpList[0].split(' ')
-            for x in range(0, len(prefix)-1):
-                prefix[x] = strip(prefix[x])
+        givenName = None
+        suffix = None
+        title = None
+        middleName = None
+        
+        cn = self.data['cn'][0].decode('utf-8')
+        tmpList = cn.split(' ')
+        sureNamePosition = tmpList.index(sn)
+        
+        # find the given name
+        if self.data.has_key('givenName'):
+            givenName = self.data['givenName'][0].decode('utf-8')
+        
+        # find the suffix
+        if not sureNamePosition == (len(tmpList) - 1):
+            suffix = " ".join(tmpList[sureNamePosition+1:])
+
+        # find the title and middle name
+        if givenName == None:
+            frontList = tmpList[:sureNamePosition]
+            if len(frontList) == 1:
+                givenName = frontList[0]
             
-            dialog.lastEdit.setText(sn)
-            if (len(tmpList) == 2):
-                dialog.suffixBox.setCurrentText(tmpList[1])
-              
-            if (len(prefix) == 1):
-                dialog.firstEdit.setText(prefix[0])
-            if  (len(prefix) == 2):
-                dialog.titleBox.setCurrentText(prefix[0])
-                dialog.firstEdit.setText(prefix[1])
-            if (len(prefix) > 2):
-                dialog.titleBox.setCurrentText(prefix[0])
-                dialog.firstEdit.setText(prefix[1])
-                tmpString = " ".join(prefix[2:])
-                dialog.middleEdit.setText(tmpString)
+            if len(frontList) > 1:
+                givenName = frontList[0]
+                middleName = " ".join(frontList[1:])
+        else:
+            givenNamePosition = tmpList.index(givenName)
+            if not givenNamePosition == 0:
+                title = " ".join(tmpList[:givenNamePosition])
             
-            dialog.exec_loop()
-        except Exception, e:
-            dialog.exec_loop()
+            if (sureNamePosition-givenNamePosition) > 1:
+                middleName = " ".join(tmpList[givenNamePosition+1 : sureNamePosition])
+            
+            
+            
+        dialog.lastEdit.setText(sn)
+        if not givenName == None:
+            dialog.firstEdit.setText(givenName)
+        if not suffix == None:
+            dialog.suffixBox.setCurrentText(suffix)
+        if not title == None:
+            dialog.titleBox.setCurrentText(title)
+        if not middleName == None:
+            dialog.middleEdit.setText(middleName)
+        
+        dialog.exec_loop()
+        
         
         if (dialog.result() == QDialog.Accepted):
             tmpSn = strip(unicode(dialog.lastEdit.text()))
@@ -249,6 +273,11 @@ class AddressbookWidget(AddressbookWidgetDesign):
             tmpList.append(self.__normalizeQtString(dialog.middleEdit.text()))
             tmpList.append(self.__normalizeQtString(dialog.lastEdit.text()))
             tmpList.append(self.__normalizeQtString(dialog.suffixBox.currentText()))
+            
+            if "givenName" in self.allowedAttributes:
+                givenName = unicode(dialog.firstEdit.text()).encode('utf-8')
+                givenName = strip(givenName)
+                self.data['givenName'] = [givenName]
             
             self.cnEdit.setText(''.join(tmpList))
             
@@ -426,6 +455,10 @@ class AddressbookWidget(AddressbookWidgetDesign):
             
         
         values['sn'] = self.data['sn']
+        if "givenName" in self.allowedAttributes:
+            if self.data.has_key('givenName'):
+                values['givenName'] = self.data['givenName']
+        
         addressType = ['postalAddress', 'homePostalAddress', 'otherPostalAddress']
         id = self.addressBox.currentItem()
         if addressType[id] in self.allowedAttributes:
