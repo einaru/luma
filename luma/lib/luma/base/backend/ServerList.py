@@ -22,25 +22,15 @@ import environment
 class ServerList:
     """Object for managing the list of available servers.
     
-    self.SERVERLIST:  List of servers.
+    self.serverList:  List of servers.
     
     
     """
-    SERVERLIST = None
+    serverList = None
     
     def __init__(self):
         self.configPrefix = os.path.join(environment.userHomeDir, ".luma")
         self.configFile = os.path.join(self.configPrefix, "serverlist")
-        self.checkConfigDir()
-
-###############################################################################
-
-    def checkConfigDir(self):
-        """ Check if configuration directory exists. If not, create it.
-        """
-        
-        if not (os.path.exists(self.configPrefix)):
-            os.mkdir(self.configPrefix)
 
 ###############################################################################
 
@@ -59,11 +49,13 @@ class ServerList:
         server.bindDN = bindDN
         server.bindPassword = password
         server.tls = tls
-        if self.SERVERLIST == None:
-            self.SERVERLIST = [server]
+        
+        if self.serverList == None:
+            self.serverList = [server]
         else:
-            self.SERVERLIST.append(server)
-        self.saveSettings(self.SERVERLIST)
+            self.serverList.append(server)
+            
+        self.saveSettings(self.serverList)
         self.readServerList()
 
 ###############################################################################
@@ -102,14 +94,9 @@ class ServerList:
     def deleteServer(self, serverName):
         """ Delete a server from the server list.
         """
-        
-        newList = []
-        
-        for x in self.SERVERLIST:
-            if not(x.name == serverName):
-                newList.append(x)
 
-        self.SERVERLIST = newList
+        self.serverList = filter(lambda x: not (x.name == serverName), self.serverList)
+
 
 
 ###############################################################################
@@ -120,7 +107,7 @@ class ServerList:
         
         retVal = None
         
-        for x in self.SERVERLIST:
+        for x in self.serverList:
             if x.name == serverName:
                 retVal = x
                 break
@@ -133,7 +120,7 @@ class ServerList:
         """ Read the server list from configuration file.
         """
         
-        self.SERVERLIST = None
+        self.serverList = None
 
         configParser = ConfigParser()
         
@@ -148,7 +135,7 @@ class ServerList:
         if len(sections) == 0:
             return
             
-        self.SERVERLIST = []
+        self.serverList = []
         for x in sections:
             server = ServerObject()
             server.name = unicode(x)
@@ -164,4 +151,4 @@ class ServerList:
             except NoOptionError:
                 pass
                 
-            self.SERVERLIST.append(server)
+            self.serverList.append(server)
