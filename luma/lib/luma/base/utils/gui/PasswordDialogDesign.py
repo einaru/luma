@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file '/home/wido/src/luma/lib/luma/base/utils/gui/PasswordDialogDesign.ui'
 #
-# Created: Mon Apr 26 16:08:40 2004
+# Created: Sun Jul 4 00:20:56 2004
 #      by: The PyQt User Interface Compiler (pyuic) 3.11
 #
 # WARNING! All changes made in this file will be lost!
@@ -29,38 +29,9 @@ class PasswordDialogDesign(QDialog):
 
         PasswordDialogDesignLayout.addWidget(self.iconLabel,0,0)
 
-        self.line1 = QFrame(self,"line1")
-        self.line1.setFrameShape(QFrame.HLine)
-        self.line1.setFrameShadow(QFrame.Sunken)
-        self.line1.setFrameShape(QFrame.HLine)
-
-        PasswordDialogDesignLayout.addMultiCellWidget(self.line1,1,1,0,1)
-
         self.textLabel2 = QLabel(self,"textLabel2")
 
         PasswordDialogDesignLayout.addWidget(self.textLabel2,0,1)
-
-        Layout1 = QHBoxLayout(None,0,6,"Layout1")
-        Horizontal_Spacing2 = QSpacerItem(20,20,QSizePolicy.Expanding,QSizePolicy.Minimum)
-        Layout1.addItem(Horizontal_Spacing2)
-
-        self.okButton = QPushButton(self,"okButton")
-        self.okButton.setAutoDefault(1)
-        self.okButton.setDefault(1)
-        Layout1.addWidget(self.okButton)
-
-        self.cancelButton = QPushButton(self,"cancelButton")
-        self.cancelButton.setAutoDefault(1)
-        Layout1.addWidget(self.cancelButton)
-
-        PasswordDialogDesignLayout.addMultiCellLayout(Layout1,5,5,0,1)
-
-        self.line2 = QFrame(self,"line2")
-        self.line2.setFrameShape(QFrame.HLine)
-        self.line2.setFrameShadow(QFrame.Sunken)
-        self.line2.setFrameShape(QFrame.HLine)
-
-        PasswordDialogDesignLayout.addMultiCellWidget(self.line2,4,4,0,1)
 
         layout2 = QGridLayout(None,1,1,0,6,"layout2")
 
@@ -92,13 +63,32 @@ class PasswordDialogDesign(QDialog):
 
         layout2.addWidget(self.textLabel3,0,0)
 
-        PasswordDialogDesignLayout.addMultiCellLayout(layout2,2,2,0,1)
-        spacer2 = QSpacerItem(41,141,QSizePolicy.Minimum,QSizePolicy.Expanding)
-        PasswordDialogDesignLayout.addItem(spacer2,3,1)
+        PasswordDialogDesignLayout.addLayout(layout2,2,1)
+
+        Layout1 = QHBoxLayout(None,0,6,"Layout1")
+        Horizontal_Spacing2 = QSpacerItem(20,20,QSizePolicy.Expanding,QSizePolicy.Minimum)
+        Layout1.addItem(Horizontal_Spacing2)
+
+        self.okButton = QPushButton(self,"okButton")
+        self.okButton.setAutoDefault(1)
+        self.okButton.setDefault(1)
+        Layout1.addWidget(self.okButton)
+
+        self.cancelButton = QPushButton(self,"cancelButton")
+        self.cancelButton.setAutoDefault(1)
+        Layout1.addWidget(self.cancelButton)
+
+        PasswordDialogDesignLayout.addLayout(Layout1,5,1)
+        spacer2 = QSpacerItem(41,10,QSizePolicy.Minimum,QSizePolicy.MinimumExpanding)
+        PasswordDialogDesignLayout.addItem(spacer2,4,1)
+
+        self.passwordLabel = QLabel(self,"passwordLabel")
+
+        PasswordDialogDesignLayout.addWidget(self.passwordLabel,3,1)
 
         self.languageChange()
 
-        self.resize(QSize(409,253).expandedTo(self.minimumSizeHint()))
+        self.resize(QSize(460,265).expandedTo(self.minimumSizeHint()))
         self.clearWState(Qt.WState_Polished)
 
         self.connect(self.okButton,SIGNAL("clicked()"),self.checkPassword)
@@ -111,13 +101,14 @@ class PasswordDialogDesign(QDialog):
         self.setCaption(self.__tr("New password"))
         self.iconLabel.setText(self.__tr("PW","DO NOT TRANSLATE"))
         self.textLabel2.setText(self.__tr("Please enter a new password."))
+        self.textLabel5.setText(self.__tr("Verify:"))
+        self.textLabel4.setText(self.__tr("New password:"))
+        self.textLabel3.setText(self.__tr("Method:"))
         self.okButton.setText(self.__tr("&OK"))
         self.okButton.setAccel(QString.null)
         self.cancelButton.setText(self.__tr("&Cancel"))
         self.cancelButton.setAccel(QString.null)
-        self.textLabel5.setText(self.__tr("Retype new password:"))
-        self.textLabel4.setText(self.__tr("New password:"))
-        self.textLabel3.setText(self.__tr("Method:"))
+        self.passwordLabel.setText(self.__tr("Passwords do not match"))
 
 
     def checkPassword(self):

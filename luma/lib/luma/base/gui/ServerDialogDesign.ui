@@ -17,34 +17,20 @@
         <rect>
             <x>0</x>
             <y>0</y>
-            <width>700</width>
-            <height>446</height>
+            <width>639</width>
+            <height>462</height>
         </rect>
     </property>
     <property name="caption">
         <string>Manage Server List</string>
     </property>
-    <grid>
+    <vbox>
         <property name="name">
             <cstring>unnamed</cstring>
         </property>
-        <widget class="Line" row="1" column="0">
+        <widget class="QSplitter">
             <property name="name">
-                <cstring>line3</cstring>
-            </property>
-            <property name="frameShape">
-                <enum>HLine</enum>
-            </property>
-            <property name="frameShadow">
-                <enum>Sunken</enum>
-            </property>
-            <property name="orientation">
-                <enum>Horizontal</enum>
-            </property>
-        </widget>
-        <widget class="QSplitter" row="0" column="0">
-            <property name="name">
-                <cstring>splitter3</cstring>
+                <cstring>splitter2</cstring>
             </property>
             <property name="orientation">
                 <enum>Horizontal</enum>
@@ -128,7 +114,7 @@
                     <property name="name">
                         <cstring>unnamed</cstring>
                     </property>
-                    <widget class="QCheckBox" row="3" column="1">
+                    <widget class="QCheckBox" row="3" column="1" rowspan="1" colspan="2">
                         <property name="name">
                             <cstring>tlsCheckBox</cstring>
                         </property>
@@ -179,12 +165,12 @@
                             <string>Port:</string>
                         </property>
                     </widget>
-                    <widget class="QLineEdit" row="1" column="2" rowspan="1" colspan="2">
+                    <widget class="QLineEdit" row="1" column="4" rowspan="1" colspan="2">
                         <property name="name">
                             <cstring>hostLineEdit</cstring>
                         </property>
                     </widget>
-                    <widget class="QSpinBox" row="2" column="2" rowspan="1" colspan="2">
+                    <widget class="QSpinBox" row="2" column="4" rowspan="1" colspan="2">
                         <property name="name">
                             <cstring>portSpinBox</cstring>
                         </property>
@@ -204,76 +190,6 @@
                         </property>
                         <property name="value">
                             <number>389</number>
-                        </property>
-                    </widget>
-                    <widget class="QLabel" row="10" column="1">
-                        <property name="name">
-                            <cstring>textLabel1</cstring>
-                        </property>
-                        <property name="text">
-                            <string>Base DN:</string>
-                        </property>
-                    </widget>
-                    <widget class="QLineEdit" row="10" column="2">
-                        <property name="name">
-                            <cstring>baseLineEdit</cstring>
-                        </property>
-                    </widget>
-                    <widget class="QPushButton" row="10" column="3">
-                        <property name="name">
-                            <cstring>basednButton</cstring>
-                        </property>
-                        <property name="enabled">
-                            <bool>true</bool>
-                        </property>
-                        <property name="text">
-                            <string></string>
-                        </property>
-                        <property name="pixmap">
-                            <pixmap>image0</pixmap>
-                        </property>
-                    </widget>
-                    <widget class="QCheckBox" row="7" column="1" rowspan="1" colspan="2">
-                        <property name="name">
-                            <cstring>bindAnonBox</cstring>
-                        </property>
-                        <property name="text">
-                            <string>Bind anonymously</string>
-                        </property>
-                    </widget>
-                    <widget class="QLabel" row="8" column="1">
-                        <property name="name">
-                            <cstring>textLabel10</cstring>
-                        </property>
-                        <property name="text">
-                            <string>Bind DN:</string>
-                        </property>
-                        <property name="alignment">
-                            <set>WordBreak|AlignVCenter</set>
-                        </property>
-                    </widget>
-                    <widget class="QLabel" row="9" column="1">
-                        <property name="name">
-                            <cstring>textLabel12</cstring>
-                        </property>
-                        <property name="text">
-                            <string>Bind Password:</string>
-                        </property>
-                        <property name="alignment">
-                            <set>AlignVCenter|AlignRight</set>
-                        </property>
-                    </widget>
-                    <widget class="QLineEdit" row="8" column="2" rowspan="1" colspan="2">
-                        <property name="name">
-                            <cstring>bindLineEdit</cstring>
-                        </property>
-                    </widget>
-                    <widget class="QLineEdit" row="9" column="2" rowspan="1" colspan="2">
-                        <property name="name">
-                            <cstring>passwordLineEdit</cstring>
-                        </property>
-                        <property name="echoMode">
-                            <enum>Password</enum>
                         </property>
                     </widget>
                     <widget class="QLabel" row="0" column="0">
@@ -298,29 +214,34 @@
                             <string>NO</string>
                         </property>
                     </widget>
-                    <widget class="Line" row="4" column="0" rowspan="2" colspan="4">
-                        <property name="name">
-                            <cstring>line2</cstring>
-                        </property>
-                        <property name="frameShape">
-                            <enum>HLine</enum>
-                        </property>
-                        <property name="frameShadow">
-                            <enum>Sunken</enum>
-                        </property>
-                        <property name="orientation">
-                            <enum>Horizontal</enum>
-                        </property>
-                    </widget>
-                    <widget class="QLabel" row="0" column="1" rowspan="1" colspan="2">
+                    <widget class="QLabel" row="0" column="1" rowspan="1" colspan="4">
                         <property name="name">
                             <cstring>textLabel1_2</cstring>
                         </property>
                         <property name="text">
-                            <string>Network options</string>
+                            <string>&lt;b&gt;Network options&lt;/b&gt;</string>
                         </property>
                     </widget>
-                    <widget class="QLabel" row="6" column="0">
+                    <widget class="QPushButton" row="9" column="5">
+                        <property name="name">
+                            <cstring>basednButton</cstring>
+                        </property>
+                        <property name="enabled">
+                            <bool>true</bool>
+                        </property>
+                        <property name="text">
+                            <string></string>
+                        </property>
+                        <property name="pixmap">
+                            <pixmap>image0</pixmap>
+                        </property>
+                    </widget>
+                    <widget class="QLineEdit" row="7" column="4" rowspan="1" colspan="2">
+                        <property name="name">
+                            <cstring>bindLineEdit</cstring>
+                        </property>
+                    </widget>
+                    <widget class="QLabel" row="5" column="0">
                         <property name="name">
                             <cstring>authLabel</cstring>
                         </property>
@@ -342,15 +263,15 @@
                             <string>AO</string>
                         </property>
                     </widget>
-                    <widget class="QLabel" row="5" column="1" rowspan="2" colspan="2">
+                    <widget class="QCheckBox" row="6" column="1" rowspan="1" colspan="4">
                         <property name="name">
-                            <cstring>textLabel4</cstring>
+                            <cstring>bindAnonBox</cstring>
                         </property>
                         <property name="text">
-                            <string>Authentification options</string>
+                            <string>Bind anonymously</string>
                         </property>
                     </widget>
-                    <spacer row="11" column="1">
+                    <spacer row="10" column="2">
                         <property name="name">
                             <cstring>spacer7</cstring>
                         </property>
@@ -367,10 +288,92 @@
                             </size>
                         </property>
                     </spacer>
+                    <widget class="QLabel" row="7" column="1" rowspan="1" colspan="3">
+                        <property name="name">
+                            <cstring>textLabel10</cstring>
+                        </property>
+                        <property name="text">
+                            <string>Bind DN:</string>
+                        </property>
+                        <property name="alignment">
+                            <set>WordBreak|AlignVCenter</set>
+                        </property>
+                    </widget>
+                    <widget class="QLabel" row="8" column="1" rowspan="1" colspan="3">
+                        <property name="name">
+                            <cstring>textLabel12</cstring>
+                        </property>
+                        <property name="text">
+                            <string>Bind Password:</string>
+                        </property>
+                        <property name="alignment">
+                            <set>AlignVCenter|AlignRight</set>
+                        </property>
+                    </widget>
+                    <widget class="QLineEdit" row="8" column="4" rowspan="1" colspan="2">
+                        <property name="name">
+                            <cstring>passwordLineEdit</cstring>
+                        </property>
+                        <property name="echoMode">
+                            <enum>Password</enum>
+                        </property>
+                    </widget>
+                    <widget class="QLineEdit" row="9" column="4">
+                        <property name="name">
+                            <cstring>baseLineEdit</cstring>
+                        </property>
+                    </widget>
+                    <widget class="QLabel" row="9" column="1" rowspan="1" colspan="3">
+                        <property name="name">
+                            <cstring>textLabel1</cstring>
+                        </property>
+                        <property name="text">
+                            <string>Base DN:</string>
+                        </property>
+                    </widget>
+                    <widget class="QLabel" row="5" column="1" rowspan="1" colspan="4">
+                        <property name="name">
+                            <cstring>textLabel4</cstring>
+                        </property>
+                        <property name="text">
+                            <string>&lt;b&gt;Authentification options&lt;/b&gt;</string>
+                        </property>
+                    </widget>
+                    <spacer row="4" column="3" rowspan="1" colspan="2">
+                        <property name="name">
+                            <cstring>spacer4</cstring>
+                        </property>
+                        <property name="orientation">
+                            <enum>Vertical</enum>
+                        </property>
+                        <property name="sizeType">
+                            <enum>Fixed</enum>
+                        </property>
+                        <property name="sizeHint">
+                            <size>
+                                <width>41</width>
+                                <height>25</height>
+                            </size>
+                        </property>
+                    </spacer>
                 </grid>
             </widget>
         </widget>
-        <widget class="QLayoutWidget" row="2" column="0">
+        <widget class="Line">
+            <property name="name">
+                <cstring>line3</cstring>
+            </property>
+            <property name="frameShape">
+                <enum>HLine</enum>
+            </property>
+            <property name="frameShadow">
+                <enum>Sunken</enum>
+            </property>
+            <property name="orientation">
+                <enum>Horizontal</enum>
+            </property>
+        </widget>
+        <widget class="QLayoutWidget">
             <property name="name">
                 <cstring>layout4</cstring>
             </property>
@@ -438,7 +441,7 @@
                 </widget>
             </hbox>
         </widget>
-    </grid>
+    </vbox>
 </widget>
 <images>
     <image name="image0">

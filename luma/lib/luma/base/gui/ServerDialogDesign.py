@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file '/home/wido/src/luma/lib/luma/base/gui/ServerDialogDesign.ui'
 #
-# Created: Sun May 9 23:51:31 2004
+# Created: Sat Jul 3 23:35:31 2004
 #      by: The PyQt User Interface Compiler (pyuic) 3.11
 #
 # WARNING! All changes made in this file will be lost!
@@ -67,19 +67,12 @@ class ServerDialogDesign(QDialog):
             self.setName("ServerDialogDesign")
 
 
-        ServerDialogDesignLayout = QGridLayout(self,1,1,11,6,"ServerDialogDesignLayout")
+        ServerDialogDesignLayout = QVBoxLayout(self,11,6,"ServerDialogDesignLayout")
 
-        self.line3 = QFrame(self,"line3")
-        self.line3.setFrameShape(QFrame.HLine)
-        self.line3.setFrameShadow(QFrame.Sunken)
-        self.line3.setFrameShape(QFrame.HLine)
+        self.splitter2 = QSplitter(self,"splitter2")
+        self.splitter2.setOrientation(QSplitter.Horizontal)
 
-        ServerDialogDesignLayout.addWidget(self.line3,1,0)
-
-        self.splitter3 = QSplitter(self,"splitter3")
-        self.splitter3.setOrientation(QSplitter.Horizontal)
-
-        LayoutWidget = QWidget(self.splitter3,"layout3")
+        LayoutWidget = QWidget(self.splitter2,"layout3")
         layout3 = QGridLayout(LayoutWidget,1,1,11,6,"layout3")
 
         self.addButton = QPushButton(LayoutWidget,"addButton")
@@ -98,7 +91,7 @@ class ServerDialogDesign(QDialog):
 
         layout3.addWidget(self.deleteButton,1,2)
 
-        self.infoGroupBox = QGroupBox(self.splitter3,"infoGroupBox")
+        self.infoGroupBox = QGroupBox(self.splitter2,"infoGroupBox")
         self.infoGroupBox.setColumnLayout(0,Qt.Vertical)
         self.infoGroupBox.layout().setSpacing(6)
         self.infoGroupBox.layout().setMargin(11)
@@ -108,7 +101,7 @@ class ServerDialogDesign(QDialog):
         self.tlsCheckBox = QCheckBox(self.infoGroupBox,"tlsCheckBox")
         self.tlsCheckBox.setSizePolicy(QSizePolicy(0,0,0,0,self.tlsCheckBox.sizePolicy().hasHeightForWidth()))
 
-        infoGroupBoxLayout.addWidget(self.tlsCheckBox,3,1)
+        infoGroupBoxLayout.addMultiCellWidget(self.tlsCheckBox,3,3,1,2)
 
         self.textLabel8 = QLabel(self.infoGroupBox,"textLabel8")
         self.textLabel8.setSizePolicy(QSizePolicy(0,5,0,0,self.textLabel8.sizePolicy().hasHeightForWidth()))
@@ -122,7 +115,7 @@ class ServerDialogDesign(QDialog):
 
         self.hostLineEdit = QLineEdit(self.infoGroupBox,"hostLineEdit")
 
-        infoGroupBoxLayout.addMultiCellWidget(self.hostLineEdit,1,1,2,3)
+        infoGroupBoxLayout.addMultiCellWidget(self.hostLineEdit,1,1,4,5)
 
         self.portSpinBox = QSpinBox(self.infoGroupBox,"portSpinBox")
         self.portSpinBox.setSizePolicy(QSizePolicy(7,0,0,0,self.portSpinBox.sizePolicy().hasHeightForWidth()))
@@ -130,44 +123,7 @@ class ServerDialogDesign(QDialog):
         self.portSpinBox.setMinValue(1)
         self.portSpinBox.setValue(389)
 
-        infoGroupBoxLayout.addMultiCellWidget(self.portSpinBox,2,2,2,3)
-
-        self.textLabel1 = QLabel(self.infoGroupBox,"textLabel1")
-
-        infoGroupBoxLayout.addWidget(self.textLabel1,10,1)
-
-        self.baseLineEdit = QLineEdit(self.infoGroupBox,"baseLineEdit")
-
-        infoGroupBoxLayout.addWidget(self.baseLineEdit,10,2)
-
-        self.basednButton = QPushButton(self.infoGroupBox,"basednButton")
-        self.basednButton.setEnabled(1)
-        self.basednButton.setPixmap(self.image0)
-
-        infoGroupBoxLayout.addWidget(self.basednButton,10,3)
-
-        self.bindAnonBox = QCheckBox(self.infoGroupBox,"bindAnonBox")
-
-        infoGroupBoxLayout.addMultiCellWidget(self.bindAnonBox,7,7,1,2)
-
-        self.textLabel10 = QLabel(self.infoGroupBox,"textLabel10")
-        self.textLabel10.setAlignment(QLabel.WordBreak | QLabel.AlignVCenter)
-
-        infoGroupBoxLayout.addWidget(self.textLabel10,8,1)
-
-        self.textLabel12 = QLabel(self.infoGroupBox,"textLabel12")
-        self.textLabel12.setAlignment(QLabel.AlignVCenter | QLabel.AlignRight)
-
-        infoGroupBoxLayout.addWidget(self.textLabel12,9,1)
-
-        self.bindLineEdit = QLineEdit(self.infoGroupBox,"bindLineEdit")
-
-        infoGroupBoxLayout.addMultiCellWidget(self.bindLineEdit,8,8,2,3)
-
-        self.passwordLineEdit = QLineEdit(self.infoGroupBox,"passwordLineEdit")
-        self.passwordLineEdit.setEchoMode(QLineEdit.Password)
-
-        infoGroupBoxLayout.addMultiCellWidget(self.passwordLineEdit,9,9,2,3)
+        infoGroupBoxLayout.addMultiCellWidget(self.portSpinBox,2,2,4,5)
 
         self.networkLabel = QLabel(self.infoGroupBox,"networkLabel")
         self.networkLabel.setSizePolicy(QSizePolicy(0,0,0,0,self.networkLabel.sizePolicy().hasHeightForWidth()))
@@ -175,30 +131,67 @@ class ServerDialogDesign(QDialog):
 
         infoGroupBoxLayout.addWidget(self.networkLabel,0,0)
 
-        self.line2 = QFrame(self.infoGroupBox,"line2")
-        self.line2.setFrameShape(QFrame.HLine)
-        self.line2.setFrameShadow(QFrame.Sunken)
-        self.line2.setFrameShape(QFrame.HLine)
-
-        infoGroupBoxLayout.addMultiCellWidget(self.line2,4,5,0,3)
-
         self.textLabel1_2 = QLabel(self.infoGroupBox,"textLabel1_2")
 
-        infoGroupBoxLayout.addMultiCellWidget(self.textLabel1_2,0,0,1,2)
+        infoGroupBoxLayout.addMultiCellWidget(self.textLabel1_2,0,0,1,4)
+
+        self.basednButton = QPushButton(self.infoGroupBox,"basednButton")
+        self.basednButton.setEnabled(1)
+        self.basednButton.setPixmap(self.image0)
+
+        infoGroupBoxLayout.addWidget(self.basednButton,9,5)
+
+        self.bindLineEdit = QLineEdit(self.infoGroupBox,"bindLineEdit")
+
+        infoGroupBoxLayout.addMultiCellWidget(self.bindLineEdit,7,7,4,5)
 
         self.authLabel = QLabel(self.infoGroupBox,"authLabel")
         self.authLabel.setSizePolicy(QSizePolicy(0,0,0,0,self.authLabel.sizePolicy().hasHeightForWidth()))
         self.authLabel.setMinimumSize(QSize(48,48))
 
-        infoGroupBoxLayout.addWidget(self.authLabel,6,0)
+        infoGroupBoxLayout.addWidget(self.authLabel,5,0)
+
+        self.bindAnonBox = QCheckBox(self.infoGroupBox,"bindAnonBox")
+
+        infoGroupBoxLayout.addMultiCellWidget(self.bindAnonBox,6,6,1,4)
+        spacer7 = QSpacerItem(21,30,QSizePolicy.Minimum,QSizePolicy.Expanding)
+        infoGroupBoxLayout.addItem(spacer7,10,2)
+
+        self.textLabel10 = QLabel(self.infoGroupBox,"textLabel10")
+        self.textLabel10.setAlignment(QLabel.WordBreak | QLabel.AlignVCenter)
+
+        infoGroupBoxLayout.addMultiCellWidget(self.textLabel10,7,7,1,3)
+
+        self.textLabel12 = QLabel(self.infoGroupBox,"textLabel12")
+        self.textLabel12.setAlignment(QLabel.AlignVCenter | QLabel.AlignRight)
+
+        infoGroupBoxLayout.addMultiCellWidget(self.textLabel12,8,8,1,3)
+
+        self.passwordLineEdit = QLineEdit(self.infoGroupBox,"passwordLineEdit")
+        self.passwordLineEdit.setEchoMode(QLineEdit.Password)
+
+        infoGroupBoxLayout.addMultiCellWidget(self.passwordLineEdit,8,8,4,5)
+
+        self.baseLineEdit = QLineEdit(self.infoGroupBox,"baseLineEdit")
+
+        infoGroupBoxLayout.addWidget(self.baseLineEdit,9,4)
+
+        self.textLabel1 = QLabel(self.infoGroupBox,"textLabel1")
+
+        infoGroupBoxLayout.addMultiCellWidget(self.textLabel1,9,9,1,3)
 
         self.textLabel4 = QLabel(self.infoGroupBox,"textLabel4")
 
-        infoGroupBoxLayout.addMultiCellWidget(self.textLabel4,5,6,1,2)
-        spacer7 = QSpacerItem(21,30,QSizePolicy.Minimum,QSizePolicy.Expanding)
-        infoGroupBoxLayout.addItem(spacer7,11,1)
+        infoGroupBoxLayout.addMultiCellWidget(self.textLabel4,5,5,1,4)
+        spacer4 = QSpacerItem(41,25,QSizePolicy.Minimum,QSizePolicy.Fixed)
+        infoGroupBoxLayout.addMultiCell(spacer4,4,4,3,4)
+        ServerDialogDesignLayout.addWidget(self.splitter2)
 
-        ServerDialogDesignLayout.addWidget(self.splitter3,0,0)
+        self.line3 = QFrame(self,"line3")
+        self.line3.setFrameShape(QFrame.HLine)
+        self.line3.setFrameShadow(QFrame.Sunken)
+        self.line3.setFrameShape(QFrame.HLine)
+        ServerDialogDesignLayout.addWidget(self.line3)
 
         layout4 = QHBoxLayout(None,0,6,"layout4")
         spacer6 = QSpacerItem(350,21,QSizePolicy.Expanding,QSizePolicy.Minimum)
@@ -213,12 +206,11 @@ class ServerDialogDesign(QDialog):
 
         self.cancelButton = QPushButton(self,"cancelButton")
         layout4.addWidget(self.cancelButton)
-
-        ServerDialogDesignLayout.addLayout(layout4,2,0)
+        ServerDialogDesignLayout.addLayout(layout4)
 
         self.languageChange()
 
-        self.resize(QSize(700,446).expandedTo(self.minimumSizeHint()))
+        self.resize(QSize(639,462).expandedTo(self.minimumSizeHint()))
         self.clearWState(Qt.WState_Polished)
 
         self.connect(self.applyButton,SIGNAL("clicked()"),self.saveServer)
@@ -258,15 +250,15 @@ class ServerDialogDesign(QDialog):
         QToolTip.add(self.tlsCheckBox,self.__tr("User Transport Layer Security"))
         self.textLabel8.setText(self.__tr("Host:"))
         self.textLabel9.setText(self.__tr("Port:"))
-        self.textLabel1.setText(self.__tr("Base DN:"))
+        self.networkLabel.setText(self.__tr("NO"))
+        self.textLabel1_2.setText(self.__tr("<b>Network options</b>"))
         self.basednButton.setText(QString.null)
+        self.authLabel.setText(self.__tr("AO"))
         self.bindAnonBox.setText(self.__tr("Bind anonymously"))
         self.textLabel10.setText(self.__tr("Bind DN:"))
         self.textLabel12.setText(self.__tr("Bind Password:"))
-        self.networkLabel.setText(self.__tr("NO"))
-        self.textLabel1_2.setText(self.__tr("Network options"))
-        self.authLabel.setText(self.__tr("AO"))
-        self.textLabel4.setText(self.__tr("Authentification options"))
+        self.textLabel1.setText(self.__tr("Base DN:"))
+        self.textLabel4.setText(self.__tr("<b>Authentification options</b>"))
         self.okButton.setText(self.__tr("&OK"))
         self.okButton.setAccel(self.__tr("Alt+O"))
         self.applyButton.setText(self.__tr("&Apply"))

@@ -57,6 +57,9 @@ class PasswordDialog(PasswordDialogDesign):
         enable = False
         if (firstPW == secondPW) and (len(firstPW) > 0):
             enable = True
+            self.passwordLabel.setText(self.trUtf8("Passwords match"))
+        else:
+            self.passwordLabel.setText(self.trUtf8("Passwords do not match"))
         
         self.okButton.setEnabled(enable)
 

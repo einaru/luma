@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file '/home/wido/src/luma/lib/luma/base/utils/gui/MailDialogDesign.ui'
 #
-# Created: Mon Apr 26 16:00:32 2004
+# Created: Sun Jul 4 00:25:02 2004
 #      by: The PyQt User Interface Compiler (pyuic) 3.11
 #
 # WARNING! All changes made in this file will be lost!
@@ -20,16 +20,7 @@ class MailDialogDesign(QDialog):
             self.setName("MailDialogDesign")
 
 
-        MailDialogDesignLayout = QGridLayout(self,1,1,11,6,"MailDialogDesignLayout")
-
-        self.line7 = QFrame(self,"line7")
-        self.line7.setFrameShape(QFrame.HLine)
-        self.line7.setFrameShadow(QFrame.Sunken)
-        self.line7.setFrameShape(QFrame.HLine)
-
-        MailDialogDesignLayout.addWidget(self.line7,2,0)
-        spacer10 = QSpacerItem(21,16,QSizePolicy.Minimum,QSizePolicy.Expanding)
-        MailDialogDesignLayout.addItem(spacer10,1,0)
+        MailDialogDesignLayout = QVBoxLayout(self,11,6,"MailDialogDesignLayout")
 
         layout2 = QHBoxLayout(None,0,6,"layout2")
 
@@ -43,8 +34,9 @@ class MailDialogDesign(QDialog):
 
         self.mailEdit = QLineEdit(self,"mailEdit")
         layout2.addWidget(self.mailEdit)
-
-        MailDialogDesignLayout.addLayout(layout2,0,0)
+        MailDialogDesignLayout.addLayout(layout2)
+        spacer2 = QSpacerItem(41,1,QSizePolicy.Minimum,QSizePolicy.Expanding)
+        MailDialogDesignLayout.addItem(spacer2)
 
         layout2_2 = QHBoxLayout(None,0,6,"layout2_2")
         spacer9 = QSpacerItem(311,21,QSizePolicy.Expanding,QSizePolicy.Minimum)
@@ -57,12 +49,11 @@ class MailDialogDesign(QDialog):
         self.cancelButton = QPushButton(self,"cancelButton")
         self.cancelButton.setAutoDefault(0)
         layout2_2.addWidget(self.cancelButton)
-
-        MailDialogDesignLayout.addLayout(layout2_2,3,0)
+        MailDialogDesignLayout.addLayout(layout2_2)
 
         self.languageChange()
 
-        self.resize(QSize(412,116).expandedTo(self.minimumSizeHint()))
+        self.resize(QSize(423,103).expandedTo(self.minimumSizeHint()))
         self.clearWState(Qt.WState_Polished)
 
         self.connect(self.cancelButton,SIGNAL("clicked()"),self,SLOT("reject()"))
