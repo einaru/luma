@@ -2,8 +2,8 @@
 
 # Form implementation generated from reading ui file '/home/wido/src/luma/lib/luma/plugins/addressbook/AddressbookWidgetDesign.ui'
 #
-# Created: Tue Jul 6 18:43:05 2004
-#      by: The PyQt User Interface Compiler (pyuic) 3.11
+# Created: Sun Aug 29 00:49:10 2004
+#      by: The PyQt User Interface Compiler (pyuic) 3.12
 #
 # WARNING! All changes made in this file will be lost!
 
