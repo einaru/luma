@@ -529,6 +529,7 @@ class SmartDataObject (object):
         tmpList = explodeDN(tmpString)
         newList = map(escapeSpecialChars, tmpList)
         tmpString = ",".join(newList)
+        tmpString = unicode(tmpString)
         
         self.dn = tmpString.encode('utf-8')
         
