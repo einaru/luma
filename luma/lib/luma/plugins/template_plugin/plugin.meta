@@ -1,4 +1,4 @@
-PLUGIN_NAME=Template Plugin
-PLUGIN_VERSION=0.1
-PLUGIN_AUTHOR=wido.depping@tu-clausthal.de
+PLUGIN_NAME=Templates
+PLUGIN_VERSION=1.5
+PLUGIN_AUTHOR=wido.depping@gmail.com
 PLUGIN_FILE=template_plugin.py
