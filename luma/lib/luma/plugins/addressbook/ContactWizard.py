@@ -87,7 +87,7 @@ class ContactWizard(ContactWizardDesign):
             modlist = ldap.modlist.addModlist(values)
             serverList = ServerList()
             serverList.readServerList()
-            serverMeta = serverList.get_serverobject(self.locationServer)
+            serverMeta = serverList.getServerObject(self.locationServer)
             connection = LumaConnection(serverMeta)
     
             dn = 'description=' + description + ',' + self.locationDN.encode('utf-8')

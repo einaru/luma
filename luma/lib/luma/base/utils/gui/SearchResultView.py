@@ -140,7 +140,7 @@ class SearchResultView(SearchResultViewDesign):
         serverList = ServerList()
         serverList.readServerList()
         
-        serverMeta = serverList.get_serverobject(self.SERVER)
+        serverMeta = serverList.getServerObject(self.SERVER)
 
         # set gui busy
         environment.setBusy(1)

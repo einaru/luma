@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file '/home/wido/src/luma/lib/luma/base/gui/MainWinDesign.ui'
 #
-# Created: Mon Apr 26 16:00:24 2004
+# Created: Sat Jun 5 23:21:11 2004
 #      by: The PyQt User Interface Compiler (pyuic) 3.11
 #
 # WARNING! All changes made in this file will be lost!
@@ -11,1416 +11,542 @@
 import sys
 from qt import *
 
-image0_data = [
-"22 22 160 2",
-"Qt c None",
-"aD c #b62e00",
-"ay c #b83000",
-"aC c #ba3100",
-"aq c #bb3200",
-"ag c #bd3600",
-"aw c #be3700",
-"#7 c #c03900",
-"av c #c13a00",
-"#Y c #c33c00",
-"#h c #c33d00",
-".9 c #c43d00",
-"#v c #c43e00",
-"#n c #c53f00",
-"#D c #c54000",
-".8 c #c74000",
-"#u c #c74100",
-"ax c #c93b00",
-"#C c #c94100",
-".S c #c94400",
-"#g c #c94700",
-"an c #cb4100",
-".R c #cc4600",
-"#6 c #ce4500",
-"ab c #ce4900",
-"ac c #cf4800",
-".Q c #cf4900",
-".P c #d24c00",
-"am c #d44e00",
-".O c #d54f00",
-"al c #d55000",
-"aa c #d85000",
-"au c #d85200",
-"af c #d94a00",
-".N c #d95400",
-"aB c #d95500",
-".7 c #d96b09",
-"at c #da5500",
-"aA c #da5600",
-".6 c #da6e0b",
-".M c #dc5700",
-"ak c #dd5600",
-"az c #dd5a00",
-".B c #df5b00",
-"ar c #df5c00",
-"#3 c #e05900",
-"ah c #e05d00",
-"#2 c #e25c00",
-".A c #e26600",
-"ap c #e34d00",
-"as c #e35900",
-".v c #e35f00",
-"ad c #e55a00",
-"#T c #e56200",
-".q c #e56400",
-"#P c #e76500",
-".5 c #e7922a",
-"#K c #e96600",
-".l c #ea6800",
-"#O c #ea7400",
-"#F c #ec6900",
-".p c #ec7600",
-".L c #ec941e",
-".4 c #eca137",
-"a# c #ee6100",
-".h c #ee6c00",
-"#E c #ee6d00",
-"#B c #ee8b00",
-"#t c #ee9000",
-"#m c #ee9400",
-"#8 c #ef6b00",
-".e c #ef6e00",
-"#w c #f17000",
-".H c #f17100",
-".3 c #f1ae45",
-"ao c #f25b00",
-".d c #f27100",
-".r c #f27300",
-".w c #f27900",
-"#J c #f28b00",
-"ai c #f46200",
-".i c #f47400",
-".a c #f47500",
-"#S c #f47c00",
-".m c #f48200",
-"#f c #f4af19",
-".c c #f67500",
-".b c #f67600",
-".g c #f69913",
-".# c #f87700",
-".G c #f87900",
-"#L c #f88f00",
-".I c #f8a21e",
-".u c #f8b845",
-"aj c #f96100",
-"#o c #f97a00",
-".f c #f99d13",
-".F c #fb7c00",
-".2 c #fbd474",
-"#Q c #fd9400",
-"#G c #fda300",
-"#x c #fdb107",
-".s c #fdbe39",
-".Y c #fdc145",
-"#1 c #fe7500",
-"#4 c #fe7b00",
-".E c #fe8100",
-".V c #fe9e0b",
-".W c #feb32a",
-".X c #feba37",
-"#p c #febd10",
-".k c #feda57",
-"a. c #ff7000",
-"ae c #ff7a00",
-"#9 c #ff7c00",
-"#0 c #ff7d00",
-"#5 c #ff8200",
-".D c #ff8500",
-".T c #ff8700",
-".C c #ff8800",
-"#W c #ff8a00",
-"#. c #ff8b00",
-"#Z c #ff8c00",
-"#V c #ff8f00",
-"#X c #ff9600",
-"#U c #ff9900",
-".U c #ffa10b",
-"#R c #ffa600",
-"#N c #ffb100",
-"#M c #ffb300",
-"#I c #ffba00",
-"#A c #ffbd09",
-"#H c #ffc100",
-"#i c #ffc410",
-"#z c #ffc900",
-"#s c #ffc908",
-"#y c #ffcf00",
-"#r c #ffd900",
-"#l c #ffdc03",
-".j c #ffdc57",
-".Z c #ffdc74",
-"#q c #ffdd00",
-"## c #ffe074",
-"#k c #ffe900",
-"#j c #ffec00",
-"#e c #fff121",
-".1 c #fff87a",
-".z c #fff950",
-"#d c #fffb00",
-"#c c #fffb01",
-".x c #fffb50",
-".0 c #fffb6c",
-"#b c #fffd19",
-"#a c #fffe52",
-".y c #ffff00",
-".t c #ffff03",
-".J c #ffff0b",
-".K c #ffff1b",
-".n c #ffff2f",
-".o c #ffff47",
-"QtQtQtQtQtQtQtQtQtQt.#.aQtQtQtQtQtQtQtQtQtQt",
-"QtQtQtQtQtQtQtQtQt.b.c.d.eQtQtQtQtQtQtQtQtQt",
-"QtQtQtQtQtQtQtQtQt.b.f.g.hQtQtQtQtQtQtQtQtQt",
-"QtQtQtQtQtQtQtQtQt.i.j.k.lQtQtQtQtQtQtQtQtQt",
-"QtQtQtQtQtQtQtQt.i.m.n.o.p.qQtQtQtQtQtQtQtQt",
-"QtQtQtQtQtQtQtQt.r.s.t.t.u.vQtQtQtQtQtQtQtQt",
-"QtQtQtQtQtQtQt.r.w.x.y.y.z.A.BQtQtQtQtQtQtQt",
-"Qt.C.D.E.F.G.a.H.I.J.y.y.K.L.M.N.O.P.Q.R.SQt",
-".C.T.U.V.W.X.Y.Z.0.y.y.y.y.1.2.3.4.5.6.7.8.9",
-".T#.###a#b#b#c#d#d#d#d#d#d#d#d#d#c#b#e#f#g#h",
-"Qt.E.F#i#j#j#j#j#j#j#j#j#j#j#j#j#k#l#m#n.9Qt",
-"QtQt#o.b#p#q#q#q#q#q#q#q#q#q#q#r#s#t#u#vQtQt",
-"QtQtQt.i#w#x#y#y#y#y#y#y#y#y#z#A#B#C#DQtQtQt",
-"QtQtQtQt#E#F#G#H#H#H#H#H#H#H#I#J.S#uQtQtQtQt",
-"QtQtQtQtQt#K#L#M#M#M#M#M#M#M#N#O#uQtQtQtQtQt",
-"QtQtQtQtQt#P#Q#R#R#R#R#R#R#R#R#S#nQtQtQtQtQt",
-"QtQtQtQtQt#T#U#U#U#V#W#X#U#U#U#.#YQtQtQtQtQt",
-"QtQtQtQt#T.l#Z#.#0#1#2#3#4#.#Z#5#6#7QtQtQtQt",
-"QtQtQtQt.v#8#9a.a#aa.PabacadaeaeafagQtQtQtQt",
-"QtQtQtQtahaiajakalamQtQt.S#nanaoapaqQtQtQtQt",
-"QtQtQtQtarasatauQtQtQtQtQtQtavawaxayQtQtQtQt",
-"QtQtQtQtazaAaBQtQtQtQtQtQtQtQtagaCaDQtQtQtQt"
-]
-image1_data = [
-"24 24 304 2",
-"Qt c None",
-".j c #000000",
-"bd c #006b2a",
-"bT c #056432",
-".L c #058750",
-"cQ c #06202f",
-"cT c #06283e",
-"aY c #068c51",
-"aC c #06905e",
-"c# c #069b4c",
-"b1 c #06a048",
-"bI c #076f37",
-"aX c #078b53",
-"ck c #078e56",
-"ag c #078f5e",
-"#D c #07905e",
-"#X c #07905f",
-".2 c #079260",
-"#j c #079261",
-".u c #07965e",
-"ci c #07984c",
-"#H c #08242b",
-"cL c #084367",
-"cM c #085886",
-"cO c #087bb7",
-"cr c #08925f",
-"cs c #08935e",
-".I c #089e56",
-"b2 c #08a152",
-"bS c #08a251",
-"bn c #091e2a",
-"cN c #0974ab",
-"az c #098c4b",
-"aB c #09945f",
-".K c #099463",
-"cj c #099562",
-"#V c #099f55",
-"#g c #099f57",
-"#A c #09a055",
-"ad c #09a350",
-"cP c #0a5174",
-".h c #0a7c48",
-"aA c #0a9155",
-".1 c #0a9362",
-"#i c #0a9461",
-"cb c #0a9558",
-"#C c #0a9561",
-".J c #0a975f",
-"b3 c #0a9955",
-"ca c #0a995f",
-".Y c #0aa24a",
-".t c #0abb73",
-".0 c #0b985f",
-"#h c #0b995e",
-"#W c #0b995f",
-"#B c #0b9960",
-"af c #0b9a5f",
-".Z c #0b9b5b",
-"ae c #0b9f58",
-"#z c #0ba24f",
-"bR c #0ba44c",
-"#f c #0ba54b",
-"#U c #0ba54c",
-"bi c #0c4c29",
-"b4 c #0c553d",
-".v c #0c764e",
-"cq c #0c8857",
-"ay c #0c904b",
-".H c #0cbf73",
-"cS c #0d415f",
-"bc c #0d7024",
-"cR c #0e2d3f",
-"cl c #0e5a4f",
-"bh c #0e5e53",
-"cJ c #0e618c",
-"cz c #0e874c",
-"al c #0f212b",
-"be c #0f5339",
-"bj c #126180",
-"ct c #127d5e",
-"cA c #137f4b",
-"cE c #146189",
-"bH c #15a745",
-".G c #15ca5d",
-"cc c #166667",
-"cD c #174661",
-".w c #176446",
-"cw c #177dae",
-"bQ c #17a745",
-"aW c #188989",
-"cI c #188cbe",
-"aH c #193137",
-"cF c #1990cf",
-"cC c #1b709a",
-"cv c #1c5168",
-"cu c #1c7088",
-"cK c #1d3c2a",
-"bP c #1da740",
-"bk c #1e545c",
-"cx c #1faaec",
-"#Y c #208c56",
-"cy c #20a0c4",
-".M c #215f40",
-"cB c #217f7d",
-".X c #21a73f",
-"#E c #228955",
-"cn c #237ca8",
-"#n c #242c2b",
-"a3 c #243235",
-"cG c #257c7b",
-".x c #26513d",
-"bW c #26749b",
-"#2 c #272d28",
-"bg c #2788ab",
-"b7 c #27a0cd",
-"b0 c #27b69b",
-"cH c #287178",
-"ac c #28aa3f",
-"bx c #2a734b",
-"co c #2abafa",
-"ce c #2b769b",
-"ah c #2b8749",
-"#k c #2b8a54",
-"bf c #2b8ca6",
-"aV c #2ba1b8",
-"#e c #2ba940",
-"aZ c #2c6a59",
-"#m c #2d4333",
-".c c #2d8988",
-".f c #2d8bb7",
-"ax c #2e9a64",
-"#T c #2ea93f",
-"bG c #2eab40",
-".e c #2f95ba",
-"cf c #2fb5e8",
-"cp c #2fbdfc",
-"aG c #305763",
-"bO c #30ae61",
-".s c #30d3da",
-"aS c #31a736",
-".3 c #328b4f",
-".d c #3299bf",
-".i c #34746d",
-"aD c #358653",
-"ch c #35c9ec",
-".g c #36859f",
-"#y c #36ac3e",
-"a2 c #376e89",
-"bw c #38a938",
-".r c #38d9e3",
-".4 c #3a583b",
-".b c #3a904d",
-"bX c #3abbe7",
-"aU c #3bb7b1",
-"cg c #3bd2ff",
-"#1 c #3c453f",
-"bF c #3daa3d",
-"bm c #3f4b49",
-"aT c #3fc8a1",
-"b8 c #3fd8ff",
-"bK c #4090b7",
-"ak c #41473a",
-"b6 c #417792",
-".5 c #43493e",
-".m c #43852f",
-"bz c #439cbc",
-"c. c #43cdea",
-"bo c #46a0bc",
-"bD c #47a335",
-"bE c #47af3c",
-"b9 c #47d8ff",
-"bV c #484848",
-".N c #495a46",
-"#G c #495b4c",
-"aw c #4aa031",
-"bl c #4b4a3d",
-"a4 c #4ba5c6",
-"a0 c #4d7052",
-".W c #4db538",
-".q c #4edcff",
-"cm c #517590",
-".a c #51a84a",
-"bL c #51d7fd",
-"bU c #525252",
-"bq c #529522",
-"bv c #52af3b",
-"ab c #52b139",
-"bY c #52ddff",
-"#d c #53b33d",
-".n c #549850",
-"#x c #54b33b",
-"bb c #559099",
-"#l c #578050",
-"ba c #57ab4f",
-"#3 c #598da2",
-".z c #599967",
-"aI c #59a3bc",
-".# c #5a9662",
-"bZ c #5adcff",
-"#Z c #5b8355",
-"#F c #5b8655",
-"bu c #5bb23b",
-"ai c #5c8251",
-"aR c #5cae80",
-"aE c #5d7f53",
-".p c #5de8f2",
-"av c #5eb637",
-"bp c #5eb695",
-"#S c #5ebf3e",
-".F c #5edc96",
-"#w c #5f9b47",
-"aQ c #5f9e5f",
-"br c #61ac2e",
-"bC c #62b29a",
-"bt c #62b73a",
-"b# c #62b838",
-".V c #62ba35",
-".y c #638e6b",
-"#J c #63b6d6",
-"bs c #64b836",
-".l c #65953d",
-"bM c #66dfff",
-"aF c #677254",
-"am c #68a0b3",
-"aa c #68be35",
-"bN c #68d9f7",
-"bA c #68dfff",
-".P c #69b2cc",
-".E c #69cc4d",
-"aj c #6a7a57",
-".7 c #6ab6c7",
-"#0 c #6b785e",
-".o c #6bcbd1",
-"#v c #6d9f4e",
-"b. c #6db937",
-"#c c #6dba34",
-"bB c #6fcee5",
-"a1 c #717861",
-"aP c #71b930",
-".A c #71d4e8",
-"#t c #73992f",
-".6 c #759f97",
-"#4 c #76d1e6",
-"a6 c #77bb2e",
-"a9 c #77bc34",
-"a8 c #78bd33",
-"a7 c #78be33",
-"#I c #7ab69c",
-"a5 c #7bd242",
-"#o c #7eacb8",
-"aO c #7fbe2e",
-"#p c #7fd5ee",
-".U c #82c87c",
-"au c #82d252",
-".B c #82daeb",
-"aN c #85c22c",
-".C c #86e2cb",
-"aK c #88c728",
-"#u c #89bc25",
-"#Q c #89cb55",
-".D c #89e286",
-".8 c #89e2ff",
-"#P c #8abe40",
-"aL c #8ac42b",
-".Q c #8be3fd",
-".k c #8cb063",
-"#s c #8eb66d",
-"aM c #91c62a",
-".T c #94da89",
-"a# c #97d495",
-"ar c #98c91d",
-"#b c #98db3b",
-"#R c #99ed67",
-"an c #9aecd1",
-".O c #9cc5c1",
-"#O c #9cd0b0",
-"at c #9cdf50",
-"aq c #9fcd21",
-".S c #a0e3bd",
-"aJ c #a0f172",
-"#K c #a0f1ff",
-"ap c #a1cc18",
-"#8 c #a7ce35",
-".9 c #aaf3ec",
-"as c #aee244",
-"ao c #afe135",
-"#a c #afe62e",
-"a. c #b3ead8",
-"#7 c #b4d809",
-".R c #b6f5aa",
-"#q c #baf2af",
-"#r c #c7d000",
-"#N c #c9fada",
-"#6 c #cbe60d",
-"#9 c #cbfdfc",
-"## c #cdee26",
-"#M c #d4ea57",
-"#5 c #d5fd8d",
-"#L c #dffd82",
-"#. c #e4fd41",
-"cd c #e5c9a0",
-"by c #eaeaea",
-"b5 c #f3eae0",
-"bJ c #ffffff",
-"QtQtQtQtQtQt.#.a.b.c.d.e.f.g.h.i.j.jQtQtQtQtQtQt",
-"QtQtQtQt.k.l.m.n.o.p.q.r.s.t.u.v.w.x.jQtQtQtQtQt",
-"QtQtQt.y.z.A.B.C.D.E.F.G.H.I.J.K.L.M.N.j.jQtQtQt",
-"QtQt.O.P.Q.R.S.T.U.V.W.X.Y.Z.0.1.2.3.4.5.j.jQtQt",
-"Qt.6.7.8.9#.###a#b#c#d#e#f#g#h#i#j#k#l#m#n.jQtQt",
-"Qt#o#p#q#r#s#t#u#v#w#x#y#z#A#B#C#D#E#F#G#H.j.jQt",
-"#I#J#K#L#M#N#O#P#Q#R#S#T#U#V#W#C#X#Y#Z#0#1#2.j.j",
-"#3#4#5#6#7#8#9a.a#aaabacadaeaf.1agahaiajakal.j.j",
-"amanaoapaqarasatauavawaxayazaAaBaCaDaEaFaGaH.j.j",
-"aIaJaKaLaMaNaOaPaQaRaSaTaUaVaWaXaYaZa0a1a2a3.j.j",
-"a4a5a6a7a8a9b.b#babbbcbdbebfbgbhbibjbkblbmbn.j.j",
-"bobpbqbrbsbtbubvbwbxbybybybybybybybybybybybyby.j",
-"bzbAbBbCbDbEbFbGbHbIbybJ.jbJbJbJbJbJbJbJbJbJby.j",
-"bKbLbMbNbObPbQbRbSbTbybJ.jbJbJbJbUbUbUbVbJbJby.j",
-"bWbXbYbZb0b1b2#Vb3b4bybJ.jbJbJbJbUbJb5.jbJbJby.j",
-"b6b7b8b9c.c#.ZcacbccbybJ.j.j.jbJbUb5cd.jbJbJby.j",
-".jcecfcgchcicjcjckclbybJ.jbJbJbJbV.j.j.jbJbJby.j",
-"QtcmcncocpcqcrcsctcubybJ.jbJbJbJbJbJbJbJbJbJby.j",
-"Qt.jcvcwcxcyczcAcBcCbybJ.jbJbJbJbUbUbVbVbJbJby.j",
-"QtQt.jcDcEcFcGcHcIcJbybJ.jbJbJbJbUbJb5.jbJbJby.j",
-"QtQtQt.jcKcLcMcNcOcPbybJ.j.j.jbJbUb5cd.jbJbJby.j",
-"QtQtQtQt.j.jcQcRcScTbybJbJbJbJbJbV.j.j.jbJbJby.j",
-"QtQtQtQtQt.j.j.j.j.jbybybybybybybybybybybybyby.j",
-"QtQtQtQtQtQtQt.j.j.j.j.j.j.j.j.j.j.j.j.j.j.j.j.j"
-]
-image2_data = [
-"22 22 308 2",
-"Qt c None",
-".n c #000000",
-".# c #010000",
-".a c #040000",
-".b c #631006",
-".m c #631108",
-".H c #641006",
-"cX c #64130a",
-".0 c #651108",
-"cR c #65140a",
-".o c #761207",
-".G c #771409",
-"cW c #78170c",
-"cv c #7b1a0d",
-"cg c #7c1a0c",
-"b4 c #7c1a0d",
-"bO c #7d1b0d",
-"by c #7d1b0e",
-"bh c #7d1c0e",
-"a1 c #7d1c0f",
-"aL c #7d1d0f",
-"#v c #7d1f11",
-".k c #7d2013",
-"at c #7e1d10",
-"ac c #7e1e10",
-"#Y c #7e1e11",
-"#J c #7e1f11",
-".j c #7f2214",
-".i c #7f2215",
-".d c #7f2316",
-".c c #80170a",
-".h c #802316",
-".g c #802417",
-".f c #802418",
-".l c #81180c",
-"cI c #811a0e",
-".e c #812518",
-"cP c #b45032",
-".1 c #b54925",
-".5 c #b7542a",
-"#0 c #b8562d",
-"cH c #b93d21",
-".2 c #b95531",
-"#w c #b95931",
-"#g c #b95932",
-"av c #b95e37",
-".4 c #ba5a33",
-".3 c #ba5b36",
-"aN c #ba5f36",
-".P c #ba603a",
-".Q c #ba6139",
-"cQ c #bb2b16",
-"#f c #bb5e39",
-"#4 c #bb5f34",
-".L c #bb603c",
-"ad c #bb623c",
-"a3 c #bb643b",
-".K c #bc603d",
-".M c #bc643f",
-".O c #bc653e",
-".R c #bc663e",
-"aQ c #bd6439",
-"## c #bd653b",
-"ai c #bd653c",
-"#7 c #bd673c",
-"#Z c #be6742",
-".N c #be6843",
-"bj c #be6a42",
-".Z c #bf3521",
-".F c #bf3721",
-"ay c #bf663e",
-"bA c #bf683e",
-".S c #c06f48",
-"a6 c #c16c43",
-"bQ c #c16e46",
-"bn c #c17047",
-"bE c #c17147",
-".Y c #c17a57",
-".p c #c23d29",
-"aA c #c26f46",
-"aj c #c27048",
-"b6 c #c27249",
-"bz c #c2744e",
-".U c #c2754e",
-".6 c #c36c48",
-"#a c #c3714a",
-"a8 c #c3734b",
-"az c #c3744d",
-".T c #c3744e",
-"an c #c3754c",
-"#q c #c3754d",
-"bP c #c3764f",
-".V c #c37750",
-"bH c #c37a4f",
-"cu c #c45737",
-"#3 c #c46f48",
-"#b c #c4754e",
-"b5 c #c4754f",
-"#c c #c4764f",
-"#d c #c47750",
-"ch c #c4784f",
-".W c #c47952",
-"#e c #c56243",
-"#h c #c5714e",
-"#. c #c5724b",
-"aR c #c57750",
-"a7 c #c57852",
-"aD c #c57951",
-".J c #c57957",
-"am c #c57a52",
-"#F c #c57b53",
-"a# c #c57e55",
-"bs c #c58057",
-"#O c #c6734d",
-"#p c #c67953",
-"bo c #c67b53",
-"#r c #c67c55",
-"#s c #c67d56",
-"cz c #c67e55",
-"b# c #c67e57",
-"aE c #c67e58",
-"cy c #c67f58",
-"#t c #c68059",
-"#G c #c7805a",
-"#V c #c7825b",
-"cJ c #c7835c",
-"#H c #c7835d",
-"cM c #c7845d",
-"cL c #c7865f",
-"cf c #c86240",
-"b3 c #c86341",
-".E c #c86949",
-"#K c #c87655",
-"bD c #c87d55",
-"cx c #c8805a",
-"aU c #c8835c",
-"ba c #c8855e",
-"#W c #c8875f",
-"cK c #c88760",
-"aJ c #c88861",
-"ar c #c88962",
-"bN c #c96643",
-"ae c #c97755",
-"#Q c #c97a54",
-"#P c #c97c58",
-"br c #c9855d",
-"cw c #c9875d",
-".X c #c9875e",
-"aa c #c98a63",
-"aZ c #c98b65",
-"bx c #ca6844",
-"cV c #ca6944",
-"#U c #ca835d",
-"cN c #ca8b67",
-"bg c #cb6a46",
-"cU c #cb6b47",
-"bU c #cb8660",
-"bf c #cb8e6a",
-"a0 c #cc6c48",
-"cT c #cc6d49",
-"aK c #cc6f4a",
-"as c #cc704a",
-"cS c #cc704b",
-"ab c #cc714b",
-"#x c #cc7f5e",
-"#E c #cc8762",
-"aq c #cc8b65",
-".I c #cc9177",
-"#X c #cd724d",
-"ah c #cd8766",
-"bW c #cd8b64",
-"aV c #cd8b65",
-"#I c #ce754f",
-"#u c #ce7650",
-"bR c #ce8967",
-"cG c #ce9072",
-"cO c #ce9571",
-"bk c #cf8664",
-"#8 c #cf8c68",
-"aF c #cf8d68",
-"bL c #cf936f",
-"bw c #cf9673",
-"bm c #d08f6f",
-".q c #d17d66",
-".7 c #d1886a",
-".9 c #d18a6a",
-"bb c #d1926e",
-"ci c #d19270",
-"bM c #d19b7a",
-".D c #d2815d",
-"#N c #d28e6f",
-"bV c #d29572",
-"bT c #d29675",
-"bI c #d29976",
-"cc c #d29978",
-"cq c #d29a78",
-"b2 c #d29b7c",
-".C c #d3825e",
-".B c #d3825f",
-"bv c #d39977",
-"cE c #d39c7c",
-"ce c #d39e80",
-"ct c #d39e82",
-".A c #d48361",
-"aw c #d49276",
-"b1 c #d49d7d",
-"cr c #d49f80",
-".z c #d58563",
-"bi c #d58664",
-".8 c #d59477",
-"a4 c #d5977a",
-"#6 c #d59b7f",
-"aO c #d59b82",
-"b0 c #d59c7b",
-"cd c #d5a183",
-".y c #d68866",
-"a2 c #d68867",
-".x c #d68968",
-"aM c #d68969",
-".u c #d6896a",
-".t c #d6896c",
-"cp c #d6a07f",
-".v c #d78969",
-".w c #d7896a",
-"au c #d78a6a",
-"cD c #d79f7e",
-"aI c #d79f7f",
-"cs c #d7a588",
-".s c #d88b6d",
-"#R c #d89e81",
-"b7 c #d99f81",
-"aY c #d9a383",
-"cb c #d9a586",
-"bX c #d9a688",
-".r c #da9074",
-"be c #daa687",
-"cF c #daae94",
-"bG c #dcac91",
-"ao c #dda98d",
-"bt c #ddad91",
-"cA c #ddae92",
-"aC c #deac93",
-"al c #dead93",
-"aT c #deaf95",
-"cB c #deb297",
-"b. c #dfb097",
-"cC c #e0b296",
-"bq c #e0b39a",
-"#5 c #e2b39d",
-"a. c #e5bda6",
-"#o c #e7bda8",
-"#C c #e7cbbd",
-"bF c #e8c3ad",
-"#i c #e9c1b0",
-"aB c #eac4b1",
-"#1 c #eac9b9",
-"aP c #eacfc3",
-"c# c #ead4c6",
-"aS c #ebc5b3",
-"a9 c #ebc7b3",
-"ak c #ecc6b3",
-"bp c #edcab8",
-"bK c #edcfbc",
-"cj c #edd0bf",
-"bB c #edd3c7",
-"ax c #edd4c9",
-"a5 c #edd6ca",
-"co c #eed0be",
-"#2 c #f1d5c9",
-"c. c #f1ded4",
-"#M c #f2d9cd",
-"#B c #f2dfd6",
-"bC c #f3dacd",
-"#T c #f3e3d9",
-"ap c #f4e5dc",
-"#n c #f4e5dd",
-"#D c #f4e5de",
-"bu c #f5e7df",
-"aW c #f5e9e2",
-"bZ c #f6e8e0",
-"#j c #f6e8e1",
-"#L c #f7e9e3",
-"#S c #f7ebe3",
-"#y c #f8ebe5",
-"bY c #f8eee7",
-"ca c #f8eee8",
-"aG c #f9eee8",
-"bc c #f9efe9",
-"cn c #f9efea",
-"#9 c #f9f0e8",
-"bJ c #f9f0e9",
-"ck c #faf1ec",
-"af c #fbefeb",
-"bS c #fcf2ee",
-"b9 c #fcf7f4",
-"b8 c #fdf5f1",
-"bl c #fdf6f1",
-"#m c #fefdfc",
-"cl c #fefefe",
-"#l c #feffff",
-"aH c #fffaf7",
-"bd c #fffaf8",
-"#A c #fffbf9",
-"aX c #fffcfa",
-"ag c #fffdfc",
-"#k c #fffefe",
-"cm c #fffffe",
-"#z c #ffffff",
-"Qt.#.aQtQtQtQtQtQtQtQtQtQtQtQtQtQtQtQtQt.a.#",
-"Qt.#Qt.b.c.d.e.f.g.g.g.h.h.h.i.i.j.k.l.mQt.#",
-".nQt.o.p.q.r.s.t.u.v.w.x.y.z.A.B.C.D.E.F.GQt",
-"Qt.H.p.I.J.K.L.M.N.O.P.Q.R.S.T.U.V.W.X.Y.Z.0",
-"Qt.c.q.J.1.2.3.4.5.6.7.8.9#.###a#b#c#d.X#e.l",
-"Qt.d.r.K.2#f#g#h#i#j#k#l#m#n#o#p#q#r#s#t#u#v",
-"Qt.e.s.L.3#w#x#y#z#A#B#C#D#z#z#n#E#F#G#H#I#J",
-"Qt.f.t.M#g#K#L#z#M#N#O#P#Q#R#S#z#T#U#V#W#X#Y",
-"Qt.g.w#Z#0#1#z#2#3#4#5#z#6#7#8#9#za.a#aaabac",
-"Qt.g.wadaeafagahaiajak#zalamanao#zapaqarasat",
-"Qt.gauavaw#zaxayazaAaB#zaCaDaEaFaGaHaIaJaKaL",
-"Qt.haMaNaO#zaPaQaRajaS#zaT#FaUaVaWaXaYaZa0a1",
-"Qt.ha2a3a4#za5a6a7a8a9#zb.b#babbbcbdbebfbgbh",
-"Qt.hbibjbkblagbmbnbobp#zbqbrbsbt#zbubvbwbxby",
-"Qt.i.AbzbAbB#zbCbDbEbF#zbGbHbIbJ#zbKbLbMbNbO",
-"Qt.i.BbPbQbRbS#z#MbTbUbVbWbXbY#zbZb0b1b2b3b4",
-"Qt.j.C.Vb5b6b7b8#zb9c.c#apaX#zcacbcccdcecfcg",
-"Qt.k.D.W#c#rchcicjck#zclcmcncocpcqcrcsctcucv",
-"Qt.l.Ecw#d#scxcyczbVcAcBcCcDbLcEcdcscFcGcHcI",
-"Qt.0.F.Y.X#tcJcKaacLcMaJcNcObMb2cectcGcPcQcR",
-".nQt.G.Z#e#u#I#XabcSaKcTcUcVbNb3cfcucHcQcWQt",
-"Qt.#Qt.m.l#v#J#YacataLa1bhbybOb4cgcvcIcXQt.#"
-]
-image3_data = [
-"22 22 187 2",
-"Qt c None",
-"#M c #555578",
-"#y c #5b5b7c",
-"#x c #5c5c7d",
-"#l c #646484",
-"#b c #6c6c8a",
-"#N c #6c6c8b",
-"#z c #6d6d8b",
-"#m c #6e6e8c",
-"#c c #71718e",
-".5 c #72728f",
-".4 c #7a7a95",
-"#C c #7b7b96",
-".U c #80809a",
-"#B c #81819a",
-".Y c #83839c",
-"#A c #84849d",
-"a0 c #875327",
-"a4 c #885427",
-".K c #8888a0",
-"aZ c #895527",
-".T c #8989a1",
-".P c #8a8aa2",
-"a3 c #8e5725",
-"aS c #8e5827",
-"aY c #8e5927",
-"aR c #905a27",
-".B c #9090a6",
-".J c #9191a7",
-".G c #9292a8",
-"a1 c #955a23",
-".3 c #9595ab",
-"aJ c #965e28",
-".V c #9696ab",
-"aI c #986028",
-".w c #9898ad",
-".v c #9999ae",
-".x c #9b9baf",
-"aQ c #9c6326",
-"aA c #9d6328",
-".Q c #9d9db1",
-".L c #9e9eb1",
-"az c #9f6528",
-".A c #9f9fb3",
-".u c #a2a2b5",
-".r c #a3a3b6",
-"a2 c #a4621f",
-"aq c #a46928",
-".H c #a5a5b7",
-".C c #a5a5b8",
-"ap c #a66b28",
-".q c #a8a8ba",
-"aX c #aa6820",
-"ao c #aa6f29",
-".m c #aaaabc",
-"ag c #ab6f29",
-"#n c #ababbc",
-"#X c #ac7533",
-"af c #ad7129",
-"ae c #af7229",
-"ay c #af7326",
-".l c #afafc0",
-"ad c #b17429",
-".g c #b2b2c2",
-"#7 c #b37529",
-"aH c #b57624",
-"#6 c #b57729",
-".6 c #b5b5c4",
-"#5 c #b67829",
-".f c #b6b6c5",
-"#4 c #b87a29",
-".e c #b8b8c6",
-".# c #b8b8c7",
-".p c #b9b9c8",
-".k c #bbbbc9",
-".z c #bcbcc9",
-"#W c #bd7d29",
-"#f c #bebecb",
-"#V c #bf7f2a",
-".d c #c2c2cf",
-"#g c #c3c3cf",
-"#O c #c49c6b",
-".s c #c4c4d0",
-"#L c #c5832a",
-"#K c #c7852a",
-".a c #c7c7d2",
-"#. c #c8c8d3",
-".n c #c9c9d4",
-"#Y c #cb912a",
-"#w c #cc892a",
-"#q c #ccccd6",
-"aT c #cd7b18",
-"#r c #cda36b",
-"#E c #cda46e",
-".F c #cdcdd7",
-"#v c #ce8b2a",
-"#d c #ceced7",
-".h c #ceced8",
-"#h c #d0a569",
-".c c #d0d0da",
-".O c #d1d1da",
-".1 c #d2d2db",
-"#k c #d38f2a",
-"#P c #d49727",
-"#j c #d5902b",
-"#p c #d5d5dd",
-"#o c #d5d5de",
-"#D c #d6d6de",
-"aK c #d78719",
-"#F c #d89a27",
-"aB c #d99d25",
-".b c #d9d9e1",
-"#a c #da942b",
-"an c #da9a24",
-".S c #dadae1",
-"## c #db952b",
-"#s c #db9d28",
-"#e c #dbdbe3",
-"ar c #dca126",
-".2 c #dedee4",
-".9 c #dedee5",
-"ah c #dfa526",
-"#i c #e1ac30",
-".I c #e1e1e7",
-"#t c #e28b10",
-"#8 c #e2a827",
-"#3 c #e2ab27",
-".8 c #e2e2e7",
-".7 c #e2e2e8",
-"ac c #e3a626",
-"#U c #e4af29",
-"#J c #e5b32b",
-".W c #e5e5ea",
-"#u c #e7b72c",
-".Z c #e7e7ec",
-".0 c #e8e8ed",
-"#G c #e99010",
-".j c #ececf0",
-"#Q c #ed9d14",
-"#I c #ee9310",
-".X c #eeeef2",
-".R c #efeff2",
-"#T c #f1a015",
-".t c #f1f1f4",
-".D c #f2f2f5",
-"#Z c #f3ac1a",
-".N c #f4f4f6",
-"#2 c #f5ac1a",
-".M c #f5f5f7",
-"aW c #f8930d",
-"aP c #f89d12",
-".o c #fafafb",
-".E c #fbfbfc",
-"ab c #fcba21",
-"#H c #fd930b",
-"#R c #fda314",
-"#0 c #feb21d",
-".y c #fefefe",
-"aD c #ff8904",
-"au c #ff9108",
-"aE c #ff9209",
-"aF c #ff930a",
-"aw c #ff940a",
-"aU c #ff950b",
-"aV c #ff960b",
-"av c #ff9c10",
-"aO c #ff9e10",
-"am c #ffa112",
-"#S c #ffa414",
-"aL c #ffa514",
-"al c #ffa615",
-"aN c #ffa816",
-"aG c #ffa915",
-"at c #ffaa18",
-"ax c #ffb21b",
-"#1 c #ffb31d",
-"aC c #ffb51e",
-"ak c #ffb61f",
-"aa c #ffbd23",
-"a# c #ffbd24",
-"#9 c #ffc226",
-"a. c #ffc327",
-"aM c #ffcc2c",
-"ai c #ffd02e",
-"aj c #ffd230",
-"as c #ffde37",
-".i c #ffffff",
-"QtQtQtQt.#.a.b.c.d.e.fQtQtQtQtQtQtQtQtQtQtQt",
-"QtQtQtQt.g.h.i.i.i.j.k.lQtQtQtQtQtQtQtQtQtQt",
-"QtQtQtQtQt.m.n.i.i.i.o.p.qQtQtQtQtQtQtQtQtQt",
-"QtQtQtQtQtQt.r.s.i.i.i.t.uQtQtQtQtQtQtQtQtQt",
-".v.wQtQtQtQtQt.x.c.i.i.y.z.vQtQtQtQtQtQtQtQt",
-".A.v.BQtQtQt.B.C.D.E.E.E.F.GQtQtQtQtQtQtQtQt",
-".H.I.J.KQt.K.L.j.M.M.N.N.O.PQtQtQtQtQtQtQtQt",
-".Q.R.S.T.U.V.W.X.X.X.X.X.f.YQtQtQtQtQtQtQtQt",
-".T.Z.0.1.v.2.0.0.0.0.0.0.3.4QtQtQtQtQtQtQtQt",
-".5.6.7.7.7.7.8.8.8.8.9#..s.4###aQtQtQtQtQtQt",
-"#b#c#d#e#e#e#e#e#e.b#f.k#g#h#i#j#kQtQtQt.iQt",
-"Qt#l#m#n.O#o#o#p#p#q.a#q#r#s#t#u#v#wQtQtQtQt",
-"QtQt#x#y#z#A.B#B#C.a#D#E#F#G#H#I#J#K#LQtQtQt",
-"QtQtQtQt#M#M#M#M#M#N#O#P#Q#R#S#S#T#U#V#WQtQt",
-"QtQtQtQtQtQtQtQtQt#X#Y#Z#0#1#1#1#1#2#3#4#5Qt",
-"QtQtQtQtQtQtQtQtQt#6#7#8#9#9a.a.a#aaabacadae",
-"QtQtQtQtQtQtQtQtQtQtafagahaiaja.akalam#1anao",
-"QtQtQtQtQtQtQtQtQtQtQtapaqarasakatauavawaxay",
-"QtQtQtQtQtQtQtQtQtQtQtQtazaAaB#1aCaDaEaFaGaH",
-"QtQtQtQtQtQtQtQtQtQtQtQtQtaIaJaKaLaMaNaOaPaQ",
-"QtQtQtQtQtQtQtQtQtQtQtQtQtQtaRaSaTaUaVaWaXaY",
-"QtQtQtQtQtQtQtQtQtQtQtQtQtQtQtaZa0a1a2a3a4Qt"
-]
-image4_data = [
-"22 22 129 2",
-"Qt c None",
-".d c #005b00",
-".c c #005c00",
-".K c #005d00",
-".b c #005e00",
-".A c #005f00",
-".z c #006000",
-".a c #006100",
-".m c #006200",
-".# c #006300",
-".l c #006400",
-".e c #006500",
-".f c #006600",
-".k c #008000",
-".g c #008200",
-"#B c #008400",
-".n c #008f00",
-"#g c #009800",
-".h c #009900",
-"#A c #009b00",
-"#o c #00a500",
-"#f c #00bd00",
-"#z c #00c200",
-"#I c #00c800",
-"#C c #01c701",
-"#t c #029c02",
-"#1 c #036303",
-"#J c #03c603",
-"#K c #03cd03",
-"#7 c #056305",
-"#x c #07c607",
-".9 c #08bf08",
-"#O c #099609",
-"#p c #09a909",
-".L c #0a8f0a",
-"#u c #0ac70a",
-".t c #0f900f",
-".j c #109c10",
-"#h c #10aa10",
-"#. c #119e11",
-"#L c #13d113",
-".U c #159215",
-"#T c #1ab61a",
-"#8 c #1f8c1f",
-"#4 c #219b21",
-"#P c #22d422",
-".B c #23af23",
-"#U c #24d424",
-"#q c #25ce25",
-"#2 c #27b827",
-".u c #28b028",
-".8 c #28c928",
-"#0 c #32d732",
-"#9 c #35ad35",
-"#3 c #35d835",
-"#w c #39d239",
-".i c #3fb53f",
-"#F c #40ba40",
-"a. c #40bd40",
-"#e c #40c740",
-"#Y c #40da40",
-"#i c #41d441",
-".y c #42b642",
-"#5 c #42d342",
-"#k c #46c846",
-".J c #47b847",
-".V c #47cb47",
-"#6 c #47db47",
-".7 c #4dd44d",
-"#V c #4edc4e",
-"#c c #52ca52",
-".o c #58ce58",
-"## c #5cda5c",
-"#E c #60c760",
-"#d c #61c661",
-".0 c #63d363",
-".1 c #67db67",
-"#y c #71d771",
-".s c #76d676",
-".2 c #77e077",
-"#Z c #78e478",
-"#D c #80e380",
-"#b c #84e384",
-"#X c #86e786",
-".X c #89de89",
-"#S c #89e889",
-"#l c #8bd18b",
-"#s c #8cd18c",
-".O c #8cd38c",
-".3 c #8dcc8d",
-".W c #91e691",
-".M c #94e694",
-"#W c #94ea94",
-".E c #98d098",
-".T c #9fe99f",
-".H c #a4d0a4",
-".F c #a4d1a4",
-".N c #abecab",
-".Z c #adecad",
-".6 c #afedaf",
-".v c #b0ecb0",
-".P c #b1d5b1",
-".C c #b6eeb6",
-".S c #b6efb6",
-".5 c #b8efb8",
-"#m c #b9dbb9",
-".I c #bce9bc",
-"#H c #bff1bf",
-".4 c #c0f1c0",
-"#N c #c0f3c0",
-".p c #c2f0c2",
-".D c #c3f1c3",
-".G c #c4e4c4",
-"#Q c #c5f4c5",
-".Y c #c9e1c9",
-"#r c #c9f3c9",
-".x c #ccf3cc",
-"#M c #d0f6d0",
-".r c #d1f4d1",
-"#R c #d4f7d4",
-"#a c #d6e8d6",
-".w c #daf7da",
-"#j c #dbf7db",
-"#G c #dff1df",
-"#v c #e0f8e0",
-"#n c #eff5ef",
-".q c #f0fcf0",
-".R c #fafefa",
-".Q c #ffffff",
-"QtQtQtQtQtQtQtQtQtQtQtQtQtQtQtQtQtQtQtQtQtQt",
-"QtQtQtQtQtQtQt.#.a.b.c.d.d.d.dQtQtQtQtQtQtQt",
-"QtQtQtQtQt.e.#.f.g.h.i.i.j.k.a.d.dQtQtQtQtQt",
-"QtQtQtQt.l.m.n.o.p.q.q.q.q.r.s.t.d.dQtQtQtQt",
-"QtQtQt.#.f.u.v.w.w.w.w.w.w.w.w.x.y.a.dQtQtQt",
-"QtQt.z.A.B.C.D.D.E.F.G.H.I.D.D.D.D.J.d.dQtQt",
-"QtQt.K.L.M.N.O.P.Q.Q.Q.Q.R.S.N.N.N.T.U.dQtQt",
-"Qt.d.a.V.W.X.Y.Q.Q.Q.Q.Q.Q.Z.W.W.W.W.0.a.dQt",
-"Qt.d.k.1.2.3.Q.Q.Q.4.T.5.6.2.2.2.7.8.9.k.dQt",
-"Qt.d#.#####a.Q.Q#b#########c#d.s#e#f#f#g.dQt",
-"Qt.d#h#i#i.Q.Q#j#i#i#k#l#m#n.Q.Q.Q#f#f#o.dQt",
-"Qt.d#p#q#q.Q.Q#r#q#q#s.Q.Q.Q.Q.Q.Q#f#f#o.dQt",
-"Qt.d#t#u#u#v.Q.Q#w#x#y.Q.Q.Q.Q.Q.Q#z#z#A.dQt",
-"Qt.d#B#C#C#D.Q.Q#n#E#F#G.Q.Q.Q.Q#H#I#I#B.dQt",
-"Qt.d.m#J#K#L#M.Q.Q.Q.Q.Q.Q.Q.Q.Q#N#K#J.m.dQt",
-"QtQt.d#O#L#L#P#Q.Q.Q.Q.Q.Q#R.Q.Q#S#L#O.dQtQt",
-"QtQt.d.d#T#U#U#U#V#W#W#X#Y#U#Z#W#0#T.d.dQtQt",
-"QtQtQt.d#1#2#3#3#3#3#3#3#3#3#3#3#2#1.dQtQtQt",
-"QtQtQtQt.d.d#4#5#6#6#6#6#6#6#5#4.d.dQtQtQtQt",
-"QtQtQtQtQt.d.d#7#8#9a.a.#9#8#7.d.dQtQtQtQtQt",
-"QtQtQtQtQtQtQt.d.d.d.d.d.d.d.dQtQtQtQtQtQtQt",
-"QtQtQtQtQtQtQtQtQtQtQtQtQtQtQtQtQtQtQtQtQtQt"
-]
-image5_data = [
-"24 24 155 2",
-"Qt c None",
-".# c #000000",
-".g c #010101",
-".b c #040411",
-".f c #040b11",
-".V c #060606",
-".m c #061d21",
-".9 c #080808",
-".c c #081127",
-".a c #091030",
-"#. c #0a0102",
-"#9 c #0a0402",
-"#b c #0a0a0a",
-"#M c #0e0c03",
-".J c #0f0303",
-".0 c #0f1c3e",
-"ay c #101006",
-"#y c #101010",
-".h c #111111",
-".K c #12131a",
-".d c #131148",
-"#w c #161313",
-"#m c #181818",
-".8 c #18181b",
-".i c #1a1a1a",
-".e c #1b4566",
-"#f c #1c0909",
-"#3 c #1c1807",
-"#e c #1d1a28",
-".1 c #1d5c88",
-".Z c #203249",
-".Q c #257aa6",
-".F c #26769f",
-".P c #2680a5",
-".2 c #2b6698",
-"#U c #302a0c",
-"#z c #340f0f",
-".j c #347a91",
-".n c #355a76",
-".o c #365e77",
-".k c #367a99",
-".R c #38a2d3",
-"## c #3c0e17",
-"#x c #3c3939",
-".G c #4078a7",
-".E c #41a3d6",
-".D c #41a4d8",
-"ax c #423d0f",
-"ao c #42410d",
-"#o c #434343",
-".v c #459cb8",
-"#g c #461414",
-"ad c #494512",
-".5 c #4a4a4a",
-"#H c #4d1715",
-".O c #4d96a8",
-"ae c #555312",
-"#Q c #571715",
-".S c #5879af",
-".y c #5aabd9",
-".u c #5bb0dc",
-".C c #65b2da",
-".7 c #676773",
-"ac c #6a6917",
-"#c c #6e6d6d",
-".l c #6e8cb9",
-"#n c #737373",
-".w c #749dc3",
-".I c #7c1d1d",
-"#4 c #7e2121",
-".Y c #7e838f",
-"#V c #7f2323",
-".W c #828289",
-".t c #82c2e3",
-".L c #83bbd0",
-"#B c #85241d",
-".B c #8dc8e4",
-".r c #8ec9e5",
-".N c #8fbeca",
-".s c #95cae6",
-".U c #992323",
-"#p c #994d61",
-"#a c #994e62",
-"#d c #99999b",
-".4 c #9c2a29",
-"#N c #a33a39",
-".p c #a4d1e9",
-".H c #a54343",
-"aw c #ada11c",
-".q c #b0d7eb",
-"#v c #b1562d",
-"#h c #b63e2e",
-".z c #b8dbeb",
-".6 c #bcbcbf",
-".A c #c3dfec",
-"#L c #d0a319",
-"#D c #d43e39",
-"#I c #d53434",
-".T c #d63232",
-"a. c #d63433",
-"#R c #d63434",
-"#Z c #d63d32",
-"#6 c #d64543",
-"#5 c #d6756b",
-"#u c #d68f1f",
-"#7 c #d73834",
-"#8 c #d93833",
-".M c #d9e1eb",
-".X c #dadadd",
-"#Y c #db342c",
-"#0 c #db713d",
-"a# c #db7734",
-"#t c #ddaa46",
-"#C c #de3c2f",
-"#X c #de4f44",
-"#J c #de8655",
-"#s c #df6356",
-"#E c #dfb022",
-"ab c #dfc412",
-"av c #e0c613",
-"#F c #e35a4d",
-"aj c #e5675e",
-"#W c #e57269",
-"#j c #e69b99",
-"ag c #e76251",
-"an c #e7d00e",
-"aa c #e9d20e",
-"#G c #ea7460",
-"ah c #eb6249",
-"ai c #eb705c",
-"#1 c #ecd327",
-"#S c #efdb56",
-"#k c #f0cbc8",
-"al c #f0d127",
-"#q c #f16341",
-"au c #f1d226",
-"#2 c #f4cf07",
-"#i c #f58060",
-"am c #f5d606",
-"af c #f5da46",
-"#K c #f5dc36",
-"ap c #f6d729",
-"#T c #f7d82a",
-"as c #f7dc24",
-"ar c #f8de2d",
-"ak c #f8de2f",
-"aq c #f8e32d",
-"at c #f8e337",
-"#O c #f9a285",
-"#P c #fb9a78",
-"#r c #fba384",
-"#l c #fefdf9",
-"#A c #fefdfd",
-".3 c #fefefe",
-".x c #ffffff",
-"QtQtQtQtQtQtQt.#.#.#.#.#.#.#.#Qt.#.a.#.#.#.#QtQt",
-"QtQtQtQtQtQt.#.#.#.b.#.#.#.#.#.#.c.#.#.#.#.#QtQt",
-"QtQtQtQtQtQt.#.#.#.d.#.#.#.#.#.#.#.#.#.#.#.#QtQt",
-"QtQtQtQtQt.#.#.#.#.#.#.#.#.#.#.e.e.#.#.#.#.#QtQt",
-"QtQtQtQtQt.#.f.g.h.i.e.j.j.j.e.k.l.#.#.#.#.#.#.#",
-"QtQtQtQt.#.m.n.o.p.q.r.s.t.u.v.w.x.#.#.#.#.#.#.#",
-"QtQtQt.#.e.y.z.A.B.C.D.E.F.G.x.x.H.I.J.#.#.#.#.#",
-"QtQt.#.K.L.M.N.O.P.Q.R.k.S.x.x.T.U.#.#.#.#.#.#.#",
-"Qt.#.V.W.X.Y.Z.0.1.2.D.S.x.3.T.4.#.#.#.#.#.#.#.#",
-"Qt.#.5.6.7.8.9#.##.U#a.x.x.T.T.U.#.#.#.#.#.#.#Qt",
-".##b#c#d#e#f#g.##h#i#j#k#l.T.U.#.#.#.#.#.#QtQtQt",
-".##m#n#o.#.#.##p#q#r#s#t#u#v.U.#.#.#.#.#.#.#QtQt",
-".##w#x#y#z.x#A.##B#C#D#E#u.U.#.#.#.#.#.#.#.#QtQt",
-".4#F#G#H.x.x.#.x.##I#J#K#L#M.#.#.#.#.#.#.#.#QtQt",
-"#N#O#P#Q.x.x.x.x.##R#S#T#U.#.#.#.#.#.#.#.#QtQtQt",
-"#V#W#X#Y.#.x.x.##Z#0#1#2#3.#.#.#.#.#.#.#.#QtQtQt",
-"#4#5#6#7#8#9.ga.a#aaabacad.#.#.#.#.#.#.#QtQtQtQt",
-"aeafagahaiajakalamanacao.#.#.#.#.#.#.#QtQtQtQtQt",
-"aeapaqarasatauavawaead.#.#.#.#.#.#QtQtQtQtQtQtQt",
-".#aeaeaeaeaoaoaxadad.#.#.#.#.#QtQtQtQtQtQtQtQtQt",
-".#.#.#.#.#.#ay.#.#.#.#.#.#.#QtQtQtQtQtQtQtQtQtQt",
-".#.#.#.#.#.#.#.#.#.#.#.#.#QtQtQtQtQtQtQtQtQtQtQt",
-"Qt.#.#.#.#.#.#.#.#.#.#.#QtQtQtQtQtQtQtQtQtQtQtQt",
-"QtQt.#.#.#.#.#.#.#.#QtQtQtQtQtQtQtQtQtQtQtQtQtQt"
-]
+image0_data = \
+    "\x89\x50\x4e\x47\x0d\x0a\x1a\x0a\x00\x00\x00\x0d" \
+    "\x49\x48\x44\x52\x00\x00\x00\x16\x00\x00\x00\x16" \
+    "\x08\x06\x00\x00\x00\xc4\xb4\x6c\x3b\x00\x00\x02" \
+    "\x98\x49\x44\x41\x54\x78\x9c\xad\x95\xcf\x4b\x54" \
+    "\x51\x18\x86\x9f\x73\x67\xc6\x19\x1d\x33\x49\xfa" \
+    "\x65\x30\x0a\x11\x29\x84\x45\x6d\xf2\x52\x84\x61" \
+    "\xd4\xb6\xa0\x45\x7f\x47\xd2\xc2\x45\x0b\xa1\x32" \
+    "\x88\x56\x05\x2d\xa2\x75\x10\x49\x42\x84\x61\xb4" \
+    "\x48\xb8\x2e\x2a\x21\x51\xb2\x94\x48\x33\xad\x08" \
+    "\xef\x8c\xa3\x73\xc7\x99\x7b\xce\xd7\xe2\x4e\xe9" \
+    "\x38\xa6\x17\xea\x83\xb3\xb9\xbc\xe7\xe1\xbd\xef" \
+    "\xf9\xce\x77\x94\xe3\x38\x84\xa9\xa3\xfd\xb6\xf8" \
+    "\x06\x46\xcf\x3b\x2a\x8c\xde\x0a\x23\x3a\xf2\xc4" \
+    "\x16\x63\xc0\xf8\xd0\xfa\xd0\x96\xff\x06\x06\x88" \
+    "\xb4\x34\x10\x6d\x69\x40\x4c\x38\x7d\x28\xb0\x31" \
+    "\x50\x75\xaa\x93\x44\x47\x27\xbe\xff\x9f\xc0\x6d" \
+    "\x7d\xb6\x50\x07\xec\x9f\x40\x1d\x48\x63\xd5\x41" \
+    "\xd3\x83\xad\xe3\xd8\x12\x6c\x04\xaa\x4f\xb4\x03" \
+    "\x63\xc0\x0b\x6a\x4f\x9f\xc1\x14\xff\xd1\xf1\xa1" \
+    "\xc7\xb6\x50\x05\xd6\xc9\xdd\x80\x06\x34\xf1\x8e" \
+    "\x24\x12\x87\xbd\x77\x37\x77\x1d\x05\x68\x7f\x65" \
+    "\x0b\x1a\xc4\x07\x5d\x04\xad\xc1\xf7\x41\x1b\x88" \
+    "\xb7\xa6\x20\x3a\xb8\xba\xa3\xea\x35\x35\x6d\x29" \
+    "\xd2\x43\x33\x34\xdc\xb6\xc5\x2f\xe9\xff\x2c\x03" \
+    "\xba\xc7\x51\x4a\x7a\x11\x04\x68\x4c\x22\x1a\xd8" \
+    "\xd9\x04\xf1\x6d\x48\xbc\x0e\x6b\xdf\x61\x68\xca" \
+    "\x43\xf4\x4e\xb9\x9d\x95\x6e\xfc\xa9\x02\xb9\x8f" \
+    "\xef\x28\x66\x17\x29\x66\xb2\x64\xa7\xa6\x11\x6d" \
+    "\x58\x18\xf7\xd0\x1a\x94\xdc\x40\x88\x02\x17\xbb" \
+    "\x20\xf5\x09\x64\xb8\x14\xee\x37\x20\x4c\xcb\x2a" \
+    "\xb0\xf6\xc0\x52\x82\xe5\x97\x79\xc6\xef\xcd\x53" \
+    "\xc8\x81\x72\x1c\x87\xe3\x83\xb6\xe8\x22\x44\xcf" \
+    "\xd5\x43\x4b\x3a\x04\x6c\x4d\x69\x20\x1b\xc1\x1d" \
+    "\xd0\xbc\x7f\x04\x62\xc0\xba\xe9\x28\xf5\xfb\x4a" \
+    "\x1f\x7b\x6a\x8b\xf6\x21\x71\xb6\x1e\xd5\x1c\x12" \
+    "\xee\x03\xe9\x04\xee\x70\x9e\x0f\xfd\x41\xc6\x56" \
+    "\x6f\x70\xe5\xd5\xda\x59\xd1\xd6\x17\xc0\x6b\x3b" \
+    "\xe2\x58\xa9\x95\xcd\xa1\x05\x60\xa9\x1a\x77\xc4" \
+    "\x63\xf2\x19\xf8\x02\xea\xfa\xea\x1c\x29\x6b\xb7" \
+    "\xd1\x0b\x8e\xd2\x1a\xdc\x81\x15\xcc\x18\xb0\xb8" \
+    "\xc9\xca\x40\x76\xc4\x63\xf2\x39\x18\xca\xa1\x15" \
+    "\x60\x80\x89\x4b\x01\xbc\xf8\x73\x0b\xb0\x07\xf9" \
+    "\xef\x60\x34\xc8\xb5\xca\x89\x17\xdd\xe8\x2f\x8d" \
+    "\x40\x2c\x06\x64\x37\x4f\xa3\x26\x11\xcc\x91\x8d" \
+    "\xe6\xe8\xc6\x60\x0d\xd6\x5a\x70\x0e\x28\x02\xb5" \
+    "\x40\x64\x55\x97\xdc\x1e\x68\x23\x15\x84\x0d\xa2" \
+    "\x68\xba\x6f\x4b\xac\xaa\x04\x5d\x04\x66\x41\xe6" \
+    "\xe0\xcb\x28\x4c\x0f\x81\xcc\x94\xbe\x67\x01\x0f" \
+    "\x92\xd5\x50\xb8\x5c\x79\xbd\x2b\x1c\x1b\x0d\xb1" \
+    "\x08\x90\x06\x96\xc0\xcd\xc0\x0f\x17\x0a\x3e\xf8" \
+    "\x1a\xdc\xb7\xb0\x6b\x07\x34\x36\x97\x5c\xc7\xc0" \
+    "\xd5\x21\xa2\xd0\x06\x62\x1e\x14\x72\x30\xbb\x0c" \
+    "\xf9\x42\xd0\xf4\x4b\xdd\xc1\x01\x45\xae\xda\xf2" \
+    "\xf9\x2b\xcc\xcd\xc3\xc1\x46\xa8\x89\x04\x2f\xcb" \
+    "\x96\x60\x11\x70\x3d\xf0\xfc\xc0\x7d\xe6\x4a\xf9" \
+    "\x89\xeb\x1e\x47\x29\x20\xd7\x65\xcb\x9b\x29\x48" \
+    "\x46\x03\x33\xeb\xab\x22\x63\x63\xc0\xd3\xc1\x94" \
+    "\x58\xe8\xfa\xfb\xc3\x19\xbb\xe5\x28\x11\xc8\xe4" \
+    "\x82\x3d\xeb\xeb\x17\xac\x49\x3e\x2d\xa3\x1e\xca" \
+    "\x0d\x00\x00\x00\x00\x49\x45\x4e\x44\xae\x42\x60" \
+    "\x82"
+image1_data = \
+    "\x89\x50\x4e\x47\x0d\x0a\x1a\x0a\x00\x00\x00\x0d" \
+    "\x49\x48\x44\x52\x00\x00\x00\x18\x00\x00\x00\x18" \
+    "\x08\x06\x00\x00\x00\xe0\x77\x3d\xf8\x00\x00\x04" \
+    "\xcc\x49\x44\x41\x54\x78\x9c\x95\x95\x5b\x6c\x14" \
+    "\x65\x14\xc7\x7f\xdf\xcc\xec\xa5\xbb\x2d\xdd\x6d" \
+    "\xbb\xdb\x42\x5b\x69\x1b\x0a\x85\x82\x05\xd1\x10" \
+    "\x8a\x4a\x4c\x08\x91\x27\x2f\x7d\x20\x31\x31\xf1" \
+    "\xd1\x98\x60\x7c\xf6\x8d\x37\x09\xea\x8b\x26\xc6" \
+    "\x28\x89\x3e\x68\x54\xd2\x60\x8c\xd8\xf0\x40\x24" \
+    "\x42\xb6\x86\x00\x82\x94\x2a\x6d\xa1\xb7\x6d\xbb" \
+    "\x97\xee\x6d\x76\x77\xf6\x32\x3b\xf3\xf9\x50\xba" \
+    "\xa5\xb0\x6d\xe2\xff\x61\x32\x33\xdf\x9c\xf3\xfb" \
+    "\xce\xf9\x4f\xbe\x23\x42\xa1\x10\xb5\xf4\xf9\xed" \
+    "\xaf\x65\xa1\x29\x42\x34\xa2\x92\x2d\x1d\xc1\xe1" \
+    "\x3b\x84\x55\x31\xb1\x0d\x8b\xba\x72\x84\xb1\xc2" \
+    "\x8f\xec\x29\xf6\x72\xe3\xe3\xcf\x00\x08\x85\x42" \
+    "\xa2\x56\x1e\xf1\x24\x20\x14\x3b\x27\xef\x2f\x4c" \
+    "\xf0\x30\xad\xe3\x6f\xee\xa6\xf5\xe0\x69\xf4\xce" \
+    "\x6e\x32\xb9\x06\x62\x56\x98\x62\xb9\xc0\x44\xe4" \
+    "\x4b\xac\xc9\x38\x8e\x99\x34\xde\x64\x91\xc6\x44" \
+    "\x81\x89\x0b\x57\x6b\x42\xb4\xc7\x1f\xce\xfd\xf9" \
+    "\x9d\x34\xbc\x1a\x6d\x47\xcf\x73\xd4\xa9\xa2\xb9" \
+    "\x67\x50\xb9\xc8\x4c\x78\x14\xe1\x3b\xc1\x68\x66" \
+    "\x94\x42\x3e\x88\x3d\x3f\x8f\x2a\xea\xb0\x9e\x09" \
+    "\x90\xf4\x27\xf0\x98\x65\x4e\xbc\x75\x9c\xc1\xc1" \
+    "\x41\xf9\x64\x35\xd5\x0a\xc6\xa5\x29\x6f\x26\xbc" \
+    "\xf4\x1c\x38\x40\x7f\xd3\x30\xb1\x64\x33\xb9\xc2" \
+    "\x0d\x92\xc9\x2c\x33\xfa\x25\xe2\xa6\xca\x98\xee" \
+    "\x22\x6a\x7a\x11\x25\x3f\x58\x1a\xd2\x54\xb1\xa4" \
+    "\x4d\x7f\x29\x85\xfb\xe6\x32\x75\x19\x95\xcb\x23" \
+    "\x7f\xac\x6b\x99\x06\x70\xe1\xfe\x1d\x99\x6f\xdd" \
+    "\x4f\xd7\xfe\x83\x6c\xf7\x25\x78\xd6\xfd\x05\x51" \
+    "\xef\x02\x73\xaa\x1b\x4d\x34\x10\xd7\x25\x19\xdb" \
+    "\x81\x47\x11\x08\x55\x60\x6b\x15\x14\x5b\x05\x21" \
+    "\x41\x0a\x4a\xd2\x41\x6f\x5f\x80\xf1\xab\xf3\xec" \
+    "\xd8\xdb\xcf\xd4\xd8\xbd\x6a\x57\x14\x80\xba\x86" \
+    "\x6e\x02\xdb\x77\x71\xc0\xf7\x33\x9d\x0f\x5a\xf8" \
+    "\xe9\xd2\x5e\xbe\x3f\x5f\xc7\xc4\x78\x81\x7b\xd7" \
+    "\x9a\xd1\x67\x9b\x11\xd8\x78\x55\x1b\x2c\x0d\x84" \
+    "\xbd\x12\x2a\x00\xdb\xa2\x20\x05\x9a\xd3\x41\x47" \
+    "\xdb\x56\xc2\xc5\x95\xc4\xab\xed\x52\x7e\x4d\x8f" \
+    "\xcb\x05\xcf\x33\x74\x77\xf8\xe9\xf5\xde\xa5\x61" \
+    "\xdb\x49\x8e\x1c\x3b\xc5\xee\x43\xa7\x11\x4a\x3b" \
+    "\x1d\x7b\x5d\x0c\xbe\xd9\x85\xa7\x5e\xa5\x68\x09" \
+    "\x50\x2d\x90\xf0\xe8\x02\x08\x6c\x55\x80\x05\x3d" \
+    "\x9d\x4d\x3c\xdf\xdd\xc2\xae\x7d\x7d\x55\x88\x36" \
+    "\xfd\x8f\x93\xce\x63\x3e\x5e\xa8\xff\x94\xe5\xe8" \
+    "\x59\xa2\x7a\x85\x6c\xf8\x21\x03\x03\xa3\x44\x12" \
+    "\x7d\x84\x63\x97\xf9\xeb\xce\x37\xe4\xb2\x1a\x65" \
+    "\xe1\xc4\xb6\x35\x14\xd4\x47\xbb\x17\x20\x25\x5e" \
+    "\x33\x8b\x90\x6e\xa4\x52\xc2\xa1\x98\x44\x72\xea" \
+    "\xda\x5f\xd4\xd8\xec\x67\x47\x7b\x9c\x89\xf0\x0f" \
+    "\xe8\x71\x2f\xb6\xa8\xa3\x54\x89\x30\xbf\xf0\x2a" \
+    "\x49\xab\x9e\xb8\xad\x60\x14\x15\x8a\xa9\x22\xce" \
+    "\x72\x3f\xaa\xb1\x84\x55\x31\x11\x0e\x0b\xa9\x7a" \
+    "\x90\x02\x3c\xd2\x83\xb0\xc0\x2a\x5a\xa4\x7c\xbb" \
+    "\xf1\xf8\xc6\xc8\xac\x02\x32\x6a\x1d\x4e\xc7\xb7" \
+    "\xdc\x5f\xcc\xa2\x58\xcd\xb8\x14\x49\xae\xa2\xb0" \
+    "\x34\x15\x43\x37\x97\x49\x2e\x0c\x60\xfb\x4e\xb0" \
+    "\xe4\xfa\x0d\x7f\xdf\x4b\x0c\xa4\x7c\xa4\x63\x2e" \
+    "\x12\x91\x3b\xa4\x94\xeb\x20\x6c\x0a\x61\x37\x69" \
+    "\x67\x89\x16\xf7\x16\x5c\xad\x3b\xf1\x4e\xfe\xbd" \
+    "\x56\x81\xae\x78\x98\x9c\xbd\x4d\x25\xe7\x44\xa8" \
+    "\x0e\x90\x20\xa5\xc0\xb0\x54\xf2\x52\x50\x6c\x48" \
+    "\x63\xcf\x6d\x65\x6a\x26\x49\xf6\xda\x19\x1a\x23" \
+    "\x8d\x74\x1c\x3e\x45\xa3\xec\xc1\xb8\x7b\x1d\x3b" \
+    "\xf9\x2f\x8b\x81\x93\xe8\xb1\x29\x6c\x63\x0a\xb7" \
+    "\x88\xb0\xb0\x9c\x5f\x03\x98\xa6\xc1\x7c\x78\x88" \
+    "\xdc\xf4\x27\x34\xb6\xd6\xa3\xd6\xbb\xb1\xa5\x46" \
+    "\xc9\x14\x14\x2c\x58\xb4\xa3\xe8\xf3\xbf\xf0\xe0" \
+    "\xc3\x5a\x47\xca\xd1\x1a\xef\xd6\x14\x0c\x06\xd1" \
+    "\xac\x0a\x78\x76\xbf\x87\xbf\xed\x75\xb2\xe1\x8b" \
+    "\xcc\xc7\xbf\x82\x7a\x05\xc3\x14\x64\x84\xca\x92" \
+    "\xed\x41\xaf\x2c\x03\x10\x08\x04\x10\x42\x20\xa5" \
+    "\xdc\x34\x31\x40\x3c\x1e\x5f\xa9\xc0\xca\x99\x44" \
+    "\x8b\x36\x01\xff\x36\x9c\xde\xb7\x89\xde\x1b\x25" \
+    "\x51\x9c\xa6\x8c\x83\x9c\xe5\xc2\xb2\x1d\xd8\xf9" \
+    "\xc4\x86\x89\x86\x86\x86\xaa\xf7\x86\x61\x30\x32" \
+    "\x32\xb2\x6e\x5d\x5b\x0c\x87\x29\x87\x63\x88\x9e" \
+    "\x36\xdc\xaa\x9b\x82\x7b\x90\xa8\xbe\x84\x22\x3c" \
+    "\x08\x5b\x45\x29\x83\x96\xf1\x6e\xba\xdb\xe1\xe1" \
+    "\x61\x72\xf1\x59\x1a\x82\x5d\x4f\xad\x29\xed\x6a" \
+    "\x81\xc4\xc2\x22\x09\x13\x12\x15\xe8\x68\x7d\x0d" \
+    "\x4c\x0d\xb5\x5c\x87\x28\x7b\xa0\xa2\xe2\xf1\xef" \
+    "\x59\x17\x24\x84\x40\x88\xb5\x83\x33\x17\x9f\x45" \
+    "\x9f\xbe\x52\x13\xae\xfc\x7e\xe6\x7d\xb4\xf1\x5b" \
+    "\xa4\x1f\x44\xc9\x95\x41\xaf\x28\x08\x0b\xec\xb2" \
+    "\x0b\x59\x51\xb1\x4a\x36\xc5\x5c\x64\x5d\x90\x94" \
+    "\xb2\xea\x83\x61\x18\x34\x04\xbb\x68\x3f\xf4\x4e" \
+    "\x6d\x40\x28\x14\x12\x3b\x65\x9e\xdc\xe8\x15\x52" \
+    "\x11\x93\x72\xce\x87\x23\xed\x45\x5a\x16\xd2\xae" \
+    "\xe0\x4d\xb9\xd9\x12\x3c\xbc\x61\x7b\x46\x46\x46" \
+    "\xaa\xc0\x5a\xe6\xaf\x9c\xa6\x67\x3f\xa0\xe3\x8d" \
+    "\x77\xc9\x09\x27\xee\x7d\x2f\xd3\xd2\x76\x8a\xe4" \
+    "\xd2\x47\x38\x8a\x92\x2d\xca\x73\x94\x69\xda\x10" \
+    "\xb0\x6a\xb2\x61\x18\x55\xe0\x53\x80\x50\x28\x24" \
+    "\x06\x07\x07\x65\x6b\xbe\x44\x3e\x3c\x89\x63\xe0" \
+    "\x38\xad\xf9\x01\xd4\xbc\x45\xba\xfd\x15\x8c\xb9" \
+    "\x5b\x1b\x02\x60\x73\x93\xab\x13\x6d\x15\xd2\xf9" \
+    "\xe2\x1e\xe2\x73\x0f\x49\x05\xb6\x23\x3a\x7a\x91" \
+    "\xa9\x12\x4a\x7a\xbd\x07\xab\x06\xaf\xb6\x64\x33" \
+    "\x93\xd7\x8d\xcc\x55\x08\x8c\xe3\xec\x1a\xc0\xdd" \
+    "\xe0\x43\xb6\x74\x51\x5a\x9a\xae\x7e\xf3\x64\x9f" \
+    "\x57\x4d\xde\x48\x4f\x0d\x7d\x58\x1b\x16\x8f\x2b" \
+    "\x16\x8b\x6d\x98\x64\x23\x05\x83\xc1\xda\x80\xcd" \
+    "\x40\xff\x57\xff\x01\xd4\xfb\x58\xa3\x77\x5e\x4e" \
+    "\xa0\x00\x00\x00\x00\x49\x45\x4e\x44\xae\x42\x60" \
+    "\x82"
+image2_data = \
+    "\x89\x50\x4e\x47\x0d\x0a\x1a\x0a\x00\x00\x00\x0d" \
+    "\x49\x48\x44\x52\x00\x00\x00\x16\x00\x00\x00\x16" \
+    "\x08\x06\x00\x00\x00\xc4\xb4\x6c\x3b\x00\x00\x04" \
+    "\xea\x49\x44\x41\x54\x78\x9c\xa5\x95\xcd\x6f\x1d" \
+    "\xd5\x19\xc6\x7f\xe7\x63\x66\xee\xc7\xdc\x7b\x6d" \
+    "\x7c\x6b\x82\xe3\x38\xb5\x1d\xe2\x88\xc4\x8b\x46" \
+    "\x6a\x24\x6e\x04\x72\xcb\x86\x02\x0d\x48\x20\xc4" \
+    "\x02\x51\x29\xea\x0a\x75\xd1\x5d\x2b\xb1\x60\x01" \
+    "\x11\x7f\x00\x12\xbb\x20\x8a\x54\x5a\xa9\x6a\x69" \
+    "\x41\xad\xda\x42\x54\x9a\x2a\x23\x95\x0a\x2b\xa0" \
+    "\x8a\x18\x4a\x82\x9d\x98\xf8\x3a\xb6\x13\x7f\xdc" \
+    "\xaf\xb9\x33\x73\x5e\x16\xe3\xeb\xa4\x6c\x99\xcd" \
+    "\x39\x33\x9a\xf3\x9c\xe7\x7d\xcf\x73\x9e\x47\x45" \
+    "\x51\xc4\xc9\x46\x43\x0c\x70\x3e\x8a\x14\xdf\xf2" \
+    "\x79\xb0\xd1\x90\x0c\xb0\x83\x0f\xe7\xa3\x48\x9d" \
+    "\x7d\x64\x4e\x0e\x04\x16\x09\x43\xb4\xd6\x88\x00" \
+    "\xc8\xed\x55\x22\x77\x4c\x07\x73\xc1\x39\xc1\xf6" \
+    "\x62\xae\xc6\x29\xe7\xa3\x48\x9d\x6c\x34\x44\x01" \
+    "\x12\x45\x91\xfa\xe3\x63\x3f\x90\xc7\x8e\x4e\x51" \
+    "\x9b\x7b\x80\xe2\x48\x15\x97\xc4\x38\x27\x80\x43" \
+    "\x21\x80\x42\x70\x20\x0e\xc9\x32\xc4\x39\x44\x1c" \
+    "\x20\x88\x08\x9d\xe6\x3a\xdd\xf9\x05\xfe\x7a\xb9" \
+    "\xc9\xe3\xef\x9c\x53\x2a\x8a\x22\x5e\x7f\x64\x4e" \
+    "\x9e\x9b\x9d\xa6\xf4\xd4\x29\xe2\xe6\x22\xdd\x95" \
+    "\xeb\x08\x82\xb2\x06\x6d\x2d\x2e\x4b\x70\x49\x0a" \
+    "\x4a\xd0\x9e\x87\x2d\x96\x30\x9e\x8f\x28\x50\x5a" \
+    "\xa3\xb4\xc6\xab\x86\xf4\x76\x62\xdc\x7b\x1f\xf2" \
+    "\xd6\x17\x2b\x79\x2b\xc6\x03\x4b\x6d\xee\x01\x5a" \
+    "\xcd\x45\x36\x2f\xce\x63\xc3\x10\xe5\x7b\x48\x3f" \
+    "\x23\xe9\x77\x09\xf7\x4d\x50\x9d\x9e\xc2\x86\x15" \
+    "\xd2\xce\x0e\xad\xe6\x12\xbd\xad\x0d\xfc\xb0\x86" \
+    "\xb2\x16\x44\x48\x36\xb7\x29\x0c\x55\x49\x67\xa7" \
+    "\x18\xbf\xb6\x96\x03\x4b\x18\x52\x1c\xa9\xb2\x76" \
+    "\xf1\x12\x36\x0c\xd1\xc5\x02\x2e\x89\x09\xf7\x8d" \
+    "\x73\xe8\x89\xd3\x54\x66\xbe\x47\x71\xf4\x00\xa2" \
+    "\x14\xb8\x8c\x4e\x73\x89\x9d\x85\xff\xf0\xe5\xfb" \
+    "\xbf\x23\x4b\xfb\x18\x3f\x00\xa5\xc8\xe2\x84\x62" \
+    "\xbd\x42\x1a\x78\x39\xb0\xd6\x1a\x97\xc4\x79\xf9" \
+    "\xbe\x87\x4b\x7a\x8c\x1c\x9e\xe5\xd8\xcf\x5e\x21" \
+    "\xa8\x8f\x41\xda\x67\x67\x69\x81\xf6\xfa\x0a\x95" \
+    "\xb1\x49\xca\x63\x53\x94\xc7\xa6\xa8\x1c\xf9\x3e" \
+    "\x0b\x6f\x9e\x21\x6e\x6d\xa1\x6d\x00\xc6\x80\x08" \
+    "\x6a\xa0\x0a\x11\x70\x2e\xef\xa9\x8b\x53\x6a\x07" \
+    "\x0e\x71\xf4\xf9\x33\x04\xf5\x31\x76\x3e\x9f\x67" \
+    "\xf1\xcf\x6f\xd2\xfa\xea\x0a\xa6\x58\x06\x97\x52" \
+    "\x3b\x34\xcb\xc1\x1f\x9f\xa6\x3c\x36\xc5\xcc\xb3" \
+    "\xbf\xe0\xd2\x1b\x2f\x93\x89\x43\x59\x8d\x64\x0e" \
+    "\x04\xf4\x40\x32\x0a\x87\x36\x06\xc9\x12\xa6\x9e" \
+    "\xfc\x29\x85\xd1\x71\xb6\x3f\xfd\x90\x4f\x5e\x7b" \
+    "\x81\xd5\x8f\x2f\x30\x3e\xf7\x04\x27\x5e\xfa\x0d" \
+    "\xe1\xe4\x51\xbe\xfa\xf7\x7b\x2c\xfc\xea\x0c\xfd" \
+    "\xad\x55\xc2\xf1\xc3\xec\x6f\xfc\x08\x97\xf6\x51" \
+    "\xc6\xee\x29\x45\xdf\x29\xee\x2c\xe9\x33\x3c\x79" \
+    "\x84\xe1\xc3\xc7\xc1\x65\x7c\xf1\xce\x59\xe2\x4e" \
+    "\x8b\x60\xb8\x4e\x69\x64\x14\x80\xe2\x5d\x75\x0a" \
+    "\x23\xa3\xb4\x56\x97\x59\xfe\xdb\xaf\x01\xa8\x1d" \
+    "\x39\x41\x50\x19\xca\xb5\x2d\x72\x27\x63\x40\x81" \
+    "\x4b\x13\xca\xfb\x27\xb1\x43\x75\x6e\x5e\xfa\x88" \
+    "\xed\x2f\x17\xf0\x6b\xc3\x20\x0e\xe7\xdc\xa0\x38" \
+    "\x10\xc1\x14\x43\xb6\x97\xff\x47\xff\xd6\x2a\xe5" \
+    "\xef\xec\xa7\x5c\x1f\xdb\x03\x95\x3d\xc6\x92\x8b" \
+    "\x5c\x29\x41\x15\xc3\x3d\xf6\xce\x25\x68\x63\x40" \
+    "\x69\x94\xda\xe5\x60\x34\x68\x8d\xf6\x2c\xce\x65" \
+    "\xa4\x49\x1f\x74\xae\x77\x65\x2c\xfc\x7f\x8f\x01" \
+    "\x71\x28\xcf\x83\xb4\x97\xaf\x0f\x02\x6c\xa1\x94" \
+    "\x83\x1a\xb3\xf7\xa7\x52\x3a\x07\xd0\x1a\x1b\x14" \
+    "\xb1\x7e\x00\xce\xa1\x8c\x45\x1b\x0f\x71\xdf\xe8" \
+    "\xb1\xb8\x0c\xe3\x07\xf4\x6f\xdd\xc0\x75\xb7\xb9" \
+    "\x6b\xe6\x38\xb5\xe9\x63\xa4\xbd\x36\xa6\x50\x40" \
+    "\x1b\x2f\x07\x36\x06\x13\xf8\x64\x49\x4c\xb8\x7f" \
+    "\x1a\x7f\x68\x94\xce\xc6\x0a\xf1\xce\x26\xb6\x50" \
+    "\xcc\x81\x07\x8c\x45\x04\xc9\x32\x6c\x29\x64\xf3" \
+    "\xea\xe7\x6c\x5e\xfe\x14\xb4\x61\xfa\xd1\xe7\x08" \
+    "\x2a\x55\x92\x4e\x8b\x24\x6e\x03\x90\xc6\x5d\xfa" \
+    "\xed\x6d\x2a\xf7\x1c\x64\xfc\xa1\x67\x00\xe8\x35" \
+    "\x2f\x93\xf6\x7b\x68\x2f\x40\x9c\x00\x72\xdb\xdd" \
+    "\x44\x1c\x4a\x2b\xb4\x5f\x60\xe9\x2f\x6f\x50\x3b" \
+    "\x38\x43\x78\xef\x71\xee\x7b\xf6\x97\x2c\x9e\xfb" \
+    "\x2d\xd7\xfe\xf5\x2e\x37\x3e\xb9\x40\xd2\xd9\x66" \
+    "\xf4\xd8\xfd\x1c\x7c\xf8\x27\xf8\xb5\x51\xba\xab" \
+    "\x4b\x34\x3f\xfa\x07\x5e\xa9\x8a\x73\x82\x64\x0e" \
+    "\x91\x3d\xdb\xcc\x77\x41\x29\x4c\x50\xa4\xb5\x7a" \
+    "\x95\xcb\xbf\x7f\x95\x43\x4f\xff\x9c\xca\xe1\xe3" \
+    "\xdc\x37\x31\x43\x7b\x65\x91\xb8\xb3\x4d\x69\x78" \
+    "\x94\xf2\xdd\x13\x60\x3c\xe2\x5b\xab\x5c\x3b\xf7" \
+    "\x16\x59\x96\x61\x0a\x05\x54\x96\xed\x5a\xeb\x2e" \
+    "\x63\xe7\x76\x55\xa1\x35\x48\xde\x92\xb5\xcf\xe6" \
+    "\xe9\x9d\x7d\x91\xf1\x07\x1f\xa7\x32\x39\x4b\x75" \
+    "\xf2\xe8\xae\x72\xa0\xbf\xb9\x4e\x7b\xe9\xbf\x34" \
+    "\x2f\xfe\x93\xb4\x1f\xa3\xfd\x02\xda\x7a\xb8\x4c" \
+    "\x48\xdb\x5d\x04\x95\x03\xdb\x5e\x4c\xa7\xb9\x8e" \
+    "\x37\x51\x27\xd9\xdc\x01\xa5\xb0\x85\x32\xed\x8d" \
+    "\x26\x9f\xfd\xe1\x35\xc2\xbb\x0f\x50\xbe\xe7\xbb" \
+    "\x28\xeb\xa1\x11\xba\x1b\x4d\x7a\xad\x2d\x6c\xb1" \
+    "\x82\x09\xca\x68\xeb\x61\x8a\x21\xdd\xb5\x2b\xb4" \
+    "\xaf\xdf\xc0\x1f\x00\x2f\xc7\x29\xdd\xf9\x05\xf4" \
+    "\xf0\x09\x0a\x43\x55\xb2\x38\x41\x8c\x46\x5b\x1f" \
+    "\x65\x0c\xed\xad\x0d\xda\xb7\xd6\x50\xd6\xa2\x8d" \
+    "\x8f\x2d\x95\x30\x85\x72\xee\x31\x59\x86\xcb\x84" \
+    "\xee\xda\x15\xae\x7f\xf0\x01\xc1\xcd\x36\xcb\xfd" \
+    "\x94\xbd\x04\xf9\xd3\xa9\x87\xe4\xe1\xc9\x7d\xf8" \
+    "\xb3\x53\x14\xeb\x95\xfc\xd2\x64\xbb\x29\x21\x03" \
+    "\xa7\x92\x3c\x39\x5c\x86\x64\xb2\x6b\x38\x79\xf9" \
+    "\xed\xeb\x37\xd0\x37\xdb\x9c\x5b\xef\x70\xea\xed" \
+    "\xbf\xe7\x09\x72\xb2\xd1\x90\x0b\x51\xa4\xce\x3e" \
+    "\xfa\x43\x99\x08\x2c\x69\xe0\xa1\x06\x67\xca\xed" \
+    "\x6b\x7a\xe7\x7b\x1e\x49\xbb\x23\x0a\x1f\xc5\xb5" \
+    "\x38\xe5\xf4\xbb\xef\xab\x93\x8d\x86\x7c\x0d\x91" \
+    "\x50\x6c\x1b\x62\x01\x71\x90\x00\x00\x00\x00\x49" \
+    "\x45\x4e\x44\xae\x42\x60\x82"
+image3_data = \
+    "\x89\x50\x4e\x47\x0d\x0a\x1a\x0a\x00\x00\x00\x0d" \
+    "\x49\x48\x44\x52\x00\x00\x00\x16\x00\x00\x00\x16" \
+    "\x08\x06\x00\x00\x00\xc4\xb4\x6c\x3b\x00\x00\x03" \
+    "\x6b\x49\x44\x41\x54\x78\x9c\x9d\x94\xcd\x4f\x5c" \
+    "\x55\x18\xc6\x7f\xe7\xde\x3b\x77\x60\xbe\x81\xb1" \
+    "\x23\x85\xd4\xa6\x4d\xb1\x46\x62\x1b\x57\x0c\x11" \
+    "\xbb\xe8\xa2\x4c\xd2\xe8\x4a\x63\xe2\xaa\xd1\xba" \
+    "\x73\xe3\x3f\x42\x37\xed\x4a\xf0\x1f\x30\x31\xe9" \
+    "\xa6\xb1\xa1\x9a\xa2\x8c\x61\x4c\x06\x07\xb0\x54" \
+    "\x5a\xc3\x88\x2d\x30\x96\x41\x66\x80\x7b\xe7\x9e" \
+    "\xfb\x71\x5c\x00\xa3\x7c\x85\xa9\x4f\xf2\x6e\x9e" \
+    "\x73\xce\x2f\xef\xf9\x7a\x44\x3e\x9f\xe7\xbf\xaa" \
+    "\xd7\x85\x4a\x26\xa3\x74\x76\x26\xb1\x6d\x87\x7a" \
+    "\x7d\x1b\xcb\xb2\x09\x02\x45\x2a\x25\x04\x2d\xca" \
+    "\x38\x68\x48\xe9\x12\x0e\x9b\xf4\xf5\x9d\x69\x7a" \
+    "\xd5\x6a\x8d\xe9\xe9\xdf\xa8\x54\x6c\x95\xc9\x98" \
+    "\x2d\xc1\xb5\x83\x46\x3a\x6d\x88\xa7\x4f\x9f\x51" \
+    "\x28\xfc\xda\xf4\xba\xba\x92\x5c\xb9\xf2\x36\x91" \
+    "\x48\x1b\x4b\x4b\x5b\xea\x7f\x81\x01\x7a\x7b\x23" \
+    "\x62\x61\x61\x89\xc9\xc9\x52\xd3\x0b\x85\x0c\x06" \
+    "\x06\xfa\x91\xd2\x6d\x85\x8b\x36\x3b\xbb\xaa\x66" \
+    "\x66\x56\x0e\x75\x71\xfe\x7c\x4a\xcc\xcf\x2f\x52" \
+    "\x2a\x3d\x69\x7a\xf1\x78\x84\xd3\xa7\xd3\xcc\xce" \
+    "\xae\x9e\xd8\xb5\x66\x9a\x21\x84\x10\x14\x0a\xe5" \
+    "\x7d\x93\x0b\x85\xb2\x8a\x44\xda\x39\x77\xae\x07" \
+    "\xcf\xf3\xf1\x3c\x1f\xdf\x0f\xe8\xe8\x48\xe0\x38" \
+    "\xf2\xe4\x8e\x4d\xd3\x60\x78\x38\x8b\x10\x82\x89" \
+    "\x89\x05\x05\x30\x31\xb1\xa0\x12\x89\x28\xd7\xae" \
+    "\x0d\xa0\xeb\x1a\x52\xba\x38\x8e\xc4\x71\x24\x86" \
+    "\xa1\xd3\x68\xb4\x00\x6e\x34\x24\x89\x44\x94\x5c" \
+    "\x6e\x10\x21\x04\xf7\xef\xcf\xed\x42\xb3\x68\x9a" \
+    "\x86\xe3\xb8\x38\x8e\x8b\x94\x1e\x52\x7a\x3c\x7f" \
+    "\xfe\xa2\xb5\x8e\xd7\xd6\x36\xd8\x81\xc7\xc8\xe5" \
+    "\x06\xe9\xee\x4e\x33\x3c\x9c\x45\xd7\x75\xa4\x74" \
+    "\x0f\xd5\xe2\xe2\x32\xb6\xed\x9c\x0c\xae\x54\xd6" \
+    "\x29\x16\x1f\x23\xa5\x4b\x2a\x15\x27\x97\x1b\xc4" \
+    "\x30\x0c\xa4\x94\xfb\xca\xb2\x1a\x94\xcb\xcb\x5c" \
+    "\xba\x74\x01\x80\x57\xa6\x6f\xaa\x74\xf1\xe6\xb1" \
+    "\x97\xa8\x49\xe9\x32\x3e\x5e\x60\x6d\xed\xef\xe6" \
+    "\xb6\x77\xca\x6b\x96\x6d\x4b\xca\xe5\x65\x36\x37" \
+    "\x2d\x94\x52\x7c\xf8\xe6\x1c\x66\x26\x84\xeb\x41" \
+    "\x7c\xea\xd3\x7d\xf0\x6c\x36\xab\x00\x44\x3e\x9f" \
+    "\x67\x6c\xec\x3b\x15\x89\xb4\x31\x34\x74\x99\xbe" \
+    "\xbe\x33\x18\xc6\xde\x87\xdc\x59\x63\xdb\x0e\xae" \
+    "\xeb\x11\x0a\x19\x88\xf9\xdb\x24\xe4\x03\xc2\xeb" \
+    "\xab\x84\xfa\x7b\x59\x99\x0b\x08\x02\x90\x43\x5f" \
+    "\xee\xfb\x91\x62\x2f\x2b\xee\xdc\xb9\xa7\x94\x52" \
+    "\x74\x76\x26\xc9\x64\x3a\x89\xc5\xda\xa9\xd5\xb6" \
+    "\x90\xd2\xe3\xfa\xf5\x77\x48\x26\x63\xd8\xc5\x5b" \
+    "\x44\xad\x6f\xe9\xb0\x2a\xa4\x75\x97\x1a\x21\xec" \
+    "\xb3\x3d\x2c\xcd\x28\x82\x00\xc4\xd5\x7f\xe1\xe2" \
+    "\x60\x08\x8d\x8c\xdc\x3d\x74\x6e\x99\x4c\x17\x1f" \
+    "\x5d\x2e\x93\x72\xc7\xe9\x36\xab\xa4\x4c\xd0\x76" \
+    "\x11\x75\x4f\xb0\x99\x4c\xf3\xe4\x17\x41\x10\x28" \
+    "\xda\x73\xa3\xe2\x48\xf0\x51\x5a\xfe\xe6\x73\xf5" \
+    "\x5a\xaf\xcd\xc5\x9e\x0d\xa2\xa6\xce\xc1\x8c\xb3" \
+    "\x1c\x9f\xaa\x8a\xf3\x68\x5a\x23\x08\x20\xf5\xde" \
+    "\xa8\x38\x94\x6e\x47\xa9\x5d\xb3\x58\x7d\x06\x99" \
+    "\x4c\x9c\xd8\xa9\xdd\x0d\xed\xd1\xa5\x4f\x24\xa2" \
+    "\x08\xfb\x12\xd1\x1f\xa2\x58\xd4\xa9\x7c\xfd\x89" \
+    "\x3a\x32\x84\x0e\xaa\xe3\xfd\x51\x21\x3d\x98\xfa" \
+    "\x49\xa3\xfc\x27\x90\x68\x83\x64\xfb\xce\xa0\xe3" \
+    "\x42\xa5\x8e\xbe\x52\xa3\x37\x6e\xf3\x46\x9f\x8b" \
+    "\xeb\x1f\x93\x6e\x47\xa9\xfb\x83\x51\xe1\x7a\x8a" \
+    "\xc9\x1f\x35\x7e\x2f\x35\x20\x16\x86\xcd\x06\x6c" \
+    "\x39\xf0\x62\x13\xdc\x00\xfe\xa8\x72\xe1\x55\x9b" \
+    "\x90\xe1\xb7\x0e\x06\x38\xfb\xf1\x98\x70\x3d\x78" \
+    "\x38\xa1\xb1\xf0\xfd\x3a\xf8\x01\x44\x4d\x68\x78" \
+    "\x60\x39\x3b\xaf\xd3\x96\x98\x7a\xf0\x72\x60\x80" \
+    "\xd7\x6f\x8c\x09\xd7\x87\x07\x0f\x75\x1e\xcf\x79" \
+    "\xb0\x61\xc1\xd5\x8b\x70\x2a\x0e\x51\x13\x67\xcb" \
+    "\x67\xa5\xaa\xbd\x3c\x18\xe0\xad\xcf\xc6\x84\xf4" \
+    "\x14\xf7\x4a\x09\x8a\x8f\x0c\x98\x5a\x84\xf5\x6d" \
+    "\x9c\x6d\x9f\xbb\x3f\x27\xa8\x5b\xa2\xb5\xe7\x76" \
+    "\x9c\x7e\x18\xb9\xa1\x82\x00\x12\x61\x8f\x64\x9b" \
+    "\xc7\x5f\xdb\x26\xd2\xd7\x78\xf7\x8b\xaf\xc4\x3f" \
+    "\x48\x07\xb7\x36\xa3\xf2\x2c\xed\x00\x00\x00\x00" \
+    "\x49\x45\x4e\x44\xae\x42\x60\x82"
+image4_data = \
+    "\x89\x50\x4e\x47\x0d\x0a\x1a\x0a\x00\x00\x00\x0d" \
+    "\x49\x48\x44\x52\x00\x00\x00\x16\x00\x00\x00\x16" \
+    "\x08\x06\x00\x00\x00\xc4\xb4\x6c\x3b\x00\x00\x03" \
+    "\x29\x49\x44\x41\x54\x78\x9c\xb5\x95\xdf\x6b\x13" \
+    "\x59\x14\xc7\x3f\x93\x64\x26\x69\x9a\xb6\x53\xd4" \
+    "\xda\xba\x41\x93\xad\x82\xcd\x62\xca\xae\x10\x65" \
+    "\xb4\x74\x15\xf4\xc1\x87\x52\xc4\x85\xfa\xd4\xc7" \
+    "\x42\x7d\x12\xc1\xbf\x40\xc1\xf7\xe2\x83\x82\x5b" \
+    "\x41\x7c\x10\xdf\x05\x8b\x96\x8a\x18\xad\x82\x3f" \
+    "\x1e\xda\x2d\xb6\xe4\x47\xcd\x64\x57\xbb\x76\xdb" \
+    "\x49\x27\xc9\x24\x9d\x8c\x0f\x0d\x53\xc7\x4e\x56" \
+    "\x17\xdc\x33\x5c\x18\xce\xb9\xf7\x73\xbe\x67\xee" \
+    "\xbd\x67\x84\x64\x32\xc9\xff\x61\xbe\x7f\x0b\x2a" \
+    "\x37\x14\x8b\x1a\x60\x02\x35\xc0\x72\xc6\x93\xe7" \
+    "\x92\x42\xa3\xb5\x82\x9b\x62\x65\xbc\x0e\xf4\x02" \
+    "\x61\x60\x27\xf4\x87\xfb\x01\x78\xf3\xe7\x1b\x56" \
+    "\x72\x2b\x90\x05\x2a\x8d\x13\x6c\x01\x2b\xbf\xd7" \
+    "\xa1\x07\x60\xa8\x7f\x88\xd1\x1f\x47\x89\x87\xe2" \
+    "\x8e\x39\xd9\x72\x96\xdb\x8b\xb7\xb9\x36\x71\x8d" \
+    "\xd5\x17\xab\xae\x70\x07\x58\xb9\xa1\x58\x78\x61" \
+    "\xff\xa9\xfd\x5c\x39\x7a\x85\x58\x73\xac\x51\xa5" \
+    "\x00\x68\xeb\x1a\x17\x1f\x5f\x64\xf2\xee\x24\x54" \
+    "\x9c\x70\x1b\xac\x5c\x57\x2c\x2c\xe8\x1e\xec\x66" \
+    "\xac\x7f\x8c\x16\x6f\x0b\x00\x33\xe9\x19\x42\x42" \
+    "\x88\xc8\xb6\x08\x99\xbf\x33\x74\x76\x75\xe2\x0f" \
+    "\xf8\x1d\x09\x2e\x3d\xbd\xc4\xfd\x5b\xf7\x1d\xca" \
+    "\x37\x37\xcf\x84\xe0\x2f\x41\xce\x1f\x3a\x8f\x5e" \
+    "\xd3\x99\x55\x67\xd9\xe7\xd9\xc7\x48\xef\x88\x3d" \
+    "\xe5\xc8\x0f\x47\xa8\x5a\x55\x1e\xac\x3e\x40\x37" \
+    "\x75\xdb\x3f\xf4\xf3\x10\x2f\xdf\xbe\x64\x69\x7a" \
+    "\xc9\xf6\x79\x00\x94\xab\x8a\x85\x0f\xfa\x8e\xf6" \
+    "\x61\x62\x92\xd2\x52\xf4\xb5\xf6\x31\x10\x1b\xd8" \
+    "\x52\xbe\x28\x88\x94\xcc\x12\xf9\x4a\xde\x1e\x9a" \
+    "\xa9\x31\x70\x6c\x00\xa4\x3a\xcb\xa1\x78\x0f\x44" \
+    "\xe4\x08\xf9\x4a\x9e\x8e\xe5\x0e\x12\x07\x13\x76" \
+    "\xe8\x91\xf6\x88\x74\x39\x4d\x97\xd4\x45\xa9\x56" \
+    "\xe2\xf9\xda\x73\x3b\x36\xbb\x36\xcb\xbc\x3e\x4f" \
+    "\xa6\x98\x81\x3d\xc0\xfc\x86\xdf\x06\xb7\xef\x6e" \
+    "\x47\xb7\x74\xf4\x8a\xce\x70\x78\xd8\x5e\x78\x39" \
+    "\x77\x99\xb9\xd2\x9c\x43\x75\x71\xa5\x48\xdb\x7a" \
+    "\x1b\x3b\xe4\x1d\x14\x0a\x05\xe6\x8a\xf5\x78\xa7" \
+    "\x0b\xd8\x0a\x59\xa8\x15\x15\x80\x9e\x9d\x3d\x00" \
+    "\x2c\x94\x17\x78\xb8\xfa\x70\xe3\x13\xac\x89\x9c" \
+    "\x68\x3a\x41\x3c\x18\x27\xf1\x53\x02\x39\x28\xdb" \
+    "\x89\x84\xc9\xfa\x61\x68\xd9\x4c\x6e\x83\x0d\xcb" \
+    "\x20\x57\xc9\x39\x94\x2d\xaf\x2f\xdb\xbe\x91\xa6" \
+    "\x11\x2e\xc4\x2f\xf0\xad\xe6\xb1\xc1\x05\x03\xd5" \
+    "\x50\x51\x0d\x95\xac\x91\x05\x20\x11\x4a\xb0\xdd" \
+    "\xb7\x9d\xc5\xf2\x22\xaa\xa4\x36\xa6\x88\xf5\x51" \
+    "\x74\x01\xd7\xfe\xaa\x51\xaa\x3f\x37\x97\x6e\xda" \
+    "\x13\xee\x75\xdf\xe3\xac\x70\x96\x57\xef\x5e\x91" \
+    "\xd1\x32\x5b\x98\x53\xda\x14\x48\x6c\x8c\xf7\x9b" \
+    "\xfe\xcd\x53\x91\x02\xcf\x71\x0f\xf8\x61\x6c\x79" \
+    "\x8c\xc1\x6d\x83\xf4\x36\xf5\x22\x07\x65\xc6\x0f" \
+    "\x8f\x37\x14\x2b\x78\x04\xbc\xa2\x17\x0c\x30\x53" \
+    "\xa6\x53\x71\xf2\x5c\x52\xc0\x00\xe9\xb5\x84\xec" \
+    "\xdb\xd8\x94\xd3\xa9\xd3\x24\x75\xf7\x96\x3a\x53" \
+    "\x9e\xb1\xdf\xa7\xf5\x69\x64\x9f\x8c\xf4\x5a\x02" \
+    "\xc3\xed\xe6\x01\xa5\x27\x25\xda\x23\xed\x04\x77" \
+    "\x07\x01\x18\xce\x0c\x13\x0b\xc4\x38\xd9\x7a\x12" \
+    "\x00\xcd\xd4\x98\x28\x4c\x90\xab\xe4\x38\x23\x9f" \
+    "\x21\x2c\x85\xb9\xf3\xcf\x1d\xfc\xaa\x9f\x8f\x4f" \
+    "\x3e\x3a\x2b\x71\x34\xa1\xab\x8a\xe5\x0d\x78\xd9" \
+    "\xfb\xdb\x5e\x5a\x23\xad\x0d\xcb\xff\xdc\xb4\x8c" \
+    "\xc6\xc2\xdd\x05\xcc\xb2\xe9\xde\x84\x3e\x87\x03" \
+    "\x44\x7f\x8d\x12\x3d\x1c\x45\x0c\x88\xae\xc0\x6a" \
+    "\xb9\x4a\xfa\x59\x9a\xf4\x54\x1a\xf8\x4a\xdb\xfc" \
+    "\x12\x2e\x06\x44\x76\xf5\xec\xa2\x23\xda\x41\xb3" \
+    "\xdc\x0c\x80\xbe\xa2\xf3\x21\xfd\x81\xfc\x1f\x79" \
+    "\xaa\xe5\xaa\x2b\xb4\x21\xf8\xcb\x04\x8d\xec\x3f" \
+    "\xff\x9a\xbe\x87\x7d\x02\x24\x35\x5a\xaa\x85\x97" \
+    "\xe7\xd4\x00\x00\x00\x00\x49\x45\x4e\x44\xae\x42" \
+    "\x60\x82"
+image5_data = \
+    "\x89\x50\x4e\x47\x0d\x0a\x1a\x0a\x00\x00\x00\x0d" \
+    "\x49\x48\x44\x52\x00\x00\x00\x18\x00\x00\x00\x18" \
+    "\x08\x06\x00\x00\x00\xe0\x77\x3d\xf8\x00\x00\x03" \
+    "\x95\x49\x44\x41\x54\x78\x9c\x95\x96\x6d\x68\x5b" \
+    "\x55\x1c\xc6\x7f\xe7\xe6\x26\x6d\x92\x2e\xbd\x6d" \
+    "\xb0\xc5\xd6\x52\xa5\xc5\xb7\x5a\x5a\xdb\xcc\x95" \
+    "\xa3\x73\x22\x29\x8a\x38\x18\x93\xfa\xf2\x41\x71" \
+    "\x8a\x51\xfc\xe0\xc4\xe1\x04\xf1\x8b\x30\x9c\x30" \
+    "\xf6\x45\x41\x70\xe8\x97\x31\xb5\x0c\x44\x5a\x71" \
+    "\xca\xc6\x36\x45\xb9\xd0\x6d\x85\x15\x75\x4d\x48" \
+    "\xd3\x4d\x52\x6b\x5b\x9b\x36\x37\xe9\xf2\xd2\x36" \
+    "\x39\x7e\x98\xad\xed\xda\x1b\xd3\xe7\xd3\xe5\x3e" \
+    "\xe7\xfc\x9e\xff\xff\x9c\x73\x5f\x84\x69\x9a\xd8" \
+    "\x49\x4a\xa9\x6c\x4d\xc0\x34\x4d\x21\xa5\x54\x6e" \
+    "\xa3\x93\x6c\xf2\xf2\x06\x0f\x40\x2b\x07\xae\xeb" \
+    "\x35\xb6\x63\x2a\x6b\xee\xda\x00\x5f\x2b\xdb\x80" \
+    "\xb5\xaa\xde\xb6\xc3\xd6\xcb\xcd\x47\x4a\xce\xdd" \
+    "\x34\xe0\xe6\xa5\x49\xcc\xff\xb0\xe9\xe4\xc6\xde" \
+    "\x10\x8d\xbd\xa1\x92\x01\xba\xad\xe1\xad\xa1\x90" \
+    "\x49\x62\x18\x06\x6e\xb7\x1b\xd1\xf6\x24\xb7\x6e" \
+    "\x6f\x5b\xf5\xff\xba\xf8\x3b\x8d\xdb\xbb\xe9\xa9" \
+    "\xbd\x9d\x8f\xce\x1c\xb3\x2d\x52\xdc\xbc\xc9\x52" \
+    "\x4a\xe5\x6a\xba\x83\x8e\x9d\x7d\x08\x5d\xf0\xc6" \
+    "\x81\xb7\xa8\x72\x69\x8c\xa7\x16\xa9\x10\x82\x44" \
+    "\xae\x40\x64\x2e\xcf\xcc\xec\x18\x1d\xc2\xcb\x91" \
+    "\x97\x1e\x42\x08\x51\x5e\x07\x52\x4a\xd5\xd8\x1b" \
+    "\x62\x57\xe8\x00\x2f\x74\xd6\xe2\xd5\x05\x17\xa6" \
+    "\x73\xfc\xf4\x47\x86\xb1\x54\x11\x54\x91\x3f\x7f" \
+    "\x1d\xa2\x41\xab\xe4\xfc\xe1\x67\x01\xf8\x32\x18" \
+    "\xe4\xbd\xa6\x26\x3e\x9e\x9c\xc4\x2a\x14\xec\x03" \
+    "\xa4\x94\xaa\xd6\xdf\xc0\x6b\x07\x5f\xe7\xe9\x3b" \
+    "\x6b\x39\x15\xbb\xca\xb9\xf0\x38\x91\x99\x02\x6a" \
+    "\x51\xe0\xbf\xbb\x9d\x62\xd8\xa4\xcb\x51\xc7\x57" \
+    "\x1f\xec\x01\x60\xb4\xbb\x9b\x05\xcb\xe2\x50\x3c" \
+    "\x5e\xba\x03\x29\xa5\x72\xb9\x5c\xbc\xb9\x7f\x3f" \
+    "\xcf\x34\x6f\xe3\xc4\xf1\x13\x1c\xff\xe6\x34\xf3" \
+    "\x33\xd7\xf1\x3d\xf2\x04\x3e\x8f\x81\x5b\x73\x52" \
+    "\xaf\x6e\xc0\x95\x52\x84\x03\x01\xcc\x5c\x96\x57" \
+    "\x63\x31\x5b\xf8\xba\x0e\x82\xc1\x20\x52\x3e\xc0" \
+    "\xd1\xa3\x9f\x30\x30\xd0\x4f\x32\x99\x40\xcb\x2f" \
+    "\xd2\x3c\x18\xe1\xf9\x5b\xaa\x60\xea\x02\xa1\x81" \
+    "\xcf\x01\x08\x07\x02\x00\x14\xf2\x8b\x25\xe1\xa6" \
+    "\x69\x0a\x5d\x4a\xa9\x3c\x1e\x0f\xad\x2d\x2d\xc4" \
+    "\x62\x63\x9c\xfa\xf6\x3b\x74\x6b\x8e\x87\xab\xaa" \
+    "\x38\x9d\x9b\xe5\xdd\xce\x7a\x76\x3d\xda\x85\xd5" \
+    "\xb8\x03\xeb\xd2\x10\xbe\xae\xfb\x01\xf8\xd9\xb2" \
+    "\x6c\xab\x5f\x79\x8a\x57\x3b\xf0\xf9\x7c\x38\x5d" \
+    "\x2e\x4e\x9e\xec\x27\x3e\x19\x06\x60\x22\x9b\xe5" \
+    "\xd3\xdd\xfb\x78\xb0\xee\x1a\xae\x96\x56\xf2\x3f" \
+    "\x9e\x25\x5b\xfd\x35\x93\xbf\x44\x88\xb6\xfa\x60" \
+    "\xd8\xbe\x72\x29\xa5\x5a\x09\xd1\x01\x8a\x4b\x4b" \
+    "\x0c\x99\x26\xbf\x8d\x8e\x12\xa8\xae\xe6\x62\x32" \
+    "\x89\x2a\x16\xd1\x1c\x0e\x66\x5b\x9b\x78\x2e\x32" \
+    "\x47\x46\xf3\xe0\xdd\x3d\x0d\xc0\xd4\x70\xe6\x7f" \
+    "\xd7\x7e\xb5\x83\xcf\xee\xbd\x87\xc7\x3a\x5b\xa9" \
+    "\x68\xf0\xf3\xf2\xf8\x18\x83\x53\x33\x00\x68\x0e" \
+    "\x07\x4a\x29\x84\x10\xec\x31\xea\xf1\xec\xbd\x8d" \
+    "\xba\xfb\x0a\x44\xd3\x71\xde\x9e\x9e\x28\x0b\x0e" \
+    "\xa0\x57\x18\x06\x75\x8f\xf7\xa0\xe5\xd2\x78\xd6" \
+    "\x18\x4a\xfd\xf7\xb6\x10\x40\x4d\x9f\x40\x5b\x5e" \
+    "\xe0\xc5\xc3\x69\x52\x0b\x1b\xcf\xfb\x5a\xad\xdb" \
+    "\x83\xb1\xe9\x19\x66\x2f\x4f\x90\x8f\x45\x39\xd4" \
+    "\x54\x8f\x10\x62\x15\x2e\x84\xe0\xca\xce\x2e\x9c" \
+    "\x01\x37\x85\xdc\x08\x85\xe5\x6b\xcc\xce\x95\x5d" \
+    "\x3c\x00\x9a\x2a\x16\xb1\x1c\x1a\xb9\x8c\x62\x59" \
+    "\xaf\x24\xd2\xd3\x8d\xd7\xe9\x40\xd3\x34\xae\x04" \
+    "\xba\x71\x4a\x0d\xdf\xbe\x11\xd2\xd6\xdf\x1c\x3c" \
+    "\x66\xd0\xde\xee\x2d\xbb\x7a\x00\x7d\xb4\xcb\xa2" \
+    "\xf9\x95\x28\xa9\x0f\x7d\xe8\xb8\xc0\xe7\x27\xda" \
+    "\xd1\x86\xff\x9d\x11\x72\xe9\x05\x9c\xce\xab\xa4" \
+    "\x16\x2b\x39\xf2\x85\x93\x70\x38\xc3\xb9\xf3\xe9" \
+    "\xb2\xe1\xf0\xef\x29\x12\x85\x38\x35\xef\xeb\xb0" \
+    "\x04\xaa\x18\x45\x54\xf8\xc9\xcf\x67\x49\x5e\x4f" \
+    "\x30\x1c\xad\xa3\x7f\x30\xc3\x42\x6a\xc9\x16\xbe" \
+    "\x19\x78\x45\x02\x50\x7d\x4f\xd5\xae\xbb\x99\x98" \
+    "\x5b\xba\x71\xb1\xac\x51\x51\xe9\x00\xe0\xfb\x33" \
+    "\x1b\x17\xbf\x14\x78\x5d\xc0\x66\x86\x61\xb8\x48" \
+    "\x26\xed\x5f\x05\xe5\xc0\x4b\x06\x94\x52\xb9\x70" \
+    "\x00\x6d\x2b\x83\xb7\x0a\x87\x35\x5f\xb4\x72\x7e" \
+    "\x51\xb6\x02\x5e\xd1\x3f\x32\xcc\x75\xb0\xa8\xbe" \
+    "\xcc\x64\x00\x00\x00\x00\x49\x45\x4e\x44\xae\x42" \
+    "\x60\x82"
 
 class MainWinDesign(QMainWindow):
     def __init__(self,parent = None,name = None,fl = 0):
         QMainWindow.__init__(self,parent,name,fl)
         self.statusBar()
 
-        self.image0 = QPixmap(image0_data)
-        self.image1 = QPixmap(image1_data)
-        self.image2 = QPixmap(image2_data)
-        self.image3 = QPixmap(image3_data)
-        self.image4 = QPixmap(image4_data)
-        self.image5 = QPixmap(image5_data)
-
+        self.image0 = QPixmap()
+        self.image0.loadFromData(image0_data,"PNG")
+        self.image1 = QPixmap()
+        self.image1.loadFromData(image1_data,"PNG")
+        self.image2 = QPixmap()
+        self.image2.loadFromData(image2_data,"PNG")
+        self.image3 = QPixmap()
+        self.image3.loadFromData(image3_data,"PNG")
+        self.image4 = QPixmap()
+        self.image4.loadFromData(image4_data,"PNG")
+        self.image5 = QPixmap()
+        self.image5.loadFromData(image5_data,"PNG")
         if not name:
             self.setName("MainWinDesign")
 
@@ -1479,12 +605,12 @@ class MainWinDesign(QMainWindow):
         self.editServerList.setIconSet(QIconSet(self.image1))
         self.exitItem = QAction(self,"exitItem")
         self.exitItem.setIconSet(QIconSet(self.image2))
-        self.menu_configure_plugins = QAction(self,"menu_configure_plugins")
-        self.menu_configure_plugins.setIconSet(QIconSet(self.image3))
+        self.menuConfigurePlugins = QAction(self,"menuConfigurePlugins")
+        self.menuConfigurePlugins.setIconSet(QIconSet(self.image3))
         self.reload = QAction(self,"reload")
         self.reload.setIconSet(QIconSet(self.image4))
-        self.select_language = QAction(self,"select_language")
-        self.select_language.setIconSet(QIconSet(self.image5))
+        self.selectLanguage = QAction(self,"selectLanguage")
+        self.selectLanguage.setIconSet(QIconSet(self.image5))
         self.togglePluginList = QAction(self,"togglePluginList")
         self.togglePluginList.setToggleAction(1)
         self.togglePluginList.setOn(0)
@@ -1507,8 +633,8 @@ class MainWinDesign(QMainWindow):
 
         self.PopupMenu = QPopupMenu(self)
         self.editServerList.addTo(self.PopupMenu)
-        self.menu_configure_plugins.addTo(self.PopupMenu)
-        self.select_language.addTo(self.PopupMenu)
+        self.menuConfigurePlugins.addTo(self.PopupMenu)
+        self.selectLanguage.addTo(self.PopupMenu)
         self.menubar.insertItem(QString(""),self.PopupMenu,2)
 
         self.PopupMenu_2 = QPopupMenu(self)
@@ -1522,14 +648,14 @@ class MainWinDesign(QMainWindow):
         self.clearWState(Qt.WState_Polished)
 
         self.connect(self.about,SIGNAL("activated()"),self.showAboutLuma)
-        self.connect(self.exitItem,SIGNAL("activated()"),self.quit_application)
+        self.connect(self.exitItem,SIGNAL("activated()"),self.quitApplication)
         self.connect(self.editServerList,SIGNAL("activated()"),self.showServerEditor)
-        self.connect(self.menu_configure_plugins,SIGNAL("activated()"),self.configure_plugins)
-        self.connect(self.reload,SIGNAL("activated()"),self.reload_plugins)
-        self.connect(self.select_language,SIGNAL("activated()"),self.show_language_dialog)
+        self.connect(self.menuConfigurePlugins,SIGNAL("activated()"),self.configurePlugins)
+        self.connect(self.reload,SIGNAL("activated()"),self.reloadPlugins)
+        self.connect(self.selectLanguage,SIGNAL("activated()"),self.showLanguageDialog)
         self.connect(self.togglePluginList,SIGNAL("toggled(bool)"),self.pluginBox,SLOT("setHidden(bool)"))
-        self.connect(self.taskList,SIGNAL("clicked(QIconViewItem*)"),self.task_selection_changed)
-        self.connect(self.taskList,SIGNAL("selectionChanged(QIconViewItem*)"),self.task_selection_changed)
+        self.connect(self.taskList,SIGNAL("clicked(QIconViewItem*)"),self.taskSelectionChanged)
+        self.connect(self.taskList,SIGNAL("selectionChanged(QIconViewItem*)"),self.taskSelectionChanged)
 
 
     def languageChange(self):
@@ -1537,26 +663,26 @@ class MainWinDesign(QMainWindow):
         self.pluginBox.setTitle(self.__tr("Plugins"))
         self.taskBox.setTitle(self.__tr("Work Area"))
         self.about.setText(self.__tr("About Luma..."))
-        self.about.setAccel(self.__tr("Ctrl+A"))
         self.about.setMenuText(self.__tr("About Luma..."))
+        self.about.setAccel(self.__tr("Ctrl+A"))
         self.editServerList.setText(self.__tr("Edit Server List..."))
-        self.editServerList.setAccel(self.__tr("Ctrl+E"))
         self.editServerList.setMenuText(self.__tr("Edit Server List..."))
+        self.editServerList.setAccel(self.__tr("Ctrl+E"))
         self.exitItem.setText(self.__tr("Exit"))
-        self.exitItem.setAccel(self.__tr("Ctrl+X"))
         self.exitItem.setMenuText(self.__tr("Exit"))
-        self.menu_configure_plugins.setText(self.__tr("Configure Plugins..."))
-        self.menu_configure_plugins.setAccel(self.__tr("Ctrl+C"))
-        self.menu_configure_plugins.setMenuText(self.__tr("Configure Plugins..."))
+        self.exitItem.setAccel(self.__tr("Ctrl+X"))
+        self.menuConfigurePlugins.setText(self.__tr("Configure Plugins..."))
+        self.menuConfigurePlugins.setMenuText(self.__tr("Configure Plugins..."))
+        self.menuConfigurePlugins.setAccel(self.__tr("Ctrl+C"))
         self.reload.setText(self.__tr("Reload Plugins"))
-        self.reload.setAccel(self.__tr("Ctrl+R"))
         self.reload.setMenuText(self.__tr("Reload Plugins"))
-        self.select_language.setText(self.__tr("Language..."))
-        self.select_language.setAccel(self.__tr("Ctrl+L"))
-        self.select_language.setMenuText(self.__tr("Language..."))
+        self.reload.setAccel(self.__tr("Ctrl+R"))
+        self.selectLanguage.setText(self.__tr("Language..."))
+        self.selectLanguage.setMenuText(self.__tr("Language..."))
+        self.selectLanguage.setAccel(self.__tr("Ctrl+L"))
         self.togglePluginList.setText(self.__tr("Hide/Show pluginlist"))
-        self.togglePluginList.setAccel(self.__tr("Ctrl+P"))
         self.togglePluginList.setMenuText(self.__tr("Hide/Show pluginlist"))
+        self.togglePluginList.setAccel(self.__tr("Ctrl+P"))
         if self.menubar.findItem(1):
             self.menubar.findItem(1).setText(self.__tr("Program"))
         if self.menubar.findItem(2):
@@ -1565,8 +691,8 @@ class MainWinDesign(QMainWindow):
             self.menubar.findItem(3).setText(self.__tr("Help"))
 
 
-    def quit_application(self):
-        print "MainWinDesign.quit_application(): Not implemented yet"
+    def quitApplication(self):
+        print "MainWinDesign.quitApplication(): Not implemented yet"
 
     def showServerEditor(self):
         print "MainWinDesign.showServerEditor(): Not implemented yet"
@@ -1574,23 +700,23 @@ class MainWinDesign(QMainWindow):
     def showAboutLuma(self):
         print "MainWinDesign.showAboutLuma(): Not implemented yet"
 
-    def task_selection_changed(self):
-        print "MainWinDesign.task_selection_changed(): Not implemented yet"
+    def taskSelectionChanged(self):
+        print "MainWinDesign.taskSelectionChanged(): Not implemented yet"
 
-    def load_plugins(self):
-        print "MainWinDesign.load_plugins(): Not implemented yet"
+    def loadPlugins(self):
+        print "MainWinDesign.loadPlugins(): Not implemented yet"
 
-    def unload_plugins(self):
-        print "MainWinDesign.unload_plugins(): Not implemented yet"
+    def unloadPlugins(self):
+        print "MainWinDesign.unloadPlugins(): Not implemented yet"
 
-    def configure_plugins(self):
-        print "MainWinDesign.configure_plugins(): Not implemented yet"
+    def configurePlugins(self):
+        print "MainWinDesign.configurePlugins(): Not implemented yet"
 
-    def reload_plugins(self):
-        print "MainWinDesign.reload_plugins(): Not implemented yet"
+    def reloadPlugins(self):
+        print "MainWinDesign.reloadPlugins(): Not implemented yet"
 
-    def show_language_dialog(self):
-        print "MainWinDesign.show_language_dialog(): Not implemented yet"
+    def showLanguageDialog(self):
+        print "MainWinDesign.showLanguageDialog(): Not implemented yet"
 
     def __tr(self,s,c = None):
         return qApp.translate("MainWinDesign",s,c)

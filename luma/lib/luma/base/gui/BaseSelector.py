@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ###########################################################################
-#    Copyright (C) 2003 by Wido Depping                                      
+#    Copyright (C) 2003, 2004 by Wido Depping                                      
 #    <widod@users.sourceforge.net>                                                             
 #
 # Copyright: See COPYING file that comes with this distribution
@@ -24,8 +24,8 @@ class BaseSelector(BaseSelectorDesign):
     def setList(self, dnList):
         """ Fill the combobox with possible baseDNs specified by dnList.
         """
+        
         if not (type(dnList) == list):
             raise TypeError
 
-        for x in dnList:
-            self.dnBox.insertItem(x)
+        map(self.dnBox.insertItem, dnList)

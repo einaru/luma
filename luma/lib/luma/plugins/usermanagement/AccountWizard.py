@@ -139,7 +139,7 @@ class AccountWizard(AccountWizardDesign):
         
         serverList = ServerList()
         serverList.readServerList()
-        serverMeta = serverList.get_serverobject(self.locationServer)
+        serverMeta = serverList.getServerObject(self.locationServer)
         dn = "uid=" + self.accountWidget.CURRENTDATA["uid"][0] + "," + self.locationDN
         values = self.accountWidget.CURRENTDATA
         
@@ -224,7 +224,7 @@ Please see console output for more information."""),
         elif result ==1:
             serverList = ServerList()
             serverList.readServerList()
-            self.accountWidget.SERVERMETA = serverList.get_serverobject(self.locationServer)
+            self.accountWidget.SERVERMETA = serverList.getServerObject(self.locationServer)
             self.next()
             
 ###############################################################################

@@ -52,6 +52,12 @@ class ServerDialog(ServerDialogDesign):
 
         self.serverIcon = QPixmap(os.path.join(self._PREFIX, "share", "luma", "icons", "server.png"))
         
+        # Indicates if the serverlist has been permanently edited.
+        # Needed when we use the apply button and cancel the dialog afterwards.
+        # But the changes have to be applied. 
+        # 'dialog.result() == QDialog.Accepted' is not enough.
+        self.SAVED = False
+        
         self.displayServerList()
         
 ###############################################################################
@@ -79,7 +85,7 @@ class ServerDialog(ServerDialogDesign):
         selectedServerString = unicode(tmpItem.text(0))
         
         
-        x = self.serverListObject.get_serverobject(selectedServerString)
+        x = self.serverListObject.getServerObject(selectedServerString)
         self.currentServer = x
         
         self.hostLineEdit.blockSignals(True)
@@ -146,14 +152,18 @@ class ServerDialog(ServerDialogDesign):
         """ Save the changed server values.
         """
         
-        self.serverListObject.save_settings(self.serverListObject.SERVERLIST)
+        self.serverListObject.saveSettings(self.serverListObject.SERVERLIST)
         
         self.displayServerList()
         self.applyButton.setEnabled(0)
+        self.SAVED = True
         
 ###############################################################################
 
     def saveCloseDialog(self):
+        """ Save server settings and close the dialog.
+        """
+        
         self.saveServer()
         self.accept()
         
@@ -184,6 +194,10 @@ class ServerDialog(ServerDialogDesign):
 ###############################################################################
 
     def searchBaseDN(self):
+        """ Retrieve the baseDN for a given LDAP server.
+        
+            Currently OpenLDAP, Novell and UMich are supported.
+        """
         
         serverMeta = ServerObject()
         serverMeta.name = unicode(self.hostLineEdit.text())
@@ -273,12 +287,10 @@ Please see console output for more information."""),
             self.applyButton.setEnabled(1)
         
         tmpBool = self.bindAnonBox.isChecked()
-        if tmpBool:
-            self.passwordLineEdit.setEnabled(0)
-            self.bindLineEdit.setEnabled(0)
-        else:
-            self.passwordLineEdit.setEnabled(1)
-            self.bindLineEdit.setEnabled(1)
+         
+        tmpVal = int(not tmpBool)
+        self.passwordLineEdit.setEnabled(tmpVal)
+        self.bindLineEdit.setEnabled(tmpVal)
             
         self.currentServer.bindAnon = tmpBool
 

@@ -98,7 +98,7 @@ Try increasing the uidNumber range or delete some users from the subtree."""),
         
         tmpObject = ServerList()
         tmpObject.readServerList()
-        serverMeta = tmpObject.get_serverobject(server)
+        serverMeta = tmpObject.getServerObject(server)
         
         connectionObject = LumaConnection(serverMeta)
         connectionObject.bind()
@@ -256,7 +256,7 @@ Please see console output for more information."""),
 
         serverList = ServerList()
         serverList.readServerList()
-        serverMeta = serverList.get_serverobject(serverName)
+        serverMeta = serverList.getServerObject(serverName)
         
         searchResult = []
         

@@ -94,7 +94,7 @@ Try increasing the uidNumber range or delete some users from the subtree."""),
         
         tmpObject = ServerList()
         tmpObject.readServerList()
-        serverMeta = tmpObject.get_serverobject(server)
+        serverMeta = tmpObject.getServerObject(server)
         
         try:
             ldapServerObject = ldap.open(serverMeta.host, serverMeta.port)
@@ -193,7 +193,7 @@ Try increasing the uidNumber range or delete some users from the subtree."""),
 
         serverList = ServerList()
         serverList.readServerList()
-        serverMeta = serverList.get_serverobject(serverName)
+        serverMeta = serverList.getServerObject(serverName)
         
         searchResult = []
 

@@ -62,11 +62,11 @@ class MainWin(MainWinDesign):
         self.progressBar.setTotalSteps(0)
         statusBar.addWidget(self.progressBar, 0, 1)
 
-        self.__PLUGINS = {}
-        self.__ICONPREFIX = os.path.join(environment.lumaInstallationPrefix, "share", "luma", "icons")
+        self.PLUGINS = {}
+        self.ICONPREFIX = os.path.join(environment.lumaInstallationPrefix, "share", "luma", "icons")
         environment.updateUI = self.updateUI
         environment.setBusy = self.setBusy
-        self.load_plugins()
+        self.loadPlugins()
 
 ###############################################################################
 
@@ -78,14 +78,14 @@ class MainWin(MainWinDesign):
 
 ###############################################################################
 
-    def quit_application(self):
+    def quitApplication(self):
         """Quits Luma.
         
         Before that, all plugins are unloaded. This way all plugins have the 
         possibility for a cleanup.
         """
         
-        self.unload_plugins()
+        self.unloadPlugins()
         qApp.quit()
 
 ###############################################################################
@@ -95,20 +95,20 @@ class MainWin(MainWinDesign):
         
         dialog = ServerDialog()
         dialog.exec_loop()
-        if dialog.result() == QDialog.Accepted:
-            self.reload_plugins()
+        if (dialog.result() == QDialog.Accepted) or dialog.SAVED:
+            self.reloadPlugins()
 
 ###############################################################################
 
-    def load_plugins(self):
+    def loadPlugins(self):
         """ Load all wanted plugins."""
         
-        pluginObject = PluginLoader(self.__check_to_load())
-        self.__PLUGINS = pluginObject.PLUGINS
+        pluginObject = PluginLoader(self.checkToLoad())
+        self.PLUGINS = pluginObject.PLUGINS
         iconTmp = None
         
-        for x in self.__PLUGINS.keys():
-            tmpObject = self.__PLUGINS[x]
+        for x in self.PLUGINS.keys():
+            tmpObject = self.PLUGINS[x]
             if tmpObject['PLUGIN_LOAD']:
                 iconTmp =QIconViewItem(self.taskList, tmpObject["PLUGIN_NAME"],
                         tmpObject["PLUGIN_CODE"].get_icon())
@@ -129,15 +129,15 @@ class MainWin(MainWinDesign):
 
 ###############################################################################
 
-    def unload_plugins(self):
+    def unloadPlugins(self):
         """ Tries to unload all plugins.
         
         All children of the widget stack and icon view are deleted, 
         also alle references to them.
         """
         
-        for x in self.__PLUGINS.keys():
-            tmpObject = self.__PLUGINS[x]
+        for x in self.PLUGINS.keys():
+            tmpObject = self.PLUGINS[x]
             
             if tmpObject['PLUGIN_LOAD']:
                 widgetRef = tmpObject["WIDGET_REF"]
@@ -146,12 +146,12 @@ class MainWin(MainWinDesign):
                 # We use deleteLater() because of a bug in QT. 
                 widgetRef.deleteLater()
                 
-        self.__PLUGINS = {}
+        self.PLUGINS = {}
         self.taskList.clear()
 
 ###############################################################################
 
-    def task_selection_changed(self, taskSender=None):
+    def taskSelectionChanged(self, taskSender=None):
         """If a plugin icon is clicked, the corresponding plugin widget is
         raised.
         """ 
@@ -160,13 +160,13 @@ class MainWin(MainWinDesign):
         if not(taskSender == None):
             fooString = str(taskSender.text())
             
-            if self.__PLUGINS.has_key(fooString):
-                self.taskStack.raiseWidget(self.__PLUGINS[fooString]["WIDGET_ID"])
+            if self.PLUGINS.has_key(fooString):
+                self.taskStack.raiseWidget(self.PLUGINS[fooString]["WIDGET_ID"])
                 self.taskBox.setTitle(fooString)
 
 ###############################################################################
 
-    def configure_plugins(self):
+    def configurePlugins(self):
         """Show the dialog for configuring the plugins.
         """
         
@@ -175,7 +175,7 @@ class MainWin(MainWinDesign):
 
 ###############################################################################
 
-    def __check_to_load(self):
+    def checkToLoad(self):
         """Return a list of plugin names to load.
         
         The plugins configuration file is opened and the list of plugins to 
@@ -201,12 +201,12 @@ class MainWin(MainWinDesign):
 
 ###############################################################################
 
-    def reload_plugins(self):
+    def reloadPlugins(self):
         """Unload plugins and reload them afterwards.
         """
         
-        self.unload_plugins()
-        self.load_plugins()
+        self.unloadPlugins()
+        self.loadPlugins()
 
 ###############################################################################
 
@@ -221,7 +221,7 @@ class MainWin(MainWinDesign):
 
 ###############################################################################
 
-    def setBusy(self, busy=1):
+    def setBusy(self, busy=True):
         """ Set the X mouse cursor busy. 
         
         Better for user feedback.
@@ -238,7 +238,7 @@ class MainWin(MainWinDesign):
 
 ###############################################################################
 
-    def show_language_dialog(self):
+    def showLanguageDialog(self):
         """ Show the language dialog and install the chosen language.
         
         Afterwards all plugins are reloaded, otherwise the language changes 
@@ -277,5 +277,5 @@ class MainWin(MainWinDesign):
                 print "Error: could not save language settings file. Reason:"
                 print errorData
                 
-            self.reload_plugins()
+            self.reloadPlugins()
     

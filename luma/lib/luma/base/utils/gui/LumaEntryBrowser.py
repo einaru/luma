@@ -104,7 +104,7 @@ class LumaEntryBrowser (LumaEntryBrowserDesign):
 ###############################################################################
 
     def search(self, filter = None):
-        if self.lumaConnection.server == None:
+        if self.lumaConnection.serverMeta == None:
             return
             
         if not(unicode(self.searchEdit.text()) == ''):
@@ -124,7 +124,7 @@ class LumaEntryBrowser (LumaEntryBrowserDesign):
         tmpFilter = self.searchFilterPrefix + tmpString + self.searchFilterSuffix
         
         self.lumaConnection.bind()
-        results = self.lumaConnection.search(self.lumaConnection.server.baseDN, ldap.SCOPE_SUBTREE, tmpFilter.encode('utf-8'), [self.primaryKey, 'sn', 'givenName'], 0)
+        results = self.lumaConnection.search(self.lumaConnection.serverMeta.baseDN, ldap.SCOPE_SUBTREE, tmpFilter.encode('utf-8'), [self.primaryKey, 'sn', 'givenName'], 0)
         self.lumaConnection.unbind()
         self.processResults(results)
 
@@ -195,7 +195,7 @@ class LumaEntryBrowser (LumaEntryBrowserDesign):
         
         self.itemIconView.blockSignals(False)
         
-        self.emit(PYSIGNAL("ldap_result"), (deepcopy(dn), deepcopy(tmpData), deepcopy(self.lumaConnection.server),))
+        self.emit(PYSIGNAL("ldap_result"), (deepcopy(dn), deepcopy(tmpData), deepcopy(self.lumaConnection.serverMeta),))
         
 ###############################################################################
 
@@ -212,7 +212,7 @@ class LumaEntryBrowser (LumaEntryBrowserDesign):
         
         self.itemListView.blockSignals(False)
         
-        self.emit(PYSIGNAL("ldap_result"), (deepcopy(dn), deepcopy(tmpData), deepcopy(self.lumaConnection.server),))
+        self.emit(PYSIGNAL("ldap_result"), (deepcopy(dn), deepcopy(tmpData), deepcopy(self.lumaConnection.serverMeta),))
 
     
 ###############################################################################

@@ -53,7 +53,7 @@ class SearchForm(SearchFormDesign):
 
         liste = self.__get_search_criteria()
         server = unicode(self.serverBox.currentText())
-        serverMeta = self.serverListObject.get_serverobject(server)
+        serverMeta = self.serverListObject.getServerObject(server)
         
 
         conObject = LumaConnection(serverMeta)
@@ -72,7 +72,7 @@ class SearchForm(SearchFormDesign):
             print "Warning: Please set up some servers to connect to."
             return
             
-        serverMeta = self.serverListObject.get_serverobject(server)
+        serverMeta = self.serverListObject.getServerObject(server)
             
         dialog = FilterWizard(server)
         dialog.exec_loop()

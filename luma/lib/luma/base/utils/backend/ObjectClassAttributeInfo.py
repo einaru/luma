@@ -49,7 +49,7 @@ class ObjectClassAttributeInfo(object):
         tmpObject = ServerList()
         tmpObject.readServerList()
         serverMeta = ""
-        serverMeta = tmpObject.get_serverobject(self.SERVER)
+        serverMeta = tmpObject.getServerObject(self.SERVER)
 
         environment.setBusy(1)
 

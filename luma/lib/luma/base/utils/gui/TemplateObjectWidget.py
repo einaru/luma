@@ -170,7 +170,7 @@ class TemplateObjectWidget(QWidget):
         
         tmpObject = ServerList()
         tmpObject.readServerList()
-        serverMeta = tmpObject.get_serverobject(self.SERVER)
+        serverMeta = tmpObject.getServerObject(self.SERVER)
 
         try:
             ldapServerObject = ldap.open(serverMeta.host, serverMeta.port)
