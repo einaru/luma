@@ -191,7 +191,6 @@ class LumaConnection(object):
                     sasl_mech = "GSSAPI"
                     
                 sasl_auth = ldap.sasl.sasl(sasl_cb_value_dict,sasl_mech)
-                print sasl_auth.mech
                 self.ldapServerObject.sasl_interactive_bind_s("", sasl_auth)
                 
         except ldap.LDAPError, e:
