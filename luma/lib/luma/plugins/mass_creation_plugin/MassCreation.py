@@ -93,6 +93,9 @@ Try increasing the uidNumber range or delete some users from the subtree."""),
         tmpObject.readServerList()
         serverMeta = tmpObject.get_serverobject(server)
         
+        # Status variable to test if there was a error during user creation.
+        error = 0
+        
         try:
             ldapServerObject = ldap.open(serverMeta.host, serverMeta.port)
             ldapServerObject.protocol_version = ldap.VERSION3
@@ -131,14 +134,31 @@ Try increasing the uidNumber range or delete some users from the subtree."""),
                 self.passwordEdit.append(userName + ': ' + passwordClear + "\n") 
                 
             ldapServerObject.unbind()
+            
+            # set GUI not busy
+            mainWin.set_busy(0)
         except ldap.LDAPError, e:
             print "Error during LDAP request"
-            print "Reason: " + str(e)
-            QMessageBox.information(self, 'Error!!!', str(e))
+            print "Reason: " + str(e[0]['desc'])
+            
+            # set GUI not busy
+            mainWin.set_busy(0)
+            
+            QMessageBox.critical(None,
+                self.trUtf8("Error"),
+                self.trUtf8("""Error during creation of users.\nReason: """ + 
+                            str(e[0]['desc'])),
+                self.trUtf8("&OK"),
+                None,
+                None,
+                0, -1)
+
+            error = 1
         
-        # set GUI not busy
-        mainWin.set_busy(0)
         
+        if error:
+            return -1
+            
         QMessageBox.information(None,
             self.trUtf8("Success"),
             self.trUtf8("""All users were created successfully."""),
@@ -184,7 +204,6 @@ Try increasing the uidNumber range or delete some users from the subtree."""),
         serverName = tmpList[-1]
         del tmpList[-1]
         ldapObject = ",".join(tmpList)
-        print serverName, ldapObject
 
         serverList = ServerList()
         serverList.readServerList()
