@@ -248,7 +248,7 @@ class AdvancedObjectWidget(QWidget):
             if None == valueList[0]:
                 attributeString = """<font color="red">""" + attributeString + """</font>"""
                 
-            tmpList.append("""<td bgcolor="#E5E5E5" width="20%">""" + attributeString + """</td>""")
+            tmpList.append("""<td bgcolor="#E5E5E5" width="35%">""" + attributeString + """</td>""")
             
             attributeIndex = 0
             univAttributeName = x + "__" + unicode(attributeIndex)
@@ -258,7 +258,7 @@ class AdvancedObjectWidget(QWidget):
                 attributeModify = not self.ldapDataObject.isAttributeValueRDN(x, valueList[0])
             
             if None == valueList[0]:
-                tmpList.append("""<td bgcolor="#E5E5E5" width="65%"><font color="#ff0000">""" + 
+                tmpList.append("""<td bgcolor="#E5E5E5" width="60%"><font color="#ff0000">""" + 
                     unicode(self.trUtf8("Value not set.")) + """</font></td>""")
                     
                 tmpList.append(self.getAttributeModifierString(univAttributeName, 
@@ -281,10 +281,10 @@ class AdvancedObjectWidget(QWidget):
                 if not (None == y):
                     attributeModify = not self.ldapDataObject.isAttributeValueRDN(x, y)
                 
-                tmpList.append("""<tr><td width="20%"></td>""")
+                tmpList.append("""<tr><td width="35%"></td>""")
                 
                 if None == y:
-                    tmpList.append("""<td bgcolor="#E5E5E5" width="65%"><font color="#ff0000">""" +
+                    tmpList.append("""<td bgcolor="#E5E5E5" width="55%"><font color="#ff0000">""" +
                         unicode(self.trUtf8("Value not set.")) + """</font></td>""")
                         
                     tmpList.append(self.getAttributeModifierString(univAttributeName, 
@@ -315,14 +315,14 @@ class AdvancedObjectWidget(QWidget):
                 tmpImage = QImage()
                 tmpImage.loadFromData(value)
                 self.mimeFactory.setImage(univAttributeName, tmpImage)
-                tmpList.append("""<td width="70%"><img source=""" + univAttributeName + """></td>""")
+                tmpList.append("""<td width="55%"><img source=""" + univAttributeName + """></td>""")
             elif attributeIsPassword:
-                tmpList.append("""<td bgcolor="#E5E5E5" width="70%">""" + value + """</td>""")
+                tmpList.append("""<td bgcolor="#E5E5E5" width="55%">""" + value + """</td>""")
             else:
                 self.mimeFactory.setImage(univAttributeName, self.binaryPixmap)
-                tmpList.append("""<td width="70%"><img source=""" + univAttributeName + """></td>""")
+                tmpList.append("""<td width="55%"><img source=""" + univAttributeName + """></td>""")
         else:
-            tmpList.append("""<td bgcolor="#E5E5E5" width="70%">""" + value + """</td>""")
+            tmpList.append("""<td bgcolor="#E5E5E5" width="55%">""" + value + """</td>""")
             
         return "".join(tmpList)
         
