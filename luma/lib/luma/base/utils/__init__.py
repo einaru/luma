@@ -112,7 +112,7 @@ def explodeDN(tmpString):
         else:
             if len(tokenList) > 0:
                 tokenList[-1] = tokenList[-1] + ',' + value
-                    
+    
     return tokenList
 
 ###############################################################################
