@@ -2,8 +2,8 @@
 
 # Form implementation generated from reading ui file '/home/wido/src/luma/lib/luma/plugins/usermanagement/GroupDialogDesign.ui'
 #
-# Created: Sun Aug 29 00:49:14 2004
-#      by: The PyQt User Interface Compiler (pyuic) 3.12
+# Created: Tue Sep 28 04:59:15 2004
+#      by: The PyQt User Interface Compiler (pyuic) 3.13
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -101,6 +101,8 @@ class GroupDialogDesign(QDialog):
         layout10.addWidget(self.textLabel)
 
         GroupDialogDesignLayout.addMultiCellLayout(layout10,0,0,0,3)
+        spacer8 = QSpacerItem(21,20,QSizePolicy.Minimum,QSizePolicy.Fixed)
+        GroupDialogDesignLayout.addItem(spacer8,10,3)
 
         layout7 = QHBoxLayout(None,0,6,"layout7")
         Horizontal_Spacing2 = QSpacerItem(290,20,QSizePolicy.Expanding,QSizePolicy.Minimum)
@@ -115,17 +117,22 @@ class GroupDialogDesign(QDialog):
         self.cancelButton.setAutoDefault(0)
         layout7.addWidget(self.cancelButton)
 
-        GroupDialogDesignLayout.addMultiCellLayout(layout7,11,11,0,3)
-        spacer8 = QSpacerItem(21,20,QSizePolicy.Minimum,QSizePolicy.Fixed)
-        GroupDialogDesignLayout.addItem(spacer8,10,3)
+        GroupDialogDesignLayout.addMultiCellLayout(layout7,12,12,0,3)
+
+        self.line2_2 = QFrame(self,"line2_2")
+        self.line2_2.setFrameShape(QFrame.HLine)
+        self.line2_2.setFrameShadow(QFrame.Sunken)
+        self.line2_2.setFrameShape(QFrame.HLine)
+
+        GroupDialogDesignLayout.addMultiCellWidget(self.line2_2,11,11,0,3)
 
         self.languageChange()
 
-        self.resize(QSize(492,569).expandedTo(self.minimumSizeHint()))
+        self.resize(QSize(522,595).expandedTo(self.minimumSizeHint()))
         self.clearWState(Qt.WState_Polished)
 
-        self.connect(self.cancelButton,SIGNAL("clicked()"),self,SLOT("reject()"))
-        self.connect(self.okButton,SIGNAL("clicked()"),self,SLOT("accept()"))
+        self.connect(self.cancelButton,SIGNAL("clicked()"),self.reject)
+        self.connect(self.okButton,SIGNAL("clicked()"),self.accept)
         self.connect(self.groupNameBox,SIGNAL("activated(const QString&)"),self.groupNameChanged)
         self.connect(self.groupNumberBox,SIGNAL("valueChanged(int)"),self.groupNumberChanged)
 

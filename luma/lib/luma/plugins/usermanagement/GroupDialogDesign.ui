@@ -8,8 +8,8 @@
         <rect>
             <x>0</x>
             <y>0</y>
-            <width>492</width>
-            <height>569</height>
+            <width>522</width>
+            <height>595</height>
         </rect>
     </property>
     <property name="caption">
@@ -319,7 +319,24 @@
                 </widget>
             </hbox>
         </widget>
-        <widget class="QLayoutWidget" row="11" column="0" rowspan="1" colspan="4">
+        <spacer row="10" column="3">
+            <property name="name">
+                <cstring>spacer8</cstring>
+            </property>
+            <property name="orientation">
+                <enum>Vertical</enum>
+            </property>
+            <property name="sizeType">
+                <enum>Fixed</enum>
+            </property>
+            <property name="sizeHint">
+                <size>
+                    <width>21</width>
+                    <height>20</height>
+                </size>
+            </property>
+        </spacer>
+        <widget class="QLayoutWidget" row="12" column="0" rowspan="1" colspan="4">
             <property name="name">
                 <cstring>layout7</cstring>
             </property>
@@ -377,23 +394,20 @@
                 </widget>
             </hbox>
         </widget>
-        <spacer row="10" column="3">
+        <widget class="Line" row="11" column="0" rowspan="1" colspan="4">
             <property name="name">
-                <cstring>spacer8</cstring>
+                <cstring>line2_2</cstring>
+            </property>
+            <property name="frameShape">
+                <enum>HLine</enum>
+            </property>
+            <property name="frameShadow">
+                <enum>Sunken</enum>
             </property>
             <property name="orientation">
-                <enum>Vertical</enum>
+                <enum>Horizontal</enum>
             </property>
-            <property name="sizeType">
-                <enum>Fixed</enum>
-            </property>
-            <property name="sizeHint">
-                <size>
-                    <width>21</width>
-                    <height>20</height>
-                </size>
-            </property>
-        </spacer>
+        </widget>
     </grid>
 </widget>
 <connections>
