@@ -65,8 +65,6 @@ class LumaConnection(object):
         
         environment.setBusy(True)
         
-        #base = self.cleanDN(base)
-        
         workerThread = WorkerThreadSearch(self.ldapServerObject)
         workerThread.base = base
         workerThread.scope = scope
@@ -78,8 +76,6 @@ class LumaConnection(object):
         while not workerThread.FINISHED:
             environment.updateUI()
             time.sleep(0.05)
-        
-        environment.setBusy(False)
             
         if None == workerThread.exceptionObject:
             resultList = []
@@ -87,8 +83,10 @@ class LumaConnection(object):
                 copyItem = copy.deepcopy(x)
                 resultList.append(SmartDataObject(copyItem, self.serverMeta))
                 
+            environment.setBusy(False)
             return (True, resultList, None)
         else:
+            environment.setBusy(False)
             return (False, None, workerThread.exceptionObject)
             
             
@@ -105,6 +103,7 @@ class LumaConnection(object):
         #dnDelete = self.cleanDN(dnDelete)
         
         environment.setBusy(True)
+        
         workerThread = WorkerThreadDelete(self.ldapServerObject)
         workerThread.dnDelete = dnDelete
         workerThread.start()
@@ -129,9 +128,8 @@ class LumaConnection(object):
         if modlist == None:
             return False
         
-        #dn = self.cleanDN(dn)
-        
         environment.setBusy(True)
+        
         workerThread = WorkerThreadModify(self.ldapServerObject)
         workerThread.dn = dn
         workerThread.modlist = modlist
@@ -204,6 +202,8 @@ class LumaConnection(object):
         """
         
         try:
+            environment.setBusy(True)
+            
             urlschemeVal = "ldap"
             if self.serverMeta.tls:
                 urlschemeVal = "ldaps"
@@ -255,11 +255,15 @@ class LumaConnection(object):
                 try:
                     self.ldapServerObject.sasl_interactive_bind_s("", sasl_auth)
                 except AttributeError, e:
+                    environment.setBusy(False)
                     return (False, "Python-LDAP is not build with SASL support.")
-                
+                    
+                    
+            environment.setBusy(False)
             return (True, None)
                 
         except ldap.LDAPError, e:
+            environment.setBusy(False)
             print "Error during LDAP bind request"
             print "Reason: " + str(e)
             return (False, e)
