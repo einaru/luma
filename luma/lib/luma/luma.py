@@ -19,14 +19,12 @@ import environment
 import os
 
 
-
 def startApplication():
     
     #Check if configuration directory exists. If not, create it.
     configPrefix = os.path.join(environment.userHomeDir, ".luma")
     if not os.path.exists(configPrefix):
         os.mkdir(configPrefix)
-
     
     app = QApplication(sys.argv)
     gui = MainWin(None)
