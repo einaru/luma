@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file '/home/wido/src/luma/lib/luma/base/gui/LanguageDialogDesign.ui'
 #
-# Created: Mon Dec 29 17:01:56 2003
+# Created: Thu Jan 1 17:35:32 2004
 #      by: The PyQt User Interface Compiler (pyuic) 3.8.1
 #
 # WARNING! All changes made in this file will be lost!

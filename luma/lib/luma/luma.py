@@ -15,6 +15,7 @@ from qt import *
 
 from base.gui.MainWin import MainWin
 
+
 def run_it():
     app = QApplication(sys.argv)
     gui = MainWin(None)
