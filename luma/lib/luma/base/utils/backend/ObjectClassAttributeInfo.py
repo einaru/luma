@@ -131,8 +131,8 @@ class ObjectClassAttributeInfo(object):
         for x in classList:
             if not (x in self.objectClassesDict):
                 continue
-            must = must.union(Set(self.objectClassesDict[x]["MUST"]))
-            may = may.union(Set(self.objectClassesDict[x]["MAY"]))
+            must |= Set(self.objectClassesDict[x]["MUST"])
+            may |= Set(self.objectClassesDict[x]["MAY"])
            
         return must, may
 
@@ -235,7 +235,10 @@ class ObjectClassAttributeInfo(object):
         else:
             return False
 
+###############################################################################
 
+    def getObjectClasses(self):
+        return self.objectClassesDict.keys()
 
 
 
