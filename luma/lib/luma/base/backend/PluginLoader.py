@@ -8,12 +8,13 @@
 #
 ###########################################################################
 
-import environment
-
 from os import listdir
 import os.path
 import sys
 import imp
+
+import environment
+from base.utils.backend.LogObject import LogObject
 
 
 class PluginLoader(object):
@@ -69,8 +70,9 @@ class PluginLoader(object):
                     
             return tmpList
         except OSError, errorData:
-            print "Error: could not read from directory where plugins are stored"
-            print "Reason: " + str(errorData)
+            errorString = "Could not read from directory where plugins are stored. Reason:\n"
+            errorString += str(errorData)
+            environment.logMessage(LogObject("Debug", errorString))
 
 ###############################################################################
 
@@ -96,12 +98,12 @@ class PluginLoader(object):
                     exec fileObject in locals()
                     fileObject.close()
                 except IOError, errorData:
-                    print "Could not read file for plugin ",
-                    print tmpPlugin['PLUGIN_NAME']
-                    print "Reason: " + str(errorData)
+                    errorString = "Could not read file for plugin " + tmpPlugin['PLUGIN_NAME']
+                    errorString = errorString + " Reason: " + str(errorData)
+                    environment.logMessage(LogObject("Error", errorString))
                 except ImportError, e:
-                    print "Plugin " + x + " has internal errors. It will not be loaded."
-                    print e
+                    errorString =  "Plugin " + x + " has internal errors. It will not be loaded."
+                    environment.logMessage(LogObject("Error", errorString))
                 
                 tmpObject = TaskPlugin()
                 tmpObject.pluginPath = tmpPlugin["PLUGIN_PATH"]
@@ -132,8 +134,9 @@ class PluginLoader(object):
                 pluginMetaObject = self.readMetaInfo(x, pluginsToLoad)
                 self.PLUGINS[pluginMetaObject["PLUGIN_NAME"]] = pluginMetaObject
             except PluginMetaError, x:
-                print "Plugin from the following directory could not be loaded:"
-                print x
+                errorString = "Plugin from the following directory could not be loaded:\n"
+                errorString = errorString + str(x)
+                environment.logMessage(LogObject("Error", errorString))
 
 ###############################################################################
 
@@ -178,8 +181,9 @@ class PluginLoader(object):
             META_INFO["PLUGIN_PATH"] = pluginPath
             META_INFO["PLUGIN_CODE"] = 0
         except IOError, errorData:
-            print "Plugin meta file could not be opened :("
-            print errorData
+            errorString = "Plugin meta file could not be opened. Reason:\n"
+            errorString += str(errorData)
+            environment.logMessage(LogObject("Error", errorString))
             raise PluginMetaError, errorData
             
         # this one is tricky. we want to test, if all plugin meta infos are present.
@@ -191,7 +195,8 @@ class PluginLoader(object):
                 tmp = META_INFO[x]
             return META_INFO
         except KeyError, errorData:
-            print "Missing plugin info in plugin.meta:", errorData
+            errorString = "Missing plugin info in plugin.meta: " + errorData
+            environment.logMessage(LogObject("Error", errorString))
             raise PluginMetaError, errorData
 
 
@@ -206,8 +211,8 @@ class PluginLoader(object):
             
         for x in neededFunctions:
             if not (x in values):
-                print "In Plugin " + name + " the following function",
-                print "is not implemented: " + x
+                errorString = "In Plugin " + name + " the following function is not implemented: " + x
+                environment.logMessage(LogObject("Error", errorString))
                 return 0
         return 1
 

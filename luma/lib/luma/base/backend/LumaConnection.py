@@ -25,6 +25,7 @@ import time
 import environment
 from base.backend.ServerObject import ServerObject
 from base.backend.SmartDataObject import SmartDataObject
+from base.utils.backend.LogObject import LogObject
 
 
 class LumaConnectionException(Exception):
@@ -84,6 +85,8 @@ class LumaConnection(object):
                 resultList.append(SmartDataObject(copyItem, self.serverMeta))
                 
             environment.setBusy(False)
+            message = "Received " + str(len(resultList)) + " item(s) from LDAP search operation."
+            environment.logMessage(LogObject("Info", message))
             return (True, resultList, None)
         else:
             # Did we hit the server side search limit?
@@ -95,9 +98,13 @@ class LumaConnection(object):
                 
                 environment.setBusy(False)
                 environment.displaySizeLimitWarning()
+                message = "Received " + str(len(resultList)) + " item(s) from LDAP search operation. But server side search limit has been reached."
+                environment.logMessage(LogObject("Info", message))
                 return (True, resultList, None)
             else:
                 environment.setBusy(False)
+                message = "LDAP search operation failed. Reason:\n" + str(workerThread.exceptionObject)
+                environment.logMessage(LogObject("Error", message))
                 return (False, None, workerThread.exceptionObject)
             
             
@@ -110,8 +117,6 @@ class LumaConnection(object):
         
         if dnDelete == None:
             return
-            
-        #dnDelete = self.cleanDN(dnDelete)
         
         environment.setBusy(True)
         
@@ -126,8 +131,13 @@ class LumaConnection(object):
         environment.setBusy(False)
         
         if None == workerThread.exceptionObject:
+            message = "LDAP object " + dnDelete + " successfully deleted."
+            environment.logMessage(LogObject("Info", message))
             return (True, None)
         else:
+            message = "LDAP object " + dnDelete + " could not be deleted. Reason:\n"
+            message = message + str(workerThread.exceptionObject)
+            environment.logMessage(LogObject("Error", message))
             return (False, workerThread.exceptionObject)
             
 ###############################################################################
@@ -153,8 +163,13 @@ class LumaConnection(object):
         environment.setBusy(False)
         
         if None == workerThread.exceptionObject:
+            message = "LDAP object " + dn + " successfully modified."
+            environment.logMessage(LogObject("Info", message))
             return (True, None)
         else:
+            message = "LDAP object " + dn + " could not be modified. Reason:\n"
+            message = message + str(workerThread.exceptionObject)
+            environment.logMessage(LogObject("Error", message))
             return (False, workerThread.exceptionObject)
 
 ###############################################################################
@@ -178,8 +193,13 @@ class LumaConnection(object):
         environment.setBusy(False)
         
         if None == workerThread.exceptionObject:
+            message = "LDAP object " + dn + " successfully added."
+            environment.logMessage(LogObject("Info", message))
             return (True, None)
         else:
+            message = "LDAP object " + dn + " could not be added. Reason:\n"
+            message = message + str(workerThread.exceptionObject)
+            environment.logMessage(LogObject("Error", message))
             return (False, workerThread.exceptionObject)
         
 ###############################################################################
@@ -195,6 +215,9 @@ class LumaConnection(object):
             modlist =  ldap.modlist.modifyModlist(oldObject.data, dataObject.data, [], 0)
             return self.modify(dataObject.getDN(), modlist)
         else:
+            message = "LDAP object " + dataObject.getDN() + " could not be updated. The entry values could not be retrieved from the server. Reason:\n"
+            message = message + str(workerThread.exceptionObject)
+            environment.logMessage(LogObject("Error", message))
             return (False, exceptionObject)
         
 ###############################################################################
@@ -224,9 +247,14 @@ class LumaConnection(object):
         environment.setBusy(False)
         
         if None == workerThread.exceptionObject:
+            message = "LDAP bind operation successful."
+            environment.logMessage(LogObject("Info", message))
             self.ldapServerObject = workerThread.ldapServerObject
             return (True, None)
         else:
+            message = "LDAP bind operation not successful. Reason:\n"
+            message = message + str(workerThread.exceptionObject)
+            environment.logMessage(LogObject("Error", message))
             return (False, workerThread.exceptionObject)
         
 ###############################################################################
@@ -239,8 +267,9 @@ class LumaConnection(object):
             if not(self.serverMeta.bindAnon):
                 self.ldapServerObject.unbind()
         except ldap.LDAPError, e:
-            print "Error during LDAP unbind request"
-            print "Reason: " + str(e)
+            message = "LDAP unbind operation not successful. Reason:\n"
+            message = message + str(e)
+            environment.logMessage(LogObject("Error", message))
             
 ###############################################################################
 
@@ -291,12 +320,17 @@ class LumaConnection(object):
                 #if resultItem.hasAttribute('namingContexts'):
                 #    dnList = resultItem.getAttributeValueList('namingContexts')
                 
+                
         self.unbind()
         environment.setBusy(False)
             
         if None == dnList:
+            message = "Could not retrieve Base DNs from server. Unknown server type."
+            environment.logMessage(LogObject("Error", message))
             return (False, None, "Unknown server type")
         else:
+            message = "Base DNs successfully retrieved from server."
+            environment.logMessage(LogObject("Info", message))
             return (True, dnList, None)
             
 ###############################################################################
@@ -344,8 +378,6 @@ class WorkerThreadSearch(threading.Thread):
                         for x in result_data:
                             self.result.append(x)
         except ldap.LDAPError, e:
-            print "Error during LDAP search request"
-            print "Reason: " + str(e)
             self.exceptionObject = e
             
         self.FINISHED = True
@@ -367,8 +399,6 @@ class WorkerThreadDelete(threading.Thread):
             self.ldapServerObject.delete_s(self.dnDelete)
             self.result = True
         except ldap.LDAPError, e:
-            print "Error during LDAP delete request"
-            print "Reason: " + str(e)
             self.exceptionObject = e
             self.result = False
             
@@ -391,8 +421,6 @@ class WorkerThreadAdd(threading.Thread):
             searchResult = self.ldapServerObject.add_s(self.dn, self.modlist)
             self.result = True
         except ldap.LDAPError, e:
-            print "Error during LDAP add request"
-            print "Reason: " + str(e)
             self.exceptionObject = e
             self.result = False
             
@@ -415,8 +443,6 @@ class WorkerThreadModify(threading.Thread):
             self.ldapServerObject.modify_s(self.dn, self.modlist)
             self.result = True
         except ldap.LDAPError, e:
-            print "Error during LDAP modify request"
-            print "Reason: " + str(e)
             self.exceptionObject = e
             self.result = False
             
@@ -516,8 +542,6 @@ class WorkerThreadBind(threading.Thread):
             self.FINISHED = True
                 
         except ldap.LDAPError, e:
-            print "Error during LDAP bind request"
-            print "Reason: " + str(e)
             self.result = False
             self.exceptionObject = e
             self.FINISHED = True

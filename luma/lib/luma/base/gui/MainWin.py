@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ###########################################################################
-#    Copyright (C) 2003 by Wido Depping                                      
+#    Copyright (C) 2003-2005 by Wido Depping                                      
 #    <widod@users.sourceforge.net>                                                             
 #
 # Copyright: See COPYING file that comes with this distribution
@@ -14,6 +14,7 @@ from qt import *
 import os
 import os.path
 from ConfigParser import *
+import time
 
 from base.gui.MainWinDesign import MainWinDesign
 from base.gui.AboutDialog import AboutDialog
@@ -22,6 +23,8 @@ from base.gui.ServerDialog import ServerDialog
 from base.backend.PluginLoader import PluginLoader
 from base.gui.PluginLoaderGui import PluginLoaderGui
 from base.gui.LanguageDialog import LanguageDialog
+from base.utils.backend.LogObject import LogObject
+from base.utils.gui.LoggerWidget import LoggerWidget
 
 class MainWin(MainWinDesign):
     """The main window for Luma."""
@@ -30,6 +33,41 @@ class MainWin(MainWinDesign):
 
     def __init__(self, parent=None):
         MainWinDesign.__init__(self, parent)
+        
+        environment.updateUI = self.updateUI
+        environment.setBusy = self.setBusy
+        environment.displaySizeLimitWarning = self.displaySizeLimitWarning
+        environment.logMessage = self.logMessage
+
+        # create the progress bar for the status bar
+        statusBar = self.statusBar()
+        self.progressBar = QProgressBar(statusBar)
+        self.progressBar.setMaximumWidth(150)
+        self.progressBar.setTotalSteps(0)
+        statusBar.addWidget(self.progressBar, 0, 1)
+        
+        # create button for logged errors
+        self.logButton = QToolButton(None)
+        iconPath = os.path.join(environment.lumaInstallationPrefix, "share", "luma", "icons")
+        self.logButton.setPixmap(QPixmap(os.path.join(iconPath, "bomb.png")))
+        self.connect(self.logButton, SIGNAL("clicked()"), self.showLoggerWindow)
+        self.logButtonActivated = False
+        
+        # Build the plugin toolbar
+        self.pluginToolBar = QToolBar(self, "PLUGINTOOLBAR")
+        self.toolBarLabel = QLabel("Plugin:", self.pluginToolBar)
+        self.pluginBox = QComboBox(self.pluginToolBar)
+        self.connect(self.pluginBox, SIGNAL("activated(const QString &)"), self.pluginSelectionChanged)
+
+        self.loggerDockWindow = QDockWindow(QDockWindow.InDock, self)
+        self.loggerDockWindow.setResizeEnabled(True)
+        self.loggerDockWindow.setOrientation(Qt.Horizontal)
+        self.loggerDockWindow.setCloseMode(3)
+        self.moveDockWindow(self.loggerDockWindow, Qt.DockMinimized)
+        self.connect(self.loggerDockWindow,SIGNAL("visibilityChanged(bool)"),self.loggerVisibilitChanged)
+        
+        self.loggerWidget = LoggerWidget(self.loggerDockWindow)
+        self.loggerDockWindow.setWidget(self.loggerWidget)
         
         self.configFile = os.path.join(environment.userHomeDir,  ".luma", "luma")
         
@@ -45,8 +83,9 @@ class MainWin(MainWinDesign):
         except NoOptionError:
             pass
         except IOError, e:
-            print "Could not read config file. Reason:"
-            print e
+            tmpString = "Could not read config file. Reason:\n"
+            tmpString += str(e)
+            environment.logMessage(LogObject("Debug", tmpString))
         
         # Install translator.
         self.translator = QTranslator(None)
@@ -54,25 +93,11 @@ class MainWin(MainWinDesign):
             self.translator.load(trFile)
             qApp.installTranslator(self.translator)
             self.languageChange()
-
-        # create the progress bar for the status bar
-        statusBar = self.statusBar()
-        self.progressBar = QProgressBar(statusBar)
-        self.progressBar.setMaximumWidth(150)
-        self.progressBar.setTotalSteps(0)
-        statusBar.addWidget(self.progressBar, 0, 1)
         
-        # Build the plugin toolbar
-        self.pluginToolBar = QToolBar(self, "PLUGINTOOLBAR")
-        self.toolBarLabel = QLabel("Plugin:", self.pluginToolBar)
-        self.pluginBox = QComboBox(self.pluginToolBar)
-        self.connect(self.pluginBox, SIGNAL("activated(const QString &)"), self.pluginSelectionChanged)
 
         self.PLUGINS = {}
         self.ICONPREFIX = os.path.join(environment.lumaInstallationPrefix, "share", "luma", "icons")
-        environment.updateUI = self.updateUI
-        environment.setBusy = self.setBusy
-        environment.displaySizeLimitWarning = self.displaySizeLimitWarning
+        
 
 ###############################################################################
 
@@ -213,8 +238,9 @@ class MainWin(MainWinDesign):
                 if configParser.getint(x, "load") == 1:
                     pluginList.append(x)
         except Exception, errorData:
-            print "Debug: Could not open file for plugin defaults."
-            print "Reason: ", errorData
+            errorString = "Could not open file for plugin defaults."
+            errorString += "Reason: " + str(errorData)
+            environment.logMessage(LogObject("Debug", errorString))
             pluginList = "ALL"
 
         return pluginList
@@ -277,8 +303,9 @@ class MainWin(MainWinDesign):
         try:
             configParser.readfp(open(self.configFile, 'r'))
         except Exception, errorData:
-            print "Error: could not load language settings file. Reason:"
-            print errorData
+            tmpString = "Could not load language settings file. Reason:\n"
+            tmpString += str(errorData)
+            environment.logMessage(LogObject("Debug", tmpString))
             
         if not(configParser.has_section("Defaults")):
             configParser.add_section("Defaults")
@@ -309,8 +336,9 @@ class MainWin(MainWinDesign):
             try:
                 configParser.write(open(self.configFile, 'w'))
             except Exception, errorData:
-                print "Error: could not save language settings file. Reason:"
-                print errorData
+                tmpString = "Could not save language settings file. Reason:\n"
+                tmpString += str(errorData)
+                environment.logMessage(LogObject("Error", tmpString))
                 
             self.reloadPlugins()
 
@@ -325,3 +353,39 @@ class MainWin(MainWinDesign):
 
     def savePosition(self):
         pass 
+
+###############################################################################
+
+    def showLoggerWindow(self):
+        statusBar = self.statusBar()
+        statusBar.removeWidget(self.logButton)
+        self.logButton = None
+        self.logButtonActivated = False
+        
+        self.moveDockWindow(self.loggerDockWindow, Qt.DockBottom)
+        self.loggerWidget.displayMessages()
+        
+###############################################################################
+
+    def loggerVisibilitChanged(self, visible):
+        if not visible:
+            self.moveDockWindow(self.loggerDockWindow, Qt.DockMinimized)
+            
+###############################################################################
+
+    def logMessage(self, messageObject):
+        if isinstance(messageObject, LogObject):
+            self.loggerWidget.newMessage(messageObject)
+               
+            if "Error" == messageObject.getLogType():
+                if not self.logButtonActivated:
+                    self.logButton = QToolButton(None)
+                    self.logButton.setAutoRaise(True)
+                    iconPath = os.path.join(environment.lumaInstallationPrefix, "share", "luma", "icons")
+                    self.logButton.setPixmap(QPixmap(os.path.join(iconPath, "bomb.png")))
+                    self.connect(self.logButton, SIGNAL("clicked()"), self.showLoggerWindow)
+                    statusBar = self.statusBar()
+                    statusBar.addWidget(self.logButton, 0, 1)
+                    self.logButtonActivated = True
+        else:
+            pass

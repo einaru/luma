@@ -21,6 +21,7 @@ import time
 
 from base.backend.ServerList import ServerList
 import environment
+from base.utils.backend.LogObject import LogObject
 
 SCHEMA_CLASS_MAPPING = ldap.cidict.cidict()
 SCHEMA_ATTRS = SCHEMA_CLASS_MAPPING.keys()
@@ -98,6 +99,12 @@ class ObjectClassAttributeInfo(object):
                 metaData['syntaxDict'] = self.syntaxDict
                 metaData['matchingDict'] = self.matchingDict
                 self.__class__.serverMetaCache[self.serverMeta.name] = metaData
+                tmpString = "Schema information for server " + self.serverMeta.name + " retrieved."
+                environment.logMessage(LogObject("Info", tmpString))
+            else:
+                tmpString = "Could not fetch LDAP schema from server. Reason:\n"
+                tmpString += str(workerThread.exceptionObject)
+                environment.logMessage(LogObject("Error", tmpString))
 
         environment.setBusy(False)
 
@@ -627,9 +634,7 @@ class WorkerThreadFetch(threading.Thread):
             
         except Exception, e:
             self.FINISHED = True
-            self.failureException = e
-            print "Error during LDAP schema fetch request."
-            print "Reason: " + str(e)
+            self.exceptionObject = e
         
         
         

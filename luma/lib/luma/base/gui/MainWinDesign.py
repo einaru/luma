@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file '/home/wido/src/luma/lib/luma/base/gui/MainWinDesign.ui'
 #
-# Created: Mon Jan 31 21:41:17 2005
+# Created: Sat Feb 19 00:32:49 2005
 #      by: The PyQt User Interface Compiler (pyuic) 3.13
 #
 # WARNING! All changes made in this file will be lost!
@@ -570,6 +570,45 @@ image5_data = \
     "\x71\x0d\xfd\x9d\xfe\xbf\xc0\x66\xfc\x03\xa8\xd9" \
     "\xc0\xef\x1b\x40\x07\x9f\x00\x00\x00\x00\x49\x45" \
     "\x4e\x44\xae\x42\x60\x82"
+image6_data = \
+    "\x89\x50\x4e\x47\x0d\x0a\x1a\x0a\x00\x00\x00\x0d" \
+    "\x49\x48\x44\x52\x00\x00\x00\x16\x00\x00\x00\x16" \
+    "\x08\x06\x00\x00\x00\xc4\xb4\x6c\x3b\x00\x00\x01" \
+    "\x8b\x49\x44\x41\x54\x38\x8d\xb5\x94\xcf\x6e\xd4" \
+    "\x30\x10\x87\x3f\x27\xb9\x71\xe0\x19\xb8\x17\x89" \
+    "\x7b\x0f\xbc\x18\xbd\xf2\x10\x88\x43\x5f\xa8\x52" \
+    "\x91\x10\xa2\x88\x8a\x56\x42\xad\xaa\x4a\x54\x5d" \
+    "\x35\xdd\x75\x32\x7f\x38\x6c\xe2\x78\xd9\xba\x94" \
+    "\x74\x99\x8b\x35\xf6\x64\xfc\xcd\x6f\xc6\x09\x00" \
+    "\x47\x9f\x4e\xbd\xaa\x02\x7f\xb3\xae\x17\xfa\xae" \
+    "\x47\xd5\x1e\x8d\x7b\xbb\xff\x3a\x34\xa3\xf3\x66" \
+    "\xef\x55\x31\x50\x01\x77\x30\x03\x55\x50\x73\x44" \
+    "\x8d\x5e\x14\xcd\xd6\xf6\x3e\x72\xf8\xf1\x03\x00" \
+    "\x15\xc0\x53\x68\xff\xd5\xaa\x39\x41\x21\x04\x02" \
+    "\x50\x85\x09\xa8\xbd\x8f\xb4\xcb\x2e\xf9\x0d\x0f" \
+    "\x7c\x34\xc7\x8e\xbe\x5c\xe2\xee\xe5\xc4\xf9\x61" \
+    "\xda\x03\x8c\xb5\xce\xb1\x83\xd8\x09\xb1\xeb\x87" \
+    "\x55\x58\xc5\x75\x43\x9b\x7a\xaa\x6d\x67\xc4\xc7" \
+    "\x27\x57\x1b\xd3\x52\x24\x96\x61\x0a\xcc\x06\x62" \
+    "\x03\x33\x67\x19\x3b\xee\xda\x48\x2f\x8a\x99\x63" \
+    "\x66\x98\x3b\x66\x4e\xfd\x3f\x88\x3f\x7f\xbf\xc6" \
+    "\x4a\x1a\x3b\xac\x6f\x4f\xf4\x20\x02\x8b\x36\x12" \
+    "\x3b\xc1\xcd\x13\x5d\xaa\x4c\x6d\xea\x4b\x49\x8a" \
+    "\xf0\x0c\xe2\xaf\x67\xbf\x1e\x97\xc2\xdd\x71\xa0" \
+    "\x5d\x39\xcb\x55\xbf\x45\x36\x96\x9b\xf4\xcd\xaa" \
+    "\xc8\xa1\x76\xa6\xf1\xb7\xf3\x9b\x0d\x7f\x2b\xb1" \
+    "\xb8\xb3\xb8\x13\xdc\x21\x04\x10\x99\x48\x55\x8d" \
+    "\x10\x02\x6a\x96\xa8\xfd\x0f\xcd\x8b\x89\x9b\x99" \
+    "\xc4\xa7\x3f\x6f\xcb\x2f\x4f\x1c\x6e\x5b\xc5\x7c" \
+    "\x22\x50\x35\xdc\xd9\xd2\x77\xf4\x73\xea\xa2\xc6" \
+    "\xbd\xc0\xcb\x17\xf5\x2c\xe2\x1f\x17\x8b\xf2\xcb" \
+    "\x53\xf5\x44\x0c\x6c\xe8\x67\x36\xd0\x66\xd4\x00" \
+    "\x22\x9a\xf6\x1f\x24\x96\x41\x9e\xe7\x10\xe7\xed" \
+    "\x49\x89\x75\x7d\xf1\x86\xc6\x23\xed\xd8\x93\x51" \
+    "\xf7\xfc\x1c\xa6\x19\xcf\x89\x9f\xf4\xa3\x9f\x63" \
+    "\x0d\x40\x5d\x57\xbc\x3b\x78\xbf\xd3\xc4\xbf\x01" \
+    "\x2b\xaf\x70\x42\x74\x25\x14\x95\x00\x00\x00\x00" \
+    "\x49\x45\x4e\x44\xae\x42\x60\x82"
 
 class MainWinDesign(QMainWindow):
     def __init__(self,parent = None,name = None,fl = 0):
@@ -588,6 +627,8 @@ class MainWinDesign(QMainWindow):
         self.image4.loadFromData(image4_data,"PNG")
         self.image5 = QPixmap()
         self.image5.loadFromData(image5_data,"PNG")
+        self.image6 = QPixmap()
+        self.image6.loadFromData(image6_data,"PNG")
         if not name:
             self.setName("MainWinDesign")
 
@@ -619,6 +660,9 @@ class MainWinDesign(QMainWindow):
         self.togglePluginList.setToggleAction(1)
         self.togglePluginList.setOn(0)
         self.togglePluginList.setEnabled(1)
+        self.showLogger = QAction(self,"showLogger")
+        self.showLogger.setToggleAction(0)
+        self.showLogger.setIconSet(QIconSet(self.image6))
 
 
 
@@ -627,6 +671,7 @@ class MainWinDesign(QMainWindow):
 
 
         self.PopupMenu_3 = QPopupMenu(self)
+        self.showLogger.addTo(self.PopupMenu_3)
         self.reload.addTo(self.PopupMenu_3)
         self.PopupMenu_3.insertSeparator()
         self.exitItem.addTo(self.PopupMenu_3)
@@ -655,6 +700,7 @@ class MainWinDesign(QMainWindow):
         self.connect(self.menuConfigurePlugins,SIGNAL("activated()"),self.configurePlugins)
         self.connect(self.reload,SIGNAL("activated()"),self.reloadPlugins)
         self.connect(self.selectLanguage,SIGNAL("activated()"),self.showLanguageDialog)
+        self.connect(self.showLogger,SIGNAL("activated()"),self.showLoggerWindow)
 
 
     def languageChange(self):
@@ -680,6 +726,7 @@ class MainWinDesign(QMainWindow):
         self.togglePluginList.setText(self.__tr("Hide/Show pluginlist"))
         self.togglePluginList.setMenuText(self.__tr("Hide/Show pluginlist"))
         self.togglePluginList.setAccel(self.__tr("Ctrl+P"))
+        self.showLogger.setText(self.__tr("Show logger"))
         if self.menubar.findItem(1):
             self.menubar.findItem(1).setText(self.__tr("Program"))
         if self.menubar.findItem(2):
@@ -711,6 +758,9 @@ class MainWinDesign(QMainWindow):
 
     def showLanguageDialog(self):
         print "MainWinDesign.showLanguageDialog(): Not implemented yet"
+
+    def showLoggerWindow(self):
+        print "MainWinDesign.showLoggerWindow(): Not implemented yet"
 
     def __tr(self,s,c = None):
         return qApp.translate("MainWinDesign",s,c)

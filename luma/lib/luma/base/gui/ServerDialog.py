@@ -22,6 +22,7 @@ import environment
 from base.gui.BaseSelector import BaseSelector
 from base.backend.LumaConnection import LumaConnection
 from base.utils.gui.LumaErrorDialog import LumaErrorDialog
+from base.utils.backend.LogObject import LogObject
 
 class ServerDialog(ServerDialogDesign):
     """The dialog for managing all server information.
@@ -327,7 +328,6 @@ class ServerDialog(ServerDialogDesign):
         self.passwordLineEdit.blockSignals(True)
         
         authMethod = self.currentServer.authMethod
-        print authMethod
         if (authMethod == u"SASL GSSAPI") or (u"SASL EXTERNAL" == authMethod):
             self.passwordLineEdit.setEnabled(False)
             self.bindLineEdit.setEnabled(False)
