@@ -14,6 +14,7 @@ from base.backend.ServerList import ServerList
 from base.backend.ServerObject import ServerObject
 from base.utils.backend.DateHelper import DateHelper
 from base.utils.backend.CryptPwGenerator import CryptPwGenerator
+from base.utils.gui.BrowserDialog import BrowserDialog
 
 
 class IfiUser(IfiUserDesign):
@@ -78,10 +79,10 @@ Try increasing the uidNumber range or delete some users from the subtree."""),
         else:
             days = self.dayBox.value()
             shadowMax = dateHelper.dateduration_to_unix(days)
-            
-        baseHomeDir = "/home"
-        groupId = "100"
-        loginShell = "/bin/bash"
+        
+        baseHomeDir = str(self.homeEdit.text())
+        groupId = str(self.gidBox.value())
+        loginShell = str(self.shellEdit.text())
         
         tmpList = str(self.nodeEdit.text()).split(",")
         server = tmpList[-1]
@@ -144,36 +145,23 @@ Try increasing the uidNumber range or delete some users from the subtree."""),
             print "Error during LDAP request"
             print "Reason: " + str(e)
             mainWin.set_busy(0)
-            QMessageBox.information(self, 'Error!!!', str(e))
+            QMessageBox.critical(None,
+                self.trUtf8("Error"),
+                self.trUtf8("""Error during creation of user.\nReason: """ + 
+                            str(e[0]['desc'])),
+                self.trUtf8("&OK"),
+                None,
+                None,
+                0, -1)
 
-        
 ###############################################################################
             
     def browse_server(self):
-        self.tmpDialog = QDialog(self)
-        tmpLayout = QVBoxLayout(self.tmpDialog)
-        tmpButton = QPushButton(self.tmpDialog)
-        tmpButton.setText(self.trUtf8("Ok"))
-        self.tmpBrowser = BrowserWidget(self.tmpDialog)
-        tmpLayout.addWidget(self.tmpBrowser)
-        tmpLayout.addWidget(tmpButton)
-        self.connect(tmpButton, SIGNAL("clicked()"), self.browser_entry_check)
-        self.tmpBrowser.setMinimumWidth(500)
-        self.tmpDialog.exec_loop()
+        dialog = BrowserDialog(self)
+        if dialog.result() == QDialog.Accepted:
+            self.nodeEdit.setText(dialog.getItemPath())
         
-###############################################################################
-
-    def browser_entry_check(self):
-        tmpItem = self.tmpBrowser.selectedItem()
-        tmpText = self.tmpBrowser.get_full_path(tmpItem)
-        if tmpText == None:
-            return
-            
-        if len(tmpText.split(',')) > 1:
-            self.tmpDialog.close()
-            self.nodeEdit.setText(tmpText)
-            self.tmpBrowser = None
-            self.tmpDialog = None
+        
 
 ###############################################################################
 
@@ -183,7 +171,6 @@ Try increasing the uidNumber range or delete some users from the subtree."""),
         serverName = tmpList[-1]
         del tmpList[-1]
         ldapObject = ",".join(tmpList)
-        print serverName, ldapObject
 
         serverList = ServerList()
         serverList.readServerList()
@@ -248,9 +235,29 @@ Try increasing the uidNumber range or delete some users from the subtree."""),
         else:
             return None
     
+###############################################################################
     
-    
-    
+    def browseGroups(self):
+        ldapItem = None
+        dialog = BrowserDialog(self)
+        if dialog.result() == QDialog.Accepted:
+            ldapItem = dialog.getLdapItem()
+        else:
+            return 0
+        
+        groupId = None
+        
+        try:
+            groupId = ldapItem[1][0][1]['gidNumber'][0]
+            self.gidBox.setValue(int(groupId))
+        except KeyError:
+            QMessageBox.warning(None,
+                self.trUtf8("Wrong entry!"),
+                self.trUtf8("""The selected ldap entry did not contain the attribute 'gidNumber'."""),
+                self.trUtf8("&OK"),
+                None,
+                None,
+                0, -1)
     
     
     

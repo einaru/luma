@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'IfiUserDesign.ui'
 #
-# Created: Mon Nov 3 19:47:12 2003
+# Created: Mon Nov 10 22:10:16 2003
 #      by: The PyQt User Interface Compiler (pyuic) 3.7
 #
 # WARNING! All changes made in this file will be lost!
@@ -332,7 +332,12 @@ class IfiUserDesign(QWidget):
 
         IfiUserDesignLayout = QVBoxLayout(self,11,6,"IfiUserDesignLayout")
 
-        self.groupBox1 = QGroupBox(self,"groupBox1")
+        self.tabWidget2 = QTabWidget(self,"tabWidget2")
+
+        self.tab = QWidget(self.tabWidget2,"tab")
+        tabLayout = QVBoxLayout(self.tab,11,6,"tabLayout")
+
+        self.groupBox1 = QGroupBox(self.tab,"groupBox1")
         self.groupBox1.setFrameShape(QGroupBox.GroupBoxPanel)
         self.groupBox1.setFrameShadow(QGroupBox.Sunken)
         self.groupBox1.setColumnLayout(0,Qt.Vertical)
@@ -364,38 +369,9 @@ class IfiUserDesign(QWidget):
         self.textLabel3 = QLabel(self.groupBox1,"textLabel3")
 
         groupBox1Layout.addWidget(self.textLabel3,2,0)
-        IfiUserDesignLayout.addWidget(self.groupBox1)
+        tabLayout.addWidget(self.groupBox1)
 
-        self.groupBox3 = QGroupBox(self,"groupBox3")
-        self.groupBox3.setColumnLayout(0,Qt.Vertical)
-        self.groupBox3.layout().setSpacing(6)
-        self.groupBox3.layout().setMargin(11)
-        groupBox3Layout = QGridLayout(self.groupBox3.layout())
-        groupBox3Layout.setAlignment(Qt.AlignTop)
-
-        self.dateButton = QRadioButton(self.groupBox3,"dateButton")
-        self.dateButton.setChecked(1)
-
-        groupBox3Layout.addWidget(self.dateButton,0,0)
-
-        self.radioButton2 = QRadioButton(self.groupBox3,"radioButton2")
-
-        groupBox3Layout.addWidget(self.radioButton2,1,0)
-
-        self.dateEdit = QDateEdit(self.groupBox3,"dateEdit")
-        self.dateEdit.setEnabled(1)
-
-        groupBox3Layout.addWidget(self.dateEdit,0,1)
-
-        self.dayBox = QSpinBox(self.groupBox3,"dayBox")
-        self.dayBox.setEnabled(0)
-        self.dayBox.setMaxValue(65535)
-        self.dayBox.setValue(1)
-
-        groupBox3Layout.addWidget(self.dayBox,1,1)
-        IfiUserDesignLayout.addWidget(self.groupBox3)
-
-        self.groupBox5 = QGroupBox(self,"groupBox5")
+        self.groupBox5 = QGroupBox(self.tab,"groupBox5")
         self.groupBox5.setColumnLayout(0,Qt.Vertical)
         self.groupBox5.layout().setSpacing(6)
         self.groupBox5.layout().setMargin(11)
@@ -414,19 +390,138 @@ class IfiUserDesign(QWidget):
         self.browseButton.setPixmap(self.image0)
 
         groupBox5Layout.addWidget(self.browseButton,0,2)
-        IfiUserDesignLayout.addWidget(self.groupBox5)
+        tabLayout.addWidget(self.groupBox5)
+        spacer = QSpacerItem(31,91,QSizePolicy.Minimum,QSizePolicy.Expanding)
+        tabLayout.addItem(spacer)
+        self.tabWidget2.insertTab(self.tab,QString(""))
 
-        self.passwordEdit = QTextEdit(self,"passwordEdit")
-        IfiUserDesignLayout.addWidget(self.passwordEdit)
-        spacer = QSpacerItem(31,241,QSizePolicy.Minimum,QSizePolicy.Expanding)
-        IfiUserDesignLayout.addItem(spacer)
+        self.tab_2 = QWidget(self.tabWidget2,"tab_2")
+        tabLayout_2 = QVBoxLayout(self.tab_2,11,6,"tabLayout_2")
+
+        self.groupBox3 = QGroupBox(self.tab_2,"groupBox3")
+        self.groupBox3.setColumnLayout(0,Qt.Vertical)
+        self.groupBox3.layout().setSpacing(6)
+        self.groupBox3.layout().setMargin(11)
+        groupBox3Layout = QGridLayout(self.groupBox3.layout())
+        groupBox3Layout.setAlignment(Qt.AlignTop)
+
+        self.dateButton = QRadioButton(self.groupBox3,"dateButton")
+        self.dateButton.setSizePolicy(QSizePolicy(4,0,0,0,self.dateButton.sizePolicy().hasHeightForWidth()))
+        self.dateButton.setChecked(0)
+
+        groupBox3Layout.addWidget(self.dateButton,0,0)
+
+        self.radioButton2 = QRadioButton(self.groupBox3,"radioButton2")
+        self.radioButton2.setSizePolicy(QSizePolicy(4,0,0,0,self.radioButton2.sizePolicy().hasHeightForWidth()))
+        self.radioButton2.setChecked(1)
+
+        groupBox3Layout.addWidget(self.radioButton2,1,0)
+
+        self.dateEdit = QDateEdit(self.groupBox3,"dateEdit")
+        self.dateEdit.setEnabled(0)
+
+        groupBox3Layout.addWidget(self.dateEdit,0,1)
+
+        self.dayBox = QSpinBox(self.groupBox3,"dayBox")
+        self.dayBox.setEnabled(1)
+        self.dayBox.setMaxValue(65535)
+        self.dayBox.setValue(365)
+
+        groupBox3Layout.addWidget(self.dayBox,1,1)
+        tabLayout_2.addWidget(self.groupBox3)
+
+        self.groupBox4 = QGroupBox(self.tab_2,"groupBox4")
+        self.groupBox4.setColumnLayout(0,Qt.Vertical)
+        self.groupBox4.layout().setSpacing(6)
+        self.groupBox4.layout().setMargin(11)
+        groupBox4Layout = QGridLayout(self.groupBox4.layout())
+        groupBox4Layout.setAlignment(Qt.AlignTop)
+
+        self.homeEdit = QLineEdit(self.groupBox4,"homeEdit")
+
+        groupBox4Layout.addMultiCellWidget(self.homeEdit,0,0,1,2)
+
+        self.shellEdit = QLineEdit(self.groupBox4,"shellEdit")
+
+        groupBox4Layout.addMultiCellWidget(self.shellEdit,2,2,1,2)
+
+        self.textLabel7 = QLabel(self.groupBox4,"textLabel7")
+        self.textLabel7.setSizePolicy(QSizePolicy(4,5,0,0,self.textLabel7.sizePolicy().hasHeightForWidth()))
+
+        groupBox4Layout.addWidget(self.textLabel7,2,0)
+
+        self.textLabel5 = QLabel(self.groupBox4,"textLabel5")
+        self.textLabel5.setSizePolicy(QSizePolicy(4,5,0,0,self.textLabel5.sizePolicy().hasHeightForWidth()))
+
+        groupBox4Layout.addWidget(self.textLabel5,0,0)
+
+        self.textLabel6 = QLabel(self.groupBox4,"textLabel6")
+        self.textLabel6.setSizePolicy(QSizePolicy(4,5,0,0,self.textLabel6.sizePolicy().hasHeightForWidth()))
+
+        groupBox4Layout.addWidget(self.textLabel6,1,0)
+
+        self.gidBox = QSpinBox(self.groupBox4,"gidBox")
+        self.gidBox.setMaxValue(65535)
+        self.gidBox.setValue(100)
+
+        groupBox4Layout.addWidget(self.gidBox,1,1)
+
+        self.browseGroupButton = QPushButton(self.groupBox4,"browseGroupButton")
+        self.browseGroupButton.setSizePolicy(QSizePolicy(0,0,0,0,self.browseGroupButton.sizePolicy().hasHeightForWidth()))
+        self.browseGroupButton.setPixmap(self.image0)
+
+        groupBox4Layout.addWidget(self.browseGroupButton,1,2)
+        tabLayout_2.addWidget(self.groupBox4)
+
+        self.groupBox2 = QGroupBox(self.tab_2,"groupBox2")
+        self.groupBox2.setColumnLayout(0,Qt.Vertical)
+        self.groupBox2.layout().setSpacing(6)
+        self.groupBox2.layout().setMargin(11)
+        groupBox2Layout = QGridLayout(self.groupBox2.layout())
+        groupBox2Layout.setAlignment(Qt.AlignTop)
+
+        self.textLabel2_2 = QLabel(self.groupBox2,"textLabel2_2")
+        self.textLabel2_2.setSizePolicy(QSizePolicy(4,5,0,0,self.textLabel2_2.sizePolicy().hasHeightForWidth()))
+
+        groupBox2Layout.addWidget(self.textLabel2_2,0,0)
+
+        self.uidNumMinBox = QSpinBox(self.groupBox2,"uidNumMinBox")
+        self.uidNumMinBox.setMaxValue(65535)
+
+        groupBox2Layout.addWidget(self.uidNumMinBox,0,1)
+
+        self.textLabel3_2 = QLabel(self.groupBox2,"textLabel3_2")
+        self.textLabel3_2.setSizePolicy(QSizePolicy(4,5,0,0,self.textLabel3_2.sizePolicy().hasHeightForWidth()))
+
+        groupBox2Layout.addWidget(self.textLabel3_2,1,0)
+
+        self.uidNumMaxBox = QSpinBox(self.groupBox2,"uidNumMaxBox")
+        self.uidNumMaxBox.setMaxValue(65535)
+        self.uidNumMaxBox.setValue(65535)
+
+        groupBox2Layout.addWidget(self.uidNumMaxBox,1,1)
+        tabLayout_2.addWidget(self.groupBox2)
+        spacer_2 = QSpacerItem(21,101,QSizePolicy.Minimum,QSizePolicy.Expanding)
+        tabLayout_2.addItem(spacer_2)
+        self.tabWidget2.insertTab(self.tab_2,QString(""))
+
+        self.tab_3 = QWidget(self.tabWidget2,"tab_3")
+        tabLayout_3 = QVBoxLayout(self.tab_3,11,6,"tabLayout_3")
+
+        self.textLabel1_2_3 = QLabel(self.tab_3,"textLabel1_2_3")
+        tabLayout_3.addWidget(self.textLabel1_2_3)
+
+        self.passwordEdit = QTextEdit(self.tab_3,"passwordEdit")
+        tabLayout_3.addWidget(self.passwordEdit)
+        self.tabWidget2.insertTab(self.tab_3,QString(""))
+        IfiUserDesignLayout.addWidget(self.tabWidget2)
 
         self.pushButton1 = QPushButton(self,"pushButton1")
         IfiUserDesignLayout.addWidget(self.pushButton1)
 
         self.languageChange()
 
-        self.resize(QSize(692,497).expandedTo(self.minimumSizeHint()))
+        self.resize(QSize(488,460).expandedTo(self.minimumSizeHint()))
         self.clearWState(Qt.WState_Polished)
 
         self.connect(self.dateButton,SIGNAL("clicked()"),self.radioButton2,SLOT("toggle()"))
@@ -437,6 +532,7 @@ class IfiUserDesign(QWidget):
         self.connect(self.dateButton,SIGNAL("toggled(bool)"),self.dateEdit,SLOT("setEnabled(bool)"))
         self.connect(self.pushButton1,SIGNAL("clicked()"),self.create_user)
         self.connect(self.browseButton,SIGNAL("clicked()"),self.browse_server)
+        self.connect(self.browseGroupButton,SIGNAL("clicked()"),self.browseGroups)
 
 
     def languageChange(self):
@@ -445,12 +541,27 @@ class IfiUserDesign(QWidget):
         self.textLabel1.setText(self.__tr("Username:"))
         self.textLabel2.setText(self.__tr("Surename:"))
         self.textLabel3.setText(self.__tr("Given Name:"))
-        self.groupBox3.setTitle(self.__tr("Expiration date"))
-        self.dateButton.setText(self.__tr("Date"))
-        self.radioButton2.setText(self.__tr("Days from now"))
         self.groupBox5.setTitle(self.__tr("Directory Settings"))
         self.textLabel4.setText(self.__tr("Base node:"))
         self.browseButton.setText(QString.null)
+        self.tabWidget2.changeTab(self.tab,self.__tr("Basic"))
+        self.groupBox3.setTitle(self.__tr("Expiration date"))
+        self.dateButton.setText(self.__tr("Date"))
+        self.radioButton2.setText(self.__tr("Days from now"))
+        self.groupBox4.setTitle(self.__tr("Account settings"))
+        self.homeEdit.setText(self.__tr("/home"))
+        self.shellEdit.setText(self.__tr("/bin/bash"))
+        self.textLabel7.setText(self.__tr("Login shell:"))
+        self.textLabel5.setText(self.__tr("Home directory:"))
+        self.textLabel6.setText(self.__tr("Group Id:"))
+        self.browseGroupButton.setText(QString.null)
+        QToolTip.add(self.browseGroupButton,self.__tr("Select group from LDAP"))
+        self.groupBox2.setTitle(self.__tr("uid number range"))
+        self.textLabel2_2.setText(self.__tr("Minimum:"))
+        self.textLabel3_2.setText(self.__tr("Maximum:"))
+        self.tabWidget2.changeTab(self.tab_2,self.__tr("Account Settings"))
+        self.textLabel1_2_3.setText(self.__tr("Account Password:"))
+        self.tabWidget2.changeTab(self.tab_3,self.__tr("Account Password"))
         self.pushButton1.setText(self.__tr("Create"))
 
 
@@ -459,6 +570,9 @@ class IfiUserDesign(QWidget):
 
     def browse_server(self):
         print "IfiUserDesign.browse_server(): Not implemented yet"
+
+    def browseGroups(self):
+        print "IfiUserDesign.browseGroups(): Not implemented yet"
 
     def __tr(self,s,c = None):
         return qApp.translate("IfiUserDesign",s,c)
