@@ -1,14 +1,13 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file '/daten/src/cvs/luma/lib/luma/base/gui/MainWinDesign.ui'
+# Form implementation generated from reading ui file 'MainWinDesign.ui'
 #
-# Created: Mon Sep 1 00:18:33 2003
+# Created: Sun Nov 9 17:37:14 2003
 #      by: The PyQt User Interface Compiler (pyuic) 3.7
 #
 # WARNING! All changes made in this file will be lost!
 
 
-import sys
 from qt import *
 
 image0_data = [
@@ -1517,6 +1516,7 @@ class MainWinDesign(QMainWindow):
         self.connect(self.menu_configure_plugins,SIGNAL("activated()"),self.configure_plugins)
         self.connect(self.reload,SIGNAL("activated()"),self.reload_plugins)
         self.connect(self.select_language,SIGNAL("activated()"),self.show_language_dialog)
+        self.connect(self.taskList,SIGNAL("selectionChanged(QIconViewItem*)"),self.task_selection_changed)
 
 
     def languageChange(self):
@@ -1563,11 +1563,3 @@ class MainWinDesign(QMainWindow):
 
     def __tr(self,s,c = None):
         return qApp.translate("MainWinDesign",s,c)
-
-if __name__ == "__main__":
-    a = QApplication(sys.argv)
-    QObject.connect(a,SIGNAL("lastWindowClosed()"),a,SLOT("quit()"))
-    w = MainWinDesign()
-    a.setMainWidget(w)
-    w.show()
-    a.exec_loop()

@@ -297,6 +297,12 @@
         <receiver>MainWinDesign</receiver>
         <slot>show_language_dialog()</slot>
     </connection>
+    <connection>
+        <sender>taskList</sender>
+        <signal>selectionChanged(QIconViewItem*)</signal>
+        <receiver>MainWinDesign</receiver>
+        <slot>task_selection_changed()</slot>
+    </connection>
 </connections>
 <slots>
     <slot>quit_application()</slot>
