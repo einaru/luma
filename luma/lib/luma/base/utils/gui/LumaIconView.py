@@ -32,7 +32,11 @@ class LumaIconView (LumaIconViewDesign):
         
         configFile = os.path.join(environment.userHomeDir,  ".luma", "plugins")
         config = ConfigParser()
-        config.readfp(open(configFile, 'r'))
+        try:
+            config.readfp(open(configFile, 'r'))
+        except IOError, e:
+            print "Could not read configuration file. Reason: "
+            print e
         
         self.filterElements = ["cn", "sn", "givenName", "mail"]
         
@@ -144,7 +148,6 @@ class LumaIconView (LumaIconViewDesign):
                         name = name + tmpData['givenName'][0]
                         
             name = name.decode('utf-8')
-            #name = lumaStringDecode(name)
                 
             nameList.append((name, x))
         
