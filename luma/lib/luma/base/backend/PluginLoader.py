@@ -8,11 +8,13 @@
 #
 ###########################################################################
 
-from base.backend.DirUtils import DirUtils
+import environment
+
 from os import listdir
-from os.path import isdir
+import os.path
 import sys
 import imp
+
 
 class PluginLoader(object):
     """A class for finding and loading Luma plugins.
@@ -42,8 +44,9 @@ class PluginLoader(object):
         self.PLUGINS = {}
         
         # get the base diretory of the plugins as a string
-        self.__pluginBaseDir = DirUtils().PREFIX + "/lib/luma/plugins"
+        self.__pluginBaseDir = os.path.join(environment.lumaInstallationPrefix,  "lib", "luma", "plugins")
         
+        self.__pluginDirList = []
         self.__pluginDirList = self.__get_plugin_list()
 
         self.__import_plugin_metas(pluginsToLoad)
@@ -58,8 +61,8 @@ class PluginLoader(object):
         try:
             # test for every file listed, if it is a directory
             for x in listdir(self.__pluginBaseDir):
-                tmp = self.__pluginBaseDir + "/" + x
-                if isdir(tmp):
+                tmp = os.path.join (self.__pluginBaseDir, x)
+                if os.path.isdir(tmp):
                     tmpList.append(tmp)
             return tmpList
         except OSError, errorData:
@@ -85,16 +88,17 @@ class PluginLoader(object):
                 # compile it to executable code and import it.
                 module = imp.new_module(tmpString)
                 try:
-                    fileObject = open(tmpPlugin["PLUGIN_PATH"]+ "/"
-                                        + tmpPlugin["PLUGIN_FILE"], 'r')
+                    # Read plugin code.
+                    fileObject = open(os.path.join(tmpPlugin["PLUGIN_PATH"], tmpPlugin["PLUGIN_FILE"]), 'r')
                     exec fileObject in locals()
                     fileObject.close()
                 except IOError, errorData:
                     print "Could not read file for plugin ",
                     print tmpPlugin['PLUGIN_NAME']
                     print "Reason: " + str(errorData)
-                except ImportError:
+                except ImportError, e:
                     print "Plugin " + x + " has internal errors. It will not be loaded."
+                    print e
                 
                 tmpObject = TaskPlugin()
                 tmpObject.pluginPath = tmpPlugin["PLUGIN_PATH"]
@@ -120,8 +124,8 @@ class PluginLoader(object):
             try:
                 pluginMetaObject = self.__read_meta_info(x, pluginsToLoad)
                 self.PLUGINS[pluginMetaObject["PLUGIN_NAME"]] = pluginMetaObject
-            except "PLUGIN_META_ERROR":
-                print "Plugin from the following directory could not be loaded:",
+            except PluginMetaError, x:
+                print "Plugin from the following directory could not be loaded:"
                 print x
 
 ###############################################################################
@@ -138,7 +142,7 @@ class PluginLoader(object):
                             "PLUGIN_CODE"]
         META_INFO = {}
         try:
-            metaHandler = open(pluginPath + "/plugin.meta", 'r')
+            metaHandler = open(os.path.join(pluginPath,  "plugin.meta"), 'r')
             metaText = metaHandler.readlines()
                     
             for x in metaText:
@@ -168,7 +172,7 @@ class PluginLoader(object):
         except IOError, errorData:
             print "Plugin meta file could not be opened :("
             print errorData
-            raise "PLUGIN_META_ERROR"
+            raise PluginMetaError, errorData
             
         # this one is tricky. we want to test, if all plugin meta infos are present.
         # so we want to access every need key from META_INFO. if the key
@@ -180,7 +184,7 @@ class PluginLoader(object):
             return META_INFO
         except KeyError, errorData:
             print "Missing plugin info in plugin.meta:", errorData
-            raise "PLUGIN_META_ERROR"
+            raise PluginMetaError, errorData
 
 
 ###############################################################################
@@ -188,8 +192,8 @@ class PluginLoader(object):
     def __plugin_ok(self, name, values):
         """Test if all needed functions are present in the plugin code. """
         
-        neededFunctions = ["__init__", "get_icon", "pluginName",
-            "postprocess", "pluginPath", "set_widget", "pluginWidget"]
+        neededFunctions = ["__init__", "get_icon", "pluginName", "getHelpText",
+            "postprocess", "pluginPath", "getPluginWidget", "pluginWidget", "getPluginSettingsWidget"]
             
         for x in neededFunctions:
             if not (x in values):
@@ -198,3 +202,9 @@ class PluginLoader(object):
                 return 0
         return 1
 
+###############################################################################
+
+class PluginMetaError(Exception): 
+    """ Custom exception class. """
+    
+    pass 

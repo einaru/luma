@@ -10,9 +10,12 @@
 
 
 from qt import *
-from base.gui.LanguageDialogDesign import LanguageDialogDesign
-from base.backend.DirUtils import DirUtils
 from os import listdir
+import os.path
+
+from base.gui.LanguageDialogDesign import LanguageDialogDesign
+import environment
+
 
 class LanguageDialog(LanguageDialogDesign):
     """A dialog for choosing the language to use. 
@@ -24,7 +27,7 @@ class LanguageDialog(LanguageDialogDesign):
     def __init__(self,parent = None,name = None,modal = 0,fl = 0):
         LanguageDialogDesign.__init__(self,parent,name,modal,fl)
         
-        self.trDir = DirUtils().PREFIX + "/share/luma/i18n"
+        self.trDir = os.path.join(environment.lumaInstallationPrefix, "share", "luma", "i18n")
         
         self.languages = []
         for x in listdir(self.trDir):
@@ -33,7 +36,7 @@ class LanguageDialog(LanguageDialogDesign):
         
         # Since english is the default language, there is no language
         # file and we have to make the entry manually.
-        pixmap = QPixmap(self.trDir + "/gb.png")
+        pixmap = QPixmap(os.path.join(self.trDir, "gb.png"))
         self.languageBox.insertItem(pixmap, "English (UK)")
         
         # Insert all languages which have a language file.
@@ -41,11 +44,11 @@ class LanguageDialog(LanguageDialogDesign):
         # added to luma.
         for x in self.languages:
             if x == 'de':
-                pixmap = QPixmap(self.trDir + "/" + x + ".png")
+                pixmap = QPixmap(os.path.join(self.trDir, x + ".png"))
                 self.languageBox.insertItem(pixmap, "Deutsch")
                 continue
             if x == 'br':
-                pixmap = QPixmap(self.trDir + "/" + x + ".png")
+                pixmap = QPixmap(os.path.join(self.trDir, x + ".png"))
                 self.languageBox.insertItem(pixmap, "Brazil")
                 continue
                 
@@ -64,9 +67,9 @@ class LanguageDialog(LanguageDialogDesign):
         tmpText = str(self.languageBox.currentText())
         
         if tmpText == "Deutsch":
-            return self.trDir + "/luma_de.qm"
+            return os.path.join(self.trDir, "luma_de.qm")
         elif tmpText == "Brazil":
-            return self.trDir + "/luma_br.qm"
+            return os.path.join(self.trDir, "luma_br.qm")
         elif tmpText == "English (UK)":
             return 'NATIVE'
         

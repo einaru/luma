@@ -11,11 +11,13 @@
 
 from qt import *
 
-import copy
+import os
+import os.path
+from ConfigParser import *
 
 from base.gui.MainWinDesign import MainWinDesign
 from base.gui.AboutDialog import AboutDialog
-from base.backend.DirUtils import DirUtils
+import environment
 from base.gui.ServerDialog import ServerDialog
 from base.backend.PluginLoader import PluginLoader
 from base.gui.PluginLoaderGui import PluginLoaderGui
@@ -24,29 +26,34 @@ from base.gui.LanguageDialog import LanguageDialog
 class MainWin(MainWinDesign):
     """The main window for Luma."""
 
+    configFile = None
 
     def __init__(self, parent=None):
         MainWinDesign.__init__(self, parent)
         
-        self.translator = QTranslator(None)
-        
-        trFile = None
+        self.configFile = os.path.join(environment.userHomeDir,  ".luma", "luma")
         
         # Try to read the chosen language. If this fails, fallback to native,
         # which is english.
+        trFile = 'NATIVE'
         try:
-            trFile = open(DirUtils().USERDIR + "/.luma/language", 'r').readline()
-        except IOError, errorData:
-            print "Debug: Could not read language settings file. Using default language"
-            print "Reason: " + str(errorData)
-            trFile = 'NATIVE'
+            configParser = ConfigParser()
+            configParser.readfp(open(self.configFile, 'r'))
+            
+            if configParser.has_section("Defaults"):
+                trFile = configParser.get("Defaults", "language")
+        except NoOptionError:
+            pass
+        except IOError, e:
+            print "Could not read config file. Reason:"
+            print e
         
         # Install translator.
-        if not (trFile == None): 
-            if not (trFile == 'NATIVE'):
-                self.translator.load(trFile)
-                qApp.installTranslator(self.translator)
-                self.languageChange()
+        self.translator = QTranslator(None)
+        if not (trFile == 'NATIVE'):
+            self.translator.load(trFile)
+            qApp.installTranslator(self.translator)
+            self.languageChange()
 
         # create the progress bar for the status bar
         statusBar = self.statusBar()
@@ -56,8 +63,9 @@ class MainWin(MainWinDesign):
         statusBar.addWidget(self.progressBar, 0, 1)
 
         self.__PLUGINS = {}
-        self.__PREFIX = DirUtils().PREFIX
-        self.__ICONPREFIX = self.__PREFIX + "/share/luma/icons/"
+        self.__ICONPREFIX = os.path.join(environment.lumaInstallationPrefix, "share", "luma", "icons")
+        environment.update_ui = self.update_ui
+        environment.set_busy = self.set_busy
         self.load_plugins()
 
 ###############################################################################
@@ -66,7 +74,6 @@ class MainWin(MainWinDesign):
         """Shows the about dialog of Luma."""
         
         a = AboutDialog(self)
-        #a.aboutLogo.setPixmap(QPixmap(self.__ICONPREFIX+"luma.png"))
         a.show()
 
 ###############################################################################
@@ -105,7 +112,7 @@ class MainWin(MainWinDesign):
                 iconTmp =QIconViewItem(self.taskList, tmpObject["PLUGIN_NAME"],
                         tmpObject["PLUGIN_CODE"].get_icon())
                         
-                widgetTmp = tmpObject["PLUGIN_CODE"].set_widget(self.taskStack)
+                widgetTmp = tmpObject["PLUGIN_CODE"].getPluginWidget(self.taskStack)
                 
                 tmpObject["WIDGET_REF"] = widgetTmp
                 tmpObject["ICON_REF"] = iconTmp
@@ -162,7 +169,7 @@ class MainWin(MainWinDesign):
         """Show the dialog for configuring the plugins.
         """
         
-        dialog = PluginLoaderGui(PluginLoader().PLUGINS, self)
+        dialog = PluginLoaderGui(PluginLoader('ALL').PLUGINS, self)
         dialog.exec_loop()
 
 ###############################################################################
@@ -174,21 +181,21 @@ class MainWin(MainWinDesign):
         load is read.
         """
         
-        defaultsHome = DirUtils().USERDIR + "/.luma/plugin.defaults"
+        defaultsHome = os.path.join(environment.userHomeDir, ".luma", "plugins")
         pluginList = []
         try:
-            tmpStrings = open(defaultsHome, 'r').readlines()
-            for x in tmpStrings:
-                pluginList.append(x[:-1])
-        except IOError, errorData:
+            configParser = ConfigParser()
+            configParser.readfp(open(defaultsHome, 'r'))
+            for x in configParser.sections():
+                if not configParser.has_option(x, "load"):
+                    continue
+                if configParser.getint(x, "load") == 1:
+                    pluginList.append(x)
+        except Exception, errorData:
             print "Debug: Could not open file for plugin defaults."
             print "Reason: ", errorData
-            
-            # If there is no configuration file for the plugins present,
-            # we load all available plugins. Usefull if we start luma for
-            # the first time.
             pluginList = "ALL"
-            
+
         return pluginList
 
 ###############################################################################
@@ -244,27 +251,24 @@ class MainWin(MainWinDesign):
             trFile = dialog.get_language_file()
             if trFile == 'NATIVE':
                 qApp.removeTranslator(self.translator)
-                self.languageChange()
-                
-                try:
-                    open(DirUtils().USERDIR + "/.luma/language", 'w').write('NATIVE')
-                    
-                except OSError, errorData:
-                    print "Error: could not save language settings file."
-                    print "Reason: " + str(errorData)
             else:
                 self.translator.load(trFile)
                 qApp.installTranslator(self.translator)
-                self.languageChange()
-                try:
-                    open(DirUtils().USERDIR + "/.luma/language", 'w').write(trFile)
-                except OSError, errorData:
-                    print "Error: could not save language settings file."
-                    print "Reason: " + str(errorData)
+               
+            self.languageChange()
+
+            try:
+                configParser = ConfigParser()
+                configParser.readfp(open(self.configFile, 'r'))
+                
+                if not(configParser.has_section("Defaults")):
+                    configParser.add_section("Defaults")
                     
+                configParser.set("Defaults", "language", trFile)
+                configParser.write(open(self.configFile, 'w'))
+            except Exception, errorData:
+                print "Error: could not save language settings file. Reason:"
+                print errorData
+                
             self.reload_plugins()
-    
-    
-    
-    
     
