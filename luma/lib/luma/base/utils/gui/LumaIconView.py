@@ -80,6 +80,8 @@ class LumaIconView (LumaIconViewDesign):
         
         self.search()
         
+        self.emit(PYSIGNAL("server_changed"), ())
+        
 ###############################################################################
 
     def search(self, filter = None):
