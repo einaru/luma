@@ -397,15 +397,16 @@ it might compromise the security of your system.</source>
     </message>
     <message>
         <source>Missing password</source>
-        <translation type="unfinished"></translation>
+        <translation>Пропущен пароль
+</translation>
     </message>
     <message>
         <source>Could not bind to server.&lt;br&gt;&lt;br&gt;Reason: </source>
-        <translation type="unfinished"></translation>
+        <translation>Не могу подключиться к серверу.&lt;br&gt;&lt;br&gt;Причина: </translation>
     </message>
     <message>
         <source>Could not create account.&lt;br&gt;&lt;br&gt;Reason: </source>
-        <translation type="unfinished"></translation>
+        <translation>Не могу создать учетную запись.&lt;br&gt;&lt;br&gt;Причина:</translation>
     </message>
 </context>
 <context>
@@ -688,11 +689,11 @@ the selected objectclass.&lt;/p&gt;</source>
     </message>
     <message>
         <source>Could not bind to server.&lt;br&gt;&lt;br&gt;Reason: </source>
-        <translation type="unfinished"></translation>
+        <translation>Не могу подключиться к серверу.&lt;br&gt;&lt;br&gt;Причина: </translation>
     </message>
     <message>
         <source>Could not save entry.&lt;br&gt;&lt;br&gt;Reason: </source>
-        <translation type="unfinished"></translation>
+        <translation>Не могу сохранить запись.&lt;br&gt;&lt;br&gt;Причина:</translation>
     </message>
 </context>
 <context>
@@ -976,74 +977,74 @@ the selected objectclass.&lt;/p&gt;</source>
     <name>AdvancedObjectWidget</name>
     <message>
         <source>Value not set.</source>
-        <translation type="unfinished"></translation>
+        <translation>Значение не установлено.</translation>
     </message>
     <message>
         <source>Export binary attribute to file</source>
-        <translation type="unfinished">Экспортировать двоичный атрибут в файл</translation>
+        <translation>Экспортировать двоичный атрибут в файл</translation>
     </message>
     <message>
         <source>Export binary attribute</source>
-        <translation type="unfinished">Экспортировать двоичный атрибут</translation>
+        <translation>Экспортировать двоичный атрибут</translation>
     </message>
     <message>
         <source>&amp;Cancel</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Отменить</translation>
     </message>
     <message>
         <source>&amp;OK</source>
-        <translation type="unfinished"></translation>
+        <translation>O&amp;K</translation>
     </message>
     <message>
         <source>Reload</source>
-        <translation type="unfinished">Перезагрузить</translation>
+        <translation>Перезагрузить</translation>
     </message>
     <message>
         <source>Save</source>
-        <translation type="unfinished">Сохранить</translation>
+        <translation>Сохранить</translation>
     </message>
     <message>
         <source>Add attribute...</source>
-        <translation type="unfinished">Добавить Атрибут...</translation>
+        <translation>Добавить Атрибут...</translation>
     </message>
     <message>
         <source>Delete object</source>
-        <translation type="unfinished">Удалить объект</translation>
+        <translation>Удалить объект</translation>
     </message>
     <message>
         <source>Could not bind to server.&lt;br&gt;&lt;br&gt;Reason: </source>
-        <translation type="unfinished"></translation>
+        <translation>Не могу подключиться к серверу.&lt;br&gt;&lt;br&gt;Причина: </translation>
     </message>
     <message>
         <source>Could not check if object is a leaf in the ldap tree.&lt;br&gt;&lt;br&gt;Reason: </source>
-        <translation type="unfinished"></translation>
+        <translation>Не могу проверить, является ли объект терминальным в дереве LDAP.&lt;br&gt;&lt;br&gt;Причина: </translation>
     </message>
     <message>
         <source>Could not refresh entry.&lt;br&gt;&lt;br&gt;Reason: </source>
-        <translation type="unfinished"></translation>
+        <translation>Не могу обновить запись.&lt;br&gt;&lt;br&gt;Причина:</translation>
     </message>
     <message>
         <source>Could not add entry.&lt;br&gt;&lt;br&gt;Reason: </source>
-        <translation type="unfinished"></translation>
+        <translation>Не могу добавить запись.&lt;br&gt;&lt;br&gt;Причина:</translation>
     </message>
     <message>
         <source>Could not save entry.&lt;br&gt;&lt;br&gt;Reason: </source>
-        <translation type="unfinished"></translation>
+        <translation>Не могу сохранить запись.&lt;br&gt;&lt;br&gt;Причина:</translation>
     </message>
     <message>
         <source>Do your really want to delete the object?</source>
-        <translation type="unfinished"></translation>
+        <translation>Вы действительно хотите удалить объект?</translation>
     </message>
     <message>
         <source>Could not delete entry.&lt;br&gt;&lt;br&gt;Reason: </source>
-        <translation type="unfinished"></translation>
+        <translation>Не могу удалить запись.&lt;br&gt;&lt;br&gt;Причина:</translation>
     </message>
 </context>
 <context>
     <name>BaseSelector</name>
     <message>
         <source>Could not retrieve baseDN.&lt;br&gt;&lt;br&gt;Reason: </source>
-        <translation type="unfinished"></translation>
+        <translation>Не могу получить базовое DN.&lt;br&gt;&lt;br&gt;Причина:</translation>
     </message>
 </context>
 <context>
@@ -1109,64 +1110,64 @@ the selected objectclass.&lt;/p&gt;</source>
     <name>BinaryEditor</name>
     <message>
         <source>Given file does not exist. Please check the filename.</source>
-        <translation type="unfinished"></translation>
+        <translation>Файл не существует. Проверьте имя файла.</translation>
     </message>
     <message>
         <source>Given file is a directory. Please check the filename.</source>
-        <translation type="unfinished"></translation>
+        <translation>Указанное имя принадлежит директории. Пожалуйста проверьте имя файла.</translation>
     </message>
     <message>
         <source>Can&apos;t open file. Please check file permissions.</source>
-        <translation type="unfinished"></translation>
+        <translation>Не могу открыть файл. Пожалуйста, проверьте права.</translation>
     </message>
     <message>
         <source>Select file to change binary value</source>
-        <translation type="unfinished">Выберите файл для замены двоичного значения</translation>
+        <translation>Выберите файл для замены двоичного значения</translation>
     </message>
 </context>
 <context>
     <name>BinaryEditorDesign</name>
     <message>
         <source>Edit attribute</source>
-        <translation type="unfinished">ПравкаАтрибута</translation>
+        <translation>Правка Атрибута</translation>
     </message>
     <message>
         <source>IT</source>
         <comment>DO NOT TRANSLATE</comment>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>&amp;OK</source>
-        <translation type="unfinished"></translation>
+        <translation>O&amp;K</translation>
     </message>
     <message>
         <source>Alt+O</source>
-        <translation type="unfinished"></translation>
+        <translation>Alt+КAlt+О</translation>
     </message>
     <message>
         <source>&amp;Cancel</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Отменить</translation>
     </message>
     <message>
         <source>Alt+C</source>
-        <translation type="unfinished"></translation>
+        <translation>Alt+О</translation>
     </message>
     <message>
         <source>F</source>
         <comment>DO NOT TRANSLATE</comment>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Please enter a file location from where to load binary data for the attribute &lt;b&gt;%1&lt;/b&gt;.</source>
-        <translation type="unfinished"></translation>
+        <translation>Пожалуйста, укажите размещение файла из которого надо произвести загрузку двоичных данных для атрибута &lt;b&gt;%1&lt;/b&gt;.</translation>
     </message>
     <message>
         <source>IL</source>
-        <translation type="unfinished"></translation>
+        <translation>IL</translation>
     </message>
     <message>
         <source>Location:</source>
-        <translation type="unfinished">Размещение:</translation>
+        <translation>Размещение:</translation>
     </message>
 </context>
 <context>
@@ -1220,31 +1221,31 @@ the selected objectclass.&lt;/p&gt;</source>
     </message>
     <message>
         <source>Could not access entry.&lt;br&gt;&lt;br&gt;Reason: </source>
-        <translation type="unfinished"></translation>
+        <translation>Не могу получить доступ к записи.&lt;br&gt;&lt;br&gt;Причина:</translation>
     </message>
     <message>
         <source>Could not expand entry.&lt;br&gt;&lt;br&gt;Reason: </source>
-        <translation type="unfinished"></translation>
+        <translation>Не могу расширить запись.&lt;br&gt;&lt;br&gt;Причина:</translation>
     </message>
     <message>
         <source>Could not retrieve baseDN.&lt;br&gt;&lt;br&gt;Reason: </source>
-        <translation type="unfinished"></translation>
+        <translation>Не могу получить базовое DN.&lt;br&gt;&lt;br&gt;Причина:</translation>
     </message>
     <message>
         <source>Could not export item.&lt;br&gt;&lt;br&gt;Reason: </source>
-        <translation type="unfinished"></translation>
+        <translation>Не могу экспортировать запись.&lt;br&gt;&lt;br&gt;Причина:</translation>
     </message>
     <message>
         <source>Could not export items.&lt;br&gt;&lt;br&gt;Reason: </source>
-        <translation type="unfinished"></translation>
+        <translation>Не могу экспортировать записи.&lt;br&gt;&lt;br&gt;Причина:</translation>
     </message>
     <message>
         <source>Could not retrieve entry for deletion.&lt;br&gt;&lt;br&gt;Reason: </source>
-        <translation type="unfinished"></translation>
+        <translation>Не могу получить запись для удаления.&lt;br&gt;&lt;br&gt;Причина:</translation>
     </message>
     <message>
         <source>Export</source>
-        <translation type="unfinished"></translation>
+        <translation>Экспорт</translation>
     </message>
 </context>
 <context>
@@ -1448,15 +1449,15 @@ the selected objectclass.&lt;/p&gt;</source>
     </message>
     <message>
         <source>Could not bind to server.&lt;br&gt;&lt;br&gt;Reason: </source>
-        <translation type="unfinished"></translation>
+        <translation>Не могу подключиться к серверу.&lt;br&gt;&lt;br&gt;Причина: </translation>
     </message>
     <message>
         <source>Could not add entry.&lt;br&gt;&lt;br&gt;Reason: </source>
-        <translation type="unfinished"></translation>
+        <translation>Не могу добавить запись.&lt;br&gt;&lt;br&gt;Причина:</translation>
     </message>
     <message>
         <source>Incomplete information.</source>
-        <translation type="unfinished"></translation>
+        <translation>Недостаточная информация.</translation>
     </message>
 </context>
 <context>
@@ -1491,158 +1492,158 @@ the selected objectclass.&lt;/p&gt;</source>
     <name>DeleteDialog</name>
     <message>
         <source>Item deleted successfully.</source>
-        <translation type="unfinished"></translation>
+        <translation>Запись успешно удалена.</translation>
     </message>
 </context>
 <context>
     <name>DeleteDialogDesign</name>
     <message>
         <source>DN</source>
-        <translation type="unfinished"></translation>
+        <translation>DN</translation>
     </message>
     <message>
         <source>Message</source>
-        <translation type="unfinished"></translation>
+        <translation>Сообщение</translation>
     </message>
     <message>
         <source>Delete items</source>
-        <translation type="unfinished"></translation>
+        <translation>Удалить объекты</translation>
     </message>
     <message>
         <source>&amp;Cancel</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Отменить</translation>
     </message>
     <message>
         <source>Alt+C</source>
-        <translation type="unfinished"></translation>
+        <translation>Alt+О</translation>
     </message>
     <message>
         <source>DL</source>
-        <translation type="unfinished"></translation>
+        <translation>DL</translation>
     </message>
     <message>
         <source>The following entries will be deleted from the server. You can remove items from the list if you don&apos;t want them to be deleted. Press start to begin with deletion.</source>
-        <translation type="unfinished"></translation>
+        <translation>Следующие записи будут удалены с сервера. Вы можете убрать отдельные элементы из списка исли Вы не хотите их удалять. Нажмите Старт для начала удаления.</translation>
     </message>
     <message>
         <source>&amp;Start</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Старт</translation>
     </message>
     <message>
         <source>Alt+S</source>
-        <translation type="unfinished"></translation>
+        <translation>Alt+С</translation>
     </message>
     <message>
         <source>&amp;Remove</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Удалить</translation>
     </message>
     <message>
         <source>Alt+R</source>
-        <translation type="unfinished"></translation>
+        <translation>Alt+У</translation>
     </message>
 </context>
 <context>
     <name>ExportDialog</name>
     <message>
         <source>Select file to change binary value</source>
-        <translation type="unfinished"></translation>
+        <translation>Выберите файл для замены двоичного значения</translation>
     </message>
     <message>
         <source>Given file is a directory. Please check the filename.</source>
-        <translation type="unfinished"></translation>
+        <translation>Указанное имя принадлежит директории. Пожалуйста проверьте имя файла.</translation>
     </message>
     <message>
         <source>Can&apos;t open file. Please check file system permissions.</source>
-        <translation type="unfinished"></translation>
+        <translation>Не могу открыть файл. Пожалуйста, проверьте права.</translation>
     </message>
     <message>
         <source>Could not export all entires. Please check messages.</source>
-        <translation type="unfinished"></translation>
+        <translation>Не могу экспортировать все записи. Пожалуйста посмотрите сообщения.</translation>
     </message>
     <message>
         <source>All items exported successfully.</source>
-        <translation type="unfinished"></translation>
+        <translation>Все записи успешно экспортированы.</translation>
     </message>
     <message>
         <source>Item exported successfully.</source>
-        <translation type="unfinished"></translation>
+        <translation>Запись успешно экспортирована.</translation>
     </message>
 </context>
 <context>
     <name>ExportDialogDesign</name>
     <message>
         <source>1</source>
-        <translation type="unfinished"></translation>
+        <translation>1</translation>
     </message>
     <message>
         <source>DN</source>
-        <translation type="unfinished"></translation>
+        <translation>DN</translation>
     </message>
     <message>
         <source>Message</source>
-        <translation type="unfinished"></translation>
+        <translation>Сообщение</translation>
     </message>
     <message>
         <source>Export items</source>
-        <translation type="unfinished"></translation>
+        <translation>Экспортировать элементы</translation>
     </message>
     <message>
         <source>The following entries will be exported to the format of your choice. You can remove items from the list if you don&apos;t want them to be exported. Press start to begin with export..</source>
-        <translation type="unfinished"></translation>
+        <translation>Следующие записи будут экспортированы в файл выбранного Вами формата. Вы можете убрать отдельные элементы из списка если Вы не хотите их экспортировать. Нажмите Старт для начала экспорта.</translation>
     </message>
     <message>
         <source>&amp;Start</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Старт</translation>
     </message>
     <message>
         <source>Alt+S</source>
-        <translation type="unfinished"></translation>
+        <translation>Alt+С</translation>
     </message>
     <message>
         <source>&amp;Remove</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Удалить</translation>
     </message>
     <message>
         <source>Alt+R</source>
-        <translation type="unfinished"></translation>
+        <translation>Alt+У</translation>
     </message>
     <message>
         <source>DL</source>
         <comment>DO NOT TRANSLATE</comment>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>A</source>
         <comment>DO NOT TRANSLATE</comment>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Export format:</source>
-        <translation type="unfinished"></translation>
+        <translation>Формат экспорта:</translation>
     </message>
     <message>
         <source>foo</source>
-        <translation type="unfinished">foo</translation>
+        <translation>foo</translation>
     </message>
     <message>
         <source>LDIF</source>
-        <translation type="unfinished"></translation>
+        <translation>LDIF</translation>
     </message>
     <message>
         <source>DSML</source>
-        <translation type="unfinished"></translation>
+        <translation>DSML</translation>
     </message>
     <message>
         <source>Output file:</source>
-        <translation type="unfinished"></translation>
+        <translation>Выходной файл:</translation>
     </message>
     <message>
         <source>&amp;Cancel</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Отменить</translation>
     </message>
     <message>
         <source>Alt+C</source>
-        <translation type="unfinished"></translation>
+        <translation>Alt+О</translation>
     </message>
 </context>
 <context>
@@ -1748,11 +1749,11 @@ the selected objectclass.&lt;/p&gt;</source>
     <name>GroupDialog</name>
     <message>
         <source>Could not bind to server.&lt;br&gt;&lt;br&gt;Reason: </source>
-        <translation type="unfinished"></translation>
+        <translation>Не могу подключиться к серверу.&lt;br&gt;&lt;br&gt;Причина: </translation>
     </message>
     <message>
         <source>Could retrieve other group information.&lt;br&gt;&lt;br&gt;Reason: </source>
-        <translation type="unfinished"></translation>
+        <translation>Не могу получить информацию другой группы.&lt;br&gt;&lt;br&gt;Причина:</translation>
     </message>
 </context>
 <context>
@@ -1860,27 +1861,27 @@ the selected objectclass.&lt;/p&gt;</source>
     </message>
     <message>
         <source>Could not retrieve baseDN.&lt;br&gt;&lt;br&gt;Reason: </source>
-        <translation type="unfinished"></translation>
+        <translation>Не могу получить базовое DN.&lt;br&gt;&lt;br&gt;Причина:</translation>
     </message>
     <message>
         <source>Could not bind to server.&lt;br&gt;&lt;br&gt;Reason: </source>
-        <translation type="unfinished"></translation>
+        <translation>Не могу подключиться к серверу.&lt;br&gt;&lt;br&gt;Причина: </translation>
     </message>
     <message>
         <source>Could not search entries.&lt;br&gt;&lt;br&gt;Reason: </source>
-        <translation type="unfinished"></translation>
+        <translation>Не могу найти записи.&lt;br&gt;&lt;br&gt;Причина:</translation>
     </message>
     <message>
         <source>Could not access entry.&lt;br&gt;&lt;br&gt;Reason: </source>
-        <translation type="unfinished"></translation>
+        <translation>Не могу получить доступ к записи.&lt;br&gt;&lt;br&gt;Причина:</translation>
     </message>
     <message>
         <source>Do your really want to delete the selected contact?</source>
-        <translation type="unfinished"></translation>
+        <translation>Вы действительно хотите удалить выбранный контакт?</translation>
     </message>
     <message>
         <source>Could not delete entry.&lt;br&gt;&lt;br&gt;Reason: </source>
-        <translation type="unfinished"></translation>
+        <translation>Не могу удалить запись.&lt;br&gt;&lt;br&gt;Причина:</translation>
     </message>
 </context>
 <context>
@@ -1939,19 +1940,19 @@ the selected objectclass.&lt;/p&gt;</source>
     <name>LumaErrorDialogDesign</name>
     <message>
         <source>Error</source>
-        <translation type="unfinished">Ошибка</translation>
+        <translation>Ошибка</translation>
     </message>
     <message>
         <source>EL</source>
-        <translation type="unfinished"></translation>
+        <translation>EL</translation>
     </message>
     <message>
         <source>&amp;OK</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;OK</translation>
     </message>
     <message>
         <source>Alt+O</source>
-        <translation type="unfinished"></translation>
+        <translation>Alt+О</translation>
     </message>
 </context>
 <context>
@@ -2087,35 +2088,35 @@ Try increasing the uidNumber range or delete some users from the subtree.</sourc
     </message>
     <message>
         <source>Incomplete information</source>
-        <translation type="unfinished"></translation>
+        <translation>Недостаточная информация</translation>
     </message>
     <message>
         <source>Warning</source>
-        <translation type="unfinished"></translation>
+        <translation>Предупреждение</translation>
     </message>
     <message>
         <source>Could not bind to server.&lt;br&gt;&lt;br&gt;Reason: </source>
-        <translation type="unfinished"></translation>
+        <translation>Не могу подключиться к серверу.&lt;br&gt;&lt;br&gt;Причина: </translation>
     </message>
     <message>
         <source>Could not create all users.&lt;br&gt;&lt;br&gt;Reason: </source>
-        <translation type="unfinished"></translation>
+        <translation>Не могу создать всех пользователей.&lt;br&gt;&lt;br&gt;Причина:</translation>
     </message>
     <message>
         <source>Could not create all automount information.&lt;br&gt;&lt;br&gt;Reason: </source>
-        <translation type="unfinished"></translation>
+        <translation>Не могу создать информацию автомонтирования.&lt;br&gt;&lt;br&gt;Причина:</translation>
     </message>
     <message>
         <source>Could not retrieve used userid numbers.&lt;br&gt;&lt;br&gt;Reason: </source>
-        <translation type="unfinished"></translation>
+        <translation>Не могу получить использованные номера пользователей.&lt;br&gt;&lt;br&gt;Причина:</translation>
     </message>
     <message>
         <source>Wrong entry</source>
-        <translation type="unfinished"></translation>
+        <translation>Неправильные данные</translation>
     </message>
     <message>
         <source>Could not retrieve selected item.&lt;br&gt;&lt;br&gt;Reason: </source>
-        <translation type="unfinished"></translation>
+        <translation>Не могу получить выделенную запись.&lt;br&gt;&lt;br&gt;Причина:</translation>
     </message>
 </context>
 <context>
@@ -2502,55 +2503,55 @@ Try increasing the uidNumber range or delete some users from the subtree.</sourc
     <name>PasswordEditor</name>
     <message>
         <source>Passwords match</source>
-        <translation type="unfinished">Пароли совпадают</translation>
+        <translation>Пароли совпадают</translation>
     </message>
     <message>
         <source>Passwords do not match</source>
-        <translation type="unfinished">Пароли не совпадают</translation>
+        <translation>Пароли не совпадают</translation>
     </message>
 </context>
 <context>
     <name>PasswordEditorDesign</name>
     <message>
         <source>New password</source>
-        <translation type="unfinished">Новый пароль</translation>
+        <translation>Новый пароль</translation>
     </message>
     <message>
         <source>PW</source>
         <comment>DO NOT TRANSLATE</comment>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>&amp;OK</source>
-        <translation type="unfinished"></translation>
+        <translation>O&amp;K</translation>
     </message>
     <message>
         <source>&amp;Cancel</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Отменить</translation>
     </message>
     <message>
         <source>Strength:</source>
-        <translation type="unfinished">Мощность:</translation>
+        <translation>Мощность:</translation>
     </message>
     <message>
         <source>Hash algorithm:</source>
-        <translation type="unfinished">Хэш-алгоритм:</translation>
+        <translation>Хэш-алгоритм:</translation>
     </message>
     <message>
         <source>Password:</source>
-        <translation type="unfinished">Пароль:</translation>
+        <translation>Пароль:</translation>
     </message>
     <message>
         <source>Verify:</source>
-        <translation type="unfinished">Проверка:</translation>
+        <translation>Проверка:</translation>
     </message>
     <message>
         <source>Passwords do not match</source>
-        <translation type="unfinished">Пароли не совпадают</translation>
+        <translation>Пароли не совпадают</translation>
     </message>
     <message>
         <source>&lt;b&gt;Please enter a new password.&lt;/b&gt;</source>
-        <translation type="unfinished">&lt;b&gt;Пожалуйста, введите новый пароль.&lt;/b&gt;</translation>
+        <translation>&lt;b&gt;Пожалуйста, введите новый пароль.&lt;/b&gt;</translation>
     </message>
 </context>
 <context>
@@ -2608,201 +2609,205 @@ Try increasing the uidNumber range or delete some users from the subtree.</sourc
     <name>RdnEditorDesign</name>
     <message>
         <source>Edit DN</source>
-        <translation type="unfinished"></translation>
+        <translation>Редактировать DN</translation>
     </message>
     <message>
         <source>IT</source>
         <comment>DO NOT TRANSLATE</comment>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>&amp;OK</source>
-        <translation type="unfinished"></translation>
+        <translation>O&amp;K</translation>
     </message>
     <message>
         <source>Alt+O</source>
-        <translation type="unfinished"></translation>
+        <translation>Alt+К</translation>
     </message>
     <message>
         <source>&amp;Cancel</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Отменить</translation>
     </message>
     <message>
         <source>Alt+C</source>
-        <translation type="unfinished"></translation>
+        <translation>Alt+О</translation>
     </message>
     <message>
         <source>Value:</source>
-        <translation type="unfinished"></translation>
+        <translation>Значение:</translation>
     </message>
     <message>
         <source>DN:</source>
-        <translation type="unfinished"></translation>
+        <translation>DN:</translation>
     </message>
     <message>
         <source>Please choose an attribute and enter a value for it. These values will be part of distinguished name for the new object.</source>
-        <translation type="unfinished"></translation>
+        <translation>Пожалуйста, выберите атрибут и введите значение для него. Эти значения будут частью квалифицированного имени для нового объекта.</translation>
     </message>
     <message>
         <source>Attribute:</source>
-        <translation type="unfinished">Атрибут:</translation>
+        <translation>Атрибут:</translation>
     </message>
 </context>
 <context>
     <name>SchemaView</name>
     <message>
         <source>Could not fetch schema information from server.&lt;br&gt;&lt;br&gt;Reason: </source>
-        <translation type="unfinished"></translation>
+        <translation>Не могу получить схему сервера.&lt;br&gt;&lt;br&gt;Причина:</translation>
     </message>
     <message>
         <source>&lt;b&gt;Attribute name&lt;/b&gt;&lt;br&gt;Description</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;Название атрибута&lt;/b&gt;&lt;br&gt;Определение</translation>
     </message>
     <message>
         <source>&lt;b&gt;Class Name&lt;/b&gt;&lt;br&gt;Description</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;Название класса&lt;/b&gt;&lt;br&gt;Определение</translation>
     </message>
     <message>
         <source>&lt;b&gt;Syntax&lt;/b&gt;&lt;br&gt;Description</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;Синтаксис&lt;/b&gt;&lt;br&gt;Определение</translation>
     </message>
     <message>
         <source>&lt;b&gt;Matching rule&lt;/b&gt;&lt;br&gt;Description</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;Правило совпадения&lt;/b&gt;&lt;br&gt;Определение</translation>
     </message>
 </context>
 <context>
     <name>SchemaViewDesign</name>
     <message>
         <source>Form</source>
-        <translation type="unfinished"></translation>
+        <translation>Форма</translation>
     </message>
     <message>
         <source>Server:</source>
-        <translation type="unfinished"></translation>
+        <translation>Сервер:</translation>
     </message>
     <message>
         <source>Filter:</source>
-        <translation type="unfinished">Фильтр:</translation>
+        <translation>Фильтр:</translation>
     </message>
     <message>
         <source>ObjectClasses</source>
-        <translation type="unfinished"></translation>
+        <translation>Классы объекта</translation>
     </message>
     <message>
         <source>Attributes</source>
-        <translation type="unfinished">Атрибуты</translation>
+        <translation>Атрибуты</translation>
     </message>
     <message>
         <source>Matching rules</source>
-        <translation type="unfinished"></translation>
+        <translation>Правила совпадения</translation>
     </message>
     <message>
         <source>LDAP syntaxes</source>
-        <translation type="unfinished"></translation>
+        <translation>Синтаксисы LDAP</translation>
     </message>
     <message>
         <source>&lt;b&gt;Class Name&lt;/b&gt;&lt;br&gt;
 Description</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;Название класса&lt;/b&gt;&lt;br&gt;
+Определение</translation>
     </message>
     <message>
         <source>Kind:</source>
-        <translation type="unfinished"></translation>
+        <translation>Вид:</translation>
     </message>
     <message>
         <source>OID:</source>
-        <translation type="unfinished"></translation>
+        <translation>OID:</translation>
     </message>
     <message>
         <source>Superior:</source>
-        <translation type="unfinished"></translation>
+        <translation>Вышестоящий:</translation>
     </message>
     <message>
         <source>&lt;b&gt;Required attributes&lt;/b&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;Необходимые атрибуты&lt;/b&gt;</translation>
     </message>
     <message>
         <source>&lt;b&gt;Allowed attributes&lt;/b&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;Допустимые атрибуты&lt;/b&gt;</translation>
     </message>
     <message>
         <source>&lt;b&gt;Attribute name&lt;/b&gt;&lt;br&gt;
 Description</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;Название атрибута&lt;/b&gt;&lt;br&gt;
+Определение</translation>
     </message>
     <message>
         <source>&lt;b&gt;Used in ObjectClasses&lt;/b&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;Используется в классах объектов&lt;/b&gt;</translation>
     </message>
     <message>
         <source>Single value</source>
-        <translation type="unfinished"></translation>
+        <translation>Единственное значение</translation>
     </message>
     <message>
         <source>Collective</source>
-        <translation type="unfinished"></translation>
+        <translation>Коллективное</translation>
     </message>
     <message>
         <source>Obsolete</source>
-        <translation type="unfinished"></translation>
+        <translation>Устаревшее</translation>
     </message>
     <message>
         <source>Syntax {length}:</source>
-        <translation type="unfinished"></translation>
+        <translation>Синтаксис {длина}:</translation>
     </message>
     <message>
         <source>Ordering:</source>
-        <translation type="unfinished"></translation>
+        <translation>Упорядочивание:</translation>
     </message>
     <message>
         <source>Usage:</source>
-        <translation type="unfinished"></translation>
+        <translation>Использование:</translation>
     </message>
     <message>
         <source>Equality:</source>
-        <translation type="unfinished"></translation>
+        <translation>Равнозначность:</translation>
     </message>
     <message>
         <source>&lt;b&gt;Matching rule&lt;/b&gt;&lt;br&gt;
 Description</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;Правило совпадения&lt;/b&gt;&lt;br&gt;
+Определение</translation>
     </message>
     <message>
         <source>Syntax:</source>
-        <translation type="unfinished"></translation>
+        <translation>Синтаксис:</translation>
     </message>
     <message>
         <source>&lt;b&gt;Used in Attribute&lt;/b&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;Используется в атрибуте&lt;/b&gt;</translation>
     </message>
     <message>
         <source>&lt;b&gt;Syntax&lt;/b&gt;&lt;br&gt;
 Description</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;Синтаксис&lt;/b&gt;&lt;br&gt;
+Определение</translation>
     </message>
     <message>
         <source>&lt;b&gt;Used in attributes&lt;/b&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;Используется в атрибутах&lt;/b&gt;</translation>
     </message>
     <message>
         <source>&lt;b&gt;Used in matching rules&lt;/b&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;Используется в правилах совпадения&lt;/b&gt;</translation>
     </message>
 </context>
 <context>
     <name>SearchForm</name>
     <message>
         <source>Could not bind to server.&lt;br&gt;&lt;br&gt;Reason: </source>
-        <translation type="unfinished"></translation>
+        <translation>Не могу подключиться к серверу.&lt;br&gt;&lt;br&gt;Причина: </translation>
     </message>
     <message>
         <source>Error during search operation.&lt;br&gt;&lt;br&gt;Reason: </source>
-        <translation type="unfinished"></translation>
+        <translation>Ошибка операции поиска.&lt;br&gt;&lt;br&gt;Причина:</translation>
     </message>
     <message>
         <source>Could not retrieve baseDN.&lt;br&gt;&lt;br&gt;Reason: </source>
-        <translation type="unfinished"></translation>
+        <translation>Не могу получить базовое DN.&lt;br&gt;&lt;br&gt;Причина:</translation>
     </message>
 </context>
 <context>
@@ -2856,15 +2861,15 @@ Description</source>
     </message>
     <message>
         <source>&lt;u&gt;Binary value&lt;/u&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;u&gt;Двоичное значение&lt;/u&gt;</translation>
     </message>
     <message>
         <source>Could not bind to server.&lt;br&gt;&lt;br&gt;Reason: </source>
-        <translation type="unfinished"></translation>
+        <translation>Не могу подключиться к серверу.&lt;br&gt;&lt;br&gt;Причина: </translation>
     </message>
     <message>
         <source>Could not access entry.&lt;br&gt;&lt;br&gt;Reason: </source>
-        <translation type="unfinished"></translation>
+        <translation>Не могу получить доступ к записи.&lt;br&gt;&lt;br&gt;Причина:</translation>
     </message>
 </context>
 <context>
@@ -2894,7 +2899,7 @@ Description</source>
     </message>
     <message>
         <source>Could not retrieve baseDN for LDAP server at host/ip:</source>
-        <translation type="unfinished"></translation>
+        <translation>Не могу получить базовое DN для сервера LDAP по адресу:</translation>
     </message>
 </context>
 <context>
@@ -3048,36 +3053,36 @@ Description</source>
     <name>StandardEditorDesign</name>
     <message>
         <source>Edit attribute</source>
-        <translation type="unfinished">ПравкаАтрибута</translation>
+        <translation>ПравкаАтрибута</translation>
     </message>
     <message>
         <source>IT</source>
         <comment>DO NOT TRANSLATE</comment>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Please enter a new value for the attribute &lt;b&gt;%1&lt;/b&gt;.</source>
-        <translation type="unfinished"></translation>
+        <translation>Пожалуйста, введите новое значение для атрибута &lt;b&gt;%1&lt;/b&gt;.</translation>
     </message>
     <message>
         <source>&amp;OK</source>
-        <translation type="unfinished"></translation>
+        <translation>O&amp;K</translation>
     </message>
     <message>
         <source>Alt+O</source>
-        <translation type="unfinished"></translation>
+        <translation>Alt+К</translation>
     </message>
     <message>
         <source>&amp;Cancel</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Отменить</translation>
     </message>
     <message>
         <source>Alt+C</source>
-        <translation type="unfinished"></translation>
+        <translation>Alt+О</translation>
     </message>
     <message>
         <source>Value:</source>
-        <translation type="unfinished"></translation>
+        <translation>Значение:</translation>
     </message>
 </context>
 <context>
@@ -3228,19 +3233,19 @@ Description</source>
     </message>
     <message>
         <source>Could not bind to server.&lt;br&gt;&lt;br&gt;Reason: </source>
-        <translation type="unfinished"></translation>
+        <translation>Не могу подключиться к серверу.&lt;br&gt;&lt;br&gt;Причина: </translation>
     </message>
     <message>
         <source>Could not save entry.&lt;br&gt;&lt;br&gt;Reason: </source>
-        <translation type="unfinished"></translation>
+        <translation>Не могу сохранить запись.&lt;br&gt;&lt;br&gt;Причина:</translation>
     </message>
     <message>
         <source>Could not update all group information.&lt;br&gt;&lt;br&gt;Reason: </source>
-        <translation type="unfinished"></translation>
+        <translation>Не могу обновить групповую информацию.&lt;br&gt;&lt;br&gt;Причина:</translation>
     </message>
     <message>
         <source>Could not retrieve used userids.&lt;br&gt;&lt;br&gt;Reason: </source>
-        <translation type="unfinished"></translation>
+        <translation>Не могу получить использованные номера пользователей.&lt;br&gt;&lt;br&gt;Причина:</translation>
     </message>
 </context>
 <context>

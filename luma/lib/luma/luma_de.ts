@@ -396,15 +396,15 @@ it might compromise the security of your system.</source>
     </message>
     <message>
         <source>Missing password</source>
-        <translation type="unfinished"></translation>
+        <translation>Fehlendes Passwort</translation>
     </message>
     <message>
         <source>Could not bind to server.&lt;br&gt;&lt;br&gt;Reason: </source>
-        <translation type="unfinished"></translation>
+        <translation>Es konnte keine Verbindung zum Server hergestellt werden.&lt;br&gt;&lt;br&gt;Grund:</translation>
     </message>
     <message>
         <source>Could not create account.&lt;br&gt;&lt;br&gt;Reason: </source>
-        <translation type="unfinished"></translation>
+        <translation>Account konnte nicht erstellt werden.&lt;br&gt;&lt;br&gt;Grund:</translation>
     </message>
 </context>
 <context>
@@ -686,11 +686,11 @@ the selected objectclass.&lt;/p&gt;</source>
     </message>
     <message>
         <source>Could not bind to server.&lt;br&gt;&lt;br&gt;Reason: </source>
-        <translation type="unfinished"></translation>
+        <translation>Es konnte keine Verbindung zum Server hergestellt werden.&lt;br&gt;&lt;br&gt;Grund:</translation>
     </message>
     <message>
         <source>Could not save entry.&lt;br&gt;&lt;br&gt;Reason: </source>
-        <translation type="unfinished"></translation>
+        <translation>Eintrag konnte nicht gespeichert werden.&lt;br&gt;&lt;br&gt;Grund:</translation>
     </message>
 </context>
 <context>
@@ -974,74 +974,74 @@ the selected objectclass.&lt;/p&gt;</source>
     <name>AdvancedObjectWidget</name>
     <message>
         <source>Value not set.</source>
-        <translation type="unfinished"></translation>
+        <translation>Wert nicht gesetzt.</translation>
     </message>
     <message>
         <source>Export binary attribute to file</source>
-        <translation type="unfinished">Binäres Attribut nach Datei exportieren</translation>
+        <translation>Binäres Attribut nach Datei exportieren</translation>
     </message>
     <message>
         <source>Export binary attribute</source>
-        <translation type="unfinished">Binäres Attribut exportieren</translation>
+        <translation>Binäres Attribut exportieren</translation>
     </message>
     <message>
         <source>&amp;Cancel</source>
-        <translation type="unfinished">&amp;Abbrechen</translation>
+        <translation>&amp;Abbrechen</translation>
     </message>
     <message>
         <source>&amp;OK</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Ok</translation>
     </message>
     <message>
         <source>Reload</source>
-        <translation type="unfinished">Neu laden</translation>
+        <translation>Neu laden</translation>
     </message>
     <message>
         <source>Save</source>
-        <translation type="unfinished">Speichern</translation>
+        <translation>Speichern</translation>
     </message>
     <message>
         <source>Add attribute...</source>
-        <translation type="unfinished">Attribut hinzufügen...</translation>
+        <translation>Attribut hinzufügen...</translation>
     </message>
     <message>
         <source>Delete object</source>
-        <translation type="unfinished">Objekt löschen</translation>
+        <translation>Objekt löschen</translation>
     </message>
     <message>
         <source>Could not bind to server.&lt;br&gt;&lt;br&gt;Reason: </source>
-        <translation type="unfinished"></translation>
+        <translation>Es konnte keine Verbindung zum Server hergestellt werden.&lt;br&gt;&lt;br&gt;Grund:</translation>
     </message>
     <message>
         <source>Could not check if object is a leaf in the ldap tree.&lt;br&gt;&lt;br&gt;Reason: </source>
-        <translation type="unfinished"></translation>
+        <translation>Es konnte nicht geprüft werden, ob das Object Blatt des LDAP Baums ist.&lt;br&gt;&lt;br&gt;Grund:</translation>
     </message>
     <message>
         <source>Could not refresh entry.&lt;br&gt;&lt;br&gt;Reason: </source>
-        <translation type="unfinished"></translation>
+        <translation>Eintrag konnte nicht aktualisiert werden.&lt;br&gt;&lt;br&gt;Grund:</translation>
     </message>
     <message>
         <source>Could not add entry.&lt;br&gt;&lt;br&gt;Reason: </source>
-        <translation type="unfinished"></translation>
+        <translation>Eintrag konnte nicht hinzugefügt werden.&lt;br&gt;&lt;br&gt;Grund:</translation>
     </message>
     <message>
         <source>Could not save entry.&lt;br&gt;&lt;br&gt;Reason: </source>
-        <translation type="unfinished"></translation>
+        <translation>Eintrag konnte nicht gespeichert werden.&lt;br&gt;&lt;br&gt;Grund:</translation>
     </message>
     <message>
         <source>Do your really want to delete the object?</source>
-        <translation type="unfinished"></translation>
+        <translation>Wollen Sie wirklich das Objekt löschen?</translation>
     </message>
     <message>
         <source>Could not delete entry.&lt;br&gt;&lt;br&gt;Reason: </source>
-        <translation type="unfinished"></translation>
+        <translation>Eintrag konnte nicht gelöscht werden.&lt;br&gt;&lt;br&gt;Grund:</translation>
     </message>
 </context>
 <context>
     <name>BaseSelector</name>
     <message>
         <source>Could not retrieve baseDN.&lt;br&gt;&lt;br&gt;Reason: </source>
-        <translation type="unfinished"></translation>
+        <translation>Basis DN konnte nicht gefunden werden.&lt;br&gt;&lt;br&gt;Grund:</translation>
     </message>
 </context>
 <context>
@@ -1107,64 +1107,64 @@ the selected objectclass.&lt;/p&gt;</source>
     <name>BinaryEditor</name>
     <message>
         <source>Given file does not exist. Please check the filename.</source>
-        <translation type="unfinished"></translation>
+        <translation>Die angegebene Datei existiert nicht. Bitte überprüfen Sie den Dateinamen.</translation>
     </message>
     <message>
         <source>Given file is a directory. Please check the filename.</source>
-        <translation type="unfinished"></translation>
+        <translation>Die angegebene Datei ist ein Verzeichnis. Bitte überprüfen Sie den Dateinamen.</translation>
     </message>
     <message>
         <source>Can&apos;t open file. Please check file permissions.</source>
-        <translation type="unfinished"></translation>
+        <translation>Datei konnte nicht geöffnet werden. Bitte überprüfen Sie die Zugriffsberechtigungen.</translation>
     </message>
     <message>
         <source>Select file to change binary value</source>
-        <translation type="unfinished">Datei auswählen, um binären Wert zu ändern</translation>
+        <translation>Wählen Sie eine Datei aus, um binären Wert zu ändern</translation>
     </message>
 </context>
 <context>
     <name>BinaryEditorDesign</name>
     <message>
         <source>Edit attribute</source>
-        <translation type="unfinished">Attribut bearbeiten</translation>
+        <translation>Attribut bearbeiten</translation>
     </message>
     <message>
         <source>IT</source>
         <comment>DO NOT TRANSLATE</comment>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>&amp;OK</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Ok</translation>
     </message>
     <message>
         <source>Alt+O</source>
-        <translation type="unfinished"></translation>
+        <translation>Alt+O</translation>
     </message>
     <message>
         <source>&amp;Cancel</source>
-        <translation type="unfinished">&amp;Abbrechen</translation>
+        <translation>&amp;Abbrechen&amp;Abbrechen</translation>
     </message>
     <message>
         <source>Alt+C</source>
-        <translation type="unfinished"></translation>
+        <translation>Alt+A</translation>
     </message>
     <message>
         <source>F</source>
         <comment>DO NOT TRANSLATE</comment>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Please enter a file location from where to load binary data for the attribute &lt;b&gt;%1&lt;/b&gt;.</source>
-        <translation type="unfinished"></translation>
+        <translation>Bitte geben Sie einen Dateinamen an, aus dem die binären Daten für das Attribut &lt;b&gt;%1&lt;/b&gt; geladen werden.</translation>
     </message>
     <message>
         <source>IL</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Location:</source>
-        <translation type="unfinished"></translation>
+        <translation>Ort:</translation>
     </message>
 </context>
 <context>
@@ -1218,31 +1218,31 @@ the selected objectclass.&lt;/p&gt;</source>
     </message>
     <message>
         <source>Could not access entry.&lt;br&gt;&lt;br&gt;Reason: </source>
-        <translation type="unfinished"></translation>
+        <translation>Zugriff auf Eintrag nicht möglich.&lt;br&gt;&lt;br&gt;Grund:</translation>
     </message>
     <message>
         <source>Could not expand entry.&lt;br&gt;&lt;br&gt;Reason: </source>
-        <translation type="unfinished"></translation>
+        <translation>Eintrag konnte nicht expandiert werden.&lt;br&gt;&lt;br&gt;Grund:</translation>
     </message>
     <message>
         <source>Could not retrieve baseDN.&lt;br&gt;&lt;br&gt;Reason: </source>
-        <translation type="unfinished"></translation>
+        <translation>Basis DN konnte nicht gefunden werden.&lt;br&gt;&lt;br&gt;Grund:</translation>
     </message>
     <message>
         <source>Could not export item.&lt;br&gt;&lt;br&gt;Reason: </source>
-        <translation type="unfinished"></translation>
+        <translation>Eintrag konnte nicht exportiert werden.&lt;br&gt;&lt;br&gt;Grund:</translation>
     </message>
     <message>
         <source>Could not export items.&lt;br&gt;&lt;br&gt;Reason: </source>
-        <translation type="unfinished"></translation>
+        <translation>Einträge konnten nicht exportiert werden.&lt;br&gt;&lt;br&gt;Grund:</translation>
     </message>
     <message>
         <source>Could not retrieve entry for deletion.&lt;br&gt;&lt;br&gt;Reason: </source>
-        <translation type="unfinished"></translation>
+        <translation>Konnte zu löschenden Eintrag nicht finden.&lt;br&gt;&lt;br&gt;Grund:</translation>
     </message>
     <message>
         <source>Export</source>
-        <translation type="unfinished"></translation>
+        <translation>Exportieren</translation>
     </message>
 </context>
 <context>
@@ -1446,15 +1446,15 @@ the selected objectclass.&lt;/p&gt;</source>
     </message>
     <message>
         <source>Could not bind to server.&lt;br&gt;&lt;br&gt;Reason: </source>
-        <translation type="unfinished"></translation>
+        <translation>Es konnte keine Verbindung zum Server hergestellt werden.&lt;br&gt;&lt;br&gt;Grund:</translation>
     </message>
     <message>
         <source>Could not add entry.&lt;br&gt;&lt;br&gt;Reason: </source>
-        <translation type="unfinished"></translation>
+        <translation>Eintrag konnte nicht hinzugefügt werden.&lt;br&gt;&lt;br&gt;Grund:</translation>
     </message>
     <message>
         <source>Incomplete information.</source>
-        <translation type="unfinished"></translation>
+        <translation>Unvollständige Informationen.</translation>
     </message>
 </context>
 <context>
@@ -1489,158 +1489,158 @@ the selected objectclass.&lt;/p&gt;</source>
     <name>DeleteDialog</name>
     <message>
         <source>Item deleted successfully.</source>
-        <translation type="unfinished"></translation>
+        <translation>Eintrag erfolgreich gelöscht.</translation>
     </message>
 </context>
 <context>
     <name>DeleteDialogDesign</name>
     <message>
         <source>DN</source>
-        <translation type="unfinished"></translation>
+        <translation>DN</translation>
     </message>
     <message>
         <source>Message</source>
-        <translation type="unfinished"></translation>
+        <translation>Meldung</translation>
     </message>
     <message>
         <source>Delete items</source>
-        <translation type="unfinished"></translation>
+        <translation>Einträge löschen</translation>
     </message>
     <message>
         <source>&amp;Cancel</source>
-        <translation type="unfinished">&amp;Abbrechen</translation>
+        <translation>&amp;Abbrechen</translation>
     </message>
     <message>
         <source>Alt+C</source>
-        <translation type="unfinished"></translation>
+        <translation>Alt+A</translation>
     </message>
     <message>
         <source>DL</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>The following entries will be deleted from the server. You can remove items from the list if you don&apos;t want them to be deleted. Press start to begin with deletion.</source>
-        <translation type="unfinished"></translation>
+        <translation>Die folgenden Einträge werden vom Server gelöscht. Sie können einzelne Einträge von der Liste entfernen, damit sie nicht gelöscht werden. Drücken Sie &apos;Start&apos; um mit dem Löschen zu beginnen.</translation>
     </message>
     <message>
         <source>&amp;Start</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Start</translation>
     </message>
     <message>
         <source>Alt+S</source>
-        <translation type="unfinished">Alt+S</translation>
+        <translation>Alt+S</translation>
     </message>
     <message>
         <source>&amp;Remove</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Entfernen</translation>
     </message>
     <message>
         <source>Alt+R</source>
-        <translation type="unfinished"></translation>
+        <translation>Alt+E</translation>
     </message>
 </context>
 <context>
     <name>ExportDialog</name>
     <message>
         <source>Select file to change binary value</source>
-        <translation type="unfinished"></translation>
+        <translation>Wählen Sie eine Datei aus, um binären Wert zu ändern</translation>
     </message>
     <message>
         <source>Given file is a directory. Please check the filename.</source>
-        <translation type="unfinished"></translation>
+        <translation>Die angegebene Datei ist ein Verzeichnis. Bitte überprüfen Sie den Dateinamen.</translation>
     </message>
     <message>
         <source>Can&apos;t open file. Please check file system permissions.</source>
-        <translation type="unfinished"></translation>
+        <translation>Datei konnte nicht geöffnet werden. Bitte überprüfen Sie die Zugriffsberechtigungen.</translation>
     </message>
     <message>
         <source>Could not export all entires. Please check messages.</source>
-        <translation type="unfinished"></translation>
+        <translation>Es konnten nicht alle Einträge exportiert werden. Bitte überprüfen Sie die Meldungen für mögliche Fehlerursachen.</translation>
     </message>
     <message>
         <source>All items exported successfully.</source>
-        <translation type="unfinished"></translation>
+        <translation>Alle Eintrage erfolgreich exportiert.</translation>
     </message>
     <message>
         <source>Item exported successfully.</source>
-        <translation type="unfinished"></translation>
+        <translation>Eintrag erfolgreich exportiert.</translation>
     </message>
 </context>
 <context>
     <name>ExportDialogDesign</name>
     <message>
         <source>1</source>
-        <translation type="unfinished"></translation>
+        <translation>1</translation>
     </message>
     <message>
         <source>DN</source>
-        <translation type="unfinished"></translation>
+        <translation>DN</translation>
     </message>
     <message>
         <source>Message</source>
-        <translation type="unfinished"></translation>
+        <translation>Meldung</translation>
     </message>
     <message>
         <source>Export items</source>
-        <translation type="unfinished"></translation>
+        <translation>Einträge exportieren</translation>
     </message>
     <message>
         <source>The following entries will be exported to the format of your choice. You can remove items from the list if you don&apos;t want them to be exported. Press start to begin with export..</source>
-        <translation type="unfinished"></translation>
+        <translation>Die folgenden Einträge werden in das von Ihnen gewählte Format exportiert. Sie können einzelne Einträge von der Liste entfernen, wenn sie nicht exportiert werden sollen. Drücken Sie &apos;Start&apos; um mit dem Exportieren zu beginnen.</translation>
     </message>
     <message>
         <source>&amp;Start</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Start</translation>
     </message>
     <message>
         <source>Alt+S</source>
-        <translation type="unfinished">Alt+S</translation>
+        <translation>Alt+S</translation>
     </message>
     <message>
         <source>&amp;Remove</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Entfernen</translation>
     </message>
     <message>
         <source>Alt+R</source>
-        <translation type="unfinished"></translation>
+        <translation>Alt+E</translation>
     </message>
     <message>
         <source>DL</source>
         <comment>DO NOT TRANSLATE</comment>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>A</source>
         <comment>DO NOT TRANSLATE</comment>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Export format:</source>
-        <translation type="unfinished"></translation>
+        <translation>Export Format:</translation>
     </message>
     <message>
         <source>foo</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>LDIF</source>
-        <translation type="unfinished"></translation>
+        <translation>LDIF</translation>
     </message>
     <message>
         <source>DSML</source>
-        <translation type="unfinished"></translation>
+        <translation>DSML</translation>
     </message>
     <message>
         <source>Output file:</source>
-        <translation type="unfinished"></translation>
+        <translation>Ausgabedatei:</translation>
     </message>
     <message>
         <source>&amp;Cancel</source>
-        <translation type="unfinished">&amp;Abbrechen</translation>
+        <translation>&amp;Abbrechen</translation>
     </message>
     <message>
         <source>Alt+C</source>
-        <translation type="unfinished"></translation>
+        <translation>Alt+A</translation>
     </message>
 </context>
 <context>
@@ -1746,11 +1746,11 @@ the selected objectclass.&lt;/p&gt;</source>
     <name>GroupDialog</name>
     <message>
         <source>Could not bind to server.&lt;br&gt;&lt;br&gt;Reason: </source>
-        <translation type="unfinished"></translation>
+        <translation>Es konnte keine Verbindung zum Server hergestellt werden.&lt;br&gt;&lt;br&gt;Grund:</translation>
     </message>
     <message>
         <source>Could retrieve other group information.&lt;br&gt;&lt;br&gt;Reason: </source>
-        <translation type="unfinished"></translation>
+        <translation>Gruppeninformationen konnten nicht abgefragt werden.&lt;br&gt;br&gt;Grund:</translation>
     </message>
 </context>
 <context>
@@ -1856,27 +1856,27 @@ the selected objectclass.&lt;/p&gt;</source>
     </message>
     <message>
         <source>Could not retrieve baseDN.&lt;br&gt;&lt;br&gt;Reason: </source>
-        <translation type="unfinished"></translation>
+        <translation>Basis DN konnte nicht gefunden werden.&lt;br&gt;&lt;br&gt;Grund:</translation>
     </message>
     <message>
         <source>Could not bind to server.&lt;br&gt;&lt;br&gt;Reason: </source>
-        <translation type="unfinished"></translation>
+        <translation>Es konnte keine Verbindung zum Server hergestellt werden.&lt;br&gt;&lt;br&gt;Grund:</translation>
     </message>
     <message>
         <source>Could not search entries.&lt;br&gt;&lt;br&gt;Reason: </source>
-        <translation type="unfinished"></translation>
+        <translation>Eintrage konnten nicht durchsucht werden.&lt;br&gt;&lt;br&gt;Grund:</translation>
     </message>
     <message>
         <source>Could not access entry.&lt;br&gt;&lt;br&gt;Reason: </source>
-        <translation type="unfinished"></translation>
+        <translation>Zugriff auf Eintrag nicht möglich.&lt;br&gt;&lt;br&gt;Grund:</translation>
     </message>
     <message>
         <source>Do your really want to delete the selected contact?</source>
-        <translation type="unfinished"></translation>
+        <translation>Möchten Sie wirklich den ausgewählten Kontakt löschen?</translation>
     </message>
     <message>
         <source>Could not delete entry.&lt;br&gt;&lt;br&gt;Reason: </source>
-        <translation type="unfinished"></translation>
+        <translation>Eintrag konnte nicht gelöscht werden.&lt;br&gt;&lt;br&gt;Grund:</translation>
     </message>
 </context>
 <context>
@@ -1935,19 +1935,19 @@ the selected objectclass.&lt;/p&gt;</source>
     <name>LumaErrorDialogDesign</name>
     <message>
         <source>Error</source>
-        <translation type="unfinished">Fehler</translation>
+        <translation>Fehler</translation>
     </message>
     <message>
         <source>EL</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>&amp;OK</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Ok</translation>
     </message>
     <message>
         <source>Alt+O</source>
-        <translation type="unfinished"></translation>
+        <translation>Alt+O</translation>
     </message>
 </context>
 <context>
@@ -2083,35 +2083,35 @@ Versuchen sie entweder den Bereich für die uids zu erweitern oder löschen sie 
     </message>
     <message>
         <source>Incomplete information</source>
-        <translation type="unfinished"></translation>
+        <translation>Unvollständige Informationen</translation>
     </message>
     <message>
         <source>Warning</source>
-        <translation type="unfinished"></translation>
+        <translation>Warnung</translation>
     </message>
     <message>
         <source>Could not bind to server.&lt;br&gt;&lt;br&gt;Reason: </source>
-        <translation type="unfinished"></translation>
+        <translation>Es konnte keine Verbindung zum Server hergestellt werden.&lt;br&gt;&lt;br&gt;Grund:</translation>
     </message>
     <message>
         <source>Could not create all users.&lt;br&gt;&lt;br&gt;Reason: </source>
-        <translation type="unfinished"></translation>
+        <translation>Es konnten nicht alle Benutzer erstellt werden.&lt;br&gt;&lt;br&gt;Grund:</translation>
     </message>
     <message>
         <source>Could not create all automount information.&lt;br&gt;&lt;br&gt;Reason: </source>
-        <translation type="unfinished"></translation>
+        <translation>Es konnten nicht alle Automount Informationen erstellt werden.&lt;br&gt;&lt;br&gt;Grund:</translation>
     </message>
     <message>
         <source>Could not retrieve used userid numbers.&lt;br&gt;&lt;br&gt;Reason: </source>
-        <translation type="unfinished"></translation>
+        <translation>Es konnten keine vergebenen Benutzer ID Nummern abgerufen werden.&lt;br&gt;&lt;br&gt;Grund:</translation>
     </message>
     <message>
         <source>Wrong entry</source>
-        <translation type="unfinished"></translation>
+        <translation>Falscher Eintrag</translation>
     </message>
     <message>
         <source>Could not retrieve selected item.&lt;br&gt;&lt;br&gt;Reason: </source>
-        <translation type="unfinished"></translation>
+        <translation>Der gewählte Eintrag konnte nicht abgerufen werden.&lt;br&gt;&lt;br&gt;Grund:</translation>
     </message>
 </context>
 <context>
@@ -2498,55 +2498,55 @@ Versuchen sie entweder den Bereich für die uids zu erweitern oder löschen sie 
     <name>PasswordEditor</name>
     <message>
         <source>Passwords match</source>
-        <translation type="unfinished">Passwörter stimmen überein</translation>
+        <translation>Passwörter stimmen überein</translation>
     </message>
     <message>
         <source>Passwords do not match</source>
-        <translation type="unfinished">Passwörter stimmen nicht überein</translation>
+        <translation>Passwörter stimmen nicht überein</translation>
     </message>
 </context>
 <context>
     <name>PasswordEditorDesign</name>
     <message>
         <source>New password</source>
-        <translation type="unfinished">Neues Passwort</translation>
+        <translation>Neues Passwort</translation>
     </message>
     <message>
         <source>PW</source>
         <comment>DO NOT TRANSLATE</comment>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>&amp;OK</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Ok</translation>
     </message>
     <message>
         <source>&amp;Cancel</source>
-        <translation type="unfinished">&amp;Abbrechen</translation>
+        <translation>&amp;Abbrechen</translation>
     </message>
     <message>
         <source>Strength:</source>
-        <translation type="unfinished">Stärke:</translation>
+        <translation>Stärke:</translation>
     </message>
     <message>
         <source>Hash algorithm:</source>
-        <translation type="unfinished">Hash Algorithmus:</translation>
+        <translation>Hash Algorithmus:</translation>
     </message>
     <message>
         <source>Password:</source>
-        <translation type="unfinished">Passwort:</translation>
+        <translation>Passwort:</translation>
     </message>
     <message>
         <source>Verify:</source>
-        <translation type="unfinished">Bestätigen:</translation>
+        <translation>Bestätigen:</translation>
     </message>
     <message>
         <source>Passwords do not match</source>
-        <translation type="unfinished">Passwörter stimmen nicht überein</translation>
+        <translation>Passwörter stimmen nicht überein</translation>
     </message>
     <message>
         <source>&lt;b&gt;Please enter a new password.&lt;/b&gt;</source>
-        <translation type="unfinished">&lt;b&gt;Geben Sie ein neues Passwort an.&lt;/b&gt;</translation>
+        <translation>&lt;b&gt;Bitte geben Sie ein neues Passwort an.&lt;/b&gt;</translation>
     </message>
 </context>
 <context>
@@ -2604,201 +2604,201 @@ Versuchen sie entweder den Bereich für die uids zu erweitern oder löschen sie 
     <name>RdnEditorDesign</name>
     <message>
         <source>Edit DN</source>
-        <translation type="unfinished"></translation>
+        <translation>DN editieren</translation>
     </message>
     <message>
         <source>IT</source>
         <comment>DO NOT TRANSLATE</comment>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>&amp;OK</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Ok</translation>
     </message>
     <message>
         <source>Alt+O</source>
-        <translation type="unfinished"></translation>
+        <translation>Alt+O</translation>
     </message>
     <message>
         <source>&amp;Cancel</source>
-        <translation type="unfinished">&amp;Abbrechen</translation>
+        <translation>&amp;Abbrechen</translation>
     </message>
     <message>
         <source>Alt+C</source>
-        <translation type="unfinished"></translation>
+        <translation>Alt+A</translation>
     </message>
     <message>
         <source>Value:</source>
-        <translation type="unfinished"></translation>
+        <translation>Wert:</translation>
     </message>
     <message>
         <source>DN:</source>
-        <translation type="unfinished"></translation>
+        <translation>DN:</translation>
     </message>
     <message>
         <source>Please choose an attribute and enter a value for it. These values will be part of distinguished name for the new object.</source>
-        <translation type="unfinished"></translation>
+        <translation>Bitte wählen Sie ein Attribute und geben Sie den Wert an. Dieser Wert wird Teil des DN für den neuen Eintrag.</translation>
     </message>
     <message>
         <source>Attribute:</source>
-        <translation type="unfinished">Attribut:</translation>
+        <translation>Attribut:</translation>
     </message>
 </context>
 <context>
     <name>SchemaView</name>
     <message>
         <source>Could not fetch schema information from server.&lt;br&gt;&lt;br&gt;Reason: </source>
-        <translation type="unfinished"></translation>
+        <translation>Schema informationen konnten nicht vom Server empfangen werden.&lt;br&gt;&lt;br&gt;Grund:</translation>
     </message>
     <message>
         <source>&lt;b&gt;Attribute name&lt;/b&gt;&lt;br&gt;Description</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;Attributname&lt;/b&gt;&lt;br&gt;Beschreibung</translation>
     </message>
     <message>
         <source>&lt;b&gt;Class Name&lt;/b&gt;&lt;br&gt;Description</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;Klassenname&lt;/b&gt;&lt;br&gt;Beschreibung</translation>
     </message>
     <message>
         <source>&lt;b&gt;Syntax&lt;/b&gt;&lt;br&gt;Description</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;Syntax&lt;/b&gt;&lt;br&gt;Beschreibung</translation>
     </message>
     <message>
         <source>&lt;b&gt;Matching rule&lt;/b&gt;&lt;br&gt;Description</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;Bildungsregeln&lt;/b&gt;&lt;br&gt;Beschreibung</translation>
     </message>
 </context>
 <context>
     <name>SchemaViewDesign</name>
     <message>
         <source>Form</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Server:</source>
-        <translation type="unfinished">Server:</translation>
+        <translation>Server:</translation>
     </message>
     <message>
         <source>Filter:</source>
-        <translation type="unfinished">Filter:</translation>
+        <translation>Filter:</translation>
     </message>
     <message>
         <source>ObjectClasses</source>
-        <translation type="unfinished"></translation>
+        <translation>Objektklassen</translation>
     </message>
     <message>
         <source>Attributes</source>
-        <translation type="unfinished">Attribute</translation>
+        <translation>Attribute</translation>
     </message>
     <message>
         <source>Matching rules</source>
-        <translation type="unfinished"></translation>
+        <translation>Bildungsregeln</translation>
     </message>
     <message>
         <source>LDAP syntaxes</source>
-        <translation type="unfinished"></translation>
+        <translation>LDAP Syntaxen</translation>
     </message>
     <message>
         <source>&lt;b&gt;Class Name&lt;/b&gt;&lt;br&gt;
 Description</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;Klassenname&lt;/b&gt;&lt;br&gt;Beschreibung</translation>
     </message>
     <message>
         <source>Kind:</source>
-        <translation type="unfinished"></translation>
+        <translation>Art:</translation>
     </message>
     <message>
         <source>OID:</source>
-        <translation type="unfinished"></translation>
+        <translation>OID:</translation>
     </message>
     <message>
         <source>Superior:</source>
-        <translation type="unfinished"></translation>
+        <translation>Übergeordnet:</translation>
     </message>
     <message>
         <source>&lt;b&gt;Required attributes&lt;/b&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;Benötigte Attribute&lt;/b&gt;</translation>
     </message>
     <message>
         <source>&lt;b&gt;Allowed attributes&lt;/b&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;Erlaubte Attribute&lt;/b&gt;</translation>
     </message>
     <message>
         <source>&lt;b&gt;Attribute name&lt;/b&gt;&lt;br&gt;
 Description</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;Attributname&lt;/b&gt;&lt;br&gt;Beschreibung</translation>
     </message>
     <message>
         <source>&lt;b&gt;Used in ObjectClasses&lt;/b&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;Benutzt in Objektklassen&lt;/b&gt;</translation>
     </message>
     <message>
         <source>Single value</source>
-        <translation type="unfinished"></translation>
+        <translation>Allein stehend</translation>
     </message>
     <message>
         <source>Collective</source>
-        <translation type="unfinished"></translation>
+        <translation>Verband</translation>
     </message>
     <message>
         <source>Obsolete</source>
-        <translation type="unfinished"></translation>
+        <translation>Obsolet</translation>
     </message>
     <message>
         <source>Syntax {length}:</source>
-        <translation type="unfinished"></translation>
+        <translation>Syntax {Länge}:</translation>
     </message>
     <message>
         <source>Ordering:</source>
-        <translation type="unfinished"></translation>
+        <translation>Anordnung:</translation>
     </message>
     <message>
         <source>Usage:</source>
-        <translation type="unfinished"></translation>
+        <translation>Gebrauch:</translation>
     </message>
     <message>
         <source>Equality:</source>
-        <translation type="unfinished"></translation>
+        <translation>Gleichheit:</translation>
     </message>
     <message>
         <source>&lt;b&gt;Matching rule&lt;/b&gt;&lt;br&gt;
 Description</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;Vergleichregel&lt;/b&gt;&lt;br&gt;Beschreibung</translation>
     </message>
     <message>
         <source>Syntax:</source>
-        <translation type="unfinished"></translation>
+        <translation>Syntax:</translation>
     </message>
     <message>
         <source>&lt;b&gt;Used in Attribute&lt;/b&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;Benutzt in Attributen&lt;/b&gt;</translation>
     </message>
     <message>
         <source>&lt;b&gt;Syntax&lt;/b&gt;&lt;br&gt;
 Description</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;Syntax&lt;/b&gt;&lt;br&gt;Beschreibung</translation>
     </message>
     <message>
         <source>&lt;b&gt;Used in attributes&lt;/b&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;Benutzt in Attributen&lt;/b&gt;</translation>
     </message>
     <message>
         <source>&lt;b&gt;Used in matching rules&lt;/b&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;Benutzt in Vergleichsregeln&lt;/b&gt;</translation>
     </message>
 </context>
 <context>
     <name>SearchForm</name>
     <message>
         <source>Could not bind to server.&lt;br&gt;&lt;br&gt;Reason: </source>
-        <translation type="unfinished"></translation>
+        <translation>Es konnte keine Verbindung zum Server hergestellt werden.&lt;br&gt;&lt;br&gt;Grund:</translation>
     </message>
     <message>
         <source>Error during search operation.&lt;br&gt;&lt;br&gt;Reason: </source>
-        <translation type="unfinished"></translation>
+        <translation>Fehler beim Suchen.&lt;br&gt;&lt;br&gt;Grund:</translation>
     </message>
     <message>
         <source>Could not retrieve baseDN.&lt;br&gt;&lt;br&gt;Reason: </source>
-        <translation type="unfinished"></translation>
+        <translation>Basis DN konnte nicht gefunden werden.&lt;br&gt;&lt;br&gt;Grund:</translation>
     </message>
 </context>
 <context>
@@ -2852,15 +2852,15 @@ Description</source>
     </message>
     <message>
         <source>&lt;u&gt;Binary value&lt;/u&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;u&gt;Binärer Wert&lt;/u&gt;</translation>
     </message>
     <message>
         <source>Could not bind to server.&lt;br&gt;&lt;br&gt;Reason: </source>
-        <translation type="unfinished"></translation>
+        <translation>Es konnte keine Verbindung zum Server hergestellt werden.&lt;br&gt;&lt;br&gt;Grund:</translation>
     </message>
     <message>
         <source>Could not access entry.&lt;br&gt;&lt;br&gt;Reason: </source>
-        <translation type="unfinished"></translation>
+        <translation>Zugriff auf Eintrag nicht möglich.&lt;br&gt;&lt;br&gt;Grund:</translation>
     </message>
 </context>
 <context>
@@ -2890,7 +2890,7 @@ Description</source>
     </message>
     <message>
         <source>Could not retrieve baseDN for LDAP server at host/ip:</source>
-        <translation type="unfinished"></translation>
+        <translation>Basis DN für den Rechner/IP konnte nicht empfangen werden:</translation>
     </message>
 </context>
 <context>
@@ -3044,36 +3044,36 @@ Description</source>
     <name>StandardEditorDesign</name>
     <message>
         <source>Edit attribute</source>
-        <translation type="unfinished">Attribut bearbeiten</translation>
+        <translation>Attribut bearbeiten</translation>
     </message>
     <message>
         <source>IT</source>
         <comment>DO NOT TRANSLATE</comment>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Please enter a new value for the attribute &lt;b&gt;%1&lt;/b&gt;.</source>
-        <translation type="unfinished"></translation>
+        <translation>Bitte geben Sie einen neuen Wert für das Attribut &lt;b&gt;%1&lt;/b&gt; an.</translation>
     </message>
     <message>
         <source>&amp;OK</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Ok</translation>
     </message>
     <message>
         <source>Alt+O</source>
-        <translation type="unfinished"></translation>
+        <translation>Alt+O</translation>
     </message>
     <message>
         <source>&amp;Cancel</source>
-        <translation type="unfinished">&amp;Abbrechen</translation>
+        <translation>&amp;Abbrechen</translation>
     </message>
     <message>
         <source>Alt+C</source>
-        <translation type="unfinished"></translation>
+        <translation>Alt+A</translation>
     </message>
     <message>
         <source>Value:</source>
-        <translation type="unfinished"></translation>
+        <translation>Wert:</translation>
     </message>
 </context>
 <context>
@@ -3223,19 +3223,19 @@ Description</source>
     </message>
     <message>
         <source>Could not bind to server.&lt;br&gt;&lt;br&gt;Reason: </source>
-        <translation type="unfinished"></translation>
+        <translation>Es konnte keine Verbindung zum Server hergestellt werden.&lt;br&gt;&lt;br&gt;Grund:</translation>
     </message>
     <message>
         <source>Could not save entry.&lt;br&gt;&lt;br&gt;Reason: </source>
-        <translation type="unfinished"></translation>
+        <translation>Eintrag konnte nicht gespeichert werden.&lt;br&gt;&lt;br&gt;Grund:</translation>
     </message>
     <message>
         <source>Could not update all group information.&lt;br&gt;&lt;br&gt;Reason: </source>
-        <translation type="unfinished"></translation>
+        <translation>Gruppeninformationen konnten nicht abgefragt werden.&lt;br&gt;br&gt;Grund:</translation>
     </message>
     <message>
         <source>Could not retrieve used userids.&lt;br&gt;&lt;br&gt;Reason: </source>
-        <translation type="unfinished"></translation>
+        <translation>Es konnten keine vergebenen Benutzer ID Nummern abgerufen werden.&lt;br&gt;&lt;br&gt;Grund:</translation>
     </message>
 </context>
 <context>
