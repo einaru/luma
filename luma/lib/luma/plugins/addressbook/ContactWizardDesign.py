@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file '/home/wido/src/luma/lib/luma/plugins/addressbook/ContactWizardDesign.ui'
 #
-# Created: Thu Apr 29 22:22:49 2004
+# Created: Tue Jul 6 18:43:02 2004
 #      by: The PyQt User Interface Compiler (pyuic) 3.11
 #
 # WARNING! All changes made in this file will be lost!

@@ -447,7 +447,7 @@ class AddressbookWidget(AddressbookWidgetDesign):
         
         connection = LumaConnection(self.serverMeta)
         connection.bind()
-        result = connection.modify_s(self.dn, modlist)
+        result = connection.modify(self.dn, modlist)
         connection.unbind()
         
         if result == 0:
@@ -468,7 +468,7 @@ Please read console output for more information."""),
         connection = LumaConnection(self.serverMeta)
         
         connection.bind()
-        result = connection.search_s(self.dn)
+        result = connection.search(self.dn)
         connection.unbind()
         
         return result[0][1]
@@ -495,5 +495,20 @@ Please read console output for more information."""),
                 if (x == 'category'):
                     self.categoryButton.setEnabled(False)
 
+###############################################################################
 
+    def buildToolBar(self, parent):
+        toolBar = QToolBar(parent)
+        
+        lumaIconPath = os.path.join (environment.lumaInstallationPrefix, "share", "luma", "icons")
+        savePixmap = QPixmap(os.path.join(lumaIconPath, "save.png"))
+    
+        self.saveButton = QToolButton(toolBar, "saveValues")
+        self.saveButton.setIconSet(QIconSet(savePixmap))
+        self.saveButton.setSizePolicy(QSizePolicy(QSizePolicy.Fixed, QSizePolicy.Fixed))
+        self.saveButton.setAutoRaise(True)
+        self.saveButton.setBackgroundMode(self.backgroundMode())
+        QToolTip.add(self.saveButton, self.trUtf8("Save"))
+        self.connect(self.saveButton, SIGNAL("clicked()"), self.saveEntry)
+    
     

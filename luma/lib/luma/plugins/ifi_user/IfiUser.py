@@ -138,7 +138,7 @@ Try increasing the uidNumber range or delete some users from the subtree."""),
             #modList.append(('mailAlternateAddress', userName + "@mail.in.tu-clausthal.de"))
             
             tmpDN = 'uid=' + userName + "," + baseDN
-            searchResult = ldapServerObject.add_s(tmpDN, modList)
+            searchResult = ldapServerObject.add(tmpDN, modList)
             
             # creating automount entry
             modList = []
@@ -147,7 +147,7 @@ Try increasing the uidNumber range or delete some users from the subtree."""),
             modList.append(('automountInformation', '-fstype=nfs,rw,quota,soft,intr home.in.tu-clausthal.de:' + homeDir))
             modList.append(('description', 'Mountpoint des Homeverzeichnisses von ' + userName))
             tmpDN = "cn=" + userName + ",ou=home,ou=automount,dc=in.tu-clausthal,dc=de"
-            searchResult = ldapServerObject.add_s(tmpDN, modList)
+            searchResult = ldapServerObject.add(tmpDN, modList)
             
             self.passwordEdit.append(userName + ': ' + passwordClear + "\n") 
                 

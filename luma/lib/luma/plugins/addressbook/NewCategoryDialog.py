@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file '/home/wido/src/luma/lib/luma/plugins/addressbook/NewCategoryDialog.ui'
 #
-# Created: Mon Apr 26 16:00:31 2004
+# Created: Tue Jul 6 18:43:00 2004
 #      by: The PyQt User Interface Compiler (pyuic) 3.11
 #
 # WARNING! All changes made in this file will be lost!
@@ -46,19 +46,12 @@ class NewCategoryDialog(QDialog):
         layout2.addWidget(self.cancelButton)
 
         NewCategoryDialogLayout.addLayout(layout2,3,0)
-
-        self.line12 = QFrame(self,"line12")
-        self.line12.setFrameShape(QFrame.HLine)
-        self.line12.setFrameShadow(QFrame.Sunken)
-        self.line12.setFrameShape(QFrame.HLine)
-
-        NewCategoryDialogLayout.addWidget(self.line12,2,0)
-        spacer14 = QSpacerItem(21,16,QSizePolicy.Minimum,QSizePolicy.Expanding)
+        spacer14 = QSpacerItem(21,15,QSizePolicy.Minimum,QSizePolicy.Minimum)
         NewCategoryDialogLayout.addItem(spacer14,1,0)
 
         self.languageChange()
 
-        self.resize(QSize(364,113).expandedTo(self.minimumSizeHint()))
+        self.resize(QSize(395,114).expandedTo(self.minimumSizeHint()))
         self.clearWState(Qt.WState_Polished)
 
         self.connect(self.cancelButton,SIGNAL("clicked()"),self,SLOT("reject()"))

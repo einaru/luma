@@ -60,19 +60,23 @@ class SearchResultView(SearchResultViewDesign):
                 del self.childWidgets[number]
                 del self.childsToClean[0]
 
-        widget = ObjectWidget(None, unicode(listItem.text(0)).encode('utf-8'), 0)
+        floatingWidget = ChildWindow(None)
+        widget = ObjectWidget(floatingWidget, unicode(listItem.text(0)).encode('utf-8'), 0)
+        floatingWidget.setCentralWidget(widget)
+        widget.buildToolBar(floatingWidget)
         values = [self.RESULT[unicode(listItem.text(0)).encode('utf-8')]]
-        #print values
         widget.initView(self.SERVER, values)
         widget.setMinimumHeight(500)
-        widget.show()
-        widget.setCaption(listItem.text(0))
         
         # needed if window is closed. gets deletetd from the list
-        widget.installEventFilter(self)
+        floatingWidget.installEventFilter(self)
+        
+        #widget.show()
+        widget.setCaption(listItem.text(0))
+        floatingWidget.show()
         
         # don't loose reference. normally window will disappear if function is completed
-        self.childWidgets.append(widget)
+        self.childWidgets.append(floatingWidget)
 
 ###############################################################################
 
@@ -159,7 +163,7 @@ class SearchResultView(SearchResultViewDesign):
                 # keep UI responsive
                 environment.updateUI()
                 
-                ldapServerObject.delete_s(unicode(x.text(0)))
+                ldapServerObject.delete(unicode(x.text(0)))
                 
             if len(serverMeta.bindDN) > 0:
                 ldapServerObject.unbind()
@@ -244,3 +248,14 @@ class SearchResultView(SearchResultViewDesign):
             tmpList.append("\n")
         return "".join(tmpList)
     
+###############################################################################
+
+class ChildWindow(QMainWindow):
+    
+    def __init__(self, parent = None):
+        QMainWindow.__init__(self)
+        
+        
+    def closeEvent(self, event):
+        self.emit(PYSIGNAL("child_closed"), (self,))
+        self.deleteLater()

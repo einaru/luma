@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file '/home/wido/src/luma/lib/luma/plugins/usermanagement/GroupDialogDesign.ui'
 #
-# Created: Sat Jul 3 23:31:13 2004
+# Created: Mon Jul 5 22:24:16 2004
 #      by: The PyQt User Interface Compiler (pyuic) 3.11
 #
 # WARNING! All changes made in this file will be lost!
@@ -22,28 +22,6 @@ class GroupDialogDesign(QDialog):
         self.setSizeGripEnabled(1)
 
         GroupDialogDesignLayout = QGridLayout(self,1,1,11,6,"GroupDialogDesignLayout")
-
-        layout7 = QHBoxLayout(None,0,6,"layout7")
-        Horizontal_Spacing2 = QSpacerItem(290,20,QSizePolicy.Expanding,QSizePolicy.Minimum)
-        layout7.addItem(Horizontal_Spacing2)
-
-        self.okButton = QPushButton(self,"okButton")
-        self.okButton.setAutoDefault(0)
-        self.okButton.setDefault(0)
-        layout7.addWidget(self.okButton)
-
-        self.cancelButton = QPushButton(self,"cancelButton")
-        self.cancelButton.setAutoDefault(0)
-        layout7.addWidget(self.cancelButton)
-
-        GroupDialogDesignLayout.addMultiCellLayout(layout7,11,11,0,3)
-
-        self.line1 = QFrame(self,"line1")
-        self.line1.setFrameShape(QFrame.HLine)
-        self.line1.setFrameShadow(QFrame.Sunken)
-        self.line1.setFrameShape(QFrame.HLine)
-
-        GroupDialogDesignLayout.addMultiCellWidget(self.line1,10,10,0,3)
         spacer7 = QSpacerItem(20,31,QSizePolicy.Fixed,QSizePolicy.Minimum)
         GroupDialogDesignLayout.addItem(spacer7,9,0)
 
@@ -124,9 +102,26 @@ class GroupDialogDesign(QDialog):
 
         GroupDialogDesignLayout.addMultiCellLayout(layout10,0,0,0,3)
 
+        layout7 = QHBoxLayout(None,0,6,"layout7")
+        Horizontal_Spacing2 = QSpacerItem(290,20,QSizePolicy.Expanding,QSizePolicy.Minimum)
+        layout7.addItem(Horizontal_Spacing2)
+
+        self.okButton = QPushButton(self,"okButton")
+        self.okButton.setAutoDefault(0)
+        self.okButton.setDefault(0)
+        layout7.addWidget(self.okButton)
+
+        self.cancelButton = QPushButton(self,"cancelButton")
+        self.cancelButton.setAutoDefault(0)
+        layout7.addWidget(self.cancelButton)
+
+        GroupDialogDesignLayout.addMultiCellLayout(layout7,11,11,0,3)
+        spacer8 = QSpacerItem(21,20,QSizePolicy.Minimum,QSizePolicy.Fixed)
+        GroupDialogDesignLayout.addItem(spacer8,10,3)
+
         self.languageChange()
 
-        self.resize(QSize(556,574).expandedTo(self.minimumSizeHint()))
+        self.resize(QSize(492,569).expandedTo(self.minimumSizeHint()))
         self.clearWState(Qt.WState_Polished)
 
         self.connect(self.cancelButton,SIGNAL("clicked()"),self,SLOT("reject()"))
@@ -139,10 +134,6 @@ class GroupDialogDesign(QDialog):
 
     def languageChange(self):
         self.setCaption(self.__tr("Edit group membership"))
-        self.okButton.setText(self.__tr("&OK"))
-        self.okButton.setAccel(QString.null)
-        self.cancelButton.setText(self.__tr("&Cancel"))
-        self.cancelButton.setAccel(QString.null)
         self.textLabel2.setText(self.__tr("<b>Primary Group</b>"))
         self.textLabel1.setText(self.__tr("LDAP Groups:"))
         self.infoLabel.setText(self.__tr("You may select from the groups available in the LDAP database or enter any ID that is valid on the system below."))
@@ -154,6 +145,10 @@ class GroupDialogDesign(QDialog):
         self.textLabel3.setText(self.__tr("Group ID:"))
         self.groupLabel.setText(self.__tr("GR","DO NOT TRANSLATE"))
         self.textLabel.setText(self.__tr("Select the groups the <strong>%1</strong> user should belong to."))
+        self.okButton.setText(self.__tr("&OK"))
+        self.okButton.setAccel(QString.null)
+        self.cancelButton.setText(self.__tr("&Cancel"))
+        self.cancelButton.setAccel(QString.null)
 
 
     def groupNameChanged(self):

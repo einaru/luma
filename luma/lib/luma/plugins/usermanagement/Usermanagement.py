@@ -51,3 +51,9 @@ class Usermanagement(QWidget):
         dialog.exec_loop()
 
         dialog.result()
+        
+###############################################################################
+
+    def buildToolBar(self, parent):
+        self.entryView.buildToolBar(parent)
+

@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file '/home/wido/src/luma/lib/luma/plugins/addressbook/NameDialog.ui'
 #
-# Created: Mon Apr 26 16:00:30 2004
+# Created: Tue Jul 6 18:40:07 2004
 #      by: The PyQt User Interface Compiler (pyuic) 3.11
 #
 # WARNING! All changes made in this file will be lost!
@@ -20,16 +20,7 @@ class NameDialog(QDialog):
             self.setName("NameDialog")
 
 
-        NameDialogLayout = QGridLayout(self,1,1,11,6,"NameDialogLayout")
-
-        self.line7 = QFrame(self,"line7")
-        self.line7.setFrameShape(QFrame.HLine)
-        self.line7.setFrameShadow(QFrame.Sunken)
-        self.line7.setFrameShape(QFrame.HLine)
-
-        NameDialogLayout.addWidget(self.line7,2,0)
-        spacer10 = QSpacerItem(31,16,QSizePolicy.Minimum,QSizePolicy.Expanding)
-        NameDialogLayout.addItem(spacer10,1,0)
+        NameDialogLayout = QVBoxLayout(self,11,6,"NameDialogLayout")
 
         layout3 = QGridLayout(None,1,1,0,6,"layout3")
 
@@ -80,8 +71,9 @@ class NameDialog(QDialog):
         self.textLabel2.setAlignment(QLabel.AlignVCenter | QLabel.AlignRight)
 
         layout3.addWidget(self.textLabel2,1,0)
-
-        NameDialogLayout.addLayout(layout3,0,0)
+        NameDialogLayout.addLayout(layout3)
+        spacer10 = QSpacerItem(31,10,QSizePolicy.Minimum,QSizePolicy.Minimum)
+        NameDialogLayout.addItem(spacer10)
 
         layout2 = QHBoxLayout(None,0,6,"layout2")
         spacer9 = QSpacerItem(271,21,QSizePolicy.Expanding,QSizePolicy.Minimum)
@@ -96,12 +88,11 @@ class NameDialog(QDialog):
         self.cancelButton.setSizePolicy(QSizePolicy(0,0,0,0,self.cancelButton.sizePolicy().hasHeightForWidth()))
         self.cancelButton.setAutoDefault(0)
         layout2.addWidget(self.cancelButton)
-
-        NameDialogLayout.addLayout(layout2,3,0)
+        NameDialogLayout.addLayout(layout2)
 
         self.languageChange()
 
-        self.resize(QSize(321,238).expandedTo(self.minimumSizeHint()))
+        self.resize(QSize(383,234).expandedTo(self.minimumSizeHint()))
         self.clearWState(Qt.WState_Polished)
 
         self.connect(self.cancelButton,SIGNAL("clicked()"),self,SLOT("reject()"))

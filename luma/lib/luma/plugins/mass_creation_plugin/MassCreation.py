@@ -131,7 +131,7 @@ Try increasing the uidNumber range or delete some users from the subtree."""),
             
             tmpDN = 'uid=' + userName + "," + baseDN
             modList = ldap.modlist.addModlist(values)
-            result = connectionObject.add_s(tmpDN, modList)
+            result = connectionObject.add(tmpDN, modList)
             
             if result == 0:
                 createResult = False
@@ -154,7 +154,7 @@ Please see console output for more information."""),
             mountValues["automountInformation"] = [automountInfo]
             mountValues["description"] = ["Mountpoint des Homeverzeichnisses von " + values["cn"][0]]
             modlist = ldap.modlist.addModlist(mountValues)
-            result = connectionObject.add_s(dn, modlist)
+            result = connectionObject.add(dn, modlist)
             
             postProcess(serverMeta, values)
         
@@ -171,71 +171,6 @@ Please see console output for more information."""),
                 None,
                 None,
                 0, -1)
-        
-        #try:
-        #    ldapServerObject = ldap.open(serverMeta.host, serverMeta.port)
-        #    ldapServerObject.protocol_version = ldap.VERSION3
-        #    if serverMeta.tls == 1:
-        #        ldapServerObject.start_tls_s()
-        #    ldapServerObject.simple_bind_s(serverMeta.bindDN,
-        #                        serverMeta.bindPassword)
-        #    
-        #    
-        #    pwGenerator = CryptPwGenerator()
-        #    self.passwordEdit.clear()
-        #    for x in range(userMin, userMax+1):
-        #        environment.updateUI()
-        #        
-        #        userName = userPrefix + str(x)
-        #        uidNumber = freeNumbers[0]
-        #        del freeNumbers[0]
-        #        passwordClear, passwordCrypt = pwGenerator.get_random_password()
-        #        homeDir = baseHomeDir + "/" + userName
-        #        
-        #        modList = []
-        #        modList.append(('objectClass', ['posixAccount', 'shadowAccount']))
-        #        
-        #        modList.append(('uid', userName))
-        #        modList.append(('uidNumber', str(uidNumber)))
-        #        modList.append(('cn', userName))
-        #        modList.append(('userPassword', "{crypt}" + passwordCrypt))
-        #        modList.append(('loginShell', loginShell))
-        #        modList.append(('shadowExpire', str(shadowMax)))
-        #        modList.append(('gidNumber', groupId))
-        #        modList.append(('homeDirectory', homeDir))
-        #        
-        #        tmpDN = 'uid=' + userName + "," + baseDN
-        #        print tmpDN, modList
-        #        searchResult = ldapServerObject.add_s(tmpDN, modList)
-        #        
-        #        self.passwordEdit.append(userName + ': ' + passwordClear + "\n") 
-        #        
-        #    ldapServerObject.unbind()
-        #    
-        #    # set GUI not busy
-        #    environment.setBusy(0)
-        #    QMessageBox.information(None,
-        #    self.trUtf8("Success"),
-        #    self.trUtf8("""All users were created successfully."""),
-        #    self.trUtf8("&OK"),
-        #    None,
-        #    None,
-        #    0, -1)
-        #except ldap.LDAPError, e:
-        #    print "Error during LDAP request"
-        #    print "Reason: " + str(e[0]['desc'])
-        #    
-        #    # set GUI not busy
-        #    environment.setBusy(0)
-        #    
-        #    QMessageBox.critical(None,
-        #        self.trUtf8("Error"),
-        #        self.trUtf8("""Error during creation of users.\nReason: """ + 
-        #                    str(e[0]['desc'])),
-        #        self.trUtf8("&OK"),
-        #        None,
-        #        None,
-        #        0, -1)
 
 ###############################################################################
             

@@ -179,7 +179,7 @@ class TemplateObjectWidget(QWidget):
                 ldapServerObject.start_tls_s()
             ldapServerObject.simple_bind_s(serverMeta.bindDN,
                                 serverMeta.bindPassword)
-            searchResult = ldapServerObject.add_s(self.DN, tmpModlist)
+            searchResult = ldapServerObject.add(self.DN, tmpModlist)
             ldapServerObject.unbind()
             self.close()
         except ldap.LDAPError, e:

@@ -8,8 +8,8 @@
         <rect>
             <x>0</x>
             <y>0</y>
-            <width>364</width>
-            <height>113</height>
+            <width>395</width>
+            <height>114</height>
         </rect>
     </property>
     <property name="caption">
@@ -215,20 +215,6 @@
                 </widget>
             </hbox>
         </widget>
-        <widget class="Line" row="2" column="0">
-            <property name="name">
-                <cstring>line12</cstring>
-            </property>
-            <property name="frameShape">
-                <enum>HLine</enum>
-            </property>
-            <property name="frameShadow">
-                <enum>Sunken</enum>
-            </property>
-            <property name="orientation">
-                <enum>Horizontal</enum>
-            </property>
-        </widget>
         <spacer row="1" column="0">
             <property name="name">
                 <cstring>spacer14</cstring>
@@ -237,12 +223,12 @@
                 <enum>Vertical</enum>
             </property>
             <property name="sizeType">
-                <enum>Expanding</enum>
+                <enum>Minimum</enum>
             </property>
             <property name="sizeHint">
                 <size>
                     <width>21</width>
-                    <height>16</height>
+                    <height>15</height>
                 </size>
             </property>
         </spacer>

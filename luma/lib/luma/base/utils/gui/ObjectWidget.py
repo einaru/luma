@@ -33,95 +33,26 @@ class ObjectWidget(QWidget):
         
         # Load the pixmaps
         self.iconPath = os.path.join(environment.lumaInstallationPrefix, "share", "luma", "icons")
-        addPixmap = QPixmap(os.path.join(self.iconPath, "single.png"))
+        self.addPixmap = QPixmap(os.path.join(self.iconPath, "single.png"))
         self.deletePixmap = QPixmap(os.path.join(self.iconPath, "deleteEntry.png"))
         self.deleteSmallPixmap = QPixmap(os.path.join(self.iconPath, "editdelete.png"))
-        savePixmap = QPixmap(os.path.join(self.iconPath, "save.png"))
-        displayAllPixmap = QPixmap(os.path.join(self.iconPath, "displayall.png"))
-        reloadPixmap = QPixmap(os.path.join(self.iconPath, "reload.png"))
+        self.savePixmap = QPixmap(os.path.join(self.iconPath, "save.png"))
+        self.displayAllPixmap = QPixmap(os.path.join(self.iconPath, "displayall.png"))
+        self.reloadPixmap = QPixmap(os.path.join(self.iconPath, "reload.png"))
         self.binaryPixmap = QPixmap(os.path.join(self.iconPath, "binary.png"))
         self.deleteAttributePixmap = os.path.join(self.iconPath, "clear.png")
         self.newAttributePixmap = os.path.join(self.iconPath, "new.png")
         self.editPixmap = QPixmap(os.path.join(self.iconPath, "edit.png"))
         self.exportBinaryPixmap = QPixmap(os.path.join(self.iconPath, "exportBinary.png"))
         
-        
-        self.mainGrid = QGridLayout(self, 2, 2, 0, 6)
-        
-        # Layout for the toolbuttons
-        hboxLayout = QHBoxLayout()
-        hboxLayout.setSpacing(1)
-        
-        # reload toolbutton
-        self.reloadButton = QToolButton(self, "releoadEntry")
-        self.reloadButton.setIconSet(QIconSet(reloadPixmap))
-        self.reloadButton.setSizePolicy(QSizePolicy(QSizePolicy.Fixed, QSizePolicy.Fixed))
-        self.reloadButton.setAutoRaise(True)
-        self.reloadButton.setBackgroundMode(self.backgroundMode())
-        QToolTip.add(self.reloadButton, self.trUtf8("Reload"))
-        self.connect(self.reloadButton, SIGNAL("clicked()"), self.refreshView)
-        hboxLayout.addWidget(self.reloadButton)
-        
-        # save toolbutton
-        self.saveButton = QToolButton(self, "saveValues")
-        self.saveButton.setIconSet(QIconSet(savePixmap))
-        self.saveButton.setSizePolicy(QSizePolicy(QSizePolicy.Fixed, QSizePolicy.Fixed))
-        self.saveButton.setAutoRaise(True)
-        self.saveButton.setBackgroundMode(self.backgroundMode())
-        QToolTip.add(self.saveButton, self.trUtf8("Save"))
-        self.connect(self.saveButton, SIGNAL("clicked()"), self.saveView)
-        hboxLayout.addWidget(self.saveButton)
-        
-        # vertical line for the "toolbar"
-        self.line1 = QFrame(self,"line1")
-        self.line1.setFrameShadow(QFrame.Sunken)
-        self.line1.setFrameShape(QFrame.VLine)
-        hboxLayout.addWidget(self.line1)
-        
-        # "add attribute" toolbutton
-        self.addAttributeButton = QToolButton(self, "addAttribute")
-        self.addAttributeButton.setIconSet(QIconSet(addPixmap))
-        self.addAttributeButton.setSizePolicy(QSizePolicy(QSizePolicy.Fixed, QSizePolicy.Fixed))
-        self.addAttributeButton.setAutoRaise(True)
-        self.addAttributeButton.setBackgroundMode(self.backgroundMode())
-        QToolTip.add(self.addAttributeButton, self.trUtf8("Add attribute..."))
-        self.connect(self.addAttributeButton, SIGNAL("clicked()"), self.addAttribute)
-        hboxLayout.addWidget(self.addAttributeButton)
-        
-        # spacer for the "toolbar"
-        #spacer = QSpacerItem(10, 5)
-        #hboxLayout.addItem(spacer)
-        
-        # vertical line for the "toolbar"
-        #self.line2 = QFrame(self,"line2")
-        #self.line2.setFrameShadow(QFrame.Sunken)
-        #self.line2.setFrameShape(QFrame.VLine)
-        #hboxLayout.addWidget(self.line2)
-        
-        # delete ldap object
-        self.deleteObjectButton = QToolButton(self)
-        self.deleteObjectButton.setIconSet(QIconSet(self.deleteSmallPixmap))
-        self.deleteObjectButton.setSizePolicy(QSizePolicy(QSizePolicy.Fixed, QSizePolicy.Fixed))
-        self.deleteObjectButton.setAutoRaise(True)
-        self.deleteObjectButton.setBackgroundMode(self.backgroundMode())
-        QToolTip.add(self.deleteObjectButton, self.trUtf8("Delete object"))
-        self.connect(self.deleteObjectButton, SIGNAL("clicked()"), self.deleteObject)
-        hboxLayout.addWidget(self.deleteObjectButton)
-        
-        # spacer for the "toolbar"
-        spacer = QSpacerItem(10, 5)
-        hboxLayout.addItem(spacer)
-    
-        self.mainGrid.addLayout(hboxLayout, 0, 0)
-        
+        self.mainLayout = QHBoxLayout(self)
         
         #create a scrollable frame
         self.attributeFrame = QScrollView(self,"attributeFrame")
         self.attributeFrame.setMinimumSize(QSize(300,100))
-        self.attributeFrame.setFrameShape(QFrame.StyledPanel)
-        self.attributeFrame.setFrameShadow(QFrame.Raised)
+        self.attributeFrame.setFrameShape(QFrame.NoFrame)
         self.attributeFrame.setResizePolicy(QScrollView.AutoOneFit)
-        self.mainGrid.addWidget(self.attributeFrame,1,0)
+        self.mainLayout.addWidget(self.attributeFrame)
 
 
         # create the widget containing all attributes
@@ -162,7 +93,7 @@ class ObjectWidget(QWidget):
         self.OBJECTCLASS_CHANGED = False
         
         # disable toolbuttons on startup
-        self.enableToolButtons(False)
+        #self.enableToolButtons(False)
 
 ###############################################################################
 
@@ -233,21 +164,21 @@ class ObjectWidget(QWidget):
         
         if self.OBJECTCLASS_CHANGED or self.CREATE:
             if not self.CREATE:
-                oldEntry = lumaConnection.search_s(self.DN, ldap.SCOPE_BASE)[0][1]
+                oldEntry = lumaConnection.search(self.DN, ldap.SCOPE_BASE)[0][1]
             
             if not self.CREATE:
-                result = lumaConnection.delete_s(self.DN)
+                result = lumaConnection.delete(self.DN)
                 
             if not(result == 0):
                 modlist = ldap.modlist.addModlist(self.CURRENTVALUES)
-                result = lumaConnection.add_s(self.DN, modlist)
+                result = lumaConnection.add(self.DN, modlist)
                 if result == 0:
                     modlist = ldap.modlist.addModlist(self.oldEntry)
-                    lumaConnection.add_s(self.DN, modlist)
+                    lumaConnection.add(self.DN, modlist)
         else:
-            oldEntry = lumaConnection.search_s(self.DN, ldap.SCOPE_BASE)[0][1]
+            oldEntry = lumaConnection.search(self.DN, ldap.SCOPE_BASE)[0][1]
             modlist =  ldap.modlist.modifyModlist(oldEntry, self.CURRENTVALUES, [], 0)
-            result = lumaConnection.modify_s(self.DN, modlist)
+            result = lumaConnection.modify(self.DN, modlist)
             
         lumaConnection.unbind()
         
@@ -273,7 +204,7 @@ Please read console output for more information."""),
         
         lumaConnection = LumaConnection(serverMeta)
         lumaConnection.bind()
-        result = lumaConnection.search_s(self.DN, ldap.SCOPE_BASE)[0][1]
+        result = lumaConnection.search(self.DN, ldap.SCOPE_BASE)[0][1]
         lumaConnection.unbind()
         
         self.CURRENTVALUES = result
@@ -692,7 +623,7 @@ Please read console output for more information."""),
         lumaConnection = LumaConnection(serverMeta)
         
         lumaConnection.bind()
-        result = lumaConnection.delete_s(self.DN)
+        result = lumaConnection.delete(self.DN)
         lumaConnection.unbind()
         
         if result == 0:
@@ -707,3 +638,49 @@ Please read console output for more information."""),
         else:
             self.clearView()
             self.enableToolButtons(False)
+            
+###############################################################################
+
+    def buildToolBar(self, parent):
+        toolBar = QToolBar(parent)
+        
+        
+        # Reload button
+        self.reloadButton = QToolButton(toolBar, "reloadEntry")
+        self.reloadButton.setIconSet(QIconSet(self.reloadPixmap))
+        self.reloadButton.setSizePolicy(QSizePolicy(QSizePolicy.Fixed, QSizePolicy.Fixed))
+        self.reloadButton.setAutoRaise(True)
+        self.reloadButton.setBackgroundMode(self.backgroundMode())
+        QToolTip.add(self.reloadButton, self.trUtf8("Reload"))
+        self.connect(self.reloadButton, SIGNAL("clicked()"), self.refreshView)
+        
+        # Save button
+        self.saveButton = QToolButton(toolBar, "saveValues")
+        self.saveButton.setIconSet(QIconSet(self.savePixmap))
+        self.saveButton.setSizePolicy(QSizePolicy(QSizePolicy.Fixed, QSizePolicy.Fixed))
+        self.saveButton.setAutoRaise(True)
+        self.saveButton.setBackgroundMode(self.backgroundMode())
+        QToolTip.add(self.saveButton, self.trUtf8("Save"))
+        self.connect(self.saveButton, SIGNAL("clicked()"), self.saveView)
+        
+        toolBar.addSeparator()
+        
+        # Add attribute button
+        self.addAttributeButton = QToolButton(toolBar, "addAttribute")
+        self.addAttributeButton.setIconSet(QIconSet(self.addPixmap))
+        self.addAttributeButton.setSizePolicy(QSizePolicy(QSizePolicy.Fixed, QSizePolicy.Fixed))
+        self.addAttributeButton.setAutoRaise(True)
+        self.addAttributeButton.setBackgroundMode(self.backgroundMode())
+        QToolTip.add(self.addAttributeButton, self.trUtf8("Add attribute..."))
+        self.connect(self.addAttributeButton, SIGNAL("clicked()"), self.addAttribute)
+        
+        # Delete button
+        self.deleteObjectButton = QToolButton(toolBar)
+        self.deleteObjectButton.setIconSet(QIconSet(self.deleteSmallPixmap))
+        self.deleteObjectButton.setSizePolicy(QSizePolicy(QSizePolicy.Fixed, QSizePolicy.Fixed))
+        self.deleteObjectButton.setAutoRaise(True)
+        self.deleteObjectButton.setBackgroundMode(self.backgroundMode())
+        QToolTip.add(self.deleteObjectButton, self.trUtf8("Delete object"))
+        self.connect(self.deleteObjectButton, SIGNAL("clicked()"), self.deleteObject)
+        
+        self.enableToolButtons(False)

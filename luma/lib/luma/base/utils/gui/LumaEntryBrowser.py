@@ -247,7 +247,7 @@ class LumaEntryBrowser (LumaEntryBrowserDesign):
                 self.deletePreProcess(self.SERVERMETA, dn)
                 
             self.lumaConnection.bind()
-            result = self.lumaConnection.delete_s(dn)
+            result = self.lumaConnection.delete(dn)
             self.lumaConnection.unbind()
             if result == 0:
                 QMessageBox.warning(None,
@@ -258,6 +258,7 @@ class LumaEntryBrowser (LumaEntryBrowserDesign):
                     None,
                     0, -1)
             else:
+                self.itemListView.setSelected(self.itemListView.firstChild(), True)
                 del self.data[dn]
                 if not self.deletePostProcess == None:
                     self.deletePostProcess(self.SERVERMETA, dn)

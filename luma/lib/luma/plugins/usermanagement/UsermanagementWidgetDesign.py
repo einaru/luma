@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file '/home/wido/src/luma/lib/luma/plugins/usermanagement/UsermanagementWidgetDesign.ui'
 #
-# Created: Sat Jul 3 22:50:39 2004
+# Created: Tue Jul 6 17:12:15 2004
 #      by: The PyQt User Interface Compiler (pyuic) 3.11
 #
 # WARNING! All changes made in this file will be lost!
@@ -21,35 +21,6 @@ class UsermanagementWidgetDesign(QWidget):
 
 
         UsermanagementWidgetDesignLayout = QVBoxLayout(self,6,6,"UsermanagementWidgetDesignLayout")
-
-        layout5 = QHBoxLayout(None,0,6,"layout5")
-
-        self.saveButton = QToolButton(self,"saveButton")
-        self.saveButton.setSizePolicy(QSizePolicy(0,0,0,0,self.saveButton.sizePolicy().hasHeightForWidth()))
-        self.saveButton.setMinimumSize(QSize(24,24))
-        self.saveButton.setAutoRaise(1)
-        layout5.addWidget(self.saveButton)
-
-        self.optionLine1 = QFrame(self,"optionLine1")
-        self.optionLine1.setFrameShape(QFrame.VLine)
-        self.optionLine1.setFrameShadow(QFrame.Sunken)
-        self.optionLine1.setFrameShape(QFrame.VLine)
-        layout5.addWidget(self.optionLine1)
-
-        self.deleteButton = QToolButton(self,"deleteButton")
-        self.deleteButton.setSizePolicy(QSizePolicy(0,0,0,0,self.deleteButton.sizePolicy().hasHeightForWidth()))
-        self.deleteButton.setMinimumSize(QSize(24,24))
-        self.deleteButton.setAutoRaise(1)
-        layout5.addWidget(self.deleteButton)
-        spacer8 = QSpacerItem(411,21,QSizePolicy.Expanding,QSizePolicy.Minimum)
-        layout5.addItem(spacer8)
-        UsermanagementWidgetDesignLayout.addLayout(layout5)
-
-        self.optionLine3 = QFrame(self,"optionLine3")
-        self.optionLine3.setFrameShape(QFrame.HLine)
-        self.optionLine3.setFrameShadow(QFrame.Sunken)
-        self.optionLine3.setFrameShape(QFrame.HLine)
-        UsermanagementWidgetDesignLayout.addWidget(self.optionLine3)
 
         layout6 = QGridLayout(None,1,1,0,6,"layout6")
 
@@ -225,7 +196,7 @@ class UsermanagementWidgetDesign(QWidget):
 
         self.languageChange()
 
-        self.resize(QSize(585,521).expandedTo(self.minimumSizeHint()))
+        self.resize(QSize(595,480).expandedTo(self.minimumSizeHint()))
         self.clearWState(Qt.WState_Polished)
 
         self.connect(self.addMailButton,SIGNAL("clicked()"),self.addMail)
@@ -237,7 +208,6 @@ class UsermanagementWidgetDesign(QWidget):
         self.connect(self.expireEdit,SIGNAL("valueChanged(const QDate&)"),self.expireChanged)
         self.connect(self.shellEdit,SIGNAL("textChanged(const QString&)"),self.shellChanged)
         self.connect(self.homeEdit,SIGNAL("textChanged(const QString&)"),self.homeChanged)
-        self.connect(self.saveButton,SIGNAL("clicked()"),self.saveAccount)
         self.connect(self.uidEdit,SIGNAL("textChanged(const QString&)"),self.uidNameChanged)
         self.connect(self.findButton,SIGNAL("clicked()"),self.nextFreeUserID)
 
@@ -258,8 +228,6 @@ class UsermanagementWidgetDesign(QWidget):
 
     def languageChange(self):
         self.setCaption(self.__tr("Usermanagement"))
-        self.saveButton.setText(self.__tr("...","DO NOT TRANSLATE"))
-        self.deleteButton.setText(self.__tr("...","DO NOT TRANSLATE"))
         self.textLabel15.setText(self.__tr("Valid until:"))
         self.textLabel4.setText(self.__tr("Group ID number:"))
         self.textLabel3.setText(self.__tr("User ID number:"))

@@ -28,10 +28,6 @@ class UsermanagementWidget(UsermanagementWidgetDesign):
     def __init__(self,parent = None,name = None,fl = 0):
         UsermanagementWidgetDesign.__init__(self,parent,name,fl)
         
-        self.optionLine1.hide()
-        self.deleteButton.hide()
-        
-        
         iconDir = os.path.join (environment.lumaInstallationPrefix, "share", "luma", "icons", "plugins", "usermanagement")
         lumaIconPath = os.path.join (environment.lumaInstallationPrefix, "share", "luma", "icons")
 
@@ -41,7 +37,7 @@ class UsermanagementWidget(UsermanagementWidgetDesign):
         homePixmap = QPixmap(os.path.join(iconDir, "home.png"))
         passwordPixmap = QPixmap(os.path.join(iconDir, "password.png"))
         mailPixmap = QPixmap(os.path.join(iconDir, "email.png"))
-        savePixmap = QPixmap(os.path.join(lumaIconPath, "save.png"))
+        self.savePixmap = QPixmap(os.path.join(lumaIconPath, "save.png"))
         deletePixmap = QPixmap(os.path.join(lumaIconPath, "editdelete.png"))
         
         self.accountLabel.setPixmap(accountPixmap)
@@ -50,14 +46,6 @@ class UsermanagementWidget(UsermanagementWidgetDesign):
         self.homeLabel.setPixmap(homePixmap)
         self.passwordLabel.setPixmap(passwordPixmap)
         self.mailLabel.setPixmap(mailPixmap)
-        
-        self.saveButton.setIconSet(QIconSet(savePixmap))
-        QToolTip.add(self.saveButton, self.trUtf8("Save"))
-        self.saveButton.setBackgroundMode(self.backgroundMode())
-        
-        self.deleteButton.setIconSet(QIconSet(deletePixmap))
-        QToolTip.add(self.deleteButton, self.trUtf8("Delete entry"))
-        self.deleteButton.setBackgroundMode(self.backgroundMode())
         
         self.DN = None
         self.CURRENTDATA = {}
@@ -69,6 +57,9 @@ class UsermanagementWidget(UsermanagementWidgetDesign):
         
         self.EDITED = False
         self.ENABLEDELETE = True
+        
+        # Indicates if were are creating a new entry.
+        self.NEWENTRY = False
         
         # a list of user ids which are stored in the ldap tree
         self.USED_USER_IDS = None
@@ -336,8 +327,8 @@ class UsermanagementWidget(UsermanagementWidgetDesign):
 ###############################################################################
 
     def enableToolBar(self):
-        self.saveButton.setEnabled(self.EDITED)
-        self.deleteButton.setEnabled(self.ENABLEDELETE)
+        if not self.NEWENTRY:
+            self.saveButton.setEnabled(self.EDITED)
         
 ###############################################################################
 
@@ -429,7 +420,7 @@ class UsermanagementWidget(UsermanagementWidgetDesign):
         
         
         modlist =  ldap.modlist.modifyModlist(oldValues, self.CURRENTDATA, [], 1)
-        entryResult = connectionObject.modify_s(self.DN, modlist)
+        entryResult = connectionObject.modify(self.DN, modlist)
         
         if not(entryResult == 0):
             self.saveOtherGroups()
@@ -477,7 +468,7 @@ Please read console output for more information."""),
                         
             oldData = connectionObject.search(x)[0][1]
             modlist =  ldap.modlist.modifyModlist(oldData, data, [], 1)
-            result = connectionObject.modify_s(x, modlist)
+            result = connectionObject.modify(x, modlist)
             if result == 0:
                 groupResult = 0
                 
@@ -557,3 +548,27 @@ Please read console output for more information."""),
         if value == 0:
             self.saveAccount()
         
+###############################################################################
+
+    def buildToolBar(self, parent):
+        toolBar = QToolBar(parent)
+    
+        self.saveButton = QToolButton(toolBar, "saveValues")
+        self.saveButton.setIconSet(QIconSet(self.savePixmap))
+        self.saveButton.setSizePolicy(QSizePolicy(QSizePolicy.Fixed, QSizePolicy.Fixed))
+        self.saveButton.setAutoRaise(True)
+        self.saveButton.setBackgroundMode(self.backgroundMode())
+        QToolTip.add(self.saveButton, self.trUtf8("Save"))
+        self.connect(self.saveButton, SIGNAL("clicked()"), self.saveAccount)
+    
+        self.enableToolBar()
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    

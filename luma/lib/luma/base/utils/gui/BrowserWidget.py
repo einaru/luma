@@ -105,6 +105,8 @@ class BrowserWidget(QListView):
         self.addItemWidgets = []
 
         self.connect(self, SIGNAL("rightButtonPressed(QListViewItem*, const QPoint&, int)"), self.__show_popup)
+        
+        self.widgetList = []
 
 ###############################################################################
 
@@ -205,7 +207,7 @@ class BrowserWidget(QListView):
         
         conObject = LumaConnection(serverMeta)
         conObject.bind()
-        searchResult = conObject.search_s(ldapObject, ldap.SCOPE_BASE)
+        searchResult = conObject.search(ldapObject, ldap.SCOPE_BASE)
         conObject.unbind()
         
         if searchResult == None:
@@ -431,12 +433,18 @@ See console output for more information."""),
         
         fullData = [(dn, data)]
         
-        widget = ObjectWidget(None, template.name.encode("utf-8"), 0)
+        floatingWidget = ChildWindow(None)
+        self.widgetList.append(floatingWidget)
+        widget = ObjectWidget(floatingWidget, template.name.encode("utf-8"), 0)
         widget.setMinimumHeight(500)
         widget.setMinimumWidth(600)
+        floatingWidget.setCentralWidget(widget)
         widget.setCaption(self.trUtf8('Add entry'))
+        widget.buildToolBar(floatingWidget)
         widget.initView(server, fullData, True)
-        widget.show()
+        
+        self.connect(floatingWidget, PYSIGNAL("child_closed"), self.cleanChildren)
+        floatingWidget.show()
         
         # don't loose reference. normally window will disappear if function is completed
         self.addItemWidgets.append(widget)
@@ -503,7 +511,7 @@ See console output for more information."""),
         
         connectionObject = LumaConnection(serverMeta)
         connectionObject.bind()
-        result = connectionObject.delete_s(ldapObject)
+        result = connectionObject.delete(ldapObject)
         connectionObject.unbind()
         
         if result == 0:
@@ -519,3 +527,22 @@ See console output for more information."""),
 
 ###############################################################################
 
+    def cleanChildren(self, child):
+        index = self.widgetList.index(child)
+        del self.widgetList[index]
+        
+
+###############################################################################
+
+
+
+class ChildWindow(QMainWindow):
+    
+    def __init__(self, parent = None):
+        QMainWindow.__init__(self)
+        
+        
+    def closeEvent(self, event):
+        self.emit(PYSIGNAL("child_closed"), (self,))
+        self.deleteLater()
+        

@@ -58,11 +58,9 @@ class AccountWizard(AccountWizardDesign):
         tmpLayout = QHBoxLayout(self.accountFrame)
         tmpLayout.addWidget(self.accountWidget)
         
-        self.accountWidget.saveButton.hide()
-        self.accountWidget.optionLine1.hide()
-        #self.accountWidget.optionLine2.hide()
-        self.accountWidget.deleteButton.hide()
-        #self.accountWidget.optionLine3.hide()
+        
+        self.accountWidget.NEWENTRY = True
+        
         self.accountWidget.uidEdit.setReadOnly(False)
         self.disconnect(self.accountWidget.groupButton, SIGNAL("clicked()"), self.accountWidget.editGroups)
         self.connect(self.accountWidget.groupButton, SIGNAL("clicked()"), self.checkUID)
@@ -167,7 +165,7 @@ class AccountWizard(AccountWizardDesign):
         connectionObject = LumaConnection(serverMeta)
         connectionObject.bind()
         
-        result = connectionObject.add_s(dn, modlist)
+        result = connectionObject.add(dn, modlist)
         if result == 0:
             QMessageBox.warning(None,
                 self.trUtf8("Create account"),

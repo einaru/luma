@@ -193,7 +193,7 @@ class LumaIconView (LumaIconViewDesign):
             
         if dialogResult == 1:
             self.lumaConnection.bind()
-            result = self.lumaConnection.delete_s(dn)
+            result = self.lumaConnection.delete(dn)
             self.lumaConnection.unbind()
             if result == 0:
                 QMessageBox.warning(None,

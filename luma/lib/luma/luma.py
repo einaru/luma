@@ -26,6 +26,7 @@ def run_it():
     
     app.setMainWidget(gui)
     gui.show()
+    gui.loadPlugins()
     app.exec_loop()
 
 if __name__ == '__main__':

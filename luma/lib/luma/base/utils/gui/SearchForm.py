@@ -46,10 +46,12 @@ class SearchForm(SearchFormDesign):
 ###############################################################################
 
     def start_search(self):
-        parentObject = self
-        while  parentObject.parentWidget():
-            parentObject = parentObject.parentWidget()
-        tmpStatusBar = parentObject.statusBar()
+        self.groupBox2.setEnabled(False)
+        
+        #parentObject = self
+        #while  parentObject.parentWidget():
+        #    parentObject = parentObject.parentWidget()
+        #tmpStatusBar = parentObject.statusBar()
 
         liste = self.__get_search_criteria()
         server = unicode(self.serverBox.currentText())
@@ -61,6 +63,8 @@ class SearchForm(SearchFormDesign):
         searchResult = conObject.search(serverMeta.baseDN.encode('utf-8'), ldap.SCOPE_SUBTREE,
                 unicode(self.searchEdit.currentText()).encode('utf-8'))
         conObject.unbind()
+        
+        self.groupBox2.setEnabled(True)
 
         self.emit(PYSIGNAL("ldap_result"), (serverMeta.name, searchResult,liste, ))
 

@@ -93,7 +93,7 @@ class ContactWizard(ContactWizardDesign):
             dn = 'description=' + description + ',' + self.locationDN.encode('utf-8')
 
             connection.bind()
-            result = connection.add_s(dn, modlist)
+            result = connection.add(dn, modlist)
             connection.unbind()
             
             if result == 1:

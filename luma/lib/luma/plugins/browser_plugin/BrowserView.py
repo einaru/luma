@@ -29,3 +29,8 @@ class BrowserView(QWidget):
         self.connect (self.entryList, PYSIGNAL("ldap_result"), self.entryView.initView)
         self.connect (self.entryList, PYSIGNAL("about_to_change"), self.entryView.aboutToChange)
         self.mainLayout.addWidget(self.splitter)
+
+###############################################################################
+
+    def buildToolBar(self, parent):
+        self.entryView.buildToolBar(parent)

@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file '/home/wido/src/luma/lib/luma/plugins/addressbook/CategoryEditDialogDesign.ui'
 #
-# Created: Mon Apr 26 16:00:31 2004
+# Created: Tue Jul 6 18:43:03 2004
 #      by: The PyQt User Interface Compiler (pyuic) 3.11
 #
 # WARNING! All changes made in this file will be lost!
@@ -20,20 +20,12 @@ class CategoryEditDialogDesign(QDialog):
             self.setName("CategoryEditDialogDesign")
 
 
-        CategoryEditDialogDesignLayout = QGridLayout(self,1,1,11,6,"CategoryEditDialogDesignLayout")
+        CategoryEditDialogDesignLayout = QVBoxLayout(self,11,6,"CategoryEditDialogDesignLayout")
 
         self.categoryView = QListView(self,"categoryView")
         self.categoryView.addColumn(self.__tr("Categories"))
         self.categoryView.setResizeMode(QListView.AllColumns)
-
-        CategoryEditDialogDesignLayout.addWidget(self.categoryView,0,0)
-
-        self.line11 = QFrame(self,"line11")
-        self.line11.setFrameShape(QFrame.HLine)
-        self.line11.setFrameShadow(QFrame.Sunken)
-        self.line11.setFrameShape(QFrame.HLine)
-
-        CategoryEditDialogDesignLayout.addWidget(self.line11,2,0)
+        CategoryEditDialogDesignLayout.addWidget(self.categoryView)
 
         layout4 = QHBoxLayout(None,0,6,"layout4")
 
@@ -42,8 +34,9 @@ class CategoryEditDialogDesign(QDialog):
 
         self.addButton = QPushButton(self,"addButton")
         layout4.addWidget(self.addButton)
-
-        CategoryEditDialogDesignLayout.addLayout(layout4,1,0)
+        CategoryEditDialogDesignLayout.addLayout(layout4)
+        spacer2 = QSpacerItem(21,20,QSizePolicy.Minimum,QSizePolicy.Minimum)
+        CategoryEditDialogDesignLayout.addItem(spacer2)
 
         layout2 = QHBoxLayout(None,0,6,"layout2")
         spacer12 = QSpacerItem(120,20,QSizePolicy.Expanding,QSizePolicy.Minimum)
@@ -54,12 +47,11 @@ class CategoryEditDialogDesign(QDialog):
 
         self.cancelButton = QPushButton(self,"cancelButton")
         layout2.addWidget(self.cancelButton)
-
-        CategoryEditDialogDesignLayout.addLayout(layout2,3,0)
+        CategoryEditDialogDesignLayout.addLayout(layout2)
 
         self.languageChange()
 
-        self.resize(QSize(291,376).expandedTo(self.minimumSizeHint()))
+        self.resize(QSize(292,457).expandedTo(self.minimumSizeHint()))
         self.clearWState(Qt.WState_Polished)
 
         self.connect(self.cancelButton,SIGNAL("clicked()"),self,SLOT("reject()"))
