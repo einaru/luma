@@ -257,16 +257,34 @@ class ServerDialog(ServerDialogDesign):
 ###############################################################################
 
     def tlsChanged(self, tmpBool):
-        self.applyButton.setEnabled(1)
-        
         tlsBool = self.tlsCheckBox.isChecked()
         
         if tlsBool:
+            # Set port value
             self.portSpinBox.setValue(636)
+            
+            # Enable certificate widgets
+            self.useClientCertBox.setEnabled(True)
+            
+            tmpBool = self.useClientCertBox.isChecked()
+            
+            self.certFileEdit.setEnabled(tmpBool)
+            self.certKeyfileEdit.setEnabled(tmpBool)
+            self.certFileButton.setEnabled(tmpBool)
+            self.certKeyFileButton.setEnabled(tmpBool)
         else:
+            # Set port value
             self.portSpinBox.setValue(389)
             
+            # Enable certificate widgets
+            self.useClientCertBox.setEnabled(False)
+            self.certFileEdit.setEnabled(False)
+            self.certKeyfileEdit.setEnabled(False)
+            self.certFileButton.setEnabled(False)
+            self.certKeyFileButton.setEnabled(False)
+            
         self.currentServer.tls = tlsBool
+        self.applyButton.setEnabled(True)
             
 ###############################################################################
 
@@ -395,27 +413,6 @@ class ServerDialog(ServerDialogDesign):
     def aliasesChanged(self):
         self.applyButton.setEnabled(True)
         self.currentServer.followAliases = self.aliasBox.isChecked()
-        
-###############################################################################
-
-    def sslSettingsChanged(self, tmpBool):
-        if self.tlsCheckBox.isChecked():
-            self.useClientCertBox.setEnabled(True)
-            
-            tmpBool = self.useClientCertBox.isChecked()
-            
-            self.certFileEdit.setEnabled(tmpBool)
-            self.certKeyfileEdit.setEnabled(tmpBool)
-            self.certFileButton.setEnabled(tmpBool)
-            self.certKeyFileButton.setEnabled(tmpBool)
-        else:
-            self.useClientCertBox.setEnabled(False)
-            self.certFileEdit.setEnabled(False)
-            self.certKeyfileEdit.setEnabled(False)
-            self.certFileButton.setEnabled(False)
-            self.certKeyFileButton.setEnabled(False)
-            
-        self.applyButton.setEnabled(True)
 
 ###############################################################################
 

@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file '/home/wido/src/luma/lib/luma/base/gui/ServerDialogDesign.ui'
 #
-# Created: Sun Apr 3 16:14:22 2005
+# Created: Sun Apr 3 19:21:18 2005
 #      by: The PyQt User Interface Compiler (pyuic) 3.14
 #
 # WARNING! All changes made in this file will be lost!
@@ -289,8 +289,7 @@ class ServerDialogDesign(QDialog):
         self.connect(self.manageBaseBaseButton,SIGNAL("clicked()"),self.manageBaseDN)
         self.connect(self.baseBox,SIGNAL("clicked()"),self.useServerBase)
         self.connect(self.aliasBox,SIGNAL("clicked()"),self.aliasesChanged)
-        self.connect(self.useClientCertBox,SIGNAL("toggled(bool)"),self.sslSettingsChanged)
-        self.connect(self.tlsCheckBox,SIGNAL("toggled(bool)"),self.sslSettingsChanged)
+        self.connect(self.useClientCertBox,SIGNAL("toggled(bool)"),self.tlsChanged)
         self.connect(self.certFileEdit,SIGNAL("textChanged(const QString&)"),self.certFileChanged)
         self.connect(self.certKeyfileEdit,SIGNAL("textChanged(const QString&)"),self.certKeyFileChanged)
         self.connect(self.certFileButton,SIGNAL("clicked()"),self.showCertFileDialog)

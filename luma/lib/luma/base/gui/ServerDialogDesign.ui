@@ -986,13 +986,7 @@
         <sender>useClientCertBox</sender>
         <signal>toggled(bool)</signal>
         <receiver>ServerDialogDesign</receiver>
-        <slot>sslSettingsChanged()</slot>
-    </connection>
-    <connection>
-        <sender>tlsCheckBox</sender>
-        <signal>toggled(bool)</signal>
-        <receiver>ServerDialogDesign</receiver>
-        <slot>sslSettingsChanged()</slot>
+        <slot>tlsChanged()</slot>
     </connection>
     <connection>
         <sender>certFileEdit</sender>
