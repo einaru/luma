@@ -2,8 +2,8 @@
 
 # Form implementation generated from reading ui file '/home/wido/src/luma/lib/luma/base/utils/gui/SearchFormDesign.ui'
 #
-# Created: Mon Apr 26 16:00:26 2004
-#      by: The PyQt User Interface Compiler (pyuic) 3.11
+# Created: Mon Aug 23 16:24:46 2004
+#      by: The PyQt User Interface Compiler (pyuic) 3.12
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -64,7 +64,7 @@ class SearchFormDesign(QWidget):
 
         self.languageChange()
 
-        self.resize(QSize(609,118).expandedTo(self.minimumSizeHint()))
+        self.resize(QSize(609,121).expandedTo(self.minimumSizeHint()))
         self.clearWState(Qt.WState_Polished)
 
         self.connect(self.filterWizardButton,SIGNAL("clicked()"),self.start_filter_wizard)
@@ -72,13 +72,13 @@ class SearchFormDesign(QWidget):
 
 
     def languageChange(self):
-        self.setCaption(QString.null)
+        self.setCaption(self.__tr("SearchFormDesign"))
         self.groupBox2.setTitle(self.__tr("Search"))
         self.textLabel6.setText(self.__tr("Filter:"))
         self.textLabel2.setText(self.__tr("Server:"))
-        self.filterWizardButton.setText(self.__tr("&Wizard"))
-        self.filterWizardButton.setAccel(self.__tr("Alt+W"))
-        self.startButton.setText(self.__tr("&Start"))
+        self.filterWizardButton.setText(self.__tr("&Filter wizard"))
+        self.filterWizardButton.setAccel(self.__tr("Alt+F"))
+        self.startButton.setText(self.__tr("&Search"))
         self.startButton.setAccel(self.__tr("Alt+S"))
 
 

@@ -2,8 +2,8 @@
 
 # Form implementation generated from reading ui file '/home/wido/src/luma/lib/luma/plugins/usermanagement/UsermanagementWidgetDesign.ui'
 #
-# Created: Tue Jul 6 17:12:15 2004
-#      by: The PyQt User Interface Compiler (pyuic) 3.11
+# Created: Thu Aug 19 20:47:35 2004
+#      by: The PyQt User Interface Compiler (pyuic) 3.12
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -20,183 +20,182 @@ class UsermanagementWidgetDesign(QWidget):
             self.setName("UsermanagementWidgetDesign")
 
 
-        UsermanagementWidgetDesignLayout = QVBoxLayout(self,6,6,"UsermanagementWidgetDesignLayout")
-
-        layout6 = QGridLayout(None,1,1,0,6,"layout6")
-
-        self.uidBox = QSpinBox(self,"uidBox")
-        self.uidBox.setMaxValue(65535)
-
-        layout6.addMultiCellWidget(self.uidBox,1,1,2,3)
+        UsermanagementWidgetDesignLayout = QGridLayout(self,1,1,6,6,"UsermanagementWidgetDesignLayout")
 
         self.textLabel15 = QLabel(self,"textLabel15")
         self.textLabel15.setAlignment(QLabel.AlignVCenter)
 
-        layout6.addWidget(self.textLabel15,3,1)
-
-        self.groupEdit = QLineEdit(self,"groupEdit")
-        self.groupEdit.setMinimumSize(QSize(100,0))
-        self.groupEdit.setReadOnly(1)
-
-        layout6.addWidget(self.groupEdit,4,2)
-
-        self.textLabel4 = QLabel(self,"textLabel4")
-        self.textLabel4.setSizePolicy(QSizePolicy(0,5,0,0,self.textLabel4.sizePolicy().hasHeightForWidth()))
-        self.textLabel4.setAlignment(QLabel.AlignVCenter | QLabel.AlignRight)
-
-        layout6.addWidget(self.textLabel4,4,3)
+        UsermanagementWidgetDesignLayout.addWidget(self.textLabel15,3,1)
 
         self.textLabel3 = QLabel(self,"textLabel3")
         self.textLabel3.setAlignment(QLabel.AlignVCenter)
 
-        layout6.addWidget(self.textLabel3,1,1)
-        spacer6 = QSpacerItem(100,21,QSizePolicy.Expanding,QSizePolicy.Minimum)
-        layout6.addItem(spacer6,12,2)
-
-        self.nameEdit = QLineEdit(self,"nameEdit")
-
-        layout6.addMultiCellWidget(self.nameEdit,2,2,2,4)
-
-        self.mailBox = QComboBox(0,self,"mailBox")
-
-        layout6.addMultiCellWidget(self.mailBox,11,11,2,4)
+        UsermanagementWidgetDesignLayout.addWidget(self.textLabel3,1,1)
 
         self.textLabel18 = QLabel(self,"textLabel18")
         self.textLabel18.setAlignment(QLabel.AlignVCenter)
 
-        layout6.addWidget(self.textLabel18,2,1)
-        spacer4 = QSpacerItem(100,21,QSizePolicy.Expanding,QSizePolicy.Minimum)
-        layout6.addItem(spacer4,10,2)
-        spacer1 = QSpacerItem(21,92,QSizePolicy.Minimum,QSizePolicy.Expanding)
-        layout6.addMultiCell(spacer1,1,3,0,0)
-
-        self.textLabel14 = QLabel(self,"textLabel14")
-        self.textLabel14.setAlignment(QLabel.AlignVCenter)
-
-        layout6.addWidget(self.textLabel14,9,1)
-
-        layout38 = QHBoxLayout(None,0,6,"layout38")
-
-        self.deleteMailButton = QPushButton(self,"deleteMailButton")
-        layout38.addWidget(self.deleteMailButton)
-
-        self.addMailButton = QPushButton(self,"addMailButton")
-        layout38.addWidget(self.addMailButton)
-
-        layout6.addMultiCellLayout(layout38,12,12,3,4)
-
-        self.findButton = QPushButton(self,"findButton")
-
-        layout6.addWidget(self.findButton,1,4)
-
-        self.mailLabel = QLabel(self,"mailLabel")
-        self.mailLabel.setSizePolicy(QSizePolicy(0,0,0,0,self.mailLabel.sizePolicy().hasHeightForWidth()))
-        self.mailLabel.setMinimumSize(QSize(32,32))
-
-        layout6.addWidget(self.mailLabel,11,0)
-
-        self.homeEdit = QLineEdit(self,"homeEdit")
-
-        layout6.addMultiCellWidget(self.homeEdit,8,8,2,4)
-
-        self.textLabel5 = QLabel(self,"textLabel5")
-        self.textLabel5.setSizePolicy(QSizePolicy(5,5,0,0,self.textLabel5.sizePolicy().hasHeightForWidth()))
-        self.textLabel5.setAlignment(QLabel.AlignVCenter)
-
-        layout6.addWidget(self.textLabel5,4,1)
-
-        self.groupButton = QPushButton(self,"groupButton")
-        self.groupButton.setSizePolicy(QSizePolicy(1,0,0,0,self.groupButton.sizePolicy().hasHeightForWidth()))
-
-        layout6.addMultiCellWidget(self.groupButton,5,5,3,4)
-
-        self.passwordLabel = QLabel(self,"passwordLabel")
-        self.passwordLabel.setMinimumSize(QSize(32,32))
-
-        layout6.addWidget(self.passwordLabel,9,0)
+        UsermanagementWidgetDesignLayout.addWidget(self.textLabel18,2,1)
+        spacer1 = QSpacerItem(21,89,QSizePolicy.Minimum,QSizePolicy.Expanding)
+        UsermanagementWidgetDesignLayout.addMultiCell(spacer1,1,3,0,0)
 
         self.textLabel2 = QLabel(self,"textLabel2")
         self.textLabel2.setAlignment(QLabel.AlignVCenter)
 
-        layout6.addWidget(self.textLabel2,0,1)
-
-        self.textLabel10 = QLabel(self,"textLabel10")
-        self.textLabel10.setAlignment(QLabel.AlignVCenter)
-
-        layout6.addWidget(self.textLabel10,7,1)
-
-        self.textLabel12 = QLabel(self,"textLabel12")
-        self.textLabel12.setAlignment(QLabel.AlignVCenter)
-
-        layout6.addWidget(self.textLabel12,8,1)
-
-        self.passwordEdit = QLineEdit(self,"passwordEdit")
-        self.passwordEdit.setReadOnly(1)
-
-        layout6.addMultiCellWidget(self.passwordEdit,9,9,2,4)
-
-        self.passwordButton = QPushButton(self,"passwordButton")
-
-        layout6.addMultiCellWidget(self.passwordButton,10,10,3,4)
-
-        self.groupNumberEdit = QLineEdit(self,"groupNumberEdit")
-        self.groupNumberEdit.setSizePolicy(QSizePolicy(4,0,0,0,self.groupNumberEdit.sizePolicy().hasHeightForWidth()))
-        self.groupNumberEdit.setReadOnly(1)
-
-        layout6.addWidget(self.groupNumberEdit,4,4)
-        spacer2 = QSpacerItem(238,20,QSizePolicy.Expanding,QSizePolicy.Minimum)
-        layout6.addMultiCell(spacer2,5,5,1,2)
-
-        self.expireEdit = QDateEdit(self,"expireEdit")
-
-        layout6.addMultiCellWidget(self.expireEdit,3,3,2,4)
-
-        self.homeLabel = QLabel(self,"homeLabel")
-        self.homeLabel.setMinimumSize(QSize(32,32))
-
-        layout6.addWidget(self.homeLabel,8,0)
-        spacer3 = QSpacerItem(21,16,QSizePolicy.Minimum,QSizePolicy.Fixed)
-        layout6.addItem(spacer3,5,0)
+        UsermanagementWidgetDesignLayout.addWidget(self.textLabel2,0,1)
 
         self.accountLabel = QLabel(self,"accountLabel")
         self.accountLabel.setMinimumSize(QSize(32,32))
         self.accountLabel.setMaximumSize(QSize(32,32))
 
-        layout6.addWidget(self.accountLabel,0,0)
+        UsermanagementWidgetDesignLayout.addWidget(self.accountLabel,0,0)
+
+        self.expireEdit = QDateEdit(self,"expireEdit")
+
+        UsermanagementWidgetDesignLayout.addMultiCellWidget(self.expireEdit,3,3,2,5)
+
+        self.nameEdit = QLineEdit(self,"nameEdit")
+
+        UsermanagementWidgetDesignLayout.addMultiCellWidget(self.nameEdit,2,2,2,5)
+
+        self.findButton = QPushButton(self,"findButton")
+
+        UsermanagementWidgetDesignLayout.addMultiCellWidget(self.findButton,1,1,4,5)
+
+        self.uidBox = QSpinBox(self,"uidBox")
+        self.uidBox.setMaxValue(65535)
+
+        UsermanagementWidgetDesignLayout.addMultiCellWidget(self.uidBox,1,1,2,3)
 
         self.uidEdit = QLineEdit(self,"uidEdit")
         self.uidEdit.setReadOnly(1)
 
-        layout6.addMultiCellWidget(self.uidEdit,0,0,2,4)
+        UsermanagementWidgetDesignLayout.addMultiCellWidget(self.uidEdit,0,0,2,5)
 
-        self.shellLabel = QLabel(self,"shellLabel")
-        self.shellLabel.setMinimumSize(QSize(32,32))
+        self.textLabel12 = QLabel(self,"textLabel12")
+        self.textLabel12.setAlignment(QLabel.AlignVCenter)
 
-        layout6.addWidget(self.shellLabel,7,0)
+        UsermanagementWidgetDesignLayout.addWidget(self.textLabel12,10,1)
+
+        self.homeEdit = QLineEdit(self,"homeEdit")
+
+        UsermanagementWidgetDesignLayout.addMultiCellWidget(self.homeEdit,10,10,2,5)
+
+        self.textLabel10 = QLabel(self,"textLabel10")
+        self.textLabel10.setAlignment(QLabel.AlignVCenter)
+
+        UsermanagementWidgetDesignLayout.addWidget(self.textLabel10,9,1)
 
         self.groupLabel = QLabel(self,"groupLabel")
         self.groupLabel.setSizePolicy(QSizePolicy(0,0,0,0,self.groupLabel.sizePolicy().hasHeightForWidth()))
         self.groupLabel.setMinimumSize(QSize(32,32))
 
-        layout6.addWidget(self.groupLabel,4,0)
+        UsermanagementWidgetDesignLayout.addWidget(self.groupLabel,5,0)
+
+        self.shellEdit = QLineEdit(self,"shellEdit")
+
+        UsermanagementWidgetDesignLayout.addMultiCellWidget(self.shellEdit,9,9,2,5)
 
         self.textLabel17 = QLabel(self,"textLabel17")
         self.textLabel17.setAlignment(QLabel.AlignVCenter)
 
-        layout6.addWidget(self.textLabel17,11,1)
-        spacer9 = QSpacerItem(20,25,QSizePolicy.Minimum,QSizePolicy.Fixed)
-        layout6.addItem(spacer9,6,3)
+        UsermanagementWidgetDesignLayout.addWidget(self.textLabel17,14,1)
+        spacer9 = QSpacerItem(20,13,QSizePolicy.Minimum,QSizePolicy.Fixed)
+        UsermanagementWidgetDesignLayout.addItem(spacer9,8,5)
 
-        self.shellEdit = QLineEdit(self,"shellEdit")
+        self.passwordLabel = QLabel(self,"passwordLabel")
+        self.passwordLabel.setMinimumSize(QSize(32,32))
 
-        layout6.addMultiCellWidget(self.shellEdit,7,7,2,4)
-        UsermanagementWidgetDesignLayout.addLayout(layout6)
+        UsermanagementWidgetDesignLayout.addWidget(self.passwordLabel,11,0)
+        spacer4 = QSpacerItem(112,21,QSizePolicy.Expanding,QSizePolicy.Minimum)
+        UsermanagementWidgetDesignLayout.addItem(spacer4,12,2)
+        spacer8 = QSpacerItem(20,21,QSizePolicy.Expanding,QSizePolicy.Minimum)
+        UsermanagementWidgetDesignLayout.addItem(spacer8,7,2)
+
+        self.passwordEdit = QLineEdit(self,"passwordEdit")
+        self.passwordEdit.setReadOnly(1)
+
+        UsermanagementWidgetDesignLayout.addMultiCellWidget(self.passwordEdit,11,11,2,5)
         spacer5 = QSpacerItem(21,16,QSizePolicy.Minimum,QSizePolicy.Expanding)
-        UsermanagementWidgetDesignLayout.addItem(spacer5)
+        UsermanagementWidgetDesignLayout.addItem(spacer5,16,3)
+
+        self.groupEdit = QLineEdit(self,"groupEdit")
+        self.groupEdit.setReadOnly(1)
+
+        UsermanagementWidgetDesignLayout.addMultiCellWidget(self.groupEdit,5,5,2,5)
+
+        self.mailLabel = QLabel(self,"mailLabel")
+        self.mailLabel.setSizePolicy(QSizePolicy(0,0,0,0,self.mailLabel.sizePolicy().hasHeightForWidth()))
+        self.mailLabel.setMinimumSize(QSize(32,32))
+
+        UsermanagementWidgetDesignLayout.addWidget(self.mailLabel,14,0)
+
+        self.textLabel4 = QLabel(self,"textLabel4")
+        self.textLabel4.setSizePolicy(QSizePolicy(0,5,0,0,self.textLabel4.sizePolicy().hasHeightForWidth()))
+        self.textLabel4.setAlignment(QLabel.AlignVCenter | QLabel.AlignRight)
+
+        UsermanagementWidgetDesignLayout.addWidget(self.textLabel4,6,1)
+        spacer6 = QSpacerItem(112,21,QSizePolicy.Expanding,QSizePolicy.Minimum)
+        UsermanagementWidgetDesignLayout.addItem(spacer6,15,2)
+
+        self.shellLabel = QLabel(self,"shellLabel")
+        self.shellLabel.setMinimumSize(QSize(32,32))
+
+        UsermanagementWidgetDesignLayout.addWidget(self.shellLabel,9,0)
+
+        self.textLabel5 = QLabel(self,"textLabel5")
+        self.textLabel5.setSizePolicy(QSizePolicy(5,5,0,0,self.textLabel5.sizePolicy().hasHeightForWidth()))
+        self.textLabel5.setAlignment(QLabel.AlignVCenter)
+
+        UsermanagementWidgetDesignLayout.addWidget(self.textLabel5,5,1)
+
+        self.groupNumberEdit = QLineEdit(self,"groupNumberEdit")
+        self.groupNumberEdit.setReadOnly(1)
+
+        UsermanagementWidgetDesignLayout.addMultiCellWidget(self.groupNumberEdit,6,6,2,5)
+        spacer3 = QSpacerItem(21,16,QSizePolicy.Minimum,QSizePolicy.Fixed)
+        UsermanagementWidgetDesignLayout.addItem(spacer3,6,0)
+        spacer9_2 = QSpacerItem(21,13,QSizePolicy.Minimum,QSizePolicy.Fixed)
+        UsermanagementWidgetDesignLayout.addItem(spacer9_2,13,4)
+
+        self.mailBox = QComboBox(0,self,"mailBox")
+
+        UsermanagementWidgetDesignLayout.addMultiCellWidget(self.mailBox,14,14,2,5)
+
+        self.textLabel14 = QLabel(self,"textLabel14")
+        self.textLabel14.setAlignment(QLabel.AlignVCenter)
+
+        UsermanagementWidgetDesignLayout.addWidget(self.textLabel14,11,1)
+
+        self.homeLabel = QLabel(self,"homeLabel")
+        self.homeLabel.setMinimumSize(QSize(32,32))
+
+        UsermanagementWidgetDesignLayout.addWidget(self.homeLabel,10,0)
+
+        layout3 = QHBoxLayout(None,0,6,"layout3")
+
+        self.addMailButton = QPushButton(self,"addMailButton")
+        layout3.addWidget(self.addMailButton)
+
+        self.deleteMailButton = QPushButton(self,"deleteMailButton")
+        layout3.addWidget(self.deleteMailButton)
+
+        UsermanagementWidgetDesignLayout.addMultiCellLayout(layout3,15,15,3,5)
+
+        self.groupButton = QPushButton(self,"groupButton")
+        self.groupButton.setSizePolicy(QSizePolicy(1,0,0,0,self.groupButton.sizePolicy().hasHeightForWidth()))
+
+        UsermanagementWidgetDesignLayout.addMultiCellWidget(self.groupButton,7,7,3,5)
+
+        self.passwordButton = QPushButton(self,"passwordButton")
+
+        UsermanagementWidgetDesignLayout.addMultiCellWidget(self.passwordButton,12,12,3,5)
+        spacer9_3 = QSpacerItem(21,13,QSizePolicy.Minimum,QSizePolicy.Fixed)
+        UsermanagementWidgetDesignLayout.addItem(spacer9_3,4,5)
 
         self.languageChange()
 
-        self.resize(QSize(595,480).expandedTo(self.minimumSizeHint()))
+        self.resize(QSize(494,539).expandedTo(self.minimumSizeHint()))
         self.clearWState(Qt.WState_Polished)
 
         self.connect(self.addMailButton,SIGNAL("clicked()"),self.addMail)
@@ -229,26 +228,26 @@ class UsermanagementWidgetDesign(QWidget):
     def languageChange(self):
         self.setCaption(self.__tr("Usermanagement"))
         self.textLabel15.setText(self.__tr("Valid until:"))
-        self.textLabel4.setText(self.__tr("Group ID number:"))
         self.textLabel3.setText(self.__tr("User ID number:"))
         self.textLabel18.setText(self.__tr("Common name:"))
-        self.textLabel14.setText(self.__tr("Password:"))
-        self.deleteMailButton.setText(self.__tr("Delete"))
-        self.addMailButton.setText(self.__tr("Add..."))
-        self.findButton.setText(self.__tr("Find next free"))
-        self.mailLabel.setText(self.__tr("M","DO NOT TRANSLATE"))
-        self.textLabel5.setText(self.__tr("Primary group:"))
-        self.groupButton.setText(self.__tr("Manage group memberships"))
-        self.passwordLabel.setText(self.__tr("PW","DO NOT TRANSLATE"))
         self.textLabel2.setText(self.__tr("User ID:"))
-        self.textLabel10.setText(self.__tr("Login shell:"))
-        self.textLabel12.setText(self.__tr("Home directory:"))
-        self.passwordButton.setText(self.__tr("Change password..."))
-        self.homeLabel.setText(self.__tr("HO","DO NOT TRANSLATE"))
         self.accountLabel.setText(self.__tr("US","DO NOT TRANSLATE"))
-        self.shellLabel.setText(self.__tr("SH","DO NOT TRANSLATE"))
+        self.findButton.setText(self.__tr("Find next free"))
+        self.textLabel12.setText(self.__tr("Home directory:"))
+        self.textLabel10.setText(self.__tr("Login shell:"))
         self.groupLabel.setText(self.__tr("GR"))
         self.textLabel17.setText(self.__tr("Mail:"))
+        self.passwordLabel.setText(self.__tr("PW","DO NOT TRANSLATE"))
+        self.mailLabel.setText(self.__tr("M","DO NOT TRANSLATE"))
+        self.textLabel4.setText(self.__tr("Group ID number:"))
+        self.shellLabel.setText(self.__tr("SH","DO NOT TRANSLATE"))
+        self.textLabel5.setText(self.__tr("Primary group:"))
+        self.textLabel14.setText(self.__tr("Password:"))
+        self.homeLabel.setText(self.__tr("HO","DO NOT TRANSLATE"))
+        self.addMailButton.setText(self.__tr("Add..."))
+        self.deleteMailButton.setText(self.__tr("Delete"))
+        self.groupButton.setText(self.__tr("Manage group memberships"))
+        self.passwordButton.setText(self.__tr("Change password..."))
 
 
     def editPassword(self):

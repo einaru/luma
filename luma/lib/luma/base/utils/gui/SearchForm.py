@@ -80,8 +80,9 @@ class SearchForm(SearchFormDesign):
             
         dialog = FilterWizard(server)
         dialog.exec_loop()
-        self.init_filter_bookmarks()
-        self.searchEdit.setCurrentText(dialog.searchFilterEdit.text())
+        if dialog.result() == QDialog.Accepted:
+            self.init_filter_bookmarks()
+            self.searchEdit.setCurrentText(dialog.searchFilterEdit.text())
 
 
 ###############################################################################

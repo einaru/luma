@@ -2,8 +2,8 @@
 
 # Form implementation generated from reading ui file '/home/wido/src/luma/lib/luma/base/utils/gui/FilterWizardDesign.ui'
 #
-# Created: Mon Apr 26 16:00:25 2004
-#      by: The PyQt User Interface Compiler (pyuic) 3.11
+# Created: Mon Aug 23 15:56:57 2004
+#      by: The PyQt User Interface Compiler (pyuic) 3.12
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -23,123 +23,135 @@ class FilterWizardDesign(QDialog):
 
         FilterWizardDesignLayout = QVBoxLayout(self,11,6,"FilterWizardDesignLayout")
 
-        self.groupBox1 = QGroupBox(self,"groupBox1")
-        self.groupBox1.setSizePolicy(QSizePolicy(5,0,0,0,self.groupBox1.sizePolicy().hasHeightForWidth()))
-        self.groupBox1.setColumnLayout(0,Qt.Vertical)
-        self.groupBox1.layout().setSpacing(6)
-        self.groupBox1.layout().setMargin(11)
-        groupBox1Layout = QVBoxLayout(self.groupBox1.layout())
-        groupBox1Layout.setAlignment(Qt.AlignTop)
+        layout7 = QGridLayout(None,1,1,0,6,"layout7")
 
-        self.frame3 = QFrame(self.groupBox1,"frame3")
-        self.frame3.setSizePolicy(QSizePolicy(5,0,0,0,self.frame3.sizePolicy().hasHeightForWidth()))
-        self.frame3.setFrameShape(QFrame.StyledPanel)
-        self.frame3.setFrameShadow(QFrame.Raised)
-        frame3Layout = QVBoxLayout(self.frame3,11,6,"frame3Layout")
+        self.delBookmarkButton = QPushButton(self,"delBookmarkButton")
+        self.delBookmarkButton.setSizePolicy(QSizePolicy(0,0,0,0,self.delBookmarkButton.sizePolicy().hasHeightForWidth()))
 
-        layout6 = QHBoxLayout(None,0,6,"layout6")
+        layout7.addWidget(self.delBookmarkButton,2,4)
+        spacer6 = QSpacerItem(128,21,QSizePolicy.Expanding,QSizePolicy.Minimum)
+        layout7.addMultiCell(spacer6,2,2,1,2)
 
-        self.classButton = QRadioButton(self.frame3,"classButton")
+        self.bookmarkBox = QComboBox(0,self,"bookmarkBox")
+        self.bookmarkBox.setSizeLimit(200)
+
+        layout7.addMultiCellWidget(self.bookmarkBox,1,1,2,4)
+        spacer5 = QSpacerItem(16,16,QSizePolicy.Fixed,QSizePolicy.Minimum)
+        layout7.addItem(spacer5,1,0)
+
+        self.addBookmarkButton = QPushButton(self,"addBookmarkButton")
+        self.addBookmarkButton.setSizePolicy(QSizePolicy(0,0,0,0,self.addBookmarkButton.sizePolicy().hasHeightForWidth()))
+
+        layout7.addWidget(self.addBookmarkButton,2,3)
+
+        self.textLabel2 = QLabel(self,"textLabel2")
+        self.textLabel2.setAlignment(QLabel.AlignVCenter)
+
+        layout7.addMultiCellWidget(self.textLabel2,0,0,0,4)
+
+        self.textLabel1 = QLabel(self,"textLabel1")
+        self.textLabel1.setSizePolicy(QSizePolicy(0,0,0,0,self.textLabel1.sizePolicy().hasHeightForWidth()))
+
+        layout7.addWidget(self.textLabel1,1,1)
+        FilterWizardDesignLayout.addLayout(layout7)
+        spacer7 = QSpacerItem(31,10,QSizePolicy.Minimum,QSizePolicy.Fixed)
+        FilterWizardDesignLayout.addItem(spacer7)
+
+        layout6 = QGridLayout(None,1,1,0,6,"layout6")
+
+        self.expressionEdit = QLineEdit(self,"expressionEdit")
+
+        layout6.addMultiCellWidget(self.expressionEdit,2,2,2,3)
+
+        self.attributeButton = QRadioButton(self,"attributeButton")
+        self.attributeButton.setSizePolicy(QSizePolicy(0,0,0,0,self.attributeButton.sizePolicy().hasHeightForWidth()))
+
+        layout6.addWidget(self.attributeButton,1,2)
+
+        self.filterTypeBox = QComboBox(0,self,"filterTypeBox")
+        self.filterTypeBox.setSizePolicy(QSizePolicy(0,0,0,0,self.filterTypeBox.sizePolicy().hasHeightForWidth()))
+
+        layout6.addWidget(self.filterTypeBox,2,1)
+
+        self.textLabel1_2 = QLabel(self,"textLabel1_2")
+        self.textLabel1_2.setAlignment(QLabel.AlignVCenter)
+
+        layout6.addMultiCellWidget(self.textLabel1_2,0,0,0,4)
+
+        self.addObjectButton = QPushButton(self,"addObjectButton")
+        self.addObjectButton.setSizePolicy(QSizePolicy(0,0,0,0,self.addObjectButton.sizePolicy().hasHeightForWidth()))
+
+        layout6.addWidget(self.addObjectButton,2,4)
+
+        self.classButton = QRadioButton(self,"classButton")
         self.classButton.setSizePolicy(QSizePolicy(0,0,0,0,self.classButton.sizePolicy().hasHeightForWidth()))
         self.classButton.setChecked(0)
-        layout6.addWidget(self.classButton)
 
-        self.attributeButton = QRadioButton(self.frame3,"attributeButton")
-        self.attributeButton.setSizePolicy(QSizePolicy(0,0,0,0,self.attributeButton.sizePolicy().hasHeightForWidth()))
-        layout6.addWidget(self.attributeButton)
+        layout6.addWidget(self.classButton,1,1)
 
-        self.objectBox = QComboBox(0,self.frame3,"objectBox")
-        layout6.addWidget(self.objectBox)
-        frame3Layout.addLayout(layout6)
+        self.objectBox = QComboBox(0,self,"objectBox")
 
-        self.filterTypeBox = QComboBox(0,self.frame3,"filterTypeBox")
-        frame3Layout.addWidget(self.filterTypeBox)
+        layout6.addMultiCellWidget(self.objectBox,1,1,3,4)
+        spacer4 = QSpacerItem(16,21,QSizePolicy.Fixed,QSizePolicy.Minimum)
+        layout6.addItem(spacer4,1,0)
+        FilterWizardDesignLayout.addLayout(layout6)
+        spacer13 = QSpacerItem(21,10,QSizePolicy.Minimum,QSizePolicy.Fixed)
+        FilterWizardDesignLayout.addItem(spacer13)
 
-        layout7 = QHBoxLayout(None,0,6,"layout7")
+        layout3 = QGridLayout(None,1,1,0,6,"layout3")
+        spacer12 = QSpacerItem(16,16,QSizePolicy.Fixed,QSizePolicy.Minimum)
+        layout3.addItem(spacer12,1,0)
 
-        self.textLabel3 = QLabel(self.frame3,"textLabel3")
-        self.textLabel3.setSizePolicy(QSizePolicy(0,0,0,0,self.textLabel3.sizePolicy().hasHeightForWidth()))
-        layout7.addWidget(self.textLabel3)
+        self.concatBox = QComboBox(0,self,"concatBox")
 
-        self.expressionEdit = QLineEdit(self.frame3,"expressionEdit")
-        layout7.addWidget(self.expressionEdit)
+        layout3.addWidget(self.concatBox,1,1)
 
-        self.addObjectButton = QPushButton(self.frame3,"addObjectButton")
-        self.addObjectButton.setSizePolicy(QSizePolicy(0,0,0,0,self.addObjectButton.sizePolicy().hasHeightForWidth()))
-        layout7.addWidget(self.addObjectButton)
-        frame3Layout.addLayout(layout7)
-        groupBox1Layout.addWidget(self.frame3)
-
-        self.frame5 = QFrame(self.groupBox1,"frame5")
-        self.frame5.setFrameShape(QFrame.StyledPanel)
-        self.frame5.setFrameShadow(QFrame.Raised)
-        frame5Layout = QHBoxLayout(self.frame5,11,6,"frame5Layout")
-
-        self.textLabel4 = QLabel(self.frame5,"textLabel4")
-        self.textLabel4.setSizePolicy(QSizePolicy(0,5,0,0,self.textLabel4.sizePolicy().hasHeightForWidth()))
-        frame5Layout.addWidget(self.textLabel4)
-
-        self.concatBox = QComboBox(0,self.frame5,"concatBox")
-        frame5Layout.addWidget(self.concatBox)
-
-        self.concatButton = QPushButton(self.frame5,"concatButton")
+        self.concatButton = QPushButton(self,"concatButton")
         self.concatButton.setSizePolicy(QSizePolicy(0,0,0,0,self.concatButton.sizePolicy().hasHeightForWidth()))
-        frame5Layout.addWidget(self.concatButton)
-        groupBox1Layout.addWidget(self.frame5)
-        FilterWizardDesignLayout.addWidget(self.groupBox1)
 
-        self.groupBox5 = QGroupBox(self,"groupBox5")
-        self.groupBox5.setColumnLayout(0,Qt.Vertical)
-        self.groupBox5.layout().setSpacing(6)
-        self.groupBox5.layout().setMargin(11)
-        groupBox5Layout = QVBoxLayout(self.groupBox5.layout())
-        groupBox5Layout.setAlignment(Qt.AlignTop)
+        layout3.addWidget(self.concatButton,1,2)
 
-        layout3 = QHBoxLayout(None,0,6,"layout3")
+        self.textLabel4 = QLabel(self,"textLabel4")
+        self.textLabel4.setSizePolicy(QSizePolicy(0,5,0,0,self.textLabel4.sizePolicy().hasHeightForWidth()))
+        self.textLabel4.setAlignment(QLabel.AlignVCenter)
 
-        self.textLabel1 = QLabel(self.groupBox5,"textLabel1")
-        self.textLabel1.setSizePolicy(QSizePolicy(0,0,0,0,self.textLabel1.sizePolicy().hasHeightForWidth()))
-        layout3.addWidget(self.textLabel1)
+        layout3.addMultiCellWidget(self.textLabel4,0,0,0,1)
+        FilterWizardDesignLayout.addLayout(layout3)
+        spacer8 = QSpacerItem(31,10,QSizePolicy.Minimum,QSizePolicy.Fixed)
+        FilterWizardDesignLayout.addItem(spacer8)
 
-        self.bookmarkBox = QComboBox(0,self.groupBox5,"bookmarkBox")
-        self.bookmarkBox.setSizeLimit(200)
-        layout3.addWidget(self.bookmarkBox)
+        self.textLabel3_2 = QLabel(self,"textLabel3_2")
+        self.textLabel3_2.setAlignment(QLabel.AlignVCenter)
+        FilterWizardDesignLayout.addWidget(self.textLabel3_2)
 
-        self.delBookmarkButton = QPushButton(self.groupBox5,"delBookmarkButton")
-        self.delBookmarkButton.setSizePolicy(QSizePolicy(0,0,0,0,self.delBookmarkButton.sizePolicy().hasHeightForWidth()))
-        layout3.addWidget(self.delBookmarkButton)
-        groupBox5Layout.addLayout(layout3)
+        self.searchFilterEdit = QLineEdit(self,"searchFilterEdit")
+        FilterWizardDesignLayout.addWidget(self.searchFilterEdit)
+        spacer11 = QSpacerItem(31,16,QSizePolicy.Minimum,QSizePolicy.Expanding)
+        FilterWizardDesignLayout.addItem(spacer11)
 
-        self.line1 = QFrame(self.groupBox5,"line1")
-        self.line1.setFrameShape(QFrame.HLine)
-        self.line1.setFrameShadow(QFrame.Sunken)
-        self.line1.setFrameShape(QFrame.HLine)
-        groupBox5Layout.addWidget(self.line1)
+        self.line2 = QFrame(self,"line2")
+        self.line2.setFrameShape(QFrame.HLine)
+        self.line2.setFrameShadow(QFrame.Sunken)
+        self.line2.setFrameShape(QFrame.HLine)
+        FilterWizardDesignLayout.addWidget(self.line2)
 
-        self.searchFilterEdit = QLineEdit(self.groupBox5,"searchFilterEdit")
-        groupBox5Layout.addWidget(self.searchFilterEdit)
-
-        layout4 = QHBoxLayout(None,0,6,"layout4")
-        spacer3 = QSpacerItem(301,21,QSizePolicy.Expanding,QSizePolicy.Minimum)
-        layout4.addItem(spacer3)
-
-        self.addBookmarkButton = QPushButton(self.groupBox5,"addBookmarkButton")
-        self.addBookmarkButton.setSizePolicy(QSizePolicy(0,0,0,0,self.addBookmarkButton.sizePolicy().hasHeightForWidth()))
-        layout4.addWidget(self.addBookmarkButton)
-        groupBox5Layout.addLayout(layout4)
-        FilterWizardDesignLayout.addWidget(self.groupBox5)
-        spacer9 = QSpacerItem(41,110,QSizePolicy.Minimum,QSizePolicy.Expanding)
-        FilterWizardDesignLayout.addItem(spacer9)
+        layout27 = QHBoxLayout(None,0,6,"layout27")
+        spacer3 = QSpacerItem(470,21,QSizePolicy.Expanding,QSizePolicy.Minimum)
+        layout27.addItem(spacer3)
 
         self.pushButton11 = QPushButton(self,"pushButton11")
-        FilterWizardDesignLayout.addWidget(self.pushButton11)
+        layout27.addWidget(self.pushButton11)
+
+        self.pushButton6 = QPushButton(self,"pushButton6")
+        layout27.addWidget(self.pushButton6)
+        FilterWizardDesignLayout.addLayout(layout27)
 
         self.languageChange()
 
-        self.resize(QSize(360,426).expandedTo(self.minimumSizeHint()))
+        self.resize(QSize(423,451).expandedTo(self.minimumSizeHint()))
         self.clearWState(Qt.WState_Polished)
 
-        self.connect(self.pushButton11,SIGNAL("clicked()"),self,SLOT("close()"))
+        self.connect(self.pushButton11,SIGNAL("clicked()"),self,SLOT("accept()"))
         self.connect(self.addObjectButton,SIGNAL("clicked()"),self.add_criteria)
         self.connect(self.concatButton,SIGNAL("clicked()"),self.add_concat)
         self.connect(self.attributeButton,SIGNAL("clicked()"),self.attribute_choice_changed)
@@ -147,34 +159,37 @@ class FilterWizardDesign(QDialog):
         self.connect(self.bookmarkBox,SIGNAL("activated(const QString&)"),self.bookmark_selected)
         self.connect(self.delBookmarkButton,SIGNAL("clicked()"),self.delete_bookmark)
         self.connect(self.addBookmarkButton,SIGNAL("clicked()"),self.add_bookmark)
+        self.connect(self.pushButton6,SIGNAL("clicked()"),self,SLOT("reject()"))
 
 
     def languageChange(self):
         self.setCaption(self.__tr("Search Filter Wizard"))
-        self.groupBox1.setTitle(self.__tr("Search Criteria"))
-        self.classButton.setText(self.__tr("ObjectClass"))
+        self.delBookmarkButton.setText(self.__tr("&Delete"))
+        self.delBookmarkButton.setAccel(self.__tr("Alt+D"))
+        self.addBookmarkButton.setText(self.__tr("&Add current filter"))
+        self.addBookmarkButton.setAccel(self.__tr("Alt+A"))
+        self.textLabel2.setText(self.__tr("<b>Filter bookmarks</b>"))
+        self.textLabel1.setText(self.__tr("Filter:"))
         self.attributeButton.setText(self.__tr("Attribute"))
         self.filterTypeBox.clear()
         self.filterTypeBox.insertItem(self.__tr("=  (equal)"))
         self.filterTypeBox.insertItem(self.__tr("-=  (approx)"))
         self.filterTypeBox.insertItem(self.__tr(">=  (greater)"))
         self.filterTypeBox.insertItem(self.__tr("<=  (less)"))
-        self.textLabel3.setText(self.__tr("Expression:"))
+        self.textLabel1_2.setText(self.__tr("<b>Search Criteria</b>"))
         self.addObjectButton.setText(self.__tr("Add"))
-        self.textLabel4.setText(self.__tr("Concatenation:"))
+        self.classButton.setText(self.__tr("ObjectClass"))
         self.concatBox.clear()
         self.concatBox.insertItem(self.__tr("and"))
         self.concatBox.insertItem(self.__tr("or"))
         self.concatBox.insertItem(self.__tr("not"))
         self.concatButton.setText(self.__tr("Add"))
-        self.groupBox5.setTitle(self.__tr("Search Filter"))
-        self.textLabel1.setText(self.__tr("Bookmark:"))
-        self.delBookmarkButton.setText(self.__tr("&Delete"))
-        self.delBookmarkButton.setAccel(self.__tr("Alt+D"))
-        self.addBookmarkButton.setText(self.__tr("&Add to Bookmarks"))
-        self.addBookmarkButton.setAccel(self.__tr("Alt+A"))
+        self.textLabel4.setText(self.__tr("<b>Concatenation</b>"))
+        self.textLabel3_2.setText(self.__tr("<b>Current filter</b>"))
         self.pushButton11.setText(self.__tr("&Ok"))
         self.pushButton11.setAccel(self.__tr("Alt+O"))
+        self.pushButton6.setText(self.__tr("&Cancel"))
+        self.pushButton6.setAccel(self.__tr("Alt+C"))
 
 
     def class_choice_changed(self):

@@ -1,4 +1,4 @@
-<!DOCTYPE UI><UI version="3.2" stdsetdef="1">
+<!DOCTYPE UI><UI version="3.3" stdsetdef="1">
 <class>AddressbookSettingsDesign</class>
 <widget class="QWidget">
     <property name="name">
@@ -8,109 +8,18 @@
         <rect>
             <x>0</x>
             <y>0</y>
-            <width>344</width>
-            <height>299</height>
+            <width>431</width>
+            <height>335</height>
         </rect>
     </property>
     <property name="caption">
         <string>Addressbook Settings</string>
     </property>
-    <vbox>
+    <grid>
         <property name="name">
             <cstring>unnamed</cstring>
         </property>
-        <widget class="QTabWidget">
-            <property name="name">
-                <cstring>tabWidget2</cstring>
-            </property>
-            <widget class="QWidget">
-                <property name="name">
-                    <cstring>tab</cstring>
-                </property>
-                <attribute name="title">
-                    <string>Search Criteria</string>
-                </attribute>
-                <grid>
-                    <property name="name">
-                        <cstring>unnamed</cstring>
-                    </property>
-                    <widget class="QLayoutWidget" row="0" column="0" rowspan="2" colspan="1">
-                        <property name="name">
-                            <cstring>layout4</cstring>
-                        </property>
-                        <grid>
-                            <property name="name">
-                                <cstring>unnamed</cstring>
-                            </property>
-                            <widget class="QListView" row="0" column="0" rowspan="1" colspan="2">
-                                <column>
-                                    <property name="text">
-                                        <string>Attributes</string>
-                                    </property>
-                                    <property name="clickable">
-                                        <bool>true</bool>
-                                    </property>
-                                    <property name="resizable">
-                                        <bool>true</bool>
-                                    </property>
-                                </column>
-                                <property name="name">
-                                    <cstring>attributeView</cstring>
-                                </property>
-                                <property name="resizeMode">
-                                    <enum>AllColumns</enum>
-                                </property>
-                            </widget>
-                            <widget class="QLineEdit" row="1" column="0">
-                                <property name="name">
-                                    <cstring>attributeEdit</cstring>
-                                </property>
-                            </widget>
-                            <widget class="QPushButton" row="1" column="1">
-                                <property name="name">
-                                    <cstring>addButton</cstring>
-                                </property>
-                                <property name="text">
-                                    <string>&amp;Add</string>
-                                </property>
-                                <property name="accel">
-                                    <string>Alt+A</string>
-                                </property>
-                            </widget>
-                        </grid>
-                    </widget>
-                    <widget class="QPushButton" row="0" column="2">
-                        <property name="name">
-                            <cstring>deleteButton</cstring>
-                        </property>
-                        <property name="text">
-                            <string>&amp;Delete</string>
-                        </property>
-                        <property name="accel">
-                            <string>Alt+D</string>
-                        </property>
-                    </widget>
-                    <spacer row="1" column="2">
-                        <property name="name">
-                            <cstring>spacer6</cstring>
-                        </property>
-                        <property name="orientation">
-                            <enum>Vertical</enum>
-                        </property>
-                        <property name="sizeType">
-                            <enum>Expanding</enum>
-                        </property>
-                        <property name="sizeHint">
-                            <size>
-                                <width>41</width>
-                                <height>260</height>
-                            </size>
-                        </property>
-                    </spacer>
-                </grid>
-            </widget>
-        </widget>
-        <widget class="QLayoutWidget">
+        <widget class="QLayoutWidget" row="2" column="0" rowspan="1" colspan="2">
             <property name="name">
                 <cstring>layout2</cstring>
             </property>
@@ -118,48 +27,104 @@
                 <property name="name">
                     <cstring>unnamed</cstring>
                 </property>
-                <spacer>
+            </hbox>
+        </widget>
+        <widget class="QLabel" row="0" column="0" rowspan="1" colspan="2">
+            <property name="name">
+                <cstring>textLabel1</cstring>
+            </property>
+            <property name="text">
+                <string>&lt;b&gt;Search criteria&lt;/b&gt;</string>
+            </property>
+        </widget>
+        <widget class="QLayoutWidget" row="1" column="1">
+            <property name="name">
+                <cstring>layout3</cstring>
+            </property>
+            <grid>
+                <property name="name">
+                    <cstring>unnamed</cstring>
+                </property>
+                <widget class="QListView" row="0" column="0" rowspan="3" colspan="1">
+                    <column>
+                        <property name="text">
+                            <string>Attributes</string>
+                        </property>
+                        <property name="clickable">
+                            <bool>true</bool>
+                        </property>
+                        <property name="resizable">
+                            <bool>true</bool>
+                        </property>
+                    </column>
                     <property name="name">
-                        <cstring>Horizontal Spacing2</cstring>
+                        <cstring>attributeView</cstring>
+                    </property>
+                    <property name="resizeMode">
+                        <enum>AllColumns</enum>
+                    </property>
+                </widget>
+                <widget class="QPushButton" row="1" column="1">
+                    <property name="name">
+                        <cstring>deleteButton</cstring>
+                    </property>
+                    <property name="text">
+                        <string>&amp;Delete</string>
+                    </property>
+                    <property name="accel">
+                        <string>Alt+D</string>
+                    </property>
+                </widget>
+                <widget class="QPushButton" row="0" column="1">
+                    <property name="name">
+                        <cstring>addButton</cstring>
+                    </property>
+                    <property name="text">
+                        <string>&amp;Add...</string>
+                    </property>
+                    <property name="accel">
+                        <string>Alt+A</string>
+                    </property>
+                </widget>
+                <spacer row="2" column="1">
+                    <property name="name">
+                        <cstring>spacer6</cstring>
                     </property>
                     <property name="orientation">
-                        <enum>Horizontal</enum>
+                        <enum>Vertical</enum>
                     </property>
                     <property name="sizeType">
                         <enum>Expanding</enum>
                     </property>
                     <property name="sizeHint">
                         <size>
-                            <width>300</width>
-                            <height>20</height>
+                            <width>41</width>
+                            <height>50</height>
                         </size>
                     </property>
                 </spacer>
-                <widget class="QPushButton">
-                    <property name="name">
-                        <cstring>saveButton</cstring>
-                    </property>
-                    <property name="focusPolicy">
-                        <enum>ClickFocus</enum>
-                    </property>
-                    <property name="text">
-                        <string>&amp;Save</string>
-                    </property>
-                    <property name="accel">
-                        <string>Alt+S</string>
-                    </property>
-                </widget>
-            </hbox>
+            </grid>
         </widget>
-    </vbox>
+        <spacer row="1" column="0">
+            <property name="name">
+                <cstring>spacer3</cstring>
+            </property>
+            <property name="orientation">
+                <enum>Horizontal</enum>
+            </property>
+            <property name="sizeType">
+                <enum>Fixed</enum>
+            </property>
+            <property name="sizeHint">
+                <size>
+                    <width>10</width>
+                    <height>21</height>
+                </size>
+            </property>
+        </spacer>
+    </grid>
 </widget>
 <connections>
-    <connection>
-        <sender>saveButton</sender>
-        <signal>clicked()</signal>
-        <receiver>AddressbookSettingsDesign</receiver>
-        <slot>saveValues()</slot>
-    </connection>
     <connection>
         <sender>addButton</sender>
         <signal>clicked()</signal>
@@ -174,12 +139,9 @@
     </connection>
 </connections>
 <tabstops>
-    <tabstop>tabWidget2</tabstop>
     <tabstop>attributeView</tabstop>
-    <tabstop>attributeEdit</tabstop>
     <tabstop>addButton</tabstop>
     <tabstop>deleteButton</tabstop>
-    <tabstop>saveButton</tabstop>
 </tabstops>
 <slots>
     <slot>saveValues()</slot>

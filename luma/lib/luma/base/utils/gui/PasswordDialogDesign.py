@@ -2,8 +2,8 @@
 
 # Form implementation generated from reading ui file '/home/wido/src/luma/lib/luma/base/utils/gui/PasswordDialogDesign.ui'
 #
-# Created: Sun Jul 4 00:20:56 2004
-#      by: The PyQt User Interface Compiler (pyuic) 3.11
+# Created: Mon Aug 23 14:35:39 2004
+#      by: The PyQt User Interface Compiler (pyuic) 3.12
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -27,43 +27,58 @@ class PasswordDialogDesign(QDialog):
         self.iconLabel.setSizePolicy(QSizePolicy(0,0,0,0,self.iconLabel.sizePolicy().hasHeightForWidth()))
         self.iconLabel.setMinimumSize(QSize(64,64))
 
-        PasswordDialogDesignLayout.addWidget(self.iconLabel,0,0)
+        PasswordDialogDesignLayout.addMultiCellWidget(self.iconLabel,0,1,0,0)
 
         self.textLabel2 = QLabel(self,"textLabel2")
 
         PasswordDialogDesignLayout.addWidget(self.textLabel2,0,1)
 
-        layout2 = QGridLayout(None,1,1,0,6,"layout2")
-
-        self.textLabel5 = QLabel(self,"textLabel5")
-
-        layout2.addWidget(self.textLabel5,2,0)
-
-        self.methodBox = QComboBox(0,self,"methodBox")
-
-        layout2.addWidget(self.methodBox,0,1)
-
-        self.passwordEdit = QLineEdit(self,"passwordEdit")
-        self.passwordEdit.setEchoMode(QLineEdit.Password)
-
-        layout2.addWidget(self.passwordEdit,1,1)
-
-        self.passwordSaveEdit = QLineEdit(self,"passwordSaveEdit")
-        self.passwordSaveEdit.setEchoMode(QLineEdit.Password)
-
-        layout2.addWidget(self.passwordSaveEdit,2,1)
+        layout3 = QGridLayout(None,1,1,0,6,"layout3")
 
         self.textLabel4 = QLabel(self,"textLabel4")
         self.textLabel4.setAlignment(QLabel.AlignVCenter)
 
-        layout2.addWidget(self.textLabel4,1,0)
+        layout3.addWidget(self.textLabel4,1,0)
 
         self.textLabel3 = QLabel(self,"textLabel3")
         self.textLabel3.setAlignment(QLabel.AlignVCenter)
 
-        layout2.addWidget(self.textLabel3,0,0)
+        layout3.addWidget(self.textLabel3,0,0)
 
-        PasswordDialogDesignLayout.addLayout(layout2,2,1)
+        self.passwordSaveEdit = QLineEdit(self,"passwordSaveEdit")
+        self.passwordSaveEdit.setEchoMode(QLineEdit.Password)
+
+        layout3.addWidget(self.passwordSaveEdit,2,1)
+
+        self.methodBox = QComboBox(0,self,"methodBox")
+
+        layout3.addWidget(self.methodBox,0,1)
+
+        self.passwordLabel = QLabel(self,"passwordLabel")
+
+        layout3.addMultiCellWidget(self.passwordLabel,3,3,0,1)
+
+        self.passwordEdit = QLineEdit(self,"passwordEdit")
+        self.passwordEdit.setEchoMode(QLineEdit.Password)
+
+        layout3.addWidget(self.passwordEdit,1,1)
+
+        self.textLabel5 = QLabel(self,"textLabel5")
+
+        layout3.addWidget(self.textLabel5,2,0)
+
+        PasswordDialogDesignLayout.addMultiCellLayout(layout3,1,2,1,1)
+        spacer3 = QSpacerItem(20,70,QSizePolicy.Minimum,QSizePolicy.Expanding)
+        PasswordDialogDesignLayout.addItem(spacer3,2,0)
+        spacer2 = QSpacerItem(41,5,QSizePolicy.Minimum,QSizePolicy.Preferred)
+        PasswordDialogDesignLayout.addItem(spacer2,3,1)
+
+        self.line1 = QFrame(self,"line1")
+        self.line1.setFrameShape(QFrame.HLine)
+        self.line1.setFrameShadow(QFrame.Sunken)
+        self.line1.setFrameShape(QFrame.HLine)
+
+        PasswordDialogDesignLayout.addMultiCellWidget(self.line1,4,4,0,1)
 
         Layout1 = QHBoxLayout(None,0,6,"Layout1")
         Horizontal_Spacing2 = QSpacerItem(20,20,QSizePolicy.Expanding,QSizePolicy.Minimum)
@@ -78,17 +93,11 @@ class PasswordDialogDesign(QDialog):
         self.cancelButton.setAutoDefault(1)
         Layout1.addWidget(self.cancelButton)
 
-        PasswordDialogDesignLayout.addLayout(Layout1,5,1)
-        spacer2 = QSpacerItem(41,10,QSizePolicy.Minimum,QSizePolicy.MinimumExpanding)
-        PasswordDialogDesignLayout.addItem(spacer2,4,1)
-
-        self.passwordLabel = QLabel(self,"passwordLabel")
-
-        PasswordDialogDesignLayout.addWidget(self.passwordLabel,3,1)
+        PasswordDialogDesignLayout.addMultiCellLayout(Layout1,5,5,0,1)
 
         self.languageChange()
 
-        self.resize(QSize(460,265).expandedTo(self.minimumSizeHint()))
+        self.resize(QSize(405,239).expandedTo(self.minimumSizeHint()))
         self.clearWState(Qt.WState_Polished)
 
         self.connect(self.okButton,SIGNAL("clicked()"),self.checkPassword)
@@ -100,15 +109,15 @@ class PasswordDialogDesign(QDialog):
     def languageChange(self):
         self.setCaption(self.__tr("New password"))
         self.iconLabel.setText(self.__tr("PW","DO NOT TRANSLATE"))
-        self.textLabel2.setText(self.__tr("Please enter a new password."))
-        self.textLabel5.setText(self.__tr("Verify:"))
+        self.textLabel2.setText(self.__tr("<b>Please enter a new password.</b>"))
         self.textLabel4.setText(self.__tr("New password:"))
         self.textLabel3.setText(self.__tr("Method:"))
+        self.passwordLabel.setText(self.__tr("Passwords do not match"))
+        self.textLabel5.setText(self.__tr("Verify:"))
         self.okButton.setText(self.__tr("&OK"))
         self.okButton.setAccel(QString.null)
         self.cancelButton.setText(self.__tr("&Cancel"))
         self.cancelButton.setAccel(QString.null)
-        self.passwordLabel.setText(self.__tr("Passwords do not match"))
 
 
     def checkPassword(self):

@@ -8,504 +8,273 @@
         <rect>
             <x>0</x>
             <y>0</y>
-            <width>595</width>
-            <height>480</height>
+            <width>494</width>
+            <height>539</height>
         </rect>
     </property>
     <property name="caption">
         <string>Usermanagement</string>
     </property>
-    <vbox>
+    <grid>
         <property name="name">
             <cstring>unnamed</cstring>
         </property>
-        <widget class="QLayoutWidget">
+        <widget class="QLabel" row="3" column="1">
             <property name="name">
-                <cstring>layout6</cstring>
+                <cstring>textLabel15</cstring>
             </property>
-            <grid>
-                <property name="name">
-                    <cstring>unnamed</cstring>
-                </property>
-                <widget class="QSpinBox" row="1" column="2" rowspan="1" colspan="2">
-                    <property name="name">
-                        <cstring>uidBox</cstring>
-                    </property>
-                    <property name="maxValue">
-                        <number>65535</number>
-                    </property>
-                </widget>
-                <widget class="QLabel" row="3" column="1">
-                    <property name="name">
-                        <cstring>textLabel15</cstring>
-                    </property>
-                    <property name="text">
-                        <string>Valid until:</string>
-                    </property>
-                    <property name="alignment">
-                        <set>AlignVCenter</set>
-                    </property>
-                </widget>
-                <widget class="QLineEdit" row="4" column="2">
-                    <property name="name">
-                        <cstring>groupEdit</cstring>
-                    </property>
-                    <property name="minimumSize">
-                        <size>
-                            <width>100</width>
-                            <height>0</height>
-                        </size>
-                    </property>
-                    <property name="readOnly">
-                        <bool>true</bool>
-                    </property>
-                </widget>
-                <widget class="QLabel" row="4" column="3">
-                    <property name="name">
-                        <cstring>textLabel4</cstring>
-                    </property>
-                    <property name="sizePolicy">
-                        <sizepolicy>
-                            <hsizetype>0</hsizetype>
-                            <vsizetype>5</vsizetype>
-                            <horstretch>0</horstretch>
-                            <verstretch>0</verstretch>
-                        </sizepolicy>
-                    </property>
-                    <property name="text">
-                        <string>Group ID number:</string>
-                    </property>
-                    <property name="alignment">
-                        <set>AlignVCenter|AlignRight</set>
-                    </property>
-                </widget>
-                <widget class="QLabel" row="1" column="1">
-                    <property name="name">
-                        <cstring>textLabel3</cstring>
-                    </property>
-                    <property name="text">
-                        <string>User ID number:</string>
-                    </property>
-                    <property name="alignment">
-                        <set>AlignVCenter</set>
-                    </property>
-                </widget>
-                <spacer row="12" column="2">
-                    <property name="name">
-                        <cstring>spacer6</cstring>
-                    </property>
-                    <property name="orientation">
-                        <enum>Horizontal</enum>
-                    </property>
-                    <property name="sizeType">
-                        <enum>Expanding</enum>
-                    </property>
-                    <property name="sizeHint">
-                        <size>
-                            <width>100</width>
-                            <height>21</height>
-                        </size>
-                    </property>
-                </spacer>
-                <widget class="QLineEdit" row="2" column="2" rowspan="1" colspan="3">
-                    <property name="name">
-                        <cstring>nameEdit</cstring>
-                    </property>
-                </widget>
-                <widget class="QComboBox" row="11" column="2" rowspan="1" colspan="3">
-                    <property name="name">
-                        <cstring>mailBox</cstring>
-                    </property>
-                </widget>
-                <widget class="QLabel" row="2" column="1">
-                    <property name="name">
-                        <cstring>textLabel18</cstring>
-                    </property>
-                    <property name="text">
-                        <string>Common name:</string>
-                    </property>
-                    <property name="alignment">
-                        <set>AlignVCenter</set>
-                    </property>
-                </widget>
-                <spacer row="10" column="2">
-                    <property name="name">
-                        <cstring>spacer4</cstring>
-                    </property>
-                    <property name="orientation">
-                        <enum>Horizontal</enum>
-                    </property>
-                    <property name="sizeType">
-                        <enum>Expanding</enum>
-                    </property>
-                    <property name="sizeHint">
-                        <size>
-                            <width>100</width>
-                            <height>21</height>
-                        </size>
-                    </property>
-                </spacer>
-                <spacer row="1" column="0" rowspan="3" colspan="1">
-                    <property name="name">
-                        <cstring>spacer1</cstring>
-                    </property>
-                    <property name="orientation">
-                        <enum>Vertical</enum>
-                    </property>
-                    <property name="sizeType">
-                        <enum>Expanding</enum>
-                    </property>
-                    <property name="sizeHint">
-                        <size>
-                            <width>21</width>
-                            <height>92</height>
-                        </size>
-                    </property>
-                </spacer>
-                <widget class="QLabel" row="9" column="1">
-                    <property name="name">
-                        <cstring>textLabel14</cstring>
-                    </property>
-                    <property name="text">
-                        <string>Password:</string>
-                    </property>
-                    <property name="alignment">
-                        <set>AlignVCenter</set>
-                    </property>
-                </widget>
-                <widget class="QLayoutWidget" row="12" column="3" rowspan="1" colspan="2">
-                    <property name="name">
-                        <cstring>layout38</cstring>
-                    </property>
-                    <hbox>
-                        <property name="name">
-                            <cstring>unnamed</cstring>
-                        </property>
-                        <widget class="QPushButton">
-                            <property name="name">
-                                <cstring>deleteMailButton</cstring>
-                            </property>
-                            <property name="text">
-                                <string>Delete</string>
-                            </property>
-                        </widget>
-                        <widget class="QPushButton">
-                            <property name="name">
-                                <cstring>addMailButton</cstring>
-                            </property>
-                            <property name="text">
-                                <string>Add...</string>
-                            </property>
-                        </widget>
-                    </hbox>
-                </widget>
-                <widget class="QPushButton" row="1" column="4">
-                    <property name="name">
-                        <cstring>findButton</cstring>
-                    </property>
-                    <property name="text">
-                        <string>Find next free</string>
-                    </property>
-                </widget>
-                <widget class="QLabel" row="11" column="0">
-                    <property name="name">
-                        <cstring>mailLabel</cstring>
-                    </property>
-                    <property name="sizePolicy">
-                        <sizepolicy>
-                            <hsizetype>0</hsizetype>
-                            <vsizetype>0</vsizetype>
-                            <horstretch>0</horstretch>
-                            <verstretch>0</verstretch>
-                        </sizepolicy>
-                    </property>
-                    <property name="minimumSize">
-                        <size>
-                            <width>32</width>
-                            <height>32</height>
-                        </size>
-                    </property>
-                    <property name="text">
-                        <string>M</string>
-                        <comment>DO NOT TRANSLATE</comment>
-                    </property>
-                </widget>
-                <widget class="QLineEdit" row="8" column="2" rowspan="1" colspan="3">
-                    <property name="name">
-                        <cstring>homeEdit</cstring>
-                    </property>
-                </widget>
-                <widget class="QLabel" row="4" column="1">
-                    <property name="name">
-                        <cstring>textLabel5</cstring>
-                    </property>
-                    <property name="sizePolicy">
-                        <sizepolicy>
-                            <hsizetype>5</hsizetype>
-                            <vsizetype>5</vsizetype>
-                            <horstretch>0</horstretch>
-                            <verstretch>0</verstretch>
-                        </sizepolicy>
-                    </property>
-                    <property name="text">
-                        <string>Primary group:</string>
-                    </property>
-                    <property name="alignment">
-                        <set>AlignVCenter</set>
-                    </property>
-                </widget>
-                <widget class="QPushButton" row="5" column="3" rowspan="1" colspan="2">
-                    <property name="name">
-                        <cstring>groupButton</cstring>
-                    </property>
-                    <property name="sizePolicy">
-                        <sizepolicy>
-                            <hsizetype>1</hsizetype>
-                            <vsizetype>0</vsizetype>
-                            <horstretch>0</horstretch>
-                            <verstretch>0</verstretch>
-                        </sizepolicy>
-                    </property>
-                    <property name="text">
-                        <string>Manage group memberships</string>
-                    </property>
-                </widget>
-                <widget class="QLabel" row="9" column="0">
-                    <property name="name">
-                        <cstring>passwordLabel</cstring>
-                    </property>
-                    <property name="minimumSize">
-                        <size>
-                            <width>32</width>
-                            <height>32</height>
-                        </size>
-                    </property>
-                    <property name="text">
-                        <string>PW</string>
-                        <comment>DO NOT TRANSLATE</comment>
-                    </property>
-                </widget>
-                <widget class="QLabel" row="0" column="1">
-                    <property name="name">
-                        <cstring>textLabel2</cstring>
-                    </property>
-                    <property name="text">
-                        <string>User ID:</string>
-                    </property>
-                    <property name="alignment">
-                        <set>AlignVCenter</set>
-                    </property>
-                </widget>
-                <widget class="QLabel" row="7" column="1">
-                    <property name="name">
-                        <cstring>textLabel10</cstring>
-                    </property>
-                    <property name="text">
-                        <string>Login shell:</string>
-                    </property>
-                    <property name="alignment">
-                        <set>AlignVCenter</set>
-                    </property>
-                </widget>
-                <widget class="QLabel" row="8" column="1">
-                    <property name="name">
-                        <cstring>textLabel12</cstring>
-                    </property>
-                    <property name="text">
-                        <string>Home directory:</string>
-                    </property>
-                    <property name="alignment">
-                        <set>AlignVCenter</set>
-                    </property>
-                </widget>
-                <widget class="QLineEdit" row="9" column="2" rowspan="1" colspan="3">
-                    <property name="name">
-                        <cstring>passwordEdit</cstring>
-                    </property>
-                    <property name="readOnly">
-                        <bool>true</bool>
-                    </property>
-                </widget>
-                <widget class="QPushButton" row="10" column="3" rowspan="1" colspan="2">
-                    <property name="name">
-                        <cstring>passwordButton</cstring>
-                    </property>
-                    <property name="text">
-                        <string>Change password...</string>
-                    </property>
-                </widget>
-                <widget class="QLineEdit" row="4" column="4">
-                    <property name="name">
-                        <cstring>groupNumberEdit</cstring>
-                    </property>
-                    <property name="sizePolicy">
-                        <sizepolicy>
-                            <hsizetype>4</hsizetype>
-                            <vsizetype>0</vsizetype>
-                            <horstretch>0</horstretch>
-                            <verstretch>0</verstretch>
-                        </sizepolicy>
-                    </property>
-                    <property name="readOnly">
-                        <bool>true</bool>
-                    </property>
-                </widget>
-                <spacer row="5" column="1" rowspan="1" colspan="2">
-                    <property name="name">
-                        <cstring>spacer2</cstring>
-                    </property>
-                    <property name="orientation">
-                        <enum>Horizontal</enum>
-                    </property>
-                    <property name="sizeType">
-                        <enum>Expanding</enum>
-                    </property>
-                    <property name="sizeHint">
-                        <size>
-                            <width>238</width>
-                            <height>20</height>
-                        </size>
-                    </property>
-                </spacer>
-                <widget class="QDateEdit" row="3" column="2" rowspan="1" colspan="3">
-                    <property name="name">
-                        <cstring>expireEdit</cstring>
-                    </property>
-                </widget>
-                <widget class="QLabel" row="8" column="0">
-                    <property name="name">
-                        <cstring>homeLabel</cstring>
-                    </property>
-                    <property name="minimumSize">
-                        <size>
-                            <width>32</width>
-                            <height>32</height>
-                        </size>
-                    </property>
-                    <property name="text">
-                        <string>HO</string>
-                        <comment>DO NOT TRANSLATE</comment>
-                    </property>
-                </widget>
-                <spacer row="5" column="0">
-                    <property name="name">
-                        <cstring>spacer3</cstring>
-                    </property>
-                    <property name="orientation">
-                        <enum>Vertical</enum>
-                    </property>
-                    <property name="sizeType">
-                        <enum>Fixed</enum>
-                    </property>
-                    <property name="sizeHint">
-                        <size>
-                            <width>21</width>
-                            <height>16</height>
-                        </size>
-                    </property>
-                </spacer>
-                <widget class="QLabel" row="0" column="0">
-                    <property name="name">
-                        <cstring>accountLabel</cstring>
-                    </property>
-                    <property name="minimumSize">
-                        <size>
-                            <width>32</width>
-                            <height>32</height>
-                        </size>
-                    </property>
-                    <property name="maximumSize">
-                        <size>
-                            <width>32</width>
-                            <height>32</height>
-                        </size>
-                    </property>
-                    <property name="text">
-                        <string>US</string>
-                        <comment>DO NOT TRANSLATE</comment>
-                    </property>
-                </widget>
-                <widget class="QLineEdit" row="0" column="2" rowspan="1" colspan="3">
-                    <property name="name">
-                        <cstring>uidEdit</cstring>
-                    </property>
-                    <property name="readOnly">
-                        <bool>true</bool>
-                    </property>
-                </widget>
-                <widget class="QLabel" row="7" column="0">
-                    <property name="name">
-                        <cstring>shellLabel</cstring>
-                    </property>
-                    <property name="minimumSize">
-                        <size>
-                            <width>32</width>
-                            <height>32</height>
-                        </size>
-                    </property>
-                    <property name="text">
-                        <string>SH</string>
-                        <comment>DO NOT TRANSLATE</comment>
-                    </property>
-                </widget>
-                <widget class="QLabel" row="4" column="0">
-                    <property name="name">
-                        <cstring>groupLabel</cstring>
-                    </property>
-                    <property name="sizePolicy">
-                        <sizepolicy>
-                            <hsizetype>0</hsizetype>
-                            <vsizetype>0</vsizetype>
-                            <horstretch>0</horstretch>
-                            <verstretch>0</verstretch>
-                        </sizepolicy>
-                    </property>
-                    <property name="minimumSize">
-                        <size>
-                            <width>32</width>
-                            <height>32</height>
-                        </size>
-                    </property>
-                    <property name="text">
-                        <string>GR</string>
-                    </property>
-                </widget>
-                <widget class="QLabel" row="11" column="1">
-                    <property name="name">
-                        <cstring>textLabel17</cstring>
-                    </property>
-                    <property name="text">
-                        <string>Mail:</string>
-                    </property>
-                    <property name="alignment">
-                        <set>AlignVCenter</set>
-                    </property>
-                </widget>
-                <spacer row="6" column="3">
-                    <property name="name">
-                        <cstring>spacer9</cstring>
-                    </property>
-                    <property name="orientation">
-                        <enum>Vertical</enum>
-                    </property>
-                    <property name="sizeType">
-                        <enum>Fixed</enum>
-                    </property>
-                    <property name="sizeHint">
-                        <size>
-                            <width>20</width>
-                            <height>25</height>
-                        </size>
-                    </property>
-                </spacer>
-                <widget class="QLineEdit" row="7" column="2" rowspan="1" colspan="3">
-                    <property name="name">
-                        <cstring>shellEdit</cstring>
-                    </property>
-                </widget>
-            </grid>
+            <property name="text">
+                <string>Valid until:</string>
+            </property>
+            <property name="alignment">
+                <set>AlignVCenter</set>
+            </property>
         </widget>
-        <spacer>
+        <widget class="QLabel" row="1" column="1">
+            <property name="name">
+                <cstring>textLabel3</cstring>
+            </property>
+            <property name="text">
+                <string>User ID number:</string>
+            </property>
+            <property name="alignment">
+                <set>AlignVCenter</set>
+            </property>
+        </widget>
+        <widget class="QLabel" row="2" column="1">
+            <property name="name">
+                <cstring>textLabel18</cstring>
+            </property>
+            <property name="text">
+                <string>Common name:</string>
+            </property>
+            <property name="alignment">
+                <set>AlignVCenter</set>
+            </property>
+        </widget>
+        <spacer row="1" column="0" rowspan="3" colspan="1">
+            <property name="name">
+                <cstring>spacer1</cstring>
+            </property>
+            <property name="orientation">
+                <enum>Vertical</enum>
+            </property>
+            <property name="sizeType">
+                <enum>Expanding</enum>
+            </property>
+            <property name="sizeHint">
+                <size>
+                    <width>21</width>
+                    <height>89</height>
+                </size>
+            </property>
+        </spacer>
+        <widget class="QLabel" row="0" column="1">
+            <property name="name">
+                <cstring>textLabel2</cstring>
+            </property>
+            <property name="text">
+                <string>User ID:</string>
+            </property>
+            <property name="alignment">
+                <set>AlignVCenter</set>
+            </property>
+        </widget>
+        <widget class="QLabel" row="0" column="0">
+            <property name="name">
+                <cstring>accountLabel</cstring>
+            </property>
+            <property name="minimumSize">
+                <size>
+                    <width>32</width>
+                    <height>32</height>
+                </size>
+            </property>
+            <property name="maximumSize">
+                <size>
+                    <width>32</width>
+                    <height>32</height>
+                </size>
+            </property>
+            <property name="text">
+                <string>US</string>
+                <comment>DO NOT TRANSLATE</comment>
+            </property>
+        </widget>
+        <widget class="QDateEdit" row="3" column="2" rowspan="1" colspan="4">
+            <property name="name">
+                <cstring>expireEdit</cstring>
+            </property>
+        </widget>
+        <widget class="QLineEdit" row="2" column="2" rowspan="1" colspan="4">
+            <property name="name">
+                <cstring>nameEdit</cstring>
+            </property>
+        </widget>
+        <widget class="QPushButton" row="1" column="4" rowspan="1" colspan="2">
+            <property name="name">
+                <cstring>findButton</cstring>
+            </property>
+            <property name="text">
+                <string>Find next free</string>
+            </property>
+        </widget>
+        <widget class="QSpinBox" row="1" column="2" rowspan="1" colspan="2">
+            <property name="name">
+                <cstring>uidBox</cstring>
+            </property>
+            <property name="maxValue">
+                <number>65535</number>
+            </property>
+        </widget>
+        <widget class="QLineEdit" row="0" column="2" rowspan="1" colspan="4">
+            <property name="name">
+                <cstring>uidEdit</cstring>
+            </property>
+            <property name="readOnly">
+                <bool>true</bool>
+            </property>
+        </widget>
+        <widget class="QLabel" row="10" column="1">
+            <property name="name">
+                <cstring>textLabel12</cstring>
+            </property>
+            <property name="text">
+                <string>Home directory:</string>
+            </property>
+            <property name="alignment">
+                <set>AlignVCenter</set>
+            </property>
+        </widget>
+        <widget class="QLineEdit" row="10" column="2" rowspan="1" colspan="4">
+            <property name="name">
+                <cstring>homeEdit</cstring>
+            </property>
+        </widget>
+        <widget class="QLabel" row="9" column="1">
+            <property name="name">
+                <cstring>textLabel10</cstring>
+            </property>
+            <property name="text">
+                <string>Login shell:</string>
+            </property>
+            <property name="alignment">
+                <set>AlignVCenter</set>
+            </property>
+        </widget>
+        <widget class="QLabel" row="5" column="0">
+            <property name="name">
+                <cstring>groupLabel</cstring>
+            </property>
+            <property name="sizePolicy">
+                <sizepolicy>
+                    <hsizetype>0</hsizetype>
+                    <vsizetype>0</vsizetype>
+                    <horstretch>0</horstretch>
+                    <verstretch>0</verstretch>
+                </sizepolicy>
+            </property>
+            <property name="minimumSize">
+                <size>
+                    <width>32</width>
+                    <height>32</height>
+                </size>
+            </property>
+            <property name="text">
+                <string>GR</string>
+            </property>
+        </widget>
+        <widget class="QLineEdit" row="9" column="2" rowspan="1" colspan="4">
+            <property name="name">
+                <cstring>shellEdit</cstring>
+            </property>
+        </widget>
+        <widget class="QLabel" row="14" column="1">
+            <property name="name">
+                <cstring>textLabel17</cstring>
+            </property>
+            <property name="text">
+                <string>Mail:</string>
+            </property>
+            <property name="alignment">
+                <set>AlignVCenter</set>
+            </property>
+        </widget>
+        <spacer row="8" column="5">
+            <property name="name">
+                <cstring>spacer9</cstring>
+            </property>
+            <property name="orientation">
+                <enum>Vertical</enum>
+            </property>
+            <property name="sizeType">
+                <enum>Fixed</enum>
+            </property>
+            <property name="sizeHint">
+                <size>
+                    <width>20</width>
+                    <height>13</height>
+                </size>
+            </property>
+        </spacer>
+        <widget class="QLabel" row="11" column="0">
+            <property name="name">
+                <cstring>passwordLabel</cstring>
+            </property>
+            <property name="minimumSize">
+                <size>
+                    <width>32</width>
+                    <height>32</height>
+                </size>
+            </property>
+            <property name="text">
+                <string>PW</string>
+                <comment>DO NOT TRANSLATE</comment>
+            </property>
+        </widget>
+        <spacer row="12" column="2">
+            <property name="name">
+                <cstring>spacer4</cstring>
+            </property>
+            <property name="orientation">
+                <enum>Horizontal</enum>
+            </property>
+            <property name="sizeType">
+                <enum>Expanding</enum>
+            </property>
+            <property name="sizeHint">
+                <size>
+                    <width>112</width>
+                    <height>21</height>
+                </size>
+            </property>
+        </spacer>
+        <spacer row="7" column="2">
+            <property name="name">
+                <cstring>spacer8</cstring>
+            </property>
+            <property name="orientation">
+                <enum>Horizontal</enum>
+            </property>
+            <property name="sizeType">
+                <enum>Expanding</enum>
+            </property>
+            <property name="sizeHint">
+                <size>
+                    <width>20</width>
+                    <height>21</height>
+                </size>
+            </property>
+        </spacer>
+        <widget class="QLineEdit" row="11" column="2" rowspan="1" colspan="4">
+            <property name="name">
+                <cstring>passwordEdit</cstring>
+            </property>
+            <property name="readOnly">
+                <bool>true</bool>
+            </property>
+        </widget>
+        <spacer row="16" column="3">
             <property name="name">
                 <cstring>spacer5</cstring>
             </property>
@@ -522,7 +291,248 @@
                 </size>
             </property>
         </spacer>
-    </vbox>
+        <widget class="QLineEdit" row="5" column="2" rowspan="1" colspan="4">
+            <property name="name">
+                <cstring>groupEdit</cstring>
+            </property>
+            <property name="readOnly">
+                <bool>true</bool>
+            </property>
+        </widget>
+        <widget class="QLabel" row="14" column="0">
+            <property name="name">
+                <cstring>mailLabel</cstring>
+            </property>
+            <property name="sizePolicy">
+                <sizepolicy>
+                    <hsizetype>0</hsizetype>
+                    <vsizetype>0</vsizetype>
+                    <horstretch>0</horstretch>
+                    <verstretch>0</verstretch>
+                </sizepolicy>
+            </property>
+            <property name="minimumSize">
+                <size>
+                    <width>32</width>
+                    <height>32</height>
+                </size>
+            </property>
+            <property name="text">
+                <string>M</string>
+                <comment>DO NOT TRANSLATE</comment>
+            </property>
+        </widget>
+        <widget class="QLabel" row="6" column="1">
+            <property name="name">
+                <cstring>textLabel4</cstring>
+            </property>
+            <property name="sizePolicy">
+                <sizepolicy>
+                    <hsizetype>0</hsizetype>
+                    <vsizetype>5</vsizetype>
+                    <horstretch>0</horstretch>
+                    <verstretch>0</verstretch>
+                </sizepolicy>
+            </property>
+            <property name="text">
+                <string>Group ID number:</string>
+            </property>
+            <property name="alignment">
+                <set>AlignVCenter|AlignRight</set>
+            </property>
+        </widget>
+        <spacer row="15" column="2">
+            <property name="name">
+                <cstring>spacer6</cstring>
+            </property>
+            <property name="orientation">
+                <enum>Horizontal</enum>
+            </property>
+            <property name="sizeType">
+                <enum>Expanding</enum>
+            </property>
+            <property name="sizeHint">
+                <size>
+                    <width>112</width>
+                    <height>21</height>
+                </size>
+            </property>
+        </spacer>
+        <widget class="QLabel" row="9" column="0">
+            <property name="name">
+                <cstring>shellLabel</cstring>
+            </property>
+            <property name="minimumSize">
+                <size>
+                    <width>32</width>
+                    <height>32</height>
+                </size>
+            </property>
+            <property name="text">
+                <string>SH</string>
+                <comment>DO NOT TRANSLATE</comment>
+            </property>
+        </widget>
+        <widget class="QLabel" row="5" column="1">
+            <property name="name">
+                <cstring>textLabel5</cstring>
+            </property>
+            <property name="sizePolicy">
+                <sizepolicy>
+                    <hsizetype>5</hsizetype>
+                    <vsizetype>5</vsizetype>
+                    <horstretch>0</horstretch>
+                    <verstretch>0</verstretch>
+                </sizepolicy>
+            </property>
+            <property name="text">
+                <string>Primary group:</string>
+            </property>
+            <property name="alignment">
+                <set>AlignVCenter</set>
+            </property>
+        </widget>
+        <widget class="QLineEdit" row="6" column="2" rowspan="1" colspan="4">
+            <property name="name">
+                <cstring>groupNumberEdit</cstring>
+            </property>
+            <property name="readOnly">
+                <bool>true</bool>
+            </property>
+        </widget>
+        <spacer row="6" column="0">
+            <property name="name">
+                <cstring>spacer3</cstring>
+            </property>
+            <property name="orientation">
+                <enum>Vertical</enum>
+            </property>
+            <property name="sizeType">
+                <enum>Fixed</enum>
+            </property>
+            <property name="sizeHint">
+                <size>
+                    <width>21</width>
+                    <height>16</height>
+                </size>
+            </property>
+        </spacer>
+        <spacer row="13" column="4">
+            <property name="name">
+                <cstring>spacer9_2</cstring>
+            </property>
+            <property name="orientation">
+                <enum>Vertical</enum>
+            </property>
+            <property name="sizeType">
+                <enum>Fixed</enum>
+            </property>
+            <property name="sizeHint">
+                <size>
+                    <width>21</width>
+                    <height>13</height>
+                </size>
+            </property>
+        </spacer>
+        <widget class="QComboBox" row="14" column="2" rowspan="1" colspan="4">
+            <property name="name">
+                <cstring>mailBox</cstring>
+            </property>
+        </widget>
+        <widget class="QLabel" row="11" column="1">
+            <property name="name">
+                <cstring>textLabel14</cstring>
+            </property>
+            <property name="text">
+                <string>Password:</string>
+            </property>
+            <property name="alignment">
+                <set>AlignVCenter</set>
+            </property>
+        </widget>
+        <widget class="QLabel" row="10" column="0">
+            <property name="name">
+                <cstring>homeLabel</cstring>
+            </property>
+            <property name="minimumSize">
+                <size>
+                    <width>32</width>
+                    <height>32</height>
+                </size>
+            </property>
+            <property name="text">
+                <string>HO</string>
+                <comment>DO NOT TRANSLATE</comment>
+            </property>
+        </widget>
+        <widget class="QLayoutWidget" row="15" column="3" rowspan="1" colspan="3">
+            <property name="name">
+                <cstring>layout3</cstring>
+            </property>
+            <hbox>
+                <property name="name">
+                    <cstring>unnamed</cstring>
+                </property>
+                <widget class="QPushButton">
+                    <property name="name">
+                        <cstring>addMailButton</cstring>
+                    </property>
+                    <property name="text">
+                        <string>Add...</string>
+                    </property>
+                </widget>
+                <widget class="QPushButton">
+                    <property name="name">
+                        <cstring>deleteMailButton</cstring>
+                    </property>
+                    <property name="text">
+                        <string>Delete</string>
+                    </property>
+                </widget>
+            </hbox>
+        </widget>
+        <widget class="QPushButton" row="7" column="3" rowspan="1" colspan="3">
+            <property name="name">
+                <cstring>groupButton</cstring>
+            </property>
+            <property name="sizePolicy">
+                <sizepolicy>
+                    <hsizetype>1</hsizetype>
+                    <vsizetype>0</vsizetype>
+                    <horstretch>0</horstretch>
+                    <verstretch>0</verstretch>
+                </sizepolicy>
+            </property>
+            <property name="text">
+                <string>Manage group memberships</string>
+            </property>
+        </widget>
+        <widget class="QPushButton" row="12" column="3" rowspan="1" colspan="3">
+            <property name="name">
+                <cstring>passwordButton</cstring>
+            </property>
+            <property name="text">
+                <string>Change password...</string>
+            </property>
+        </widget>
+        <spacer row="4" column="5">
+            <property name="name">
+                <cstring>spacer9_3</cstring>
+            </property>
+            <property name="orientation">
+                <enum>Vertical</enum>
+            </property>
+            <property name="sizeType">
+                <enum>Fixed</enum>
+            </property>
+            <property name="sizeHint">
+                <size>
+                    <width>21</width>
+                    <height>13</height>
+                </size>
+            </property>
+        </spacer>
+    </grid>
 </widget>
 <connections>
     <connection>

@@ -1,4 +1,4 @@
-<!DOCTYPE UI><UI version="3.2" stdsetdef="1">
+<!DOCTYPE UI><UI version="3.3" stdsetdef="1">
 <class>SearchFormDesign</class>
 <comment>###########################################################################
 #    Copyright (C) 2003 by Wido Depping                                      
@@ -16,9 +16,9 @@
     <property name="geometry">
         <rect>
             <x>0</x>
-            <y>1</y>
+            <y>0</y>
             <width>609</width>
-            <height>118</height>
+            <height>121</height>
         </rect>
     </property>
     <property name="sizePolicy">
@@ -30,7 +30,7 @@
         </sizepolicy>
     </property>
     <property name="caption">
-        <string></string>
+        <string>SearchFormDesign</string>
     </property>
     <vbox>
         <property name="name">
@@ -121,10 +121,10 @@
                         </sizepolicy>
                     </property>
                     <property name="text">
-                        <string>&amp;Wizard</string>
+                        <string>&amp;Filter wizard</string>
                     </property>
                     <property name="accel">
-                        <string>Alt+W</string>
+                        <string>Alt+F</string>
                     </property>
                 </widget>
                 <widget class="QPushButton" row="0" column="3">
@@ -140,7 +140,7 @@
                         </sizepolicy>
                     </property>
                     <property name="text">
-                        <string>&amp;Start</string>
+                        <string>&amp;Search</string>
                     </property>
                     <property name="accel">
                         <string>Alt+S</string>

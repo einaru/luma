@@ -30,15 +30,20 @@ class AddressbookSettings(AddressbookSettingsDesign):
 ###############################################################################
 
     def addAttribute(self):
-        tmpAttribute = str(self.attributeEdit.text())
+        result = QInputDialog.getText(\
+            self.trUtf8("New search criteria"),
+            self.trUtf8("Attribute:"),
+            QLineEdit.Normal)
         
-        self.filterDict[tmpAttribute] = None
+        if result[1]:
+            tmpAttribute = str(result[0])
         
-        tmpItem = QListViewItem(self.attributeView, tmpAttribute)
-        self.attributeView.insertItem(tmpItem)
+            self.filterDict[tmpAttribute] = None
         
-        self.attributeEdit.clear()
-        
+            tmpItem = QListViewItem(self.attributeView, tmpAttribute)
+            self.attributeView.insertItem(tmpItem)
+            
+            self.saveValues()
 
 ###############################################################################
 
@@ -49,6 +54,8 @@ class AddressbookSettings(AddressbookSettingsDesign):
             
         del self.filterDict[str(tmpSelected.text(0))]
         self.attributeView.takeItem(tmpSelected)
+        
+        self.saveValues()
         
 ###############################################################################
 

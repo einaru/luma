@@ -2,8 +2,8 @@
 
 # Form implementation generated from reading ui file '/home/wido/src/luma/lib/luma/plugins/addressbook/AddressbookSettingsDesign.ui'
 #
-# Created: Mon Apr 26 16:00:29 2004
-#      by: The PyQt User Interface Compiler (pyuic) 3.11
+# Created: Sat Aug 21 19:36:07 2004
+#      by: The PyQt User Interface Compiler (pyuic) 3.12
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -20,74 +20,58 @@ class AddressbookSettingsDesign(QWidget):
             self.setName("AddressbookSettingsDesign")
 
 
-        AddressbookSettingsDesignLayout = QVBoxLayout(self,11,6,"AddressbookSettingsDesignLayout")
+        AddressbookSettingsDesignLayout = QGridLayout(self,1,1,11,6,"AddressbookSettingsDesignLayout")
 
-        self.tabWidget2 = QTabWidget(self,"tabWidget2")
+        layout2 = QHBoxLayout(None,0,6,"layout2")
 
-        self.tab = QWidget(self.tabWidget2,"tab")
-        tabLayout = QGridLayout(self.tab,1,1,11,6,"tabLayout")
+        AddressbookSettingsDesignLayout.addMultiCellLayout(layout2,2,2,0,1)
 
-        layout4 = QGridLayout(None,1,1,0,6,"layout4")
+        self.textLabel1 = QLabel(self,"textLabel1")
 
-        self.attributeView = QListView(self.tab,"attributeView")
+        AddressbookSettingsDesignLayout.addMultiCellWidget(self.textLabel1,0,0,0,1)
+
+        layout3 = QGridLayout(None,1,1,0,6,"layout3")
+
+        self.attributeView = QListView(self,"attributeView")
         self.attributeView.addColumn(self.__tr("Attributes"))
         self.attributeView.setResizeMode(QListView.AllColumns)
 
-        layout4.addMultiCellWidget(self.attributeView,0,0,0,1)
+        layout3.addMultiCellWidget(self.attributeView,0,2,0,0)
 
-        self.attributeEdit = QLineEdit(self.tab,"attributeEdit")
+        self.deleteButton = QPushButton(self,"deleteButton")
 
-        layout4.addWidget(self.attributeEdit,1,0)
+        layout3.addWidget(self.deleteButton,1,1)
 
-        self.addButton = QPushButton(self.tab,"addButton")
+        self.addButton = QPushButton(self,"addButton")
 
-        layout4.addWidget(self.addButton,1,1)
+        layout3.addWidget(self.addButton,0,1)
+        spacer6 = QSpacerItem(41,50,QSizePolicy.Minimum,QSizePolicy.Expanding)
+        layout3.addItem(spacer6,2,1)
 
-        tabLayout.addMultiCellLayout(layout4,0,1,0,0)
-
-        self.deleteButton = QPushButton(self.tab,"deleteButton")
-
-        tabLayout.addWidget(self.deleteButton,0,2)
-        spacer6 = QSpacerItem(41,260,QSizePolicy.Minimum,QSizePolicy.Expanding)
-        tabLayout.addItem(spacer6,1,2)
-        self.tabWidget2.insertTab(self.tab,QString(""))
-        AddressbookSettingsDesignLayout.addWidget(self.tabWidget2)
-
-        layout2 = QHBoxLayout(None,0,6,"layout2")
-        Horizontal_Spacing2 = QSpacerItem(300,20,QSizePolicy.Expanding,QSizePolicy.Minimum)
-        layout2.addItem(Horizontal_Spacing2)
-
-        self.saveButton = QPushButton(self,"saveButton")
-        self.saveButton.setFocusPolicy(QPushButton.ClickFocus)
-        layout2.addWidget(self.saveButton)
-        AddressbookSettingsDesignLayout.addLayout(layout2)
+        AddressbookSettingsDesignLayout.addLayout(layout3,1,1)
+        spacer3 = QSpacerItem(10,21,QSizePolicy.Fixed,QSizePolicy.Minimum)
+        AddressbookSettingsDesignLayout.addItem(spacer3,1,0)
 
         self.languageChange()
 
-        self.resize(QSize(344,299).expandedTo(self.minimumSizeHint()))
+        self.resize(QSize(431,335).expandedTo(self.minimumSizeHint()))
         self.clearWState(Qt.WState_Polished)
 
-        self.connect(self.saveButton,SIGNAL("clicked()"),self.saveValues)
         self.connect(self.addButton,SIGNAL("clicked()"),self.addAttribute)
         self.connect(self.deleteButton,SIGNAL("clicked()"),self.deleteAttribute)
 
-        self.setTabOrder(self.tabWidget2,self.attributeView)
-        self.setTabOrder(self.attributeView,self.attributeEdit)
-        self.setTabOrder(self.attributeEdit,self.addButton)
+        self.setTabOrder(self.attributeView,self.addButton)
         self.setTabOrder(self.addButton,self.deleteButton)
-        self.setTabOrder(self.deleteButton,self.saveButton)
 
 
     def languageChange(self):
         self.setCaption(self.__tr("Addressbook Settings"))
+        self.textLabel1.setText(self.__tr("<b>Search criteria</b>"))
         self.attributeView.header().setLabel(0,self.__tr("Attributes"))
-        self.addButton.setText(self.__tr("&Add"))
-        self.addButton.setAccel(self.__tr("Alt+A"))
         self.deleteButton.setText(self.__tr("&Delete"))
         self.deleteButton.setAccel(self.__tr("Alt+D"))
-        self.tabWidget2.changeTab(self.tab,self.__tr("Search Criteria"))
-        self.saveButton.setText(self.__tr("&Save"))
-        self.saveButton.setAccel(self.__tr("Alt+S"))
+        self.addButton.setText(self.__tr("&Add..."))
+        self.addButton.setAccel(self.__tr("Alt+A"))
 
 
     def saveValues(self):

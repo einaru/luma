@@ -2,8 +2,8 @@
 
 # Form implementation generated from reading ui file '/home/wido/src/luma/lib/luma/base/utils/gui/MailDialogDesign.ui'
 #
-# Created: Sun Jul 4 00:25:02 2004
-#      by: The PyQt User Interface Compiler (pyuic) 3.11
+# Created: Mon Aug 23 16:23:41 2004
+#      by: The PyQt User Interface Compiler (pyuic) 3.12
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -35,8 +35,14 @@ class MailDialogDesign(QDialog):
         self.mailEdit = QLineEdit(self,"mailEdit")
         layout2.addWidget(self.mailEdit)
         MailDialogDesignLayout.addLayout(layout2)
-        spacer2 = QSpacerItem(41,1,QSizePolicy.Minimum,QSizePolicy.Expanding)
+        spacer2 = QSpacerItem(41,50,QSizePolicy.Minimum,QSizePolicy.Expanding)
         MailDialogDesignLayout.addItem(spacer2)
+
+        self.line1 = QFrame(self,"line1")
+        self.line1.setFrameShape(QFrame.HLine)
+        self.line1.setFrameShadow(QFrame.Sunken)
+        self.line1.setFrameShape(QFrame.HLine)
+        MailDialogDesignLayout.addWidget(self.line1)
 
         layout2_2 = QHBoxLayout(None,0,6,"layout2_2")
         spacer9 = QSpacerItem(311,21,QSizePolicy.Expanding,QSizePolicy.Minimum)
@@ -53,7 +59,7 @@ class MailDialogDesign(QDialog):
 
         self.languageChange()
 
-        self.resize(QSize(423,103).expandedTo(self.minimumSizeHint()))
+        self.resize(QSize(364,111).expandedTo(self.minimumSizeHint()))
         self.clearWState(Qt.WState_Polished)
 
         self.connect(self.cancelButton,SIGNAL("clicked()"),self,SLOT("reject()"))

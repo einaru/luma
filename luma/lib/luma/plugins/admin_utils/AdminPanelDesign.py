@@ -2,8 +2,8 @@
 
 # Form implementation generated from reading ui file '/home/wido/src/luma/lib/luma/plugins/admin_utils/AdminPanelDesign.ui'
 #
-# Created: Mon Apr 26 16:00:28 2004
-#      by: The PyQt User Interface Compiler (pyuic) 3.11
+# Created: Mon Aug 23 17:32:20 2004
+#      by: The PyQt User Interface Compiler (pyuic) 3.12
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -20,7 +20,7 @@ class AdminPanelDesign(QWidget):
             self.setName("AdminPanelDesign")
 
 
-        AdminPanelDesignLayout = QGridLayout(self,1,1,11,6,"AdminPanelDesignLayout")
+        AdminPanelDesignLayout = QVBoxLayout(self,11,6,"AdminPanelDesignLayout")
 
         self.tabWidget2 = QTabWidget(self,"tabWidget2")
 
@@ -29,172 +29,179 @@ class AdminPanelDesign(QWidget):
         spacer2 = QSpacerItem(41,16,QSizePolicy.Minimum,QSizePolicy.Expanding)
         tabLayout.addItem(spacer2,3,2)
 
-        self.groupBox2 = QGroupBox(self.tab,"groupBox2")
-        self.groupBox2.setColumnLayout(0,Qt.Vertical)
-        self.groupBox2.layout().setSpacing(6)
-        self.groupBox2.layout().setMargin(11)
-        groupBox2Layout = QGridLayout(self.groupBox2.layout())
-        groupBox2Layout.setAlignment(Qt.AlignTop)
+        self.secureLabel = QLabel(self.tab,"secureLabel")
+        self.secureLabel.setSizePolicy(QSizePolicy(0,0,0,0,self.secureLabel.sizePolicy().hasHeightForWidth()))
+        self.secureLabel.setMinimumSize(QSize(64,64))
+        self.secureLabel.setScaledContents(0)
 
-        self.textLabel4 = QLabel(self.groupBox2,"textLabel4")
+        tabLayout.addWidget(self.secureLabel,0,0)
 
-        groupBox2Layout.addWidget(self.textLabel4,1,0)
+        self.textLabel1_2 = QLabel(self.tab,"textLabel1_2")
+        self.textLabel1_2.setSizePolicy(QSizePolicy(0,5,0,0,self.textLabel1_2.sizePolicy().hasHeightForWidth()))
 
-        self.cryptButton = QPushButton(self.groupBox2,"cryptButton")
-
-        groupBox2Layout.addWidget(self.cryptButton,0,2)
-
-        self.pwEdit = QLineEdit(self.groupBox2,"pwEdit")
-
-        groupBox2Layout.addWidget(self.pwEdit,0,1)
-
-        self.textLabel3 = QLabel(self.groupBox2,"textLabel3")
-        self.textLabel3.setAlignment(QLabel.AlignVCenter | QLabel.AlignRight)
-
-        groupBox2Layout.addWidget(self.textLabel3,0,0)
-
-        self.cryptEdit = QLineEdit(self.groupBox2,"cryptEdit")
-
-        groupBox2Layout.addWidget(self.cryptEdit,1,1)
-
-        tabLayout.addMultiCellWidget(self.groupBox2,2,2,0,2)
-
-        self.groupBox1 = QGroupBox(self.tab,"groupBox1")
-        self.groupBox1.setColumnLayout(0,Qt.Vertical)
-        self.groupBox1.layout().setSpacing(6)
-        self.groupBox1.layout().setMargin(11)
-        groupBox1Layout = QGridLayout(self.groupBox1.layout())
-        groupBox1Layout.setAlignment(Qt.AlignTop)
-
-        self.textLabel1 = QLabel(self.groupBox1,"textLabel1")
-        self.textLabel1.setAlignment(QLabel.AlignVCenter | QLabel.AlignRight)
-
-        groupBox1Layout.addWidget(self.textLabel1,0,0)
-
-        self.textLabel2 = QLabel(self.groupBox1,"textLabel2")
-
-        groupBox1Layout.addWidget(self.textLabel2,1,0)
-
-        self.randomPwEdit = QLineEdit(self.groupBox1,"randomPwEdit")
-
-        groupBox1Layout.addMultiCellWidget(self.randomPwEdit,0,0,1,2)
-
-        self.randomCryptEdit = QLineEdit(self.groupBox1,"randomCryptEdit")
-
-        groupBox1Layout.addMultiCellWidget(self.randomCryptEdit,1,1,1,2)
-
-        self.createButton = QPushButton(self.groupBox1,"createButton")
-
-        groupBox1Layout.addWidget(self.createButton,2,2)
-        spacer1 = QSpacerItem(191,21,QSizePolicy.Expanding,QSizePolicy.Minimum)
-        groupBox1Layout.addItem(spacer1,2,1)
-
-        tabLayout.addMultiCellWidget(self.groupBox1,1,1,0,2)
+        tabLayout.addWidget(self.textLabel1_2,0,1)
 
         self.methodBox = QComboBox(0,self.tab,"methodBox")
 
         tabLayout.addWidget(self.methodBox,0,2)
 
-        self.textLabel1_2 = QLabel(self.tab,"textLabel1_2")
-        self.textLabel1_2.setSizePolicy(QSizePolicy(4,5,0,0,self.textLabel1_2.sizePolicy().hasHeightForWidth()))
+        layout5 = QGridLayout(None,1,1,0,6,"layout5")
+        spacer5 = QSpacerItem(490,20,QSizePolicy.Expanding,QSizePolicy.Minimum)
+        layout5.addMultiCell(spacer5,3,3,1,2)
 
-        tabLayout.addWidget(self.textLabel1_2,0,1)
+        self.textLabel3 = QLabel(self.tab,"textLabel3")
+        self.textLabel3.setSizePolicy(QSizePolicy(0,5,0,0,self.textLabel3.sizePolicy().hasHeightForWidth()))
+        self.textLabel3.setAlignment(QLabel.AlignVCenter)
 
-        self.secureLabel = QLabel(self.tab,"secureLabel")
-        self.secureLabel.setSizePolicy(QSizePolicy(0,5,0,0,self.secureLabel.sizePolicy().hasHeightForWidth()))
-        self.secureLabel.setScaledContents(0)
+        layout5.addWidget(self.textLabel3,1,1)
 
-        tabLayout.addWidget(self.secureLabel,0,0)
+        self.textLabel2_2 = QLabel(self.tab,"textLabel2_2")
+
+        layout5.addMultiCellWidget(self.textLabel2_2,0,0,0,2)
+
+        self.pwEdit = QLineEdit(self.tab,"pwEdit")
+
+        layout5.addMultiCellWidget(self.pwEdit,1,1,2,3)
+
+        self.textLabel4 = QLabel(self.tab,"textLabel4")
+        self.textLabel4.setSizePolicy(QSizePolicy(0,5,0,0,self.textLabel4.sizePolicy().hasHeightForWidth()))
+
+        layout5.addWidget(self.textLabel4,2,1)
+
+        self.cryptEdit = QLineEdit(self.tab,"cryptEdit")
+
+        layout5.addMultiCellWidget(self.cryptEdit,2,2,2,3)
+        spacer11 = QSpacerItem(10,20,QSizePolicy.Fixed,QSizePolicy.Minimum)
+        layout5.addItem(spacer11,1,0)
+
+        self.cryptButton = QPushButton(self.tab,"cryptButton")
+
+        layout5.addWidget(self.cryptButton,3,3)
+
+        tabLayout.addMultiCellLayout(layout5,2,2,0,2)
+
+        layout6 = QGridLayout(None,1,1,0,6,"layout6")
+
+        self.textLabel1_3 = QLabel(self.tab,"textLabel1_3")
+        self.textLabel1_3.setAlignment(QLabel.AlignVCenter)
+
+        layout6.addMultiCellWidget(self.textLabel1_3,0,0,0,2)
+
+        self.randomPwEdit = QLineEdit(self.tab,"randomPwEdit")
+
+        layout6.addMultiCellWidget(self.randomPwEdit,1,1,2,3)
+
+        self.randomCryptEdit = QLineEdit(self.tab,"randomCryptEdit")
+
+        layout6.addMultiCellWidget(self.randomCryptEdit,2,2,2,3)
+
+        self.textLabel2 = QLabel(self.tab,"textLabel2")
+        self.textLabel2.setSizePolicy(QSizePolicy(0,5,0,0,self.textLabel2.sizePolicy().hasHeightForWidth()))
+
+        layout6.addWidget(self.textLabel2,2,1)
+
+        self.createButton = QPushButton(self.tab,"createButton")
+
+        layout6.addWidget(self.createButton,3,3)
+        spacer10 = QSpacerItem(16,21,QSizePolicy.Fixed,QSizePolicy.Minimum)
+        layout6.addItem(spacer10,1,0)
+
+        self.textLabel1 = QLabel(self.tab,"textLabel1")
+        self.textLabel1.setSizePolicy(QSizePolicy(0,5,0,0,self.textLabel1.sizePolicy().hasHeightForWidth()))
+        self.textLabel1.setAlignment(QLabel.AlignVCenter)
+
+        layout6.addWidget(self.textLabel1,1,1)
+        spacer1 = QSpacerItem(480,21,QSizePolicy.Expanding,QSizePolicy.Minimum)
+        layout6.addMultiCell(spacer1,3,3,1,2)
+
+        tabLayout.addMultiCellLayout(layout6,1,1,0,2)
         self.tabWidget2.insertTab(self.tab,QString(""))
 
         self.tab_2 = QWidget(self.tabWidget2,"tab_2")
         tabLayout_2 = QGridLayout(self.tab_2,1,1,11,6,"tabLayout_2")
 
         self.dateLabel = QLabel(self.tab_2,"dateLabel")
+        self.dateLabel.setSizePolicy(QSizePolicy(0,0,0,0,self.dateLabel.sizePolicy().hasHeightForWidth()))
+        self.dateLabel.setMinimumSize(QSize(64,64))
         self.dateLabel.setScaledContents(0)
 
-        tabLayout_2.addWidget(self.dateLabel,0,0)
+        tabLayout_2.addMultiCellWidget(self.dateLabel,0,0,0,1)
 
-        self.groupBox3 = QGroupBox(self.tab_2,"groupBox3")
-        self.groupBox3.setColumnLayout(0,Qt.Vertical)
-        self.groupBox3.layout().setSpacing(6)
-        self.groupBox3.layout().setMargin(11)
-        groupBox3Layout = QGridLayout(self.groupBox3.layout())
-        groupBox3Layout.setAlignment(Qt.AlignTop)
-
-        self.convDateEdit = QLineEdit(self.groupBox3,"convDateEdit")
-
-        groupBox3Layout.addMultiCellWidget(self.convDateEdit,1,1,1,2)
-
-        self.dateEdit = QDateEdit(self.groupBox3,"dateEdit")
-        self.dateEdit.setDate(QDate(2000,1,1))
-
-        groupBox3Layout.addWidget(self.dateEdit,0,1)
-
-        self.dateButton = QPushButton(self.groupBox3,"dateButton")
+        self.dateButton = QPushButton(self.tab_2,"dateButton")
         self.dateButton.setSizePolicy(QSizePolicy(0,0,0,0,self.dateButton.sizePolicy().hasHeightForWidth()))
 
-        groupBox3Layout.addWidget(self.dateButton,0,2)
+        tabLayout_2.addWidget(self.dateButton,2,4)
 
-        self.textLabel5 = QLabel(self.groupBox3,"textLabel5")
-        self.textLabel5.setSizePolicy(QSizePolicy(1,5,0,0,self.textLabel5.sizePolicy().hasHeightForWidth()))
-        self.textLabel5.setAlignment(QLabel.AlignVCenter | QLabel.AlignRight)
-
-        groupBox3Layout.addWidget(self.textLabel5,0,0)
-
-        self.textLabel6 = QLabel(self.groupBox3,"textLabel6")
+        self.textLabel6 = QLabel(self.tab_2,"textLabel6")
         self.textLabel6.setSizePolicy(QSizePolicy(0,5,0,0,self.textLabel6.sizePolicy().hasHeightForWidth()))
 
-        groupBox3Layout.addWidget(self.textLabel6,1,0)
+        tabLayout_2.addWidget(self.textLabel6,3,1)
 
-        tabLayout_2.addWidget(self.groupBox3,1,0)
-        spacer3 = QSpacerItem(21,141,QSizePolicy.Minimum,QSizePolicy.Expanding)
-        tabLayout_2.addItem(spacer3,3,0)
+        self.textLabel5 = QLabel(self.tab_2,"textLabel5")
+        self.textLabel5.setSizePolicy(QSizePolicy(1,5,0,0,self.textLabel5.sizePolicy().hasHeightForWidth()))
+        self.textLabel5.setAlignment(QLabel.AlignVCenter)
 
-        self.groupBox4 = QGroupBox(self.tab_2,"groupBox4")
-        self.groupBox4.setColumnLayout(0,Qt.Vertical)
-        self.groupBox4.layout().setSpacing(6)
-        self.groupBox4.layout().setMargin(11)
-        groupBox4Layout = QGridLayout(self.groupBox4.layout())
-        groupBox4Layout.setAlignment(Qt.AlignTop)
+        tabLayout_2.addWidget(self.textLabel5,2,1)
 
-        self.durationButton = QPushButton(self.groupBox4,"durationButton")
+        self.textLabel4_2 = QLabel(self.tab_2,"textLabel4_2")
+
+        tabLayout_2.addMultiCellWidget(self.textLabel4_2,1,1,0,2)
+        spacer7 = QSpacerItem(16,21,QSizePolicy.Fixed,QSizePolicy.Minimum)
+        tabLayout_2.addItem(spacer7,2,0)
+
+        self.convDateEdit = QLineEdit(self.tab_2,"convDateEdit")
+
+        tabLayout_2.addMultiCellWidget(self.convDateEdit,3,3,2,4)
+
+        self.dateEdit = QDateEdit(self.tab_2,"dateEdit")
+        self.dateEdit.setDate(QDate(2000,1,1))
+
+        tabLayout_2.addMultiCellWidget(self.dateEdit,2,2,2,3)
+        spacer3 = QSpacerItem(21,20,QSizePolicy.Minimum,QSizePolicy.Expanding)
+        tabLayout_2.addItem(spacer3,8,3)
+
+        self.durationButton = QPushButton(self.tab_2,"durationButton")
         self.durationButton.setSizePolicy(QSizePolicy(0,0,0,0,self.durationButton.sizePolicy().hasHeightForWidth()))
 
-        groupBox4Layout.addWidget(self.durationButton,0,2)
+        tabLayout_2.addWidget(self.durationButton,6,4)
 
-        self.convDurationEdit = QLineEdit(self.groupBox4,"convDurationEdit")
+        self.convDurationEdit = QLineEdit(self.tab_2,"convDurationEdit")
 
-        groupBox4Layout.addMultiCellWidget(self.convDurationEdit,1,1,1,2)
+        tabLayout_2.addMultiCellWidget(self.convDurationEdit,7,7,2,4)
 
-        self.durationBox = QSpinBox(self.groupBox4,"durationBox")
+        self.textLabel6_2 = QLabel(self.tab_2,"textLabel6_2")
+        self.textLabel6_2.setSizePolicy(QSizePolicy(0,5,0,0,self.textLabel6_2.sizePolicy().hasHeightForWidth()))
+        self.textLabel6_2.setAlignment(QLabel.AlignVCenter)
+
+        tabLayout_2.addWidget(self.textLabel6_2,7,1)
+
+        self.durationBox = QSpinBox(self.tab_2,"durationBox")
         self.durationBox.setButtonSymbols(QSpinBox.UpDownArrows)
         self.durationBox.setMaxValue(65000)
         self.durationBox.setMinValue(-65000)
         self.durationBox.setValue(365)
 
-        groupBox4Layout.addWidget(self.durationBox,0,1)
+        tabLayout_2.addMultiCellWidget(self.durationBox,6,6,2,3)
 
-        self.textLabel7 = QLabel(self.groupBox4,"textLabel7")
+        self.textLabel7 = QLabel(self.tab_2,"textLabel7")
         self.textLabel7.setSizePolicy(QSizePolicy(0,5,0,0,self.textLabel7.sizePolicy().hasHeightForWidth()))
-        self.textLabel7.setAlignment(QLabel.AlignVCenter | QLabel.AlignRight)
+        self.textLabel7.setAlignment(QLabel.AlignVCenter)
 
-        groupBox4Layout.addWidget(self.textLabel7,0,0)
+        tabLayout_2.addWidget(self.textLabel7,6,1)
+        spacer8 = QSpacerItem(16,20,QSizePolicy.Fixed,QSizePolicy.Minimum)
+        tabLayout_2.addItem(spacer8,6,0)
 
-        self.textLabel6_2 = QLabel(self.groupBox4,"textLabel6_2")
-        self.textLabel6_2.setSizePolicy(QSizePolicy(1,5,0,0,self.textLabel6_2.sizePolicy().hasHeightForWidth()))
-        self.textLabel6_2.setAlignment(QLabel.AlignVCenter | QLabel.AlignRight)
+        self.textLabel5_2 = QLabel(self.tab_2,"textLabel5_2")
 
-        groupBox4Layout.addWidget(self.textLabel6_2,1,0)
-
-        tabLayout_2.addWidget(self.groupBox4,2,0)
+        tabLayout_2.addMultiCellWidget(self.textLabel5_2,5,5,0,4)
+        spacer9 = QSpacerItem(21,16,QSizePolicy.Minimum,QSizePolicy.Fixed)
+        tabLayout_2.addItem(spacer9,4,3)
         self.tabWidget2.insertTab(self.tab_2,QString(""))
-
-        AdminPanelDesignLayout.addWidget(self.tabWidget2,0,0)
+        AdminPanelDesignLayout.addWidget(self.tabWidget2)
 
         self.languageChange()
 
-        self.resize(QSize(380,364).expandedTo(self.minimumSizeHint()))
+        self.resize(QSize(410,399).expandedTo(self.minimumSizeHint()))
         self.clearWState(Qt.WState_Polished)
 
         self.connect(self.createButton,SIGNAL("clicked()"),self.create_random)
@@ -208,30 +215,30 @@ class AdminPanelDesign(QWidget):
 
     def languageChange(self):
         self.setCaption(self.__tr("AdminPanelDesign"))
-        self.groupBox2.setTitle(self.__tr("Encrypt Password"))
+        self.secureLabel.setText(self.__tr("Secure","DO NOT TRANSLATE"))
+        self.textLabel1_2.setText(self.__tr("<b>Hash method:</b>"))
+        self.textLabel3.setText(self.__tr("Password:"))
+        self.textLabel2_2.setText(self.__tr("<b>Encrypt password</b>"))
         self.textLabel4.setText(self.__tr("Encrypted Password:"))
         self.cryptButton.setText(self.__tr("&Encrypt"))
         self.cryptButton.setAccel(self.__tr("Alt+E"))
-        self.textLabel3.setText(self.__tr("Password:"))
-        self.groupBox1.setTitle(self.__tr("Create Random Password"))
-        self.textLabel1.setText(self.__tr("Password:"))
+        self.textLabel1_3.setText(self.__tr("<b>Create random password</b>"))
         self.textLabel2.setText(self.__tr("Encrypted password:"))
         self.createButton.setText(self.__tr("&Create"))
         self.createButton.setAccel(self.__tr("Alt+C"))
-        self.textLabel1_2.setText(self.__tr("Method:"))
-        self.secureLabel.setText(self.__tr("Secure","DO NOT TRANSLATE"))
+        self.textLabel1.setText(self.__tr("Password:"))
         self.tabWidget2.changeTab(self.tab,self.__tr("Passwords"))
         self.dateLabel.setText(self.__tr("Date","DO NOT TRANSLATE"))
-        self.groupBox3.setTitle(self.__tr("Date to Unix Date"))
         self.dateButton.setText(self.__tr("&Convert"))
         self.dateButton.setAccel(self.__tr("Alt+C"))
-        self.textLabel5.setText(self.__tr("Date:"))
         self.textLabel6.setText(self.__tr("Unix Date:"))
-        self.groupBox4.setTitle(self.__tr("Duration to Unix Date"))
+        self.textLabel5.setText(self.__tr("Date:"))
+        self.textLabel4_2.setText(self.__tr("<b>Date to Unix date</b>"))
         self.durationButton.setText(self.__tr("C&onvert"))
         self.durationButton.setAccel(self.__tr("Alt+O"))
-        self.textLabel7.setText(self.__tr("Days from now:"))
         self.textLabel6_2.setText(self.__tr("Unix Date:"))
+        self.textLabel7.setText(self.__tr("Days from now:"))
+        self.textLabel5_2.setText(self.__tr("<b>Duration to Unix date</b>"))
         self.tabWidget2.changeTab(self.tab_2,self.__tr("Date/Time"))
 
 

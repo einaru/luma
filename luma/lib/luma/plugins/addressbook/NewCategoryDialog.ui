@@ -8,18 +8,18 @@
         <rect>
             <x>0</x>
             <y>0</y>
-            <width>395</width>
-            <height>114</height>
+            <width>341</width>
+            <height>110</height>
         </rect>
     </property>
     <property name="caption">
         <string>Add category</string>
     </property>
-    <grid>
+    <vbox>
         <property name="name">
             <cstring>unnamed</cstring>
         </property>
-        <widget class="QLayoutWidget" row="0" column="0">
+        <widget class="QLayoutWidget">
             <property name="name">
                 <cstring>layout6</cstring>
             </property>
@@ -40,7 +40,7 @@
                         </sizepolicy>
                     </property>
                     <property name="text">
-                        <string>Add Category:</string>
+                        <string>Category:</string>
                     </property>
                 </widget>
                 <widget class="QComboBox">
@@ -163,7 +163,38 @@
                 </widget>
             </hbox>
         </widget>
-        <widget class="QLayoutWidget" row="3" column="0">
+        <spacer>
+            <property name="name">
+                <cstring>spacer14</cstring>
+            </property>
+            <property name="orientation">
+                <enum>Vertical</enum>
+            </property>
+            <property name="sizeType">
+                <enum>Preferred</enum>
+            </property>
+            <property name="sizeHint">
+                <size>
+                    <width>21</width>
+                    <height>16</height>
+                </size>
+            </property>
+        </spacer>
+        <widget class="Line">
+            <property name="name">
+                <cstring>line1</cstring>
+            </property>
+            <property name="frameShape">
+                <enum>HLine</enum>
+            </property>
+            <property name="frameShadow">
+                <enum>Sunken</enum>
+            </property>
+            <property name="orientation">
+                <enum>Horizontal</enum>
+            </property>
+        </widget>
+        <widget class="QLayoutWidget">
             <property name="name">
                 <cstring>layout2</cstring>
             </property>
@@ -215,24 +246,7 @@
                 </widget>
             </hbox>
         </widget>
-        <spacer row="1" column="0">
-            <property name="name">
-                <cstring>spacer14</cstring>
-            </property>
-            <property name="orientation">
-                <enum>Vertical</enum>
-            </property>
-            <property name="sizeType">
-                <enum>Minimum</enum>
-            </property>
-            <property name="sizeHint">
-                <size>
-                    <width>21</width>
-                    <height>15</height>
-                </size>
-            </property>
-        </spacer>
-    </grid>
+    </vbox>
 </widget>
 <connections>
     <connection>

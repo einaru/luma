@@ -2,8 +2,8 @@
 
 # Form implementation generated from reading ui file '/home/wido/src/luma/lib/luma/plugins/addressbook/NameDialog.ui'
 #
-# Created: Tue Jul 6 18:40:07 2004
-#      by: The PyQt User Interface Compiler (pyuic) 3.11
+# Created: Mon Aug 23 16:45:17 2004
+#      by: The PyQt User Interface Compiler (pyuic) 3.12
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -72,8 +72,14 @@ class NameDialog(QDialog):
 
         layout3.addWidget(self.textLabel2,1,0)
         NameDialogLayout.addLayout(layout3)
-        spacer10 = QSpacerItem(31,10,QSizePolicy.Minimum,QSizePolicy.Minimum)
+        spacer10 = QSpacerItem(31,16,QSizePolicy.Minimum,QSizePolicy.Preferred)
         NameDialogLayout.addItem(spacer10)
+
+        self.line1 = QFrame(self,"line1")
+        self.line1.setFrameShape(QFrame.HLine)
+        self.line1.setFrameShadow(QFrame.Sunken)
+        self.line1.setFrameShape(QFrame.HLine)
+        NameDialogLayout.addWidget(self.line1)
 
         layout2 = QHBoxLayout(None,0,6,"layout2")
         spacer9 = QSpacerItem(271,21,QSizePolicy.Expanding,QSizePolicy.Minimum)
@@ -92,7 +98,7 @@ class NameDialog(QDialog):
 
         self.languageChange()
 
-        self.resize(QSize(383,234).expandedTo(self.minimumSizeHint()))
+        self.resize(QSize(331,234).expandedTo(self.minimumSizeHint()))
         self.clearWState(Qt.WState_Polished)
 
         self.connect(self.cancelButton,SIGNAL("clicked()"),self,SLOT("reject()"))
