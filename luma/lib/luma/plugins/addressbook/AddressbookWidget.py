@@ -11,44 +11,23 @@
 
 from qt import *
 import os.path
-import ldap
-from ConfigParser import *
+from string import strip
+#import ldap
+#from ConfigParser import *
 
 import environment
 from plugins.addressbook.AddressbookWidgetDesign import AddressbookWidgetDesign
-from base.backend.ServerObject import ServerObject
-from base.backend.ServerList import ServerList
-from base.backend.LumaConnection import LumaConnection
+from plugins.addressbook.NameDialog import NameDialog
+#from base.backend.ServerObject import ServerObject
+#from base.backend.ServerList import ServerList
+#from base.backend.LumaConnection import LumaConnection
 
 
 
 class AddressbookWidget(AddressbookWidgetDesign):
 
-    searchFilter = "(&(objectClass=inetOrgPerson)(|(cn=*)(sn=*)(givenName=*)(mail=*) ) )"
-    searchFilterPrefix =  "(&(objectClass=inetOrgPerson)(|"
-    searchFilterSuffix = "))"
-
     def __init__(self,parent = None,name = None,fl = 0):
         AddressbookWidgetDesign.__init__(self,parent,name,fl)
-        
-        configFile = os.path.join(environment.userHomeDir,  ".luma", "plugins")
-        config = ConfigParser()
-        config.readfp(open(configFile, 'r'))
-        
-        self.filterElements = ["cn", "sn", "givenName", "mail"]
-        
-        if config.has_option('Addressbook', 'filter'):
-            filter = config.get('Addressbook', 'filter')
-            foo = filter.split(",")
-            if not(foo[0] == ''):
-                self.filterElements = foo
-            
-        
-        self.data = {}
-        self.iconDict = {}
-        
-        searchFilter = "(objectClass=inetOrgPerson)"
-        self.lumaConnection = LumaConnection()
         
         iconDir = os.path.join (environment.lumaInstallationPrefix, "lib", "luma", "plugins", "addressbook", "icons")
         
@@ -57,182 +36,176 @@ class AddressbookWidget(AddressbookWidgetDesign):
         personIcon = QPixmap (os.path.join (iconDir, "personal.png"))
         phoneIcon = QPixmap (os.path.join (iconDir, "phone.png"))
         mailIcon = QPixmap (os.path.join (iconDir, "email.png"))
+        urlIcon = QPixmap (os.path.join (iconDir, "url.png"))
+        categoryIcon = QPixmap (os.path.join (iconDir, "category.png"))
+        addressIcon = QPixmap (os.path.join (iconDir, "home.png"))
+        workIcon = QPixmap (os.path.join (iconDir, "work.png"))
         
         self.personLabel.setPixmap(personIcon)
         self.phoneLabel.setPixmap(phoneIcon)
         self.mailLabel.setPixmap(mailIcon)
-        
-        # Setting up server box
-        tmpFile  = os.path.join(environment.lumaInstallationPrefix, "share", "luma", "icons", "secure.png")
-        securePixmap = QPixmap(tmpFile)
+        self.webPageLabel.setPixmap(urlIcon)
+        self.categoryLabel.setPixmap(categoryIcon)
+        self.homeLabel.setPixmap(addressIcon)
+        self.workLabel.setPixmap(workIcon)
+        self.personalLabel.setPixmap(personIcon)
+        self.notesLabel.setPixmap(urlIcon)
 
-        serverListObject = ServerList()
-        serverListObject.readServerList()
-        self.serverList = serverListObject.SERVERLIST
-        
-        self.serverBox.insertItem("")
-        if not (self.serverList == None):
-            for x in self.serverList:
-                if x.tls == 1:
-                    self.serverBox.insertItem(securePixmap, x.name)
-                else:
-                    self.serverBox.insertItem(x.name)
-
-###############################################################################
-
-    def serverChanged(self, serverName):
-        if self.serverList == None:
-            return
-        
-        for x in self.serverList:
-            if x.name == str(serverName):
-                self.lumaConnection.server = x
-                
-                # This prevents Luma from crashing. Curiously mainWin == None!
-                # But why???
-                self.lumaConnection.mainWin = qApp.mainWidget()
-        
-        self.search()
-        
-###############################################################################
-
-    def search(self, filter = None):
-        if self.lumaConnection.server == None:
-            return
-            
-        if not(str(self.searchEdit.text()) == ''):
-            filter = str(self.searchEdit.text())
-          
-        tmpFilter = None
-        
-        if (str(filter) == '') or (filter == None):
-            filter = "*"
-        else:
-            filter = "*" + str(filter) + "*"
-            
-        tmpString = ""
-        for x in self.filterElements:
-            tmpString = tmpString + "(" + x + "=" + filter + ")"
-                
-        tmpFilter = self.searchFilterPrefix + tmpString + self.searchFilterSuffix
-        
-        results = self.lumaConnection.search(self.lumaConnection.server.baseDN, ldap.SCOPE_SUBTREE, tmpFilter)
-        self.processResults(results)
-        
-###############################################################################
-
-    def processResults(self, results):
-        self.data={}
-        if not(results == None):
-            for x in results:
-                self.data[x[0]] = x[1]
-            
-        self.showResults()
-            
-###############################################################################
-
-    def showResults(self):
-        self.iconDict = {}
-        self.resultView.clear()
-        
-        if len(self.data.keys()) == 0:
-            return
-        
-        nameList = []
-        
-        for x in self.data.keys():
-            tmpData = self.data[x]
-            name = ''
-            if tmpData.has_key('cn'):
-                name = tmpData['cn'][0]
-            else:
-                if tmpData.has_key('sn') or tmpData.has_key('givenName'):
-                    if tmpData.has_key('sn'):
-                        name = tmpData['sn'][0]
-                    if tmpData.has_key('givenName'):
-                        if not(name == ''):
-                            name = name + ' '
-                        name = name + tmpData['givenName'][0]
-                
-            nameList.append((name, x))
-        
-        nameList.sort()
-        
-        for x in nameList:
-            iconTmp = QIconViewItem(self.resultView, x[0], self.entryIcon)
-            self.iconDict[iconTmp] = x[1]
-            
-###############################################################################
-
-    def iconClicked(self, icon):
-        if icon == None:
-            return
-        
-        self.clearView()
-        
-        
-        dn = self.iconDict[icon]
-        tmpData = self.data[dn]
-        for x in tmpData.keys():
-            if x == 'cn':
-                self.commonNameEdit.setText(tmpData['cn'][0])
-                
-            if x == 'givenName':
-                self.givenNameEdit.setText(tmpData['givenName'][0])
-                
-            if x == 'sn':
-                self.surenameEdit.setText(tmpData['sn'][0])
-                
-            if x == 'employeeType':
-                self.roleEdit.setText(tmpData['employeeType'][0])
-                
-            if x == 'organisationName':
-                self.organisationEdit.setText(tmpData['organisationName'][0])
-                
-            if x == 'organizationalUnitName':
-                self.departementEdit.setText(tmpData['organizationalUnitName'][0])
-                
-            if x == 'homePhone':
-                self.homePhoneEdit.setText(tmpData['homePhone'][0])
-                
-            if x == 'telephoneNumber':
-                self.workPhoneEdit.setText(tmpData['telephoneNumber'][0])
-                
-            # This should be mobile phone
-            #if x == 'cn':
-            #    self.commonNameEdit.setText(tmpData['cn'][0])
-            
-            if x == 'mail':
-                for y in tmpData['mail']:
-                    self.mailBox.insertItem(y)
-                
-        
 ###############################################################################
 
     def clearView(self):
-        self.commonNameEdit.clear()
-        self.givenNameEdit.clear()
-        self.surenameEdit.clear()
-        self.roleEdit.clear()
+        self.cnEdit.clear()
+        self.titleEdit.clear()
         self.organisationEdit.clear()
-        self.departementEdit.clear()
-        self.homePhoneEdit.clear()
-        self.workPhoneEdit.clear()
-        self.mobilePhoneEdit.clear()
+        
         self.mailBox.clear()
         
+        self.labeledURIEdit.clear()
         
+        self.categoryEdit.clear()
         
+        self.homePhoneEdit.clear()
+        self.telephoneNumberEdit.clear()
+        self.mobileEdit.clear()
+        self.facsimileTelephoneNumberEdit.clear()
         
+        self.ouEdit.clear()
+        self.roomNumberEdit.clear()
+        self.businessRoleEdit.clear()
+        self.managerNameEdit.clear()
+        self.assistantNameEdit.clear()
+        self.displayNameEdit.clear()
+        self.spouseNameEdit.clear()
+        self.noteEdit.clear()
+        self.birthDateEdit.setDate(QDate())
+        self.anniversaryEdit.setDate(QDate())
         
+###############################################################################
+
+    def init_view(self, dn, data, server):
+        self.clearView()
         
+        self.dn = dn
+        self.data = data
+        self.server = server
         
+        for x in self.data.keys():
+            if x == 'cn':
+                self.cnEdit.setText(self.data[x][0])
+                
+            if x == 'title':
+                self.titleEdit.setText(self.data[x][0])
+                
+            if x == 'o':
+                self.organisationEdit.setText(self.data[x][0])
+                
+            if x == 'mail':
+                for y in self.data[x]:
+                    self.mailBox.insertItem(y)
+            
+            if x == 'labeledURI':
+                self.labeledURIEdit.setText(self.data[x][0])
+                
+            if x == 'category':
+                self.categoryEdit.setText(",".join(self.data[x]))
         
+            if x == 'homePhone':
+                self.homePhoneEdit.setText(self.data[x][0])
+                
+            if x == 'telephoneNumber':
+                self.telephoneNumberEdit.setText(self.data[x][0])
+                
+            if x == 'mobile':
+                self.mobileEdit.setText(self.data[x][0])
+               
+            if x == 'facsimileTelephoneNumber':
+                self.facsimileTelephoneNumberEdit.setText(self.data[x][0])
+                
+            if x == 'ou':
+                self.ouEdit.setText(self.data[x][0])
+                
+            if x == 'roomNumber':
+                self.roomNumberEdit.setText(self.data[x][0])
+                
+            if x == 'businessRole':
+                self.businessRoleEdit.setText(self.data[x][0])
+            
+            if x == 'managerName':
+                self.managerNameEdit.setText(self.data[x][0])
+                
+            if x == 'assistantName':
+                self.assistantNameEdit.setText(self.data[x][0])
+                
+            if x == 'displayName':
+                self.displayNameEdit.setText(self.data[x][0])
+                
+            if x == 'spouseName':
+                self.spouseNameEdit.setText(self.data[x][0])
+                
+            if x == 'note':
+                self.noteEdit.setText(self.data[x][0])
+                
+            if x == 'birthDate':
+                pass
+                
+            if x == 'anniversary':
+                pass
+    
+###############################################################################
+
+    def showNameDialog(self):
+        try:
+            dialog = NameDialog()
+            
+            
+            sn = self.data['sn'][0]
+            tmpList = str(self.cnEdit.text()).split(sn)
+            tmpList[0] = strip(tmpList[0])
+            print tmpList
+            
+            prefix = tmpList[0].split(' ')
+            for x in range(0, len(prefix)):
+                prefix[x] = strip(prefix[x])
+            
+            dialog.lastEdit.setText(sn)
+            if (len(tmpList) == 2):
+                dialog.suffixBox.setCurrentText(tmpList[1])
+                
+            if (len(prefix) == 1):
+                dialog.firstEdit.setText(prefix[0])
+            if  (len(prefix) == 2):
+                dialog.titleBox.setCurrentText(prefix[0])
+                dialog.firstEdit.setText(prefix[1])
+            if (len(prefix) > 2):
+                dialog.titleBox.setCurrentText(prefix[0])
+                dialog.firstEdit.setText(prefix[1])
+                tmpString = " ".join(prefix[2:])
+                dialog.middleEdit.setText(tmpString)
+            
+            dialog.exec_loop()
+        except:
+            print "Error"
         
+        if (dialog.result() == QDialog.Accepted):
+            self.data['sn'][0] = str(dialog.lastEdit.text())
+            print self.data['sn']
+            
+            tmpList = []
+            
+            tmpList.append(self.__normalizeQtString(dialog.titleBox.currentText()))
+            tmpList.append(self.__normalizeQtString(dialog.firstEdit.text()))
+            tmpList.append(self.__normalizeQtString(dialog.middleEdit.text()))
+            tmpList.append(self.__normalizeQtString(dialog.lastEdit.text()))
+            tmpList.append(self.__normalizeQtString(dialog.suffixBox.currentText()))
+            
+            self.cnEdit.setText(''.join(tmpList))
+            
+###############################################################################
+
+    def __normalizeQtString(self, tmpString):
+        tmpString = strip(str(tmpString))
         
-        
-        
-        
-        
-        
-        
+        if (len(tmpString) > 0):
+            tmpString = tmpString + ' '
+            
+        return tmpString

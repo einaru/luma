@@ -11,7 +11,7 @@
 from qt import *
 import os.path
 
-from plugins.addressbook.AddressbookWidget import AddressbookWidget
+from plugins.addressbook.AddressbookView import AddressbookView
 from plugins.addressbook.AddressbookSettings import AddressbookSettings
 
 class TaskPlugin(object):
@@ -39,7 +39,7 @@ class TaskPlugin(object):
 ###############################################################################
 
     def getPluginWidget(self, parent):
-        self.pluginWidget = AddressbookWidget(parent)
+        self.pluginWidget = AddressbookView(parent)
         return self.pluginWidget
 
 ###############################################################################
