@@ -235,16 +235,6 @@ class LumaConnection(object):
         """Bind to server.
         """
 
-        # If we're going to present client certificates, this must be set as an option
-        if self.serverMeta.useCertificate:
-            try:
-                self.set_option(ldap.OPT_X_TLS_CERTFILE,self.serverMeta.clientCertfile)
-                self.set_option(ldap.OPT_X_TLS_KEYFILE,self.serverMeta.clientCertKeyfile)
-            except:
-                message = "Certificate error. Reason:\n"
-                message += "Could not set client certificate and certificate keyfile"
-                environment.logMEssage(LogObject("Error,",message))
-
         
         environment.setBusy(True)
         
@@ -483,6 +473,7 @@ class WorkerThreadBind(threading.Thread):
     def run(self):
         try:
             urlschemeVal = "ldap"
+            # tls != ssl!! FIXME: SSL with ldaps://<host>:636/ and TLS with ldap://<host>:389/
             if self.serverMeta.tls:
                 urlschemeVal = "ldaps"
               
@@ -499,6 +490,16 @@ class WorkerThreadBind(threading.Thread):
             
             self.ldapServerObject = ldap.initialize(url.initializeUrl())
             self.ldapServerObject.protocol_version = 3
+
+            # If we're going to present client certificates, this must be set as an option
+            if self.serverMeta.useCertificate:
+                try:
+                    self.ldapServerObject.set_option(ldap.OPT_X_TLS_CERTFILE,self.serverMeta.clientCertfile)
+                    self.ldapServerObject.set_option(ldap.OPT_X_TLS_KEYFILE,self.serverMeta.clientCertKeyfile)
+                except:
+                    message = "Certificate error. Reason:\n"
+                    message += "Could not set client certificate and certificate keyfile"
+                    environment.logMessage(LogObject("Error,",message))
             
             # Enable Alias support
             if self.serverMeta.followAliases:
