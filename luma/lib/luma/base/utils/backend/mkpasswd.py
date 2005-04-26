@@ -84,9 +84,10 @@ def mkpasswd(pwd,sambaver=3,default='ssha'):
 	    LDAP - so default is seeded sha
     '''
     alg = {
-        'ssha':'Seeded SHA',
 	    'sha':'Secure Hash Algorithm',
+        'ssha':'Seeded SHA',
 	    'md5':'MD5',
+	    'smd5':'Seeded MD5',
 	    'crypt':'standard unix crypt'
     }
     if smb:
@@ -102,6 +103,9 @@ def mkpasswd(pwd,sambaver=3,default='ssha'):
             return "{SHA}" + base64.encodestring(sha.new(str(pwd)).digest())
         elif default =='md5':
             return "{MD5}" + base64.encodestring(md5.new(str(pwd)).digest())
+        elif default =='smd5':
+            salt = getsalt(length=4) # Newer versions of OpenLDAP should support the default length 16
+            return "{SMD5}" + base64.encodestring(md5.new(str(pwd)).digest() + salt)
         elif default =='crypt':
             return "{CRYPT}" + crypt.crypt(str(pwd),getsalt(length=2)) # crypt only uses a salt of length 2
         elif default == 'lmhash':
