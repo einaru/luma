@@ -67,7 +67,9 @@ def setBusy(self, busy):
   
 def getAvailableHashMethods():
     # basic algorithms which are supported by mkpasswd-module
-    supportedAlgorithms = Set(['crypt', 'md5', 'sha', 'ssha', 'cleartext'])
+    #FIXME! Fetch this list from the mkpasswd-module instead of having to 
+    # Update this list both in mkpasswd.py and here..
+    supportedAlgorithms = Set(['crypt', 'md5','smd5', 'sha', 'ssha', 'cleartext'])
         
     # add lmhash and nthash algorithms if smbpasswd module is present
     try:
