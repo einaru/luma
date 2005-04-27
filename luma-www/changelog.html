@@ -10,16 +10,18 @@
 </head>
 <body>
 
-
-<div class="lumatitle">
-	<font size="+3" color="White"><strong>Luma</strong> - LDAP browser, utility and more.</font>
-</div>
+<TABLE><TR>
+<TD width="100%"><div class="lumatitle" >
+		<font size="+3" color="White"><strong>Luma</strong> - LDAP browser, utility and more.</font></div></TD>
+<TD valign="right"><IMG src="images/luma-64.png" width="64" height="61" align="right" border="0"></TD>
+</TR></TABLE>
 <p></p>
+	
 	
 
 
 <TABLE>
-	<td width="20%" valign="top">
+	<td width="25%" valign="top">
 		<div class="lumamenulinkinactive" align="center">
 			<a class="menulink" href="index.html" name="News">News</a>
 		</div>
@@ -48,6 +50,91 @@
 	
 	
 	<td valign="top" width="80%">
+		<div class="lumadate" align="left">
+			2.1.3
+		</div>
+		<div class="lumanews">
+			<ul  type="disk">
+			<LI>Fixed traversing the tree and fetching ldap data from the server when collapsing an item in the browser.</LI>
+			</ul>
+		</div><br><br>
+
+
+		<div class="lumadate" align="left">
+			2.1.2
+		</div>
+		<div class="lumanews">
+			<ul  type="disk">
+			<LI>Fix for reading logger settings which prevent startup.</LI>
+			</ul>
+		</div><br><br>
+
+
+		<div class="lumadate" align="left">
+			2.1.1
+		</div>
+		<div class="lumanews">
+			<ul  type="disk">
+			<LI>Fixed keyboard shortcuts.</LI>
+			<LI>Can't add attribute 'objectClass' in the browser any more. This behaviour is not intended.</LI>
+			<LI>Give warning dialog when user is about to leave an unsaved entry.</LI>
+			<LI>Set GUI busy while generating the document in the browser.</LI>
+			<LI>Added multi-selection in the browser widget for deleting and exporting entries.</LI>
+			<LI>Better keypress handling in the browser widget. If a key is pressed, the value of an attribute is searched and not the attribute itself.</LI>
+			<LI>Store logger preferences.</LI>
+			<LI>Add attribute with right-click in the browser tree.</LI>
+			<LI>Added splashscreen with new Luma logo.</LI>
+			</ul>
+		</div><br><br>
+
+
+		<div class="lumadate" align="left">
+			2.1
+		</div>
+		<div class="lumanews">
+			<ul  type="disk">
+				<LI>Added logging mechanism. Can be activated from the program menu or by clicking on the bomb icon, which is displayed when a serious error occured.</LI>
+				<LI>Server information is cached. Results in less disk accesses.</LI>
+				<LI>Fix for special characters in the DN of an entry.</LI>
+				<LI>Added french translation.</LI>
+				<LI>New logo by Rebekka Golombek.</LI>
+			</ul>
+		</div><br><br>
+
+
+		<div class="lumadate" align="left">
+			2.0.3
+		</div>
+		<div class="lumanews">
+			<ul  type="disk">
+				<li>Fixed tab order and default buttons for many widgets.</li>
+				<li>Fixed editing of the RDN for new entries.</li>
+				<li>Improved user interface for the delete and export dialog. Better button order. Dialogs close automaticly if no errors occured.</li>
+				<li>Improved look for the search plugin.</li>
+				<li>Better escaping of special characters in the DN of an entry.</li>
+				<li>Improved and updated translations.</li>
+				<li>Fix for exporting subtrees with parents. New export dialog wasn't used.</li>
+				<li>Fix for displaying binary attribute values.</li>
+				<li>Display status message when server side search limit is hit and process partial results.</li>
+				<li>Fixed retrieving of server schema when user has to be authenticated.</li>
+				<li>Fetching the schema doesn't block the user interface any more.</li>
+			</ul>
+		</div><br><br>
+	
+	
+		<div class="lumadate" align="left">
+			2.0.2
+		</div>
+		<div class="lumanews">
+			<ul  type="disk">
+				<li>Added support for connecting via Unix sockets</li>
+				<li>Translation for Czech added</li>
+				<li>Updated translations for Portuguese and Norwegian</li>
+				<li>Fix for disabled method box in the server dialog when selecting SASL GSSAPI</li>
+				<li>Fix for displaying double-clicked entries in the schemaviewer when a filter is used</li>
+			</ul>
+		</div><br><br>
+	
 		<div class="lumadate" align="left">
 			2.0.1
 		</div>
