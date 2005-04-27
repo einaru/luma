@@ -5,34 +5,77 @@
   <title>Luma - LDAP utiliy, browser and more...</title>
   <link rel="stylesheet" type="text/css" href="lumacss.css">
   <meta name="GENERATOR" content="Quanta Plus">
+  <meta name="author" content="Wido Depping">
+  <meta name="description" content="Luma is a tool / utility / application for easy and userfriendly managment of LDAP data and a platform / framework for developing custom LDAP applications. It's written in Python and uses Qt as its GUI toolkit. Luma is licensed under the terms of the GPL. The following applications are provide as plugins: Usermanagement / User management for unix accounts, Addressbook / Address book, LDAP Browser, Template Manager, Search, Admin Utilities, Schema Browser / Schemabrowser, Massive User Creation. Luma runs on the following platforms Linux, FreeBsd, Unix, Mac Os X .">
 </head>
 <body>
 
-
-<div class="lumatitle" >
-	<font size="+3" color="White"><strong>Luma</strong> - LDAP browser, utility and more.</font>
-</div>
+<TABLE><TR>
+<TD width="100%"><div class="lumatitle" >
+		<font size="+3" color="White"><strong>Luma</strong> - LDAP browser, utility and more.</font></div></TD>
+<TD valign="right"><IMG src="images/luma-64.png" width="64" height="61" align="right" border="0"></TD>
+</TR></TABLE>
 <p></p>
+	
 	
 
 
 <TABLE>
-	<td width="150" valign="top">
+	<td width="25%" valign="top">
 		<div class="lumamenulinkinactive" align="center">
 			<a class="menulink" href="index.html" name="News">News</a>
 		</div>
 		
+		<div class="lumamenulinkinactive" align="center">
+			<a class="menulink" href="about.html" name="About Luma">About Luma</a><br>
+		</div>
+		
+		<div class="lumamenulinkactive" align="center">
+			<a class="menulink" href="changelog.html">Changelog</a><br>
+		</div>
+
+		<div class="lumamenulinkactive" align="center">
+			<a class="menulink" href="roadmap.html">Roadmap</a><br>
+		</div>
+		
+		<div class="lumamenulinkinactive" align="center">
+			<a class="menulink" href="screenshots.html">Screenshots</a><br>
+		</div>
+		
+		<div class="lumamenulinkinactive" align="center">
+			<a class="menulink" href="download.html">Download</a><br>
+		</div>
+		
+		<div class="lumamenulinkinactive" align="center">
+			<a class="menulink" href="contact.html">Contact &#038; Support</a>
+		</div>
 	</td>
 	
 	
+	
 	<td valign="top" width="80%">
+
+        <div class="lumadate" align="left">
+            2.2 and later
+        </div>
 		<div class="lumanews">
-			<STRONG>Roadmap</STRONG><br>
-			This place is intended to give you information on which direction Luma is going, and which new features
-			are planned in which releases. Wishlist from Luma-users will be taken seriously into concideration.
-			Please don't hesitate to ask any question, or idea you, or your organization might have.<br><br>
-			
+			<ul  type="disk">
+                <li>Client certificates</li>
+                <li>Prompt for password if not stored in serverinfo</li>
+                <li>Encrypt serverinfo using similar mechanisms like Mozilla/Opera 
+                    uses to encrypt clientcertificates in their browser
+                    using a master password. For those who want to store
+                    passwords for connecting, but wants increased security.</li>
+                <li>Add support for making K5 principals from the usermanagement-plugin</li>
+                <li>Password dialog for smb{nt,lm]passwords using the browser-plugin</li>
+			</ul>
+
+            If you have further feature-requests, please feel free to ask on
+            <a href="luma-dev@lists.sourceforge.net">
+                luma-dev@lists.sourceforge.net</a>
 		</div><br><br>
+
+        
 	</td>
 	
 </TABLE>
