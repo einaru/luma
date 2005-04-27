@@ -10,16 +10,17 @@
 </head>
 <body>
 
-
-<div class="lumatitle" >
-	<font size="+3" color="White"><strong>Luma</strong> - LDAP browser, utility and more.</font>
-</div>
+<TABLE><TR>
+<TD width="100%"><div class="lumatitle" >
+		<font size="+3" color="White"><strong>Luma</strong> - LDAP browser, utility and more.</font></div></TD>
+<TD valign="right"><IMG src="images/luma-64.png" width="64" height="61" align="right" border="0"></TD>
+</TR></TABLE>
 <p></p>
 	
 
 
 <TABLE>
-	<td width="100" valign="top">
+	<td width="25%" valign="top">
 		<div class="lumamenulinkactive" align="center">
 			<a class="menulink" href="index.html" name="News">News</a>
 		</div>
@@ -30,6 +31,10 @@
 		
 		<div class="lumamenulinkinactive" align="center">
 			<a class="menulink" href="changelog.html">Changelog</a><br>
+		</div>
+
+		<div class="lumamenulinkinactive" align="center">
+			<a class="menulink" href="roadmap.html">Roadmap</a><br>
 		</div>
 		
 		<div class="lumamenulinkinactive" align="center">
@@ -43,14 +48,70 @@
 		<div class="lumamenulinkinactive" align="center">
 			<a class="menulink" href="contact.html">Contact &#038; Support</a>
 		</div>
-		
-		<div class="lumamenulinkinactive" align="center">
-			<a class="menulink" href="documentation.html">Documentation</a>
-		</div>
 	</td>
 	
 	
 	<td valign="top" width="80%">
+		<div class="lumadate">Wed Mar 16 04:04 CET 2005</div>
+		<div class="lumanews">
+			<STRONG>Yet another bugfix release</STRONG><br>
+			Luma 2.1.3 fixes an issue when collapsing an item in the browser. All items below the currently selected item were fetched from the server and displayed. You can download the tarball at the usual place. The packages for 2.1.1 and 2.1.2 will be removed from the download section.
+		</div><br><br>
+
+		<div class="lumadate">Tue Mar 15 15:42 CET 2005</div>
+		<div class="lumanews">
+			<STRONG>Important Bugfix Release</STRONG><br>
+			Luma 2.1.1 contains an error in the code for storing logger preference. It prevents some users from starting Luma. This has been fixed in 2.1.2 and it's the only change in this release.
+
+		</div><br><br>
+
+
+		<div class="lumadate">Mon Mar 14 20:58 CET 2005</div>
+		<div class="lumanews">
+			<STRONG>New Release</STRONG><br>
+			Luma 2.1.1 has been released. It features several bugfixes and minor feature enhancements, which are listed at the <A href="changelog.html">changelog page</A>.
+		</div><br><br>
+
+
+		<div class="lumadate">Wed Mar  2 18:22 CET 2005</div>
+		<div class="lumanews">
+			<STRONG>Luma 2.1 Release</STRONG><br>
+			This version features a new logger, which is available from the program menu. It shows general information about LDAP operations, debugging messages and programming errors. This has the benefit that users are not confused any more about messages in the console. If a programming error or any other exceptional event occured, Luma doesn't have to be restarted in the console again, in order to get a backtrace for the developers. A bomb icon will be displayed in the lower right corner, to indicate a error. Clicking on it will open the logger.<br>
+			Translations have been updated and we're happy to announce that french has been added. Luma is available in 9 languages now.<br>
+			Additionaly Luma has a new logo, created by Rebekka Golombek. It's used as the application icon and is present on the Luma homepage.<br><br>
+			For a list of requirements to install and download Luma, visit <A href="http://luma.sourceforge.net/download.html">http://luma.sourceforge.net/download.html</A>.
+		</div><br><br>
+
+
+		<div class="lumadate">Mon Feb 14 19:17 CET 2005</div>
+		<div class="lumanews">
+			<STRONG>Luma 2.0.3 released</STRONG><br>
+			Luma 2.0.3 was just released. Here's the changelog:<br>
+			<ul>
+				<li>Fixed tab order and default buttons for many widgets.</li>
+				<li>Fixed editing of the RDN for new entries.</li>
+				<li>Improved user interface for the delete and export dialog. Better button order. Dialogs close automaticly if no errors occured.</li>
+				<li>Improved look for the search plugin.</li>
+				<li>Better escaping of special characters in the DN of an entry.</li>
+				<li>Improved and updated translations.</li>
+				<li>Fix for exporting subtrees with parents. New export dialog wasn't used.</li>
+				<li>Fix for displaying binary attribute values.</li>
+				<li>Display status message when server side search limit is hit and process partial results.</li>
+				<li>Fixed retrieving of server schema when user has to be authenticated.</li>
+				<li>Fetching the schema doesn't block the user interface any more.</li>
+			</ul>
+			The tarball can be found <A href="http://luma.sourceforge.net/download.html">here</A>.
+		</div><br><br>
+		
+	
+		<div class="lumadate">Mon Jan 31 17:27 CET 2005</div>
+		<div class="lumanews">
+			<STRONG>Luma 2.0.2 released</STRONG><br>
+			Luma 2.0.2 was just released. This release contains some features improvements, new/updated translations and bugfixes which are documented at the <A href="http://luma.sourceforge.net/changelog.html">changelog page</A>.<br><br>
+			The tarball can be found <A href="http://luma.sourceforge.net/download.html">here</A>.
+		</div><br><br>
+		
+	
 		<div class="lumadate">Wed Jan 26 14:44:28 CET 2005</div>
 		<div class="lumanews">
 			<STRONG>Luma 2.0.1: Bugfix release</STRONG><br>
