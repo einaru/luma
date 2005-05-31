@@ -23,6 +23,11 @@ from base.utils import explodeDN
 
 class SmartDataObject (object):
 
+    passwordList = ["userpassword", "ntpassword", "lmpassword", "clearpassword",
+                    "sambalmpassword", "sambantpassword", "goimappassword", 
+                    "gokrbpassword", "gofaxpassword", "gologpassword", "gofonpassword",
+                    "solarisbindpassword"]
+
     def __init__(self, data, serverMeta):
         self.doSchemaChecks = True
         self.isValid = False
@@ -108,7 +113,8 @@ class SmartDataObject (object):
         """
 
         if None == self.objectClassName:
-            return None
+            #return None
+            return []
         else:
             return self.data[self.objectClassName]
             
@@ -457,8 +463,9 @@ class SmartDataObject (object):
         
         if None == attributeName:
             raise FunctionArgumentException("Function isAttributePassword(attributeName) called without correct parameters.")
-            
-        if "password" in string.lower(attributeName):
+          
+        tmpName = string.lower(attributeName)
+        if tmpName in self.passwordList:
             return True
         else:
             return False
