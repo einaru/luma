@@ -500,6 +500,9 @@ class WorkerThreadBind(threading.Thread):
                     message = "Certificate error. Reason:\n"
                     message += "Could not set client certificate and certificate keyfile"
                     environment.logMessage(LogObject("Error,",message))
+                 
+                # do we validate certs?
+                #self.ldapServerObject.set_option(ldap.OPT_X_TLS_REQUIRE_CERT, ldap.OPT_X_TLS_NEVER)
             
             # Enable Alias support
             if self.serverMeta.followAliases:
