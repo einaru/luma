@@ -30,8 +30,12 @@ class ServerList:
     """
     
     serverCache = []
-    
     modifyTime = None
+    
+    # The cache for the client side ssl certificates
+    # The filename is the key. In a tupel are the modification time and the 
+    # cert as StringIO objects
+    certCache = {}
     
     def __init__(self):
         self.serverList = []
@@ -40,11 +44,13 @@ class ServerList:
 
 ###############################################################################
 
-    def addServer(self, serverName, hostName, port, bindAnon, baseDN, bindDN, 
-        password, tls, autoBase, followAliases):
+    def addServerObsolete(self, serverName, hostName, port, bindAnon, baseDN, bindDN, 
+        password, encryptionMethod, autoBase, followAliases):
         """ Add a server to the server list.
         
         Arguments should be self-explationary.
+        
+        FIXME: Is this function obsolete?
         """
         
         server = ServerObject()
@@ -55,7 +61,7 @@ class ServerList:
         server.baseDN = baseDN
         server.bindDN = bindDN
         server.bindPassword = password
-        server.tls = tls
+        server.encryptionMethod = encryptionMethod
         server.autoBase = autoBase
         server.followAliases = followAliases
         
@@ -78,7 +84,7 @@ class ServerList:
             
         document = QDomDocument("LumaServerFile")
         root = document.createElement( "LumaServerList" )
-        root.setAttribute("version", "1.0")
+        root.setAttribute("version", "1.1")
         document.appendChild(root)
         
         for x in serverList:
@@ -89,7 +95,8 @@ class ServerList:
             serverNode.setAttribute("bindAnon", unicode(x.bindAnon))
             serverNode.setAttribute("bindDN", x.bindDN)
             serverNode.setAttribute("bindPassword", x.bindPassword)
-            serverNode.setAttribute("tls", unicode(x.tls))
+            #serverNode.setAttribute("tls", unicode(x.tls))
+            serverNode.setAttribute("encryptionMethod", unicode(x.encryptionMethod))
             serverNode.setAttribute("authMethod", x.authMethod)
             serverNode.setAttribute("autoBase", unicode(x.autoBase))
             serverNode.setAttribute("followAliases", unicode(x.followAliases))
@@ -157,7 +164,7 @@ class ServerList:
         except OSError, e:
             pass
         
-        if None == self.modifyTime:
+        if self.modifyTime == None:
             if self.checkConfig("CURRENT"):
                 serverList = self.readFromXML()
             elif self.checkConfig("OLD"):
@@ -193,7 +200,6 @@ class ServerList:
                 
         if None == self.serverList:
             self.serverList = []
-                
         
 ###############################################################################
 
@@ -274,8 +280,10 @@ class ServerList:
             
         serverList = None
         
-        if "1.0" == root.attribute("version"):
+        if root.attribute("version") == "1.0":
             serverList = self.readFromXMLVersion1_0(fileContent)
+        elif root.attribute("version") == "1.1":
+            serverList = self.readFromXMLVersion1_1(fileContent)
             
         return serverList
             
@@ -318,6 +326,75 @@ class ServerList:
                     server.tls = True
                 else:
                     server.tls = False
+                    
+                tmpVal = unicode(element.attribute("followAliases"))
+                if "True" == tmpVal:
+                    server.followAliases = True
+                else:
+                    server.followAliases = False
+                
+                server.authMethod = unicode(element.attribute("authMethod"))
+                
+                serverChild = child.firstChild()
+                serverElement = serverChild.toElement()
+                tagName = unicode(serverElement.tagName())
+                    
+                if "baseDNs" == tagName:
+                    server.baseDN = []
+                    baseNode = serverChild.firstChild()
+                    while (not baseNode.isNull()):
+                        baseElement = baseNode.toElement()
+                        tmpBase = unicode(baseElement.tagName())
+                        if "base" == tmpBase:
+                            server.baseDN.append(unicode(baseElement.attribute("dn")))
+                        baseNode = baseNode.nextSibling()
+                
+            serverList.append(server)
+            child = child.nextSibling()
+        
+        return serverList
+        
+###############################################################################
+
+    def readFromXMLVersion1_1(self, fileContent):
+        document = QDomDocument("LumaServerFile")
+        document.setContent(fileContent)
+        root = document.documentElement()
+        
+        serverList = []
+        
+        child = root.firstChild()
+        while (not child.isNull()):
+            server = ServerObject()
+            element = child.toElement()
+            if unicode(element.tagName()) == "LumaLdapServer":
+                server.name = unicode(element.attribute("name"))
+                server.host = unicode(element.attribute("host"))
+                server.port = int(str(element.attribute("port")))
+                
+                tmpVal = unicode(element.attribute("bindAnon"))
+                if "True" == tmpVal:
+                    server.bindAnon = True
+                else:
+                    server.bindAnon = False
+                    
+                tmpVal = unicode(element.attribute("autoBase"))
+                if "True" == tmpVal:
+                    server.autoBase = True
+                else:
+                    server.autoBase = False
+                    
+                    
+                server.bindDN = unicode(element.attribute("bindDN"))
+                server.bindPassword = unicode(element.attribute("bindPassword"))
+                
+                #tmpVal = unicode(element.attribute("tls"))
+                #if "True" == tmpVal:
+                #    server.tls = True
+                #else:
+                #    server.tls = False
+                
+                server.encryptionMethod = unicode(element.attribute("encryptionMethod"))
                     
                 tmpVal = unicode(element.attribute("followAliases"))
                 if "True" == tmpVal:

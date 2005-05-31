@@ -25,14 +25,17 @@ class ServerObject(object):
     
     self.bindPassword: The password for the bindDN (string).
     
-    self.tls: Indicates, if we should use tls to connect to the server 
-    (integer).
+    self.encryptionMethod: None, TLS or SSL
 
     self.useCertificate: Indicates, if we should use clientside certificates
 
     self.clientCertFile: The Client certificate. PEM-file (string)
 
     self.clientCertKeyfile: The Client certificate private key. PEM-file (string)
+    
+    self.clientCert: The actual cert read from disk
+    
+    self.clientCertKey: The actual cert key read from disk
     
     
     """
@@ -51,12 +54,14 @@ class ServerObject(object):
         self.baseDN = []
         self.bindDN = u""
         self.bindPassword = u""
-        self.tls = False
+        self.encryptionMethod = u""
         self.authMethod = u"Simple"
         self.followAliases = False
         self.useCertificate = False
         self.clientCertFile = u""
         self.clientCertKeyfile = u""
+        self.clientCert = None
+        self.clientCertKey = None
         
         # This value will only set during runtime
         self.currentBase = u""
@@ -82,8 +87,8 @@ class ServerObject(object):
         finalString.append(unicode(self.bindDN))
         finalString.append(unicode("\nBind Password: "))
         finalString.append(unicode(self.bindPassword))
-        finalString.append(unicode("\nTLS: "))
-        finalString.append(unicode(self.tls))
+        finalString.append(unicode("\nEncryption method: "))
+        finalString.append(unicode(self.encryptionMethod))
         finalString.append(unicode("\nAuthentification method: "))
         finalString.append(unicode(self.authMethod))
         finalString.append(unicode("\nUse Client certificate: "))
