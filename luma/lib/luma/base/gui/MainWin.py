@@ -250,7 +250,7 @@ class MainWin(MainWinDesign):
                 if configParser.getint(x, "load") == 1:
                     pluginList.append(x)
         except Exception, errorData:
-            errorString = "Could not open file for plugin defaults."
+            errorString = "Could not open file for plugin defaults.\n"
             errorString += "Reason: " + str(errorData)
             environment.logMessage(LogObject("Debug", errorString))
             pluginList = "ALL"
