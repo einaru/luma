@@ -95,10 +95,7 @@ class ServerDialog(ServerDialogDesign):
         """ Change server information if another server has been selected.
         """
         
-        #selectedServerString = unicode(self.serverIconView.currentItem().text())
         selectedServerString = unicode(tmpItem.text(0))
-        
-        
         x = self.serverListObject.getServerObject(selectedServerString)
         self.currentServer = x
         
@@ -107,7 +104,6 @@ class ServerDialog(ServerDialogDesign):
         self.bindAnonBox.blockSignals(True)
         self.bindLineEdit.blockSignals(True)
         self.passwordLineEdit.blockSignals(True)
-        self.tlsCheckBox.blockSignals(True)
         self.methodBox.blockSignals(True)
         self.aliasBox.blockSignals(True)
         
@@ -116,8 +112,14 @@ class ServerDialog(ServerDialogDesign):
         self.bindAnonBox.setChecked(int(x.bindAnon))
         self.bindLineEdit.setText(x.bindDN)
         self.passwordLineEdit.setText(x.bindPassword)
-        self.tlsCheckBox.setChecked(int(x.tls))
-        #self.methodBox.setCurrentItem(self.authentificationMethods.index(x.authMethod))
+        
+        if x.encryptionMethod == u"None":
+            self.encryptionBox.setCurrentItem(0)
+        elif x.encryptionMethod == u"TLS":
+            self.encryptionBox.setCurrentItem(1)
+        elif x.encryptionMethod == u"SSL":
+            self.encryptionBox.setCurrentItem(2)
+        
         self.methodBox.setCurrentText(x.authMethod)
         self.bindAnonChanged(x.bindAnon, True)
         self.aliasBox.setChecked(int(x.followAliases))
@@ -127,7 +129,6 @@ class ServerDialog(ServerDialogDesign):
         self.bindAnonBox.blockSignals(False)
         self.bindLineEdit.blockSignals(False)
         self.passwordLineEdit.blockSignals(False)
-        self.tlsCheckBox.blockSignals(False)
         self.methodBox.blockSignals(False)
         self.aliasBox.blockSignals(False)
         
@@ -461,3 +462,30 @@ class ServerDialog(ServerDialogDesign):
             
         self.certKeyfileEdit.setText(unicode(filename))
         
+###############################################################################
+
+    def encryptionChanged(self, typeNumber):
+        encryptionMethod = u"None"
+        
+        if typeNumber == 0:
+            encryptionMethod = u"None"
+        elif typeNumber == 1:
+            encryptionMethod = u"TLS"
+        elif typeNumber == 2:
+            encryptionMethod = u"SSL"
+        
+        self.currentServer.encryptionMethod = encryptionMethod
+        
+        # Set port numbers according to the encryption method
+        self.portSpinBox.blockSignals(True)
+        
+        portValue = 389
+        if encryptionMethod == u"SSL":
+            portValue = 636
+            
+        self.portSpinBox.setValue(portValue)
+        self.currentServer.port = portValue
+            
+        self.portSpinBox.blockSignals(True)
+        
+        self.applyButton.setEnabled(True)

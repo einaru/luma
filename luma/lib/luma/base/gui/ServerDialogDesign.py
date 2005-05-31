@@ -2,8 +2,8 @@
 
 # Form implementation generated from reading ui file '/home/wido/src/luma/lib/luma/base/gui/ServerDialogDesign.ui'
 #
-# Created: Wed May 11 14:05:57 2005
-#      by: The PyQt User Interface Compiler (pyuic) 3.13
+# Created: Mon May 30 16:40:56 2005
+#      by: The PyQt User Interface Compiler (pyuic) 3.14.1
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -52,7 +52,7 @@ class ServerDialogDesign(QDialog):
         tabLayout.addMultiCell(spacer7_2,2,8,0,0)
 
         self.networkLabel = QLabel(self.tab,"networkLabel")
-        self.networkLabel.setSizePolicy(QSizePolicy(0,0,0,0,self.networkLabel.sizePolicy().hasHeightForWidth()))
+        self.networkLabel.setSizePolicy(QSizePolicy(QSizePolicy.Fixed,QSizePolicy.Fixed,0,0,self.networkLabel.sizePolicy().hasHeightForWidth()))
         self.networkLabel.setMinimumSize(QSize(48,48))
 
         tabLayout.addMultiCellWidget(self.networkLabel,0,1,0,0)
@@ -63,7 +63,7 @@ class ServerDialogDesign(QDialog):
         tabLayout.addMultiCellWidget(self.textLabel1_2,0,0,1,4)
 
         self.portSpinBox = QSpinBox(self.tab,"portSpinBox")
-        self.portSpinBox.setSizePolicy(QSizePolicy(1,0,0,0,self.portSpinBox.sizePolicy().hasHeightForWidth()))
+        self.portSpinBox.setSizePolicy(QSizePolicy(QSizePolicy.Minimum,QSizePolicy.Fixed,0,0,self.portSpinBox.sizePolicy().hasHeightForWidth()))
         self.portSpinBox.setMaxValue(65535)
         self.portSpinBox.setMinValue(1)
         self.portSpinBox.setValue(389)
@@ -75,14 +75,14 @@ class ServerDialogDesign(QDialog):
         tabLayout.addMultiCellWidget(self.hostLineEdit,1,2,3,4)
 
         self.textLabel9 = QLabel(self.tab,"textLabel9")
-        self.textLabel9.setSizePolicy(QSizePolicy(0,5,0,0,self.textLabel9.sizePolicy().hasHeightForWidth()))
+        self.textLabel9.setSizePolicy(QSizePolicy(QSizePolicy.Fixed,QSizePolicy.Preferred,0,0,self.textLabel9.sizePolicy().hasHeightForWidth()))
 
         tabLayout.addWidget(self.textLabel9,3,2)
         spacer8_2 = QSpacerItem(12,10,QSizePolicy.Fixed,QSizePolicy.Minimum)
         tabLayout.addItem(spacer8_2,1,1)
 
         self.textLabel8 = QLabel(self.tab,"textLabel8")
-        self.textLabel8.setSizePolicy(QSizePolicy(0,5,0,0,self.textLabel8.sizePolicy().hasHeightForWidth()))
+        self.textLabel8.setSizePolicy(QSizePolicy(QSizePolicy.Fixed,QSizePolicy.Preferred,0,0,self.textLabel8.sizePolicy().hasHeightForWidth()))
 
         tabLayout.addMultiCellWidget(self.textLabel8,1,2,2,2)
         spacer8 = QSpacerItem(41,81,QSizePolicy.Minimum,QSizePolicy.Expanding)
@@ -116,13 +116,13 @@ class ServerDialogDesign(QDialog):
         tabLayout.addMultiCell(spacer10,9,9,2,3)
         spacer10_2 = QSpacerItem(20,10,QSizePolicy.Minimum,QSizePolicy.Fixed)
         tabLayout.addItem(spacer10_2,4,2)
-        self.serverWidget.insertTab(self.tab,QString(""))
+        self.serverWidget.insertTab(self.tab,QString.fromLatin1(""))
 
         self.tab_2 = QWidget(self.serverWidget,"tab_2")
         tabLayout_2 = QGridLayout(self.tab_2,1,1,11,6,"tabLayout_2")
 
         self.authLabel = QLabel(self.tab_2,"authLabel")
-        self.authLabel.setSizePolicy(QSizePolicy(0,0,0,0,self.authLabel.sizePolicy().hasHeightForWidth()))
+        self.authLabel.setSizePolicy(QSizePolicy(QSizePolicy.Fixed,QSizePolicy.Fixed,0,0,self.authLabel.sizePolicy().hasHeightForWidth()))
         self.authLabel.setMinimumSize(QSize(48,48))
 
         tabLayout_2.addWidget(self.authLabel,0,0)
@@ -225,9 +225,9 @@ class ServerDialogDesign(QDialog):
         spacer11_3 = QSpacerItem(16,16,QSizePolicy.Fixed,QSizePolicy.Minimum)
         layout6.addItem(spacer11_3,2,0)
 
-        self.comboBox2 = QComboBox(0,self.tab_2,"comboBox2")
+        self.encryptionBox = QComboBox(0,self.tab_2,"encryptionBox")
 
-        layout6.addWidget(self.comboBox2,2,1)
+        layout6.addWidget(self.encryptionBox,2,1)
 
         self.textLabel1_4 = QLabel(self.tab_2,"textLabel1_4")
 
@@ -244,7 +244,7 @@ class ServerDialogDesign(QDialog):
         tabLayout_2.addMultiCell(spacer6_2,1,8,0,0)
         spacer9 = QSpacerItem(21,120,QSizePolicy.Minimum,QSizePolicy.Expanding)
         tabLayout_2.addItem(spacer9,8,3)
-        self.serverWidget.insertTab(self.tab_2,QString(""))
+        self.serverWidget.insertTab(self.tab_2,QString.fromLatin1(""))
         ServerDialogDesignLayout.addWidget(self.splitter2)
 
         self.line1 = QFrame(self,"line1")
@@ -262,7 +262,7 @@ class ServerDialogDesign(QDialog):
         layout4.addWidget(self.okButton)
 
         self.applyButton = QPushButton(self,"applyButton")
-        self.applyButton.setSizePolicy(QSizePolicy(1,0,0,0,self.applyButton.sizePolicy().hasHeightForWidth()))
+        self.applyButton.setSizePolicy(QSizePolicy(QSizePolicy.Minimum,QSizePolicy.Fixed,0,0,self.applyButton.sizePolicy().hasHeightForWidth()))
         layout4.addWidget(self.applyButton)
 
         self.cancelButton = QPushButton(self,"cancelButton")
@@ -271,7 +271,7 @@ class ServerDialogDesign(QDialog):
 
         self.languageChange()
 
-        self.resize(QSize(594,553).expandedTo(self.minimumSizeHint()))
+        self.resize(QSize(611,553).expandedTo(self.minimumSizeHint()))
         self.clearWState(Qt.WState_Polished)
 
         self.connect(self.applyButton,SIGNAL("clicked()"),self.saveServer)
@@ -294,6 +294,7 @@ class ServerDialogDesign(QDialog):
         self.connect(self.certKeyfileEdit,SIGNAL("textChanged(const QString&)"),self.certKeyFileChanged)
         self.connect(self.certFileButton,SIGNAL("clicked()"),self.showCertFileDialog)
         self.connect(self.certKeyFileButton,SIGNAL("clicked()"),self.showCertKeyFileDialog)
+        self.connect(self.encryptionBox,SIGNAL("activated(int)"),self.encryptionChanged)
 
         self.setTabOrder(self.serverListView,self.addButton)
         self.setTabOrder(self.addButton,self.deleteButton)
@@ -349,10 +350,10 @@ class ServerDialogDesign(QDialog):
         self.useClientCertBox.setText(self.__tr("Use client certificates"))
         self.textLabel1_3.setText(self.__tr("<b>Certificate options</b>"))
         self.textLabel2_2.setText(self.__tr("Certificate file:"))
-        self.comboBox2.clear()
-        self.comboBox2.insertItem(self.__tr("Unencrypted connection"))
-        self.comboBox2.insertItem(self.__tr("(TLS)Transport Layer Security"))
-        self.comboBox2.insertItem(self.__tr("(SSL) Secure Socket Layer"))
+        self.encryptionBox.clear()
+        self.encryptionBox.insertItem(self.__tr("Unencrypted connection"))
+        self.encryptionBox.insertItem(self.__tr("Transport Layer Security (TLS)"))
+        self.encryptionBox.insertItem(self.__tr("Secure Socket Layer (SSL)"))
         self.textLabel1_4.setText(self.__tr("<b>Security options</b>"))
         self.bindAnonBox.setText(self.__tr("Anonymous bind"))
         self.serverWidget.changeTab(self.tab_2,self.__tr("Security"))
@@ -429,6 +430,9 @@ class ServerDialogDesign(QDialog):
 
     def showCertKeyFileDialog(self):
         print "ServerDialogDesign.showCertKeyFileDialog(): Not implemented yet"
+
+    def encryptionChanged(self):
+        print "ServerDialogDesign.encryptionChanged(): Not implemented yet"
 
     def __tr(self,s,c = None):
         return qApp.translate("ServerDialogDesign",s,c)

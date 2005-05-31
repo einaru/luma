@@ -17,7 +17,7 @@
         <rect>
             <x>0</x>
             <y>0</y>
-            <width>594</width>
+            <width>611</width>
             <height>553</height>
         </rect>
     </property>
@@ -739,16 +739,16 @@
                                     </item>
                                     <item>
                                         <property name="text">
-                                            <string>(TLS)Transport Layer Security</string>
+                                            <string>Transport Layer Security (TLS)</string>
                                         </property>
                                     </item>
                                     <item>
                                         <property name="text">
-                                            <string>(SSL) Secure Socket Layer</string>
+                                            <string>Secure Socket Layer (SSL)</string>
                                         </property>
                                     </item>
                                     <property name="name">
-                                        <cstring>comboBox2</cstring>
+                                        <cstring>encryptionBox</cstring>
                                     </property>
                                 </widget>
                                 <widget class="QLabel" row="0" column="0" rowspan="1" colspan="2">
@@ -1032,6 +1032,12 @@
         <receiver>ServerDialogDesign</receiver>
         <slot>showCertKeyFileDialog()</slot>
     </connection>
+    <connection>
+        <sender>encryptionBox</sender>
+        <signal>activated(int)</signal>
+        <receiver>ServerDialogDesign</receiver>
+        <slot>encryptionChanged()</slot>
+    </connection>
 </connections>
 <tabstops>
     <tabstop>serverListView</tabstop>
@@ -1075,6 +1081,7 @@
     <slot>certKeyFileChanged()</slot>
     <slot>showCertFileDialog()</slot>
     <slot>showCertKeyFileDialog()</slot>
+    <slot>encryptionChanged()</slot>
 </slots>
 <layoutdefaults spacing="6" margin="11"/>
 </UI>
