@@ -42,7 +42,7 @@ class SearchForm(SearchFormDesign):
         if not (self.serverList == None):
             tmpDict = {}
             for x in self.serverList:
-                if x.tls == 1:
+                if not (x.encryptionMethod == u"None"):
                     tmpDict[x.name] = True
                 else:
                     tmpDict[x.name] = False

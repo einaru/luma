@@ -32,7 +32,7 @@ class AddTemplateDialog(AddTemplateDialogDesign):
             
             for x in tmpList:
                 tmpObject = serverListObject.getServerObject(x)
-                if tmpObject.tls:
+                if not (x.encryptionMethod == u"None"):
                     self.serverBox.insertItem(securePixmap, tmpObject.name)
                 else:
                     self.serverBox.insertItem(tmpObject.name)

@@ -81,7 +81,7 @@ class LumaEntryBrowser (LumaEntryBrowserDesign):
         if not (self.serverList == None):
             tmpDict = {}
             for x in self.serverList:
-                if x.tls == 1:
+                if not (x.encryptionMethod == u"None"):
                     tmpDict[x.name] = True
                 else:
                     tmpDict[x.name] = False
@@ -214,6 +214,9 @@ class LumaEntryBrowser (LumaEntryBrowserDesign):
 ###############################################################################
 
     def processResults(self, results):
+        statusBar = qApp.mainWidget().statusBar()
+        tmpMessage = self.trUtf8("Received %1 entries").arg(unicode(len(results)))
+        statusBar.message(tmpMessage, 10000)
         self.data={}
         if not(results == None):
             for x in results:
