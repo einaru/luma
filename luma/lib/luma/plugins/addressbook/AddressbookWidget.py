@@ -86,6 +86,8 @@ class AddressbookWidget(AddressbookWidgetDesign):
                                                 
         self.enableWidget(0)
         self.DISABLED = 1
+        self.ENABLE_SAVE = False
+        self.DIALOG_MODE = False
 
 ###############################################################################
 
@@ -204,6 +206,8 @@ class AddressbookWidget(AddressbookWidgetDesign):
                 
         self.addressID = 0
         self.initAddress(0, False)
+        self.ENABLE_SAVE = True
+        self.setSaveButton()
     
 ###############################################################################
 
@@ -379,6 +383,8 @@ class AddressbookWidget(AddressbookWidgetDesign):
         self.enableWidget(0)
         self.clearView()
         self.DISABLED = 1
+        self.ENABLE_SAVE = False
+        self.setSaveButton()
                 
 ###############################################################################
 
@@ -601,7 +607,11 @@ class AddressbookWidget(AddressbookWidgetDesign):
         
         if success:
             self.setEnabled(True)
-            self.emit(PYSIGNAL("contact_saved"), ())
+            
+            # If we create a new contact, we want the list updated. 
+            # Otherwise simple saving will be done.
+            if self.DIALOG_MODE:
+                self.emit(PYSIGNAL("contact_saved"), ())
         else:
             self.setEnabled(True)
             dialog = LumaErrorDialog()
@@ -647,5 +657,15 @@ class AddressbookWidget(AddressbookWidgetDesign):
         self.saveButton.setBackgroundMode(self.backgroundMode())
         QToolTip.add(self.saveButton, self.trUtf8("Save"))
         self.connect(self.saveButton, SIGNAL("clicked()"), self.saveEntry)
+        self.saveButton.setEnabled(self.ENABLE_SAVE)
+        
+###############################################################################
+
+    def setSaveButton(self):
+        # If we are in dialog mode, we have no save button.
+        if not hasattr(self, "saveButton"):
+            return
+            
+        self.saveButton.setEnabled(self.ENABLE_SAVE)
     
     
