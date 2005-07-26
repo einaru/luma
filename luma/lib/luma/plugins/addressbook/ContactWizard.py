@@ -61,6 +61,7 @@ class ContactWizard(ContactWizardDesign):
         self.addressWidget = AddressbookWidget(self.contactFrame)
         tmpLayout = QHBoxLayout(self.contactFrame)
         tmpLayout.addWidget(self.addressWidget)
+        self.addressWidget.DIALOG_MODE = True
         self.addressWidget.setEnabled(1)
         
 ###############################################################################
@@ -75,6 +76,7 @@ class ContactWizard(ContactWizardDesign):
 ###############################################################################
 
     def saveContact(self):
+        self.addressWidget.updateValues()
         dataObject = self.addressWidget.dataObject
         
         if (dataObject.hasAttribute('cn')) and (dataObject.hasAttribute('sn')):
