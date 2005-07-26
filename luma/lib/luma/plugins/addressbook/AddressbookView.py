@@ -51,7 +51,7 @@ class AddressbookView(QWidget):
         dialog = ContactWizard()
         dialog.exec_loop()
 
-        dialog.result()
+        self.entryList.search()
 
 ###############################################################################
 
