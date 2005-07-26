@@ -487,6 +487,24 @@ class WorkerThreadFetch(threading.Thread):
         
     def run(self):
         try:
+            # Check whether we want to validate the server certificate.
+            validateMethod = ldap.OPT_X_TLS_DEMAND
+            if self.serverMeta.checkServerCertificate == u"demand":
+                validateMethod = ldap.OPT_X_TLS_DEMAND
+            elif self.serverMeta.checkServerCertificate == u"never":
+                validateMethod = ldap.OPT_X_TLS_NEVER
+            elif self.serverMeta.checkServerCertificate == u"try":
+                validateMethod = ldap.OPT_X_TLS_TRY
+            elif self.serverMeta.checkServerCertificate == u"allow":
+                validateMethod = ldap.OPT_X_TLS_ALLOW
+                
+            if self.serverMeta.encryptionMethod == "SSL":
+                ldap.set_option(ldap.OPT_X_TLS_REQUIRE_CERT, validateMethod)
+            elif self.serverMeta.encryptionMethod == "TLS":
+                ldap.set_option(ldap.OPT_X_TLS_REQUIRE_CERT, validateMethod)
+            else:
+                ldap.set_option(ldap.OPT_X_TLS_REQUIRE_CERT, ldap.OPT_X_TLS_NEVER)
+        
             whoVal = None
             credVal = None
             if not (self.serverMeta.bindAnon):
@@ -504,6 +522,9 @@ class WorkerThreadFetch(threading.Thread):
                     
                 ldapSession = ldap.initialize(url.initializeUrl())
                 ldapSession.protocol_version = ldap.VERSION3
+                
+                if self.serverMeta.encryptionMethod == "TLS":
+                    ldapSession.start_tls_s()
                     
                 sasl_cb_value_dict = {}
                 sasl_cb_value_dict[ldap.sasl.CB_AUTHNAME] = whoVal
@@ -513,7 +534,7 @@ class WorkerThreadFetch(threading.Thread):
                 ldapSession.sasl_interactive_bind_s("", sasl_auth)
             else:
                 urlschemeVal = "ldap"
-                if self.serverMeta.tls:
+                if self.serverMeta.encryptionMethod == "SSL":
                     urlschemeVal = "ldaps"
                         
                 url = ldapurl.LDAPUrl(urlscheme=urlschemeVal, 
@@ -522,6 +543,9 @@ class WorkerThreadFetch(threading.Thread):
                     
                 ldapSession = ldap.initialize(url.initializeUrl())
                 ldapSession.protocol_version = ldap.VERSION3
+                
+                if self.serverMeta.encryptionMethod == "TLS":
+                    ldapSession.start_tls_s()
                 
                 
                 if self.serverMeta.bindAnon:
