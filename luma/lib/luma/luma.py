@@ -61,7 +61,7 @@ in the programming of Luma. In order to fix this, send an email with the
 following text and a detailed description of what you were doing to
 luma-users@lists.sourceforge.net.\n"""
     errorString = errorString + tmpString.getvalue()
-    errorString = errorString + "Reason: " + str(exceptionValue)
+    errorString = errorString + "Reason: " + str(exceptionType) + " " + str(exceptionValue)
     environment.logMessage(LogObject("Error", errorString))
 
 ###############################################################################
