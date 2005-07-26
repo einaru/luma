@@ -162,10 +162,13 @@ class LumaEntryBrowser (LumaEntryBrowserDesign):
 ###############################################################################
 
     def search(self, filter=None):
-        self.setEnabled(False)
+        if self.lumaConnection == None:
+            return
         
         if self.lumaConnection.serverMeta == None:
             return
+            
+        self.setEnabled(False)
             
         if not(unicode(self.searchEdit.text()) == ''):
             filter = unicode(self.searchEdit.text())
@@ -194,6 +197,7 @@ class LumaEntryBrowser (LumaEntryBrowserDesign):
             errorMsg.append(str(exceptionObject))
             dialog.setErrorMessage(errorMsg)
             dialog.exec_loop()
+            self.setEnabled(True)
             return 
                 
         success, resultList, exceptionObject = self.lumaConnection.search(self.SERVERMETA.currentBase, ldap.SCOPE_SUBTREE, tmpFilter.encode('utf-8'), [self.primaryKey, 'sn', 'givenName'], 0)
