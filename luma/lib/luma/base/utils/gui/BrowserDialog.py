@@ -58,7 +58,20 @@ class BrowserDialog(QDialog):
         """ Return the path of the selected item.
         """
         
-        tmpItem = self.tmpBrowser.selectedItem()
+        selectedItems = []
+        listIterator = QListViewItemIterator(self.tmpBrowser)
+        while listIterator.current():
+            item = listIterator.current()
+            
+            if item.isSelected():
+                selectedItems.append(item)
+                
+            listIterator += 1
+        
+        if len(selectedItems) == 0:
+            return None
+        
+        tmpItem = selectedItems[0]
         tmpText = self.tmpBrowser.getFullPath(tmpItem)
         return tmpText
             
@@ -77,7 +90,20 @@ class BrowserDialog(QDialog):
         """ Check if a valid ldap object is selected and then close the dialog.
         """
         
-        tmpItem = self.tmpBrowser.selectedItem()
+        selectedItems = []
+        listIterator = QListViewItemIterator(self.tmpBrowser)
+        while listIterator.current():
+            item = listIterator.current()
+            
+            if item.isSelected():
+                selectedItems.append(item)
+                
+            listIterator += 1
+        
+        if len(selectedItems) == 0:
+            return
+        
+        tmpItem = selectedItems[0]
         if tmpItem == None:
             pass
         else:
