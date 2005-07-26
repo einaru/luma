@@ -37,6 +37,9 @@ class ServerObject(object):
     
     self.clientCertKey: The actual cert key read from disk
     
+    self.checkServerCertificate: Checks the validity of the server side certificate.
+                Options are never, allow, try, demand.
+    
     
     """
     
@@ -54,7 +57,7 @@ class ServerObject(object):
         self.baseDN = []
         self.bindDN = u""
         self.bindPassword = u""
-        self.encryptionMethod = u""
+        self.encryptionMethod = u"None"
         self.authMethod = u"Simple"
         self.followAliases = False
         self.useCertificate = False
@@ -62,6 +65,7 @@ class ServerObject(object):
         self.clientCertKeyfile = u""
         self.clientCert = None
         self.clientCertKey = None
+        self.checkServerCertificate = u"demand"
         
         # This value will only set during runtime
         self.currentBase = u""
@@ -97,6 +101,8 @@ class ServerObject(object):
         finalString.append(unicode(self.clientCertFile))
         finalString.append(unicode("\nClient certificate keyfile: "))
         finalString.append(unicode(self.clientCertKeyfile))
+        finalString.append(unicode("\nCheck server certificate: "))
+        finalString.append(unicode(self.checkServerCertificate))
         finalString.append(unicode("\n"))
 
         return "".join(finalString)

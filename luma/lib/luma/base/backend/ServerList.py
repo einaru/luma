@@ -95,11 +95,12 @@ class ServerList:
             serverNode.setAttribute("bindAnon", unicode(x.bindAnon))
             serverNode.setAttribute("bindDN", x.bindDN)
             serverNode.setAttribute("bindPassword", x.bindPassword)
-            #serverNode.setAttribute("tls", unicode(x.tls))
             serverNode.setAttribute("encryptionMethod", unicode(x.encryptionMethod))
             serverNode.setAttribute("authMethod", x.authMethod)
             serverNode.setAttribute("autoBase", unicode(x.autoBase))
             serverNode.setAttribute("followAliases", unicode(x.followAliases))
+            serverNode.setAttribute("checkServerCertificate", unicode(x.checkServerCertificate))
+            
             
             baseNode = document.createElement("baseDNs")
             for tmpBase in x.baseDN:
@@ -388,13 +389,11 @@ class ServerList:
                 server.bindDN = unicode(element.attribute("bindDN"))
                 server.bindPassword = unicode(element.attribute("bindPassword"))
                 
-                #tmpVal = unicode(element.attribute("tls"))
-                #if "True" == tmpVal:
-                #    server.tls = True
-                #else:
-                #    server.tls = False
-                
                 server.encryptionMethod = unicode(element.attribute("encryptionMethod"))
+                #if server.encryptionMethod == "":
+                #    server.encryptionMethod = "None"
+                    
+                server.checkServerCertificate = unicode(element.attribute("checkServerCertificate"))
                     
                 tmpVal = unicode(element.attribute("followAliases"))
                 if "True" == tmpVal:
