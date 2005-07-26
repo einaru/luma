@@ -72,6 +72,8 @@ class ServerDialog(ServerDialogDesign):
         
         self.disableBaseLookup = False
         
+        self.originalBackGroundColor = self.certFileEdit.paletteBackgroundColor()
+        
         self.displayServerList()
         
 ###############################################################################
@@ -106,6 +108,10 @@ class ServerDialog(ServerDialogDesign):
         self.passwordLineEdit.blockSignals(True)
         self.methodBox.blockSignals(True)
         self.aliasBox.blockSignals(True)
+        self.validateBox.blockSignals(True)
+        self.useClientCertBox.blockSignals(True)
+        self.certFileEdit.blockSignals(True)
+        self.certKeyfileEdit.blockSignals(True)
         
         self.hostLineEdit.setText(x.host)
         self.portSpinBox.setValue(x.port)
@@ -115,10 +121,28 @@ class ServerDialog(ServerDialogDesign):
         
         if x.encryptionMethod == u"None":
             self.encryptionBox.setCurrentItem(0)
+            self.validateBox.setEnabled(False)
+            self.useClientCertBox.setEnabled(False)
         elif x.encryptionMethod == u"TLS":
             self.encryptionBox.setCurrentItem(1)
+            self.validateBox.setEnabled(True)
+            self.useClientCertBox.setEnabled(True)
         elif x.encryptionMethod == u"SSL":
             self.encryptionBox.setCurrentItem(2)
+            self.validateBox.setEnabled(True)
+            self.useClientCertBox.setEnabled(False)
+            
+        if x.checkServerCertificate == u"never":
+            self.validateBox.setCurrentItem(0)
+        elif x.checkServerCertificate == u"allow":
+            self.validateBox.setCurrentItem(1)
+        elif x.checkServerCertificate == u"try":
+            self.validateBox.setCurrentItem(2)
+        elif x.checkServerCertificate == u"demand":
+            self.validateBox.setCurrentItem(3)
+            
+        self.useClientCertBox.setChecked(x.useCertificate)
+        self.enableClientCertWidgets(x.useCertificate)
         
         self.methodBox.setCurrentText(x.authMethod)
         self.bindAnonChanged(x.bindAnon, True)
@@ -131,6 +155,10 @@ class ServerDialog(ServerDialogDesign):
         self.passwordLineEdit.blockSignals(False)
         self.methodBox.blockSignals(False)
         self.aliasBox.blockSignals(False)
+        self.validateBox.blockSignals(False)
+        self.useClientCertBox.blockSignals(False)
+        self.certFileEdit.blockSignals(False)
+        self.certKeyfileEdit.blockSignals(False)
         
         authMethod = self.currentServer.authMethod
         if (authMethod == u"SASL GSSAPI") or (authMethod == u"SASL EXTERNAL") or x.bindAnon :
@@ -140,7 +168,7 @@ class ServerDialog(ServerDialogDesign):
             self.passwordLineEdit.setEnabled(True)
             self.bindLineEdit.setEnabled(True)
             
-        self.manageBaseBaseButton.setEnabled(not self.currentServer.autoBase)
+        self.manageBaseButton.setEnabled(not self.currentServer.autoBase)
         self.baseBox.blockSignals(True)
         self.baseBox.setChecked(self.currentServer.autoBase)
         self.baseBox.blockSignals(False)
@@ -372,7 +400,7 @@ class ServerDialog(ServerDialogDesign):
         self.applyButton.setEnabled(True)
         automaticBase = self.baseBox.isChecked()
         self.currentServer.autoBase = automaticBase
-        self.manageBaseBaseButton.setEnabled(not automaticBase)
+        self.manageBaseButton.setEnabled(not automaticBase)
         self.displayBase()
         
 ###############################################################################
@@ -420,7 +448,26 @@ class ServerDialog(ServerDialogDesign):
     def certFileChanged(self, tmpFileName):
         tmpFileName = unicode(tmpFileName)
         
+        fileWarning = False
         # Now do file checking
+        if os.path.isdir(tmpFileName):
+            fileWarning = True
+        else:
+            try:
+                if os.path.isfile(tmpFileName) or os.path.islink(tmpFileName):
+                    open(tmpFileName, "r")
+                else:
+                    fileWarning = True
+            except IOError, e:
+                fileWarning = True
+                
+        if tmpFileName == "":
+            fileWarning = False
+        
+        if fileWarning:
+            self.certFileEdit.setPaletteBackgroundColor(Qt.red)
+        else:
+            self.certFileEdit.unsetPalette()
         
         # Now do internal stuff like updating the ServerObject 
         # and activate apply button
@@ -431,7 +478,26 @@ class ServerDialog(ServerDialogDesign):
     def certKeyFileChanged(self, tmpFileName):
         tmpFileName = unicode(tmpFileName)
         
+        fileWarning = False
         # Now do file checking
+        if os.path.isdir(tmpFileName):
+            fileWarning = True
+        else:
+            try:
+                if os.path.isfile(tmpFileName) or os.path.islink(tmpFileName):
+                    open(tmpFileName, "r")
+                else:
+                    fileWarning = True
+            except IOError, e:
+                fileWarning = True
+                
+        if tmpFileName == "":
+            fileWarning = False
+        
+        if fileWarning:
+            self.certKeyfileEdit.setPaletteBackgroundColor(Qt.red)
+        else:
+            self.certKeyfileEdit.unsetPalette()
         
         # Now do internal stuff like updating the ServerObject 
         # and activate apply button
@@ -476,6 +542,17 @@ class ServerDialog(ServerDialogDesign):
         
         self.currentServer.encryptionMethod = encryptionMethod
         
+        tmpBool = False
+        if typeNumber > 0:
+            tmpBool = True
+        self.validateBox.setEnabled(tmpBool)
+        self.useClientCertBox.setEnabled(tmpBool)
+        
+        if self.currentServer.useCertificate:
+            self.enableClientCertWidgets(True)
+        else:
+            self.enableClientCertWidgets(False)
+        
         # Set port numbers according to the encryption method
         self.portSpinBox.blockSignals(True)
         
@@ -489,3 +566,37 @@ class ServerDialog(ServerDialogDesign):
         self.portSpinBox.blockSignals(True)
         
         self.applyButton.setEnabled(True)
+        
+###############################################################################
+
+    def validityCheckChanged(self, typeNumber):
+        validityType = u"demand"
+        
+        if typeNumber == 0:
+            validityType = u"never"
+        elif typeNumber == 1:
+            validityType = u"allow"
+        elif typeNumber == 2:
+            validityType = u"try"
+        elif typeNumber == 3:
+            validityType = u"demand"
+            
+        self.currentServer.checkServerCertificate = validityType
+        self.applyButton.setEnabled(True)
+        
+###############################################################################
+
+    def enableClientCerts(self, toggleBool):
+        self.currentServer.useCertificate = toggleBool
+        self.applyButton.setEnabled(True)
+        self.enableClientCertWidgets(toggleBool)
+        
+###############################################################################
+
+    def enableClientCertWidgets(self, enableBool):
+        self.certFileEdit.setEnabled(enableBool)
+        self.certKeyfileEdit.setEnabled(enableBool)
+        self.certFileButton.setEnabled(enableBool)
+        self.certKeyFileButton.setEnabled(enableBool)
+    
+    
