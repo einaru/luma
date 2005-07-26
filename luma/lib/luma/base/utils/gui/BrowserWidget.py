@@ -100,9 +100,14 @@ class BrowserWidget(QListView):
         for server in self.aliasDict.keys():
             serverMeta = self.serverListObject.getServerObject(server)
             tmpItem = self.serverDict[server]
-            if serverMeta.tls and self.aliasDict[server]:
+            
+            encryption = False
+            if not (serverMeta.encryptionMethod == u"None"):
+                encryption = True
+                
+            if encryption and self.aliasDict[server]:
                 tmpItem.setPixmap(0, self.secureAliasIcon)
-            elif serverMeta.tls:
+            elif encryption:
                 tmpItem.setPixmap(0, self.secureIcon)
             elif self.aliasDict[server]:
                 tmpItem.setPixmap(0, self.aliasIcon)
