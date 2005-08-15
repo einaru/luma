@@ -104,6 +104,11 @@ class ExportDialog(ExportDialogDesign):
             except IOError, e:
                 self.fileLabel.setText(self.trUtf8("Can't open file. Please check file system permissions."))
                 enable = False
+                
+        if enable:
+            self.fileEdit.unsetPalette()
+        else:
+            self.fileEdit.setPaletteBackgroundColor(Qt.red)
         
         self.startButton.setEnabled(enable)
         
