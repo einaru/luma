@@ -365,9 +365,9 @@ Luma logo</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>&lt;font size=&quot;+2&quot;&gt;&lt;b&gt;Luma 2.1.1&lt;/b&gt;&lt;/font&gt;</source>
+        <source>&lt;font size=&quot;+2&quot;&gt;&lt;b&gt;Luma 2.2&lt;/b&gt;&lt;/font&gt;</source>
         <comment>DO NOT TRANSLATE</comment>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
 </context>
 <context>
@@ -579,6 +579,10 @@ the selected objectclass.&lt;/p&gt;</source>
 objektklasser for gjeldende enhet.&lt;/p&gt;
 &lt;p&gt;Vennligst velg en objektklasse som støtter den nye attributten. Listen
 til høyre viser alle attributter som må legges til i tillegg til valgt objektklasse.&lt;/p&gt;</translation>
+    </message>
+    <message>
+        <source>Use binary extension</source>
+        <translation>Bruk binær utvidelse</translation>
     </message>
 </context>
 <context>
@@ -1060,11 +1064,11 @@ til høyre viser alle attributter som må legges til i tillegg til valgt objektk
     </message>
     <message>
         <source>Save entry</source>
-        <translation type="unfinished">Lagre</translation>
+        <translation>Lagre</translation>
     </message>
     <message>
         <source>Do you want to save the entry?</source>
-        <translation type="unfinished"></translation>
+        <translation>Ønsker du å lagre?</translation>
     </message>
 </context>
 <context>
@@ -1260,43 +1264,43 @@ til høyre viser alle attributter som må legges til i tillegg til valgt objektk
     </message>
     <message>
         <source>Could not retrieve entry with DN %1 on server %2 for exporting.&lt;br&gt;&lt;br&gt;Reason: </source>
-        <translation type="unfinished"></translation>
+        <translation>Kunne ikke motta DN %1 fra tjener %2 for eksport.&lt;br&gt;&lt;br&gt;Grunn:</translation>
     </message>
     <message>
         <source>Could not retrieve all entries for exporting. More information in the logger.</source>
-        <translation type="unfinished"></translation>
+        <translation>Kunne ikke motta alle objekter for eksport. Mer informasjon i loggeren.</translation>
     </message>
     <message>
         <source>Could not retrieve entry with DN %1 on server %2 for deletion.&lt;br&gt;&lt;br&gt;Reason: </source>
-        <translation type="unfinished"></translation>
+        <translation>Kunne ikke motta objekt med DN %1 fra tjener %2 for sletting.&lt;br&gt;&lt;br&gt;Grunn:</translation>
     </message>
     <message>
         <source>Could not retrieve all entries for deletion. More information in the logger.</source>
-        <translation type="unfinished"></translation>
+        <translation>Kunne ikke motta alle objekter for sletting. Mer informasjon i loggeren.</translation>
     </message>
     <message>
         <source>Items</source>
-        <translation type="unfinished"></translation>
+        <translation>Enheter</translation>
     </message>
     <message>
         <source>Subtrees</source>
-        <translation type="unfinished"></translation>
+        <translation>Grener</translation>
     </message>
     <message>
         <source>Subtrees with Parents</source>
-        <translation type="unfinished"></translation>
+        <translation>Grener med foreldre</translation>
     </message>
     <message>
         <source>Subtrees without Node</source>
-        <translation type="unfinished"></translation>
+        <translation>Grener uten barn</translation>
     </message>
     <message>
         <source>Attribute</source>
-        <translation type="unfinished">Attrubutt</translation>
+        <translation>Attrubutt</translation>
     </message>
     <message>
         <source>Add</source>
-        <translation type="unfinished">Legg til</translation>
+        <translation>Legg til</translation>
     </message>
 </context>
 <context>
@@ -1900,27 +1904,27 @@ Vennligst trykk start for å begynne slettingen.</translation>
     <name>LoggerWidgetDesign</name>
     <message>
         <source>Form</source>
-        <translation type="unfinished">Skjema</translation>
+        <translation>Skjema</translation>
     </message>
     <message>
         <source>Display message types:</source>
-        <translation type="unfinished"></translation>
+        <translation>Vis meldingstyper:</translation>
     </message>
     <message>
         <source>Errors</source>
-        <translation type="unfinished"></translation>
+        <translation>Feil</translation>
     </message>
     <message>
         <source>Debug</source>
-        <translation type="unfinished"></translation>
+        <translation>Feilsøk</translation>
     </message>
     <message>
         <source>Info</source>
-        <translation type="unfinished">Informasjon</translation>
+        <translation>Informasjon</translation>
     </message>
     <message>
         <source>Clear</source>
-        <translation type="unfinished"></translation>
+        <translation>Rensk</translation>
     </message>
 </context>
 <context>
@@ -1960,6 +1964,10 @@ Vennligst trykk start for å begynne slettingen.</translation>
     <message>
         <source>Could not delete entry.&lt;br&gt;&lt;br&gt;Reason: </source>
         <translation>Kunne ikke slette objekt.&lt;br&gt;&lt;br&gt;Grunn:</translation>
+    </message>
+    <message>
+        <source>Received %1 entries</source>
+        <translation>Mottok %1 objekter</translation>
     </message>
 </context>
 <context>
@@ -2125,11 +2133,11 @@ Vennligst trykk start for å begynne slettingen.</translation>
     </message>
     <message>
         <source>Show logger</source>
-        <translation type="unfinished"></translation>
+        <translation>Vis logger</translation>
     </message>
     <message>
         <source>Ctrl+Q</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl-Q</translation>
     </message>
 </context>
 <context>
@@ -2719,6 +2727,112 @@ Try increasing the uidNumber range or delete some users from the subtree.</sourc
     </message>
 </context>
 <context>
+    <name>SchemaEditor</name>
+    <message>
+        <source>Could not fetch schema information from server.&lt;br&gt;&lt;br&gt;Reason: </source>
+        <translation>Kunne ikke hente schema-informasjon fra tjener.&lt;br&gt;&lt;br&gt;Grunn:</translation>
+    </message>
+</context>
+<context>
+    <name>SchemaEditorDesign</name>
+    <message>
+        <source>Column 1</source>
+        <translation>Kolonne 1</translation>
+    </message>
+    <message>
+        <source>Form</source>
+        <translation>Skjema</translation>
+    </message>
+    <message>
+        <source>Fetch schema information from server:</source>
+        <translation>Hent skjemainformasjon fra tjener:</translation>
+    </message>
+    <message>
+        <source>&amp;Add...</source>
+        <translation>&amp;Legg til...</translation>
+    </message>
+    <message>
+        <source>Alt+A</source>
+        <translation>Alt+A</translation>
+    </message>
+    <message>
+        <source>&amp;Export...</source>
+        <translation>&amp;Eksporter...</translation>
+    </message>
+    <message>
+        <source>Alt+E</source>
+        <translation>Alt+E</translation>
+    </message>
+    <message>
+        <source>&amp;Delete</source>
+        <translation>&amp;Slett</translation>
+    </message>
+    <message>
+        <source>Alt+D</source>
+        <translation>Alt+D</translation>
+    </message>
+    <message>
+        <source>&amp;Save</source>
+        <translation>&amp;Lagre</translation>
+    </message>
+    <message>
+        <source>Alt+S</source>
+        <translation>Alt+S</translation>
+    </message>
+    <message>
+        <source>Attribute name:</source>
+        <translation>Attributtnavn:</translation>
+    </message>
+    <message>
+        <source>Ordering:</source>
+        <translation>Sortering:</translation>
+    </message>
+    <message>
+        <source>Length:</source>
+        <translation>Lengde:</translation>
+    </message>
+    <message>
+        <source>Equality:</source>
+        <translation>Likhet:</translation>
+    </message>
+    <message>
+        <source>Syntax:</source>
+        <translation>Syntaks:</translation>
+    </message>
+    <message>
+        <source>Usage:</source>
+        <translation>Bruk:</translation>
+    </message>
+    <message>
+        <source>Single value</source>
+        <translation>Enkelverdi</translation>
+    </message>
+    <message>
+        <source>Collective</source>
+        <translation>Samlet</translation>
+    </message>
+    <message>
+        <source>Obsolete</source>
+        <translation>Utgått</translation>
+    </message>
+    <message>
+        <source>OID:</source>
+        <translation>OID:</translation>
+    </message>
+    <message>
+        <source>Number</source>
+        <translation>Nummer</translation>
+    </message>
+    <message>
+        <source>Description:</source>
+        <translation>Beskrivelse:</translation>
+    </message>
+    <message>
+        <source>Superior:</source>
+        <translation>Forelder:</translation>
+    </message>
+</context>
+<context>
     <name>SchemaView</name>
     <message>
         <source>Could not fetch schema information from server.&lt;br&gt;&lt;br&gt;Reason: </source>
@@ -2966,6 +3080,14 @@ Beskrivelse</translation>
         <source>Could not retrieve baseDN for LDAP server at host/ip:</source>
         <translation>Kunne ikke hente baseDN for LDAP tjener ved maskinnavn/adresse:</translation>
     </message>
+    <message>
+        <source>Select certificate file</source>
+        <translation>Velg sertifikatfil</translation>
+    </message>
+    <message>
+        <source>Select certificate key file</source>
+        <translation>Velg sertifikatnøkkelfil</translation>
+    </message>
 </context>
 <context>
     <name>ServerDialogDesign</name>
@@ -3036,10 +3158,6 @@ Beskrivelse</translation>
     <message>
         <source>&lt;b&gt;Security options&lt;/b&gt;</source>
         <translation>&lt;b&gt;Sikkerhetsvalg&lt;/b&gt;</translation>
-    </message>
-    <message>
-        <source>Use secure connection (SSL)</source>
-        <translation>Bruk sikker tilkobling (SSL)</translation>
     </message>
     <message>
         <source>&lt;b&gt;Authentification mechanism&lt;/b&gt;</source>
@@ -3116,6 +3234,58 @@ Beskrivelse</translation>
     <message>
         <source>SASL EXTERNAL</source>
         <translation>SASL Ekstern</translation>
+    </message>
+    <message>
+        <source>Unencrypted connection</source>
+        <translation>Ikkekryptert tilkobling</translation>
+    </message>
+    <message>
+        <source>Transport Layer Security (TLS)</source>
+        <translation>Transportlagsikkerhet (TLS)</translation>
+    </message>
+    <message>
+        <source>Secure Socket Layer (SSL)</source>
+        <translation>Sikkersocketlag (SSL)</translation>
+    </message>
+    <message>
+        <source>Certificate keyfile:</source>
+        <translation>Sertifikat nøkkelfil:</translation>
+    </message>
+    <message>
+        <source>...</source>
+        <translation>...</translation>
+    </message>
+    <message>
+        <source>Use client certificates</source>
+        <translation>Bruk klientsertifikater</translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;Client certificate options&lt;/b&gt;</source>
+        <translation>&lt;b&gt;Klientsertifikat valg&lt;/b&gt;</translation>
+    </message>
+    <message>
+        <source>Certificate file:</source>
+        <translation>Sertifikatfil:</translation>
+    </message>
+    <message>
+        <source>Never</source>
+        <translation>Aldri</translation>
+    </message>
+    <message>
+        <source>Allow</source>
+        <translation>Tillat</translation>
+    </message>
+    <message>
+        <source>Try</source>
+        <translation>Prøv</translation>
+    </message>
+    <message>
+        <source>Demand</source>
+        <translation>Krev</translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;Validate server certificate&lt;/b&gt;</source>
+        <translation>&lt;b&gt;Valider tjenersertifikat&lt;/b&gt;</translation>
     </message>
 </context>
 <context>
