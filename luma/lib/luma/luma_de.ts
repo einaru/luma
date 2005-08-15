@@ -364,7 +364,7 @@ Luma logo</source>
         <translation></translation>
     </message>
     <message>
-        <source>&lt;font size=&quot;+2&quot;&gt;&lt;b&gt;Luma 2.1.1&lt;/b&gt;&lt;/font&gt;</source>
+        <source>&lt;font size=&quot;+2&quot;&gt;&lt;b&gt;Luma 2.2&lt;/b&gt;&lt;/font&gt;</source>
         <comment>DO NOT TRANSLATE</comment>
         <translation></translation>
     </message>
@@ -572,6 +572,10 @@ list on the right shows all attributes which must be added additionally with
 the selected objectclass.&lt;/p&gt;</source>
         <translation>&lt;p&gt;Sie haben ein Attribut gewählt, welches nicht durch die Objectklassen des aktuellen Eintrags unterstützt wird.&lt;/p&gt;
 &lt;p&gt;Bitte wählen Sie eine der aufgelisteten Objektklassen, die dieses Attribut unterstützen. Daneben werden Attribute angezeigt, die für die ausgewählte Objectklasse auch gesetzt werden müssen.&lt;/p&gt;</translation>
+    </message>
+    <message>
+        <source>Use binary extension</source>
+        <translation>Binäre Erweiterung benutzen</translation>
     </message>
 </context>
 <context>
@@ -1861,6 +1865,212 @@ the selected objectclass.&lt;/p&gt;</source>
     </message>
 </context>
 <context>
+    <name>ImprovedServerDialog</name>
+    <message>
+        <source>&lt;b&gt;No server selected&lt;/b&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>ImprovedServerDialogDesign</name>
+    <message>
+        <source>Server</source>
+        <translation type="unfinished">Server</translation>
+    </message>
+    <message>
+        <source>Base DNs</source>
+        <translation type="unfinished">Basis DNs</translation>
+    </message>
+    <message>
+        <source>Form</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Delete</source>
+        <translation type="unfinished">Löschen</translation>
+    </message>
+    <message>
+        <source>Add...</source>
+        <translation type="unfinished">Hinzufügen...</translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;No server selected&lt;/b&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Not configured yet</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Click to edit</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Authentification:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Server address:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BaseDN:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Encryption:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Bind as:</source>
+        <translation type="unfinished">Binden als:</translation>
+    </message>
+    <message>
+        <source>Port:</source>
+        <translation type="unfinished">Port:</translation>
+    </message>
+    <message>
+        <source>Hostname:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;Network options&lt;/b&gt;</source>
+        <translation type="unfinished">&lt;b&gt;Netzwerkoptionen&lt;/b&gt;</translation>
+    </message>
+    <message>
+        <source>&amp;Back</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Alt+B</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;Credentials&lt;/b&gt;</source>
+        <translation type="unfinished">&lt;b&gt;Berechtigung&lt;/b&gt;</translation>
+    </message>
+    <message>
+        <source>Password:</source>
+        <translation type="unfinished">Passwort:</translation>
+    </message>
+    <message>
+        <source>Anonymous bind</source>
+        <translation type="unfinished">Anonym binden</translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;Security&lt;/b&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>No encryption</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>TLS (Transport Layer Security)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>SSL (Secure Socket Layer)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Authentification mechanism:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Simple</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>SASL CRAM-MD5</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>SASL DIGEST-MD5</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>SASL External</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>SASL GSSAPI</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>SASL Login</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>SASL Plain</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;Certificate options&lt;/b&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Validate server:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>...</source>
+        <translation type="unfinished">...</translation>
+    </message>
+    <message>
+        <source>Certificate file:</source>
+        <translation type="unfinished">Zertifikat:</translation>
+    </message>
+    <message>
+        <source>Use client certificates</source>
+        <translation type="unfinished">Benutzerzertifikate verwenden</translation>
+    </message>
+    <message>
+        <source>Certificate keyfile:</source>
+        <translation type="unfinished">Zertifikat Schlüssel:</translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;LDAP options&lt;/b&gt;</source>
+        <translation type="unfinished">&lt;b&gt;LDAP Optionen&lt;/b&gt;</translation>
+    </message>
+    <message>
+        <source>Follow aliases</source>
+        <translation type="unfinished">Aliasen folgen</translation>
+    </message>
+    <message>
+        <source>Use Base DNs provided by the server</source>
+        <translation type="unfinished">Vom Server bereitgestellte Basis DNs nutzen</translation>
+    </message>
+    <message>
+        <source>Edit BaseDN list</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Cancel</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Alt+C</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>S&amp;ave</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Alt+A</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;OK</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Alt+O</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>LanguageDialogDesign</name>
     <message>
         <source>Language:</source>
@@ -1951,6 +2161,10 @@ the selected objectclass.&lt;/p&gt;</source>
     <message>
         <source>Could not delete entry.&lt;br&gt;&lt;br&gt;Reason: </source>
         <translation>Eintrag konnte nicht gelöscht werden.&lt;br&gt;&lt;br&gt;Grund:</translation>
+    </message>
+    <message>
+        <source>Received %1 entries</source>
+        <translation>%1 Einträge erhalten</translation>
     </message>
 </context>
 <context>
@@ -2711,6 +2925,112 @@ Versuchen sie entweder den Bereich für die uids zu erweitern oder löschen sie 
     </message>
 </context>
 <context>
+    <name>SchemaEditor</name>
+    <message>
+        <source>Could not fetch schema information from server.&lt;br&gt;&lt;br&gt;Reason: </source>
+        <translation>Schema informationen konnten nicht vom Server empfangen werden.&lt;br&gt;&lt;br&gt;Grund:</translation>
+    </message>
+</context>
+<context>
+    <name>SchemaEditorDesign</name>
+    <message>
+        <source>Column 1</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>Form</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>Fetch schema information from server:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Add...</source>
+        <translation type="unfinished">&amp;Hinzufügen...</translation>
+    </message>
+    <message>
+        <source>Alt+A</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Export...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Alt+E</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Delete</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Alt+D</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Save</source>
+        <translation type="unfinished">&amp;Speichern</translation>
+    </message>
+    <message>
+        <source>Alt+S</source>
+        <translation type="unfinished">Alt+S</translation>
+    </message>
+    <message>
+        <source>Attribute name:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Ordering:</source>
+        <translation type="unfinished">Anordnung:</translation>
+    </message>
+    <message>
+        <source>Length:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Equality:</source>
+        <translation type="unfinished">Gleichheit:</translation>
+    </message>
+    <message>
+        <source>Syntax:</source>
+        <translation type="unfinished">Syntax:</translation>
+    </message>
+    <message>
+        <source>Usage:</source>
+        <translation type="unfinished">Gebrauch:</translation>
+    </message>
+    <message>
+        <source>Single value</source>
+        <translation type="unfinished">Allein stehend</translation>
+    </message>
+    <message>
+        <source>Collective</source>
+        <translation type="unfinished">Verband</translation>
+    </message>
+    <message>
+        <source>Obsolete</source>
+        <translation type="unfinished">Obsolet</translation>
+    </message>
+    <message>
+        <source>OID:</source>
+        <translation type="unfinished">OID:</translation>
+    </message>
+    <message>
+        <source>Number</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Description:</source>
+        <translation type="unfinished">Beschreibung:</translation>
+    </message>
+    <message>
+        <source>Superior:</source>
+        <translation type="unfinished">Übergeordnet:</translation>
+    </message>
+</context>
+<context>
     <name>SchemaView</name>
     <message>
         <source>Could not fetch schema information from server.&lt;br&gt;&lt;br&gt;Reason: </source>
@@ -2954,6 +3274,14 @@ Description</source>
         <source>Could not retrieve baseDN for LDAP server at host/ip:</source>
         <translation>Basis DN für den Rechner/IP konnte nicht empfangen werden:</translation>
     </message>
+    <message>
+        <source>Select certificate file</source>
+        <translation>Zertifikat auswählen</translation>
+    </message>
+    <message>
+        <source>Select certificate key file</source>
+        <translation>Zertifikat Schlüssel auswählen</translation>
+    </message>
 </context>
 <context>
     <name>ServerDialogDesign</name>
@@ -3024,10 +3352,6 @@ Description</source>
     <message>
         <source>&lt;b&gt;Security options&lt;/b&gt;</source>
         <translation>&lt;b&gt;Sicherheitsoptionen&lt;/b&gt;</translation>
-    </message>
-    <message>
-        <source>Use secure connection (SSL)</source>
-        <translation>Sichere Verbindung nutzen (SSL)</translation>
     </message>
     <message>
         <source>&lt;b&gt;Authentification mechanism&lt;/b&gt;</source>
@@ -3104,6 +3428,58 @@ Description</source>
     <message>
         <source>SASL EXTERNAL</source>
         <translation>SASL EXTERNAL</translation>
+    </message>
+    <message>
+        <source>Unencrypted connection</source>
+        <translation>Unverschlüsselte Verbindung</translation>
+    </message>
+    <message>
+        <source>Transport Layer Security (TLS)</source>
+        <translation>Transport Layer Security (TLS)</translation>
+    </message>
+    <message>
+        <source>Secure Socket Layer (SSL)</source>
+        <translation>Secure Socket Layer (SSL)</translation>
+    </message>
+    <message>
+        <source>Certificate keyfile:</source>
+        <translation>Zertifikat Schlüssel:</translation>
+    </message>
+    <message>
+        <source>...</source>
+        <translation>...</translation>
+    </message>
+    <message>
+        <source>Use client certificates</source>
+        <translation>Benutzerzertifikate verwenden</translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;Client certificate options&lt;/b&gt;</source>
+        <translation>&lt;b&gt;Optionen für Benutzerzertifikate&lt;/b&gt;</translation>
+    </message>
+    <message>
+        <source>Certificate file:</source>
+        <translation>Zertifikat:</translation>
+    </message>
+    <message>
+        <source>Never</source>
+        <translation>Niemals</translation>
+    </message>
+    <message>
+        <source>Allow</source>
+        <translation>Erlauben</translation>
+    </message>
+    <message>
+        <source>Try</source>
+        <translation>Versuchen</translation>
+    </message>
+    <message>
+        <source>Demand</source>
+        <translation>Erzwingen</translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;Validate server certificate&lt;/b&gt;</source>
+        <translation>&lt;b&gt;Serverzertifikat überprüfen&lt;/b&gt;</translation>
     </message>
 </context>
 <context>

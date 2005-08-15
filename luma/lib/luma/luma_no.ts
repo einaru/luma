@@ -1874,6 +1874,212 @@ Vennligst trykk start for å begynne slettingen.</translation>
     </message>
 </context>
 <context>
+    <name>ImprovedServerDialog</name>
+    <message>
+        <source>&lt;b&gt;No server selected&lt;/b&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>ImprovedServerDialogDesign</name>
+    <message>
+        <source>Server</source>
+        <translation type="unfinished">Tjener</translation>
+    </message>
+    <message>
+        <source>Base DNs</source>
+        <translation type="unfinished">Base DNer</translation>
+    </message>
+    <message>
+        <source>Form</source>
+        <translation type="unfinished">Skjema</translation>
+    </message>
+    <message>
+        <source>Delete</source>
+        <translation type="unfinished">Slett</translation>
+    </message>
+    <message>
+        <source>Add...</source>
+        <translation type="unfinished">Legg til...</translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;No server selected&lt;/b&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Not configured yet</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Click to edit</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Authentification:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Server address:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BaseDN:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Encryption:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Bind as:</source>
+        <translation type="unfinished">Koble til som:</translation>
+    </message>
+    <message>
+        <source>Port:</source>
+        <translation type="unfinished">Port:</translation>
+    </message>
+    <message>
+        <source>Hostname:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;Network options&lt;/b&gt;</source>
+        <translation type="unfinished">&lt;b&gt;Nettverksvalg&lt;/b&gt;</translation>
+    </message>
+    <message>
+        <source>&amp;Back</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Alt+B</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;Credentials&lt;/b&gt;</source>
+        <translation type="unfinished">&lt;b&gt;Kreditiver (passord)&lt;/b&gt;</translation>
+    </message>
+    <message>
+        <source>Password:</source>
+        <translation type="unfinished">Passord:</translation>
+    </message>
+    <message>
+        <source>Anonymous bind</source>
+        <translation type="unfinished">Anonym tilkobling</translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;Security&lt;/b&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>No encryption</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>TLS (Transport Layer Security)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>SSL (Secure Socket Layer)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Authentification mechanism:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Simple</source>
+        <translation type="unfinished">Enkel</translation>
+    </message>
+    <message>
+        <source>SASL CRAM-MD5</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>SASL DIGEST-MD5</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>SASL External</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>SASL GSSAPI</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>SASL Login</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>SASL Plain</source>
+        <translation type="unfinished">SASL Enkel</translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;Certificate options&lt;/b&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Validate server:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>...</source>
+        <translation type="unfinished">...</translation>
+    </message>
+    <message>
+        <source>Certificate file:</source>
+        <translation type="unfinished">Sertifikatfil:</translation>
+    </message>
+    <message>
+        <source>Use client certificates</source>
+        <translation type="unfinished">Bruk klientsertifikater</translation>
+    </message>
+    <message>
+        <source>Certificate keyfile:</source>
+        <translation type="unfinished">Sertifikat nøkkelfil:</translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;LDAP options&lt;/b&gt;</source>
+        <translation type="unfinished">&lt;b&gt;LDAP valg&lt;/b&gt;</translation>
+    </message>
+    <message>
+        <source>Follow aliases</source>
+        <translation type="unfinished">Følg aliaser</translation>
+    </message>
+    <message>
+        <source>Use Base DNs provided by the server</source>
+        <translation type="unfinished">Bruk Base DN gitt av tjener</translation>
+    </message>
+    <message>
+        <source>Edit BaseDN list</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Cancel</source>
+        <translation type="unfinished">&amp;Avbryt</translation>
+    </message>
+    <message>
+        <source>Alt+C</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>S&amp;ave</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Alt+A</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;OK</source>
+        <translation type="unfinished">&amp;OK</translation>
+    </message>
+    <message>
+        <source>Alt+O</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>LanguageDialogDesign</name>
     <message>
         <source>Choose Language</source>

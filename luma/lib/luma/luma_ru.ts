@@ -361,12 +361,12 @@ French translation
 Rebekka Golombek (rebekkagolombe at web.de)
 Luma logo</source>
         <comment>DO NOT TRANSLATE</comment>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
-        <source>&lt;font size=&quot;+2&quot;&gt;&lt;b&gt;Luma 2.1.1&lt;/b&gt;&lt;/font&gt;</source>
+        <source>&lt;font size=&quot;+2&quot;&gt;&lt;b&gt;Luma 2.2&lt;/b&gt;&lt;/font&gt;</source>
         <comment>DO NOT TRANSLATE</comment>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
 </context>
 <context>
@@ -575,6 +575,10 @@ the selected objectclass.&lt;/p&gt;</source>
         <translation>&lt;p&gt;Вы выбрали атрибут, который не поддерживается набором классов для текущеко объекта.&lt;/p&gt;
 &lt;p&gt;Пожалуйста, выберите класс объекта, который поддерживает новый атрибут.
 Список справа показывает все атрибуты, которые дополнительно должны быть добавлены для выбранного класса.&lt;/p&gt;</translation>
+    </message>
+    <message>
+        <source>Use binary extension</source>
+        <translation>Использовать двоичное расширение</translation>
     </message>
 </context>
 <context>
@@ -1056,11 +1060,11 @@ the selected objectclass.&lt;/p&gt;</source>
     </message>
     <message>
         <source>Save entry</source>
-        <translation type="unfinished">Сохранить запись</translation>
+        <translation>Сохранить запись</translation>
     </message>
     <message>
         <source>Do you want to save the entry?</source>
-        <translation type="unfinished"></translation>
+        <translation>Вы хотите сохранить запись?</translation>
     </message>
 </context>
 <context>
@@ -1256,43 +1260,43 @@ the selected objectclass.&lt;/p&gt;</source>
     </message>
     <message>
         <source>Could not retrieve entry with DN %1 on server %2 for exporting.&lt;br&gt;&lt;br&gt;Reason: </source>
-        <translation type="unfinished"></translation>
+        <translation>Не могу извлечь запись с DN %1 с сервера %2 для экспорта.&lt;br&gt;&lt;br&gt;Причина:</translation>
     </message>
     <message>
         <source>Could not retrieve all entries for exporting. More information in the logger.</source>
-        <translation type="unfinished"></translation>
+        <translation>Не могу извлечь все записи для экспорта. Дополнительная информация - в протоколе.</translation>
     </message>
     <message>
         <source>Could not retrieve entry with DN %1 on server %2 for deletion.&lt;br&gt;&lt;br&gt;Reason: </source>
-        <translation type="unfinished"></translation>
+        <translation>Не могу извлечь запись с DN %1 с сервера %2 для удаления.&lt;br&gt;&lt;br&gt;Причина:</translation>
     </message>
     <message>
         <source>Could not retrieve all entries for deletion. More information in the logger.</source>
-        <translation type="unfinished"></translation>
+        <translation>Не могу извлечь все записи для удаления. Дополнительная информация - в протоколе.</translation>
     </message>
     <message>
         <source>Items</source>
-        <translation type="unfinished"></translation>
+        <translation>Элементы</translation>
     </message>
     <message>
         <source>Subtrees</source>
-        <translation type="unfinished"></translation>
+        <translation>Поддеревья</translation>
     </message>
     <message>
         <source>Subtrees with Parents</source>
-        <translation type="unfinished"></translation>
+        <translation>Поддеревья с Родителями</translation>
     </message>
     <message>
         <source>Subtrees without Node</source>
-        <translation type="unfinished"></translation>
+        <translation>Поддеревья без Узла</translation>
     </message>
     <message>
         <source>Attribute</source>
-        <translation type="unfinished">Атрибут</translation>
+        <translation>Атрибут</translation>
     </message>
     <message>
         <source>Add</source>
-        <translation type="unfinished">Добавить</translation>
+        <translation>Добавить</translation>
     </message>
 </context>
 <context>
@@ -1866,6 +1870,212 @@ the selected objectclass.&lt;/p&gt;</source>
     </message>
 </context>
 <context>
+    <name>ImprovedServerDialog</name>
+    <message>
+        <source>&lt;b&gt;No server selected&lt;/b&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>ImprovedServerDialogDesign</name>
+    <message>
+        <source>Server</source>
+        <translation type="unfinished">Сервер</translation>
+    </message>
+    <message>
+        <source>Base DNs</source>
+        <translation type="unfinished">Базовые DN</translation>
+    </message>
+    <message>
+        <source>Form</source>
+        <translation type="unfinished">Форма</translation>
+    </message>
+    <message>
+        <source>Delete</source>
+        <translation type="unfinished">Удалить</translation>
+    </message>
+    <message>
+        <source>Add...</source>
+        <translation type="unfinished">Добавить...</translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;No server selected&lt;/b&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Not configured yet</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Click to edit</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Authentification:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Server address:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>BaseDN:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Encryption:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Bind as:</source>
+        <translation type="unfinished">Подключиться как:</translation>
+    </message>
+    <message>
+        <source>Port:</source>
+        <translation type="unfinished">Порт:</translation>
+    </message>
+    <message>
+        <source>Hostname:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;Network options&lt;/b&gt;</source>
+        <translation type="unfinished">&lt;b&gt;Параметры сети&lt;/b&gt;</translation>
+    </message>
+    <message>
+        <source>&amp;Back</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Alt+B</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;Credentials&lt;/b&gt;</source>
+        <translation type="unfinished">&lt;b&gt;Благодарности&lt;/b&gt;</translation>
+    </message>
+    <message>
+        <source>Password:</source>
+        <translation type="unfinished">Пароль:</translation>
+    </message>
+    <message>
+        <source>Anonymous bind</source>
+        <translation type="unfinished">Анонимное подключение</translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;Security&lt;/b&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>No encryption</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>TLS (Transport Layer Security)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>SSL (Secure Socket Layer)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Authentification mechanism:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Simple</source>
+        <translation type="unfinished">Простой</translation>
+    </message>
+    <message>
+        <source>SASL CRAM-MD5</source>
+        <translation type="unfinished">SASL CRAM-MD5</translation>
+    </message>
+    <message>
+        <source>SASL DIGEST-MD5</source>
+        <translation type="unfinished">SASL DIGEST-MD5</translation>
+    </message>
+    <message>
+        <source>SASL External</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>SASL GSSAPI</source>
+        <translation type="unfinished">SASL GSSAPI</translation>
+    </message>
+    <message>
+        <source>SASL Login</source>
+        <translation type="unfinished">SASL Login</translation>
+    </message>
+    <message>
+        <source>SASL Plain</source>
+        <translation type="unfinished">SASL Plain</translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;Certificate options&lt;/b&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Validate server:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Certificate file:</source>
+        <translation type="unfinished">Файл сертификата:</translation>
+    </message>
+    <message>
+        <source>Use client certificates</source>
+        <translation type="unfinished">Использовать клиентские сертификаты</translation>
+    </message>
+    <message>
+        <source>Certificate keyfile:</source>
+        <translation type="unfinished">Файл с ключами сертификата:</translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;LDAP options&lt;/b&gt;</source>
+        <translation type="unfinished">&lt;b&gt;Параметры LDAP&lt;/b&gt;</translation>
+    </message>
+    <message>
+        <source>Follow aliases</source>
+        <translation type="unfinished">Следовать псевдонимам</translation>
+    </message>
+    <message>
+        <source>Use Base DNs provided by the server</source>
+        <translation type="unfinished">Использовать базовые DN, предоставляемые сервером</translation>
+    </message>
+    <message>
+        <source>Edit BaseDN list</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>&amp;Cancel</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Alt+C</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>S&amp;ave</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Alt+A</source>
+        <translation type="unfinished">Alt+Д</translation>
+    </message>
+    <message>
+        <source>&amp;OK</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Alt+O</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>LanguageDialogDesign</name>
     <message>
         <source>Choose Language</source>
@@ -1916,7 +2126,7 @@ the selected objectclass.&lt;/p&gt;</source>
     </message>
     <message>
         <source>Clear</source>
-        <translation type="unfinished"></translation>
+        <translation>Стереть</translation>
     </message>
 </context>
 <context>
@@ -1956,6 +2166,10 @@ the selected objectclass.&lt;/p&gt;</source>
     <message>
         <source>Could not delete entry.&lt;br&gt;&lt;br&gt;Reason: </source>
         <translation>Не могу удалить запись.&lt;br&gt;&lt;br&gt;Причина:</translation>
+    </message>
+    <message>
+        <source>Received %1 entries</source>
+        <translation>Получено %1 запись(-ей)</translation>
     </message>
 </context>
 <context>
@@ -2125,7 +2339,7 @@ the selected objectclass.&lt;/p&gt;</source>
     </message>
     <message>
         <source>Ctrl+Q</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+Q</translation>
     </message>
 </context>
 <context>
@@ -2716,6 +2930,112 @@ Try increasing the uidNumber range or delete some users from the subtree.</sourc
     </message>
 </context>
 <context>
+    <name>SchemaEditor</name>
+    <message>
+        <source>Could not fetch schema information from server.&lt;br&gt;&lt;br&gt;Reason: </source>
+        <translation>Не могу получить схему сервера.&lt;br&gt;&lt;br&gt;Причина:</translation>
+    </message>
+</context>
+<context>
+    <name>SchemaEditorDesign</name>
+    <message>
+        <source>Column 1</source>
+        <translation>Колонка 1</translation>
+    </message>
+    <message>
+        <source>Form</source>
+        <translation>Форма</translation>
+    </message>
+    <message>
+        <source>Fetch schema information from server:</source>
+        <translation>Получить схему сервера:</translation>
+    </message>
+    <message>
+        <source>&amp;Add...</source>
+        <translation>&amp;Добавить...</translation>
+    </message>
+    <message>
+        <source>Alt+A</source>
+        <translation>Alt+Д</translation>
+    </message>
+    <message>
+        <source>&amp;Export...</source>
+        <translation>&amp;Экспортировать...</translation>
+    </message>
+    <message>
+        <source>Alt+E</source>
+        <translation>Alt+Э</translation>
+    </message>
+    <message>
+        <source>&amp;Delete</source>
+        <translation>&amp;Удалить</translation>
+    </message>
+    <message>
+        <source>Alt+D</source>
+        <translation>Alt+У</translation>
+    </message>
+    <message>
+        <source>&amp;Save</source>
+        <translation>&amp;Сохранить</translation>
+    </message>
+    <message>
+        <source>Alt+S</source>
+        <translation>Alt+С</translation>
+    </message>
+    <message>
+        <source>Attribute name:</source>
+        <translation>Название атрибута:</translation>
+    </message>
+    <message>
+        <source>Ordering:</source>
+        <translation>Упорядочивание:</translation>
+    </message>
+    <message>
+        <source>Length:</source>
+        <translation>Длина:</translation>
+    </message>
+    <message>
+        <source>Equality:</source>
+        <translation>Равнозначность:</translation>
+    </message>
+    <message>
+        <source>Syntax:</source>
+        <translation>Синтаксис:</translation>
+    </message>
+    <message>
+        <source>Usage:</source>
+        <translation>Использование:</translation>
+    </message>
+    <message>
+        <source>Single value</source>
+        <translation>Единственное значение</translation>
+    </message>
+    <message>
+        <source>Collective</source>
+        <translation>Коллективное</translation>
+    </message>
+    <message>
+        <source>Obsolete</source>
+        <translation>Устаревшее</translation>
+    </message>
+    <message>
+        <source>OID:</source>
+        <translation>OID:</translation>
+    </message>
+    <message>
+        <source>Number</source>
+        <translation>Число</translation>
+    </message>
+    <message>
+        <source>Description:</source>
+        <translation>Описание:</translation>
+    </message>
+    <message>
+        <source>Superior:</source>
+        <translation>Вышестоящий:</translation>
+    </message>
+</context>
+<context>
     <name>SchemaView</name>
     <message>
         <source>Could not fetch schema information from server.&lt;br&gt;&lt;br&gt;Reason: </source>
@@ -2963,6 +3283,14 @@ Description</source>
         <source>Could not retrieve baseDN for LDAP server at host/ip:</source>
         <translation>Не могу получить базовое DN для сервера LDAP по адресу:</translation>
     </message>
+    <message>
+        <source>Select certificate file</source>
+        <translation>Выберите файл сертификата</translation>
+    </message>
+    <message>
+        <source>Select certificate key file</source>
+        <translation>Выберите файл ключа сертификата</translation>
+    </message>
 </context>
 <context>
     <name>ServerDialogDesign</name>
@@ -3033,10 +3361,6 @@ Description</source>
     <message>
         <source>&lt;b&gt;Security options&lt;/b&gt;</source>
         <translation>&lt;b&gt;Параметры безопасности&lt;/b&gt;</translation>
-    </message>
-    <message>
-        <source>Use secure connection (SSL)</source>
-        <translation>Использовать зашифрованное подключение (SSL)</translation>
     </message>
     <message>
         <source>&lt;b&gt;Authentification mechanism&lt;/b&gt;</source>
@@ -3113,6 +3437,58 @@ Description</source>
     <message>
         <source>SASL EXTERNAL</source>
         <translation>SASL EXTERNAL</translation>
+    </message>
+    <message>
+        <source>Unencrypted connection</source>
+        <translation>Незашифрованное соединение</translation>
+    </message>
+    <message>
+        <source>Transport Layer Security (TLS)</source>
+        <translation>Безопасность транспортного уровня (TLS)</translation>
+    </message>
+    <message>
+        <source>Secure Socket Layer (SSL)</source>
+        <translation>Уровень безопасных сокетов (SSL)</translation>
+    </message>
+    <message>
+        <source>Certificate keyfile:</source>
+        <translation>Файл с ключами сертификата:</translation>
+    </message>
+    <message>
+        <source>...</source>
+        <translation>...</translation>
+    </message>
+    <message>
+        <source>Use client certificates</source>
+        <translation>Использовать клиентские сертификаты</translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;Client certificate options&lt;/b&gt;</source>
+        <translation>&lt;b&gt;Опции клиентского сертификата&lt;/b&gt;</translation>
+    </message>
+    <message>
+        <source>Certificate file:</source>
+        <translation>Файл сертификата:</translation>
+    </message>
+    <message>
+        <source>Never</source>
+        <translation>Никогда</translation>
+    </message>
+    <message>
+        <source>Allow</source>
+        <translation>Разрешить</translation>
+    </message>
+    <message>
+        <source>Try</source>
+        <translation>Попробовать</translation>
+    </message>
+    <message>
+        <source>Demand</source>
+        <translation>Требовать</translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;Validate server certificate&lt;/b&gt;</source>
+        <translation>&lt;b&gt;Проверить подлинность сертификата сервера&lt;/b&gt;</translation>
     </message>
 </context>
 <context>
