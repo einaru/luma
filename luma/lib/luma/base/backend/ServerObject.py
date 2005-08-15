@@ -33,10 +33,6 @@ class ServerObject(object):
 
     self.clientCertKeyfile: The Client certificate private key. PEM-file (string)
     
-    self.clientCert: The actual cert read from disk
-    
-    self.clientCertKey: The actual cert key read from disk
-    
     self.checkServerCertificate: Checks the validity of the server side certificate.
                 Options are never, allow, try, demand.
     
@@ -63,8 +59,6 @@ class ServerObject(object):
         self.useCertificate = False
         self.clientCertFile = u""
         self.clientCertKeyfile = u""
-        self.clientCert = None
-        self.clientCertKey = None
         self.checkServerCertificate = u"demand"
         
         # This value will only set during runtime
