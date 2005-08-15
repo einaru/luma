@@ -472,24 +472,6 @@ class WorkerThreadBind(threading.Thread):
         
     def run(self):
         try:
-            # Check whether we want to validate the server certificate.
-            validateMethod = ldap.OPT_X_TLS_DEMAND
-            if self.serverMeta.checkServerCertificate == u"demand":
-                validateMethod = ldap.OPT_X_TLS_DEMAND
-            elif self.serverMeta.checkServerCertificate == u"never":
-                validateMethod = ldap.OPT_X_TLS_NEVER
-            elif self.serverMeta.checkServerCertificate == u"try":
-                validateMethod = ldap.OPT_X_TLS_TRY
-            elif self.serverMeta.checkServerCertificate == u"allow":
-                validateMethod = ldap.OPT_X_TLS_ALLOW
-                
-            if self.serverMeta.encryptionMethod == "SSL":
-                ldap.set_option(ldap.OPT_X_TLS_REQUIRE_CERT, validateMethod)
-            elif self.serverMeta.encryptionMethod == "TLS":
-                ldap.set_option(ldap.OPT_X_TLS_REQUIRE_CERT, validateMethod)
-            else:
-                ldap.set_option(ldap.OPT_X_TLS_REQUIRE_CERT, ldap.OPT_X_TLS_NEVER)
-        
             urlschemeVal = "ldap"
             # tls != ssl!! FIXME: SSL with ldaps://<host>:636/ and TLS with ldap://<host>:389/
             # Should be fixed by now. (wido)
@@ -509,25 +491,43 @@ class WorkerThreadBind(threading.Thread):
             
             self.ldapServerObject = ldap.initialize(url.initializeUrl())
             self.ldapServerObject.protocol_version = 3
-                
-            #if self.serverMeta.encryptionMethod == "SSL":
-            #    self.ldapServerObject.set_option(ldap.OPT_X_TLS_REQUIRE_CERT, validateMethod)
-            #elif self.serverMeta.encryptionMethod == "TLS":
-            #    self.ldapServerObject.set_option(ldap.OPT_X_TLS_REQUIRE_CERT, validateMethod)
-            #    self.ldapServerObject.start_tls_s()
+            
+            # Check whether we want to validate the server certificate.
+            validateMethod = ldap.OPT_X_TLS_DEMAND
+            if self.serverMeta.checkServerCertificate == u"demand":
+                validateMethod = ldap.OPT_X_TLS_DEMAND
+            elif self.serverMeta.checkServerCertificate == u"never":
+                validateMethod = ldap.OPT_X_TLS_NEVER
+            elif self.serverMeta.checkServerCertificate == u"try":
+                validateMethod = ldap.OPT_X_TLS_TRY
+            elif self.serverMeta.checkServerCertificate == u"allow":
+                validateMethod = ldap.OPT_X_TLS_ALLOW
+            
+            encryption = False
+            if self.serverMeta.encryptionMethod == "SSL":
+                encryption = True
+            elif self.serverMeta.encryptionMethod == "TLS":
+                encryption = True
+            
+            if encryption:
+                ldap.set_option(ldap.OPT_X_TLS_REQUIRE_CERT, validateMethod)
+                #self.ldapServerObject.set_option(ldap.OPT_X_TLS_REQUIRE_CERT, validateMethod)
+            
+            
+            # If we're going to present client certificates, this must be set as an option
+            if self.serverMeta.useCertificate and encryption:
+                try:
+                    self.ldapServerObject.set_option(ldap.OPT_X_TLS_CERTFILE,self.serverMeta.clientCertFile)
+                    self.ldapServerObject.set_option(ldap.OPT_X_TLS_KEYFILE,self.serverMeta.clientCertKeyfile)
+                except Exception, e:
+                    message = "Certificate error. Reason:\n"
+                    message += "Could not set client certificate and certificate keyfile. "
+                    message += str(e)
+                    environment.logMessage(LogObject("Error,",message))
+                    
             
             if self.serverMeta.encryptionMethod == "TLS":
                 self.ldapServerObject.start_tls_s()
-
-            # If we're going to present client certificates, this must be set as an option
-            if self.serverMeta.useCertificate:
-                try:
-                    self.ldapServerObject.set_option(ldap.OPT_X_TLS_CERTFILE,self.serverMeta.clientCertfile)
-                    self.ldapServerObject.set_option(ldap.OPT_X_TLS_KEYFILE,self.serverMeta.clientCertKeyfile)
-                except:
-                    message = "Certificate error. Reason:\n"
-                    message += "Could not set client certificate and certificate keyfile"
-                    environment.logMessage(LogObject("Error,",message))
             
             # Enable Alias support
             if self.serverMeta.followAliases:
