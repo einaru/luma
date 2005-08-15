@@ -130,7 +130,7 @@ class ServerDialog(ServerDialogDesign):
         elif x.encryptionMethod == u"SSL":
             self.encryptionBox.setCurrentItem(2)
             self.validateBox.setEnabled(True)
-            self.useClientCertBox.setEnabled(False)
+            self.useClientCertBox.setEnabled(True)
             
         if x.checkServerCertificate == u"never":
             self.validateBox.setCurrentItem(0)
@@ -142,6 +142,9 @@ class ServerDialog(ServerDialogDesign):
             self.validateBox.setCurrentItem(3)
             
         self.useClientCertBox.setChecked(x.useCertificate)
+        self.certFileEdit.setText(x.clientCertFile)
+        self.certKeyfileEdit.setText(x.clientCertKeyfile)
+        
         self.enableClientCertWidgets(x.useCertificate)
         
         self.methodBox.setCurrentText(x.authMethod)
@@ -471,6 +474,7 @@ class ServerDialog(ServerDialogDesign):
         
         # Now do internal stuff like updating the ServerObject 
         # and activate apply button
+        self.currentServer.clientCertFile = tmpFileName
         self.applyButton.setEnabled(True)
         
 ###############################################################################
@@ -501,6 +505,7 @@ class ServerDialog(ServerDialogDesign):
         
         # Now do internal stuff like updating the ServerObject 
         # and activate apply button
+        self.currentServer.clientCertKeyfile = tmpFileName
         self.applyButton.setEnabled(True)
         
 ###############################################################################
@@ -587,7 +592,11 @@ class ServerDialog(ServerDialogDesign):
 ###############################################################################
 
     def enableClientCerts(self, toggleBool):
-        self.currentServer.useCertificate = toggleBool
+        if toggleBool >= 1:
+            self.currentServer.useCertificate = True
+        else:
+            self.currentServer.useCertificate = False
+            
         self.applyButton.setEnabled(True)
         self.enableClientCertWidgets(toggleBool)
         
