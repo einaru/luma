@@ -591,3 +591,4 @@ class WorkerThreadBind(threading.Thread):
             self.result = False
             self.exceptionObject = e
             self.FINISHED = True
+            
