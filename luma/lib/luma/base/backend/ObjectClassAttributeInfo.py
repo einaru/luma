@@ -476,6 +476,7 @@ class WorkerThreadFetch(threading.Thread):
     def __init__(self, serverMeta):
         threading.Thread.__init__(self)
         self.serverMeta = serverMeta
+        self.ldapConnection = None
             
         self.FINISHED = False
         self.exceptionObject = None
@@ -487,6 +488,26 @@ class WorkerThreadFetch(threading.Thread):
         
     def run(self):
         try:
+            urlschemeVal = "ldap"
+            # tls != ssl!! FIXME: SSL with ldaps://<host>:636/ and TLS with ldap://<host>:389/
+            # Should be fixed by now. (wido)
+            if self.serverMeta.encryptionMethod == "SSL":
+                urlschemeVal = "ldaps"
+              
+            whoVal = None
+            credVal = None
+            if not (self.serverMeta.bindAnon):
+                whoVal = self.serverMeta.bindDN
+                credVal = self.serverMeta.bindPassword
+                
+            url = ldapurl.LDAPUrl(urlscheme=urlschemeVal, 
+                hostport = self.serverMeta.host + ":" + str(self.serverMeta.port),
+                dn = self.serverMeta.baseDN, who = whoVal,
+                cred = credVal)
+            
+            self.ldapServerObject = ldap.initialize(url.initializeUrl())
+            self.ldapServerObject.protocol_version = 3
+            
             # Check whether we want to validate the server certificate.
             validateMethod = ldap.OPT_X_TLS_DEMAND
             if self.serverMeta.checkServerCertificate == u"demand":
@@ -497,83 +518,90 @@ class WorkerThreadFetch(threading.Thread):
                 validateMethod = ldap.OPT_X_TLS_TRY
             elif self.serverMeta.checkServerCertificate == u"allow":
                 validateMethod = ldap.OPT_X_TLS_ALLOW
-                
+            
+            encryption = False
             if self.serverMeta.encryptionMethod == "SSL":
-                ldap.set_option(ldap.OPT_X_TLS_REQUIRE_CERT, validateMethod)
+                encryption = True
             elif self.serverMeta.encryptionMethod == "TLS":
+                encryption = True
+            
+            if encryption:
                 ldap.set_option(ldap.OPT_X_TLS_REQUIRE_CERT, validateMethod)
-            else:
-                ldap.set_option(ldap.OPT_X_TLS_REQUIRE_CERT, ldap.OPT_X_TLS_NEVER)
-        
-            whoVal = None
-            credVal = None
-            if not (self.serverMeta.bindAnon):
-                whoVal = self.serverMeta.bindDN
-                credVal = self.serverMeta.bindPassword
-                
-                
-            ldapSession = None
-                
-            if u"SASL EXTERNAL" == self.serverMeta.authMethod:
-                urlschemeVal = "ldapi"
-                url = ldapurl.LDAPUrl(urlscheme=urlschemeVal, 
-                hostport = self.serverMeta.host.replace("/", "%2F").replace(",", "%2C"),
-                who = whoVal, cred = credVal)
+                #self.ldapServerObject.set_option(ldap.OPT_X_TLS_REQUIRE_CERT, validateMethod)
+            
+            
+            # If we're going to present client certificates, this must be set as an option
+            if self.serverMeta.useCertificate and encryption:
+                try:
+                    self.ldapServerObject.set_option(ldap.OPT_X_TLS_CERTFILE,self.serverMeta.clientCertFile)
+                    self.ldapServerObject.set_option(ldap.OPT_X_TLS_KEYFILE,self.serverMeta.clientCertKeyfile)
+                except Exception, e:
+                    message = "Certificate error. Reason:\n"
+                    message += "Could not set client certificate and certificate keyfile. "
+                    message += str(e)
+                    environment.logMessage(LogObject("Error,",message))
                     
-                ldapSession = ldap.initialize(url.initializeUrl())
-                ldapSession.protocol_version = ldap.VERSION3
-                
-                if self.serverMeta.encryptionMethod == "TLS":
-                    ldapSession.start_tls_s()
-                    
+            
+            if self.serverMeta.encryptionMethod == "TLS":
+                self.ldapServerObject.start_tls_s()
+            
+            # Enable Alias support
+            if self.serverMeta.followAliases:
+                self.ldapServerObject.set_option(ldap.OPT_DEREF, ldap.DEREF_ALWAYS)
+            
+            if self.serverMeta.bindAnon:
+                self.ldapServerObject.simple_bind()
+            elif self.serverMeta.authMethod == u"Simple":
+                self.ldapServerObject.simple_bind(whoVal, credVal)
+            elif u"SASL" in self.serverMeta.authMethod:
                 sasl_cb_value_dict = {}
-                sasl_cb_value_dict[ldap.sasl.CB_AUTHNAME] = whoVal
-                sasl_cb_value_dict[ldap.sasl.CB_PASS] = credVal
-                sasl_auth = ldap.sasl.sasl(sasl_cb_value_dict, "EXTERNAL")
+                if not u"GSSAPI" in self.serverMeta.authMethod:
+                    sasl_cb_value_dict[ldap.sasl.CB_AUTHNAME] = whoVal
+                    sasl_cb_value_dict[ldap.sasl.CB_PASS] = credVal
                     
-                ldapSession.sasl_interactive_bind_s("", sasl_auth)
-            else:
-                urlschemeVal = "ldap"
-                if self.serverMeta.encryptionMethod == "SSL":
-                    urlschemeVal = "ldaps"
-                        
-                url = ldapurl.LDAPUrl(urlscheme=urlschemeVal, 
-                    hostport = self.serverMeta.host + ":" + str(self.serverMeta.port),
-                    who = whoVal, cred = credVal)
+                sasl_mech = None
+                if self.serverMeta.authMethod == u"SASL Plain":
+                    sasl_mech = "PLAIN"
+                elif self.serverMeta.authMethod == u"SASL CRAM-MD5":
+                    sasl_mech = "CRAM-MD5"
+                elif self.serverMeta.authMethod == u"SASL DIGEST-MD5":
+                    sasl_mech = "DIGEST-MD5"
+                elif self.serverMeta.authMethod == u"SASL Login":
+                    sasl_mech = "LOGIN"
+                elif self.serverMeta.authMethod == u"SASL GSSAPI":
+                    sasl_mech = "GSSAPI"
+                elif self.serverMeta.authMethod == u"SASL EXTERNAL":
+                    sasl_mech = "EXTERNAL"
                     
-                ldapSession = ldap.initialize(url.initializeUrl())
-                ldapSession.protocol_version = ldap.VERSION3
+                sasl_auth = ldap.sasl.sasl(sasl_cb_value_dict,sasl_mech)
                 
-                if self.serverMeta.encryptionMethod == "TLS":
-                    ldapSession.start_tls_s()
+                # If python-ldap has no support for SASL, it doesn't have 
+                # sasl_interactive_bind_s as a method.
+                try:
+                    if "EXTERNAL" == sasl_mech:
+                        #url = ldapurl.LDAPUrl(urlscheme="ldapi", 
+                        #    hostport = self.serverMeta.host.replace("/", "%2f"),
+                        #    dn = self.serverMeta.baseDN)
+                            
+                        url = "ldapi://" + self.serverMeta.host.replace("/", "%2F").replace(",", "%2C")
+            
+                        #self.ldapServerObject = ldap.initialize(url.initializeUrl())
+                        self.ldapServerObject = ldap.initialize(url)
+                        self.ldapServerObject.protocol_version = 3
+            
+                        # Enable Alias support
+                        if self.serverMeta.followAliases:
+                            self.ldapServerObject.set_option(ldap.OPT_DEREF, ldap.DEREF_ALWAYS)
+
+                    self.ldapServerObject.sasl_interactive_bind_s("", sasl_auth)
+                except AttributeError, e:
+                    self.result = False
+                    self.exceptionObject = e
+                    self.FINISHED = True
+                    return
                 
-                
-                if self.serverMeta.bindAnon:
-                    ldapSession.simple_bind()
-                elif self.serverMeta.authMethod == u"Simple":
-                    ldapSession.simple_bind(whoVal, credVal)
-                elif u"SASL" in self.serverMeta.authMethod:
-                    sasl_cb_value_dict = {}
-                    if not u"GSSAPI" in self.serverMeta.authMethod:
-                        sasl_cb_value_dict[ldap.sasl.CB_AUTHNAME] = whoVal
-                        sasl_cb_value_dict[ldap.sasl.CB_PASS] = credVal
-                    
-                    sasl_mech = None
-                    if self.serverMeta.authMethod == u"SASL Plain":
-                        sasl_mech = "PLAIN"
-                    elif self.serverMeta.authMethod == u"SASL CRAM-MD5":
-                        sasl_mech = "CRAM-MD5"
-                    elif self.serverMeta.authMethod == u"SASL DIGEST-MD5":
-                        sasl_mech = "DIGEST-MD5"
-                    elif self.serverMeta.authMethod == u"SASL Login":
-                        sasl_mech = "LOGIN"
-                    elif self.serverMeta.authMethod == u"SASL GSSAPI":
-                        sasl_mech = "GSSAPI"
-                    
-                    sasl_auth = ldap.sasl.sasl(sasl_cb_value_dict,sasl_mech)
-                    ldapSession.sasl_interactive_bind_s("", sasl_auth)
-                
-            subschemasubentry_dn = ldapSession.search_subschemasubentry_s(url.dn)
+            #subschemasubentry_dn = self.ldapServerObject.search_subschemasubentry_s(url.dn)
+            subschemasubentry_dn = self.ldapServerObject.search_subschemasubentry_s()
             if subschemasubentry_dn is None:
                 subschemasubentry_entry = None
             else:
@@ -581,9 +609,9 @@ class WorkerThreadFetch(threading.Thread):
                     schema_attrs = SCHEMA_ATTRS
                 else:
                     schema_attrs = url.attrs
-                subschemasubentry_entry = ldapSession.read_subschemasubentry_s(
+                subschemasubentry_entry = self.ldapServerObject.read_subschemasubentry_s(
                     subschemasubentry_dn,attrs=schema_attrs)
-            ldapSession.unbind_s()
+            self.ldapServerObject.unbind_s()
                 
             schema = None
             if subschemasubentry_dn!=None:
