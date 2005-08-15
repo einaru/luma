@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 ###########################################################################
-#    Copyright (C) 2003, 2004 by Wido Depping
+#    Copyright (C) 2003-2005 by Wido Depping
 #    <widod@users.sourceforge.net>
 #
 # Copyright: See COPYING file that comes with this distribution
@@ -198,7 +198,7 @@ def evalArguments():
 ###############################################################################
 
 
-print "Luma 2.0 (C) 2003-2005 Wido Depping\n"
+print "Luma 2.2 (C) 2003-2005 Wido Depping\n"
 
 doImportCheck()
 print ""
