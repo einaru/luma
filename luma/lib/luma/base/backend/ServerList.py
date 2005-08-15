@@ -100,6 +100,9 @@ class ServerList:
             serverNode.setAttribute("autoBase", unicode(x.autoBase))
             serverNode.setAttribute("followAliases", unicode(x.followAliases))
             serverNode.setAttribute("checkServerCertificate", unicode(x.checkServerCertificate))
+            serverNode.setAttribute("useCertificate", unicode(x.useCertificate))
+            serverNode.setAttribute("clientCertFile", unicode(x.clientCertFile))
+            serverNode.setAttribute("clientCertKeyfile", unicode(x.clientCertKeyfile))
             
             
             baseNode = document.createElement("baseDNs")
@@ -394,6 +397,14 @@ class ServerList:
                 #    server.encryptionMethod = "None"
                     
                 server.checkServerCertificate = unicode(element.attribute("checkServerCertificate"))
+                server.clientCertFile = unicode(element.attribute("clientCertFile"))
+                server.clientCertKeyfile = unicode(element.attribute("clientCertKeyfile"))
+                
+                tmpVal = unicode(element.attribute("useCertificate"))
+                if tmpVal == "True":
+                    server.useCertificate = True
+                else:
+                    server.useCertificate = False
                     
                 tmpVal = unicode(element.attribute("followAliases"))
                 if "True" == tmpVal:
