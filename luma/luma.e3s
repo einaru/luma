@@ -2,14 +2,15 @@
 <!DOCTYPE Session SYSTEM "Session-3.6.dtd">
 <!-- eric3 session file for project luma -->
 <!-- This file was generated automatically, do not edit. -->
-<!-- Saved: 2005-04-02, 21:04:58 -->
+<!-- Saved: 2005-04-08, 18:25:11 -->
 <Session version="3.6">
   <Filenames>
-    <Filename cline="241" cindex="71">/home/wido/src/luma/lib/luma/base/backend/LumaConnection.py</Filename>
-    <Filename cline="41" cindex="53">/home/wido/src/luma/lib/luma/base/gui/ServerDialog.py</Filename>
-    <Filename cline="31" cindex="73">/home/wido/src/luma/lib/luma/base/utils/gui/ExportDialog.py</Filename>
+    <Filename cline="0" cindex="0">/home/wido/src/luma/lib/luma/luma.py</Filename>
+    <Filename cline="217" cindex="55">/home/wido/src/luma/lib/luma/base/utils/gui/LumaEntryBrowser.py</Filename>
+    <Filename cline="42" cindex="36">/home/wido/src/luma/lib/luma/base/gui/MainWin.py</Filename>
+    <Filename cline="502" cindex="99">/home/wido/src/luma/lib/luma/base/backend/LumaConnection.py</Filename>
   </Filenames>
-  <ActiveWindow cline="41" cindex="53">/home/wido/src/luma/lib/luma/base/gui/ServerDialog.py</ActiveWindow>
+  <ActiveWindow cline="502" cindex="99">/home/wido/src/luma/lib/luma/base/backend/LumaConnection.py</ActiveWindow>
   <Breakpoints>
   </Breakpoints>
   <DebugInfo>
