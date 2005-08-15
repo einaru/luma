@@ -51,6 +51,11 @@ class PasswordEditor(PasswordEditorDesign):
         
         self.password = unicode(self.passwordEdit.text())
         
+        if enable:
+            self.passwordSaveEdit.unsetPalette()
+        else:
+            self.passwordSaveEdit.setPaletteBackgroundColor(Qt.red)
+        
         self.okButton.setEnabled(enable)
 
 ###############################################################################
