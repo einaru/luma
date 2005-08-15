@@ -362,7 +362,7 @@ French translation
 Rebekka Golombek (rebekkagolombe at web.de)
 Luma logo</source>
         <comment>DO NOT TRANSLATE</comment>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>&lt;font size=&quot;+2&quot;&gt;&lt;b&gt;Luma 2.2&lt;/b&gt;&lt;/font&gt;</source>
@@ -3444,7 +3444,7 @@ Beskrivelse</translation>
     <message>
         <source>This is a description of the template you are currently working with.</source>
         <comment>DO NOT TRANSLATE</comment>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
 </context>
 <context>
