@@ -25,6 +25,7 @@ from base.gui.PluginLoaderGui import PluginLoaderGui
 from base.gui.LanguageDialog import LanguageDialog
 from base.utils.backend.LogObject import LogObject
 from base.utils.gui.LoggerWidget import LoggerWidget
+from base.gui.ImprovedServerDialog import ImprovedServerDialog
 
 class MainWin(MainWinDesign):
     """The main window for Luma."""
@@ -128,6 +129,7 @@ class MainWin(MainWinDesign):
         """Show the dialog for editing the accessible servers."""
         
         dialog = ServerDialog()
+        #dialog = ImprovedServerDialog()
         dialog.exec_loop()
         if (dialog.result() == QDialog.Accepted) or dialog.SAVED:
             self.reloadPlugins()
