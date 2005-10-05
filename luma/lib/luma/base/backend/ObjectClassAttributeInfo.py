@@ -552,7 +552,7 @@ class WorkerThreadFetch(threading.Thread):
             if self.serverMeta.bindAnon:
                 self.ldapServerObject.simple_bind()
             elif self.serverMeta.authMethod == u"Simple":
-                self.ldapServerObject.simple_bind(whoVal, credVal)
+                self.ldapServerObject.simple_bind_s(whoVal, credVal)
             elif u"SASL" in self.serverMeta.authMethod:
                 sasl_cb_value_dict = {}
                 if not u"GSSAPI" in self.serverMeta.authMethod:
