@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE Project SYSTEM "Project-3.5.dtd">
 <!-- Project file for project luma -->
-<!-- Saved: 2005-08-14, 02:01:45 -->
+<!-- Saved: 2005-09-22, 15:20:41 -->
 <!-- Copyright (C) 2005 Wido Depping, wido.depping@tu-clausthal.de -->
 <Project version="3.5">
   <Description></Description>
@@ -1380,6 +1380,11 @@
       <Dir>lib</Dir>
       <Dir>luma</Dir>
       <Name>luma_no_NY.ts</Name>
+    </Translation>
+    <Translation>
+      <Dir>lib</Dir>
+      <Dir>luma</Dir>
+      <Name>luma_it.ts</Name>
     </Translation>
   </Translations>
   <Interfaces>
