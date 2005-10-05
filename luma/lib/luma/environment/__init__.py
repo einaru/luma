@@ -33,7 +33,7 @@ def setPaths():
     # This ensure that you can start luma in two ways:
     # 1. using the symlink in luma/bin
     # 2. using luma.py from /luma/lib/luma
-    if (tmpList[1] == 'luma.py') and (os.path.split(os.path.abspath(tmpList[0]))[1] == 'luma'):
+    if (tmpList[1] in ('luma.py','luma.pyc','luma.pyo')) and (os.path.split(os.path.abspath(tmpList[0]))[1] == 'luma'):
         tmpPrefix = os.path.abspath(tmpList[0])
         lumaInstallationPrefix = os.path.split(os.path.split(tmpPrefix)[0])[0]
     else:
