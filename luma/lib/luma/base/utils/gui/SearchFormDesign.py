@@ -1,13 +1,14 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file './lib/luma/base/utils/gui/SearchFormDesign.ui'
+# Form implementation generated from reading ui file '/home/wido/src/luma/lib/luma/base/utils/gui/SearchFormDesign.ui'
 #
-# Created: Tue Mar 1 22:45:09 2005
-#      by: The PyQt User Interface Compiler (pyuic) 3.14
+# Created: Wed Aug 17 15:23:41 2005
+#      by: The PyQt User Interface Compiler (pyuic) 3.14.1
 #
 # WARNING! All changes made in this file will be lost!
 
 
+import sys
 from qt import *
 
 
@@ -107,3 +108,11 @@ class SearchFormDesign(QWidget):
 
     def __tr(self,s,c = None):
         return qApp.translate("SearchFormDesign",s,c)
+
+if __name__ == "__main__":
+    a = QApplication(sys.argv)
+    QObject.connect(a,SIGNAL("lastWindowClosed()"),a,SLOT("quit()"))
+    w = SearchFormDesign()
+    a.setMainWidget(w)
+    w.show()
+    a.exec_loop()

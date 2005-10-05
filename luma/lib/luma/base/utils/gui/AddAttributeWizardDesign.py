@@ -2,8 +2,8 @@
 
 # Form implementation generated from reading ui file '/home/wido/src/luma/lib/luma/base/utils/gui/AddAttributeWizardDesign.ui'
 #
-# Created: Wed Mar 16 14:35:07 2005
-#      by: The PyQt User Interface Compiler (pyuic) 3.14
+# Created: Wed Aug 17 15:23:46 2005
+#      by: The PyQt User Interface Compiler (pyuic) 3.14.1
 #
 # WARNING! All changes made in this file will be lost!
 

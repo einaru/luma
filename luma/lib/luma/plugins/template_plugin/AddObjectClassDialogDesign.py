@@ -1,13 +1,14 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file './lib/luma/plugins/template_plugin/AddObjectClassDialogDesign.ui'
+# Form implementation generated from reading ui file '/home/wido/src/luma/lib/luma/plugins/template_plugin/AddObjectClassDialogDesign.ui'
 #
-# Created: Tue Mar 1 22:51:46 2005
-#      by: The PyQt User Interface Compiler (pyuic) 3.14
+# Created: Wed Aug 17 15:23:49 2005
+#      by: The PyQt User Interface Compiler (pyuic) 3.14.1
 #
 # WARNING! All changes made in this file will be lost!
 
 
+import sys
 from qt import *
 
 image0_data = \
@@ -406,3 +407,11 @@ class AddObjectClassDialogDesign(QDialog):
 
     def __tr(self,s,c = None):
         return qApp.translate("AddObjectClassDialogDesign",s,c)
+
+if __name__ == "__main__":
+    a = QApplication(sys.argv)
+    QObject.connect(a,SIGNAL("lastWindowClosed()"),a,SLOT("quit()"))
+    w = AddObjectClassDialogDesign()
+    a.setMainWidget(w)
+    w.show()
+    a.exec_loop()

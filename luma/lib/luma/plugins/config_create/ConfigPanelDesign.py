@@ -1,13 +1,14 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file './lib/luma/plugins/config_create/ConfigPanelDesign.ui'
+# Form implementation generated from reading ui file '/home/wido/src/luma/lib/luma/plugins/config_create/ConfigPanelDesign.ui'
 #
-# Created: Tue Mar 1 22:50:37 2005
-#      by: The PyQt User Interface Compiler (pyuic) 3.14
+# Created: Wed Aug 17 15:23:42 2005
+#      by: The PyQt User Interface Compiler (pyuic) 3.14.1
 #
 # WARNING! All changes made in this file will be lost!
 
 
+import sys
 from qt import *
 
 image0_data = \
@@ -275,3 +276,11 @@ class ConfigPanelDesign(QWidget):
 
     def __tr(self,s,c = None):
         return qApp.translate("ConfigPanelDesign",s,c)
+
+if __name__ == "__main__":
+    a = QApplication(sys.argv)
+    QObject.connect(a,SIGNAL("lastWindowClosed()"),a,SLOT("quit()"))
+    w = ConfigPanelDesign()
+    a.setMainWidget(w)
+    w.show()
+    a.exec_loop()
