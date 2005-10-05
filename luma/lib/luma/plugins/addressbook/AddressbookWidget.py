@@ -88,6 +88,8 @@ class AddressbookWidget(AddressbookWidgetDesign):
         self.DISABLED = 1
         self.ENABLE_SAVE = False
         self.DIALOG_MODE = False
+        
+        self.addressID = 0
 
 ###############################################################################
 
@@ -393,8 +395,10 @@ class AddressbookWidget(AddressbookWidgetDesign):
         addressType = ['postalAddress', 'homePostalAddress', 'otherPostalAddress']
         
         if saveValue:
-            value = [unicode(self.addressEdit.text())]
-            self.dataObject.addAttributeValue(addressType[self.addressID], value, True)
+            if self.dataObject.isAttributeAllowed(addressType[self.addressID]):
+                value = unicode(self.addressEdit.text())
+                if not (value==''):
+                    self.dataObject.addAttributeValue(addressType[self.addressID], [value], True)
         
         self.addressID = id
         self.addressEdit.clear()
