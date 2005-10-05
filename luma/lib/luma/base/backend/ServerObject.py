@@ -19,7 +19,7 @@ class ServerObject(object):
     
     self.bindAnon: Indicates if the bind should be anonymously (integer).
     
-    self.baseDN: The baseDN of the server (string).
+    self.baseDN: The baseDNs of the server (list of strings).
     
     self.bindDN: If not bind anonymously, use this name (string).
     
