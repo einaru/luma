@@ -136,9 +136,9 @@ class TemplateWidget(TemplateWidgetDesign):
 ###############################################################################
 
     def clearTemplateFields(self):
-        self.templateLabel.setText(None)
-        self.serverLabel.setText(None)
-        self.descriptionLabel.setText(None)
+        self.templateLabel.setText("")
+        self.serverLabel.setText("")
+        self.descriptionLabel.setText("")
         
 ###############################################################################
 
