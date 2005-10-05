@@ -52,11 +52,8 @@ class PasswordDialog(PasswordDialogDesign):
 ###############################################################################
 
     def passwordChanged(self, pwString):
-        print "foo"
         firstPW = unicode(self.passwordEdit.text())
         secondPW = unicode(self.passwordSaveEdit.text())
-        
-        print "test"
         
         enable = False
         if (firstPW == secondPW) and (len(firstPW) > 0):
@@ -67,19 +64,9 @@ class PasswordDialog(PasswordDialogDesign):
             
         self.strengthBar.setProgress(check_strength(firstPW))
         
-        print enable
         if enable:
             self.passwordSaveEdit.unsetPalette()
         else:
             self.passwordSaveEdit.setPaletteBackgroundColor(Qt.red)
             
         self.okButton.setEnabled(enable)
-
-
-            
-            
-            
-            
-            
-            
-            
