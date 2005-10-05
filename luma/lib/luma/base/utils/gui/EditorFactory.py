@@ -20,9 +20,7 @@ from base.utils.gui.editors.RdnEditor import RdnEditor
 ###############################################################################
 
 # Warning. All attributes listed here must be lowercase
-attributeDictionary = {'userpassword': PasswordEditor,
-    'rdn': RdnEditor 
-    }
+attributeDictionary = {'rdn': RdnEditor}
 
 
 ###############################################################################
@@ -38,18 +36,14 @@ def getEditorWidget(parent, dataObject, attributeName, index=0):
         
     # We don't have a direct mapping
     else:
+        # Is attribute password?
+        if dataObject.isAttributePassword(attributeName):
+            dialog = PasswordEditor(parent)
     
         # Is attribute binary?
-        if dataObject.isAttributeBinary(attributeName):
-        
-            # Is attribute password?
-            if dataObject.isAttributePassword(attributeName):
-                dialog = PasswordEditor(parent)
-            
-            # Attribute is binary and not password.
-            else:
-                dialog = BinaryEditor(parent)
-                dialog.initValue(dataObject, attributeName, index)
+        elif dataObject.isAttributeBinary(attributeName):
+            dialog = BinaryEditor(parent)
+            dialog.initValue(dataObject, attributeName, index)
             
         # Attribute is not binary. Use standard editor.
         else:
