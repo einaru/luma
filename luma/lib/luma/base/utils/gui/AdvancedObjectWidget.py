@@ -194,6 +194,8 @@ class AdvancedObjectWidget(QWidget):
         tmpList.append("""</tr>""")
         
         for x in self.ldapDataObject.getObjectClasses():
+            if self.ldapDataObject.isObjectclassStructural(x):
+                x = "<b>" + x + "</b>"
             tmpList.append("""<tr>""")
             tmpList.append("""<td colspan=2 bgcolor="#E5E5E5" width="100%">""" + x + """</td>""")
             tmpList.append("""</tr>""")
@@ -681,8 +683,9 @@ class AdvancedObjectWidget(QWidget):
         lumaConnection.unbind()
         
         if success:
-            itemString = self.ldapDataObject.getPrettyParentDN() + "," + self.ldapDataObject.getServerAlias()
-            self.emit(PYSIGNAL("REOPEN_PARENT"), (itemString,))
+            serverName = self.ldapDataObject.getServerAlias()
+            dn = self.ldapDataObject.getPrettyParentDN()
+            self.emit(PYSIGNAL("REOPEN_PARENT"), (serverName, dn,))
             self.clearView()
             self.enableToolButtons(False)
         else:
