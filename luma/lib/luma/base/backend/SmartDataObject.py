@@ -127,7 +127,7 @@ class SmartDataObject (object):
         structList = []
         
         for x in self.getObjectClasses():
-            if self.serverSchema.isStructural(x):
+            if self.isObjectclassStructural(x):
                 structList.append(x)
                 
         return structList
@@ -139,7 +139,7 @@ class SmartDataObject (object):
         """
         
         for x in self.getObjectClasses():
-            if self.serverSchema.isStructural(x):
+            if self.isObjectclassStructural(x):
                 return True
                 
         return False
@@ -663,7 +663,7 @@ class SmartDataObject (object):
         if self.hasObjectClass(className):
             return
             
-        if self.serverSchema.isStructural(className):
+        if self.isObjectclassStructural(className):
             structList = self.getStructuralClasses()
             for x in structList:
                 if not self.serverSchema.sameObjectClassChain(className, x):
@@ -781,6 +781,15 @@ class SmartDataObject (object):
         """
         
         return self.serverSchema.getAllAttributes(self.getObjectClasses())
+        
+###############################################################################
+
+    def isObjectclassStructural(self, objclass):
+        """ Returns True if the objectclass is structural"""
+    
+        return self.serverSchema.isStructural(objclass)
+
+###############################################################################
         
         
 ###############################################################################
