@@ -128,8 +128,8 @@ class MainWin(MainWinDesign):
     def showServerEditor(self):
         """Show the dialog for editing the accessible servers."""
         
-        dialog = ServerDialog()
-        #dialog = ImprovedServerDialog()
+        #dialog = ServerDialog()
+        dialog = ImprovedServerDialog()
         dialog.exec_loop()
         if (dialog.result() == QDialog.Accepted) or dialog.SAVED:
             self.reloadPlugins()
