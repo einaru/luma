@@ -578,7 +578,7 @@ the selected objectclass.&lt;/p&gt;</source>
     </message>
     <message>
         <source>Use binary extension</source>
-        <translation type="unfinished"></translation>
+        <translation>Utiliser une extension binaire</translation>
     </message>
 </context>
 <context>
@@ -899,11 +899,11 @@ the selected objectclass.&lt;/p&gt;</source>
     <name>AdminPanelDesign</name>
     <message>
         <source>Encrypted Password:</source>
-        <translation>Mot de passe crypté :</translation>
+        <translation>Mot de passe haché :</translation>
     </message>
     <message>
         <source>&amp;Encrypt</source>
-        <translation>&amp;Crypter</translation>
+        <translation type="unfinished">&amp;Hacher</translation>
     </message>
     <message>
         <source>Alt+E</source>
@@ -915,7 +915,7 @@ the selected objectclass.&lt;/p&gt;</source>
     </message>
     <message>
         <source>Encrypted password:</source>
-        <translation>Mot de passe crypté :</translation>
+        <translation>Mot de passe haché :</translation>
     </message>
     <message>
         <source>&amp;Create</source>
@@ -977,7 +977,7 @@ the selected objectclass.&lt;/p&gt;</source>
     </message>
     <message>
         <source>&lt;b&gt;Encrypt password&lt;/b&gt;</source>
-        <translation>&lt;b&gt;Crypter le mot de passe&lt;/b&gt;</translation>
+        <translation>&lt;b&gt;Hacher le mot de passe&lt;/b&gt;</translation>
     </message>
     <message>
         <source>&lt;b&gt;Create random password&lt;/b&gt;</source>
@@ -1060,11 +1060,11 @@ the selected objectclass.&lt;/p&gt;</source>
     </message>
     <message>
         <source>Save entry</source>
-        <translation type="unfinished">Enregistrer l&apos;entrée</translation>
+        <translation>Enregistrer l&apos;entrée</translation>
     </message>
     <message>
         <source>Do you want to save the entry?</source>
-        <translation type="unfinished"></translation>
+        <translation>Voulez vous sauvegarder l&apos;entrée?</translation>
     </message>
 </context>
 <context>
@@ -1098,7 +1098,7 @@ the selected objectclass.&lt;/p&gt;</source>
     </message>
     <message>
         <source>Manage the base distinguished names you want to use with server &lt;b&gt;%1&lt;/b&gt;.</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Gérer les DN de base associés au serveur &lt;b&gt;%1&lt;/b&gt;.</translation>
     </message>
     <message>
         <source>Custom:</source>
@@ -1212,7 +1212,7 @@ the selected objectclass.&lt;/p&gt;</source>
     <name>BrowserWidget</name>
     <message>
         <source>Entries</source>
-        <translation>Entrées</translation>
+        <translation>Arborescence</translation>
     </message>
     <message>
         <source>Item</source>
@@ -1260,43 +1260,43 @@ the selected objectclass.&lt;/p&gt;</source>
     </message>
     <message>
         <source>Could not retrieve entry with DN %1 on server %2 for exporting.&lt;br&gt;&lt;br&gt;Reason: </source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Impossible de récupérer l&apos;objet DN %1 du serveur %2 pour exportation.&lt;br&gt;&lt;br&gt;Raison:</translation>
     </message>
     <message>
         <source>Could not retrieve all entries for exporting. More information in the logger.</source>
-        <translation type="unfinished"></translation>
+        <translation>Impossible de récupérer toutes les objets pour export. Plus d&apos;informations sont disponibles dans les journaux d&apos;activité.</translation>
     </message>
     <message>
         <source>Could not retrieve entry with DN %1 on server %2 for deletion.&lt;br&gt;&lt;br&gt;Reason: </source>
-        <translation type="unfinished"></translation>
+        <translation>Impossible de supprimer l&apos;objet %1 sur le serveur %2.&lt;br&gt;&lt;br&gt;Raison:</translation>
     </message>
     <message>
         <source>Could not retrieve all entries for deletion. More information in the logger.</source>
-        <translation type="unfinished"></translation>
+        <translation>Impossible de supprimer tous les objets. Plus d&apos;informations sont disponibles dans les journaux d&apos;activité.</translation>
     </message>
     <message>
         <source>Items</source>
-        <translation type="unfinished"></translation>
+        <translation>Objets</translation>
     </message>
     <message>
         <source>Subtrees</source>
-        <translation type="unfinished"></translation>
+        <translation>Sous-branches </translation>
     </message>
     <message>
         <source>Subtrees with Parents</source>
-        <translation type="unfinished"></translation>
+        <translation>Sous-branche avec parents</translation>
     </message>
     <message>
         <source>Subtrees without Node</source>
-        <translation type="unfinished"></translation>
+        <translation>Sous-branche sans noeud</translation>
     </message>
     <message>
         <source>Attribute</source>
-        <translation type="unfinished">Attribut</translation>
+        <translation>Attribut</translation>
     </message>
     <message>
         <source>Add</source>
-        <translation type="unfinished">Ajouter</translation>
+        <translation>Ajouter</translation>
     </message>
 </context>
 <context>
@@ -1393,23 +1393,23 @@ the selected objectclass.&lt;/p&gt;</source>
     <name>ConfigPanel</name>
     <message>
         <source>Help for Suffix:</source>
-        <translation type="unfinished"></translation>
+        <translation>Aide concernant le Suffixe:</translation>
     </message>
     <message>
         <source>Help for Admin Name:</source>
-        <translation type="unfinished"></translation>
+        <translation>Aide concernant le nom de l&apos;administrateur:</translation>
     </message>
     <message>
         <source>Help for Distribution:</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Aide concernant la Distribution:</translation>
     </message>
     <message>
         <source>Help for Password:</source>
-        <translation type="unfinished"></translation>
+        <translation>Aide concernant le mot de passe:</translation>
     </message>
     <message>
         <source>Bad Suffix!</source>
-        <translation type="unfinished"></translation>
+        <translation>Mauvais Suffixe!</translation>
     </message>
     <message>
         <source>Bad Admin Name!</source>
@@ -1856,7 +1856,7 @@ the selected objectclass.&lt;/p&gt;</source>
     </message>
     <message>
         <source>You may select from the groups available in the LDAP database or enter any ID that is valid on the system below.</source>
-        <translation>Vous devez choisir parmi les groupes disponibles dans l&apos;annuraire LDAP ou entrer tout ID valide sur le système sous jacent.</translation>
+        <translation>Vous pouvez choisir parmi les groupes disponibles dans l&apos;annuaire ou spécifier un GID valide pour le système sous jacent.</translation>
     </message>
     <message>
         <source>Select any additional groups the &lt;b&gt;%1&lt;/b&gt; user should belong to from the list below.</source>
@@ -1865,212 +1865,6 @@ the selected objectclass.&lt;/p&gt;</source>
     <message>
         <source>&lt;b&gt;Additional Groups&lt;/b&gt;</source>
         <translation>&lt;b&gt;Groupes Additionnels&lt;/b&gt;</translation>
-    </message>
-</context>
-<context>
-    <name>ImprovedServerDialog</name>
-    <message>
-        <source>&lt;b&gt;No server selected&lt;/b&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>ImprovedServerDialogDesign</name>
-    <message>
-        <source>Server</source>
-        <translation type="unfinished">Serveur</translation>
-    </message>
-    <message>
-        <source>Base DNs</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Form</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Delete</source>
-        <translation type="unfinished">Supprimer</translation>
-    </message>
-    <message>
-        <source>Add...</source>
-        <translation type="unfinished">Ajouter...</translation>
-    </message>
-    <message>
-        <source>&lt;b&gt;No server selected&lt;/b&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Not configured yet</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Click to edit</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Authentification:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Server address:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>BaseDN:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Encryption:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Bind as:</source>
-        <translation type="unfinished">Se connecter en :</translation>
-    </message>
-    <message>
-        <source>Port:</source>
-        <translation type="unfinished">Port :</translation>
-    </message>
-    <message>
-        <source>Hostname:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&lt;b&gt;Network options&lt;/b&gt;</source>
-        <translation type="unfinished">&lt;b&gt;Options réseau&lt;/b&gt;</translation>
-    </message>
-    <message>
-        <source>&amp;Back</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Alt+B</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&lt;b&gt;Credentials&lt;/b&gt;</source>
-        <translation type="unfinished">&lt;b&gt;Autorisations&lt;/b&gt;</translation>
-    </message>
-    <message>
-        <source>Password:</source>
-        <translation type="unfinished">Mot de passe :</translation>
-    </message>
-    <message>
-        <source>Anonymous bind</source>
-        <translation type="unfinished">Connexion anonyme</translation>
-    </message>
-    <message>
-        <source>&lt;b&gt;Security&lt;/b&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>No encryption</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>TLS (Transport Layer Security)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>SSL (Secure Socket Layer)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Authentification mechanism:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Simple</source>
-        <translation type="unfinished">Simple</translation>
-    </message>
-    <message>
-        <source>SASL CRAM-MD5</source>
-        <translation type="unfinished">SASL CRAM-MD5</translation>
-    </message>
-    <message>
-        <source>SASL DIGEST-MD5</source>
-        <translation type="unfinished">SASL DIGEST-MD5</translation>
-    </message>
-    <message>
-        <source>SASL External</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>SASL GSSAPI</source>
-        <translation type="unfinished">SASL GSSAPI</translation>
-    </message>
-    <message>
-        <source>SASL Login</source>
-        <translation type="unfinished">SASL Login</translation>
-    </message>
-    <message>
-        <source>SASL Plain</source>
-        <translation type="unfinished">SASL Plain</translation>
-    </message>
-    <message>
-        <source>&lt;b&gt;Certificate options&lt;/b&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Validate server:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>...</source>
-        <translation type="unfinished">...</translation>
-    </message>
-    <message>
-        <source>Certificate file:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Use client certificates</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Certificate keyfile:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&lt;b&gt;LDAP options&lt;/b&gt;</source>
-        <translation type="unfinished">&lt;b&gt;options LDAP&lt;/b&gt;</translation>
-    </message>
-    <message>
-        <source>Follow aliases</source>
-        <translation type="unfinished">Suivre les alias</translation>
-    </message>
-    <message>
-        <source>Use Base DNs provided by the server</source>
-        <translation type="unfinished">Utiliser le &apos;baseDN&apos; fournit par le serveur</translation>
-    </message>
-    <message>
-        <source>Edit BaseDN list</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&amp;Cancel</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Alt+C</source>
-        <translation type="unfinished">Alt+C</translation>
-    </message>
-    <message>
-        <source>S&amp;ave</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Alt+A</source>
-        <translation type="unfinished">Alt+A</translation>
-    </message>
-    <message>
-        <source>&amp;OK</source>
-        <translation type="unfinished">&amp;OK</translation>
-    </message>
-    <message>
-        <source>Alt+O</source>
-        <translation type="unfinished">Alt+O</translation>
     </message>
 </context>
 <context>
@@ -2104,7 +1898,7 @@ the selected objectclass.&lt;/p&gt;</source>
     <name>LoggerWidgetDesign</name>
     <message>
         <source>Form</source>
-        <translation></translation>
+        <translation type="unfinished">Venant de</translation>
     </message>
     <message>
         <source>Display message types:</source>
@@ -2124,7 +1918,7 @@ the selected objectclass.&lt;/p&gt;</source>
     </message>
     <message>
         <source>Clear</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Effacer</translation>
     </message>
 </context>
 <context>
@@ -2167,7 +1961,7 @@ the selected objectclass.&lt;/p&gt;</source>
     </message>
     <message>
         <source>Received %1 entries</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 objets ont été reçus</translation>
     </message>
 </context>
 <context>
@@ -2337,7 +2131,7 @@ the selected objectclass.&lt;/p&gt;</source>
     </message>
     <message>
         <source>Ctrl+Q</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+Q</translation>
     </message>
 </context>
 <context>
@@ -2651,7 +2445,7 @@ Essayez d&apos;augmenter l&apos;intervalle uidNumber ou effacez certains utilisa
     </message>
     <message>
         <source>Gifts</source>
-        <translation type="unfinished"></translation>
+        <translation>Cadeaux</translation>
     </message>
     <message>
         <source>Goals/Objectives</source>
@@ -2663,7 +2457,7 @@ Essayez d&apos;augmenter l&apos;intervalle uidNumber ou effacez certains utilisa
     </message>
     <message>
         <source>Holiday Cards</source>
-        <translation type="unfinished"></translation>
+        <translation>Cartes postales</translation>
     </message>
     <message>
         <source>Hot Contacts</source>
@@ -2703,7 +2497,7 @@ Essayez d&apos;augmenter l&apos;intervalle uidNumber ou effacez certains utilisa
     </message>
     <message>
         <source>Suppliers</source>
-        <translation type="unfinished"></translation>
+        <translation>Fournisseurs</translation>
     </message>
     <message>
         <source>Time &amp; Expenses</source>
@@ -2711,11 +2505,11 @@ Essayez d&apos;augmenter l&apos;intervalle uidNumber ou effacez certains utilisa
     </message>
     <message>
         <source>VIP</source>
-        <translation type="unfinished"></translation>
+        <translation>VIP</translation>
     </message>
     <message>
         <source>Waiting</source>
-        <translation type="unfinished"></translation>
+        <translation>Attente</translation>
     </message>
     <message>
         <source>Category:</source>
@@ -2931,7 +2725,7 @@ Essayez d&apos;augmenter l&apos;intervalle uidNumber ou effacez certains utilisa
     <name>SchemaEditor</name>
     <message>
         <source>Could not fetch schema information from server.&lt;br&gt;&lt;br&gt;Reason: </source>
-        <translation type="unfinished">Impossible de récupérer les shémas du serveur.&lt;br&gt;&lt;br&gt;Raison:</translation>
+        <translation>Impossible de récupérer les shémas du serveur.&lt;br&gt;&lt;br&gt;Raison:</translation>
     </message>
 </context>
 <context>
@@ -3030,7 +2824,7 @@ Essayez d&apos;augmenter l&apos;intervalle uidNumber ou effacez certains utilisa
     </message>
     <message>
         <source>Superior:</source>
-        <translation type="unfinished">Supérieur:</translation>
+        <translation type="unfinished">Parent:</translation>
     </message>
 </context>
 <context>
@@ -3060,7 +2854,7 @@ Essayez d&apos;augmenter l&apos;intervalle uidNumber ou effacez certains utilisa
     <name>SchemaViewDesign</name>
     <message>
         <source>Form</source>
-        <translation type="unfinished"></translation>
+        <translation>Venant de</translation>
     </message>
     <message>
         <source>Server:</source>
@@ -3084,7 +2878,7 @@ Essayez d&apos;augmenter l&apos;intervalle uidNumber ou effacez certains utilisa
     </message>
     <message>
         <source>LDAP syntaxes</source>
-        <translation type="unfinished">Syntaxe LDAP</translation>
+        <translation>OIDs</translation>
     </message>
     <message>
         <source>&lt;b&gt;Class Name&lt;/b&gt;&lt;br&gt;
@@ -3249,7 +3043,7 @@ Description</translation>
     </message>
     <message>
         <source>&lt;u&gt;Binary value&lt;/u&gt;</source>
-        <translation type="unfinished">&lt;u&gt;Valeur&lt;/u&gt;</translation>
+        <translation>&lt;u&gt;Valeur numérique&lt;/u&gt;</translation>
     </message>
 </context>
 <context>
@@ -3283,11 +3077,11 @@ Description</translation>
     </message>
     <message>
         <source>Select certificate file</source>
-        <translation type="unfinished"></translation>
+        <translation>Sélectionnez un certificat</translation>
     </message>
     <message>
         <source>Select certificate key file</source>
-        <translation type="unfinished"></translation>
+        <translation>Sélectionnez un certificat (clef privée)</translation>
     </message>
 </context>
 <context>
@@ -3402,7 +3196,7 @@ Description</translation>
     </message>
     <message>
         <source>Base DNs</source>
-        <translation type="unfinished"></translation>
+        <translation>Base DNs</translation>
     </message>
     <message>
         <source>&amp;Add...</source>
@@ -3430,7 +3224,7 @@ Description</translation>
     </message>
     <message>
         <source>SASL EXTERNAL</source>
-        <translation type="unfinished"></translation>
+        <translation>SASL EXTERNAL</translation>
     </message>
     <message>
         <source>Security</source>
@@ -3438,55 +3232,55 @@ Description</translation>
     </message>
     <message>
         <source>Unencrypted connection</source>
-        <translation type="unfinished"></translation>
+        <translation>Connexion non sécurisée</translation>
     </message>
     <message>
         <source>Transport Layer Security (TLS)</source>
-        <translation type="unfinished"></translation>
+        <translation>Connexion TLS (Transport Layer Security)</translation>
     </message>
     <message>
         <source>Secure Socket Layer (SSL)</source>
-        <translation type="unfinished"></translation>
+        <translation>Connexion SSL (Secure Socket Layer)</translation>
     </message>
     <message>
         <source>Certificate keyfile:</source>
-        <translation type="unfinished"></translation>
+        <translation>Fichier contenant la clef du certificat:</translation>
     </message>
     <message>
         <source>...</source>
-        <translation type="unfinished">...</translation>
+        <translation>...</translation>
     </message>
     <message>
         <source>Use client certificates</source>
-        <translation type="unfinished"></translation>
+        <translation>Utiliser un certificat client</translation>
     </message>
     <message>
         <source>&lt;b&gt;Client certificate options&lt;/b&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;Options concernant les certificats clients&lt;/b&gt;</translation>
     </message>
     <message>
         <source>Certificate file:</source>
-        <translation type="unfinished"></translation>
+        <translation>Fichier contenant le certificat:</translation>
     </message>
     <message>
         <source>Never</source>
-        <translation type="unfinished"></translation>
+        <translation>Jamais</translation>
     </message>
     <message>
         <source>Allow</source>
-        <translation type="unfinished"></translation>
+        <translation>Autoriser</translation>
     </message>
     <message>
         <source>Try</source>
-        <translation type="unfinished"></translation>
+        <translation>Essayer</translation>
     </message>
     <message>
         <source>Demand</source>
-        <translation type="unfinished"></translation>
+        <translation>Demander</translation>
     </message>
     <message>
         <source>&lt;b&gt;Validate server certificate&lt;/b&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;Valider le certificat du serveur&lt;/b&gt;</translation>
     </message>
 </context>
 <context>
