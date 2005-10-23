@@ -52,7 +52,6 @@ class AddAttributeWizard(AddAttributeWizardDesign):
         
         self.ldapDataObject = dataObject
         
-        #self.OBJECTVALUES = objectValues
         self.SCHEMAINFO = ObjectClassAttributeInfo(self.ldapDataObject.getServerMeta())
         self.processData()
         self.initAttributeBox()
@@ -68,9 +67,8 @@ class AddAttributeWizard(AddAttributeWizardDesign):
         """ Compute all attributes which can be added according to the data of
         the object. Single values which are already given are sorted out.
         """
-        
-        objectClasses = self.ldapDataObject.getObjectClasses()
-        possibleMust, possibleMay = self.SCHEMAINFO.getAllAttributes(objectClasses)
+
+        possibleMust, possibleMay = self.ldapDataObject.getPossibleAttributes()
         
         # attributes used by the current objectClass
         #usedAttributes = Set(objectAttributes).difference(Set(['objectClass']))
