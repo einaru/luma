@@ -38,9 +38,7 @@ class BrowserWidget(QListView):
         QListView.__init__(self,parent,name,fl)
         self.setSelectionMode(QListView.Extended)
 
-        #self.connect(self, SIGNAL("clicked(QListViewItem*)"), self.itemClicked)
         self.connect(self, SIGNAL("mouseButtonPressed(int, QListViewItem*, const QPoint&, int)"), self.itemClicked)
-        #self.connect(self, SIGNAL("currentChanged ( QListViewItem * )"), self.itemClicked)
         self.connect(self, SIGNAL("collapsed(QListViewItem*)"), self.itemCollapsed)
         self.connect(self, SIGNAL("expanded(QListViewItem*)"), self.itemExpanded)
         self.connect(self, SIGNAL("rightButtonPressed(QListViewItem*, const QPoint&, int)"), self.showPopup)
@@ -75,7 +73,9 @@ class BrowserWidget(QListView):
         self.aliasDict = {}
             
         for x in self.serverList:
-            tmpItem = QListViewItem(self, x.name)
+            tmpItem = BrowserItem(self, x.name)
+            tmpItem.serverType = True
+            tmpItem.setServerName(x.name)
             tmpItem.setExpandable(True)
             self.serverDict[x.name] = tmpItem
             self.aliasDict[x.name] = x.followAliases
@@ -124,10 +124,13 @@ class BrowserWidget(QListView):
         if not (buttonNumber ==1):
             return
             
-        if not (item == None):
-            fullPath = self.getFullPath(item)
-
-            success, resultList, exceptionObject = self.getLdapItem(fullPath)
+        if item == None:
+            return
+            
+        if item.isLdapType():
+            name = item.getServerName()
+            dn = item.getDn()
+            success, resultList, exceptionObject = self.getLdapItem(name, dn)
             if not (success == None):
                 if success:
                     if len(resultList) > 0:
@@ -148,14 +151,14 @@ class BrowserWidget(QListView):
         """ Get all children of the expanded object and display them.
         """
         
+        # We have a ldap entry clicked
         if item.parent():
-            fullPath = self.getFullPath(item)
-            
-            serverName, dn = self.splitPath(fullPath)
+            serverName = item.getServerName()
+            dn = item.getDn()
             oldAliasValue = self.aliasDict[serverName]
             self.aliasDict[serverName] = False
             
-            success, resultList, exceptionObject = self.getLdapItemChildren(fullPath, 0, ['dn', 'objectClass'])
+            success, resultList, exceptionObject = self.getLdapItemChildren(serverName, dn, 0, ['dn', 'objectClass'])
         
             if success:
                 if len(resultList) == 0:
@@ -164,7 +167,10 @@ class BrowserWidget(QListView):
                 else:
                     for x in resultList:
                         tmp = x.getPrettyRDN()
-                        tmpItem = QListViewItem(item, tmp)
+                        tmpItem = BrowserItem(item, tmp)
+                        tmpItem.ldapType = True
+                        tmpItem.setServerName(item.getServerName())
+                        tmpItem.setDn(x.getDN())
                 
                         # Add the alias icon if the entry belongs to the 
                         # alias objectClass
@@ -185,11 +191,12 @@ class BrowserWidget(QListView):
                 errorMsg.append(str(exceptionObject))
                 dialog.setErrorMessage(errorMsg)
                 dialog.exec_loop()
-                
+        
+        # We have a server item clicked
         else:
             serverList = ServerList()
             serverList.readServerList()
-            serverMeta = serverList.getServerObject(self.getFullPath(item))
+            serverMeta = serverList.getServerObject(item.getServerName())
             tmpList = []
             if serverMeta.autoBase:
                 success, tmpList, exceptionObject = LumaConnection(serverMeta).getBaseDNList()
@@ -208,7 +215,11 @@ class BrowserWidget(QListView):
                 tmpList = []
                 
             for base in tmpList:
-                tmpBase = QListViewItem(item, base)
+                tmpBase = BrowserItem(item, base)
+                tmpBase.baseType = True
+                tmpBase.ldapType = True
+                tmpBase.setDn(base)
+                tmpBase.setServerName(item.getServerName())
                 tmpBase.setExpandable(1)
             
 ###############################################################################
@@ -217,55 +228,14 @@ class BrowserWidget(QListView):
         """ Delete all children if a ldap object collapses.
         """
         
-        #fullPath = self.getFullPath(item)
-        #serverName, ldapObject = self.splitPath(fullPath)
-        
         while item.childCount() > 0:
             item.takeItem(item.firstChild())
-        
 
 ###############################################################################
 
-    def getFullPath(self, item):
-        """ Return the full dn of an object, including its server.
-        """
-        
-        try:
-            tmpList = []
-            
-            pathItem = unicode(item.text(0)).encode('utf-8')
-            pathItem = escapeSpecialChars(pathItem)
-            tmpList.append(pathItem)
-            
-            while item.parent():
-                oldItem = item
-                item = item.parent()
-                
-                # Try to get the currently used baseDN
-                if not (item == None):
-                    tmpItem = item.parent()
-                    if tmpItem == None:
-                        self.currentBase = unicode(oldItem.text(0)).encode('utf-8')
-                    
-                pathItem = unicode(item.text(0)).encode('utf-8')
-                pathItem = escapeSpecialChars(pathItem)
-                tmpList.append(pathItem)
-
-            return ",".join(tmpList)
-        except AttributeError, e:
-            tmpString = "Attribute Error in function 'BrowserWidget.getFullPath()'. Reason:\n"
-            tmpString += str(e)
-            environment.logMessage(LogObject("Error", tmpString))
-
-###############################################################################
-
-    def getLdapItem(self, itemPath):
+    def getLdapItem(self, serverName, dn):
         """ Get all data of a ldap object given by its path.
         """
-        
-        serverName, ldapObject = self.splitPath(itemPath)
-        if len(ldapObject) == 0:
-            return (None, None, None)
         
         serverMeta = self.serverListObject.getServerObject(serverName)
         
@@ -277,25 +247,14 @@ class BrowserWidget(QListView):
         if not bindSuccess:
                 return (False, None, exceptionObject)
                 
-        success, resultList, exceptionObject = conObject.search(ldapObject, ldap.SCOPE_BASE)
+        success, resultList, exceptionObject = conObject.search(dn, ldap.SCOPE_BASE)
         conObject.unbind()
     
         return (success, resultList, exceptionObject)
-        
-###############################################################################
-
-    def splitPath(self, itemPath):
-        """ Return the server and the DN of an items path.
-        """
-        
-        tmp = string.split(itemPath, ",")
-        serverName = tmp[-1]
-        ldapObject = itemPath[:-len(serverName)-1]
-        return serverName, ldapObject
 
 ###############################################################################
 
-    def getLdapItemChildren(self, itemPath, allLevel, noAttributes=None):
+    def getLdapItemChildren(self, serverName, dn, allLevel, noAttributes=None):
         """ Return a list of children a ldap object has.
         
         allLevel == 1:
@@ -305,10 +264,6 @@ class BrowserWidget(QListView):
             get only next level
         """
         
-        serverName, ldapObject = self.splitPath(itemPath)
-        if len(ldapObject) == 0:
-            return None
-            
         serverMeta = self.serverListObject.getServerObject(serverName)
         searchResult = None
         
@@ -329,7 +284,7 @@ class BrowserWidget(QListView):
             searchLevel = ldap.SCOPE_ONELEVEL
             
                 
-        success, resultList, exceptionObject = conObject.search(ldapObject, searchLevel,self.searchObjectClass, noAttributes, 0)
+        success, resultList, exceptionObject = conObject.search(dn, searchLevel,self.searchObjectClass, noAttributes, 0)
 
         conObject.unbind()
         
@@ -372,14 +327,13 @@ class BrowserWidget(QListView):
         entryList = []
         partialResults = False
         for x in selectedItems:
-            fullPath = self.getFullPath(x)
-            
             # check if we selected a server name
-            serverName, ldapObject = self.splitPath(fullPath)
-            if len(ldapObject) == 0:
+            if x.isServerType():
                 continue
-                
-            success, resultList, exceptionObject = self.getLdapItem(fullPath)
+              
+            serverName = x.getServerName()
+            dn = x.getDn()
+            success, resultList, exceptionObject = self.getLdapItem(serverName, dn)
             
             if success:
                 entryList.extend(resultList)
@@ -426,14 +380,13 @@ class BrowserWidget(QListView):
         entryList = []
         partialResults = False
         for x in selectedItems:
-            fullPath = self.getFullPath(x)
-            
             # check if we selected a server name
-            serverName, ldapObject = self.splitPath(fullPath)
-            if len(ldapObject) == 0:
+            if x.isServerType():
                 continue
-                
-            success, resultList, exceptionObject = self.getLdapItemChildren(fullPath, 1)
+            
+            serverName = x.getServerName()
+            dn = x.getDn()
+            success, resultList, exceptionObject = self.getLdapItemChildren(serverName, dn, 1)
             
             if success:
                 entryList.extend(resultList)
@@ -502,14 +455,13 @@ class BrowserWidget(QListView):
         parentEntries = []
         partialResults = False
         for x in parentDNList:
-            fullPath = self.getFullPath(x)
-            
             # check if we selected a server name
-            serverName, ldapObject = self.splitPath(fullPath)
-            if len(ldapObject) == 0:
+            if x.isServerType():
                 continue
-                
-            success, resultList, exceptionObject = self.getLdapItem(fullPath)
+    
+            serverName = x.getServerName()
+            dn = x.getDn()
+            success, resultList, exceptionObject = self.getLdapItem(serverName, dn)
             
             if success:
                 parentEntries.extend(resultList)
@@ -523,14 +475,13 @@ class BrowserWidget(QListView):
         # get ldap entries for the selected items
         entryList = []
         for x in selectedItems:
-            fullPath = self.getFullPath(x)
-            
             # check if we selected a server name
-            serverName, ldapObject = self.splitPath(fullPath)
-            if len(ldapObject) == 0:
+            if x.isServerType():
                 continue
-                
-            success, resultList, exceptionObject = self.getLdapItemChildren(fullPath, 1)
+            
+            serverName = x.getServerName()
+            dn = x.getDn()
+            success, resultList, exceptionObject = self.getLdapItemChildren(serverName, dn, 1)
             
             if success:
                 entryList.extend(resultList)
@@ -579,14 +530,13 @@ class BrowserWidget(QListView):
         entryList = []
         partialResults = False
         for x in selectedItems:
-            fullPath = self.getFullPath(x)
-            
             # check if we selected a server name
-            serverName, ldapObject = self.splitPath(fullPath)
-            if len(ldapObject) == 0:
+            if x.isServerType():
                 continue
-                
-            success, resultList, exceptionObject = self.getLdapItem(fullPath)
+            
+            serverName = x.getServerName()
+            dn = x.getDn()
+            success, resultList, exceptionObject = self.getLdapItem(serverName, dn)
             
             if success:
                 entryList.extend(resultList)
@@ -618,6 +568,9 @@ class BrowserWidget(QListView):
         """ Display popup menu.
         """
         
+        if tmpItem == None:
+            return
+            
         #self.itemClicked(tmpItem)
         #self.emit(SIGNAL("clicked(QListViewItem*)"), (tmpItem,))
         self.popupItem = tmpItem
@@ -626,79 +579,78 @@ class BrowserWidget(QListView):
         aliasIconFile = os.path.join(tmpDirObject, "share", "luma", "icons", "alias.png")
         popupMenu = QPopupMenu()
         
-        itemPath = self.getFullPath(tmpItem)
-        server, dn = self.splitPath(itemPath)
+        server = tmpItem.getServerName()
+        dn = tmpItem.getDn()
         
-        if not (tmpItem == None):
-            # try to find how many items are selected
-            multipleSelected = False
-            listIterator = QListViewItemIterator(self)
-            tmpInt = 0
-            while listIterator.current():
-                item = listIterator.current()
+        # try to find how many items are selected
+        multipleSelected = False
+        listIterator = QListViewItemIterator(self)
+        tmpInt = 0
+        while listIterator.current():
+            item = listIterator.current()
             
-                if item.isSelected():
-                    tmpInt += 1
+            if item.isSelected():
+                tmpInt += 1
                     
-                if tmpInt >= 2:
-                    multipleSelected = True
-                    break 
+            if tmpInt >= 2:
+                multipleSelected = True
+                break 
                 
-                listIterator += 1
+            listIterator += 1
             
-            menuID = popupMenu.insertItem(QIconSet(QPixmap(aliasIconFile)), self.trUtf8("Follow Aliases"), self.enableAliases)
-            popupMenu.setItemChecked(menuID, self.aliasDict[server])
+        menuID = popupMenu.insertItem(QIconSet(QPixmap(aliasIconFile)), self.trUtf8("Follow Aliases"), self.enableAliases)
+        popupMenu.setItemChecked(menuID, self.aliasDict[server])
                 
-            if not (tmpItem.parent() == None):
-                # different menus for right click
-                exportMenu = QPopupMenu()
-                self.addItemMenu = QPopupMenu()
-                deleteMenu = QPopupMenu()
+        if not (tmpItem.parent() == None):
+            # different menus for right click
+            exportMenu = QPopupMenu()
+            self.addItemMenu = QPopupMenu()
+            deleteMenu = QPopupMenu()
         
-                # Icon files for the menu entries
-                addIconFile = os.path.join(tmpDirObject, "share", "luma", "icons", "newEntry.png")
-                delIconFile = os.path.join(tmpDirObject, "share", "luma", "icons", "deleteEntry.png")
-                exportIconFile = os.path.join(tmpDirObject, "share", "luma", "icons", "exportLdif.png")
+            # Icon files for the menu entries
+            addIconFile = os.path.join(tmpDirObject, "share", "luma", "icons", "newEntry.png")
+            delIconFile = os.path.join(tmpDirObject, "share", "luma", "icons", "deleteEntry.png")
+            exportIconFile = os.path.join(tmpDirObject, "share", "luma", "icons", "exportLdif.png")
         
         
-                # Fill export menu
-                if multipleSelected:
-                    exportMenu.insertItem(self.trUtf8("Items"), self.exportItem)
-                    exportMenu.insertItem(self.trUtf8("Subtrees"), self.exportItemSubtree)
-                    exportMenu.insertItem(self.trUtf8("Subtrees with Parents"), self.exportItemAll)
-                else:
-                    exportMenu.insertItem(self.trUtf8("Item"), self.exportItem)
-                    exportMenu.insertItem(self.trUtf8("Subtree"), self.exportItemSubtree)
-                    exportMenu.insertItem(self.trUtf8("Subtree with Parents"), self.exportItemAll)
+            # Fill export menu
+            if multipleSelected:
+                exportMenu.insertItem(self.trUtf8("Items"), self.exportItem)
+                exportMenu.insertItem(self.trUtf8("Subtrees"), self.exportItemSubtree)
+                exportMenu.insertItem(self.trUtf8("Subtrees with Parents"), self.exportItemAll)
+            else:
+                exportMenu.insertItem(self.trUtf8("Item"), self.exportItem)
+                exportMenu.insertItem(self.trUtf8("Subtree"), self.exportItemSubtree)
+                exportMenu.insertItem(self.trUtf8("Subtree with Parents"), self.exportItemAll)
 
         
-                # Fill delete menu
-                if multipleSelected:
-                    deleteMenu.insertItem(self.trUtf8("Items"), self.deleteItem)
-                    deleteMenu.insertItem(self.trUtf8("Subtrees"), self.deleteItemsRecursive)
-                    deleteMenu.insertItem(self.trUtf8("Subtrees without Node"), self.deleteSubtree)
-                else:
-                    deleteMenu.insertItem(self.trUtf8("Item"), self.deleteItem)
-                    deleteMenu.insertItem(self.trUtf8("Subtree"), self.deleteItemsRecursive)
-                    deleteMenu.insertItem(self.trUtf8("Subtree without Node"), self.deleteSubtree)
+            # Fill delete menu
+            if multipleSelected:
+                deleteMenu.insertItem(self.trUtf8("Items"), self.deleteItem)
+                deleteMenu.insertItem(self.trUtf8("Subtrees"), self.deleteItemsRecursive)
+                deleteMenu.insertItem(self.trUtf8("Subtrees without Node"), self.deleteSubtree)
+            else:
+                deleteMenu.insertItem(self.trUtf8("Item"), self.deleteItem)
+                deleteMenu.insertItem(self.trUtf8("Subtree"), self.deleteItemsRecursive)
+                deleteMenu.insertItem(self.trUtf8("Subtree without Node"), self.deleteSubtree)
                 
-                # Fill add menu
-                self.addItemMenu.clear()
-                self.addItemMenu.insertItem(self.trUtf8("Attribute"), self.addAttribute)
-                self.addItemMenu.insertSeparator()
-                templates = TemplateList()
-                for x in templates.templateList:
-                    self.addItemMenu.insertItem(x.name, self.addItem)
+            # Fill add menu
+            self.addItemMenu.clear()
+            self.addItemMenu.insertItem(self.trUtf8("Attribute"), self.addAttribute)
+            self.addItemMenu.insertSeparator()
+            templates = TemplateList()
+            for x in templates.templateList:
+                self.addItemMenu.insertItem(x.name, self.addItem)
                     
-                popupMenu.insertSeparator()
-                popupMenu.insertItem(QIconSet(QPixmap(addIconFile)), self.trUtf8("Add"), self.addItemMenu)
-                popupMenu.insertSeparator()
-                popupMenu.insertItem(QIconSet(QPixmap(exportIconFile)), self.trUtf8("Export"), exportMenu)
-                popupMenu.insertSeparator()
-                popupMenu.insertItem(QIconSet(QPixmap(delIconFile)), self.trUtf8("Delete"), deleteMenu)
+            popupMenu.insertSeparator()
+            popupMenu.insertItem(QIconSet(QPixmap(addIconFile)), self.trUtf8("Add"), self.addItemMenu)
+            popupMenu.insertSeparator()
+            popupMenu.insertItem(QIconSet(QPixmap(exportIconFile)), self.trUtf8("Export"), exportMenu)
+            popupMenu.insertSeparator()
+            popupMenu.insertItem(QIconSet(QPixmap(delIconFile)), self.trUtf8("Delete"), deleteMenu)
              
-            self.itemClicked(1, tmpItem)
-            popupMenu.exec_loop(point)
+        self.itemClicked(1, tmpItem)
+        popupMenu.exec_loop(point)
 
 ###############################################################################
 
@@ -760,13 +712,9 @@ class BrowserWidget(QListView):
         if len(selectedItems) == 0:
             return
         
-        fqn = self.getFullPath(selectedItems[0])
-        tmpList = fqn.split(",")
-                
-        serverName = tmpList[-1]
-        del tmpList[-1]
-        
-        baseDN = ",".join(tmpList)
+        firstItem = selectedItems[0]
+        serverName = firstItem.getServerName()
+        baseDN = firstItem.getDn()
         
         tmpObject = ServerList()
         tmpObject.readServerList()
@@ -819,14 +767,14 @@ class BrowserWidget(QListView):
         entryList = []
         partialResults = False
         for x in selectedItems:
-            fullPath = self.getFullPath(x)
-            
             # check if we selected a server name
-            serverName, ldapObject = self.splitPath(fullPath)
-            if len(ldapObject) == 0:
+            if x.isServerType():
                 continue
                 
-            success, resultList, exceptionObject = self.getLdapItemChildren(fullPath, withParent)
+            serverName = x.getServerName()
+            dn = x.getDn()
+                
+            success, resultList, exceptionObject = self.getLdapItemChildren(serverName, dn, withParent)
             
             if success:
                 entryList.extend(resultList)
@@ -958,8 +906,8 @@ class BrowserWidget(QListView):
 ###############################################################################
         
     def enableAliases(self):
-        itemPath = self.getFullPath(self.popupItem)
-        serverName, dn = self.splitPath(itemPath)
+        serverName = self.popupItem.getServerName()
+        dn = self.popupItem.getDn()
         
         self.aliasDict[serverName] = not self.aliasDict[serverName]
         
@@ -971,7 +919,7 @@ class BrowserWidget(QListView):
         
 ###############################################################################
 
-    def reopenDN(self, dnString):
+    def reopenDN(self, serverString, dnString):
         """ Reopens the listitem for the given dnString.
         
         The dnString consits of the actuacl dn and its server alias appended. Example:
@@ -981,9 +929,10 @@ class BrowserWidget(QListView):
         listIterator = QListViewItemIterator(self)
         while listIterator.current():
             item = listIterator.current()
-            itemDN = self.getFullPath(item)
+            itemDN = item.getDn()
+            serverName = item.getServerName()
             
-            if itemDN == dnString: 
+            if (itemDN == dnString) and (serverName == serverString): 
                 item.setOpen(0)
                 item.setOpen(1)
                 break
@@ -1011,3 +960,40 @@ class ChildWindow(QMainWindow):
         self.emit(PYSIGNAL("child_closed"), (self,))
         self.deleteLater()
         
+###############################################################################
+
+class BrowserItem(QListViewItem):
+
+    def __init__(self, parent, text):
+        QListViewItem.__init__(self, parent, text)
+        
+        self.serverType = False
+        self.baseType = False
+        self.ldapType = False
+        
+        # DN of the entry if it is not a server item
+        self.dn = None
+        
+        # name of the server the item belongs to
+        self.serverName = None
+
+    def isServerType(self):
+        return self.serverType
+            
+    def isBaseType(self):
+        return self.baseType
+            
+    def isLdapType(self):
+        return self.ldapType
+            
+    def setServerName(self, serverString):
+        self.serverName = serverString
+        
+    def getServerName(self):
+        return self.serverName
+        
+    def getDn(self):
+        return self.dn
+        
+    def setDn(self, dnString):
+        self.dn = dnString
