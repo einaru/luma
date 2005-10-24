@@ -10,7 +10,6 @@
 
 from os import listdir
 import os
-import string
 import os.path
 from ConfigParser import ConfigParser
 from ConfigParser import NoOptionError
