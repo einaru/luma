@@ -10,7 +10,6 @@
 
 from qt import *
 from copy import deepcopy
-import string
 import ldap
 import os.path
 import re
@@ -130,6 +129,15 @@ class BrowserWidget(QListView):
         if item.isLdapType():
             name = item.getServerName()
             dn = item.getDn()
+            
+            # Update under which base we are working now
+            tmpItem = item
+            while tmpItem.parent():
+                if tmpItem.isBaseType():
+                    self.currentBase = tmpItem.getDn()
+                    break
+                tmpItem = tmpItem.parent() 
+                
             success, resultList, exceptionObject = self.getLdapItem(name, dn)
             if not (success == None):
                 if success:
