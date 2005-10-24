@@ -52,7 +52,7 @@ class ImprovedServerDialog(ImprovedServerDialogDesign):
         self.encryptionLabel.installEventFilter(self)
         self.authLabel.installEventFilter(self)
         self.ldapOptLabel.installEventFilter(self)
-        self.namePage.installEventFilter(self)
+        #self.namePage.installEventFilter(self)
         
         self.labelDictionary = {self.networkLabel: 1, self.credentialLabel: 2, 
             self.encryptionLabel: 1, self.authLabel: 2, self.ldapOptLabel: 4}
@@ -97,6 +97,7 @@ class ImprovedServerDialog(ImprovedServerDialogDesign):
         self.configStack.raiseWidget(5)
         self.serverNameStack.raiseWidget(0)
         self.serverLabel.setText(self.trUtf8("<b>No server selected</b>"))
+        self.renameButton.hide()
         
         if self.serverListObject.serverList == None:
             return
@@ -126,6 +127,7 @@ class ImprovedServerDialog(ImprovedServerDialogDesign):
             self.oldServerItem = None
             self.serverLabel.setText(self.trUtf8("<b>No server selected</b>"))
             self.configStack.raiseWidget(5)
+            self.renameButton.hide()
             return
     
         # Server selected
@@ -145,6 +147,8 @@ class ImprovedServerDialog(ImprovedServerDialogDesign):
             self.serverLabel.setText(QString("<b>%1</b>").arg(serverItem.text(0)))
             self.configStack.raiseWidget(0)
             self.serverNameStack.raiseWidget(0)
+            self.renameButton.show()
+            
             
             selectedServerString = unicode(serverItem.text(0))
             x = self.serverListObject.getServerObject(selectedServerString)
@@ -486,7 +490,7 @@ class ImprovedServerDialog(ImprovedServerDialogDesign):
     def saveSettings(self):
         self.serverListObject.saveSettings(self.serverListObject.serverList)
         
-        self.displayServerList()
+        #self.displayServerList()
         self.saveButton.setEnabled(False)
         self.SAVED = True
 
