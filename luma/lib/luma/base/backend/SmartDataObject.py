@@ -8,12 +8,12 @@
 #
 ###########################################################################
 
-import string
 import ldap
 import ldif,dsml
 import copy
 import base64
 import StringIO
+from sets import Set
 
 from base.backend.ObjectClassAttributeInfo import ObjectClassAttributeInfo
 from base.utils import stripSpecialChars
@@ -39,9 +39,11 @@ class SmartDataObject (object):
         # Important for lower- and uppercase variants
         self.objectClassName = None
         for x in self.data.keys():
-                if "objectclass" == string.lower(x):
+                if "objectclass" == x.lower():
                     self.objectClassName = x
                     break
+        if self.objectClassName == None:
+            self.objectClassName = "objectClass"
         
         # Set server meta information
         self.serverMeta = serverMeta
@@ -116,7 +118,7 @@ class SmartDataObject (object):
             #return None
             return []
         else:
-            return self.data[self.objectClassName]
+            return self.data[self.objectClassName][:]
             
 ###############################################################################
 
@@ -222,6 +224,11 @@ class SmartDataObject (object):
         else:
             return None
             
+###############################################################################
+
+    def getAttributeListForObjectClass(self, objectClass):
+        return self.serverSchema.getAttributeListForObjectClass(objectClass)
+    
 ###############################################################################
 
     def addAttributeValue(self, attributeName=None, valueList=None, replaceOldValues=False):
@@ -372,7 +379,7 @@ class SmartDataObject (object):
                 errorList.append(" Current data: " + repr(self.data))
                         
                 raise LdapDataException("".join(errorList))
-        elif "rdn" == string.lower(attributeName):
+        elif "rdn" == attributeName.lower():
             self.setDN(newValue)
         else:
             errorList = []
@@ -394,10 +401,10 @@ class SmartDataObject (object):
             
         mustSet, maySet = self.getPossibleAttributes()
         attributeList = mustSet.union(maySet)
-        attributeName = string.lower(attributeName)
+        attributeName = attributeName.lower()
         
         for x in attributeList:
-            if attributeName == string.lower(x):
+            if attributeName == x.lower():
                 return True
                 
         return False
@@ -450,7 +457,7 @@ class SmartDataObject (object):
         if None == attributeName:
             raise FunctionArgumentException("Function isAttributeImage(attributeName) called without correct parameters.")
             
-        if "jpegphoto" == string.lower(attributeName):
+        if "jpegphoto" == attributeName.lower():
             return True
         else:
             return False
@@ -464,7 +471,7 @@ class SmartDataObject (object):
         if None == attributeName:
             raise FunctionArgumentException("Function isAttributePassword(attributeName) called without correct parameters.")
           
-        tmpName = string.lower(attributeName)
+        tmpName = attributeName.lower()
         if tmpName in self.passwordList:
             return True
         else:
@@ -479,7 +486,7 @@ class SmartDataObject (object):
         """
         
         for x in self.getObjectClasses():
-            if "alias" == string.lower(x):
+            if "alias" == x.lower():
                 return True
             
         return False
@@ -657,7 +664,7 @@ class SmartDataObject (object):
         """ Add an objectClass to the object.
         """
         
-        className = string.lower(className)
+        className = className.lower()
         className = className.encode('utf-8')
         
         if self.hasObjectClass(className):
@@ -673,8 +680,8 @@ class SmartDataObject (object):
                     errorList.append(" Current objectClasses: " + repr(self.getObjectClasses()))
                         
                     raise LdapDataException("".join(errorList))
-                
-        self.data['objectClass'].append(className)
+        
+        self.data[self.objectClassName].append(className)
             
 ###############################################################################
 
@@ -682,10 +689,10 @@ class SmartDataObject (object):
         """ Checks if the current object has the objectClass className.
         """
         
-        className = string.lower(className)
+        className = className.lower()
         
         for x in self.getObjectClasses():
-            if className == string.lower(x):
+            if className == x.lower():
                 return True
                 
         return False
@@ -696,10 +703,10 @@ class SmartDataObject (object):
         """ Check if the current object has the attribute attributeName.
         """
         
-        attributeName = string.lower(attributeName)
+        attributeName = attributeName.lower()
         
         for x in self.getAttributeList():
-            if attributeName == string.lower(x):
+            if attributeName == x.lower():
                 return True
                 
         return False
@@ -707,7 +714,56 @@ class SmartDataObject (object):
 ###############################################################################
 
     def deleteObjectClass(self, className):
-        pass
+        className = className.lower()
+
+        found = False
+        for x in self.getObjectClasses():
+            if className == x.lower():
+                className = x
+                found = True
+                break
+        if not found:
+            return
+            
+        
+        # We have to make sure that one structural class remains after deleting
+        if self.isObjectclassStructural(className):
+            classList = self.getObjectClasses()
+            classList.remove(className)
+            tmpList = self.getObjectClassChain(className, classList)
+            if len(tmpList) == 0:
+                errorList = []
+                errorList.append("Can't delete objectClass to object. ObjectClass " + className + " is the last structural Class and can't be deleted.")
+                errorList.append(" DN: " + self.getPrettyDN() + ".")
+                errorList.append(" Current objectClasses: " + repr(self.getObjectClasses()))
+                        
+                raise LdapDataException("".join(errorList))
+
+        self.data[self.objectClassName].remove(className)
+
+        must, may = self.getPossibleAttributes()
+        all = Set(self.getAttributeList())
+        rest = all - must.union(may)
+
+        for x in rest:
+            self.deleteAttribute(x)
+        
+###############################################################################
+
+    def getObsoleteAttributes(self, className):
+        """ Returns list of attributes which will be removed when className 
+            is removed from the list of objectClasses.
+        """
+        
+        attributeList = self.serverSchema.getAttributeListForObjectClass(className)
+        currentList = self.getAttributeList()
+        
+        tmpList = []
+        for x in currentList:
+            if x in attributeList:
+                tmpList.append(x)
+        
+        return tmpList
         
 ###############################################################################
 
@@ -790,7 +846,13 @@ class SmartDataObject (object):
         return self.serverSchema.isStructural(objclass)
 
 ###############################################################################
-        
+
+    def getObjectClassChain(self, className, classList):
+        """ Returns a list of objectClasses which belong to the same chain 
+            as className, given by classList.
+        """
+
+        return self.serverSchema.getObjectClassChain(className, classList)
         
 ###############################################################################
 ###############################################################################

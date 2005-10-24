@@ -13,7 +13,6 @@ import ldap.schema
 import ldapurl
 
 import re
-import string
 from sets import Set
 from copy import copy
 import threading
@@ -129,7 +128,7 @@ class ObjectClassAttributeInfo(object):
         classList = self.getClassesWithParents(classList)
         
         for x in classList:
-            x = string.lower(x)
+            x = x.lower()
             if not x in self.objectClassesDict:
                 continue
             must |= Set(self.objectClassesDict[x]["MUST"])
@@ -149,7 +148,7 @@ class ObjectClassAttributeInfo(object):
         classList = self.getClassesWithParents(classList)
         
         for x in classList:
-            must |= Set(self.objectClassesDict[string.lower(x)]["MUST"])
+            must |= Set(self.objectClassesDict[x.lower()]["MUST"])
             
         return must
 
@@ -165,7 +164,7 @@ class ObjectClassAttributeInfo(object):
         classList = self.getClassesWithParents(classList)
         
         for x in classList:
-            may |= Set(self.objectClassesDict[string.lower(x)]["MAY"])
+            may |= Set(self.objectClassesDict[x.lower()]["MAY"])
             
         return may
 
@@ -178,18 +177,18 @@ class ObjectClassAttributeInfo(object):
         must = Set()
         may = Set()
         
-        attribute = string.lower(attribute)
+        attribute = attribute.lower()
         
         if ";binary" == attribute[-7:]:
             attribute = attribute[:-7]
         
         for (key,value) in self.objectClassesDict.items():
             for x in value['MUST']:
-                if attribute == string.lower(x):
+                if attribute == x.lower():
                     must.add(self.objectClassesDict[key]["NAME"])
             
             for x in value['MAY']:
-                if attribute == string.lower(x):
+                if attribute == x.lower():
                     may.add(self.objectClassesDict[key]["NAME"])
 
         return must, may
@@ -201,7 +200,7 @@ class ObjectClassAttributeInfo(object):
         """ Check if an attribute is single.
         """
         
-        attribute = string.lower(attribute)
+        attribute = attribute.lower()
         
         if ";binary" == attribute[-7:]:
             attribute = attribute[:-7]
@@ -220,7 +219,7 @@ class ObjectClassAttributeInfo(object):
         if classList == None:
             raise "Missing Arguments to Funktion 'isMust(attribute, objectClassesDict)"
 
-        attribute = string.lower(attribute)
+        attribute = attribute.lower()
         
         if ";binary" == attribute[-7:]:
             attribute = attribute[:-7]
@@ -229,8 +228,8 @@ class ObjectClassAttributeInfo(object):
         
         value = False
         for x in classList:
-            tmpList = self.objectClassesDict[string.lower(x)]["MUST"]
-            tmpList = map(lambda tmpString: string.lower(tmpString), tmpList)
+            tmpList = self.objectClassesDict[x.lower()]["MUST"]
+            tmpList = map(lambda tmpString: tmpString.lower(), tmpList)
             if attribute in tmpList:
                 value = True
                 break
@@ -243,7 +242,7 @@ class ObjectClassAttributeInfo(object):
         """ Check if the given objectClass is structural.
         """
         
-        objectClass = string.lower(objectClass)
+        objectClass = objectClass.lower()
         if "STRUCTURAL" == self.objectClassesDict[objectClass]["KIND"]:
             return True
         else:
@@ -256,7 +255,7 @@ class ObjectClassAttributeInfo(object):
         """
         
         retVal = False
-        attribute = string.lower(attribute)
+        attribute = attribute.lower()
     
         if attribute in self.attributeDict:
             syntax = self.attributeDict[attribute]["SYNTAX"]
@@ -275,7 +274,7 @@ class ObjectClassAttributeInfo(object):
         in the schema.
         """
 
-        return self.objectClassesDict.has_key(string.lower(objectClass))
+        return self.objectClassesDict.has_key(objectClass.lower())
 
 ###############################################################################
 
@@ -291,7 +290,7 @@ class ObjectClassAttributeInfo(object):
         """ Return which syntax the attribute has.
         """
         
-        attribute = string.lower(attribute)
+        attribute = attribute.lower()
         
         if ";binary" == attribute[-7:]:
             attribute = attribute[:-7]
@@ -310,7 +309,7 @@ class ObjectClassAttributeInfo(object):
         if None == className:
             return None
         
-        className = string.lower(className)
+        className = className.lower()
         
         if "top" == className:
             return []
@@ -319,7 +318,7 @@ class ObjectClassAttributeInfo(object):
         tmpList = copy(self.objectClassesDict[className]["PARENTS"])
         
         while len(tmpList) > 0:
-            currentClass = string.lower(tmpList[0])
+            currentClass = tmpList[0].lower()
             tmpList += self.objectClassesDict[currentClass]["PARENTS"]
             parentList.append(self.objectClassesDict[currentClass]['NAME'])
             del tmpList[0]
@@ -332,8 +331,8 @@ class ObjectClassAttributeInfo(object):
         """ Returns if two objectClasses belong to the same class chain.
         """
         
-        firstClass = string.lower(firstClass)
-        secondClass = string.lower(secondClass)
+        firstClass = firstClass.lower()
+        secondClass = secondClass.lower()
         
         firstParents = self.getParents(firstClass)
         secondParents = self.getParents(secondClass)
@@ -345,6 +344,20 @@ class ObjectClassAttributeInfo(object):
         else:
             return False
 
+###############################################################################
+
+    def getObjectClassChain(self, className, classList):
+        """ Returns a list of objectClasses which belong to the same chain 
+            as className, given by classList.
+        """
+        
+        tmpList = []
+        for x in classList:
+            if self.sameObjectClassChain(className, x):
+                tmpList.append(x)
+                
+        return tmpList
+    
 ###############################################################################
 
     def classAllowed(self, className, classList):
@@ -413,7 +426,7 @@ class ObjectClassAttributeInfo(object):
         attributeList = []
         
         for x in tmpList:
-            dataDict = self.attributeDict[string.lower(x)]
+            dataDict = self.attributeDict[x.lower()]
             if dataDict["SYNTAX"] == syntaxString:
                 attributeList.append(x)
                 
@@ -429,7 +442,7 @@ class ObjectClassAttributeInfo(object):
         matchingList = []
         
         for x in tmpList:
-            dataDict = self.matchingDict[string.lower(x)]
+            dataDict = self.matchingDict[x.lower()]
             if dataDict["SYNTAX"] == syntaxString:
                 matchingList.append(x)
                 
@@ -462,11 +475,33 @@ class ObjectClassAttributeInfo(object):
         attributeList = []
         
         for x in tmpList:
-            dataDict = self.attributeDict[string.lower(x)]
+            dataDict = self.attributeDict[x.lower()]
             if dataDict["EQUALITY"] == matchingString:
                 attributeList.append(x)
                 
         return attributeList
+        
+###############################################################################
+
+    def getAttributeListForObjectClass(self, objectClass):
+        """ Returns a list of attributes which belong to objectClass.
+        """
+        
+        objectClass = objectClass.lower()
+        tmpList = []
+        
+        attributeDict = self.objectClassesDict[objectClass]["MUST"]
+        for x in attributeDict:
+            tmpList.append(x)
+            
+        attributeDict = self.objectClassesDict[objectClass]["MAY"]
+        for x in attributeDict:
+            tmpList.append(x)
+        
+        return tmpList
+        
+        
+        
         
 ###############################################################################
 ###############################################################################
@@ -657,8 +692,8 @@ class WorkerThreadFetch(threading.Thread):
                 for parent in y.sup:
                     # filter out objectclass top. all classes are 
                     # derived from top
-                    if not ("top" == string.lower(parent)):
-                        parents.append(string.lower(parent))
+                    if not ("top" == parent.lower()):
+                        parents.append(parent.lower())
                             
                 oid = ""
                 if not (y.oid == None):
@@ -667,7 +702,7 @@ class WorkerThreadFetch(threading.Thread):
                 # store values for each name the current class has.
                 # IMPORTANT: the key is always lowercase
                 for name in y.names:
-                    self.objectClassesDict[string.lower(name)] = {"DESC": desc, 
+                    self.objectClassesDict[name.lower()] = {"DESC": desc, 
                         "MUST": must, "MAY": may, "NAME": name, "KIND": kind,
                         "PARENTS": parents, "OID": oid}
                             
@@ -679,7 +714,7 @@ class WorkerThreadFetch(threading.Thread):
                     
                 nameList = y.names
                 for z in nameList:
-                    self.attributeDict[string.lower(z)] = {"DESC": y.desc, 
+                    self.attributeDict[z.lower()] = {"DESC": y.desc, 
                         "SINGLE": y.single_value, "SYNTAX": y.syntax,
                         "NAME": z, "COLLECTIVE": y.collective, 
                         "EQUALITY": y.equality, "OBSOLETE": y.obsolete,
@@ -698,7 +733,7 @@ class WorkerThreadFetch(threading.Thread):
             for x in oidList:
                 y = schema.get_obj(ldap.schema.MatchingRule, x)
                 for z in y.names:
-                    self.matchingDict[string.lower(z)] = {"DESC": y.desc, "OID": y.oid,
+                    self.matchingDict[z.lower()] = {"DESC": y.desc, "OID": y.oid,
                         "OBSOLETE": y.obsolete, "SYNTAX": y.syntax,
                         "NAME": z}
                 
