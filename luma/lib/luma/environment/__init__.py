@@ -20,6 +20,12 @@ lumaScriptName = None
 
 # The home directory of the user.
 userHomeDir = None
+
+# Path where the icons are store
+iconPath = None
+
+# Path where the module code is stored
+codePath = None
     
 ###############################################################################
 
@@ -27,6 +33,8 @@ def setPaths():
     global lumaInstallationPrefix 
     global lumaScriptName 
     global userHomeDir 
+    global iconPath
+    global codePath
     
     tmpList = os.path.split(sys.argv[0])
     
@@ -36,12 +44,15 @@ def setPaths():
     if (tmpList[1] in ('luma.py','luma.pyc','luma.pyo')) and (os.path.split(os.path.abspath(tmpList[0]))[1] == 'luma'):
         tmpPrefix = os.path.abspath(tmpList[0])
         lumaInstallationPrefix = os.path.split(os.path.split(tmpPrefix)[0])[0]
+        codePath = os.path.split(os.path.split(tmpPrefix)[0])[0]
     else:
         tmpPrefix = os.path.abspath(tmpList[0])
         lumaInstallationPrefix = os.path.split(tmpPrefix)[0]
+        codePath = os.path.split(tmpPrefix)[0]
         
     lumaScriptName = tmpList[1]
     userHomeDir = os.path.expanduser("~")
+    iconPath = os.path.join(lumaInstallationPrefix, "share", "luma", "icons")
     
 ###############################################################################
 
