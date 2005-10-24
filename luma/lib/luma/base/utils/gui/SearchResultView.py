@@ -13,7 +13,6 @@ from qt import *
 import base64
 import re
 import os.path
-import string
 
 from base.utils.gui.SearchResultViewDesign import SearchResultViewDesign
 from base.utils.gui.AdvancedObjectWidget import AdvancedObjectWidget
@@ -166,7 +165,7 @@ class SearchResultView(SearchResultViewDesign):
                 if x == 'dn':
                     continue
                     
-                if string.lower(x) == "objectclass":
+                if x.lower() == "objectclass":
                     valueList = dataObject.getObjectClasses()
                     listItem.setText(self.FILTER_COLUMN_POS[x], ",".join(valueList))
                         

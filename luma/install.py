@@ -12,7 +12,6 @@
 import sys
 import os.path
 import os
-import string
 from popen2 import Popen3
 import py_compile
 
@@ -121,7 +120,7 @@ def checkPath():
     
     
     pathVariable = os.environ['PATH']
-    pathValues = string.split(pathVariable, ':')
+    pathValues = pathVariable.split(':')
     tmpPath = os.path.join(prefixDir, "bin")
     
     

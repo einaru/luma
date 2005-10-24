@@ -8,8 +8,6 @@
 #
 ###########################################################################
 
-import string
-
 from base.backend.SmartDataObject import SmartDataObject
 from base.backend.ObjectClassAttributeInfo import ObjectClassAttributeInfo
 from base.utils.gui.editors.StandardEditor import StandardEditor
@@ -30,8 +28,8 @@ def getEditorWidget(parent, dataObject, attributeName, index=0):
     
     # Do we have a direct mapping from attribute to editor?
     global attributeDictionary
-    if attributeDictionary.has_key(string.lower(attributeName)):
-        dialog = attributeDictionary[string.lower(attributeName)](parent)
+    if attributeDictionary.has_key(attributeName.lower()):
+        dialog = attributeDictionary[attributeName.lower()](parent)
         dialog.initValue(dataObject, attributeName, index)
         
     # We don't have a direct mapping

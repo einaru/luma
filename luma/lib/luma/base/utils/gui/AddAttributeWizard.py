@@ -11,7 +11,6 @@
 from qt import *
 import os.path
 from sets import Set
-import string
 import copy
 
 import environment
@@ -79,7 +78,7 @@ class AddAttributeWizard(AddAttributeWizardDesign):
         
         # create a set of attributes which may be added
         self.possibleAttributes = (possibleMust.union(possibleMay)).difference(singleAttributes)
-        self.possibleAttributes = map(lambda x: string.lower(x), self.possibleAttributes)
+        self.possibleAttributes = map(lambda x: x.lower(), self.possibleAttributes)
         
         # create a set of attributes which are supported by the server
         self.allPossibleAttributes = Set(self.SCHEMAINFO.attributeDict.keys()).difference(singleAttributes)
@@ -117,11 +116,11 @@ class AddAttributeWizard(AddAttributeWizardDesign):
             mustAttributes, mayAttributes = self.SCHEMAINFO.getAllAttributes(classList)
             attributeList = mustAttributes.union(mayAttributes)
             
-            cleanList = filter(lambda x: string.lower(x) in tmpList, attributeList)
+            cleanList = filter(lambda x: x.lower() in tmpList, attributeList)
             tmpList = cleanList
 
         tmpList.sort()
-        tmpList = filter(lambda x: not (string.lower(x) == "objectclass"), tmpList)
+        tmpList = filter(lambda x: not (x.lower() == "objectclass"), tmpList)
         map(self.attributeBox.insertItem, tmpList)
             
         self.newSelection(self.attributeBox.currentText())
@@ -130,7 +129,7 @@ class AddAttributeWizard(AddAttributeWizardDesign):
 ###############################################################################
 
     def newSelection(self, attribute):
-        attribute = string.lower(str(attribute))
+        attribute = str(attribute).lower()
         
         currentPageWidget = self.currentPage()
         

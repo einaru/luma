@@ -11,10 +11,8 @@
 
 from qt import *
 import os.path
-from string import strip
 import ldap
 import copy
-import string
 
 import environment
 from plugins.addressbook.AddressbookWidgetDesign import AddressbookWidgetDesign
@@ -238,7 +236,7 @@ class AddressbookWidget(AddressbookWidgetDesign):
         
         # find the given name
         if self.dataObject.hasAttribute('givenName'):
-            givenName = strip(self.dataObject.getAttributeValue('givenName', 0))
+            givenName = self.dataObject.getAttributeValue('givenName', 0).strip()
         
         # find the suffix
         if not sureNamePosition == (len(tmpList) - 1):
@@ -286,7 +284,7 @@ class AddressbookWidget(AddressbookWidgetDesign):
         
         
         if (dialog.result() == QDialog.Accepted):
-            tmpSn = strip(unicode(dialog.lastEdit.text()))
+            tmpSn = unicode(dialog.lastEdit.text()).strip()
             
             if tmpSn == '':
                 return
@@ -304,9 +302,9 @@ class AddressbookWidget(AddressbookWidgetDesign):
             tmpList.append(self.__normalizeQtString(dialog.suffixBox.currentText()))
             
             for x in self.allowedAttributes:
-                if "givenname" == string.lower(x):
+                if "givenname" == x.lower():
                     givenName = unicode(dialog.firstEdit.text())
-                    givenName = strip(givenName)
+                    givenName = givenName.strip()
                     if '' == givenName:
                         self.dataObject.deleteAttribute('givenName')
                     else:
@@ -322,7 +320,7 @@ class AddressbookWidget(AddressbookWidgetDesign):
 ###############################################################################
 
     def __normalizeQtString(self, tmpString):
-        tmpString = strip(unicode(tmpString))
+        tmpString = unicode(tmpString).strip()
         
         if (len(tmpString) > 0):
             tmpString = tmpString + ' '
@@ -348,7 +346,7 @@ class AddressbookWidget(AddressbookWidgetDesign):
         dialog.exec_loop()
         
         if (dialog.result() == QDialog.Accepted):
-            mail = strip(unicode(dialog.mailEdit.text()))
+            mail = unicode(dialog.mailEdit.text()).strip()
             
             if not(mail == ''):
                 currentMails = []
@@ -367,7 +365,7 @@ class AddressbookWidget(AddressbookWidgetDesign):
 
     def editCategories(self):
         dialog = CategoryEditDialog()
-        tmpString = strip(unicode(self.categoryEdit.text()))
+        tmpString = unicode(self.categoryEdit.text()).strip()
         if not(tmpString == ''):
             dialog.setCategories(tmpString.split(','))
         

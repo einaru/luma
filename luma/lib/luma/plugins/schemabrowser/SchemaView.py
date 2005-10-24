@@ -10,7 +10,6 @@
 
 from qt import *
 import os.path
-import string
 
 import environment
 from plugins.schemabrowser.SchemaViewDesign import SchemaViewDesign
@@ -116,7 +115,7 @@ class SchemaView(SchemaViewDesign):
         for x in self.classList:
             if '' == self.classFilterString:
                 self.classBox.insertItem(x)
-            elif self.classFilterString in string.lower(x):
+            elif self.classFilterString in x.lower():
                 self.classBox.insertItem(x)
                 
 ###############################################################################
@@ -126,7 +125,7 @@ class SchemaView(SchemaViewDesign):
         for x in self.attributeList:
             if '' == self.attributeFilterString:
                 self.attributeBox.insertItem(x)
-            elif self.attributeFilterString in string.lower(x):
+            elif self.attributeFilterString in x.lower():
                 self.attributeBox.insertItem(x)
                 
 ###############################################################################
@@ -136,7 +135,7 @@ class SchemaView(SchemaViewDesign):
         for x in self.syntaxList:
             if '' == self.syntaxFilterString:
                 self.syntaxBox.insertItem(x)
-            elif self.syntaxFilterString in string.lower(x):
+            elif self.syntaxFilterString in x.lower():
                 self.syntaxBox.insertItem(x)
                 
 ###############################################################################
@@ -146,7 +145,7 @@ class SchemaView(SchemaViewDesign):
         for x in self.matchingList:
             if '' == self.matchingFilterString:
                 self.matchingBox.insertItem(x)
-            elif self.matchingFilterString in string.lower(x):
+            elif self.matchingFilterString in x.lower():
                 self.matchingBox.insertItem(x)
     
         
@@ -159,7 +158,7 @@ class SchemaView(SchemaViewDesign):
 
     def classSelected(self, tmpItem):
         className = str(tmpItem.text())
-        classDataDict = self.schemaInfo.objectClassesDict[string.lower(className)]
+        classDataDict = self.schemaInfo.objectClassesDict[className.lower()]
         
         self.clearClassWidget()
         
@@ -186,7 +185,7 @@ class SchemaView(SchemaViewDesign):
 
     def attributeSelected(self, tmpItem):
         attributeName = str(tmpItem.text())
-        attributeDataDict = self.schemaInfo.attributeDict[string.lower(attributeName)]
+        attributeDataDict = self.schemaInfo.attributeDict[attributeName.lower()]
         
         self.clearAttributeWidget()
         
@@ -233,7 +232,7 @@ class SchemaView(SchemaViewDesign):
 
     def syntaxSelected(self, tmpItem):
         syntaxName = str(tmpItem.text())
-        syntaxDataDict = self.schemaInfo.syntaxDict[string.lower(syntaxName)]
+        syntaxDataDict = self.schemaInfo.syntaxDict[syntaxName.lower()]
         
         self.clearSyntaxWidget()
         
@@ -258,7 +257,7 @@ class SchemaView(SchemaViewDesign):
 
     def matchingRuleSelected(self, tmpItem):
         matchingName = str(tmpItem.text())
-        matchingDataDict = self.schemaInfo.matchingDict[string.lower(matchingName)]
+        matchingDataDict = self.schemaInfo.matchingDict[matchingName.lower()]
         
         self.clearMatchingWidget()
         
@@ -323,28 +322,28 @@ class SchemaView(SchemaViewDesign):
 
     def classFilterChanged(self, tmpString):
         tmpString = unicode(tmpString).encode("utf-8")
-        self.classFilterString = string.lower(tmpString)
+        self.classFilterString = tmpString.lower()
         self.displayClassItems()
         
 ###############################################################################
 
     def attributeFilterChanged(self, tmpString):
         tmpString = unicode(tmpString).encode("utf-8")
-        self.attributeFilterString = string.lower(tmpString)
+        self.attributeFilterString = tmpString.lower()
         self.displayAttributeItems()
         
 ###############################################################################
 
     def syntaxFilterChanged(self, tmpString):
         tmpString = unicode(tmpString).encode("utf-8")
-        self.syntaxFilterString = string.lower(tmpString)
+        self.syntaxFilterString = tmpString.lower()
         self.displaySyntaxItems()
             
 ###############################################################################
 
     def matchingFilterChanged(self, tmpString):
         tmpString = unicode(tmpString).encode("utf-8")
-        self.matchingFilterString = string.lower(tmpString)
+        self.matchingFilterString = tmpString.lower()
         self.displayMatchingRuleItems()
             
             

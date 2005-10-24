@@ -11,6 +11,7 @@
 from qt import *
 import os.path
 import ldap
+import string
 
 import environment
 from plugins.usermanagement.UsermanagementWidgetDesign import UsermanagementWidgetDesign
@@ -377,7 +378,15 @@ class UsermanagementWidget(UsermanagementWidgetDesign):
         if self.dataObject.isAttributeAllowed('cn'):
             self.dataObject.addAttributeValue('cn', [newName], True)
             if self.dataObject.isAttributeAllowed('gecos'):
-                self.dataObject.addAttributeValue('gecos', [newName], True)
+                try:
+                    self.dataObject.addAttributeValue('gecos', [newName.encode('us-ascii')], True)
+                except UnicodeEncodeError, e:
+                    tmpName = ""
+                    for x in newName:
+                        if x in string.ascii_letters:
+                            tmpName = tmpName + x
+                            
+                    self.dataObject.addAttributeValue('gecos', [tmpName], True)
             
         self.EDITED = True
         self.enableToolBar()
