@@ -132,7 +132,10 @@ class MainWin(MainWinDesign):
         dialog = ImprovedServerDialog()
         dialog.exec_loop()
         if (dialog.result() == QDialog.Accepted) or dialog.SAVED:
+            currentPlugin = self.pluginBox.currentText()
             self.reloadPlugins()
+            self.pluginBox.setCurrentText(currentPlugin)
+            self.pluginSelectionChanged(currentPlugin)
 
 ###############################################################################
 
