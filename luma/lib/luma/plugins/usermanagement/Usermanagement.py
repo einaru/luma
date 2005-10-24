@@ -50,7 +50,8 @@ class Usermanagement(QWidget):
         dialog = AccountWizard()
         dialog.exec_loop()
 
-        dialog.result()
+        if dialog.result() == QDialog.Accepted:
+            self.entryList.search()
         
 ###############################################################################
 
