@@ -193,12 +193,42 @@ class AdvancedObjectWidget(QWidget):
         tmpList.append("""<td bgcolor="#C4DFFF" align="center"><b>ObjectClasses</b></td>""")
         tmpList.append("""</tr>""")
         
+        rdn = self.ldapDataObject.getPrettyRDN()
+        rdnClass = rdn.split("=")[0]
+        
         for x in self.ldapDataObject.getObjectClasses():
+            classString = x[:]
             if self.ldapDataObject.isObjectclassStructural(x):
-                x = "<b>" + x + "</b>"
+                classString = "<b>" + classString + "</b>"
             tmpList.append("""<tr>""")
-            tmpList.append("""<td colspan=2 bgcolor="#E5E5E5" width="100%">""" + x + """</td>""")
-            tmpList.append("""</tr>""")
+            tmpList.append("""<td colspan=2 bgcolor="#E5E5E5" width="100%">""")
+            tmpList.append(classString)
+            
+            allowDelete = True
+            if self.ldapDataObject.isObjectclassStructural(x):
+                classList = self.ldapDataObject.getObjectClasses()
+                classList.remove(x)
+                if len(self.ldapDataObject.getObjectClassChain(x, classList)) == 0:
+                    allowDelete = False
+                    
+            if rdnClass in self.ldapDataObject.getAttributeListForObjectClass(x):
+                allowDelete = False
+                
+                # Now we check if another objectclass provides the rdn attribute
+                classList = self.ldapDataObject.getObjectClasses()
+                classList.remove(x)
+                for y in classList:
+                    if rdnClass in self.ldapDataObject.getAttributeListForObjectClass(y):
+                        allowDelete = True
+                        break
+            
+            if allowDelete and (not (x == 'top')):
+                deleteName = x + "__delete\""
+                self.mimeFactory.setPixmap("deletePixmap", self.deletePixmap)
+                tmpList.append(""" <a name=\"""" + deleteName + """><img source="deletePixmap"></a>""")
+            
+            
+            tmpList.append("""</td></tr>""")
         
         tmpList.append("""</table>""")
         
@@ -375,19 +405,22 @@ class AdvancedObjectWidget(QWidget):
         nameString = unicode(nameString)
         tmpList = nameString.split("__")
         
-        if not len(tmpList) == 3:
-            return
-            
-        attributeName = tmpList[0]
-        index = int(tmpList[1])
-        operation = tmpList[2]
+        if tmpList[0] in self.ldapDataObject.getObjectClasses():
+            self.deleteObjectClass(tmpList[0])
+        else:
+            if not len(tmpList) == 3:
+                return
+
+            attributeName = tmpList[0]
+            index = int(tmpList[1])
+            operation = tmpList[2]
         
-        if operation == "edit":
-            self.editAttribute(attributeName, index)
-        elif operation == "delete":
-            self.deleteAttribute(attributeName, index)
-        elif operation == "export":
-            self.exportAttribute(attributeName, index)
+            if operation == "edit":
+                self.editAttribute(attributeName, index)
+            elif operation == "delete":
+                self.deleteAttribute(attributeName, index)
+            elif operation == "export":
+                self.exportAttribute(attributeName, index)
 
 ###############################################################################
 
@@ -448,6 +481,13 @@ class AdvancedObjectWidget(QWidget):
 
     def deleteAttribute(self, attributeName, index):
         self.ldapDataObject.deleteAttributeValue(attributeName, index)
+        self.EDITED = True
+        self.displayValues()
+        
+###############################################################################
+    
+    def deleteObjectClass(self, className):
+        self.ldapDataObject.deleteObjectClass(className)
         self.EDITED = True
         self.displayValues()
         
