@@ -365,7 +365,7 @@ Luma logo</source>
         <translation></translation>
     </message>
     <message>
-        <source>&lt;font size=&quot;+2&quot;&gt;&lt;b&gt;Luma 2.2&lt;/b&gt;&lt;/font&gt;</source>
+        <source>&lt;font size=&quot;+2&quot;&gt;&lt;b&gt;Luma 2.3&lt;/b&gt;&lt;/font&gt;</source>
         <comment>DO NOT TRANSLATE</comment>
         <translation></translation>
     </message>
@@ -1302,6 +1302,10 @@ til høyre viser alle attributter som må legges til i tillegg til valgt objektk
         <source>Add</source>
         <translation>Legg til</translation>
     </message>
+    <message>
+        <source>Edit server settings</source>
+        <translation>Rediger tjenervalg</translation>
+    </message>
 </context>
 <context>
     <name>CategoryEditDialogDesign</name>
@@ -1877,206 +1881,286 @@ Vennligst trykk start for å begynne slettingen.</translation>
     <name>ImprovedServerDialog</name>
     <message>
         <source>&lt;b&gt;No server selected&lt;/b&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;Ingen tjener valgt&lt;/b&gt;</translation>
+    </message>
+    <message>
+        <source>Anonymous</source>
+        <translation>Anonym</translation>
+    </message>
+    <message>
+        <source>Automatic</source>
+        <translation>Automagisk</translation>
+    </message>
+    <message>
+        <source>Automatic retrieval</source>
+        <translation>Automagisk uthenting</translation>
+    </message>
+    <message>
+        <source>Could not retrieve baseDN for LDAP server at host/ip:</source>
+        <translation>Kunne ikke hente baseDN for LDAP tjener ved maskinnavn/adresse:</translation>
+    </message>
+    <message>
+        <source>Select certificate file</source>
+        <translation>Velg sertifikatfil</translation>
+    </message>
+    <message>
+        <source>Select certificate key file</source>
+        <translation>Velg sertifikatnøkkelfil</translation>
+    </message>
+    <message>
+        <source>A server with the name &lt;b&gt;%1&lt;/b&gt; already exists.</source>
+        <translation>En tjener med navnet &lt;b&gt;%1&lt;/b&gt; finnes allerede.</translation>
+    </message>
+    <message>
+        <source>Please choose another name.</source>
+        <translation>Vennligst velg et annet navn.</translation>
+    </message>
+    <message>
+        <source>New server</source>
+        <translation>Ny tjener</translation>
+    </message>
+    <message>
+        <source>Please enter a name for the new server:</source>
+        <translation>Vennligst skriv inn et navn for ny tjener:</translation>
+    </message>
+    <message>
+        <source>Delete Server?</source>
+        <translation>Slett tjener?</translation>
+    </message>
+    <message>
+        <source>Do your really want to delete server &lt;b&gt;%1&lt;/b&gt;?</source>
+        <translation>Vil du virkelig slette tjener &lt;b&gt;%1&lt;/b&gt;?</translation>
     </message>
 </context>
 <context>
     <name>ImprovedServerDialogDesign</name>
     <message>
         <source>Server</source>
-        <translation type="unfinished">Tjener</translation>
+        <translation>Tjener</translation>
     </message>
     <message>
         <source>Base DNs</source>
-        <translation type="unfinished">Base DNer</translation>
-    </message>
-    <message>
-        <source>Form</source>
-        <translation type="unfinished">Skjema</translation>
+        <translation>Base DNer</translation>
     </message>
     <message>
         <source>Delete</source>
-        <translation type="unfinished">Slett</translation>
+        <translation>Slett</translation>
     </message>
     <message>
         <source>Add...</source>
-        <translation type="unfinished">Legg til...</translation>
+        <translation>Legg til...</translation>
     </message>
     <message>
         <source>&lt;b&gt;No server selected&lt;/b&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;Ingen tjener valgt&lt;/b&gt;</translation>
     </message>
     <message>
         <source>Not configured yet</source>
-        <translation type="unfinished"></translation>
+        <translation>Ingen konfigurasjon ennå</translation>
     </message>
     <message>
         <source>Click to edit</source>
-        <translation type="unfinished"></translation>
+        <translation>Klikk for å redigere</translation>
     </message>
     <message>
         <source>Authentification:</source>
-        <translation type="unfinished"></translation>
+        <translation>Autentisering:</translation>
     </message>
     <message>
         <source>Server address:</source>
-        <translation type="unfinished"></translation>
+        <translation>Tjeneradresse:</translation>
     </message>
     <message>
         <source>BaseDN:</source>
-        <translation type="unfinished"></translation>
+        <translation>BaseDN:</translation>
     </message>
     <message>
         <source>Encryption:</source>
-        <translation type="unfinished"></translation>
+        <translation>Krypterint:</translation>
     </message>
     <message>
         <source>Bind as:</source>
-        <translation type="unfinished">Koble til som:</translation>
+        <translation>Koble til som:</translation>
     </message>
     <message>
         <source>Port:</source>
-        <translation type="unfinished">Port:</translation>
+        <translation>Port:</translation>
     </message>
     <message>
         <source>Hostname:</source>
-        <translation type="unfinished"></translation>
+        <translation>Maskinnavn:</translation>
     </message>
     <message>
         <source>&lt;b&gt;Network options&lt;/b&gt;</source>
-        <translation type="unfinished">&lt;b&gt;Nettverksvalg&lt;/b&gt;</translation>
-    </message>
-    <message>
-        <source>&amp;Back</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Alt+B</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>&lt;b&gt;Credentials&lt;/b&gt;</source>
-        <translation type="unfinished">&lt;b&gt;Kreditiver (passord)&lt;/b&gt;</translation>
+        <translation>&lt;b&gt;Nettverksvalg&lt;/b&gt;</translation>
     </message>
     <message>
         <source>Password:</source>
-        <translation type="unfinished">Passord:</translation>
+        <translation>Passord:</translation>
     </message>
     <message>
         <source>Anonymous bind</source>
-        <translation type="unfinished">Anonym tilkobling</translation>
-    </message>
-    <message>
-        <source>&lt;b&gt;Security&lt;/b&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>Anonym tilkobling</translation>
     </message>
     <message>
         <source>No encryption</source>
-        <translation type="unfinished"></translation>
+        <translation>Ingen kryptering</translation>
     </message>
     <message>
         <source>TLS (Transport Layer Security)</source>
-        <translation type="unfinished"></translation>
+        <translation>TLS (Transportlag kryptering)</translation>
     </message>
     <message>
         <source>SSL (Secure Socket Layer)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Authentification mechanism:</source>
-        <translation type="unfinished"></translation>
+        <translation>Sikkersocketlag (SSL)</translation>
     </message>
     <message>
         <source>Simple</source>
-        <translation type="unfinished">Enkel</translation>
+        <translation>Enkel</translation>
     </message>
     <message>
         <source>SASL CRAM-MD5</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>SASL DIGEST-MD5</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>SASL External</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>SASL GSSAPI</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>SASL Login</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>SASL Plain</source>
-        <translation type="unfinished">SASL Enkel</translation>
+        <translation>SASL Enkel</translation>
     </message>
     <message>
         <source>&lt;b&gt;Certificate options&lt;/b&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;b&gt;Sertifikat valg&lt;/b&gt;</translation>
     </message>
     <message>
         <source>Validate server:</source>
-        <translation type="unfinished"></translation>
+        <translation>Valider tjener:</translation>
     </message>
     <message>
         <source>...</source>
-        <translation type="unfinished">...</translation>
+        <translation>...</translation>
     </message>
     <message>
         <source>Certificate file:</source>
-        <translation type="unfinished">Sertifikatfil:</translation>
+        <translation>Sertifikatfil:</translation>
     </message>
     <message>
         <source>Use client certificates</source>
-        <translation type="unfinished">Bruk klientsertifikater</translation>
+        <translation>Bruk klientsertifikater</translation>
     </message>
     <message>
         <source>Certificate keyfile:</source>
-        <translation type="unfinished">Sertifikat nøkkelfil:</translation>
+        <translation>Sertifikat nøkkelfil:</translation>
     </message>
     <message>
         <source>&lt;b&gt;LDAP options&lt;/b&gt;</source>
-        <translation type="unfinished">&lt;b&gt;LDAP valg&lt;/b&gt;</translation>
+        <translation>&lt;b&gt;LDAP valg&lt;/b&gt;</translation>
     </message>
     <message>
         <source>Follow aliases</source>
-        <translation type="unfinished">Følg aliaser</translation>
+        <translation>Følg aliaser</translation>
     </message>
     <message>
         <source>Use Base DNs provided by the server</source>
-        <translation type="unfinished">Bruk Base DN gitt av tjener</translation>
+        <translation>Bruk Base DN gitt av tjener</translation>
     </message>
     <message>
         <source>Edit BaseDN list</source>
-        <translation type="unfinished"></translation>
+        <translation>Rediger BaseDN liste</translation>
     </message>
     <message>
         <source>&amp;Cancel</source>
-        <translation type="unfinished">&amp;Avbryt</translation>
+        <translation>&amp;Avbryt</translation>
     </message>
     <message>
         <source>Alt+C</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>S&amp;ave</source>
-        <translation type="unfinished"></translation>
+        <translation>L&amp;agre</translation>
     </message>
     <message>
         <source>Alt+A</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>&amp;OK</source>
-        <translation type="unfinished">&amp;OK</translation>
+        <translation>&amp;OK</translation>
     </message>
     <message>
         <source>Alt+O</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
+    </message>
+    <message>
+        <source>Server settings</source>
+        <translation>Tjenervalg</translation>
+    </message>
+    <message>
+        <source>&amp;Rename</source>
+        <translation>&amp;Endre navn</translation>
+    </message>
+    <message>
+        <source>Alt+R</source>
+        <translation>Alt+F</translation>
+    </message>
+    <message>
+        <source>Ok</source>
+        <translation>Ok</translation>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <translation>Avbryt</translation>
+    </message>
+    <message>
+        <source>&amp;Summary</source>
+        <translation>&amp;Oppsummering</translation>
+    </message>
+    <message>
+        <source>Alt+S</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>Certificate options</source>
+        <translation>Sertifikat valg</translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;Authentification&lt;/b&gt;</source>
+        <translation>&lt;b&gt;Autentisering&lt;/b&gt;</translation>
+    </message>
+    <message>
+        <source>SASL EXTERNAL</source>
+        <translation>SASL Ekstern</translation>
+    </message>
+    <message>
+        <source>Mechanism:</source>
+        <translation>Mekanisme:</translation>
+    </message>
+    <message>
+        <source>never</source>
+        <translation>aldri</translation>
+    </message>
+    <message>
+        <source>try</source>
+        <translation>prøv</translation>
+    </message>
+    <message>
+        <source>allow</source>
+        <translation>tillat</translation>
+    </message>
+    <message>
+        <source>demand</source>
+        <translation>krev</translation>
     </message>
 </context>
 <context>
@@ -2277,6 +2361,21 @@ Vennligst trykk start for å begynne slettingen.</translation>
     <message>
         <source>Alt+C</source>
         <translation></translation>
+    </message>
+</context>
+<context>
+    <name>MainWin</name>
+    <message>
+        <source>Choose plugin</source>
+        <translation>Velg ekstramodul</translation>
+    </message>
+    <message>
+        <source>Pluginname</source>
+        <translation>Modulnavn</translation>
+    </message>
+    <message>
+        <source>Pluginname   </source>
+        <translation>Modulnavn</translation>
     </message>
 </context>
 <context>
@@ -3786,6 +3885,45 @@ Beskrivelse</translation>
     <message>
         <source>Find next free</source>
         <translation>Finn neste ledige</translation>
+    </message>
+</context>
+<context>
+    <name>qApp</name>
+    <message>
+        <source>Browser</source>
+        <translation>Utforsker</translation>
+    </message>
+    <message>
+        <source>Search</source>
+        <translation>Søk</translation>
+    </message>
+    <message>
+        <source>Templates</source>
+        <translation>Maler</translation>
+    </message>
+    <message>
+        <source>Admin utilities</source>
+        <translation>Administrasjonsverktøy</translation>
+    </message>
+    <message>
+        <source>Massive user creation</source>
+        <translation>Massebrukeroppretting</translation>
+    </message>
+    <message>
+        <source>Addressbook</source>
+        <translation>Adressebok</translation>
+    </message>
+    <message>
+        <source>Usermanagement</source>
+        <translation>Brukeradministrasjon</translation>
+    </message>
+    <message>
+        <source>Schemabrowser</source>
+        <translation>Skjermautforsker</translation>
+    </message>
+    <message>
+        <source>Schema editor</source>
+        <translation>Skjemaredigerer</translation>
     </message>
 </context>
 </TS>
