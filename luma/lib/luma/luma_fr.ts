@@ -3,11 +3,11 @@
     <name>AboutDialog</name>
     <message>
         <source>About Luma</source>
-        <translation>À propos de Luma</translation>
+        <translation>Ã propos de Luma</translation>
     </message>
     <message>
         <source>About</source>
-        <translation>À propos</translation>
+        <translation>Ã propos</translation>
     </message>
     <message>
         <source>Wido Depping&lt;br&gt;
@@ -349,7 +349,7 @@ Testing guinea pig for python 2.3
 Jirka Jurek (jiri.jurek at trinet.as)
 Czech translation
 
-Magnus Määttä
+Magnus MÃ€Ã€ttÃ€
 Swedish translation
 
 Alexander Novitsky
@@ -364,7 +364,7 @@ Luma logo</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>&lt;font size=&quot;+2&quot;&gt;&lt;b&gt;Luma 2.2&lt;/b&gt;&lt;/font&gt;</source>
+        <source>&lt;font size=&quot;+2&quot;&gt;&lt;b&gt;Luma 2.3&lt;/b&gt;&lt;/font&gt;</source>
         <comment>DO NOT TRANSLATE</comment>
         <translation type="unfinished"></translation>
     </message>
@@ -381,11 +381,11 @@ Luma logo</source>
     </message>
     <message>
         <source>Please enter a uid number.</source>
-        <translation>Veuillez entrer un numéro uid.</translation>
+        <translation>Veuillez entrer un numÃ©ro uid.</translation>
     </message>
     <message>
         <source>Please assign the user to a group.</source>
-        <translation>Veuillez assigner l&apos;utilisateur à un groupe.</translation>
+        <translation>Veuillez assigner l&apos;utilisateur Ã  un groupe.</translation>
     </message>
     <message>
         <source>Please enter a common name.</source>
@@ -393,7 +393,7 @@ Luma logo</source>
     </message>
     <message>
         <source>Please enter a homeDirectory.</source>
-        <translation>Veuillez entrer un répertoire personnel.</translation>
+        <translation>Veuillez entrer un rÃ©pertoire personnel.</translation>
     </message>
     <message>
         <source>Warning: Location</source>
@@ -401,7 +401,7 @@ Luma logo</source>
     </message>
     <message>
         <source>Please select a location where to store the contact.</source>
-        <translation>Veuillez sélectionner l&apos;emplacement où sera stocké le contact.</translation>
+        <translation>Veuillez sÃ©lectionner l&apos;emplacement oÃ¹ sera stockÃ© le contact.</translation>
     </message>
     <message>
         <source>Missing password</source>
@@ -411,9 +411,9 @@ Luma logo</source>
         <source>It is strongly recommended that you choose 
 a password for the new user. Otherwise 
 it might compromise the security of your system.</source>
-        <translation>Il est fortement recommandé de choisir un 
+        <translation>Il est fortement recommandÃ© de choisir un 
 mot de passe pour ce nouvel utilisateur. Ne pas 
-définir de mot de passe peut être un risque de sécurité.</translation>
+dÃ©finir de mot de passe peut Ãªtre un risque de sÃ©curitÃ©.</translation>
     </message>
     <message>
         <source>Could not bind to server.&lt;br&gt;&lt;br&gt;Reason: </source>
@@ -421,7 +421,7 @@ définir de mot de passe peut être un risque de sécurité.</translation>
     </message>
     <message>
         <source>Could not create account.&lt;br&gt;&lt;br&gt;Reason: </source>
-        <translation>Impossible de créer le compte.&lt;br&gt;&lt;br&gt;Raison:</translation>
+        <translation>Impossible de crÃ©er le compte.&lt;br&gt;&lt;br&gt;Raison:</translation>
     </message>
 </context>
 <context>
@@ -437,7 +437,7 @@ définir de mot de passe peut être un risque de sécurité.</translation>
     </message>
     <message>
         <source>Please select a location where the new account should be stored.</source>
-        <translation>Veuillez sélectionner l&apos;emplacement où sera stocké le contact.</translation>
+        <translation>Veuillez sÃ©lectionner l&apos;emplacement oÃ¹ sera stockÃ© le contact.</translation>
     </message>
     <message>
         <source>Location:</source>
@@ -449,7 +449,7 @@ définir de mot de passe peut être un risque de sécurité.</translation>
     </message>
     <message>
         <source>Fill contact data</source>
-        <translation>Remplissez les données du contact</translation>
+        <translation>Remplissez les donnÃ©es du contact</translation>
     </message>
 </context>
 <context>
@@ -464,7 +464,7 @@ définir de mot de passe peut être un risque de sécurité.</translation>
     </message>
     <message>
         <source>Please select the attributes you want to add.</source>
-        <translation>Veuillez sélectionner l&apos;attribut à ajouter.</translation>
+        <translation>Veuillez sÃ©lectionner l&apos;attribut Ã  ajouter.</translation>
     </message>
     <message>
         <source>&amp;OK</source>
@@ -505,11 +505,11 @@ définir de mot de passe peut être un risque de sécurité.</translation>
     </message>
     <message>
         <source>Default value:</source>
-        <translation>Valeur par défaut:</translation>
+        <translation>Valeur par dÃ©faut:</translation>
     </message>
     <message>
         <source>Single:</source>
-        <translation type="unfinished"></translation>
+        <translation>Unique:</translation>
     </message>
     <message>
         <source>A</source>
@@ -530,7 +530,7 @@ définir de mot de passe peut être un risque de sécurité.</translation>
     </message>
     <message>
         <source>Enable all attributes which are supported by the server.</source>
-        <translation>Activer tous les attributs supportés par le serveur.</translation>
+        <translation>Activer tous les attributs supportÃ©s par le serveur.</translation>
     </message>
     <message>
         <source>Attribute:</source>
@@ -542,9 +542,9 @@ définir de mot de passe peut être un risque de sécurité.</translation>
 objectclasses are displayed. If you want to add an attribute which is 
 supported by other objectclasses, please enable this functionality below.
 &lt;/p&gt;</source>
-        <translation>&lt;p&gt;Veuillez sélectionner un attribut à ajouter à l&apos;entrée courante&lt;/p&gt;
-&lt;p&gt;Par défaut seuls les attributs supportés par la classe actuelle sont affichés.
-Si vous voulez ajouter un attribut qui appartient à une autre classe, activez la fonctionalité ci-dessous.&lt;/p&gt;
+        <translation>&lt;p&gt;Veuillez sÃ©lectionner un attribut Ã  ajouter Ã  l&apos;entrÃ©e courante&lt;/p&gt;
+&lt;p&gt;Par dÃ©faut seuls les attributs supportÃ©s par la classe actuelle sont affichÃ©s.
+Si vous voulez ajouter un attribut qui appartient Ã  une autre classe, activez la fonctionalitÃ© ci-dessous.&lt;/p&gt;
 </translation>
     </message>
     <message>
@@ -573,8 +573,8 @@ objectclasses for the current entry.&lt;/p&gt;
 &lt;p&gt;Please select an objectclass which supports the new attribute. The 
 list on the right shows all attributes which must be added additionally with
 the selected objectclass.&lt;/p&gt;</source>
-        <translation>&lt;p&gt;Vous avez choisi d&apos;ajouter un attribut qui n&apos;est pas dans la classe d&apos;objets de l&apos;entrée.&lt;/p&gt;
-&lt;p&gt;Veuillez sélectionner une classe d&apos;objets qui supporte cet attribut. La liste à droite vous montre les attributs qui doivent être ajoutés à la classe d&apos;objet sélectionnée.&lt;/p&gt;</translation>
+        <translation>&lt;p&gt;Vous avez choisi d&apos;ajouter un attribut qui n&apos;est pas dans la classe d&apos;objets de l&apos;entrÃ©e.&lt;/p&gt;
+&lt;p&gt;Veuillez sÃ©lectionner une classe d&apos;objets qui supporte cet attribut. La liste Ã  droite vous montre les attributs qui doivent Ãªtre ajoutÃ©s Ã  la classe d&apos;objet sÃ©lectionnÃ©e.&lt;/p&gt;</translation>
     </message>
     <message>
         <source>Use binary extension</source>
@@ -593,7 +593,7 @@ the selected objectclass.&lt;/p&gt;</source>
     </message>
     <message>
         <source>Please choose the objectclass you want to add to the template.</source>
-        <translation>Veuillez sélectionner la classe d&apos;objets que vous voulez ajouter au modèle.</translation>
+        <translation>Veuillez sÃ©lectionner la classe d&apos;objets que vous voulez ajouter au modÃšle.</translation>
     </message>
     <message>
         <source>&amp;OK</source>
@@ -616,22 +616,22 @@ the selected objectclass.&lt;/p&gt;</source>
     <name>AddTemplateDialog</name>
     <message>
         <source>A template with this name already exists.</source>
-        <translation>Il existe déja un modèle portant ce nom.</translation>
+        <translation>Il existe dÃ©ja un modÃšle portant ce nom.</translation>
     </message>
     <message>
         <source>Please supply a template name.</source>
-        <translation>Veuillez entrer un nom de modèle.</translation>
+        <translation>Veuillez entrer un nom de modÃšle.</translation>
     </message>
 </context>
 <context>
     <name>AddTemplateDialogDesign</name>
     <message>
         <source>New Template</source>
-        <translation>Nouveau Modèle</translation>
+        <translation>Nouveau ModÃšle</translation>
     </message>
     <message>
         <source>Please choose a template name, a description and a server with which the template is associated.</source>
-        <translation>Veuillez choisir un nom, une description et un serveur pour ce modèle.</translation>
+        <translation>Veuillez choisir un nom, une description et un serveur pour ce modÃšle.</translation>
     </message>
     <message>
         <source>&amp;OK</source>
@@ -643,7 +643,7 @@ the selected objectclass.&lt;/p&gt;</source>
     </message>
     <message>
         <source>Template name:</source>
-        <translation>Nom du modèle:</translation>
+        <translation>Nom du modÃšle:</translation>
     </message>
     <message>
         <source>Server:</source>
@@ -655,14 +655,14 @@ the selected objectclass.&lt;/p&gt;</source>
     </message>
     <message>
         <source>Please supply a template name.</source>
-        <translation>Veuillez entrer un nom de modèle.</translation>
+        <translation>Veuillez entrer un nom de modÃšle.</translation>
     </message>
 </context>
 <context>
     <name>AddressbookSettings</name>
     <message>
         <source>New search criteria</source>
-        <translation>Nouveau critère de recherche</translation>
+        <translation>Nouveau critÃšre de recherche</translation>
     </message>
     <message>
         <source>Attribute:</source>
@@ -677,7 +677,7 @@ the selected objectclass.&lt;/p&gt;</source>
     </message>
     <message>
         <source>Addressbook Settings</source>
-        <translation>Paramètres du carnet d&apos;adresse</translation>
+        <translation>ParamÃštres du carnet d&apos;adresse</translation>
     </message>
     <message>
         <source>Alt+A</source>
@@ -693,7 +693,7 @@ the selected objectclass.&lt;/p&gt;</source>
     </message>
     <message>
         <source>&lt;b&gt;Search criteria&lt;/b&gt;</source>
-        <translation>&lt;b&gt;Critère de recherche&lt;/b&gt;</translation>
+        <translation>&lt;b&gt;CritÃšre de recherche&lt;/b&gt;</translation>
     </message>
     <message>
         <source>&amp;Add...</source>
@@ -712,7 +712,7 @@ the selected objectclass.&lt;/p&gt;</source>
     </message>
     <message>
         <source>Could not save entry.&lt;br&gt;&lt;br&gt;Reason: </source>
-        <translation>Impossible de sauvegarder cette entrée.&lt;br&gt;&lt;br&gt;Raison:</translation>
+        <translation>Impossible de sauvegarder cette entrÃ©e.&lt;br&gt;&lt;br&gt;Raison:</translation>
     </message>
 </context>
 <context>
@@ -744,7 +744,7 @@ the selected objectclass.&lt;/p&gt;</source>
     </message>
     <message>
         <source>&amp;Categories...</source>
-        <translation>&amp;Catégories...</translation>
+        <translation>&amp;CatÃ©gories...</translation>
     </message>
     <message>
         <source>Alt+C</source>
@@ -771,7 +771,7 @@ the selected objectclass.&lt;/p&gt;</source>
     </message>
     <message>
         <source>Email:</source>
-        <translation>mèl:</translation>
+        <translation>mÃšl:</translation>
     </message>
     <message>
         <source>&amp;Delete</source>
@@ -791,7 +791,7 @@ the selected objectclass.&lt;/p&gt;</source>
     </message>
     <message>
         <source>General</source>
-        <translation>Général</translation>
+        <translation>GÃ©nÃ©ral</translation>
     </message>
     <message>
         <source>Mobile:</source>
@@ -833,7 +833,7 @@ the selected objectclass.&lt;/p&gt;</source>
     </message>
     <message>
         <source>Phone/Address</source>
-        <translation>Téléphone/Adresse</translation>
+        <translation>TÃ©lÃ©phone/Adresse</translation>
     </message>
     <message>
         <source>ME</source>
@@ -863,7 +863,7 @@ the selected objectclass.&lt;/p&gt;</source>
     </message>
     <message>
         <source>Departement:</source>
-        <translation>Département:</translation>
+        <translation>DÃ©partement:</translation>
     </message>
     <message>
         <source>Spouse:</source>
@@ -892,18 +892,18 @@ the selected objectclass.&lt;/p&gt;</source>
     </message>
     <message>
         <source>Details</source>
-        <translation>Détails</translation>
+        <translation>DÃ©tails</translation>
     </message>
 </context>
 <context>
     <name>AdminPanelDesign</name>
     <message>
         <source>Encrypted Password:</source>
-        <translation>Mot de passe haché :</translation>
+        <translation>Mot de passe hachÃ© :</translation>
     </message>
     <message>
         <source>&amp;Encrypt</source>
-        <translation type="unfinished">&amp;Hacher</translation>
+        <translation>&amp;Hacher</translation>
     </message>
     <message>
         <source>Alt+E</source>
@@ -915,11 +915,11 @@ the selected objectclass.&lt;/p&gt;</source>
     </message>
     <message>
         <source>Encrypted password:</source>
-        <translation>Mot de passe haché :</translation>
+        <translation>Mot de passe hachÃ© :</translation>
     </message>
     <message>
         <source>&amp;Create</source>
-        <translation>&amp;Générer</translation>
+        <translation>&amp;GÃ©nÃ©rer</translation>
     </message>
     <message>
         <source>Alt+C</source>
@@ -961,7 +961,7 @@ the selected objectclass.&lt;/p&gt;</source>
     </message>
     <message>
         <source>Days from now:</source>
-        <translation>Nombre de jours à compter de maintenant :</translation>
+        <translation>Nombre de jours Ã  compter de maintenant :</translation>
     </message>
     <message>
         <source>Date/Time</source>
@@ -973,7 +973,7 @@ the selected objectclass.&lt;/p&gt;</source>
     </message>
     <message>
         <source>&lt;b&gt;Hash method:&lt;/b&gt;</source>
-        <translation>&lt;b&gt;Méthode de hachage:&lt;/b&gt;</translation>
+        <translation>&lt;b&gt;MÃ©thode de hachage:&lt;/b&gt;</translation>
     </message>
     <message>
         <source>&lt;b&gt;Encrypt password&lt;/b&gt;</source>
@@ -981,15 +981,15 @@ the selected objectclass.&lt;/p&gt;</source>
     </message>
     <message>
         <source>&lt;b&gt;Create random password&lt;/b&gt;</source>
-        <translation>&lt;b&gt;Créer un mot de passe aléatoire&lt;/b&gt;</translation>
+        <translation>&lt;b&gt;GÃ©nÃ©rer un mot de passe alÃ©atoire&lt;/b&gt;</translation>
     </message>
     <message>
         <source>&lt;b&gt;Date to Unix date&lt;/b&gt;</source>
-        <translation>&lt;b&gt;Transformer la date en format Unix&lt;/b&gt;</translation>
+        <translation>&lt;b&gt;Convertir la date en format Unix&lt;/b&gt;</translation>
     </message>
     <message>
         <source>&lt;b&gt;Duration to Unix date&lt;/b&gt;</source>
-        <translation>&lt;b&gt;Transformer la durée en format Unix&lt;/b&gt;</translation>
+        <translation>&lt;b&gt;Convertir la durÃ©e en format Unix&lt;/b&gt;</translation>
     </message>
 </context>
 <context>
@@ -1000,11 +1000,11 @@ the selected objectclass.&lt;/p&gt;</source>
     </message>
     <message>
         <source>Could not check if object is a leaf in the ldap tree.&lt;br&gt;&lt;br&gt;Reason: </source>
-        <translation>Impossible de vérifier si l&apos;objet est une feuille de l&apos;arbre LDAP.&lt;br&gt;&lt;br&gt;Raison:</translation>
+        <translation>Impossible de vÃ©rifier si l&apos;objet est une feuille de l&apos;arbre LDAP.&lt;br&gt;&lt;br&gt;Raison:</translation>
     </message>
     <message>
         <source>Value not set.</source>
-        <translation>Valeur non définie.</translation>
+        <translation>Valeur non dÃ©finie.</translation>
     </message>
     <message>
         <source>Export binary attribute to file</source>
@@ -1040,38 +1040,38 @@ the selected objectclass.&lt;/p&gt;</source>
     </message>
     <message>
         <source>Could not refresh entry.&lt;br&gt;&lt;br&gt;Reason: </source>
-        <translation>Impossible d&apos;actualiser l&apos;entrée.&lt;br&gt;&lt;br&gt;Raison:</translation>
+        <translation>Impossible d&apos;actualiser l&apos;entrÃ©e.&lt;br&gt;&lt;br&gt;Raison:</translation>
     </message>
     <message>
         <source>Could not add entry.&lt;br&gt;&lt;br&gt;Reason: </source>
-        <translation>Impossible d&apos;ajouter l&apos;entrée.&lt;br&gt;&lt;br&gt;Raison:</translation>
+        <translation>Impossible d&apos;ajouter l&apos;entrÃ©e.&lt;br&gt;&lt;br&gt;Raison:</translation>
     </message>
     <message>
         <source>Could not save entry.&lt;br&gt;&lt;br&gt;Reason: </source>
-        <translation>Impossible de sauvegarder l&apos;entrée.&lt;br&gt;&lt;br&gt;Raison:</translation>
+        <translation>Impossible de sauvegarder l&apos;entrÃ©e.&lt;br&gt;&lt;br&gt;Raison:</translation>
     </message>
     <message>
         <source>Do your really want to delete the object?</source>
-        <translation>Êtes vous sûr de vouloir supprimer l&apos;objet?</translation>
+        <translation>Ãtes vous sÃ»r de vouloir supprimer l&apos;objet?</translation>
     </message>
     <message>
         <source>Could not delete entry.&lt;br&gt;&lt;br&gt;Reason: </source>
-        <translation>Impossible de supprimer l&apos;entrée.&lt;br&gt;&lt;br&gt;Raison:</translation>
+        <translation>Impossible de supprimer l&apos;entrÃ©e.&lt;br&gt;&lt;br&gt;Raison:</translation>
     </message>
     <message>
         <source>Save entry</source>
-        <translation>Enregistrer l&apos;entrée</translation>
+        <translation>Enregistrer l&apos;entrÃ©e</translation>
     </message>
     <message>
         <source>Do you want to save the entry?</source>
-        <translation>Voulez vous sauvegarder l&apos;entrée?</translation>
+        <translation>Voulez vous sauvegarder l&apos;entrÃ©e?</translation>
     </message>
 </context>
 <context>
     <name>BaseSelector</name>
     <message>
         <source>Could not retrieve baseDN.&lt;br&gt;&lt;br&gt;Reason: </source>
-        <translation>Impossible de récupérer baseDN.&lt;br&gt;&lt;br&gt;Raison:</translation>
+        <translation>Impossible de rÃ©cupÃ©rer baseDN.&lt;br&gt;&lt;br&gt;Raison:</translation>
     </message>
 </context>
 <context>
@@ -1098,11 +1098,11 @@ the selected objectclass.&lt;/p&gt;</source>
     </message>
     <message>
         <source>Manage the base distinguished names you want to use with server &lt;b&gt;%1&lt;/b&gt;.</source>
-        <translation type="unfinished">Gérer les DN de base associés au serveur &lt;b&gt;%1&lt;/b&gt;.</translation>
+        <translation>GÃ©rer les DN de base associÃ©s au serveur &lt;b&gt;%1&lt;/b&gt;.</translation>
     </message>
     <message>
         <source>Custom:</source>
-        <translation>Personalisé:</translation>
+        <translation>PersonalisÃ©:</translation>
     </message>
     <message>
         <source>&amp;Delete</source>
@@ -1122,7 +1122,7 @@ the selected objectclass.&lt;/p&gt;</source>
     </message>
     <message>
         <source>&amp;Update from server</source>
-        <translation>&amp;Mise à  jour à partir du serveur</translation>
+        <translation>&amp;Mise Ã   jour Ã  partir du serveur</translation>
     </message>
     <message>
         <source>Alt+U</source>
@@ -1137,19 +1137,19 @@ the selected objectclass.&lt;/p&gt;</source>
     <name>BinaryEditor</name>
     <message>
         <source>Given file does not exist. Please check the filename.</source>
-        <translation>Le fichier n&apos;existe pas. Veuillez vérifier le nom du fichier.</translation>
+        <translation>Le fichier n&apos;existe pas. Veuillez vÃ©rifier le nom du fichier.</translation>
     </message>
     <message>
         <source>Given file is a directory. Please check the filename.</source>
-        <translation>C&apos;est un répertoire! Veuillez entrer un nom de fichier.</translation>
+        <translation>C&apos;est un rÃ©pertoire! Veuillez entrer un nom de fichier.</translation>
     </message>
     <message>
         <source>Can&apos;t open file. Please check file permissions.</source>
-        <translation>Impossible d&apos;ouvrir le fichier. Vérifiez les permissions du système de fichier.</translation>
+        <translation>Impossible d&apos;ouvrir le fichier. VÃ©rifiez les permissions du systÃšme de fichier.</translation>
     </message>
     <message>
         <source>Select file to change binary value</source>
-        <translation>Choisissez un fichier où récupérer la valeur de l&apos;attribut</translation>
+        <translation>Choisissez un fichier oÃ¹ rÃ©cupÃ©rer la valeur de l&apos;attribut</translation>
     </message>
 </context>
 <context>
@@ -1186,7 +1186,7 @@ the selected objectclass.&lt;/p&gt;</source>
     </message>
     <message>
         <source>Please enter a file location from where to load binary data for the attribute &lt;b&gt;%1&lt;/b&gt;.</source>
-        <translation>Veuillez entrer l&apos;emplacement du fichier à partir duquel vous voulez récupérer la valeur de l&apos;attribut &lt;b&gt;%1&lt;/b&gt;.</translation>
+        <translation>Veuillez entrer l&apos;emplacement du fichier Ã  partir duquel vous voulez rÃ©cupÃ©rer la valeur de l&apos;attribut &lt;b&gt;%1&lt;/b&gt;.</translation>
     </message>
     <message>
         <source>IL</source>
@@ -1236,19 +1236,19 @@ the selected objectclass.&lt;/p&gt;</source>
     </message>
     <message>
         <source>Add entry</source>
-        <translation>Ajouter l&apos;entrée</translation>
+        <translation>Ajouter l&apos;entrÃ©e</translation>
     </message>
     <message>
         <source>Could not access entry.&lt;br&gt;&lt;br&gt;Reason: </source>
-        <translation>Impossible d&apos;accéder à l&apos;entrée.&lt;br&gt;&lt;br&gt;Raison:</translation>
+        <translation>Impossible d&apos;accÃ©der Ã  l&apos;entrÃ©e.&lt;br&gt;&lt;br&gt;Raison:</translation>
     </message>
     <message>
         <source>Could not expand entry.&lt;br&gt;&lt;br&gt;Reason: </source>
-        <translation>Impossible de parcourir l&apos;entrée.&lt;br&gt;&lt;br&gt;Raison:</translation>
+        <translation>Impossible de parcourir l&apos;entrÃ©e.&lt;br&gt;&lt;br&gt;Raison:</translation>
     </message>
     <message>
         <source>Could not retrieve baseDN.&lt;br&gt;&lt;br&gt;Reason: </source>
-        <translation>Impossible de récupérer baseDN.&lt;br&gt;&lt;br&gt;Raison:</translation>
+        <translation>Impossible de rÃ©cupÃ©rer baseDN.&lt;br&gt;&lt;br&gt;Raison:</translation>
     </message>
     <message>
         <source>Follow Aliases</source>
@@ -1260,11 +1260,11 @@ the selected objectclass.&lt;/p&gt;</source>
     </message>
     <message>
         <source>Could not retrieve entry with DN %1 on server %2 for exporting.&lt;br&gt;&lt;br&gt;Reason: </source>
-        <translation type="unfinished">Impossible de récupérer l&apos;objet DN %1 du serveur %2 pour exportation.&lt;br&gt;&lt;br&gt;Raison:</translation>
+        <translation>Impossible de rÃ©cupÃ©rer l&apos;objet DN %1 du serveur %2 pour exportation.&lt;br&gt;&lt;br&gt;Raison:</translation>
     </message>
     <message>
         <source>Could not retrieve all entries for exporting. More information in the logger.</source>
-        <translation>Impossible de récupérer toutes les objets pour export. Plus d&apos;informations sont disponibles dans les journaux d&apos;activité.</translation>
+        <translation>Impossible de rÃ©cupÃ©rer toutes les objets pour export. Plus d&apos;informations sont disponibles dans les journaux d&apos;activitÃ©.</translation>
     </message>
     <message>
         <source>Could not retrieve entry with DN %1 on server %2 for deletion.&lt;br&gt;&lt;br&gt;Reason: </source>
@@ -1272,7 +1272,7 @@ the selected objectclass.&lt;/p&gt;</source>
     </message>
     <message>
         <source>Could not retrieve all entries for deletion. More information in the logger.</source>
-        <translation>Impossible de supprimer tous les objets. Plus d&apos;informations sont disponibles dans les journaux d&apos;activité.</translation>
+        <translation>Impossible de supprimer tous les objets. Plus d&apos;informations sont disponibles dans les journaux d&apos;activitÃ©.</translation>
     </message>
     <message>
         <source>Items</source>
@@ -1298,16 +1298,20 @@ the selected objectclass.&lt;/p&gt;</source>
         <source>Add</source>
         <translation>Ajouter</translation>
     </message>
+    <message>
+        <source>Edit server settings</source>
+        <translation>Editer les paramÃštres de connexion au serveur</translation>
+    </message>
 </context>
 <context>
     <name>CategoryEditDialogDesign</name>
     <message>
         <source>Categories</source>
-        <translation>Catégories</translation>
+        <translation>CatÃ©gories</translation>
     </message>
     <message>
         <source>Edit categories</source>
-        <translation>Éditer les catégories</translation>
+        <translation>Ãditer les catÃ©gories</translation>
     </message>
     <message>
         <source>&amp;Cancel</source>
@@ -1350,7 +1354,7 @@ the selected objectclass.&lt;/p&gt;</source>
     </message>
     <message>
         <source>Attribute warning</source>
-        <translation>Attention à l&apos;attribut</translation>
+        <translation>Attention Ã  l&apos;attribut</translation>
     </message>
     <message>
         <source>&amp;Cancel</source>
@@ -1370,7 +1374,7 @@ the selected objectclass.&lt;/p&gt;</source>
     </message>
     <message>
         <source>&lt;b&gt;Warning:&lt;/b&gt; The follwing attributes will be removed when deleting objectclass &lt;b&gt;%1&lt;/b&gt;. Do you want to continue?</source>
-        <translation>&lt;b&gt;Attention:&lt;/b&gt; L&apos;attribut va être supprimé si l&apos;on détruit la classe &lt;b&gt;%1&lt;/b&gt;. Voulez-vous continuer ?</translation>
+        <translation>&lt;b&gt;Attention:&lt;/b&gt; L&apos;attribut va Ãªtre supprimÃ© si l&apos;on dÃ©truit la classe &lt;b&gt;%1&lt;/b&gt;. Voulez-vous continuer ?</translation>
     </message>
 </context>
 <context>
@@ -1488,11 +1492,11 @@ the selected objectclass.&lt;/p&gt;</source>
     <name>ContactWizard</name>
     <message>
         <source>Warning: Location</source>
-        <translation>Erreur : Vérifiez l&apos;emplacement</translation>
+        <translation>Erreur : VÃ©rifiez l&apos;emplacement</translation>
     </message>
     <message>
         <source>Please select a location where to store the contact.</source>
-        <translation>Veuillez sélectionner l&apos;emplacement où sera stocké le contact.</translation>
+        <translation>Veuillez sÃ©lectionner l&apos;emplacement oÃ¹ sera stockÃ© le contact.</translation>
     </message>
     <message>
         <source>Your contact needs at least a surname.</source>
@@ -1504,11 +1508,11 @@ the selected objectclass.&lt;/p&gt;</source>
     </message>
     <message>
         <source>Could not add entry.&lt;br&gt;&lt;br&gt;Reason: </source>
-        <translation>Impossible d&apos;ajouter l&apos;entrée.&lt;br&gt;&lt;br&gt;Raison:</translation>
+        <translation>Impossible d&apos;ajouter l&apos;entrÃ©e.&lt;br&gt;&lt;br&gt;Raison:</translation>
     </message>
     <message>
         <source>Incomplete information.</source>
-        <translation>Informations incomplètes.</translation>
+        <translation>Informations incomplÃštes.</translation>
     </message>
 </context>
 <context>
@@ -1524,7 +1528,7 @@ the selected objectclass.&lt;/p&gt;</source>
     </message>
     <message>
         <source>Please select a location where the new contact should be stored.</source>
-        <translation>Veuillez définir un emplacement où le contact sera enregistré.</translation>
+        <translation>Veuillez dÃ©finir un emplacement oÃ¹ le contact sera enregistrÃ©.</translation>
     </message>
     <message>
         <source>Location:</source>
@@ -1543,7 +1547,7 @@ the selected objectclass.&lt;/p&gt;</source>
     <name>DeleteDialog</name>
     <message>
         <source>Item deleted successfully.</source>
-        <translation>Objet détruit.</translation>
+        <translation>Objet dÃ©truit.</translation>
     </message>
 </context>
 <context>
@@ -1566,7 +1570,7 @@ the selected objectclass.&lt;/p&gt;</source>
     </message>
     <message>
         <source>The following entries will be deleted from the server. You can remove items from the list if you don&apos;t want them to be deleted. Press start to begin with deletion.</source>
-        <translation>Les objets suivant vont être supprimés du serveur. Vous pouvez retirer des objets de la liste si vous ne voulez pas qu&apos;ils soient supprimés. Appuyez sur begin pour commencer.</translation>
+        <translation>Les objets suivant vont Ãªtre supprimÃ©s du serveur. Vous pouvez retirer des objets de la liste si vous ne voulez pas qu&apos;ils soient supprimÃ©s. Appuyez sur begin pour commencer.</translation>
     </message>
     <message>
         <source>&amp;Delete</source>
@@ -1597,27 +1601,27 @@ the selected objectclass.&lt;/p&gt;</source>
     <name>ExportDialog</name>
     <message>
         <source>Select file for exporting</source>
-        <translation>Sélectionnez un fichier pour l&apos;exportation</translation>
+        <translation>SÃ©lectionnez un fichier pour l&apos;exportation</translation>
     </message>
     <message>
         <source>Given file is a directory. Please check the filename.</source>
-        <translation>C&apos;est un répertoire! Veuillez entrer un nom de fichier.</translation>
+        <translation>C&apos;est un rÃ©pertoire! Veuillez entrer un nom de fichier.</translation>
     </message>
     <message>
         <source>Can&apos;t open file. Please check file system permissions.</source>
-        <translation>Impossible d&apos;ouvrir le fichier. Vérifiez les permissions du système de fichier.</translation>
+        <translation>Impossible d&apos;ouvrir le fichier. VÃ©rifiez les permissions du systÃšme de fichier.</translation>
     </message>
     <message>
         <source>Could not export all entires. Please check messages.</source>
-        <translation>Impossible d&apos;exporter toute les entrées. Regardez les messages d&apos;erreur.</translation>
+        <translation>Impossible d&apos;exporter toute les entrÃ©es. Regardez les messages d&apos;erreur.</translation>
     </message>
     <message>
         <source>All items exported successfully.</source>
-        <translation>Tous les objets ont été exportés.</translation>
+        <translation>Tous les objets ont Ã©tÃ© exportÃ©s.</translation>
     </message>
     <message>
         <source>Item exported successfully.</source>
-        <translation>Objets exportés.</translation>
+        <translation>Objets exportÃ©s.</translation>
     </message>
 </context>
 <context>
@@ -1636,11 +1640,11 @@ the selected objectclass.&lt;/p&gt;</source>
     </message>
     <message>
         <source>Export items</source>
-        <translation>Objets exportés</translation>
+        <translation>Objets exportÃ©s</translation>
     </message>
     <message>
         <source>The following entries will be exported to the format of your choice. You can remove items from the list if you don&apos;t want them to be exported. Press start to begin with export..</source>
-        <translation>Les entrées suivantes seront exportées dans le format de votre choix. Vous pouvez les oter de la liste si vous ne voulez pas les exporter. Appuyer sur start pour commencer..</translation>
+        <translation>Les entrÃ©es suivantes seront exportÃ©es dans le format de votre choix. Vous pouvez les oter de la liste si vous ne voulez pas les exporter. Appuyer sur start pour commencer..</translation>
     </message>
     <message>
         <source>DL</source>
@@ -1701,7 +1705,7 @@ the selected objectclass.&lt;/p&gt;</source>
     <name>FilterWizardDesign</name>
     <message>
         <source>Search Filter Wizard</source>
-        <translation>Assistant de création de filtre de recherche</translation>
+        <translation>Assistant de crÃ©ation de filtre de recherche</translation>
     </message>
     <message>
         <source>ObjectClass</source>
@@ -1713,19 +1717,19 @@ the selected objectclass.&lt;/p&gt;</source>
     </message>
     <message>
         <source>=  (equal)</source>
-        <translation>= (égal)</translation>
+        <translation>= (Ã©gal)</translation>
     </message>
     <message>
         <source>-=  (approx)</source>
-        <translation>-=  (valeur approchée)</translation>
+        <translation>-=  (valeur approchÃ©e)</translation>
     </message>
     <message>
         <source>&gt;=  (greater)</source>
-        <translation>&gt;=  (supérieur)</translation>
+        <translation>&gt;=  (supÃ©rieur)</translation>
     </message>
     <message>
         <source>&lt;=  (less)</source>
-        <translation>&lt;=  (inférieur)</translation>
+        <translation>&lt;=  (infÃ©rieur)</translation>
     </message>
     <message>
         <source>Add</source>
@@ -1765,7 +1769,7 @@ the selected objectclass.&lt;/p&gt;</source>
     </message>
     <message>
         <source>&amp;Add current filter</source>
-        <translation>&amp;Ajouter le filtre courrant</translation>
+        <translation>&amp;Ajouter le filtre courant</translation>
     </message>
     <message>
         <source>&lt;b&gt;Filter bookmarks&lt;/b&gt;</source>
@@ -1777,15 +1781,15 @@ the selected objectclass.&lt;/p&gt;</source>
     </message>
     <message>
         <source>&lt;b&gt;Search Criteria&lt;/b&gt;</source>
-        <translation>&lt;b&gt;Critère de recherche&lt;/b&gt;</translation>
+        <translation>&lt;b&gt;CritÃšre de recherche&lt;/b&gt;</translation>
     </message>
     <message>
         <source>&lt;b&gt;Concatenation&lt;/b&gt;</source>
-        <translation>&lt;b&gt;Concaténation&lt;/b&gt;</translation>
+        <translation>&lt;b&gt;ConcatÃ©nation&lt;/b&gt;</translation>
     </message>
     <message>
         <source>&lt;b&gt;Current filter&lt;/b&gt;</source>
-        <translation>&lt;b&gt;Filtre courrant&lt;/b&gt;</translation>
+        <translation>&lt;b&gt;Filtre courant&lt;/b&gt;</translation>
     </message>
     <message>
         <source>&amp;Cancel</source>
@@ -1804,7 +1808,7 @@ the selected objectclass.&lt;/p&gt;</source>
     </message>
     <message>
         <source>Could retrieve other group information.&lt;br&gt;&lt;br&gt;Reason: </source>
-        <translation>Impossible de récupérer les informations des autres groupes.&lt;br&gt;&lt;br&gt;Raison:</translation>
+        <translation>Impossible de rÃ©cupÃ©rer les informations des autres groupes.&lt;br&gt;&lt;br&gt;Raison:</translation>
     </message>
 </context>
 <context>
@@ -1832,7 +1836,7 @@ the selected objectclass.&lt;/p&gt;</source>
     </message>
     <message>
         <source>Select the groups the &lt;strong&gt;%1&lt;/strong&gt; user should belong to.</source>
-        <translation>Sélectionnez les groupes auxquelles l&apos;utilisateur &lt;strong&gt;%1&lt;/strong&gt; doit appartenir.</translation>
+        <translation>SÃ©lectionnez les groupes auxquelles l&apos;utilisateur &lt;strong&gt;%1&lt;/strong&gt; doit appartenir.</translation>
     </message>
     <message>
         <source>Group ID:</source>
@@ -1856,15 +1860,301 @@ the selected objectclass.&lt;/p&gt;</source>
     </message>
     <message>
         <source>You may select from the groups available in the LDAP database or enter any ID that is valid on the system below.</source>
-        <translation>Vous pouvez choisir parmi les groupes disponibles dans l&apos;annuaire ou spécifier un GID valide pour le système sous jacent.</translation>
+        <translation>Vous pouvez choisir parmi les groupes disponibles dans l&apos;annuaire ou spÃ©cifier un GID valide pour le systÃšme sous jacent.</translation>
     </message>
     <message>
         <source>Select any additional groups the &lt;b&gt;%1&lt;/b&gt; user should belong to from the list below.</source>
-        <translation>Sélectionnez tout groupe additionnel auquel l&apos;utilisateur &lt;b&gt;%1&lt;/b&gt; doit appartenir dans la liste ci-dessous.</translation>
+        <translation>SÃ©lectionnez tout groupe additionnel auquel l&apos;utilisateur &lt;b&gt;%1&lt;/b&gt; doit appartenir dans la liste ci-dessous.</translation>
     </message>
     <message>
         <source>&lt;b&gt;Additional Groups&lt;/b&gt;</source>
         <translation>&lt;b&gt;Groupes Additionnels&lt;/b&gt;</translation>
+    </message>
+</context>
+<context>
+    <name>ImprovedServerDialog</name>
+    <message>
+        <source>&lt;b&gt;No server selected&lt;/b&gt;</source>
+        <translation>&lt;b&gt;Aucun serveur sÃ©lectionnÃ©&lt;/b&gt;</translation>
+    </message>
+    <message>
+        <source>Anonymous</source>
+        <translation>anonyme</translation>
+    </message>
+    <message>
+        <source>Automatic</source>
+        <translation>Automatique</translation>
+    </message>
+    <message>
+        <source>Automatic retrieval</source>
+        <translation>RÃ©cupÃ©ration automatique</translation>
+    </message>
+    <message>
+        <source>Could not retrieve baseDN for LDAP server at host/ip:</source>
+        <translation>Impossible de rÃ©cupÃ©rer baseDN sur le serveur host/ip:</translation>
+    </message>
+    <message>
+        <source>Select certificate file</source>
+        <translation>SÃ©lectionnez un certificat</translation>
+    </message>
+    <message>
+        <source>Select certificate key file</source>
+        <translation>SÃ©lectionnez un certificat (clef privÃ©e)</translation>
+    </message>
+    <message>
+        <source>A server with the name &lt;b&gt;%1&lt;/b&gt; already exists.</source>
+        <translation>Un serveur avec le nom &lt;b&gt;%1&lt;/b&gt; existe dÃ©ja.</translation>
+    </message>
+    <message>
+        <source>Please choose another name.</source>
+        <translation>Veuillez choisir un autre nom.</translation>
+    </message>
+    <message>
+        <source>New server</source>
+        <translation>Nouveau serveur</translation>
+    </message>
+    <message>
+        <source>Please enter a name for the new server:</source>
+        <translation>Veuillez entrer un nom pour le nouveau serveur :</translation>
+    </message>
+    <message>
+        <source>Delete Server?</source>
+        <translation>Supprimer le Serveur?</translation>
+    </message>
+    <message>
+        <source>Do your really want to delete server &lt;b&gt;%1&lt;/b&gt;?</source>
+        <translation>Ãtes vous sÃ»r de vouloir supprimer le Serveur &lt;b&gt;%1&lt;/b&gt;?</translation>
+    </message>
+</context>
+<context>
+    <name>ImprovedServerDialogDesign</name>
+    <message>
+        <source>Server</source>
+        <translation>Serveur</translation>
+    </message>
+    <message>
+        <source>Base DNs</source>
+        <translation>Base DNs</translation>
+    </message>
+    <message>
+        <source>Server settings</source>
+        <translation>ParamÃštres du serveur</translation>
+    </message>
+    <message>
+        <source>Add...</source>
+        <translation>Ajouter...</translation>
+    </message>
+    <message>
+        <source>Delete</source>
+        <translation>Supprimer</translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;No server selected&lt;/b&gt;</source>
+        <translation>&lt;b&gt;Aucun serveur sÃ©lectionnÃ©&lt;/b&gt;</translation>
+    </message>
+    <message>
+        <source>&amp;Rename</source>
+        <translation>&amp;Renomer</translation>
+    </message>
+    <message>
+        <source>Alt+R</source>
+        <translation>Alt+R</translation>
+    </message>
+    <message>
+        <source>Ok</source>
+        <translation>OK</translation>
+    </message>
+    <message>
+        <source>Cancel</source>
+        <translation>Annuler</translation>
+    </message>
+    <message>
+        <source>Server address:</source>
+        <translation>Addresse du serveur:</translation>
+    </message>
+    <message>
+        <source>Not configured yet</source>
+        <translation>Pas encore configurÃ©</translation>
+    </message>
+    <message>
+        <source>Click to edit</source>
+        <translation>Cliquez pour Ã©diter</translation>
+    </message>
+    <message>
+        <source>Bind as:</source>
+        <translation type="unfinished">Se connecter en :</translation>
+    </message>
+    <message>
+        <source>Encryption:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Authentification:</source>
+        <translation>Authentification:</translation>
+    </message>
+    <message>
+        <source>BaseDN:</source>
+        <translation>Base DN:</translation>
+    </message>
+    <message>
+        <source>Port:</source>
+        <translation>Port :</translation>
+    </message>
+    <message>
+        <source>Hostname:</source>
+        <translation>Nom d&apos;hote:</translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;Network options&lt;/b&gt;</source>
+        <translation>&lt;b&gt;Options rÃ©seau&lt;/b&gt;</translation>
+    </message>
+    <message>
+        <source>&amp;Summary</source>
+        <translation>&amp;Sommaire</translation>
+    </message>
+    <message>
+        <source>Alt+S</source>
+        <translation>Alt+S</translation>
+    </message>
+    <message>
+        <source>No encryption</source>
+        <translation></translation>
+    </message>
+    <message>
+        <source>TLS (Transport Layer Security)</source>
+        <translation>Connexion TLS (Transport Layer Security)</translation>
+    </message>
+    <message>
+        <source>SSL (Secure Socket Layer)</source>
+        <translation>Connexion SSL (Secure Socket Layer)</translation>
+    </message>
+    <message>
+        <source>Certificate options</source>
+        <translation>Options du certificat</translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;Authentification&lt;/b&gt;</source>
+        <translation>&lt;b&gt;Authentification&lt;/b&gt;</translation>
+    </message>
+    <message>
+        <source>Anonymous bind</source>
+        <translation>Connexion anonyme</translation>
+    </message>
+    <message>
+        <source>Simple</source>
+        <translation>Simple</translation>
+    </message>
+    <message>
+        <source>SASL CRAM-MD5</source>
+        <translation>SASL CRAM-MD5</translation>
+    </message>
+    <message>
+        <source>SASL DIGEST-MD5</source>
+        <translation>SASL DIGEST-MD5</translation>
+    </message>
+    <message>
+        <source>SASL EXTERNAL</source>
+        <translation>SASL EXTERNAL</translation>
+    </message>
+    <message>
+        <source>SASL GSSAPI</source>
+        <translation>SASL GSSAPI</translation>
+    </message>
+    <message>
+        <source>SASL Login</source>
+        <translation>SASL Login</translation>
+    </message>
+    <message>
+        <source>SASL Plain</source>
+        <translation>SASL Plain</translation>
+    </message>
+    <message>
+        <source>Password:</source>
+        <translation>Mot de passe :</translation>
+    </message>
+    <message>
+        <source>Mechanism:</source>
+        <translation>MÃ©canisme:</translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;Certificate options&lt;/b&gt;</source>
+        <translation>&lt;b&gt;Options du certificat&lt;/b&gt;</translation>
+    </message>
+    <message>
+        <source>Validate server:</source>
+        <translation>Valider le serveur:</translation>
+    </message>
+    <message>
+        <source>never</source>
+        <translation>Jamais</translation>
+    </message>
+    <message>
+        <source>try</source>
+        <translation>essayer</translation>
+    </message>
+    <message>
+        <source>allow</source>
+        <translation>Autoriser</translation>
+    </message>
+    <message>
+        <source>demand</source>
+        <translation>Demander</translation>
+    </message>
+    <message>
+        <source>...</source>
+        <translation>...</translation>
+    </message>
+    <message>
+        <source>Certificate file:</source>
+        <translation>Fichie du certificat:</translation>
+    </message>
+    <message>
+        <source>Use client certificates</source>
+        <translation>Utiliser un certificat client</translation>
+    </message>
+    <message>
+        <source>Certificate keyfile:</source>
+        <translation>Fichier contenant la clef du certificat:</translation>
+    </message>
+    <message>
+        <source>&lt;b&gt;LDAP options&lt;/b&gt;</source>
+        <translation>&lt;b&gt;options LDAP&lt;/b&gt;</translation>
+    </message>
+    <message>
+        <source>Follow aliases</source>
+        <translation>Suivre les alias</translation>
+    </message>
+    <message>
+        <source>Use Base DNs provided by the server</source>
+        <translation>Utiliser le &apos;baseDN&apos; fournit par le serveur</translation>
+    </message>
+    <message>
+        <source>Edit BaseDN list</source>
+        <translation>Modifier la liste des DNs</translation>
+    </message>
+    <message>
+        <source>&amp;OK</source>
+        <translation>&amp;OK</translation>
+    </message>
+    <message>
+        <source>Alt+O</source>
+        <translation>Alt+O</translation>
+    </message>
+    <message>
+        <source>S&amp;ave</source>
+        <translation>&amp;Save</translation>
+    </message>
+    <message>
+        <source>Alt+A</source>
+        <translation>Alt+A</translation>
+    </message>
+    <message>
+        <source>&amp;Cancel</source>
+        <translation>&amp;Annuler</translation>
+    </message>
+    <message>
+        <source>Alt+C</source>
+        <translation>Alt+C</translation>
     </message>
 </context>
 <context>
@@ -1898,7 +2188,7 @@ the selected objectclass.&lt;/p&gt;</source>
     <name>LoggerWidgetDesign</name>
     <message>
         <source>Form</source>
-        <translation type="unfinished">Venant de</translation>
+        <translation type="unfinished">Formulaire</translation>
     </message>
     <message>
         <source>Display message types:</source>
@@ -1910,7 +2200,7 @@ the selected objectclass.&lt;/p&gt;</source>
     </message>
     <message>
         <source>Debug</source>
-        <translation>Débug</translation>
+        <translation>DÃ©bug</translation>
     </message>
     <message>
         <source>Info</source>
@@ -1918,7 +2208,7 @@ the selected objectclass.&lt;/p&gt;</source>
     </message>
     <message>
         <source>Clear</source>
-        <translation type="unfinished">Effacer</translation>
+        <translation>Effacer</translation>
     </message>
 </context>
 <context>
@@ -1937,7 +2227,7 @@ the selected objectclass.&lt;/p&gt;</source>
     </message>
     <message>
         <source>Could not retrieve baseDN.&lt;br&gt;&lt;br&gt;Reason: </source>
-        <translation>Impossible de récupérer baseDN.&lt;br&gt;&lt;br&gt;Raison:</translation>
+        <translation>Impossible de rÃ©cupÃ©rer baseDN.&lt;br&gt;&lt;br&gt;Raison:</translation>
     </message>
     <message>
         <source>Could not bind to server.&lt;br&gt;&lt;br&gt;Reason: </source>
@@ -1945,23 +2235,23 @@ the selected objectclass.&lt;/p&gt;</source>
     </message>
     <message>
         <source>Could not search entries.&lt;br&gt;&lt;br&gt;Reason: </source>
-        <translation>Impossible de rechercher les entrés.&lt;br&gt;&lt;br&gt;Raison:</translation>
+        <translation>Impossible de rechercher les entrÃ©s.&lt;br&gt;&lt;br&gt;Raison:</translation>
     </message>
     <message>
         <source>Could not access entry.&lt;br&gt;&lt;br&gt;Reason: </source>
-        <translation>Impossible d&apos;accéder à l&apos;entrée.&lt;br&gt;&lt;br&gt;Raison:</translation>
+        <translation>Impossible d&apos;accÃ©der Ã  l&apos;entrÃ©e.&lt;br&gt;&lt;br&gt;Raison:</translation>
     </message>
     <message>
         <source>Do your really want to delete the selected contact?</source>
-        <translation>Êtes vous sûr de vouloir supprimer le contact?</translation>
+        <translation>Ãtes vous sÃ»r de vouloir supprimer le contact?</translation>
     </message>
     <message>
         <source>Could not delete entry.&lt;br&gt;&lt;br&gt;Reason: </source>
-        <translation>Impossible de supprimer l&apos;entrée.&lt;br&gt;&lt;br&gt;Raison:</translation>
+        <translation>Impossible de supprimer l&apos;entrÃ©e.&lt;br&gt;&lt;br&gt;Raison:</translation>
     </message>
     <message>
         <source>Received %1 entries</source>
-        <translation>%1 objets ont été reçus</translation>
+        <translation>%1 objets ont Ã©tÃ© reÃ§us</translation>
     </message>
 </context>
 <context>
@@ -2068,6 +2358,21 @@ the selected objectclass.&lt;/p&gt;</source>
     </message>
 </context>
 <context>
+    <name>MainWin</name>
+    <message>
+        <source>Choose plugin</source>
+        <translation>Choisissez un plugin</translation>
+    </message>
+    <message>
+        <source>Pluginname</source>
+        <translation>Nom du plugin</translation>
+    </message>
+    <message>
+        <source>Pluginname   </source>
+        <translation>Nom du plugin</translation>
+    </message>
+</context>
+<context>
     <name>MainWinDesign</name>
     <message>
         <source>Luma</source>
@@ -2075,11 +2380,11 @@ the selected objectclass.&lt;/p&gt;</source>
     </message>
     <message>
         <source>About Luma...</source>
-        <translation>À propos de Luma...</translation>
+        <translation>Ã propos de Luma...</translation>
     </message>
     <message>
         <source>Edit Server List...</source>
-        <translation>Éditer la Liste de Serveur...</translation>
+        <translation>Ãditer la liste de serveurs...</translation>
     </message>
     <message>
         <source>Ctrl+E</source>
@@ -2119,7 +2424,7 @@ the selected objectclass.&lt;/p&gt;</source>
     </message>
     <message>
         <source>Settings</source>
-        <translation>Paramètres</translation>
+        <translation>ParamÃštres</translation>
     </message>
     <message>
         <source>Help</source>
@@ -2138,7 +2443,7 @@ the selected objectclass.&lt;/p&gt;</source>
     <name>MassCreation</name>
     <message>
         <source>Please select a valid node from a ldap server.</source>
-        <translation>Veuillez sélectionner un noeud valide depuis le serveur ldap.</translation>
+        <translation>Veuillez sÃ©lectionner un noeud valide depuis le serveur ldap.</translation>
     </message>
     <message>
         <source>There are not enough user ids left! 
@@ -2148,19 +2453,19 @@ Essayez d&apos;augmenter l&apos;intervalle uidNumber ou effacez certains utilisa
     </message>
     <message>
         <source>Success</source>
-        <translation>Succès</translation>
+        <translation>SuccÃšs</translation>
     </message>
     <message>
         <source>All users were created successfully.</source>
-        <translation>Tous les utilisateurs ont étés créés avec succès.</translation>
+        <translation>Tous les utilisateurs ont Ã©tÃ©s crÃ©Ã©s avec succÃšs.</translation>
     </message>
     <message>
         <source>The selected ldap entry did not contain the attribute &apos;gidNumber&apos;.</source>
-        <translation>L&apos;entrée ldap sélectionnée ne contient pas l&apos;attribut &apos;gidNumber&apos;.</translation>
+        <translation>L&apos;entrÃ©e ldap sÃ©lectionnÃ©e ne contient pas l&apos;attribut &apos;gidNumber&apos;.</translation>
     </message>
     <message>
         <source>Incomplete information</source>
-        <translation>Informations incomplètes</translation>
+        <translation>Informations incomplÃštes</translation>
     </message>
     <message>
         <source>Warning</source>
@@ -2172,15 +2477,15 @@ Essayez d&apos;augmenter l&apos;intervalle uidNumber ou effacez certains utilisa
     </message>
     <message>
         <source>Could not create all users.&lt;br&gt;&lt;br&gt;Reason: </source>
-        <translation>Impossible de créer tous les comptes.&lt;br&gt;&lt;br&gt;Raison:</translation>
+        <translation>Impossible de crÃ©er tous les comptes.&lt;br&gt;&lt;br&gt;Raison:</translation>
     </message>
     <message>
         <source>Could not create all automount information.&lt;br&gt;&lt;br&gt;Reason: </source>
-        <translation>Impossible de créer tous les comptes (automount).&lt;br&gt;&lt;br&gt;Raison:</translation>
+        <translation>Impossible de crÃ©er tous les comptes (automontage).&lt;br&gt;&lt;br&gt;Raison:</translation>
     </message>
     <message>
         <source>Could not retrieve used userid numbers.&lt;br&gt;&lt;br&gt;Reason: </source>
-        <translation>Impossible de récupérer les UID des utilisateurs.&lt;br&gt;&lt;br&gt;Raison:</translation>
+        <translation>Impossible de rÃ©cupÃ©rer les UID des utilisateurs.&lt;br&gt;&lt;br&gt;Raison:</translation>
     </message>
     <message>
         <source>Wrong entry</source>
@@ -2188,7 +2493,7 @@ Essayez d&apos;augmenter l&apos;intervalle uidNumber ou effacez certains utilisa
     </message>
     <message>
         <source>Could not retrieve selected item.&lt;br&gt;&lt;br&gt;Reason: </source>
-        <translation>Impossible de récupérer l&apos;entrée.&lt;br&gt;&lt;br&gt;Raison:</translation>
+        <translation>Impossible de rÃ©cupÃ©rer l&apos;entrÃ©e.&lt;br&gt;&lt;br&gt;Raison:</translation>
     </message>
 </context>
 <context>
@@ -2203,7 +2508,7 @@ Essayez d&apos;augmenter l&apos;intervalle uidNumber ou effacez certains utilisa
     </message>
     <message>
         <source>Prefix:</source>
-        <translation>Préfixe:</translation>
+        <translation>PrÃ©fixe:</translation>
     </message>
     <message>
         <source>Base node:</source>
@@ -2215,7 +2520,7 @@ Essayez d&apos;augmenter l&apos;intervalle uidNumber ou effacez certains utilisa
     </message>
     <message>
         <source>Days from now</source>
-        <translation>Jours à partir de maintenant</translation>
+        <translation>Jours Ã  partir de maintenant</translation>
     </message>
     <message>
         <source>/home</source>
@@ -2223,11 +2528,11 @@ Essayez d&apos;augmenter l&apos;intervalle uidNumber ou effacez certains utilisa
     </message>
     <message>
         <source>Select group from LDAP</source>
-        <translation>Sélectionnez un groupe à partir de l&apos;annuaire</translation>
+        <translation>SÃ©lectionnez un groupe Ã  partir de l&apos;annuaire</translation>
     </message>
     <message>
         <source>Home prefix:</source>
-        <translation>Préfixe du répertoire personnel :</translation>
+        <translation>PrÃ©fixe du rÃ©pertoire personnel :</translation>
     </message>
     <message>
         <source>Group Id:</source>
@@ -2243,7 +2548,7 @@ Essayez d&apos;augmenter l&apos;intervalle uidNumber ou effacez certains utilisa
     </message>
     <message>
         <source>&amp;Create</source>
-        <translation>&amp;Générer</translation>
+        <translation>&amp;GÃ©nÃ©rer</translation>
     </message>
     <message>
         <source>Alt+C</source>
@@ -2263,7 +2568,7 @@ Essayez d&apos;augmenter l&apos;intervalle uidNumber ou effacez certains utilisa
     </message>
     <message>
         <source>&lt;b&gt;Account settings&lt;/b&gt;</source>
-        <translation>&lt;b&gt;Paramètre du compte&lt;/b&gt;</translation>
+        <translation>&lt;b&gt;ParamÃštre du compte&lt;/b&gt;</translation>
     </message>
     <message>
         <source>&lt;b&gt;Expiration date&lt;/b&gt;</source>
@@ -2271,7 +2576,7 @@ Essayez d&apos;augmenter l&apos;intervalle uidNumber ou effacez certains utilisa
     </message>
     <message>
         <source>&lt;b&gt;Directory location&lt;/b&gt;</source>
-        <translation>&lt;b&gt;Emplacement du répertoire&lt;/b&gt;</translation>
+        <translation>&lt;b&gt;Emplacement du rÃ©pertoire&lt;/b&gt;</translation>
     </message>
     <message>
         <source>Account</source>
@@ -2362,7 +2667,7 @@ Essayez d&apos;augmenter l&apos;intervalle uidNumber ou effacez certains utilisa
     </message>
     <message>
         <source>Middle:</source>
-        <translation>Deuxième prénom :</translation>
+        <translation>DeuxiÃšme prÃ©nom :</translation>
     </message>
     <message>
         <source>Title:</source>
@@ -2398,18 +2703,18 @@ Essayez d&apos;augmenter l&apos;intervalle uidNumber ou effacez certains utilisa
     </message>
     <message>
         <source>This attribute must be set.</source>
-        <translation>Cet attribut doit être défini.</translation>
+        <translation>Cet attribut doit Ãªtre dÃ©fini.</translation>
     </message>
     <message>
         <source>First:</source>
-        <translation>Prénom :</translation>
+        <translation>PrÃ©nom :</translation>
     </message>
 </context>
 <context>
     <name>NewCategoryDialog</name>
     <message>
         <source>Add category</source>
-        <translation>Ajouter une catégorie</translation>
+        <translation>Ajouter une catÃ©gorie</translation>
     </message>
     <message>
         <source>&amp;Ok</source>
@@ -2441,7 +2746,7 @@ Essayez d&apos;augmenter l&apos;intervalle uidNumber ou effacez certains utilisa
     </message>
     <message>
         <source>Favorites</source>
-        <translation type="unfinished"></translation>
+        <translation>Favoris</translation>
     </message>
     <message>
         <source>Gifts</source>
@@ -2465,15 +2770,15 @@ Essayez d&apos;augmenter l&apos;intervalle uidNumber ou effacez certains utilisa
     </message>
     <message>
         <source>Ideas</source>
-        <translation>Idées</translation>
+        <translation>IdÃ©es</translation>
     </message>
     <message>
         <source>International</source>
-        <translation type="unfinished"></translation>
+        <translation>International</translation>
     </message>
     <message>
         <source>Key Customer</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <source>Miscellaneous</source>
@@ -2485,7 +2790,7 @@ Essayez d&apos;augmenter l&apos;intervalle uidNumber ou effacez certains utilisa
     </message>
     <message>
         <source>Phones Calls</source>
-        <translation>Appels téléphoniques</translation>
+        <translation>Appels tÃ©lÃ©phoniques</translation>
     </message>
     <message>
         <source>Status</source>
@@ -2493,7 +2798,7 @@ Essayez d&apos;augmenter l&apos;intervalle uidNumber ou effacez certains utilisa
     </message>
     <message>
         <source>Strategies</source>
-        <translation>Stratégies</translation>
+        <translation>StratÃ©gies</translation>
     </message>
     <message>
         <source>Suppliers</source>
@@ -2513,7 +2818,7 @@ Essayez d&apos;augmenter l&apos;intervalle uidNumber ou effacez certains utilisa
     </message>
     <message>
         <source>Category:</source>
-        <translation>Catégorie:</translation>
+        <translation>CatÃ©gorie:</translation>
     </message>
 </context>
 <context>
@@ -2548,7 +2853,7 @@ Essayez d&apos;augmenter l&apos;intervalle uidNumber ou effacez certains utilisa
     </message>
     <message>
         <source>Verify:</source>
-        <translation>Vérification :</translation>
+        <translation>VÃ©rification :</translation>
     </message>
     <message>
         <source>Passwords do not match</source>
@@ -2556,7 +2861,7 @@ Essayez d&apos;augmenter l&apos;intervalle uidNumber ou effacez certains utilisa
     </message>
     <message>
         <source>Strength:</source>
-        <translation>Qualité:</translation>
+        <translation>QualitÃ©:</translation>
     </message>
     <message>
         <source>Hash algorithm:</source>
@@ -2603,7 +2908,7 @@ Essayez d&apos;augmenter l&apos;intervalle uidNumber ou effacez certains utilisa
     </message>
     <message>
         <source>Strength:</source>
-        <translation>Qualité:</translation>
+        <translation>QualitÃ©:</translation>
     </message>
     <message>
         <source>Hash algorithm:</source>
@@ -2615,7 +2920,7 @@ Essayez d&apos;augmenter l&apos;intervalle uidNumber ou effacez certains utilisa
     </message>
     <message>
         <source>Verify:</source>
-        <translation>Vérification :</translation>
+        <translation>VÃ©rification :</translation>
     </message>
     <message>
         <source>Passwords do not match</source>
@@ -2658,7 +2963,7 @@ Essayez d&apos;augmenter l&apos;intervalle uidNumber ou effacez certains utilisa
     </message>
     <message>
         <source>Plugin Settings</source>
-        <translation>Paramètres du plugins</translation>
+        <translation>ParamÃštres du plugins</translation>
     </message>
     <message>
         <source>Available Plugins:</source>
@@ -2666,7 +2971,7 @@ Essayez d&apos;augmenter l&apos;intervalle uidNumber ou effacez certains utilisa
     </message>
     <message>
         <source>Settings</source>
-        <translation>Paramètres</translation>
+        <translation>ParamÃštres</translation>
     </message>
     <message>
         <source>&amp;Close</source>
@@ -2725,7 +3030,7 @@ Essayez d&apos;augmenter l&apos;intervalle uidNumber ou effacez certains utilisa
     <name>SchemaEditor</name>
     <message>
         <source>Could not fetch schema information from server.&lt;br&gt;&lt;br&gt;Reason: </source>
-        <translation>Impossible de récupérer les shémas du serveur.&lt;br&gt;&lt;br&gt;Raison:</translation>
+        <translation>Impossible de rÃ©cupÃ©rer les shÃ©mas du serveur.&lt;br&gt;&lt;br&gt;Raison:</translation>
     </message>
 </context>
 <context>
@@ -2736,67 +3041,67 @@ Essayez d&apos;augmenter l&apos;intervalle uidNumber ou effacez certains utilisa
     </message>
     <message>
         <source>Form</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">Formulaire</translation>
     </message>
     <message>
         <source>Fetch schema information from server:</source>
-        <translation type="unfinished"></translation>
+        <translation>Ajouter les informations de shÃ©ma venant du serveur:</translation>
     </message>
     <message>
         <source>&amp;Add...</source>
-        <translation type="unfinished">&amp;Ajouter...</translation>
+        <translation>&amp;Ajouter...</translation>
     </message>
     <message>
         <source>Alt+A</source>
-        <translation type="unfinished">Alt+A</translation>
+        <translation>Alt+A</translation>
     </message>
     <message>
         <source>&amp;Export...</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Exporter...</translation>
     </message>
     <message>
         <source>Alt+E</source>
-        <translation type="unfinished">Alt+E</translation>
+        <translation>Alt+E</translation>
     </message>
     <message>
         <source>&amp;Delete</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Supprimer</translation>
     </message>
     <message>
         <source>Alt+D</source>
-        <translation type="unfinished"></translation>
+        <translation>Alt+D</translation>
     </message>
     <message>
         <source>&amp;Save</source>
-        <translation type="unfinished">&amp;Enregistrer</translation>
+        <translation>&amp;Enregistrer</translation>
     </message>
     <message>
         <source>Alt+S</source>
-        <translation type="unfinished">Alt+S</translation>
+        <translation>Alt+S</translation>
     </message>
     <message>
         <source>Attribute name:</source>
-        <translation type="unfinished"></translation>
+        <translation>Nom de l&apos;attribut:</translation>
     </message>
     <message>
         <source>Ordering:</source>
-        <translation type="unfinished">Ordre:</translation>
+        <translation type="unfinished">Commander:</translation>
     </message>
     <message>
         <source>Length:</source>
-        <translation type="unfinished"></translation>
+        <translation>Longueur:</translation>
     </message>
     <message>
         <source>Equality:</source>
-        <translation type="unfinished">Egalité:</translation>
+        <translation>EgalitÃ©:</translation>
     </message>
     <message>
         <source>Syntax:</source>
-        <translation type="unfinished">Syntaxe:</translation>
+        <translation>Syntaxe:</translation>
     </message>
     <message>
         <source>Usage:</source>
-        <translation type="unfinished">Utilisation:</translation>
+        <translation>Utilisation:</translation>
     </message>
     <message>
         <source>Single value</source>
@@ -2808,19 +3113,19 @@ Essayez d&apos;augmenter l&apos;intervalle uidNumber ou effacez certains utilisa
     </message>
     <message>
         <source>Obsolete</source>
-        <translation type="unfinished">Obsolète</translation>
+        <translation type="unfinished">ObsolÃšte</translation>
     </message>
     <message>
         <source>OID:</source>
-        <translation type="unfinished">Identifiant de l&apos;objet:</translation>
+        <translation>Identifiant de l&apos;objet:</translation>
     </message>
     <message>
         <source>Number</source>
-        <translation type="unfinished"></translation>
+        <translation>Nombre</translation>
     </message>
     <message>
         <source>Description:</source>
-        <translation type="unfinished">Description:</translation>
+        <translation>Description:</translation>
     </message>
     <message>
         <source>Superior:</source>
@@ -2831,7 +3136,7 @@ Essayez d&apos;augmenter l&apos;intervalle uidNumber ou effacez certains utilisa
     <name>SchemaView</name>
     <message>
         <source>Could not fetch schema information from server.&lt;br&gt;&lt;br&gt;Reason: </source>
-        <translation>Impossible de récupérer les shémas du serveur.&lt;br&gt;&lt;br&gt;Raison:</translation>
+        <translation>Impossible de rÃ©cupÃ©rer les shÃ©mas du serveur.&lt;br&gt;&lt;br&gt;Raison:</translation>
     </message>
     <message>
         <source>&lt;b&gt;Attribute name&lt;/b&gt;&lt;br&gt;Description</source>
@@ -2847,7 +3152,7 @@ Essayez d&apos;augmenter l&apos;intervalle uidNumber ou effacez certains utilisa
     </message>
     <message>
         <source>&lt;b&gt;Matching rule&lt;/b&gt;&lt;br&gt;Description</source>
-        <translation>&lt;b&gt;Règle correspondante&lt;/b&gt;Description</translation>
+        <translation>&lt;b&gt;RÃšgle correspondante&lt;/b&gt;Description</translation>
     </message>
 </context>
 <context>
@@ -2874,7 +3179,7 @@ Essayez d&apos;augmenter l&apos;intervalle uidNumber ou effacez certains utilisa
     </message>
     <message>
         <source>Matching rules</source>
-        <translation>Règles de correspondance</translation>
+        <translation>RÃšgles de correspondance</translation>
     </message>
     <message>
         <source>LDAP syntaxes</source>
@@ -2888,7 +3193,7 @@ Description</source>
     </message>
     <message>
         <source>Kind:</source>
-        <translation type="unfinished">Lien:</translation>
+        <translation type="unfinished">Enfant:</translation>
     </message>
     <message>
         <source>OID:</source>
@@ -2896,15 +3201,15 @@ Description</source>
     </message>
     <message>
         <source>Superior:</source>
-        <translation>Supérieur:</translation>
+        <translation>SupÃ©rieur:</translation>
     </message>
     <message>
         <source>&lt;b&gt;Required attributes&lt;/b&gt;</source>
-        <translation>&lt;b&gt;Attributs nécessaires&lt;/b&gt;</translation>
+        <translation>&lt;b&gt;Attributs nÃ©cessaires&lt;/b&gt;</translation>
     </message>
     <message>
         <source>&lt;b&gt;Allowed attributes&lt;/b&gt;</source>
-        <translation>&lt;b&gt;Attributs autorisés&lt;/b&gt;</translation>
+        <translation>&lt;b&gt;Attributs autorisÃ©s&lt;/b&gt;</translation>
     </message>
     <message>
         <source>&lt;b&gt;Attribute name&lt;/b&gt;&lt;br&gt;
@@ -2914,7 +3219,7 @@ Description</translation>
     </message>
     <message>
         <source>&lt;b&gt;Used in ObjectClasses&lt;/b&gt;</source>
-        <translation>&lt;b&gt;Utilisé dans l&apos;objet&lt;/b&gt;</translation>
+        <translation>&lt;b&gt;UtilisÃ© dans l&apos;objet&lt;/b&gt;</translation>
     </message>
     <message>
         <source>Single value</source>
@@ -2926,7 +3231,7 @@ Description</translation>
     </message>
     <message>
         <source>Obsolete</source>
-        <translation>Obsolète</translation>
+        <translation>ObsolÃšte</translation>
     </message>
     <message>
         <source>Syntax {length}:</source>
@@ -2942,12 +3247,12 @@ Description</translation>
     </message>
     <message>
         <source>Equality:</source>
-        <translation>Egalité:</translation>
+        <translation>EgalitÃ©:</translation>
     </message>
     <message>
         <source>&lt;b&gt;Matching rule&lt;/b&gt;&lt;br&gt;
 Description</source>
-        <translation>&lt;b&gt;Règle correspondante&lt;/b&gt;&lt;br&gt;
+        <translation>&lt;b&gt;RÃšgle correspondante&lt;/b&gt;&lt;br&gt;
  Description</translation>
     </message>
     <message>
@@ -2956,7 +3261,7 @@ Description</source>
     </message>
     <message>
         <source>&lt;b&gt;Used in Attribute&lt;/b&gt;</source>
-        <translation>&lt;b&gt;Utilisé dans l&apos;attribut&lt;/b&gt;</translation>
+        <translation>&lt;b&gt;UtilisÃ© dans l&apos;attribut&lt;/b&gt;</translation>
     </message>
     <message>
         <source>&lt;b&gt;Syntax&lt;/b&gt;&lt;br&gt;
@@ -2966,11 +3271,11 @@ Description</translation>
     </message>
     <message>
         <source>&lt;b&gt;Used in attributes&lt;/b&gt;</source>
-        <translation>&lt;b&gt;Utilisé dans les attributs&lt;/b&gt;</translation>
+        <translation>&lt;b&gt;UtilisÃ© dans les attributs&lt;/b&gt;</translation>
     </message>
     <message>
         <source>&lt;b&gt;Used in matching rules&lt;/b&gt;</source>
-        <translation>&lt;b&gt;Utilisé dans le critère de recherche&lt;/b&gt;</translation>
+        <translation>&lt;b&gt;UtilisÃ© dans le critÃšre de recherche&lt;/b&gt;</translation>
     </message>
 </context>
 <context>
@@ -2981,11 +3286,11 @@ Description</translation>
     </message>
     <message>
         <source>Error during search operation.&lt;br&gt;&lt;br&gt;Reason: </source>
-        <translation>Erreur durant la requète.&lt;br&gt;&lt;br&gt;Raison:</translation>
+        <translation>Erreur durant la requÃšte.&lt;br&gt;&lt;br&gt;Raison:</translation>
     </message>
     <message>
         <source>Could not retrieve baseDN.&lt;br&gt;&lt;br&gt;Reason: </source>
-        <translation>Impossible de récupérer baseDN.&lt;br&gt;&lt;br&gt;Raison:</translation>
+        <translation>Impossible de rÃ©cupÃ©rer baseDN.&lt;br&gt;&lt;br&gt;Raison:</translation>
     </message>
 </context>
 <context>
@@ -3008,7 +3313,7 @@ Description</translation>
     </message>
     <message>
         <source>&amp;Filter wizard</source>
-        <translation>&amp;Assistant de création de filtres</translation>
+        <translation>&amp;Assistant de crÃ©ation de filtres</translation>
     </message>
     <message>
         <source>Alt+F</source>
@@ -3027,11 +3332,11 @@ Description</translation>
     <name>SearchResultView</name>
     <message>
         <source>Export selected</source>
-        <translation>Exporter la sélection</translation>
+        <translation>Exporter la sÃ©lection</translation>
     </message>
     <message>
         <source>Delete selected</source>
-        <translation>Supprimer la sélection</translation>
+        <translation>Supprimer la sÃ©lection</translation>
     </message>
     <message>
         <source>Could not bind to server.&lt;br&gt;&lt;br&gt;Reason: </source>
@@ -3039,11 +3344,11 @@ Description</translation>
     </message>
     <message>
         <source>Could not access entry.&lt;br&gt;&lt;br&gt;Reason: </source>
-        <translation>Impossible d&apos;accéder à l&apos;entrée.&lt;br&gt;&lt;br&gt;Raison:</translation>
+        <translation>Impossible d&apos;accÃ©der Ã  l&apos;entrÃ©e.&lt;br&gt;&lt;br&gt;Raison:</translation>
     </message>
     <message>
         <source>&lt;u&gt;Binary value&lt;/u&gt;</source>
-        <translation>&lt;u&gt;Valeur numérique&lt;/u&gt;</translation>
+        <translation>&lt;u&gt;Valeur numÃ©rique&lt;/u&gt;</translation>
     </message>
 </context>
 <context>
@@ -3061,7 +3366,7 @@ Description</translation>
     </message>
     <message>
         <source>Do your really want to delete the Server?</source>
-        <translation>Êtes vous sûr de vouloir supprimer le Serveur?</translation>
+        <translation>Ãtes vous sÃ»r de vouloir supprimer le Serveur?</translation>
     </message>
     <message>
         <source>New server</source>
@@ -3073,22 +3378,22 @@ Description</translation>
     </message>
     <message>
         <source>Could not retrieve baseDN for LDAP server at host/ip:</source>
-        <translation>Impossible de récupérer baseDN sur le serveur host/ip:</translation>
+        <translation>Impossible de rÃ©cupÃ©rer baseDN sur le serveur host/ip:</translation>
     </message>
     <message>
         <source>Select certificate file</source>
-        <translation>Sélectionnez un certificat</translation>
+        <translation>SÃ©lectionnez un certificat</translation>
     </message>
     <message>
         <source>Select certificate key file</source>
-        <translation>Sélectionnez un certificat (clef privée)</translation>
+        <translation>SÃ©lectionnez un certificat (clef privÃ©e)</translation>
     </message>
 </context>
 <context>
     <name>ServerDialogDesign</name>
     <message>
         <source>Manage Server List</source>
-        <translation>Gérer la Liste de Serveurs</translation>
+        <translation>GÃ©rer la Liste de Serveurs</translation>
     </message>
     <message>
         <source>Alt+C</source>
@@ -3108,7 +3413,7 @@ Description</translation>
     </message>
     <message>
         <source>Host:</source>
-        <translation>Hôte :</translation>
+        <translation>HÃŽte :</translation>
     </message>
     <message>
         <source>Port:</source>
@@ -3140,7 +3445,7 @@ Description</translation>
     </message>
     <message>
         <source>&lt;b&gt;Network options&lt;/b&gt;</source>
-        <translation>&lt;b&gt;Options réseau&lt;/b&gt;</translation>
+        <translation>&lt;b&gt;Options rÃ©seau&lt;/b&gt;</translation>
     </message>
     <message>
         <source>SO</source>
@@ -3152,11 +3457,11 @@ Description</translation>
     </message>
     <message>
         <source>&lt;b&gt;Security options&lt;/b&gt;</source>
-        <translation>&lt;b&gt;Options de sécurité&lt;/b&gt;</translation>
+        <translation>&lt;b&gt;Options de sÃ©curitÃ©&lt;/b&gt;</translation>
     </message>
     <message>
         <source>&lt;b&gt;Authentification mechanism&lt;/b&gt;</source>
-        <translation>&lt;b&gt;Mécanisme d&apos;authentification&lt;/b&gt;</translation>
+        <translation>&lt;b&gt;MÃ©canisme d&apos;authentification&lt;/b&gt;</translation>
     </message>
     <message>
         <source>Simple</source>
@@ -3212,7 +3517,7 @@ Description</translation>
     </message>
     <message>
         <source>Manage Base DN list</source>
-        <translation>Gérer la liste des BaseDNs</translation>
+        <translation>GÃ©rer la liste des BaseDNs</translation>
     </message>
     <message>
         <source>&lt;b&gt;LDAP options&lt;/b&gt;</source>
@@ -3220,7 +3525,7 @@ Description</translation>
     </message>
     <message>
         <source>Network</source>
-        <translation>Réseau</translation>
+        <translation>RÃ©seau</translation>
     </message>
     <message>
         <source>SASL EXTERNAL</source>
@@ -3228,11 +3533,11 @@ Description</translation>
     </message>
     <message>
         <source>Security</source>
-        <translation>Sécurité</translation>
+        <translation>SÃ©curitÃ©</translation>
     </message>
     <message>
         <source>Unencrypted connection</source>
-        <translation>Connexion non sécurisée</translation>
+        <translation>Connexion non sÃ©curisÃ©e</translation>
     </message>
     <message>
         <source>Transport Layer Security (TLS)</source>
@@ -3323,11 +3628,11 @@ Description</translation>
     <name>TemplateWidget</name>
     <message>
         <source>Delete template</source>
-        <translation>Supprimer le modèle</translation>
+        <translation>Supprimer le modÃšle</translation>
     </message>
     <message>
         <source>Do you really want to delete the selected template?</source>
-        <translation>Êtes vous sûr de vouloir supprimer le modèle?</translation>
+        <translation>Ãtes vous sÃ»r de vouloir supprimer le modÃšle?</translation>
     </message>
     <message>
         <source>Delete attribute</source>
@@ -3335,7 +3640,7 @@ Description</translation>
     </message>
     <message>
         <source>Do you really want to delete the attribute?</source>
-        <translation>Êtes vous sûr de vouloir supprimer l&apos;attribut?</translation>
+        <translation>Ãtes vous sÃ»r de vouloir supprimer l&apos;attribut?</translation>
     </message>
 </context>
 <context>
@@ -3354,11 +3659,11 @@ Description</translation>
     </message>
     <message>
         <source>Binary</source>
-        <translation type="unfinished"></translation>
+        <translation>Binaire</translation>
     </message>
     <message>
         <source>Default value</source>
-        <translation>Valeur par défault</translation>
+        <translation>Valeur par dÃ©fault</translation>
     </message>
     <message>
         <source>Form1</source>
@@ -3366,7 +3671,7 @@ Description</translation>
     </message>
     <message>
         <source>&lt;b&gt;Templates&lt;/b&gt;</source>
-        <translation>&lt;b&gt;Modèles&lt;/b&gt;</translation>
+        <translation>&lt;b&gt;ModÃšles&lt;/b&gt;</translation>
     </message>
     <message>
         <source>&amp;Add...</source>
@@ -3450,11 +3755,11 @@ Description</translation>
     </message>
     <message>
         <source>Save entry</source>
-        <translation>Enregistrer l&apos;entrée</translation>
+        <translation>Enregistrer l&apos;entrÃ©e</translation>
     </message>
     <message>
         <source>The account has been modified. Do you want to save it?</source>
-        <translation>Le compte a été modifié. Souhaitez-vous l&apos;enregistrer?</translation>
+        <translation>Le compte a Ã©tÃ© modifiÃ©. Souhaitez-vous l&apos;enregistrer?</translation>
     </message>
     <message>
         <source>&amp;Yes</source>
@@ -3470,15 +3775,15 @@ Description</translation>
     </message>
     <message>
         <source>Could not save entry.&lt;br&gt;&lt;br&gt;Reason: </source>
-        <translation>Impossible de sauvegarder cette entrée.&lt;br&gt;&lt;br&gt;Raison:</translation>
+        <translation>Impossible de sauvegarder cette entrÃ©e.&lt;br&gt;&lt;br&gt;Raison:</translation>
     </message>
     <message>
         <source>Could not update all group information.&lt;br&gt;&lt;br&gt;Reason: </source>
-        <translation>Impossible de mettre à jour les informations des groupes.&lt;br&gt;&lt;br&gt;Raison:</translation>
+        <translation>Impossible de mettre Ã  jour les informations des groupes.&lt;br&gt;&lt;br&gt;Raison:</translation>
     </message>
     <message>
         <source>Could not retrieve used userids.&lt;br&gt;&lt;br&gt;Reason: </source>
-        <translation>Impossible de récupérer les UID des utilisateurs.&lt;br&gt;&lt;br&gt;Raison:</translation>
+        <translation>Impossible de rÃ©cupÃ©rer les UID des utilisateurs.&lt;br&gt;&lt;br&gt;Raison:</translation>
     </message>
 </context>
 <context>
@@ -3518,7 +3823,7 @@ Description</translation>
     </message>
     <message>
         <source>User ID number:</source>
-        <translation>Numéro d&apos;ID Utilisateur :</translation>
+        <translation>NumÃ©ro d&apos;ID Utilisateur :</translation>
     </message>
     <message>
         <source>Login shell:</source>
@@ -3530,7 +3835,7 @@ Description</translation>
     </message>
     <message>
         <source>Valid until:</source>
-        <translation>Valide jusqu&apos;à :</translation>
+        <translation>Valide jusqu&apos;Ã  :</translation>
     </message>
     <message>
         <source>Common name:</source>
@@ -3538,7 +3843,7 @@ Description</translation>
     </message>
     <message>
         <source>Manage group memberships</source>
-        <translation>Gérer les appartenances aux groupes</translation>
+        <translation>GÃ©rer les appartenances aux groupes</translation>
     </message>
     <message>
         <source>Delete</source>
@@ -3558,15 +3863,15 @@ Description</translation>
     </message>
     <message>
         <source>Home directory:</source>
-        <translation>Répertoire Personnel :</translation>
+        <translation>RÃ©pertoire Personnel :</translation>
     </message>
     <message>
         <source>Mail:</source>
-        <translation>Adresse électronique :</translation>
+        <translation>Adresse Ã©lectronique :</translation>
     </message>
     <message>
         <source>Group ID number:</source>
-        <translation>Numéro d&apos;ID de Groupe :</translation>
+        <translation>NumÃ©ro d&apos;ID de Groupe :</translation>
     </message>
     <message>
         <source>Password:</source>
@@ -3574,7 +3879,46 @@ Description</translation>
     </message>
     <message>
         <source>Find next free</source>
-        <translation>Trouvez la prochaine entrée libre</translation>
+        <translation>Trouvez la prochaine entrÃ©e libre</translation>
+    </message>
+</context>
+<context>
+    <name>qApp</name>
+    <message>
+        <source>Browser</source>
+        <translation>Navigateur</translation>
+    </message>
+    <message>
+        <source>Search</source>
+        <translation>Recherche</translation>
+    </message>
+    <message>
+        <source>Templates</source>
+        <translation>ModÃšles</translation>
+    </message>
+    <message>
+        <source>Admin utilities</source>
+        <translation>Utilitaires d&apos;administration</translation>
+    </message>
+    <message>
+        <source>Massive user creation</source>
+        <translation>Outil de crÃ©ation d&apos;utilisateurs en masse</translation>
+    </message>
+    <message>
+        <source>Addressbook</source>
+        <translation>Carnet d&apos;addresses</translation>
+    </message>
+    <message>
+        <source>Usermanagement</source>
+        <translation>Gestion des utilisateurs</translation>
+    </message>
+    <message>
+        <source>Schemabrowser</source>
+        <translation>Explorateur de shÃ©mas</translation>
+    </message>
+    <message>
+        <source>Schema editor</source>
+        <translation>Editeur de shÃ©mas</translation>
     </message>
 </context>
 </TS>
