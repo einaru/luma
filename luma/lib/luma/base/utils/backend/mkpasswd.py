@@ -98,14 +98,18 @@ def mkpasswd(pwd,sambaver=3,default='ssha'):
     else:
         salt = getsalt()
         if default == 'ssha':
-            return "{SSHA}" + base64.encodestring(sha.new(str(pwd) + salt).digest() + salt)
+            pwString = "{SSHA}" + base64.encodestring(sha.new(str(pwd) + salt).digest() + salt)
+            return pwString[:-1]
         elif default =='sha':
-            return "{SHA}" + base64.encodestring(sha.new(str(pwd)).digest())
+            pwString = "{SHA}" + base64.encodestring(sha.new(str(pwd)).digest())
+            return pwString[:-1]
         elif default =='md5':
-            return "{MD5}" + base64.encodestring(md5.new(str(pwd)).digest())
+            pwString = "{MD5}" + base64.encodestring(md5.new(str(pwd)).digest())
+            return pwString[:-1]
         elif default =='smd5':
             salt = getsalt(length=4) # Newer versions of OpenLDAP should support the default length 16
-            return "{SMD5}" + base64.encodestring(md5.new(str(pwd)).digest() + salt)
+            pwString = "{SMD5}" + base64.encodestring(md5.new(str(pwd)).digest() + salt)
+            return pwString[:-1]
         elif default =='crypt':
             return "{CRYPT}" + crypt.crypt(str(pwd),getsalt(length=2)) # crypt only uses a salt of length 2
         elif default == 'lmhash':
