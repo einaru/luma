@@ -36,12 +36,15 @@ class PluginLoaderGui(PluginLoaderGuiDesign):
         for x in self.PLUGINS.keys():
             tmpObject = self.PLUGINS[x]
             tmpCheckBox = QCheckListItem(self.chooserView,
-                            tmpObject["PLUGIN_NAME"],
+                            tmpObject["pluginName"],
                             QCheckListItem.CheckBox )
+            tmpCheckBox.pluginName = tmpObject["pluginName"]
             self.checkerList.append(tmpCheckBox)
             
             tmpObject = self.PLUGINS[x]
-            widgetTmp = tmpObject["PLUGIN_CODE"].getPluginSettingsWidget(self.settingsStack)
+            reference = tmpObject['getPluginSettingsWidget']
+            
+            widgetTmp = reference(self.settingsStack)
             if widgetTmp == None:
                 widgetTmp = QWidget(self.settingsStack)
             id = self.settingsStack.addWidget(widgetTmp, -1)
@@ -80,7 +83,7 @@ class PluginLoaderGui(PluginLoaderGuiDesign):
                 configParser.readfp(open(self.defaultsHome, 'r'))
             
             for x in self.checkerList:
-                pluginName = str(x.text())
+                pluginName = x.pluginName
                 if not(configParser.has_section(pluginName)):
                     configParser.add_section(pluginName)
                 
@@ -102,7 +105,7 @@ class PluginLoaderGui(PluginLoaderGuiDesign):
         text = str(item.text())
         for x in self.PLUGINS.keys():
             tmpObject = self.PLUGINS[x]
-            if tmpObject["PLUGIN_NAME"] == text:
+            if tmpObject["pluginName"] == item.pluginName:
                 self.settingsStack.raiseWidget(tmpObject["SETTINGS_WIDGET_ID"])
                 self.settingsBox.setTitle(text)
                 
