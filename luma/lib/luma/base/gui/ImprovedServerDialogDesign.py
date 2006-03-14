@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file '/home/wido/src/luma/lib/luma/base/gui/ImprovedServerDialogDesign.ui'
 #
-# Created: Sun Oct 23 04:54:06 2005
+# Created: Thu Jan 12 17:08:36 2006
 #      by: The PyQt User Interface Compiler (pyuic) 3.14.1
 #
 # WARNING! All changes made in this file will be lost!
@@ -1729,7 +1729,7 @@ class ImprovedServerDialogDesign(QDialog):
         WStackPageLayout.addWidget(self.textLabel5,0,0)
 
         self.networkLabel = QLabel(self.WStackPage,"networkLabel")
-        self.networkLabel.setSizePolicy(QSizePolicy(QSizePolicy.Expanding,QSizePolicy.Preferred,0,0,self.networkLabel.sizePolicy().hasHeightForWidth()))
+        self.networkLabel.setSizePolicy(QSizePolicy(QSizePolicy.Ignored,QSizePolicy.Preferred,0,0,self.networkLabel.sizePolicy().hasHeightForWidth()))
         self.networkLabel.setFrameShape(QLabel.NoFrame)
 
         WStackPageLayout.addWidget(self.networkLabel,0,1)
@@ -1740,14 +1740,17 @@ class ImprovedServerDialogDesign(QDialog):
         WStackPageLayout.addWidget(self.textLabel7,1,0)
 
         self.credentialLabel = QLabel(self.WStackPage,"credentialLabel")
+        self.credentialLabel.setSizePolicy(QSizePolicy(QSizePolicy.Ignored,QSizePolicy.Preferred,0,0,self.credentialLabel.sizePolicy().hasHeightForWidth()))
 
         WStackPageLayout.addWidget(self.credentialLabel,1,1)
 
         self.encryptionLabel = QLabel(self.WStackPage,"encryptionLabel")
+        self.encryptionLabel.setSizePolicy(QSizePolicy(QSizePolicy.Ignored,QSizePolicy.Preferred,0,0,self.encryptionLabel.sizePolicy().hasHeightForWidth()))
 
         WStackPageLayout.addWidget(self.encryptionLabel,2,1)
 
         self.authLabel = QLabel(self.WStackPage,"authLabel")
+        self.authLabel.setSizePolicy(QSizePolicy(QSizePolicy.Ignored,QSizePolicy.Preferred,0,0,self.authLabel.sizePolicy().hasHeightForWidth()))
 
         WStackPageLayout.addWidget(self.authLabel,3,1)
 

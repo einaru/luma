@@ -298,7 +298,7 @@
                                     </property>
                                     <property name="sizePolicy">
                                         <sizepolicy>
-                                            <hsizetype>7</hsizetype>
+                                            <hsizetype>2</hsizetype>
                                             <vsizetype>5</vsizetype>
                                             <horstretch>0</horstretch>
                                             <verstretch>0</verstretch>
@@ -334,6 +334,14 @@
                                     <property name="name">
                                         <cstring>credentialLabel</cstring>
                                     </property>
+                                    <property name="sizePolicy">
+                                        <sizepolicy>
+                                            <hsizetype>2</hsizetype>
+                                            <vsizetype>5</vsizetype>
+                                            <horstretch>0</horstretch>
+                                            <verstretch>0</verstretch>
+                                        </sizepolicy>
+                                    </property>
                                     <property name="text">
                                         <string>Not configured yet</string>
                                     </property>
@@ -345,6 +353,14 @@
                                     <property name="name">
                                         <cstring>encryptionLabel</cstring>
                                     </property>
+                                    <property name="sizePolicy">
+                                        <sizepolicy>
+                                            <hsizetype>2</hsizetype>
+                                            <vsizetype>5</vsizetype>
+                                            <horstretch>0</horstretch>
+                                            <verstretch>0</verstretch>
+                                        </sizepolicy>
+                                    </property>
                                     <property name="text">
                                         <string>Not configured yet</string>
                                     </property>
@@ -355,6 +371,14 @@
                                 <widget class="QLabel" row="3" column="1">
                                     <property name="name">
                                         <cstring>authLabel</cstring>
+                                    </property>
+                                    <property name="sizePolicy">
+                                        <sizepolicy>
+                                            <hsizetype>2</hsizetype>
+                                            <vsizetype>5</vsizetype>
+                                            <horstretch>0</horstretch>
+                                            <verstretch>0</verstretch>
+                                        </sizepolicy>
                                     </property>
                                     <property name="text">
                                         <string>Not configured yet</string>

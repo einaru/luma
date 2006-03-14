@@ -545,7 +545,11 @@ class ImprovedServerDialog(ImprovedServerDialogDesign):
 ###############################################################################
 
     def anonBindChanged(self, activated):
-        self.currentServer.bindAnon = activated
+        if activated == 1:
+            self.currentServer.bindAnon = True
+        else:
+            self.currentServer.bindAnon = False
+            
         self.showAuthWidgets()
         self.saveButton.setEnabled(True)
             
@@ -601,13 +605,21 @@ class ImprovedServerDialog(ImprovedServerDialogDesign):
 ###############################################################################
 
     def aliasChanged(self, activated):
-        self.currentServer.followAliases = activated
+        if activated == 1:
+            self.currentServer.followAliases = True
+        else:
+            self.currentServer.followAliases = False
+            
         self.saveButton.setEnabled(True)
         
 ###############################################################################
 
     def autoBaseChanged(self, activated):
-        self.currentServer.autoBase = activated
+        if activated == 1:
+            self.currentServer.autoBase = True
+        else:
+            self.currentServer.autoBase = False
+            
         self.displayBaseDnList()
         self.showBaseWidgets()
         self.saveButton.setEnabled(True)
@@ -660,7 +672,11 @@ class ImprovedServerDialog(ImprovedServerDialogDesign):
 ###############################################################################
 
     def clientCertsChanged(self, activated):
-        self.currentServer.useCertificate = activated
+        if activated == 1:
+            self.currentServer.useCertificate = True
+        else:
+            self.currentServer.useCertificate = False
+            
         self.displayCertWidgets()
         self.saveButton.setEnabled(True)
         
@@ -852,3 +868,20 @@ class ImprovedServerDialog(ImprovedServerDialogDesign):
             
             self.displayServerList()
             self.saveButton.setEnabled(1)
+            
+###############################################################################
+
+    def selectServer(self, serverName):
+        tmpItem = self.serverListView.firstChild()
+        if tmpItem == 0:
+            return
+            
+        while not (unicode(tmpItem.text(0)) == serverName):
+            tmpItem = tmpItem.nextSibling()
+            if tmpItem.nextSibling() == 0:
+                return
+            
+                
+        if unicode(tmpItem.text(0)) == serverName:
+            self.serverListView.setSelected(tmpItem, True)
+        
