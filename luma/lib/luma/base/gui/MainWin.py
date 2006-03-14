@@ -37,8 +37,11 @@ class MainWin(MainWinDesign):
         
         environment.updateUI = self.updateUI
         environment.setBusy = self.setBusy
+        environment.reloadPlugins = self.reloadPlugins
         environment.displaySizeLimitWarning = self.displaySizeLimitWarning
         environment.logMessage = self.logMessage
+        
+        self.pluginItemList = []
 
         # create the progress bar for the status bar
         statusBar = self.statusBar()
@@ -55,10 +58,32 @@ class MainWin(MainWinDesign):
         self.logButtonActivated = False
         
         # Build the plugin toolbar
+        #self.pluginToolBar = QToolBar(self, "PLUGINTOOLBAR")
+        #self.toolBarLabel = QLabel("Plugin:", self.pluginToolBar)
+        #self.pluginBox = QComboBox(self.pluginToolBar)
+        #self.connect(self.pluginBox, SIGNAL("activated(const QString &)"), self.pluginSelectionChanged)
         self.pluginToolBar = QToolBar(self, "PLUGINTOOLBAR")
-        self.toolBarLabel = QLabel("Plugin:", self.pluginToolBar)
-        self.pluginBox = QComboBox(self.pluginToolBar)
-        self.connect(self.pluginBox, SIGNAL("activated(const QString &)"), self.pluginSelectionChanged)
+        self.pluginLabel = QLabel(self.pluginToolBar)
+        self.pluginLabel.setAlignment(Qt.AlignLeft | Qt.SingleLine | Qt.AlignVCenter)
+        self.pluginLabel.setText(self.trUtf8("Pluginname   "))
+        font = QFont()
+        font.setBold(True)
+        self.pluginLabel.setFont(font)
+        self.pluginLabel.setSizePolicy(QSizePolicy(QSizePolicy.MinimumExpanding,QSizePolicy.Preferred))
+        self.pluginButton = QPushButton(self.pluginToolBar)
+        self.pluginButton.setText(self.trUtf8("Choose plugin"))
+        self.pluginButton.installEventFilter(self)
+        self.pluginButtonClicked = False
+        self.connect(self.pluginButton, SIGNAL("clicked()"), self.showPluginSelection)
+        self.timerRunning = False
+        
+        self.pluginBox = QListBox(None)
+        font = self.pluginBox.font()
+        font.setPointSize(font.pointSize() + 4)
+        self.pluginBox.setFont(font)
+        self.connect(self.pluginBox, SIGNAL("clicked(QListBoxItem*)"), self.pluginClicked)
+        
+        self.pluginBoxId = self.taskStack.addWidget(self.pluginBox, -1)
 
         self.loggerDockWindow = QDockWindow(QDockWindow.InDock, self)
         self.loggerDockWindow.setResizeEnabled(True)
@@ -74,32 +99,46 @@ class MainWin(MainWinDesign):
         
         # Try to read the chosen language. If this fails, fallback to native,
         # which is english.
+        # Additionally restore window size.
         trFile = 'NATIVE'
         try:
             configParser = ConfigParser()
             configParser.readfp(open(self.configFile, 'r'))
             
             if configParser.has_section("Defaults"):
-                trFile = configParser.get("Defaults", "language")
-        except NoOptionError:
-            pass
+                width = None
+                height = None
+                
+                if configParser.has_option("Defaults", "width"):
+                    width = configParser.getint("Defaults", "width")
+                    
+                if configParser.has_option("Defaults", "height"):
+                    height = configParser.getint("Defaults", "height")
+                    
+                if (not (width == None)) and (not (height == None)):
+                    self.resize(width, height)
+                
+                if configParser.has_option("Defaults", "language"):
+                    trFile = configParser.get("Defaults", "language")
         except IOError, e:
             tmpString = "Could not read config file. Reason:\n"
             tmpString += str(e)
             environment.logMessage(LogObject("Debug", tmpString))
         
         # Install translator.
-        self.translator = QTranslator(None)
+        qApp.translator = QTranslator(None)
         if not (trFile == 'NATIVE'):
-            self.translator.load(trFile)
-            qApp.installTranslator(self.translator)
-            self.languageChange()
+            qApp.translator.load(trFile)
+            qApp.installTranslator(qApp.translator)
+            self.languageChanges()
         
 
         self.PLUGINS = {}
         self.ICONPREFIX = os.path.join(environment.lumaInstallationPrefix, "share", "luma", "icons")
         self.applicationIcon = QPixmap(os.path.join(self.ICONPREFIX, "luma-32.png"))
         self.setIcon(self.applicationIcon)
+        
+        self.showPluginSelection()
         
 
 ###############################################################################
@@ -118,7 +157,6 @@ class MainWin(MainWinDesign):
         Before that, all plugins are unloaded. This way all plugins have the 
         possibility for a cleanup.
         """
-        
         self.unloadPlugins()
         self.savePosition()
         qApp.quit()
@@ -134,8 +172,8 @@ class MainWin(MainWinDesign):
         if (dialog.result() == QDialog.Accepted) or dialog.SAVED:
             currentPlugin = self.pluginBox.currentText()
             self.reloadPlugins()
-            self.pluginBox.setCurrentText(currentPlugin)
-            self.pluginSelectionChanged(currentPlugin)
+            #self.pluginBox.setCurrentText(currentPlugin)
+            #self.pluginSelectionChanged(currentPlugin)
 
 ###############################################################################
 
@@ -147,37 +185,51 @@ class MainWin(MainWinDesign):
         
         pluginObject = PluginLoader(self.checkToLoad())
         self.PLUGINS = pluginObject.PLUGINS
-        iconTmp = None
         
         self.pluginBox.clear()
         
         pluginNameList = []
-        
         for x in self.PLUGINS.keys():
             tmpObject = self.PLUGINS[x]
-            if tmpObject['PLUGIN_LOAD'] == 1:
+            if tmpObject['load'] == True:
                 if not (None == splash):
-                    tmpMessage = "Loading plugin " + self.PLUGINS[x]['PLUGIN_NAME']
+                    tmpMessage = "Loading plugin " + unicode(self.PLUGINS[x]['pluginUserString'])
                     splash.message(tmpMessage, Qt.AlignLeft + Qt.AlignBottom, Qt.white)
 
-                pluginNameList.append(self.PLUGINS[x]['PLUGIN_NAME'])
-                widgetTmp = tmpObject["PLUGIN_CODE"].getPluginWidget(self.taskStack)
+                pluginNameList.append(self.PLUGINS[x]['pluginName'])
+                reference = tmpObject["getPluginWidget"]
+                widgetTmp = reference(self.taskStack)
                 tmpObject["WIDGET_REF"] = widgetTmp
                 tmpObject["WIDGET_ID"] = self.taskStack.addWidget(widgetTmp, -1)
                 
         pluginNameList.sort()
-        map(self.pluginBox.insertItem, pluginNameList)
+        #map(self.pluginBox.insertItem, pluginNameList)
                 
-        pluginName = str(self.pluginBox.currentText())
-        if self.PLUGINS.has_key(pluginName):
-            self.taskStack.raiseWidget(self.PLUGINS[pluginName]["WIDGET_ID"])
-            try:
-                self.PLUGINS[pluginName]["WIDGET_REF"].buildToolBar(self)
-            except AttributeError, e:
-                pass
-                
+        #pluginName = str(self.pluginBox.currentText())
+        #if self.PLUGINS.has_key(pluginName):
+        #    self.taskStack.raiseWidget(self.PLUGINS[pluginName]["WIDGET_ID"])
+        #    try:
+        #        self.PLUGINS[pluginName]["WIDGET_REF"].buildToolBar(self)
+        #    except AttributeError, e:
+        #        pass
+        #    
+        
+        for x in pluginNameList:
+            name = self.PLUGINS[x]["pluginUserString"]
+            icon = self.PLUGINS[x]["icon"]
+            item = QListBoxPixmap(icon, QString(name))
+            self.pluginBox.insertItem(item)
+            
+            item.widgetID = self.PLUGINS[x]["WIDGET_ID"]
+            item.widgetRef = self.PLUGINS[x]["WIDGET_REF"]
+            item.name = name
+            self.pluginItemList.append(item)
+            
+            
         if not (None == splash):
             splash.message("Finished.", Qt.AlignLeft + Qt.AlignBottom, Qt.white)
+            
+        #self.taskStack.raiseWidget()
             
 
 ###############################################################################
@@ -192,39 +244,14 @@ class MainWin(MainWinDesign):
         for x in self.PLUGINS.keys():
             tmpObject = self.PLUGINS[x]
             
-            if tmpObject['PLUGIN_LOAD']:
+            if tmpObject['load']:
                 widgetRef = tmpObject["WIDGET_REF"]
-                tmpObject["PLUGIN_CODE"].postprocess()
+                #tmpObject["PLUGIN_CODE"].postprocess()
                 
                 # We use deleteLater() because of a bug in QT. 
                 widgetRef.deleteLater()
                 
         self.PLUGINS = {}
-
-###############################################################################
-
-    def pluginSelectionChanged(self, pluginName):
-        """If a plugin icon is clicked, the corresponding plugin widget is
-        raised.
-        """ 
-        
-        pluginName = str(pluginName)
-
-        if self.PLUGINS.has_key(pluginName):
-            self.taskStack.raiseWidget(self.PLUGINS[pluginName]["WIDGET_ID"])
-
-        toolBars = self.toolBars(Qt.DockTop)
-        
-        for x in toolBars:
-            if not (str(x.name()) == "PLUGINTOOLBAR"):
-                x.deleteLater()
-
-        #build the toolbar for the selected plugin
-        try:
-            self.PLUGINS[pluginName]["WIDGET_REF"].buildToolBar(self)
-        except AttributeError, e:
-            #print "Could not build toolbar for plugin ", pluginName
-            pass
 
 ###############################################################################
 
@@ -270,6 +297,8 @@ class MainWin(MainWinDesign):
         
         self.unloadPlugins()
         
+        self.pluginItemList = []
+        
         toolBars = self.toolBars(Qt.DockTop)
         
         for x in toolBars:
@@ -277,6 +306,10 @@ class MainWin(MainWinDesign):
                 x.deleteLater()
         
         self.loadPlugins()
+        
+        self.showPluginSelection()
+        translatedNamed = unicode(self.trUtf8("Pluginname")) + "   "
+        self.pluginLabel.setText(translatedNamed)
 
 ###############################################################################
 
@@ -341,12 +374,12 @@ class MainWin(MainWinDesign):
         if dialog.result() == QDialog.Accepted:
             trFile = dialog.getLanguageFile()
             if trFile == 'NATIVE':
-                qApp.removeTranslator(self.translator)
+                qApp.removeTranslator(qApp.translator)
             else:
-                self.translator.load(trFile)
-                qApp.installTranslator(self.translator)
+                qApp.translator.load(trFile)
+                qApp.installTranslator(qApp.translator)
                
-            self.languageChange()
+            self.languageChanges()
                 
             configParser.set("Defaults", "language", trFile)
             
@@ -369,9 +402,33 @@ class MainWin(MainWinDesign):
 ###############################################################################
 
     def savePosition(self):
-        pass 
+        width = self.width()
+        height = self.height()
+        
+        configParser = ConfigParser()
+            
+        try:
+            configParser.readfp(open(self.configFile, 'r'))
+        except Exception, errorData:
+            tmpString = "Could not read settings file. Reason:\n"
+            tmpString += str(errorData)
+            environment.logMessage(LogObject("Debug", tmpString))
+            
+        if not(configParser.has_section("Defaults")):
+            configParser.add_section("Defaults")
+            
+        configParser.set("Defaults", "width", width)
+        configParser.set("Defaults", "height", height)
+        
+        try:
+            configParser.write(open(self.configFile, 'w'))
+        except Exception, errorData:
+            tmpString = "Could not save window settings. Reason:\n"
+            tmpString += str(errorData)
+            environment.logMessage(LogObject("Error", tmpString))
 
 ###############################################################################
+
 
     def showLoggerWindow(self):
         statusBar = self.statusBar()
@@ -406,3 +463,74 @@ class MainWin(MainWinDesign):
                     self.logButtonActivated = True
         else:
             pass
+
+###############################################################################
+
+    def eventFilter(self, object, event):
+        if (event.type() == QEvent.Enter):
+            if object == self.pluginButton:
+                if not self.timerRunning:
+                    self.pluginButtonClicked = False
+                    QTimer.singleShot( 500, self.checkCursorPosition)
+                
+        return 0
+                
+###############################################################################
+
+    def checkCursorPosition(self):
+        self.timerRunning = False
+        if self.pluginButtonClicked:
+            return
+            
+        if self.pluginButton.hasMouse():
+            self.showPluginSelection()
+            
+###############################################################################
+
+    def showPluginSelection(self):
+        self.pluginButtonClicked = True
+        self.taskStack.raiseWidget(self.pluginBoxId)
+        
+###############################################################################
+    
+    def pluginClicked(self, item):
+        if item == None:
+            return
+            
+        self.taskStack.raiseWidget(item.widgetID)
+        self.pluginLabel.setText(unicode(item.text()) + "   ")
+        
+        toolBars = self.toolBars(Qt.DockTop)
+        
+        for x in toolBars:
+            if not (str(x.name()) == "PLUGINTOOLBAR"):
+                x.deleteLater()
+        
+        #build the toolbar for the selected plugin
+        try:
+            item.widgetRef.buildToolBar(self)
+        except AttributeError, e:
+            pass
+            
+            
+###############################################################################
+
+    def __tr(self,s,c = None):
+        return qApp.translate("MainWin",s,c)
+        
+###############################################################################
+
+    def languageChanges(self):
+        self.languageChange()
+        self.pluginButton.setText(self.trUtf8("Choose plugin"))
+        
+        #for x in self.pluginItemList:
+        #    x.setText(qApp.translate(str(x.name))
+        #    print "foo"
+        
+        
+        
+        
+        
+        
+        
