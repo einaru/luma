@@ -75,6 +75,11 @@ def setBusy(self, busy):
     pass
     
 ###############################################################################
+
+def reloadPlugins(self):
+    pass
+    
+###############################################################################
   
 def getAvailableHashMethods():
     # basic algorithms which are supported by mkpasswd-module
