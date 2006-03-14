@@ -51,7 +51,6 @@ class PluginLoader(object):
         self.pluginDirList = self.getPluginList()
 
         self.importPluginMetas(pluginsToLoad)
-        self.loadPluginCode()
 
 ###############################################################################
 
@@ -63,60 +62,15 @@ class PluginLoader(object):
         try:
             # test for every file listed, if it is a directory
             for x in listdir(self.pluginBaseDir):
-                tmp = os.path.join (self.pluginBaseDir, x)
-                
-                if os.path.isdir(tmp):
-                    tmpList.append(tmp)
+                tmpPath = os.path.join(self.pluginBaseDir, x)
+                if os.path.isdir(tmpPath):
+                    tmpList.append(x)
                     
             return tmpList
         except OSError, errorData:
             errorString = "Could not read from directory where plugins are stored. Reason:\n"
             errorString += str(errorData)
             environment.logMessage(LogObject("Debug", errorString))
-
-###############################################################################
-
-    def loadPluginCode(self):
-        """ Load the plugin source code and try to import it.
-        """
-        
-        module = None
-        for x in self.PLUGINS.keys():
-            tmpPlugin = self.PLUGINS[x]
-            
-            # test if plugin should be loaded or not
-            if tmpPlugin["PLUGIN_LOAD"]:
-                tmpString = tmpPlugin["PLUGIN_FILE"]
-                
-                # here comes the important part
-                # create a new module, load the source code file,
-                # compile it to executable code and import it.
-                module = imp.new_module(tmpString)
-                try:
-                    # Read plugin code.
-                    fileObject = open(os.path.join(tmpPlugin["PLUGIN_PATH"], tmpPlugin["PLUGIN_FILE"]), 'r')
-                    exec fileObject in locals()
-                    fileObject.close()
-                except IOError, errorData:
-                    errorString = "Could not read file for plugin " + tmpPlugin['PLUGIN_NAME']
-                    errorString = errorString + " Reason: " + str(errorData)
-                    environment.logMessage(LogObject("Error", errorString))
-                except ImportError, e:
-                    errorString =  "Plugin " + x + " has internal errors. It will not be loaded."
-                    environment.logMessage(LogObject("Error", errorString))
-                
-                tmpObject = TaskPlugin()
-                tmpObject.pluginPath = tmpPlugin["PLUGIN_PATH"]
-                tmpDir = os.path.split(tmpPlugin["PLUGIN_PATH"])[1]
-                tmpObject.pluginIconPath = os.path.join(environment.lumaInstallationPrefix, 
-                    "share", "luma", "icons", "plugins", tmpDir)
-                
-                
-                if self.pluginOK(tmpPlugin["PLUGIN_NAME"], dir(tmpObject)):
-                    tmpPlugin["PLUGIN_CODE"] = tmpObject
-                else:
-                    del self.PLUGINS[x]
-
 
 ###############################################################################
 
@@ -128,11 +82,14 @@ class PluginLoader(object):
         """
         
         for x in self.pluginDirList:
+            if x == "CVS":
+                continue
+                
             pluginMetaObject = {}
             
             try:
                 pluginMetaObject = self.readMetaInfo(x, pluginsToLoad)
-                self.PLUGINS[pluginMetaObject["PLUGIN_NAME"]] = pluginMetaObject
+                self.PLUGINS[pluginMetaObject["pluginName"]] = pluginMetaObject
             except PluginMetaError, x:
                 errorString = "Plugin from the following directory could not be loaded:\n"
                 errorString = errorString + str(x)
@@ -147,74 +104,55 @@ class PluginLoader(object):
         be set.
         """
         
-        ATTRIBUTE_LIST = ["PLUGIN_NAME", "PLUGIN_VERSION", "PLUGIN_AUTHOR",
-                            "PLUGIN_FILE", "PLUGIN_LOAD", "PLUGIN_PATH",
-                            "PLUGIN_CODE"]
-        META_INFO = {}
+        attributeList = ["lumaPlugin", "pluginName", "author",
+                            "pluginUserString", "version", "getIcon", 
+                            "getPluginWidget", "getPluginSettingsWidget"]
+        metaInformation = {}
         
+        importedModule = None
         try:
-            metaHandler = open(os.path.join(pluginPath,  "plugin.meta"), 'r')
-            metaText = metaHandler.readlines()
-                    
-            for x in metaText:
-                if x[:12] == 'PLUGIN_NAME=':
-                    META_INFO["PLUGIN_NAME"] = x[12:-1]
-                    continue
-                if x[:15] == 'PLUGIN_VERSION=':
-                    META_INFO["PLUGIN_VERSION"] = x[15:-1]
-                    continue
-                if x[:14] == 'PLUGIN_AUTHOR=':
-                    META_INFO["PLUGIN_AUTHOR"] = x[14:-1]
-                    continue
-                if x[:12] == 'PLUGIN_FILE=':
-                    META_INFO["PLUGIN_FILE"] = x[12:-1]
-                    continue
-                    
-            META_INFO["PLUGIN_LOAD"] = 0
-            if pluginsToLoad == 'ALL':
-                META_INFO["PLUGIN_LOAD"] = 1
-            else:
-                for x in pluginsToLoad:
-                    if x == META_INFO["PLUGIN_NAME"]:
-                        META_INFO["PLUGIN_LOAD"] = 1
-                        break
-            META_INFO["PLUGIN_PATH"] = pluginPath
-            META_INFO["PLUGIN_CODE"] = 0
-        except IOError, errorData:
-            errorString = "Plugin meta file could not be opened. Reason:\n"
+            modulePath = os.path.join("plugins", pluginPath)
+            foundModule = imp.find_module(modulePath)
+            importedModule = imp.load_module(pluginPath, *foundModule)
+        except ImportError, errorData:
+            errorString = "Plugin meta information could not be loaded. Reason:\n"
             errorString += str(errorData)
             environment.logMessage(LogObject("Error", errorString))
             raise PluginMetaError, errorData
             
-        # this one is tricky. we want to test, if all plugin meta infos are present.
-        # so we want to access every need key from META_INFO. if the key
-        # is not present, a key error is raised an thus the meta info not given.
-        # only on success we return the meta info.
-        try:
-            for x in ATTRIBUTE_LIST:
-                tmp = META_INFO[x]
-            return META_INFO
-        except KeyError, errorData:
-            errorString = "Missing plugin info in plugin.meta: " + errorData
-            environment.logMessage(LogObject("Error", errorString))
-            raise PluginMetaError, errorData
-
-
-###############################################################################
-
-    def pluginOK(self, name, values):
-        """Test if all needed functions are present in the plugin code. 
-        """
+        missingAttributes = []
+        for x in attributeList:
+            if not hasattr(importedModule, x):
+                missingAttributes.append(x)
         
-        neededFunctions = ["__init__", "getIcon", "pluginName",
-            "postprocess", "pluginPath", "getPluginWidget", "pluginWidget", "getPluginSettingsWidget"]
-            
-        for x in neededFunctions:
-            if not (x in values):
-                errorString = "In Plugin " + name + " the following function is not implemented: " + x
-                environment.logMessage(LogObject("Error", errorString))
-                return 0
-        return 1
+        if len(missingAttributes) > 0:
+            errorString = "Loaded module " + pluginPath + " is not a Luma plugin."
+            errorString = errorString + "The following attributes are missing: \n"
+            for x in missingAttributes:
+                errorString = errorString + x + " "
+            raise PluginMetaError, errorString
+        
+        metaInformation["pluginName"] = importedModule.pluginName
+        metaInformation["pluginUserString"] = importedModule.pluginUserString
+        metaInformation["author"] = importedModule.author
+        metaInformation["version"] = importedModule.version
+        metaInformation["getPluginWidget"] = importedModule.getPluginWidget
+        metaInformation["getPluginSettingsWidget"] = importedModule.getPluginSettingsWidget
+        
+        iconPath = os.path.join(environment.lumaInstallationPrefix, "share", "luma", "icons", "plugins", pluginPath)
+        icon = importedModule.getIcon(iconPath)
+        metaInformation["icon"] = icon
+        
+        metaInformation["load"] = False
+        if pluginsToLoad == 'ALL':
+            metaInformation["load"] = True
+        else:
+            for x in pluginsToLoad:
+                if x == metaInformation["pluginName"]:
+                    metaInformation["load"] = True
+                    break
+        
+        return metaInformation
 
 ###############################################################################
 
