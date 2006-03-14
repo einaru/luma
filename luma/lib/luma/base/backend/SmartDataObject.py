@@ -31,6 +31,7 @@ class SmartDataObject (object):
     def __init__(self, data, serverMeta):
         self.doSchemaChecks = True
         self.isValid = False
+        self.checkErrorMessageList = ["No error checking done yet."]
         
         self.dn = data[0]
         self.data = data[1]
@@ -42,8 +43,6 @@ class SmartDataObject (object):
                 if "objectclass" == x.lower():
                     self.objectClassName = x
                     break
-        if self.objectClassName == None:
-            self.objectClassName = "objectClass"
         
         # Set server meta information
         self.serverMeta = serverMeta
@@ -576,7 +575,27 @@ class SmartDataObject (object):
 ###############################################################################
 
     def checkIntegrity(self):
-        pass
+        isOk = True
+        errorList = []
+        
+        # First check for objectClasses
+        objectClasses = self.getObjectClasses()
+        
+        for x in objectClasses:
+            if not self.serverSchema.hasObjectClass(x):
+                isOk = False
+                errorList.append("ObjectClass " + x + " not present in server schema.")
+                
+        # Now check if all attributes are present in schema
+        attributes = self.getAttributeList()
+        
+        for x in attributes:
+            if not self.serverSchema.hasAttribute(x):
+                isOk = False
+                errorList.append("Attribute " + x + " not present in server schema.")
+        
+        self.isValid = isOk
+        self.checkErrorMessageList = errorList
         
 ###############################################################################
 
@@ -744,7 +763,6 @@ class SmartDataObject (object):
         must, may = self.getPossibleAttributes()
         all = Set(self.getAttributeList())
         rest = all - must.union(may)
-
         for x in rest:
             self.deleteAttribute(x)
         
@@ -762,8 +780,24 @@ class SmartDataObject (object):
         for x in currentList:
             if x in attributeList:
                 tmpList.append(x)
+                
+                
+        classList = self.getObjectClasses()
+        classList.remove(className)
         
-        return tmpList
+        attributeList = tmpList[:]
+        for x in tmpList:
+            removeAttribute = False
+            for y in classList:
+                # Attribute is provided by another objectclass and there is no 
+                # need to remove it.
+                if x in self.serverSchema.getAttributeListForObjectClass(y):
+                    removeAttribute = True
+            
+            if removeAttribute:
+                attributeList.remove(x)
+        
+        return attributeList
         
 ###############################################################################
 
