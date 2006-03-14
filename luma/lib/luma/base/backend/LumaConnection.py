@@ -82,7 +82,8 @@ class LumaConnection(object):
             resultList = []
             for x in workerThread.result:
                 copyItem = copy.deepcopy(x)
-                resultList.append(SmartDataObject(copyItem, self.serverMeta))
+                ldapObject = SmartDataObject(copyItem, self.serverMeta)
+                resultList.append(ldapObject)
                 
             environment.setBusy(False)
             message = "Received " + str(len(resultList)) + " item(s) from LDAP search operation."
@@ -473,8 +474,6 @@ class WorkerThreadBind(threading.Thread):
     def run(self):
         try:
             urlschemeVal = "ldap"
-            # tls != ssl!! FIXME: SSL with ldaps://<host>:636/ and TLS with ldap://<host>:389/
-            # Should be fixed by now. (wido)
             if self.serverMeta.encryptionMethod == "SSL":
                 urlschemeVal = "ldaps"
               
