@@ -150,35 +150,58 @@ class AdvancedObjectWidget(QWidget):
             self.enableToolButtons(False)
             return 
         
-        tmpList = []
-        tmpList.append("<html>")
-        tmpList.append("""<body>""")
-        tmpList.append("""<table border="0" cellpadding="1" cellspacing="0" width="100%">""")
-        tmpList.append("""<tr>""")
-        tmpList.append("""<td bgcolor="#B2CAE7" width="40%"><font size="+1"> <b>Distinguished Name:</b> </font></td>""")
-        tmpList.append("""<td bgcolor="#B2CAE7" width="60%"><font size="+1"><b>""" + self.ldapDataObject.getPrettyDN() + """</b></font></td>""")
+        self.ldapDataObject.checkIntegrity()
         
-        if self.CREATE:
-            self.mimeFactory.setPixmap("editPixmap", self.editPixmap)
-            tmpList.append("""<td width=5%><a name=RDN__0__edit><img source="editPixmap"></a></td>""")
+        if self.ldapDataObject.isValid:
+            tmpList = []
+            tmpList.append("<html>")
+            tmpList.append("""<body>""")
+            tmpList.append("""<table border="0" cellpadding="1" cellspacing="0" width="100%">""")
+            tmpList.append("""<tr>""")
+            tmpList.append("""<td bgcolor="#B2CAE7" width="40%"><font size="+1"> <b>Distinguished Name:</b> </font></td>""")
+            tmpList.append("""<td bgcolor="#B2CAE7" width="60%"><font size="+1"><b>""" + self.ldapDataObject.getPrettyDN() + """</b></font></td>""")
         
-        tmpList.append("""</tr>""")
+            if self.CREATE:
+                self.mimeFactory.setPixmap("editPixmap", self.editPixmap)
+                tmpList.append("""<td width=5%><a name=RDN__0__edit><img source="editPixmap"></a></td>""")
         
-        tmpList.append("</table>")
-        tmpList.append("<br>")
+            tmpList.append("""</tr>""")
         
-        tmpList.append(self.createClassString())
+            tmpList.append("</table>")
+            tmpList.append("<br>")
         
-        tmpList.append("<br>")
+            tmpList.append(self.createClassString())
         
-        tmpList.append(self.createAttributeString())
+            tmpList.append("<br>")
         
-        tmpList.append("</body>")
-        tmpList.append("</html>")
+            tmpList.append(self.createAttributeString())
         
-        self.currentDocument = ("".join(tmpList))
+            tmpList.append("</body>")
+            tmpList.append("</html>")
         
-        self.objectWidget.setText(self.currentDocument)
+            self.currentDocument = ("".join(tmpList))
+        
+            self.objectWidget.setText(self.currentDocument)
+        else:
+            tmpList = []
+            tmpList.append("<html>")
+            tmpList.append("""<body>""")
+            tmpList.append("""<table border="0" cellpadding="1" cellspacing="0" width="100%">""")
+            tmpList.append("""<tr>""")
+            tmpList.append("""<td <font size="+1"> """ + unicode(self.trUtf8("<b>Could not display ldap entry. Reason:</b>")) + """</font></td>""")
+            tmpList.append("""</tr>""")
+            tmpList.append("""<tr>""")
+            tmpList.append("""</tr>""")
+            for x in self.ldapDataObject.checkErrorMessageList:
+                tmpList.append("""<tr>""")
+                tmpList.append("""<td>""" + x + """</td>""")
+                tmpList.append("""</tr>""")
+                
+            tmpList.append("</body>")
+            tmpList.append("</html>")
+            
+            self.objectWidget.setText("".join(tmpList))
+        
         
         self.enableToolButtons(True)
         environment.setBusy(False)
@@ -375,7 +398,7 @@ class AdvancedObjectWidget(QWidget):
     def getAttributeModifierString(self, univAttributeName, allowDelete, attributeBinaryExport, attributeModify):
         tmpList = []
         
-        tmpList.append("""<td width=10%>""")
+        tmpList.append("""<td width=20%>""")
         
         if attributeModify:
         #if True:
