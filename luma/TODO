@@ -13,9 +13,6 @@ Browser
     - Move entries to new nodes. Also recursively for complete trees
         
 
-Schema Browser
---------------
-    - Create schema browser
     
 
 Addressbook
@@ -26,7 +23,6 @@ Addressbook
 
 Install Script
 --------------
-    - Do not copy editor backup files  
     - Add uninstall option
     - correct version checking
     - rewrite installer to use distutils 
@@ -34,8 +30,7 @@ Install Script
 
 General
 -------
-    - Import of LDIF-files
-    - Import/export DSML-files
+    - Import of DSML-/LDIF-files
     
 Wishlist by users
 -----------------
