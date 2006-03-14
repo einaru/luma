@@ -26,6 +26,7 @@ from base.utils.gui.LumaErrorDialog import LumaErrorDialog
 from base.utils.gui.DeleteDialog import DeleteDialog
 from base.utils.gui.ExportDialog import ExportDialog
 from base.utils.backend.LogObject import LogObject
+from base.gui.ImprovedServerDialog import ImprovedServerDialog
 
 class BrowserWidget(QListView):
     """ Widget for browsing ldap trees. 
@@ -605,7 +606,9 @@ class BrowserWidget(QListView):
                 break 
                 
             listIterator += 1
-            
+        
+        popupMenu.insertItem(self.trUtf8("Edit server settings"), self.editServerSettings)
+        
         menuID = popupMenu.insertItem(QIconSet(QPixmap(aliasIconFile)), self.trUtf8("Follow Aliases"), self.enableAliases)
         popupMenu.setItemChecked(menuID, self.aliasDict[server])
                 
@@ -925,6 +928,17 @@ class BrowserWidget(QListView):
         serverMeta.followAliases = not serverMeta.followAliases
         self.displayServerIcons()
         
+###############################################################################
+
+    def editServerSettings(self):
+        serverName = self.popupItem.getServerName()
+        
+        dialog = ImprovedServerDialog()
+        dialog.selectServer(serverName)
+        dialog.exec_loop()
+        if (dialog.result() == QDialog.Accepted) or dialog.SAVED:
+            environment.reloadPlugins()
+    
 ###############################################################################
 
     def reopenDN(self, serverString, dnString):
