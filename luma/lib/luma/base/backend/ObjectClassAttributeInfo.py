@@ -278,6 +278,18 @@ class ObjectClassAttributeInfo(object):
 
 ###############################################################################
 
+    def hasAttribute(self, attribute):
+        """ Returns a boolean wether the given attribute is present 
+        in the schema.
+        """
+        
+        if attribute[-7:] == ";binary":
+            attribute = attribute[:-7]
+
+        return self.attributeDict.has_key(attribute.lower())
+    
+###############################################################################
+
     def getObjectClasses(self):
         """ Returns a list of all objectClasses the schema supports.
         """
@@ -313,7 +325,7 @@ class ObjectClassAttributeInfo(object):
         
         if "top" == className:
             return []
-    
+            
         parentList = []
         tmpList = copy(self.objectClassesDict[className]["PARENTS"])
         
@@ -524,8 +536,6 @@ class WorkerThreadFetch(threading.Thread):
     def run(self):
         try:
             urlschemeVal = "ldap"
-            # tls != ssl!! FIXME: SSL with ldaps://<host>:636/ and TLS with ldap://<host>:389/
-            # Should be fixed by now. (wido)
             if self.serverMeta.encryptionMethod == "SSL":
                 urlschemeVal = "ldaps"
               
