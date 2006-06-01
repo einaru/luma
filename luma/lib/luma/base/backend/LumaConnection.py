@@ -26,7 +26,7 @@ import environment
 from base.backend.ServerObject import ServerObject
 from base.backend.SmartDataObject import SmartDataObject
 from base.utils.backend.LogObject import LogObject
-
+from base.utils.gui.PromptPasswordDialog import PromptPasswordDialog
 
 class LumaConnectionException(Exception):
     """This exception class will be raised if no proper server object is passed 
@@ -45,6 +45,9 @@ class LumaConnection(object):
     Parameter is a ServerObject which contains all meta information for 
     accessing servers.
     """
+
+    # For storing prompted passwords
+    _passwordMap = {}
     
     def __init__(self, serverMeta=None):
         # Throw exception if no ServerObject is passed.
@@ -236,7 +239,19 @@ class LumaConnection(object):
         """Bind to server.
         """
 
-        
+        # Check passwordMap for existing password or prompt if necessary
+        if self.serverMeta.bindPassword == "" and not self.serverMeta.bindAnon:
+            if LumaConnection._passwordMap.has_key(self.serverMeta.name):
+                self.serverMeta.bindPassword = LumaConnection._passwordMap[self.serverMeta.name]
+            else:
+                # Not busy while prompting for password
+                environment.setBusy(False)
+                dialog = PromptPasswordDialog()
+                dialog.exec_loop()
+                if dialog.result() == 1:
+                    self.serverMeta.bindPassword = unicode(dialog.passwordEdit.text())
+                    LumaConnection._passwordMap[self.serverMeta.name] = self.serverMeta.bindPassword
+
         environment.setBusy(True)
         
         workerThread = WorkerThreadBind(self.serverMeta)
@@ -257,6 +272,10 @@ class LumaConnection(object):
             message = "LDAP bind operation not successful. Reason:\n"
             message += str(workerThread.exceptionObject)
             environment.logMessage(LogObject("Error", message))
+            # Unset password in passwordMap on 'Invalid credentials'
+            # FIXME: Should we unset password on every bind error?
+            if workerThread.exceptionObject.args[0]['desc'] == 'Invalid credentials':
+                LumaConnection._passwordMap.pop(self.serverMeta.name)
             return (False, workerThread.exceptionObject)
         
 ###############################################################################
