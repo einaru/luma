@@ -14,6 +14,7 @@ import os.path
 import os
 from popen2 import Popen3
 import py_compile
+import errno
 
 # This is the prefix directory where luma will be installed.
 prefixDir = os.path.join("usr", "local")
@@ -75,19 +76,30 @@ You can get the module here: http://barryp.org/software/py-smbpasswd
 
 ###############################################################################
 
+def logAndStop(message):
+    """Small method to print out trapped errormessages and stopping the program."""
+    print message
+    sys.exit(1)
+
+###############################################################################
+
 def doChecks():
     """Checks if prefix diretory exists. After that Luma will be compiled and installed. 
-    Installation fails if prefix directory doesn't exist.
-    
-    TODO: try to create the installation directory
+    If prefix-directory isn't found, doChecks will try to make the whole path.
     """
+
 
     if os.path.exists(prefixDir):
         doCompile()
         doInstall()
     else:
-        print "Prefix directory does not exist!"
-        sys.exit(1)
+        try:
+            os.makedirs(prefixDir)
+        except OSError,oe:
+            print "Unable to make install-prefix %s. Reason: " % prefixDir
+            print str(oe)
+            sys.exit(1)
+        doChecks() # Nice, we call ourself if we were able to make directories
 
 ###############################################################################
 
@@ -99,25 +111,47 @@ def doInstall():
     
     try:
         for tmpDir in ["bin", "lib", "share"]:
+            if not (os.path.exists(tmpDir)):
+                try: 
+                    os.makedirs(tmpDir)
+                except OSError,oe:
+                    print "Unable to create local directory %s. Reason:" % tmpDir
+                    print str(oe)
+                    sys.exit(1)
+
             a = Popen3("cp -R " + tmpDir + " " + prefixDir)
             while a.poll() == -1:
                 pass
             if a.poll() > 0:
                 raise "CopyError", "Error!!! Could not copy File. Maybe wrong permissions?"
+
+            if tmpDir == "bin":
+                src,dst = prefixDir + '/lib/luma/luma.py', prefixDir + '/bin/luma'
+                pwd = os.getcwd()
+                if not (os.path.exists(pwd + "/" + dst)):
+                    try:
+                        os.symlink(src,dst)
+                    except OSError,oerr:
+                        if oerr.errno == errno.EEXIST:
+                            # Not to wory - seems we're trying to install a newer version
+                            pass
+                        elif oerr.errno == errno.EACCES:
+                            raise "AccessError","Unable to make symbolic link due to access restrictions."
                 
         print "Finished copying program files.\n"
         print "LUMA installed succesfully! :)"
         
     except "CopyError", errorMessage:
-        print errorMessage
-        sys.exit(1)
+        logAndStop(errorMessage)
+    except "AccessError", errorMessage:
+        logAndStop(errorMessage)
+
     
 ###############################################################################
 
 def checkPath():
-    """ Checks if the install directory for luma is in the local PATH of the user and give him feedback.
+    """ Checks if the install directory for luma is in the local PATH of the user and give him/her feedback.
     """
-    
     
     pathVariable = os.environ['PATH']
     pathValues = pathVariable.split(':')
@@ -156,20 +190,25 @@ def printHelp():
 def doCompile():
     """Compiles all source files to python bytecode.
     """
+    global compiled
+
     
-    print "Compiling python source files ...\n"
+    if not compiled:
+        print "Compiling python source files ...\n"
     
-    input, output = os.popen2("find . -name \"*.py\"")
-    tmpArray = output.readlines()
-    fileList = []
-    for x in tmpArray:
-        if x[:11] == "./lib/luma/":
-            fileList.append(x[:-1])
-    for x in fileList:
-        print "compiling " + x
-        py_compile.compile(x)
+        input, output = os.popen2("find . -name \"*.py\"")
+        tmpArray = output.readlines()
+        fileList = []
+        for x in tmpArray:
+            if x[:11] == "./lib/luma/":
+                fileList.append(x[:-1])
+        for x in fileList:
+            print "compiling " + x
+            py_compile.compile(x)
         
-    print "\nFinished compiling.\n"
+        print "\nFinished compiling.\n"
+        compiled = True
+
          
 ###############################################################################
 
@@ -197,20 +236,17 @@ def evalArguments():
 ###############################################################################
 
 
-print "Luma 2.2 (C) 2003-2005 Wido Depping\n"
+print "Luma 2.4 (C) 2003-2006 Wido Depping\n"
 
 doImportCheck()
 print ""
 
 evalArguments()
     
+compiled = False
 doCompile()
 
 if not compileOnly:
-    # Check if prefixDir exists
-    if not(os.path.exists(prefixDir)):
-        print "Prefix directory does not exist!"
-        sys.exit(1)
-
+    doChecks()
     doInstall()
     checkPath()
