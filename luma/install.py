@@ -96,9 +96,7 @@ def doChecks():
         try:
             os.makedirs(prefixDir)
         except OSError,oe:
-            print "Unable to make install-prefix %s. Reason: " % prefixDir
-            print str(oe)
-            sys.exit(1)
+            logAndStop("Unable to make install-prefix %s. Reason: %s" % (prefixDir,str(oe)))
         doChecks() # Nice, we call ourself if we were able to make directories
 
 ###############################################################################
@@ -115,9 +113,7 @@ def doInstall():
                 try: 
                     os.makedirs(tmpDir)
                 except OSError,oe:
-                    print "Unable to create local directory %s. Reason:" % tmpDir
-                    print str(oe)
-                    sys.exit(1)
+                    logAndStop("Unable to create local directory %s. Reason: %s" % (tmpDir,str(oe)))
 
             a = Popen3("cp -R " + tmpDir + " " + prefixDir)
             while a.poll() == -1:
@@ -181,9 +177,7 @@ def printHelp():
  --compile-only \t Just compile source files. No installation.
  \n"""
  
-    print helpString
-    
-    sys.exit(1)
+    logAndStop(helpString)
     
 ###############################################################################
     
@@ -230,8 +224,7 @@ def evalArguments():
             if (prefixDir[-1] == "/") and (len(prefixDir) > 1):
                 prefixDir = prefixDir[:-1]
         else:
-            print "Unknown options. Exiting..."
-            sys.exit(1)
+            logAndStop("Unknown options. Exiting...")
 
 ###############################################################################
 
