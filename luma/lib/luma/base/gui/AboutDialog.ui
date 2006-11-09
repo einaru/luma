@@ -39,7 +39,7 @@
                 <enum>Plain</enum>
             </property>
             <property name="text">
-                <string>&lt;font size="+2"&gt;&lt;b&gt;Luma 2.3&lt;/b&gt;&lt;/font&gt;</string>
+                <string>&lt;font size="+2"&gt;&lt;b&gt;Luma 2.4&lt;/b&gt;&lt;/font&gt;</string>
                 <comment>DO NOT TRANSLATE</comment>
             </property>
         </widget>
@@ -418,7 +418,12 @@ POSSIBILITY OF SUCH DAMAGES.
                             <enum>PlainText</enum>
                         </property>
                         <property name="text">
-                            <string>Bjorn Ove Grotan
+                            <string>
+Vegar Westerlund
+Contributed a patch for supporting password-prompting
+                                
+Bjorn Ove Grotan (bgrotan at grotan.com)
+Luma Project Admin and Debian Maintainer
 Contributed his mkpasswd module.
 Translation into Norwegian.
 
@@ -446,7 +451,7 @@ Swedish translation
 Alexander Novitsky
 Russian translation
 
-Nextgens (nextgens at users.sourceforge.net)
+Florens Daignière (nextgens at freenetproject.org)
 French translation
 
 Rebekka Golombek (rebekkagolombe at web.de)
