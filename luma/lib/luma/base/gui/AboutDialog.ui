@@ -64,7 +64,7 @@
                         </property>
                         <property name="text">
                             <string>&lt;p align="center"&gt;LDAP management made easy.&lt;br&gt;&lt;br&gt;
-(c) 2003-2005   Wido Depping&lt;br&gt;&lt;br&gt;
+(c) 2003-2006   Wido Depping&lt;br&gt;&lt;br&gt;
 http://luma.sourceforge.net
 &lt;/p&gt;</string>
                             <comment>DO NOT TRANSLATE</comment>
