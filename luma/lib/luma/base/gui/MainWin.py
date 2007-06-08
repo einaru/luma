@@ -482,8 +482,9 @@ class MainWin(MainWinDesign):
         if self.pluginButtonClicked:
             return
             
-        if self.pluginButton.hasMouse():
-            self.showPluginSelection()
+	# Annoying behavior.. disabled # bgrotan
+        #if self.pluginButton.hasMouse():
+        #    self.showPluginSelection()
             
 ###############################################################################
 
