@@ -106,12 +106,11 @@ Try increasing the uidNumber range or delete some users from the subtree."""),
         baseHomeDir = str(self.homeEdit.text())
         groupId = str(self.gidBox.value())
         loginShell = str(self.shellEdit.text())
-        
-        tmpList = str(self.nodeEdit.text()).split(",")
+
+        tmpList = str(self.nodeEdit.text()).split("@")
         server = tmpList[-1]
-        del tmpList[-1]
-        baseDN = ",".join(tmpList)
-        
+        baseDN = tmpList[0]
+
         tmpObject = ServerList()
         tmpObject.readServerList()
         serverMeta = tmpObject.getServerObject(server)
@@ -234,10 +233,9 @@ Try increasing the uidNumber range or delete some users from the subtree."""),
 
     def getUsedUidNumbers(self):
         baseString = str(self.nodeEdit.text())
-        tmpList = baseString.split(',')
+        tmpList = baseString.split('@')
         serverName = tmpList[-1]
-        del tmpList[-1]
-        ldapObject = ",".join(tmpList)
+        ldapObject = tmpList[0]
 
         serverList = ServerList()
         serverList.readServerList()
