@@ -239,8 +239,11 @@ class LumaConnection(object):
         """Bind to server.
         """
 
-        # Check passwordMap for existing password or prompt if necessary
-        if self.serverMeta.bindPassword == "" and not self.serverMeta.bindAnon:
+        # Prompt for password if bindPassword is empty and we are not binding 
+        # anonomously or with kerberos or external mech
+        if (self.serverMeta.bindPassword == "" and not self.serverMeta.bindAnon) and not \
+            ((self.serverMeta.authMethod == u"SASL GSSAPI") or (self.serverMeta.authMethod == u"SASL EXTERNAL")):
+            # Check passwordMap for existing password or prompt if necessary
             if LumaConnection._passwordMap.has_key(self.serverMeta.name):
                 self.serverMeta.bindPassword = LumaConnection._passwordMap[self.serverMeta.name]
             else:
