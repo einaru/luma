@@ -78,8 +78,7 @@ class MassCreation(MassCreationDesign):
             self.createButton.setEnabled(True)
             
             tmpDialog = QMessageBox(self.trUtf8("Warning"),
-                self.trUtf8("""There are not enough user ids left! 
-Try increasing the uidNumber range or delete some users from the subtree."""),
+                self.trUtf8("""There are not enough user ids left! Try increasing the uidNumber range or delete some users from the subtree."""),
                 QMessageBox.Critical,
                 QMessageBox.Ok,
                 QMessageBox.NoButton,
