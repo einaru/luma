@@ -275,10 +275,11 @@ class LumaConnection(object):
             message = "LDAP bind operation not successful. Reason:\n"
             message += str(workerThread.exceptionObject)
             environment.logMessage(LogObject("Error", message))
-            # Unset password in passwordMap on 'Invalid credentials'
-            # FIXME: Should we unset password on every bind error?
+            # Unset password in passwordMap and bindPassword on 'Invalid credentials'
             if workerThread.exceptionObject.args[0]['desc'] == 'Invalid credentials':
-                LumaConnection._passwordMap.pop(self.serverMeta.name)
+				if LumaConnection._passwordMap.has_key(self.serverMeta.name):
+					LumaConnection._passwordMap.pop(self.serverMeta.name)
+				self.serverMeta.bindPassword = ""
             return (False, workerThread.exceptionObject)
         
 ###############################################################################
