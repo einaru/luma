@@ -19,6 +19,7 @@ class BrowserDialog(QDialog):
     def __init__(self,parent = None,name = None,fl = 0):
         QDialog.__init__(self,parent,name,fl)
     
+        self.selectedItem = ""
         self.setCaption("LDAP Browser")
         
         tmpLayout = QVBoxLayout(self)
@@ -57,58 +58,28 @@ class BrowserDialog(QDialog):
     def getItemPath(self):
         """ Return the path of the selected item.
         """
-        
-        selectedItems = []
-        listIterator = QListViewItemIterator(self.tmpBrowser)
-        while listIterator.current():
-            item = listIterator.current()
-            
-            if item.isSelected():
-                selectedItems.append(item)
-                
-            listIterator += 1
-        
-        if len(selectedItems) == 0:
-            return None
-        
-        tmpItem = selectedItems[0]
-        tmpText = self.tmpBrowser.getFullPath(tmpItem)
-        return tmpText
-            
+        return self.selectedItem
+
 ###############################################################################
 
     def getLdapItem(self):
         """ Return ldap data of the selected item.
-        """  
-        tmpItem = self.tmpBrowser.selectedItem()
-        tmpText = self.tmpBrowser.getFullPath(tmpItem)
-        return self.tmpBrowser.getLdapItem(tmpText)
-        
+        """
+        tmpItem = self.selectedItem()
+        return self.tmpBrowser.getLdapItem(self.serverMeta.serverName, tmpItem.getDn())
+
 ###############################################################################
 
     def checkInput(self):
         """ Check if a valid ldap object is selected and then close the dialog.
         """
-        
-        selectedItems = []
-        listIterator = QListViewItemIterator(self.tmpBrowser)
-        while listIterator.current():
-            item = listIterator.current()
-            
-            if item.isSelected():
-                selectedItems.append(item)
-                
-            listIterator += 1
-        
-        if len(selectedItems) == 0:
-            return
-        
-        tmpItem = selectedItems[0]
+        tmpItem = self.getSelectedItem()
         if tmpItem == None:
             pass
         else:
-            tmpText = self.tmpBrowser.getFullPath(tmpItem)
+            tmpText = "%s@%s" % (tmpItem.getDn(), tmpItem.getServerName())
             if len(tmpText.split(',')) > 1:
+                self.selectedItem = tmpText
                 self.accept()
         
 ###############################################################################
@@ -120,4 +91,22 @@ class BrowserDialog(QDialog):
         self.reject()
         
         
-        
+###############################################################################
+	# Work around the fact that the QListView is not in SINGLE selectionmode
+	# and QListView::selectedItem() will then return 0
+    def getSelectedItem(self):
+        selectedItems = []
+        listIterator = QListViewItemIterator(self.tmpBrowser)
+        while listIterator.current():
+            item = listIterator.current()
+
+            if item.isSelected():
+                selectedItems.append(item)
+
+            listIterator += 1
+
+        if len(selectedItems) == 0:
+            return
+
+        return selectedItems[0]
+
