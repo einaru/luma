@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file '/home/wido/src/luma/lib/luma/base/gui/MainWinDesign.ui'
+# Form implementation generated from reading ui file 'MainWinDesign.ui'
 #
-# Created: Tue Oct 25 03:03:11 2005
-#      by: The PyQt User Interface Compiler (pyuic) 3.14.1
+# Created: søn jun 10 21:57:20 2007
+#      by: The PyQt User Interface Compiler (pyuic) 3.17
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -666,23 +666,23 @@ class MainWinDesign(QMainWindow):
         self.menubar = QMenuBar(self,"menubar")
 
 
-        self.PopupMenu_3 = QPopupMenu(self)
-        self.showLogger.addTo(self.PopupMenu_3)
-        self.reload.addTo(self.PopupMenu_3)
-        self.PopupMenu_3.insertSeparator()
-        self.exitItem.addTo(self.PopupMenu_3)
-        self.PopupMenu_3.insertSeparator()
-        self.menubar.insertItem(QString(""),self.PopupMenu_3,1)
+        self.Program = QPopupMenu(self)
+        self.showLogger.addTo(self.Program)
+        self.reload.addTo(self.Program)
+        self.Program.insertSeparator()
+        self.exitItem.addTo(self.Program)
+        self.Program.insertSeparator()
+        self.menubar.insertItem(QString(""),self.Program,1)
 
-        self.PopupMenu = QPopupMenu(self)
-        self.editServerList.addTo(self.PopupMenu)
-        self.menuConfigurePlugins.addTo(self.PopupMenu)
-        self.selectLanguage.addTo(self.PopupMenu)
-        self.menubar.insertItem(QString(""),self.PopupMenu,2)
+        self.Settings = QPopupMenu(self)
+        self.editServerList.addTo(self.Settings)
+        self.menuConfigurePlugins.addTo(self.Settings)
+        self.selectLanguage.addTo(self.Settings)
+        self.menubar.insertItem(QString(""),self.Settings,2)
 
-        self.PopupMenu_2 = QPopupMenu(self)
-        self.about.addTo(self.PopupMenu_2)
-        self.menubar.insertItem(QString(""),self.PopupMenu_2,3)
+        self.Help = QPopupMenu(self)
+        self.about.addTo(self.Help)
+        self.menubar.insertItem(QString(""),self.Help,3)
 
 
         self.languageChange()
@@ -711,21 +711,21 @@ class MainWinDesign(QMainWindow):
         self.exitItem.setAccel(self.__tr("Ctrl+Q"))
         self.menuConfigurePlugins.setText(self.__tr("Configure Plugins..."))
         self.menuConfigurePlugins.setMenuText(self.__tr("Configure Plugins..."))
-        self.menuConfigurePlugins.setAccel(self.__tr("Ctrl+C"))
+        self.menuConfigurePlugins.setAccel(QString.null)
         self.reload.setText(self.__tr("Reload Plugins"))
         self.reload.setMenuText(self.__tr("Reload Plugins"))
-        self.reload.setAccel(self.__tr("Ctrl+R"))
+        self.reload.setAccel(QString.null)
         self.selectLanguage.setText(self.__tr("Language..."))
         self.selectLanguage.setMenuText(self.__tr("Language..."))
-        self.selectLanguage.setAccel(self.__tr("Ctrl+L"))
+        self.selectLanguage.setAccel(QString.null)
         self.showLogger.setText(self.__tr("Show logger"))
-        self.showLogger.setAccel(self.__tr("Ctrl+L"))
+        self.showLogger.setAccel(QString.null)
         if self.menubar.findItem(1):
-            self.menubar.findItem(1).setText(self.__tr("Program"))
+            self.menubar.findItem(1).setText(self.__tr("&Program"))
         if self.menubar.findItem(2):
-            self.menubar.findItem(2).setText(self.__tr("Settings"))
+            self.menubar.findItem(2).setText(self.__tr("&Settings"))
         if self.menubar.findItem(3):
-            self.menubar.findItem(3).setText(self.__tr("Help"))
+            self.menubar.findItem(3).setText(self.__tr("&Help"))
 
 
     def quitApplication(self):

@@ -55,19 +55,19 @@
     <property name="name">
         <cstring>menubar</cstring>
     </property>
-    <item text="Program" name="PopupMenu_3">
+    <item text="&amp;Program" name="Program">
         <action name="showLogger"/>
         <action name="reload"/>
         <separator/>
         <action name="exitItem"/>
         <separator/>
     </item>
-    <item text="Settings" name="PopupMenu">
+    <item text="&amp;Settings" name="Settings">
         <action name="editServerList"/>
         <action name="menuConfigurePlugins"/>
         <action name="selectLanguage"/>
     </item>
-    <item text="Help" name="PopupMenu_2">
+    <item text="&amp;Help" name="Help">
         <action name="about"/>
     </item>
 </menubar>
@@ -136,7 +136,7 @@
             <string>Configure Plugins...</string>
         </property>
         <property name="accel">
-            <string>Ctrl+C</string>
+            <string></string>
         </property>
     </action>
     <action>
@@ -153,7 +153,7 @@
             <string>Reload Plugins</string>
         </property>
         <property name="accel">
-            <string>Ctrl+R</string>
+            <string></string>
         </property>
     </action>
     <action>
@@ -170,7 +170,7 @@
             <string>Language...</string>
         </property>
         <property name="accel">
-            <string>Ctrl+L</string>
+            <string></string>
         </property>
     </action>
     <action>
@@ -187,7 +187,7 @@
             <string>Show logger</string>
         </property>
         <property name="accel">
-            <string>Ctrl+L</string>
+            <string></string>
         </property>
     </action>
 </actions>
