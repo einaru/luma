@@ -310,44 +310,6 @@
                             <number>65535</number>
                         </property>
                     </widget>
-                    <widget class="QRadioButton" row="10" column="1">
-                        <property name="name">
-                            <cstring>dateButton</cstring>
-                        </property>
-                        <property name="sizePolicy">
-                            <sizepolicy>
-                                <hsizetype>4</hsizetype>
-                                <vsizetype>0</vsizetype>
-                                <horstretch>0</horstretch>
-                                <verstretch>0</verstretch>
-                            </sizepolicy>
-                        </property>
-                        <property name="text">
-                            <string>Date</string>
-                        </property>
-                        <property name="checked">
-                            <bool>false</bool>
-                        </property>
-                    </widget>
-                    <widget class="QRadioButton" row="11" column="1" rowspan="1" colspan="2">
-                        <property name="name">
-                            <cstring>daysButton</cstring>
-                        </property>
-                        <property name="sizePolicy">
-                            <sizepolicy>
-                                <hsizetype>4</hsizetype>
-                                <vsizetype>0</vsizetype>
-                                <horstretch>0</horstretch>
-                                <verstretch>0</verstretch>
-                            </sizepolicy>
-                        </property>
-                        <property name="text">
-                            <string>Days from now</string>
-                        </property>
-                        <property name="checked">
-                            <bool>true</bool>
-                        </property>
-                    </widget>
                     <spacer row="10" column="0">
                         <property name="name">
                             <cstring>spacer7</cstring>
@@ -373,40 +335,7 @@
                             <string>&lt;b&gt;Expiration date&lt;/b&gt;</string>
                         </property>
                     </widget>
-                    <widget class="QDateEdit" row="10" column="2" rowspan="1" colspan="5">
-                        <property name="name">
-                            <cstring>dateEdit</cstring>
-                        </property>
-                        <property name="enabled">
-                            <bool>false</bool>
-                        </property>
-                    </widget>
-                    <widget class="QLabel" row="12" column="0" rowspan="1" colspan="6">
-                        <property name="name">
-                            <cstring>textLabel1_3</cstring>
-                        </property>
-                        <property name="text">
-                            <string>&lt;b&gt;Directory location&lt;/b&gt;</string>
-                        </property>
-                    </widget>
-                    <spacer row="13" column="0">
-                        <property name="name">
-                            <cstring>spacer6</cstring>
-                        </property>
-                        <property name="orientation">
-                            <enum>Horizontal</enum>
-                        </property>
-                        <property name="sizeType">
-                            <enum>Fixed</enum>
-                        </property>
-                        <property name="sizeHint">
-                            <size>
-                                <width>16</width>
-                                <height>20</height>
-                            </size>
-                        </property>
-                    </spacer>
-                    <widget class="QPushButton" row="13" column="6">
+                    <widget class="QPushButton" row="12" column="6" rowspan="2" colspan="1">
                         <property name="name">
                             <cstring>browseButton</cstring>
                         </property>
@@ -431,14 +360,6 @@
                         </property>
                         <property name="readOnly">
                             <bool>true</bool>
-                        </property>
-                    </widget>
-                    <widget class="QLabel" row="13" column="1">
-                        <property name="name">
-                            <cstring>textLabel4</cstring>
-                        </property>
-                        <property name="text">
-                            <string>Base node:</string>
                         </property>
                     </widget>
                     <spacer row="14" column="3">
@@ -482,20 +403,6 @@
                             <number>65535</number>
                         </property>
                     </widget>
-                    <widget class="QSpinBox" row="11" column="3" rowspan="1" colspan="4">
-                        <property name="name">
-                            <cstring>dayBox</cstring>
-                        </property>
-                        <property name="enabled">
-                            <bool>true</bool>
-                        </property>
-                        <property name="maxValue">
-                            <number>65535</number>
-                        </property>
-                        <property name="value">
-                            <number>120</number>
-                        </property>
-                    </widget>
                     <widget class="QLabel" row="4" column="4">
                         <property name="name">
                             <cstring>textLabel3_2</cstring>
@@ -527,6 +434,126 @@
                         <property name="text">
                             <string>Maximum:</string>
                         </property>
+                    </widget>
+                    <spacer row="13" column="0">
+                        <property name="name">
+                            <cstring>spacer6</cstring>
+                        </property>
+                        <property name="orientation">
+                            <enum>Horizontal</enum>
+                        </property>
+                        <property name="sizeType">
+                            <enum>Fixed</enum>
+                        </property>
+                        <property name="sizeHint">
+                            <size>
+                                <width>16</width>
+                                <height>20</height>
+                            </size>
+                        </property>
+                    </spacer>
+                    <widget class="QLabel" row="13" column="1">
+                        <property name="name">
+                            <cstring>textLabel4</cstring>
+                        </property>
+                        <property name="text">
+                            <string>Base node:</string>
+                        </property>
+                    </widget>
+                    <widget class="QLabel" row="12" column="0" rowspan="1" colspan="6">
+                        <property name="name">
+                            <cstring>textLabel1_3</cstring>
+                        </property>
+                        <property name="text">
+                            <string>&lt;b&gt;Directory location&lt;/b&gt;</string>
+                        </property>
+                    </widget>
+                    <widget class="QSpinBox" row="11" column="3" rowspan="1" colspan="4">
+                        <property name="name">
+                            <cstring>dayBox</cstring>
+                        </property>
+                        <property name="enabled">
+                            <bool>true</bool>
+                        </property>
+                        <property name="maxValue">
+                            <number>65535</number>
+                        </property>
+                        <property name="value">
+                            <number>120</number>
+                        </property>
+                    </widget>
+                    <widget class="QDateEdit" row="10" column="3" rowspan="1" colspan="4">
+                        <property name="name">
+                            <cstring>dateEdit</cstring>
+                        </property>
+                        <property name="enabled">
+                            <bool>false</bool>
+                        </property>
+                    </widget>
+                    <widget class="QButtonGroup" row="10" column="1" rowspan="2" colspan="2">
+                        <property name="name">
+                            <cstring>buttonGroup2</cstring>
+                        </property>
+                        <property name="frameShape">
+                            <enum>NoFrame</enum>
+                        </property>
+                        <property name="title">
+                            <string></string>
+                        </property>
+                        <widget class="QRadioButton">
+                            <property name="name">
+                                <cstring>daysButton</cstring>
+                            </property>
+                            <property name="geometry">
+                                <rect>
+                                    <x>6</x>
+                                    <y>32</y>
+                                    <width>120</width>
+                                    <height>20</height>
+                                </rect>
+                            </property>
+                            <property name="sizePolicy">
+                                <sizepolicy>
+                                    <hsizetype>4</hsizetype>
+                                    <vsizetype>0</vsizetype>
+                                    <horstretch>0</horstretch>
+                                    <verstretch>0</verstretch>
+                                </sizepolicy>
+                            </property>
+                            <property name="text">
+                                <string>Days from now</string>
+                            </property>
+                            <property name="checked">
+                                <bool>true</bool>
+                            </property>
+                        </widget>
+                        <widget class="QRadioButton">
+                            <property name="name">
+                                <cstring>dateButton</cstring>
+                            </property>
+                            <property name="geometry">
+                                <rect>
+                                    <x>6</x>
+                                    <y>8</y>
+                                    <width>55</width>
+                                    <height>20</height>
+                                </rect>
+                            </property>
+                            <property name="sizePolicy">
+                                <sizepolicy>
+                                    <hsizetype>4</hsizetype>
+                                    <vsizetype>0</vsizetype>
+                                    <horstretch>0</horstretch>
+                                    <verstretch>0</verstretch>
+                                </sizepolicy>
+                            </property>
+                            <property name="text">
+                                <string>Date</string>
+                            </property>
+                            <property name="checked">
+                                <bool>false</bool>
+                            </property>
+                        </widget>
                     </widget>
                 </grid>
             </widget>
@@ -722,6 +749,18 @@
         <receiver>MassCreationDesign</receiver>
         <slot>browseAutomount()</slot>
     </connection>
+    <connection>
+        <sender>dateButton</sender>
+        <signal>clicked()</signal>
+        <receiver>MassCreationDesign</receiver>
+        <slot>enableDateEdit()</slot>
+    </connection>
+    <connection>
+        <sender>daysButton</sender>
+        <signal>clicked()</signal>
+        <receiver>MassCreationDesign</receiver>
+        <slot>disableDateEdit()</slot>
+    </connection>
 </connections>
 <tabstops>
     <tabstop>tabWidget2</tabstop>
@@ -755,6 +794,8 @@
     <slot>showHelp()</slot>
     <slot>browseAutomount()</slot>
     <slot>enableAutomount()</slot>
+    <slot>enableDateEdit()</slot>
+    <slot>disableDateEdit()</slot>
 </slots>
 <layoutdefaults spacing="6" margin="11"/>
 </UI>

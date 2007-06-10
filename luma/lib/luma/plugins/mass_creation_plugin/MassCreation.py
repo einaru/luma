@@ -35,8 +35,9 @@ class MassCreation(MassCreationDesign):
         MassCreationDesign.__init__(self,parent,name,fl)
         
         self.iconPath = os.path.join(environment.lumaInstallationPrefix, "share", "luma", "icons")
-        
         self.enableAutomount()
+		
+        self.dateEdit.setDate(QDate.currentDate())
 
 ###############################################################################
 
@@ -359,8 +360,15 @@ class MassCreation(MassCreationDesign):
         if dialog.result() == QDialog.Accepted:
             self.automountLocationEdit.setText(dialog.getItemPath())
     
-    
-    
-    
-    
+###############################################################################
+
+    def enableDateEdit(self):
+        self.dateEdit.setEnabled(1)
+        self.dayBox.setEnabled(0)
+
+###############################################################################
+
+    def disableDateEdit(self):
+        self.dateEdit.setEnabled(0)
+        self.dayBox.setEnabled(1)
     

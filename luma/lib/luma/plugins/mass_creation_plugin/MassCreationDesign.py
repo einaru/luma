@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file '/home/wido/src/luma/lib/luma/plugins/mass_creation_plugin/MassCreationDesign.ui'
+# Form implementation generated from reading ui file 'MassCreationDesign.ui'
 #
-# Created: Wed Aug 17 15:23:42 2005
-#      by: The PyQt User Interface Compiler (pyuic) 3.14.1
+# Created: søn jun 10 12:15:43 2007
+#      by: The PyQt User Interface Compiler (pyuic) 3.17
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -152,18 +152,6 @@ class MassCreationDesign(QWidget):
         self.prefixMaxBox.setMaxValue(65535)
 
         tabLayout.addMultiCellWidget(self.prefixMaxBox,2,2,5,6)
-
-        self.dateButton = QRadioButton(self.tab,"dateButton")
-        self.dateButton.setSizePolicy(QSizePolicy(QSizePolicy.Maximum,QSizePolicy.Fixed,0,0,self.dateButton.sizePolicy().hasHeightForWidth()))
-        self.dateButton.setChecked(0)
-
-        tabLayout.addWidget(self.dateButton,10,1)
-
-        self.daysButton = QRadioButton(self.tab,"daysButton")
-        self.daysButton.setSizePolicy(QSizePolicy(QSizePolicy.Maximum,QSizePolicy.Fixed,0,0,self.daysButton.sizePolicy().hasHeightForWidth()))
-        self.daysButton.setChecked(1)
-
-        tabLayout.addMultiCellWidget(self.daysButton,11,11,1,2)
         spacer7 = QSpacerItem(16,21,QSizePolicy.Fixed,QSizePolicy.Minimum)
         tabLayout.addItem(spacer7,10,0)
 
@@ -171,31 +159,16 @@ class MassCreationDesign(QWidget):
 
         tabLayout.addMultiCellWidget(self.textLabel3_3,9,9,0,6)
 
-        self.dateEdit = QDateEdit(self.tab,"dateEdit")
-        self.dateEdit.setEnabled(0)
-
-        tabLayout.addMultiCellWidget(self.dateEdit,10,10,2,6)
-
-        self.textLabel1_3 = QLabel(self.tab,"textLabel1_3")
-
-        tabLayout.addMultiCellWidget(self.textLabel1_3,12,12,0,5)
-        spacer6 = QSpacerItem(16,20,QSizePolicy.Fixed,QSizePolicy.Minimum)
-        tabLayout.addItem(spacer6,13,0)
-
         self.browseButton = QPushButton(self.tab,"browseButton")
         self.browseButton.setSizePolicy(QSizePolicy(QSizePolicy.Minimum,QSizePolicy.Preferred,0,0,self.browseButton.sizePolicy().hasHeightForWidth()))
         self.browseButton.setPixmap(self.image0)
 
-        tabLayout.addWidget(self.browseButton,13,6)
+        tabLayout.addMultiCellWidget(self.browseButton,12,13,6,6)
 
         self.nodeEdit = QLineEdit(self.tab,"nodeEdit")
         self.nodeEdit.setReadOnly(1)
 
         tabLayout.addMultiCellWidget(self.nodeEdit,13,13,2,5)
-
-        self.textLabel4 = QLabel(self.tab,"textLabel4")
-
-        tabLayout.addWidget(self.textLabel4,13,1)
         spacer2 = QSpacerItem(21,16,QSizePolicy.Minimum,QSizePolicy.Expanding)
         tabLayout.addItem(spacer2,14,3)
 
@@ -214,13 +187,6 @@ class MassCreationDesign(QWidget):
 
         tabLayout.addMultiCellWidget(self.prefixMinBox,2,2,2,3)
 
-        self.dayBox = QSpinBox(self.tab,"dayBox")
-        self.dayBox.setEnabled(1)
-        self.dayBox.setMaxValue(65535)
-        self.dayBox.setValue(120)
-
-        tabLayout.addMultiCellWidget(self.dayBox,11,11,3,6)
-
         self.textLabel3_2 = QLabel(self.tab,"textLabel3_2")
         self.textLabel3_2.setSizePolicy(QSizePolicy(QSizePolicy.Maximum,QSizePolicy.Preferred,0,0,self.textLabel3_2.sizePolicy().hasHeightForWidth()))
 
@@ -230,6 +196,43 @@ class MassCreationDesign(QWidget):
         self.textLabel3.setSizePolicy(QSizePolicy(QSizePolicy.Maximum,QSizePolicy.Preferred,0,0,self.textLabel3.sizePolicy().hasHeightForWidth()))
 
         tabLayout.addWidget(self.textLabel3,2,4)
+        spacer6 = QSpacerItem(16,20,QSizePolicy.Fixed,QSizePolicy.Minimum)
+        tabLayout.addItem(spacer6,13,0)
+
+        self.textLabel4 = QLabel(self.tab,"textLabel4")
+
+        tabLayout.addWidget(self.textLabel4,13,1)
+
+        self.textLabel1_3 = QLabel(self.tab,"textLabel1_3")
+
+        tabLayout.addMultiCellWidget(self.textLabel1_3,12,12,0,5)
+
+        self.dayBox = QSpinBox(self.tab,"dayBox")
+        self.dayBox.setEnabled(1)
+        self.dayBox.setMaxValue(65535)
+        self.dayBox.setValue(120)
+
+        tabLayout.addMultiCellWidget(self.dayBox,11,11,3,6)
+
+        self.dateEdit = QDateEdit(self.tab,"dateEdit")
+        self.dateEdit.setEnabled(0)
+
+        tabLayout.addMultiCellWidget(self.dateEdit,10,10,3,6)
+
+        self.buttonGroup2 = QButtonGroup(self.tab,"buttonGroup2")
+        self.buttonGroup2.setFrameShape(QButtonGroup.NoFrame)
+
+        self.daysButton = QRadioButton(self.buttonGroup2,"daysButton")
+        self.daysButton.setGeometry(QRect(6,32,120,20))
+        self.daysButton.setSizePolicy(QSizePolicy(QSizePolicy.Maximum,QSizePolicy.Fixed,0,0,self.daysButton.sizePolicy().hasHeightForWidth()))
+        self.daysButton.setChecked(1)
+
+        self.dateButton = QRadioButton(self.buttonGroup2,"dateButton")
+        self.dateButton.setGeometry(QRect(6,8,55,20))
+        self.dateButton.setSizePolicy(QSizePolicy(QSizePolicy.Maximum,QSizePolicy.Fixed,0,0,self.dateButton.sizePolicy().hasHeightForWidth()))
+        self.dateButton.setChecked(0)
+
+        tabLayout.addMultiCellWidget(self.buttonGroup2,10,11,1,2)
         self.tabWidget2.insertTab(self.tab,QString.fromLatin1(""))
 
         self.TabPage = QWidget(self.tabWidget2,"TabPage")
@@ -301,6 +304,8 @@ class MassCreationDesign(QWidget):
         self.connect(self.browseGroupButton,SIGNAL("clicked()"),self.browseGroups)
         self.connect(self.enableNFSBox,SIGNAL("clicked()"),self.enableAutomount)
         self.connect(self.browseAutomountButton,SIGNAL("clicked()"),self.browseAutomount)
+        self.connect(self.dateButton,SIGNAL("clicked()"),self.enableDateEdit)
+        self.connect(self.daysButton,SIGNAL("clicked()"),self.disableDateEdit)
 
         self.setTabOrder(self.tabWidget2,self.prefixEdit)
         self.setTabOrder(self.prefixEdit,self.prefixMinBox)
@@ -329,7 +334,7 @@ class MassCreationDesign(QWidget):
     def languageChange(self):
         self.setCaption(self.__tr("MassCreationDesign"))
         self.createButton.setText(self.__tr("&Create"))
-        self.createButton.setAccel(self.__tr("Alt+C"))
+        self.createButton.setAccel(QKeySequence(self.__tr("Alt+C")))
         self.textLabel2_3.setText(self.__tr("<b>Usernames</b>"))
         self.textLabel5_2.setText(self.__tr("<b>UID number range</b>"))
         self.textLabel4_2.setText(self.__tr("<b>Account settings</b>"))
@@ -343,14 +348,15 @@ class MassCreationDesign(QWidget):
         self.textLabel2.setText(self.__tr("Minimum:"))
         self.textLabel1.setText(self.__tr("Prefix:"))
         self.textLabel2_2.setText(self.__tr("Minimum:"))
-        self.dateButton.setText(self.__tr("Date"))
-        self.daysButton.setText(self.__tr("Days from now"))
         self.textLabel3_3.setText(self.__tr("<b>Expiration date</b>"))
-        self.textLabel1_3.setText(self.__tr("<b>Directory location</b>"))
         self.browseButton.setText(QString.null)
-        self.textLabel4.setText(self.__tr("Base node:"))
         self.textLabel3_2.setText(self.__tr("Maximum:"))
         self.textLabel3.setText(self.__tr("Maximum:"))
+        self.textLabel4.setText(self.__tr("Base node:"))
+        self.textLabel1_3.setText(self.__tr("<b>Directory location</b>"))
+        self.buttonGroup2.setTitle(QString.null)
+        self.daysButton.setText(self.__tr("Days from now"))
+        self.dateButton.setText(self.__tr("Date"))
         self.tabWidget2.changeTab(self.tab,self.__tr("Account"))
         self.enableNFSBox.setText(self.__tr("Enable automount support"))
         self.automountLabel.setText(self.__tr("<b>Automount options</b>"))
@@ -381,6 +387,12 @@ class MassCreationDesign(QWidget):
 
     def enableAutomount(self):
         print "MassCreationDesign.enableAutomount(): Not implemented yet"
+
+    def enableDateEdit(self):
+        print "MassCreationDesign.enableDateEdit(): Not implemented yet"
+
+    def disableDateEdit(self):
+        print "MassCreationDesign.disableDateEdit(): Not implemented yet"
 
     def __tr(self,s,c = None):
         return qApp.translate("MassCreationDesign",s,c)
