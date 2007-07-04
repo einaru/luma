@@ -126,8 +126,10 @@ class TemplateList:
     def readList(self):
         """ Read template Info from file.
     
-        Templates are stored in self.tplList
+        Templates are stored in self.templateList
         """
+        self.templateList = [] 
+
         fileContent = ""
         try:
             fileContent = "".join(open(self.templateFile, "r").readlines())
@@ -136,15 +138,16 @@ class TemplateList:
             tmpString = "Could not read template configuration file. Reason:\n"
             tmpString += str(e)
             environment.logMessage(LogObject("Debug", tmpString))
+            # On I/O error, no more parsing makes sense
+            return
     
-        self.templateList = [] 
         
         document = QDomDocument("LumaTemplateFile")
         document.setContent(fileContent)
         
         root = document.documentElement()
         if not (unicode(root.tagName()) == "LumaTemplates"):
-            print "Could not parse template file"
+            environment.logMessage(LogObject("Debug", "Could not parse template file."))
             
         child = root.firstChild()
         while (not child.isNull()):
