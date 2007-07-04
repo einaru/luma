@@ -9,10 +9,11 @@
 ###########################################################################
 
 import ldap
-import ldif,dsml
+import ldif
+import dsml
 import copy
 import base64
-import StringIO
+from cStringIO import StringIO
 from sets import Set
 
 from base.backend.ObjectClassAttributeInfo import ObjectClassAttributeInfo
