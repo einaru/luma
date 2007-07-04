@@ -276,10 +276,10 @@ class LumaConnection(object):
             message += str(workerThread.exceptionObject)
             environment.logMessage(LogObject("Error", message))
             # Unset password in passwordMap and bindPassword on 'Invalid credentials'
-            if workerThread.exceptionObject.args[0]['desc'] == 'Invalid credentials':
-				if LumaConnection._passwordMap.has_key(self.serverMeta.name):
-					LumaConnection._passwordMap.pop(self.serverMeta.name)
-				self.serverMeta.bindPassword = ""
+            if isinstance(exceptionObject, ldap.INVALID_CREDENTIALS):
+                if LumaConnection._passwordMap.has_key(self.serverMeta.name):
+                    LumaConnection._passwordMap.pop(self.serverMeta.name)
+                self.serverMeta.bindPassword = ""
             return (False, workerThread.exceptionObject)
         
 ###############################################################################
