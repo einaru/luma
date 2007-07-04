@@ -826,7 +826,7 @@ class SmartDataObject (object):
         """ Return the current object into LDIF format.
         """
         
-        tmpString = StringIO.StringIO()
+        tmpString = StringIO()
         ldifWriter = ldif.LDIFWriter(tmpString)
         ldifWriter.unparse(self.dn, self.data)
         
@@ -844,7 +844,7 @@ class SmartDataObject (object):
         """ Return the current object into DSML format.
         """
 
-        tmpString = StringIO.StringIO()
+        tmpString = StringIO()
         dsmlWriter = dsml.DSMLWriter(tmpString)
         dsmlWriter.writeRecord(self.dn, self.data)
 
