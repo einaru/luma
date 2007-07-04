@@ -101,6 +101,8 @@ class ObjectClassAttributeInfo(object):
                 tmpString = "Schema information for server " + self.serverMeta.name + " retrieved."
                 environment.logMessage(LogObject("Info", tmpString))
             else:
+                self.failure = True
+                self.failureException = workerThread.exceptionObject
                 tmpString = "Could not fetch LDAP schema from server. Reason:\n"
                 tmpString += str(workerThread.exceptionObject)
                 environment.logMessage(LogObject("Error", tmpString))
