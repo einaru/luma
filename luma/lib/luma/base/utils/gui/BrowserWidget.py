@@ -197,7 +197,10 @@ class BrowserWidget(QListView):
                 
                 dialog = LumaErrorDialog()
                 errorMsg = self.trUtf8("Could not expand entry.<br><br>Reason: ")
-                errorMsg.append(str(exceptionObject))
+                if isinstance(exceptionObject, ldap.INVALID_CREDENTIALS):
+                    errorMsg.append(self.trUtf8("Invalid username or wrong password"))
+                else:
+                    errorMsg.append(str(exceptionObject))
                 dialog.setErrorMessage(errorMsg)
                 dialog.exec_loop()
         
@@ -211,9 +214,13 @@ class BrowserWidget(QListView):
                 success, tmpList, exceptionObject = LumaConnection(serverMeta).getBaseDNList()
                 
                 if not success:
+                    item.setOpen(0)
                     dialog = LumaErrorDialog()
                     errorMsg = self.trUtf8("Could not retrieve baseDN.<br><br>Reason: ")
-                    errorMsg.append(str(exceptionObject))
+                    if isinstance(exceptionObject, ldap.INVALID_CREDENTIALS):
+                        errorMsg.append(self.trUtf8("Invalid username or wrong password"))
+                    else:
+                        errorMsg.append(str(exceptionObject))
                     dialog.setErrorMessage(errorMsg)
                     dialog.exec_loop()
                     
