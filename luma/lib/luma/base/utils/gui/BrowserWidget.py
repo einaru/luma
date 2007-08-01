@@ -167,7 +167,7 @@ class BrowserWidget(QListView):
             oldAliasValue = self.aliasDict[serverName]
             self.aliasDict[serverName] = False
             
-            success, resultList, exceptionObject = self.getLdapItemChildren(serverName, dn, 0, ['dn', 'objectClass'])
+            success, resultList, exceptionObject = self.getLdapItemChildren(serverName, dn, 0, ['dn', 'objectClass'], filter=item.filter)
         
             if success:
                 if len(resultList) == 0:
@@ -270,7 +270,7 @@ class BrowserWidget(QListView):
 
 ###############################################################################
 
-    def getLdapItemChildren(self, serverName, dn, allLevel, noAttributes=None):
+    def getLdapItemChildren(self, serverName, dn, allLevel, noAttributes=None, filter=None):
         """ Return a list of children a ldap object has.
         
         allLevel == 1:
@@ -279,6 +279,8 @@ class BrowserWidget(QListView):
         allLevel == 0:
             get only next level
         """
+        if filter == None:
+            filter = self.searchObjectClass
         
         serverMeta = self.serverListObject.getServerObject(serverName)
         searchResult = None
@@ -300,7 +302,7 @@ class BrowserWidget(QListView):
             searchLevel = ldap.SCOPE_ONELEVEL
             
                 
-        success, resultList, exceptionObject = conObject.search(dn, searchLevel,self.searchObjectClass, noAttributes, 0)
+        success, resultList, exceptionObject = conObject.search(dn, searchLevel, filter, noAttributes, 0)
 
         conObject.unbind()
         
@@ -615,6 +617,7 @@ class BrowserWidget(QListView):
             listIterator += 1
         
         popupMenu.insertItem(self.trUtf8("Edit server settings"), self.editServerSettings)
+        popupMenu.insertItem(self.trUtf8("Set searchfilter"), self.setItemFilter)
         
         menuID = popupMenu.insertItem(QIconSet(QPixmap(aliasIconFile)), self.trUtf8("Follow Aliases"), self.enableAliases)
         popupMenu.setItemChecked(menuID, self.aliasDict[server])
@@ -948,6 +951,27 @@ class BrowserWidget(QListView):
     
 ###############################################################################
 
+    def setItemFilter(self):
+        result = QInputDialog.getText(\
+            self.trUtf8("Item searchfilter"),
+            self.trUtf8("Please enter a searchfilter for the given item:"),
+            QLineEdit.Normal)
+        
+        if result[1] == False:
+            return
+
+        if result[0] == "":
+            self.popupItem.filter = None
+        else:
+            self.popupItem.filter = unicode(result[0])
+
+        if self.popupItem.isOpen():
+            self.itemCollapsed(self.popupItem)
+            self.itemExpanded(self.popupItem)
+            self.popupItem.setOpen(1)
+    
+###############################################################################
+
     def reopenDN(self, serverString, dnString):
         """ Reopens the listitem for the given dnString.
         
@@ -999,6 +1023,8 @@ class BrowserItem(QListViewItem):
         self.serverType = False
         self.baseType = False
         self.ldapType = False
+
+        self.filter = None
         
         # DN of the entry if it is not a server item
         self.dn = None
