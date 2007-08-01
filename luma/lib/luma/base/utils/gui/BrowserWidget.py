@@ -193,7 +193,7 @@ class BrowserWidget(QListView):
                     
             else:
                 self.aliasDict[serverName] = oldAliasValue
-                item.setExpandable(0)
+                #item.setExpandable(0)
                 
                 dialog = LumaErrorDialog()
                 errorMsg = self.trUtf8("Could not expand entry.<br><br>Reason: ")
