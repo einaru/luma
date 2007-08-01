@@ -238,34 +238,28 @@ class LumaConnection(object):
     def bind(self):
         """Bind to server.
         """
-
-        # Prompt for password if bindPassword is empty and we are not binding 
-        # anonomously or with kerberos or external mech
-        if (self.serverMeta.bindPassword == "" and not self.serverMeta.bindAnon) and not \
-            ((self.serverMeta.authMethod == u"SASL GSSAPI") or (self.serverMeta.authMethod == u"SASL EXTERNAL")):
-            # Check passwordMap for existing password or prompt if necessary
+        environment.setBusy(True)
+        workerThread = self.__bind()
+        
+        # Prompt for password on INVALID_CREDENTIALS or UNWILLING_TO_PERFORM
+        # UNWILLING_TO_PERFORM on bind usaually means trying to bind with blank password
+        if  isinstance(workerThread.exceptionObject, ldap.INVALID_CREDENTIALS) or \
+            isinstance(workerThread.exceptionObject, ldap.UNWILLING_TO_PERFORM):
             if LumaConnection._passwordMap.has_key(self.serverMeta.name):
                 self.serverMeta.bindPassword = LumaConnection._passwordMap[self.serverMeta.name]
+                workerThread = self.__bind()
             else:
-                # Not busy while prompting for password
                 environment.setBusy(False)
                 dialog = PromptPasswordDialog()
                 dialog.exec_loop()
                 if dialog.result() == 1:
+                    environment.setBusy(False)
                     self.serverMeta.bindPassword = unicode(dialog.passwordEdit.text())
                     LumaConnection._passwordMap[self.serverMeta.name] = self.serverMeta.bindPassword
+                    workerThread = self.__bind()
 
-        environment.setBusy(True)
-        
-        workerThread = WorkerThreadBind(self.serverMeta)
-        workerThread.start()
-        
-        while not workerThread.FINISHED:
-            environment.updateUI()
-            time.sleep(0.05)
-        
         environment.setBusy(False)
-        
+
         if workerThread.exceptionObject == None:
             message = "LDAP bind operation successful."
             environment.logMessage(LogObject("Info", message))
@@ -275,12 +269,20 @@ class LumaConnection(object):
             message = "LDAP bind operation not successful. Reason:\n"
             message += str(workerThread.exceptionObject)
             environment.logMessage(LogObject("Error", message))
-            # Unset password in passwordMap and bindPassword on 'Invalid credentials'
+            # If credentials are still wrong after prompting, remove from passwordmap
             if isinstance(workerThread.exceptionObject, ldap.INVALID_CREDENTIALS):
                 if LumaConnection._passwordMap.has_key(self.serverMeta.name):
                     LumaConnection._passwordMap.pop(self.serverMeta.name)
-                self.serverMeta.bindPassword = ""
             return (False, workerThread.exceptionObject)
+
+    def __bind(self):
+        workerThread = WorkerThreadBind(self.serverMeta)
+        workerThread.start()
+        
+        while not workerThread.FINISHED:
+            environment.updateUI()
+            time.sleep(0.05)
+        return workerThread
         
 ###############################################################################
 
