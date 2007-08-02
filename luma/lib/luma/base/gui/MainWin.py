@@ -193,7 +193,7 @@ class MainWin(MainWinDesign):
             tmpObject = self.PLUGINS[x]
             if tmpObject['load'] == True:
                 if not (None == splash):
-                    tmpMessage = "Loading plugin " + unicode(self.PLUGINS[x]['pluginUserString'])
+                    tmpMessage = "Loading plugin " + unicode(self.trUtf8(self.PLUGINS[x]['pluginUserString']))
                     splash.message(tmpMessage, Qt.AlignLeft + Qt.AlignBottom, Qt.white)
 
                 pluginNameList.append(self.PLUGINS[x]['pluginName'])
@@ -215,7 +215,7 @@ class MainWin(MainWinDesign):
         #    
         
         for x in pluginNameList:
-            name = self.PLUGINS[x]["pluginUserString"]
+            name = self.trUtf8(self.PLUGINS[x]["pluginUserString"])
             icon = self.PLUGINS[x]["icon"]
             item = QListBoxPixmap(icon, QString(name))
             self.pluginBox.insertItem(item)

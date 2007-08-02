@@ -13,7 +13,7 @@ import os.path
 
 lumaPlugin = True
 pluginName = "adminutils"
-pluginUserString = qApp.trUtf8("Admin utilities")
+pluginUserString = "Admin utilities"
 version = ""
 author = "Wido Depping <wido.depping@gmail.com>"
 

@@ -13,7 +13,7 @@ import os.path
 
 lumaPlugin = True
 pluginName = "browser"
-pluginUserString = qApp.trUtf8("Browser")
+pluginUserString = "Browser"
 version = ""
 author = "Wido Depping <wido.depping@gmail.com>"
 

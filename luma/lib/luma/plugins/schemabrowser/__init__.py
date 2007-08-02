@@ -13,7 +13,7 @@ import os.path
 
 lumaPlugin = True
 pluginName = "schemabrowser"
-pluginUserString = qApp.trUtf8("Schemabrowser")
+pluginUserString = "Schemabrowser"
 version = ""
 author = "Wido Depping <wido.depping@gmail.com>"
 

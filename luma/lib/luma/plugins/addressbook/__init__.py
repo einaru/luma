@@ -13,7 +13,7 @@ import os.path
 
 lumaPlugin = True
 pluginName = "addressbook"
-pluginUserString = qApp.trUtf8("Addressbook")
+pluginUserString = "Addressbook"
 version = ""
 author = "Wido Depping <wido.depping@gmail.com>"
 

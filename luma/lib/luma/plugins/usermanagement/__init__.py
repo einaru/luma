@@ -15,7 +15,7 @@ import environment
 
 lumaPlugin = True
 pluginName = "usermanagement"
-pluginUserString = qApp.trUtf8("Usermanagement")
+pluginUserString = "Usermanagement"
 version = ""
 author = "Wido Depping <wido.depping@gmail.com>"
 

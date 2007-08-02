@@ -13,7 +13,7 @@ import os.path
 
 lumaPlugin = True
 pluginName = "massiveusercreation"
-pluginUserString = qApp.trUtf8("Massive user creation")
+pluginUserString = "Massive user creation"
 version = ""
 author = "Wido Depping <wido.depping@gmail.com>"
 

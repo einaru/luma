@@ -13,7 +13,7 @@ import os.path
 
 lumaPlugin = True
 pluginName = "template"
-pluginUserString = qApp.trUtf8("Templates")
+pluginUserString = "Templates"
 version = ""
 author = "Wido Depping <wido.depping@gmail.com>"
 
