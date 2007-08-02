@@ -63,7 +63,7 @@ class LumaConnection(object):
         
 ###############################################################################
 
-    def search(self, base="", scope=ldap.SCOPE_BASE, filter="(objectClass=*)", attrList=None, attrsonly=0):
+    def search(self, base="", scope=ldap.SCOPE_BASE, filter="(objectClass=*)", attrList=None, attrsonly=0, sizelimit=0):
         """Aynchronous search.
         """
         
@@ -75,6 +75,7 @@ class LumaConnection(object):
         workerThread.filter = filter
         workerThread.attrList = attrList
         workerThread.attrsonly = attrsonly
+        workerThread.sizelimit = sizelimit
         workerThread.start()
         
         while not workerThread.FINISHED:
@@ -392,6 +393,8 @@ class WorkerThreadSearch(threading.Thread):
     def __init__(self, serverObject):
         threading.Thread.__init__(self)
         self.ldapServerObject = serverObject
+
+        self.sizelimit = 0
             
         self.FINISHED = False
         self.result = []
@@ -399,7 +402,8 @@ class WorkerThreadSearch(threading.Thread):
             
     def run(self):
         try:
-            resultId = self.ldapServerObject.search(self.base, self.scope, self.filter, self.attrList, self.attrsonly)
+            print "sellf.sizelimit %s" % self.sizelimit
+            resultId = self.ldapServerObject.search_ext(self.base, self.scope, self.filter, self.attrList, self.attrsonly, sizelimit=self.sizelimit)
 
             
             while 1:
