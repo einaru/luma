@@ -108,7 +108,7 @@ class AdvancedObjectWidget(QWidget):
                 dialog.exec_loop()
                 return 
             
-            success, resultList, exceptionObject = lumaConnection.search(self.ldapDataObject.dn, ldap.SCOPE_ONELEVEL, filter="(objectClass=*)", attrList=None, attrsonly=1)
+            success, resultList, exceptionObject = lumaConnection.search(self.ldapDataObject.dn, ldap.SCOPE_ONELEVEL, filter="(objectClass=*)", attrList=None, attrsonly=1, sizelimit=1)
             lumaConnection.unbind()
             
             # Our search succeeded. No errors
