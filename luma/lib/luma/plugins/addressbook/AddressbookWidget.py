@@ -205,7 +205,7 @@ class AddressbookWidget(AddressbookWidgetDesign):
                 self.birthDateEdit.setDate(QDate(int(tmpList[0]), int(tmpList[1]), int(tmpList[2])))
                 
         self.addressID = 0
-        self.addressBox.setCurrentItem(0)
+        self.addressBox.setCurrentItem(self.addressBox.currentItem())
         self.initAddress(0, False)
         self.ENABLE_SAVE = True
         self.setSaveButton()
@@ -397,13 +397,14 @@ class AddressbookWidget(AddressbookWidgetDesign):
             if self.dataObject.isAttributeAllowed(addressType[self.addressID]):
                 value = unicode(self.addressEdit.text())
                 if not (value==''):
-                    self.dataObject.addAttributeValue(addressType[self.addressID], [value], True)
+                    self.dataObject.addAttributeValue(addressType[self.addressID], [self.dataObject.postaladdressEncode(value)], True)
         
         self.addressID = id
         self.addressEdit.clear()
         if self.dataObject.hasAttribute(addressType[id]):
             tmpAddress = self.dataObject.getAttributeValue(addressType[id], 0)
-            self.addressEdit.setText(tmpAddress)
+            self.addressEdit.setText(self.dataObject.postaladdressDecode(tmpAddress))
+
         
         
 ###############################################################################
@@ -583,7 +584,7 @@ class AddressbookWidget(AddressbookWidgetDesign):
         if addressType[id] in self.allowedAttributes:
             value = unicode(self.addressEdit.text())
             if not('' == value):
-                self.dataObject.addAttributeValue(addressType[id], [value], True)
+                self.dataObject.addAttributeValue(addressType[id], [self.dataObject.postaladdressEncode(value)], True)
             else:
                 self.dataObject.deleteAttribute(addressType[id])
         
