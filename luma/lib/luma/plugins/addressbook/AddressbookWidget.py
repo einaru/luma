@@ -205,6 +205,7 @@ class AddressbookWidget(AddressbookWidgetDesign):
                 self.birthDateEdit.setDate(QDate(int(tmpList[0]), int(tmpList[1]), int(tmpList[2])))
                 
         self.addressID = 0
+        self.addressBox.setCurrentItem(0)
         self.initAddress(0, False)
         self.ENABLE_SAVE = True
         self.setSaveButton()
