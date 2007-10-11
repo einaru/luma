@@ -819,6 +819,34 @@ class SmartDataObject (object):
 
     def checkObjectClassCombination(self):
         pass
+
+###############################################################################+
+
+    def postaladdressDecode(self, address):
+        """RFC 2252 requires a specific syntax for attributes 
+           of type 'Postal Address'. This method ensures that
+           already wrong values in LDAP will can be shown correctly
+           in the GUI.
+        """ 
+        address=address.replace('$','\n')
+        address=address.replace('\\24','$')
+        address=address.replace('\\5C','\\5c')
+        address=address.replace('\\5c','\\')
+
+        return address
+
+###############################################################################+
+
+    def postaladdressEncode(self, address):
+        """RFC 2252 requires a specific syntax for attributes 
+           of type 'Postal Address'. This method ensures that
+           it will be converted correctly before saving to LDAP.
+        """ 
+        address=address.replace('\\','\\5c')
+        address=address.replace('$','\\24')
+        address=address.replace('\n','$')
+
+        return address
         
 ###############################################################################
 
