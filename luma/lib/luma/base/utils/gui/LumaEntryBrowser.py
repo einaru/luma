@@ -25,6 +25,7 @@ from base.utils.backend.LogObject import LogObject
 
 class LumaEntryBrowser (LumaEntryBrowserDesign):
 
+    # FIXME: make the searchfilter configurable and possibly per server/base
     searchFilter = "(&(objectClass=inetOrgPerson)(|(cn=*)(sn=*)(givenName=*)(mail=*) ) )"
     searchFilterPrefix =  "(&(objectClass=inetOrgPerson)(|"
     searchFilterSuffix = "))"
@@ -178,7 +179,13 @@ class LumaEntryBrowser (LumaEntryBrowserDesign):
         if (unicode(filter) == '') or (filter == None):
             filter = "*"
         else:
-            filter = "*" + unicode(filter) + "*"
+	    # If * is the first or last character.. do not add it
+            if not(unicode(filter).startswith("*")):
+                filter = "*" + unicode(filter)
+            if not(unicode(filter).endswith("*")):
+                filter = unicode(filter) + "*"
+            # FIXME: should be replaced by gui-elements such as
+            # 'Starts with', 'Ends with' and 'contains'
             
         tmpString = ""
         for x in self.filterElements:
