@@ -229,7 +229,25 @@ it might compromise the security of your system."""),
             
         elif result ==1:
             dataObject = SmartDataObject(('', {'objectClass': self.getPossibleClasses()}), self.serverMeta)
-            dataObject.addAttributeValue('uidNumber', ['1024'])
+            self.accountWidget.dataObject = dataObject
+            # Might be best to always fetch the current list of usedUserIDs. 
+            # Methods of how to handle/generate new unused uidNumbers:
+            # 1: WebService
+            # 2: LDAP-object to store a sequence-like object.
+            # 3: The code below.. really ugly - but it works
+            if not hasattr(self.accountWidget,'usedUserIDs'):
+                userIDs = self.accountWidget.retrieveUserIDs()
+                self.accountWidget.usedUserIDs = userIDs
+            usedUserIDs = self.accountWidget.usedUserIDs
+            usedUserIDs.sort()
+            if len(usedUserIDs) == 0:
+                nextfreeuid = '1024'
+            else:
+                tmp = usedUserIDs[len(usedUserIDs)-1] + 1
+                nextfreeuid = str(tmp)
+            self.accountWidget.usedUserIDs.append(nextfreeuid) # for performance-reasons
+            #dataObject.addAttributeValue('uidNumber', ['1024'])
+            dataObject.addAttributeValue('uidNumber',[nextfreeuid])
             dataObject.addAttributeValue('homeDirectory', ['/home'])
             dataObject.addAttributeValue('loginShell', ['/bin/bash'])
             
