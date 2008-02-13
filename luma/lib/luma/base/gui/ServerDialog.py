@@ -247,7 +247,7 @@ class ServerDialog(ServerDialogDesign):
         
         selectedServerString = self.serverListView.currentItem().text(0)
         tmpDialog = QMessageBox(self.trUtf8("Delete Server?"),
-                self.trUtf8("Do your really want to delete the Server?"),
+                self.trUtf8("Do you really want to delete the Server?"),
                 QMessageBox.Critical,
                 QMessageBox.Ok,
                 QMessageBox.Cancel,

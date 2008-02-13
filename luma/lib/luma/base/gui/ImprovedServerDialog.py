@@ -855,7 +855,7 @@ class ImprovedServerDialog(ImprovedServerDialogDesign):
             return
         selectedServerString = self.currentServer.name
         tmpDialog = QMessageBox(self.trUtf8("Delete Server?"),
-                self.trUtf8("Do your really want to delete server <b>%1</b>?").arg(selectedServerString),
+                self.trUtf8("Do you really want to delete server <b>%1</b>?").arg(selectedServerString),
                 QMessageBox.Critical,
                 QMessageBox.Ok,
                 QMessageBox.Cancel,
