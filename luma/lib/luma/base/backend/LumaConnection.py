@@ -402,9 +402,7 @@ class WorkerThreadSearch(threading.Thread):
             
     def run(self):
         try:
-            print "sellf.sizelimit %s" % self.sizelimit
             resultId = self.ldapServerObject.search_ext(self.base, self.scope, self.filter, self.attrList, self.attrsonly, sizelimit=self.sizelimit)
-
             
             while 1:
                 # search with a 60 second timeout
