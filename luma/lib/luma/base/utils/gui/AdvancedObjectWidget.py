@@ -454,8 +454,8 @@ class AdvancedObjectWidget(QWidget):
         value = self.ldapDataObject.getAttributeValue(attributeName, index)
 
         fileName = unicode(QFileDialog.getSaveFileName(\
-                            None,
-                            None,
+                            QString.null,
+                            "All files (*)",
                             self, None,
                             self.trUtf8("Export binary attribute to file"),
                             None, 1))

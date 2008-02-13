@@ -71,8 +71,8 @@ class ExportDialog(ExportDialogDesign):
 
     def showFileDialog(self):
         tmpFileName = QFileDialog.getSaveFileName(\
-                        None,
-                        None,
+                        QString.null,
+                        "LDIF Files (*.ldif);; DSML Files (*.dsml);; All files (*)",
                         None, None,
                         self.trUtf8("Select file for exporting"),
                         None, 1)

@@ -63,8 +63,8 @@ class BinaryEditor(BinaryEditorDesign):
 
     def showFileDialog(self):
         tmpFileName = QFileDialog.getOpenFileName(\
-                            None,
-                            None,
+                            QString.null,
+                            "All files (*)",
                             self, None,
                             self.trUtf8("Select file to change binary value"),
                             None, 1)

@@ -531,6 +531,7 @@ class BrowserWidget(QListView):
     def deleteItem(self):
         """ Delete selected item from the server.
         """
+        # TBD: Refresh so the deleted item no longer shows in the Browser-plugin
         
         selectedItems = []
         listIterator = QListViewItemIterator(self)
