@@ -57,6 +57,7 @@ class BrowserWidget(QListView):
         self.iconPath = os.path.join(tmpDirObject, "share", "luma", "icons")
         self.secureIcon = QPixmap(os.path.join(self.iconPath, "secure.png"))
         self.aliasIcon = QPixmap(os.path.join(self.iconPath, "alias.png"))
+        self.filterIcon = QPixmap(os.path.join(self.iconPath, "filter.png"))
         self.secureAliasIcon = QPixmap(os.path.join(self.iconPath, "secure-alias.png"))
 
         tmpObject = ServerList()
@@ -595,7 +596,6 @@ class BrowserWidget(QListView):
         self.popupItem = tmpItem
         
         tmpDirObject = environment.lumaInstallationPrefix
-        aliasIconFile = os.path.join(tmpDirObject, "share", "luma", "icons", "alias.png")
         popupMenu = QPopupMenu()
         
         server = tmpItem.getServerName()
@@ -620,7 +620,7 @@ class BrowserWidget(QListView):
         popupMenu.insertItem(self.trUtf8("Edit server settings"), self.editServerSettings)
         popupMenu.insertItem(self.trUtf8("Set searchfilter"), self.setItemFilter)
         
-        menuID = popupMenu.insertItem(QIconSet(QPixmap(aliasIconFile)), self.trUtf8("Follow Aliases"), self.enableAliases)
+        menuID = popupMenu.insertItem(QIconSet(self.aliasIcon), self.trUtf8("Follow Aliases"), self.enableAliases)
         popupMenu.setItemChecked(menuID, self.aliasDict[server])
                 
         if not (tmpItem.parent() == None):
@@ -953,18 +953,24 @@ class BrowserWidget(QListView):
 ###############################################################################
 
     def setItemFilter(self):
+        oldFilter = ""
+        if self.popupItem.filter:
+            oldFilter = self.popupItem.filter
+
         result = QInputDialog.getText(\
             self.trUtf8("Item searchfilter"),
             self.trUtf8("Please enter a searchfilter for the given item:"),
-            QLineEdit.Normal)
+            QLineEdit.Normal, oldFilter)
         
         if result[1] == False:
             return
 
         if result[0] == "":
             self.popupItem.filter = None
+            self.popupItem.setPixmap(0, QPixmap())
         else:
             self.popupItem.filter = unicode(result[0])
+            self.popupItem.setPixmap(0, self.filterIcon)
 
         if self.popupItem.isOpen():
             self.itemCollapsed(self.popupItem)
