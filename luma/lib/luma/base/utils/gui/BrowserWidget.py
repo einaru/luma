@@ -168,7 +168,8 @@ class BrowserWidget(QListView):
             oldAliasValue = self.aliasDict[serverName]
             self.aliasDict[serverName] = False
             
-            success, resultList, exceptionObject = self.getLdapItemChildren(serverName, dn, 0, ['dn', 'objectClass'], filter=item.filter)
+            success, resultList, exceptionObject = self.getLdapItemChildren(\
+                    serverName, dn, 0, ['dn', 'objectClass'], filter=item.filter, limit=item.limit)
         
             if success:
                 if len(resultList) == 0:
@@ -271,7 +272,7 @@ class BrowserWidget(QListView):
 
 ###############################################################################
 
-    def getLdapItemChildren(self, serverName, dn, allLevel, noAttributes=None, filter=None):
+    def getLdapItemChildren(self, serverName, dn, allLevel, noAttributes=None, filter=None, limit=0):
         """ Return a list of children a ldap object has.
         
         allLevel == 1:
@@ -303,7 +304,7 @@ class BrowserWidget(QListView):
             searchLevel = ldap.SCOPE_ONELEVEL
             
                 
-        success, resultList, exceptionObject = conObject.search(dn, searchLevel, filter, noAttributes, 0)
+        success, resultList, exceptionObject = conObject.search(dn, searchLevel, filter, noAttributes, sizelimit=limit)
 
         conObject.unbind()
         
@@ -618,12 +619,14 @@ class BrowserWidget(QListView):
             listIterator += 1
         
         popupMenu.insertItem(self.trUtf8("Edit server settings"), self.editServerSettings)
-        popupMenu.insertItem(self.trUtf8("Set searchfilter"), self.setItemFilter)
         
         menuID = popupMenu.insertItem(QIconSet(self.aliasIcon), self.trUtf8("Follow Aliases"), self.enableAliases)
         popupMenu.setItemChecked(menuID, self.aliasDict[server])
                 
         if not (tmpItem.parent() == None):
+            popupMenu.insertItem(self.trUtf8("Set search filter"), self.setItemFilter)
+            popupMenu.insertItem(self.trUtf8("Set search limit"), self.setItemLimit)
+
             # different menus for right click
             exportMenu = QPopupMenu()
             self.addItemMenu = QPopupMenu()
@@ -979,6 +982,28 @@ class BrowserWidget(QListView):
     
 ###############################################################################
 
+    def setItemLimit(self):
+        result = QInputDialog.getInteger(\
+            self.trUtf8("Item search limit"),
+            self.trUtf8("Enter search limit:"),
+            self.popupItem.limit, 0)
+        
+        if result[1] == False:
+            return
+
+        self.popupItem.limit = result[0]
+        if result[0] == 0:
+            self.popupItem.setPixmap(0, QPixmap())
+        else:
+            self.popupItem.setPixmap(0, self.filterIcon)
+
+        if self.popupItem.isOpen():
+            self.itemCollapsed(self.popupItem)
+            self.itemExpanded(self.popupItem)
+            self.popupItem.setOpen(1)
+    
+###############################################################################
+
     def reopenDN(self, serverString, dnString):
         """ Reopens the listitem for the given dnString.
         
@@ -1032,6 +1057,7 @@ class BrowserItem(QListViewItem):
         self.ldapType = False
 
         self.filter = None
+        self.limit = 0
         
         # DN of the entry if it is not a server item
         self.dn = None
