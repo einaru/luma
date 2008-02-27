@@ -11,13 +11,13 @@ mkdir tmp/luma-$1
 cp -R bin tmp/luma-$1
 cp -R lib tmp/luma-$1
 cp -R share tmp/luma-$1
-cp install.py tmp/luma-$1
-cp README tmp/luma-$1
-cp COPYING tmp/luma-$1
-cp LICENSE tmp/luma-$1
+cp  install.py tmp/luma-$1
+cp  README tmp/luma-$1
+cp  COPYING tmp/luma-$1
+cp  LICENSE tmp/luma-$1
 cd tmp
 
-find . -name "CVS" | xargs rm -rf
+find . -name ".svn" | xargs rm -rf
 find . -name "*.pyc" | xargs rm
 find . -name "*~" | xargs rm
 find . -name ".*" | xargs rm
@@ -32,8 +32,11 @@ rm -rf luma-$1/lib/luma/plugins/config_create
 rm -rf luma-$1/share/luma/icons/plugins/config_create
 
 rm -rf luma-$1/lib/luma/plugins/schemaeditor
+rm -rf luma-$1/patches
 
-tar -cvjvpf luma-$1.tar.bz2 luma-$1
+tar -cjvpf luma-$1.tar.bz2 luma-$1
+tar -czvpf luma-$1.tar.gz luma-$1
 mv luma-$1*.bz2 ..
+mv luma-$1*.gz ..
 cd ..
 rm -rf tmp
