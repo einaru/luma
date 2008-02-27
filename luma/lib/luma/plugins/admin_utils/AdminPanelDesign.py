@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file '/home/wido/src/luma/lib/luma/plugins/admin_utils/AdminPanelDesign.ui'
+# Form implementation generated from reading ui file 'lib/luma/plugins/admin_utils/AdminPanelDesign.ui'
 #
-# Created: Wed Aug 17 15:23:42 2005
-#      by: The PyQt User Interface Compiler (pyuic) 3.14.1
+# Created: tir des 19 00:03:11 2006
+#      by: The PyQt User Interface Compiler (pyuic) 3.15.1
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -197,6 +197,39 @@ class AdminPanelDesign(QWidget):
         spacer9 = QSpacerItem(21,16,QSizePolicy.Minimum,QSizePolicy.Fixed)
         tabLayout_2.addItem(spacer9,4,3)
         self.tabWidget2.insertTab(self.tab_2,QString.fromLatin1(""))
+
+        self.certificateTab = QWidget(self.tabWidget2,"certificateTab")
+        certificateTabLayout = QHBoxLayout(self.certificateTab,11,6,"certificateTabLayout")
+
+        layout6_2 = QGridLayout(None,1,1,0,6,"layout6_2")
+
+        self.textLabel1_4 = QLabel(self.certificateTab,"textLabel1_4")
+
+        layout6_2.addWidget(self.textLabel1_4,0,1)
+
+        self.serverBox = QComboBox(0,self.certificateTab,"serverBox")
+
+        layout6_2.addWidget(self.serverBox,0,2)
+
+        self.saveButton = QPushButton(self.certificateTab,"saveButton")
+        self.saveButton.setEnabled(0)
+
+        layout6_2.addWidget(self.saveButton,0,4)
+
+        self.connectButton = QPushButton(self.certificateTab,"connectButton")
+        self.connectButton.setAutoMask(0)
+
+        layout6_2.addWidget(self.connectButton,0,3)
+
+        self.certificateFrame = QFrame(self.certificateTab,"certificateFrame")
+        self.certificateFrame.setFrameShape(QFrame.StyledPanel)
+        self.certificateFrame.setFrameShadow(QFrame.Raised)
+
+        layout6_2.addMultiCellWidget(self.certificateFrame,1,1,0,4)
+        spacer145 = QSpacerItem(89,20,QSizePolicy.Expanding,QSizePolicy.Minimum)
+        layout6_2.addItem(spacer145,0,0)
+        certificateTabLayout.addLayout(layout6_2)
+        self.tabWidget2.insertTab(self.certificateTab,QString.fromLatin1(""))
         AdminPanelDesignLayout.addWidget(self.tabWidget2)
 
         self.languageChange()
@@ -211,6 +244,9 @@ class AdminPanelDesign(QWidget):
         self.connect(self.durationButton,SIGNAL("clicked()"),self.convertDuration)
         self.connect(self.durationBox,SIGNAL("valueChanged(int)"),self.convertDuration)
         self.connect(self.dateEdit,SIGNAL("valueChanged(const QDate&)"),self.convertDate)
+        self.connect(self.serverBox,SIGNAL("activated(const QString&)"),self.serverChanged)
+        self.connect(self.saveButton,SIGNAL("clicked()"),self.saveCertificate)
+        self.connect(self.connectButton,SIGNAL("clicked()"),self.fetchCertificate)
 
         self.setTabOrder(self.tabWidget2,self.methodBox)
         self.setTabOrder(self.methodBox,self.randomPwEdit)
@@ -254,6 +290,12 @@ class AdminPanelDesign(QWidget):
         self.textLabel7.setText(self.__tr("Days from now:"))
         self.textLabel5_2.setText(self.__tr("<b>Duration to Unix date</b>"))
         self.tabWidget2.changeTab(self.tab_2,self.__tr("Date/Time"))
+        self.textLabel1_4.setText(self.__tr("Server:"))
+        self.saveButton.setText(self.__tr("&Save"))
+        self.saveButton.setAccel(self.__tr("Alt+S"))
+        self.connectButton.setText(self.__tr("&Connect"))
+        self.connectButton.setAccel(self.__tr("Alt+C"))
+        self.tabWidget2.changeTab(self.certificateTab,self.__tr("Certificates"))
 
 
     def createRandom(self):
@@ -267,6 +309,15 @@ class AdminPanelDesign(QWidget):
 
     def convertDuration(self):
         print "AdminPanelDesign.convertDuration(): Not implemented yet"
+
+    def serverChanged(self,a0):
+        print "AdminPanelDesign.serverChanged(const QString&): Not implemented yet"
+
+    def saveCertificate(self):
+        print "AdminPanelDesign.saveCertificate(): Not implemented yet"
+
+    def fetchCertificate(self):
+        print "AdminPanelDesign.fetchCertificate(): Not implemented yet"
 
     def __tr(self,s,c = None):
         return qApp.translate("AdminPanelDesign",s,c)

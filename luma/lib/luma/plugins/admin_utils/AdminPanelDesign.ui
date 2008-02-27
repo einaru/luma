@@ -601,6 +601,98 @@
                     </spacer>
                 </grid>
             </widget>
+            <widget class="QWidget">
+                <property name="name">
+                    <cstring>certificateTab</cstring>
+                </property>
+                <attribute name="title">
+                    <string>Certificates</string>
+                </attribute>
+                <hbox>
+                    <property name="name">
+                        <cstring>unnamed</cstring>
+                    </property>
+                    <widget class="QLayoutWidget">
+                        <property name="name">
+                            <cstring>layout6</cstring>
+                        </property>
+                        <grid>
+                            <property name="name">
+                                <cstring>unnamed</cstring>
+                            </property>
+                            <widget class="QLabel" row="0" column="1">
+                                <property name="name">
+                                    <cstring>textLabel1_4</cstring>
+                                </property>
+                                <property name="text">
+                                    <string>Server:</string>
+                                </property>
+                            </widget>
+                            <widget class="QComboBox" row="0" column="2">
+                                <property name="name">
+                                    <cstring>serverBox</cstring>
+                                </property>
+                            </widget>
+                            <widget class="QPushButton" row="0" column="4">
+                                <property name="name">
+                                    <cstring>saveButton</cstring>
+                                </property>
+                                <property name="enabled">
+                                    <bool>false</bool>
+                                </property>
+                                <property name="text">
+                                    <string>&amp;Save</string>
+                                </property>
+                                <property name="accel">
+                                    <string>Alt+S</string>
+                                </property>
+                            </widget>
+                            <widget class="QPushButton" row="0" column="3">
+                                <property name="name">
+                                    <cstring>connectButton</cstring>
+                                </property>
+                                <property name="autoMask">
+                                    <bool>false</bool>
+                                </property>
+                                <property name="text">
+                                    <string>&amp;Connect</string>
+                                </property>
+                                <property name="accel">
+                                    <string>Alt+C</string>
+                                </property>
+                            </widget>
+                            <widget class="QFrame" row="1" column="0" rowspan="1" colspan="5">
+                                <property name="name">
+                                    <cstring>certificateFrame</cstring>
+                                </property>
+                                <property name="frameShape">
+                                    <enum>StyledPanel</enum>
+                                </property>
+                                <property name="frameShadow">
+                                    <enum>Raised</enum>
+                                </property>
+                            </widget>
+                            <spacer row="0" column="0">
+                                <property name="name">
+                                    <cstring>spacer145</cstring>
+                                </property>
+                                <property name="orientation">
+                                    <enum>Horizontal</enum>
+                                </property>
+                                <property name="sizeType">
+                                    <enum>Expanding</enum>
+                                </property>
+                                <property name="sizeHint">
+                                    <size>
+                                        <width>89</width>
+                                        <height>20</height>
+                                    </size>
+                                </property>
+                            </spacer>
+                        </grid>
+                    </widget>
+                </hbox>
+            </widget>
         </widget>
     </vbox>
 </widget>
@@ -647,6 +739,24 @@
         <receiver>AdminPanelDesign</receiver>
         <slot>convertDate()</slot>
     </connection>
+    <connection>
+        <sender>serverBox</sender>
+        <signal>activated(const QString&amp;)</signal>
+        <receiver>AdminPanelDesign</receiver>
+        <slot>serverChanged(const QString&amp;)</slot>
+    </connection>
+    <connection>
+        <sender>saveButton</sender>
+        <signal>clicked()</signal>
+        <receiver>AdminPanelDesign</receiver>
+        <slot>saveCertificate()</slot>
+    </connection>
+    <connection>
+        <sender>connectButton</sender>
+        <signal>clicked()</signal>
+        <receiver>AdminPanelDesign</receiver>
+        <slot>fetchCertificate()</slot>
+    </connection>
 </connections>
 <tabstops>
     <tabstop>tabWidget2</tabstop>
@@ -669,6 +779,9 @@
     <slot>cryptPassword()</slot>
     <slot>convertDate()</slot>
     <slot>convertDuration()</slot>
+    <slot>serverChanged(const QString &amp;amp;)</slot>
+    <slot>saveCertificate()</slot>
+    <slot>fetchCertificate()</slot>
 </slots>
 <layoutdefaults spacing="6" margin="11"/>
 </UI>
