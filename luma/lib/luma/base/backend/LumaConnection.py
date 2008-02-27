@@ -27,6 +27,7 @@ from base.backend.ServerObject import ServerObject
 from base.backend.SmartDataObject import SmartDataObject
 from base.utils.backend.LogObject import LogObject
 from base.utils.gui.PromptPasswordDialog import PromptPasswordDialog
+from qt import QMessageBox
 
 class LumaConnectionException(Exception):
     """This exception class will be raised if no proper server object is passed 
@@ -48,6 +49,7 @@ class LumaConnection(object):
 
     # For storing prompted passwords
     _passwordMap = {}
+    _certMap = {}
     
     def __init__(self, serverMeta=None):
         # Throw exception if no ServerObject is passed.
@@ -239,27 +241,35 @@ class LumaConnection(object):
     def bind(self):
         """Bind to server.
         """
-        environment.setBusy(True)
         workerThread = self.__bind()
         
-        # Prompt for password on INVALID_CREDENTIALS or UNWILLING_TO_PERFORM
-        # UNWILLING_TO_PERFORM on bind usaually means trying to bind with blank password
-        if  isinstance(workerThread.exceptionObject, ldap.INVALID_CREDENTIALS) or \
-            isinstance(workerThread.exceptionObject, ldap.UNWILLING_TO_PERFORM):
-            if LumaConnection._passwordMap.has_key(self.serverMeta.name):
-                self.serverMeta.bindPassword = LumaConnection._passwordMap[self.serverMeta.name]
-                workerThread = self.__bind()
-            else:
-                environment.setBusy(False)
-                dialog = PromptPasswordDialog()
-                dialog.exec_loop()
-                if dialog.result() == 1:
-                    environment.setBusy(False)
-                    self.serverMeta.bindPassword = unicode(dialog.passwordEdit.text())
-                    LumaConnection._passwordMap[self.serverMeta.name] = self.serverMeta.bindPassword
-                    workerThread = self.__bind()
+        # Prompt user to continue if we suspect that the certificate could not
+        # be verified
+        if self._cert_error(workerThread):
+            dialog = QMessageBox("Certificate error",
+                    "Do you want to continue anyway?",
+                    QMessageBox.Question,
+                    QMessageBox.Yes,
+                    QMessageBox.No,
+                    QMessageBox.NoButton,
+                    None)
 
-        environment.setBusy(False)
+            environment.setBusy(False)
+            dialog.exec_loop()
+            if dialog.result() == 3
+                self.serverMeta.checkServerCertificate = u"never"
+                LumaConnection._certMap[self.serverMeta.name] = u"never"
+                workerThread = self.__bind()
+
+        # Prompt for password on _invalid_pwd or _blank_pwd
+        if self._invalid_pwd(workerThread) or self._blank_pwd(workerThread):
+            dialog = PromptPasswordDialog()
+            environment.setBusy(False)
+            dialog.exec_loop()
+            if dialog.result() == 1:
+                self.serverMeta.bindPassword = unicode(dialog.passwordEdit.text())
+                LumaConnection._passwordMap[self.serverMeta.name] = self.serverMeta.bindPassword
+                workerThread = self.__bind()
 
         if workerThread.exceptionObject == None:
             message = "LDAP bind operation successful."
@@ -271,12 +281,16 @@ class LumaConnection(object):
             message += str(workerThread.exceptionObject)
             environment.logMessage(LogObject("Error", message))
             # If credentials are still wrong after prompting, remove from passwordmap
-            if isinstance(workerThread.exceptionObject, ldap.INVALID_CREDENTIALS):
-                if LumaConnection._passwordMap.has_key(self.serverMeta.name):
-                    LumaConnection._passwordMap.pop(self.serverMeta.name)
+            if self._override_pwd(self.serverMeta) and self._invalid_pwd(workerThread):
+                LumaConnection._passwordMap.pop(self.serverMeta.name)
             return (False, workerThread.exceptionObject)
 
     def __bind(self):
+        if self._override_pwd(self.serverMeta):
+            self.serverMeta.bindPassword = LumaConnection._passwordMap[self.serverMeta.name]
+        if self._ignore_cert(self.serverMeta):
+            self.serverMeta.checkServerCertificate = u"never"
+
         workerThread = WorkerThreadBind(self.serverMeta)
         workerThread.start()
         
@@ -285,6 +299,28 @@ class LumaConnection(object):
             time.sleep(0.05)
         return workerThread
         
+    # Internal helper functions with semi self explaining names
+    def _ignore_cert(self, serverMeta):
+        return LumaConnection._certMap.has_key(serverMeta.name)
+    def _override_pwd(self, serverMeta):
+        return LumaConnection._passwordMap.has_key(serverMeta.name)
+    def _cert_error(self, workerThread):
+        # With SSL enabled, we get a SERVER_DOWN on wrong certificate
+        # With TLS enabled, we get a CONNECT_ERROR on wrong certificate
+        # Notice however that server error can be raised on other issues as well
+        cert_error = False
+        if workerThread.serverMeta.encryptionMethod == 'SSL':
+            cert_error = isinstance(workerThread.exceptionObject, ldap.SERVER_DOWN)
+        if workerThread.serverMeta.encryptionMethod == "TLS":
+            cert_error = isinstance(workerThread.exceptionObject, ldap.CONNECT_ERROR)
+        return cert_error
+    def _invalid_pwd(self, workerThread):
+        return isinstance(workerThread.exceptionObject, ldap.INVALID_CREDENTIALS)
+    def _blank_pwd(self, workerThread):
+        # UNWILLING_TO_PERFORM on bind usaually means trying to bind with blank password
+        return workerThread.serverMeta.bindPassword == "" and \
+                isinstance(workerThread.exceptionObject, ldap.UNWILLING_TO_PERFORM)
+
 ###############################################################################
 
     def unbind(self):
