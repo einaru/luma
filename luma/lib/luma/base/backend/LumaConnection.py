@@ -25,8 +25,10 @@ import time
 import environment
 from base.backend.ServerObject import ServerObject
 from base.backend.SmartDataObject import SmartDataObject
+from base.backend.LumaSSLConnection import hasSSLlibrary
 from base.utils.backend.LogObject import LogObject
 from base.utils.gui.PromptPasswordDialog import PromptPasswordDialog
+from base.gui.UnknownCertDialog import UnknownCertDialog
 from qt import QMessageBox
 
 class LumaConnectionException(Exception):
@@ -246,17 +248,22 @@ class LumaConnection(object):
         # Prompt user to continue if we suspect that the certificate could not
         # be verified
         if self._cert_error(workerThread):
-            dialog = QMessageBox("Certificate error",
-                    "Do you want to continue anyway?",
-                    QMessageBox.Question,
-                    QMessageBox.Yes,
-                    QMessageBox.No,
-                    QMessageBox.NoButton,
-                    None)
+            if hasSSLlibrary:
+                dialog = UnknownCertDialog(self.serverMeta)
+                accepted = UnknownCertDialog.Accepted
+            else:
+                dialog = QMessageBox("Certificate error",
+                        "Do you want to continue anyway?",
+                        QMessageBox.Question,
+                        QMessageBox.Yes,
+                        QMessageBox.No,
+                        QMessageBox.NoButton,
+                        None)
+                accepted = 3
 
             environment.setBusy(False)
             dialog.exec_loop()
-            if dialog.result() == 3
+            if dialog.result() == accepted:
                 self.serverMeta.checkServerCertificate = u"never"
                 LumaConnection._certMap[self.serverMeta.name] = u"never"
                 workerThread = self.__bind()
