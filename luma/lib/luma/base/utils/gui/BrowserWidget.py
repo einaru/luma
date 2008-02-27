@@ -970,7 +970,10 @@ class BrowserWidget(QListView):
 
         if result[0] == "":
             self.popupItem.filter = None
-            self.popupItem.setPixmap(0, QPixmap())
+            if self.popupItem.limit > 0:
+                self.popupItem.setPixmap(0, self.filterIcon)
+            else:
+                self.popupItem.setPixmap(0, QPixmap())
         else:
             self.popupItem.filter = unicode(result[0])
             self.popupItem.setPixmap(0, self.filterIcon)
@@ -993,7 +996,10 @@ class BrowserWidget(QListView):
 
         self.popupItem.limit = result[0]
         if result[0] == 0:
-            self.popupItem.setPixmap(0, QPixmap())
+            if self.popupItem.filter:
+                self.popupItem.setPixmap(0, self.filterIcon)
+            else:
+                self.popupItem.setPixmap(0, QPixmap())
         else:
             self.popupItem.setPixmap(0, self.filterIcon)
 
