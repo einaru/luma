@@ -500,24 +500,6 @@ class WorkerThreadBind(threading.Thread):
         
     def run(self):
         try:
-            urlschemeVal = "ldap"
-            if self.serverMeta.encryptionMethod == "SSL":
-                urlschemeVal = "ldaps"
-              
-            whoVal = None
-            credVal = None
-            if not (self.serverMeta.bindAnon):
-                whoVal = self.serverMeta.bindDN
-                credVal = self.serverMeta.bindPassword
-                
-            url = ldapurl.LDAPUrl(urlscheme=urlschemeVal, 
-                hostport = self.serverMeta.host + ":" + str(self.serverMeta.port),
-                dn = self.serverMeta.baseDN, who = whoVal,
-                cred = credVal)
-            
-            self.ldapServerObject = ldap.initialize(url.initializeUrl())
-            self.ldapServerObject.protocol_version = 3
-            
             # Check whether we want to validate the server certificate.
             validateMethod = ldap.OPT_X_TLS_DEMAND
             if self.serverMeta.checkServerCertificate == u"demand":
@@ -537,8 +519,24 @@ class WorkerThreadBind(threading.Thread):
             
             if encryption:
                 ldap.set_option(ldap.OPT_X_TLS_REQUIRE_CERT, validateMethod)
-                #self.ldapServerObject.set_option(ldap.OPT_X_TLS_REQUIRE_CERT, validateMethod)
+
+            urlschemeVal = "ldap"
+            if self.serverMeta.encryptionMethod == "SSL":
+                urlschemeVal = "ldaps"
+              
+            whoVal = None
+            credVal = None
+            if not (self.serverMeta.bindAnon):
+                whoVal = self.serverMeta.bindDN
+                credVal = self.serverMeta.bindPassword
+                
+            url = ldapurl.LDAPUrl(urlscheme=urlschemeVal, 
+                hostport = self.serverMeta.host + ":" + str(self.serverMeta.port),
+                dn = self.serverMeta.baseDN, who = whoVal,
+                cred = credVal)
             
+            self.ldapServerObject = ldap.initialize(url.initializeUrl())
+            self.ldapServerObject.protocol_version = 3
             
             # If we're going to present client certificates, this must be set as an option
             if self.serverMeta.useCertificate and encryption:
