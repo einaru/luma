@@ -16,7 +16,7 @@ cp README tmp/luma-$1
 cp COPYING tmp/luma-$1
 cd tmp
 
-find . -name "CVS" | xargs rm -rf
+find . -name ".svn" | xargs rm -rf
 find . -name "*.pyc" | xargs rm
 find . -name "*~" | xargs rm
 
