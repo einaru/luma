@@ -13,7 +13,7 @@ import os
 import os.path
 from ConfigParser import ConfigParser
 from ConfigParser import NoOptionError
-from qtxml import *
+from PyQt4.QtXml import *
 
 from base.backend.ServerObject import ServerObject
 import environment

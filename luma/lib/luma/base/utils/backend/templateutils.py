@@ -11,7 +11,7 @@
 import environment
 
 import os.path
-from qtxml import *
+from PyQt4.QtXml import *
 from qt import *
 from copy import deepcopy
 
