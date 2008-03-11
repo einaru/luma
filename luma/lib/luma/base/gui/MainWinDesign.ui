@@ -1,273 +1,340 @@
-<!DOCTYPE UI><UI version="3.3" stdsetdef="1">
-<class>MainWinDesign</class>
-<comment>###########################################################################
+<ui version="4.0" >
+ <author>Wido Depping</author>
+ <comment>###########################################################################
 #    Copyright (C) 2003 by Wido Depping                                      
-#    &lt;wido.depping@tu-clausthal.de&gt;                                                             
+#    &lt;wido.depping@tu-clausthal.de>                                                             
 #
 # Copyright: See COPYING file that comes with this distribution
 #
 ###########################################################################
 </comment>
-<author>Wido Depping</author>
-<widget class="QMainWindow">
-    <property name="name">
-        <cstring>MainWinDesign</cstring>
-    </property>
-    <property name="geometry">
+ <class>MainWinDesign</class>
+ <widget class="Q3MainWindow" name="MainWinDesign" >
+  <property name="geometry" >
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>479</width>
+    <height>321</height>
+   </rect>
+  </property>
+  <property name="windowTitle" >
+   <string>Luma</string>
+  </property>
+  <widget class="QWidget" name="widget" >
+   <property name="geometry" >
+    <rect>
+     <x>0</x>
+     <y>26</y>
+     <width>479</width>
+     <height>295</height>
+    </rect>
+   </property>
+   <layout class="QGridLayout" >
+    <item row="0" column="0" >
+     <widget class="Q3WidgetStack" name="taskStack" >
+      <property name="sizePolicy" >
+       <sizepolicy vsizetype="Expanding" hsizetype="Preferred" >
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <widget class="QWidget" name="page" >
+       <property name="geometry" >
         <rect>
-            <x>0</x>
-            <y>0</y>
-            <width>479</width>
-            <height>321</height>
+         <x>0</x>
+         <y>0</y>
+         <width>461</width>
+         <height>277</height>
         </rect>
-    </property>
-    <property name="caption">
-        <string>Luma</string>
-    </property>
-    <grid>
-        <property name="name">
-            <cstring>unnamed</cstring>
-        </property>
-        <widget class="QWidgetStack" row="0" column="0">
-            <property name="name">
-                <cstring>taskStack</cstring>
-            </property>
-            <property name="sizePolicy">
-                <sizepolicy>
-                    <hsizetype>5</hsizetype>
-                    <vsizetype>7</vsizetype>
-                    <horstretch>0</horstretch>
-                    <verstretch>0</verstretch>
-                </sizepolicy>
-            </property>
-            <widget class="QWidget">
-                <property name="name">
-                    <cstring>page</cstring>
-                </property>
-                <attribute name="id">
-                    <number>0</number>
-                </attribute>
-            </widget>
-        </widget>
-    </grid>
-</widget>
-<menubar>
-    <property name="name">
-        <cstring>menubar</cstring>
-    </property>
-    <item text="&amp;Program" name="Program">
-        <action name="showLogger"/>
-        <action name="reload"/>
-        <separator/>
-        <action name="exitItem"/>
-        <separator/>
+       </property>
+      </widget>
+     </widget>
     </item>
-    <item text="&amp;Settings" name="Settings">
-        <action name="editServerList"/>
-        <action name="menuConfigurePlugins"/>
-        <action name="selectLanguage"/>
-    </item>
-    <item text="&amp;Help" name="Help">
-        <action name="about"/>
-    </item>
-</menubar>
-<toolbars>
-</toolbars>
-<actions>
-    <action>
-        <property name="name">
-            <cstring>about</cstring>
-        </property>
-        <property name="iconSet">
-            <iconset>image0</iconset>
-        </property>
-        <property name="text">
-            <string>About Luma...</string>
-        </property>
-        <property name="menuText">
-            <string>About Luma...</string>
-        </property>
-    </action>
-    <action>
-        <property name="name">
-            <cstring>editServerList</cstring>
-        </property>
-        <property name="iconSet">
-            <iconset>image1</iconset>
-        </property>
-        <property name="text">
-            <string>Edit Server List...</string>
-        </property>
-        <property name="menuText">
-            <string>Edit Server List...</string>
-        </property>
-        <property name="accel">
-            <string>Ctrl+E</string>
-        </property>
-    </action>
-    <action>
-        <property name="name">
-            <cstring>exitItem</cstring>
-        </property>
-        <property name="iconSet">
-            <iconset>image2</iconset>
-        </property>
-        <property name="text">
-            <string>Exit</string>
-        </property>
-        <property name="menuText">
-            <string>Exit</string>
-        </property>
-        <property name="accel">
-            <string>Ctrl+Q</string>
-        </property>
-    </action>
-    <action>
-        <property name="name">
-            <cstring>menuConfigurePlugins</cstring>
-        </property>
-        <property name="iconSet">
-            <iconset>image3</iconset>
-        </property>
-        <property name="text">
-            <string>Configure Plugins...</string>
-        </property>
-        <property name="menuText">
-            <string>Configure Plugins...</string>
-        </property>
-        <property name="accel">
-            <string></string>
-        </property>
-    </action>
-    <action>
-        <property name="name">
-            <cstring>reload</cstring>
-        </property>
-        <property name="iconSet">
-            <iconset>image4</iconset>
-        </property>
-        <property name="text">
-            <string>Reload Plugins</string>
-        </property>
-        <property name="menuText">
-            <string>Reload Plugins</string>
-        </property>
-        <property name="accel">
-            <string></string>
-        </property>
-    </action>
-    <action>
-        <property name="name">
-            <cstring>selectLanguage</cstring>
-        </property>
-        <property name="iconSet">
-            <iconset>image5</iconset>
-        </property>
-        <property name="text">
-            <string>Language...</string>
-        </property>
-        <property name="menuText">
-            <string>Language...</string>
-        </property>
-        <property name="accel">
-            <string></string>
-        </property>
-    </action>
-    <action>
-        <property name="name">
-            <cstring>showLogger</cstring>
-        </property>
-        <property name="toggleAction">
-            <bool>false</bool>
-        </property>
-        <property name="iconSet">
-            <iconset>image6</iconset>
-        </property>
-        <property name="text">
-            <string>Show logger</string>
-        </property>
-        <property name="accel">
-            <string></string>
-        </property>
-    </action>
-</actions>
-<images>
-    <image name="image0">
-        <data format="PNG" length="772">89504e470d0a1a0a0000000d4948445200000016000000160806000000c4b46c3b000002cb49444154388dad944b4894511480bf79396363362a3d48b05f227055639bd08c71a2a8a59b561559b40d95aca04db8aa5dd203dad93e0883e8019196909b8a31929ee468690fb2ffd71967c6997bee6de19495d3385007eee6de733ebe7b38f742899139455ff2047da5e6bb4a494a9d2484c1560a44a8aaba80b35c8dbb44814e4f430dde861a8ca6b3948292c05a73a82cb28b4074174a71e8bf8093ddb45189c5c697b83639b82bb1268fd2f6cf606de8286f69029e03f7a8d8b91b9da3e39fc0b3c7b128a3d5bd632d2080e08f06317e5ac7f66315ab750198735808965184244758049422220acbdf5867f90f4e0373f9925aa62f7b708626e222c4558e072220424c044734f16df788bbcc390c06581fc408b07a03f85762fc95b86bb7c0860c782ffdae337f1af5364beaf508b9c42cb9990489b7e318d17c1b4d23022e739676bcf4b1af1beade8119ce37f71360966be5c2a5ddeb201960ee7e86d12b1fc9a638ec02d03db44b8e3eefde10342c3bfbbf8700090ff61de1c535309ac32d435cfdf9f2e64fd32e8af3813da190cb2a11ae0027803d9ce1d50d1c11ba5a1e72357f8fc548761316c54045d41f72d7cd178766816439f6d3346f6ee1284374fb20b11fc74bfe8a6fc7086bc540553321775d11f03c2446e0c55d1c2d449b0616a150608eab2f1213a13ff715982db2d290f90c5ae8ff130ae02d24a30d619f0f481431065604406bc285ce0a8385b0fb57700ac801158067312fb86a21b71063492b268fd0ea2bcb4367810f60a6e0fd33181f023391df4f00690896c36013adcb1a6b21ecf3000e90047b06bed89055f42a01fb099d6baa61bd95b7f681bd603d58d45834115f1ab293f06e0a3edac49426baf9265d5b6fd3955544e393c41e0f43621c5678402b227f72968cdbd801c6bc829556385ae869b84e6fa11e3e68a6538433412f217b8ef8de18f5458db5c64a0bfd06eaff0605883ca2d7181a6752f46bbdf40bfd0e389a3fdce90508100000000049454e44ae426082</data>
-    </image>
-    <image name="image1">
-        <data format="PNG" length="1384">89504e470d0a1a0a0000000d4948445200000018000000180806000000e0773df80000052f49444154488995954b6c5cd519c77fe73ee669cf8ce3ccd8c18fd8a109c10d1995b6a4040202553c5650658184948a020b684a8105a86287d44529940505da8a20e8a240405622a46208540535600921684862c076327e8ced7978de77eedc99fb385d24e3c6892712ffd577cf39dff73be7fb4bdf1574d0bd2fdfbfbbb129f37836a3de576bde801edb83ebd878a64bb095499d6a1c7e75ccdadef8e2b93fbf08d880dca88eb878e1b9a30fecfb6e69faf0d97235dcd33b1ae9fbf1d3548746a918dde4dc3456abc174e66fb83379f4b9b20c17ad42b4d0f8d5f491ff1c035a97053cf0fcc15bcdb0f376ff0d4ff7f6f854b4c01c2a1f32979ba41ebb9389e2248d7a0227b588d20c225d0da75660f0db7275a7ed3b3af1c6b1df0075c06bd754dbc1a14f3fb93517bceecdb19b1e8cffec8af7d19c1ac2fa142357a7503e4121779272a68e51aaa0d8618454c015a0fb19ee957e77b932b26368742c353bffd1f997c835c013affd455bd006c647765f77e5484f919f049f24ecbd8954be016d9972d9c174fc541c850a3e3ca9213c153c819482a8e3b03d1a0ccca556b746c29b168ab9fc4cbb5d0a40b07bf4507ceb55c91fc58e327466336f7fb08b37de09323dd5e0f4f15eaaf3bd083cc2aa07ae06c23b972a00cfa521059a4f67b07f4b77dae2974002d000d4a7de3bb47b45dff5c7e4ae21ffb55def20b404fd63bfc3f3efc2b2a6880c45d8be770b995281b42128a1235d1de1eae75ee041170ec32dd8128ca036ece16038a81672ab9f014d2df58deff6a19fc7223fed7a9ed5ecb364ab0eb5f45992c94932859da473ffe2ab13af63d4345ac287e76928a8e76f2f404ac2760d210348a589aed82263a849601830b5686fcf433f18c8339d7e8b6a3e8c2782349d0c8b4b775074bbc87b0aa6a560952c7cad1fa29a2bb88e8dd05da41a420a08c910c205d77229c5ae26143bb5af0271e08c565183db7cfadff96eb986e2f6e2572486a3b0329ba36aaf525c4ae2c5ee64c5ff1e3d3bf7912cc528e7fc14322728299f83f068a403947d4d360722f8fb76109ef99af33ee85a55093133ff5f1cc38750759020a5c07455ea52607597f116b6303b57a476fc19a2992883d73f42546ec33cf9395ef15b96e3f750cdcde299b3044486a5d53ac05ee01f9a6d9b2ca6f763a4fe44b4af0bb52b8027359ab6a0e1c2b297a5baf82e679efa6c834170f346d3a1ad83894402cd752074f5afe9e9bf9b5afa9f2ce65f812e05d3165484ca8a17a2eaac02108fc7114220e58663679df2f93c009a6bd8a9ace58dc67baec0173e40f6f424052b450b1dc3f5e37a3a5ebdd0b1d0fefdfbd762d33499989858b7af2da7d3afb6d2b9df8b6dfd04d4008dc05eb2d515141142782a4a0bb44af8b2b71d1f1fc7c8cfd39d18b9644f19501bc70a4bcb46c1868203837d7781ada1b6828856081c9550cfd8ba24210442fc7f4e1af979aaa98f37842bff7ee6b75f69535fbe5f3e93c56841d551102e782d3fd251719b1e9691599724a55cf3c1344dba13230cecb96f6300e0ec90f5978cc98f2ba58c4dcb88a197c348d7457a0ee1528048e2fa8eed99989858036e64be0670e4d9c78e0ffee2a18386f0bd14b8e6a6e8e6fe4728aefc01dd9244946b69b1a923a06db2699a6bc04b0080933ef2d7f1be7a53afa7675ed093b775f7d593a87597f2c02d980b5f7604c0e54dd62e88adecb1d70e0fdd3866e617ce3e5c8a6fdd2306b70765a989525eef41dbe0764b2e67b276d17763f1f8d4bb30f5856f24794ba03b76406e1eb9b9b9925a3b70719fdb2677d2253ffd0bc041ce4dc461e0ee5c2ef768c72a1d9448243a022e04f901e3fb166feb7fa71a74bf7bca6cf90000000049454e44ae426082</data>
-    </image>
-    <image name="image2">
-        <data format="PNG" length="1343">89504e470d0a1a0a0000000d4948445200000016000000160806000000c4b46c3b0000050649444154388dad955d68655715c77f6bef7dceb9e77ee426cd359d26994c6f669a4c3b13d4010b5a2b055f2ada5a68293e940aa150903ef8e207f83053eaa0f82a14fa30520b5641f44151943a58298358e93016e9a4b5d34c321fb937934c3237b91fe79e73f6f2e1de6482cfee97bd1ff6feb1f65affb5fe00088803cbff6139b002227b604474b11a3c7238722f6ab95c37c6a4aa08e8dd57aa078eba7ff25e03d74b965793ecb59f6df72ea003b088887e672c3cfdb513b367aa8f3daaf1f8083e4dc47b053c820282e2413d9ae7a8f7a87a405155ed3436e85e5c923f5d699cf9c966f76501786134fce2f30b47df293ef3a44f1a57b5bb761345116731cee1f3149f66208a09025c5cc406212a20c620c6108c94e9ed24e2df7ad7bcf9f1daa316e0c96af4ca679e7ee2d3dd56d36f5fba68451004a36962d29d2d531cad99f1d907cde8fd7326ae8c9abcd332496bcb38171a1131a88a4ffa26aa96bc38673696d79c03d07279261e1fe1d6a5cbb872594d5c109f26940f4d73eca9452af39f259e388c8a80cfe93456d859fa27cb7ff93579d6c7869120a2799212d72a645130e3008c31ead364f0fd30109ff6189f5be0e44b3f22aa4d42d667676589f6c61a95c93aa5c9594a93b3548e7f8ea537ce92ecdec1b848b016861577c3628bf7839cfa24a37af81827be7596a836c9ce4717b9fa8737d8bdf109362e81cfa81e5be0c8138b942667997fee7b5c7efd87e4ea1167d0dc8322662819048fb116cd53669f7e81c2c434ad0fdee5fd577f40f35f17987eec291e7ee59794eb27b8f18fb758faf959fa779a94a7e798fac257f0591fb16e5f29e6a0b8f3b4cf58fd386373a7c0e77cfcbb73249d5da2b11ac5f10900e27b6a14c627d86d5ee7fa9f7f0140f5f8c34495d181b65541390016f0594a69aa8e1bad71fbf27bb4969708ab63a01eeffddee740151b97695dff0ffdad26a54f4d51aa4dee43753f625554151145e2f27ef4dea7186b410cb297356bc0184ce0f03e274bfb60067a17eb6090e30311ab478200b2dee07d14e10ac501d4dafd9b226600300617c5b83002ef11eb303640fdffe4587d8e0d23fa5bebf86e8b7be64f513d7a92acd7c6160a181b0cc0d662a3903c4d284f1d251c9da0b3b946b2b38d2bc403f05ec4aa8ae639ae58667bf523b6af7c00c672f4abcf135546483bbba4491b802ce9d26fb7a8dc7784e92f7f03805ee30a59bf870922d42ba0b8bbd3ca2346306181953fbe4ef5c83ce5074ef1d073dfe7eaf95f71ed9ddfb3fefe05d24e8b89939fe7c8e3df24ac4ed06daed078efaf04c511bc5734f7a8b2071e9653041bc5ec3657b9f29b9f72ecd96f53993bc54333f3b4d7ae92745a14c72628dd3b033620d96a72edfc9be4798e2d14903c1f8e561d749ef72aaa8a18039aab2b96e5d68717e99d3bcdf497be4ea5bec048fdc45039d0dfdea0bdf26f1a97fe46d64f306101e302f5b992b5bb28220ec0f592d54e638360a646babd2388a82b94a4bdd9e0c3dfbe4af9dec394eebb1f710106a5bbd9a0b77b071757b05109e302b57159bab73ea17d739d1059b5000f0466e3c17eb2984f1d22aa96bc7a55ac5513866a0ab1f6bb6d6dafdfd0cee69a766e6fa847d54645055110f5b9d7defa9ade7cfb6d096e6ccadf5bbd97860e827e773c3efd78fdd099706156e35a0554655008bfdf6d781d3887cfd15c870347c9da5d6ddf5cc7dc6ecbf98dce991f37775f3ee079e8e268e19199c8bd9845415d2065cff3866d3ab0bfbbfbc0f65415094264f95a92bd766eb3730190ff02ca667e61f124adf50000000049454e44ae426082</data>
-    </image>
-    <image name="image3">
-        <data format="PNG" length="1004">89504e470d0a1a0a0000000d4948445200000016000000160806000000c4b46c3b000003b349444154388da5d24f4c14571c07f0ef9bd9bf2cec0eb86541a4253628fd139dd4362d5ae36e7a70211e9ab434c678e0e0b5c7462fa690f6b03db14d632235e9124d881a2b298946ea366b0db6a58775aa5428a465ad8255163bcbe2cebe3733eff5b048816ec2c67e935f32c9fc7e9f99f79b2158972b577ebc1908f8d4baba000c836271f1090a05638073d1dbd9b927b3bebfe20c0f5f4fa4d3936275b2595d5cbd3a268686ae753f330c00e7cf27136363e36b70c64c3132f293387bf6dbf0ffc2cf9cb99c181dd5d6e0b9dc92387dfad24c45407fffc5c4c9935fabe5ee9d3a3534a469532b30e75c249363a2bfff62d9fed5915c2e67372124158f0fae698ec707d5aa2a6f78ebd62658960dcbb261db1cb5b57e50cac215c00e44a3ed0a2124158b0da800108b0da87ebf2fb57fff5b8a2c4b60cc04a50c9432381c328a45a66c08178b0c7ebf0f1d1dbb154248aaa7e7cbee12daae4892044a4d506a82310b8c59989d9d07a52cb3219ccdea7a09af4647c76ea5b131988846db155996c198f99f9a99998361d00d6179c78e7d6d5eaf5b0d0615783c6eb4b636439224d8b6bda62835313bfb08f5f5b5989ebea77e75f0aef7c3cefac92f2ecf17cbbe3163666f32f9b39ecdfebd72ec52592b65180c99cc1cf2f9028410f8e09571d51572f6991652b7fb5e5eb36f2184020004008e1cf954adaaf2a4f6ee55956ddb9e87c3e178da0600300c0ad3b4e0743a40264ec0cfbe83fbf15f70beba050fc6b9c63922af1fbda3af7e00797a71f8f0715508d157571708874275a8aef622975b0263160e1c781b8140358c741cbec2086a0b0f11944de4e084d1d2843f6f098d7344f61cff17275897aeae632d005a0084015c03a084429b1207d58ca2984934ba16a0b800697972d122c8078298d688c6b988bcf3c9845e162e970b1fedea79618bf1715b930e9f4b06593755a03616440deedc9434ce11e98c4de815c1978ebea4708ed4ce5d5c6dde2c96cfba3cca6c0002b6cdf120eb443a2d6b9c232257020fdec816df7ff3b973f7ef9168558d68509a3d80d705500b283060610952ce805f2190dca461eea1dc26550203c07b7d13ba6989c88d5149fbfd972250ed06f245608902f379c0e4c0dd05b43618703aec772b8601e0d08949ddb410f9febaa44da51e0336077c2ea06801055afa3b0d0697cc51d12a56e79b74b6d8b93378ee8f8c14ad114643d04d81375a4a6b210065c00f53beca3e5eb9c40f6d5738476adf8b39f5b5cdf9126a4b18fe7513eee7dcbdcf0c03c0675ddb15ce31e4775be180c7c2a3272e9dd9d2e7c72efcd6f30f73dcfe3628f8c9bd0000000049454e44ae426082</data>
-    </image>
-    <image name="image4">
-        <data format="PNG" length="930">89504e470d0a1a0a0000000d4948445200000016000000160806000000c4b46c3b0000036949444154388db595cf6fd36618c73fa91337a4a57555e80f1481a3824433a9874d8a76a06a7780c30e6d8698068aa64e6513d75648f90b40425c82c43f8034e55071a0bb2081a00a4c742b12a339b4abd4aa715812363abae0c4f959e7ddc169489a046d07bed6635b7efd7e9ec7ef8faf6d42083e86ec00369bad75eb65fc5498c644a5c224560d1140037e22cc62ab6e42086c428866f00ff8a9104242c50d0cc2847b0280e8eb28e9441ae240090d983f984008513dd5eb7b42cc2208212efe76513c4d3f15e9bd744344b351115c0f8ade5bbd82008200a10f577c99101273a7bf3ccd8d3337f076793f348ce87b3ac19f832cdd5d8212b70833df0cfe0e3f827b23fe116e4fdce6b0741880b5d81addb66ed47e15ed6f8da1e1213a9d9d0d09aefd728d073f3e00f88a308b8de06f89b93e75a937bfb9c9a03c48fc759c531da798f24e3540caa2cca3778f304ca3f62c6b66092e04d959d9d108e31142d00140003f76d4f133e398986cebdb8cf78c3741011c360779334faa94aa856eea4c7d3105322a01fc505d6ec0342740555452a51403bb03f83ef3d5604ff427c40a3186e561f2953ccfb3cf6b6debd975368d4db49c0627804da681c57db0da77bc0f431818258319f74cade3f5c47536f21b0d55e7d2397af77a39aa1c2593c9b091abb60f019ba8f5154f8a6e41b294046074701480adc2168fdf3db68620ebe0eca1b38cb9c6f07de2437129b544b6a5eaaab2e67bb21e4c51144994120d95edeeedd69e5d397485ab63579bc6bc9d3aaad748315324594c922c268917e300f8ba7d1cb11fe155e1154939d99ee2a846ce62d583b5ca9f15f2d5e3cece9d5a9ffb23f7b964bbc4cb3f5ea2e95a1333a24740c68abf2c1650ddd201fccc22a46549482f24d11fed17abb955f15f14c94484f44212d2b224984510c0ff7e1d8759a48826afca28766b52ce6f9f67d9586ef9e56b85b5dafd8ab182625790576528a2ed1b92bdeefdf9fcb3fcbd3eb50fd771170033da0c5ea797733de700d04d9d879987244a092e281770cb6e16fe59a033d9c9db676f01cb2b80032614202439a5b9935f9fa447ed693d5107a46b3a5b77b7300b661b13da976581739e490f9ecf3d389c8e96c072a14cecd718b1480c78ef6cedc116dc0f841c4e877a6cf418039e01ba942e008cb4c19bd81b52bfa72817ca1a6d8cbe35b831c134a052dd51fc9f5fd3c7d0bf81d0cc10c8907f4a0000000049454e44ae426082</data>
-    </image>
-    <image name="image5">
-        <data format="PNG" length="1170">89504e470d0a1a0a0000000d4948445200000018000000180806000000e0773df8000004594944415448899d956d4c5b5518c77fe7f6b6408152c001c2100d64be20814027c844fd009931235934a88bcef836207e70c6f992f8c1c4647126cbbe686234d12fcba6b8c418304ea37133d190b049225147bb520603796968e96da1afdc5e3fdc7be1ca189b3ec9cd697bcef9fd9f9ee7ffdc03db87006440b33cb70039c61c8094e76e32e77600b996b91bc2354093e5620dd803b402bb0017200122b7f84eabf8fd4019603321d23602eb8b8a0a5b31324f010a903680b6e4b2cfbae79a7f703d010164cc2fa1e5ef413faa5560055001b9aaab3753d5d56bdd6737121356d05621cbf9c519351ec1ed7693979787a8dfc7adbbebd717cc5ffc8baadd2db495dcce07afefb5ee6d04a68038a06e252039aaef501b3b7a10b2e09523af51e090988ca6c911825052c5174e115c9aa051e473fc85071062cb3c2b0065f38c54d5d5ab3ed47b84679b4ac8970517169378837126a259d0b2fcfdc70895522ee78f3d05c0e79d9d8c5fbecc87737328aa6a72ba8169e0aa6c85979456aafd6fbecc13bb4a381bb8c239ef24bea08a961694ded540d63b4cb3ad8c2fdedb0fc0784b0b2b8ac2d199997e20866e8235f43aad02695340381c0ef5d5c38779b2a69053274f71f2eb1f580eaee27af8515c4e3779929d724d876b9a86d7e3613899a02f10e807e68c8c63e806489982a680adb3b393f6f6fb3871e22306070788444248a93435433e0eee2880850bf40e7e0680d7e301404da541b7edb451d8041b3d91053409104ea73353575b4b2030c1d96fbe4556c23c5850405ccbf2765339cf1ceca0bbbb15e5b711b46c1a805f1485be40a00f08014b065cb53c1ae8de965c2e177687833367069899f302309b48f049f7f3ec299bc2515b47eae79f48147dc5dcaf3efc752e1805200a2c18c79146eff0147a0f6d08643319468687f9737c1c4f5111172311b46c16c96663a9ae9a03be3071c9497ef722000ba371f3ec23864814d8091403cb46a175814fefb93bbdb7a98e9cca525e9c9c606821a85bca6643d3348410ec7797e37c6c2765f7aaf86333bcb1380bf0f1268b9703612b1c40ce71bb297ba40d2919c36959ad69eb6b1040718f405a5be1b96331a22b2a9b621ffa1b36613d1e00796231c8d2efb3a4027e8e5697238458870b21b8d4d18cdd93879a1c435d9b6229fc2ff04be82e8a0341366cba1eb296cda2d824886b0839175f5b0bf9761b0955e392a7057bbbc0f5f4183145e69dd36e1a1a32cc2ea4fa0d700898374605485ab30790c79b156a0ef989beef42c601ae52fc8df594be354632b682dd7e85683a97e3a7ed78bd71ce9d8ff51ad069747b46d19da36e8683ee22843a43f1bb326440cbfa1139a5a496134456438cfacb18188ab312cd98f03960c21813d7035beb57d1f378c9bcf5c750d8b80ad6247272f57be7bb1fc3878cccfd063c8edeaddb86009c4015701b7aa3d8812fdd6e0791481aa0cf388625e0ea7f819b0212fa35e7323234e3800159e6da42de14dc1430479b215281de91c28087b941216f46c0fcec000a8d710dfd9dfebfc066fc03a8d9c0ef1b40079f0000000049454e44ae426082</data>
-    </image>
-    <image name="image6">
-        <data format="PNG" length="452">89504e470d0a1a0a0000000d4948445200000016000000160806000000c4b46c3b0000018b49444154388db594cf6ed43010873f27b971e019b817897b0fbc18bdf21088435fa8529110a2888a5642adaa4a545d35dd75327f386ce278d9ba9474998b35f664fccd6fc60900479f4ebdaa027fb3ae17faae47d51e8d7bbbff3a34a3f366ef55315001773003555073448d5e14cdd6f63e72f8f1030015c05368ffd5aa3941210402508509a8bd8fb4cb2ef90d0f7c34c78ebe5ce2eee5c4f961da038cb5ceb183d809b1eb875558c575439b7aaa6d67c4c727571bd3522496610acc0662033367193beeda482f8a996366983b664efd3f883f7fbfc64a1a3bac6f4ff420028b36123bc1cd135daa4c6dea4b498af00ce2af67bf1e97c2dd71a05d39cb55bf4536969bf4cdaac8a176a6f1b7f39b0d7f2bb1b8b3b813dc2104109948558d10026a96a8fd0fcd8b899b99c4a73f6fcb2f4f1c6e5bc57c225035dcd9d277f473eaa2c6bdc0cb17f52ce21f178bf2cb53f5440c6ce86736d066d400229af61f2496419ee710e7ed4989757df186c623edd89351f7fc1ca619cf899ff4a39f630d405d57bc3b78bfd3c4bf012baf7042742514950000000049454e44ae426082</data>
-    </image>
-</images>
-<connections>
-    <connection>
-        <sender>about</sender>
-        <signal>activated()</signal>
-        <receiver>MainWinDesign</receiver>
-        <slot>showAboutLuma()</slot>
-    </connection>
-    <connection>
-        <sender>exitItem</sender>
-        <signal>activated()</signal>
-        <receiver>MainWinDesign</receiver>
-        <slot>quitApplication()</slot>
-    </connection>
-    <connection>
-        <sender>editServerList</sender>
-        <signal>activated()</signal>
-        <receiver>MainWinDesign</receiver>
-        <slot>showServerEditor()</slot>
-    </connection>
-    <connection>
-        <sender>menuConfigurePlugins</sender>
-        <signal>activated()</signal>
-        <receiver>MainWinDesign</receiver>
-        <slot>configurePlugins()</slot>
-    </connection>
-    <connection>
-        <sender>reload</sender>
-        <signal>activated()</signal>
-        <receiver>MainWinDesign</receiver>
-        <slot>reloadPlugins()</slot>
-    </connection>
-    <connection>
-        <sender>selectLanguage</sender>
-        <signal>activated()</signal>
-        <receiver>MainWinDesign</receiver>
-        <slot>showLanguageDialog()</slot>
-    </connection>
-    <connection>
-        <sender>showLogger</sender>
-        <signal>activated()</signal>
-        <receiver>MainWinDesign</receiver>
-        <slot>showLoggerWindow()</slot>
-    </connection>
-</connections>
-<slots>
-    <slot>quitApplication()</slot>
-    <slot>showServerEditor()</slot>
-    <slot>showAboutLuma()</slot>
-    <slot>loadPlugins()</slot>
-    <slot>unloadPlugins()</slot>
-    <slot>configurePlugins()</slot>
-    <slot>reloadPlugins()</slot>
-    <slot>showLanguageDialog()</slot>
-    <slot>showLoggerWindow()</slot>
-</slots>
-<layoutdefaults spacing="6" margin="11"/>
-</UI>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menubar" >
+   <property name="geometry" >
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>479</width>
+     <height>26</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="Program" >
+    <property name="title" >
+     <string>&amp;Program</string>
+    </property>
+    <addaction name="showLogger" />
+    <addaction name="reload" />
+    <addaction name="separator" />
+    <addaction name="exitItem" />
+    <addaction name="separator" />
+   </widget>
+   <widget class="QMenu" name="Settings" >
+    <property name="title" >
+     <string>&amp;Settings</string>
+    </property>
+    <addaction name="editServerList" />
+    <addaction name="menuConfigurePlugins" />
+    <addaction name="selectLanguage" />
+   </widget>
+   <widget class="QMenu" name="Help" >
+    <property name="title" >
+     <string>&amp;Help</string>
+    </property>
+    <addaction name="about" />
+   </widget>
+   <addaction name="Program" />
+   <addaction name="Settings" />
+   <addaction name="Help" />
+  </widget>
+  <action name="about" >
+   <property name="icon" >
+    <iconset>image0</iconset>
+   </property>
+   <property name="text" >
+    <string>About Luma...</string>
+   </property>
+   <property name="iconText" >
+    <string>About Luma...</string>
+   </property>
+   <property name="name" stdset="0" >
+    <string>about</string>
+   </property>
+  </action>
+  <action name="editServerList" >
+   <property name="icon" >
+    <iconset>image1</iconset>
+   </property>
+   <property name="text" >
+    <string>Edit Server List...</string>
+   </property>
+   <property name="iconText" >
+    <string>Edit Server List...</string>
+   </property>
+   <property name="shortcut" >
+    <string>Ctrl+E</string>
+   </property>
+   <property name="name" stdset="0" >
+    <string>editServerList</string>
+   </property>
+  </action>
+  <action name="exitItem" >
+   <property name="icon" >
+    <iconset>image2</iconset>
+   </property>
+   <property name="text" >
+    <string>Exit</string>
+   </property>
+   <property name="iconText" >
+    <string>Exit</string>
+   </property>
+   <property name="shortcut" >
+    <string>Ctrl+Q</string>
+   </property>
+   <property name="name" stdset="0" >
+    <string>exitItem</string>
+   </property>
+  </action>
+  <action name="menuConfigurePlugins" >
+   <property name="icon" >
+    <iconset>image3</iconset>
+   </property>
+   <property name="text" >
+    <string>Configure Plugins...</string>
+   </property>
+   <property name="iconText" >
+    <string>Configure Plugins...</string>
+   </property>
+   <property name="shortcut" >
+    <string/>
+   </property>
+   <property name="name" stdset="0" >
+    <string>menuConfigurePlugins</string>
+   </property>
+  </action>
+  <action name="reload" >
+   <property name="icon" >
+    <iconset>image4</iconset>
+   </property>
+   <property name="text" >
+    <string>Reload Plugins</string>
+   </property>
+   <property name="iconText" >
+    <string>Reload Plugins</string>
+   </property>
+   <property name="shortcut" >
+    <string/>
+   </property>
+   <property name="name" stdset="0" >
+    <string>reload</string>
+   </property>
+  </action>
+  <action name="selectLanguage" >
+   <property name="icon" >
+    <iconset>image5</iconset>
+   </property>
+   <property name="text" >
+    <string>Language...</string>
+   </property>
+   <property name="iconText" >
+    <string>Language...</string>
+   </property>
+   <property name="shortcut" >
+    <string/>
+   </property>
+   <property name="name" stdset="0" >
+    <string>selectLanguage</string>
+   </property>
+  </action>
+  <action name="showLogger" >
+   <property name="checkable" >
+    <bool>false</bool>
+   </property>
+   <property name="icon" >
+    <iconset>image6</iconset>
+   </property>
+   <property name="iconText" >
+    <string>Show logger</string>
+   </property>
+   <property name="shortcut" >
+    <string/>
+   </property>
+   <property name="name" stdset="0" >
+    <string>showLogger</string>
+   </property>
+  </action>
+ </widget>
+ <layoutdefault spacing="6" margin="11" />
+ <customwidgets>
+  <customwidget>
+   <class>Q3MainWindow</class>
+   <extends>QWidget</extends>
+   <header>q3mainwindow.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>Q3WidgetStack</class>
+   <extends>Q3WidgetStack</extends>
+   <header>q3widgetstack.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>about</sender>
+   <signal>activated()</signal>
+   <receiver>MainWinDesign</receiver>
+   <slot>showAboutLuma()</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>exitItem</sender>
+   <signal>activated()</signal>
+   <receiver>MainWinDesign</receiver>
+   <slot>quitApplication()</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>editServerList</sender>
+   <signal>activated()</signal>
+   <receiver>MainWinDesign</receiver>
+   <slot>showServerEditor()</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>menuConfigurePlugins</sender>
+   <signal>activated()</signal>
+   <receiver>MainWinDesign</receiver>
+   <slot>configurePlugins()</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>reload</sender>
+   <signal>activated()</signal>
+   <receiver>MainWinDesign</receiver>
+   <slot>reloadPlugins()</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>selectLanguage</sender>
+   <signal>activated()</signal>
+   <receiver>MainWinDesign</receiver>
+   <slot>showLanguageDialog()</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>showLogger</sender>
+   <signal>activated()</signal>
+   <receiver>MainWinDesign</receiver>
+   <slot>showLoggerWindow()</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+</ui>

@@ -1,585 +1,635 @@
-<!DOCTYPE UI><UI version="3.3" stdsetdef="1">
-<class>TemplateWidgetDesign</class>
-<widget class="QWidget">
-    <property name="name">
-        <cstring>TemplateWidgetDesign</cstring>
-    </property>
-    <property name="geometry">
-        <rect>
-            <x>0</x>
-            <y>0</y>
-            <width>694</width>
-            <height>513</height>
-        </rect>
-    </property>
-    <property name="caption">
-        <string>Form1</string>
-    </property>
-    <vbox>
-        <property name="name">
-            <cstring>unnamed</cstring>
-        </property>
-        <property name="margin">
-            <number>0</number>
-        </property>
-        <widget class="QSplitter">
-            <property name="name">
-                <cstring>splitter2</cstring>
-            </property>
-            <property name="orientation">
-                <enum>Horizontal</enum>
-            </property>
-            <widget class="QFrame">
-                <property name="name">
-                    <cstring>frame3</cstring>
-                </property>
-                <property name="frameShape">
-                    <enum>NoFrame</enum>
-                </property>
-                <property name="frameShadow">
-                    <enum>Raised</enum>
-                </property>
-                <grid>
-                    <property name="name">
-                        <cstring>unnamed</cstring>
-                    </property>
-                    <property name="margin">
-                        <number>2</number>
-                    </property>
-                    <widget class="QLabel" row="0" column="0" rowspan="1" colspan="2">
-                        <property name="name">
-                            <cstring>textLabel1</cstring>
-                        </property>
-                        <property name="text">
-                            <string>&lt;b&gt;Templates&lt;/b&gt;</string>
-                        </property>
-                    </widget>
-                    <widget class="QListView" row="1" column="0" rowspan="1" colspan="2">
-                        <column>
-                            <property name="text">
-                                <string>Name</string>
-                            </property>
-                            <property name="clickable">
-                                <bool>true</bool>
-                            </property>
-                            <property name="resizable">
-                                <bool>true</bool>
-                            </property>
-                        </column>
-                        <property name="name">
-                            <cstring>templateView</cstring>
-                        </property>
-                        <property name="font">
-                            <font>
-                            </font>
-                        </property>
-                        <property name="allColumnsShowFocus">
-                            <bool>true</bool>
-                        </property>
-                        <property name="resizeMode">
-                            <enum>AllColumns</enum>
-                        </property>
-                    </widget>
-                    <widget class="QPushButton" row="2" column="0">
-                        <property name="name">
-                            <cstring>addTemplateButton</cstring>
-                        </property>
-                        <property name="text">
-                            <string>&amp;Add...</string>
-                        </property>
-                        <property name="accel">
-                            <string>Alt+A</string>
-                        </property>
-                    </widget>
-                    <widget class="QPushButton" row="2" column="1">
-                        <property name="name">
-                            <cstring>saveTemplateButton</cstring>
-                        </property>
-                        <property name="text">
-                            <string>&amp;Save</string>
-                        </property>
-                        <property name="accel">
-                            <string>Alt+S</string>
-                        </property>
-                    </widget>
-                    <widget class="QPushButton" row="3" column="1">
-                        <property name="name">
-                            <cstring>deleteTemplateButton</cstring>
-                        </property>
-                        <property name="text">
-                            <string>&amp;Delete...</string>
-                        </property>
-                        <property name="accel">
-                            <string>Alt+D</string>
-                        </property>
-                    </widget>
-                    <widget class="QPushButton" row="3" column="0">
-                        <property name="name">
-                            <cstring>duplicateTemplateButton</cstring>
-                        </property>
-                        <property name="text">
-                            <string>D&amp;uplicate...</string>
-                        </property>
-                        <property name="accel">
-                            <string>Alt+U</string>
-                        </property>
-                    </widget>
-                </grid>
-            </widget>
-            <widget class="QFrame">
-                <property name="name">
-                    <cstring>frame4</cstring>
-                </property>
-                <property name="frameShape">
-                    <enum>NoFrame</enum>
-                </property>
-                <property name="frameShadow">
-                    <enum>Raised</enum>
-                </property>
-                <vbox>
-                    <property name="name">
-                        <cstring>unnamed</cstring>
-                    </property>
-                    <property name="margin">
-                        <number>2</number>
-                    </property>
-                    <widget class="QLayoutWidget">
-                        <property name="name">
-                            <cstring>layout25</cstring>
-                        </property>
-                        <grid>
-                            <property name="name">
-                                <cstring>unnamed</cstring>
-                            </property>
-                            <widget class="QLabel" row="0" column="0">
-                                <property name="name">
-                                    <cstring>nameLabel</cstring>
-                                </property>
-                                <property name="sizePolicy">
-                                    <sizepolicy>
-                                        <hsizetype>0</hsizetype>
-                                        <vsizetype>0</vsizetype>
-                                        <horstretch>0</horstretch>
-                                        <verstretch>0</verstretch>
-                                    </sizepolicy>
-                                </property>
-                                <property name="text">
-                                    <string>&lt;b&gt;Name:&lt;/b&gt;</string>
-                                </property>
-                                <property name="alignment">
-                                    <set>WordBreak|AlignVCenter</set>
-                                </property>
-                            </widget>
-                            <widget class="QLabel" row="2" column="1">
-                                <property name="name">
-                                    <cstring>descriptionLabel</cstring>
-                                </property>
-                                <property name="text">
-                                    <string>This is a description of the template you are currently working with.</string>
-                                    <comment>DO NOT TRANSLATE</comment>
-                                </property>
-                                <property name="alignment">
-                                    <set>WordBreak|AlignTop</set>
-                                </property>
-                            </widget>
-                            <widget class="QLabel" row="0" column="1">
-                                <property name="name">
-                                    <cstring>templateLabel</cstring>
-                                </property>
-                                <property name="text">
-                                    <string>foo</string>
-                                </property>
-                            </widget>
-                            <widget class="QLabel" row="2" column="0">
-                                <property name="name">
-                                    <cstring>textLabel2</cstring>
-                                </property>
-                                <property name="sizePolicy">
-                                    <sizepolicy>
-                                        <hsizetype>0</hsizetype>
-                                        <vsizetype>5</vsizetype>
-                                        <horstretch>0</horstretch>
-                                        <verstretch>0</verstretch>
-                                    </sizepolicy>
-                                </property>
-                                <property name="text">
-                                    <string>&lt;b&gt;Description:&lt;/b&gt;</string>
-                                </property>
-                                <property name="alignment">
-                                    <set>WordBreak|AlignTop</set>
-                                </property>
-                            </widget>
-                            <widget class="QLabel" row="1" column="1">
-                                <property name="name">
-                                    <cstring>serverLabel</cstring>
-                                </property>
-                                <property name="text">
-                                    <string>bar</string>
-                                </property>
-                            </widget>
-                            <widget class="QLabel" row="1" column="0">
-                                <property name="name">
-                                    <cstring>textLabel6</cstring>
-                                </property>
-                                <property name="sizePolicy">
-                                    <sizepolicy>
-                                        <hsizetype>0</hsizetype>
-                                        <vsizetype>0</vsizetype>
-                                        <horstretch>0</horstretch>
-                                        <verstretch>0</verstretch>
-                                    </sizepolicy>
-                                </property>
-                                <property name="text">
-                                    <string>&lt;b&gt;Server:&lt;/b&gt;</string>
-                                </property>
-                            </widget>
-                        </grid>
-                    </widget>
-                    <widget class="QLayoutWidget">
-                        <property name="name">
-                            <cstring>layout15</cstring>
-                        </property>
-                        <grid>
-                            <property name="name">
-                                <cstring>unnamed</cstring>
-                            </property>
-                            <spacer row="3" column="2">
-                                <property name="name">
-                                    <cstring>spacer15</cstring>
-                                </property>
-                                <property name="orientation">
-                                    <enum>Vertical</enum>
-                                </property>
-                                <property name="sizeType">
-                                    <enum>Minimum</enum>
-                                </property>
-                                <property name="sizeHint">
-                                    <size>
-                                        <width>20</width>
-                                        <height>82</height>
-                                    </size>
-                                </property>
-                            </spacer>
-                            <widget class="QPushButton" row="1" column="2">
-                                <property name="name">
-                                    <cstring>addClassButton</cstring>
-                                </property>
-                                <property name="text">
-                                    <string>Add...</string>
-                                </property>
-                            </widget>
-                            <spacer row="2" column="0">
-                                <property name="name">
-                                    <cstring>spacer11</cstring>
-                                </property>
-                                <property name="orientation">
-                                    <enum>Horizontal</enum>
-                                </property>
-                                <property name="sizeType">
-                                    <enum>Fixed</enum>
-                                </property>
-                                <property name="sizeHint">
-                                    <size>
-                                        <width>16</width>
-                                        <height>21</height>
-                                    </size>
-                                </property>
-                            </spacer>
-                            <widget class="QListView" row="1" column="1" rowspan="3" colspan="1">
-                                <column>
-                                    <property name="text">
-                                        <string>Name</string>
-                                    </property>
-                                    <property name="clickable">
-                                        <bool>true</bool>
-                                    </property>
-                                    <property name="resizable">
-                                        <bool>true</bool>
-                                    </property>
-                                </column>
-                                <property name="name">
-                                    <cstring>classView</cstring>
-                                </property>
-                                <property name="sizePolicy">
-                                    <sizepolicy>
-                                        <hsizetype>7</hsizetype>
-                                        <vsizetype>1</vsizetype>
-                                        <horstretch>0</horstretch>
-                                        <verstretch>0</verstretch>
-                                    </sizepolicy>
-                                </property>
-                                <property name="maximumSize">
-                                    <size>
-                                        <width>32767</width>
-                                        <height>150</height>
-                                    </size>
-                                </property>
-                                <property name="resizeMode">
-                                    <enum>LastColumn</enum>
-                                </property>
-                            </widget>
-                            <widget class="QLabel" row="0" column="0" rowspan="1" colspan="2">
-                                <property name="name">
-                                    <cstring>textLabel5</cstring>
-                                </property>
-                                <property name="sizePolicy">
-                                    <sizepolicy>
-                                        <hsizetype>5</hsizetype>
-                                        <vsizetype>0</vsizetype>
-                                        <horstretch>0</horstretch>
-                                        <verstretch>0</verstretch>
-                                    </sizepolicy>
-                                </property>
-                                <property name="text">
-                                    <string>&lt;b&gt;Objectclasses&lt;/b&gt;</string>
-                                </property>
-                            </widget>
-                            <widget class="QPushButton" row="2" column="2">
-                                <property name="name">
-                                    <cstring>deleteClassButton</cstring>
-                                </property>
-                                <property name="text">
-                                    <string>Delete</string>
-                                </property>
-                            </widget>
-                        </grid>
-                    </widget>
-                    <widget class="QLayoutWidget">
-                        <property name="name">
-                            <cstring>layout4</cstring>
-                        </property>
-                        <grid>
-                            <property name="name">
-                                <cstring>unnamed</cstring>
-                            </property>
-                            <widget class="QPushButton" row="1" column="2">
-                                <property name="name">
-                                    <cstring>addAttributeButton</cstring>
-                                </property>
-                                <property name="text">
-                                    <string>Add...</string>
-                                </property>
-                            </widget>
-                            <widget class="QListView" row="1" column="1" rowspan="3" colspan="1">
-                                <column>
-                                    <property name="text">
-                                        <string>Name</string>
-                                    </property>
-                                    <property name="clickable">
-                                        <bool>true</bool>
-                                    </property>
-                                    <property name="resizable">
-                                        <bool>true</bool>
-                                    </property>
-                                </column>
-                                <column>
-                                    <property name="text">
-                                        <string>Must</string>
-                                    </property>
-                                    <property name="clickable">
-                                        <bool>true</bool>
-                                    </property>
-                                    <property name="resizable">
-                                        <bool>true</bool>
-                                    </property>
-                                </column>
-                                <column>
-                                    <property name="text">
-                                        <string>Single</string>
-                                    </property>
-                                    <property name="clickable">
-                                        <bool>true</bool>
-                                    </property>
-                                    <property name="resizable">
-                                        <bool>true</bool>
-                                    </property>
-                                </column>
-                                <column>
-                                    <property name="text">
-                                        <string>Binary</string>
-                                    </property>
-                                    <property name="clickable">
-                                        <bool>true</bool>
-                                    </property>
-                                    <property name="resizable">
-                                        <bool>true</bool>
-                                    </property>
-                                </column>
-                                <column>
-                                    <property name="text">
-                                        <string>Default value</string>
-                                    </property>
-                                    <property name="clickable">
-                                        <bool>true</bool>
-                                    </property>
-                                    <property name="resizable">
-                                        <bool>true</bool>
-                                    </property>
-                                </column>
-                                <property name="name">
-                                    <cstring>attributeView</cstring>
-                                </property>
-                                <property name="allColumnsShowFocus">
-                                    <bool>true</bool>
-                                </property>
-                                <property name="resizeMode">
-                                    <enum>LastColumn</enum>
-                                </property>
-                                <property name="defaultRenameAction">
-                                    <enum>Accept</enum>
-                                </property>
-                            </widget>
-                            <spacer row="1" column="0">
-                                <property name="name">
-                                    <cstring>spacer12</cstring>
-                                </property>
-                                <property name="orientation">
-                                    <enum>Horizontal</enum>
-                                </property>
-                                <property name="sizeType">
-                                    <enum>Fixed</enum>
-                                </property>
-                                <property name="sizeHint">
-                                    <size>
-                                        <width>16</width>
-                                        <height>21</height>
-                                    </size>
-                                </property>
-                            </spacer>
-                            <widget class="QLabel" row="0" column="0" rowspan="1" colspan="2">
-                                <property name="name">
-                                    <cstring>textLabel7</cstring>
-                                </property>
-                                <property name="text">
-                                    <string>&lt;b&gt;Attributes&lt;/b&gt;</string>
-                                </property>
-                            </widget>
-                            <spacer row="3" column="2">
-                                <property name="name">
-                                    <cstring>spacer14</cstring>
-                                </property>
-                                <property name="orientation">
-                                    <enum>Vertical</enum>
-                                </property>
-                                <property name="sizeType">
-                                    <enum>MinimumExpanding</enum>
-                                </property>
-                                <property name="sizeHint">
-                                    <size>
-                                        <width>21</width>
-                                        <height>132</height>
-                                    </size>
-                                </property>
-                            </spacer>
-                            <widget class="QPushButton" row="2" column="2">
-                                <property name="name">
-                                    <cstring>deleteAttributeButton</cstring>
-                                </property>
-                                <property name="text">
-                                    <string>Delete</string>
-                                </property>
-                            </widget>
-                        </grid>
-                    </widget>
-                </vbox>
-            </widget>
+<ui version="4.0" >
+ <class>TemplateWidgetDesign</class>
+ <widget class="QWidget" name="TemplateWidgetDesign" >
+  <property name="geometry" >
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>694</width>
+    <height>513</height>
+   </rect>
+  </property>
+  <property name="windowTitle" >
+   <string>Form1</string>
+  </property>
+  <layout class="QVBoxLayout" >
+   <property name="leftMargin" >
+    <number>0</number>
+   </property>
+   <property name="topMargin" >
+    <number>0</number>
+   </property>
+   <property name="rightMargin" >
+    <number>0</number>
+   </property>
+   <property name="bottomMargin" >
+    <number>0</number>
+   </property>
+   <item>
+    <widget class="QSplitter" name="splitter2" >
+     <property name="orientation" >
+      <enum>Qt::Horizontal</enum>
+     </property>
+     <widget class="Q3Frame" name="frame3" >
+      <property name="frameShape" >
+       <enum>QFrame::NoFrame</enum>
+      </property>
+      <property name="frameShadow" >
+       <enum>QFrame::Plain</enum>
+      </property>
+      <layout class="QGridLayout" >
+       <property name="leftMargin" >
+        <number>2</number>
+       </property>
+       <property name="topMargin" >
+        <number>2</number>
+       </property>
+       <property name="rightMargin" >
+        <number>2</number>
+       </property>
+       <property name="bottomMargin" >
+        <number>2</number>
+       </property>
+       <item row="0" column="0" colspan="2" >
+        <widget class="QLabel" name="textLabel1" >
+         <property name="text" >
+          <string>&lt;b>Templates&lt;/b></string>
+         </property>
+         <property name="wordWrap" >
+          <bool>false</bool>
+         </property>
         </widget>
-    </vbox>
-</widget>
-<connections>
-    <connection>
-        <sender>addTemplateButton</sender>
-        <signal>clicked()</signal>
-        <receiver>TemplateWidgetDesign</receiver>
-        <slot>addTemplate()</slot>
-    </connection>
-    <connection>
-        <sender>templateView</sender>
-        <signal>selectionChanged(QListViewItem*)</signal>
-        <receiver>TemplateWidgetDesign</receiver>
-        <slot>displayTemplateInfo()</slot>
-    </connection>
-    <connection>
-        <sender>addClassButton</sender>
-        <signal>clicked()</signal>
-        <receiver>TemplateWidgetDesign</receiver>
-        <slot>addObjectClass()</slot>
-    </connection>
-    <connection>
-        <sender>addAttributeButton</sender>
-        <signal>clicked()</signal>
-        <receiver>TemplateWidgetDesign</receiver>
-        <slot>addAttribute()</slot>
-    </connection>
-    <connection>
-        <sender>deleteClassButton</sender>
-        <signal>clicked()</signal>
-        <receiver>TemplateWidgetDesign</receiver>
-        <slot>deleteObjectClass()</slot>
-    </connection>
-    <connection>
-        <sender>deleteAttributeButton</sender>
-        <signal>clicked()</signal>
-        <receiver>TemplateWidgetDesign</receiver>
-        <slot>deleteAttribute()</slot>
-    </connection>
-    <connection>
-        <sender>saveTemplateButton</sender>
-        <signal>clicked()</signal>
-        <receiver>TemplateWidgetDesign</receiver>
-        <slot>saveTemplates()</slot>
-    </connection>
-    <connection>
-        <sender>attributeView</sender>
-        <signal>itemRenamed(QListViewItem*,int,const QString&amp;)</signal>
-        <receiver>TemplateWidgetDesign</receiver>
-        <slot>editAttribute()</slot>
-    </connection>
-    <connection>
-        <sender>deleteTemplateButton</sender>
-        <signal>clicked()</signal>
-        <receiver>TemplateWidgetDesign</receiver>
-        <slot>deleteTemplate()</slot>
-    </connection>
-    <connection>
-        <sender>duplicateTemplateButton</sender>
-        <signal>clicked()</signal>
-        <receiver>TemplateWidgetDesign</receiver>
-        <slot>duplicateTemplate()</slot>
-    </connection>
-    <connection>
-        <sender>attributeView</sender>
-        <signal>clicked(QListViewItem*)</signal>
-        <receiver>TemplateWidgetDesign</receiver>
-        <slot>attributeSelectionChanged()</slot>
-    </connection>
-</connections>
-<tabstops>
-    <tabstop>templateView</tabstop>
-    <tabstop>addTemplateButton</tabstop>
-    <tabstop>saveTemplateButton</tabstop>
-    <tabstop>duplicateTemplateButton</tabstop>
-    <tabstop>deleteTemplateButton</tabstop>
-    <tabstop>classView</tabstop>
-    <tabstop>addClassButton</tabstop>
-    <tabstop>deleteClassButton</tabstop>
-    <tabstop>attributeView</tabstop>
-    <tabstop>addAttributeButton</tabstop>
-    <tabstop>deleteAttributeButton</tabstop>
-</tabstops>
-<slots>
-    <slot>addTemplate()</slot>
-    <slot>typeChanged()</slot>
-    <slot>displayTemplateInfo()</slot>
-    <slot>addObjectClass()</slot>
-    <slot>addAttribute()</slot>
-    <slot>deleteObjectClass()</slot>
-    <slot>deleteAttribute()</slot>
-    <slot>editAttribute()</slot>
-    <slot>saveTemplates()</slot>
-    <slot>deleteTemplate()</slot>
-    <slot>duplicateTemplate()</slot>
-    <slot>attributeSelectionChanged()</slot>
-</slots>
-<layoutdefaults spacing="6" margin="11"/>
-</UI>
+       </item>
+       <item row="1" column="0" colspan="2" >
+        <widget class="Q3ListView" name="templateView" >
+         <property name="font" >
+          <font/>
+         </property>
+         <property name="allColumnsShowFocus" >
+          <bool>true</bool>
+         </property>
+         <property name="resizeMode" >
+          <enum>Q3ListView::AllColumns</enum>
+         </property>
+         <column>
+          <property name="text" >
+           <string>Name</string>
+          </property>
+         </column>
+        </widget>
+       </item>
+       <item row="2" column="0" >
+        <widget class="QPushButton" name="addTemplateButton" >
+         <property name="text" >
+          <string>&amp;Add...</string>
+         </property>
+         <property name="shortcut" >
+          <string>Alt+A</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="1" >
+        <widget class="QPushButton" name="saveTemplateButton" >
+         <property name="text" >
+          <string>&amp;Save</string>
+         </property>
+         <property name="shortcut" >
+          <string>Alt+S</string>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="1" >
+        <widget class="QPushButton" name="deleteTemplateButton" >
+         <property name="text" >
+          <string>&amp;Delete...</string>
+         </property>
+         <property name="shortcut" >
+          <string>Alt+D</string>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="0" >
+        <widget class="QPushButton" name="duplicateTemplateButton" >
+         <property name="text" >
+          <string>D&amp;uplicate...</string>
+         </property>
+         <property name="shortcut" >
+          <string>Alt+U</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+     <widget class="Q3Frame" name="frame4" >
+      <property name="frameShape" >
+       <enum>QFrame::NoFrame</enum>
+      </property>
+      <property name="frameShadow" >
+       <enum>QFrame::Plain</enum>
+      </property>
+      <layout class="QVBoxLayout" >
+       <property name="leftMargin" >
+        <number>2</number>
+       </property>
+       <property name="topMargin" >
+        <number>2</number>
+       </property>
+       <property name="rightMargin" >
+        <number>2</number>
+       </property>
+       <property name="bottomMargin" >
+        <number>2</number>
+       </property>
+       <item>
+        <layout class="QGridLayout" >
+         <item row="0" column="0" >
+          <widget class="QLabel" name="nameLabel" >
+           <property name="sizePolicy" >
+            <sizepolicy vsizetype="Fixed" hsizetype="Fixed" >
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="text" >
+            <string>&lt;b>Name:&lt;/b></string>
+           </property>
+           <property name="alignment" >
+            <set>Qt::AlignVCenter</set>
+           </property>
+           <property name="wordWrap" >
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="1" >
+          <widget class="QLabel" name="descriptionLabel" >
+           <property name="text" >
+            <string comment="DO NOT TRANSLATE" >This is a description of the template you are currently working with.</string>
+           </property>
+           <property name="alignment" >
+            <set>Qt::AlignTop</set>
+           </property>
+           <property name="wordWrap" >
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="1" >
+          <widget class="QLabel" name="templateLabel" >
+           <property name="text" >
+            <string>foo</string>
+           </property>
+           <property name="wordWrap" >
+            <bool>false</bool>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="0" >
+          <widget class="QLabel" name="textLabel2" >
+           <property name="sizePolicy" >
+            <sizepolicy vsizetype="Preferred" hsizetype="Fixed" >
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="text" >
+            <string>&lt;b>Description:&lt;/b></string>
+           </property>
+           <property name="alignment" >
+            <set>Qt::AlignTop</set>
+           </property>
+           <property name="wordWrap" >
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="1" >
+          <widget class="QLabel" name="serverLabel" >
+           <property name="text" >
+            <string>bar</string>
+           </property>
+           <property name="wordWrap" >
+            <bool>false</bool>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="0" >
+          <widget class="QLabel" name="textLabel6" >
+           <property name="sizePolicy" >
+            <sizepolicy vsizetype="Fixed" hsizetype="Fixed" >
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="text" >
+            <string>&lt;b>Server:&lt;/b></string>
+           </property>
+           <property name="wordWrap" >
+            <bool>false</bool>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <layout class="QGridLayout" >
+         <item row="3" column="2" >
+          <spacer>
+           <property name="orientation" >
+            <enum>Qt::Vertical</enum>
+           </property>
+           <property name="sizeType" >
+            <enum>QSizePolicy::Minimum</enum>
+           </property>
+           <property name="sizeHint" >
+            <size>
+             <width>20</width>
+             <height>82</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item row="1" column="2" >
+          <widget class="QPushButton" name="addClassButton" >
+           <property name="text" >
+            <string>Add...</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="0" >
+          <spacer>
+           <property name="orientation" >
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeType" >
+            <enum>QSizePolicy::Fixed</enum>
+           </property>
+           <property name="sizeHint" >
+            <size>
+             <width>16</width>
+             <height>21</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item rowspan="3" row="1" column="1" >
+          <widget class="Q3ListView" name="classView" >
+           <property name="sizePolicy" >
+            <sizepolicy vsizetype="Minimum" hsizetype="Expanding" >
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="maximumSize" >
+            <size>
+             <width>32767</width>
+             <height>150</height>
+            </size>
+           </property>
+           <property name="resizeMode" >
+            <enum>Q3ListView::LastColumn</enum>
+           </property>
+           <column>
+            <property name="text" >
+             <string>Name</string>
+            </property>
+           </column>
+          </widget>
+         </item>
+         <item row="0" column="0" colspan="2" >
+          <widget class="QLabel" name="textLabel5" >
+           <property name="sizePolicy" >
+            <sizepolicy vsizetype="Fixed" hsizetype="Preferred" >
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="text" >
+            <string>&lt;b>Objectclasses&lt;/b></string>
+           </property>
+           <property name="wordWrap" >
+            <bool>false</bool>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="2" >
+          <widget class="QPushButton" name="deleteClassButton" >
+           <property name="text" >
+            <string>Delete</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <layout class="QGridLayout" >
+         <item row="1" column="2" >
+          <widget class="QPushButton" name="addAttributeButton" >
+           <property name="text" >
+            <string>Add...</string>
+           </property>
+          </widget>
+         </item>
+         <item rowspan="3" row="1" column="1" >
+          <widget class="Q3ListView" name="attributeView" >
+           <property name="allColumnsShowFocus" >
+            <bool>true</bool>
+           </property>
+           <property name="resizeMode" >
+            <enum>Q3ListView::LastColumn</enum>
+           </property>
+           <property name="defaultRenameAction" >
+            <enum>Q3ListView::Accept</enum>
+           </property>
+           <column>
+            <property name="text" >
+             <string>Name</string>
+            </property>
+           </column>
+           <column>
+            <property name="text" >
+             <string>Must</string>
+            </property>
+           </column>
+           <column>
+            <property name="text" >
+             <string>Single</string>
+            </property>
+           </column>
+           <column>
+            <property name="text" >
+             <string>Binary</string>
+            </property>
+           </column>
+           <column>
+            <property name="text" >
+             <string>Default value</string>
+            </property>
+           </column>
+          </widget>
+         </item>
+         <item row="1" column="0" >
+          <spacer>
+           <property name="orientation" >
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeType" >
+            <enum>QSizePolicy::Fixed</enum>
+           </property>
+           <property name="sizeHint" >
+            <size>
+             <width>16</width>
+             <height>21</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item row="0" column="0" colspan="2" >
+          <widget class="QLabel" name="textLabel7" >
+           <property name="text" >
+            <string>&lt;b>Attributes&lt;/b></string>
+           </property>
+           <property name="wordWrap" >
+            <bool>false</bool>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="2" >
+          <spacer>
+           <property name="orientation" >
+            <enum>Qt::Vertical</enum>
+           </property>
+           <property name="sizeType" >
+            <enum>QSizePolicy::MinimumExpanding</enum>
+           </property>
+           <property name="sizeHint" >
+            <size>
+             <width>21</width>
+             <height>132</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item row="2" column="2" >
+          <widget class="QPushButton" name="deleteAttributeButton" >
+           <property name="text" >
+            <string>Delete</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <layoutdefault spacing="6" margin="11" />
+ <pixmapfunction>qPixmapFromMimeSource</pixmapfunction>
+ <customwidgets>
+  <customwidget>
+   <class>Q3Frame</class>
+   <extends>QFrame</extends>
+   <header>Qt3Support/Q3Frame</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>Q3ListView</class>
+   <extends>Q3Frame</extends>
+   <header>q3listview.h</header>
+  </customwidget>
+ </customwidgets>
+ <tabstops>
+  <tabstop>templateView</tabstop>
+  <tabstop>addTemplateButton</tabstop>
+  <tabstop>saveTemplateButton</tabstop>
+  <tabstop>duplicateTemplateButton</tabstop>
+  <tabstop>deleteTemplateButton</tabstop>
+  <tabstop>classView</tabstop>
+  <tabstop>addClassButton</tabstop>
+  <tabstop>deleteClassButton</tabstop>
+  <tabstop>attributeView</tabstop>
+  <tabstop>addAttributeButton</tabstop>
+  <tabstop>deleteAttributeButton</tabstop>
+ </tabstops>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>addTemplateButton</sender>
+   <signal>clicked()</signal>
+   <receiver>TemplateWidgetDesign</receiver>
+   <slot>addTemplate()</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>20</x>
+     <y>20</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>templateView</sender>
+   <signal>selectionChanged(Q3ListViewItem*)</signal>
+   <receiver>TemplateWidgetDesign</receiver>
+   <slot>displayTemplateInfo()</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>20</x>
+     <y>20</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>addClassButton</sender>
+   <signal>clicked()</signal>
+   <receiver>TemplateWidgetDesign</receiver>
+   <slot>addObjectClass()</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>20</x>
+     <y>20</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>addAttributeButton</sender>
+   <signal>clicked()</signal>
+   <receiver>TemplateWidgetDesign</receiver>
+   <slot>addAttribute()</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>20</x>
+     <y>20</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>deleteClassButton</sender>
+   <signal>clicked()</signal>
+   <receiver>TemplateWidgetDesign</receiver>
+   <slot>deleteObjectClass()</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>20</x>
+     <y>20</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>deleteAttributeButton</sender>
+   <signal>clicked()</signal>
+   <receiver>TemplateWidgetDesign</receiver>
+   <slot>deleteAttribute()</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>20</x>
+     <y>20</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>saveTemplateButton</sender>
+   <signal>clicked()</signal>
+   <receiver>TemplateWidgetDesign</receiver>
+   <slot>saveTemplates()</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>20</x>
+     <y>20</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>attributeView</sender>
+   <signal>itemRenamed(Q3ListViewItem*,int,QString)</signal>
+   <receiver>TemplateWidgetDesign</receiver>
+   <slot>editAttribute()</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>20</x>
+     <y>20</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>deleteTemplateButton</sender>
+   <signal>clicked()</signal>
+   <receiver>TemplateWidgetDesign</receiver>
+   <slot>deleteTemplate()</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>20</x>
+     <y>20</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>duplicateTemplateButton</sender>
+   <signal>clicked()</signal>
+   <receiver>TemplateWidgetDesign</receiver>
+   <slot>duplicateTemplate()</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>20</x>
+     <y>20</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>attributeView</sender>
+   <signal>clicked(Q3ListViewItem*)</signal>
+   <receiver>TemplateWidgetDesign</receiver>
+   <slot>attributeSelectionChanged()</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>20</x>
+     <y>20</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+</ui>

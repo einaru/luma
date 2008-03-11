@@ -1,167 +1,163 @@
-<!DOCTYPE UI><UI version="3.3" stdsetdef="1">
-<class>AddObjectClassDialogDesign</class>
-<widget class="QDialog">
-    <property name="name">
-        <cstring>AddObjectClassDialogDesign</cstring>
-    </property>
-    <property name="geometry">
-        <rect>
-            <x>0</x>
-            <y>0</y>
-            <width>395</width>
-            <height>382</height>
-        </rect>
-    </property>
-    <property name="caption">
-        <string>Add objectclass</string>
-    </property>
-    <grid>
-        <property name="name">
-            <cstring>unnamed</cstring>
-        </property>
-        <widget class="QLayoutWidget" row="0" column="0" rowspan="1" colspan="3">
-            <property name="name">
-                <cstring>layout2</cstring>
-            </property>
-            <hbox>
-                <property name="name">
-                    <cstring>unnamed</cstring>
-                </property>
-                <widget class="QLabel">
-                    <property name="name">
-                        <cstring>pixmapLabel1</cstring>
-                    </property>
-                    <property name="sizePolicy">
-                        <sizepolicy>
-                            <hsizetype>0</hsizetype>
-                            <vsizetype>0</vsizetype>
-                            <horstretch>0</horstretch>
-                            <verstretch>0</verstretch>
-                        </sizepolicy>
-                    </property>
-                    <property name="pixmap">
-                        <pixmap>image0</pixmap>
-                    </property>
-                    <property name="scaledContents">
-                        <bool>false</bool>
-                    </property>
-                </widget>
-                <widget class="QLabel">
-                    <property name="name">
-                        <cstring>textLabel1</cstring>
-                    </property>
-                    <property name="text">
-                        <string>Please choose the objectclass you want to add to the template.</string>
-                    </property>
-                    <property name="alignment">
-                        <set>WordBreak|AlignTop</set>
-                    </property>
-                </widget>
-            </hbox>
-        </widget>
-        <spacer row="3" column="0">
-            <property name="name">
-                <cstring>spacer1</cstring>
-            </property>
-            <property name="orientation">
-                <enum>Horizontal</enum>
-            </property>
-            <property name="sizeType">
-                <enum>Expanding</enum>
-            </property>
-            <property name="sizeHint">
-                <size>
-                    <width>300</width>
-                    <height>21</height>
-                </size>
-            </property>
-        </spacer>
-        <widget class="QPushButton" row="3" column="1">
-            <property name="name">
-                <cstring>okButton</cstring>
-            </property>
-            <property name="text">
-                <string>&amp;OK</string>
-            </property>
-            <property name="accel">
-                <string>Alt+O</string>
-            </property>
-            <property name="default">
-                <bool>true</bool>
-            </property>
-        </widget>
-        <widget class="QPushButton" row="3" column="2">
-            <property name="name">
-                <cstring>cancelButton</cstring>
-            </property>
-            <property name="text">
-                <string>&amp;Cancel</string>
-            </property>
-            <property name="accel">
-                <string>Alt+C</string>
-            </property>
-        </widget>
-        <widget class="Line" row="2" column="0" rowspan="1" colspan="3">
-            <property name="name">
-                <cstring>line2</cstring>
-            </property>
-            <property name="frameShape">
-                <enum>HLine</enum>
-            </property>
-            <property name="frameShadow">
-                <enum>Sunken</enum>
-            </property>
-            <property name="orientation">
-                <enum>Horizontal</enum>
-            </property>
-        </widget>
-        <widget class="QListView" row="1" column="0" rowspan="1" colspan="3">
-            <column>
-                <property name="text">
-                    <string>Objectclass</string>
-                </property>
-                <property name="clickable">
-                    <bool>true</bool>
-                </property>
-                <property name="resizable">
-                    <bool>true</bool>
-                </property>
-            </column>
-            <property name="name">
-                <cstring>classView</cstring>
-            </property>
-            <property name="resizeMode">
-                <enum>LastColumn</enum>
-            </property>
-        </widget>
-    </grid>
-</widget>
-<images>
-    <image name="image0">
-        <data format="PNG" length="3804">89504e470d0a1a0a0000000d4948445200000040000000400806000000aa6971de00000ea349444154789ce59b7b7455d59dc73fe79e7b6fc2bdc94d4208ef094450818aa8208cd3055645ab15add456add3b1cb2e3ae32c2aacce9ad63ab68a58753a53fb58ab96e2cc2a6a11455e96a2b81c10cba0a2411e2a202104020949482e49eecd7d9ec79e3fceb9b9e7dc9cfb2201fe98bdd65e77ef7d5efbfbddbfdf77ffceb97b4b4208fe5f27218463be5029b6963a753d2f898d88e43a3e5b762f1301eff97a5e264e291b584992ce571f8c8e6ca452d578d22db304400c1b87146b251ce3e8c3ffcdc297767014480ef97333f05e1402b40d3c29c15249a202df58b40977c39899c88dafc1c9b7892569df5ccff7ee7b8e1d4002183293bca804a8eb79d025f1842431014f00a6ff0b4cb81e35d880bbba1a8841e30ef8ec8fa81a7dabffcafd0ffe8eedc681a121e1a210a0ace306978bdfb824aec41380c9df81490bc1230371e227f6503a711206ce38341f84bd2b48aa44b67ec24377fd824de6417db07db9a004c4d652e791795176310f80da8530f59fc05709c43130c5881cda857fda97cc3633b79e46dff3322211e6a3a33cf6e59ff23ba08f41929089d735989b654b29652ff5d024bb98c78839f0d51d307339f88663b8750a6c02b5afd76cb3e4716548f3be8b90cb9955c7d3ef3dce122030d47d1ed29b898d542aeb585ee2669fece2012aa6c1dcb530770df86ab08db0091ee2247b82d809480249a44a1df9fafb107239b327f154e3af7909a802dc43d5e72123405dcf834270c22df333c93fbe8299bf851bb7c1886b19083c0d1e1268f1543d05defcd555a47215efad8b9002b58c0e70e717ffc18bc0708688844113a0ae67a1be8113b28b3f4ade4005537f0c5ffd146aefc56eea56e0e99cec6ac35d558e1dbc029a0aaa02aa82c4694afe6e2e52a09631152c38f2efac5b743d97009ec1f6ff9c5954d6718324b1ac5fe0a63e02939680270044c937eafda39f8c22349534290ae80a682609669688316cceb5c40e8c62a45a3fef670bd89248f2f53f7dc831061130154d80a9eccb64170f00c6484f7d027c979352f5eca39e49428264f759745d25e5f7e80aa8aa99155b964414dff4b1083103fff103973e79079b930a77addd73ee5163c12e600adc6f4d657f8011d7c1dcad30f335137cb6114fe06c014656c26174cd2440a8e6c80fb400232b90ecc47f5905a593afc3ef65f273df64f7f3f7311f1806143d77174480b681274d815b826f3cccdd027377c1885b3102b44c5fcf04ee0c1e1228a13e03b8488db49ad502fadb9361fce354cafff6dbc850b6e00ad6feea1be74642ce406840e87ae52fa0761169cf111896170562a0f5a0475a10220e228eae8451c3ed083d89d013688908c9ee20baa6a0eb0a5a2c4ee26c2ffebf2967d4dc8926c8a40370c5f998a2100d8da27bcf87280a91436dfcfcf617781e889025602a381254d74b37b865dec51380f17743dd43e00a40a23d7d92d687889e4494542224107a02210cb0ba9e30809b758304a3ee1de10361aabe5070079b70974ae02d054f09b8bd4591919067d1f9fe0eb45884bda7f8e93756f13c107222a160027a5f91e657f8f81f6aef862b9783670a768f518c514f8dfe801c77f875980a35058e7c6280d1352303b84b40f62064d908cb330951ec84247dd7d1bef37fd162110eb6f19f77ace219200c68b908c8af01d116d87a1df46c234da89a05586ec5b746799034842d1eb580d78dacaa8848082dd889dada4ab2f914c9b64e94b361f468dcd0019b582a78bbb7337afa283c35754ca9e147bb1e2a2c6a2c6c165042b0f35bd0f97a06e86c42970b7c2aca333bdfd793066e66a169e88a8eae680845474fa8a8a118893321fa9abb0935f5d0773a42bc3b811637c55153f1aa4d8c9d31126f4d1d237cdcb96311abc81335161e092a21d8f96d684e698c5364570878c53ed747fb0ce0de52f078c1ed45b8bc084df49360ffd551e32af1b34942ad713a1b1274342874b70822dda0b77fc4f82bfd94548d64948f051ffd23bb801164891a8b8f04f7fc08941e98fc5d069affc0696ec0c80bbbe9128f80cb05d563fafddca52ab8020a6e8b8f6b911822699485a2a24474f40408554768826414c241087582b7e373aaea2e43952af09d3e7ae9e3f3b87bf94ed60267c910c6730b850f3c0d3d8760d6e359806779b9719aeba361f0950f9ceb3362015916e011200990743c2e01c334d01d44bc66362048b4d513d3a13b4625c6ab74efd01000d0bc09922198f5287873899e75e433a2ba589f217e6eafbd3d5b34983915ea19b35ccd6c5023d0f931004280d041d3914dac0382a4c208904ca9b05d2e41c77bb0ab0dbefc4b28e971009f527c134c6654178b2004489e12cb1497690116e0563274cbec56331bdc7e03b81a49b70be3b45c5ff9f3132049e0b69e26d9c9881c83dd3f81194ba152cb0ede21ae17f10842f6220d38ee600536224cf0e57550367120f0147eddc8b93ea7e69f052409648f91dd1e830cb71b6477ba3dda04f58f41cf300c17b3cef50ad9e27a3d1a3322bf01c71d2c204584ae41d597a0660ec4ce40db0e47f09076815c1650c034283983ee27c3ac8b04ec5d062d51103e6c737d160bd0fb22b8bc1e87e319169022223005c6de04892e08d6831633dc53928c9ce9e2c29089c1bb80ec71900fc9a11887861780c530a61cb48eac6f76221a4548727fe497d3023c5550351122cdd0d96098b4ecee0769b3710b5a21e9085d1f4a0dc8f0ff6c6434ad84e82d503b01b406470bd063315ca525592cc46c7357c2f0a9103a0c3dfb8dfbcb6e0b5e919304818ad0f59c1a5020014e41941319964ae70e10d7c398cb403d30c002f4480cb7bfc4d942e42aa8bc1c925d70f643b3a78503ef6f93f4a17201b7bd6e3fc1b10812f47c00ea59187d35681fd92d20a9209579ec028717caea8c6774efce013c0391ad2e2cfca87945b0b03860800514e00aa96abc11da1330f24688bf6999caf4f4e80b0f54ce042508e123c6b556d22da09c475fd8cd3ce502922bef3458a40548058a61c6494a3bb4bf01d53742ef4eb46818b954063c507135685108d51be73a0217b6a6ac669f4992e41a2217c8a601d9fcdf564d1514e8d90935df424feec5535305f11608ef310e5b813b9ab4b3d20fa85b0811b886c005fa2d208fd91744860a3d5bf14cfa219c7a1ea2c72cc0b3997966dd49079caf15926cb8408ebf537312603c434272d200c76faf854c937da0f540b2393dbd1633e2597ddf8124c975eeef02a9385a12160bc806ba2857c02020abc859ebf9a6bbcc6bede70fca05fa5f24a0400b283048028baee419c19cd35ffe6b852982e7340ba43ed1b9c8160a5b109d0b19797d3f9b0b144182390de6c05f80050887d7e182c9c832454ae48fecf24579055c2b0a78d7cb4b8048bd0d66fbc7a998c8d07a8decc9d9f97447f28d788e18c1350802522e40cf19dcf2348c8f1c8350ffcc6ac12e904d20ade52c84b964a7ceda5256023e3bc98199751cf2b6ec9f26640fa5d75e85f1478b25392ea42a202ed039b7979b9c02696d348991066101373f43f09fe773d7e377f2a6afb1fe52a10728bd76229237cbdff0b95cc156958c8f4536172830cacb1b23649c3b181700f415db68ee8db0f0a985ac1edeb0fd2aa5b396f205df442ae92e62f41d1a24ec2ed0ff9325c0c9152340769d2880807c6724d77cc8d1493fe68e135d6c553a4fd2f3c6664472acf979ccf2996cc0f742ebe73377faf399dbc3c0cf6c96e3fdf773dbcb59cf75a79f9d79ed10100086c1765cbd8cef9d0af2a6d2d9c8d9f5afa1740c4b0394dde0f264646fba2c79cdec3132d83b6f233383d47e22532478b25c9b2eab3199a60dcd9c7cab392fb862568aba81e15b1fe627578de38778caa8be67299ef171eb558595c39741c9fb19a256448093797eaa2c644efee50b9a5edf8f1a49125509ee3cc31bcf1d623d7018382d84506c388b5c2aeb062a377c9fc57326b00c4f1923ef7d144f6d1224ebdff04ee02d6de109e0db5d3cf01c24b4bdd34cd36b7b8975f6a2ea44f777b3edd17dac018240ab99fb8410b677c373592b2c03e51b17f1f08c313c224bf8abbff61065b32780a467019f510e8f82f27a6750459120e8ded745d32bfbe83e6898fb9e209b5734b0f9648456e00cd00ea4feb6d2876ab1b40b082cbb95f97f7f0d2fcae01f71fb62cae74c0539656139ac20540181fd3620e95fa736d265b31a6f4970f0b96dfdc01bc37cb0aa91751f076934417798c0a35856890ce56a7117e07ff66bdcb8f00a5e91c15f35f71eaa6fbb05e4d4f3b29010f242e07001c00796e3a72334bdbc9bd3db3f05e04c9c23bf39cccafa20c73046bc03c3eca3184b596c69a897cb4bc0b0676f63fecd93f87599974b02d36f60ccfddf076f260996fb8504048ee5049a5956c3094eaedd47d3da77fb816f6965e3abc7a9073a3146bd0b63f5868add74fad3f9d82f2001c36eb994cb7f7e13ebcabc4c0accf80ae3beb318bc2e1c09e88d4245ab035807f09a44d39fdee5e4a60f50a331abb2bf6d02ef30818730566e39034addf93c6d989080923ba730f9dfe6b1c92f33b964f4442e59fc1472758de514f3b73708155d0e80ed9160db5bf534ad7e875857105527fa41179b9ffa944d182b3dda314c3e8411ab14b491e27cef18f102a3debe9f95a3fddc563a7a0293973c833ca2d67a67e86d858a308e0408e8fee40b1a5e584ff8784bff94f68706fedc1ce1346981ebc554f6623a7821b6cc7881eaadf7f25fa37cdc5e3a660293163d8277e22c90ccf8bfa7112a536e9a1ef9be23c768f8c31aba0f362084a1eccf7ece2acb947606e8c658aaa60d7c74fe74a1f60cb981e1af7f9da7eb022c7295f898b2f4297cd3e683ab147a3e834a997e656f39c5f1d5afd3f6defb081d4e45d8b7e2082f7f1ca40963b4db31cc3e8683b217932ee4a6293750b9623e3fb8a686275c253ea62e7d0cff150ba1ef0ba8f4a3f60639f1ca6a4e6d790ba1434794237f6961e3abc7f998b4b20731364b0d0a782a5de86d7332105879133f983e9ce5ae121f75f7fc03c3afba86d677b773eacd2d287d512249825b4eb16665037fc5aeec610a50f662d2c5d837e802024b6770f35d13592583df5b554dac3388a2127da795577ff939ef608c744ad9c314a1ecc5a48bb573d405f8ff750637dd369ed5ba8eb4b78b6dbf3fcc9f9bfb6805da3080a7f6cf0d39f054ba985b67258c0d0d638171184b57cf6257f6f3063c9532f1fe1fb33fd4f6551c44e40000000049454e44ae426082</data>
-    </image>
-</images>
-<connections>
-    <connection>
-        <sender>okButton</sender>
-        <signal>clicked()</signal>
-        <receiver>AddObjectClassDialogDesign</receiver>
-        <slot>accept()</slot>
-    </connection>
-    <connection>
-        <sender>cancelButton</sender>
-        <signal>clicked()</signal>
-        <receiver>AddObjectClassDialogDesign</receiver>
-        <slot>reject()</slot>
-    </connection>
-</connections>
-<tabstops>
-    <tabstop>classView</tabstop>
-    <tabstop>okButton</tabstop>
-    <tabstop>cancelButton</tabstop>
-</tabstops>
-<slots>
-    <slot>displayClasses()</slot>
-</slots>
-<layoutdefaults spacing="6" margin="6"/>
-</UI>
+<ui version="4.0" >
+ <class>AddObjectClassDialogDesign</class>
+ <widget class="QDialog" name="AddObjectClassDialogDesign" >
+  <property name="geometry" >
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>395</width>
+    <height>382</height>
+   </rect>
+  </property>
+  <property name="windowTitle" >
+   <string>Add objectclass</string>
+  </property>
+  <layout class="QGridLayout" >
+   <item row="0" column="0" colspan="3" >
+    <layout class="QHBoxLayout" >
+     <item>
+      <widget class="QLabel" name="pixmapLabel1" >
+       <property name="sizePolicy" >
+        <sizepolicy vsizetype="Fixed" hsizetype="Fixed" >
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="pixmap" >
+        <pixmap/>
+       </property>
+       <property name="scaledContents" >
+        <bool>false</bool>
+       </property>
+       <property name="wordWrap" >
+        <bool>false</bool>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="textLabel1" >
+       <property name="text" >
+        <string>Please choose the objectclass you want to add to the template.</string>
+       </property>
+       <property name="alignment" >
+        <set>Qt::AlignTop</set>
+       </property>
+       <property name="wordWrap" >
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item row="3" column="0" >
+    <spacer>
+     <property name="orientation" >
+      <enum>Qt::Horizontal</enum>
+     </property>
+     <property name="sizeType" >
+      <enum>QSizePolicy::Expanding</enum>
+     </property>
+     <property name="sizeHint" >
+      <size>
+       <width>300</width>
+       <height>21</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+   <item row="3" column="1" >
+    <widget class="QPushButton" name="okButton" >
+     <property name="text" >
+      <string>&amp;OK</string>
+     </property>
+     <property name="shortcut" >
+      <string>Alt+O</string>
+     </property>
+     <property name="default" >
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+   <item row="3" column="2" >
+    <widget class="QPushButton" name="cancelButton" >
+     <property name="text" >
+      <string>&amp;Cancel</string>
+     </property>
+     <property name="shortcut" >
+      <string>Alt+C</string>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="0" colspan="3" >
+    <widget class="Line" name="line2" >
+     <property name="frameShape" >
+      <enum>QFrame::HLine</enum>
+     </property>
+     <property name="frameShadow" >
+      <enum>QFrame::Sunken</enum>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="0" colspan="3" >
+    <widget class="Q3ListView" name="classView" >
+     <property name="resizeMode" >
+      <enum>Q3ListView::LastColumn</enum>
+     </property>
+     <column>
+      <property name="text" >
+       <string>Objectclass</string>
+      </property>
+     </column>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <layoutdefault spacing="6" margin="6" />
+ <customwidgets>
+  <customwidget>
+   <class>Q3ListView</class>
+   <extends>Q3Frame</extends>
+   <header>q3listview.h</header>
+  </customwidget>
+ </customwidgets>
+ <tabstops>
+  <tabstop>classView</tabstop>
+  <tabstop>okButton</tabstop>
+  <tabstop>cancelButton</tabstop>
+ </tabstops>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>okButton</sender>
+   <signal>clicked()</signal>
+   <receiver>AddObjectClassDialogDesign</receiver>
+   <slot>accept()</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>20</x>
+     <y>20</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>cancelButton</sender>
+   <signal>clicked()</signal>
+   <receiver>AddObjectClassDialogDesign</receiver>
+   <slot>reject()</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>20</x>
+     <y>20</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+</ui>

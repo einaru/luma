@@ -1,902 +1,893 @@
-<!DOCTYPE UI><UI version="3.3" stdsetdef="1">
-<class>AddressbookWidgetDesign</class>
-<widget class="QWidget">
-    <property name="name">
-        <cstring>AddressbookWidgetDesign</cstring>
-    </property>
-    <property name="geometry">
-        <rect>
-            <x>0</x>
-            <y>0</y>
-            <width>608</width>
-            <height>454</height>
-        </rect>
-    </property>
-    <property name="caption">
-        <string>AddressbookWidgetDesign</string>
-    </property>
-    <grid>
-        <property name="name">
-            <cstring>unnamed</cstring>
-        </property>
-        <widget class="QTabWidget" row="0" column="0" rowspan="1" colspan="2">
-            <property name="name">
-                <cstring>tabWidget2</cstring>
-            </property>
-            <property name="minimumSize">
-                <size>
-                    <width>300</width>
-                    <height>0</height>
-                </size>
-            </property>
-            <property name="focusPolicy">
-                <enum>TabFocus</enum>
-            </property>
-            <widget class="QWidget">
-                <property name="name">
-                    <cstring>tab</cstring>
-                </property>
-                <attribute name="title">
-                    <string>General</string>
-                </attribute>
-                <grid>
-                    <property name="name">
-                        <cstring>unnamed</cstring>
-                    </property>
-                    <widget class="QLabel" row="0" column="0">
-                        <property name="name">
-                            <cstring>personLabel</cstring>
-                        </property>
-                        <property name="sizePolicy">
-                            <sizepolicy>
-                                <hsizetype>0</hsizetype>
-                                <vsizetype>0</vsizetype>
-                                <horstretch>0</horstretch>
-                                <verstretch>0</verstretch>
-                            </sizepolicy>
-                        </property>
-                        <property name="minimumSize">
-                            <size>
-                                <width>32</width>
-                                <height>32</height>
-                            </size>
-                        </property>
-                        <property name="text">
-                            <string>P</string>
-                            <comment>DO NOT TRANSLATE</comment>
-                        </property>
-                    </widget>
-                    <widget class="QPushButton" row="0" column="1">
-                        <property name="name">
-                            <cstring>nameButton</cstring>
-                        </property>
-                        <property name="text">
-                            <string>&amp;Full Name...</string>
-                        </property>
-                        <property name="accel">
-                            <string>Alt+F</string>
-                        </property>
-                    </widget>
-                    <widget class="QLabel" row="2" column="1">
-                        <property name="name">
-                            <cstring>textLabel2_2</cstring>
-                        </property>
-                        <property name="text">
-                            <string>Organisation:</string>
-                        </property>
-                        <property name="alignment">
-                            <set>AlignVCenter</set>
-                        </property>
-                    </widget>
-                    <widget class="QLabel" row="1" column="1">
-                        <property name="name">
-                            <cstring>textLabel3_2</cstring>
-                        </property>
-                        <property name="text">
-                            <string>Job title:</string>
-                        </property>
-                        <property name="alignment">
-                            <set>AlignVCenter</set>
-                        </property>
-                    </widget>
-                    <widget class="QLineEdit" row="0" column="2" rowspan="1" colspan="4">
-                        <property name="name">
-                            <cstring>cnEdit</cstring>
-                        </property>
-                        <property name="readOnly">
-                            <bool>true</bool>
-                        </property>
-                    </widget>
-                    <widget class="QLineEdit" row="1" column="2" rowspan="1" colspan="4">
-                        <property name="name">
-                            <cstring>titleEdit</cstring>
-                        </property>
-                    </widget>
-                    <widget class="QLineEdit" row="2" column="2" rowspan="1" colspan="4">
-                        <property name="name">
-                            <cstring>organisationEdit</cstring>
-                        </property>
-                    </widget>
-                    <spacer row="8" column="2" rowspan="1" colspan="2">
-                        <property name="name">
-                            <cstring>spacer4_2</cstring>
-                        </property>
-                        <property name="orientation">
-                            <enum>Vertical</enum>
-                        </property>
-                        <property name="sizeType">
-                            <enum>Expanding</enum>
-                        </property>
-                        <property name="sizeHint">
-                            <size>
-                                <width>21</width>
-                                <height>130</height>
-                            </size>
-                        </property>
-                    </spacer>
-                    <widget class="QPushButton" row="5" column="3" rowspan="1" colspan="2">
-                        <property name="name">
-                            <cstring>addMailButton</cstring>
-                        </property>
-                        <property name="text">
-                            <string>&amp;Add...</string>
-                        </property>
-                        <property name="accel">
-                            <string>Alt+A</string>
-                        </property>
-                    </widget>
-                    <widget class="QPushButton" row="5" column="5">
-                        <property name="name">
-                            <cstring>deleteMailButton</cstring>
-                        </property>
-                        <property name="text">
-                            <string>&amp;Delete</string>
-                        </property>
-                        <property name="accel">
-                            <string>Alt+D</string>
-                        </property>
-                    </widget>
-                    <spacer row="5" column="2">
-                        <property name="name">
-                            <cstring>spacer8</cstring>
-                        </property>
-                        <property name="orientation">
-                            <enum>Horizontal</enum>
-                        </property>
-                        <property name="sizeType">
-                            <enum>Expanding</enum>
-                        </property>
-                        <property name="sizeHint">
-                            <size>
-                                <width>120</width>
-                                <height>21</height>
-                            </size>
-                        </property>
-                    </spacer>
-                    <spacer row="3" column="4">
-                        <property name="name">
-                            <cstring>spacer5_2</cstring>
-                        </property>
-                        <property name="orientation">
-                            <enum>Vertical</enum>
-                        </property>
-                        <property name="sizeType">
-                            <enum>Fixed</enum>
-                        </property>
-                        <property name="sizeHint">
-                            <size>
-                                <width>21</width>
-                                <height>20</height>
-                            </size>
-                        </property>
-                    </spacer>
-                    <widget class="QLabel" row="4" column="0">
-                        <property name="name">
-                            <cstring>mailLabel</cstring>
-                        </property>
-                        <property name="sizePolicy">
-                            <sizepolicy>
-                                <hsizetype>0</hsizetype>
-                                <vsizetype>0</vsizetype>
-                                <horstretch>0</horstretch>
-                                <verstretch>0</verstretch>
-                            </sizepolicy>
-                        </property>
-                        <property name="minimumSize">
-                            <size>
-                                <width>32</width>
-                                <height>32</height>
-                            </size>
-                        </property>
-                        <property name="text">
-                            <string>Ma</string>
-                            <comment>DO NOT TRANSLATE</comment>
-                        </property>
-                    </widget>
-                    <widget class="QLabel" row="6" column="0">
-                        <property name="name">
-                            <cstring>webPageLabel</cstring>
-                        </property>
-                        <property name="sizePolicy">
-                            <sizepolicy>
-                                <hsizetype>0</hsizetype>
-                                <vsizetype>0</vsizetype>
-                                <horstretch>0</horstretch>
-                                <verstretch>0</verstretch>
-                            </sizepolicy>
-                        </property>
-                        <property name="minimumSize">
-                            <size>
-                                <width>32</width>
-                                <height>32</height>
-                            </size>
-                        </property>
-                        <property name="text">
-                            <string>WP</string>
-                            <comment>DO NOT TRANSLATE</comment>
-                        </property>
-                    </widget>
-                    <widget class="QLabel" row="7" column="0">
-                        <property name="name">
-                            <cstring>categoryLabel</cstring>
-                        </property>
-                        <property name="sizePolicy">
-                            <sizepolicy>
-                                <hsizetype>0</hsizetype>
-                                <vsizetype>0</vsizetype>
-                                <horstretch>0</horstretch>
-                                <verstretch>0</verstretch>
-                            </sizepolicy>
-                        </property>
-                        <property name="minimumSize">
-                            <size>
-                                <width>32</width>
-                                <height>32</height>
-                            </size>
-                        </property>
-                        <property name="maximumSize">
-                            <size>
-                                <width>32</width>
-                                <height>32</height>
-                            </size>
-                        </property>
-                        <property name="text">
-                            <string>CL</string>
-                            <comment>DO NOT TRANSLATE</comment>
-                        </property>
-                    </widget>
-                    <widget class="QLabel" row="4" column="1">
-                        <property name="name">
-                            <cstring>textLabel10</cstring>
-                        </property>
-                        <property name="sizePolicy">
-                            <sizepolicy>
-                                <hsizetype>0</hsizetype>
-                                <vsizetype>5</vsizetype>
-                                <horstretch>0</horstretch>
-                                <verstretch>0</verstretch>
-                            </sizepolicy>
-                        </property>
-                        <property name="text">
-                            <string>Email:</string>
-                        </property>
-                        <property name="alignment">
-                            <set>AlignVCenter</set>
-                        </property>
-                    </widget>
-                    <widget class="QLabel" row="6" column="1">
-                        <property name="name">
-                            <cstring>textLabel1</cstring>
-                        </property>
-                        <property name="text">
-                            <string>Web page address:</string>
-                        </property>
-                        <property name="alignment">
-                            <set>AlignVCenter</set>
-                        </property>
-                    </widget>
-                    <widget class="QPushButton" row="7" column="1">
-                        <property name="name">
-                            <cstring>categoryButton</cstring>
-                        </property>
-                        <property name="sizePolicy">
-                            <sizepolicy>
-                                <hsizetype>0</hsizetype>
-                                <vsizetype>0</vsizetype>
-                                <horstretch>0</horstretch>
-                                <verstretch>0</verstretch>
-                            </sizepolicy>
-                        </property>
-                        <property name="text">
-                            <string>&amp;Categories...</string>
-                        </property>
-                        <property name="accel">
-                            <string>Alt+C</string>
-                        </property>
-                    </widget>
-                    <widget class="QComboBox" row="4" column="2" rowspan="1" colspan="4">
-                        <property name="name">
-                            <cstring>mailBox</cstring>
-                        </property>
-                        <property name="editable">
-                            <bool>true</bool>
-                        </property>
-                    </widget>
-                    <widget class="QLineEdit" row="6" column="2" rowspan="1" colspan="4">
-                        <property name="name">
-                            <cstring>labeledURIEdit</cstring>
-                        </property>
-                    </widget>
-                    <widget class="QLineEdit" row="7" column="2" rowspan="1" colspan="4">
-                        <property name="name">
-                            <cstring>categoryEdit</cstring>
-                        </property>
-                    </widget>
-                </grid>
-            </widget>
-            <widget class="QWidget">
-                <property name="name">
-                    <cstring>tab</cstring>
-                </property>
-                <attribute name="title">
-                    <string>Phone/Address</string>
-                </attribute>
-                <grid>
-                    <property name="name">
-                        <cstring>unnamed</cstring>
-                    </property>
-                    <widget class="QLineEdit" row="0" column="2">
-                        <property name="name">
-                            <cstring>homePhoneEdit</cstring>
-                        </property>
-                        <property name="minimumSize">
-                            <size>
-                                <width>100</width>
-                                <height>0</height>
-                            </size>
-                        </property>
-                    </widget>
-                    <widget class="QLabel" row="2" column="1">
-                        <property name="name">
-                            <cstring>textLabel9</cstring>
-                        </property>
-                        <property name="text">
-                            <string>Mobile:</string>
-                        </property>
-                        <property name="alignment">
-                            <set>AlignVCenter</set>
-                        </property>
-                    </widget>
-                    <widget class="QLabel" row="3" column="1">
-                        <property name="name">
-                            <cstring>textLabel3</cstring>
-                        </property>
-                        <property name="text">
-                            <string>Business Fax:</string>
-                        </property>
-                        <property name="alignment">
-                            <set>AlignVCenter</set>
-                        </property>
-                    </widget>
-                    <widget class="QLineEdit" row="1" column="2">
-                        <property name="name">
-                            <cstring>telephoneNumberEdit</cstring>
-                        </property>
-                    </widget>
-                    <widget class="QLineEdit" row="2" column="2">
-                        <property name="name">
-                            <cstring>mobileEdit</cstring>
-                        </property>
-                    </widget>
-                    <widget class="QLabel" row="0" column="0">
-                        <property name="name">
-                            <cstring>phoneLabel</cstring>
-                        </property>
-                        <property name="sizePolicy">
-                            <sizepolicy>
-                                <hsizetype>0</hsizetype>
-                                <vsizetype>0</vsizetype>
-                                <horstretch>0</horstretch>
-                                <verstretch>0</verstretch>
-                            </sizepolicy>
-                        </property>
-                        <property name="minimumSize">
-                            <size>
-                                <width>32</width>
-                                <height>32</height>
-                            </size>
-                        </property>
-                        <property name="text">
-                            <string>Ph</string>
-                            <comment>DO NOT TRANSLATE</comment>
-                        </property>
-                    </widget>
-                    <widget class="QLineEdit" row="3" column="2">
-                        <property name="name">
-                            <cstring>facsimileTelephoneNumberEdit</cstring>
-                        </property>
-                    </widget>
-                    <widget class="QLabel" row="1" column="1">
-                        <property name="name">
-                            <cstring>textLabel8</cstring>
-                        </property>
-                        <property name="text">
-                            <string>Work:</string>
-                        </property>
-                        <property name="alignment">
-                            <set>AlignVCenter</set>
-                        </property>
-                    </widget>
-                    <widget class="QLabel" row="0" column="1">
-                        <property name="name">
-                            <cstring>textLabel7</cstring>
-                        </property>
-                        <property name="text">
-                            <string>Home:</string>
-                        </property>
-                        <property name="alignment">
-                            <set>AlignVCenter</set>
-                        </property>
-                    </widget>
-                    <spacer row="4" column="2">
-                        <property name="name">
-                            <cstring>spacer6</cstring>
-                        </property>
-                        <property name="orientation">
-                            <enum>Vertical</enum>
-                        </property>
-                        <property name="sizeType">
-                            <enum>Fixed</enum>
-                        </property>
-                        <property name="sizeHint">
-                            <size>
-                                <width>21</width>
-                                <height>25</height>
-                            </size>
-                        </property>
-                    </spacer>
-                    <widget class="QTextEdit" row="5" column="2">
-                        <property name="name">
-                            <cstring>addressEdit</cstring>
-                        </property>
-                    </widget>
-                    <widget class="QLayoutWidget" row="5" column="0" rowspan="1" colspan="2">
-                        <property name="name">
-                            <cstring>layout2</cstring>
-                        </property>
-                        <grid>
-                            <property name="name">
-                                <cstring>unnamed</cstring>
-                            </property>
-                            <spacer row="2" column="1">
-                                <property name="name">
-                                    <cstring>spacer5</cstring>
-                                </property>
-                                <property name="orientation">
-                                    <enum>Vertical</enum>
-                                </property>
-                                <property name="sizeType">
-                                    <enum>Expanding</enum>
-                                </property>
-                                <property name="sizeHint">
-                                    <size>
-                                        <width>21</width>
-                                        <height>30</height>
-                                    </size>
-                                </property>
-                            </spacer>
-                            <widget class="QComboBox" row="0" column="1">
-                                <item>
-                                    <property name="text">
-                                        <string>Business</string>
-                                    </property>
-                                </item>
-                                <item>
-                                    <property name="text">
-                                        <string>Home</string>
-                                    </property>
-                                </item>
-                                <item>
-                                    <property name="text">
-                                        <string>Other</string>
-                                    </property>
-                                </item>
-                                <property name="name">
-                                    <cstring>addressBox</cstring>
-                                </property>
-                            </widget>
-                            <widget class="QLabel" row="0" column="0">
-                                <property name="name">
-                                    <cstring>homeLabel</cstring>
-                                </property>
-                                <property name="maximumSize">
-                                    <size>
-                                        <width>32</width>
-                                        <height>32</height>
-                                    </size>
-                                </property>
-                                <property name="text">
-                                    <string>HI</string>
-                                    <comment>DO NOT TRANSLATE</comment>
-                                </property>
-                            </widget>
-                        </grid>
-                    </widget>
-                </grid>
-            </widget>
-            <widget class="QWidget">
-                <property name="name">
-                    <cstring>TabPage</cstring>
-                </property>
-                <attribute name="title">
-                    <string>Details</string>
-                </attribute>
-                <grid>
-                    <property name="name">
-                        <cstring>unnamed</cstring>
-                    </property>
-                    <widget class="QLineEdit" row="0" column="2">
-                        <property name="name">
-                            <cstring>ouEdit</cstring>
-                        </property>
-                    </widget>
-                    <widget class="QLabel" row="2" column="1">
-                        <property name="name">
-                            <cstring>textLabel5</cstring>
-                        </property>
-                        <property name="text">
-                            <string>Profession:</string>
-                        </property>
-                        <property name="alignment">
-                            <set>AlignVCenter</set>
-                        </property>
-                    </widget>
-                    <widget class="QLineEdit" row="1" column="2">
-                        <property name="name">
-                            <cstring>roomNumberEdit</cstring>
-                        </property>
-                    </widget>
-                    <widget class="QLabel" row="1" column="1">
-                        <property name="name">
-                            <cstring>textLabel4</cstring>
-                        </property>
-                        <property name="text">
-                            <string>Office:</string>
-                        </property>
-                        <property name="alignment">
-                            <set>AlignVCenter</set>
-                        </property>
-                    </widget>
-                    <widget class="QLineEdit" row="2" column="2">
-                        <property name="name">
-                            <cstring>businessRoleEdit</cstring>
-                        </property>
-                    </widget>
-                    <widget class="QLabel" row="0" column="0">
-                        <property name="name">
-                            <cstring>workLabel</cstring>
-                        </property>
-                        <property name="maximumSize">
-                            <size>
-                                <width>32</width>
-                                <height>32</height>
-                            </size>
-                        </property>
-                        <property name="text">
-                            <string>WO</string>
-                            <comment>DO NOT TRANSLATE</comment>
-                        </property>
-                    </widget>
-                    <widget class="QLabel" row="0" column="1">
-                        <property name="name">
-                            <cstring>textLabel3_3</cstring>
-                        </property>
-                        <property name="text">
-                            <string>Departement:</string>
-                        </property>
-                        <property name="alignment">
-                            <set>AlignVCenter</set>
-                        </property>
-                    </widget>
-                    <widget class="QLineEdit" row="0" column="5">
-                        <property name="name">
-                            <cstring>managerNameEdit</cstring>
-                        </property>
-                    </widget>
-                    <widget class="QLineEdit" row="1" column="5">
-                        <property name="name">
-                            <cstring>assistantNameEdit</cstring>
-                        </property>
-                    </widget>
-                    <widget class="QLabel" row="0" column="4">
-                        <property name="name">
-                            <cstring>textLabel6</cstring>
-                        </property>
-                        <property name="text">
-                            <string>Manager's name:</string>
-                        </property>
-                        <property name="alignment">
-                            <set>AlignVCenter</set>
-                        </property>
-                    </widget>
-                    <widget class="QLabel" row="1" column="4">
-                        <property name="name">
-                            <cstring>textLabel7_2</cstring>
-                        </property>
-                        <property name="text">
-                            <string>Assistant's name:</string>
-                        </property>
-                        <property name="alignment">
-                            <set>AlignVCenter</set>
-                        </property>
-                    </widget>
-                    <widget class="Line" row="0" column="3" rowspan="3" colspan="1">
-                        <property name="name">
-                            <cstring>line7</cstring>
-                        </property>
-                        <property name="frameShape">
-                            <enum>VLine</enum>
-                        </property>
-                        <property name="frameShadow">
-                            <enum>Sunken</enum>
-                        </property>
-                        <property name="orientation">
-                            <enum>Vertical</enum>
-                        </property>
-                    </widget>
-                    <spacer row="3" column="1">
-                        <property name="name">
-                            <cstring>spacer7_2</cstring>
-                        </property>
-                        <property name="orientation">
-                            <enum>Vertical</enum>
-                        </property>
-                        <property name="sizeType">
-                            <enum>Fixed</enum>
-                        </property>
-                        <property name="sizeHint">
-                            <size>
-                                <width>21</width>
-                                <height>25</height>
-                            </size>
-                        </property>
-                    </spacer>
-                    <spacer row="6" column="1">
-                        <property name="name">
-                            <cstring>spacer8_2</cstring>
-                        </property>
-                        <property name="orientation">
-                            <enum>Vertical</enum>
-                        </property>
-                        <property name="sizeType">
-                            <enum>Fixed</enum>
-                        </property>
-                        <property name="sizeHint">
-                            <size>
-                                <width>20</width>
-                                <height>25</height>
-                            </size>
-                        </property>
-                    </spacer>
-                    <widget class="QLabel" row="4" column="0">
-                        <property name="name">
-                            <cstring>personalLabel</cstring>
-                        </property>
-                        <property name="maximumSize">
-                            <size>
-                                <width>32</width>
-                                <height>32</height>
-                            </size>
-                        </property>
-                        <property name="text">
-                            <string>ME</string>
-                            <comment>DO NOT TRANSLATE</comment>
-                        </property>
-                    </widget>
-                    <widget class="QLabel" row="4" column="1">
-                        <property name="name">
-                            <cstring>textLabel9_2</cstring>
-                        </property>
-                        <property name="text">
-                            <string>Nickname:</string>
-                        </property>
-                        <property name="alignment">
-                            <set>AlignVCenter</set>
-                        </property>
-                    </widget>
-                    <widget class="QLineEdit" row="4" column="2">
-                        <property name="name">
-                            <cstring>displayNameEdit</cstring>
-                        </property>
-                    </widget>
-                    <widget class="QLineEdit" row="5" column="2">
-                        <property name="name">
-                            <cstring>spouseNameEdit</cstring>
-                        </property>
-                    </widget>
-                    <widget class="QLabel" row="5" column="1">
-                        <property name="name">
-                            <cstring>textLabel10_2</cstring>
-                        </property>
-                        <property name="text">
-                            <string>Spouse:</string>
-                        </property>
-                        <property name="alignment">
-                            <set>AlignVCenter</set>
-                        </property>
-                    </widget>
-                    <widget class="Line" row="4" column="3" rowspan="2" colspan="1">
-                        <property name="name">
-                            <cstring>line8</cstring>
-                        </property>
-                        <property name="frameShape">
-                            <enum>VLine</enum>
-                        </property>
-                        <property name="frameShadow">
-                            <enum>Sunken</enum>
-                        </property>
-                        <property name="orientation">
-                            <enum>Vertical</enum>
-                        </property>
-                    </widget>
-                    <widget class="QDateEdit" row="5" column="5">
-                        <property name="name">
-                            <cstring>anniversaryEdit</cstring>
-                        </property>
-                    </widget>
-                    <widget class="QDateEdit" row="4" column="5">
-                        <property name="name">
-                            <cstring>birthDateEdit</cstring>
-                        </property>
-                    </widget>
-                    <widget class="QLabel" row="5" column="4">
-                        <property name="name">
-                            <cstring>textLabel12</cstring>
-                        </property>
-                        <property name="text">
-                            <string>Anniversary:</string>
-                        </property>
-                        <property name="alignment">
-                            <set>AlignVCenter</set>
-                        </property>
-                    </widget>
-                    <widget class="QLabel" row="4" column="4">
-                        <property name="name">
-                            <cstring>textLabel11</cstring>
-                        </property>
-                        <property name="text">
-                            <string>Birthday:</string>
-                        </property>
-                        <property name="alignment">
-                            <set>AlignVCenter</set>
-                        </property>
-                    </widget>
-                    <spacer row="8" column="0">
-                        <property name="name">
-                            <cstring>spacer7</cstring>
-                        </property>
-                        <property name="orientation">
-                            <enum>Vertical</enum>
-                        </property>
-                        <property name="sizeType">
-                            <enum>Expanding</enum>
-                        </property>
-                        <property name="sizeHint">
-                            <size>
-                                <width>20</width>
-                                <height>201</height>
-                            </size>
-                        </property>
-                    </spacer>
-                    <widget class="QLabel" row="7" column="0">
-                        <property name="name">
-                            <cstring>notesLabel</cstring>
-                        </property>
-                        <property name="maximumSize">
-                            <size>
-                                <width>32</width>
-                                <height>32</height>
-                            </size>
-                        </property>
-                        <property name="text">
-                            <string>NO</string>
-                            <comment>DO NOT TRANSLATE</comment>
-                        </property>
-                    </widget>
-                    <widget class="QTextEdit" row="8" column="1" rowspan="1" colspan="5">
-                        <property name="name">
-                            <cstring>noteEdit</cstring>
-                        </property>
-                    </widget>
-                    <widget class="QLabel" row="7" column="1">
-                        <property name="name">
-                            <cstring>textLabel14</cstring>
-                        </property>
-                        <property name="text">
-                            <string>Notes:</string>
-                        </property>
-                        <property name="alignment">
-                            <set>AlignVCenter|AlignLeft</set>
-                        </property>
-                    </widget>
-                </grid>
-            </widget>
+<ui version="4.0" >
+ <class>AddressbookWidgetDesign</class>
+ <widget class="QWidget" name="AddressbookWidgetDesign" >
+  <property name="geometry" >
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>608</width>
+    <height>454</height>
+   </rect>
+  </property>
+  <property name="windowTitle" >
+   <string>AddressbookWidgetDesign</string>
+  </property>
+  <layout class="QGridLayout" >
+   <item row="0" column="0" colspan="2" >
+    <widget class="QTabWidget" name="tabWidget2" >
+     <property name="minimumSize" >
+      <size>
+       <width>300</width>
+       <height>0</height>
+      </size>
+     </property>
+     <property name="focusPolicy" >
+      <enum>Qt::TabFocus</enum>
+     </property>
+     <widget class="QWidget" name="tab" >
+      <attribute name="title" >
+       <string>General</string>
+      </attribute>
+      <layout class="QGridLayout" >
+       <item row="0" column="0" >
+        <widget class="QLabel" name="personLabel" >
+         <property name="sizePolicy" >
+          <sizepolicy vsizetype="Fixed" hsizetype="Fixed" >
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="minimumSize" >
+          <size>
+           <width>32</width>
+           <height>32</height>
+          </size>
+         </property>
+         <property name="text" >
+          <string comment="DO NOT TRANSLATE" >P</string>
+         </property>
+         <property name="wordWrap" >
+          <bool>false</bool>
+         </property>
         </widget>
-    </grid>
-</widget>
-<connections>
-    <connection>
-        <sender>nameButton</sender>
-        <signal>clicked()</signal>
-        <receiver>AddressbookWidgetDesign</receiver>
-        <slot>showNameDialog()</slot>
-    </connection>
-    <connection>
-        <sender>deleteMailButton</sender>
-        <signal>clicked()</signal>
-        <receiver>AddressbookWidgetDesign</receiver>
-        <slot>deleteMail()</slot>
-    </connection>
-    <connection>
-        <sender>addMailButton</sender>
-        <signal>clicked()</signal>
-        <receiver>AddressbookWidgetDesign</receiver>
-        <slot>addMail()</slot>
-    </connection>
-    <connection>
-        <sender>categoryButton</sender>
-        <signal>clicked()</signal>
-        <receiver>AddressbookWidgetDesign</receiver>
-        <slot>editCategories()</slot>
-    </connection>
-    <connection>
-        <sender>addressBox</sender>
-        <signal>activated(int)</signal>
-        <receiver>AddressbookWidgetDesign</receiver>
-        <slot>initAddress()</slot>
-    </connection>
-</connections>
-<tabstops>
-    <tabstop>tabWidget2</tabstop>
-    <tabstop>nameButton</tabstop>
-    <tabstop>cnEdit</tabstop>
-    <tabstop>titleEdit</tabstop>
-    <tabstop>organisationEdit</tabstop>
-    <tabstop>mailBox</tabstop>
-    <tabstop>deleteMailButton</tabstop>
-    <tabstop>addMailButton</tabstop>
-    <tabstop>labeledURIEdit</tabstop>
-    <tabstop>categoryButton</tabstop>
-    <tabstop>categoryEdit</tabstop>
-    <tabstop>homePhoneEdit</tabstop>
-    <tabstop>telephoneNumberEdit</tabstop>
-    <tabstop>mobileEdit</tabstop>
-    <tabstop>facsimileTelephoneNumberEdit</tabstop>
-    <tabstop>addressBox</tabstop>
-    <tabstop>addressEdit</tabstop>
-    <tabstop>ouEdit</tabstop>
-    <tabstop>managerNameEdit</tabstop>
-    <tabstop>roomNumberEdit</tabstop>
-    <tabstop>assistantNameEdit</tabstop>
-    <tabstop>businessRoleEdit</tabstop>
-    <tabstop>displayNameEdit</tabstop>
-    <tabstop>birthDateEdit</tabstop>
-    <tabstop>spouseNameEdit</tabstop>
-    <tabstop>anniversaryEdit</tabstop>
-    <tabstop>noteEdit</tabstop>
-</tabstops>
-<slots>
-    <slot>serverChanged()</slot>
-    <slot>search()</slot>
-    <slot>iconClicked()</slot>
-    <slot>addEntry()</slot>
-    <slot>deleteEntry()</slot>
-    <slot>saveEntry()</slot>
-    <slot>showNameDialog()</slot>
-    <slot>deleteMail()</slot>
-    <slot>addMail()</slot>
-    <slot>editCategories()</slot>
-    <slot>initAddress()</slot>
-</slots>
-<layoutdefaults spacing="6" margin="0"/>
-</UI>
+       </item>
+       <item row="0" column="1" >
+        <widget class="QPushButton" name="nameButton" >
+         <property name="text" >
+          <string>&amp;Full Name...</string>
+         </property>
+         <property name="shortcut" >
+          <string>Alt+F</string>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="1" >
+        <widget class="QLabel" name="textLabel2_2" >
+         <property name="text" >
+          <string>Organisation:</string>
+         </property>
+         <property name="alignment" >
+          <set>Qt::AlignVCenter</set>
+         </property>
+         <property name="wordWrap" >
+          <bool>false</bool>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="1" >
+        <widget class="QLabel" name="textLabel3_2" >
+         <property name="text" >
+          <string>Job title:</string>
+         </property>
+         <property name="alignment" >
+          <set>Qt::AlignVCenter</set>
+         </property>
+         <property name="wordWrap" >
+          <bool>false</bool>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="2" colspan="4" >
+        <widget class="QLineEdit" name="cnEdit" >
+         <property name="readOnly" >
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="2" colspan="4" >
+        <widget class="QLineEdit" name="titleEdit" />
+       </item>
+       <item row="2" column="2" colspan="4" >
+        <widget class="QLineEdit" name="organisationEdit" />
+       </item>
+       <item row="8" column="2" colspan="2" >
+        <spacer>
+         <property name="orientation" >
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeType" >
+          <enum>QSizePolicy::Expanding</enum>
+         </property>
+         <property name="sizeHint" >
+          <size>
+           <width>21</width>
+           <height>130</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item row="5" column="3" colspan="2" >
+        <widget class="QPushButton" name="addMailButton" >
+         <property name="text" >
+          <string>&amp;Add...</string>
+         </property>
+         <property name="shortcut" >
+          <string>Alt+A</string>
+         </property>
+        </widget>
+       </item>
+       <item row="5" column="5" >
+        <widget class="QPushButton" name="deleteMailButton" >
+         <property name="text" >
+          <string>&amp;Delete</string>
+         </property>
+         <property name="shortcut" >
+          <string>Alt+D</string>
+         </property>
+        </widget>
+       </item>
+       <item row="5" column="2" >
+        <spacer>
+         <property name="orientation" >
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeType" >
+          <enum>QSizePolicy::Expanding</enum>
+         </property>
+         <property name="sizeHint" >
+          <size>
+           <width>120</width>
+           <height>21</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item row="3" column="4" >
+        <spacer>
+         <property name="orientation" >
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeType" >
+          <enum>QSizePolicy::Fixed</enum>
+         </property>
+         <property name="sizeHint" >
+          <size>
+           <width>21</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item row="4" column="0" >
+        <widget class="QLabel" name="mailLabel" >
+         <property name="sizePolicy" >
+          <sizepolicy vsizetype="Fixed" hsizetype="Fixed" >
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="minimumSize" >
+          <size>
+           <width>32</width>
+           <height>32</height>
+          </size>
+         </property>
+         <property name="text" >
+          <string comment="DO NOT TRANSLATE" >Ma</string>
+         </property>
+         <property name="wordWrap" >
+          <bool>false</bool>
+         </property>
+        </widget>
+       </item>
+       <item row="6" column="0" >
+        <widget class="QLabel" name="webPageLabel" >
+         <property name="sizePolicy" >
+          <sizepolicy vsizetype="Fixed" hsizetype="Fixed" >
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="minimumSize" >
+          <size>
+           <width>32</width>
+           <height>32</height>
+          </size>
+         </property>
+         <property name="text" >
+          <string comment="DO NOT TRANSLATE" >WP</string>
+         </property>
+         <property name="wordWrap" >
+          <bool>false</bool>
+         </property>
+        </widget>
+       </item>
+       <item row="7" column="0" >
+        <widget class="QLabel" name="categoryLabel" >
+         <property name="sizePolicy" >
+          <sizepolicy vsizetype="Fixed" hsizetype="Fixed" >
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="minimumSize" >
+          <size>
+           <width>32</width>
+           <height>32</height>
+          </size>
+         </property>
+         <property name="maximumSize" >
+          <size>
+           <width>32</width>
+           <height>32</height>
+          </size>
+         </property>
+         <property name="text" >
+          <string comment="DO NOT TRANSLATE" >CL</string>
+         </property>
+         <property name="wordWrap" >
+          <bool>false</bool>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="1" >
+        <widget class="QLabel" name="textLabel10" >
+         <property name="sizePolicy" >
+          <sizepolicy vsizetype="Preferred" hsizetype="Fixed" >
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="text" >
+          <string>Email:</string>
+         </property>
+         <property name="alignment" >
+          <set>Qt::AlignVCenter</set>
+         </property>
+         <property name="wordWrap" >
+          <bool>false</bool>
+         </property>
+        </widget>
+       </item>
+       <item row="6" column="1" >
+        <widget class="QLabel" name="textLabel1" >
+         <property name="text" >
+          <string>Web page address:</string>
+         </property>
+         <property name="alignment" >
+          <set>Qt::AlignVCenter</set>
+         </property>
+         <property name="wordWrap" >
+          <bool>false</bool>
+         </property>
+        </widget>
+       </item>
+       <item row="7" column="1" >
+        <widget class="QPushButton" name="categoryButton" >
+         <property name="sizePolicy" >
+          <sizepolicy vsizetype="Fixed" hsizetype="Fixed" >
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="text" >
+          <string>&amp;Categories...</string>
+         </property>
+         <property name="shortcut" >
+          <string>Alt+C</string>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="2" colspan="4" >
+        <widget class="QComboBox" name="mailBox" >
+         <property name="editable" >
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item row="6" column="2" colspan="4" >
+        <widget class="QLineEdit" name="labeledURIEdit" />
+       </item>
+       <item row="7" column="2" colspan="4" >
+        <widget class="QLineEdit" name="categoryEdit" />
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="tab" >
+      <attribute name="title" >
+       <string>Phone/Address</string>
+      </attribute>
+      <layout class="QGridLayout" >
+       <item row="0" column="2" >
+        <widget class="QLineEdit" name="homePhoneEdit" >
+         <property name="minimumSize" >
+          <size>
+           <width>100</width>
+           <height>0</height>
+          </size>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="1" >
+        <widget class="QLabel" name="textLabel9" >
+         <property name="text" >
+          <string>Mobile:</string>
+         </property>
+         <property name="alignment" >
+          <set>Qt::AlignVCenter</set>
+         </property>
+         <property name="wordWrap" >
+          <bool>false</bool>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="1" >
+        <widget class="QLabel" name="textLabel3" >
+         <property name="text" >
+          <string>Business Fax:</string>
+         </property>
+         <property name="alignment" >
+          <set>Qt::AlignVCenter</set>
+         </property>
+         <property name="wordWrap" >
+          <bool>false</bool>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="2" >
+        <widget class="QLineEdit" name="telephoneNumberEdit" />
+       </item>
+       <item row="2" column="2" >
+        <widget class="QLineEdit" name="mobileEdit" />
+       </item>
+       <item row="0" column="0" >
+        <widget class="QLabel" name="phoneLabel" >
+         <property name="sizePolicy" >
+          <sizepolicy vsizetype="Fixed" hsizetype="Fixed" >
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="minimumSize" >
+          <size>
+           <width>32</width>
+           <height>32</height>
+          </size>
+         </property>
+         <property name="text" >
+          <string comment="DO NOT TRANSLATE" >Ph</string>
+         </property>
+         <property name="wordWrap" >
+          <bool>false</bool>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="2" >
+        <widget class="QLineEdit" name="facsimileTelephoneNumberEdit" />
+       </item>
+       <item row="1" column="1" >
+        <widget class="QLabel" name="textLabel8" >
+         <property name="text" >
+          <string>Work:</string>
+         </property>
+         <property name="alignment" >
+          <set>Qt::AlignVCenter</set>
+         </property>
+         <property name="wordWrap" >
+          <bool>false</bool>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="1" >
+        <widget class="QLabel" name="textLabel7" >
+         <property name="text" >
+          <string>Home:</string>
+         </property>
+         <property name="alignment" >
+          <set>Qt::AlignVCenter</set>
+         </property>
+         <property name="wordWrap" >
+          <bool>false</bool>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="2" >
+        <spacer>
+         <property name="orientation" >
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeType" >
+          <enum>QSizePolicy::Fixed</enum>
+         </property>
+         <property name="sizeHint" >
+          <size>
+           <width>21</width>
+           <height>25</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item row="5" column="2" >
+        <widget class="Q3TextEdit" name="addressEdit" />
+       </item>
+       <item row="5" column="0" colspan="2" >
+        <layout class="QGridLayout" >
+         <item row="2" column="1" >
+          <spacer>
+           <property name="orientation" >
+            <enum>Qt::Vertical</enum>
+           </property>
+           <property name="sizeType" >
+            <enum>QSizePolicy::Expanding</enum>
+           </property>
+           <property name="sizeHint" >
+            <size>
+             <width>21</width>
+             <height>30</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item row="0" column="1" >
+          <widget class="QComboBox" name="addressBox" >
+           <item>
+            <property name="text" >
+             <string>Business</string>
+            </property>
+           </item>
+           <item>
+            <property name="text" >
+             <string>Home</string>
+            </property>
+           </item>
+           <item>
+            <property name="text" >
+             <string>Other</string>
+            </property>
+           </item>
+          </widget>
+         </item>
+         <item row="0" column="0" >
+          <widget class="QLabel" name="homeLabel" >
+           <property name="maximumSize" >
+            <size>
+             <width>32</width>
+             <height>32</height>
+            </size>
+           </property>
+           <property name="text" >
+            <string comment="DO NOT TRANSLATE" >HI</string>
+           </property>
+           <property name="wordWrap" >
+            <bool>false</bool>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="TabPage" >
+      <attribute name="title" >
+       <string>Details</string>
+      </attribute>
+      <layout class="QGridLayout" >
+       <item row="0" column="2" >
+        <widget class="QLineEdit" name="ouEdit" />
+       </item>
+       <item row="2" column="1" >
+        <widget class="QLabel" name="textLabel5" >
+         <property name="text" >
+          <string>Profession:</string>
+         </property>
+         <property name="alignment" >
+          <set>Qt::AlignVCenter</set>
+         </property>
+         <property name="wordWrap" >
+          <bool>false</bool>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="2" >
+        <widget class="QLineEdit" name="roomNumberEdit" />
+       </item>
+       <item row="1" column="1" >
+        <widget class="QLabel" name="textLabel4" >
+         <property name="text" >
+          <string>Office:</string>
+         </property>
+         <property name="alignment" >
+          <set>Qt::AlignVCenter</set>
+         </property>
+         <property name="wordWrap" >
+          <bool>false</bool>
+         </property>
+        </widget>
+       </item>
+       <item row="2" column="2" >
+        <widget class="QLineEdit" name="businessRoleEdit" />
+       </item>
+       <item row="0" column="0" >
+        <widget class="QLabel" name="workLabel" >
+         <property name="maximumSize" >
+          <size>
+           <width>32</width>
+           <height>32</height>
+          </size>
+         </property>
+         <property name="text" >
+          <string comment="DO NOT TRANSLATE" >WO</string>
+         </property>
+         <property name="wordWrap" >
+          <bool>false</bool>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="1" >
+        <widget class="QLabel" name="textLabel3_3" >
+         <property name="text" >
+          <string>Departement:</string>
+         </property>
+         <property name="alignment" >
+          <set>Qt::AlignVCenter</set>
+         </property>
+         <property name="wordWrap" >
+          <bool>false</bool>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="5" >
+        <widget class="QLineEdit" name="managerNameEdit" />
+       </item>
+       <item row="1" column="5" >
+        <widget class="QLineEdit" name="assistantNameEdit" />
+       </item>
+       <item row="0" column="4" >
+        <widget class="QLabel" name="textLabel6" >
+         <property name="text" >
+          <string>Manager's name:</string>
+         </property>
+         <property name="alignment" >
+          <set>Qt::AlignVCenter</set>
+         </property>
+         <property name="wordWrap" >
+          <bool>false</bool>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="4" >
+        <widget class="QLabel" name="textLabel7_2" >
+         <property name="text" >
+          <string>Assistant's name:</string>
+         </property>
+         <property name="alignment" >
+          <set>Qt::AlignVCenter</set>
+         </property>
+         <property name="wordWrap" >
+          <bool>false</bool>
+         </property>
+        </widget>
+       </item>
+       <item rowspan="3" row="0" column="3" >
+        <widget class="Line" name="line7" >
+         <property name="frameShape" >
+          <enum>QFrame::VLine</enum>
+         </property>
+         <property name="frameShadow" >
+          <enum>QFrame::Sunken</enum>
+         </property>
+        </widget>
+       </item>
+       <item row="3" column="1" >
+        <spacer>
+         <property name="orientation" >
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeType" >
+          <enum>QSizePolicy::Fixed</enum>
+         </property>
+         <property name="sizeHint" >
+          <size>
+           <width>21</width>
+           <height>25</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item row="6" column="1" >
+        <spacer>
+         <property name="orientation" >
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeType" >
+          <enum>QSizePolicy::Fixed</enum>
+         </property>
+         <property name="sizeHint" >
+          <size>
+           <width>20</width>
+           <height>25</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item row="4" column="0" >
+        <widget class="QLabel" name="personalLabel" >
+         <property name="maximumSize" >
+          <size>
+           <width>32</width>
+           <height>32</height>
+          </size>
+         </property>
+         <property name="text" >
+          <string comment="DO NOT TRANSLATE" >ME</string>
+         </property>
+         <property name="wordWrap" >
+          <bool>false</bool>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="1" >
+        <widget class="QLabel" name="textLabel9_2" >
+         <property name="text" >
+          <string>Nickname:</string>
+         </property>
+         <property name="alignment" >
+          <set>Qt::AlignVCenter</set>
+         </property>
+         <property name="wordWrap" >
+          <bool>false</bool>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="2" >
+        <widget class="QLineEdit" name="displayNameEdit" />
+       </item>
+       <item row="5" column="2" >
+        <widget class="QLineEdit" name="spouseNameEdit" />
+       </item>
+       <item row="5" column="1" >
+        <widget class="QLabel" name="textLabel10_2" >
+         <property name="text" >
+          <string>Spouse:</string>
+         </property>
+         <property name="alignment" >
+          <set>Qt::AlignVCenter</set>
+         </property>
+         <property name="wordWrap" >
+          <bool>false</bool>
+         </property>
+        </widget>
+       </item>
+       <item rowspan="2" row="4" column="3" >
+        <widget class="Line" name="line8" >
+         <property name="frameShape" >
+          <enum>QFrame::VLine</enum>
+         </property>
+         <property name="frameShadow" >
+          <enum>QFrame::Sunken</enum>
+         </property>
+        </widget>
+       </item>
+       <item row="5" column="5" >
+        <widget class="Q3DateEdit" name="anniversaryEdit" />
+       </item>
+       <item row="4" column="5" >
+        <widget class="Q3DateEdit" name="birthDateEdit" />
+       </item>
+       <item row="5" column="4" >
+        <widget class="QLabel" name="textLabel12" >
+         <property name="text" >
+          <string>Anniversary:</string>
+         </property>
+         <property name="alignment" >
+          <set>Qt::AlignVCenter</set>
+         </property>
+         <property name="wordWrap" >
+          <bool>false</bool>
+         </property>
+        </widget>
+       </item>
+       <item row="4" column="4" >
+        <widget class="QLabel" name="textLabel11" >
+         <property name="text" >
+          <string>Birthday:</string>
+         </property>
+         <property name="alignment" >
+          <set>Qt::AlignVCenter</set>
+         </property>
+         <property name="wordWrap" >
+          <bool>false</bool>
+         </property>
+        </widget>
+       </item>
+       <item row="8" column="0" >
+        <spacer>
+         <property name="orientation" >
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeType" >
+          <enum>QSizePolicy::Expanding</enum>
+         </property>
+         <property name="sizeHint" >
+          <size>
+           <width>20</width>
+           <height>201</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item row="7" column="0" >
+        <widget class="QLabel" name="notesLabel" >
+         <property name="maximumSize" >
+          <size>
+           <width>32</width>
+           <height>32</height>
+          </size>
+         </property>
+         <property name="text" >
+          <string comment="DO NOT TRANSLATE" >NO</string>
+         </property>
+         <property name="wordWrap" >
+          <bool>false</bool>
+         </property>
+        </widget>
+       </item>
+       <item row="8" column="1" colspan="5" >
+        <widget class="Q3TextEdit" name="noteEdit" />
+       </item>
+       <item row="7" column="1" >
+        <widget class="QLabel" name="textLabel14" >
+         <property name="text" >
+          <string>Notes:</string>
+         </property>
+         <property name="alignment" >
+          <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+         </property>
+         <property name="wordWrap" >
+          <bool>false</bool>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <layoutdefault spacing="6" margin="0" />
+ <pixmapfunction>qPixmapFromMimeSource</pixmapfunction>
+ <customwidgets>
+  <customwidget>
+   <class>Q3TextEdit</class>
+   <extends>Q3Frame</extends>
+   <header>q3textedit.h</header>
+  </customwidget>
+  <customwidget>
+   <class>Q3DateEdit</class>
+   <extends>QWidget</extends>
+   <header>Qt3Support/Q3DateEdit</header>
+  </customwidget>
+ </customwidgets>
+ <tabstops>
+  <tabstop>tabWidget2</tabstop>
+  <tabstop>nameButton</tabstop>
+  <tabstop>cnEdit</tabstop>
+  <tabstop>titleEdit</tabstop>
+  <tabstop>organisationEdit</tabstop>
+  <tabstop>mailBox</tabstop>
+  <tabstop>deleteMailButton</tabstop>
+  <tabstop>addMailButton</tabstop>
+  <tabstop>labeledURIEdit</tabstop>
+  <tabstop>categoryButton</tabstop>
+  <tabstop>categoryEdit</tabstop>
+  <tabstop>homePhoneEdit</tabstop>
+  <tabstop>telephoneNumberEdit</tabstop>
+  <tabstop>mobileEdit</tabstop>
+  <tabstop>facsimileTelephoneNumberEdit</tabstop>
+  <tabstop>addressBox</tabstop>
+  <tabstop>addressEdit</tabstop>
+  <tabstop>ouEdit</tabstop>
+  <tabstop>managerNameEdit</tabstop>
+  <tabstop>roomNumberEdit</tabstop>
+  <tabstop>assistantNameEdit</tabstop>
+  <tabstop>businessRoleEdit</tabstop>
+  <tabstop>displayNameEdit</tabstop>
+  <tabstop>birthDateEdit</tabstop>
+  <tabstop>spouseNameEdit</tabstop>
+  <tabstop>anniversaryEdit</tabstop>
+  <tabstop>noteEdit</tabstop>
+ </tabstops>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>nameButton</sender>
+   <signal>clicked()</signal>
+   <receiver>AddressbookWidgetDesign</receiver>
+   <slot>showNameDialog()</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>20</x>
+     <y>20</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>deleteMailButton</sender>
+   <signal>clicked()</signal>
+   <receiver>AddressbookWidgetDesign</receiver>
+   <slot>deleteMail()</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>20</x>
+     <y>20</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>addMailButton</sender>
+   <signal>clicked()</signal>
+   <receiver>AddressbookWidgetDesign</receiver>
+   <slot>addMail()</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>20</x>
+     <y>20</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>categoryButton</sender>
+   <signal>clicked()</signal>
+   <receiver>AddressbookWidgetDesign</receiver>
+   <slot>editCategories()</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>20</x>
+     <y>20</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>addressBox</sender>
+   <signal>activated(int)</signal>
+   <receiver>AddressbookWidgetDesign</receiver>
+   <slot>initAddress()</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>20</x>
+     <y>20</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+</ui>

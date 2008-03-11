@@ -1,153 +1,158 @@
-<!DOCTYPE UI><UI version="3.3" stdsetdef="1">
-<class>ClassDeleteDialog</class>
-<widget class="QDialog">
-    <property name="name">
-        <cstring>ClassDeleteDialog</cstring>
-    </property>
-    <property name="geometry">
-        <rect>
-            <x>0</x>
-            <y>0</y>
-            <width>430</width>
-            <height>325</height>
-        </rect>
-    </property>
-    <property name="caption">
-        <string>Attribute warning</string>
-    </property>
-    <grid>
-        <property name="name">
-            <cstring>unnamed</cstring>
-        </property>
-        <widget class="QPushButton" row="2" column="3">
-            <property name="name">
-                <cstring>cancelButton</cstring>
-            </property>
-            <property name="sizePolicy">
-                <sizepolicy>
-                    <hsizetype>0</hsizetype>
-                    <vsizetype>0</vsizetype>
-                    <horstretch>0</horstretch>
-                    <verstretch>0</verstretch>
-                </sizepolicy>
-            </property>
-            <property name="text">
-                <string>&amp;Cancel</string>
-            </property>
-            <property name="accel">
-                <string>Alt+C</string>
-            </property>
-            <property name="default">
-                <bool>true</bool>
-            </property>
-        </widget>
-        <widget class="QPushButton" row="2" column="2">
-            <property name="name">
-                <cstring>okButton</cstring>
-            </property>
-            <property name="sizePolicy">
-                <sizepolicy>
-                    <hsizetype>0</hsizetype>
-                    <vsizetype>0</vsizetype>
-                    <horstretch>0</horstretch>
-                    <verstretch>0</verstretch>
-                </sizepolicy>
-            </property>
-            <property name="text">
-                <string>&amp;OK</string>
-            </property>
-            <property name="accel">
-                <string>Alt+O</string>
-            </property>
-        </widget>
-        <spacer row="2" column="0" rowspan="1" colspan="2">
-            <property name="name">
-                <cstring>spacer1</cstring>
-            </property>
-            <property name="orientation">
-                <enum>Horizontal</enum>
-            </property>
-            <property name="sizeType">
-                <enum>Expanding</enum>
-            </property>
-            <property name="sizeHint">
-                <size>
-                    <width>341</width>
-                    <height>21</height>
-                </size>
-            </property>
-        </spacer>
-        <widget class="QLabel" row="0" column="0">
-            <property name="name">
-                <cstring>pixmapLabel1</cstring>
-            </property>
-            <property name="sizePolicy">
-                <sizepolicy>
-                    <hsizetype>0</hsizetype>
-                    <vsizetype>0</vsizetype>
-                    <horstretch>0</horstretch>
-                    <verstretch>0</verstretch>
-                </sizepolicy>
-            </property>
-            <property name="pixmap">
-                <pixmap>image0</pixmap>
-            </property>
-            <property name="scaledContents">
-                <bool>false</bool>
-            </property>
-        </widget>
-        <widget class="QListView" row="1" column="1" rowspan="1" colspan="3">
-            <column>
-                <property name="text">
-                    <string>Attribute</string>
-                </property>
-                <property name="clickable">
-                    <bool>true</bool>
-                </property>
-                <property name="resizable">
-                    <bool>true</bool>
-                </property>
-            </column>
-            <property name="name">
-                <cstring>attributeView</cstring>
-            </property>
-            <property name="resizeMode">
-                <enum>AllColumns</enum>
-            </property>
-        </widget>
-        <widget class="QLabel" row="0" column="1" rowspan="1" colspan="3">
-            <property name="name">
-                <cstring>textLabel</cstring>
-            </property>
-            <property name="text">
-                <string>&lt;b&gt;Warning:&lt;/b&gt; The follwing attributes will be removed when deleting objectclass &lt;b&gt;%1&lt;/b&gt;. Do you want to continue?</string>
-            </property>
-        </widget>
-    </grid>
-</widget>
-<images>
-    <image name="image0">
-        <data format="PNG" length="2763">89504e470d0a1a0a0000000d4948445200000040000000400806000000aa6971de00000a9249444154789ce59b6b6c5c4715c77fb3bbde3cbd6b1bdbad12a7c1443215695a9720b9ce039ca208449cb405294835711c0408415044a54a154a21a512041539ad08185ae4d6ad12a04d9b26df2010393475229c38a9b7294e9b875dc74e527bb39bb5f7fd183eccdecdf57a1f77d7d78196238dbcbe731ff3ffcf3973cecc9911524afe9fc5f2df6ec06c4ae8a4a8a54f48fa84f4748b3f08214a851056fd3d9f6802e63532148ef03640b983efbdf234df044a851029dc9f68020079f89f6cd7fef9cc621e043e05d8b46bb64c4ffdaf8a10a20cb81f700137a494895cf74b29a510e2bdf04946ec252c8ec428014a811220021f23028410db9c4e676773733300a74e9d3a2184d8ffcad3bcbe793d3fb059d964b1706f28424f244abf6f92b7e6cf2316fd17db6d561603bc7b8141ed75a9f77e1cbc8010e27ea06ffffefd6804001c3f7e9c65b14727ea167b4bf3bde3f0315e7ee8315e03068061296518665903742abb0ca845c77c52fa010f7014886752692144d9ca952b5f5ab162c5b4f7afbb7788b9d715f86d4ff1da4b8779f5f73fe1f3cb97516b11488b85c464007fc7017adf38ca1560141807a2a9f79ba90149c05f079a1a1a1abed4d8d878d77df7ddc792254ba8a9a9a1a6a68668348adbede6ecd9b30c0e0ed2d3d3c391234798989838071c070e037f076252ca44656565d7debd7b5b1389045d5d5d1c387020f5bdf95736600dbe457cde5a7e7d78034f3cf1c4cf81d781186007ac8044d9bb0f4576404a1937950021c43a605b7d7dfd961d3b76f0f0c30fe3743a492412c46231a2d1e894bf997e1f3c7890e79f7f9eab57af028c007f06c677eddaf5cb8a8a0abc5e2f274e9c60d3a64db4b4b400600d1ec7167c8b68690b8992bbd8b2658bffd0a143df007a93a045928044f2ffb84c033c230292c077b5b5b57d71ebd6ad34353521a524914864049b8b80582c86c7e361f7eeddf4f4f400b071e346eaeaeaf07abd8c8f8f73ecd831bc5e2f1d1d1d2912f4e272b958bd7af511e0bbc0a894323aeda6740cc5109054f5aea6a6a64d7bf6eca1bebe1e2925f1783c2740a3d7f6ecd9c3850b1778e08107f07abd78bd5e060606989c9c4cb5a1b9b9998e8e0e9c4ee794b6391c8e31a019189052fa4c274008f1487979f98bedededceb6b6b629c08be9f54cd76edebcc9e38f3fce1d77dc81d7ebc5e7f3110e87a7b5c5e974d2dcdccc860d1b282b2b63dfbe7decdbb7ef43601bd02fa51c37950021c4b3f5f5f53b0e1e3cc8d2a54b89c7e3450134a215cf3cf30c172f5e444a49819df424d00d9c93527af2dd6cd80d0a21badadada5a3b3b3b89c7e38442a11901ccf7ccfaf5ebf9e0830f0a010e6ae07c07b80e048c3c6088002144577b7b7bebf6eddba70137abd7d3eb172d5ac4dd77dfcdc0c08051f067502e70384940c4140284105d2fbcf0426b4b4b0bc160d03480b9ae69a5b2b2d2287837f03b54a03302f8d3dd5d510408219e6a696969ddbc7933c160d03480d97e67ba6650de043e04ae005e7da0533401428875ab57affee973cf3d37ade767b3d7d3eb0dca43c0abc0042a0a342c1909104294959797bfd8d9d939ab6a9fadd7b5df5eafd7288e4ae0fbc07b8592904d031edbb973e752bbdd3e23028a01adbfe676bb8de2007804f81bf01721c4cd7c6b0559091042d43634343cb971e3c6bc765f282985c40d3e9faf100dd0e487a899651008154500b04b1bf16f57af677afef2e5cb858207b807f82ab05f081131a20553081042942d5ab4a875d5aa55a610906d6033726d646404216e2d1f14100d3e0afc1535164c8f9f7311007c7beddab539edbe1877562891232323844253355823c300110dc00a602ca905391f482760ebf2e5cb0b2640fb9bcdc60b2120140a313c3c9cb5c10689f80a700ab50892d323a4081042d402f7d6d4d418f2fbc58eecf9de393838483c9e3f8e1142e422613df05b60cc3001c03a0087c36198804241e7abf7783cf87c79a7f05348808cdab01458828a0cfd4609680252e0f30d6c6607467ebf9f6bd7ae19066f40ee01ce0a212cb9bc819e805a3d01991aadb771335d643018646c6cac68a459cca11e78039504c9ea0df404ac01e8efefa7b6b6d6347796af3e180ce2f1780a5df430424229302f89d11001009c3973863befbcd3147796af3e10084c59e73399804f03733361cc49c0e9d3a7696c6cc46ab59a4240b66b7ebf9f48c4d09a455ee0168b05abd59a5a9bd4aa50ea6fcdfe74060242a110478f1e65cd9a35b3a2f6914884603048226168ae6208b856b43c844eac4ccf46e52600a0afaf0f87c3316d2c980901d16834b59c36534907ae1529257e7f4eaf678c0080eeee6edc6e377575753352fb482442381c3605b8102223707df178f22e041b230054a6e5e2c58b2c5bb68caaaa2ac3bdae818e4422335675c8aceee9c566b361b5e634f78c927751341008e072b9b0d96c9496963277ee5cec767b2a21128fc7894422442291140166800663c0d38b4e8680382a379855f404f400abb2dd188bc5a6a8977eaa3a1b5228706d10d449009506cf39b1d013d04f0e02f4329be08dd879b6120c06f5af7a17b52a647832d43f0b780c4b31eaaed9bd566edcb8a17fe53bdcd282aca227e00d5472e1b64a31c0b3155d54791ed5fb7e0ad08071d4b2f2e766036826310bb8d56a251a8deaa7d2a7814920986f5d30b54f30994de9c8d76833ec5f0881cd66a3a4a4c4b4323e3e2513fe0fc08b8195e17437f83af00bd44cca743143ddd3ed5e1bfdaf5cb9a27da607951cf56020419a4ec047c01f811f9b091ca6aa7b26103329972e5dd2479add28f03e2965def0730a0152cab810a21df80e59b4404a5990199869e7994a381c66686848fbdc19d406a971547224af648a04af618216ccc49f17527a7b7b8946539eee65d442a89b3cee2f2b0152ca9810e267c0d780cf1603dcec5e4f3719edfde7cf9fd7e70f0f031780abc044d1b9c1a4045079b637818546c1e7026e96dd6bdf181e1ed6ef1e1906f6936127683ec9ba494a083107d801fc2a4bbd21e0b351868686e8ededd53e1f0076027da80068cc940d122817d2814a337d2b1b09b7137816f0bb5101dc87a82df486c1e72420b9d7de8fd28232d4e6437d3d76bbfdb6823f77ee1c2e974bdf8c3fa17afe32caf71b567d4df2ee134c9eb1a9005e0436e8eb2c160b0b172ecc6adfc5da7dba498542214e9e3cc9f5ebd7b54f0780df006f039750bd3f6974635441042449b02549d88eda8898129bcd46454505252525a60e725a79fffdf771b95cfa156437f02c2ade1f44ed0a9b343aea1745808e0427f020b017a8d6ea2c160bd5d5d52c58b0c034751f1c1cc4e572a5e70dcea066ac83c9721503131e53084892600116a0e2831f01adfafaf9f3e7535d5d8dc3e1280a74281462747494818181f4d55d37cacd75a302b56154c0132e46ed8b26004028ff370765122b5183e497f5f7d8ed76aaaaaa282b2bc3e1703067ce9c8caa9e4824989898607c7c9cd1d1d14c2bba01d4e18943283bbf8a22c067642bbc213cc512983489f9a86368f5401bd0085499d0ae61d48eafb751a03fe2d60c2f3413954f97991e98102857ba00284791f10554aa7d05c61757dca81efe377022f9db07dc48969b285b9f7972214dcc3a32a3113117a515a58023596a81c5a81455a669a40be5bfc3a819dc040afc04ca04c285063705b5ddec637349324a508796e6e8fedac87c52358e021fe1161119cff7cc86ccfab9c1242116b2676925598eccdd0ef9581c9c9c4df90f42b94ecfcc56b3fb0000000049454e44ae426082</data>
-    </image>
-</images>
-<connections>
-    <connection>
-        <sender>okButton</sender>
-        <signal>clicked()</signal>
-        <receiver>ClassDeleteDialog</receiver>
-        <slot>accept()</slot>
-    </connection>
-    <connection>
-        <sender>cancelButton</sender>
-        <signal>clicked()</signal>
-        <receiver>ClassDeleteDialog</receiver>
-        <slot>reject()</slot>
-    </connection>
-</connections>
-<tabstops>
-    <tabstop>attributeView</tabstop>
-    <tabstop>okButton</tabstop>
-    <tabstop>cancelButton</tabstop>
-</tabstops>
-<layoutdefaults spacing="6" margin="6"/>
-</UI>
+<ui version="4.0" >
+ <class>ClassDeleteDialog</class>
+ <widget class="QDialog" name="ClassDeleteDialog" >
+  <property name="geometry" >
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>615</width>
+    <height>325</height>
+   </rect>
+  </property>
+  <property name="windowTitle" >
+   <string>Attribute warning</string>
+  </property>
+  <layout class="QGridLayout" >
+   <item row="2" column="3" >
+    <widget class="QPushButton" name="cancelButton" >
+     <property name="sizePolicy" >
+      <sizepolicy vsizetype="Fixed" hsizetype="Fixed" >
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="text" >
+      <string>&amp;Cancel</string>
+     </property>
+     <property name="shortcut" >
+      <string>Alt+C</string>
+     </property>
+     <property name="default" >
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="2" >
+    <widget class="QPushButton" name="okButton" >
+     <property name="sizePolicy" >
+      <sizepolicy vsizetype="Fixed" hsizetype="Fixed" >
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="text" >
+      <string>&amp;OK</string>
+     </property>
+     <property name="shortcut" >
+      <string>Alt+O</string>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="0" colspan="2" >
+    <spacer>
+     <property name="orientation" >
+      <enum>Qt::Horizontal</enum>
+     </property>
+     <property name="sizeType" >
+      <enum>QSizePolicy::Expanding</enum>
+     </property>
+     <property name="sizeHint" >
+      <size>
+       <width>341</width>
+       <height>21</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+   <item row="0" column="0" >
+    <widget class="QLabel" name="pixmapLabel1" >
+     <property name="sizePolicy" >
+      <sizepolicy vsizetype="Fixed" hsizetype="Fixed" >
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="pixmap" >
+      <pixmap/>
+     </property>
+     <property name="scaledContents" >
+      <bool>false</bool>
+     </property>
+     <property name="wordWrap" >
+      <bool>false</bool>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="1" colspan="3" >
+    <widget class="Q3ListView" name="attributeView" >
+     <property name="resizeMode" >
+      <enum>Q3ListView::AllColumns</enum>
+     </property>
+     <column>
+      <property name="text" >
+       <string>Attribute</string>
+      </property>
+     </column>
+    </widget>
+   </item>
+   <item row="0" column="1" colspan="3" >
+    <widget class="QLabel" name="textLabel" >
+     <property name="text" >
+      <string>&lt;b>Warning:&lt;/b> The follwing attributes will be removed when deleting objectclass &lt;b>%1&lt;/b>. Do you want to continue?</string>
+     </property>
+     <property name="wordWrap" >
+      <bool>false</bool>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <layoutdefault spacing="6" margin="6" />
+ <customwidgets>
+  <customwidget>
+   <class>Q3ListView</class>
+   <extends>Q3Frame</extends>
+   <header>q3listview.h</header>
+  </customwidget>
+ </customwidgets>
+ <tabstops>
+  <tabstop>attributeView</tabstop>
+  <tabstop>okButton</tabstop>
+  <tabstop>cancelButton</tabstop>
+ </tabstops>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>okButton</sender>
+   <signal>clicked()</signal>
+   <receiver>ClassDeleteDialog</receiver>
+   <slot>accept()</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>20</x>
+     <y>20</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>cancelButton</sender>
+   <signal>clicked()</signal>
+   <receiver>ClassDeleteDialog</receiver>
+   <slot>reject()</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>20</x>
+     <y>20</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+</ui>

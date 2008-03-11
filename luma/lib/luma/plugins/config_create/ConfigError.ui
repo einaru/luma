@@ -1,140 +1,134 @@
-<!DOCTYPE UI><UI version="3.3" stdsetdef="1">
-<class>ConfigError</class>
-<comment>###########################################################################
+<ui version="4.0" >
+ <author>Wido Depping</author>
+ <comment>###########################################################################
 #    Copyright (C) 2003 by Wido Depping                                      
-#    &lt;wido.depping@tu-clausthal.de&gt;                                                             
+#    &lt;wido.depping@tu-clausthal.de>                                                             
 #
 # Copyright: See COPYING file that comes with this distribution
 #
 ###########################################################################
 </comment>
-<author>Wido Depping</author>
-<widget class="QDialog">
-    <property name="name">
-        <cstring>ConfigError</cstring>
-    </property>
-    <property name="geometry">
-        <rect>
-            <x>0</x>
-            <y>0</y>
-            <width>375</width>
-            <height>263</height>
-        </rect>
-    </property>
-    <property name="caption">
-        <string>Info</string>
-    </property>
-    <grid>
-        <property name="name">
-            <cstring>unnamed</cstring>
-        </property>
-        <widget class="QLabel" row="0" column="0">
-            <property name="name">
-                <cstring>suffixIcon</cstring>
-            </property>
-            <property name="sizePolicy">
-                <sizepolicy>
-                    <hsizetype>0</hsizetype>
-                    <vsizetype>0</vsizetype>
-                    <horstretch>0</horstretch>
-                    <verstretch>0</verstretch>
-                </sizepolicy>
-            </property>
-            <property name="frameShape">
-                <enum>NoFrame</enum>
-            </property>
-            <property name="frameShadow">
-                <enum>Plain</enum>
-            </property>
-            <property name="pixmap">
-                <pixmap>image0</pixmap>
-            </property>
-            <property name="scaledContents">
-                <bool>true</bool>
-            </property>
-        </widget>
-        <spacer row="1" column="0">
-            <property name="name">
-                <cstring>spacer3</cstring>
-            </property>
-            <property name="orientation">
-                <enum>Vertical</enum>
-            </property>
-            <property name="sizeType">
-                <enum>Expanding</enum>
-            </property>
-            <property name="sizeHint">
-                <size>
-                    <width>41</width>
-                    <height>131</height>
-                </size>
-            </property>
-        </spacer>
-        <widget class="QLabel" row="0" column="1" rowspan="2" colspan="2">
-            <property name="name">
-                <cstring>errorLabel</cstring>
-            </property>
-            <property name="text">
-                <string></string>
-            </property>
-        </widget>
-        <widget class="QPushButton" row="3" column="2">
-            <property name="name">
-                <cstring>pushButton6</cstring>
-            </property>
-            <property name="text">
-                <string>&amp;Ok</string>
-                <comment>DO NOT TRANSLATE</comment>
-            </property>
-            <property name="accel">
-                <string>Alt+O</string>
-            </property>
-        </widget>
-        <spacer row="3" column="0" rowspan="1" colspan="2">
-            <property name="name">
-                <cstring>spacer2</cstring>
-            </property>
-            <property name="orientation">
-                <enum>Horizontal</enum>
-            </property>
-            <property name="sizeType">
-                <enum>Expanding</enum>
-            </property>
-            <property name="sizeHint">
-                <size>
-                    <width>261</width>
-                    <height>31</height>
-                </size>
-            </property>
-        </spacer>
-        <widget class="Line" row="2" column="0" rowspan="1" colspan="3">
-            <property name="name">
-                <cstring>line1</cstring>
-            </property>
-            <property name="frameShape">
-                <enum>HLine</enum>
-            </property>
-            <property name="frameShadow">
-                <enum>Sunken</enum>
-            </property>
-            <property name="orientation">
-                <enum>Horizontal</enum>
-            </property>
-        </widget>
-    </grid>
-</widget>
-<images>
-    <image name="image0">
-        <data format="PNG" length="1967">89504e470d0a1a0a0000000d4948445200000040000000400806000000aa6971de0000077649444154789ce55b5d68135d1a7e263fd3aa38a9d5b6d28d2b6ea108e29ac58beaa942bf0baf6cc52b2f3688f9eef6c2452f14960f2ffcf86091bd68f12a8b42113eba57cb16bd15447725cad63fcc0ac15a4da9ad8a8999a64d673a93e4ec45987c496626f377a6d5dd075e7238677edee739ef7bcecc99132e954ae1ff19a1cd76c04ffc8e23b493af950b45a0fbbb5a39954a71da3181cd706ca3b0e528b0aed4ca3b04e0e79f6a654208d58ef99f160000eefcf397f26f7ea56fffa652a0b1e780e65036422a95e2082174fd31c08701a5ac3fe69b1180104223910846474701004f9e3c012184fefc1370e604100a028100202b80a202c55560eb1640fd77ad0d00fef3467fdd6f4200ade793c9645d000078f8f02106cabf071f16eb759d7ccd846dcdd7b8f300f8e35ff4d7f65580d690b58251481342e8e1c38771f0e041ddf1dffd761e9d9f6ae4bfff11b87507f8eb0fc0810120c0d52262750d48fe1df8c73de37b3215a091f0d0d0102e5ebc8843870e61cf9e3d8846a38846a3505515f97c1e2f5ebc40369b452a95c2ddbb77b1b2b26298e33b77eec4a54b9750ad5671ebd6ada6080817ff0600a86c398efde42470e74ff8c39fadfd6c149a63f120a4391e8bc570e1c2059c3e7d1a914804d56a15e57219aaaa36fd1a95a7a7a771e3c60d7cf8f0a1e9da57af5e457777374451c4a3478f70ead429c4e3710040507a8890f42fa8dbe3a8867f8db367cfe2f6eddbb6c97b1640239e482470eedc398c8c8c80528a6ab56a48b69d00e57219854201d7ae5d83e6d3d8d818060707218a2272b91c1e3c78005114914c26eb2234229d4e637878d894ac115c09a0111f1919c1c4c40462b11828a5a8542a6d09daad9b9898c09b376f70e4c81188a208511491c964b0baba5af761747414c964129148a4c9374110fc1580104277ecd881f1f17124128926e26e7adda86e797919972f5f465f5f1f445144b158c4fafabace176d5a3c79f224bababa30353585a9a9294702381a04092134168b617a7a1a7bf7ee754dd0aa9de338f4f5f5616e6e0e9452506a3c992c2f2feb483b856d01082134914860727212954a05b22cbb2668e79c13274e607676d63531bbb0250021848e8f8fe3fcf9f33ae2ac7abdb5bdbfbf1ffbf7ef472693d95c010821f4e6cd9b88c7e39024c9b7b06facd36cd7ae5dae89d9c97f4b010821341e8fe3cc99339024891941b3b2519d9fe4db0a4008a1c3c3c3b87efdbaaee7fdecf5d676bf61288036d54d4e4efa1af666bdae9545513472cf7f0100e0ca952be079de93006e4837d6e5f37957a40821d4f5184008a1434343181b1bb3cc7ba7a2542a15dbe7148bc5cd8b006dc4dfa85e373affddbb779e88d98d8226010821b4bfbf1f84102602980d6c76ea161717c171bff86ff634e815ba08387efc78dbbc77339d391572717111b22c37f9a589e144083b51a013e0c081038e05d07ecd72dc8900b22c636161c1d4613742d812407bc58d46a3b6e67db723bbd535b3d92c2a958aa5e31cc731114117018220d816c02969abf642a18062b168db7916d1a01340236f35b0b17e302a954af8f8f1a36b2266b01a074c053072ba31c7594e919224e1f3e7cfae497a49079d002f5fbec4be7dfb984d6756ed9224a1502878ce67b722e80478fefc3976efdecd643ab36a5f5b5b6b5ae7fb2a0478faf4298e1e3d8a6030c84400b3ba52a904455198100f0402080683f5b5494f02c8b28c7bf7eee1d8b163be84bda228902409d56a951971cdb4ef109e04008067cf9e411004dd58e045005555ebcb695ed14a5c334a294aa592770100e0fefdfbc8e7f3181c1cf414f68aa2607d7d9d09718ee30c89375aa15060230050fbd232373787818101f4f4f4d8ee758db4a2289e431d300ef7560b85420806838eaf6db928bab6b686743a8d502884eddbb7a3b3b3133ccfd73f88542a15288a024551ea02b0200dd823de6a4e61fbbb40b95c6e0aafc657553fe094b836083a85abcfe37e92b793e766264992e3fb7d353b44dc84bb96f79a7df9f2c5f17d375d0037c4cdcccd53e5a60ac08a78301884aaaa86afd2562b4201bb076a6091ff1cc721140a211c0e33b35c2ee7ca970d8d0016e1de9af7dae8fffefd7b573e6d98008dc48d4878b1b76fdf1a3e69da89eaa6adb2764e70faca190804100e87c1f37cdd5886beaaaa989f9f77e453237c8b002ff3b9139b999981aabaff88aadb2cede4d3723be22c7bb9317a1a23687676d6f4fb2193fd014ed16e806395f7da3d16161698ec1e31dd2566b5cdb5713a64399fdbb1f9f979cccccc98fac66483841d6c549efb45bead00da5e7bb3764a29789edf50f2af5ebd423a9d76c2cfbd0076445055151d1d1da6f9ed36ef5b534a96653c7efc189f3e7d6a4bc6cd006e6ba7683b1142a110babbbb110e87990e729abd7efd1ae974da7205d9edec657bab6c3b110281007a7b7bb16ddb3666e19ecd66914ea76dbde17999ba1ded15b69a19b66edd8adede5e0882e08ab42ccb585a5a422693b1bdbaebf9b9c5cd6669ab63789e474f4f0fbababa2008023a3a3a0c43bd5aad62656505b95c0e4b4b4b8e5674bd12d7e0faff024eff0ec312acc8038cfe30b15160495c03d3bfccf8053f886b60224023588ae127710dcc0568855d413682ac117c17e06bc77f014ccd2feb97188fba0000000049454e44ae426082</data>
-    </image>
-</images>
-<connections>
-    <connection>
-        <sender>pushButton6</sender>
-        <signal>clicked()</signal>
-        <receiver>ConfigError</receiver>
-        <slot>close()</slot>
-    </connection>
-</connections>
-<layoutdefaults spacing="6" margin="11"/>
-</UI>
+ <class>ConfigError</class>
+ <widget class="QDialog" name="ConfigError" >
+  <property name="geometry" >
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>375</width>
+    <height>263</height>
+   </rect>
+  </property>
+  <property name="windowTitle" >
+   <string>Info</string>
+  </property>
+  <layout class="QGridLayout" >
+   <item row="0" column="0" >
+    <widget class="QLabel" name="suffixIcon" >
+     <property name="sizePolicy" >
+      <sizepolicy vsizetype="Fixed" hsizetype="Fixed" >
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="frameShape" >
+      <enum>QFrame::NoFrame</enum>
+     </property>
+     <property name="frameShadow" >
+      <enum>QFrame::Plain</enum>
+     </property>
+     <property name="pixmap" >
+      <pixmap/>
+     </property>
+     <property name="scaledContents" >
+      <bool>true</bool>
+     </property>
+     <property name="wordWrap" >
+      <bool>false</bool>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="0" >
+    <spacer>
+     <property name="orientation" >
+      <enum>Qt::Vertical</enum>
+     </property>
+     <property name="sizeType" >
+      <enum>QSizePolicy::Expanding</enum>
+     </property>
+     <property name="sizeHint" >
+      <size>
+       <width>41</width>
+       <height>131</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+   <item rowspan="2" row="0" column="1" colspan="2" >
+    <widget class="QLabel" name="errorLabel" >
+     <property name="text" >
+      <string/>
+     </property>
+     <property name="wordWrap" >
+      <bool>false</bool>
+     </property>
+    </widget>
+   </item>
+   <item row="3" column="2" >
+    <widget class="QPushButton" name="pushButton6" >
+     <property name="text" >
+      <string comment="DO NOT TRANSLATE" >&amp;Ok</string>
+     </property>
+     <property name="shortcut" >
+      <string>Alt+O</string>
+     </property>
+    </widget>
+   </item>
+   <item row="3" column="0" colspan="2" >
+    <spacer>
+     <property name="orientation" >
+      <enum>Qt::Horizontal</enum>
+     </property>
+     <property name="sizeType" >
+      <enum>QSizePolicy::Expanding</enum>
+     </property>
+     <property name="sizeHint" >
+      <size>
+       <width>261</width>
+       <height>31</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+   <item row="2" column="0" colspan="3" >
+    <widget class="Line" name="line1" >
+     <property name="frameShape" >
+      <enum>QFrame::HLine</enum>
+     </property>
+     <property name="frameShadow" >
+      <enum>QFrame::Sunken</enum>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <layoutdefault spacing="6" margin="11" />
+ <resources/>
+ <connections>
+  <connection>
+   <sender>pushButton6</sender>
+   <signal>clicked()</signal>
+   <receiver>ConfigError</receiver>
+   <slot>close()</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>20</x>
+     <y>20</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+</ui>

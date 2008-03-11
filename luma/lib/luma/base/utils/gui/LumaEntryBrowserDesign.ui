@@ -1,407 +1,484 @@
-<!DOCTYPE UI><UI version="3.3" stdsetdef="1">
-<class>LumaEntryBrowserDesign</class>
-<widget class="QWidget">
-    <property name="name">
-        <cstring>LumaEntryBrowserDesign</cstring>
-    </property>
-    <property name="geometry">
-        <rect>
-            <x>0</x>
-            <y>0</y>
-            <width>218</width>
-            <height>508</height>
-        </rect>
-    </property>
-    <property name="caption">
-        <string>LumaIconViewDesign</string>
-    </property>
-    <grid>
-        <property name="name">
-            <cstring>unnamed</cstring>
-        </property>
-        <widget class="QPushButton" row="2" column="2">
-            <property name="name">
-                <cstring>goButton</cstring>
-            </property>
-            <property name="enabled">
-                <bool>false</bool>
-            </property>
-            <property name="text">
-                <string>&amp;Go</string>
-            </property>
-            <property name="accel">
-                <string>Alt+G</string>
-            </property>
+<ui version="4.0" >
+ <class>LumaEntryBrowserDesign</class>
+ <widget class="QWidget" name="LumaEntryBrowserDesign" >
+  <property name="geometry" >
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>218</width>
+    <height>508</height>
+   </rect>
+  </property>
+  <property name="windowTitle" >
+   <string>LumaIconViewDesign</string>
+  </property>
+  <layout class="QGridLayout" >
+   <item row="2" column="2" >
+    <widget class="QPushButton" name="goButton" >
+     <property name="enabled" >
+      <bool>false</bool>
+     </property>
+     <property name="text" >
+      <string>&amp;Go</string>
+     </property>
+     <property name="shortcut" >
+      <string>Alt+G</string>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="0" >
+    <widget class="QLabel" name="textLabel13" >
+     <property name="frameShape" >
+      <enum>QFrame::NoFrame</enum>
+     </property>
+     <property name="frameShadow" >
+      <enum>QFrame::Plain</enum>
+     </property>
+     <property name="text" >
+      <string>Filter:</string>
+     </property>
+     <property name="wordWrap" >
+      <bool>false</bool>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="1" colspan="2" >
+    <widget class="QComboBox" name="serverBox" />
+   </item>
+   <item row="0" column="0" >
+    <widget class="QLabel" name="textLabel12" >
+     <property name="text" >
+      <string>Server:</string>
+     </property>
+     <property name="wordWrap" >
+      <bool>false</bool>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="0" >
+    <widget class="QLabel" name="textLabel1" >
+     <property name="text" >
+      <string>Base DN:</string>
+     </property>
+     <property name="wordWrap" >
+      <bool>false</bool>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="1" colspan="2" >
+    <widget class="QComboBox" name="baseBox" />
+   </item>
+   <item row="2" column="1" >
+    <widget class="QLineEdit" name="searchEdit" />
+   </item>
+   <item row="6" column="0" colspan="3" >
+    <layout class="QHBoxLayout" >
+     <item>
+      <spacer>
+       <property name="orientation" >
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeType" >
+        <enum>QSizePolicy::Expanding</enum>
+       </property>
+       <property name="sizeHint" >
+        <size>
+         <width>150</width>
+         <height>21</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item>
+      <widget class="QPushButton" name="addButton" >
+       <property name="sizePolicy" >
+        <sizepolicy vsizetype="Fixed" hsizetype="Fixed" >
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="text" >
+        <string>&amp;Add...</string>
+       </property>
+       <property name="shortcut" >
+        <string>Alt+A</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="deleteButton" >
+       <property name="sizePolicy" >
+        <sizepolicy vsizetype="Fixed" hsizetype="Fixed" >
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="text" >
+        <string>&amp;Delete</string>
+       </property>
+       <property name="shortcut" >
+        <string>Alt+D</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item row="5" column="0" colspan="3" >
+    <widget class="Q3WidgetStack" name="widgetStack" >
+     <widget class="QWidget" name="WStackPage" >
+      <property name="geometry" >
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>200</width>
+        <height>169</height>
+       </rect>
+      </property>
+      <layout class="QVBoxLayout" >
+       <property name="spacing" >
+        <number>0</number>
+       </property>
+       <property name="leftMargin" >
+        <number>0</number>
+       </property>
+       <property name="topMargin" >
+        <number>0</number>
+       </property>
+       <property name="rightMargin" >
+        <number>0</number>
+       </property>
+       <property name="bottomMargin" >
+        <number>0</number>
+       </property>
+       <item>
+        <widget class="Q3IconView" name="itemIconView" >
+         <property name="resizePolicy" >
+          <enum>Q3ScrollView::AutoOneFit</enum>
+         </property>
+         <property name="gridX" >
+          <number>100</number>
+         </property>
+         <property name="gridY" >
+          <number>100</number>
+         </property>
+         <property name="resizeMode" >
+          <enum>Q3IconView::Adjust</enum>
+         </property>
+         <property name="itemsMovable" >
+          <bool>false</bool>
+         </property>
         </widget>
-        <widget class="QLabel" row="2" column="0">
-            <property name="name">
-                <cstring>textLabel13</cstring>
-            </property>
-            <property name="frameShape">
-                <enum>NoFrame</enum>
-            </property>
-            <property name="frameShadow">
-                <enum>Plain</enum>
-            </property>
-            <property name="text">
-                <string>Filter:</string>
-            </property>
+       </item>
+      </layout>
+     </widget>
+     <widget class="QWidget" name="WStackPage" >
+      <property name="geometry" >
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>100</width>
+        <height>30</height>
+       </rect>
+      </property>
+      <layout class="QVBoxLayout" >
+       <property name="leftMargin" >
+        <number>0</number>
+       </property>
+       <property name="topMargin" >
+        <number>0</number>
+       </property>
+       <property name="rightMargin" >
+        <number>0</number>
+       </property>
+       <property name="bottomMargin" >
+        <number>0</number>
+       </property>
+       <item>
+        <widget class="Q3ListView" name="itemListView" >
+         <property name="margin" >
+          <number>0</number>
+         </property>
+         <property name="resizeMode" >
+          <enum>Q3ListView::LastColumn</enum>
+         </property>
+         <column>
+          <property name="text" >
+           <string>Object</string>
+          </property>
+         </column>
         </widget>
-        <widget class="QComboBox" row="0" column="1" rowspan="1" colspan="2">
-            <property name="name">
-                <cstring>serverBox</cstring>
-            </property>
-        </widget>
-        <widget class="QLabel" row="0" column="0">
-            <property name="name">
-                <cstring>textLabel12</cstring>
-            </property>
-            <property name="text">
-                <string>Server:</string>
-            </property>
-        </widget>
-        <widget class="QLabel" row="1" column="0">
-            <property name="name">
-                <cstring>textLabel1</cstring>
-            </property>
-            <property name="text">
-                <string>Base DN:</string>
-            </property>
-        </widget>
-        <widget class="QComboBox" row="1" column="1" rowspan="1" colspan="2">
-            <property name="name">
-                <cstring>baseBox</cstring>
-            </property>
-        </widget>
-        <widget class="QLineEdit" row="2" column="1">
-            <property name="name">
-                <cstring>searchEdit</cstring>
-            </property>
-        </widget>
-        <widget class="QLayoutWidget" row="6" column="0" rowspan="1" colspan="3">
-            <property name="name">
-                <cstring>layout1</cstring>
-            </property>
-            <hbox>
-                <property name="name">
-                    <cstring>unnamed</cstring>
-                </property>
-                <spacer>
-                    <property name="name">
-                        <cstring>spacer5</cstring>
-                    </property>
-                    <property name="orientation">
-                        <enum>Horizontal</enum>
-                    </property>
-                    <property name="sizeType">
-                        <enum>Expanding</enum>
-                    </property>
-                    <property name="sizeHint">
-                        <size>
-                            <width>150</width>
-                            <height>21</height>
-                        </size>
-                    </property>
-                </spacer>
-                <widget class="QPushButton">
-                    <property name="name">
-                        <cstring>addButton</cstring>
-                    </property>
-                    <property name="sizePolicy">
-                        <sizepolicy>
-                            <hsizetype>0</hsizetype>
-                            <vsizetype>0</vsizetype>
-                            <horstretch>0</horstretch>
-                            <verstretch>0</verstretch>
-                        </sizepolicy>
-                    </property>
-                    <property name="text">
-                        <string>&amp;Add...</string>
-                    </property>
-                    <property name="accel">
-                        <string>Alt+A</string>
-                    </property>
-                </widget>
-                <widget class="QPushButton">
-                    <property name="name">
-                        <cstring>deleteButton</cstring>
-                    </property>
-                    <property name="sizePolicy">
-                        <sizepolicy>
-                            <hsizetype>0</hsizetype>
-                            <vsizetype>0</vsizetype>
-                            <horstretch>0</horstretch>
-                            <verstretch>0</verstretch>
-                        </sizepolicy>
-                    </property>
-                    <property name="text">
-                        <string>&amp;Delete</string>
-                    </property>
-                    <property name="accel">
-                        <string>Alt+D</string>
-                    </property>
-                </widget>
-            </hbox>
-        </widget>
-        <widget class="QWidgetStack" row="5" column="0" rowspan="1" colspan="3">
-            <property name="name">
-                <cstring>widgetStack</cstring>
-            </property>
-            <widget class="QWidget">
-                <property name="name">
-                    <cstring>WStackPage</cstring>
-                </property>
-                <attribute name="id">
-                    <number>0</number>
-                </attribute>
-                <vbox>
-                    <property name="name">
-                        <cstring>unnamed</cstring>
-                    </property>
-                    <property name="margin">
-                        <number>0</number>
-                    </property>
-                    <property name="spacing">
-                        <number>0</number>
-                    </property>
-                    <widget class="QIconView">
-                        <property name="name">
-                            <cstring>itemIconView</cstring>
-                        </property>
-                        <property name="resizePolicy">
-                            <enum>AutoOneFit</enum>
-                        </property>
-                        <property name="gridX">
-                            <number>100</number>
-                        </property>
-                        <property name="gridY">
-                            <number>100</number>
-                        </property>
-                        <property name="resizeMode">
-                            <enum>Adjust</enum>
-                        </property>
-                        <property name="itemsMovable">
-                            <bool>false</bool>
-                        </property>
-                    </widget>
-                </vbox>
-            </widget>
-            <widget class="QWidget">
-                <property name="name">
-                    <cstring>WStackPage</cstring>
-                </property>
-                <attribute name="id">
-                    <number>1</number>
-                </attribute>
-                <vbox>
-                    <property name="name">
-                        <cstring>unnamed</cstring>
-                    </property>
-                    <property name="margin">
-                        <number>0</number>
-                    </property>
-                    <widget class="QListView">
-                        <column>
-                            <property name="text">
-                                <string>Object</string>
-                            </property>
-                            <property name="clickable">
-                                <bool>true</bool>
-                            </property>
-                            <property name="resizable">
-                                <bool>true</bool>
-                            </property>
-                        </column>
-                        <property name="name">
-                            <cstring>itemListView</cstring>
-                        </property>
-                        <property name="margin">
-                            <number>0</number>
-                        </property>
-                        <property name="resizeMode">
-                            <enum>LastColumn</enum>
-                        </property>
-                    </widget>
-                </vbox>
-            </widget>
-        </widget>
-        <widget class="Line" row="3" column="0" rowspan="1" colspan="3">
-            <property name="name">
-                <cstring>line1</cstring>
-            </property>
-            <property name="frameShape">
-                <enum>HLine</enum>
-            </property>
-            <property name="frameShadow">
-                <enum>Sunken</enum>
-            </property>
-            <property name="orientation">
-                <enum>Horizontal</enum>
-            </property>
-        </widget>
-        <widget class="QLayoutWidget" row="4" column="0" rowspan="1" colspan="3">
-            <property name="name">
-                <cstring>layout4</cstring>
-            </property>
-            <hbox>
-                <property name="name">
-                    <cstring>unnamed</cstring>
-                </property>
-                <widget class="QToolButton">
-                    <property name="name">
-                        <cstring>listViewButton</cstring>
-                    </property>
-                    <property name="sizePolicy">
-                        <sizepolicy>
-                            <hsizetype>0</hsizetype>
-                            <vsizetype>0</vsizetype>
-                            <horstretch>0</horstretch>
-                            <verstretch>0</verstretch>
-                        </sizepolicy>
-                    </property>
-                    <property name="minimumSize">
-                        <size>
-                            <width>24</width>
-                            <height>0</height>
-                        </size>
-                    </property>
-                    <property name="text">
-                        <string>...</string>
-                        <comment>DO NOT TRANSLATE</comment>
-                    </property>
-                    <property name="autoRaise">
-                        <bool>true</bool>
-                    </property>
-                </widget>
-                <widget class="QToolButton">
-                    <property name="name">
-                        <cstring>iconViewButton</cstring>
-                    </property>
-                    <property name="sizePolicy">
-                        <sizepolicy>
-                            <hsizetype>0</hsizetype>
-                            <vsizetype>0</vsizetype>
-                            <horstretch>0</horstretch>
-                            <verstretch>0</verstretch>
-                        </sizepolicy>
-                    </property>
-                    <property name="minimumSize">
-                        <size>
-                            <width>24</width>
-                            <height>24</height>
-                        </size>
-                    </property>
-                    <property name="text">
-                        <string>...</string>
-                        <comment>DO NOT TRANSLATE</comment>
-                    </property>
-                    <property name="autoRaise">
-                        <bool>true</bool>
-                    </property>
-                </widget>
-                <spacer>
-                    <property name="name">
-                        <cstring>spacer2</cstring>
-                    </property>
-                    <property name="orientation">
-                        <enum>Horizontal</enum>
-                    </property>
-                    <property name="sizeType">
-                        <enum>Expanding</enum>
-                    </property>
-                    <property name="sizeHint">
-                        <size>
-                            <width>268</width>
-                            <height>31</height>
-                        </size>
-                    </property>
-                </spacer>
-            </hbox>
-        </widget>
-    </grid>
-</widget>
-<connections>
-    <connection>
-        <sender>serverBox</sender>
-        <signal>activated(const QString&amp;)</signal>
-        <receiver>LumaEntryBrowserDesign</receiver>
-        <slot>serverChanged()</slot>
-    </connection>
-    <connection>
-        <sender>searchEdit</sender>
-        <signal>returnPressed()</signal>
-        <receiver>LumaEntryBrowserDesign</receiver>
-        <slot>search()</slot>
-    </connection>
-    <connection>
-        <sender>goButton</sender>
-        <signal>clicked()</signal>
-        <receiver>LumaEntryBrowserDesign</receiver>
-        <slot>search()</slot>
-    </connection>
-    <connection>
-        <sender>itemIconView</sender>
-        <signal>selectionChanged(QIconViewItem*)</signal>
-        <receiver>LumaEntryBrowserDesign</receiver>
-        <slot>iconClicked()</slot>
-    </connection>
-    <connection>
-        <sender>deleteButton</sender>
-        <signal>clicked()</signal>
-        <receiver>LumaEntryBrowserDesign</receiver>
-        <slot>deleteItem()</slot>
-    </connection>
-    <connection>
-        <sender>addButton</sender>
-        <signal>clicked()</signal>
-        <receiver>LumaEntryBrowserDesign</receiver>
-        <slot>addItem()</slot>
-    </connection>
-    <connection>
-        <sender>listViewButton</sender>
-        <signal>clicked()</signal>
-        <receiver>LumaEntryBrowserDesign</receiver>
-        <slot>raiseListView()</slot>
-    </connection>
-    <connection>
-        <sender>iconViewButton</sender>
-        <signal>clicked()</signal>
-        <receiver>LumaEntryBrowserDesign</receiver>
-        <slot>raiseIconView()</slot>
-    </connection>
-    <connection>
-        <sender>itemListView</sender>
-        <signal>selectionChanged(QListViewItem*)</signal>
-        <receiver>LumaEntryBrowserDesign</receiver>
-        <slot>listItemClicked()</slot>
-    </connection>
-    <connection>
-        <sender>baseBox</sender>
-        <signal>activated(const QString&amp;)</signal>
-        <receiver>LumaEntryBrowserDesign</receiver>
-        <slot>baseChanged()</slot>
-    </connection>
-</connections>
-<tabstops>
-    <tabstop>serverBox</tabstop>
-    <tabstop>baseBox</tabstop>
-    <tabstop>searchEdit</tabstop>
-    <tabstop>goButton</tabstop>
-    <tabstop>itemListView</tabstop>
-    <tabstop>addButton</tabstop>
-    <tabstop>deleteButton</tabstop>
-    <tabstop>itemIconView</tabstop>
-</tabstops>
-<slots>
-    <slot>serverChanged()</slot>
-    <slot>search()</slot>
-    <slot>iconClicked()</slot>
-    <slot>deleteItem()</slot>
-    <slot>addItem()</slot>
-    <slot>raiseListView()</slot>
-    <slot>raiseIconView()</slot>
-    <slot>listItemClicked()</slot>
-    <slot>baseChanged()</slot>
-</slots>
-<layoutdefaults spacing="6" margin="11"/>
-</UI>
+       </item>
+      </layout>
+     </widget>
+    </widget>
+   </item>
+   <item row="3" column="0" colspan="3" >
+    <widget class="Line" name="line1" >
+     <property name="frameShape" >
+      <enum>QFrame::HLine</enum>
+     </property>
+     <property name="frameShadow" >
+      <enum>QFrame::Sunken</enum>
+     </property>
+    </widget>
+   </item>
+   <item row="4" column="0" colspan="3" >
+    <layout class="QHBoxLayout" >
+     <item>
+      <widget class="QToolButton" name="listViewButton" >
+       <property name="sizePolicy" >
+        <sizepolicy vsizetype="Fixed" hsizetype="Fixed" >
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="minimumSize" >
+        <size>
+         <width>24</width>
+         <height>0</height>
+        </size>
+       </property>
+       <property name="text" >
+        <string comment="DO NOT TRANSLATE" >...</string>
+       </property>
+       <property name="autoRaise" >
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QToolButton" name="iconViewButton" >
+       <property name="sizePolicy" >
+        <sizepolicy vsizetype="Fixed" hsizetype="Fixed" >
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="minimumSize" >
+        <size>
+         <width>24</width>
+         <height>24</height>
+        </size>
+       </property>
+       <property name="text" >
+        <string comment="DO NOT TRANSLATE" >...</string>
+       </property>
+       <property name="autoRaise" >
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <spacer>
+       <property name="orientation" >
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeType" >
+        <enum>QSizePolicy::Expanding</enum>
+       </property>
+       <property name="sizeHint" >
+        <size>
+         <width>268</width>
+         <height>31</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+    </layout>
+   </item>
+  </layout>
+ </widget>
+ <layoutdefault spacing="6" margin="11" />
+ <pixmapfunction>qPixmapFromMimeSource</pixmapfunction>
+ <customwidgets>
+  <customwidget>
+   <class>Q3IconView</class>
+   <extends>Q3Frame</extends>
+   <header>q3iconview.h</header>
+  </customwidget>
+  <customwidget>
+   <class>Q3WidgetStack</class>
+   <extends>Q3WidgetStack</extends>
+   <header>q3widgetstack.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>Q3ListView</class>
+   <extends>Q3Frame</extends>
+   <header>q3listview.h</header>
+  </customwidget>
+ </customwidgets>
+ <tabstops>
+  <tabstop>serverBox</tabstop>
+  <tabstop>baseBox</tabstop>
+  <tabstop>searchEdit</tabstop>
+  <tabstop>goButton</tabstop>
+  <tabstop>itemListView</tabstop>
+  <tabstop>addButton</tabstop>
+  <tabstop>deleteButton</tabstop>
+  <tabstop>itemIconView</tabstop>
+ </tabstops>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>serverBox</sender>
+   <signal>activated(QString)</signal>
+   <receiver>LumaEntryBrowserDesign</receiver>
+   <slot>serverChanged()</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>20</x>
+     <y>20</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>searchEdit</sender>
+   <signal>returnPressed()</signal>
+   <receiver>LumaEntryBrowserDesign</receiver>
+   <slot>search()</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>20</x>
+     <y>20</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>goButton</sender>
+   <signal>clicked()</signal>
+   <receiver>LumaEntryBrowserDesign</receiver>
+   <slot>search()</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>20</x>
+     <y>20</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>itemIconView</sender>
+   <signal>selectionChanged(Q3IconViewItem*)</signal>
+   <receiver>LumaEntryBrowserDesign</receiver>
+   <slot>iconClicked()</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>20</x>
+     <y>20</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>deleteButton</sender>
+   <signal>clicked()</signal>
+   <receiver>LumaEntryBrowserDesign</receiver>
+   <slot>deleteItem()</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>20</x>
+     <y>20</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>addButton</sender>
+   <signal>clicked()</signal>
+   <receiver>LumaEntryBrowserDesign</receiver>
+   <slot>addItem()</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>20</x>
+     <y>20</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>listViewButton</sender>
+   <signal>clicked()</signal>
+   <receiver>LumaEntryBrowserDesign</receiver>
+   <slot>raiseListView()</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>20</x>
+     <y>20</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>iconViewButton</sender>
+   <signal>clicked()</signal>
+   <receiver>LumaEntryBrowserDesign</receiver>
+   <slot>raiseIconView()</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>20</x>
+     <y>20</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>itemListView</sender>
+   <signal>selectionChanged(Q3ListViewItem*)</signal>
+   <receiver>LumaEntryBrowserDesign</receiver>
+   <slot>listItemClicked()</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>20</x>
+     <y>20</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>baseBox</sender>
+   <signal>activated(QString)</signal>
+   <receiver>LumaEntryBrowserDesign</receiver>
+   <slot>baseChanged()</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>20</x>
+     <y>20</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+</ui>

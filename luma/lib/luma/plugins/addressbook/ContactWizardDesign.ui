@@ -1,143 +1,150 @@
-<!DOCTYPE UI><UI version="3.3" stdsetdef="1">
-<class>ContactWizardDesign</class>
-<widget class="QWizard">
-    <property name="name">
-        <cstring>ContactWizardDesign</cstring>
+<ui version="4.0" >
+ <class>ContactWizardDesign</class>
+ <widget class="Q3Wizard" name="ContactWizardDesign" >
+  <property name="geometry" >
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>613</width>
+    <height>486</height>
+   </rect>
+  </property>
+  <property name="caption" stdset="0" >
+   <string>Add Contact</string>
+  </property>
+  <widget class="QWidget" name="WizardPage" >
+   <layout class="QGridLayout" >
+    <item row="0" column="0" >
+     <widget class="QLabel" name="locationLabel" >
+      <property name="sizePolicy" >
+       <sizepolicy vsizetype="Fixed" hsizetype="Fixed" >
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="minimumSize" >
+       <size>
+        <width>64</width>
+        <height>64</height>
+       </size>
+      </property>
+      <property name="text" >
+       <string comment="DO NOT TRANSLATE" >LOC</string>
+      </property>
+      <property name="wordWrap" >
+       <bool>false</bool>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="0" colspan="3" >
+     <widget class="Line" name="line1" >
+      <property name="frameShape" >
+       <enum>QFrame::HLine</enum>
+      </property>
+      <property name="frameShadow" >
+       <enum>QFrame::Sunken</enum>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="1" colspan="2" >
+     <widget class="QLabel" name="textLabel2" >
+      <property name="sizePolicy" >
+       <sizepolicy vsizetype="Minimum" hsizetype="Preferred" >
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="text" >
+       <string>Please select a location where the new contact should be stored.</string>
+      </property>
+      <property name="wordWrap" >
+       <bool>false</bool>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="0" colspan="3" >
+     <widget class="Q3Frame" name="browserFrame" >
+      <property name="frameShape" >
+       <enum>QFrame::NoFrame</enum>
+      </property>
+      <property name="frameShadow" >
+       <enum>QFrame::Plain</enum>
+      </property>
+     </widget>
+    </item>
+    <item row="3" column="2" >
+     <widget class="QLineEdit" name="locationEdit" >
+      <property name="readOnly" >
+       <bool>true</bool>
+      </property>
+     </widget>
+    </item>
+    <item row="3" column="0" colspan="2" >
+     <widget class="QLabel" name="textLabel3" >
+      <property name="text" >
+       <string>Location:</string>
+      </property>
+      <property name="wordWrap" >
+       <bool>false</bool>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QWidget" name="WizardPage" >
+   <property name="geometry" >
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>100</width>
+     <height>30</height>
+    </rect>
+   </property>
+   <layout class="QVBoxLayout" >
+    <property name="spacing" >
+     <number>0</number>
     </property>
-    <property name="geometry">
-        <rect>
-            <x>0</x>
-            <y>0</y>
-            <width>613</width>
-            <height>486</height>
-        </rect>
+    <property name="leftMargin" >
+     <number>0</number>
     </property>
-    <property name="caption">
-        <string>Add Contact</string>
+    <property name="topMargin" >
+     <number>0</number>
     </property>
-    <widget class="QWidget">
-        <property name="name">
-            <cstring>WizardPage</cstring>
-        </property>
-        <attribute name="title">
-            <string>Select location</string>
-        </attribute>
-        <grid>
-            <property name="name">
-                <cstring>unnamed</cstring>
-            </property>
-            <widget class="QLabel" row="0" column="0">
-                <property name="name">
-                    <cstring>locationLabel</cstring>
-                </property>
-                <property name="sizePolicy">
-                    <sizepolicy>
-                        <hsizetype>0</hsizetype>
-                        <vsizetype>0</vsizetype>
-                        <horstretch>0</horstretch>
-                        <verstretch>0</verstretch>
-                    </sizepolicy>
-                </property>
-                <property name="minimumSize">
-                    <size>
-                        <width>64</width>
-                        <height>64</height>
-                    </size>
-                </property>
-                <property name="text">
-                    <string>LOC</string>
-                    <comment>DO NOT TRANSLATE</comment>
-                </property>
-            </widget>
-            <widget class="Line" row="1" column="0" rowspan="1" colspan="3">
-                <property name="name">
-                    <cstring>line1</cstring>
-                </property>
-                <property name="frameShape">
-                    <enum>HLine</enum>
-                </property>
-                <property name="frameShadow">
-                    <enum>Sunken</enum>
-                </property>
-                <property name="orientation">
-                    <enum>Horizontal</enum>
-                </property>
-            </widget>
-            <widget class="QLabel" row="0" column="1" rowspan="1" colspan="2">
-                <property name="name">
-                    <cstring>textLabel2</cstring>
-                </property>
-                <property name="sizePolicy">
-                    <sizepolicy>
-                        <hsizetype>5</hsizetype>
-                        <vsizetype>1</vsizetype>
-                        <horstretch>0</horstretch>
-                        <verstretch>0</verstretch>
-                    </sizepolicy>
-                </property>
-                <property name="text">
-                    <string>Please select a location where the new contact should be stored.</string>
-                </property>
-            </widget>
-            <widget class="QFrame" row="2" column="0" rowspan="1" colspan="3">
-                <property name="name">
-                    <cstring>browserFrame</cstring>
-                </property>
-                <property name="frameShape">
-                    <enum>NoFrame</enum>
-                </property>
-                <property name="frameShadow">
-                    <enum>Raised</enum>
-                </property>
-            </widget>
-            <widget class="QLineEdit" row="3" column="2">
-                <property name="name">
-                    <cstring>locationEdit</cstring>
-                </property>
-                <property name="readOnly">
-                    <bool>true</bool>
-                </property>
-            </widget>
-            <widget class="QLabel" row="3" column="0" rowspan="1" colspan="2">
-                <property name="name">
-                    <cstring>textLabel3</cstring>
-                </property>
-                <property name="text">
-                    <string>Location:</string>
-                </property>
-            </widget>
-        </grid>
-    </widget>
-    <widget class="QWidget">
-        <property name="name">
-            <cstring>WizardPage</cstring>
-        </property>
-        <attribute name="title">
-            <string>Fill contact data</string>
-        </attribute>
-        <vbox>
-            <property name="name">
-                <cstring>unnamed</cstring>
-            </property>
-            <property name="margin">
-                <number>0</number>
-            </property>
-            <property name="spacing">
-                <number>0</number>
-            </property>
-            <widget class="QFrame">
-                <property name="name">
-                    <cstring>contactFrame</cstring>
-                </property>
-                <property name="frameShape">
-                    <enum>NoFrame</enum>
-                </property>
-                <property name="frameShadow">
-                    <enum>Plain</enum>
-                </property>
-            </widget>
-        </vbox>
-    </widget>
-</widget>
-<layoutdefaults spacing="6" margin="11"/>
-</UI>
+    <property name="rightMargin" >
+     <number>0</number>
+    </property>
+    <property name="bottomMargin" >
+     <number>0</number>
+    </property>
+    <item>
+     <widget class="Q3Frame" name="contactFrame" >
+      <property name="frameShape" >
+       <enum>QFrame::NoFrame</enum>
+      </property>
+      <property name="frameShadow" >
+       <enum>QFrame::Plain</enum>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+ </widget>
+ <layoutdefault spacing="6" margin="11" />
+ <pixmapfunction>qPixmapFromMimeSource</pixmapfunction>
+ <customwidgets>
+  <customwidget>
+   <class>Q3Frame</class>
+   <extends>QFrame</extends>
+   <header>Qt3Support/Q3Frame</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>Q3Wizard</class>
+   <extends>QDialog</extends>
+   <header>q3wizard.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
+ <resources/>
+ <connections/>
+</ui>

@@ -1,63 +1,71 @@
-<!DOCTYPE UI><UI version="3.3" stdsetdef="1">
-<class>SearchResultViewDesign</class>
-<comment>###########################################################################
+<ui version="4.0" >
+ <author>Wido Depping</author>
+ <comment>###########################################################################
 #    Copyright (C) 2003 by Wido Depping                                      
-#    &lt;wido.depping@tu-clausthal.de&gt;                                                             
+#    &lt;wido.depping@tu-clausthal.de>                                                             
 #
 # Copyright: See COPYING file that comes with this distribution
 #
 ###########################################################################
 </comment>
-<author>Wido Depping</author>
-<widget class="QWidget">
-    <property name="name">
-        <cstring>SearchResultViewDesign</cstring>
-    </property>
-    <property name="geometry">
-        <rect>
-            <x>0</x>
-            <y>0</y>
-            <width>600</width>
-            <height>484</height>
-        </rect>
-    </property>
-    <property name="caption">
-        <string>SearchResultViewDesign</string>
-    </property>
-    <grid>
-        <property name="name">
-            <cstring>unnamed</cstring>
-        </property>
-        <widget class="QListView" row="0" column="0">
-            <property name="name">
-                <cstring>resultListView</cstring>
-            </property>
-            <property name="selectionMode">
-                <enum>Extended</enum>
-            </property>
-            <property name="allColumnsShowFocus">
-                <bool>true</bool>
-            </property>
-            <property name="showToolTips">
-                <bool>false</bool>
-            </property>
-            <property name="resizeMode">
-                <enum>AllColumns</enum>
-            </property>
-        </widget>
-    </grid>
-</widget>
-<connections>
-    <connection>
-        <sender>resultListView</sender>
-        <signal>doubleClicked(QListViewItem*)</signal>
-        <receiver>SearchResultViewDesign</receiver>
-        <slot>showEntry()</slot>
-    </connection>
-</connections>
-<slots>
-    <slot>showEntry()</slot>
-    <slot>setResult()</slot>
-</slots>
-<layoutdefaults spacing="6" margin="11"/>
-</UI>
+ <class>SearchResultViewDesign</class>
+ <widget class="QWidget" name="SearchResultViewDesign" >
+  <property name="geometry" >
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>600</width>
+    <height>484</height>
+   </rect>
+  </property>
+  <property name="windowTitle" >
+   <string>SearchResultViewDesign</string>
+  </property>
+  <layout class="QGridLayout" >
+   <item row="0" column="0" >
+    <widget class="Q3ListView" name="resultListView" >
+     <property name="selectionMode" >
+      <enum>Q3ListView::Extended</enum>
+     </property>
+     <property name="allColumnsShowFocus" >
+      <bool>true</bool>
+     </property>
+     <property name="showToolTips" >
+      <bool>false</bool>
+     </property>
+     <property name="resizeMode" >
+      <enum>Q3ListView::AllColumns</enum>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <layoutdefault spacing="6" margin="11" />
+ <pixmapfunction>qPixmapFromMimeSource</pixmapfunction>
+ <customwidgets>
+  <customwidget>
+   <class>Q3ListView</class>
+   <extends>Q3Frame</extends>
+   <header>q3listview.h</header>
+  </customwidget>
+ </customwidgets>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>resultListView</sender>
+   <signal>doubleClicked(Q3ListViewItem*)</signal>
+   <receiver>SearchResultViewDesign</receiver>
+   <slot>showEntry()</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>20</x>
+     <y>20</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+</ui>
