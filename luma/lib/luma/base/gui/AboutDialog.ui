@@ -66,7 +66,7 @@ http://luma.sourceforge.net
       </attribute>
       <layout class="QVBoxLayout" >
        <item>
-        <widget class="Q3TextBrowser" name="textBrowser4" >
+        <widget class="QTextBrowser" name="textBrowser4" >
          <property name="text" >
           <string comment="DO NOT TRANSLATE" >Wido Depping&lt;br>
 &lt;blockquote>widod@users.sourceforge.net&lt;/blockquote></string>
@@ -81,7 +81,7 @@ http://luma.sourceforge.net
       </attribute>
       <layout class="QVBoxLayout" >
        <item>
-        <widget class="Q3TextBrowser" name="textBrowser5" >
+        <widget class="QTextBrowser" name="textBrowser5" >
          <property name="text" >
           <string comment="DO NOT TRANSLATE" >This program is distributed under the terms of the GPL v2.
 
@@ -377,10 +377,7 @@ POSSIBILITY OF SUCH DAMAGES.
       </attribute>
       <layout class="QGridLayout" >
        <item row="0" column="0" >
-        <widget class="Q3TextBrowser" name="textBrowser4_2" >
-         <property name="textFormat" >
-          <enum>Qt::PlainText</enum>
-         </property>
+        <widget class="QTextBrowser" name="textBrowser4_2" >
          <property name="text" >
           <string comment="DO NOT TRANSLATE" >
 Vegar Westerlund
@@ -464,13 +461,6 @@ Luma logo</string>
  </widget>
  <layoutdefault spacing="6" margin="11" />
  <pixmapfunction>qPixmapFromMimeSource</pixmapfunction>
- <customwidgets>
-  <customwidget>
-   <class>Q3TextBrowser</class>
-   <extends>Q3TextEdit</extends>
-   <header>Qt3Support/Q3TextBrowser</header>
-  </customwidget>
- </customwidgets>
  <resources/>
  <connections>
   <connection>
