@@ -15,6 +15,7 @@ import traceback
 import threading
 import time
 import StringIO
+from PyQt4 import QtCore
 from PyQt4.QtGui import *
 
 import environment
@@ -36,11 +37,10 @@ def startApplication():
     splash = QSplashScreen(logoPixmap)
     splash.show()
     
-    gui = MainWin(None)
-    QObject.connect(app, SIGNAL('lastWindowClosed()'), gui.quitApplication)
+    gui = MainWin()
+    QtCore.QObject.connect(app, QtCore.SIGNAL('lastWindowClosed()'), gui.quitApplication)
     
     
-    app.setMainWidget(gui)
     gui.loadPlugins(splash)
     gui.show()
     
@@ -49,7 +49,7 @@ def startApplication():
     
     sys.excepthook = unhandledException
     
-    app.exec_loop()
+    app.exec_()
 
 ###############################################################################
 
