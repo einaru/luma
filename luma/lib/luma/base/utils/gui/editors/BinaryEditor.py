@@ -8,7 +8,7 @@
 #
 ###########################################################################
 
-from qt import *
+from PyQt4.QtGui import *
 import os
 
 from base.utils.gui.editors.BinaryEditorDesign import BinaryEditorDesign

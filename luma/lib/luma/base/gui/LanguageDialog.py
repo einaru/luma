@@ -9,7 +9,7 @@
 ###########################################################################
 
 
-from qt import *
+from PyQt4.QtGui import *
 from os import listdir
 import os.path
 

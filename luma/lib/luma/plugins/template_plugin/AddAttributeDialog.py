@@ -8,7 +8,7 @@
 #
 ###########################################################################
 
-from qt import *
+from PyQt4.QtGui import *
 import os.path
 
 from plugins.template_plugin.AddAttributeDialogDesign import AddAttributeDialogDesign

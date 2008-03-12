@@ -11,7 +11,7 @@
 import ldap
 import os.path
 
-from qt import *
+from PyQt4.QtGui import *
 
 import environment
 from plugins.mass_creation_plugin.MassCreationDesign import MassCreationDesign

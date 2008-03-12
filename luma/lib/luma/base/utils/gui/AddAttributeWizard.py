@@ -8,7 +8,7 @@
 #
 ###########################################################################
 
-from qt import *
+from PyQt4.QtGui import *
 import os.path
 from sets import Set
 import copy

@@ -9,7 +9,7 @@
 ###########################################################################
 
 import ldap
-from qt import *
+from PyQt4.QtGui import *
 from base.utils.gui.BrowserWidget import BrowserWidget
 
 class BrowserDialog(QDialog):

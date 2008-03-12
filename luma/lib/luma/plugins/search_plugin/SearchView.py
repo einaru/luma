@@ -8,7 +8,7 @@
 #
 ###########################################################################
 
-from qt import *
+from PyQt4.QtGui import *
 
 from base.utils.gui.SearchForm import SearchForm
 from base.utils.gui.SearchResultView import SearchResultView

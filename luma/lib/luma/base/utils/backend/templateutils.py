@@ -12,7 +12,7 @@ import environment
 
 import os.path
 from PyQt4.QtXml import *
-from qt import *
+from PyQt4.QtGui import *
 from copy import deepcopy
 
 from base.backend.SmartDataObject import SmartDataObject

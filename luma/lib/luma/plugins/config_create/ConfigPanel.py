@@ -13,7 +13,7 @@ import re
 from os import listdir
 import os.path
 
-from qt import *
+from PyQt4.QtGui import *
 
 from plugins.config_create.ConfigPanelDesign import ConfigPanelDesign
 from plugins.config_create.ConfigError import ConfigError

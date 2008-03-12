@@ -12,7 +12,7 @@ import os
 import ldap
 import copy
 
-from qt import *
+from PyQt4.QtGui import *
 
 
 from base.gui.ServerDialogDesign import ServerDialogDesign

@@ -1,5 +1,5 @@
 import sys
-from qt import *
+from PyQt4.QtGui import *
 
 from base.gui.UnknownCertDialogDesign import UnknownCertDialogDesign
 from base.gui.CertificateDialogDesign import CertificateDialogDesign

@@ -9,7 +9,7 @@
 ###########################################################################
 
 import ldap
-from qt import *
+from PyQt4.QtGui import *
 import base64
 import re
 import os.path

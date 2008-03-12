@@ -8,7 +8,7 @@
 #
 ###########################################################################
 
-from qt import *
+from PyQt4.QtGui import *
 
 class DateHelper(object):
     """A class for doing some date calculations.

@@ -15,7 +15,7 @@ import traceback
 import threading
 import time
 import StringIO
-from qt import *
+from PyQt4.QtGui import *
 
 import environment
 from base.gui.MainWin import MainWin

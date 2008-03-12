@@ -8,7 +8,7 @@
 #
 ###########################################################################
 
-from qt import *
+from PyQt4.QtGui import *
 import os.path
 from base.utils.backend.LogObject import LogObject
 import environment

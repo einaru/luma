@@ -11,7 +11,7 @@
 from base.gui.PluginLoaderGuiDesign import PluginLoaderGuiDesign
 import environment
 
-from qt import *
+from PyQt4.QtGui import *
 import copy
 import os.path
 import os

@@ -9,7 +9,7 @@
 ###########################################################################
 
 
-from qt import *
+from PyQt4.QtGui import *
 import os.path
 import ldap
 import copy

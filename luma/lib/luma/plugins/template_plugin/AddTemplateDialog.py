@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from qt import *
+from PyQt4.QtGui import *
 import os.path
 from string import strip
 

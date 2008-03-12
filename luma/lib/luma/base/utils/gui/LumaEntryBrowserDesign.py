@@ -9,7 +9,7 @@
 
 
 import sys
-from qt import *
+from PyQt4.QtGui import *
 
 
 class LumaEntryBrowserDesign(QWidget):

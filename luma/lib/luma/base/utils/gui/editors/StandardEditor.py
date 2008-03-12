@@ -8,7 +8,7 @@
 #
 ###########################################################################
 
-from qt import *
+from PyQt4.QtGui import *
 from base.utils.gui.editors.StandardEditorDesign import StandardEditorDesign
 from base.backend.SmartDataObject import SmartDataObject
 import environment

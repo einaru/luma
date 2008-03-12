@@ -9,7 +9,7 @@
 ###########################################################################
 
 
-from qt import *
+from PyQt4.QtGui import *
 
 from base.utils.gui.BrowserWidget import BrowserWidget
 from base.utils.gui.AdvancedObjectWidget import AdvancedObjectWidget

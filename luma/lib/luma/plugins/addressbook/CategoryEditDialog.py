@@ -9,7 +9,7 @@
 ###########################################################################
 
 
-from qt import *
+from PyQt4.QtGui import *
 from string import strip
 
 from plugins.addressbook.CategoryEditDialogDesign import CategoryEditDialogDesign

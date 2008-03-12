@@ -8,7 +8,7 @@
 #
 ###########################################################################
 
-from qt import *
+from PyQt4.QtGui import *
 from base.gui.BaseSelectorDesign import BaseSelectorDesign
 from base.utils.gui.LumaErrorDialog import LumaErrorDialog
 

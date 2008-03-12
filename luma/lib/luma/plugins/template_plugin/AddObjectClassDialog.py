@@ -8,7 +8,7 @@
 #
 ###########################################################################
 
-from qt import *
+from PyQt4.QtGui import *
 from plugins.template_plugin.AddObjectClassDialogDesign import AddObjectClassDialogDesign
 
 class AddObjectClassDialog(AddObjectClassDialogDesign):
