@@ -29,7 +29,7 @@ from base.backend.LumaSSLConnection import hasSSLlibrary
 from base.utils.backend.LogObject import LogObject
 from base.utils.gui.PromptPasswordDialog import PromptPasswordDialog
 from base.gui.UnknownCertDialog import UnknownCertDialog
-from qt import QMessageBox
+from Qt4.QtGui import QMessageBox
 
 class LumaConnectionException(Exception):
     """This exception class will be raised if no proper server object is passed 
