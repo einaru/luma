@@ -9,6 +9,7 @@
 ###########################################################################
 
 
+from PyQt4 import QtCore, QtGui
 from PyQt4.QtGui import *
 
 import os
@@ -16,8 +17,8 @@ import os.path
 from ConfigParser import *
 import time
 
-from base.gui.MainWinDesign import MainWinDesign
-from base.gui.AboutDialog import AboutDialog
+from base.gui.MainWinDesign import Ui_MainWinDesign
+from base.gui.AboutDialog import Ui_AboutDialog
 import environment
 from base.gui.ServerDialog import ServerDialog
 from base.backend.PluginLoader import PluginLoader
@@ -27,13 +28,16 @@ from base.utils.backend.LogObject import LogObject
 from base.utils.gui.LoggerWidget import LoggerWidget
 from base.gui.ImprovedServerDialog import ImprovedServerDialog
 
-class MainWin(MainWinDesign):
+class MainWin(QMainWindow, Ui_MainWinDesign):
     """The main window for Luma."""
 
     configFile = None
 
-    def __init__(self, parent=None):
-        MainWinDesign.__init__(self, parent)
+    def __init__(self):
+        QMainWindow.__init__(self)
+
+        # Set up the user interface from Designer.
+        self.setupUi(self)
         
         environment.updateUI = self.updateUI
         environment.setBusy = self.setBusy
@@ -47,24 +51,20 @@ class MainWin(MainWinDesign):
         statusBar = self.statusBar()
         self.progressBar = QProgressBar(statusBar)
         self.progressBar.setMaximumWidth(150)
-        self.progressBar.setTotalSteps(0)
-        statusBar.addWidget(self.progressBar, 0, 1)
+        #self.progressBar.setTotalSteps(0) # Not used polymorphically in Qt4.
+        statusBar.addPermanentWidget(self.progressBar, 0)
         
         # create button for logged errors
         self.logButton = QToolButton(None)
         iconPath = os.path.join(environment.lumaInstallationPrefix, "share", "luma", "icons")
-        self.logButton.setPixmap(QPixmap(os.path.join(iconPath, "bomb.png")))
-        self.connect(self.logButton, SIGNAL("clicked()"), self.showLoggerWindow)
+        self.logButton.setIcon(QIcon(os.path.join(iconPath, "bomb.png")))
+        self.connect(self.logButton, QtCore.SIGNAL("clicked()"), self.showLoggerWindow)
         self.logButtonActivated = False
         
         # Build the plugin toolbar
-        #self.pluginToolBar = QToolBar(self, "PLUGINTOOLBAR")
-        #self.toolBarLabel = QLabel("Plugin:", self.pluginToolBar)
-        #self.pluginBox = QComboBox(self.pluginToolBar)
-        #self.connect(self.pluginBox, SIGNAL("activated(const QString &)"), self.pluginSelectionChanged)
-        self.pluginToolBar = QToolBar(self, "PLUGINTOOLBAR")
+        self.pluginToolBar = QToolBar("PLUGINTOOLBAR", self)
         self.pluginLabel = QLabel(self.pluginToolBar)
-        self.pluginLabel.setAlignment(Qt.AlignLeft | Qt.SingleLine | Qt.AlignVCenter)
+        self.pluginLabel.setAlignment(QtCore.Qt.AlignLeft | QtCore.Qt.AlignVCenter)
         self.pluginLabel.setText(self.trUtf8("Pluginname   "))
         font = QFont()
         font.setBold(True)
@@ -74,26 +74,28 @@ class MainWin(MainWinDesign):
         self.pluginButton.setText(self.trUtf8("Choose plugin"))
         self.pluginButton.installEventFilter(self)
         self.pluginButtonClicked = False
-        self.connect(self.pluginButton, SIGNAL("clicked()"), self.showPluginSelection)
+        self.connect(self.pluginButton, QtCore.SIGNAL("clicked()"), self.showPluginSelection)
         self.timerRunning = False
         
-        self.pluginBox = QListBox(None)
+        #self.pluginBox = QListBox(None)
+        self.pluginBox = QListWidget(None) # FIXME: qt4 migration needed s/QlistBox/QlistView/
         font = self.pluginBox.font()
         font.setPointSize(font.pointSize() + 4)
         self.pluginBox.setFont(font)
-        self.connect(self.pluginBox, SIGNAL("clicked(QListBoxItem*)"), self.pluginClicked)
+        self.connect(self.pluginBox, QtCore.SIGNAL("clicked(QListBoxItem*)"), self.pluginClicked)
         
-        self.pluginBoxId = self.taskStack.addWidget(self.pluginBox, -1)
+        self.pluginBoxId = self.taskStack.addWidget(self.pluginBox)
 
-        self.loggerDockWindow = QDockWindow(QDockWindow.InDock, self)
-        self.loggerDockWindow.setResizeEnabled(True)
-        self.loggerDockWindow.setOrientation(Qt.Horizontal)
-        self.loggerDockWindow.setCloseMode(3)
-        self.moveDockWindow(self.loggerDockWindow, Qt.DockMinimized)
-        self.connect(self.loggerDockWindow,SIGNAL("visibilityChanged(bool)"),self.loggerVisibilitChanged)
-        
-        self.loggerWidget = LoggerWidget(self.loggerDockWindow)
-        self.loggerDockWindow.setWidget(self.loggerWidget)
+        self.loggerDockWindow = QDockWidget(self)
+        # FIXME: qt4 migration needed
+        #self.loggerWidget = LoggerWidget(self.loggerDockWindow)
+        #self.loggerDockWindow.setWidget(self.loggerWidget)
+        #self.loggerDockWindow.setResizeEnabled(True)
+        #self.loggerDockWindow.setOrientation(Qt.Horizontal) # FIXME: qt4 migration (also Horizontal is default)
+        self.loggerDockWindow.setFeatures(QDockWidget.DockWidgetClosable)
+        self.addDockWidget(QtCore.Qt.BottomDockWidgetArea, self.loggerDockWindow)
+        #self.moveDockWindow(self.loggerDockWindow, Qt.DockMinimized)
+        self.connect(self.loggerDockWindow,QtCore.SIGNAL("visibilityChanged(bool)"),self.loggerVisibilitChanged)
         
         self.configFile = os.path.join(environment.userHomeDir,  ".luma", "luma")
         
@@ -126,7 +128,7 @@ class MainWin(MainWinDesign):
             environment.logMessage(LogObject("Debug", tmpString))
         
         # Install translator.
-        qApp.translator = QTranslator(None)
+        qApp.translator = QtCore.QTranslator(None)
         if not (trFile == 'NATIVE'):
             qApp.translator.load(trFile)
             qApp.installTranslator(qApp.translator)
@@ -135,8 +137,8 @@ class MainWin(MainWinDesign):
 
         self.PLUGINS = {}
         self.ICONPREFIX = os.path.join(environment.lumaInstallationPrefix, "share", "luma", "icons")
-        self.applicationIcon = QPixmap(os.path.join(self.ICONPREFIX, "luma-32.png"))
-        self.setIcon(self.applicationIcon)
+        self.applicationIcon = QIcon(os.path.join(self.ICONPREFIX, "luma-32.png"))
+        self.setWindowIcon(self.applicationIcon)
         
         self.showPluginSelection()
         
@@ -145,9 +147,12 @@ class MainWin(MainWinDesign):
 
     def showAboutLuma(self):
         """Shows the about dialog of Luma."""
-        
-        a = AboutDialog(self)
-        a.show()
+
+        AboutDialog = QtGui.QDialog()
+        ui = Ui_AboutDialog()
+        ui.setupUi(AboutDialog)
+        AboutDialog.setModal(True)
+        AboutDialog.exec_()
 
 ###############################################################################
 
@@ -181,7 +186,7 @@ class MainWin(MainWinDesign):
         """ Load all wanted plugins."""
         
         if not (None == splash):
-            splash.message("Loading plugins...", Qt.AlignLeft + Qt.AlignBottom, Qt.white)
+            splash.showMessage("Loading plugins...", QtCore.Qt.AlignLeft + QtCore.Qt.AlignBottom, QtCore.Qt.white)
         
         pluginObject = PluginLoader(self.checkToLoad())
         self.PLUGINS = pluginObject.PLUGINS
@@ -194,7 +199,7 @@ class MainWin(MainWinDesign):
             if tmpObject['load'] == True:
                 if not (None == splash):
                     tmpMessage = "Loading plugin " + unicode(self.trUtf8(self.PLUGINS[x]['pluginUserString']))
-                    splash.message(tmpMessage, Qt.AlignLeft + Qt.AlignBottom, Qt.white)
+                    splash.showMessage(tmpMessage, QtCore.Qt.AlignLeft + QtCore.Qt.AlignBottom, QtCore.Qt.white)
 
                 pluginNameList.append(self.PLUGINS[x]['pluginName'])
                 reference = tmpObject["getPluginWidget"]
@@ -227,7 +232,7 @@ class MainWin(MainWinDesign):
             
             
         if not (None == splash):
-            splash.message("Finished.", Qt.AlignLeft + Qt.AlignBottom, Qt.white)
+            splash.showMessage("Finished.", QtCore.Qt.AlignLeft + QtCore.Qt.AlignBottom, QtCore.Qt.white)
             
         #self.taskStack.raiseWidget()
             
@@ -448,6 +453,8 @@ class MainWin(MainWinDesign):
 ###############################################################################
 
     def logMessage(self, messageObject):
+        print "(%s): %s" % (messageObject.getLogType(), messageObject.getLogMessage())
+        return # FIXME: qt4 migration
         if isinstance(messageObject, LogObject):
             self.loggerWidget.newMessage(messageObject)
                
@@ -457,7 +464,7 @@ class MainWin(MainWinDesign):
                     self.logButton.setAutoRaise(True)
                     iconPath = os.path.join(environment.lumaInstallationPrefix, "share", "luma", "icons")
                     self.logButton.setPixmap(QPixmap(os.path.join(iconPath, "bomb.png")))
-                    self.connect(self.logButton, SIGNAL("clicked()"), self.showLoggerWindow)
+                    self.connect(self.logButton, QtCore.SIGNAL("clicked()"), self.showLoggerWindow)
                     statusBar = self.statusBar()
                     statusBar.addWidget(self.logButton, 0, 1)
                     self.logButtonActivated = True
@@ -467,7 +474,7 @@ class MainWin(MainWinDesign):
 ###############################################################################
 
     def eventFilter(self, object, event):
-        if (event.type() == QEvent.Enter):
+        if (event.type() == QtCore.QEvent.Enter):
             if object == self.pluginButton:
                 if not self.timerRunning:
                     self.pluginButtonClicked = False
@@ -490,7 +497,7 @@ class MainWin(MainWinDesign):
 
     def showPluginSelection(self):
         self.pluginButtonClicked = True
-        self.taskStack.raiseWidget(self.pluginBoxId)
+        self.taskStack.setCurrentIndex(self.pluginBoxId)
         
 ###############################################################################
     
@@ -522,16 +529,11 @@ class MainWin(MainWinDesign):
 ###############################################################################
 
     def languageChanges(self):
-        self.languageChange()
-        self.pluginButton.setText(self.trUtf8("Choose plugin"))
+        pass
+        # FIXME: qt4 migration needed
+        #self.languageChange()
+        #self.pluginButton.setText(self.trUtf8("Choose plugin"))
         
         #for x in self.pluginItemList:
         #    x.setText(qApp.translate(str(x.name))
         #    print "foo"
-        
-        
-        
-        
-        
-        
-        
