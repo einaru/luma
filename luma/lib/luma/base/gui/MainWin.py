@@ -75,7 +75,6 @@ class MainWin(QMainWindow, Ui_MainWinDesign):
         self.pluginToolBar.addWidget(self.pluginLabel)
         self.pluginButton = QPushButton()
         self.pluginButton.setText(self.trUtf8("Choose plugin"))
-        self.pluginButton.installEventFilter(self)
         self.pluginToolBar.addWidget(self.pluginButton)
         self.connect(self.pluginButton, QtCore.SIGNAL("clicked()"), self.showPluginSelection)
         
