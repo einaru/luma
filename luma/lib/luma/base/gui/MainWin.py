@@ -62,17 +62,21 @@ class MainWin(QMainWindow, Ui_MainWinDesign):
         self.logButtonActivated = False
         
         # Build the plugin toolbar
-        self.pluginToolBar = QToolBar("PLUGINTOOLBAR", self)
-        self.pluginLabel = QLabel(self.pluginToolBar)
+        self.pluginToolBar = QToolBar(self)
+        self.pluginToolBar.setObjectName("toolBar")
+        self.addToolBar(self.pluginToolBar)
+        self.pluginLabel = QLabel()
         self.pluginLabel.setAlignment(QtCore.Qt.AlignLeft | QtCore.Qt.AlignVCenter)
         self.pluginLabel.setText(self.trUtf8("Pluginname   "))
         font = QFont()
         font.setBold(True)
         self.pluginLabel.setFont(font)
         self.pluginLabel.setSizePolicy(QSizePolicy(QSizePolicy.MinimumExpanding,QSizePolicy.Preferred))
-        self.pluginButton = QPushButton(self.pluginToolBar)
+        self.pluginToolBar.addWidget(self.pluginLabel)
+        self.pluginButton = QPushButton()
         self.pluginButton.setText(self.trUtf8("Choose plugin"))
         self.pluginButton.installEventFilter(self)
+        self.pluginToolBar.addWidget(self.pluginButton)
         self.connect(self.pluginButton, QtCore.SIGNAL("clicked()"), self.showPluginSelection)
         
         #self.pluginBox = QListBox(None)
