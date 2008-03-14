@@ -73,9 +73,7 @@ class MainWin(QMainWindow, Ui_MainWinDesign):
         self.pluginButton = QPushButton(self.pluginToolBar)
         self.pluginButton.setText(self.trUtf8("Choose plugin"))
         self.pluginButton.installEventFilter(self)
-        self.pluginButtonClicked = False
         self.connect(self.pluginButton, QtCore.SIGNAL("clicked()"), self.showPluginSelection)
-        self.timerRunning = False
         
         #self.pluginBox = QListBox(None)
         self.pluginBox = QListWidget(None) # FIXME: qt4 migration needed s/QlistBox/QlistView/
@@ -473,30 +471,7 @@ class MainWin(QMainWindow, Ui_MainWinDesign):
 
 ###############################################################################
 
-    def eventFilter(self, object, event):
-        if (event.type() == QtCore.QEvent.Enter):
-            if object == self.pluginButton:
-                if not self.timerRunning:
-                    self.pluginButtonClicked = False
-                    QTimer.singleShot( 500, self.checkCursorPosition)
-                
-        return 0
-                
-###############################################################################
-
-    def checkCursorPosition(self):
-        self.timerRunning = False
-        if self.pluginButtonClicked:
-            return
-            
-	# Annoying behavior.. disabled # bgrotan
-        #if self.pluginButton.hasMouse():
-        #    self.showPluginSelection()
-            
-###############################################################################
-
     def showPluginSelection(self):
-        self.pluginButtonClicked = True
         self.taskStack.setCurrentIndex(self.pluginBoxId)
         
 ###############################################################################
