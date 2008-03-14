@@ -9,7 +9,7 @@
 ###########################################################################
 </comment>
  <class>MainWinDesign</class>
- <widget class="Q3MainWindow" name="MainWinDesign" >
+ <widget class="QMainWindow" name="MainWinDesign" >
   <property name="geometry" >
    <rect>
     <x>0</x>
@@ -32,7 +32,7 @@
    </property>
    <layout class="QGridLayout" >
     <item row="0" column="0" >
-     <widget class="Q3WidgetStack" name="taskStack" >
+     <widget class="QStackedWidget" name="taskStack" >
       <property name="sizePolicy" >
        <sizepolicy vsizetype="Expanding" hsizetype="Preferred" >
         <horstretch>0</horstretch>
@@ -208,20 +208,6 @@
   </action>
  </widget>
  <layoutdefault spacing="6" margin="11" />
- <customwidgets>
-  <customwidget>
-   <class>Q3MainWindow</class>
-   <extends>QWidget</extends>
-   <header>q3mainwindow.h</header>
-   <container>1</container>
-  </customwidget>
-  <customwidget>
-   <class>Q3WidgetStack</class>
-   <extends>Q3WidgetStack</extends>
-   <header>q3widgetstack.h</header>
-   <container>1</container>
-  </customwidget>
- </customwidgets>
  <resources/>
  <connections>
   <connection>
