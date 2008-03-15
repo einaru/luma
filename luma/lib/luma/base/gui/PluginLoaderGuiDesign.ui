@@ -44,18 +44,12 @@
      <property name="orientation" >
       <enum>Qt::Horizontal</enum>
      </property>
-     <widget class="Q3ListView" name="chooserView" >
+     <widget class="QListView" name="chooserView" >
       <property name="maximumSize" >
        <size>
         <width>200</width>
         <height>32767</height>
        </size>
-      </property>
-      <property name="allColumnsShowFocus" >
-       <bool>false</bool>
-      </property>
-      <property name="resizeMode" >
-       <enum>Q3ListView::AllColumns</enum>
       </property>
       <column>
        <property name="text" >
@@ -63,13 +57,13 @@
        </property>
       </column>
      </widget>
-     <widget class="Q3GroupBox" name="settingsBox" >
+     <widget class="QGroupBox" name="settingsBox" >
       <property name="title" >
        <string>Settings</string>
       </property>
       <layout class="QGridLayout" >
        <item row="0" column="0" >
-        <widget class="Q3WidgetStack" name="settingsStack" >
+        <widget class="QStackedWidget" name="settingsStack" >
          <property name="sizePolicy" >
           <sizepolicy vsizetype="Expanding" hsizetype="Preferred" >
            <horstretch>0</horstretch>
@@ -142,25 +136,6 @@
  </widget>
  <layoutdefault spacing="6" margin="11" />
  <pixmapfunction>qPixmapFromMimeSource</pixmapfunction>
- <customwidgets>
-  <customwidget>
-   <class>Q3GroupBox</class>
-   <extends>QGroupBox</extends>
-   <header>Qt3Support/Q3GroupBox</header>
-   <container>1</container>
-  </customwidget>
-  <customwidget>
-   <class>Q3WidgetStack</class>
-   <extends>Q3WidgetStack</extends>
-   <header>q3widgetstack.h</header>
-   <container>1</container>
-  </customwidget>
-  <customwidget>
-   <class>Q3ListView</class>
-   <extends>Q3Frame</extends>
-   <header>q3listview.h</header>
-  </customwidget>
- </customwidgets>
  <tabstops>
   <tabstop>chooserView</tabstop>
   <tabstop>closeButton</tabstop>
