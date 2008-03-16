@@ -36,6 +36,8 @@ class PluginLoaderGui(QDialog, Ui_PluginLoaderGuiDesign):
         
         self.checkerList = []
         self.PLUGINS = tmpPlugins
+
+        self.wasUpdated = False
         
         for x in self.PLUGINS.keys():
             tmpObject = self.PLUGINS[x]
@@ -97,9 +99,15 @@ class PluginLoaderGui(QDialog, Ui_PluginLoaderGuiDesign):
                 tmpVal = 0
                 if x.checkState() == QtCore.Qt.Checked:
                     tmpVal = 1
+
+                if configParser.has_option(pluginName, "load"):
+                    oldVal = configParser.getint(pluginName, "load")
+                    if tmpVal == oldVal:
+                        continue
                     
                 configParser.set(pluginName, "load", tmpVal)
                 configParser.write(open(self.defaultsHome, 'w'))
+                self.wasUpdated = True
         except IOError, errorData:
             print "Could not save to file for plugin defaults :("
             print "Reason: ", errorData

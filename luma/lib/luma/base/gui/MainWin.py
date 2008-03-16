@@ -267,6 +267,8 @@ class MainWin(QMainWindow, Ui_MainWinDesign):
         
         dialog = PluginLoaderGui(PluginLoader('ALL').PLUGINS, self)
         dialog.exec_()
+        if (dialog.wasUpdated):
+            self.reloadPlugins()
 
 ###############################################################################
 
