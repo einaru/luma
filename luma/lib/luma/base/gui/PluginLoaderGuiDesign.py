@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'lib/luma/base/gui/PluginLoaderGuiDesign.ui'
 #
-# Created: Sat Mar 15 16:48:44 2008
+# Created: Sat Mar 15 19:22:47 2008
 #      by: PyQt4 UI code generator 4.3.3
 #
 # WARNING! All changes made in this file will be lost!
@@ -38,7 +38,7 @@ class Ui_PluginLoaderGuiDesign(object):
         self.splitter2.setOrientation(QtCore.Qt.Horizontal)
         self.splitter2.setObjectName("splitter2")
 
-        self.chooserView = QtGui.QListView(self.splitter2)
+        self.chooserView = QtGui.QListWidget(self.splitter2)
         self.chooserView.setMaximumSize(QtCore.QSize(200,32767))
         self.chooserView.setObjectName("chooserView")
 
