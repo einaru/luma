@@ -8,8 +8,9 @@
 #
 ###########################################################################
 
-from base.gui.PluginLoaderGuiDesign import Ui_PluginLoaderGuiDesign
 import environment
+from base.utils.backend.LogObject import LogObject
+from base.gui.PluginLoaderGuiDesign import Ui_PluginLoaderGuiDesign
 
 from PyQt4 import QtCore
 from PyQt4.QtGui import *
@@ -65,16 +66,19 @@ class PluginLoaderGui(QDialog, Ui_PluginLoaderGuiDesign):
         try:
             configParser = ConfigParser()
             configParser.readfp(open(self.defaultsHome, 'r'))
-            for x in configParser.sections():
-                if not configParser.has_option(x, "load"):
-                    continue
-                if (configParser.getint(x, "load") == 1) and (self.PLUGINS.has_key(x)):
-                    for y in self.checkerList:
-                        if str(y.text()) == x:
-                            y.setOn(1)
         except Exception, errorData:
-            print "Could not open file for plugin defaults :("
-            print "Reason: ", errorData
+            errorMsg = self.trUtf8("Could not open file for plugin defaults<br><br>Reason: ")
+            errorMsg.append(str(errorData))
+            environment.logMessage(LogObject("Error", errorMsg))
+            return
+
+        for x in configParser.sections():
+            if not configParser.has_option(x, "load"):
+                continue
+            if (configParser.getint(x, "load") == 1) and (self.PLUGINS.has_key(x)):
+                for y in self.checkerList:
+                    if str(y.text()) == x:
+                        y.setCheckState(QtCore.Qt.Checked)
           
 
 ###############################################################################
