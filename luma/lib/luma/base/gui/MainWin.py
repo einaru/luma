@@ -305,11 +305,12 @@ class MainWin(QMainWindow, Ui_MainWinDesign):
         
         self.pluginItemList = []
         
-        toolBars = self.toolBars(Qt.DockTop)
-        
-        for x in toolBars:
-            if not (str(x.name()) == "PLUGINTOOLBAR"):
-                x.deleteLater()
+        # FIXME: Qt4 migration: delete plugin spesific toolbars
+        #toolBars = self.toolBars(Qt.DockTop)
+        #
+        #for x in toolBars:
+        #    if not (str(x.name()) == "PLUGINTOOLBAR"):
+        #        x.deleteLater()
         
         self.loadPlugins()
         
