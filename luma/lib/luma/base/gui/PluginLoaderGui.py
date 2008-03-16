@@ -8,21 +8,24 @@
 #
 ###########################################################################
 
-from base.gui.PluginLoaderGuiDesign import PluginLoaderGuiDesign
+from base.gui.PluginLoaderGuiDesign import Ui_PluginLoaderGuiDesign
 import environment
 
+from PyQt4 import QtCore
 from PyQt4.QtGui import *
 import copy
 import os.path
 import os
 from ConfigParser import *
 
-class PluginLoaderGui(PluginLoaderGuiDesign):
+class PluginLoaderGui(QDialog, Ui_PluginLoaderGuiDesign):
     """Dialog for choosing which plugins should be loaded.
     """
 
     def __init__(self, tmpPlugins=None, parent=None):
-        PluginLoaderGuiDesign.__init__(self, parent)
+        QDialog.__init__(self, parent)
+
+        self.setupUi(self)
         
         self.defaultsHome = os.path.join(environment.userHomeDir, ".luma", "plugins")
         firstStart = not (os.path.exists(self.defaultsHome))
@@ -35,19 +38,19 @@ class PluginLoaderGui(PluginLoaderGuiDesign):
         
         for x in self.PLUGINS.keys():
             tmpObject = self.PLUGINS[x]
-            tmpCheckBox = QCheckListItem(self.chooserView,
-                            tmpObject["pluginName"],
-                            QCheckListItem.CheckBox )
+            tmpCheckBox = QListWidgetItem(tmpObject["pluginName"])
+            tmpCheckBox.setFlags(QtCore.Qt.ItemIsUserCheckable | tmpCheckBox.flags())
+            tmpCheckBox.setCheckState(QtCore.Qt.Unchecked)
             tmpCheckBox.pluginName = tmpObject["pluginName"]
             self.checkerList.append(tmpCheckBox)
+            self.chooserView.addItem(tmpCheckBox)
             
-            tmpObject = self.PLUGINS[x]
             reference = tmpObject['getPluginSettingsWidget']
             
             widgetTmp = reference(self.settingsStack)
             if widgetTmp == None:
                 widgetTmp = QWidget(self.settingsStack)
-            id = self.settingsStack.addWidget(widgetTmp, -1)
+            id = self.settingsStack.addWidget(widgetTmp)
             tmpObject["SETTINGS_WIDGET_ID"] = id
 
         
@@ -88,7 +91,7 @@ class PluginLoaderGui(PluginLoaderGuiDesign):
                     configParser.add_section(pluginName)
                 
                 tmpVal = 0
-                if x.isOn():
+                if x.checkState() == QtCore.Qt.Checked:
                     tmpVal = 1
                     
                 configParser.set(pluginName, "load", tmpVal)
