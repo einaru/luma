@@ -82,7 +82,7 @@ class PluginLoader(object):
         """
         
         for x in self.pluginDirList:
-            if x == "CVS":
+            if x == "CVS" or x == ".svn":
                 continue
                 
             pluginMetaObject = {}
