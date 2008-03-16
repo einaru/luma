@@ -206,7 +206,7 @@ class MainWin(QMainWindow, Ui_MainWinDesign):
                 reference = tmpObject["getPluginWidget"]
                 widgetTmp = reference(self.taskStack)
                 tmpObject["WIDGET_REF"] = widgetTmp
-                tmpObject["WIDGET_ID"] = self.taskStack.addWidget(widgetTmp, -1)
+                tmpObject["WIDGET_ID"] = self.taskStack.addWidget(widgetTmp)
                 
         pluginNameList.sort()
         #map(self.pluginBox.insertItem, pluginNameList)
@@ -223,8 +223,8 @@ class MainWin(QMainWindow, Ui_MainWinDesign):
         for x in pluginNameList:
             name = self.trUtf8(self.PLUGINS[x]["pluginUserString"])
             icon = self.PLUGINS[x]["icon"]
-            item = QListBoxPixmap(icon, QString(name))
-            self.pluginBox.insertItem(item)
+            item = QListWidgetItem(icon, name)
+            self.pluginBox.addItem(item)
             
             item.widgetID = self.PLUGINS[x]["WIDGET_ID"]
             item.widgetRef = self.PLUGINS[x]["WIDGET_REF"]
@@ -266,7 +266,7 @@ class MainWin(QMainWindow, Ui_MainWinDesign):
         """
         
         dialog = PluginLoaderGui(PluginLoader('ALL').PLUGINS, self)
-        dialog.exec_loop()
+        dialog.exec_()
 
 ###############################################################################
 
