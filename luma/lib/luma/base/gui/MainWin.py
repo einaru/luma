@@ -59,7 +59,8 @@ class MainWin(QMainWindow, Ui_MainWinDesign):
         iconPath = os.path.join(environment.lumaInstallationPrefix, "share", "luma", "icons")
         self.logButton.setIcon(QIcon(os.path.join(iconPath, "bomb.png")))
         self.connect(self.logButton, QtCore.SIGNAL("clicked()"), self.showLoggerWindow)
-        self.logButtonActivated = False
+        self.logButton.hide()
+        self.statusBar().addWidget(self.logButton) # FIXME: qt4 migration: Should be placed in bottom right corner
         
         # Build the plugin toolbar
         self.pluginToolBar = QToolBar(self)
@@ -87,16 +88,12 @@ class MainWin(QMainWindow, Ui_MainWinDesign):
         
         self.pluginBoxId = self.taskStack.addWidget(self.pluginBox)
 
-        self.loggerDockWindow = QDockWidget(self)
-        # FIXME: qt4 migration needed
-        #self.loggerWidget = LoggerWidget(self.loggerDockWindow)
-        #self.loggerDockWindow.setWidget(self.loggerWidget)
-        #self.loggerDockWindow.setResizeEnabled(True)
-        #self.loggerDockWindow.setOrientation(Qt.Horizontal) # FIXME: qt4 migration (also Horizontal is default)
-        self.loggerDockWindow.setFeatures(QDockWidget.DockWidgetClosable)
-        self.addDockWidget(QtCore.Qt.BottomDockWidgetArea, self.loggerDockWindow)
-        #self.moveDockWindow(self.loggerDockWindow, Qt.DockMinimized)
+        self.loggerDockWindow = QDockWidget("Logger", self)
+        self.loggerWidget = LoggerWidget(self.loggerDockWindow)
         self.connect(self.loggerDockWindow,QtCore.SIGNAL("visibilityChanged(bool)"),self.loggerVisibilitChanged)
+        self.loggerDockWindow.setWidget(self.loggerWidget)
+        self.addDockWidget(QtCore.Qt.BottomDockWidgetArea, self.loggerDockWindow)
+        self.loggerDockWindow.hide()
         
         self.configFile = os.path.join(environment.userHomeDir,  ".luma", "luma")
         
@@ -438,15 +435,12 @@ class MainWin(QMainWindow, Ui_MainWinDesign):
 
 ###############################################################################
 
-
     def showLoggerWindow(self):
-        statusBar = self.statusBar()
-        statusBar.removeWidget(self.logButton)
-        self.logButton = None
-        self.logButtonActivated = False
+        self.logButton.hide()
         
         # FIXME: Qt4 mirgration needed
         #self.moveDockWindow(self.loggerDockWindow, Qt.DockBottom)
+        self.loggerDockWindow.show()
         self.loggerWidget.displayMessages()
         
 ###############################################################################
@@ -461,20 +455,12 @@ class MainWin(QMainWindow, Ui_MainWinDesign):
 
     def logMessage(self, messageObject):
         print "(%s): %s" % (messageObject.getLogType(), messageObject.getLogMessage())
-        return # FIXME: qt4 migration
+
         if isinstance(messageObject, LogObject):
             self.loggerWidget.newMessage(messageObject)
                
             if "Error" == messageObject.getLogType():
-                if not self.logButtonActivated:
-                    self.logButton = QToolButton(None)
-                    self.logButton.setAutoRaise(True)
-                    iconPath = os.path.join(environment.lumaInstallationPrefix, "share", "luma", "icons")
-                    self.logButton.setPixmap(QPixmap(os.path.join(iconPath, "bomb.png")))
-                    self.connect(self.logButton, QtCore.SIGNAL("clicked()"), self.showLoggerWindow)
-                    statusBar = self.statusBar()
-                    statusBar.addWidget(self.logButton, 0, 1)
-                    self.logButtonActivated = True
+                self.logButton.show()
         else:
             pass
 
