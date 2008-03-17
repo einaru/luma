@@ -72,11 +72,10 @@ class MainWin(QMainWindow, Ui_MainWinDesign):
         font = QFont()
         font.setBold(True)
         self.pluginLabel.setFont(font)
-        self.pluginLabel.setSizePolicy(QSizePolicy(QSizePolicy.MinimumExpanding,QSizePolicy.Preferred))
         self.pluginToolBar.addWidget(self.pluginLabel)
         self.pluginButton = QPushButton(self.pluginToolBar)
         self.pluginButton.setText(self.trUtf8("Choose plugin"))
-        self.pluginToolBar.addWidget(self.pluginButton) # FIXME: qt4 migration: Should be placed near the label
+        self.pluginToolBar.addWidget(self.pluginButton)
         self.connect(self.pluginButton, QtCore.SIGNAL("clicked()"), self.showPluginSelection)
         
         self.pluginBox = QListWidget(None)
