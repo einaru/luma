@@ -455,6 +455,7 @@ class MainWin(QMainWindow, Ui_MainWinDesign):
         if not visible:
             # FIXME: Qt4 mirgration needed
             #self.moveDockWindow(self.loggerDockWindow, Qt.DockMinimized)
+            pass
             
 ###############################################################################
 
