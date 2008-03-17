@@ -354,49 +354,20 @@ class MainWin(QMainWindow, Ui_MainWinDesign):
         would have no effect.
         """
         
-        configParser = ConfigParser()
-            
-        try:
-            configParser.readfp(open(self.configFile, 'r'))
-        except Exception, errorData:
-            tmpString = "Could not read language settings file. Reason:\n"
-            tmpString += str(errorData)
-            environment.logMessage(LogObject("Debug", tmpString))
-            
-        if not(configParser.has_section("Defaults")):
-            configParser.add_section("Defaults")
-            
-        language = "NATIVE"
+        dialog = LanguageDialog(self.configFile)
+        trFile, ok = dialog.getLanguageFile()
+
+        if not ok:
+            return
         
-        if configParser.has_option("Defaults", "language"):
-            language = configParser.get("Defaults", "language")
-            
-        language = os.path.split(language)[-1]
-        
-        dialog = LanguageDialog()
-        dialog.setCurrentLanguage(language)
-        dialog.exec_loop()
-        
-        if dialog.result() == QDialog.Accepted:
-            trFile = dialog.getLanguageFile()
-            if trFile == 'NATIVE':
-                qApp.removeTranslator(qApp.translator)
-            else:
-                qApp.translator.load(trFile)
-                qApp.installTranslator(qApp.translator)
-               
-            self.languageChanges()
-                
-            configParser.set("Defaults", "language", trFile)
-            
-            try:
-                configParser.write(open(self.configFile, 'w'))
-            except Exception, errorData:
-                tmpString = "Could not save language settings file. Reason:\n"
-                tmpString += str(errorData)
-                environment.logMessage(LogObject("Error", tmpString))
-                
-            self.reloadPlugins()
+        if trFile == 'NATIVE':
+            qApp.removeTranslator(qApp.translator)
+        else:
+            qApp.translator.load(trFile)
+            qApp.installTranslator(qApp.translator)
+           
+        self.languageChanges()
+        self.reloadPlugins()
 
 ###############################################################################
 
