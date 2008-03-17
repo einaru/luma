@@ -76,11 +76,10 @@ class MainWin(QMainWindow, Ui_MainWinDesign):
         self.pluginToolBar.addWidget(self.pluginLabel)
         self.pluginButton = QPushButton(self.pluginToolBar)
         self.pluginButton.setText(self.trUtf8("Choose plugin"))
-        self.pluginToolBar.addWidget(self.pluginButton)
+        self.pluginToolBar.addWidget(self.pluginButton) # FIXME: qt4 migration: Should be placed near the label
         self.connect(self.pluginButton, QtCore.SIGNAL("clicked()"), self.showPluginSelection)
         
-        #self.pluginBox = QListBox(None)
-        self.pluginBox = QListWidget(None) # FIXME: qt4 migration needed s/QlistBox/QlistView/
+        self.pluginBox = QListWidget(None)
         font = self.pluginBox.font()
         font.setPointSize(font.pointSize() + 4)
         self.pluginBox.setFont(font)
@@ -408,9 +407,6 @@ class MainWin(QMainWindow, Ui_MainWinDesign):
 
     def showLoggerWindow(self):
         self.logButton.hide()
-        
-        # FIXME: Qt4 mirgration needed
-        #self.moveDockWindow(self.loggerDockWindow, Qt.DockBottom)
         self.loggerDockWindow.show()
         self.loggerWidget.displayMessages()
         
@@ -418,7 +414,7 @@ class MainWin(QMainWindow, Ui_MainWinDesign):
 
     def loggerVisibilitChanged(self, visible):
         if not visible:
-            # FIXME: Qt4 mirgration needed
+            # FIXME: Qt4 mirgration needed (don't really now why or when we would do this)
             #self.moveDockWindow(self.loggerDockWindow, Qt.DockMinimized)
             pass
             
