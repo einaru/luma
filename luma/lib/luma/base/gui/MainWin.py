@@ -460,7 +460,8 @@ class MainWin(QMainWindow, Ui_MainWinDesign):
             self.loggerWidget.newMessage(messageObject)
                
             if "Error" == messageObject.getLogType():
-                self.logButton.show()
+                if not self.loggerDockWindow.isVisible():
+                    self.logButton.show()
         else:
             pass
 
