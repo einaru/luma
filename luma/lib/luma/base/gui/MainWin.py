@@ -84,7 +84,7 @@ class MainWin(QMainWindow, Ui_MainWinDesign):
         font = self.pluginBox.font()
         font.setPointSize(font.pointSize() + 4)
         self.pluginBox.setFont(font)
-        self.connect(self.pluginBox, QtCore.SIGNAL("clicked(QListBoxItem*)"), self.pluginClicked)
+        self.connect(self.pluginBox, QtCore.SIGNAL("itemClicked(QListWidgetItem*)"), self.pluginClicked)
         
         self.pluginBoxId = self.taskStack.addWidget(self.pluginBox)
 
@@ -475,14 +475,15 @@ class MainWin(QMainWindow, Ui_MainWinDesign):
         if item == None:
             return
             
-        self.taskStack.raiseWidget(item.widgetID)
+        self.taskStack.setCurrentIndex(item.widgetID)
         self.pluginLabel.setText(unicode(item.text()) + "   ")
         
-        toolBars = self.toolBars(Qt.DockTop)
-        
-        for x in toolBars:
-            if not (str(x.name()) == "PLUGINTOOLBAR"):
-                x.deleteLater()
+        # FIXME: Qt4 migration: delete plugin spesific toolbars
+        #toolBars = self.toolBars(Qt.DockTop)
+        #
+        #for x in toolBars:
+        #    if not (str(x.name()) == "PLUGINTOOLBAR"):
+        #        x.deleteLater()
         
         #build the toolbar for the selected plugin
         try:
