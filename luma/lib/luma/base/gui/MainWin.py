@@ -445,14 +445,16 @@ class MainWin(QMainWindow, Ui_MainWinDesign):
         self.logButton = None
         self.logButtonActivated = False
         
-        self.moveDockWindow(self.loggerDockWindow, Qt.DockBottom)
+        # FIXME: Qt4 mirgration needed
+        #self.moveDockWindow(self.loggerDockWindow, Qt.DockBottom)
         self.loggerWidget.displayMessages()
         
 ###############################################################################
 
     def loggerVisibilitChanged(self, visible):
         if not visible:
-            self.moveDockWindow(self.loggerDockWindow, Qt.DockMinimized)
+            # FIXME: Qt4 mirgration needed
+            #self.moveDockWindow(self.loggerDockWindow, Qt.DockMinimized)
             
 ###############################################################################
 
