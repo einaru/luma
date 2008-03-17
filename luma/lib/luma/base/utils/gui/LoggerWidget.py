@@ -8,29 +8,32 @@
 #
 ###########################################################################
 
+from PyQt4 import QtCore
 from PyQt4.QtGui import *
 from ConfigParser import *
 import os.path
 
-from base.utils.gui.LoggerWidgetDesign import LoggerWidgetDesign
+from base.utils.gui.LoggerWidgetDesign import Ui_LoggerWidgetDesign
 from base.utils.backend.LogObject import LogObject
 import environment
 
 
-class LoggerWidget(LoggerWidgetDesign):
+class LoggerWidget(QWidget, Ui_LoggerWidgetDesign):
 
     def __init__(self,parent = None,name = None,fl = 0):
-        LoggerWidgetDesign.__init__(self,parent,name,fl)
+        QWidget.__init__(self,parent)
+
+        self.setupUi(self)
         
         self.parent = parent
         self.configFile = os.path.join(environment.userHomeDir, ".luma", "luma")
         self.readSettings()
         
         self.logObjectList = []
-        
-        self.connect(self.errorBox, SIGNAL("stateChanged(int)"), self.displayMessages)
-        self.connect(self.debugBox, SIGNAL("stateChanged(int)"), self.displayMessages)
-        self.connect(self.infoBox, SIGNAL("stateChanged(int)"), self.displayMessages)
+
+        self.connect(self.errorBox, QtCore.SIGNAL("stateChanged(int)"), self.displayMessages)
+        self.connect(self.debugBox, QtCore.SIGNAL("stateChanged(int)"), self.displayMessages)
+        self.connect(self.infoBox, QtCore.SIGNAL("stateChanged(int)"), self.displayMessages)
         
 
 ###############################################################################
@@ -46,17 +49,20 @@ class LoggerWidget(LoggerWidgetDesign):
 ###############################################################################
 
     def appendMessage(self, messageObject):
-        if (messageObject.getLogType() == "Debug") and self.debugBox.isOn():
+        if (messageObject.getLogType() == "Debug") \
+                and self.debugBox.checkState() == QtCore.Qt.Checked:
             self.messageEdit.append(messageObject.getLogMessage())
             self.messageEdit.append("\n")
             return
             
-        if (messageObject.getLogType() == "Error") and self.errorBox.isOn():
+        if (messageObject.getLogType() == "Error") \
+                and self.errorBox.checkState() == QtCore.Qt.Checked:
             self.messageEdit.append(messageObject.getLogMessage())
             self.messageEdit.append("\n")
             return
             
-        if (messageObject.getLogType() == "Info") and self.infoBox.isOn():
+        if (messageObject.getLogType() == "Info") \
+                and self.infoBox.checkState() == QtCore.Qt.Checked:
             self.messageEdit.append(messageObject.getLogMessage())
             self.messageEdit.append("\n")
             return
@@ -68,8 +74,7 @@ class LoggerWidget(LoggerWidgetDesign):
         if len(self.logObjectList) > 100:
                 del self.logObjectList[0]
                 
-        if not (self.parent.orientation() == Qt.DockMinimized):
-                self.appendMessage(messageObject)
+        self.appendMessage(messageObject)
                 
 ###############################################################################
 
@@ -92,9 +97,9 @@ class LoggerWidget(LoggerWidgetDesign):
         if not configParser.has_section("Logger"):
             configParser.add_section("Logger")
             
-        configParser.set("Logger", "Show_Error", str(self.errorBox.isOn()))
-        configParser.set("Logger", "Show_Debug", str(self.debugBox.isOn()))
-        configParser.set("Logger", "Show_Info", str(self.infoBox.isOn()))
+        configParser.set("Logger", "Show_Error", str(self.errorBox.checkState() == QtCore.Qt.Checked))
+        configParser.set("Logger", "Show_Debug", str(self.debugBox.checkState() == QtCore.Qt.Checked))
+        configParser.set("Logger", "Show_Info", str(self.infoBox.checkState() == QtCore.Qt.Checked))
         
         try:
             configParser.write(open(self.configFile, 'w'))
@@ -104,6 +109,13 @@ class LoggerWidget(LoggerWidgetDesign):
             environment.logMessage(LogObject("Error", tmpString))
             
 ###############################################################################
+
+    def _getConfigCheckstate(self, configParser, section, option):
+        if configParser.has_option(section, option):
+            if configParser.getboolean(section, option):
+                return QtCore.Qt.Checked
+            else:
+                return QtCore.Qt.Unchecked
 
     def readSettings(self):
         configParser = ConfigParser()
@@ -119,16 +131,9 @@ class LoggerWidget(LoggerWidgetDesign):
         if not configParser.has_section("Logger"):
             return
          
-        if configParser.has_option("Logger", "Show_Error"):
-            tmpBool = configParser.getboolean("Logger", "Show_Error")
-            self.errorBox.setChecked(tmpBool)
-            
-        if configParser.has_option("Logger", "Show_Debug"):
-            tmpBool = configParser.getboolean("Logger", "Show_Debug")
-            self.debugBox.setChecked(tmpBool)
-            
-        if configParser.has_option("Logger", "Show_Info"):
-            tmpBool = configParser.getboolean("Logger", "Show_Info")
-            self.infoBox.setChecked(tmpBool)
-            
-            
+        self.errorBox.setCheckState(
+                self._getConfigCheckstate(configParser, 'Logger', 'Show_Error'))
+        self.debugBox.setCheckState(
+                self._getConfigCheckstate(configParser, 'Logger', 'Show_Debug'))
+        self.infoBox.setCheckState(
+                self._getConfigCheckstate(configParser, 'Logger', 'Show_Info'))
