@@ -47,20 +47,19 @@ class MainWin(QMainWindow, Ui_MainWinDesign):
         
         self.pluginItemList = []
 
-        # create the progress bar for the status bar
-        statusBar = self.statusBar()
-        self.progressBar = QProgressBar(statusBar)
-        self.progressBar.setMaximumWidth(150)
-        #self.progressBar.setTotalSteps(0) # Not used polymorphically in Qt4.
-        statusBar.addPermanentWidget(self.progressBar, 0)
-        
         # create button for logged errors
         self.logButton = QToolButton(None)
         iconPath = os.path.join(environment.lumaInstallationPrefix, "share", "luma", "icons")
         self.logButton.setIcon(QIcon(os.path.join(iconPath, "bomb.png")))
         self.connect(self.logButton, QtCore.SIGNAL("clicked()"), self.showLoggerWindow)
         self.logButton.hide()
-        self.statusBar().addWidget(self.logButton) # FIXME: qt4 migration: Should be placed in bottom right corner
+        self.statusBar().addPermanentWidget(self.logButton)
+        
+        # create the progress bar for the status bar
+        statusBar = self.statusBar()
+        self.progressBar = QProgressBar(statusBar)
+        self.progressBar.setMaximumWidth(150)
+        statusBar.addPermanentWidget(self.progressBar, 0)
         
         # Build the plugin toolbar
         self.pluginToolBar = QToolBar(self)
