@@ -14,7 +14,7 @@
   </property>
   <layout class="QVBoxLayout" >
    <item>
-    <widget class="Q3TextEdit" name="messageEdit" >
+    <widget class="QTextEdit" name="messageEdit" >
      <property name="readOnly" >
       <bool>true</bool>
      </property>
@@ -99,13 +99,6 @@
   </layout>
  </widget>
  <layoutdefault spacing="6" margin="6" />
- <customwidgets>
-  <customwidget>
-   <class>Q3TextEdit</class>
-   <extends>Q3Frame</extends>
-   <header>q3textedit.h</header>
-  </customwidget>
- </customwidgets>
  <resources/>
  <connections>
   <connection>
