@@ -224,9 +224,6 @@
                <verstretch>0</verstretch>
               </sizepolicy>
              </property>
-             <property name="toolTip" >
-              <string>Click to edit</string>
-             </property>
              <property name="frameShape" >
               <enum>QFrame::NoFrame</enum>
              </property>
@@ -262,9 +259,6 @@
                <verstretch>0</verstretch>
               </sizepolicy>
              </property>
-             <property name="toolTip" >
-              <string>Click to edit</string>
-             </property>
              <property name="text" >
               <string>Not configured yet</string>
              </property>
@@ -281,9 +275,6 @@
                <verstretch>0</verstretch>
               </sizepolicy>
              </property>
-             <property name="toolTip" >
-              <string>Click to edit</string>
-             </property>
              <property name="text" >
               <string>Not configured yet</string>
              </property>
@@ -299,9 +290,6 @@
                <horstretch>0</horstretch>
                <verstretch>0</verstretch>
               </sizepolicy>
-             </property>
-             <property name="toolTip" >
-              <string>Click to edit</string>
              </property>
              <property name="text" >
               <string>Not configured yet</string>
@@ -366,9 +354,6 @@
                <horstretch>0</horstretch>
                <verstretch>0</verstretch>
               </sizepolicy>
-             </property>
-             <property name="toolTip" >
-              <string>Click to edit</string>
              </property>
              <property name="text" >
               <string>Not configured yet</string>
