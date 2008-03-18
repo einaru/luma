@@ -1,10 +1,11 @@
 # -*- coding: utf-8 -*-
 
+from PyQt4 import QtCore
 from PyQt4.QtGui import *
 import os
 import copy
 
-from base.gui.ImprovedServerDialogDesign import ImprovedServerDialogDesign
+from base.gui.ImprovedServerDialogDesign import Ui_ImprovedServerDialogDesign
 from base.backend.ServerObject import ServerObject
 from base.backend.ServerList import ServerList
 from base.backend.LumaConnection import LumaConnection
@@ -14,10 +15,12 @@ from base.gui.BaseSelector import BaseSelector
 import environment
 
 
-class ImprovedServerDialog(ImprovedServerDialogDesign):
+class ImprovedServerDialog(QDialog, Ui_ImprovedServerDialogDesign):
 
-    def __init__(self,parent = None,name = None,modal = 0,fl = 0):
-        ImprovedServerDialogDesign.__init__(self,parent,name,modal,fl)
+    def __init__(self):
+        QDialog.__init__(self)
+
+        self.setupUi(self)
         
         self.SAVED = False
         
@@ -31,15 +34,15 @@ class ImprovedServerDialog(ImprovedServerDialogDesign):
         self.installationPrefix = environment.lumaInstallationPrefix
         self.iconPath = os.path.join(self.installationPrefix, "share", "luma", "icons")
         
-        self.networkPixmap = QPixmap(os.path.join(self.iconPath, "network32.png"))
-        self.credentialsPixmap = QPixmap(os.path.join(self.iconPath, "auth32.png"))
-        #self.securityPixmap = QPixmap(os.path.join(self.iconPath, "security32.png"))        
-        self.certificatePixmap = QPixmap(os.path.join(self.iconPath, "certificate32.png"))
-        self.ldapOptionsPixmap = QPixmap(os.path.join(self.iconPath, "config32.png"))
-        folderPixmap = QPixmap(os.path.join(self.iconPath, "folder.png"))
+        self.networkPixmap = QIcon(os.path.join(self.iconPath, "network32.png"))
+        self.credentialsPixmap = QIcon(os.path.join(self.iconPath, "auth32.png"))
+        #self.securityPixmap = QIcon(os.path.join(self.iconPath, "security32.png"))        
+        self.certificatePixmap = QIcon(os.path.join(self.iconPath, "certificate32.png"))
+        self.ldapOptionsPixmap = QIcon(os.path.join(self.iconPath, "config32.png"))
+        folderPixmap = QIcon(os.path.join(self.iconPath, "folder.png"))
         
-        self.certFileButton.setPixmap(folderPixmap)
-        self.certKeyFileButton.setPixmap(folderPixmap)
+        self.certFileButton.setIcon(folderPixmap)
+        self.certKeyFileButton.setIcon(folderPixmap)
         
         self.renameButton.hide()
         self.editCertButton.hide()
@@ -63,9 +66,10 @@ class ImprovedServerDialog(ImprovedServerDialogDesign):
         self.saveButton.setEnabled(0)
         
         # Show blank widget first, no server selected
-        self.configStack.raiseWidget(5)
+        self.configStack.setCurrentIndex(5)
         
-        self.originalBackGroundColor = self.networkLabel.paletteBackgroundColor()
+        # FIXME: qt4 migration needed
+        #self.originalBackGroundColor = self.networkLabel.paletteBackgroundColor()
         
         self.serverListObject = ServerList()
         self.serverListObject.readServerList()
@@ -79,10 +83,11 @@ class ImprovedServerDialog(ImprovedServerDialogDesign):
         self.currentServerItem = None
         self.currentCategoryItem = None
         
-        self.serverListView.setSorting(-1)
+        self.serverListView.setSortingEnabled(True)
+        self.serverListView.sortItems(0, QtCore.Qt.AscendingOrder)
         
         self.displayServerList()
-        
+
 ###############################################################################
 
     def displayServerList(self):
@@ -94,8 +99,8 @@ class ImprovedServerDialog(ImprovedServerDialogDesign):
         self.categoryDictionary = {}
         self.currentServer = None
         
-        self.configStack.raiseWidget(5)
-        self.serverNameStack.raiseWidget(0)
+        self.configStack.setCurrentIndex(5)
+        self.serverNameStack.setCurrentIndex(0)
         self.serverLabel.setText(self.trUtf8("<b>No server selected</b>"))
         self.renameButton.hide()
         
@@ -107,16 +112,22 @@ class ImprovedServerDialog(ImprovedServerDialogDesign):
             tmpName = x.name
             tmpList.append(tmpName)
             
-        tmpList.sort()
+        tmpList.reverse()
         
-        for x in tmpList[::-1]:
-            tmpItem = QListViewItem(self.serverListView, x)
-            self.serverListView.insertItem(tmpItem)
+        for x in tmpList:
+            tmpItem = QTreeWidgetItem(self.serverListView)
+            tmpItem.setText(0, x)
+            #self.serverListView.addTopLevelItem(tmpItem)
             
 ###############################################################################
 
-    def serverSelected(self, serverItem):
-    
+    def serverSelected(self):
+        # FIXME: is there another way of finding selected item?
+        serverItems = self.serverListView.selectedItems()
+        if len(serverItems) < 1:
+            return
+        serverItem = serverItems[0]
+
         # Nothing selected
         if serverItem == None:
             if not (self.oldServerItem == None):
@@ -126,7 +137,7 @@ class ImprovedServerDialog(ImprovedServerDialogDesign):
                     self.oldServerItem.takeItem(child)
             self.oldServerItem = None
             self.serverLabel.setText(self.trUtf8("<b>No server selected</b>"))
-            self.configStack.raiseWidget(5)
+            self.configStack.setCurrentIndex(5)
             self.renameButton.hide()
             return
     
@@ -134,19 +145,18 @@ class ImprovedServerDialog(ImprovedServerDialogDesign):
         if serverItem.parent() == None:
             if not (self.oldServerItem == None):
                 self.categoryDictionary = {}
-                self.oldServerItem.setOpen(False)
-                while self.oldServerItem.childCount() > 0:
-                    child = self.oldServerItem.firstChild()
-                    self.oldServerItem.takeItem(child)
+                self.oldServerItem.setExpanded(False)
+                while self.oldServerItem.takeChild(0):
+                    pass
                 self.oldServerItem = None
                         
                 
             self.oldServerItem = serverItem
             self.currentServerItem = serverItem
             
-            self.serverLabel.setText(QString("<b>%1</b>").arg(serverItem.text(0)))
-            self.configStack.raiseWidget(0)
-            self.serverNameStack.raiseWidget(0)
+            self.serverLabel.setText(QtCore.QString("<b>%1</b>").arg(serverItem.text(0)))
+            self.configStack.setCurrentIndex(0)
+            self.serverNameStack.setCurrentIndex(0)
             self.renameButton.show()
             
             
@@ -164,90 +174,92 @@ class ImprovedServerDialog(ImprovedServerDialogDesign):
                         listItem = key
                         break
                     
-                listItem.setVisible(False)
+                listItem.setHidden(True)
             else:
                 for key, value in self.categoryDictionary.items():
                     if value == 3:
                         listItem = key
                         break
                     
-                listItem.setVisible(True)
+                listItem.setHidden(False)
             
-            serverItem.setOpen(True)
+            serverItem.setExpanded(True)
             
         # Subcategory from server selected
         if serverItem in self.categoryDictionary.keys():
-            self.serverNameStack.raiseWidget(0)
+            self.serverNameStack.setCurrentIndex(0)
             self.currentCategoryItem = serverItem
             widgetId = self.categoryDictionary[serverItem]
-            self.configStack.raiseWidget(widgetId)
+            self.configStack.setCurrentIndex(widgetId)
 
 ###############################################################################
         
     def eventFilter(self, object, event):
-        if (event.type() == QEvent.MouseButtonPress):
-            if not (self.currentServer == None):
-                widgetId = self.labelDictionary[object]
-                self.configStack.raiseWidget(widgetId)
-                listItem = None
-                for key, value in self.categoryDictionary.items():
-                    if value == widgetId:
-                        listItem = key
-                        break
-                    
-                if not (listItem == None):
-                    self.serverListView.setSelected(listItem, True)
+        if (event.type() == QtCore.QEvent.MouseButtonPress):
+            if (self.currentServer == None):
+                return
+            widgetId = self.labelDictionary[object]
+            self.configStack.setCurrentIndex(widgetId)
+
+            # Iterate over subitems, selecting apropriate one
+            for key, value in self.categoryDictionary.items():
+                if value == widgetId:
+                    key.setSelected(True)
+                    break
+            return
     
-        if (event.type() == QEvent.Enter):
+        if (event.type() == QtCore.QEvent.Enter):
             if not (object == self.namePage):
                 cursor = QCursor()
-                cursor.setShape(Qt.PointingHandCursor )
+                cursor.setShape(QtCore.Qt.PointingHandCursor )
                 qApp.setOverrideCursor(cursor)
             
-            if object == self.networkLabel:
-                tmpColor = self.networkLabel.colorGroup().highlightedText()
-                self.networkLabel.setPaletteBackgroundColor(tmpColor)
+            # FIXME: qt4 migration needed
+            #if object == self.networkLabel:
+            #    tmpColor = self.networkLabel.colorGroup().highlightedText()
+            #    self.networkLabel.setPaletteBackgroundColor(tmpColor)
+            #    
+            #if object == self.credentialLabel:
+            #    tmpColor = self.credentialLabel.colorGroup().highlightedText()
+            #    self.credentialLabel.setPaletteBackgroundColor(tmpColor)
+            #    
+            #if object == self.encryptionLabel:
+            #    tmpColor = self.encryptionLabel.colorGroup().highlightedText()
+            #    self.encryptionLabel.setPaletteBackgroundColor(tmpColor)
+            #    
+            #if object == self.authLabel:
+            #    tmpColor = self.authLabel.colorGroup().highlightedText()
+            #    self.authLabel.setPaletteBackgroundColor(tmpColor)
+            #    
+            #if object == self.ldapOptLabel:
+            #    tmpColor = self.ldapOptLabel.colorGroup().highlightedText()
+            #    self.ldapOptLabel.setPaletteBackgroundColor(tmpColor)
+            #    
+            #if object == self.namePage:
+            #    if not (self.currentServer == None):
+            #        self.renameButton.show()
                 
-            if object == self.credentialLabel:
-                tmpColor = self.credentialLabel.colorGroup().highlightedText()
-                self.credentialLabel.setPaletteBackgroundColor(tmpColor)
                 
-            if object == self.encryptionLabel:
-                tmpColor = self.encryptionLabel.colorGroup().highlightedText()
-                self.encryptionLabel.setPaletteBackgroundColor(tmpColor)
-                
-            if object == self.authLabel:
-                tmpColor = self.authLabel.colorGroup().highlightedText()
-                self.authLabel.setPaletteBackgroundColor(tmpColor)
-                
-            if object == self.ldapOptLabel:
-                tmpColor = self.ldapOptLabel.colorGroup().highlightedText()
-                self.ldapOptLabel.setPaletteBackgroundColor(tmpColor)
-                
-            if object == self.namePage:
-                if not (self.currentServer == None):
-                    self.renameButton.show()
-                
-                
-        if (event.type() == QEvent.Leave):
+        if (event.type() == QtCore.QEvent.Leave):
             qApp.restoreOverrideCursor()
-            if object == self.networkLabel:
-                self.networkLabel.setPaletteBackgroundColor(self.originalBackGroundColor)
-                
-            if object == self.credentialLabel:
-                self.credentialLabel.setPaletteBackgroundColor(self.originalBackGroundColor)
-                
-            if object == self.encryptionLabel:
-                self.encryptionLabel.setPaletteBackgroundColor(self.originalBackGroundColor)
-                
-            if object == self.authLabel:
-                self.authLabel.setPaletteBackgroundColor(self.originalBackGroundColor)
-                
-            if object == self.ldapOptLabel:
-                self.ldapOptLabel.setPaletteBackgroundColor(self.originalBackGroundColor)
-                
-            if object == self.namePage:
-                self.renameButton.hide()
+            # FIXME: qt4 migration needed
+            #if object == self.networkLabel:
+            #    self.networkLabel.setPaletteBackgroundColor(self.originalBackGroundColor)
+            #    
+            #if object == self.credentialLabel:
+            #    self.credentialLabel.setPaletteBackgroundColor(self.originalBackGroundColor)
+            #    
+            #if object == self.encryptionLabel:
+            #    self.encryptionLabel.setPaletteBackgroundColor(self.originalBackGroundColor)
+            #    
+            #if object == self.authLabel:
+            #    self.authLabel.setPaletteBackgroundColor(self.originalBackGroundColor)
+            #    
+            #if object == self.ldapOptLabel:
+            #    self.ldapOptLabel.setPaletteBackgroundColor(self.originalBackGroundColor)
+            #    
+            #if object == self.namePage:
+            #    self.renameButton.hide()
             
                 
         return 0
@@ -305,29 +317,30 @@ class ImprovedServerDialog(ImprovedServerDialogDesign):
         self.bindPasswordEdit.setText(x.bindPassword)
         
         if x.encryptionMethod == u"None":
-            self.encryptionBox.setCurrentItem(0)
+            self.encryptionBox.setCurrentIndex(0)
             #self.validateBox.setEnabled(False)
             #self.useClientCertBox.setEnabled(False)
         elif x.encryptionMethod == u"TLS":
-            self.encryptionBox.setCurrentItem(1)
+            self.encryptionBox.setCurrentIndex(1)
             #self.validateBox.setEnabled(True)
             #self.useClientCertBox.setEnabled(True)
         elif x.encryptionMethod == u"SSL":
-            self.encryptionBox.setCurrentItem(2)
+            self.encryptionBox.setCurrentIndex(2)
             #self.validateBox.setEnabled(True)
             #self.useClientCertBox.setEnabled(True)
         
-        self.authentificationBox.setCurrentText(x.authMethod)
+        # FIXME: qt4 migration needed
+        #self.authentificationBox.setCurrentText(x.authMethod)
         self.showAuthWidgets()
         
         if x.checkServerCertificate == u"never":
-            self.serverCertBox.setCurrentItem(0)
+            self.serverCertBox.setCurrentIndex(0)
         elif x.checkServerCertificate == u"try":
-            self.serverCertBox.setCurrentItem(1)
+            self.serverCertBox.setCurrentIndex(1)
         elif x.checkServerCertificate == u"allow":
-            self.serverCertBox.setCurrentItem(2)
+            self.serverCertBox.setCurrentIndex(2)
         elif x.checkServerCertificate == u"demand":
-            self.serverCertBox.setCurrentItem(3)
+            self.serverCertBox.setCurrentIndex(3)
         
         self.clientCertBox.setChecked(x.useCertificate)
         self.certFileEdit.setText(x.clientCertFile)
@@ -363,28 +376,32 @@ class ImprovedServerDialog(ImprovedServerDialogDesign):
 ###############################################################################
 
     def buildCategories(self, serverItem):
-        subItem = QListViewItem(serverItem, "Certificates")
-        self.categoryDictionary[subItem] = 3
-        subItem.setPixmap(0, self.certificatePixmap)
-        
-        subItem = QListViewItem(serverItem, "LDAP Options")
-        self.categoryDictionary[subItem] = 4
-        subItem.setPixmap(0, self.ldapOptionsPixmap)
-        
-        subItem = QListViewItem(serverItem, "Authentification")
-        self.categoryDictionary[subItem] = 2
-        subItem.setPixmap(0, self.credentialsPixmap)
-        
-        subItem = QListViewItem(serverItem, "Network options")
+        subItem = QTreeWidgetItem(serverItem)
+        subItem.setText(0, "Network options") 
         self.categoryDictionary[subItem] = 1
-        subItem.setPixmap(0, self.networkPixmap)
+        subItem.setIcon(0, self.networkPixmap)
 
+        subItem = QTreeWidgetItem(serverItem)
+        subItem.setText(0, "Authentification")
+        self.categoryDictionary[subItem] = 2
+        subItem.setIcon(0, self.credentialsPixmap)
+        
+        subItem = QTreeWidgetItem(serverItem)
+        subItem.setText(0, "LDAP Options")
+        self.categoryDictionary[subItem] = 4
+        subItem.setIcon(0, self.ldapOptionsPixmap)
+        
+        subItem = QTreeWidgetItem(serverItem)
+        subItem.setText(0, "Certificates")
+        self.categoryDictionary[subItem] = 3
+        subItem.setIcon(0, self.certificatePixmap)
+        
 ###############################################################################
 
     def showSummary(self):
-        self.configStack.raiseWidget(0)
-        self.serverListView.setSelected(self.currentCategoryItem, False)
-        self.serverListView.setSelected(self.currentServerItem, True)
+        self.configStack.setCurrentIndex(0)
+        self.serverListView.setItemSelected(self.currentCategoryItem, False)
+        self.serverListView.setItemSelected(self.currentServerItem, True)
         
 ###############################################################################
 
@@ -392,12 +409,12 @@ class ImprovedServerDialog(ImprovedServerDialogDesign):
         self.renameEdit.setText(self.currentServer.name)
         self.renameEdit.selectAll()
         self.renameEdit.setFocus()
-        self.serverNameStack.raiseWidget(1)
+        self.serverNameStack.setCurrentIndex(1)
         
 ###############################################################################
 
     def cancelRename(self):
-        self.serverNameStack.raiseWidget(0)
+        self.serverNameStack.setCurrentIndex(0)
         
 ###############################################################################
 
@@ -467,14 +484,14 @@ class ImprovedServerDialog(ImprovedServerDialogDesign):
 ###############################################################################
 
     def showCertWidget(self):
-        self.configStack.raiseWidget(3)
+        self.configStack.setCurrentIndex(3)
         
         listItem = None
         for key, value in self.categoryDictionary.items():
             if value == 3:
                 listItem = key
                 break
-        self.serverListView.setSelected(listItem, True)
+        self.serverListView.setItemSelected(listItem, True)
         
 ###############################################################################
 
@@ -510,17 +527,17 @@ class ImprovedServerDialog(ImprovedServerDialogDesign):
             return
             
         if self.currentServer.autoBase:
-            item = QListViewItem(self.baseDNView, self.trUtf8("Automatic retrieval"))
+            item = QListWidgetItem(self.trUtf8("Automatic retrieval"), self.baseDNView)
             #success, result = self.searchBaseDn()
             
             #if success:
             #    for x in result:
-            #        item = QListViewItem(self.baseDNView, x)
+            #        item = QListWidgetItem(self.baseDNView, x)
             #else:
-            #    item = QListViewItem(self.baseDNView, result)
+            #    item = QListWidgetItem(self.baseDNView, result)
         else:
             for x in self.currentServer.baseDN:
-                item = QListViewItem(self.baseDNView, x)
+                item = QListWidgetItem(x, self.baseDNView)
                 
 ###############################################################################
                 
@@ -720,7 +737,7 @@ class ImprovedServerDialog(ImprovedServerDialogDesign):
             fileWarning = False
         
         if fileWarning:
-            self.certFileEdit.setPaletteBackgroundColor(Qt.red)
+            self.certFileEdit.setPaletteBackgroundColor(QtCore.Qt.red)
         else:
             self.certFileEdit.unsetPalette()
         
@@ -751,7 +768,7 @@ class ImprovedServerDialog(ImprovedServerDialogDesign):
             fileWarning = False
         
         if fileWarning:
-            self.certKeyFileEdit.setPaletteBackgroundColor(Qt.red)
+            self.certKeyFileEdit.setPaletteBackgroundColor(QtCore.Qt.red)
         else:
             self.certKeyFileEdit.unsetPalette()
         
@@ -790,7 +807,7 @@ class ImprovedServerDialog(ImprovedServerDialogDesign):
         tmpName = unicode(self.renameEdit.text())
         
         if tmpName == "":
-            self.serverNameStack.raiseWidget(0)
+            self.serverNameStack.setCurrentIndex(0)
             return
             
         checkName = self.serverListObject.getServerObject(tmpName)
@@ -798,7 +815,7 @@ class ImprovedServerDialog(ImprovedServerDialogDesign):
             self.currentServer.name = tmpName
             self.serverLabel.setText("<b>" + tmpName + "</b>")
             self.currentServerItem.setText(0, tmpName)
-            self.serverNameStack.raiseWidget(0)
+            self.serverNameStack.setCurrentIndex(0)
             self.saveButton.setEnabled(True)
         else:
             dialog = LumaErrorDialog()
@@ -861,7 +878,7 @@ class ImprovedServerDialog(ImprovedServerDialogDesign):
                 QMessageBox.Cancel,
                 QMessageBox.NoButton,
                 self)
-        tmpDialog.setIconPixmap(QPixmap(os.path.join(self.iconPath, "warning_big.png")))
+        tmpDialog.setIcon(QIcon(os.path.join(self.iconPath, "warning_big.png")))
         tmpDialog.exec_loop()
         if (tmpDialog.result() == 1):
             self.serverListObject.deleteServer(selectedServerString)
@@ -883,5 +900,5 @@ class ImprovedServerDialog(ImprovedServerDialogDesign):
             
                 
         if unicode(tmpItem.text(0)) == serverName:
-            self.serverListView.setSelected(tmpItem, True)
+            self.serverListView.setItemSelected(tmpItem, True)
         
