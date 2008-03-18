@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'lib/luma/base/gui/ImprovedServerDialogDesign.ui'
 #
-# Created: Tue Mar 18 20:59:59 2008
+# Created: Tue Mar 18 23:21:03 2008
 #      by: PyQt4 UI code generator 4.3.3
 #
 # WARNING! All changes made in this file will be lost!
@@ -671,19 +671,14 @@ class Ui_ImprovedServerDialogDesign(object):
         self.renameOkButton.setText(QtGui.QApplication.translate("ImprovedServerDialogDesign", "Ok", None, QtGui.QApplication.UnicodeUTF8))
         self.cancelRenameButton.setText(QtGui.QApplication.translate("ImprovedServerDialogDesign", "Cancel", None, QtGui.QApplication.UnicodeUTF8))
         self.textLabel5.setText(QtGui.QApplication.translate("ImprovedServerDialogDesign", "Server address:", None, QtGui.QApplication.UnicodeUTF8))
-        self.networkLabel.setToolTip(QtGui.QApplication.translate("ImprovedServerDialogDesign", "Click to edit", None, QtGui.QApplication.UnicodeUTF8))
         self.networkLabel.setText(QtGui.QApplication.translate("ImprovedServerDialogDesign", "Not configured yet", None, QtGui.QApplication.UnicodeUTF8))
         self.textLabel7.setText(QtGui.QApplication.translate("ImprovedServerDialogDesign", "Bind as:", None, QtGui.QApplication.UnicodeUTF8))
-        self.credentialLabel.setToolTip(QtGui.QApplication.translate("ImprovedServerDialogDesign", "Click to edit", None, QtGui.QApplication.UnicodeUTF8))
         self.credentialLabel.setText(QtGui.QApplication.translate("ImprovedServerDialogDesign", "Not configured yet", None, QtGui.QApplication.UnicodeUTF8))
-        self.encryptionLabel.setToolTip(QtGui.QApplication.translate("ImprovedServerDialogDesign", "Click to edit", None, QtGui.QApplication.UnicodeUTF8))
         self.encryptionLabel.setText(QtGui.QApplication.translate("ImprovedServerDialogDesign", "Not configured yet", None, QtGui.QApplication.UnicodeUTF8))
-        self.authLabel.setToolTip(QtGui.QApplication.translate("ImprovedServerDialogDesign", "Click to edit", None, QtGui.QApplication.UnicodeUTF8))
         self.authLabel.setText(QtGui.QApplication.translate("ImprovedServerDialogDesign", "Not configured yet", None, QtGui.QApplication.UnicodeUTF8))
         self.textLabel10.setText(QtGui.QApplication.translate("ImprovedServerDialogDesign", "Encryption:", None, QtGui.QApplication.UnicodeUTF8))
         self.textLabel12.setText(QtGui.QApplication.translate("ImprovedServerDialogDesign", "Authentification:", None, QtGui.QApplication.UnicodeUTF8))
         self.textLabel16.setText(QtGui.QApplication.translate("ImprovedServerDialogDesign", "BaseDN:", None, QtGui.QApplication.UnicodeUTF8))
-        self.ldapOptLabel.setToolTip(QtGui.QApplication.translate("ImprovedServerDialogDesign", "Click to edit", None, QtGui.QApplication.UnicodeUTF8))
         self.ldapOptLabel.setText(QtGui.QApplication.translate("ImprovedServerDialogDesign", "Not configured yet", None, QtGui.QApplication.UnicodeUTF8))
         self.textLabel3.setText(QtGui.QApplication.translate("ImprovedServerDialogDesign", "Port:", None, QtGui.QApplication.UnicodeUTF8))
         self.textLabel2.setText(QtGui.QApplication.translate("ImprovedServerDialogDesign", "Hostname:", None, QtGui.QApplication.UnicodeUTF8))
