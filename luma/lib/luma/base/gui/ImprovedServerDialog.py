@@ -49,14 +49,6 @@ class ImprovedServerDialog(QDialog, Ui_ImprovedServerDialogDesign):
         
         self.disableBaseLookup = False
         
-        # Intsall network filter for highlightning labels when mouseover
-        self.networkLabel.installEventFilter(self)
-        self.credentialLabel.installEventFilter(self)
-        self.encryptionLabel.installEventFilter(self)
-        self.authLabel.installEventFilter(self)
-        self.ldapOptLabel.installEventFilter(self)
-        #self.namePage.installEventFilter(self)
-        
         self.labelDictionary = {self.networkLabel: 1, self.credentialLabel: 2, 
             self.encryptionLabel: 1, self.authLabel: 2, self.ldapOptLabel: 4}
         
@@ -194,78 +186,6 @@ class ImprovedServerDialog(QDialog, Ui_ImprovedServerDialogDesign):
 
 ###############################################################################
         
-    def eventFilter(self, object, event):
-        if (event.type() == QtCore.QEvent.MouseButtonPress):
-            if (self.currentServer == None):
-                return
-            widgetId = self.labelDictionary[object]
-            self.configStack.setCurrentIndex(widgetId)
-
-            # Iterate over subitems, selecting apropriate one
-            for key, value in self.categoryDictionary.items():
-                if value == widgetId:
-                    key.setSelected(True)
-                    break
-            return
-    
-        if (event.type() == QtCore.QEvent.Enter):
-            if not (object == self.namePage):
-                cursor = QCursor()
-                cursor.setShape(QtCore.Qt.PointingHandCursor )
-                qApp.setOverrideCursor(cursor)
-            
-            # FIXME: qt4 migration needed
-            #if object == self.networkLabel:
-            #    tmpColor = self.networkLabel.colorGroup().highlightedText()
-            #    self.networkLabel.setPaletteBackgroundColor(tmpColor)
-            #    
-            #if object == self.credentialLabel:
-            #    tmpColor = self.credentialLabel.colorGroup().highlightedText()
-            #    self.credentialLabel.setPaletteBackgroundColor(tmpColor)
-            #    
-            #if object == self.encryptionLabel:
-            #    tmpColor = self.encryptionLabel.colorGroup().highlightedText()
-            #    self.encryptionLabel.setPaletteBackgroundColor(tmpColor)
-            #    
-            #if object == self.authLabel:
-            #    tmpColor = self.authLabel.colorGroup().highlightedText()
-            #    self.authLabel.setPaletteBackgroundColor(tmpColor)
-            #    
-            #if object == self.ldapOptLabel:
-            #    tmpColor = self.ldapOptLabel.colorGroup().highlightedText()
-            #    self.ldapOptLabel.setPaletteBackgroundColor(tmpColor)
-            #    
-            #if object == self.namePage:
-            #    if not (self.currentServer == None):
-            #        self.renameButton.show()
-                
-                
-        if (event.type() == QtCore.QEvent.Leave):
-            qApp.restoreOverrideCursor()
-            # FIXME: qt4 migration needed
-            #if object == self.networkLabel:
-            #    self.networkLabel.setPaletteBackgroundColor(self.originalBackGroundColor)
-            #    
-            #if object == self.credentialLabel:
-            #    self.credentialLabel.setPaletteBackgroundColor(self.originalBackGroundColor)
-            #    
-            #if object == self.encryptionLabel:
-            #    self.encryptionLabel.setPaletteBackgroundColor(self.originalBackGroundColor)
-            #    
-            #if object == self.authLabel:
-            #    self.authLabel.setPaletteBackgroundColor(self.originalBackGroundColor)
-            #    
-            #if object == self.ldapOptLabel:
-            #    self.ldapOptLabel.setPaletteBackgroundColor(self.originalBackGroundColor)
-            #    
-            #if object == self.namePage:
-            #    self.renameButton.hide()
-            
-                
-        return 0
-        
-###############################################################################
-
     def initializeFields(self):
         self.networkLabel.blockSignals(True)
         self.credentialLabel.blockSignals(True)
