@@ -168,7 +168,7 @@ class MainWin(QMainWindow, Ui_MainWinDesign):
         
         #dialog = ServerDialog()
         dialog = ImprovedServerDialog()
-        dialog.exec_loop()
+        dialog.exec_()
         if (dialog.result() == QDialog.Accepted) or dialog.SAVED:
             currentPlugin = self.pluginBox.currentText()
             self.reloadPlugins()
