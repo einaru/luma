@@ -82,7 +82,10 @@ class LanguageDialog():
         languages.sort()
 
         selectedIndex = languages.indexOf(self.getLanguageName(self.selectedLangCode))
-        language, ok = QInputDialog.getItem(None, "test", "tast", languages, selectedIndex, False)
+        language, ok = QInputDialog.getItem(None, \
+                self.__tr("Choose Language"), \
+                self.__tr("Language:"), \
+                languages, selectedIndex, False)
 
         if ok and not language.isEmpty():
             if language == self.getLanguageName(self.selectedLangCode):
@@ -92,6 +95,9 @@ class LanguageDialog():
             return trFile, ok
 
         return "NATIVE", False
+
+    def __tr(self,s,c = None):
+        return qApp.translate("LanguageDialogDesign",s,c)
                 
         
     def _translageLangueToFile(self, langName):
