@@ -34,13 +34,13 @@
         </widget>
        </item>
        <item row="0" column="0" colspan="3" >
-        <widget class="Q3ListView" name="serverListView" >
-         <property name="resizeMode" >
-          <enum>Q3ListView::LastColumn</enum>
+        <widget class="QTreeWidget" name="serverListView" >
+         <property name="rootIsDecorated" >
+          <bool>false</bool>
          </property>
          <column>
           <property name="text" >
-           <string>Server</string>
+           <string>Serverlist</string>
           </property>
          </column>
         </widget>
@@ -88,7 +88,7 @@
           </widget>
          </item>
          <item row="0" column="1" >
-          <widget class="Q3WidgetStack" name="serverNameStack" >
+          <widget class="QStackedWidget" name="serverNameStack" >
            <property name="sizePolicy" >
             <sizepolicy vsizetype="Maximum" hsizetype="Preferred" >
              <horstretch>0</horstretch>
@@ -96,14 +96,6 @@
             </sizepolicy>
            </property>
            <widget class="QWidget" name="namePage" >
-            <property name="geometry" >
-             <rect>
-              <x>0</x>
-              <y>0</y>
-              <width>295</width>
-              <height>46</height>
-             </rect>
-            </property>
             <layout class="QHBoxLayout" >
              <item>
               <widget class="QLabel" name="serverLabel" >
@@ -149,14 +141,6 @@
             </layout>
            </widget>
            <widget class="QWidget" name="editNamePage" >
-            <property name="geometry" >
-             <rect>
-              <x>0</x>
-              <y>0</y>
-              <width>100</width>
-              <height>30</height>
-             </rect>
-            </property>
             <layout class="QHBoxLayout" >
              <item>
               <widget class="QLineEdit" name="renameEdit" />
@@ -207,16 +191,11 @@
         </layout>
        </item>
        <item>
-        <widget class="Q3WidgetStack" name="configStack" >
+        <widget class="QStackedWidget" name="configStack" >
+         <property name="currentIndex" >
+          <number>3</number>
+         </property>
          <widget class="QWidget" name="WStackPage" >
-          <property name="geometry" >
-           <rect>
-            <x>0</x>
-            <y>0</y>
-            <width>303</width>
-            <height>247</height>
-           </rect>
-          </property>
           <layout class="QGridLayout" >
            <item row="0" column="0" >
             <widget class="QLabel" name="textLabel5" >
@@ -240,7 +219,7 @@
            <item row="0" column="1" >
             <widget class="QLabel" name="networkLabel" >
              <property name="sizePolicy" >
-              <sizepolicy vsizetype="Preferred" hsizetype="" >
+              <sizepolicy vsizetype="Preferred" hsizetype="Fixed" >
                <horstretch>0</horstretch>
                <verstretch>0</verstretch>
               </sizepolicy>
@@ -278,7 +257,7 @@
            <item row="1" column="1" >
             <widget class="QLabel" name="credentialLabel" >
              <property name="sizePolicy" >
-              <sizepolicy vsizetype="Preferred" hsizetype="" >
+              <sizepolicy vsizetype="Preferred" hsizetype="Fixed" >
                <horstretch>0</horstretch>
                <verstretch>0</verstretch>
               </sizepolicy>
@@ -297,7 +276,7 @@
            <item row="2" column="1" >
             <widget class="QLabel" name="encryptionLabel" >
              <property name="sizePolicy" >
-              <sizepolicy vsizetype="Preferred" hsizetype="" >
+              <sizepolicy vsizetype="Preferred" hsizetype="Fixed" >
                <horstretch>0</horstretch>
                <verstretch>0</verstretch>
               </sizepolicy>
@@ -316,7 +295,7 @@
            <item row="3" column="1" >
             <widget class="QLabel" name="authLabel" >
              <property name="sizePolicy" >
-              <sizepolicy vsizetype="Preferred" hsizetype="" >
+              <sizepolicy vsizetype="Preferred" hsizetype="Fixed" >
                <horstretch>0</horstretch>
                <verstretch>0</verstretch>
               </sizepolicy>
@@ -383,7 +362,7 @@
            <item rowspan="2" row="4" column="1" >
             <widget class="QLabel" name="ldapOptLabel" >
              <property name="sizePolicy" >
-              <sizepolicy vsizetype="" hsizetype="" >
+              <sizepolicy vsizetype="Fixed" hsizetype="Fixed" >
                <horstretch>0</horstretch>
                <verstretch>0</verstretch>
               </sizepolicy>
@@ -421,14 +400,6 @@
           </layout>
          </widget>
          <widget class="QWidget" name="WStackPage" >
-          <property name="geometry" >
-           <rect>
-            <x>0</x>
-            <y>0</y>
-            <width>100</width>
-            <height>30</height>
-           </rect>
-          </property>
           <layout class="QGridLayout" >
            <item row="2" column="0" >
             <widget class="QLabel" name="textLabel3" >
@@ -595,14 +566,6 @@
           </layout>
          </widget>
          <widget class="QWidget" name="blankPage" >
-          <property name="geometry" >
-           <rect>
-            <x>0</x>
-            <y>0</y>
-            <width>100</width>
-            <height>30</height>
-           </rect>
-          </property>
           <layout class="QGridLayout" >
            <item row="0" column="0" colspan="2" >
             <layout class="QHBoxLayout" >
@@ -764,14 +727,6 @@
           </layout>
          </widget>
          <widget class="QWidget" name="WStackPage" >
-          <property name="geometry" >
-           <rect>
-            <x>0</x>
-            <y>0</y>
-            <width>100</width>
-            <height>30</height>
-           </rect>
-          </property>
           <layout class="QVBoxLayout" >
            <item>
             <layout class="QHBoxLayout" >
@@ -966,14 +921,6 @@
           </layout>
          </widget>
          <widget class="QWidget" name="WStackPage" >
-          <property name="geometry" >
-           <rect>
-            <x>0</x>
-            <y>0</y>
-            <width>100</width>
-            <height>30</height>
-           </rect>
-          </property>
           <layout class="QGridLayout" >
            <item row="0" column="0" colspan="3" >
             <layout class="QHBoxLayout" >
@@ -1039,16 +986,7 @@
             </widget>
            </item>
            <item row="3" column="1" colspan="2" >
-            <widget class="Q3ListView" name="baseDNView" >
-             <property name="resizeMode" >
-              <enum>Q3ListView::AllColumns</enum>
-             </property>
-             <column>
-              <property name="text" >
-               <string>Base DNs</string>
-              </property>
-             </column>
-            </widget>
+            <widget class="QListWidget" name="baseDNView" />
            </item>
            <item row="4" column="1" >
             <spacer>
@@ -1110,16 +1048,7 @@
            </item>
           </layout>
          </widget>
-         <widget class="QWidget" name="WStackPage" >
-          <property name="geometry" >
-           <rect>
-            <x>0</x>
-            <y>0</y>
-            <width>100</width>
-            <height>30</height>
-           </rect>
-          </property>
-         </widget>
+         <widget class="QWidget" name="WStackPage" />
         </widget>
        </item>
       </layout>
@@ -1198,19 +1127,6 @@
   </layout>
  </widget>
  <layoutdefault spacing="6" margin="6" />
- <customwidgets>
-  <customwidget>
-   <class>Q3WidgetStack</class>
-   <extends>Q3WidgetStack</extends>
-   <header>q3widgetstack.h</header>
-   <container>1</container>
-  </customwidget>
-  <customwidget>
-   <class>Q3ListView</class>
-   <extends>Q3Frame</extends>
-   <header>q3listview.h</header>
-  </customwidget>
- </customwidgets>
  <resources/>
  <connections>
   <connection>
@@ -1279,7 +1195,7 @@
   </connection>
   <connection>
    <sender>serverListView</sender>
-   <signal>selectionChanged(Q3ListViewItem*)</signal>
+   <signal>itemSelectionChanged()</signal>
    <receiver>ImprovedServerDialogDesign</receiver>
    <slot>serverSelected()</slot>
    <hints>
