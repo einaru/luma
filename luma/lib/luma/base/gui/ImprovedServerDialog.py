@@ -90,26 +90,55 @@ class ImprovedServerDialog(QDialog, Ui_ImprovedServerDialogDesign):
         self.categoryDictionary = {}
         self.currentServer = None
         
-        self.configStack.setCurrentIndex(5)
-        self.serverNameStack.setCurrentIndex(0)
-        self.serverLabel.setText(self.trUtf8("<b>No server selected</b>"))
-        self.renameButton.hide()
+        self.selectAServer(None)
         
         if self.serverListObject.serverList == None:
             return
             
-        tmpList = []
         for x in self.serverListObject.serverList:
-            tmpName = x.name
-            tmpList.append(tmpName)
+            serverItem = QTreeWidgetItem(self.serverListView)
+            serverItem.setText(0, x.name)
+            self.buildCategories(serverItem)
             
-        tmpList.reverse()
-        
-        for x in tmpList:
-            tmpItem = QTreeWidgetItem(self.serverListView)
-            tmpItem.setText(0, x)
-            #self.serverListView.addTopLevelItem(tmpItem)
+###############################################################################
+    def selectAServer(self, serverItem):
+
+        if serverItem == None:
+            self.oldServerItem = serverItem
+            self.currentServerItem = serverItem
+            self.configStack.setCurrentIndex(5)
+            self.serverNameStack.setCurrentIndex(0)
+            self.serverLabel.setText(self.trUtf8("<b>No server selected</b>"))
+            self.renameButton.hide()
+        else:
+            self.oldServerItem = serverItem
+            self.currentServerItem = serverItem
+            self.serverLabel.setText(QtCore.QString("<b>%1</b>").arg(serverItem.text(0)))
+            self.configStack.setCurrentIndex(0)
+            self.serverNameStack.setCurrentIndex(0)
+            self.renameButton.show()
+
+            selectedServerString = unicode(serverItem.text(0))
+            x = self.serverListObject.getServerObject(selectedServerString)
+            self.currentServer = x
             
+            self.initializeFields()
+
+            # Activate/deactivate certificate fields
+            if self.currentServer.encryptionMethod == u"None":
+                for key, value in self.categoryDictionary.items():
+                    if value == 3:
+                        listItem = key
+                        break
+                    
+                listItem.setHidden(True)
+            else:
+                for key, value in self.categoryDictionary.items():
+                    if value == 3:
+                        listItem = key
+                        break
+                    
+                listItem.setHidden(False)
 ###############################################################################
 
     def serverSelected(self):
