@@ -80,6 +80,9 @@ class ImprovedServerDialog(QDialog, Ui_ImprovedServerDialogDesign):
         
         self.displayServerList()
 
+        QtCore.QObject.connect(self.serverListView,QtCore.SIGNAL("currentItemChanged (QTreeWidgetItem *,QTreeWidgetItem *)"),self.serverTmpSelected)
+        #QtCore.QObject.connect(self.serverListView,QtCore.SIGNAL("itemSelectionChanged()"),self.serverSelected)
+
 ###############################################################################
 
     def displayServerList(self):
@@ -91,42 +94,129 @@ class ImprovedServerDialog(QDialog, Ui_ImprovedServerDialogDesign):
         self.categoryDictionary = {}
         self.currentServer = None
         
-        self.configStack.setCurrentIndex(5)
-        self.serverNameStack.setCurrentIndex(0)
-        self.serverLabel.setText(self.trUtf8("<b>No server selected</b>"))
-        self.renameButton.hide()
+        self.selectAServer(None)
         
         if self.serverListObject.serverList == None:
             return
             
-        tmpList = []
         for x in self.serverListObject.serverList:
-            tmpName = x.name
-            tmpList.append(tmpName)
+            serverItem = QTreeWidgetItem(self.serverListView)
+            serverItem.setText(0, x.name)
+            self.buildCategories(serverItem)
             
-        tmpList.reverse()
+###############################################################################
+    def selectAServer(self, serverItem):
+
+        if serverItem == None:
+            self.oldServerItem = serverItem
+            self.currentServerItem = serverItem
+            self.configStack.setCurrentIndex(5)
+            self.serverNameStack.setCurrentIndex(0)
+            self.serverLabel.setText(self.trUtf8("<b>No server selected</b>"))
+            self.renameButton.hide()
+        else:
+            self.oldServerItem = serverItem
+            self.currentServerItem = serverItem
+            self.serverLabel.setText(QtCore.QString("<b>%1</b>").arg(serverItem.text(0)))
+            self.configStack.setCurrentIndex(0)
+            self.serverNameStack.setCurrentIndex(0)
+            self.renameButton.show()
+
+            selectedServerString = unicode(serverItem.text(0))
+            x = self.serverListObject.getServerObject(selectedServerString)
+            self.currentServer = x
+            
+            self.initializeFields()
+
+            # Activate/deactivate certificate fields
+            if self.currentServer.encryptionMethod == u"None":
+                for key, value in self.categoryDictionary.items():
+                    if value == 3:
+                        listItem = key
+                        break
+                    
+                listItem.setHidden(True)
+            else:
+                for key, value in self.categoryDictionary.items():
+                    if value == 3:
+                        listItem = key
+                        break
+                    
+                listItem.setHidden(False)
         
-        for x in tmpList:
-            tmpItem = QTreeWidgetItem(self.serverListView)
-            tmpItem.setText(0, x)
-            #self.serverListView.addTopLevelItem(tmpItem)
-            
+###############################################################################
+
+    def serverTmpSelected(self, current, previous):
+        import sys
+        sys.stdout.write("serverTmpSelected(): ")
+        try:
+            sys.stdout.write("(%s, " % (current.text(0)))
+        except:
+            sys.stdout.write("(None, ")
+        try:
+            sys.stdout.write("%s)" % (previous.text(0)))
+        except:
+            sys.stdout.write("None)")
+        print ""
+
+        if current == None:
+            print "Should this ever happen?"
+            self.selectAServer(current)
+            return
+
+        serverItem = current
+        if current.parent():
+            serverItem = current.parent()
+        prevServerItem = previous
+        if previous and previous.parent():
+            prevServerItem = previous.parent()
+
+        if serverItem != prevServerItem:
+            if prevServerItem:
+                #prevServerItem.setExpanded(False)
+                print "collapseOld"
+            self.selectAServer(serverItem)
+            #self.serverListView.emit(QtCore.SIGNAL("itemDoubleClicked(QTreeWidgetItem *,int)"), current, 0)
+            serverItem.setExpanded(True)
+
+        if current.parent(): # Subitem selected, show appropriate widget
+            self.serverNameStack.setCurrentIndex(0)
+            self.currentCategoryItem = current
+            widgetId = self.categoryDictionary[current]
+            self.configStack.setCurrentIndex(widgetId)
+        else:
+            self.selectAServer(serverItem)
+
 ###############################################################################
 
     def serverSelected(self):
         # FIXME: is there another way of finding selected item?
         serverItems = self.serverListView.selectedItems()
         if len(serverItems) < 1:
-            return
-        serverItem = serverItems[0]
+            serverItem = None
+        else:
+            serverItem = serverItems[0]
 
-        # Nothing selected
+        import sys
+        sys.stdout.write("serverSelected: (serverItem, oldServerItem)")
+        try:
+            sys.stdout.write("(%s, " % (serverItem.text(0)))
+        except:
+            sys.stdout.write("(None, ")
+        try:
+            sys.stdout.write("%s)" % (self.oldServerItem.text(0)))
+        except:
+            sys.stdout.write("None)")
+        sys.stdout.write(", selectedItems(): %s" % ([x.text(0).__str__() for x in self.serverListView.selectedItems()]))
+        print ""
+
+        ## Nothing selected
         if serverItem == None:
+            print "Nothing selected. Should not happen?"
             if not (self.oldServerItem == None):
-                self.oldServerItem.setOpen(False)
-                while self.oldServerItem.childCount() > 0:
-                    child = self.oldServerItem.firstChild()
-                    self.oldServerItem.takeItem(child)
+                self.oldServerItem.setExpanded(False)
+                while self.oldServerItem.takeChild(0):
+                    print "takeChild"
             self.oldServerItem = None
             self.serverLabel.setText(self.trUtf8("<b>No server selected</b>"))
             self.configStack.setCurrentIndex(5)
@@ -139,7 +229,7 @@ class ImprovedServerDialog(QDialog, Ui_ImprovedServerDialogDesign):
                 self.categoryDictionary = {}
                 self.oldServerItem.setExpanded(False)
                 while self.oldServerItem.takeChild(0):
-                    pass
+                    print "takeChild"
                 self.oldServerItem = None
                         
                 
@@ -156,8 +246,8 @@ class ImprovedServerDialog(QDialog, Ui_ImprovedServerDialogDesign):
             x = self.serverListObject.getServerObject(selectedServerString)
             self.currentServer = x
             
-            self.initializeFields()
-            self.buildCategories(serverItem)
+            #self.initializeFields()
+            #self.buildCategories(serverItem)
             
             # Activate/deactivate certificate fields
             if self.currentServer.encryptionMethod == u"None":
