@@ -79,6 +79,7 @@ class ImprovedServerDialog(QDialog, Ui_ImprovedServerDialogDesign):
         
         self.displayServerList()
 
+        QtCore.QObject.connect(self.serverListView,QtCore.SIGNAL("currentItemChanged (QTreeWidgetItem *,QTreeWidgetItem *)"),self.configSectionChanged)
 ###############################################################################
 
     def displayServerList(self):
@@ -90,7 +91,7 @@ class ImprovedServerDialog(QDialog, Ui_ImprovedServerDialogDesign):
         self.categoryDictionary = {}
         self.currentServer = None
         
-        self.selectAServer(None)
+        self.updateSelectedServer(None)
         
         if self.serverListObject.serverList == None:
             return
@@ -101,8 +102,7 @@ class ImprovedServerDialog(QDialog, Ui_ImprovedServerDialogDesign):
             self.buildCategories(serverItem)
             
 ###############################################################################
-    def selectAServer(self, serverItem):
-
+    def updateSelectedServer(self, serverItem):
         if serverItem == None:
             self.oldServerItem = serverItem
             self.currentServerItem = serverItem
@@ -139,80 +139,42 @@ class ImprovedServerDialog(QDialog, Ui_ImprovedServerDialogDesign):
                         break
                     
                 listItem.setHidden(False)
-###############################################################################
 
-    def serverSelected(self):
-        # FIXME: is there another way of finding selected item?
-        serverItems = self.serverListView.selectedItems()
-        if len(serverItems) < 1:
-            return
-        serverItem = serverItems[0]
-
-        # Nothing selected
-        if serverItem == None:
-            if not (self.oldServerItem == None):
-                self.oldServerItem.setOpen(False)
-                while self.oldServerItem.childCount() > 0:
-                    child = self.oldServerItem.firstChild()
-                    self.oldServerItem.takeItem(child)
-            self.oldServerItem = None
-            self.serverLabel.setText(self.trUtf8("<b>No server selected</b>"))
-            self.configStack.setCurrentIndex(5)
-            self.renameButton.hide()
-            return
-    
-        # Server selected
-        if serverItem.parent() == None:
-            if not (self.oldServerItem == None):
-                self.categoryDictionary = {}
-                self.oldServerItem.setExpanded(False)
-                while self.oldServerItem.takeChild(0):
-                    pass
-                self.oldServerItem = None
-                        
-                
-            self.oldServerItem = serverItem
-            self.currentServerItem = serverItem
-            
-            self.serverLabel.setText(QtCore.QString("<b>%1</b>").arg(serverItem.text(0)))
-            self.configStack.setCurrentIndex(0)
-            self.serverNameStack.setCurrentIndex(0)
-            self.renameButton.show()
-            
-            
-            selectedServerString = unicode(serverItem.text(0))
-            x = self.serverListObject.getServerObject(selectedServerString)
-            self.currentServer = x
-            
-            self.initializeFields()
-            self.buildCategories(serverItem)
-            
-            # Activate/deactivate certificate fields
-            if self.currentServer.encryptionMethod == u"None":
-                for key, value in self.categoryDictionary.items():
-                    if value == 3:
-                        listItem = key
-                        break
-                    
-                listItem.setHidden(True)
-            else:
-                for key, value in self.categoryDictionary.items():
-                    if value == 3:
-                        listItem = key
-                        break
-                    
-                listItem.setHidden(False)
-            
             serverItem.setExpanded(True)
-            
-        # Subcategory from server selected
-        if serverItem in self.categoryDictionary.keys():
+        
+###############################################################################
+
+    def configSectionChanged(self, current, previous):
+        if current == None:
+            self.updateSelectedServer(current)
+            return
+
+        # Find current and previous serverItem (parent of configsection)
+        serverItem = current
+        if current.parent():
+            serverItem = current.parent()
+        prevServerItem = previous
+        if previous and previous.parent():
+            prevServerItem = previous.parent()
+
+
+        if current.parent(): # Configsection selected, show appropriate widget
+            # Selected server changed, update accourdingly
+            if serverItem != prevServerItem:
+                if prevServerItem:
+                    #prevServerItem.setExpanded(False)
+                    pass
+                self.updateSelectedServer(serverItem)
+
             self.serverNameStack.setCurrentIndex(0)
-            self.currentCategoryItem = serverItem
-            widgetId = self.categoryDictionary[serverItem]
+            self.currentCategoryItem = current
+            widgetId = self.categoryDictionary[current]
             self.configStack.setCurrentIndex(widgetId)
+        else: # Server selected, update view
+            self.updateSelectedServer(serverItem)
 
 ###############################################################################
+
         
     def initializeFields(self):
         self.networkLabel.blockSignals(True)
@@ -849,4 +811,3 @@ class ImprovedServerDialog(QDialog, Ui_ImprovedServerDialogDesign):
                 
         if unicode(tmpItem.text(0)) == serverName:
             self.serverListView.setItemSelected(tmpItem, True)
-        
