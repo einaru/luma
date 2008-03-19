@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'lib/luma/base/gui/ImprovedServerDialogDesign.ui'
 #
-# Created: Tue Mar 18 23:21:03 2008
+# Created: Wed Mar 19 16:35:57 2008
 #      by: PyQt4 UI code generator 4.3.3
 #
 # WARNING! All changes made in this file will be lost!
@@ -191,28 +191,6 @@ class Ui_ImprovedServerDialogDesign(object):
         self.credentialLabel.setObjectName("credentialLabel")
         self.gridlayout2.addWidget(self.credentialLabel,1,1,1,1)
 
-        self.encryptionLabel = QtGui.QLabel(self.WStackPage)
-
-        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Fixed,QtGui.QSizePolicy.Preferred)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.encryptionLabel.sizePolicy().hasHeightForWidth())
-        self.encryptionLabel.setSizePolicy(sizePolicy)
-        self.encryptionLabel.setWordWrap(False)
-        self.encryptionLabel.setObjectName("encryptionLabel")
-        self.gridlayout2.addWidget(self.encryptionLabel,2,1,1,1)
-
-        self.authLabel = QtGui.QLabel(self.WStackPage)
-
-        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Fixed,QtGui.QSizePolicy.Preferred)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.authLabel.sizePolicy().hasHeightForWidth())
-        self.authLabel.setSizePolicy(sizePolicy)
-        self.authLabel.setWordWrap(False)
-        self.authLabel.setObjectName("authLabel")
-        self.gridlayout2.addWidget(self.authLabel,3,1,1,1)
-
         self.textLabel10 = QtGui.QLabel(self.WStackPage)
 
         sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Preferred,QtGui.QSizePolicy.Maximum)
@@ -224,6 +202,17 @@ class Ui_ImprovedServerDialogDesign(object):
         self.textLabel10.setObjectName("textLabel10")
         self.gridlayout2.addWidget(self.textLabel10,2,0,1,1)
 
+        self.encryptionLabel = QtGui.QLabel(self.WStackPage)
+
+        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Fixed,QtGui.QSizePolicy.Preferred)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.encryptionLabel.sizePolicy().hasHeightForWidth())
+        self.encryptionLabel.setSizePolicy(sizePolicy)
+        self.encryptionLabel.setWordWrap(False)
+        self.encryptionLabel.setObjectName("encryptionLabel")
+        self.gridlayout2.addWidget(self.encryptionLabel,2,1,1,1)
+
         self.textLabel12 = QtGui.QLabel(self.WStackPage)
 
         sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Preferred,QtGui.QSizePolicy.Maximum)
@@ -234,6 +223,17 @@ class Ui_ImprovedServerDialogDesign(object):
         self.textLabel12.setWordWrap(False)
         self.textLabel12.setObjectName("textLabel12")
         self.gridlayout2.addWidget(self.textLabel12,3,0,1,1)
+
+        self.authLabel = QtGui.QLabel(self.WStackPage)
+
+        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Fixed,QtGui.QSizePolicy.Preferred)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.authLabel.sizePolicy().hasHeightForWidth())
+        self.authLabel.setSizePolicy(sizePolicy)
+        self.authLabel.setWordWrap(False)
+        self.authLabel.setObjectName("authLabel")
+        self.gridlayout2.addWidget(self.authLabel,3,1,1,1)
 
         self.textLabel16 = QtGui.QLabel(self.WStackPage)
 
@@ -256,10 +256,10 @@ class Ui_ImprovedServerDialogDesign(object):
         self.ldapOptLabel.setAlignment(QtCore.Qt.AlignTop)
         self.ldapOptLabel.setWordWrap(False)
         self.ldapOptLabel.setObjectName("ldapOptLabel")
-        self.gridlayout2.addWidget(self.ldapOptLabel,4,1,2,1)
+        self.gridlayout2.addWidget(self.ldapOptLabel,4,1,1,1)
 
-        spacerItem1 = QtGui.QSpacerItem(20,41,QtGui.QSizePolicy.Minimum,QtGui.QSizePolicy.Expanding)
-        self.gridlayout2.addItem(spacerItem1,5,0,1,1)
+        spacerItem1 = QtGui.QSpacerItem(221,139,QtGui.QSizePolicy.Minimum,QtGui.QSizePolicy.Expanding)
+        self.gridlayout2.addItem(spacerItem1,5,0,1,2)
         self.configStack.addWidget(self.WStackPage)
 
         self.WStackPage1 = QtGui.QWidget()
@@ -626,12 +626,12 @@ class Ui_ImprovedServerDialogDesign(object):
         self.vboxlayout.addLayout(self.hboxlayout7)
 
         self.retranslateUi(ImprovedServerDialogDesign)
-        self.configStack.setCurrentIndex(3)
+        self.configStack.setCurrentIndex(0)
         QtCore.QObject.connect(self.pushButton6,QtCore.SIGNAL("clicked()"),ImprovedServerDialogDesign.showSummary)
         QtCore.QObject.connect(self.pushButton7,QtCore.SIGNAL("clicked()"),ImprovedServerDialogDesign.showSummary)
         QtCore.QObject.connect(self.pushButton9,QtCore.SIGNAL("clicked()"),ImprovedServerDialogDesign.showSummary)
         QtCore.QObject.connect(self.pushButton10_2,QtCore.SIGNAL("clicked()"),ImprovedServerDialogDesign.showSummary)
-        QtCore.QObject.connect(self.serverListView,QtCore.SIGNAL("itemSelectionChanged()"),ImprovedServerDialogDesign.serverSelected)
+        #QtCore.QObject.connect(self.serverListView,QtCore.SIGNAL("itemSelectionChanged()"),ImprovedServerDialogDesign.serverSelected)
         QtCore.QObject.connect(self.renameButton,QtCore.SIGNAL("clicked()"),ImprovedServerDialogDesign.renameServer)
         QtCore.QObject.connect(self.renameOkButton,QtCore.SIGNAL("clicked()"),ImprovedServerDialogDesign.saveRename)
         QtCore.QObject.connect(self.renameEdit,QtCore.SIGNAL("returnPressed()"),ImprovedServerDialogDesign.saveRename)
@@ -674,10 +674,10 @@ class Ui_ImprovedServerDialogDesign(object):
         self.networkLabel.setText(QtGui.QApplication.translate("ImprovedServerDialogDesign", "Not configured yet", None, QtGui.QApplication.UnicodeUTF8))
         self.textLabel7.setText(QtGui.QApplication.translate("ImprovedServerDialogDesign", "Bind as:", None, QtGui.QApplication.UnicodeUTF8))
         self.credentialLabel.setText(QtGui.QApplication.translate("ImprovedServerDialogDesign", "Not configured yet", None, QtGui.QApplication.UnicodeUTF8))
-        self.encryptionLabel.setText(QtGui.QApplication.translate("ImprovedServerDialogDesign", "Not configured yet", None, QtGui.QApplication.UnicodeUTF8))
-        self.authLabel.setText(QtGui.QApplication.translate("ImprovedServerDialogDesign", "Not configured yet", None, QtGui.QApplication.UnicodeUTF8))
         self.textLabel10.setText(QtGui.QApplication.translate("ImprovedServerDialogDesign", "Encryption:", None, QtGui.QApplication.UnicodeUTF8))
+        self.encryptionLabel.setText(QtGui.QApplication.translate("ImprovedServerDialogDesign", "Not configured yet", None, QtGui.QApplication.UnicodeUTF8))
         self.textLabel12.setText(QtGui.QApplication.translate("ImprovedServerDialogDesign", "Authentification:", None, QtGui.QApplication.UnicodeUTF8))
+        self.authLabel.setText(QtGui.QApplication.translate("ImprovedServerDialogDesign", "Not configured yet", None, QtGui.QApplication.UnicodeUTF8))
         self.textLabel16.setText(QtGui.QApplication.translate("ImprovedServerDialogDesign", "BaseDN:", None, QtGui.QApplication.UnicodeUTF8))
         self.ldapOptLabel.setText(QtGui.QApplication.translate("ImprovedServerDialogDesign", "Not configured yet", None, QtGui.QApplication.UnicodeUTF8))
         self.textLabel3.setText(QtGui.QApplication.translate("ImprovedServerDialogDesign", "Port:", None, QtGui.QApplication.UnicodeUTF8))
