@@ -193,7 +193,7 @@
        <item>
         <widget class="QStackedWidget" name="configStack" >
          <property name="currentIndex" >
-          <number>3</number>
+          <number>0</number>
          </property>
          <widget class="QWidget" name="WStackPage" >
           <layout class="QGridLayout" >
@@ -267,38 +267,6 @@
              </property>
             </widget>
            </item>
-           <item row="2" column="1" >
-            <widget class="QLabel" name="encryptionLabel" >
-             <property name="sizePolicy" >
-              <sizepolicy vsizetype="Preferred" hsizetype="Fixed" >
-               <horstretch>0</horstretch>
-               <verstretch>0</verstretch>
-              </sizepolicy>
-             </property>
-             <property name="text" >
-              <string>Not configured yet</string>
-             </property>
-             <property name="wordWrap" >
-              <bool>false</bool>
-             </property>
-            </widget>
-           </item>
-           <item row="3" column="1" >
-            <widget class="QLabel" name="authLabel" >
-             <property name="sizePolicy" >
-              <sizepolicy vsizetype="Preferred" hsizetype="Fixed" >
-               <horstretch>0</horstretch>
-               <verstretch>0</verstretch>
-              </sizepolicy>
-             </property>
-             <property name="text" >
-              <string>Not configured yet</string>
-             </property>
-             <property name="wordWrap" >
-              <bool>false</bool>
-             </property>
-            </widget>
-           </item>
            <item row="2" column="0" >
             <widget class="QLabel" name="textLabel10" >
              <property name="sizePolicy" >
@@ -309,6 +277,22 @@
              </property>
              <property name="text" >
               <string>Encryption:</string>
+             </property>
+             <property name="wordWrap" >
+              <bool>false</bool>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="1" >
+            <widget class="QLabel" name="encryptionLabel" >
+             <property name="sizePolicy" >
+              <sizepolicy vsizetype="Preferred" hsizetype="Fixed" >
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="text" >
+              <string>Not configured yet</string>
              </property>
              <property name="wordWrap" >
               <bool>false</bool>
@@ -331,6 +315,22 @@
              </property>
             </widget>
            </item>
+           <item row="3" column="1" >
+            <widget class="QLabel" name="authLabel" >
+             <property name="sizePolicy" >
+              <sizepolicy vsizetype="Preferred" hsizetype="Fixed" >
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="text" >
+              <string>Not configured yet</string>
+             </property>
+             <property name="wordWrap" >
+              <bool>false</bool>
+             </property>
+            </widget>
+           </item>
            <item row="4" column="0" >
             <widget class="QLabel" name="textLabel16" >
              <property name="sizePolicy" >
@@ -347,7 +347,7 @@
              </property>
             </widget>
            </item>
-           <item rowspan="2" row="4" column="1" >
+           <item row="4" column="1" >
             <widget class="QLabel" name="ldapOptLabel" >
              <property name="sizePolicy" >
               <sizepolicy vsizetype="Fixed" hsizetype="Fixed" >
@@ -366,7 +366,7 @@
              </property>
             </widget>
            </item>
-           <item row="5" column="0" >
+           <item row="5" column="0" colspan="2" >
             <spacer>
              <property name="orientation" >
               <enum>Qt::Vertical</enum>
@@ -376,8 +376,8 @@
              </property>
              <property name="sizeHint" >
               <size>
-               <width>20</width>
-               <height>41</height>
+               <width>221</width>
+               <height>139</height>
               </size>
              </property>
             </spacer>
@@ -1167,22 +1167,6 @@
    <signal>clicked()</signal>
    <receiver>ImprovedServerDialogDesign</receiver>
    <slot>showSummary()</slot>
-   <hints>
-    <hint type="sourcelabel" >
-     <x>20</x>
-     <y>20</y>
-    </hint>
-    <hint type="destinationlabel" >
-     <x>20</x>
-     <y>20</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>serverListView</sender>
-   <signal>itemSelectionChanged()</signal>
-   <receiver>ImprovedServerDialogDesign</receiver>
-   <slot>serverSelected()</slot>
    <hints>
     <hint type="sourcelabel" >
      <x>20</x>
