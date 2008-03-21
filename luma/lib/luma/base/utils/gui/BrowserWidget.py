@@ -38,7 +38,7 @@ class BrowserWidget(QTreeWidget):
     def __init__(self,parent = None,name = None,fl = 0):
         QTreeWidget.__init__(self,parent)
         # FIXME: qt4 migration needed
-        #self.setSelectionMode(QTreeWidget.Extended)
+        self.setSelectionMode(QAbstractItemView.ExtendedSelection)
 
         # FIXME: qt4 migration needed
         #self.connect(self, SIGNAL("mouseButtonPressed(int, QTreeWidgetItem*, const QPoint&, int)"), self.itemClicked)
@@ -48,8 +48,8 @@ class BrowserWidget(QTreeWidget):
 
 
         self.setRootIsDecorated(True)
-        # FIXME: qt4 migration needed
-        #self.addColumn(self.trUtf8("Entries"))
+        self.headerItem().setText(0,self.trUtf8("Entries"))
+        # FIXME: qt4 migration needed (maybe default?)
         #self.setResizeMode(QTreeWidget.AllColumns)
 
         self.searchObjectClass = "(objectClass=*)"
@@ -81,8 +81,7 @@ class BrowserWidget(QTreeWidget):
             tmpItem = BrowserItem(self, x.name)
             tmpItem.serverType = True
             tmpItem.setServerName(x.name)
-            # FIXME: qt4 migration needed
-            #tmpItem.setExpandable(True)
+            tmpItem.setChildIndicatorPolicy(QTreeWidgetItem.ShowIndicator)
             self.serverDict[x.name] = tmpItem
             self.aliasDict[x.name] = x.followAliases
 
@@ -151,6 +150,9 @@ class BrowserWidget(QTreeWidget):
                     if len(resultList) > 0:
                         result = resultList[0]
                         result.serverMeta.currentBase = self.currentBase
+                        # FIXME: qt4 migration needed
+                        #self.emit(PYSIGNAL("about_to_change"), ())
+                        #self.emit(PYSIGNAL("ldap_result"), (deepcopy(result),))
                         self.emit(QtCore.SIGNAL("about_to_change"), ())
                         self.emit(QtCore.SIGNAL("ldap_result"), (deepcopy(result),))
                 else:
@@ -764,6 +766,8 @@ class BrowserWidget(QTreeWidget):
         widget.buildToolBar(floatingWidget)
         widget.initView(smartObject, True)
         
+        # FIXME: qt4 migration needed
+        #self.connect(floatingWidget, PYSIGNAL("child_closed"), self.cleanChildren)
         self.connect(floatingWidget, QtCore.SIGNAL("child_closed"), self.cleanChildren)
         floatingWidget.resize(500, 400)
         floatingWidget.show()
@@ -1044,6 +1048,8 @@ class BrowserWidget(QTreeWidget):
         entry.
         """
         
+        # FIXME: qt4 migration needed
+        #self.emit(PYSIGNAL("ADD_ATTRIBUTE"), ())
         self.emit(QtCore.SIGNAL("ADD_ATTRIBUTE"), ())
         
 ###############################################################################
@@ -1055,6 +1061,8 @@ class ChildWindow(QMainWindow):
         
         
     def closeEvent(self, event):
+        # FIXME: qt4 migration needed
+        #self.emit(PYSIGNAL("child_closed"), (self,))
         self.emit(QtCore.SIGNAL("child_closed"), (self,))
         self.deleteLater()
         
