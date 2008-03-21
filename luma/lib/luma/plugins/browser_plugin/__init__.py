@@ -19,7 +19,7 @@ author = "Wido Depping <wido.depping@gmail.com>"
 
 def getIcon(iconPath):
     try:
-        iconPixmap = QPixmap (os.path.join (iconPath, "plugin.png"))
+        iconPixmap = QIcon (os.path.join (iconPath, "plugin.png"))
     except:
         print "Debug: Icon for plugin " + pluginName + " could not be opened."
         return None
