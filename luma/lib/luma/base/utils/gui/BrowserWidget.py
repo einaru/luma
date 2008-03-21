@@ -37,14 +37,13 @@ class BrowserWidget(QTreeWidget):
 
     def __init__(self,parent = None,name = None,fl = 0):
         QTreeWidget.__init__(self,parent)
-        # FIXME: qt4 migration needed
         self.setSelectionMode(QAbstractItemView.ExtendedSelection)
 
-        # FIXME: qt4 migration needed
-        #self.connect(self, SIGNAL("mouseButtonPressed(int, QTreeWidgetItem*, const QPoint&, int)"), self.itemClicked)
-        #self.connect(self, SIGNAL("collapsed(QTreeWidgetItem*)"), self.itemCollapsed)
-        #self.connect(self, SIGNAL("expanded(QTreeWidgetItem*)"), self.itemExpanded)
-        #self.connect(self, SIGNAL("rightButtonPressed(QTreeWidgetItem*, const QPoint&, int)"), self.showPopup)
+        self.connect(self, QtCore.SIGNAL("itemClicked(QTreeWidgetItem*, int)"), self.itemClicked)
+        self.connect(self, QtCore.SIGNAL("itemCollapsed(QTreeWidgetItem*)"), self.itemCollapsed)
+        self.connect(self, QtCore.SIGNAL("itemExpanded(QTreeWidgetItem*)"), self.itemExpanded)
+        # FIXME: qt4 migration needed. There is no SIGNAL for rightclick. Read http://lists.trolltech.com/qt-interest/2006-02/thread01068-0.html
+        #self.connect(self, QtCore.SIGNAL("(QTreeWidgetItem*, const QPoint&, int)"), self.showPopup)
 
 
         self.setRootIsDecorated(True)
@@ -121,10 +120,11 @@ class BrowserWidget(QTreeWidget):
 
 ###############################################################################
 
-    def itemClicked(self, buttonNumber, item):
+    def itemClicked(self, item, column):
         """ Emit the ldap object and the server if a valid object has been
         clicked.
         """
+        print "itemClicked()"
         
         if not (buttonNumber ==1):
             return
@@ -167,6 +167,7 @@ class BrowserWidget(QTreeWidget):
     def itemExpanded(self, item):
         """ Get all children of the expanded object and display them.
         """
+        print "itemExpanded"
         
         # We have a ldap entry clicked
         if item.parent():
@@ -181,7 +182,7 @@ class BrowserWidget(QTreeWidget):
             if success:
                 if len(resultList) == 0:
                     self.aliasDict[serverName] = oldAliasValue
-                    item.setExpandable(0)
+                    item.setChildIndicatorPolicy(QTreeWidgetItem.DontShowIndicator)
                 else:
                     for x in resultList:
                         tmp = x.getPrettyRDN()
@@ -195,23 +196,24 @@ class BrowserWidget(QTreeWidget):
                         if x.isAliasObject():
                             tmpItem.setIcon(0, self.aliasIcon)
                     
-                        tmpItem.setExpandable(1)
-                        item.insertItem(tmpItem)
+                        tmpItem.setChildIndicatorPolicy(QTreeWidgetItem.ShowIndicator)
+                        item.addChild(tmpItem)
                         
                     self.aliasDict[serverName] = oldAliasValue
                     
             else:
                 self.aliasDict[serverName] = oldAliasValue
-                #item.setExpandable(0)
+                #item.setChildIndicatorPolicy(QTreeWidgetItem.DontShowIndicator)
                 
-                dialog = LumaErrorDialog()
                 errorMsg = self.trUtf8("Could not expand entry.<br><br>Reason: ")
                 if isinstance(exceptionObject, ldap.INVALID_CREDENTIALS):
                     errorMsg.append(self.trUtf8("Invalid username or wrong password"))
                 else:
                     errorMsg.append(str(exceptionObject))
-                dialog.setErrorMessage(errorMsg)
-                dialog.exec_loop()
+                QMessageBox.critical(self, self.trUtf8("Error"),
+                        errorMsg,
+                        QMessageBox.Ok | QMessageBox.Default,
+                        QMessageBox.NoButton)
         
         # We have a server item clicked
         else:
@@ -245,16 +247,16 @@ class BrowserWidget(QTreeWidget):
                 tmpBase.ldapType = True
                 tmpBase.setDn(base)
                 tmpBase.setServerName(item.getServerName())
-                tmpBase.setExpandable(1)
+                tmpBase.setChildIndicatorPolicy(QTreeWidgetItem.ShowIndicator)
             
 ###############################################################################
 
     def itemCollapsed(self, item):
         """ Delete all children if a ldap object collapses.
         """
+        print "itemCollapsed()"
         
-        while item.childCount() > 0:
-            item.takeItem(item.firstChild())
+        item.takeChildren()
 
 ###############################################################################
 
@@ -595,6 +597,7 @@ class BrowserWidget(QTreeWidget):
     def showPopup(self, tmpItem=None, point=None, itemId=None):
         """ Display popup menu.
         """
+        print "showPopup"
         
         if tmpItem == None:
             return
