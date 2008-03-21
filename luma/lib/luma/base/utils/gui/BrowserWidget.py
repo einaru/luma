@@ -8,6 +8,7 @@
 #
 ###########################################################################
 
+from PyQt4 import QtCore
 from PyQt4.QtGui import *
 from copy import deepcopy
 import ldap
@@ -18,7 +19,7 @@ import base64
 from base.backend.ServerList import ServerList
 import environment
 from base.utils.backend.templateutils import *
-from base.utils.gui.AdvancedObjectWidget import AdvancedObjectWidget
+#from base.utils.gui.AdvancedObjectWidget import AdvancedObjectWidget
 from base.backend.LumaConnection import LumaConnection
 from base.utils import isBinaryAttribute
 from base.utils import escapeSpecialChars
@@ -28,25 +29,28 @@ from base.utils.gui.ExportDialog import ExportDialog
 from base.utils.backend.LogObject import LogObject
 from base.gui.ImprovedServerDialog import ImprovedServerDialog
 
-class BrowserWidget(QListView):
+class BrowserWidget(QTreeWidget):
     """ Widget for browsing ldap trees. 
     
     It gets all server information from the Luma config file.
     """
 
     def __init__(self,parent = None,name = None,fl = 0):
-        QListView.__init__(self,parent,name,fl)
-        self.setSelectionMode(QListView.Extended)
+        QTreeWidget.__init__(self,parent)
+        # FIXME: qt4 migration needed
+        #self.setSelectionMode(QTreeWidget.Extended)
 
-        self.connect(self, SIGNAL("mouseButtonPressed(int, QListViewItem*, const QPoint&, int)"), self.itemClicked)
-        self.connect(self, SIGNAL("collapsed(QListViewItem*)"), self.itemCollapsed)
-        self.connect(self, SIGNAL("expanded(QListViewItem*)"), self.itemExpanded)
-        self.connect(self, SIGNAL("rightButtonPressed(QListViewItem*, const QPoint&, int)"), self.showPopup)
+        # FIXME: qt4 migration needed
+        #self.connect(self, SIGNAL("mouseButtonPressed(int, QTreeWidgetItem*, const QPoint&, int)"), self.itemClicked)
+        #self.connect(self, SIGNAL("collapsed(QTreeWidgetItem*)"), self.itemCollapsed)
+        #self.connect(self, SIGNAL("expanded(QTreeWidgetItem*)"), self.itemExpanded)
+        #self.connect(self, SIGNAL("rightButtonPressed(QTreeWidgetItem*, const QPoint&, int)"), self.showPopup)
 
 
         self.setRootIsDecorated(True)
-        self.addColumn(self.trUtf8("Entries"))
-        self.setResizeMode(QListView.AllColumns)
+        # FIXME: qt4 migration needed
+        #self.addColumn(self.trUtf8("Entries"))
+        #self.setResizeMode(QTreeWidget.AllColumns)
 
         self.searchObjectClass = "(objectClass=*)"
         # Example for filtering the entries
@@ -55,10 +59,10 @@ class BrowserWidget(QListView):
         tmpDirObject = environment.lumaInstallationPrefix
         
         self.iconPath = os.path.join(tmpDirObject, "share", "luma", "icons")
-        self.secureIcon = QPixmap(os.path.join(self.iconPath, "secure.png"))
-        self.aliasIcon = QPixmap(os.path.join(self.iconPath, "alias.png"))
-        self.filterIcon = QPixmap(os.path.join(self.iconPath, "filter.png"))
-        self.secureAliasIcon = QPixmap(os.path.join(self.iconPath, "secure-alias.png"))
+        self.secureIcon = QIcon(os.path.join(self.iconPath, "secure.png"))
+        self.aliasIcon = QIcon(os.path.join(self.iconPath, "alias.png"))
+        self.filterIcon = QIcon(os.path.join(self.iconPath, "filter.png"))
+        self.secureAliasIcon = QIcon(os.path.join(self.iconPath, "secure-alias.png"))
 
         tmpObject = ServerList()
         tmpObject.readServerList()
@@ -77,7 +81,8 @@ class BrowserWidget(QListView):
             tmpItem = BrowserItem(self, x.name)
             tmpItem.serverType = True
             tmpItem.setServerName(x.name)
-            tmpItem.setExpandable(True)
+            # FIXME: qt4 migration needed
+            #tmpItem.setExpandable(True)
             self.serverDict[x.name] = tmpItem
             self.aliasDict[x.name] = x.followAliases
 
@@ -107,13 +112,13 @@ class BrowserWidget(QListView):
                 encryption = True
                 
             if encryption and self.aliasDict[server]:
-                tmpItem.setPixmap(0, self.secureAliasIcon)
+                tmpItem.setIcon(0, self.secureAliasIcon)
             elif encryption:
-                tmpItem.setPixmap(0, self.secureIcon)
+                tmpItem.setIcon(0, self.secureIcon)
             elif self.aliasDict[server]:
-                tmpItem.setPixmap(0, self.aliasIcon)
+                tmpItem.setIcon(0, self.aliasIcon)
             else:
-                tmpItem.setPixmap(0, QPixmap())
+                tmpItem.setIcon(0, QIcon())
 
 ###############################################################################
 
@@ -146,8 +151,8 @@ class BrowserWidget(QListView):
                     if len(resultList) > 0:
                         result = resultList[0]
                         result.serverMeta.currentBase = self.currentBase
-                        self.emit(PYSIGNAL("about_to_change"), ())
-                        self.emit(PYSIGNAL("ldap_result"), (deepcopy(result),))
+                        self.emit(QtCore.SIGNAL("about_to_change"), ())
+                        self.emit(QtCore.SIGNAL("ldap_result"), (deepcopy(result),))
                 else:
                     dialog = LumaErrorDialog()
                     errorMsg = self.trUtf8("Could not access entry.<br><br>Reason: ")
@@ -186,7 +191,7 @@ class BrowserWidget(QListView):
                         # Add the alias icon if the entry belongs to the 
                         # alias objectClass
                         if x.isAliasObject():
-                            tmpItem.setPixmap(0, self.aliasIcon)
+                            tmpItem.setIcon(0, self.aliasIcon)
                     
                         tmpItem.setExpandable(1)
                         item.insertItem(tmpItem)
@@ -332,7 +337,7 @@ class BrowserWidget(QListView):
         """
         
         selectedItems = []
-        listIterator = QListViewItemIterator(self)
+        listIterator = QTreeWidgetItemIterator(self)
         while listIterator.current():
             item = listIterator.current()
             
@@ -385,7 +390,7 @@ class BrowserWidget(QListView):
         """
         
         selectedItems = []
-        listIterator = QListViewItemIterator(self)
+        listIterator = QTreeWidgetItemIterator(self)
         while listIterator.current():
             item = listIterator.current()
             
@@ -441,7 +446,7 @@ class BrowserWidget(QListView):
         """
         
         selectedItems = []
-        listIterator = QListViewItemIterator(self)
+        listIterator = QTreeWidgetItemIterator(self)
         while listIterator.current():
             item = listIterator.current()
             
@@ -536,7 +541,7 @@ class BrowserWidget(QListView):
         # TBD: Refresh so the deleted item no longer shows in the Browser-plugin
         
         selectedItems = []
-        listIterator = QListViewItemIterator(self)
+        listIterator = QTreeWidgetItemIterator(self)
         while listIterator.current():
             item = listIterator.current()
             
@@ -593,7 +598,7 @@ class BrowserWidget(QListView):
             return
             
         #self.itemClicked(tmpItem)
-        #self.emit(SIGNAL("clicked(QListViewItem*)"), (tmpItem,))
+        #self.emit(SIGNAL("clicked(QTreeWidgetItem*)"), (tmpItem,))
         self.popupItem = tmpItem
         
         tmpDirObject = environment.lumaInstallationPrefix
@@ -604,7 +609,7 @@ class BrowserWidget(QListView):
         
         # try to find how many items are selected
         multipleSelected = False
-        listIterator = QListViewItemIterator(self)
+        listIterator = QTreeWidgetItemIterator(self)
         tmpInt = 0
         while listIterator.current():
             item = listIterator.current()
@@ -668,11 +673,11 @@ class BrowserWidget(QListView):
                 self.addItemMenu.insertItem(x.name, self.addItem)
                     
             popupMenu.insertSeparator()
-            popupMenu.insertItem(QIconSet(QPixmap(addIconFile)), self.trUtf8("Add"), self.addItemMenu)
+            popupMenu.insertItem(QIconSet(QIcon(addIconFile)), self.trUtf8("Add"), self.addItemMenu)
             popupMenu.insertSeparator()
-            popupMenu.insertItem(QIconSet(QPixmap(exportIconFile)), self.trUtf8("Export"), exportMenu)
+            popupMenu.insertItem(QIconSet(QIcon(exportIconFile)), self.trUtf8("Export"), exportMenu)
             popupMenu.insertSeparator()
-            popupMenu.insertItem(QIconSet(QPixmap(delIconFile)), self.trUtf8("Delete"), deleteMenu)
+            popupMenu.insertItem(QIconSet(QIcon(delIconFile)), self.trUtf8("Delete"), deleteMenu)
              
         self.itemClicked(1, tmpItem)
         popupMenu.exec_loop(point)
@@ -725,7 +730,7 @@ class BrowserWidget(QListView):
         
         # get server name and basedn from where to add
         selectedItems = []
-        listIterator = QListViewItemIterator(self)
+        listIterator = QTreeWidgetItemIterator(self)
         while listIterator.current():
             item = listIterator.current()
             
@@ -749,7 +754,9 @@ class BrowserWidget(QListView):
         
         floatingWidget = ChildWindow(None)
         self.widgetList.append(floatingWidget)
-        widget = AdvancedObjectWidget(floatingWidget, template.name.encode("utf-8"), 0)
+        # FIXME: qt4 migration needed
+        #widget = AdvancedObjectWidget(floatingWidget, template.name.encode("utf-8"), 0)
+        widget = QWidget()
         widget.baseDN = baseDN
     
         floatingWidget.setCentralWidget(widget)
@@ -757,7 +764,7 @@ class BrowserWidget(QListView):
         widget.buildToolBar(floatingWidget)
         widget.initView(smartObject, True)
         
-        self.connect(floatingWidget, PYSIGNAL("child_closed"), self.cleanChildren)
+        self.connect(floatingWidget, QtCore.SIGNAL("child_closed"), self.cleanChildren)
         floatingWidget.resize(500, 400)
         floatingWidget.show()
         
@@ -777,7 +784,7 @@ class BrowserWidget(QListView):
         """
         
         selectedItems = []
-        listIterator = QListViewItemIterator(self)
+        listIterator = QTreeWidgetItemIterator(self)
         while listIterator.current():
             item = listIterator.current()
             
@@ -849,7 +856,7 @@ class BrowserWidget(QListView):
         
         # Either no item is selected of the can select multiple items.
         if selectedItem == None:
-            listIterator = QListViewItemIterator(self)
+            listIterator = QTreeWidgetItemIterator(self)
             while listIterator.current():
                 item = listIterator.current()
             
@@ -871,7 +878,7 @@ class BrowserWidget(QListView):
                 return
         
         # Now we try to find the next item matching our search key.
-        listIterator = QListViewItemIterator(currentItem)
+        listIterator = QTreeWidgetItemIterator(currentItem)
         item = None
         while listIterator.current():
             item = listIterator.current()
@@ -971,12 +978,12 @@ class BrowserWidget(QListView):
         if result[0] == "":
             self.popupItem.filter = None
             if self.popupItem.limit > 0:
-                self.popupItem.setPixmap(0, self.filterIcon)
+                self.popupItem.setIcon(0, self.filterIcon)
             else:
-                self.popupItem.setPixmap(0, QPixmap())
+                self.popupItem.setIcon(0, QIcon())
         else:
             self.popupItem.filter = unicode(result[0])
-            self.popupItem.setPixmap(0, self.filterIcon)
+            self.popupItem.setIcon(0, self.filterIcon)
 
         if self.popupItem.isOpen():
             self.itemCollapsed(self.popupItem)
@@ -997,11 +1004,11 @@ class BrowserWidget(QListView):
         self.popupItem.limit = result[0]
         if result[0] == 0:
             if self.popupItem.filter:
-                self.popupItem.setPixmap(0, self.filterIcon)
+                self.popupItem.setIcon(0, self.filterIcon)
             else:
-                self.popupItem.setPixmap(0, QPixmap())
+                self.popupItem.setIcon(0, QIcon())
         else:
-            self.popupItem.setPixmap(0, self.filterIcon)
+            self.popupItem.setIcon(0, self.filterIcon)
 
         if self.popupItem.isOpen():
             self.itemCollapsed(self.popupItem)
@@ -1017,7 +1024,7 @@ class BrowserWidget(QListView):
         ou=foo,o=bar,MyServerAlias
         """
         
-        listIterator = QListViewItemIterator(self)
+        listIterator = QTreeWidgetItemIterator(self)
         while listIterator.current():
             item = listIterator.current()
             itemDN = item.getDn()
@@ -1037,7 +1044,7 @@ class BrowserWidget(QListView):
         entry.
         """
         
-        self.emit(PYSIGNAL("ADD_ATTRIBUTE"), ())
+        self.emit(QtCore.SIGNAL("ADD_ATTRIBUTE"), ())
         
 ###############################################################################
 
@@ -1048,15 +1055,16 @@ class ChildWindow(QMainWindow):
         
         
     def closeEvent(self, event):
-        self.emit(PYSIGNAL("child_closed"), (self,))
+        self.emit(QtCore.SIGNAL("child_closed"), (self,))
         self.deleteLater()
         
 ###############################################################################
 
-class BrowserItem(QListViewItem):
+class BrowserItem(QTreeWidgetItem):
 
     def __init__(self, parent, text):
-        QListViewItem.__init__(self, parent, text)
+        QTreeWidgetItem.__init__(self, parent)
+        self.setText(0, text)
         
         self.serverType = False
         self.baseType = False
