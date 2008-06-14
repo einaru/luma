@@ -12,10 +12,11 @@ import os
 import ldap
 import copy
 
-from PyQt4.QtGui import *
+from PyQt4 import QtGui, QtCore
+from PyQt4.QtGui import QDialog, QListWidget, QListWidgetItem, QIcon, QPixmap
 
 
-from base.gui.ServerDialogDesign import ServerDialogDesign
+from base.gui.ServerDialogDesign import Ui_ServerDialogDesign
 from base.backend.ServerObject import ServerObject
 from base.backend.ServerList import ServerList
 import environment
@@ -24,12 +25,13 @@ from base.backend.LumaConnection import LumaConnection
 from base.utils.gui.LumaErrorDialog import LumaErrorDialog
 from base.utils.backend.LogObject import LogObject
 
-class ServerDialog(ServerDialogDesign):
+class ServerDialog(QDialog, Ui_ServerDialogDesign):
     """The dialog for managing all server information.
     """
 
     def __init__(self, parent= None):
-        ServerDialogDesign.__init__(self, parent)
+        QDialog.__init__(self)
+        self.setupUi(self)
         
         self.authentificationMethods = [u"Simple", u"SASL Plain", u"SASL CRAM-MD5", 
         u"SASL DIGEST-MD5", u"SASL Login", u"SASL GSSAPI", u"SASL EXTERNAL"]
@@ -37,9 +39,9 @@ class ServerDialog(ServerDialogDesign):
         self._PREFIX = environment.lumaInstallationPrefix
         
         self.iconPath = os.path.join(self._PREFIX, "share", "luma", "icons")
-        folderPixmap = QPixmap(os.path.join(self.iconPath, "folder.png"))
-        self.certFileButton.setPixmap(folderPixmap)
-        self.certKeyFileButton.setPixmap(folderPixmap)
+        folderPixmap = QIcon(os.path.join(self.iconPath, "folder.png"))
+        self.certFileButton.setIcon(folderPixmap)
+        self.certKeyFileButton.setIcon(folderPixmap)
         self.networkLabel.setPixmap(QPixmap(os.path.join(self.iconPath, "worldmedium.png")))
         self.authLabel.setPixmap(QPixmap(os.path.join(self.iconPath, "passwordmedium.png")))
         self.guiParent = parent
@@ -59,7 +61,7 @@ class ServerDialog(ServerDialogDesign):
         elif len(self.serverListObject.serverList) == 0:
             self.serverWidget.setEnabled(False)
 
-        self.serverIcon = QPixmap(os.path.join(self._PREFIX, "share", "luma", "icons", "server.png"))
+        self.serverIcon = QIcon(os.path.join(self._PREFIX, "share", "luma", "icons", "server.png"))
         
         # Indicates if the serverlist has been permanently edited.
         # Needed when we use the apply button and cancel the dialog afterwards.
@@ -72,7 +74,8 @@ class ServerDialog(ServerDialogDesign):
         
         self.disableBaseLookup = False
         
-        self.originalBackGroundColor = self.certFileEdit.paletteBackgroundColor()
+        # FIXME: qt4 migration needed
+        #self.originalBackGroundColor = self.certFileEdit.paletteBackgroundColor()
         
         self.displayServerList()
         
@@ -85,19 +88,24 @@ class ServerDialog(ServerDialogDesign):
             return
         
         for x in self.serverListObject.serverList:
-            tmpItem = QListViewItem(self.serverListView, x.name)
-            tmpItem.setPixmap(0, self.serverIcon)
-            self.serverListView.insertItem(tmpItem)
+            tmpItem = QListWidgetItem(x.name)
+            tmpItem.setIcon(self.serverIcon)
+            self.serverListView.addItem(tmpItem)
             
-        self.serverListView.setSelected(self.serverListView.firstChild(), True)
+        # FIXME: qt4 migration needed
+        #self.serverListView.setSelected(self.serverListView.firstChild(), True)
         
 ###############################################################################
 
-    def serverSelectionChanged(self, tmpItem):
+    def serverSelectionChanged(self, tmpItem, prevItem):
         """ Change server information if another server has been selected.
         """
+        # FIXME: qt4 migration needed
+        # maybe currentItemChanged(QWidgetItem*, QWidgetItem*) is a bad choice of signal?
+
+        if (tmpItem == None): return
         
-        selectedServerString = unicode(tmpItem.text(0))
+        selectedServerString = unicode(tmpItem.text())
         x = self.serverListObject.getServerObject(selectedServerString)
         self.currentServer = x
         
@@ -120,26 +128,26 @@ class ServerDialog(ServerDialogDesign):
         self.passwordLineEdit.setText(x.bindPassword)
         
         if x.encryptionMethod == u"None":
-            self.encryptionBox.setCurrentItem(0)
+            self.encryptionBox.setCurrentIndex(0)
             self.validateBox.setEnabled(False)
             self.useClientCertBox.setEnabled(False)
         elif x.encryptionMethod == u"TLS":
-            self.encryptionBox.setCurrentItem(1)
+            self.encryptionBox.setCurrentIndex(1)
             self.validateBox.setEnabled(True)
             self.useClientCertBox.setEnabled(True)
         elif x.encryptionMethod == u"SSL":
-            self.encryptionBox.setCurrentItem(2)
+            self.encryptionBox.setCurrentIndex(2)
             self.validateBox.setEnabled(True)
             self.useClientCertBox.setEnabled(True)
             
         if x.checkServerCertificate == u"never":
-            self.validateBox.setCurrentItem(0)
+            self.validateBox.setCurrentIndex(0)
         elif x.checkServerCertificate == u"allow":
-            self.validateBox.setCurrentItem(1)
+            self.validateBox.setCurrentIndex(1)
         elif x.checkServerCertificate == u"try":
-            self.validateBox.setCurrentItem(2)
+            self.validateBox.setCurrentIndex(2)
         elif x.checkServerCertificate == u"demand":
-            self.validateBox.setCurrentItem(3)
+            self.validateBox.setCurrentIndex(3)
             
         self.useClientCertBox.setChecked(x.useCertificate)
         self.certFileEdit.setText(x.clientCertFile)
@@ -147,7 +155,7 @@ class ServerDialog(ServerDialogDesign):
         
         self.enableClientCertWidgets(x.useCertificate)
         
-        self.methodBox.setCurrentText(x.authMethod)
+        self.methodBox.setEditText(x.authMethod)
         self.bindAnonChanged(x.bindAnon, True)
         self.aliasBox.setChecked(int(x.followAliases))
         
@@ -203,8 +211,8 @@ class ServerDialog(ServerDialogDesign):
         
         self.applyButton.setEnabled(1)
         
-        tmpItem = QListViewItem(self.serverListView, result[0])
-        tmpItem.setPixmap(0, self.serverIcon)
+        tmpItem = QListWidgetItem(self.serverListView, result[0])
+        tmpItem.setIcon(0, self.serverIcon)
         self.serverListView.insertItem(tmpItem)
         
         self.currentServer = serverObject
@@ -253,7 +261,7 @@ class ServerDialog(ServerDialogDesign):
                 QMessageBox.Cancel,
                 QMessageBox.NoButton,
                 self)
-        tmpDialog.setIconPixmap(QPixmap(os.path.join(self._PREFIX, "share", "luma", "icons", "warning_big.png")))
+        tmpDialog.setIconPixmap(QIcon(os.path.join(self._PREFIX, "share", "luma", "icons", "warning_big.png")))
         tmpDialog.exec_loop()
         if (tmpDialog.result() == 1):
             self.serverListObject.deleteServer(unicode(selectedServerString))
@@ -415,12 +423,16 @@ class ServerDialog(ServerDialogDesign):
             return
             
         if self.currentServer.autoBase:
-            baseList = self.searchBaseDN()
-            for x in baseList:
-                item = QListViewItem(self.baseDNView, x)
+            # We don't choose, when autoBase are selected
+            #baseList = self.searchBaseDN()
+            #for x in baseList:
+            #    item = QListWidgetItem(x)
+            #    self.baseDNView.addItem(item)
+            pass
         else:
             for x in self.currentServer.baseDN:
-                item = QListViewItem(self.baseDNView, x)
+                item = QListWidgetItem(x)
+                self.baseDNView.addItem(item)
 
 ###############################################################################
 
@@ -434,7 +446,7 @@ class ServerDialog(ServerDialogDesign):
         dialog.connection = connection
         dialog.baseList = copy.deepcopy(self.currentServer.baseDN)
         dialog.displayBase()
-        dialog.exec_loop()
+        dialog.exec_()
         if dialog.result() == QDialog.Accepted:
             self.applyButton.setEnabled(1)
             self.currentServer.baseDN = copy.deepcopy(dialog.baseList)
@@ -607,5 +619,3 @@ class ServerDialog(ServerDialogDesign):
         self.certKeyfileEdit.setEnabled(enableBool)
         self.certFileButton.setEnabled(enableBool)
         self.certKeyFileButton.setEnabled(enableBool)
-    
-    
