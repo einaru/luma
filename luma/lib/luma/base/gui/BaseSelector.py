@@ -9,14 +9,15 @@
 ###########################################################################
 
 from PyQt4.QtGui import *
-from base.gui.BaseSelectorDesign import BaseSelectorDesign
+from base.gui.BaseSelectorDesign import Ui_BaseSelectorDesign
 from base.utils.gui.LumaErrorDialog import LumaErrorDialog
 
 
-class BaseSelector(BaseSelectorDesign):
+class BaseSelector(QDialog, Ui_BaseSelectorDesign):
 
     def __init__(self,parent = None,name = None,modal = 0,fl = 0):
-        BaseSelectorDesign.__init__(self,parent,name,modal,fl)
+        QDialog.__init__(self)
+        self.setupUi(self)
         
         self.baseList = []
         self.connection = None
@@ -37,11 +38,11 @@ class BaseSelector(BaseSelectorDesign):
 ###############################################################################
 
     def deleteBase(self):
-        tmpItem = self.baseView.selectedItem()
-        if not (None == tmpItem):
-            baseName = unicode(tmpItem.text(0))
-            self.baseList.remove(baseName)
-            self.displayBase()
+        for tmpItem in self.baseView.selectedItems():
+            if not (None == tmpItem):
+                baseName = unicode(tmpItem.text())
+                self.baseList.remove(baseName)
+                self.displayBase()
         
 ###############################################################################
 
@@ -66,4 +67,5 @@ class BaseSelector(BaseSelectorDesign):
     def displayBase(self):
         self.baseView.clear()
         for x in self.baseList:
-            tmpItem = QListViewItem(self.baseView, x)
+            tmpItem = QListWidgetItem(x)
+            self.baseView.addItem(tmpItem)
