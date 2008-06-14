@@ -13,7 +13,7 @@ from PyQt4 import QtCore, QtGui
 import environment
 from base.backend.ServerList import ServerList
 from base.backend.LumaConnection import LumaConnection
-from modules.ldaptreemodel import LDAPTreeItemModel, LDAPItemModel
+from model.ldaptreemodel import LDAPTreeItemModel, LDAPItemModel
 
 class BrowserView(QtGui.QWidget):
 
