@@ -26,7 +26,7 @@ from base.gui.PluginLoaderGui import PluginLoaderGui
 from base.gui.LanguageDialog import LanguageDialog
 from base.utils.backend.LogObject import LogObject
 from base.utils.gui.LoggerWidget import LoggerWidget
-from base.gui.ImprovedServerDialog import ImprovedServerDialog
+from base.gui.ServerDialog import ServerDialog
 
 class MainWin(QMainWindow, Ui_MainWinDesign):
     """The main window for Luma."""
@@ -165,12 +165,12 @@ class MainWin(QMainWindow, Ui_MainWinDesign):
 
     def showServerEditor(self):
         """Show the dialog for editing the accessible servers."""
-        
-        #dialog = ServerDialog()
-        dialog = ImprovedServerDialog()
+        dialog = ServerDialog()
         dialog.exec_()
         if (dialog.result() == QDialog.Accepted) or dialog.SAVED:
-            currentPlugin = self.pluginBox.currentText()
+            # FIXME: qt4 migration needed
+            # Set current loaded plugin after reloadPlugins()
+            #currentPlugin = self.pluginBox.currentText()
             self.reloadPlugins()
             #self.pluginBox.setCurrentText(currentPlugin)
             #self.pluginSelectionChanged(currentPlugin)
