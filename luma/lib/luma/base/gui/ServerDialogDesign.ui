@@ -14,8 +14,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>614</width>
-    <height>606</height>
+    <width>757</width>
+    <height>504</height>
    </rect>
   </property>
   <property name="windowTitle" >
@@ -29,18 +29,25 @@
      </property>
      <widget class="QWidget" name="layout3" >
       <layout class="QGridLayout" >
-       <property name="leftMargin" >
+       <property name="margin" >
         <number>0</number>
        </property>
-       <property name="topMargin" >
-        <number>0</number>
-       </property>
-       <property name="rightMargin" >
-        <number>0</number>
-       </property>
-       <property name="bottomMargin" >
-        <number>0</number>
-       </property>
+       <item row="1" column="0" >
+        <spacer>
+         <property name="orientation" >
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeType" >
+          <enum>QSizePolicy::Expanding</enum>
+         </property>
+         <property name="sizeHint" stdset="0" >
+          <size>
+           <width>48</width>
+           <height>25</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
        <item row="1" column="1" >
         <widget class="QPushButton" name="addButton" >
          <property name="text" >
@@ -50,34 +57,6 @@
           <string>Alt+A</string>
          </property>
         </widget>
-       </item>
-       <item row="0" column="0" colspan="3" >
-        <widget class="Q3ListView" name="serverListView" >
-         <property name="resizeMode" >
-          <enum>Q3ListView::AllColumns</enum>
-         </property>
-         <column>
-          <property name="text" >
-           <string>Server</string>
-          </property>
-         </column>
-        </widget>
-       </item>
-       <item row="1" column="0" >
-        <spacer>
-         <property name="orientation" >
-          <enum>Qt::Horizontal</enum>
-         </property>
-         <property name="sizeType" >
-          <enum>QSizePolicy::Expanding</enum>
-         </property>
-         <property name="sizeHint" >
-          <size>
-           <width>32</width>
-           <height>20</height>
-          </size>
-         </property>
-        </spacer>
        </item>
        <item row="1" column="2" >
         <widget class="QPushButton" name="deleteButton" >
@@ -89,10 +68,27 @@
          </property>
         </widget>
        </item>
+       <item row="0" column="0" colspan="3" >
+        <widget class="QListWidget" name="serverListView" />
+       </item>
       </layout>
+      <zorder>addButton</zorder>
+      <zorder>deleteButton</zorder>
+      <zorder>serverListView</zorder>
      </widget>
      <widget class="QTabWidget" name="serverWidget" >
+      <property name="currentIndex" >
+       <number>0</number>
+      </property>
       <widget class="QWidget" name="tab" >
+       <property name="geometry" >
+        <rect>
+         <x>0</x>
+         <y>0</y>
+         <width>428</width>
+         <height>413</height>
+        </rect>
+       </property>
        <attribute name="title" >
         <string>Network</string>
        </attribute>
@@ -105,7 +101,7 @@
           <property name="sizeType" >
            <enum>QSizePolicy::Expanding</enum>
           </property>
-          <property name="sizeHint" >
+          <property name="sizeHint" stdset="0" >
            <size>
             <width>21</width>
             <height>263</height>
@@ -194,7 +190,7 @@
           <property name="sizeType" >
            <enum>QSizePolicy::Fixed</enum>
           </property>
-          <property name="sizeHint" >
+          <property name="sizeHint" stdset="0" >
            <size>
             <width>12</width>
             <height>10</height>
@@ -218,22 +214,6 @@
           </property>
          </widget>
         </item>
-        <item row="10" column="4" >
-         <spacer>
-          <property name="orientation" >
-           <enum>Qt::Vertical</enum>
-          </property>
-          <property name="sizeType" >
-           <enum>QSizePolicy::Expanding</enum>
-          </property>
-          <property name="sizeHint" >
-           <size>
-            <width>41</width>
-            <height>81</height>
-           </size>
-          </property>
-         </spacer>
-        </item>
         <item row="6" column="2" colspan="3" >
          <widget class="QCheckBox" name="aliasBox" >
           <property name="text" >
@@ -242,16 +222,7 @@
          </widget>
         </item>
         <item row="8" column="2" colspan="3" >
-         <widget class="Q3ListView" name="baseDNView" >
-          <property name="resizeMode" >
-           <enum>Q3ListView::AllColumns</enum>
-          </property>
-          <column>
-           <property name="text" >
-            <string>Base DNs</string>
-           </property>
-          </column>
-         </widget>
+         <widget class="QListWidget" name="baseDNView" />
         </item>
         <item row="7" column="2" colspan="3" >
          <widget class="QCheckBox" name="baseBox" >
@@ -288,7 +259,7 @@
           <property name="sizeType" >
            <enum>QSizePolicy::Fixed</enum>
           </property>
-          <property name="sizeHint" >
+          <property name="sizeHint" stdset="0" >
            <size>
             <width>12</width>
             <height>20</height>
@@ -304,7 +275,7 @@
           <property name="sizeType" >
            <enum>QSizePolicy::Expanding</enum>
           </property>
-          <property name="sizeHint" >
+          <property name="sizeHint" stdset="0" >
            <size>
             <width>124</width>
             <height>21</height>
@@ -320,7 +291,7 @@
           <property name="sizeType" >
            <enum>QSizePolicy::Fixed</enum>
           </property>
-          <property name="sizeHint" >
+          <property name="sizeHint" stdset="0" >
            <size>
             <width>20</width>
             <height>6</height>
@@ -331,10 +302,18 @@
        </layout>
       </widget>
       <widget class="QWidget" name="tab" >
+       <property name="geometry" >
+        <rect>
+         <x>0</x>
+         <y>0</y>
+         <width>428</width>
+         <height>413</height>
+        </rect>
+       </property>
        <attribute name="title" >
-        <string>Security</string>
+        <string>Authentification</string>
        </attribute>
-       <layout class="QGridLayout" >
+       <layout class="QGridLayout" name="gridLayout_3" >
         <item row="0" column="0" >
          <widget class="QLabel" name="authLabel" >
           <property name="sizePolicy" >
@@ -357,57 +336,59 @@
           </property>
          </widget>
         </item>
-        <item row="10" column="3" >
-         <spacer>
-          <property name="orientation" >
-           <enum>Qt::Vertical</enum>
-          </property>
-          <property name="sizeType" >
-           <enum>QSizePolicy::Expanding</enum>
-          </property>
-          <property name="sizeHint" >
-           <size>
-            <width>21</width>
-            <height>16</height>
-           </size>
-          </property>
-         </spacer>
-        </item>
-        <item rowspan="10" row="1" column="0" >
-         <spacer>
-          <property name="orientation" >
-           <enum>Qt::Vertical</enum>
-          </property>
-          <property name="sizeType" >
-           <enum>QSizePolicy::Expanding</enum>
-          </property>
-          <property name="sizeHint" >
-           <size>
-            <width>21</width>
-            <height>590</height>
-           </size>
-          </property>
-         </spacer>
-        </item>
-        <item row="8" column="1" >
-         <spacer>
-          <property name="orientation" >
-           <enum>Qt::Vertical</enum>
-          </property>
-          <property name="sizeType" >
-           <enum>QSizePolicy::Fixed</enum>
-          </property>
-          <property name="sizeHint" >
-           <size>
-            <width>20</width>
-            <height>6</height>
-           </size>
-          </property>
-         </spacer>
-        </item>
-        <item row="7" column="1" colspan="3" >
-         <layout class="QGridLayout" >
-          <item row="1" column="1" >
+        <item rowspan="2" row="0" column="1" >
+         <layout class="QGridLayout" name="gridLayout" >
+          <item row="0" column="0" colspan="3" >
+           <widget class="QLabel" name="textLabel1_4" >
+            <property name="text" >
+             <string>&lt;!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN" "http://www.w3.org/TR/REC-html40/strict.dtd">
+&lt;html>&lt;head>&lt;meta name="qrichtext" content="1" />&lt;style type="text/css">
+p, li { white-space: pre-wrap; }
+&lt;/style>&lt;/head>&lt;body style=" font-family:'Sans Serif'; font-size:9pt; font-weight:400; font-style:normal;">
+&lt;p style=" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;">&lt;span style=" font-weight:600;">Bind options&lt;/span>&lt;/p>&lt;/body>&lt;/html></string>
+            </property>
+            <property name="wordWrap" >
+             <bool>false</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="0" >
+           <spacer>
+            <property name="orientation" >
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeType" >
+             <enum>QSizePolicy::Fixed</enum>
+            </property>
+            <property name="sizeHint" stdset="0" >
+             <size>
+              <width>13</width>
+              <height>18</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item row="1" column="1" colspan="2" >
+           <widget class="QCheckBox" name="bindAnonBox" >
+            <property name="text" >
+             <string>Anonymous bind</string>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="1" >
+           <widget class="QLabel" name="textLabel4" >
+            <property name="text" >
+             <string>Mechanism:</string>
+            </property>
+            <property name="alignment" >
+             <set>Qt::AlignVCenter</set>
+            </property>
+            <property name="wordWrap" >
+             <bool>false</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="2" column="2" >
            <widget class="QComboBox" name="methodBox" >
             <item>
              <property name="text" >
@@ -446,89 +427,7 @@
             </item>
            </widget>
           </item>
-          <item row="1" column="0" >
-           <spacer>
-            <property name="orientation" >
-             <enum>Qt::Horizontal</enum>
-            </property>
-            <property name="sizeType" >
-             <enum>QSizePolicy::Fixed</enum>
-            </property>
-            <property name="sizeHint" >
-             <size>
-              <width>16</width>
-              <height>16</height>
-             </size>
-            </property>
-           </spacer>
-          </item>
-          <item row="0" column="0" colspan="2" >
-           <widget class="QLabel" name="textLabel4" >
-            <property name="text" >
-             <string>&lt;b>Authentification mechanism&lt;/b></string>
-            </property>
-            <property name="alignment" >
-             <set>Qt::AlignVCenter</set>
-            </property>
-            <property name="wordWrap" >
-             <bool>false</bool>
-            </property>
-           </widget>
-          </item>
-         </layout>
-        </item>
-        <item row="6" column="1" >
-         <spacer>
-          <property name="orientation" >
-           <enum>Qt::Vertical</enum>
-          </property>
-          <property name="sizeType" >
-           <enum>QSizePolicy::Fixed</enum>
-          </property>
-          <property name="sizeHint" >
-           <size>
-            <width>21</width>
-            <height>6</height>
-           </size>
-          </property>
-         </spacer>
-        </item>
-        <item row="9" column="1" colspan="3" >
-         <layout class="QGridLayout" >
-          <item row="0" column="0" colspan="3" >
-           <widget class="QLabel" name="textLabel5" >
-            <property name="text" >
-             <string>&lt;b>Credentials&lt;/b></string>
-            </property>
-            <property name="alignment" >
-             <set>Qt::AlignVCenter</set>
-            </property>
-            <property name="wordWrap" >
-             <bool>false</bool>
-            </property>
-           </widget>
-          </item>
-          <item row="2" column="1" >
-           <widget class="QLabel" name="textLabel12" >
-            <property name="text" >
-             <string>Password:</string>
-            </property>
-            <property name="alignment" >
-             <set>Qt::AlignVCenter</set>
-            </property>
-            <property name="wordWrap" >
-             <bool>false</bool>
-            </property>
-           </widget>
-          </item>
-          <item row="2" column="2" >
-           <widget class="QLineEdit" name="passwordLineEdit" >
-            <property name="echoMode" >
-             <enum>QLineEdit::Password</enum>
-            </property>
-           </widget>
-          </item>
-          <item row="1" column="1" >
+          <item row="3" column="1" >
            <widget class="QLabel" name="textLabel10" >
             <property name="text" >
              <string>Bind as:</string>
@@ -541,46 +440,115 @@
             </property>
            </widget>
           </item>
-          <item row="1" column="0" >
-           <spacer>
-            <property name="orientation" >
-             <enum>Qt::Horizontal</enum>
-            </property>
-            <property name="sizeType" >
-             <enum>QSizePolicy::Fixed</enum>
-            </property>
-            <property name="sizeHint" >
-             <size>
-              <width>12</width>
-              <height>10</height>
-             </size>
-            </property>
-           </spacer>
-          </item>
-          <item row="1" column="2" >
+          <item row="3" column="2" >
            <widget class="QLineEdit" name="bindLineEdit" />
+          </item>
+          <item row="4" column="1" >
+           <widget class="QLabel" name="textLabel12" >
+            <property name="text" >
+             <string>Password:</string>
+            </property>
+            <property name="alignment" >
+             <set>Qt::AlignVCenter</set>
+            </property>
+            <property name="wordWrap" >
+             <bool>false</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="4" column="2" >
+           <widget class="QLineEdit" name="passwordLineEdit" >
+            <property name="echoMode" >
+             <enum>QLineEdit::Password</enum>
+            </property>
+           </widget>
           </item>
          </layout>
         </item>
-        <item rowspan="2" row="0" column="1" colspan="3" >
-         <layout class="QGridLayout" >
-          <item row="2" column="0" >
-           <spacer>
-            <property name="orientation" >
-             <enum>Qt::Horizontal</enum>
+        <item rowspan="2" row="1" column="0" >
+         <spacer>
+          <property name="orientation" >
+           <enum>Qt::Vertical</enum>
+          </property>
+          <property name="sizeType" >
+           <enum>QSizePolicy::Expanding</enum>
+          </property>
+          <property name="sizeHint" stdset="0" >
+           <size>
+            <width>45</width>
+            <height>445</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item row="2" column="1" >
+         <spacer>
+          <property name="orientation" >
+           <enum>Qt::Vertical</enum>
+          </property>
+          <property name="sizeType" >
+           <enum>QSizePolicy::Expanding</enum>
+          </property>
+          <property name="sizeHint" stdset="0" >
+           <size>
+            <width>114</width>
+            <height>21</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+       </layout>
+       <zorder>authLabel</zorder>
+       <zorder></zorder>
+      </widget>
+      <widget class="QWidget" name="tab_2" >
+       <property name="geometry" >
+        <rect>
+         <x>0</x>
+         <y>0</y>
+         <width>428</width>
+         <height>413</height>
+        </rect>
+       </property>
+       <attribute name="title" >
+        <string>Security</string>
+       </attribute>
+       <layout class="QGridLayout" name="gridLayout_4" >
+        <item row="0" column="0" >
+         <widget class="QLabel" name="securityLabel" >
+          <property name="sizePolicy" >
+           <sizepolicy vsizetype="Fixed" hsizetype="Fixed" >
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="minimumSize" >
+           <size>
+            <width>48</width>
+            <height>48</height>
+           </size>
+          </property>
+          <property name="text" >
+           <string>SO</string>
+          </property>
+          <property name="wordWrap" >
+           <bool>false</bool>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="1" colspan="2" >
+         <layout class="QGridLayout" name="gridLayout_2" >
+          <item row="0" column="0" colspan="2" >
+           <widget class="QLabel" name="textLabel1_10" >
+            <property name="text" >
+             <string>&lt;b>Security options&lt;/b></string>
             </property>
-            <property name="sizeType" >
-             <enum>QSizePolicy::Fixed</enum>
+            <property name="wordWrap" >
+             <bool>false</bool>
             </property>
-            <property name="sizeHint" >
-             <size>
-              <width>16</width>
-              <height>16</height>
-             </size>
-            </property>
-           </spacer>
+           </widget>
           </item>
-          <item row="2" column="1" >
+          <item row="1" column="1" >
            <widget class="QComboBox" name="encryptionBox" >
             <item>
              <property name="text" >
@@ -599,16 +567,58 @@
             </item>
            </widget>
           </item>
-          <item row="0" column="0" colspan="2" >
-           <widget class="QLabel" name="textLabel1_4" >
-            <property name="text" >
-             <string>&lt;b>Security options&lt;/b></string>
+          <item row="1" column="0" >
+           <spacer name="spacer" >
+            <property name="orientation" >
+             <enum>Qt::Horizontal</enum>
             </property>
-            <property name="wordWrap" >
-             <bool>false</bool>
+            <property name="sizeType" >
+             <enum>QSizePolicy::Fixed</enum>
             </property>
-           </widget>
+            <property name="sizeHint" stdset="0" >
+             <size>
+              <width>16</width>
+              <height>16</height>
+             </size>
+            </property>
+           </spacer>
           </item>
+         </layout>
+        </item>
+        <item rowspan="5" row="1" column="0" >
+         <spacer name="spacer_10" >
+          <property name="orientation" >
+           <enum>Qt::Vertical</enum>
+          </property>
+          <property name="sizeType" >
+           <enum>QSizePolicy::Expanding</enum>
+          </property>
+          <property name="sizeHint" stdset="0" >
+           <size>
+            <width>45</width>
+            <height>200</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item row="1" column="1" >
+         <spacer name="spacer_8" >
+          <property name="orientation" >
+           <enum>Qt::Vertical</enum>
+          </property>
+          <property name="sizeType" >
+           <enum>QSizePolicy::Fixed</enum>
+          </property>
+          <property name="sizeHint" stdset="0" >
+           <size>
+            <width>21</width>
+            <height>18</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item row="2" column="1" colspan="2" >
+         <layout class="QGridLayout" name="_7" >
           <item row="1" column="0" >
            <spacer>
             <property name="orientation" >
@@ -617,7 +627,7 @@
             <property name="sizeType" >
              <enum>QSizePolicy::Fixed</enum>
             </property>
-            <property name="sizeHint" >
+            <property name="sizeHint" stdset="0" >
              <size>
               <width>16</width>
               <height>16</height>
@@ -625,17 +635,63 @@
             </property>
            </spacer>
           </item>
-          <item row="1" column="1" >
-           <widget class="QCheckBox" name="bindAnonBox" >
+          <item row="0" column="0" colspan="2" >
+           <widget class="QLabel" name="textLabel1_9" >
             <property name="text" >
-             <string>Anonymous bind</string>
+             <string>&lt;b>Validate server certificate&lt;/b></string>
             </property>
+            <property name="alignment" >
+             <set>Qt::AlignVCenter</set>
+            </property>
+            <property name="wordWrap" >
+             <bool>false</bool>
+            </property>
+           </widget>
+          </item>
+          <item row="1" column="1" >
+           <widget class="QComboBox" name="validateBox" >
+            <item>
+             <property name="text" >
+              <string>Never</string>
+             </property>
+            </item>
+            <item>
+             <property name="text" >
+              <string>Allow</string>
+             </property>
+            </item>
+            <item>
+             <property name="text" >
+              <string>Try</string>
+             </property>
+            </item>
+            <item>
+             <property name="text" >
+              <string>Demand</string>
+             </property>
+            </item>
            </widget>
           </item>
          </layout>
         </item>
-        <item row="5" column="1" colspan="3" >
-         <layout class="QGridLayout" >
+        <item row="3" column="1" >
+         <spacer name="spacer_11" >
+          <property name="orientation" >
+           <enum>Qt::Vertical</enum>
+          </property>
+          <property name="sizeType" >
+           <enum>QSizePolicy::Fixed</enum>
+          </property>
+          <property name="sizeHint" stdset="0" >
+           <size>
+            <width>21</width>
+            <height>18</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item row="4" column="1" colspan="2" >
+         <layout class="QGridLayout" name="_2" >
           <item row="3" column="1" >
            <widget class="QLabel" name="textLabel3" >
             <property name="text" >
@@ -674,7 +730,7 @@
             <property name="sizeType" >
              <enum>QSizePolicy::Fixed</enum>
             </property>
-            <property name="sizeHint" >
+            <property name="sizeHint" stdset="0" >
              <size>
               <width>16</width>
               <height>16</height>
@@ -706,16 +762,6 @@
             </property>
            </widget>
           </item>
-          <item row="0" column="0" colspan="4" >
-           <widget class="QLabel" name="textLabel1_3" >
-            <property name="text" >
-             <string>&lt;b>Client certificate options&lt;/b></string>
-            </property>
-            <property name="wordWrap" >
-             <bool>false</bool>
-            </property>
-           </widget>
-          </item>
           <item row="2" column="1" >
            <widget class="QLabel" name="textLabel2_2" >
             <property name="text" >
@@ -726,57 +772,10 @@
             </property>
            </widget>
           </item>
-         </layout>
-        </item>
-        <item row="3" column="1" colspan="3" >
-         <layout class="QGridLayout" >
-          <item row="1" column="1" >
-           <widget class="QComboBox" name="validateBox" >
-            <item>
-             <property name="text" >
-              <string>Never</string>
-             </property>
-            </item>
-            <item>
-             <property name="text" >
-              <string>Allow</string>
-             </property>
-            </item>
-            <item>
-             <property name="text" >
-              <string>Try</string>
-             </property>
-            </item>
-            <item>
-             <property name="text" >
-              <string>Demand</string>
-             </property>
-            </item>
-           </widget>
-          </item>
-          <item row="1" column="0" >
-           <spacer>
-            <property name="orientation" >
-             <enum>Qt::Horizontal</enum>
-            </property>
-            <property name="sizeType" >
-             <enum>QSizePolicy::Fixed</enum>
-            </property>
-            <property name="sizeHint" >
-             <size>
-              <width>16</width>
-              <height>16</height>
-             </size>
-            </property>
-           </spacer>
-          </item>
-          <item row="0" column="0" colspan="2" >
-           <widget class="QLabel" name="textLabel1_5" >
+          <item row="0" column="0" colspan="4" >
+           <widget class="QLabel" name="textLabel1_3" >
             <property name="text" >
-             <string>&lt;b>Validate server certificate&lt;/b></string>
-            </property>
-            <property name="alignment" >
-             <set>Qt::AlignVCenter</set>
+             <string>&lt;b>Client certificate options&lt;/b></string>
             </property>
             <property name="wordWrap" >
              <bool>false</bool>
@@ -785,34 +784,18 @@
           </item>
          </layout>
         </item>
-        <item row="4" column="2" >
-         <spacer>
+        <item row="5" column="2" >
+         <spacer name="spacer_9" >
           <property name="orientation" >
            <enum>Qt::Vertical</enum>
           </property>
           <property name="sizeType" >
            <enum>QSizePolicy::Fixed</enum>
           </property>
-          <property name="sizeHint" >
+          <property name="sizeHint" stdset="0" >
            <size>
-            <width>21</width>
-            <height>6</height>
-           </size>
-          </property>
-         </spacer>
-        </item>
-        <item row="2" column="2" >
-         <spacer>
-          <property name="orientation" >
-           <enum>Qt::Vertical</enum>
-          </property>
-          <property name="sizeType" >
-           <enum>QSizePolicy::Fixed</enum>
-          </property>
-          <property name="sizeHint" >
-           <size>
-            <width>21</width>
-            <height>6</height>
+            <width>175</width>
+            <height>100</height>
            </size>
           </property>
          </spacer>
@@ -842,10 +825,10 @@
        <property name="sizeType" >
         <enum>QSizePolicy::Expanding</enum>
        </property>
-       <property name="sizeHint" >
+       <property name="sizeHint" stdset="0" >
         <size>
-         <width>350</width>
-         <height>21</height>
+         <width>383</width>
+         <height>25</height>
         </size>
        </property>
       </spacer>
@@ -892,16 +875,13 @@
     </layout>
    </item>
   </layout>
+  <zorder>splitter2</zorder>
+  <zorder>line1</zorder>
+  <zorder>horizontalSlider</zorder>
+  <zorder>serverListView</zorder>
  </widget>
  <layoutdefault spacing="6" margin="11" />
  <pixmapfunction>qPixmapFromMimeSource</pixmapfunction>
- <customwidgets>
-  <customwidget>
-   <class>Q3ListView</class>
-   <extends>Q3Frame</extends>
-   <header>q3listview.h</header>
-  </customwidget>
- </customwidgets>
  <tabstops>
   <tabstop>serverListView</tabstop>
   <tabstop>addButton</tabstop>
@@ -940,10 +920,10 @@
    </hints>
   </connection>
   <connection>
-   <sender>aliasBox</sender>
+   <sender>applyButton</sender>
    <signal>clicked()</signal>
    <receiver>ServerDialogDesign</receiver>
-   <slot>aliasesChanged()</slot>
+   <slot>saveServer()</slot>
    <hints>
     <hint type="sourcelabel" >
      <x>20</x>
@@ -956,10 +936,74 @@
    </hints>
   </connection>
   <connection>
-   <sender>applyButton</sender>
+   <sender>cancelButton</sender>
    <signal>clicked()</signal>
    <receiver>ServerDialogDesign</receiver>
-   <slot>saveServer()</slot>
+   <slot>reject()</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>20</x>
+     <y>20</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>deleteButton</sender>
+   <signal>clicked()</signal>
+   <receiver>ServerDialogDesign</receiver>
+   <slot>deleteServer()</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>20</x>
+     <y>20</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>okButton</sender>
+   <signal>clicked()</signal>
+   <receiver>ServerDialogDesign</receiver>
+   <slot>saveCloseDialog()</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>20</x>
+     <y>20</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>serverListView</sender>
+   <signal>currentItemChanged(QListWidgetItem*, QListWidgetItem*)</signal>
+   <receiver>ServerDialogDesign</receiver>
+   <slot>serverSelectionChanged()</slot>
+   <hints>
+    <hint type="sourcelabel" >
+     <x>20</x>
+     <y>20</y>
+    </hint>
+    <hint type="destinationlabel" >
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>aliasBox</sender>
+   <signal>clicked()</signal>
+   <receiver>ServerDialogDesign</receiver>
+   <slot>aliasesChanged()</slot>
    <hints>
     <hint type="sourcelabel" >
      <x>20</x>
@@ -1020,122 +1064,10 @@
    </hints>
   </connection>
   <connection>
-   <sender>cancelButton</sender>
-   <signal>clicked()</signal>
-   <receiver>ServerDialogDesign</receiver>
-   <slot>reject()</slot>
-   <hints>
-    <hint type="sourcelabel" >
-     <x>20</x>
-     <y>20</y>
-    </hint>
-    <hint type="destinationlabel" >
-     <x>20</x>
-     <y>20</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>certFileButton</sender>
-   <signal>clicked()</signal>
-   <receiver>ServerDialogDesign</receiver>
-   <slot>showCertFileDialog()</slot>
-   <hints>
-    <hint type="sourcelabel" >
-     <x>20</x>
-     <y>20</y>
-    </hint>
-    <hint type="destinationlabel" >
-     <x>20</x>
-     <y>20</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>certFileEdit</sender>
-   <signal>textChanged(QString)</signal>
-   <receiver>ServerDialogDesign</receiver>
-   <slot>certFileChanged()</slot>
-   <hints>
-    <hint type="sourcelabel" >
-     <x>20</x>
-     <y>20</y>
-    </hint>
-    <hint type="destinationlabel" >
-     <x>20</x>
-     <y>20</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>certKeyFileButton</sender>
-   <signal>clicked()</signal>
-   <receiver>ServerDialogDesign</receiver>
-   <slot>showCertKeyFileDialog()</slot>
-   <hints>
-    <hint type="sourcelabel" >
-     <x>20</x>
-     <y>20</y>
-    </hint>
-    <hint type="destinationlabel" >
-     <x>20</x>
-     <y>20</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>certKeyfileEdit</sender>
-   <signal>textChanged(QString)</signal>
-   <receiver>ServerDialogDesign</receiver>
-   <slot>certKeyFileChanged()</slot>
-   <hints>
-    <hint type="sourcelabel" >
-     <x>20</x>
-     <y>20</y>
-    </hint>
-    <hint type="destinationlabel" >
-     <x>20</x>
-     <y>20</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>deleteButton</sender>
-   <signal>clicked()</signal>
-   <receiver>ServerDialogDesign</receiver>
-   <slot>deleteServer()</slot>
-   <hints>
-    <hint type="sourcelabel" >
-     <x>20</x>
-     <y>20</y>
-    </hint>
-    <hint type="destinationlabel" >
-     <x>20</x>
-     <y>20</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>encryptionBox</sender>
+   <sender>methodBox</sender>
    <signal>activated(int)</signal>
    <receiver>ServerDialogDesign</receiver>
-   <slot>encryptionChanged()</slot>
-   <hints>
-    <hint type="sourcelabel" >
-     <x>20</x>
-     <y>20</y>
-    </hint>
-    <hint type="destinationlabel" >
-     <x>20</x>
-     <y>20</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>hostLineEdit</sender>
-   <signal>textChanged(QString)</signal>
-   <receiver>ServerDialogDesign</receiver>
-   <slot>hostChanged()</slot>
+   <slot>methodChanged()</slot>
    <hints>
     <hint type="sourcelabel" >
      <x>20</x>
@@ -1164,26 +1096,10 @@
    </hints>
   </connection>
   <connection>
-   <sender>methodBox</sender>
-   <signal>activated(int)</signal>
+   <sender>portSpinBox</sender>
+   <signal>valueChanged(int)</signal>
    <receiver>ServerDialogDesign</receiver>
-   <slot>methodChanged()</slot>
-   <hints>
-    <hint type="sourcelabel" >
-     <x>20</x>
-     <y>20</y>
-    </hint>
-    <hint type="destinationlabel" >
-     <x>20</x>
-     <y>20</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>okButton</sender>
-   <signal>clicked()</signal>
-   <receiver>ServerDialogDesign</receiver>
-   <slot>saveCloseDialog()</slot>
+   <slot>portChanged()</slot>
    <hints>
     <hint type="sourcelabel" >
      <x>20</x>
@@ -1212,58 +1128,10 @@
    </hints>
   </connection>
   <connection>
-   <sender>portSpinBox</sender>
-   <signal>valueChanged(int)</signal>
+   <sender>hostLineEdit</sender>
+   <signal>textChanged(QString)</signal>
    <receiver>ServerDialogDesign</receiver>
-   <slot>portChanged()</slot>
-   <hints>
-    <hint type="sourcelabel" >
-     <x>20</x>
-     <y>20</y>
-    </hint>
-    <hint type="destinationlabel" >
-     <x>20</x>
-     <y>20</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>serverListView</sender>
-   <signal>selectionChanged(Q3ListViewItem*)</signal>
-   <receiver>ServerDialogDesign</receiver>
-   <slot>serverSelectionChanged()</slot>
-   <hints>
-    <hint type="sourcelabel" >
-     <x>20</x>
-     <y>20</y>
-    </hint>
-    <hint type="destinationlabel" >
-     <x>20</x>
-     <y>20</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>useClientCertBox</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>ServerDialogDesign</receiver>
-   <slot>enableClientCerts()</slot>
-   <hints>
-    <hint type="sourcelabel" >
-     <x>20</x>
-     <y>20</y>
-    </hint>
-    <hint type="destinationlabel" >
-     <x>20</x>
-     <y>20</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>validateBox</sender>
-   <signal>activated(int)</signal>
-   <receiver>ServerDialogDesign</receiver>
-   <slot>validityCheckChanged()</slot>
+   <slot>hostChanged()</slot>
    <hints>
     <hint type="sourcelabel" >
      <x>20</x>
