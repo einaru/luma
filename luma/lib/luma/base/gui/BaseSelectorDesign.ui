@@ -98,10 +98,7 @@
       </widget>
      </item>
      <item rowspan="3" row="1" column="0" colspan="2" >
-      <widget class="Q3ListView" name="baseView" >
-       <property name="resizeMode" >
-        <enum>Q3ListView::AllColumns</enum>
-       </property>
+      <widget class="QListWidget" name="baseView" >
        <column>
         <property name="text" >
          <string>Base DN</string>
@@ -195,8 +192,8 @@
  <layoutdefault spacing="6" margin="11" />
  <customwidgets>
   <customwidget>
-   <class>Q3ListView</class>
-   <extends>Q3Frame</extends>
+   <class>QListWidget</class>
+   <extends>QFrame</extends>
    <header>q3listview.h</header>
   </customwidget>
  </customwidgets>
