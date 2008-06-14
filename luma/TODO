@@ -40,3 +40,7 @@ Wishlist by users
 -----------------
     - create own schemas   
     - schema (file) to ldif/dsml converter (for use with iplanet,ibm,oid,xslt etc)
+
+Qt4 migration and code cleanup
+------------------------------
+    - Move CertificateDialog and UnknownCertDialog to lib/luma/base/utils/gui
