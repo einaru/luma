@@ -302,7 +302,7 @@ class MainWin(QMainWindow, Ui_MainWinDesign):
         self.pluginItemList = []
         
         # FIXME: Qt4 migration: delete plugin spesific toolbars
-        #toolBars = self.toolBars(Qt.DockTop)
+        #toolBars = self.toolBars(QtCore.Qt.DockTop)
         #
         #for x in toolBars:
         #    if not (str(x.name()) == "PLUGINTOOLBAR"):
@@ -321,8 +321,7 @@ class MainWin(QMainWindow, Ui_MainWinDesign):
         """
         
         qApp.processEvents()
-        progress = self.progressBar.progress()
-        self.progressBar.setProgress(progress + 1)
+        self.progressBar.setValue(self.progressBar.value() + 1)
             
 
 ###############################################################################
@@ -336,11 +335,11 @@ class MainWin(QMainWindow, Ui_MainWinDesign):
         if busy:
             # set cursor busy
             cursor = QCursor()
-            cursor.setShape(Qt.WaitCursor)
+            cursor.setShape(QtCore.Qt.WaitCursor)
             qApp.setOverrideCursor(cursor)
         else:
             qApp.restoreOverrideCursor()
-            self.progressBar.setProgress(0)
+            self.progressBar.setValue(0)
 
 ###############################################################################
 
@@ -413,7 +412,7 @@ class MainWin(QMainWindow, Ui_MainWinDesign):
     def loggerVisibilitChanged(self, visible):
         if not visible:
             # FIXME: Qt4 mirgration needed (don't really now why or when we would do this)
-            #self.moveDockWindow(self.loggerDockWindow, Qt.DockMinimized)
+            #self.moveDockWindow(self.loggerDockWindow, QtCore.Qt.DockMinimized)
             pass
             
 ###############################################################################
@@ -445,7 +444,7 @@ class MainWin(QMainWindow, Ui_MainWinDesign):
         self.pluginLabel.setText(unicode(item.text()) + "   ")
         
         # FIXME: Qt4 migration: delete plugin spesific toolbars
-        #toolBars = self.toolBars(Qt.DockTop)
+        #toolBars = self.toolBars(QtCore.Qt.DockTop)
         #
         #for x in toolBars:
         #    if not (str(x.name()) == "PLUGINTOOLBAR"):
