@@ -9,30 +9,27 @@
 ###########################################################################
 
 
-from PyQt4 import QtCore
 from PyQt4.QtGui import *
 
 from base.utils.gui.BrowserWidget import BrowserWidget
-#from base.utils.gui.AdvancedObjectWidget import AdvancedObjectWidget
+from base.utils.gui.AdvancedObjectWidget import AdvancedObjectWidget
 
 class BrowserView(QWidget):
 
-    def __init__(self, parent=None):
-        QWidget.__init__(self, parent)
+    def __init__(self, parent=None, name=None, fl=0):
+        QWidget.__init__(self, parent, name, fl)
 
-        self.setObjectName("PLUGIN_BROWSER")
+        self.setName("PLUGIN_BROWSER")
 
         self.splitter = QSplitter(self)
         self.mainLayout = QHBoxLayout(self)
         self.entryList = BrowserWidget(self.splitter)
         self.entryList.setMinimumWidth(200)
-        # FIXME: qt4 migration needed
-        #self.entryView = AdvancedObjectWidget(self.splitter)
-        self.entryView = QWidget(self.splitter)
-        #self.connect(self.entryList, QtCore.SIGNAL("ldap_result"), self.entryView.initView)
-        #self.connect(self.entryList, QtCore.SIGNAL("about_to_change"), self.entryView.aboutToChange)
-        #self.connect(self.entryView, QtCore.SIGNAL("REOPEN_PARENT"), self.entryList.reopenDN)
-        #self.connect(self.entryList, QtCore.SIGNAL("ADD_ATTRIBUTE"), self.entryView.addAttribute)
+        self.entryView = AdvancedObjectWidget(self.splitter)
+        self.connect(self.entryList, PYSIGNAL("ldap_result"), self.entryView.initView)
+        self.connect(self.entryList, PYSIGNAL("about_to_change"), self.entryView.aboutToChange)
+        self.connect(self.entryView, PYSIGNAL("REOPEN_PARENT"), self.entryList.reopenDN)
+        self.connect(self.entryList, PYSIGNAL("ADD_ATTRIBUTE"), self.entryView.addAttribute)
         self.mainLayout.addWidget(self.splitter)
 
 ###############################################################################
