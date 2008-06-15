@@ -8,6 +8,7 @@
 
 import ldap
 from PyQt4 import QtCore
+from base.backend.LumaConnection import LumaConnection
 
 class LDAPItemModel(QtCore.QAbstractTableModel):
     def __init__(self, index, parent=None):
@@ -35,11 +36,72 @@ class LDAPItemModel(QtCore.QAbstractTableModel):
 
         return QtCore.QVariant(self.itemData[index.row()][index.column()])
 
+    def flags(self, index):
+        if not index.isValid():
+            return QtCore.Qt.ItemIsEnabled
+
+        if index.column() == 1:
+            return QtCore.Qt.ItemIsEnabled | QtCore.Qt.ItemIsSelectable | QtCore.Qt.ItemIsEditable
+
+        return QtCore.Qt.ItemIsEnabled | QtCore.Qt.ItemIsSelectable
+
 class LDAPTreeItem(object):
 
-    def __init__(self, data, parent=None):
+    def __init__(self, data, serverParent, parent=None):
         self.parentItem = parent
+        self.serverParent = serverParent
         self.itemData = data
+        self.childItems = []
+        self.populated = 0
+
+    def appendChild(self, item):
+        self.populated = 1
+        self.childItems.append(item)
+
+    def child(self, row):
+        return self.childItems[row]
+
+    def childCount(self):
+        return len(self.childItems)
+
+    def columnCount(self):
+        return 1
+
+    def data(self, column):
+        return self.itemData.getPrettyRDN()
+
+    def parent(self):
+        return self.parentItem
+
+    def row(self):
+        if self.parentItem:
+            return self.parentItem.childItems.index(self)
+
+        return 0
+
+    def smartObject(self):
+        return self.itemData
+
+    def populateItem(self):
+        l = self.serverParent.connection
+        success, resultList, exceptionObject = l.search(self.itemData.getDN(), \
+                scope=ldap.SCOPE_ONELEVEL,filter='(objectclass=*)')
+
+        if not success:
+            return
+
+        for x in resultList:
+            tmp = LDAPTreeItem(x, self.serverParent, self)
+            self.appendChild(tmp)
+
+        self.populated = 1
+
+class ServerTreeItem(object):
+
+    def __init__(self, data, serverMeta=None, parent=None):
+        self.itemData = data
+        self.serverMeta = serverMeta
+        self.parentItem = parent
         self.childItems = []
         self.populated = 0
 
@@ -71,23 +133,21 @@ class LDAPTreeItem(object):
     def smartObject(self):
         return self.itemData[1]
 
-    def populateItem(self, l):
-        success, resultList, exceptionObject = l.search(self.data(0), \
-                scope=ldap.SCOPE_ONELEVEL,filter='(objectclass=*)')
+    def populateItem(self):
+        self.connection = LumaConnection(self.serverMeta)
+        success, tmpList, exceptionObject = self.connection.getBaseDNList()
 
-        parent = self
-        for x in resultList:
-            tmp = LDAPTreeItem([x.getDN(), x], parent)
-            parent.appendChild(tmp)
+        for base in tmpList:
+            success, resultList, exceptionObject = self.connection.search(base, \
+                    scope=ldap.SCOPE_BASE,filter='(objectclass=*)', sizelimit=1)
+            tmp = LDAPTreeItem(resultList[0], self, self)
+            self.appendChild(tmp)
 
         self.populated = 1
 
 class LDAPTreeItemModel(QtCore.QAbstractItemModel):
-    def __init__(self, parent=None, serverMeta=None, l=None):
+    def __init__(self, parent=None):
         QtCore.QAbstractItemModel.__init__(self, parent)
-
-        self.serverMeta = serverMeta
-        self.l = l
 
     def columnCount(self, parent):
         if parent.isValid():
@@ -110,7 +170,7 @@ class LDAPTreeItemModel(QtCore.QAbstractItemModel):
         if not index.isValid():
             return QtCore.Qt.ItemIsEnabled
 
-        return QtCore.Qt.ItemIsEnabled | QtCore.Qt.ItemIsSelectable | QtCore.Qt.ItemIsEditable
+        return QtCore.Qt.ItemIsEnabled | QtCore.Qt.ItemIsSelectable
 
     def headerData(self, section, orientation, role):
         if orientation == QtCore.Qt.Horizontal and role == QtCore.Qt.DisplayRole:
@@ -155,7 +215,7 @@ class LDAPTreeItemModel(QtCore.QAbstractItemModel):
             parentItem = parent.internalPointer()
 
         if not parentItem.populated:
-            parentItem.populateItem(self.l)
+            parentItem.populateItem()
 
         return parentItem.childCount()
 
@@ -170,19 +230,16 @@ class LDAPTreeItemModel(QtCore.QAbstractItemModel):
 
         return 1
 
-    def populateModel(self, baseList):
-        self.rootItem = LDAPTreeItem([QtCore.QVariant(self.serverMeta.name)])
+    def populateModel(self, serverList):
+        self.rootItem = ServerTreeItem([QtCore.QVariant("asdf")])
         self.rootItem.populated = 1
 
-        success, tmpList, exceptionObject = self.l.getBaseDNList()
+        for server in serverList.serverList:
+            tmp = ServerTreeItem([server.name], server, self.rootItem)
+            self.rootItem.appendChild(tmp)
 
-        parent = self.rootItem
-        for base in baseList:
-            # Fetch base item
-            success, resultList, exceptionObject = self.l.search(base, \
-                    scope=ldap.SCOPE_BASE,filter='(objectclass=*)', sizelimit=1)
-            tmp = LDAPTreeItem([base, resultList[0]], parent)
-            parent.appendChild(tmp)
+    def populateSingleModel(self, server):
+        self.rootItem = ServerTreeItem([QtCore.QVariant(server.name)], server)
 
     def setData(self, index, value, role):
         index.internalPointer().itemData[0] = "test"

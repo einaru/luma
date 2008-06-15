@@ -12,7 +12,6 @@ from PyQt4 import QtCore, QtGui
 
 import environment
 from base.backend.ServerList import ServerList
-from base.backend.LumaConnection import LumaConnection
 from model.ldaptreemodel import LDAPTreeItemModel, LDAPItemModel
 
 class BrowserView(QtGui.QWidget):
@@ -42,26 +41,15 @@ class BrowserView(QtGui.QWidget):
 ###############################################################################
     
     def initView(self, parent=None):
-        # TODO: Need a way to select server
-        serverMeta = self.serverList.getServerObject('abakus')
-        connectionObject = LumaConnection(serverMeta)
-        bindSuccess, exceptionObject = connectionObject.bind()
-            
-        if not bindSuccess:
-            environment.setBusy(False)
-            ## TODO: Warn user    
-            return
-
-        # TODO: Determine base according to config, not this way
-        success, tmpList, exceptionObject = connectionObject.getBaseDNList()
-
-        self.ldaptreemodel = LDAPTreeItemModel(parent, serverMeta, connectionObject)
-        self.ldaptreemodel.populateModel(tmpList)
+        self.ldaptreemodel = LDAPTreeItemModel(parent)
+        self.ldaptreemodel.populateModel(self.serverList)
+        #self.ldaptreemodel.populateSingleModel(self.serverList.getServerObject("abakus"))
         self.connect(self.ldaptreemodel, QtCore.SIGNAL("dataChanged"), self.entryList.dataChanged)
 
         self.entryList.setModel(self.ldaptreemodel)
 
     def initEntryView(self, index):
+        print "initEntryView"
         self.model = LDAPItemModel(index)
         self.entryView.setModel(self.model)
 
