@@ -13,8 +13,7 @@ import ldap
 import copy
 
 from PyQt4 import QtGui, QtCore
-from PyQt4.QtGui import QDialog, QListWidget, QListWidgetItem, QIcon, QPixmap
-
+from PyQt4.QtGui import QDialog, QListWidget, QListWidgetItem, QIcon, QPixmap, QInputDialog, QLineEdit, QMessageBox
 
 from base.gui.ServerDialogDesign import Ui_ServerDialogDesign
 from base.backend.ServerObject import ServerObject
@@ -191,7 +190,7 @@ class ServerDialog(QDialog, Ui_ServerDialogDesign):
         """ Set content of input fields if a new server is created.
         """
         
-        result = QInputDialog.getText(\
+        result = QInputDialog.getText(self,
             self.trUtf8("New server"),
             self.trUtf8("Please enter a name for the new server:"),
             QLineEdit.Normal)
@@ -211,10 +210,13 @@ class ServerDialog(QDialog, Ui_ServerDialogDesign):
         
         self.applyButton.setEnabled(1)
         
-        tmpItem = QListWidgetItem(self.serverListView, result[0])
-        tmpItem.setIcon(0, self.serverIcon)
-        self.serverListView.insertItem(tmpItem)
-        
+        #tmpItem = QListWidgetItem(self.serverListView, result[0])
+        tmpItem = QListWidgetItem(result[0]) 
+        #tmpItem.setIcon(0, self.serverIcon)
+        tmpItem.setIcon(self.serverIcon)
+        #self.serverListView.insertItem(tmpItem)
+        self.serverListView.addItem(tmpItem)
+
         self.currentServer = serverObject
         
         self.disableBaseLookup = True
@@ -253,7 +255,7 @@ class ServerDialog(QDialog, Ui_ServerDialogDesign):
         """ Delete the currently selected server.
         """
         
-        selectedServerString = self.serverListView.currentItem().text(0)
+        selectedServerString = self.serverListView.currentItem().text()
         tmpDialog = QMessageBox(self.trUtf8("Delete Server?"),
                 self.trUtf8("Do you really want to delete the Server?"),
                 QMessageBox.Critical,
@@ -261,9 +263,9 @@ class ServerDialog(QDialog, Ui_ServerDialogDesign):
                 QMessageBox.Cancel,
                 QMessageBox.NoButton,
                 self)
-        tmpDialog.setIconPixmap(QIcon(os.path.join(self._PREFIX, "share", "luma", "icons", "warning_big.png")))
-        tmpDialog.exec_loop()
-        if (tmpDialog.result() == 1):
+        tmpDialog.setIconPixmap(QPixmap(os.path.join(self._PREFIX, "share", "luma", "icons", "warning_big.png")))
+        tmpDialog.exec_()
+        if tmpDialog.result() == QMessageBox.Ok:
             self.serverListObject.deleteServer(unicode(selectedServerString))
             if len(self.serverListObject.serverList) == 0:
                 self.serverWidget.setEnabled(False)
@@ -291,7 +293,7 @@ class ServerDialog(QDialog, Ui_ServerDialogDesign):
             errorMsg.append("Reason: ")
             errorMsg.append(str(exceptionObject))
             dialog.setErrorMessage(errorMsg)
-            dialog.exec_loop()
+            dialog.exec_()
             return []
 
 ###############################################################################
