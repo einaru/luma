@@ -12,8 +12,8 @@ from PyQt4.QtGui import *
 import os.path
 
 lumaPlugin = True
-pluginName = "new_browser"
-pluginUserString = "New Browser"
+pluginName = "browser"
+pluginUserString = "Browser"
 version = ""
 author = "Vegar Westerlund <vegarwe@users.sourceforge.net>"
 
@@ -29,7 +29,7 @@ def getIcon(iconPath):
 ###############################################################################
 
 def getPluginWidget(parent):
-    from plugins.new_browser_plugin.BrowserView import BrowserView
+    from plugins.browser_plugin.BrowserView import BrowserView
     pluginWidget = BrowserView(parent)
     
     return pluginWidget
