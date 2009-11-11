@@ -399,7 +399,7 @@
            <item row="2" column="1" colspan="2" >
             <widget class="QSpinBox" name="portBox" >
              <property name="maximum" >
-              <number>32767</number>
+              <number>65535</number>
              </property>
              <property name="value" >
               <number>389</number>
