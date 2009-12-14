@@ -119,9 +119,9 @@ def mkpasswd(pwd,sambaver=3,default='ssha'):
                 return "{lmPassword}" + smbpasswd.lmhash(pwd)
         elif default == 'nthash':
             if sambaver==3:
-                return "{sambaNTPassword}" + smbpasswd.lmhash(pwd)
+                return "{sambaNTPassword}" + smbpasswd.nthash(pwd)
             elif sambaver==2:
-                return "{NTPassword}" + smbpasswd.lmhash(pwd)
+                return "{NTPassword}" + smbpasswd.nthash(pwd)
 
 def check_strength(passwordString=""):
     
