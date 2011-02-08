@@ -12,6 +12,8 @@ class ServerObject(object):
     
     def __init__(self):
         
+        # Holds the data about the server
+        # Used for easy mapping to model-columns
         self._dataHolder = [
                 #Index - Description (Options)
         u"",    # 0 Servername

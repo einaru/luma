@@ -37,9 +37,15 @@ class ServerList(object):
         self._readServerList()
 
     def getTable(self):
+        """
+        Return the list of ServerObject
+        """
         return self._serverList
     
     def setTable(self, serverList):
+        """
+        Sets the list of ServerObjets
+        """
         self._serverList = serverList
     
     def getServerObject(self, serverName):
@@ -77,10 +83,6 @@ class ServerList(object):
         """
         self._logger.debug("Deleting server (using an index) from self.serverList")
         del self._serverList[index]
-
-    def readServerList(self):
-        #Should probably only be used by test in order to force a read.
-        self._readServerList()
         
     def writeServerList(self):
         """ 
@@ -139,6 +141,8 @@ class ServerList(object):
         except:
             self._logger.debug("Couldn't set permissions on file "+self._configFile)
     
+    def readServerList(self):
+        self._readServerList()
 
     def _readServerList(self):
         """ 
