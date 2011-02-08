@@ -42,7 +42,7 @@ class ServerDialog(QDialog, Ui_ServerDialogDesign):
         #self.tableView.show()
         #self.tableView.setSelectionModel(self.listView.selectionModel())
         
-        # Maps columns of the model to fields in the gui
+        # Maps columns of the model to fields in the gui (and back when they're edited)
         self.mapper = QtGui.QDataWidgetMapper()
         self.mapper.setModel(slm)
         self.mapper.setItemDelegate(ServerDelegate())
@@ -62,7 +62,8 @@ class ServerDialog(QDialog, Ui_ServerDialogDesign):
         self.mapper.addMapping(self.certKeyfileEdit, 13)
         self.mapper.addMapping(self.validateBox, 14)
         self.mapper.setCurrentIndex(0)
-        # Let the mapper know we want to look at another server when it's selected
+        
+        # Let the mapper know when another server is selected in the list
         self.listView.selectionModel().currentRowChanged.connect(self.mapper.setCurrentModelIndex)
 
         # The model is reset in the baseDNView when it looses focus (which means the selection is lost)

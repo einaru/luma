@@ -12,6 +12,9 @@ class ServerDelegate(QStyledItemDelegate):
         QStyledItemDelegate.__init__(self)
         
     def setEditorData(self, editor, index):
+        """
+        Specifies how the given editor should be filled out with the data from the model (at the index)
+        """
         
         if not index.isValid():
             return
@@ -29,15 +32,15 @@ class ServerDelegate(QStyledItemDelegate):
                 if not len(x) == 0:
                     newList.append(x) 
            
+            # the view (editor) is a QListView in this case, so lets give it a model to display
             if editor.model() == None:
                 editor.setModel(QStringListModel(newList))
                 return
-            
             m = editor.model()
             m.setStringList(QStringList(newList))
             return
         
-        # if QComboBox
+        # if QComboBox, just set the index it should display (the strings displayed is in the .ui-file)
         if editor.property("currentIndex").isValid(): #QComboBoxes has currentIndex
             editor.setProperty("currentIndex", index.data()) # just give it the data (the int)
             return
@@ -46,15 +49,22 @@ class ServerDelegate(QStyledItemDelegate):
         QStyledItemDelegate.setEditorData(self, editor, index) #if not, do as you always do
         
     def setModelData(self, editor, model, index):
-
+        """
+        Specifies how the model should be filled out with data from the editor
+        """
+        
         # if the baseDNs
         if index.column() == 5:
+            
+            # get strings from the model of the QListView displaying the baseDNs
             m = editor.model()
             
             # Populate the list again
             d = []
             for i in xrange(m.rowCount()):
                 d.append(m.data(m.index(i,0), Qt.DisplayRole))
+            
+            # now that we have constructed the list, give it to the model
             model.setData(index,QVariant(d))
             return 
         
