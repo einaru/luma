@@ -1,0 +1,330 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <author>Wido Depping</author>
+ <comment>###########################################################################
+#    Copyright (C) 2003 by Wido Depping                                      
+#    &lt;wido.depping@tu-clausthal.de&gt;                                                             
+#
+# Copyright: See COPYING file that comes with this distribution
+#
+###########################################################################
+</comment>
+ <class>MainWinDesign</class>
+ <widget class="QMainWindow" name="MainWinDesign">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>479</width>
+    <height>321</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Luma</string>
+  </property>
+  <widget class="QWidget" name="widget">
+   <layout class="QGridLayout">
+    <item row="0" column="0">
+     <widget class="QStackedWidget" name="taskStack">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <widget class="QWidget" name="page"/>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>479</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuProgram">
+    <property name="title">
+     <string>&amp;Program</string>
+    </property>
+    <addaction name="actionShowLogger"/>
+    <addaction name="actionReloadPlugins"/>
+    <addaction name="separator"/>
+    <addaction name="actionExit"/>
+    <addaction name="separator"/>
+   </widget>
+   <widget class="QMenu" name="menuSettings">
+    <property name="title">
+     <string>&amp;Settings</string>
+    </property>
+    <addaction name="actionEditServerList"/>
+    <addaction name="actionConfigurePlugins"/>
+    <addaction name="actionSelectLanguage"/>
+   </widget>
+   <widget class="QMenu" name="menuHelp">
+    <property name="title">
+     <string>&amp;Help</string>
+    </property>
+    <addaction name="actionAbout"/>
+   </widget>
+   <addaction name="menuProgram"/>
+   <addaction name="menuSettings"/>
+   <addaction name="menuHelp"/>
+  </widget>
+  <action name="actionAbout">
+   <property name="icon">
+    <iconset>
+     <normaloff>../../../../../../tags/Luma-3.0a/luma/lib/luma/base/gui/image0</normaloff>../../../../../../tags/Luma-3.0a/luma/lib/luma/base/gui/image0</iconset>
+   </property>
+   <property name="text">
+    <string>About Luma...</string>
+   </property>
+   <property name="iconText">
+    <string>About Luma...</string>
+   </property>
+   <property name="name" stdset="0">
+    <string>about</string>
+   </property>
+  </action>
+  <action name="actionEditServerList">
+   <property name="icon">
+    <iconset>
+     <normaloff>../../../../../../tags/Luma-3.0a/luma/lib/luma/base/gui/image1</normaloff>../../../../../../tags/Luma-3.0a/luma/lib/luma/base/gui/image1</iconset>
+   </property>
+   <property name="text">
+    <string>Edit Server List...</string>
+   </property>
+   <property name="iconText">
+    <string>Edit Server List...</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+E</string>
+   </property>
+   <property name="name" stdset="0">
+    <string>editServerList</string>
+   </property>
+  </action>
+  <action name="actionExit">
+   <property name="icon">
+    <iconset>
+     <normaloff>../../../../../../tags/Luma-3.0a/luma/lib/luma/base/gui/image2</normaloff>../../../../../../tags/Luma-3.0a/luma/lib/luma/base/gui/image2</iconset>
+   </property>
+   <property name="text">
+    <string>Exit</string>
+   </property>
+   <property name="iconText">
+    <string>Exit</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Q</string>
+   </property>
+   <property name="name" stdset="0">
+    <string>exitItem</string>
+   </property>
+  </action>
+  <action name="actionConfigurePlugins">
+   <property name="icon">
+    <iconset>
+     <normaloff>../../../../../../tags/Luma-3.0a/luma/lib/luma/base/gui/image3</normaloff>../../../../../../tags/Luma-3.0a/luma/lib/luma/base/gui/image3</iconset>
+   </property>
+   <property name="text">
+    <string>Configure Plugins...</string>
+   </property>
+   <property name="iconText">
+    <string>Configure Plugins...</string>
+   </property>
+   <property name="shortcut">
+    <string/>
+   </property>
+   <property name="name" stdset="0">
+    <string>menuConfigurePlugins</string>
+   </property>
+  </action>
+  <action name="actionReloadPlugins">
+   <property name="icon">
+    <iconset>
+     <normaloff>../../../../../../tags/Luma-3.0a/luma/lib/luma/base/gui/image4</normaloff>../../../../../../tags/Luma-3.0a/luma/lib/luma/base/gui/image4</iconset>
+   </property>
+   <property name="text">
+    <string>Reload Plugins</string>
+   </property>
+   <property name="iconText">
+    <string>Reload Plugins</string>
+   </property>
+   <property name="shortcut">
+    <string/>
+   </property>
+   <property name="name" stdset="0">
+    <string>reload</string>
+   </property>
+  </action>
+  <action name="actionSelectLanguage">
+   <property name="icon">
+    <iconset>
+     <normaloff>../../../../../../tags/Luma-3.0a/luma/lib/luma/base/gui/image5</normaloff>../../../../../../tags/Luma-3.0a/luma/lib/luma/base/gui/image5</iconset>
+   </property>
+   <property name="text">
+    <string>Language...</string>
+   </property>
+   <property name="iconText">
+    <string>Language...</string>
+   </property>
+   <property name="shortcut">
+    <string/>
+   </property>
+   <property name="name" stdset="0">
+    <string>selectLanguage</string>
+   </property>
+  </action>
+  <action name="actionShowLogger">
+   <property name="checkable">
+    <bool>false</bool>
+   </property>
+   <property name="icon">
+    <iconset>
+     <normaloff>../../../../../../tags/Luma-3.0a/luma/lib/luma/base/gui/image6</normaloff>../../../../../../tags/Luma-3.0a/luma/lib/luma/base/gui/image6</iconset>
+   </property>
+   <property name="text">
+    <string>Show Logger</string>
+   </property>
+   <property name="iconText">
+    <string>Show logger</string>
+   </property>
+   <property name="shortcut">
+    <string/>
+   </property>
+   <property name="name" stdset="0">
+    <string>showLogger</string>
+   </property>
+  </action>
+  <action name="actionK_l">
+   <property name="text">
+    <string>køl</string>
+   </property>
+  </action>
+  <action name="actionPlay">
+   <property name="text">
+    <string>Play</string>
+   </property>
+  </action>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>actionAbout</sender>
+   <signal>activated()</signal>
+   <receiver>MainWinDesign</receiver>
+   <slot>showAboutLuma()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionExit</sender>
+   <signal>activated()</signal>
+   <receiver>MainWinDesign</receiver>
+   <slot>quitApplication()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionEditServerList</sender>
+   <signal>activated()</signal>
+   <receiver>MainWinDesign</receiver>
+   <slot>showServerEditor()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionConfigurePlugins</sender>
+   <signal>activated()</signal>
+   <receiver>MainWinDesign</receiver>
+   <slot>configurePlugins()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionReloadPlugins</sender>
+   <signal>activated()</signal>
+   <receiver>MainWinDesign</receiver>
+   <slot>reloadPlugins()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionSelectLanguage</sender>
+   <signal>activated()</signal>
+   <receiver>MainWinDesign</receiver>
+   <slot>showLanguageDialog()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionShowLogger</sender>
+   <signal>activated()</signal>
+   <receiver>MainWinDesign</receiver>
+   <slot>showLoggerWindow()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+</ui>
