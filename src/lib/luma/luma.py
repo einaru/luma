@@ -32,20 +32,31 @@ import logging
 
 from PyQt4 import QtGui, QtCore
 
+from base.backend.Config import Config
+from base.backend.LanguageHandler import LanguageHandler
 from base.gui.MainWin import MainWin
 
 # TODO Luma spesific import (eventualy) goes here
 
-def start_application():
+def startApplication():
     """
     First we must determine what platform we're running on. Making sure we 
     follow the platform convention for configuration files and directories, 
     """
-    config_prefix = get_config_prefix()
-    print "DEBUG::config folder=%s" % config_prefix
+    
+    # DEVELOPMENT SPECIFICS
+    
+    configPrefix = getConfigPrefix()
+
+    print "DEBUG::config folder=%s" % configPrefix
     # TODO Write the rest of the startup script.
+    
+    config = Config(configPrefix, os.path.join(os.getcwd(), 'i18n'))
+    print config.languageHandler
+    
     app = QtGui.QApplication(sys.argv)
-    mainWin = MainWin()
+    
+    mainWin = MainWin(config)
     
     QtCore.QObject.connect(app, QtCore.SIGNAL('lastWindowClosed()'), mainWin.close)
 
@@ -57,7 +68,7 @@ def start_application():
     sys.exit(app.exec_())
 
 
-def get_config_prefix():
+def getConfigPrefix():
     """
     We must determine what platform we're running on. Making sure we follow
     the platform convention for configuration files and directories,
@@ -120,7 +131,8 @@ def unhandledException(eType, eValue, eTraceback):
     l.addHandler(logging.StreamHandler())
     # TODO Take a look at the <reporoot>/tags/Luma2.4/src/bin/luma file
     print "unhandled exception"
+    print eType, eValue, eTraceback
 
 if __name__ == "__main__":
-    start_application()
+    startApplication()
 

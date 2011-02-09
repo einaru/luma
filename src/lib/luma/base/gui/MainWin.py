@@ -27,14 +27,15 @@ from base.utils.gui.LoggerWidget import LoggerWidget
 from base.gui.AboutDialog import AboutDialog
 from base.gui.ServerDialog import ServerDialog
 from base.backend.ServerList import ServerList
+from base.backend.LanguageHandler import LanguageHandler
 
 
 class MainWin(QtGui.QMainWindow, Ui_MainWindow):
     """
     The Luma Main Window
     """
-    
-    def __init__(self, parent=None):
+
+    def __init__(self, configObject, parent=None):
         """
         The constructor loads the generated ui code and setup the rest
         of the widgets. It assures that the configuration values concerning
@@ -42,9 +43,17 @@ class MainWin(QtGui.QMainWindow, Ui_MainWindow):
         """
         QtGui.QMainWindow.__init__(self)
 
+        # TODO We use 
+#        self.debug_lang_path = "/mnt/debris/devel/git/src/lib/luma/i18n"
+#        self.languageHandler = LanguageHandler(self.debug_lang_path)
+        self.configObject = configObject
+        self.languageHandler = self.configObject.languageHandler
+
+        self.config = configObject
+
         self.setupUi(self)
         self.__generateLanguageMenu()
-        
+
         """
         Setup the plugin toolbar:
         """
@@ -60,7 +69,7 @@ class MainWin(QtGui.QMainWindow, Ui_MainWindow):
         self.pluginLabel.setFont(font)
         self.pluginLabel.setMargin(5)
         self.pluginToolBar.addWidget(self.pluginLabel)
-        
+
         self.pluginButton = QtGui.QPushButton(self.pluginToolBar)
         self.pluginButton.setText(self.trUtf8("Choose plugin"))
         self.pluginToolBar.addWidget(self.pluginButton)
@@ -78,17 +87,27 @@ class MainWin(QtGui.QMainWindow, Ui_MainWindow):
         """
         self.loggerDockWindow = QtGui.QDockWidget("Logger", self)
         self.loggerWidget = LoggerWidget(self.loggerDockWindow)
-        self.connect(self.loggerDockWindow,  QtCore.SIGNAL("visibilityChanged(bool)"), self.loggerVisibilityChanged)
+        self.connect(self.loggerDockWindow, QtCore.SIGNAL("visibilityChanged(bool)"), self.loggerVisibilityChanged)
 
         self.loggerDockWindow.setWidget(self.loggerWidget)
         self.addDockWidget(QtCore.Qt.BottomDockWidgetArea, self.loggerDockWindow)
         self.loggerDockWindow.hide()
-        
+
         # TODO Setup the rest of the defaults in the Main Window:
         #      fix translation stuff, 
         #      load configured language
         #      load the plugin list
-        
+        self.__installLanguageTranslator()
+
+
+    def __installLanguageTranslator(self):
+        """
+        Load the preferred application language. Defaults to english.
+        """
+        print "Debug::getLanguageTranslator"
+
+        QtGui.qApp.installTranslator(QtCore.QTranslator())
+        self.languageChange()
 
 
     def __generateLanguageMenu(self):
@@ -97,25 +116,31 @@ class MainWin(QtGui.QMainWindow, Ui_MainWindow):
         the menu
         """
         langGroup = QtGui.QActionGroup(self)
-        # TODO Load available languages from configuration file
-        availLan = ["Deutch", "English", "Norwegian", "Portuguese", "Czech", "Swedish", "Russian", "French"]
-        for lang in availLan:
+
+        for key, value in self.languageHandler.availableLanguages.iteritems():
             action = QtGui.QAction(self)
-            action.setObjectName("language%s" % lang)
+            action.setObjectName("language_%s" % key)
             action.setCheckable(True)
-            if lang == "English":
+            if key == "en":
                 action.setChecked(True)
             action.setActionGroup(langGroup)
-            action.setText(QtGui.QApplication.translate("MainWindow", lang, None, QtGui.QApplication.UnicodeUTF8))
+            action.setText(QtGui.QApplication.translate("MainWindow", value, None, QtGui.QApplication.UnicodeUTF8))
             QtCore.QObject.connect(action, QtCore.SIGNAL("triggered()"), self.languageChanged)
             self.menuLanguage.addAction(action)
-        
+
+
     def languageChanged(self):
         """
         Slot for the changing the application language
         """
         action = self.sender()
         print "TODO::languageChanged->%s" % action.objectName()
+        langFile = "luma_%s.qm" % action.objectName()[-2:]
+        print langFile
+        QtGui.qApp.translator = QtCore.QTranslator()
+        QtGui.qApp.translator.load("%s/%s" % (self.config.i18nPath, langFile))
+        QtGui.qApp.installTranslator(QtGui.qApp.translator)
+        self.languageChange()
 
 
     def showAboutLuma(self):
@@ -137,7 +162,6 @@ class MainWin(QtGui.QMainWindow, Ui_MainWindow):
         Leaving the main Qt execution loop. We must unload plugins and do
         necessary Qt cleanup, before tearing the application down.
         """
-        self.about.close()
         QtGui.qApp.quit()
         print "TODO::quitApplication"
 
