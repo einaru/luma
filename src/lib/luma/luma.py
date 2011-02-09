@@ -33,7 +33,6 @@ import logging
 from PyQt4 import QtGui, QtCore
 
 from base.backend.Config import Config
-from base.backend.LanguageHandler import LanguageHandler
 from base.gui.MainWin import MainWin
 
 # TODO Luma spesific import (eventualy) goes here
