@@ -12,7 +12,6 @@ from base.models.ServerListModel import ServerListModel
 from base.backend.ServerObject import ServerObject
 from PyQt4.QtCore import QModelIndex
 from ServerDelegate import ServerDelegate
-from BaseSelector import BaseSelector
 
 class ServerDialog(QDialog, Ui_ServerDialogDesign):
     
