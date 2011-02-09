@@ -222,7 +222,7 @@ class ServerList(object):
                 tmpVal = unicode(element.attribute("autoBase"))
                 server.autoBase = bool(int(tmpVal))      
                     
-                server.bindAnon = unicode(element.attribute("bindDN"))
+                server.bindDN = unicode(element.attribute("bindDN"))
                 server.bindPassword = unicode(element.attribute("bindPassword"))
                 
                 server.encryptionMethod = int(element.attribute("encryptionMethod"))
