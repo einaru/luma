@@ -33,6 +33,8 @@ class ServerDialog(QDialog, Ui_ServerDialogDesign):
         
         if slm.rowCount(QModelIndex()) > 0:
             self.serverWidget.setEnabled(True)
+        else:
+            self.serverWidget.setEnabled(False)
             
         
         # Select the first server in the list
@@ -137,12 +139,16 @@ class ServerDialog(QDialog, Ui_ServerDialogDesign):
             newIndex = self.listView.selectionModel().currentIndex()
             self.mapper.setCurrentIndex(newIndex.row())
             
+        if self.slm.rowCount() == 0:
+            self.serverWidget.setEnabled(False)
+            
     def saveServer(self):
         self._ServerList.writeServerList()        
     
     def saveCloseDialog(self):
         #Called when OK-button is clicked
-        print self._ServerList.getTable()[0]
+        self.saveServer()
+        self.close()
         print "saveCloseDialog()"
     
 if __name__ == "__main__":

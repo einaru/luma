@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'base\gui\ServerDialogDesign.ui'
+# Form implementation generated from reading ui file 'ServerDialogDesign.ui'
 #
-# Created: Wed Feb 09 20:37:59 2011
+# Created: Wed Feb 09 22:43:55 2011
 #      by: PyQt4 UI code generator 4.8.2
 #
 # WARNING! All changes made in this file will be lost!
@@ -43,7 +43,7 @@ class Ui_ServerDialogDesign(object):
         self.listView.setObjectName(_fromUtf8("listView"))
         self.gridlayout.addWidget(self.listView, 0, 1, 1, 3)
         self.serverWidget = QtGui.QTabWidget(self.splitter2)
-        self.serverWidget.setEnabled(False)
+        self.serverWidget.setEnabled(True)
         self.serverWidget.setObjectName(_fromUtf8("serverWidget"))
         self.tab = QtGui.QWidget()
         self.tab.setObjectName(_fromUtf8("tab"))
@@ -146,30 +146,16 @@ class Ui_ServerDialogDesign(object):
         self.tab1.setObjectName(_fromUtf8("tab1"))
         self.gridLayout_3 = QtGui.QGridLayout(self.tab1)
         self.gridLayout_3.setObjectName(_fromUtf8("gridLayout_3"))
-        spacerItem7 = QtGui.QSpacerItem(45, 445, QtGui.QSizePolicy.Minimum, QtGui.QSizePolicy.Expanding)
-        self.gridLayout_3.addItem(spacerItem7, 1, 0, 2, 1)
-        spacerItem8 = QtGui.QSpacerItem(114, 21, QtGui.QSizePolicy.Minimum, QtGui.QSizePolicy.Expanding)
-        self.gridLayout_3.addItem(spacerItem8, 2, 1, 1, 1)
-        self.authLabel = QtGui.QLabel(self.tab1)
-        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Fixed, QtGui.QSizePolicy.Fixed)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.authLabel.sizePolicy().hasHeightForWidth())
-        self.authLabel.setSizePolicy(sizePolicy)
-        self.authLabel.setMinimumSize(QtCore.QSize(48, 48))
-        self.authLabel.setText(_fromUtf8(""))
-        self.authLabel.setPixmap(QtGui.QPixmap(_fromUtf8(":/images/password_big.png")))
-        self.authLabel.setWordWrap(False)
-        self.authLabel.setObjectName(_fromUtf8("authLabel"))
-        self.gridLayout_3.addWidget(self.authLabel, 0, 0, 1, 1)
+        spacerItem7 = QtGui.QSpacerItem(114, 21, QtGui.QSizePolicy.Minimum, QtGui.QSizePolicy.Expanding)
+        self.gridLayout_3.addItem(spacerItem7, 2, 1, 1, 1)
         self.gridLayout = QtGui.QGridLayout()
         self.gridLayout.setObjectName(_fromUtf8("gridLayout"))
         self.textLabel1_4 = QtGui.QLabel(self.tab1)
         self.textLabel1_4.setWordWrap(False)
         self.textLabel1_4.setObjectName(_fromUtf8("textLabel1_4"))
         self.gridLayout.addWidget(self.textLabel1_4, 0, 0, 1, 3)
-        spacerItem9 = QtGui.QSpacerItem(13, 18, QtGui.QSizePolicy.Fixed, QtGui.QSizePolicy.Minimum)
-        self.gridLayout.addItem(spacerItem9, 1, 0, 1, 1)
+        spacerItem8 = QtGui.QSpacerItem(13, 18, QtGui.QSizePolicy.Fixed, QtGui.QSizePolicy.Minimum)
+        self.gridLayout.addItem(spacerItem8, 1, 0, 1, 1)
         self.bindAnonBox = QtGui.QCheckBox(self.tab1)
         self.bindAnonBox.setObjectName(_fromUtf8("bindAnonBox"))
         self.gridLayout.addWidget(self.bindAnonBox, 1, 1, 1, 2)
@@ -206,6 +192,20 @@ class Ui_ServerDialogDesign(object):
         self.passwordLineEdit.setObjectName(_fromUtf8("passwordLineEdit"))
         self.gridLayout.addWidget(self.passwordLineEdit, 4, 2, 1, 1)
         self.gridLayout_3.addLayout(self.gridLayout, 0, 1, 2, 1)
+        self.authLabel = QtGui.QLabel(self.tab1)
+        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Fixed, QtGui.QSizePolicy.Fixed)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.authLabel.sizePolicy().hasHeightForWidth())
+        self.authLabel.setSizePolicy(sizePolicy)
+        self.authLabel.setMinimumSize(QtCore.QSize(48, 48))
+        self.authLabel.setText(_fromUtf8(""))
+        self.authLabel.setPixmap(QtGui.QPixmap(_fromUtf8(":/images/password_big.png")))
+        self.authLabel.setWordWrap(False)
+        self.authLabel.setObjectName(_fromUtf8("authLabel"))
+        self.gridLayout_3.addWidget(self.authLabel, 0, 0, 1, 1)
+        spacerItem9 = QtGui.QSpacerItem(45, 445, QtGui.QSizePolicy.Minimum, QtGui.QSizePolicy.Expanding)
+        self.gridLayout_3.addItem(spacerItem9, 1, 0, 2, 1)
         self.serverWidget.addTab(self.tab1, _fromUtf8(""))
         self.tab_2 = QtGui.QWidget()
         self.tab_2.setObjectName(_fromUtf8("tab_2"))
@@ -259,7 +259,7 @@ class Ui_ServerDialogDesign(object):
         self.certFileEdit.setObjectName(_fromUtf8("certFileEdit"))
         self._2.addWidget(self.certFileEdit, 2, 2, 1, 1)
         self.useClientCertBox = QtGui.QCheckBox(self.tab_2)
-        self.useClientCertBox.setEnabled(False)
+        self.useClientCertBox.setEnabled(True)
         self.useClientCertBox.setObjectName(_fromUtf8("useClientCertBox"))
         self._2.addWidget(self.useClientCertBox, 1, 1, 1, 3)
         self.certKeyfileEdit = QtGui.QLineEdit(self.tab_2)
@@ -353,6 +353,10 @@ class Ui_ServerDialogDesign(object):
         QtCore.QObject.connect(self.baseBox, QtCore.SIGNAL(_fromUtf8("toggled(bool)")), self.baseEdit.setDisabled)
         QtCore.QObject.connect(self.baseBox, QtCore.SIGNAL(_fromUtf8("toggled(bool)")), self.baseDNWidget.setDisabled)
         QtCore.QObject.connect(self.baseEdit, QtCore.SIGNAL(_fromUtf8("returnPressed()")), ServerDialogDesign.addBaseDN)
+        QtCore.QObject.connect(self.useClientCertBox, QtCore.SIGNAL(_fromUtf8("toggled(bool)")), self.certFileEdit.setEnabled)
+        QtCore.QObject.connect(self.useClientCertBox, QtCore.SIGNAL(_fromUtf8("toggled(bool)")), self.certKeyfileEdit.setEnabled)
+        QtCore.QObject.connect(self.useClientCertBox, QtCore.SIGNAL(_fromUtf8("toggled(bool)")), self.certFileButton.setEnabled)
+        QtCore.QObject.connect(self.useClientCertBox, QtCore.SIGNAL(_fromUtf8("toggled(bool)")), self.certKeyFileButton.setEnabled)
         QtCore.QMetaObject.connectSlotsByName(ServerDialogDesign)
         ServerDialogDesign.setTabOrder(self.addButton, self.deleteButton)
         ServerDialogDesign.setTabOrder(self.deleteButton, self.serverWidget)
@@ -430,5 +434,6 @@ class Ui_ServerDialogDesign(object):
         self.cancelButton.setText(QtGui.QApplication.translate("ServerDialogDesign", "&Cancel", None, QtGui.QApplication.UnicodeUTF8))
         self.cancelButton.setShortcut(QtGui.QApplication.translate("ServerDialogDesign", "Alt+C", None, QtGui.QApplication.UnicodeUTF8))
 
+import luma_rc
 import luma_rc
 import luma_rc
