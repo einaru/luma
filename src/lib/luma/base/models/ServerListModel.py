@@ -16,10 +16,10 @@ class ServerListModel(QtCore.QAbstractTableModel):
         """
         Handles updating data in the ServerObjects
         """
-        
-        value = QtCore.QVariant.toPyObject(value)
+
+        value = value.toPyObject()
         #value = index.internalPointer()
-        print "setData:",value
+        print "ServerListModel-setData-før:",value
         
         if not index.isValid(): 
             return False
@@ -27,7 +27,7 @@ class ServerListModel(QtCore.QAbstractTableModel):
         row = index.row()
         column = index.column()
         
-        # Fine the serverobject from the list of them
+        # Find the serverobject from the list of them
         serverObject = self._ServerList.getTable()[row]
         
         # Update the correct field in it (given by the column) with the given data
@@ -62,7 +62,7 @@ class ServerListModel(QtCore.QAbstractTableModel):
         if role == QtCore.Qt.DisplayRole or role == QtCore.Qt.EditRole:
             # getTable() return a list of all the ServerObjects
             serverObject = self._ServerList.getTable()[row]
-            
+
             # return the property set in the given column
             # correct painting/displaying of it is done by a delegate if needed
             # (e.g. the list of baseDNs is returned as a list and is splitted and displayed by the delegate)

@@ -102,7 +102,7 @@ class ServerDialog(QDialog, Ui_ServerDialogDesign):
                 return
             
             sO = ServerObject()
-            sO.name = name
+            sO.name = unicode(name)
             
             # Insert into the model
             m = self.listView.model() 

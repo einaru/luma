@@ -22,6 +22,8 @@ class ServerDelegate(QStyledItemDelegate):
         # if BaseDNs
         if index.column() == 5:
             
+            print "setEditorData for 5"
+            
             # List of strings
             d = index.data().toPyObject()
             
@@ -30,7 +32,7 @@ class ServerDelegate(QStyledItemDelegate):
             for x in d:
                 x = x.trimmed() #QString
                 if not len(x) == 0:
-                    newList.append(x) 
+                    newList.append(unicode(x)) 
            
             # the view (editor) is a QListView in this case, so lets give it a model to display
             if editor.model() == None:
@@ -53,8 +55,12 @@ class ServerDelegate(QStyledItemDelegate):
         Specifies how the model should be filled out with data from the editor
         """
         
+        print "setModelData"
+        
         # if the baseDNs
         if index.column() == 5:
+            
+            print "setModelData for 5"
             
             # get strings from the model of the QListView displaying the baseDNs
             m = editor.model()
@@ -62,7 +68,8 @@ class ServerDelegate(QStyledItemDelegate):
             # Populate the list again
             d = []
             for i in xrange(m.rowCount()):
-                d.append(m.data(m.index(i,0), Qt.DisplayRole))
+                data = m.data(m.index(i,0), Qt.DisplayRole)
+                d.append(data)
             
             # now that we have constructed the list, give it to the model
             model.setData(index,QVariant(d))

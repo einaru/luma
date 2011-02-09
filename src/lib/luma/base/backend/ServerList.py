@@ -165,12 +165,16 @@ class ServerList(object):
         fileContent = ""
         try:
             fileContent = "".join(open(self._configFile, "r").readlines())
-            fileContent = fileContent.decode("utf-8")
+            # If this is uncommentet, non-ascii characters stops working.
+            # It's probably also decoded by QDomDocument, so decoding now means it's decoded
+            # twice - which doesn't work.
+            #fileContent = fileContent.decode("utf-8")
+            print fileContent
         except IOError, e:
             errorString = "Could not read server configuration file. Reason:\n"
             errorString += str(e)
             self._logger.warning(errorString)
-        
+                    
         document = QDomDocument("LumaServerFile")
         document.setContent(fileContent)
         
