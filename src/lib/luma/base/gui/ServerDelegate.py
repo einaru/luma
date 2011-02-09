@@ -1,5 +1,5 @@
-from PyQt4.QtGui import QStyledItemDelegate, QStringListModel
-from PyQt4.QtCore import QStringList, QVariant
+from PyQt4.QtGui import QStyledItemDelegate, QListWidget, QListWidgetItem
+from PyQt4.QtCore import QStringList, QVariant, QModelIndex
 from PyQt4.QtCore import Qt
 
 class ServerDelegate(QStyledItemDelegate):
@@ -25,19 +25,24 @@ class ServerDelegate(QStyledItemDelegate):
             # List of strings
             d = index.data().toPyObject()
             
+            """
             # Get rid of empty strings
             newList = []
             for x in d:
                 x = x.trimmed() #QString
                 if not len(x) == 0:
                     newList.append(unicode(x)) 
-           
+
             # the view (editor) is a QListView in this case, so lets give it a model to display
             if editor.model() == None:
                 editor.setModel(QStringListModel(newList))
                 return
             m = editor.model()
             m.setStringList(QStringList(newList))
+            """
+            editor.clear()
+            for tmpBase in d:
+                editor.addItem(QListWidgetItem(tmpBase))
             return
         
         # if QComboBox, just set the index it should display (the strings displayed is in the .ui-file)
@@ -56,6 +61,7 @@ class ServerDelegate(QStyledItemDelegate):
         # if the baseDNs
         if index.column() == 5:
             
+            """        
             # get strings from the model of the QListView displaying the baseDNs
             m = editor.model()
             
@@ -64,9 +70,15 @@ class ServerDelegate(QStyledItemDelegate):
             for i in xrange(m.rowCount()):
                 data = m.data(m.index(i,0), Qt.DisplayRole)
                 d.append(data)
+            """
+            m = editor.model()
+            row = m.rowCount(QModelIndex())
+            returnList = []
+            for i in xrange(row):
+                returnList.append(m.data(m.index(i,0)).toPyObject())
             
             # now that we have constructed the list, give it to the model
-            model.setData(index,QVariant(d))
+            model.setData(index,QVariant(returnList))
             return 
         
         # if a combobox

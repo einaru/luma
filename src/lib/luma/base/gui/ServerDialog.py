@@ -6,12 +6,13 @@ Created on 2. feb. 2011
 
 import sys
 from PyQt4 import QtGui, QtCore, Qt
-from PyQt4.QtGui import QDialog, QDataWidgetMapper, QStandardItemModel, QStandardItem, QItemSelectionRange
+from PyQt4.QtGui import QDialog, QPixmap, QDataWidgetMapper, QStandardItemModel, QStandardItem, QItemSelectionRange
 from base.gui.ServerDialogDesign import Ui_ServerDialogDesign
 from base.models.ServerListModel import ServerListModel
 from base.backend.ServerObject import ServerObject
-from PyQt4.QtGui import QPixmap
+from PyQt4.QtCore import QModelIndex
 from ServerDelegate import ServerDelegate
+from BaseSelector import BaseSelector
 
 class ServerDialog(QDialog, Ui_ServerDialogDesign):
     
@@ -30,8 +31,14 @@ class ServerDialog(QDialog, Ui_ServerDialogDesign):
         self.listView.setModel(slm)
         #self.listView.setItemDelegate(BoxDelegate())
         
+        if slm.rowCount(QModelIndex()) > 0:
+            self.serverWidget.setEnabled(True)
+            
+        
         # Select the first server in the list
-        self.listView.selectionModel().select(self.listView.model().index(0,0), QtGui.QItemSelectionModel.ClearAndSelect)        
+        index = self.listView.model().index(0,0)
+        self.listView.selectionModel().select(index, QtGui.QItemSelectionModel.ClearAndSelect) 
+        self.listView.selectionModel().setCurrentIndex(index, QtGui.QItemSelectionModel.ClearAndSelect)       
         
         #For testing
         #self.tableView = QtGui.QTableView()
@@ -48,7 +55,7 @@ class ServerDialog(QDialog, Ui_ServerDialogDesign):
         self.mapper.addMapping(self.portSpinBox, 2)
         self.mapper.addMapping(self.bindAnonBox, 3)
         self.mapper.addMapping(self.baseBox, 4)        
-        self.mapper.addMapping(self.baseDNView, 5)
+        self.mapper.addMapping(self.baseDNWidget, 5)
         self.mapper.addMapping(self.bindLineEdit, 6)
         self.mapper.addMapping(self.passwordLineEdit, 7)
         self.mapper.addMapping(self.encryptionBox, 8)
@@ -62,35 +69,33 @@ class ServerDialog(QDialog, Ui_ServerDialogDesign):
         
         # Let the mapper know when another server is selected in the list
         self.listView.selectionModel().currentRowChanged.connect(self.mapper.setCurrentModelIndex)
+        self.deleteBaseDNButton.setFocusPolicy(Qt.Qt.NoFocus)
+        
+    """
+    def manageBaseDn(self):
 
-        # The model is reset in the baseDNView when it looses focus (which means the selection is lost)
-        # so in order for the button to know which baseDN to remove, it needs to let it keep the focus
-        self.removeBaseDN.setFocusPolicy(Qt.Qt.NoFocus)
-        QtGui.QPushButton.connect(self.removeBaseDN, QtCore.SIGNAL("clicked()"), self.removeBaseDn)
-        
-        
-    def addBaseDn(self):
-        """
-        Adds a new BaseDN to the list
-        """
-        if self.baseDNView.model() != None:
-            m = self.baseDNView.model()
-            m.insertRows(m.rowCount(), 1, QtCore.QModelIndex())
-            index = m.index(m.rowCount()-1, 0) #the row we just inserted
-            m.setData(index, QtCore.QVariant("<Fill inn to add>"))
-        else:
-            QtGui.QMessageBox.information(None, 'Error', self.tr("Choose a server first"))
+        d = BaseSelector()
+        d.exec_()
+        print d.getList()
+    """
+    
+    def addBaseDN(self):
+        tmpBase = unicode(self.baseEdit.text()).strip()
+        if tmpBase == u"":
+            return      
+        self.baseDNWidget.addItem(QtGui.QListWidgetItem(tmpBase))
+        self.baseEdit.clear()
+        self.mapper.submit()
+    
+    def deleteBaseDN(self):
+        for tmpItem in self.baseDNWidget.selectedItems():
+            if not (None == tmpItem):
+                index = self.baseDNWidget.indexFromItem(tmpItem)
+                d = self.baseDNWidget.takeItem(index.row())
+                if d != 0:
+                    del d
+        self.mapper.submit()
 
-    def removeBaseDn(self):
-        """
-        Removes a BaseDN from the list.
-        """
-        if not len(self.baseDNView.selectedIndexes()) > 0:
-            QtGui.QMessageBox.information(None, 'Error', "Nothing selected")
-            return 
-        row = self.baseDNView.selectedIndexes()[0].row() #Single selection
-        self.baseDNView.model().removeRow(row)
-        
     def addServer(self):
         """
         Create a new ServerObject and add it to the model (thus the list)
@@ -100,6 +105,8 @@ class ServerDialog(QDialog, Ui_ServerDialogDesign):
             if len(name) < 1 or self._ServerList.getServerObject(name) != None:
                 QtGui.QMessageBox.information(self, 'Error', "Invalid name or already used.")
                 return
+            
+            self.serverWidget.setEnabled(True)
             
             sO = ServerObject()
             sO.name = unicode(name)
@@ -124,7 +131,7 @@ class ServerDialog(QDialog, Ui_ServerDialogDesign):
             index = self.listView.selectionModel().currentIndex() #Currently selected
             
             self.listView.model().beginRemoveRows(QtCore.QModelIndex(), index.row(), index.row())
-            self._ServerList.deleteServerByIndex(index.row())
+            self.listView.model().removeRows(index.row(),1)
             self.listView.model().endRemoveRows()
             
             newIndex = self.listView.selectionModel().currentIndex()
@@ -135,6 +142,7 @@ class ServerDialog(QDialog, Ui_ServerDialogDesign):
     
     def saveCloseDialog(self):
         #Called when OK-button is clicked
+        print self._ServerList.getTable()[0]
         print "saveCloseDialog()"
     
 if __name__ == "__main__":

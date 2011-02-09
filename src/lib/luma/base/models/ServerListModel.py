@@ -12,16 +12,22 @@ class ServerListModel(QtCore.QAbstractTableModel):
         QtCore.QAbstractTableModel.__init__(self)
         self._ServerList = ServerList
         
+    def removeRows(self, row, count):
+        self._ServerList.deleteServerByIndex(row)
+        return True
+        
     def setData(self, index, value, role = QtCore.Qt.EditRole):
         """
         Handles updating data in the ServerObjects
         """
+        
+        if not index.isValid(): 
+            return False
 
         value = value.toPyObject()
         #value = index.internalPointer()
         
-        if not index.isValid(): 
-            return False
+        print "setData-Model:",value
         
         row = index.row()
         column = index.column()
@@ -45,6 +51,8 @@ class ServerListModel(QtCore.QAbstractTableModel):
         return ServerObject.numFields
     
     def flags(self, index):
+        if not index.isValid(): 
+            return QtCore.QVariant()
         return QtCore.Qt.ItemIsSelectable | QtCore.Qt.ItemIsEditable | QtCore.Qt.ItemIsEnabled
     
     def data(self,index,role = QtCore.Qt.DisplayRole):

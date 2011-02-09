@@ -217,40 +217,25 @@ class ServerList(object):
                 server.port = int(str(element.attribute("port")))
                 
                 tmpVal = unicode(element.attribute("bindAnon"))
-                if "True" == tmpVal:
-                    server.bindAnon = True
-                else:
-                    server.bindAnon = False
+                server.bindAnon = bool(int(tmpVal))
                     
                 tmpVal = unicode(element.attribute("autoBase"))
-                if "True" == tmpVal:
-                    server.autoBase = True
-                else:
-                    server.autoBase = False
-                    
+                server.autoBase = bool(int(tmpVal))      
                     
                 server.bindAnon = unicode(element.attribute("bindDN"))
                 server.bindPassword = unicode(element.attribute("bindPassword"))
                 
                 server.encryptionMethod = int(element.attribute("encryptionMethod"))
-                #if server.encryptionMethod == "":
-                #    server.encryptionMethod = "None"
                     
                 server.checkServerCertificate = int(element.attribute("checkServerCertificate"))
                 server.clientCertFile = unicode(element.attribute("clientCertFile"))
                 server.clientCertKeyFile = unicode(element.attribute("clientCertKeyfile"))
                 
                 tmpVal = unicode(element.attribute("useCertificate"))
-                if tmpVal == "True":
-                    server.useCertificate = True
-                else:
-                    server.useCertificate = False
+                server.useCertificate = bool(int(tmpVal))   
                     
                 tmpVal = unicode(element.attribute("followAliases"))
-                if "True" == tmpVal:
-                    server.followAliases = True
-                else:
-                    server.followAliases = False
+                server.followAliases = bool(int(tmpVal))
                 
                 server.authMethod = int(element.attribute("authMethod"))
                 
