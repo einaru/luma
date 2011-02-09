@@ -19,7 +19,6 @@ class ServerListModel(QtCore.QAbstractTableModel):
 
         value = value.toPyObject()
         #value = index.internalPointer()
-        print "ServerListModel-setData-før:",value
         
         if not index.isValid(): 
             return False

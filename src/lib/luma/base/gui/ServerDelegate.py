@@ -21,9 +21,7 @@ class ServerDelegate(QStyledItemDelegate):
         
         # if BaseDNs
         if index.column() == 5:
-            
-            print "setEditorData for 5"
-            
+                        
             # List of strings
             d = index.data().toPyObject()
             
@@ -54,13 +52,9 @@ class ServerDelegate(QStyledItemDelegate):
         """
         Specifies how the model should be filled out with data from the editor
         """
-        
-        print "setModelData"
-        
+    
         # if the baseDNs
         if index.column() == 5:
-            
-            print "setModelData for 5"
             
             # get strings from the model of the QListView displaying the baseDNs
             m = editor.model()

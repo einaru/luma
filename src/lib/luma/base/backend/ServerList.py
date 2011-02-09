@@ -169,7 +169,6 @@ class ServerList(object):
             # It's probably also decoded by QDomDocument, so decoding now means it's decoded
             # twice - which doesn't work.
             #fileContent = fileContent.decode("utf-8")
-            print fileContent
         except IOError, e:
             errorString = "Could not read server configuration file. Reason:\n"
             errorString += str(e)
