@@ -57,6 +57,10 @@ def start_application():
     tra.load("luma_no")
     app.installTranslator(tra)
     QtGui.QMessageBox.information(None,QtCore.QCoreApplication.translate("luma","Eh..."), QtCore.QCoreApplication.translate("luma","Luma isn't ready yet.\nBut here's the ServerDialog :D"))
+    
+    #For bilder
+    import luma_rc
+    
     s = ServerDialog(ServerList(".","serverlist.xml"))
     s.show()
     sys.exit(app.exec_())

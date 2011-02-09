@@ -24,9 +24,6 @@ class ServerDialog(QDialog, Ui_ServerDialogDesign):
         QDialog.__init__(self)
         self.setupUi(self)
         
-        #p = QPixmap("./../../../\luma\\icons\\server.png")
-        #self.networkLabel.setPixmap(p)    
-        
         self._ServerList = serverList
         slm = ServerListModel(self._ServerList)
         
