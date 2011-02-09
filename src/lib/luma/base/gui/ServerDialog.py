@@ -34,7 +34,6 @@ class ServerDialog(QDialog, Ui_ServerDialogDesign):
         if slm.rowCount(QModelIndex()) > 0:
             self.serverWidget.setEnabled(True)
             
-        
         # Select the first server in the list
         index = self.listView.model().index(0,0)
         self.listView.selectionModel().select(index, QtGui.QItemSelectionModel.ClearAndSelect) 
