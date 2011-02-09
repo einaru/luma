@@ -37,19 +37,19 @@ class SLTest(unittest.TestCase):
             f.write("""
 <!DOCTYPE LumaServerFile>
 <LumaServerList version="1.2">
- <LumaLdapServer port="1337" clientCertFile="" followAliases="False" clientCertKeyfile="" bindPassword="pw" useCertificate="False" bindDN="" host="directory.d-trust.de" authMethod="1" bindAnon="" encryptionMethod="0" name="d-trust" autoBase="True" checkServerCertificate="1">
+ <LumaLdapServer port="1337" clientCertFile="" followAliases="0" clientCertKeyfile="" bindPassword="pw" useCertificate="0" bindDN="" host="directory.d-trust.de" authMethod="1" bindAnon="1" encryptionMethod="0" name="d-trust" autoBase="0" checkServerCertificate="1">
   <baseDNs>
    <base dn="dc=d-trust,dc=de"/>
    <base dn="dc=ntnu,dc=no.TULL"/>
   </baseDNs>
  </LumaLdapServer>
- <LumaLdapServer port="389" clientCertFile="" followAliases="False" clientCertKeyfile="" bindPassword="secret" useCertificate="False" bindDN="" host="at.ntnu.no" authMethod="6" bindAnon="" encryptionMethod="2" name="ntnu" autoBase="True" checkServerCertificate="2">
+ <LumaLdapServer port="389" clientCertFile="" followAliases="0" clientCertKeyfile="" bindPassword="secret" useCertificate="0" bindDN="" host="at.ntnu.no" authMethod="6" bindAnon="1" encryptionMethod="2" name="ntnu" autoBase="1" checkServerCertificate="2">
   <baseDNs>
    <base dn="dc=lol,dc=com"/>
    <base dn="dc=ntnu,dc=no"/>
   </baseDNs>
  </LumaLdapServer>
- <LumaLdapServer port="392" clientCertFile="" followAliases="True" clientCertKeyfile="" bindPassword="password" useCertificate="False" bindDN="" host="x500.bund.de" authMethod="0" bindAnon="" encryptionMethod="1" name="bund" autoBase="False" checkServerCertificate="0">
+ <LumaLdapServer port="392" clientCertFile="" followAliases="1" clientCertKeyfile="" bindPassword="password" useCertificate="0" bindDN="" host="x500.bund.de" authMethod="0" bindAnon="1" encryptionMethod="1" name="bund" autoBase="0" checkServerCertificate="0">
   <baseDNs>
    <base dn="dc=bund,dc=de"/>
   </baseDNs>

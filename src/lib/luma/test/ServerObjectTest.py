@@ -13,53 +13,53 @@ class Test(unittest.TestCase):
         self.serverObject = ServerObject()
 
     def testGettersSetters(self):
-        self.serverObject.setName("Test")
-        self.assertEqual("Test", self.serverObject.getName())
+        self.serverObject.name = "Test"
+        self.assertEqual("Test", self.serverObject.name)
         
-        self.serverObject.setHostname("ldap.ntnu.no")
-        self.assertEqual("ldap.ntnu.no", self.serverObject.getHostname())
+        self.serverObject.hostname = "ldap.ntnu.no"
+        self.assertEqual("ldap.ntnu.no", self.serverObject.hostname)
         
-        self.serverObject.setPort(123)
-        self.assertEqual(123, self.serverObject.getPort())
+        self.serverObject.port = 123
+        self.assertEqual(123, self.serverObject.port)
         
-        self.serverObject.setBindAnon(True)
-        self.assertEqual(True, self.serverObject.getBindAnon())
+        self.serverObject.bindAnon = True
+        self.assertEqual(True, self.serverObject.bindAnon)
         
-        self.serverObject.setAutoBase(False)
-        self.assertEqual(False, self.serverObject.getAutoBase())
+        self.serverObject.autoBase = False
+        self.assertEqual(False, self.serverObject.autoBase)
         
-        self.serverObject.setBaseDN(['dc=ntnu,dc=no','dc=example,dc=org'])
-        self.assertEqual(['dc=ntnu,dc=no','dc=example,dc=org'], self.serverObject.getBaseDN())
+        self.serverObject.baseDN = ['dc=ntnu,dc=no','dc=example,dc=org']
+        self.assertEqual(['dc=ntnu,dc=no','dc=example,dc=org'], self.serverObject.baseDN)
         
-        self.serverObject.setBindDN("username")
-        self.assertEqual("username", self.serverObject.getBindDN())
+        self.serverObject.bindDN = "username"
+        self.assertEqual("username", self.serverObject.bindDN)
         
-        self.serverObject.setBindPassword("password")
-        self.assertEqual("password", self.serverObject.getBindPassword())
+        self.serverObject.bindPassword = "password"
+        self.assertEqual("password", self.serverObject.bindPassword)
         
-        self.serverObject.setEncryptionMethod(0)
-        self.assertEqual(0, self.serverObject.getEncryptionMethod())
+        self.serverObject.encryptionMethod = 0
+        self.assertEqual(0, self.serverObject.encryptionMethod)
         
-        self.serverObject.setAuthMethod(2)
-        self.assertEqual(2, self.serverObject.getAuthMethod())
+        self.serverObject.authMethod = 2
+        self.assertEqual(2, self.serverObject.authMethod)
         
-        self.serverObject.setFollowAliases(False)
-        self.assertEqual(False, self.serverObject.getFollowAliases())
+        self.serverObject.followAliases = False
+        self.assertEqual(False, self.serverObject.followAliases)
         
-        self.serverObject.setUseCertificate(True)
-        self.assertEqual(True, self.serverObject.getUseCertificate())
+        self.serverObject.useCertificate = True
+        self.assertEqual(True, self.serverObject.useCertificate)
         
-        self.serverObject.setClientCertFile("cerfile.pem")
-        self.assertEqual("cerfile.pem", self.serverObject.getClientCertFile())
+        self.serverObject.clientCertFile = "cerfile.pem"
+        self.assertEqual("cerfile.pem", self.serverObject.clientCertFile)
         
-        self.serverObject.setClientCertKeyFile("certkeyfile.pem")
-        self.assertEqual("certkeyfile.pem", self.serverObject.getClientCertKeyFile())
+        self.serverObject.clientCertKeyfile= "certkeyfile.pem"
+        self.assertEqual("certkeyfile.pem", self.serverObject.clientCertKeyfile)
         
-        self.serverObject.setCheckServerCertificate(3)
-        self.assertEqual(3, self.serverObject.getCheckServerCertificate())
+        self.serverObject.checkServerCertificate = 3
+        self.assertEqual(3, self.serverObject.checkServerCertificate)
         
-        self.serverObject.setCurrentBase("base")
-        self.assertEqual("base", self.serverObject.getCurrentBase())
+        self.serverObject.currentBase = "base"
+        self.assertEqual("base", self.serverObject.currentBase)
         
 def suite():
     suite = unittest.TestSuite()

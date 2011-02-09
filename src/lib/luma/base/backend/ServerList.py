@@ -30,11 +30,13 @@ class ServerList(object):
     # cert as StringIO objects
     certCache = {}
     
-    def __init__(self, configPrefix, serverFileName = "serverlist.xml"):
+    def __init__(self, configPrefix = None, serverFileName = "serverlist.xml"):
         self._serverList = []
         self._configPrefix = configPrefix
         self._configFile = os.path.join(self._configPrefix, serverFileName)
-        self._readServerList()
+        
+        if os.path.isfile(self._configFile):
+            self._readServerList()
 
     def getTable(self):
         """
@@ -217,10 +219,10 @@ class ServerList(object):
                 server.port = int(str(element.attribute("port")))
                 
                 tmpVal = unicode(element.attribute("bindAnon"))
-                server.bindAnon = bool(int(tmpVal))
+                server.bindAnon = int(tmpVal)
                     
                 tmpVal = unicode(element.attribute("autoBase"))
-                server.autoBase = bool(int(tmpVal))      
+                server.autoBase = int(tmpVal)   
                     
                 server.bindDN = unicode(element.attribute("bindDN"))
                 server.bindPassword = unicode(element.attribute("bindPassword"))
@@ -232,10 +234,10 @@ class ServerList(object):
                 server.clientCertKeyFile = unicode(element.attribute("clientCertKeyfile"))
                 
                 tmpVal = unicode(element.attribute("useCertificate"))
-                server.useCertificate = bool(int(tmpVal))   
+                server.useCertificate = int(tmpVal)   
                     
                 tmpVal = unicode(element.attribute("followAliases"))
-                server.followAliases = bool(int(tmpVal))
+                server.followAliases = int(tmpVal)
                 
                 server.authMethod = int(element.attribute("authMethod"))
                 

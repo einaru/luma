@@ -15,7 +15,7 @@ suite2 = ServerObjectTest.suite()
 suite = unittest.TestSuite()
 
 suite.addTest(suite1)
-#suite.addTest(suite2)
+suite.addTest(suite2)
 
 unittest.TextTestRunner(verbosity=2).run(suite)
 
