@@ -5,3 +5,5 @@ class PluginLoader(QDialog, Ui_PluginLoaderDesign):
     def __init__(self):
         pass
     
+    
+
