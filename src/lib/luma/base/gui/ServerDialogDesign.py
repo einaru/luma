@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'ServerDialogDesign.ui'
 #
-# Created: Thu Feb 10 20:39:16 2011
+# Created: Thu Feb 10 20:59:56 2011
 #      by: PyQt4 UI code generator 4.8.2
 #
 # WARNING! All changes made in this file will be lost!
@@ -463,8 +463,4 @@ class Ui_ServerDialogDesign(object):
         self.cancelButton.setText(QtGui.QApplication.translate("ServerDialogDesign", "&Cancel", None, QtGui.QApplication.UnicodeUTF8))
         self.cancelButton.setShortcut(QtGui.QApplication.translate("ServerDialogDesign", "Alt+C", None, QtGui.QApplication.UnicodeUTF8))
 
-import luma_rc
-import luma_rc
-import luma_rc
-import luma_rc
 import luma_rc

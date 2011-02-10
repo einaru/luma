@@ -12,13 +12,13 @@ from base.models.ServerListModel import ServerListModel
 from base.backend.ServerObject import ServerObject
 from ServerDelegate import ServerDelegate
 
-
 class ServerDialog(QDialog, Ui_ServerDialogDesign):
     
     def __init__(self, serverList):
         """
         Note: the input-ServerList-object is used directly by both the methods here and the model so beware of changes to it.
         It's probably not a good idea to pass a ServerList if one of its ServerObjects are in use.
+
         """
         
         QDialog.__init__(self)
@@ -55,6 +55,7 @@ class ServerDialog(QDialog, Ui_ServerDialogDesign):
         self.mapper.addMapping(self.bindAnonBox, 3)
         self.mapper.addMapping(self.baseBox, 4)        
         self.mapper.addMapping(self.baseDNWidget, 5)
+
         self.mapper.addMapping(self.bindLineEdit, 6)
         self.mapper.addMapping(self.passwordLineEdit, 7)
         self.mapper.addMapping(self.encryptionBox, 8)
@@ -174,11 +175,13 @@ class ServerDialog(QDialog, Ui_ServerDialogDesign):
         filename = QFileDialog.getOpenFileName(self, 'Open file',
                     '')
         self.certFileEdit.setText(filename)
+        self.mapper.submit()
 
     def certKeyFileDialog(self):
         filename = QFileDialog.getOpenFileName(self, 'Open file',
                     '')
         self.certKeyFileEdit.setText(filename)
+        self.mapper.submit()
             
 if __name__ == "__main__":
     import logging

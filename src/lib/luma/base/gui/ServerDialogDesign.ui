@@ -1080,10 +1080,6 @@ p, li { white-space: pre-wrap; }
  </tabstops>
  <resources>
   <include location="../../luma.qrc"/>
-  <include location="../../luma.qrc"/>
-  <include location="../../luma.qrc"/>
-  <include location="../../luma.qrc"/>
-  <include location="../../luma.qrc"/>
  </resources>
  <connections>
   <connection>
