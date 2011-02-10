@@ -231,7 +231,7 @@ class ServerList(object):
                     
                 server.checkServerCertificate = int(element.attribute("checkServerCertificate"))
                 server.clientCertFile = unicode(element.attribute("clientCertFile"))
-                server.clientCertKeyFile = unicode(element.attribute("clientCertKeyfile"))
+                server.clientCertKeyFile = unicode(element.attribute("clientCertKeyFile"))
                 
                 tmpVal = unicode(element.attribute("useCertificate"))
                 server.useCertificate = int(tmpVal)   
