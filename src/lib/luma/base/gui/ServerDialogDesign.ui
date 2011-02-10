@@ -605,6 +605,7 @@ p, li { white-space: pre-wrap; }
             <property name="text">
              <string>&lt;b&gt;Validate server certificate&lt;/b&gt;</string>
             </property>
+
             <property name="wordWrap">
              <bool>false</bool>
             </property>

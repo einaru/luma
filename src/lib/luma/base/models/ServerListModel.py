@@ -74,6 +74,5 @@ class ServerListModel(QAbstractTableModel):
 
             # return the property set in the given column
             # correct painting/displaying of it is done by a delegate if needed
-            # (e.g. the list of baseDNs is returned as a list and is splitted and displayed by the delegate)
             return serverObject.getList()[column]
 

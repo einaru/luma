@@ -48,6 +48,7 @@ class ServerList(object):
         """
         Sets the list of ServerObjets
         """
+
         self._serverList = serverList
     
     def getServerObject(self, serverName):
@@ -85,6 +86,10 @@ class ServerList(object):
         """
         self._logger.debug("Deleting server (using an index) from self.serverList")
         del self._serverList[index]
+
+    def readServerList(self):
+        #Should probably only be used by test in order to force a read.
+        self._readServerList()
         
     def writeServerList(self):
         """ 
@@ -171,11 +176,12 @@ class ServerList(object):
             # It's probably also decoded by QDomDocument, so decoding now means it's decoded
             # twice - which doesn't work.
             #fileContent = fileContent.decode("utf-8")
+            fileContent = fileContent.decode("utf-8")
         except IOError, e:
             errorString = "Could not read server configuration file. Reason:\n"
             errorString += str(e)
             self._logger.warning(errorString)
-                    
+
         document = QDomDocument("LumaServerFile")
         document.setContent(fileContent)
         

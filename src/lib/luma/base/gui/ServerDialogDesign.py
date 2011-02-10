@@ -344,7 +344,6 @@ class Ui_ServerDialogDesign(object):
         self.cancelButton.setObjectName(_fromUtf8("cancelButton"))
         self.hboxlayout.addWidget(self.cancelButton)
         self.vboxlayout.addLayout(self.hboxlayout)
-
         self.retranslateUi(ServerDialogDesign)
         self.serverWidget.setCurrentIndex(0)
         QtCore.QObject.connect(self.applyButton, QtCore.SIGNAL(_fromUtf8("clicked()")), ServerDialogDesign.saveServers)
@@ -365,6 +364,7 @@ class Ui_ServerDialogDesign(object):
         QtCore.QObject.connect(self.useClientCertBox, QtCore.SIGNAL(_fromUtf8("toggled(bool)")), self.certKeyFileButton.setEnabled)
         QtCore.QObject.connect(self.certFileButton, QtCore.SIGNAL(_fromUtf8("clicked()")), ServerDialogDesign.certFileDialog)
         QtCore.QObject.connect(self.certKeyFileButton, QtCore.SIGNAL(_fromUtf8("clicked()")), ServerDialogDesign.certKeyFileDialog)
+
         QtCore.QMetaObject.connectSlotsByName(ServerDialogDesign)
         ServerDialogDesign.setTabOrder(self.addButton, self.deleteButton)
         ServerDialogDesign.setTabOrder(self.deleteButton, self.serverWidget)
@@ -434,6 +434,7 @@ class Ui_ServerDialogDesign(object):
         self.encryptionBox.setItemText(0, QtGui.QApplication.translate("ServerDialogDesign", "Unencrypted connection", None, QtGui.QApplication.UnicodeUTF8))
         self.encryptionBox.setItemText(1, QtGui.QApplication.translate("ServerDialogDesign", "Transport Layer Security (TLS)", None, QtGui.QApplication.UnicodeUTF8))
         self.encryptionBox.setItemText(2, QtGui.QApplication.translate("ServerDialogDesign", "Secure Socket Layer (SSL)", None, QtGui.QApplication.UnicodeUTF8))
+
         self.serverWidget.setTabText(self.serverWidget.indexOf(self.tab_2), QtGui.QApplication.translate("ServerDialogDesign", "Security", None, QtGui.QApplication.UnicodeUTF8))
         self.okButton.setText(QtGui.QApplication.translate("ServerDialogDesign", "&OK", None, QtGui.QApplication.UnicodeUTF8))
         self.okButton.setShortcut(QtGui.QApplication.translate("ServerDialogDesign", "Alt+O", None, QtGui.QApplication.UnicodeUTF8))
