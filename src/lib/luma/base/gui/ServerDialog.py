@@ -38,6 +38,8 @@ class ServerDialog(QDialog, Ui_ServerDialogDesign):
         else:
             self.serverWidget.setEnabled(False)
             
+        self.splitter.setStretchFactor(0, 1)
+        
         # Select the first server in the model)
         index = self.serverListView.model().index(0,0)
         # Select it in the view
