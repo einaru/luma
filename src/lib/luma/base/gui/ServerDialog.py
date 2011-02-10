@@ -123,6 +123,10 @@ class ServerDialog(QDialog, Ui_ServerDialogDesign):
         """
         Delete a server from the model/list
         """
+        if self.serverListView.selectionModel().currentIndex().row() < 0:
+            #No server selected
+            return
+        
         re = QMessageBox.question(self, 'Delete', 
                      "Are you sure?", QMessageBox.Yes, QMessageBox.No)
         if re == QMessageBox.Yes:
@@ -142,14 +146,30 @@ class ServerDialog(QDialog, Ui_ServerDialogDesign):
             self.serverWidget.setEnabled(False) #Disable editing if no servers left
             
     def saveServers(self):
-        self._ServerList.writeServerList()        
+        """
+        Called when the Save-button is clicked.
+        
+        What should happen when the user clicks Save then Cancel?
+        """
+        self._ServerList.writeServerList()     
+        
+    def reject(self):
+        """
+        Called when the users clicks cancel or presses escape
+        
+        SOMETHING LOGICAL SHOULD PROBABLY BE DONE HER
+        """
+        QDialog.reject(self)
     
-    def saveCloseDialog(self):
-        #Called when OK-button is clicked
+    def accept(self):
+        """
+        Called when OK-button is clicked
+        
+        SOMETHING LOGICAL SHOULD PROBABLY BE DONE HER
+        """
         self.saveServers()
-        self.close()
-        print "saveCloseDialog()"
-    
+        QDialog.accept(self)
+            
 if __name__ == "__main__":
     import logging
     import sys

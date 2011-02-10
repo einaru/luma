@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'ServerDialogDesign.ui'
 #
-# Created: Thu Feb 10 01:23:34 2011
+# Created: Thu Feb 10 01:34:26 2011
 #      by: PyQt4 UI code generator 4.8.2
 #
 # WARNING! All changes made in this file will be lost!
@@ -343,7 +343,7 @@ class Ui_ServerDialogDesign(object):
         self.serverWidget.setCurrentIndex(0)
         QtCore.QObject.connect(self.applyButton, QtCore.SIGNAL(_fromUtf8("clicked()")), ServerDialogDesign.saveServers)
         QtCore.QObject.connect(self.cancelButton, QtCore.SIGNAL(_fromUtf8("clicked()")), ServerDialogDesign.reject)
-        QtCore.QObject.connect(self.okButton, QtCore.SIGNAL(_fromUtf8("clicked()")), ServerDialogDesign.saveCloseDialog)
+        QtCore.QObject.connect(self.okButton, QtCore.SIGNAL(_fromUtf8("clicked()")), ServerDialogDesign.accept)
         QtCore.QObject.connect(self.addButton, QtCore.SIGNAL(_fromUtf8("clicked()")), ServerDialogDesign.addServer)
         QtCore.QObject.connect(self.deleteButton, QtCore.SIGNAL(_fromUtf8("clicked()")), ServerDialogDesign.deleteServer)
         QtCore.QObject.connect(self.addBaseDNButton, QtCore.SIGNAL(_fromUtf8("clicked()")), ServerDialogDesign.addBaseDN)

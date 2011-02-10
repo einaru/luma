@@ -1001,7 +1001,7 @@ p, li { white-space: pre-wrap; }
    <sender>okButton</sender>
    <signal>clicked()</signal>
    <receiver>ServerDialogDesign</receiver>
-   <slot>saveCloseDialog()</slot>
+   <slot>accept()</slot>
    <hints>
     <hint type="sourcelabel">
      <x>464</x>
