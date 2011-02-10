@@ -48,8 +48,8 @@ def startApplication():
     
     splash = SplashScreen()
     splash.show()
-    import time
-    time.sleep(1)
+#    import time
+#    time.sleep(1)
     
     # DEVELOPMENT SPECIFICS
     
@@ -74,7 +74,7 @@ def startApplication():
     
     screen = QtGui.QDesktopWidget().screenGeometry()
     size =  mainWin.geometry()
-    mainWin.move((screen.width()-size.width())/2, (screen.height()-size.height())/2)
+    mainWin.move((screen.__width()-size.__width())/2, (screen.__height()-size.__height())/2)
     
     mainWin.show()
     
@@ -109,7 +109,7 @@ def getConfigPrefix():
         """
         try:
             from xdg import BaseDirectory
-            config_prefix = BaseDirectory.xdg_config_home
+            config_prefix = os.path.join(BaseDirectory.xdg_config_home, 'luma')
         except:
             # TODO do some logging :)
             pass
@@ -135,7 +135,14 @@ def getConfigPrefix():
         config_prefix = os.path.join(os.environ['HOME'], '.luma')
 
     if not os.path.exists(config_prefix):
-        pass #os.mkdir(config_prefix)
+        try:
+            pass #os.mkdir(config_prefix)
+        except (IOError, OSError):
+            # TODO Do some logging. We should load the application, but 
+            #      provide information to user that no settings will be 
+            #      saved due to (most likely) file permission issues.
+            #      Maybe prompt for a user spesific folder?
+            pass
 
     return config_prefix
 

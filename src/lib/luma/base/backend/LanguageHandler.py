@@ -18,6 +18,7 @@
 # Street, Fifth Floor, Boston, MA  02110-1301, USA
 
 from os import listdir
+import os
 
 class LanguageHandler(object):
     """
@@ -55,8 +56,8 @@ class LanguageHandler(object):
         self.__translationPath = path
         # Must be put in manually because there exists no translation file
         self.__availableLanguages['en'] = 'English'
-        self.__buildLanguageDictionary()
-        pass
+        if os.path.isdir(self.__translationPath):
+            self.__buildLanguageDictionary()
     
     def __buildLanguageDictionary(self):
         """

@@ -138,7 +138,7 @@ class MainWin(QtGui.QMainWindow, Ui_MainWindow):
         langFile = "luma_%s.qm" % action.objectName()[-2:]
         print langFile
         QtGui.qApp.translator = QtCore.QTranslator()
-        QtGui.qApp.translator.load("%s/%s" % (self.config.i18nPath, langFile))
+        QtGui.qApp.translator.load("%s/%s" % (self.config.__i18nPath, langFile))
         QtGui.qApp.installTranslator(QtGui.qApp.translator)
         self.languageChange()
 
