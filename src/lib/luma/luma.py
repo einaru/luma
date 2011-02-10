@@ -34,6 +34,7 @@ from PyQt4 import QtGui, QtCore
 
 from base.backend.Config import Config
 from base.gui.MainWin import MainWin
+from splashscreen import SplashScreen
 
 # TODO Luma spesific import (eventualy) goes here
 
@@ -42,6 +43,13 @@ def startApplication():
     First we must determine what platform we're running on. Making sure we 
     follow the platform convention for configuration files and directories, 
     """
+    
+    app = QtGui.QApplication(sys.argv)
+    
+    splash = SplashScreen()
+    splash.show()
+    import time
+    time.sleep(1)
     
     # DEVELOPMENT SPECIFICS
     
@@ -58,14 +66,20 @@ def startApplication():
     l.setLevel(logging.DEBUG)
     l.addHandler(logging.StreamHandler())
     
-    app = QtGui.QApplication(sys.argv)
-    
     mainWin = MainWin(config)
     
     QtCore.QObject.connect(app, QtCore.SIGNAL('lastWindowClosed()'), mainWin.close)
 
     mainWin.loadPlugins()
+    
+    screen = QtGui.QDesktopWidget().screenGeometry()
+    size =  mainWin.geometry()
+    mainWin.move((screen.width()-size.width())/2, (screen.height()-size.height())/2)
+    
     mainWin.show()
+    
+ 
+    splash.finish(mainWin)
 
     sys.excepthook = unhandledException
     
