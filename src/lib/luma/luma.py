@@ -53,6 +53,11 @@ def startApplication():
     config = Config(configPrefix, os.path.join(os.getcwd(), 'i18n'))
     print config.languageHandler
     
+    #Logging to console
+    l = logging.getLogger("base")
+    l.setLevel(logging.DEBUG)
+    l.addHandler(logging.StreamHandler())
+    
     app = QtGui.QApplication(sys.argv)
     
     mainWin = MainWin(config)
