@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'ServerDialogDesign.ui'
 #
-# Created: Thu Feb 10 10:39:35 2011
+# Created: Thu Feb 10 12:15:50 2011
 #      by: PyQt4 UI code generator 4.8.2
 #
 # WARNING! All changes made in this file will be lost!
@@ -146,14 +146,16 @@ class Ui_ServerDialogDesign(object):
         self.tab1.setObjectName(_fromUtf8("tab1"))
         self.gridLayout_3 = QtGui.QGridLayout(self.tab1)
         self.gridLayout_3.setObjectName(_fromUtf8("gridLayout_3"))
+        spacerItem7 = QtGui.QSpacerItem(114, 21, QtGui.QSizePolicy.Minimum, QtGui.QSizePolicy.Expanding)
+        self.gridLayout_3.addItem(spacerItem7, 2, 1, 1, 1)
         self.gridLayout = QtGui.QGridLayout()
         self.gridLayout.setObjectName(_fromUtf8("gridLayout"))
         self.textLabel1_4 = QtGui.QLabel(self.tab1)
         self.textLabel1_4.setWordWrap(False)
         self.textLabel1_4.setObjectName(_fromUtf8("textLabel1_4"))
         self.gridLayout.addWidget(self.textLabel1_4, 0, 0, 1, 3)
-        spacerItem7 = QtGui.QSpacerItem(13, 18, QtGui.QSizePolicy.Fixed, QtGui.QSizePolicy.Minimum)
-        self.gridLayout.addItem(spacerItem7, 1, 0, 1, 1)
+        spacerItem8 = QtGui.QSpacerItem(13, 18, QtGui.QSizePolicy.Fixed, QtGui.QSizePolicy.Minimum)
+        self.gridLayout.addItem(spacerItem8, 1, 0, 1, 1)
         self.bindAnonBox = QtGui.QCheckBox(self.tab1)
         self.bindAnonBox.setObjectName(_fromUtf8("bindAnonBox"))
         self.gridLayout.addWidget(self.bindAnonBox, 1, 1, 1, 2)
@@ -190,8 +192,6 @@ class Ui_ServerDialogDesign(object):
         self.passwordLineEdit.setObjectName(_fromUtf8("passwordLineEdit"))
         self.gridLayout.addWidget(self.passwordLineEdit, 4, 2, 1, 1)
         self.gridLayout_3.addLayout(self.gridLayout, 0, 1, 2, 1)
-        spacerItem8 = QtGui.QSpacerItem(45, 445, QtGui.QSizePolicy.Minimum, QtGui.QSizePolicy.Expanding)
-        self.gridLayout_3.addItem(spacerItem8, 1, 0, 2, 1)
         self.authLabel = QtGui.QLabel(self.tab1)
         sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Fixed, QtGui.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
@@ -204,8 +204,8 @@ class Ui_ServerDialogDesign(object):
         self.authLabel.setWordWrap(False)
         self.authLabel.setObjectName(_fromUtf8("authLabel"))
         self.gridLayout_3.addWidget(self.authLabel, 0, 0, 1, 1)
-        spacerItem9 = QtGui.QSpacerItem(114, 21, QtGui.QSizePolicy.Minimum, QtGui.QSizePolicy.Expanding)
-        self.gridLayout_3.addItem(spacerItem9, 2, 1, 1, 1)
+        spacerItem9 = QtGui.QSpacerItem(45, 445, QtGui.QSizePolicy.Minimum, QtGui.QSizePolicy.Expanding)
+        self.gridLayout_3.addItem(spacerItem9, 1, 0, 2, 1)
         self.serverWidget.addTab(self.tab1, _fromUtf8(""))
         self.tab_2 = QtGui.QWidget()
         self.tab_2.setObjectName(_fromUtf8("tab_2"))
@@ -436,6 +436,8 @@ class Ui_ServerDialogDesign(object):
         self.cancelButton.setText(QtGui.QApplication.translate("ServerDialogDesign", "&Cancel", None, QtGui.QApplication.UnicodeUTF8))
         self.cancelButton.setShortcut(QtGui.QApplication.translate("ServerDialogDesign", "Alt+C", None, QtGui.QApplication.UnicodeUTF8))
 
+import luma_rc
+import luma_rc
 import luma_rc
 import luma_rc
 import luma_rc
