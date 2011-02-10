@@ -4,7 +4,7 @@ Created on 2. feb. 2011
 @author: Christian Forfang and Simen Natvig
 '''
 
-from PyQt4.QtGui import QDialog, QDataWidgetMapper, QItemSelectionModel, QListWidgetItem, QInputDialog, QMessageBox, QApplication
+from PyQt4.QtGui import QDialog, QDataWidgetMapper, QItemSelectionModel, QListWidgetItem, QInputDialog, QMessageBox, QApplication, QFileDialog
 from PyQt4.QtCore import QModelIndex, Qt
 
 from base.gui.ServerDialogDesign import Ui_ServerDialogDesign
@@ -62,7 +62,7 @@ class ServerDialog(QDialog, Ui_ServerDialogDesign):
         self.mapper.addMapping(self.aliasBox, 10)
         self.mapper.addMapping(self.useClientCertBox, 11)
         self.mapper.addMapping(self.certFileEdit, 12)
-        self.mapper.addMapping(self.certKeyfileEdit, 13)
+        self.mapper.addMapping(self.certKeyFileEdit, 13)
         self.mapper.addMapping(self.validateBox, 14)
         
         # Select the first servers (as the serverlistview does)
@@ -169,6 +169,16 @@ class ServerDialog(QDialog, Ui_ServerDialogDesign):
         """
         self.saveServers()
         QDialog.accept(self)
+        
+    def certFileDialog(self):
+        filename = QFileDialog.getOpenFileName(self, 'Open file',
+                    '')
+        self.certFileEdit.setText(filename)
+
+    def certKeyFileDialog(self):
+        filename = QFileDialog.getOpenFileName(self, 'Open file',
+                    '')
+        self.certKeyFileEdit.setText(filename)
             
 if __name__ == "__main__":
     import logging
