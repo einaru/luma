@@ -31,8 +31,6 @@ class ServerListModel(QAbstractTableModel):
         value = value.toPyObject()
         #value = index.internalPointer()
         
-        print "setData-Model:",value
-        
         row = index.row()
         column = index.column()
         

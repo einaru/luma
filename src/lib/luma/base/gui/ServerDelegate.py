@@ -42,7 +42,10 @@ class ServerDelegate(QStyledItemDelegate):
             """
             editor.clear()
             for tmpBase in d:
-                editor.addItem(QListWidgetItem(tmpBase))
+                # The editor is the items parent, so it gets added to the list
+                QListWidgetItem(tmpBase,editor)
+                # Can also do this
+                #editor.addItem(QListWidgetItem(tmpBase))
             return
         
         # if QComboBox, just set the index it should display (the strings displayed is in the .ui-file)
@@ -71,12 +74,12 @@ class ServerDelegate(QStyledItemDelegate):
                 data = m.data(m.index(i,0), Qt.DisplayRole)
                 d.append(data)
             """
-            m = editor.model()
-            row = m.rowCount(QModelIndex())
+            #m = editor.model()
             returnList = []
-            for i in xrange(row):
-                returnList.append(m.data(m.index(i,0)).toPyObject())
-            
+            for i in xrange(editor.count()):
+                returnList.append(editor.item(i).data(Qt.DisplayRole).toPyObject())
+                #returnList.append(m.data(m.index(i,0)).toPyObject())
+
             # now that we have constructed the list, give it to the model
             model.setData(index,QVariant(returnList))
             return 
