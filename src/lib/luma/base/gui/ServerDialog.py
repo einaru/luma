@@ -175,11 +175,13 @@ class ServerDialog(QDialog, Ui_ServerDialogDesign):
         filename = QFileDialog.getOpenFileName(self, 'Open file',
                     '')
         self.certFileEdit.setText(filename)
+        self.mapper.submit()
 
     def certKeyFileDialog(self):
         filename = QFileDialog.getOpenFileName(self, 'Open file',
                     '')
         self.certKeyFileEdit.setText(filename)
+        self.mapper.submit()
             
 if __name__ == "__main__":
     import logging
