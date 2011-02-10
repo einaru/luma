@@ -76,7 +76,7 @@
         </widget>
        </item>
        <item row="0" column="1" colspan="3">
-        <widget class="QListView" name="listView"/>
+        <widget class="QListView" name="serverListView"/>
        </item>
       </layout>
      </widget>
@@ -364,22 +364,6 @@ p, li { white-space: pre-wrap; }
         <string>Authentification</string>
        </attribute>
        <layout class="QGridLayout" name="gridLayout_3">
-        <item row="2" column="1">
-         <spacer>
-          <property name="orientation">
-           <enum>Qt::Vertical</enum>
-          </property>
-          <property name="sizeType">
-           <enum>QSizePolicy::Expanding</enum>
-          </property>
-          <property name="sizeHint" stdset="0">
-           <size>
-            <width>114</width>
-            <height>21</height>
-           </size>
-          </property>
-         </spacer>
-        </item>
         <item row="0" column="1" rowspan="2">
          <layout class="QGridLayout" name="gridLayout">
           <item row="0" column="0" colspan="3">
@@ -509,6 +493,22 @@ p, li { white-space: pre-wrap; }
           </item>
          </layout>
         </item>
+        <item row="1" column="0" rowspan="2">
+         <spacer>
+          <property name="orientation">
+           <enum>Qt::Vertical</enum>
+          </property>
+          <property name="sizeType">
+           <enum>QSizePolicy::Expanding</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>45</width>
+            <height>445</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
         <item row="0" column="0">
          <widget class="QLabel" name="authLabel">
           <property name="sizePolicy">
@@ -534,7 +534,7 @@ p, li { white-space: pre-wrap; }
           </property>
          </widget>
         </item>
-        <item row="1" column="0" rowspan="2">
+        <item row="2" column="1">
          <spacer>
           <property name="orientation">
            <enum>Qt::Vertical</enum>
@@ -544,8 +544,8 @@ p, li { white-space: pre-wrap; }
           </property>
           <property name="sizeHint" stdset="0">
            <size>
-            <width>45</width>
-            <height>445</height>
+            <width>114</width>
+            <height>21</height>
            </size>
           </property>
          </spacer>
@@ -958,6 +958,7 @@ p, li { white-space: pre-wrap; }
   <tabstop>cancelButton</tabstop>
  </tabstops>
  <resources>
+  <include location="../../luma.qrc"/>
   <include location="../../luma.qrc"/>
   <include location="../../luma.qrc"/>
   <include location="../../luma.qrc"/>

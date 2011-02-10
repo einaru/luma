@@ -1,16 +1,15 @@
 '''
 Created on 2. feb. 2011
 
-@author: Christian
+@author: Christian Forfang and Simen Natvig
 '''
 
-import sys
-from PyQt4 import QtGui, QtCore, Qt
-from PyQt4.QtGui import QDialog, QPixmap, QDataWidgetMapper, QStandardItemModel, QStandardItem, QItemSelectionRange
+from PyQt4.QtGui import QDialog, QDataWidgetMapper, QItemSelectionModel, QListWidgetItem, QInputDialog, QMessageBox, QApplication
+from PyQt4.QtCore import QModelIndex, Qt
+
 from base.gui.ServerDialogDesign import Ui_ServerDialogDesign
 from base.models.ServerListModel import ServerListModel
 from base.backend.ServerObject import ServerObject
-from PyQt4.QtCore import QModelIndex
 from ServerDelegate import ServerDelegate
 
 
@@ -26,32 +25,31 @@ class ServerDialog(QDialog, Ui_ServerDialogDesign):
         self.setupUi(self)
         
         self._ServerList = serverList
-        slm = ServerListModel(self._ServerList)
         
-        self.listView.setModel(slm)
-        #self.listView.setItemDelegate(BoxDelegate())
+        # Create the model used by the views
+        self.slm = ServerListModel(self._ServerList)
         
-        if slm.rowCount(QModelIndex()) > 0:
+        # Add the model to the list of servers
+        self.serverListView.setModel(self.slm)
+
+        # Enable/disable editing depending on if we have a server to edit
+        if self.slm.rowCount(QModelIndex()) > 0:
             self.serverWidget.setEnabled(True)
         else:
             self.serverWidget.setEnabled(False)
             
-        # Select the first server in the list
-        index = self.listView.model().index(0,0)
-        self.listView.selectionModel().select(index, QtGui.QItemSelectionModel.ClearAndSelect) 
-        self.listView.selectionModel().setCurrentIndex(index, QtGui.QItemSelectionModel.ClearAndSelect)       
-        
-        #For testing
-        #self.tableView = QtGui.QTableView()
-        #self.tableView.setModel(slm)
-        #self.tableView.show()
-        #self.tableView.setSelectionModel(self.listView.selectionModel())
-        
-        # Maps columns of the model to fields in the gui (and back when they're edited)
-        self.mapper = QtGui.QDataWidgetMapper()
-        self.mapper.setModel(slm)
-        self.mapper.setItemDelegate(ServerDelegate())
+        # Select the first server in the model)
+        index = self.serverListView.model().index(0,0)
+        # Select it in the view
+        self.serverListView.selectionModel().select(index, QItemSelectionModel.ClearAndSelect) 
+        self.serverListView.selectionModel().setCurrentIndex(index, QItemSelectionModel.ClearAndSelect)       
 
+        # Map columns of the model to fields in the gui
+        self.mapper = QDataWidgetMapper()
+        self.mapper.setModel(self.slm)
+        # Handles the comboboxes and to-from the list of custom baseDNs
+        self.mapper.setItemDelegate(ServerDelegate()) 
+        
         self.mapper.addMapping(self.hostLineEdit, 1)
         self.mapper.addMapping(self.portSpinBox, 2)
         self.mapper.addMapping(self.bindAnonBox, 3)
@@ -66,97 +64,100 @@ class ServerDialog(QDialog, Ui_ServerDialogDesign):
         self.mapper.addMapping(self.certFileEdit, 12)
         self.mapper.addMapping(self.certKeyfileEdit, 13)
         self.mapper.addMapping(self.validateBox, 14)
+        
+        # Select the first servers (as the serverlistview does)
         self.mapper.setCurrentIndex(0)
         
         # Let the mapper know when another server is selected in the list
-        self.listView.selectionModel().currentRowChanged.connect(self.mapper.setCurrentModelIndex)
+        self.serverListView.selectionModel().currentRowChanged.connect(self.mapper.setCurrentModelIndex)
+        
+        # Workaround to avoid the button stealing the focus from the baseDNView thus invalidating it's selection
+        # maning we don't know what do delete
         self.deleteBaseDNButton.setFocusPolicy(Qt.Qt.NoFocus)
         
-    """
-    def manageBaseDn(self):
-
-        d = BaseSelector()
-        d.exec_()
-        print d.getList()
-    """
     
     def addBaseDN(self):
         tmpBase = unicode(self.baseEdit.text()).strip()
         if tmpBase == u"":
             return      
-        self.baseDNWidget.addItem(QtGui.QListWidgetItem(tmpBase))
-        self.baseEdit.clear()
-        self.mapper.submit()
+        self.baseDNWidget.addItem(QListWidgetItem(tmpBase)) #Add to list
+        self.baseEdit.clear() #Clear textfield
+        self.mapper.submit() #Force push to model
     
     def deleteBaseDN(self):
+        # Delete every selected baseDN
         for tmpItem in self.baseDNWidget.selectedItems():
             if not (None == tmpItem):
-                index = self.baseDNWidget.indexFromItem(tmpItem)
-                d = self.baseDNWidget.takeItem(index.row())
+                index = self.baseDNWidget.indexFromItem(tmpItem) #get the index to the basedn
+                d = self.baseDNWidget.takeItem(index.row()) #delete (actually steal) the baseDN from the list
                 if d != 0:
-                    del d
-        self.mapper.submit()
+                    del d # Per the QT-docs, someone needs to delete it
+        self.mapper.submit() #Force push changes to model
 
     def addServer(self):
         """
         Create a new ServerObject and add it to the model (thus the list)
         """
-        name, ok = QtGui.QInputDialog.getText(self, 'Add server', 'Name:')
+        name, ok = QInputDialog.getText(self, 'Add server', 'Name:')
         if ok:
             if len(name) < 1 or self._ServerList.getServerObject(name) != None:
-                QtGui.QMessageBox.information(self, 'Error', "Invalid name or already used.")
+                QMessageBox.information(self, 'Error', "Invalid name or already used.")
                 return
-            
-            self.serverWidget.setEnabled(True)
             
             sO = ServerObject()
             sO.name = unicode(name)
             
             # Insert into the model
-            m = self.listView.model() 
-            m.beginInsertRows(QtCore.QModelIndex(), m.rowCount(QtCore.QModelIndex()),m.rowCount(QtCore.QModelIndex())+1)
+            m = self.serverListView.model() 
+            m.beginInsertRows(QModelIndex(), m.rowCount(QModelIndex()),m.rowCount(QModelIndex())+1)
             self._ServerList.addServer(sO)
             m.endInsertRows()
             
-            s = m.index(m.rowCount(QtCore.QModelIndex)-1,0) #Index of the newly added server
-            self.listView.selectionModel().select(s, QtGui.QItemSelectionModel.ClearAndSelect) #Select it
-            self.mapper.setCurrentIndex(m.rowCount(QtCore.QModelIndex)-1) # Update the mapper
+            s = m.index(m.rowCount(QModelIndex)-1,0) #Index of the newly added server
+            self.serverListView.selectionModel().select(s, QItemSelectionModel.ClearAndSelect) #Select it
+            self.serverListView.selectionModel().setCurrentIndex(s, QItemSelectionModel.ClearAndSelect) #Mark it as current      
+            self.mapper.setCurrentIndex(s.row()) # Update the mapper
+            self.serverWidget.setEnabled(True) # Make sure editing is enabled
             
     def deleteServer(self):
         """
         Delete a server from the model/list
         """
-        re = QtGui.QMessageBox.question(self, 'Delete', 
-                     "Are you sure?", QtGui.QMessageBox.Yes, QtGui.QMessageBox.No)
-        if re == QtGui.QMessageBox.Yes:
-            index = self.listView.selectionModel().currentIndex() #Currently selected
+        re = QMessageBox.question(self, 'Delete', 
+                     "Are you sure?", QMessageBox.Yes, QMessageBox.No)
+        if re == QMessageBox.Yes:
+            index = self.serverListView.selectionModel().currentIndex() #Currently selected
             
-            self.listView.model().beginRemoveRows(QtCore.QModelIndex(), index.row(), index.row())
-            self.listView.model().removeRows(index.row(),1)
-            self.listView.model().endRemoveRows()
+            # Delete the server
+            self.serverListView.model().beginRemoveRows(QModelIndex(), index.row(), index.row())
+            self.serverListView.model().removeRows(index.row(),1)
+            self.serverListView.model().endRemoveRows()
             
-            newIndex = self.listView.selectionModel().currentIndex()
+            # When deleting, the view gets updated and selects a new current.
+            # Get it and give it to the mapper
+            newIndex = self.serverListView.selectionModel().currentIndex()
             self.mapper.setCurrentIndex(newIndex.row())
             
-        if self.slm.rowCount() == 0:
-            self.serverWidget.setEnabled(False)
+        if self.slm.rowCount(QModelIndex()) == 0:
+            self.serverWidget.setEnabled(False) #Disable editing if no servers left
             
-    def saveServer(self):
+    def saveServers(self):
         self._ServerList.writeServerList()        
     
     def saveCloseDialog(self):
         #Called when OK-button is clicked
-        self.saveServer()
+        self.saveServers()
         self.close()
         print "saveCloseDialog()"
     
 if __name__ == "__main__":
     import logging
+    import sys
     from base.backend.ServerList import ServerList
     l = logging.getLogger("base")
     l.setLevel(logging.DEBUG)
     l.addHandler(logging.StreamHandler())
-    app = QtGui.QApplication(sys.argv)
+    app = QApplication(sys.argv)
     s = ServerDialog(ServerList("c:/luma/","serverlist.xml"))
     s.show()
     sys.exit(app.exec_())
