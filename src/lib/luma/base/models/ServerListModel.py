@@ -1,22 +1,26 @@
 # -*- coding: utf-8 -*-
+'''
+@author Christian Forfang
+'''
 
-from PyQt4 import  QtCore, QtGui
+from PyQt4.QtCore import QAbstractTableModel
+from PyQt4.QtCore import Qt, QVariant, SIGNAL
 from base.backend.ServerObject import ServerObject
 
-class ServerListModel(QtCore.QAbstractTableModel):
+class ServerListModel(QAbstractTableModel):
     """
     Defines a tablemodel where rows are different servers and columns are the properties of it
     """
     
     def __init__(self, ServerList, parent = None):
-        QtCore.QAbstractTableModel.__init__(self)
+        QAbstractTableModel.__init__(self)
         self._ServerList = ServerList
         
     def removeRows(self, row, count):
         self._ServerList.deleteServerByIndex(row)
         return True
         
-    def setData(self, index, value, role = QtCore.Qt.EditRole):
+    def setData(self, index, value, role = Qt.EditRole):
         """
         Handles updating data in the ServerObjects
         """
@@ -39,7 +43,7 @@ class ServerListModel(QtCore.QAbstractTableModel):
         serverObject.setIndexToValue(column, value)      
         
         # Let other views know the underlying data is (possibly) changed
-        self.emit(QtCore.SIGNAL("dataChanged( const QModelIndex&, const QModelIndex& )"), index, index)
+        self.emit(SIGNAL("dataChanged( const QModelIndex&, const QModelIndex& )"), index, index)
         return True
         
     def rowCount(self,parent):
@@ -52,21 +56,21 @@ class ServerListModel(QtCore.QAbstractTableModel):
     
     def flags(self, index):
         if not index.isValid(): 
-            return QtCore.QVariant()
-        return QtCore.Qt.ItemIsSelectable | QtCore.Qt.ItemIsEditable | QtCore.Qt.ItemIsEnabled
+            return QVariant()
+        return Qt.ItemIsSelectable | Qt.ItemIsEditable | Qt.ItemIsEnabled
     
-    def data(self,index,role = QtCore.Qt.DisplayRole):
+    def data(self,index,role = Qt.DisplayRole):
         """
         Handles getting the correct data from the ServerObjects and returning it
         """
         
         if not index.isValid(): 
-            return QtCore.QVariant()
+            return QVariant()
         
         row = index.row()
         column = index.column()
         
-        if role == QtCore.Qt.DisplayRole or role == QtCore.Qt.EditRole:
+        if role == Qt.DisplayRole or role ==Qt.EditRole:
             # getTable() return a list of all the ServerObjects
             serverObject = self._ServerList.getTable()[row]
 

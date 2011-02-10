@@ -73,7 +73,7 @@ class ServerDialog(QDialog, Ui_ServerDialogDesign):
         
         # Workaround to avoid the button stealing the focus from the baseDNView thus invalidating it's selection
         # maning we don't know what do delete
-        self.deleteBaseDNButton.setFocusPolicy(Qt.Qt.NoFocus)
+        self.deleteBaseDNButton.setFocusPolicy(Qt.NoFocus)
         
     
     def addBaseDN(self):

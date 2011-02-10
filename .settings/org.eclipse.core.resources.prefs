@@ -1,9 +1,0 @@
-#Wed Feb 09 20:41:17 CET 2011
-eclipse.preferences.version=1
-encoding//src/lib/luma/base/backend/ServerList.py=utf-8
-encoding//src/lib/luma/base/backend/ServerObject.py=utf-8
-encoding//src/lib/luma/base/gui/ServerDialogDesign.py=utf-8
-encoding//src/lib/luma/base/gui/rejects/BaseSelector.py=utf-8
-encoding//src/lib/luma/base/gui/rejects/BaseSelectorDesign.py=utf-8
-encoding//src/lib/luma/base/models/ServerListModel.py=utf-8
-encoding//src/lib/luma/luma.py=utf-8
