@@ -18,8 +18,10 @@
 # Street, Fifth Floor, Boston, MA  02110-1301, USA
 
 from PyQt4 import QtGui
+from PyQt4.QtCore import Qt
 
 from base.gui.SettingsDialogDesign import Ui_SettingsDialog
+from random import randint
 
 class SettingsDialog(QtGui.QDialog, Ui_SettingsDialog):
     """
@@ -32,12 +34,8 @@ class SettingsDialog(QtGui.QDialog, Ui_SettingsDialog):
         self.configObject = configObject
         
         """
-        Initialize current settings
+        Initialize general settings
         """
-        self.showErrors.setChecked(self.configObject.showErrors)
-        self.showDebug.setChecked(self.configObject.showDebug)
-        self.showInfo.setChecked(self.configObject.showInfo)
-        
         languageHandler = self.configObject.languageHandler
         i = 0
         for key, value in languageHandler.availableLanguages.iteritems():
@@ -45,6 +43,28 @@ class SettingsDialog(QtGui.QDialog, Ui_SettingsDialog):
             if key == self.configObject.language:
                 self.languageSelector.setCurrentIndex(i)
             i = i + 1
+        
+        """
+        Initialize logger settings
+        """
+        self.showErrors.setChecked(self.configObject.showErrors)
+        self.showDebug.setChecked(self.configObject.showDebug)
+        self.showInfo.setChecked(self.configObject.showInfo)
+        
+        """
+        Initialize plugin settings
+        """
+        model = QtGui.QStandardItemModel()
+
+        for plugin in self.configObject.plugins:                   
+            item = QtGui.QStandardItem(plugin)
+            check = Qt.Checked if randint(0, 1) == 1 else Qt.Unchecked
+            item.setCheckState(check)
+            item.setCheckable(True)
+            model.appendRow(item)
+        
+        self.pluginListView.setModel(model)
+        
     
     def saveSettings(self):
         """

@@ -182,3 +182,14 @@ class Config(object):
     @language.setter
     def language(self, language):
         self.__language = language
+    
+    @property
+    def plugins(self):
+        return [ "Adress book",
+                 "Admin utils",
+                 "Browser",
+                 "Massive user creation",
+                 "Schema browser",
+                 "Search",
+                 "Templates",
+                 "User management" ]
