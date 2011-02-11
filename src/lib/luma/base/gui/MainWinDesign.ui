@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>551</width>
-    <height>542</height>
+    <width>550</width>
+    <height>540</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -34,7 +34,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>551</width>
+     <width>550</width>
      <height>23</height>
     </rect>
    </property>
@@ -54,8 +54,6 @@
      <property name="title">
       <string>Language</string>
      </property>
-     <addaction name="separator"/>
-     <addaction name="actionSettings"/>
     </widget>
     <addaction name="actionEditServerList"/>
     <addaction name="separator"/>
@@ -63,6 +61,8 @@
     <addaction name="actionConfigurePlugins"/>
     <addaction name="separator"/>
     <addaction name="menuLanguage"/>
+    <addaction name="separator"/>
+    <addaction name="actionEditSettings"/>
    </widget>
    <widget class="QMenu" name="menuHelp">
     <property name="title">
@@ -119,7 +119,7 @@
     <string>F12</string>
    </property>
   </action>
-  <action name="actionSettings">
+  <action name="actionEditSettings">
    <property name="text">
     <string>Settings</string>
    </property>
@@ -251,14 +251,14 @@
    </hints>
   </connection>
   <connection>
-   <sender>MainWindow</sender>
-   <signal>destroyed()</signal>
+   <sender>actionEditSettings</sender>
+   <signal>triggered()</signal>
    <receiver>MainWindow</receiver>
-   <slot>close()</slot>
+   <slot>showSettingsDialog()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>275</x>
-     <y>270</y>
+     <x>-1</x>
+     <y>-1</y>
     </hint>
     <hint type="destinationlabel">
      <x>275</x>
@@ -274,5 +274,6 @@
   <slot>configurePlugins()</slot>
   <slot>showAboutLuma()</slot>
   <slot>showServerEditor()</slot>
+  <slot>showSettingsDialog()</slot>
  </slots>
 </ui>

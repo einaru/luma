@@ -19,9 +19,9 @@
 
 from PyQt4.QtGui import QDialog
 
-from AboutDialogDesign import Ui_AboutDialog
-from AboutLicense import Ui_AboutLicense
-from AboutCredits import Ui_AboutCredits
+from base.gui.AboutDialogDesign import Ui_AboutDialog
+from base.gui.AboutLicense import Ui_AboutLicense
+from base.gui.AboutCredits import Ui_AboutCredits
 
 class AboutDialog(QDialog, Ui_AboutDialog):
 

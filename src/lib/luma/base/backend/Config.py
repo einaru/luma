@@ -3,18 +3,18 @@
 # Copyright (c) 2011
 #      Einar Uvsløkk, <einaru@stud.ntnu.no>
 #
-# This program is free software; you can redistribute it and/or modify it under
+# Luma is free software; you can redistribute it and/or modify it under
 # the terms of the GNU General Public Licence as published by the Free Software
 # Foundation; either version 2 of the Licence, or (at your option) any later
 # version.
 #
-# This program is distributed in the hope that it will be useful, but WITHOUT
+# Luma is distributed in the hope that it will be useful, but WITHOUT
 # ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
 # FOR A PARTICULAR PURPOSE.  See the GNU General Public Licence for more 
 # details.
 #
 # You should have received a copy of the GNU General Public Licence along with
-# this program; if not, write to the Free Software Foundation, Inc., 51 Franklin
+# Luma; if not, write to the Free Software Foundation, Inc., 51 Franklin
 # Street, Fifth Floor, Boston, MA  02110-1301, USA
 
 import os
@@ -76,16 +76,17 @@ class Config(object):
         cp.set(self.__sectionLogger, 'show_errors', self.__showErrors)
         cp.set(self.__sectionLogger, 'show_debug', self.__showDebug)
         cp.set(self.__sectionLogger, 'show_info', self.__showInfo)
-        cp.add.section(self.__sectionI18n)
+        cp.add_section(self.__sectionI18n)
         cp.set(self.__sectionI18n, 'language', self.__language)
 
         try:
-            with open(os.path.join(self.__configPrefix, 'luma.cfg')) as cfg:
-                cp.write(cfg)
+            with open(os.path.join(self.__configPrefix, 'luma.cfg'), 'w') as cfg:
+                #cp.write(cfg)
+                print "TODO:%s:saveSettings(%s)" % (self.__class__, cfg)
         except IOError:
             # TODO Do some logging. 
             #      Most Likely it's a file permission issue.
-            pass
+            print "Error saving config file: %s" % cfg
 
 
     def loadSettings(self):
@@ -174,10 +175,10 @@ class Config(object):
     def showInfo(self, showInfo):
         self.__showInfo = showInfo
 
+    @property
     def language(self):
         return self.__language
 
     @language.setter
     def language(self, language):
         self.__language = language
-

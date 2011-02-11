@@ -74,14 +74,14 @@ def startApplication():
     
     screen = QtGui.QDesktopWidget().screenGeometry()
     size =  mainWin.geometry()
-    mainWin.move((screen.__width()-size.__width())/2, (screen.__height()-size.__height())/2)
+    mainWin.move((screen.width()-size.width())/2, (screen.height()-size.height())/2)
     
     mainWin.show()
     
  
     splash.finish(mainWin)
 
-    sys.excepthook = unhandledException
+    #sys.excepthook = unhandledException
     
     sys.exit(app.exec_())
 
@@ -100,7 +100,7 @@ def getConfigPrefix():
     This method will check for a existing config folder based on the platform.
     If it is not found it will be created. Either way the path will be returned.
     """
-    config_prefix = ""
+    configPrefix = ""
     _platform = platform.system()
     if _platform == "Linux":
         """
@@ -109,34 +109,35 @@ def getConfigPrefix():
         """
         try:
             from xdg import BaseDirectory
-            config_prefix = os.path.join(BaseDirectory.xdg_config_home, 'luma')
+            configPrefix = os.path.join(BaseDirectory.xdg_config_home, 'luma')
         except:
             # TODO do some logging :)
             pass
         finally:
-            config_prefix = os.path.join(os.environ['HOME'], '.config', 'luma')
+            configPrefix = os.path.join(os.environ['HOME'], '.config', 'luma')
     elif _platform == "Darwin":
         """
         Best practise config storage on Mac OS:
         http://developer.apple.com/tools/installerpolicy.html
         ~/Library/Application Support/luma
         """
-        config_prefix = os.path.join(os.environ['HOME'], 'Library', 'Application Support', 'luma')
+        configPrefix = os.path.join(os.environ['HOME'], 'Library', 'Application Support', 'luma')
     elif _platform == "Windows":
         """
         Best practise config storage on Windows:
         C:\Users\<USERNAME>\Application Data\luma
         """
-        config_prefix = os.path.join(os.environ['APPDATA'], 'luma')
+        configPrefix = os.path.join(os.environ['APPDATA'], 'luma')
     else:
         """
         Default config storage for undetermined platforms
         """
-        config_prefix = os.path.join(os.environ['HOME'], '.luma')
+        configPrefix = os.path.join(os.environ['HOME'], '.luma')
 
-    if not os.path.exists(config_prefix):
+    if not os.path.exists(configPrefix):
         try:
-            pass #os.mkdir(config_prefix)
+            #os.mkdir(configPrefix)
+            print "TODO::os.mkdir(%s)" % (configPrefix)
         except (IOError, OSError):
             # TODO Do some logging. We should load the application, but 
             #      provide information to user that no settings will be 
@@ -144,7 +145,7 @@ def getConfigPrefix():
             #      Maybe prompt for a user spesific folder?
             pass
 
-    return config_prefix
+    return configPrefix
 
 
 def unhandledException(eType, eValue, eTraceback):
