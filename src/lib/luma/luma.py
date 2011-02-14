@@ -67,10 +67,17 @@ def startApplication():
     mainWin = MainWin(config)
     
     l = logging.getLogger("base")
-    l.setLevel(logging.DEBUG)  
+    #l.setLevel(logging.DEBUG)  
     
     # Log to the loggerwidget
     l.addHandler(LumaLogHandler(mainWin.loggerWidget))
+    
+    
+    #app.setOrganizationName("Luma")
+    #app.setApplicationName("Luma")
+    #s = QtCore.QSettings()
+    #s.setValue("rofl","rofl-settings :O")
+    #print s.value("rofl",":(").toString()    
     
     QtCore.QObject.connect(app, QtCore.SIGNAL('lastWindowClosed()'), mainWin.close)
 
@@ -147,10 +154,6 @@ def unhandledException(eType, eValue, eTraceback):
     """
     UnhandledException handler
     """
-    l = logging.getLogger("base")
-    l.setLevel(logging.DEBUG)
-    s = logging.StreamHandler()
-    l.addHandler(s)
     # TODO Take a look at the <reporoot>/tags/Luma2.4/src/bin/luma file
     print "unhandled exception"
     print eType, eValue, eTraceback
