@@ -3,13 +3,10 @@ from LoggerWidgetDesign import Ui_LoggerWidgetDesign
 
 class LoggerWidget(QWidget, Ui_LoggerWidgetDesign):
 
-    def __init__(self,parent = None,name = None,fl = 0):
+    def __init__(self,parent = None):
         QWidget.__init__(self,parent)
 
         self.setupUi(self)
-        
-        self.parent = parent
-        
         self.logList = []
         
     def clearLogger(self):
