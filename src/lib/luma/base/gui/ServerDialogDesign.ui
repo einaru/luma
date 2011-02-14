@@ -893,7 +893,6 @@ p, li { white-space: pre-wrap; }
             <property name="text">
              <string>&lt;b&gt;Validate server certificate&lt;/b&gt;</string>
             </property>
-
             <property name="wordWrap">
              <bool>false</bool>
             </property>
@@ -1252,16 +1251,35 @@ p, li { white-space: pre-wrap; }
  <layoutdefault spacing="6" margin="11"/>
  <pixmapfunction>qPixmapFromMimeSource</pixmapfunction>
  <tabstops>
+  <tabstop>serverListView</tabstop>
+  <tabstop>addButton</tabstop>
+  <tabstop>deleteButton</tabstop>
   <tabstop>serverWidget</tabstop>
+  <tabstop>hostLineEdit</tabstop>
+  <tabstop>portSpinBox</tabstop>
+  <tabstop>aliasBox</tabstop>
+  <tabstop>baseBox</tabstop>
+  <tabstop>baseEdit</tabstop>
+  <tabstop>addBaseDNButton</tabstop>
+  <tabstop>deleteBaseDNButton</tabstop>
+  <tabstop>baseDNWidget</tabstop>
   <tabstop>bindAnonBox</tabstop>
   <tabstop>methodBox</tabstop>
   <tabstop>bindLineEdit</tabstop>
   <tabstop>passwordLineEdit</tabstop>
+  <tabstop>encryptionBox</tabstop>
+  <tabstop>validateBox</tabstop>
+  <tabstop>useClientCertBox</tabstop>
+  <tabstop>certFileEdit</tabstop>
+  <tabstop>certFileButton</tabstop>
+  <tabstop>certKeyFileEdit</tabstop>
+  <tabstop>certKeyFileButton</tabstop>
   <tabstop>okButton</tabstop>
   <tabstop>applyButton</tabstop>
   <tabstop>cancelButton</tabstop>
  </tabstops>
  <resources>
+  <include location="../../luma.qrc"/>
   <include location="../../luma.qrc"/>
   <include location="../../luma.qrc"/>
   <include location="../../luma.qrc"/>
