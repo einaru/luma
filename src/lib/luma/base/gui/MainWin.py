@@ -6,19 +6,19 @@
 # Copyright (c) 2003, 2004, 2005 
 #      Wido Depping, <widod@users.sourceforge.net>
 #
-# This program is free software; you can redistribute it and/or modify it under
-# the terms of the GNU General Public Licence as published by the Free Software
-# Foundation; either version 2 of the Licence, or (at your option) any later
-# version.
+# Luma is free software; you can redistribute it and/or modify 
+# it under the terms of the GNU General Public Licence as published by 
+# the Free Software Foundation; either version 2 of the Licence, or 
+# (at your option) any later version.
 #
-# This program is distributed in the hope that it will be useful, but WITHOUT
-# ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
-# FOR A PARTICULAR PURPOSE.  See the GNU General Public Licence for more 
-# details.
+# Luma is distributed in the hope that it will be useful, but 
+# WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY
+# or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public Licence 
+# for more details.
 #
-# You should have received a copy of the GNU General Public Licence along with
-# this program; if not, write to the Free Software Foundation, Inc., 51 Franklin
-# Street, Fifth Floor, Boston, MA  02110-1301, USA
+# You should have received a copy of the GNU General Public Licence along 
+# with Luma; if not, write to the Free Software Foundation, Inc., 
+# 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA
 
 from PyQt4 import QtCore, QtGui
 
@@ -27,7 +27,7 @@ from base.utils.gui.LoggerWidget import LoggerWidget
 from base.gui.AboutDialog import AboutDialog
 from base.gui.ServerDialog import ServerDialog
 from base.backend.ServerList import ServerList
-from base.backend.LanguageHandler import LanguageHandler
+from base.gui.SettingsDialog import SettingsDialog
 
 
 class MainWin(QtGui.QMainWindow, Ui_MainWindow):
@@ -46,12 +46,10 @@ class MainWin(QtGui.QMainWindow, Ui_MainWindow):
         # TODO We use 
 #        self.debug_lang_path = "/mnt/debris/devel/git/src/lib/luma/i18n"
 #        self.languageHandler = LanguageHandler(self.debug_lang_path)
-        self.configObject = configObject
-        self.languageHandler = self.configObject.languageHandler
-
         self.config = configObject
         
         self.serverDialog = None
+        self.languageHandler = self.config.languageHandler
 
         self.setupUi(self)
         self.__generateLanguageMenu()
@@ -100,6 +98,9 @@ class MainWin(QtGui.QMainWindow, Ui_MainWindow):
         #      load configured language
         #      load the plugin list
         self.__installLanguageTranslator()
+        
+        
+        self.settingsDialog = SettingsDialog(self.config)
 
 
     def __installLanguageTranslator(self):
@@ -211,6 +212,7 @@ class MainWin(QtGui.QMainWindow, Ui_MainWindow):
         Load the plugin configuration dialog.
         """
         print "TODO::configurePlugins"
+        self.showSettingsDialog(2)
         pass
 
 
@@ -251,3 +253,8 @@ class MainWin(QtGui.QMainWindow, Ui_MainWindow):
     def loggerVisibilityChanged(self):
         pass
 
+
+    def showSettingsDialog(self, settingsTab=0):
+        self.settingsDialog.tabWidget.setCurrentIndex(settingsTab)
+        self.settingsDialog.exec_()
+        pass

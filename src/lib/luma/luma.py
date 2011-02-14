@@ -7,19 +7,19 @@
 # Copyright (c) 2003, 2004, 2005 
 #      Wido Depping, <widod@users.sourceforge.net>
 #
-# Luma is free software; you can redistribute it and/or modify it under
-# the terms of the GNU General Public Licence as published by the Free Software
-# Foundation; either version 2 of the Licence, or (at your option) any later
-# version.
+# Luma is free software; you can redistribute it and/or modify 
+# it under the terms of the GNU General Public Licence as published by 
+# the Free Software Foundation; either version 2 of the Licence, or 
+# (at your option) any later version.
 #
-# Luma is distributed in the hope that it will be useful, but WITHOUT
-# ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
-# FOR A PARTICULAR PURPOSE.  See the GNU General Public Licence for more 
-# details.
+# Luma is distributed in the hope that it will be useful, but 
+# WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY
+# or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public Licence 
+# for more details.
 #
-# You should have received a copy of the GNU General Public Licence along with
-# Luma; if not, write to the Free Software Foundation, Inc., 51 Franklin
-# Street, Fifth Floor, Boston, MA  02110-1301, USA
+# You should have received a copy of the GNU General Public Licence along 
+# with Luma; if not, write to the Free Software Foundation, Inc., 
+# 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA
 
 """
 Luma cross-platform startup script
@@ -40,18 +40,18 @@ from splashscreen import SplashScreen
 
 # TODO Luma spesific import (eventualy) goes here
 
-def startApplication():
+def startApplication(argv):
     """
     First we must determine what platform we're running on. Making sure we 
     follow the platform convention for configuration files and directories, 
     """
     
-    app = QtGui.QApplication(sys.argv)
+    app = QtGui.QApplication(argv)
     
-    splash = SplashScreen()
-    splash.show()
-    import time
-    #time.sleep(1)
+#    splash = SplashScreen()
+#    splash.show()
+#    import time
+#    time.sleep(1)
     
     # DEVELOPMENT SPECIFICS
     
@@ -61,7 +61,6 @@ def startApplication():
     # TODO Write the rest of the startup script.
     
     config = Config(configPrefix, os.path.join(os.getcwd(), 'i18n'))
-    print config.languageHandler
     
     
     mainWin = MainWin(config)
@@ -88,9 +87,9 @@ def startApplication():
     
     mainWin.show()
  
-    splash.finish(mainWin)
+#    splash.finish(mainWin)
 
-    sys.excepthook = unhandledException
+    #sys.excepthook = unhandledException
     
     sys.exit(app.exec_())
 
@@ -109,7 +108,7 @@ def getConfigPrefix():
     This method will check for a existing config folder based on the platform.
     If it is not found it will be created. Either way the path will be returned.
     """
-    config_prefix = ""
+    configPrefix = ""
     _platform = platform.system()
     if _platform == "Linux":
         """
@@ -118,35 +117,43 @@ def getConfigPrefix():
         """
         try:
             from xdg import BaseDirectory
-            config_prefix = BaseDirectory.xdg_config_home
+            configPrefix = os.path.join(BaseDirectory.xdg_config_home, 'luma')
         except:
             # TODO do some logging :)
             pass
         finally:
-            config_prefix = os.path.join(os.environ['HOME'], '.config', 'luma')
+            configPrefix = os.path.join(os.environ['HOME'], '.config', 'luma')
     elif _platform == "Darwin":
         """
         Best practise config storage on Mac OS:
         http://developer.apple.com/tools/installerpolicy.html
         ~/Library/Application Support/luma
         """
-        config_prefix = os.path.join(os.environ['HOME'], 'Library', 'Application Support', 'luma')
+        configPrefix = os.path.join(os.environ['HOME'], 'Library', 'Application Support', 'luma')
     elif _platform == "Windows":
         """
         Best practise config storage on Windows:
         C:\Users\<USERNAME>\Application Data\luma
         """
-        config_prefix = os.path.join(os.environ['APPDATA'], 'luma')
+        configPrefix = os.path.join(os.environ['APPDATA'], 'luma')
     else:
         """
         Default config storage for undetermined platforms
         """
-        config_prefix = os.path.join(os.environ['HOME'], '.luma')
+        configPrefix = os.path.join(os.environ['HOME'], '.luma')
 
-    if not os.path.exists(config_prefix):
-        pass #os.mkdir(config_prefix)
+    if not os.path.exists(configPrefix):
+        try:
+            #os.mkdir(configPrefix)
+            print "TODO::os.mkdir(%s)" % (configPrefix)
+        except (IOError, OSError):
+            # TODO Do some logging. We should load the application, but 
+            #      provide information to user that no settings will be 
+            #      saved due to (most likely) file permission issues.
+            #      Maybe prompt for a user spesific folder?
+            pass
 
-    return config_prefix
+    return configPrefix
 
 
 def unhandledException(eType, eValue, eTraceback):
@@ -158,4 +165,4 @@ def unhandledException(eType, eValue, eTraceback):
     print eType, eValue, eTraceback
 
 if __name__ == "__main__":
-    startApplication()
+    startApplication(sys.argv)

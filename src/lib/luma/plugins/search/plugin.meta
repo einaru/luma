@@ -1,0 +1,4 @@
+PLUGIN_NAME=Search
+PLUGIN_VERSION=1.5
+PLUGIN_AUTHOR=wido.depping@gmail.com
+PLUGIN_FILE=Search.py
