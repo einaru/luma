@@ -84,9 +84,7 @@ class SettingsDialog(QtGui.QDialog, Ui_SettingsDialog):
         langCode = text[-4:].replace('[', '').replace(']', '')
         self.configObject.language = langCode
         
-        
-        #self.configObject.saveSettings()
-        print "TODO:%s:configObject.saveSettings" % (self.__class__)
+        self.configObject.saveSettings()
         self.close()
     
     

@@ -46,8 +46,8 @@ def startApplication(argv):
     
     app = QtGui.QApplication(argv)
     
-    splash = SplashScreen()
-    splash.show()
+#    splash = SplashScreen()
+#    splash.show()
 #    import time
 #    time.sleep(1)
     
@@ -59,7 +59,6 @@ def startApplication(argv):
     # TODO Write the rest of the startup script.
     
     config = Config(configPrefix, os.path.join(os.getcwd(), 'i18n'))
-    print config.languageHandler
     
     #Logging to console
     l = logging.getLogger("base")
@@ -79,7 +78,7 @@ def startApplication(argv):
     mainWin.show()
     
  
-    splash.finish(mainWin)
+#    splash.finish(mainWin)
 
     #sys.excepthook = unhandledException
     
