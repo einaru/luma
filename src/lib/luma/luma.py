@@ -73,12 +73,11 @@ def startApplication():
     l.addHandler(LumaLogHandler(mainWin.loggerWidget))
     
     
-    app.setOrganizationName("Luma")
-    app.setApplicationName("Luma")
-    s = QtCore.QSettings()
+    #app.setOrganizationName("Luma")
+    #app.setApplicationName("Luma")
+    #s = QtCore.QSettings()
     #s.setValue("rofl","rofl-settings :O")
-    print s.value("rofl",":(").toString()    
-    
+    #print s.value("rofl",":(").toString()    
     
     QtCore.QObject.connect(app, QtCore.SIGNAL('lastWindowClosed()'), mainWin.close)
 
