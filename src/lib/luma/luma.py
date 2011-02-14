@@ -67,11 +67,10 @@ def startApplication():
     mainWin = MainWin(config)
     
     l = logging.getLogger("base")
-    #l.setLevel(logging.DEBUG)  
+    l.setLevel(logging.DEBUG)  
     
     # Log to the loggerwidget
     l.addHandler(LumaLogHandler(mainWin.loggerWidget))
-    
     
     #app.setOrganizationName("Luma")
     #app.setApplicationName("Luma")
