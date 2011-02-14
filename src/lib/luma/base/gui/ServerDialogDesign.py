@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'ServerDialogDesign.ui'
 #
-# Created: Mon Feb 14 15:31:39 2011
+# Created: Mon Feb 14 18:37:53 2011
 #      by: PyQt4 UI code generator 4.8.2
 #
 # WARNING! All changes made in this file will be lost!
@@ -512,11 +512,29 @@ class Ui_ServerDialogDesign(object):
         QtCore.QObject.connect(self.certKeyFileButton, QtCore.SIGNAL(_fromUtf8("clicked()")), ServerDialogDesign.certKeyFileDialog)
         QtCore.QObject.connect(self.addButton, QtCore.SIGNAL(_fromUtf8("clicked()")), ServerDialogDesign.addServer)
         QtCore.QMetaObject.connectSlotsByName(ServerDialogDesign)
-        ServerDialogDesign.setTabOrder(self.serverWidget, self.bindAnonBox)
+        ServerDialogDesign.setTabOrder(self.serverListView, self.addButton)
+        ServerDialogDesign.setTabOrder(self.addButton, self.deleteButton)
+        ServerDialogDesign.setTabOrder(self.deleteButton, self.serverWidget)
+        ServerDialogDesign.setTabOrder(self.serverWidget, self.hostLineEdit)
+        ServerDialogDesign.setTabOrder(self.hostLineEdit, self.portSpinBox)
+        ServerDialogDesign.setTabOrder(self.portSpinBox, self.aliasBox)
+        ServerDialogDesign.setTabOrder(self.aliasBox, self.baseBox)
+        ServerDialogDesign.setTabOrder(self.baseBox, self.baseEdit)
+        ServerDialogDesign.setTabOrder(self.baseEdit, self.addBaseDNButton)
+        ServerDialogDesign.setTabOrder(self.addBaseDNButton, self.deleteBaseDNButton)
+        ServerDialogDesign.setTabOrder(self.deleteBaseDNButton, self.baseDNWidget)
+        ServerDialogDesign.setTabOrder(self.baseDNWidget, self.bindAnonBox)
         ServerDialogDesign.setTabOrder(self.bindAnonBox, self.methodBox)
         ServerDialogDesign.setTabOrder(self.methodBox, self.bindLineEdit)
         ServerDialogDesign.setTabOrder(self.bindLineEdit, self.passwordLineEdit)
-        ServerDialogDesign.setTabOrder(self.passwordLineEdit, self.okButton)
+        ServerDialogDesign.setTabOrder(self.passwordLineEdit, self.encryptionBox)
+        ServerDialogDesign.setTabOrder(self.encryptionBox, self.validateBox)
+        ServerDialogDesign.setTabOrder(self.validateBox, self.useClientCertBox)
+        ServerDialogDesign.setTabOrder(self.useClientCertBox, self.certFileEdit)
+        ServerDialogDesign.setTabOrder(self.certFileEdit, self.certFileButton)
+        ServerDialogDesign.setTabOrder(self.certFileButton, self.certKeyFileEdit)
+        ServerDialogDesign.setTabOrder(self.certKeyFileEdit, self.certKeyFileButton)
+        ServerDialogDesign.setTabOrder(self.certKeyFileButton, self.okButton)
         ServerDialogDesign.setTabOrder(self.okButton, self.applyButton)
         ServerDialogDesign.setTabOrder(self.applyButton, self.cancelButton)
 
@@ -582,6 +600,7 @@ class Ui_ServerDialogDesign(object):
         self.cancelButton.setText(QtGui.QApplication.translate("ServerDialogDesign", "&Cancel", None, QtGui.QApplication.UnicodeUTF8))
         self.cancelButton.setShortcut(QtGui.QApplication.translate("ServerDialogDesign", "Alt+C", None, QtGui.QApplication.UnicodeUTF8))
 
+import luma_rc
 import luma_rc
 import luma_rc
 import luma_rc
