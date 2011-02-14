@@ -46,10 +46,8 @@ class MainWin(QtGui.QMainWindow, Ui_MainWindow):
         # TODO We use 
 #        self.debug_lang_path = "/mnt/debris/devel/git/src/lib/luma/i18n"
 #        self.languageHandler = LanguageHandler(self.debug_lang_path)
-        self.configObject = configObject
-        self.languageHandler = self.configObject.languageHandler
-
         self.config = configObject
+        self.languageHandler = self.config.languageHandler
 
         self.setupUi(self)
         self.__generateLanguageMenu()
@@ -98,6 +96,9 @@ class MainWin(QtGui.QMainWindow, Ui_MainWindow):
         #      load configured language
         #      load the plugin list
         self.__installLanguageTranslator()
+        
+        
+        self.settingsDialog = SettingsDialog(self.config)
 
 
     def __installLanguageTranslator(self):
@@ -202,6 +203,7 @@ class MainWin(QtGui.QMainWindow, Ui_MainWindow):
         Load the plugin configuration dialog.
         """
         print "TODO::configurePlugins"
+        self.showSettingsDialog(2)
         pass
 
 
@@ -243,7 +245,7 @@ class MainWin(QtGui.QMainWindow, Ui_MainWindow):
         pass
 
 
-    def showSettingsDialog(self):
-        settings = SettingsDialog(self.configObject)
-        settings.exec_()
+    def showSettingsDialog(self, settingsTab=0):
+        self.settingsDialog.tabWidget.setCurrentIndex(settingsTab)
+        self.settingsDialog.exec_()
         pass

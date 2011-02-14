@@ -38,13 +38,13 @@ from splashscreen import SplashScreen
 
 # TODO Luma spesific import (eventualy) goes here
 
-def startApplication():
+def startApplication(argv):
     """
     First we must determine what platform we're running on. Making sure we 
     follow the platform convention for configuration files and directories, 
     """
     
-    app = QtGui.QApplication(sys.argv)
+    app = QtGui.QApplication(argv)
     
     splash = SplashScreen()
     splash.show()
@@ -160,4 +160,4 @@ def unhandledException(eType, eValue, eTraceback):
     print eType, eValue, eTraceback
 
 if __name__ == "__main__":
-    startApplication()
+    startApplication(sys.argv)

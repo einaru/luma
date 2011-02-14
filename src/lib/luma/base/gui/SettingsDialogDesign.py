@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'SettingsDialogDesign.ui'
 #
-# Created: Fri Feb 11 02:58:51 2011
+# Created: Mon Feb 14 15:41:48 2011
 #      by: PyQt4 UI code generator 4.7.4
 #
 # WARNING! All changes made in this file will be lost!
@@ -121,7 +121,7 @@ class Ui_SettingsDialog(object):
 
     def retranslateUi(self, SettingsDialog):
         SettingsDialog.setWindowTitle(QtGui.QApplication.translate("SettingsDialog", "Settings", None, QtGui.QApplication.UnicodeUTF8))
-        self.actionSave.setText(QtGui.QApplication.translate("SettingsDialog", "Save", None, QtGui.QApplication.UnicodeUTF8))
+        self.actionSave.setText(QtGui.QApplication.translate("SettingsDialog", "Ok", None, QtGui.QApplication.UnicodeUTF8))
         self.actionCancel.setText(QtGui.QApplication.translate("SettingsDialog", "Cancel", None, QtGui.QApplication.UnicodeUTF8))
         self.i18nGroup.setTitle(QtGui.QApplication.translate("SettingsDialog", "i18n", None, QtGui.QApplication.UnicodeUTF8))
         self.label.setText(QtGui.QApplication.translate("SettingsDialog", "Application language", None, QtGui.QApplication.UnicodeUTF8))
