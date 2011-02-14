@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'ServerDialogDesign.ui'
 #
-# Created: Thu Feb 10 23:05:53 2011
+# Created: Mon Feb 14 15:31:39 2011
 #      by: PyQt4 UI code generator 4.8.2
 #
 # WARNING! All changes made in this file will be lost!
@@ -490,6 +490,7 @@ class Ui_ServerDialogDesign(object):
         self.cancelButton.setObjectName(_fromUtf8("cancelButton"))
         self.hboxlayout.addWidget(self.cancelButton)
         self.vboxlayout.addLayout(self.hboxlayout)
+
         self.retranslateUi(ServerDialogDesign)
         self.serverWidget.setCurrentIndex(0)
         QtCore.QObject.connect(self.applyButton, QtCore.SIGNAL(_fromUtf8("clicked()")), ServerDialogDesign.saveServers)
@@ -509,11 +510,7 @@ class Ui_ServerDialogDesign(object):
         QtCore.QObject.connect(self.useClientCertBox, QtCore.SIGNAL(_fromUtf8("toggled(bool)")), self.certKeyFileButton.setEnabled)
         QtCore.QObject.connect(self.certFileButton, QtCore.SIGNAL(_fromUtf8("clicked()")), ServerDialogDesign.certFileDialog)
         QtCore.QObject.connect(self.certKeyFileButton, QtCore.SIGNAL(_fromUtf8("clicked()")), ServerDialogDesign.certKeyFileDialog)
-<<<<<<< HEAD
-
-=======
         QtCore.QObject.connect(self.addButton, QtCore.SIGNAL(_fromUtf8("clicked()")), ServerDialogDesign.addServer)
->>>>>>> servergui
         QtCore.QMetaObject.connectSlotsByName(ServerDialogDesign)
         ServerDialogDesign.setTabOrder(self.serverWidget, self.bindAnonBox)
         ServerDialogDesign.setTabOrder(self.bindAnonBox, self.methodBox)
@@ -574,18 +571,9 @@ class Ui_ServerDialogDesign(object):
         self.textLabel1_3.setText(QtGui.QApplication.translate("ServerDialogDesign", "<b>Client certificate options</b>", None, QtGui.QApplication.UnicodeUTF8))
         self.useClientCertBox.setText(QtGui.QApplication.translate("ServerDialogDesign", "Use client certificates", None, QtGui.QApplication.UnicodeUTF8))
         self.textLabel2_2.setText(QtGui.QApplication.translate("ServerDialogDesign", "Certificate file:", None, QtGui.QApplication.UnicodeUTF8))
-<<<<<<< HEAD
-        self.textLabel1_3.setText(QtGui.QApplication.translate("ServerDialogDesign", "<b>Client certificate options</b>", None, QtGui.QApplication.UnicodeUTF8))
-        self.textLabel1_10.setText(QtGui.QApplication.translate("ServerDialogDesign", "<b>Security options</b>", None, QtGui.QApplication.UnicodeUTF8))
-        self.encryptionBox.setItemText(0, QtGui.QApplication.translate("ServerDialogDesign", "Unencrypted connection", None, QtGui.QApplication.UnicodeUTF8))
-        self.encryptionBox.setItemText(1, QtGui.QApplication.translate("ServerDialogDesign", "Transport Layer Security (TLS)", None, QtGui.QApplication.UnicodeUTF8))
-        self.encryptionBox.setItemText(2, QtGui.QApplication.translate("ServerDialogDesign", "Secure Socket Layer (SSL)", None, QtGui.QApplication.UnicodeUTF8))
-
-=======
         self.textLabel3.setText(QtGui.QApplication.translate("ServerDialogDesign", "Certificate keyfile:", None, QtGui.QApplication.UnicodeUTF8))
         self.certFileButton.setText(QtGui.QApplication.translate("ServerDialogDesign", "...", None, QtGui.QApplication.UnicodeUTF8))
         self.certKeyFileButton.setText(QtGui.QApplication.translate("ServerDialogDesign", "...", None, QtGui.QApplication.UnicodeUTF8))
->>>>>>> servergui
         self.serverWidget.setTabText(self.serverWidget.indexOf(self.tab_2), QtGui.QApplication.translate("ServerDialogDesign", "Security", None, QtGui.QApplication.UnicodeUTF8))
         self.okButton.setText(QtGui.QApplication.translate("ServerDialogDesign", "&OK", None, QtGui.QApplication.UnicodeUTF8))
         self.okButton.setShortcut(QtGui.QApplication.translate("ServerDialogDesign", "Alt+O", None, QtGui.QApplication.UnicodeUTF8))
