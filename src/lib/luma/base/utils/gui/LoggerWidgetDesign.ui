@@ -85,7 +85,7 @@
         <string>Clear</string>
        </property>
        <property name="text">
-        <string/>
+        <string>Clear log</string>
        </property>
        <property name="autoRaise">
         <bool>true</bool>
@@ -106,8 +106,8 @@
    <slot>clearLogger()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>20</x>
-     <y>20</y>
+     <x>471</x>
+     <y>205</y>
     </hint>
     <hint type="destinationlabel">
      <x>20</x>
@@ -115,5 +115,56 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>debugBox</sender>
+   <signal>stateChanged(int)</signal>
+   <receiver>LoggerWidgetDesign</receiver>
+   <slot>rebuildLog()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>213</x>
+     <y>196</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>257</x>
+     <y>108</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>errorBox</sender>
+   <signal>stateChanged(int)</signal>
+   <receiver>LoggerWidgetDesign</receiver>
+   <slot>rebuildLog()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>154</x>
+     <y>196</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>257</x>
+     <y>108</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>infoBox</sender>
+   <signal>stateChanged(int)</signal>
+   <receiver>LoggerWidgetDesign</receiver>
+   <slot>rebuildLog()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>268</x>
+     <y>196</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>257</x>
+     <y>108</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
+ <slots>
+  <slot>rebuildLog()</slot>
+ </slots>
 </ui>

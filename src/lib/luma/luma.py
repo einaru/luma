@@ -34,6 +34,8 @@ from PyQt4 import QtGui, QtCore
 
 from base.backend.Config import Config
 from base.gui.MainWin import MainWin
+from base.utils.gui.LoggerWidget import LoggerWidget
+from base.utils.backend.LumaLogHandler import LumaLogHandler
 from splashscreen import SplashScreen
 
 # TODO Luma spesific import (eventualy) goes here
@@ -49,7 +51,7 @@ def startApplication():
     splash = SplashScreen()
     splash.show()
     import time
-    time.sleep(1)
+    #time.sleep(1)
     
     # DEVELOPMENT SPECIFICS
     
@@ -61,12 +63,14 @@ def startApplication():
     config = Config(configPrefix, os.path.join(os.getcwd(), 'i18n'))
     print config.languageHandler
     
-    #Logging to console
-    l = logging.getLogger("base")
-    l.setLevel(logging.DEBUG)
-    l.addHandler(logging.StreamHandler())
     
     mainWin = MainWin(config)
+    
+    l = logging.getLogger("base")
+    l.setLevel(logging.DEBUG)  
+    
+    # Log to the loggerwidget
+    l.addHandler(LumaLogHandler(mainWin.loggerWidget))
     
     QtCore.QObject.connect(app, QtCore.SIGNAL('lastWindowClosed()'), mainWin.close)
 
@@ -77,7 +81,6 @@ def startApplication():
     mainWin.move((screen.width()-size.width())/2, (screen.height()-size.height())/2)
     
     mainWin.show()
-    
  
     splash.finish(mainWin)
 
@@ -146,7 +149,8 @@ def unhandledException(eType, eValue, eTraceback):
     """
     l = logging.getLogger("base")
     l.setLevel(logging.DEBUG)
-    l.addHandler(logging.StreamHandler())
+    s = logging.StreamHandler()
+    l.addHandler(s)
     # TODO Take a look at the <reporoot>/tags/Luma2.4/src/bin/luma file
     print "unhandled exception"
     print eType, eValue, eTraceback

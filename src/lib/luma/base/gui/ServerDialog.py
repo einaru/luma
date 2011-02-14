@@ -24,10 +24,10 @@ class ServerDialog(QDialog, Ui_ServerDialogDesign):
         QDialog.__init__(self)
         self.setupUi(self)
         
-        self._ServerList = serverList
+        self._serverList = serverList
         
         # Create the model used by the views
-        self.slm = ServerListModel(self._ServerList)
+        self.slm = ServerListModel(self._serverList)
         
         # Add the model to the list of servers
         self.serverListView.setModel(self.slm)
@@ -103,7 +103,7 @@ class ServerDialog(QDialog, Ui_ServerDialogDesign):
         """
         name, ok = QInputDialog.getText(self, 'Add server', 'Name:')
         if ok:
-            if len(name) < 1 or self._ServerList.getServerObject(name) != None:
+            if len(name) < 1 or self._serverList.getServerObject(name) != None:
                 QMessageBox.information(self, 'Error', "Invalid name or already used.")
                 return
             
@@ -113,7 +113,7 @@ class ServerDialog(QDialog, Ui_ServerDialogDesign):
             # Insert into the model
             m = self.serverListView.model() 
             m.beginInsertRows(QModelIndex(), m.rowCount(QModelIndex()),m.rowCount(QModelIndex())+1)
-            self._ServerList.addServer(sO)
+            self._serverList.addServer(sO)
             m.endInsertRows()
             
             s = m.index(m.rowCount(QModelIndex)-1,0) #Index of the newly added server
@@ -154,7 +154,7 @@ class ServerDialog(QDialog, Ui_ServerDialogDesign):
         
         What should happen when the user clicks Save then Cancel?
         """
-        self._ServerList.writeServerList()     
+        self._serverList.writeServerList()     
         
     def reject(self):
         """

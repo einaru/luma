@@ -50,6 +50,8 @@ class MainWin(QtGui.QMainWindow, Ui_MainWindow):
         self.languageHandler = self.configObject.languageHandler
 
         self.config = configObject
+        
+        self.serverDialog = None
 
         self.setupUi(self)
         self.__generateLanguageMenu()
@@ -168,8 +170,15 @@ class MainWin(QtGui.QMainWindow, Ui_MainWindow):
 
     def showServerEditor(self):
         print "TODO::showServerEditor"
-        ServerDialog(ServerList("/tmp")).exec_()
-
+        if self.serverDialog == None:
+            self.serverDialog = ServerDialog(ServerList("/tmp"))
+        r = self.serverDialog.exec_()
+        print r
+        #if r == OK:
+        #    self.serverList = self.serverDialog.getList()
+        #else:
+            #Ingen endring
+        #    pass
 
     def loadPlugins(self):
         """
