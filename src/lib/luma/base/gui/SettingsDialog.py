@@ -17,7 +17,7 @@
 # with Luma; if not, write to the Free Software Foundation, Inc., 
 # 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA
 
-from PyQt4 import QtGui
+from PyQt4 import QtGui, QtCore
 from PyQt4.QtCore import Qt
 
 from base.gui.SettingsDialogDesign import Ui_SettingsDialog
@@ -40,7 +40,7 @@ class SettingsDialog(QtGui.QDialog, Ui_SettingsDialog):
         languageHandler = self.configObject.languageHandler
         i = 0
         for key, value in languageHandler.availableLanguages.iteritems():
-            self.languageSelector.addItem(unicode("%s [%s]" % (value, key)))
+            self.languageSelector.addItem('%s [%s]' % (value, key))
             if key == self.configObject.language:
                 self.languageSelector.setCurrentIndex(i)
             i = i + 1

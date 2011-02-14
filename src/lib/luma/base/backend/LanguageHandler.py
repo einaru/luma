@@ -31,16 +31,16 @@ class LanguageHandler(object):
     http://en.wikipedia.org/wiki/List_of_ISO_639-1_codes
     """
     __isoCodeMappings = {
-        "de" : "Deutch", # German
-        "en" : "English", # English
-        "no" : "Norsk", # Norwegian
-        "pt" : "Português", # Portugese
-        "cs" : "České", # Czech
-        "se" : "Svensk", # Swedish
-        "ru" : "Россию", # Russian
-        "fr" : "Français", # French
-        "se" : "Español", # Spanish
-        "jp" : "日本", # Japanse
+        "de" : u"Deutch", # German
+        "en" : u"English", # English
+        "no" : u"Norsk", # Norwegian
+        "pt" : u"Português", # Portugese
+        "cs" : u"České", # Czech
+        "se" : u"Svensk", # Swedish
+        "ru" : u"Россию", # Russian
+        "fr" : u"Français", # French
+        "se" : u"Español", # Spanish
+        "jp" : u"日本", # Japanse
     }
     
     __availableLanguages = {}
