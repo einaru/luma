@@ -238,6 +238,17 @@
    </item>
   </layout>
  </widget>
+ <tabstops>
+  <tabstop>tabWidget</tabstop>
+  <tabstop>languageSelector</tabstop>
+  <tabstop>showloggerOnStart</tabstop>
+  <tabstop>showErrors</tabstop>
+  <tabstop>showDebug</tabstop>
+  <tabstop>showInfo</tabstop>
+  <tabstop>pluginListView</tabstop>
+  <tabstop>actionSave</tabstop>
+  <tabstop>actionCancel</tabstop>
+ </tabstops>
  <resources/>
  <connections>
   <connection>

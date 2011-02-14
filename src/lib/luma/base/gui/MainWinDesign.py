@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'MainWinDesign.ui'
 #
-# Created: Fri Feb 11 00:13:23 2011
+# Created: Mon Feb 14 17:11:15 2011
 #      by: PyQt4 UI code generator 4.7.4
 #
 # WARNING! All changes made in this file will be lost!
@@ -12,18 +12,21 @@ from PyQt4 import QtCore, QtGui
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(550, 540)
+        MainWindow.resize(700, 550)
+        MainWindow.setWindowOpacity(1.0)
         self.centralwidget = QtGui.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
+        self.gridLayout = QtGui.QGridLayout(self.centralwidget)
+        self.gridLayout.setObjectName("gridLayout")
         self.mainStack = QtGui.QStackedWidget(self.centralwidget)
-        self.mainStack.setGeometry(QtCore.QRect(10, 9, 531, 501))
         self.mainStack.setObjectName("mainStack")
         self.page = QtGui.QWidget()
         self.page.setObjectName("page")
         self.mainStack.addWidget(self.page)
+        self.gridLayout.addWidget(self.mainStack, 0, 0, 1, 1)
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtGui.QMenuBar(MainWindow)
-        self.menubar.setGeometry(QtCore.QRect(0, 0, 550, 23))
+        self.menubar.setGeometry(QtCore.QRect(0, 0, 700, 23))
         self.menubar.setObjectName("menubar")
         self.menuFile = QtGui.QMenu(self.menubar)
         self.menuFile.setObjectName("menuFile")

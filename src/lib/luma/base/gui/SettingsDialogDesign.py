@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'SettingsDialogDesign.ui'
 #
-# Created: Mon Feb 14 15:41:48 2011
+# Created: Mon Feb 14 15:56:08 2011
 #      by: PyQt4 UI code generator 4.7.4
 #
 # WARNING! All changes made in this file will be lost!
@@ -118,6 +118,14 @@ class Ui_SettingsDialog(object):
         QtCore.QObject.connect(self.actionCancel, QtCore.SIGNAL("clicked()"), SettingsDialog.cancelSettings)
         QtCore.QObject.connect(self.actionSave, QtCore.SIGNAL("clicked()"), SettingsDialog.saveSettings)
         QtCore.QMetaObject.connectSlotsByName(SettingsDialog)
+        SettingsDialog.setTabOrder(self.tabWidget, self.languageSelector)
+        SettingsDialog.setTabOrder(self.languageSelector, self.showloggerOnStart)
+        SettingsDialog.setTabOrder(self.showloggerOnStart, self.showErrors)
+        SettingsDialog.setTabOrder(self.showErrors, self.showDebug)
+        SettingsDialog.setTabOrder(self.showDebug, self.showInfo)
+        SettingsDialog.setTabOrder(self.showInfo, self.pluginListView)
+        SettingsDialog.setTabOrder(self.pluginListView, self.actionSave)
+        SettingsDialog.setTabOrder(self.actionSave, self.actionCancel)
 
     def retranslateUi(self, SettingsDialog):
         SettingsDialog.setWindowTitle(QtGui.QApplication.translate("SettingsDialog", "Settings", None, QtGui.QApplication.UnicodeUTF8))
