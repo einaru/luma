@@ -3,6 +3,10 @@
 from os import listdir 
 import imp 
 from os import path
+import logging
+import sys
+
+from PyQt4 import QtGui
 
 class PluginLoader(object):
     
@@ -14,17 +18,16 @@ class PluginLoader(object):
     pluginsToLoad: a list of plugin names, or 'ALL'
     """
     
+    _logger = logging.getLogger(__name__)
+    
     def __init__(self, lumaInstallationPrefix, pluginsToLoad = []):
         
         self._pluginsToLoad = pluginsToLoad
-        
         self._plugins = [] #PluginObjects
         self._lumaInstallationPrefix = lumaInstallationPrefix
-        self._pluginsBaseDir = path.join(lumaInstallationPrefix,
-            "lib", "luma", "plugins")
-
-        print self._pluginsBaseDir
-
+        self._pluginsBaseDir = path.join(lumaInstallationPrefix, "plugins")
+        """self._pluginsBaseDir = path.join(lumaInstallationPrefix,
+            "lib", "luma", "plugins")"""
         self._changed = True
     
             
@@ -45,7 +48,6 @@ class PluginLoader(object):
     
     @property   
     def plugins(self):
-    
         """
         It should not be possible to set the plugin field
         from outside, so no @plugins.setter is made.
@@ -60,7 +62,7 @@ class PluginLoader(object):
 
     def __loadPlugins(self):
         """
-        Will load the plugins, or well, create a list of plugins.
+        Will load all plugins that was found from the "__findPluginDirectories()".
         """
         for x in self.__findPluginDirectories():
             if x == "CVS" or x == ".svn":
@@ -68,14 +70,19 @@ class PluginLoader(object):
         
             try:
                 self._plugins.append(self.__readMetaInfo(x))
-                #do logging here z0mg
+        
             except PluginMetaError, x:
-                pass
-
+                errorString = "Plugin from the following directory could not be loaded:\n"
+                errorString += str(x)
+                self._logger.error(errorString)
+                
 ###############################################################################
 
     def __findPluginDirectories(self):
-    
+        """
+        Will find all directories inside the "_pluginBaseDir"
+        and put them in a list
+        """
         tmpList = []
     
         try:
@@ -88,9 +95,10 @@ class PluginLoader(object):
             
             return tmpList
         
-        #do exception and loggin here pl0x!
         except OSError, errorData:
-                pass
+            errorString = "Could not read from directory where plugins are stored. Reason:\n"
+            errorString += str(errorData)
+            self._logger.error(errorString)
 
 ############################################################################### 
     
@@ -99,11 +107,9 @@ class PluginLoader(object):
         Reads meta information for a plugin by its directory.
         If the plugin is in pluginsToLoad, the load attribute will be
         set to true.
-        All of the meta information about a plugin, if it valid or nothing 
-        is missing, will be put into a PluginObject.
+        All of the meta information about a plugin will be put into a PluginObject.
         """
 
-        
         from PluginObject import PluginObject
         plugin = PluginObject()
         
@@ -120,22 +126,24 @@ class PluginLoader(object):
 
         
         try:
-            searchList = [self._pluginBaseDir]
+            searchList = [self._pluginsBaseDir]
             foundModule = imp.find_module(pluginName, searchList)
             importedModule = imp.load_module(pluginName, *foundModule)
+            
         except ImportError, errorData:
             errorString = "Plugin meta information could not be loaded. Reason:\n"
             errorString += str(errorData)
-            #environment.logMessage(LogObject("Error", errorString))
+            self._logger.error(errorString)
             raise PluginMetaError, errorData
         
+
         missingAttributes = []
         for x in attributes:
             if not hasattr(importedModule, x):
                 missingAttributes.append(x)
         
         if len(missingAttributes) > 0:
-            errorString = "Loaded module " + pluginPath + " is not a Luma plugin."
+            errorString = "Loaded module " + pluginName + " is not a Luma plugin."
             errorString = errorString + "The following attributes are missing: \n"
             for x in missingAttributes:
                 errorString = errorString + x + " "
@@ -149,12 +157,12 @@ class PluginLoader(object):
         plugin.getPluginSettingsWidget = importedModule.getPluginSettingsWidget
             
         iconPath = path.join(self._lumaInstallationPrefix, "share", 
-                 "luma", "icons", "plugins", pluginPath)
+                 "luma", "icons", "plugins", pluginName)
                                 
         icon = importedModule.getIcon(iconPath)
         plugin.icon = icon
         
-        if pluginsToLoad == 'ALL':
+        if self._pluginsToLoad == 'ALL':
                 plugin.load = True
         else:
             for x in self.pluginsToLoad:
@@ -172,3 +180,10 @@ class PluginMetaError(Exception):
     this exception is raised..
     """
     pass
+
+if __name__ == "__main__":
+    app = QtGui.QApplication(sys.argv)
+    p = PluginLoader("/Users/johannes/Programmering/Luma/git/pluginloader", ["testplugin"])
+    widget = p.plugins[0].getPluginWidget(None)
+    widget.show()
+    sys.exit(app.exec_())

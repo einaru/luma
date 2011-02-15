@@ -8,7 +8,7 @@ class PluginObject(object):
 	
 	def __init__(self):
 
-		self.lumaPlugin = True #what is this used for!? :P
+		self.lumaPlugin = True
 		self.pluginName = None
 		self.author = None
 		self.pluginUserString = None
@@ -20,6 +20,3 @@ class PluginObject(object):
 		self.load = False
 		
 ###############################################################################
-
-	#if no useful stuff to do here, maybe go back to using dictionary..
-	#this cant be used as a model (figured this out now..), or can it..?
