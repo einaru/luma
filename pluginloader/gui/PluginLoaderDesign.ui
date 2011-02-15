@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>Dialog</class>
- <widget class="QDialog" name="Dialog">
+ <class>PluginLoader</class>
+ <widget class="QDialog" name="PluginLoader">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Dialog</string>
+   <string>PluginLoader</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
    <item row="2" column="0">
@@ -81,7 +81,7 @@
          </size>
         </property>
         <property name="title">
-         <string>GroupBox</string>
+         <string>Settings:</string>
         </property>
         <layout class="QGridLayout" name="gridLayout_2">
          <item row="0" column="0">
@@ -148,8 +148,8 @@
   <connection>
    <sender>pushButton</sender>
    <signal>released()</signal>
-   <receiver>Dialog</receiver>
-   <slot>close()</slot>
+   <receiver>PluginLoader</receiver>
+   <slot>closeButton()</slot>
    <hints>
     <hint type="sourcelabel">
      <x>577</x>
@@ -161,5 +161,41 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>listView</sender>
+   <signal>clicked(QModelIndex)</signal>
+   <receiver>PluginLoader</receiver>
+   <slot>pluginSelected()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>112</x>
+     <y>257</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>313</x>
+     <y>265</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>PluginLoader</sender>
+   <signal>finished(int)</signal>
+   <receiver>PluginLoader</receiver>
+   <slot>close()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>313</x>
+     <y>265</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>313</x>
+     <y>265</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
+ <slots>
+  <slot>pluginSelected()</slot>
+  <slot>closeButton()</slot>
+ </slots>
 </ui>
