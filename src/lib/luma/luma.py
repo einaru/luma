@@ -71,11 +71,11 @@ def startApplication(argv):
     # Log to the loggerwidget
     l.addHandler(LumaLogHandler(mainWin.loggerWidget))
     
-    #app.setOrganizationName("Luma")
-    #app.setApplicationName("Luma")
-    #s = QtCore.QSettings()
-    #s.setValue("rofl","rofl-settings :O")
-    #print s.value("rofl",":(").toString()    
+    app.setOrganizationName("Luma")
+    app.setApplicationName("Luma")
+    s = QtCore.QSettings()
+    s.setValue("plugins/rofl","rofl-settings :O")
+    print s.value("splaScreenOn",":(")  
     
     QtCore.QObject.connect(app, QtCore.SIGNAL('lastWindowClosed()'), mainWin.close)
 
