@@ -1,177 +1,189 @@
 # -*- coding: utf-8 -*-
-#
-# Copyright (C) 2003
-#    Wido Depping, <widod@users.sourceforge.net>                                                             
-#
-# Luma is free software; you can redistribute it and/or modify 
-# it under the terms of the GNU General Public Licence as published by 
-# the Free Software Foundation; either version 2 of the Licence, or 
-# (at your option) any later version.
-#
-# Luma is distributed in the hope that it will be useful, but 
-# WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY
-# or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public Licence 
-# for more details.
-#
-# You should have received a copy of the GNU General Public Licence along 
-# with Luma; if not, write to the Free Software Foundation, Inc., 
-# 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA
 
-from os import listdir
-import os.path
-import sys
-import imp
+from os import listdir 
+import imp 
+from os import path
 import logging
+import sys
 
-class PluginLoader:
+from PyQt4 import QtGui
+
+class PluginLoader(object):
+    
     """
-    A class for finding and loading Luma plugins.
+    This is the new version of PluginLoader, with the use of a PluginObject.
+    The plugins field is a list of PluginObjects.
     
-    self.PLUGINS:
-        A dictionary of the plugins. Keys are the plugin names. 
-        The values contain metainformation for each plugin. 
-        This information is stored in a dictionary with the following keys:
-    
-        PLUGIN_NAME:
-            Name of the plugin (string).
-    
-        PLUGIN_VERSION:
-            The version of the plugin (string).
-    
-        PLUGIN_AUTHOR:
-            Plugin author (string).
-    
-        PLUGIN_FILE:
-            The base python script for the plugin (string).
-    
-        PLUGIN_LOAD:
-            Indicates if the plugin should be loaded (integer).
-    
-        PLUGIN_PATH:
-            Base path of the plugin (string).
-    
-        PLUGIN_CODE:
-            The python code object (callable code).
+    lumaInstallationPrefix: the path to where luma is installed
+    pluginsToLoad: a list of plugin names, or 'ALL'
     """
-
-    __logger = logging.getLogger(__name__)
-
-    def __init__(self, pluginsToLoad=[]):
-        self.PLUGINS = {}
-
-#        # get the base diretory of the plugins as a string
-#        self.pluginBaseDir = os.path.join(environment.lumaInstallationPrefix,  "lib", "luma", "plugins")
-        # XXX temporary hardcoded plugin base dir
-        self.pluginBaseDir = os.path.join(os.getcwd(), 'plugins')
-        print self.pluginBaseDir
-        self.pluginDirList = []
-        self.pluginDirList = self.getPluginList()
-
-        self.importPluginMetas(pluginsToLoad)
-
-
-    def getPluginList(self):
-        """
-        Returns a list of diretories, where possible plugins a stored.
-        """
-
-        tmpList = []
-        try:
-            # test for every file listed, if it is a directory
-            for x in listdir(self.pluginBaseDir):
-                tmpPath = os.path.join(self.pluginBaseDir, x)
-                if os.path.isdir(tmpPath):
-                    tmpList.append(x)
-                    print x
-
-            return tmpList
-        except OSError, e:
-            msg = "Could not read from directory where plugins are stored. Reason:\n%s" % str(e)
-            self.__logger.debug(msg)
-
-
-    def importPluginMetas(self, pluginsToLoad=[]):
-        """ 
-        Read the meta information for every plugin directory which is found.
+    
+    _logger = logging.getLogger(__name__)
+    
+    def __init__(self, lumaInstallationPrefix, pluginsToLoad = []):
         
-        pluginsToLoad is a list of plugins which should be loaded.
-        """
+        self._pluginsToLoad = pluginsToLoad
+        self._plugins = [] #PluginObjects
+        self._lumaInstallationPrefix = lumaInstallationPrefix
+        self._pluginsBaseDir = path.join(lumaInstallationPrefix, "plugins")
+        """self._pluginsBaseDir = path.join(lumaInstallationPrefix,
+            "lib", "luma", "plugins")"""
+        self._changed = True
+    
+            
+###############################################################################
 
-        for x in self.pluginDirList:
-            if x == "CVS":
+    @property
+    def pluginsToLoad(self):
+        return self._pluginsToLoad
+
+###############################################################################
+
+    @pluginsToLoad.setter
+    def pluginsToLoad(self, value):
+        self._changed = True
+        self._pluginsToLoad = value
+
+###############################################################################
+    
+    @property   
+    def plugins(self):
+        """
+        It should not be possible to set the plugin field
+        from outside, so no @plugins.setter is made.
+        """
+        if self._changed == True:
+            self.__loadPlugins()
+            self._changed = False
+        
+        return self._plugins
+    
+###############################################################################
+
+    def __loadPlugins(self):
+        """
+        Will load all plugins that was found from the "__findPluginDirectories()".
+        """
+        for x in self.__findPluginDirectories():
+            if x == "CVS" or x == ".svn":
                 continue
-
-            pluginMetaObject = {}
-
-            try:
-                pluginMetaObject = self.readMetaInfo(x, pluginsToLoad)
-                self.PLUGINS[pluginMetaObject["pluginName"]] = pluginMetaObject
-            except PluginMetaError, e:
-                msg = "Plugin from the following directory could not be loaded:\n%s" % str(e)
-                self.__logger.error(msg)
-
-
-    def readMetaInfo(self, pluginPath, pluginsToLoad):
-        """ 
-        Read the meta information for a plugin given by its directory.
         
-        If the plugin is in pluginsToLoad, the flag for using this plugin
-        will be set.
+            try:
+                self._plugins.append(self.__readMetaInfo(x))
+        
+            except PluginMetaError, x:
+                errorString = "Plugin from the following directory could not be loaded:\n"
+                errorString += str(x)
+                self._logger.error(errorString)
+                
+###############################################################################
+
+    def __findPluginDirectories(self):
+        """
+        Will find all directories inside the "_pluginBaseDir"
+        and put them in a list
+        """
+        tmpList = []
+    
+        try:
+            #look for directories
+            for x in listdir(self._pluginsBaseDir):
+                xPath = path.join(self._pluginsBaseDir, x)
+                
+                if path.isdir(xPath):
+                    tmpList.append(x)
+            
+            return tmpList
+        
+        except OSError, errorData:
+            errorString = "Could not read from directory where plugins are stored. Reason:\n"
+            errorString += str(errorData)
+            self._logger.error(errorString)
+
+############################################################################### 
+    
+    def __readMetaInfo(self, pluginName):
+        """
+        Reads meta information for a plugin by its directory.
+        If the plugin is in pluginsToLoad, the load attribute will be
+        set to true.
+        All of the meta information about a plugin will be put into a PluginObject.
         """
 
-        attributeList = ["lumaPlugin", "pluginName", "author",
-                         "pluginUserString", "version", "getIcon",
-                         "getPluginWidget", "getPluginSettingsWidget"]
-        metaInformation = {}
-
+        from base.backend.PluginObject import PluginObject
+        plugin = PluginObject()
+        
+        attributes =    ["lumaPlugin", 
+                        "pluginName", 
+                        "author",
+                        "pluginUserString", 
+                        "version", 
+                        "getIcon", 
+                        "getPluginWidget", 
+                        "getPluginSettingsWidget"]
+                        
         importedModule = None
+
+        
         try:
-            modulePath = os.path.join("plugins", pluginPath)
-            foundModule = imp.find_module(modulePath)
-            importedModule = imp.load_module(pluginPath, *foundModule)
-        except ImportError, e:
-            msg = "Plugin meta information could not be loaded. Reason:\n%s" % str(e)
-            self.__logger.error(msg)
-            raise PluginMetaError, e
+            searchList = [self._pluginsBaseDir]
+            foundModule = imp.find_module(pluginName, searchList)
+            importedModule = imp.load_module(pluginName, *foundModule)
+            
+        except ImportError, errorData:
+            errorString = "Plugin meta information could not be loaded. Reason:\n"
+            errorString += str(errorData)
+            self._logger.error(errorString)
+            raise PluginMetaError, errorData
+        
 
         missingAttributes = []
-        for x in attributeList:
+        for x in attributes:
             if not hasattr(importedModule, x):
                 missingAttributes.append(x)
-
+        
         if len(missingAttributes) > 0:
-            errorString = "Loaded module " + pluginPath + " is not a Luma plugin."
+            errorString = "Loaded module " + pluginName + " is not a Luma plugin."
             errorString = errorString + "The following attributes are missing: \n"
             for x in missingAttributes:
                 errorString = errorString + x + " "
             raise PluginMetaError, errorString
-
-        metaInformation["pluginName"] = importedModule.pluginName
-        metaInformation["pluginUserString"] = importedModule.pluginUserString
-        metaInformation["author"] = importedModule.author
-        metaInformation["version"] = importedModule.version
-        metaInformation["getPluginWidget"] = importedModule.getPluginWidget
-        metaInformation["getPluginSettingsWidget"] = importedModule.getPluginSettingsWidget
-
-#        iconPath = os.path.join(environment.lumaInstallationPrefix, "share", "luma", "icons", "plugins", pluginPath)
-#        icon = importedModule.getIcon(iconPath)
-#        metaInformation["icon"] = icon
-
-        metaInformation["load"] = False
-        if pluginsToLoad == 'ALL':
-            metaInformation["load"] = True
+            
+        plugin.pluginName = importedModule.pluginName
+        plugin.pluginUserString = importedModule.pluginUserString
+        plugin.author = importedModule.author
+        plugin.version = importedModule.version
+        plugin.getPluginWidget = importedModule.getPluginWidget
+        plugin.getPluginSettingsWidget = importedModule.getPluginSettingsWidget
+            
+        iconPath = path.join(self._lumaInstallationPrefix, "share", 
+                 "luma", "icons", "plugins", pluginName)
+                                
+        icon = importedModule.getIcon(iconPath)
+        plugin.icon = icon
+        
+        if self._pluginsToLoad == 'ALL':
+                plugin.load = True
         else:
-            for x in pluginsToLoad:
-                if x == metaInformation["pluginName"]:
-                    metaInformation["load"] = True
-                    break
+            for x in self.pluginsToLoad:
+                if x == plugin.pluginName:
+                    plugin.load = True
+                break
 
-        return metaInformation
-
+        return plugin
+            
+###############################################################################
 
 class PluginMetaError(Exception):
     """
-    Custom exception class.
+    When __readMetaInfo sees that a directory is not a plugin-directory,
+    this exception is raised..
     """
-    
     pass
+
+if __name__ == "__main__":
+    app = QtGui.QApplication(sys.argv)
+    p = PluginLoader("/Users/johannes/Programmering/Luma/git/pluginloader", ["testplugin"])
+    widget = p.plugins[0].getPluginWidget(None)
+    widget.show()
+    sys.exit(app.exec_())
