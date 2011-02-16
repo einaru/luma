@@ -1,3 +1,7 @@
+from PyQt4.QtCore import *
+from PyQt4.QtGui import *
+from base.backend.PluginLoader import PluginLoader 
+
 class PluginLoaderModel(QStandardItemModel):
     """
     This model will create its own items, out of the list from PluginLoader
@@ -7,7 +11,7 @@ class PluginLoaderModel(QStandardItemModel):
         QStandardItemModel.__init__(self, parent)
         self._settings = QSettings()
         
-        for pluginobject in PluginLoader("CHANGE THIS TO QSETTINGS.INSTALLPATH", "ALL").plugins:
+        for pluginobject in PluginLoader(".", "ALL").plugins:
             item = QStandardItem(pluginobject.pluginName)
             check = Qt.Unchecked
             valueString = "plugins/" + pluginobject.pluginName + "/load"

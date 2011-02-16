@@ -30,7 +30,7 @@ from base.gui.AboutDialog import AboutDialog
 from base.gui.ServerDialog import ServerDialog
 from base.backend.ServerList import ServerList
 from base.gui.SettingsDialog import SettingsDialog
-
+from base.gui.PluginSettings import PluginSettings
 
 class MainWin(QtGui.QMainWindow, Ui_MainWindow):
     """
@@ -234,7 +234,8 @@ class MainWin(QtGui.QMainWindow, Ui_MainWindow):
         """
         Display the plugin selection.
         """
-        self.TODO("Show plugin selection")
+        s = PluginSettings()
+        s.exec_()
 
 
     def showLoggerWindow(self):

@@ -49,7 +49,7 @@ def startApplication(argv):
 
     app = QtGui.QApplication(argv)
 
-    l = logging.getLogger("base")
+    l = logging.getLogger()
     l.setLevel(logging.DEBUG)
 
     splash = SplashScreen()
@@ -142,7 +142,7 @@ def getConfigPrefix():
     if not os.path.exists(configPrefix):
         try:
             #os.mkdir(configPrefix)
-            logger = logging.getLogger(__name__)
+            logger = logging.getLogger()
             logger.debug("TODO: os.mkdir(%s)" % (configPrefix))
         except (IOError, OSError):
             # TODO Do some logging. We should load the application, but 
@@ -167,7 +167,8 @@ please send an email with the following text to:
 >>>
 [%s] Reason:\n%s\n%s
 <<<""" % (tmp.getvalue(), str(eType), str(eValue))
-    logger = logging.getLogger(__name__)
+    print error
+    logger = logging.getLogger()
     logger.error(error)
 
 if __name__ == "__main__":
