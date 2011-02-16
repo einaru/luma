@@ -17,17 +17,20 @@
 # with Luma; if not, write to the Free Software Foundation, Inc., 
 # 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA
 
-from PyQt4 import QtGui, QtCore
+import logging
+from random import randint
+
+from PyQt4 import QtGui
 from PyQt4.QtCore import Qt
 
 from base.gui.SettingsDialogDesign import Ui_SettingsDialog
-from random import randint
-from base.backend.PluginLoader import PluginLoader
 
 class SettingsDialog(QtGui.QDialog, Ui_SettingsDialog):
     """
     The settings dialog class
     """
+    
+    __logger = logging.getLogger(__name__)
     
     def __init__(self, configObject):
         QtGui.QDialog.__init__(self)
@@ -55,7 +58,6 @@ class SettingsDialog(QtGui.QDialog, Ui_SettingsDialog):
         """
         Initialize plugin settings
         """
-        pl = PluginLoader()
         
         model = QtGui.QStandardItemModel()
 
@@ -93,5 +95,6 @@ class SettingsDialog(QtGui.QDialog, Ui_SettingsDialog):
         Cancel the settings session. Ensure that no changed settings are
         written to the config file
         """
-        print "TODO:%s:cancelSettings" % self.__class__
+        todo = "[TODO] Cancel settings dialog routine: %s" % self.__class__
+        self.__logger.debug(todo)
         self.close()

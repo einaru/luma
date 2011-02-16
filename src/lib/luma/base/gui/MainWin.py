@@ -20,6 +20,8 @@
 # with Luma; if not, write to the Free Software Foundation, Inc., 
 # 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA
 
+import logging
+
 from PyQt4 import QtCore, QtGui
 
 from base.gui.MainWinDesign import Ui_MainWindow
@@ -35,6 +37,10 @@ class MainWin(QtGui.QMainWindow, Ui_MainWindow):
     The Luma Main Window
     """
 
+    DEVEL = True
+
+    __logger = logging.getLogger(__name__)
+
     def __init__(self, configObject, parent=None):
         """
         The constructor loads the generated ui code and setup the rest
@@ -47,7 +53,7 @@ class MainWin(QtGui.QMainWindow, Ui_MainWindow):
 #        self.debug_lang_path = "/mnt/debris/devel/git/src/lib/luma/i18n"
 #        self.languageHandler = LanguageHandler(self.debug_lang_path)
         self.config = configObject
-        
+
         self.serverDialog = None
         self.languageHandler = self.config.languageHandler
 
@@ -91,15 +97,24 @@ class MainWin(QtGui.QMainWindow, Ui_MainWindow):
 
         self.loggerDockWindow.setWidget(self.loggerWidget)
         self.addDockWidget(QtCore.Qt.BottomDockWidgetArea, self.loggerDockWindow)
-        self.loggerDockWindow.hide()
+
+        logMenuText = "Hide Logger"
+
+        if not self.DEVEL:
+            self.loggerDockWindow.hide()
+            logMenuText = "Show Logger"
+
+        self.actionShowLogger.setText(
+            QtGui.QApplication.translate(
+                "MainWindow", logMenuText, None, QtGui.QApplication.UnicodeUTF8))
 
         # TODO Setup the rest of the defaults in the Main Window:
         #      fix translation stuff, 
         #      load configured language
         #      load the plugin list
         self.__installLanguageTranslator()
-        
-        
+
+
         self.settingsDialog = SettingsDialog(self.config)
 
 
@@ -107,8 +122,6 @@ class MainWin(QtGui.QMainWindow, Ui_MainWindow):
         """
         Load the preferred application language. Defaults to english.
         """
-        print "Debug::getLanguageTranslator"
-
         QtGui.qApp.installTranslator(QtCore.QTranslator())
         self.languageChange()
 
@@ -137,9 +150,7 @@ class MainWin(QtGui.QMainWindow, Ui_MainWindow):
         Slot for the changing the application language
         """
         action = self.sender()
-        print "TODO::languageChanged->%s" % action.objectName()
         langFile = "luma_%s.qm" % action.objectName()[-2:]
-        print langFile
         QtGui.qApp.translator = QtCore.QTranslator()
         QtGui.qApp.translator.load("%s/%s" % (self.config.i18nPath, langFile))
         QtGui.qApp.installTranslator(QtGui.qApp.translator)
@@ -156,7 +167,6 @@ class MainWin(QtGui.QMainWindow, Ui_MainWindow):
         #      method
         self.about = AboutDialog()
         self.about.exec_()
-        print "TODO::showaboutLuma"
 
 
     def close(self):
@@ -166,15 +176,17 @@ class MainWin(QtGui.QMainWindow, Ui_MainWindow):
         necessary Qt cleanup, before tearing the application down.
         """
         QtGui.qApp.quit()
-        print "TODO::quitApplication"
 
 
     def showServerEditor(self):
-        print "TODO::showServerEditor"
+        """
+        Display the server dialog editor
+        """
         if self.serverDialog == None:
             self.serverDialog = ServerDialog(ServerList("/tmp"))
         r = self.serverDialog.exec_()
-        print r
+
+        self.__logger.debug("ServerDialog return code=%s" % r)
         #if r == OK:
         #    self.serverList = self.serverDialog.getList()
         #else:
@@ -185,8 +197,7 @@ class MainWin(QtGui.QMainWindow, Ui_MainWindow):
         """
         Load the all available plugins
         """
-        print "TODO::loadPlugins"
-        pass
+        self.TODO("Load plugins")
 
 
     def reloadPlugins(self):
@@ -195,8 +206,7 @@ class MainWin(QtGui.QMainWindow, Ui_MainWindow):
         This is done by first calling unloadPlugins followed by a call 
         to loadPlugins
         """
-        print "TODO::reloadPlugins"
-        pass
+        self.TODO("Reload plugins")
 
 
     def unloadPlugins(self):
@@ -204,32 +214,27 @@ class MainWin(QtGui.QMainWindow, Ui_MainWindow):
         Unload all loaded plugins. 
         We must garbage collect the Qt objects.
         """
-        print "TODO::unloadPlugins"
-        pass
+        self.TODO("Unload plugins")
 
     def configurePlugins(self):
         """
         Load the plugin configuration dialog.
         """
-        print "TODO::configurePlugins"
         self.showSettingsDialog(2)
-        pass
 
 
     def pluginSelected(self):
         """
         Slot for handling plugin selection.
         """
-        print "TODO::pluginSelected"
-        pass
+        self.TODO("Plugin selected")
 
 
     def showPluginSelection(self):
         """
         Display the plugin selection.
         """
-        print "TODO::showPluginSelection"
-        pass
+        self.TODO("Show plugin selection")
 
 
     def showLoggerWindow(self):
@@ -244,11 +249,8 @@ class MainWin(QtGui.QMainWindow, Ui_MainWindow):
             menuText = "Show Logger"
 
         self.actionShowLogger.setText(
-            QtGui.QApplication.translate("MainWindow", menuText, None, QtGui.QApplication.UnicodeUTF8))
-
-        # TODO implement the logger filter,
-        #      as defined per the checkboxes in the LoggerWidget.
-
+            QtGui.QApplication.translate(
+                "MainWindow", menuText, None, QtGui.QApplication.UnicodeUTF8))
 
     def loggerVisibilityChanged(self):
         pass
@@ -257,4 +259,9 @@ class MainWin(QtGui.QMainWindow, Ui_MainWindow):
     def showSettingsDialog(self, settingsTab=0):
         self.settingsDialog.tabWidget.setCurrentIndex(settingsTab)
         self.settingsDialog.exec_()
-        pass
+
+    def TODO(self, msg):
+        """
+        Helper method for logging TODO messages to the Logger widget
+        """
+        self.__logger.debug("TODO: %s: %s" % (msg, self.__class__))

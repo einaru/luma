@@ -25,16 +25,17 @@
 Luma cross-platform startup script
 """
 
+import logging
 import os
 import platform
+import traceback
+import StringIO
 import sys
-import logging
 
 from PyQt4 import QtGui, QtCore
 
 from base.backend.Config import Config
 from base.gui.MainWin import MainWin
-from base.utils.gui.LoggerWidget import LoggerWidget
 from base.utils.backend.LumaLogHandler import LumaLogHandler
 from splashscreen import SplashScreen
 
@@ -45,52 +46,48 @@ def startApplication(argv):
     First we must determine what platform we're running on. Making sure we 
     follow the platform convention for configuration files and directories, 
     """
-    
-    app = QtGui.QApplication(argv)
-    
-#    splash = SplashScreen()
-#    splash.show()
-#    import time
-#    time.sleep(1)
-    
-    # DEVELOPMENT SPECIFICS
-    
-    configPrefix = getConfigPrefix()
 
-    print "DEBUG::config folder=%s" % configPrefix
-    # TODO Write the rest of the startup script.
-    
-    config = Config(configPrefix, os.path.join(os.getcwd(), 'i18n'))
-    
-    
-    mainWin = MainWin(config)
-    
+    app = QtGui.QApplication(argv)
+
     l = logging.getLogger("base")
-    l.setLevel(logging.DEBUG)  
-    
+    l.setLevel(logging.DEBUG)
+
+    splash = SplashScreen()
+    splash.show()
+
+    # DEVELOPMENT SPECIFICS
+
+    configPrefix = getConfigPrefix()
+    config = Config(configPrefix, os.path.join(os.getcwd(), 'i18n'))
+
+    mainWin = MainWin(config)
+
     # Log to the loggerwidget
     l.addHandler(LumaLogHandler(mainWin.loggerWidget))
-    
+
+    msg = "Config files will be saved in %s" % configPrefix
+    l.info(msg)
+
     #app.setOrganizationName("Luma")
     #app.setApplicationName("Luma")
     #s = QtCore.QSettings()
     #s.setValue("rofl","rofl-settings :O")
     #print s.value("rofl",":(").toString()    
-    
+
     QtCore.QObject.connect(app, QtCore.SIGNAL('lastWindowClosed()'), mainWin.close)
 
     mainWin.loadPlugins()
-    
-    screen = QtGui.QDesktopWidget().screenGeometry()
-    size =  mainWin.geometry()
-    mainWin.move((screen.width()-size.width())/2, (screen.height()-size.height())/2)
-    
-    mainWin.show()
- 
-#    splash.finish(mainWin)
 
-    #sys.excepthook = unhandledException
-    
+    screen = QtGui.QDesktopWidget().screenGeometry()
+    size = mainWin.geometry()
+    mainWin.move((screen.width() - size.width()) / 2, (screen.height() - size.height()) / 2)
+
+    mainWin.show()
+
+    splash.finish(mainWin)
+
+    sys.excepthook = unhandledException
+
     sys.exit(app.exec_())
 
 
@@ -109,8 +106,8 @@ def getConfigPrefix():
     If it is not found it will be created. Either way the path will be returned.
     """
     configPrefix = ""
-    _platform = platform.system()
-    if _platform == "Linux":
+    __platform = platform.system()
+    if __platform == "Linux":
         """
         Best practise config storage on Linux:
         ~/.config/luma
@@ -123,14 +120,14 @@ def getConfigPrefix():
             pass
         finally:
             configPrefix = os.path.join(os.environ['HOME'], '.config', 'luma')
-    elif _platform == "Darwin":
+    elif __platform == "Darwin":
         """
         Best practise config storage on Mac OS:
         http://developer.apple.com/tools/installerpolicy.html
         ~/Library/Application Support/luma
         """
         configPrefix = os.path.join(os.environ['HOME'], 'Library', 'Application Support', 'luma')
-    elif _platform == "Windows":
+    elif __platform == "Windows":
         """
         Best practise config storage on Windows:
         C:\Users\<USERNAME>\Application Data\luma
@@ -145,7 +142,8 @@ def getConfigPrefix():
     if not os.path.exists(configPrefix):
         try:
             #os.mkdir(configPrefix)
-            print "TODO::os.mkdir(%s)" % (configPrefix)
+            logger = logging.getLogger(__name__)
+            logger.debug("TODO: os.mkdir(%s)" % (configPrefix))
         except (IOError, OSError):
             # TODO Do some logging. We should load the application, but 
             #      provide information to user that no settings will be 
@@ -160,9 +158,17 @@ def unhandledException(eType, eValue, eTraceback):
     """
     UnhandledException handler
     """
-    # TODO Take a look at the <reporoot>/tags/Luma2.4/src/bin/luma file
-    print "unhandled exception"
-    print eType, eValue, eTraceback
+    tmp = StringIO.StringIO()
+    traceback.print_tb(eTraceback, None, tmp)
+    error = """[Unhandled Exception] 
+This is most likely a bug. In order to fix this, 
+please send an email with the following text to:
+<a href="mailto:luma-users@lists.sourceforge.net>luma-users@lists.sourceforge.net</a>
+>>>
+[%s] Reason:\n%s\n%s
+<<<""" % (tmp.getvalue(), str(eType), str(eValue))
+    logger = logging.getLogger(__name__)
+    logger.error(error)
 
 if __name__ == "__main__":
     startApplication(sys.argv)

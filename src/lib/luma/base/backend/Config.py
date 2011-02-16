@@ -21,6 +21,7 @@ import os
 import ConfigParser
 
 from base.backend.LanguageHandler import LanguageHandler
+import logging
 
 class Config(object):
     """
@@ -40,6 +41,8 @@ class Config(object):
             "__language" : "en"
         }
     }
+
+    __logger = logging.getLogger(__name__)
 
     def __init__(self, configPrefix, i18nPath):
         """
@@ -80,13 +83,17 @@ class Config(object):
         cp.set(self.__sectionI18n, 'language', self.__language)
 
         try:
-            with open(os.path.join(self.__configPrefix, 'luma.cfg'), 'w') as cfg:
-                #cp.write(cfg)
-                print "TODO:%s:saveSettings(%s)" % (self.__class__, cfg)
-        except IOError:
+            configFile = os.path.join(self.__configPrefix, self.__configFile)
+#            with open(os.path.join(configFile), 'w') as cfg:
+#                cp.write(cfg)
+            todo = "TODO: Save Settings: %s" % self.__class__
+            self.__logger.debug(todo)
+
+        except IOError, ioe:
             # TODO Do some logging. 
             #      Most Likely it's a file permission issue.
-            print "Error saving config file: %s" % cfg
+            error = 'Unable to save config file:%s\n%s' % (configFile, ioe)
+            self.__logger.error(error)
 
 
     def loadSettings(self):
@@ -98,7 +105,8 @@ class Config(object):
         if os.path.isfile(os.path.join(cfgFullPath)):
             cp.read(cfgFullPath)
         else:
-            print "DEBUG:%s:No read acces on %s" % (self.__class__, cfgFullPath)
+            msg = "No Read access on %s\n%s" % (cfgFullPath, self.__class__)
+            self.__logger.debug(msg)
             return
 
         self.__width = cp.getint(self.__width, 'width')
@@ -182,9 +190,11 @@ class Config(object):
     @language.setter
     def language(self, language):
         self.__language = language
-    
+
     @property
     def plugins(self):
+        # TODO This is just temoporary, until we implement the actual 
+        #      plugin loading code
         return [ "Adress book",
                  "Admin utils",
                  "Browser",

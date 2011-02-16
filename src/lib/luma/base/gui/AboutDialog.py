@@ -34,13 +34,9 @@ class AboutDialog(QDialog, Ui_AboutDialog):
         license = QDialog()
         Ui_AboutLicense().setupUi(license)
         license.exec_()
-        print "GPL"
 
 
     def showCredits(self):
         credits = QDialog()
         Ui_AboutCredits().setupUi(credits)
         credits.exec_()
-        print "Credits"
-
-
