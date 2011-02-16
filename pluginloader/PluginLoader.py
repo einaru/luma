@@ -89,7 +89,7 @@ class PluginLoader(object):
             #look for directories
             for x in listdir(self._pluginsBaseDir):
                 xPath = path.join(self._pluginsBaseDir, x)
-                print xPath
+                
                 if path.isdir(xPath):
                     tmpList.append(x)
             
