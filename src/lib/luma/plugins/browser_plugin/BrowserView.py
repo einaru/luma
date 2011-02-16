@@ -10,13 +10,13 @@
 
 from PyQt4 import QtCore, QtGui
 
-import environment
+#import environment
 from base.backend.ServerList import ServerList
 from model.ldaptreemodel import LDAPTreeItemModel, LDAPItemModel
 
 class BrowserView(QtGui.QWidget):
 
-    def __init__(self, parent=None):
+    def __init__(self, parent=None, configPrefix = None):
         QtGui.QWidget.__init__(self, parent)
 
         self.setObjectName("PLUGIN_BROWSER")
@@ -32,7 +32,7 @@ class BrowserView(QtGui.QWidget):
         self.connect(self.entryList, QtCore.SIGNAL("clicked(const QModelIndex &)"), self.initEntryView)
         self.mainLayout.addWidget(self.splitter)
 
-        self.serverList = ServerList()
+        self.serverList = ServerList(configPrefix)
         self.serverList.readServerList()
 
         self.initView(parent)

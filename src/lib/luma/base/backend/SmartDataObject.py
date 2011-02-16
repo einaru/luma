@@ -49,7 +49,8 @@ class SmartDataObject (object):
         self.serverMeta = serverMeta
         
         # Set schema for current server
-        self.serverSchema = ObjectClassAttributeInfo(self.serverMeta)
+        # TODO: should not be None 
+        self.serverSchema = ObjectClassAttributeInfo(None)
         
         #self.checkIntegrity()
         

@@ -231,10 +231,10 @@ class LDAPTreeItemModel(QtCore.QAbstractItemModel):
         return 1
 
     def populateModel(self, serverList):
-        self.rootItem = ServerTreeItem([QtCore.QVariant("asdf")])
+        self.rootItem = ServerTreeItem([QtCore.QVariant("Overskrift")])
         self.rootItem.populated = 1
 
-        for server in serverList.serverList:
+        for server in serverList.getTable():
             tmp = ServerTreeItem([server.name], server, self.rootItem)
             self.rootItem.appendChild(tmp)
 

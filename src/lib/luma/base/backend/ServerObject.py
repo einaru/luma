@@ -14,7 +14,7 @@ class ServerAuthMethod:
     SASL_LOGIN = 5
     SASL_PLAIN = 7 
     
-class ServerCheckSertificate:
+class ServerCheckCertificate:
     Never = 0
     Allow = 1
     Try = 2

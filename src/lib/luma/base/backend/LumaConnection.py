@@ -313,25 +313,25 @@ class LumaConnection(object):
         return workerThread
         
     # Internal helper functions with semi self explaining names
-    def _ignore_cert(self, serverMeta):
-        return LumaConnection._certMap.has_key(serverMeta.name)
-    def _override_pwd(self, serverMeta):
-        return LumaConnection._passwordMap.has_key(serverMeta.name)
+    def _ignore_cert(self, serverObject):
+        return LumaConnection._certMap.has_key(serverObject.name)
+    def _override_pwd(self, serverObject):
+        return LumaConnection._passwordMap.has_key(serverObject.name)
     def _cert_error(self, workerThread):
         # With SSL enabled, we get a SERVER_DOWN on wrong certificate
         # With TLS enabled, we get a CONNECT_ERROR on wrong certificate
         # Notice however that server error can be raised on other issues as well
         cert_error = False
-        if workerThread.serverMeta.encryptionMethod == 'SSL':
+        if workerThread.serverObject.encryptionMethod == ServerEncryptionMethod.SSL:
             cert_error = isinstance(workerThread.exceptionObject, ldap.SERVER_DOWN)
-        if workerThread.serverMeta.encryptionMethod == "TLS":
+        if workerThread.serverObject.encryptionMethod == ServerEncryptionMethod.TLS:
             cert_error = isinstance(workerThread.exceptionObject, ldap.CONNECT_ERROR)
         return cert_error
     def _invalid_pwd(self, workerThread):
         return isinstance(workerThread.exceptionObject, ldap.INVALID_CREDENTIALS)
     def _blank_pwd(self, workerThread):
         # UNWILLING_TO_PERFORM on bind usaually means trying to bind with blank password
-        return workerThread.serverMeta.bindPassword == "" and \
+        return workerThread.serverObject.bindPassword == "" and \
                 isinstance(workerThread.exceptionObject, ldap.UNWILLING_TO_PERFORM)
 
 ###############################################################################
@@ -538,10 +538,10 @@ class WorkerThreadModify(threading.Thread):
 
 class WorkerThreadBind(threading.Thread):
     
-    def __init__(self, serverMeta):
+    def __init__(self, serverObject):
         threading.Thread.__init__(self)
         self.ldapServerObject = None
-        self.serverObject = serverMeta
+        self.serverObject = serverObject
         
         self.FINISHED = False
         self.result = False
@@ -580,7 +580,7 @@ class WorkerThreadBind(threading.Thread):
                 credVal = self.serverObject.bindPassword
                 
             url = ldapurl.LDAPUrl(urlscheme=urlschemeVal, 
-                hostport = self.serverObject.host + ":" + str(self.serverObject.port),
+                hostport = self.serverObject.hostname + ":" + str(self.serverObject.port),
                 dn = self.serverObject.baseDN, who = whoVal,
                 cred = credVal)
             
@@ -599,7 +599,7 @@ class WorkerThreadBind(threading.Thread):
                     self.logger.error(message)
                     
             
-            if self.serverObject.encryptionMethod == ServerEncryptionMethod.TSL:
+            if self.serverObject.encryptionMethod == ServerEncryptionMethod.TLS:
                 self.ldapServerObject.start_tls_s()
             
             # Enable Alias support
@@ -637,10 +637,10 @@ class WorkerThreadBind(threading.Thread):
                 try:
                     if "EXTERNAL" == sasl_mech:
                         #url = ldapurl.LDAPUrl(urlscheme="ldapi", 
-                        #    hostport = self.serverObject.host.replace("/", "%2f"),
+                        #    hostport = self.serverObject.hostname.replace("/", "%2f"),
                         #    dn = self.serverObject.baseDN)
                             
-                        url = "ldapi://" + self.serverObject.host.replace("/", "%2F").replace(",", "%2C")
+                        url = "ldapi://" + self.serverObject.hostname.replace("/", "%2F").replace(",", "%2C")
             
                         #self.ldapServerObject = ldap.initialize(url.initializeUrl())
                         self.ldapServerObject = ldap.initialize(url)
