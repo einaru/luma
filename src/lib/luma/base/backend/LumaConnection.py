@@ -21,9 +21,10 @@ except ImportError, e:
 import threading
 import copy
 import time
+import logging
 
 #import environment
-from base.backend.ServerObject import ServerObject
+from base.backend.ServerObject import ServerObject, ServerCheckCertificate, ServerEncryptionMethod, ServerAuthMethod
 from base.backend.SmartDataObject import SmartDataObject
 """
 from base.backend.SmartDataObject import SmartDataObject
@@ -68,51 +69,15 @@ class LumaConnection(object):
         # This way we have better control over bind, unbind and open sockets.
         self.ldapServerObject = None
         
-    def getBaseDNList(self):
-        """
-         urlschemeVal = "ldap"
-            if self.serverObject.encryptionMethod == "SSL":
-                urlschemeVal = "ldaps"
-              
-            whoVal = None
-            credVal = None
-            if not (self.serverObject.bindAnon):
-                whoVal = self.serverObject.bindDN
-                credVal = self.serverObject.bindPassword
-                
-            url = ldapurl.LDAPUrl(urlscheme=urlschemeVal, 
-                hostport = self.serverObject.host + ":" + str(self.serverObject.port),
-                dn = self.serverObject.baseDN, who = whoVal,
-                cred = credVal)
-            
-            self.ldapServerObject = ldap.initialize(url.initializeUrl())
-            """
-        hostport = self.serverObject.hostname+":"+str(self.serverObject.port)
-        print hostport
-        urlschemeVal = "ldap"
-        url = ldapurl.LDAPUrl(hostport = hostport,urlscheme=urlschemeVal)
-        conn = ldap.initialize(url.initializeUrl())
-        conn.simple_bind_s()
-        
-        #OpenLDAP only
-        resultList = conn.search_s("",ldap.SCOPE_BASE,"(objectClass=*)",["namingContexts"])
-        smartList = []
-        for r in resultList:
-            smartList.append(SmartDataObject(r, None))#self.serverObject))
-            
-        resultItem = smartList[0]
-        if resultItem.hasAttribute('namingContexts'):
-            dnList = resultItem.getAttributeValueList('namingContexts')
-        return dnList
-'''
-LUMA 2.4 METHODS
+        self.logger = logging.getLogger(__name__)
+
 
     def search(self, base="", scope=ldap.SCOPE_BASE, filter="(objectClass=*)", attrList=None, attrsonly=0, sizelimit=0):
         """
         Aynchronous search.
         """
         
-        environment.setBusy(True)
+        #environment.setBusy(True)
         
         workerThread = WorkerThreadSearch(self.ldapServerObject)
         workerThread.base = base
@@ -124,7 +89,7 @@ LUMA 2.4 METHODS
         workerThread.start()
         
         while not workerThread.FINISHED:
-            environment.updateUI()
+            #environment.updateUI()
             time.sleep(0.05)
             
         if None == workerThread.exceptionObject:
@@ -134,9 +99,9 @@ LUMA 2.4 METHODS
                 ldapObject = SmartDataObject(copyItem, self.serverObject)
                 resultList.append(ldapObject)
                 
-            environment.setBusy(False)
+            #environment.setBusy(False)
             message = "Received " + str(len(resultList)) + " item(s) from LDAP search operation."
-            environment.logMessage(LogObject("Info", message))
+            self.logger.info(message)
             return (True, resultList, None)
         else:
             # Did we hit the server side search limit?
@@ -146,15 +111,15 @@ LUMA 2.4 METHODS
                     copyItem = copy.deepcopy(x)
                     resultList.append(SmartDataObject(copyItem, self.serverObject))
                 
-                environment.setBusy(False)
-                environment.displaySizeLimitWarning()
+                #environment.setBusy(False)
+                #environment.displaySizeLimitWarning()
                 message = "Received " + str(len(resultList)) + " item(s) from LDAP search operation. But server side search limit has been reached."
-                environment.logMessage(LogObject("Info", message))
+                self.logger.info(message)
                 return (True, resultList, None)
             else:
-                environment.setBusy(False)
+                #environment.setBusy(False)
                 message = "LDAP search operation failed. Reason:\n" + str(workerThread.exceptionObject)
-                environment.logMessage(LogObject("Error", message))
+                self.logger.error(message)
                 return (False, None, workerThread.exceptionObject)
             
             
@@ -168,26 +133,26 @@ LUMA 2.4 METHODS
         if dnDelete == None:
             return
         
-        environment.setBusy(True)
+        #environment.setBusy(True)
         
         workerThread = WorkerThreadDelete(self.ldapServerObject)
         workerThread.dnDelete = dnDelete
         workerThread.start()
         
         while not workerThread.FINISHED:
-            environment.updateUI()
+            #environment.updateUI()
             time.sleep(0.01)
             
-        environment.setBusy(False)
+        #environment.setBusy(False)
         
         if None == workerThread.exceptionObject:
             message = "LDAP object " + dnDelete + " successfully deleted."
-            environment.logMessage(LogObject("Info", message))
+            self.logger.info(message)
             return (True, None)
         else:
             message = "LDAP object " + dnDelete + " could not be deleted. Reason:\n"
             message = message + str(workerThread.exceptionObject)
-            environment.logMessage(LogObject("Error", message))
+            self.logger.error(message)
             return (False, workerThread.exceptionObject)
             
 ###############################################################################
@@ -199,7 +164,7 @@ LUMA 2.4 METHODS
         if modlist == None:
             return False
         
-        environment.setBusy(True)
+        #environment.setBusy(True)
         
         workerThread = WorkerThreadModify(self.ldapServerObject)
         workerThread.dn = dn
@@ -207,19 +172,19 @@ LUMA 2.4 METHODS
         workerThread.start()
         
         while not workerThread.FINISHED:
-            environment.updateUI()
+            #environment.updateUI()
             time.sleep(0.05)
             
-        environment.setBusy(False)
+        #environment.setBusy(False)
         
         if None == workerThread.exceptionObject:
             message = "LDAP object " + dn + " successfully modified."
-            environment.logMessage(LogObject("Info", message))
+            self.logger.info(message)
             return (True, None)
         else:
             message = "LDAP object " + dn + " could not be modified. Reason:\n"
             message = message + str(workerThread.exceptionObject)
-            environment.logMessage(LogObject("Error", message))
+            self.logger.error(message)
             return (False, workerThread.exceptionObject)
 
 ###############################################################################
@@ -229,7 +194,7 @@ LUMA 2.4 METHODS
         """
         
         
-        environment.setBusy(True)
+        #environment.setBusy(True)
         
         workerThread = WorkerThreadAdd(self.ldapServerObject)
         workerThread.dn = dn
@@ -237,19 +202,19 @@ LUMA 2.4 METHODS
         workerThread.start()
         
         while not workerThread.FINISHED:
-            environment.updateUI()
+            #environment.updateUI()
             time.sleep(0.05)
         
-        environment.setBusy(False)
+        #environment.setBusy(False)
         
         if None == workerThread.exceptionObject:
             message = "LDAP object " + dn + " successfully added."
-            environment.logMessage(LogObject("Info", message))
+            self.logger.info(message)
             return (True, None)
         else:
             message = "LDAP object " + dn + " could not be added. Reason:\n"
             message = message + str(workerThread.exceptionObject)
-            environment.logMessage(LogObject("Error", message))
+            self.logger.error(message)
             return (False, workerThread.exceptionObject)
         
 ###############################################################################
@@ -267,7 +232,7 @@ LUMA 2.4 METHODS
         else:
             message = "LDAP object " + dataObject.getDN() + " could not be updated. The entry values could not be retrieved from the server. Reason:\n"
             message = message + str(workerThread.exceptionObject)
-            environment.logMessage(LogObject("Error", message))
+            self.logger.error(message)
             return (False, exceptionObject)
         
 ###############################################################################
@@ -302,7 +267,7 @@ LUMA 2.4 METHODS
                         None)
                 accepted = 3
 
-            environment.setBusy(False)
+            #environment.setBusy(False)
             dialog.exec_loop()
             if dialog.result() == accepted:
                 self.serverObject.checkServerCertificate = u"never"
@@ -312,7 +277,7 @@ LUMA 2.4 METHODS
         # Prompt for password on _invalid_pwd or _blank_pwd
         if self._invalid_pwd(workerThread) or self._blank_pwd(workerThread):
             dialog = PromptPasswordDialog()
-            environment.setBusy(False)
+            #environment.setBusy(False)
             dialog.exec_loop()
             if dialog.result() == 1:
                 self.serverObject.bindPassword = unicode(dialog.passwordEdit.text())
@@ -321,13 +286,13 @@ LUMA 2.4 METHODS
 
         if workerThread.exceptionObject == None:
             message = "LDAP bind operation successful."
-            environment.logMessage(LogObject("Info", message))
+            self.logger.info(message)
             self.ldapServerObject = workerThread.ldapServerObject
             return (True, None)
         else:
             message = "LDAP bind operation not successful. Reason:\n"
             message += str(workerThread.exceptionObject)
-            environment.logMessage(LogObject("Error", message))
+            self.logger.error(message)
             # If credentials are still wrong after prompting, remove from passwordmap
             if self._override_pwd(self.serverObject) and self._invalid_pwd(workerThread):
                 LumaConnection._passwordMap.pop(self.serverObject.name)
@@ -343,7 +308,7 @@ LUMA 2.4 METHODS
         workerThread.start()
         
         while not workerThread.FINISHED:
-            environment.updateUI()
+            #environment.updateUI()
             time.sleep(0.05)
         return workerThread
         
@@ -381,19 +346,19 @@ LUMA 2.4 METHODS
         except ldap.LDAPError, e:
             message = "LDAP unbind operation not successful. Reason:\n"
             message = message + str(e)
-            environment.logMessage(LogObject("Error", message))
+            self.logger.error(message)
             
 ###############################################################################
 
     # FIXME: implement better error handling for function which call 
     # getBaseDNList. Error handling inside is okay.
     def getBaseDNList(self):
-        environment.setBusy(True)
+        #environment.setBusy(True)
 
         bindSuccess, exceptionObject = self.bind()
             
         if not bindSuccess:
-            environment.setBusy(False)
+            #environment.setBusy(False)
             return (False, None, exceptionObject)
             
         dnList = None
@@ -414,7 +379,7 @@ LUMA 2.4 METHODS
                     dnList = resultItem.getAttributeValueList('dsaName')
             
         # Univertity of Michigan aka umich
-        # not jet tested
+        # not yet tested
         if None == dnList:
             success, resultList, exceptionObject = self.search("", ldap.SCOPE_BASE, "(objectClass=*)",['database'])
             if success and (len(resultList) > 0):
@@ -442,15 +407,15 @@ LUMA 2.4 METHODS
                     
                     
         self.unbind()
-        environment.setBusy(False)
+        #environment.setBusy(False)
             
         if None == dnList:
             message = "Could not retrieve Base DNs from server. Unknown server type."
-            environment.logMessage(LogObject("Error", message))
+            self.logger.error(message)
             return (False, None, "Unknown server type")
         else:
             message = "Base DNs successfully retrieved from server."
-            environment.logMessage(LogObject("Info", message))
+            self.logger.info(message)
             return (True, dnList, None)
             
 ###############################################################################
@@ -586,26 +551,26 @@ class WorkerThreadBind(threading.Thread):
         try:
             # Check whether we want to validate the server certificate.
             validateMethod = ldap.OPT_X_TLS_DEMAND
-            if self.serverObject.checkServerCertificate == u"demand":
+            if self.serverObject.checkServerCertificate == ServerCheckCertificate.Demand:
                 validateMethod = ldap.OPT_X_TLS_DEMAND
-            elif self.serverObject.checkServerCertificate == u"never":
+            elif self.serverObject.checkServerCertificate == ServerCheckCertificate.Never:
                 validateMethod = ldap.OPT_X_TLS_NEVER
-            elif self.serverObject.checkServerCertificate == u"try":
+            elif self.serverObject.checkServerCertificate == ServerCheckCertificate.Try:
                 validateMethod = ldap.OPT_X_TLS_TRY
-            elif self.serverObject.checkServerCertificate == u"allow":
+            elif self.serverObject.checkServerCertificate == ServerCheckCertificate.Allow:
                 validateMethod = ldap.OPT_X_TLS_ALLOW
             
             encryption = False
-            if self.serverObject.encryptionMethod == "SSL":
+            if self.serverObject.encryptionMethod == ServerEncryptionMethod.SSL:
                 encryption = True
-            elif self.serverObject.encryptionMethod == "TLS":
+            elif self.serverObject.encryptionMethod == ServerEncryptionMethod.TLS:
                 encryption = True
             
             if encryption:
                 ldap.set_option(ldap.OPT_X_TLS_REQUIRE_CERT, validateMethod)
 
             urlschemeVal = "ldap"
-            if self.serverObject.encryptionMethod == "SSL":
+            if self.serverObject.encryptionMethod == ServerEncryptionMethod.SSL:
                 urlschemeVal = "ldaps"
               
             whoVal = None
@@ -631,10 +596,10 @@ class WorkerThreadBind(threading.Thread):
                     message = "Certificate error. Reason:\n"
                     message += "Could not set client certificate and certificate keyfile. "
                     message += str(e)
-                    environment.logMessage(LogObject("Error,",message))
+                    self.logger.error(message)
                     
             
-            if self.serverObject.encryptionMethod == "TLS":
+            if self.serverObject.encryptionMethod == ServerEncryptionMethod.TSL:
                 self.ldapServerObject.start_tls_s()
             
             # Enable Alias support
@@ -643,26 +608,26 @@ class WorkerThreadBind(threading.Thread):
             
             if self.serverObject.bindAnon:
                 self.ldapServerObject.simple_bind()
-            elif self.serverObject.authMethod == u"Simple":
+            elif self.serverObject.authMethod == ServerAuthMethod.Simple:
                 self.ldapServerObject.simple_bind_s(whoVal, credVal)
-            elif u"SASL" in self.serverObject.authMethod:
+            elif not self.serverObject.authMethod == ServerAuthMethod.Simple:
                 sasl_cb_value_dict = {}
-                if not u"GSSAPI" in self.serverObject.authMethod:
+                if not ServerAuthMethod.SASL_GSSAPI == self.serverObject.authMethod:
                     sasl_cb_value_dict[ldap.sasl.CB_AUTHNAME] = whoVal
                     sasl_cb_value_dict[ldap.sasl.CB_PASS] = credVal
                     
                 sasl_mech = None
-                if self.serverObject.authMethod == u"SASL Plain":
+                if self.serverObject.authMethod == ServerAuthMethod.SASL_PLAIN:
                     sasl_mech = "PLAIN"
-                elif self.serverObject.authMethod == u"SASL CRAM-MD5":
+                elif self.serverObject.authMethod == ServerAuthMethod.SASL_CRAM_MD5:
                     sasl_mech = "CRAM-MD5"
-                elif self.serverObject.authMethod == u"SASL DIGEST-MD5":
+                elif self.serverObject.authMethod == ServerAuthMethod.SASL_DIGEST_MD5:
                     sasl_mech = "DIGEST-MD5"
-                elif self.serverObject.authMethod == u"SASL Login":
+                elif self.serverObject.authMethod == ServerAuthMethod.SASL_LOGIN:
                     sasl_mech = "LOGIN"
-                elif self.serverObject.authMethod == u"SASL GSSAPI":
+                elif self.serverObject.authMethod == ServerAuthMethod.SASL_GSSAPI:
                     sasl_mech = "GSSAPI"
-                elif self.serverObject.authMethod == u"SASL EXTERNAL":
+                elif self.serverObject.authMethod == ServerAuthMethod.SASL_EXTERNAL:
                     sasl_mech = "EXTERNAL"
                     
                 sasl_auth = ldap.sasl.sasl(sasl_cb_value_dict,sasl_mech)
@@ -699,5 +664,3 @@ class WorkerThreadBind(threading.Thread):
             self.result = False
             self.exceptionObject = e
             self.FINISHED = True
-            
-'''
