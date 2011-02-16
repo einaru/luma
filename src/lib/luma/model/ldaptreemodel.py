@@ -13,10 +13,16 @@ from base.backend.LumaConnection import LumaConnection
 class LDAPItemModel(QtCore.QAbstractTableModel):
     def __init__(self, index, parent=None):
         QtCore.QAbstractTableModel.__init__(self, parent)
-
+        
         self.index = index
         self.itemData = []
-
+        
+        if isinstance(index.internalPointer(),ServerTreeItem):
+            """
+            Servers doesn't have a smartObject
+            """
+            return
+        
         data = index.internalPointer().smartObject().data
         for key in data.keys():
             for value in data[key]:
@@ -66,7 +72,7 @@ class LDAPTreeItem(object):
 
     def columnCount(self):
         return 1
-
+    
     def data(self, column):
         return self.itemData.getPrettyRDN()
 
@@ -179,8 +185,8 @@ class LDAPTreeItemModel(QtCore.QAbstractItemModel):
         return QtCore.QVariant()
 
     def index(self, row, column, parent):
-        if row < 0 or column < 0 or row >= self.rowCount(parent) or column >= self.columnCount(parent):
-            return QtCore.QModelIndex()
+        #if row < 0 or column < 0 or row >= self.rowCount(parent) or column >= self.columnCount(parent):
+         #   return QtCore.QModelIndex()
 
         if not parent.isValid():
             parentItem = self.rootItem
@@ -206,6 +212,7 @@ class LDAPTreeItemModel(QtCore.QAbstractItemModel):
         return self.createIndex(parentItem.row(), 0, parentItem)
 
     def rowCount(self, parent):
+        print "rowCount",parent.data().toPyObject()
         if parent.column() > 0:
             return 0
 
@@ -216,10 +223,18 @@ class LDAPTreeItemModel(QtCore.QAbstractItemModel):
 
         if not parentItem.populated:
             parentItem.populateItem()
+            self.emit(QtCore.SIGNAL("layoutChanged()"))
 
         return parentItem.childCount()
-
+        
     def hasChildren(self, parent):
+        """
+        Used to avoid (expensive) calls to rowCount()
+        to find out it an item has children.
+        
+        Return True unless it's known to not have children
+        (ie. it has already been loaded).
+        """
         if not parent.isValid():
             parentItem = self.rootItem
         else:
@@ -227,11 +242,12 @@ class LDAPTreeItemModel(QtCore.QAbstractItemModel):
 
         if parentItem.populated:
             return parentItem.childCount() > 0
-
+        
+        # True
         return 1
-
+    
     def populateModel(self, serverList):
-        self.rootItem = ServerTreeItem([QtCore.QVariant("Overskrift")])
+        self.rootItem = ServerTreeItem([QtCore.QVariant("Servere")])
         self.rootItem.populated = 1
 
         for server in serverList.getTable():
