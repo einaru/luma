@@ -36,6 +36,33 @@ class BrowserView(QtGui.QWidget):
         self.serverList.readServerList()
 
         self.initView(parent)
+        
+        self.entryList.setContextMenuPolicy(QtCore.Qt.CustomContextMenu)
+        self.connect(self.entryList, QtCore.SIGNAL("customContextMenuRequested(QPoint)"), self.rightClick)
+        
+    def rightClick(self, point):
+        clickedIndex = self.entryList.indexAt(point)
+        clickedItem = clickedIndex.internalPointer()
+        
+        if clickedItem != None:
+            menu = QtGui.QMenu()
+            menu.addAction("Sup?")
+            menu.exec_(self.entryList.mapToGlobal(point))
+        
+        """
+        MyDerivedQTreeView->setContextMenuPolicy(Qt::CustomContextMenu);  
+connect(MyDerivedQTreeView,   
+        SIGNAL(customContextMenuRequested(const QPoint &)),   
+        MyDerivedQAbstractItemModel(),   
+        SLOT(contextualMenu(const QPoint &)));
+
+void MyDerivedQAbstractItemModel::contextualMenu(const QPoint& point)
+{
+    QMenu *menu = new QMenu;
+    menu->addAction(QString("Test Item"), this, SLOT(test_slot()));
+    menu->exec(MyDerivedQTreeView->mapToGlobal(point));
+}
+"""
 
 
 ###############################################################################
