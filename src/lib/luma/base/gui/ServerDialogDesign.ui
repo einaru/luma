@@ -328,10 +328,7 @@
              </sizepolicy>
             </property>
             <property name="text">
-             <string>&amp;Add</string>
-            </property>
-            <property name="shortcut">
-             <string>Alt+A</string>
+             <string>Add</string>
             </property>
             <property name="autoDefault">
              <bool>false</bool>
@@ -350,10 +347,7 @@
              </sizepolicy>
             </property>
             <property name="text">
-             <string>&amp;Delete</string>
-            </property>
-            <property name="shortcut">
-             <string>Alt+D</string>
+             <string>Delete</string>
             </property>
             <property name="autoDefault">
              <bool>false</bool>
@@ -1221,10 +1215,10 @@ p, li { white-space: pre-wrap; }
         </sizepolicy>
        </property>
        <property name="text">
-        <string>&amp;Apply</string>
+        <string>&amp;Save</string>
        </property>
        <property name="shortcut">
-        <string>Alt+A</string>
+        <string>Alt+S</string>
        </property>
        <property name="autoDefault">
         <bool>false</bool>
@@ -1279,6 +1273,8 @@ p, li { white-space: pre-wrap; }
   <tabstop>cancelButton</tabstop>
  </tabstops>
  <resources>
+  <include location="../../luma.qrc"/>
+  <include location="../../luma.qrc"/>
   <include location="../../luma.qrc"/>
   <include location="../../luma.qrc"/>
   <include location="../../luma.qrc"/>

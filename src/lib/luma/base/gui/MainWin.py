@@ -54,7 +54,8 @@ class MainWin(QtGui.QMainWindow, Ui_MainWindow):
 #        self.languageHandler = LanguageHandler(self.debug_lang_path)
         self.config = configObject
 
-        self.serverDialog = None
+        self.serverList = ServerList("/tmp")
+        
         self.languageHandler = self.config.languageHandler
 
         self.setupUi(self)
@@ -182,10 +183,12 @@ class MainWin(QtGui.QMainWindow, Ui_MainWindow):
         """
         Display the server dialog editor
         """
-        if self.serverDialog == None:
-            self.serverDialog = ServerDialog(ServerList("/tmp"))
-        r = self.serverDialog.exec_()
-
+        serverDialog = ServerDialog(self.serverList)
+        r = serverDialog.exec_()
+        
+        if r:
+            self.serverList = serverDialog.getResult()
+        
         self.__logger.debug("ServerDialog return code=%s" % r)
         #if r == OK:
         #    self.serverList = self.serverDialog.getList()

@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'ServerDialogDesign.ui'
 #
-# Created: Mon Feb 14 18:37:53 2011
+# Created: Thu Feb 17 11:40:40 2011
 #      by: PyQt4 UI code generator 4.8.2
 #
 # WARNING! All changes made in this file will be lost!
@@ -550,10 +550,8 @@ class Ui_ServerDialogDesign(object):
         self.aliasBox.setText(QtGui.QApplication.translate("ServerDialogDesign", "Follow aliases", None, QtGui.QApplication.UnicodeUTF8))
         self.baseBox.setText(QtGui.QApplication.translate("ServerDialogDesign", "Use Base DNs provided by the server", None, QtGui.QApplication.UnicodeUTF8))
         self.textLabel2.setText(QtGui.QApplication.translate("ServerDialogDesign", "Custom:", None, QtGui.QApplication.UnicodeUTF8))
-        self.addBaseDNButton.setText(QtGui.QApplication.translate("ServerDialogDesign", "&Add", None, QtGui.QApplication.UnicodeUTF8))
-        self.addBaseDNButton.setShortcut(QtGui.QApplication.translate("ServerDialogDesign", "Alt+A", None, QtGui.QApplication.UnicodeUTF8))
-        self.deleteBaseDNButton.setText(QtGui.QApplication.translate("ServerDialogDesign", "&Delete", None, QtGui.QApplication.UnicodeUTF8))
-        self.deleteBaseDNButton.setShortcut(QtGui.QApplication.translate("ServerDialogDesign", "Alt+D", None, QtGui.QApplication.UnicodeUTF8))
+        self.addBaseDNButton.setText(QtGui.QApplication.translate("ServerDialogDesign", "Add", None, QtGui.QApplication.UnicodeUTF8))
+        self.deleteBaseDNButton.setText(QtGui.QApplication.translate("ServerDialogDesign", "Delete", None, QtGui.QApplication.UnicodeUTF8))
         self.textLabel1_2.setText(QtGui.QApplication.translate("ServerDialogDesign", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
 "p, li { white-space: pre-wrap; }\n"
@@ -595,11 +593,13 @@ class Ui_ServerDialogDesign(object):
         self.serverWidget.setTabText(self.serverWidget.indexOf(self.tab_2), QtGui.QApplication.translate("ServerDialogDesign", "Security", None, QtGui.QApplication.UnicodeUTF8))
         self.okButton.setText(QtGui.QApplication.translate("ServerDialogDesign", "&OK", None, QtGui.QApplication.UnicodeUTF8))
         self.okButton.setShortcut(QtGui.QApplication.translate("ServerDialogDesign", "Alt+O", None, QtGui.QApplication.UnicodeUTF8))
-        self.applyButton.setText(QtGui.QApplication.translate("ServerDialogDesign", "&Apply", None, QtGui.QApplication.UnicodeUTF8))
-        self.applyButton.setShortcut(QtGui.QApplication.translate("ServerDialogDesign", "Alt+A", None, QtGui.QApplication.UnicodeUTF8))
+        self.applyButton.setText(QtGui.QApplication.translate("ServerDialogDesign", "&Save", None, QtGui.QApplication.UnicodeUTF8))
+        self.applyButton.setShortcut(QtGui.QApplication.translate("ServerDialogDesign", "Alt+S", None, QtGui.QApplication.UnicodeUTF8))
         self.cancelButton.setText(QtGui.QApplication.translate("ServerDialogDesign", "&Cancel", None, QtGui.QApplication.UnicodeUTF8))
         self.cancelButton.setShortcut(QtGui.QApplication.translate("ServerDialogDesign", "Alt+C", None, QtGui.QApplication.UnicodeUTF8))
 
+import luma_rc
+import luma_rc
 import luma_rc
 import luma_rc
 import luma_rc
