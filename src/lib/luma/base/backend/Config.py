@@ -23,6 +23,7 @@ import ConfigParser
 from base.backend.LanguageHandler import LanguageHandler
 import logging
 
+@DeprecationWarning
 class Config(object):
     """
     Config object providing acess to the Luma application settings.

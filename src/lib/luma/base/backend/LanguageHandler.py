@@ -17,9 +17,12 @@
 # with Luma; if not, write to the Free Software Foundation, Inc., 
 # 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA
 
-from os import listdir
 import os
+from os import listdir
 
+from base.utils import Paths
+
+@DeprecationWarning
 class LanguageHandler(object):
     """
     Helper class providing useful functionality for handling available
@@ -53,7 +56,8 @@ class LanguageHandler(object):
         """
 #        global isoCodeMappings
 #        global __availableLanguages
-        self.__translationPath = path
+        paths = Paths()
+        self.__translationPath = paths.i18nPath
         # Must be put in manually because there exists no translation file
         self.__availableLanguages['en'] = 'English'
         if os.path.isdir(self.__translationPath):

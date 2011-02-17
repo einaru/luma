@@ -23,73 +23,77 @@ from random import randint
 from PyQt4 import QtGui
 from PyQt4.QtCore import Qt
 
+from base.backend.Settings import Settings
 from base.gui.SettingsDialogDesign import Ui_SettingsDialog
+from base.utils import LanguageHandler
 
 class SettingsDialog(QtGui.QDialog, Ui_SettingsDialog):
     """
     The settings dialog class
     """
-    
+
     __logger = logging.getLogger(__name__)
-    
-    def __init__(self, configObject):
+
+    def __init__(self):
         QtGui.QDialog.__init__(self)
         self.setupUi(self)
-        self.configObject = configObject
-        
-        """
-        Initialize general settings
-        """
-        languageHandler = self.configObject.languageHandler
-        i = 0
-        for key, value in languageHandler.availableLanguages.iteritems():
-            self.languageSelector.addItem('%s [%s]' % (value, key))
-            if key == self.configObject.language:
-                self.languageSelector.setCurrentIndex(i)
-            i = i + 1
-        
+        self.__loadSettings()
+
+
+    def __loadSettings(self):
         """
         Initialize logger settings
         """
-        self.showErrors.setChecked(self.configObject.showErrors)
-        self.showDebug.setChecked(self.configObject.showDebug)
-        self.showInfo.setChecked(self.configObject.showInfo)
-        
-        """
-        Initialize plugin settings
-        """
-        
-        model = QtGui.QStandardItemModel()
+        settings = Settings()
+        # TODO remove Config dependecies
+        #languageHandler = LanguageHandler()
+        languageHandler = LanguageHandler()
+        i = 0
+        for key, value in languageHandler.availableLanguages.iteritems():
+            self.languageSelector.addItem('%s [%s]' % (value[0], key))
+            if key == settings.language:
+                self.languageSelector.setCurrentIndex(i)
+            i = i + 1
 
-        for plugin in self.configObject.plugins:                   
+        self.showLoggerOnStart.setChecked(settings.showLoggerOnStart)
+        self.showErrors.setChecked(settings.showErrors)
+        self.showDebug.setChecked(settings.showDebug)
+        self.showInfo.setChecked(settings.showInfo)
+
+        """ Loads the plugin settings """
+        model = QtGui.QStandardItemModel()
+        for plugin in settings.plugins:
             item = QtGui.QStandardItem(plugin)
             check = Qt.Checked if randint(0, 1) == 1 else Qt.Unchecked
             item.setCheckState(check)
             item.setCheckable(True)
             model.appendRow(item)
-        
+
         self.pluginListView.setModel(model)
-        
-    
+
+
     def saveSettings(self):
         """
         Save the user settings.
         """
-        self.configObject.showErrors = self.showErrors.isChecked()
-        self.configObject.showDebug = self.showDebug.isChecked()
-        self.configObject.showInfo = self.showInfo.isChecked()
-        
-        text = self.languageSelector.itemText(self.languageSelector.currentIndex())
-        
+        settings = Settings()
+        # Testing with QSettings
+        settings.showLoggerOnStart = self.showLoggerOnStart.isChecked()
+        settings.showErrors = self.showErrors.isChecked()
+        settings.showDebug = self.showDebug.isChecked()
+        settings.showInfo = self.showInfo.isChecked()
+
         # TODO Not pretty! 
         #      Find a more elegenta way of stripping the language code
+        text = self.languageSelector.itemText(self.languageSelector.currentIndex())
         langCode = text[-4:].replace('[', '').replace(']', '')
-        self.configObject.language = langCode
-        
-        self.configObject.saveSettings()
-        self.close()
-    
-    
+
+        settings.language = langCode
+
+        #self.close()
+        QtGui.QDialog.accept(self)
+
+
     def cancelSettings(self):
         """
         Cancel the settings session. Ensure that no changed settings are
@@ -97,4 +101,6 @@ class SettingsDialog(QtGui.QDialog, Ui_SettingsDialog):
         """
         todo = "[TODO] Cancel settings dialog routine: %s" % self.__class__
         self.__logger.debug(todo)
+        self.__loadSettings()
         self.close()
+        #QtGui.QDialog.reject(self)

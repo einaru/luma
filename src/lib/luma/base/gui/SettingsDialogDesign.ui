@@ -98,6 +98,33 @@
         </widget>
        </item>
        <item>
+        <widget class="QGroupBox" name="mainWinGroup">
+         <property name="title">
+          <string>Main window</string>
+         </property>
+         <layout class="QVBoxLayout" name="verticalLayout_5">
+          <item>
+           <layout class="QFormLayout" name="formLayout">
+            <item row="0" column="0">
+             <widget class="QCheckBox" name="saveWindowSize">
+              <property name="text">
+               <string>Save window size</string>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="0">
+             <widget class="QCheckBox" name="saveWindowPosition">
+              <property name="text">
+               <string>Save window position</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
         <spacer name="spacer_2">
          <property name="orientation">
           <enum>Qt::Vertical</enum>
@@ -110,6 +137,30 @@
          </property>
         </spacer>
        </item>
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout_5">
+         <item>
+          <spacer name="horizontalSpacer_3">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>40</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item>
+          <widget class="QCheckBox" name="saveOnClose">
+           <property name="text">
+            <string>Auto save settings on application close</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
       </layout>
      </widget>
      <widget class="QWidget" name="tabLogging">
@@ -120,7 +171,7 @@
        <item>
         <layout class="QHBoxLayout" name="horizontalLayout_3">
          <item>
-          <widget class="QCheckBox" name="showloggerOnStart">
+          <widget class="QCheckBox" name="showLoggerOnStart">
            <property name="text">
             <string>Show the Logger on startup</string>
            </property>
@@ -241,7 +292,7 @@
  <tabstops>
   <tabstop>tabWidget</tabstop>
   <tabstop>languageSelector</tabstop>
-  <tabstop>showloggerOnStart</tabstop>
+  <tabstop>showLoggerOnStart</tabstop>
   <tabstop>showErrors</tabstop>
   <tabstop>showDebug</tabstop>
   <tabstop>showInfo</tabstop>

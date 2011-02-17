@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'MainWinDesign.ui'
 #
-# Created: Mon Feb 14 17:11:15 2011
+# Created: Thu Feb 17 20:47:58 2011
 #      by: PyQt4 UI code generator 4.7.4
 #
 # WARNING! All changes made in this file will be lost!
@@ -37,6 +37,9 @@ class Ui_MainWindow(object):
         self.menuHelp = QtGui.QMenu(self.menubar)
         self.menuHelp.setObjectName("menuHelp")
         MainWindow.setMenuBar(self.menubar)
+        self.statusBar = QtGui.QStatusBar(MainWindow)
+        self.statusBar.setObjectName("statusBar")
+        MainWindow.setStatusBar(self.statusBar)
         self.actionShowLogger = QtGui.QAction(MainWindow)
         self.actionShowLogger.setObjectName("actionShowLogger")
         self.actionQuit = QtGui.QAction(MainWindow)

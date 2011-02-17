@@ -22,7 +22,11 @@
 
 import logging
 
-from PyQt4 import QtCore, QtGui
+from PyQt4.QtCore import QTranslator, QObject, Qt, SIGNAL
+from PyQt4.QtGui import QApplication, QMainWindow, QToolBar, QListWidget
+from PyQt4.QtGui import QDockWidget, QPushButton, QLabel, QFont
+from PyQt4.QtGui import qApp, QActionGroup, QAction
+
 
 from base.gui.MainWinDesign import Ui_MainWindow
 from base.utils.gui.LoggerWidget import LoggerWidget
@@ -30,9 +34,11 @@ from base.gui.AboutDialog import AboutDialog
 from base.gui.ServerDialog import ServerDialog
 from base.backend.ServerList import ServerList
 from base.gui.SettingsDialog import SettingsDialog
+from base.backend.Settings import Settings
+from base.utils import LanguageHandler
 
 
-class MainWin(QtGui.QMainWindow, Ui_MainWindow):
+class MainWin(QMainWindow, Ui_MainWindow):
     """
     The Luma Main Window
     """
@@ -41,88 +47,76 @@ class MainWin(QtGui.QMainWindow, Ui_MainWindow):
 
     __logger = logging.getLogger(__name__)
 
-    def __init__(self, configObject, parent=None):
+    def __init__(self, parent=None):
         """
         The constructor loads the generated ui code and setup the rest
         of the widgets. It assures that the configuration values concerning
         the GUI are loaded and set correctly; language settings, etc.
         """
-        QtGui.QMainWindow.__init__(self)
-
-        # TODO We use 
-#        self.debug_lang_path = "/mnt/debris/devel/git/src/lib/luma/i18n"
-#        self.languageHandler = LanguageHandler(self.debug_lang_path)
-        self.config = configObject
+        QMainWindow.__init__(self)
 
         self.serverDialog = None
-        self.languageHandler = self.config.languageHandler
+        self.settingsDialog = None
+        self.aboutDialog = None
+        self.languageHandler = LanguageHandler()
 
         self.setupUi(self)
         self.__generateLanguageMenu()
 
-        """
-        Setup the plugin toolbar:
-        """
-        self.pluginToolBar = QtGui.QToolBar(self)
+        """  Setup the plugin toolbar """
+        self.pluginToolBar = QToolBar(self)
         self.pluginToolBar.setObjectName("toolBar")
         self.addToolBar(self.pluginToolBar)
 
-        self.pluginLabel = QtGui.QLabel(self.pluginToolBar)
-        self.pluginLabel.setAlignment(QtCore.Qt.AlignLeft | QtCore.Qt.AlignVCenter)
+        self.pluginLabel = QLabel(self.pluginToolBar)
+        self.pluginLabel.setAlignment(Qt.AlignLeft | Qt.AlignVCenter)
         self.pluginLabel.setText(self.trUtf8("Plugin Name"))
-        font = QtGui.QFont()
+        font = QFont()
         font.setBold(True)
         self.pluginLabel.setFont(font)
         self.pluginLabel.setMargin(5)
         self.pluginToolBar.addWidget(self.pluginLabel)
 
-        self.pluginButton = QtGui.QPushButton(self.pluginToolBar)
+        self.pluginButton = QPushButton(self.pluginToolBar)
         self.pluginButton.setText(self.trUtf8("Choose plugin"))
         self.pluginToolBar.addWidget(self.pluginButton)
-        self.connect(self.pluginButton, QtCore.SIGNAL("clicked()"), self.showPluginSelection)
+        self.connect(self.pluginButton, SIGNAL("clicked()"),
+                     self.showPluginSelection)
 
-        self.pluginBox = QtGui.QListWidget(None)
+        self.pluginBox = QListWidget(None)
         font = self.pluginBox.font()
         font.setPointSize(font.pointSize() + 4)
         self.pluginBox.setFont(font)
-        self.connect(self.pluginBox, QtCore.SIGNAL("itemClicked(QListWidgetItem*)"), self.pluginSelected)
+        self.connect(self.pluginBox, SIGNAL("itemClicked(QListWidgetItem*)"),
+                     self.pluginSelected)
         self.pluginBoxId = self.mainStack.addWidget(self.pluginBox)
 
-        """
-        Setup the Logger Window
-        """
-        self.loggerDockWindow = QtGui.QDockWidget("Logger", self)
+        """  Setup the Logger Window """
+        self.loggerDockWindow = QDockWidget(self)
+        self.loggerDockWindow.setWindowTitle(
+            QApplication.translate(
+                "MainWindow", "Logger", None, QApplication.UnicodeUTF8))
         self.loggerWidget = LoggerWidget(self.loggerDockWindow)
-        self.connect(self.loggerDockWindow, QtCore.SIGNAL("visibilityChanged(bool)"), self.loggerVisibilityChanged)
-
         self.loggerDockWindow.setWidget(self.loggerWidget)
-        self.addDockWidget(QtCore.Qt.BottomDockWidgetArea, self.loggerDockWindow)
-
-        logMenuText = "Hide Logger"
-
-        if not self.DEVEL:
-            self.loggerDockWindow.hide()
-            logMenuText = "Show Logger"
-
-        self.actionShowLogger.setText(
-            QtGui.QApplication.translate(
-                "MainWindow", logMenuText, None, QtGui.QApplication.UnicodeUTF8))
+        self.addDockWidget(Qt.BottomDockWidgetArea, self.loggerDockWindow)
 
         # TODO Setup the rest of the defaults in the Main Window:
         #      fix translation stuff, 
         #      load configured language
         #      load the plugin list
+        self.__loadSettings()
         self.__installLanguageTranslator()
+        if self.DEVEL:
+            self.actionEditServerList.setStatusTip(
+                u'Final GUI polishing by Granbusk\u2122 Polishing')
 
-
-        self.settingsDialog = SettingsDialog(self.config)
 
 
     def __installLanguageTranslator(self):
         """
         Load the preferred application language. Defaults to english.
         """
-        QtGui.qApp.installTranslator(QtCore.QTranslator())
+        qApp.installTranslator(QTranslator())
         self.languageChange()
 
 
@@ -131,29 +125,90 @@ class MainWin(QtGui.QMainWindow, Ui_MainWindow):
         Helper method for generating available language translations in
         the menu
         """
-        langGroup = QtGui.QActionGroup(self)
+        settings = Settings()
+        lang = settings.language
+        self.menuLangGroup = QActionGroup(self)
+        languages = self.languageHandler.availableLanguages
 
-        for key, value in self.languageHandler.availableLanguages.iteritems():
-            action = QtGui.QAction(self)
-            action.setObjectName("language_%s" % key)
+        for key, value in languages.iteritems():
+            action = QAction(self)
+            action.setObjectName('language_%s' % key)
             action.setCheckable(True)
-            if key == "en":
+            if key == lang:
                 action.setChecked(True)
-            action.setActionGroup(langGroup)
-            action.setText(QtGui.QApplication.translate("MainWindow", value, None, QtGui.QApplication.UnicodeUTF8))
-            QtCore.QObject.connect(action, QtCore.SIGNAL("triggered()"), self.languageChanged)
+            action.setActionGroup(self.menuLangGroup)
+            action.setText(value[0])
+            action.setStatusTip(value[1])
+            QObject.connect(action, SIGNAL("triggered()"), self.languageChanged)
             self.menuLanguage.addAction(action)
 
 
-    def languageChanged(self):
+    def __writeSettings(self):
+        """
+        Writes the MainWindow spesific settings to disk
+        """
+        settings = Settings()
+        settings.size = self.size()
+        settings.posistion = self.pos()
+
+
+    def __loadSettings(self):
+        """
+        Load the application settings from disk
+        """
+        settings = Settings()
+        """ Main window """
+        self.resize(settings.size)
+        self.move(settings.posistion)
+
+        """ Logger widget """
+        self.loggerWidget.errorBox.setChecked(settings.showErrors)
+        self.loggerWidget.debugBox.setChecked(settings.showDebug)
+        self.loggerWidget.infoBox.setChecked(settings.showInfo)
+
+        if self.DEVEL or settings.showLoggerOnStart:
+            self.loggerWidget.show()
+            text = "Hide"
+        else:
+            self.loggerWidget.hide()
+            text = "Show"
+
+        self.__translate(self.actionShowLogger, "%s logger" % text)
+
+
+    def __translate(self, widget, text):
+        """
+        Helper method for setting ut translation support for widgets
+        not created by .ui files 
+        """
+        widget.setText(QApplication.translate(
+            "MainWindow", text, None, QApplication.UnicodeUTF8))
+
+
+    def close(self):
+        """
+        Quit the application.
+        Leaving the main Qt execution loop. We must unload plugins and do
+        necessary Qt cleanup, before tearing the application down.
+        """
+        self.saveOnClose = True
+        if self.saveOnClose:
+            self.__writeSettings()
+        qApp.quit()
+
+
+    def languageChanged(self, *isoCode):
         """
         Slot for the changing the application language
         """
         action = self.sender()
-        langFile = "luma_%s.qm" % action.objectName()[-2:]
-        QtGui.qApp.translator = QtCore.QTranslator()
-        QtGui.qApp.translator.load("%s/%s" % (self.config.i18nPath, langFile))
-        QtGui.qApp.installTranslator(QtGui.qApp.translator)
+        if not isoCode:
+            isoCode = action.objectName()[-2:]
+        qmFile = self.languageHandler.getQmFile(isoCode)
+        self.__logger.info('Loading translation file: %s' % qmFile)
+        qApp.translator = QTranslator()
+        qApp.translator.load(qmFile)
+        qApp.installTranslator(qApp.translator)
         self.languageChange()
 
 
@@ -167,15 +222,6 @@ class MainWin(QtGui.QMainWindow, Ui_MainWindow):
         #      method
         self.about = AboutDialog()
         self.about.exec_()
-
-
-    def close(self):
-        """
-        Quit the application.
-        Leaving the main Qt execution loop. We must unload plugins and do
-        necessary Qt cleanup, before tearing the application down.
-        """
-        QtGui.qApp.quit()
 
 
     def showServerEditor(self):
@@ -248,17 +294,43 @@ class MainWin(QtGui.QMainWindow, Ui_MainWindow):
             self.loggerDockWindow.hide()
             menuText = "Show Logger"
 
-        self.actionShowLogger.setText(
-            QtGui.QApplication.translate(
-                "MainWindow", menuText, None, QtGui.QApplication.UnicodeUTF8))
+        self.actionShowLogger.setText(QApplication.translate(
+                "MainWindow", menuText, None, QApplication.UnicodeUTF8))
 
     def loggerVisibilityChanged(self):
         pass
 
 
     def showSettingsDialog(self, settingsTab=0):
+        """
+        Displays the settings dialog, enabling the user to configure
+        some application settings.
+        
+        We do some post-work depending on the dialog return value.
+        """
+        if self.settingsDialog == None:
+            self.settingsDialog = SettingsDialog()
+
         self.settingsDialog.tabWidget.setCurrentIndex(settingsTab)
-        self.settingsDialog.exec_()
+
+        if self.settingsDialog.exec_():
+            """ If the settingsDialog returns 1, the Ok button is clicked
+            and we try to load the new translation if it is changed.
+            """
+            settings = Settings()
+            currentLang = self.menuLangGroup.checkedAction().objectName()[-2:]
+            # TODO We might want to move this piece of code somewhere else,
+            #      or even better write some code code to replace it :)
+            if settings.language != currentLang:
+                currentLang = settings.language
+                self.languageChanged(currentLang)
+                for a in self.menuLangGroup.actions():
+                    lang = a.objectName()[-2:]
+                    if lang == currentLang:
+                        a.setChecked(True)
+            # We load all settings anew
+            self.__loadSettings()
+
 
     def TODO(self, msg):
         """
