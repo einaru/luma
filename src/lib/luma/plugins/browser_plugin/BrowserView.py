@@ -9,10 +9,12 @@
 ###########################################################################
 
 from PyQt4 import QtCore, QtGui
+import modeltest
 
 #import environment
 from base.backend.ServerList import ServerList
 from model.ldaptreemodel import LDAPTreeItemModel, LDAPItemModel
+#from model.ldaptreemodel import LDAPTreeItemModel
 
 class BrowserView(QtGui.QWidget):
 
@@ -55,6 +57,10 @@ class BrowserView(QtGui.QWidget):
     def initView(self, parent=None):
         self.ldaptreemodel = LDAPTreeItemModel(parent)
         self.ldaptreemodel.populateModel(self.serverList)
+
+        #OBS TODO 
+        #self.modelTest = modeltest.ModelTest(self.ldaptreemodel, parent)
+        
         #self.ldaptreemodel.populateSingleModel(self.serverList.getServerObject("abakus"))
         self.connect(self.ldaptreemodel, QtCore.SIGNAL("dataChanged"), self.entryList.dataChanged)
 

@@ -17,10 +17,13 @@ class LDAPItemModel(QtCore.QAbstractTableModel):
         self.index = index
         self.itemData = []
         
-        if isinstance(index.internalPointer(),ServerTreeItem):
+        if isinstance(index.internalPointer(), ServerTreeItem):
             """
-            Servers doesn't have a smartObject
+            Servers doesn't have a smartObjects but rather serverObjects
             """
+            serverObject = index.internalPointer().serverObject()
+            for x in serverObject.getList():
+                self.itemData.append([x])
             return
         
         data = index.internalPointer().smartObject().data
@@ -32,15 +35,15 @@ class LDAPItemModel(QtCore.QAbstractTableModel):
         return len(self.itemData)
 
     def columnCount(self, parent):
-        return 2
+        return len(self.itemData[0])
 
     def data(self, index, role):
         if not index.isValid():
-            return QtCore.QVariant()
+            return None
         elif role != QtCore.Qt.DisplayRole:
-            return QtCore.QVariant()
+            return None
 
-        return QtCore.QVariant(self.itemData[index.row()][index.column()])
+        return self.itemData[index.row()][index.column()]
 
     def flags(self, index):
         if not index.isValid():
@@ -52,14 +55,29 @@ class LDAPItemModel(QtCore.QAbstractTableModel):
         return QtCore.Qt.ItemIsEnabled | QtCore.Qt.ItemIsSelectable
 
 class LDAPTreeItem(object):
-
+    """
+    The items in the model containing
+    the smartObject.
+    
+    Remembers the server the object belongs to.
+    """
+    
     def __init__(self, data, serverParent, parent=None):
         self.parentItem = parent
         self.serverParent = serverParent
         self.itemData = data
         self.childItems = []
         self.populated = 0
-
+        
+    """
+    # Not applicable
+    def setData(self, column, value):
+        if column < 0 or column >= len(self.itemData):
+            return False
+        self.itemData[column] = value
+        return True
+    """
+    
     def appendChild(self, item):
         self.populated = 1
         self.childItems.append(item)
@@ -71,6 +89,7 @@ class LDAPTreeItem(object):
         return len(self.childItems)
 
     def columnCount(self):
+        # itemData = the smartObject
         return 1
     
     def data(self, column):
@@ -103,13 +122,19 @@ class LDAPTreeItem(object):
         self.populated = 1
 
 class ServerTreeItem(object):
-
+    """
+    The item representing the server in the model.
+    """
+    
     def __init__(self, data, serverMeta=None, parent=None):
         self.itemData = data
         self.serverMeta = serverMeta
         self.parentItem = parent
         self.childItems = []
         self.populated = 0
+        
+    def serverObject(self):
+        return self.serverMeta
 
     def appendChild(self, item):
         self.populated = 1
@@ -136,13 +161,14 @@ class ServerTreeItem(object):
 
         return 0
 
-    def smartObject(self):
-        return self.itemData[1]
-
     def populateItem(self):
         self.connection = LumaConnection(self.serverMeta)
         success, tmpList, exceptionObject = self.connection.getBaseDNList()
-
+        
+        if not success:
+            print "FAILED GETBASEDN",exceptionObject
+            return
+        
         for base in tmpList:
             success, resultList, exceptionObject = self.connection.search(base, \
                     scope=ldap.SCOPE_BASE,filter='(objectclass=*)', sizelimit=1)
@@ -163,18 +189,19 @@ class LDAPTreeItemModel(QtCore.QAbstractItemModel):
 
     def data(self, index, role):
         if not index.isValid():
-            return QtCore.QVariant()
+            return None
 
         if role != QtCore.Qt.DisplayRole:
-            return QtCore.QVariant()
+            return None
 
         item = index.internalPointer()
 
-        return QtCore.QVariant(item.data(index.column()))
+        return item.data(index.column())
 
     def flags(self, index):
         if not index.isValid():
-            return QtCore.Qt.ItemIsEnabled
+            #return QtCore.Qt.ItemIsEnabled
+            return QtCore.Qt.NoItemFlags
 
         return QtCore.Qt.ItemIsEnabled | QtCore.Qt.ItemIsSelectable
 
@@ -182,12 +209,16 @@ class LDAPTreeItemModel(QtCore.QAbstractItemModel):
         if orientation == QtCore.Qt.Horizontal and role == QtCore.Qt.DisplayRole:
             return self.rootItem.data(section)
 
-        return QtCore.QVariant()
+        return None
 
     def index(self, row, column, parent):
         #if row < 0 or column < 0 or row >= self.rowCount(parent) or column >= self.columnCount(parent):
-         #   return QtCore.QModelIndex()
-
+        #    return QtCore.QModelIndex()
+        
+        #Does this work like/better than the above?
+        if not self.hasIndex(row, column, parent):
+            return QtCore.QModelIndex()
+        
         if not parent.isValid():
             parentItem = self.rootItem
         else:
@@ -206,13 +237,12 @@ class LDAPTreeItemModel(QtCore.QAbstractItemModel):
         childItem = index.internalPointer()
         parentItem = childItem.parent()
 
-        if parentItem == self.rootItem:
+        if not parentItem or parentItem == self.rootItem:
             return QtCore.QModelIndex()
 
         return self.createIndex(parentItem.row(), 0, parentItem)
 
     def rowCount(self, parent):
-        print "rowCount",parent.data().toPyObject()
         if parent.column() > 0:
             return 0
 
@@ -226,7 +256,7 @@ class LDAPTreeItemModel(QtCore.QAbstractItemModel):
             self.emit(QtCore.SIGNAL("layoutChanged()"))
 
         return parentItem.childCount()
-        
+  
     def hasChildren(self, parent):
         """
         Used to avoid (expensive) calls to rowCount()
@@ -258,6 +288,10 @@ class LDAPTreeItemModel(QtCore.QAbstractItemModel):
         self.rootItem = ServerTreeItem([QtCore.QVariant(server.name)], server)
 
     def setData(self, index, value, role):
-        index.internalPointer().itemData[0] = "test"
-        self.emit(QtCore.SIGNAL("dataChanged"), index, index)
-
+        if not index.isValid():
+            return False
+        item = index.internalPointer()
+        result = item.setData(index.column(), value)
+        if result:
+            self.emit(QtCore.SIGNAL("dataChanged"), index, index)
+        return result

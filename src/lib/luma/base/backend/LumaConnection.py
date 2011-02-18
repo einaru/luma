@@ -359,6 +359,7 @@ class LumaConnection(object):
             
         if not bindSuccess:
             #environment.setBusy(False)
+            print "Bind failed"
             return (False, None, exceptionObject)
             
         dnList = None
@@ -546,6 +547,7 @@ class WorkerThreadBind(threading.Thread):
         self.FINISHED = False
         self.result = False
         self.exceptionObject = None
+        self.logger = logging.getLogger(__name__)
         
     def run(self):
         try:
@@ -583,6 +585,8 @@ class WorkerThreadBind(threading.Thread):
                 hostport = self.serverObject.hostname + ":" + str(self.serverObject.port),
                 dn = self.serverObject.baseDN, who = whoVal,
                 cred = credVal)
+            
+            self.logger.debug("ldap.initialize() with url: "+url.initializeUrl())
             
             self.ldapServerObject = ldap.initialize(url.initializeUrl())
             self.ldapServerObject.protocol_version = 3
