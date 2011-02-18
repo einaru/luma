@@ -49,21 +49,6 @@ class BrowserView(QtGui.QWidget):
             menu.addAction("Sup?")
             menu.exec_(self.entryList.mapToGlobal(point))
         
-        """
-        MyDerivedQTreeView->setContextMenuPolicy(Qt::CustomContextMenu);  
-connect(MyDerivedQTreeView,   
-        SIGNAL(customContextMenuRequested(const QPoint &)),   
-        MyDerivedQAbstractItemModel(),   
-        SLOT(contextualMenu(const QPoint &)));
-
-void MyDerivedQAbstractItemModel::contextualMenu(const QPoint& point)
-{
-    QMenu *menu = new QMenu;
-    menu->addAction(QString("Test Item"), this, SLOT(test_slot()));
-    menu->exec(MyDerivedQTreeView->mapToGlobal(point));
-}
-"""
-
 
 ###############################################################################
     
