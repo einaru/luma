@@ -12,7 +12,8 @@ from PyQt4 import QtCore, QtGui
 
 #import environment
 from base.backend.ServerList import ServerList
-from model.ldaptreemodel import LDAPTreeItemModel, LDAPItemModel
+from model.LDAPTreeItemModel import LDAPTreeItemModel
+from model.LDAPEntryModel import LDAPEntryModel
 
 class BrowserView(QtGui.QWidget):
 
@@ -45,8 +46,7 @@ class BrowserView(QtGui.QWidget):
         clickedItem = clickedIndex.internalPointer()
         
         if clickedItem != None:
-            menu = QtGui.QMenu()
-            menu.addAction("Sup?")
+            menu = clickedItem.getContextMenu(QtGui.QMenu())
             menu.exec_(self.entryList.mapToGlobal(point))
         
         """
@@ -77,7 +77,7 @@ void MyDerivedQAbstractItemModel::contextualMenu(const QPoint& point)
 
     def initEntryView(self, index):
         print "initEntryView"
-        self.model = LDAPItemModel(index)
+        self.model = LDAPEntryModel(index)
         self.entryView.setModel(self.model)
 
 ###############################################################################
