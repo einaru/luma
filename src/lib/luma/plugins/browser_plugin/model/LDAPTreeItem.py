@@ -1,14 +1,8 @@
-'''
-Created on 18. feb. 2011
 
-@author: Simen
-'''
 
 import ldap
 from AbstractLDAPTreeItem import AbstractLDAPTreeItem
-from PyQt4 import QtCore
-from PyQt4.QtCore import Qt
-from PyQt4.QtGui import qApp, QCursor, QMessageBox
+from PyQt4.QtGui import QMessageBox, QInputDialog
 
 class LDAPTreeItem(AbstractLDAPTreeItem):
     
@@ -18,6 +12,8 @@ class LDAPTreeItem(AbstractLDAPTreeItem):
         AbstractLDAPTreeItem.__init__(self, parent)
         self.serverParent = serverParent
         self.itemData = data
+        
+        self.limit = 0
         self.isWorking.connect(self.serverParent.isWorking)
         self.doneWorking.connect(self.serverParent.doneWorking)
 
@@ -44,6 +40,16 @@ class LDAPTreeItem(AbstractLDAPTreeItem):
         if not success:
             self.displayError(exceptionObject)
             return
+        
+        print "limit",self.limit
+        
+        if self.limit > 0 and len(resultList) > self.limit:
+            print "over limit",self.limit
+            self.childItems = []
+            for i in xrange(self.limit):
+                self.childItems.append(LDAPTreeItem(resultList[i], self.serverParent, self))
+            self.populated = 1
+            return
               
         if len(resultList) > self.ASK_TO_DISPLAY:
             """
@@ -64,10 +70,19 @@ class LDAPTreeItem(AbstractLDAPTreeItem):
         self.childItems = [LDAPTreeItem(x, self.serverParent, self) for x in resultList]
         self.populated = 1
     
-    def lol(self):
-        print "lol"
-        
+    def setLimit(self):
+        r = QInputDialog.getInt(None, "Limit","Enter the limit:",self.limit)
+        if r[1] == True:
+            self.limit = r[0]
+            self.populateItem()
+    
+    def setFilter(self):
+        #Todo
+        self.populateItem()
+    
     def getContextMenu(self, menu):
         menu.addAction("Reload", self.populateItem)
+        menu.addAction("Set search limit", self.setLimit)
+        menu.addAction("Set search filter", self.setFilter)
         return menu
     

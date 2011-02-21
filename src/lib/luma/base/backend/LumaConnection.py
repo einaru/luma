@@ -95,7 +95,7 @@ class LumaConnection(object):
         self.logger.debug("Entering waiting-for-search-finished-loop.")
         while not workerThread.FINISHED:
             qApp.processEvents()
-            time.sleep(0.1)        
+            time.sleep(0.05)
         self.logger.debug("Exited waiting-for-search-finished-loop.")
 
         if None == workerThread.exceptionObject:
