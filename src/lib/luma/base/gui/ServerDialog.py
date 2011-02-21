@@ -114,8 +114,9 @@ class ServerDialog(QDialog, Ui_ServerDialogDesign):
         
     def setBaseDN(self):
         serverIndex = self.serverListView.selectedIndexes()
-        index = self.slm.createIndex(serverIndex[0].row(), 5)
-        self.serverDelegate.setEditorData(self.baseDNWidget, index)
+        if len(serverIndex) > 0:
+            index = self.slm.createIndex(serverIndex[0].row(), 5)
+            self.serverDelegate.setEditorData(self.baseDNWidget, index)
 
     def addServer(self):
         """

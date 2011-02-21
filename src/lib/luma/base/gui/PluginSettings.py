@@ -25,9 +25,10 @@ class PluginSettings(QDialog, Ui_PluginsDialog):
         If no such widget is made for the plugin, the box will be empty.
         """
         plugin = self._model.itemFromIndex(index).plugin
-        widget = plugin.getPluginWidget(self.stackedWidget)
-        self.stackedWidget.addWidget(widget)
-        self.stackedWidget.setCurrentWidget(widget)
+        widget = plugin.getPluginSettingsWidget(self.stackedWidget)
+        if widget is not None:
+            self.stackedWidget.addWidget(widget)
+            self.stackedWidget.setCurrentWidget(widget)
     
 ###############################################################################
         
