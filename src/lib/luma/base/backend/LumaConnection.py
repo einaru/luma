@@ -100,11 +100,12 @@ class LumaConnection(object):
 
         if None == workerThread.exceptionObject:
             resultList = []
-            for x in workerThread.result:
+            #for x in workerThread.result:
                 # Why copy? :S
                 #x = copy.deepcopy(x)
-                ldapObject = SmartDataObject(x, self.serverObject)
-                resultList.append(ldapObject)
+                #ldapObject = SmartDataObject(x, self.serverObject)
+                #resultList.append(ldapObject)
+            resultList = [SmartDataObject(x, self.serverObject) for x in workerThread.result]
             #environment.setBusy(False)
             message = "Received " + str(len(resultList)) + " item(s) from LDAP search operation."
             self.logger.info(message)
@@ -113,9 +114,11 @@ class LumaConnection(object):
             # Did we hit the server side search limit?
             if isinstance(workerThread.exceptionObject, ldap.SIZELIMIT_EXCEEDED):
                 resultList = []
-                for x in workerThread.result:
-                    copyItem = copy.deepcopy(x)
-                    resultList.append(SmartDataObject(copyItem, self.serverObject))
+                #for x in workerThread.result:
+                    #x = copy.deepcopy(x)
+                    #SmartDataObject(x, self.serverObject)
+                    #resultList.append(SmartDataObject(x, self.serverObject))
+                resultList = [SmartDataObject(x, self.serverObject) for x in resultList]
                 
                 #environment.setBusy(False)
                 #environment.displaySizeLimitWarning()
@@ -461,8 +464,9 @@ class WorkerThreadSearch(threading.Thread):
     def run(self):
         self.logger.debug("Started LDAP-search.")
         try:
+            """
             resultId = self.ldapServerObject.search_ext(self.base, self.scope, self.filter, self.attrList, self.attrsonly, sizelimit=self.sizelimit)
-            
+
             while 1:
                 # search with a 60 second timeout
                 result_type, result_data = self.ldapServerObject.result(resultId, 0, 60)
@@ -473,6 +477,8 @@ class WorkerThreadSearch(threading.Thread):
                     if result_type == ldap.RES_SEARCH_ENTRY:
                         for x in result_data:
                             self.result.append(x)
+            """
+            self.result = self.ldapServerObject.search_ext_s(self.base, self.scope, self.filter, self.attrList, self.attrsonly, sizelimit=self.sizelimit)
         except ldap.LDAPError, e:
             self.exceptionObject = e
             

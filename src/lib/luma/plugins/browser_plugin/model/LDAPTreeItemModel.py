@@ -8,13 +8,16 @@
 
 import ldap
 from ServerTreeItem import ServerTreeItem
+from RootTreeItem import RootTreeItem
 from PyQt4 import QtCore
+from PyQt4.QtCore import QAbstractItemModel
 from base.backend.LumaConnection import LumaConnection
 
-class LDAPTreeItemModel(QtCore.QAbstractItemModel):
+class LDAPTreeItemModel(QAbstractItemModel):
+       
     def __init__(self, parent=None):
         QtCore.QAbstractItemModel.__init__(self, parent)
-
+        
     def columnCount(self, parent):
         if parent.isValid():
             return parent.internalPointer().columnCount()
@@ -72,19 +75,23 @@ class LDAPTreeItemModel(QtCore.QAbstractItemModel):
         return self.createIndex(parentItem.row(), 0, parentItem)
 
     def rowCount(self, parent):
-        #print "rowCount",parent.data().toPyObject()
+        print "rowCount",parent.data().toPyObject()
         if parent.column() > 0:
+            print "IKKE GYLDIG LOL"
             return 0
 
         if not parent.isValid():
+            print "IKKE VALID LOL"
             parentItem = self.rootItem
+            return 2
         else:
             parentItem = parent.internalPointer()
 
         if not parentItem.populated:
             parentItem.populateItem()
-            self.emit(QtCore.SIGNAL("layoutChanged()"))
-
+            self.layoutChanged.emit()
+            #self.emit(QtCore.SIGNAL("layoutChanged()"))
+        
         return parentItem.childCount()
         
     def hasChildren(self, parent):
@@ -107,8 +114,7 @@ class LDAPTreeItemModel(QtCore.QAbstractItemModel):
         return 1
     
     def populateModel(self, serverList):
-        self.rootItem = ServerTreeItem([QtCore.QVariant("Servere")])
-        self.rootItem.populated = 1
+        self.rootItem = RootTreeItem(QtCore.QVariant("Servere"), self)
         
         if not len(serverList.getTable()) > 0:
             return
@@ -116,11 +122,9 @@ class LDAPTreeItemModel(QtCore.QAbstractItemModel):
         for server in serverList.getTable():
             tmp = ServerTreeItem([server.name], server, self.rootItem)
             self.rootItem.appendChild(tmp)
-
-    def populateSingleModel(self, server):
-        self.rootItem = ServerTreeItem([QtCore.QVariant(server.name)], server)
-
+    
     def setData(self, index, value, role):
         index.internalPointer().itemData[0] = "test"
-        self.emit(QtCore.SIGNAL("dataChanged"), index, index)
+        self.dataChanged.emit(index, index)
+        #self.emit(QtCore.SIGNAL("dataChanged"), index, index)
 

@@ -3,13 +3,20 @@ Created on 18. feb. 2011
 
 @author: Simen
 '''
-from PyQt4 import QtGui
+from PyQt4 import QtCore, QtGui
+from PyQt4.QtCore import QObject
 
-class AbstractLDAPTreeItem:
-
-    def __init__(self):
-        raise NotImplementedError("Should be implemented")
-
+class AbstractLDAPTreeItem(QObject):
+    
+    isWorking = QtCore.pyqtSignal()
+    doneWorking = QtCore.pyqtSignal()
+    
+    def __init__(self, parent):
+        QObject.__init__(self, parent)
+        self.childItems = []
+        self.parentItem = parent
+        self.populated = 0
+        
     def appendChild(self, item):
         self.populated = 1
         self.childItems.append(item)

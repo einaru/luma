@@ -9,6 +9,7 @@
 ###########################################################################
 
 from PyQt4 import QtCore, QtGui
+from PyQt4.QtGui import QWidget
 import modeltest
 
 #import environment
@@ -17,9 +18,9 @@ from model.LDAPTreeItemModel import LDAPTreeItemModel
 from model.LDAPEntryModel import LDAPEntryModel
 
 
-class BrowserView(QtGui.QWidget):
+class BrowserView(QWidget):
 
-    def __init__(self, parent=None, configPrefix = None):
+    def __init__(self, parent, configPrefix = None):
         QtGui.QWidget.__init__(self, parent)
 
         self.setObjectName("PLUGIN_BROWSER")
@@ -32,7 +33,9 @@ class BrowserView(QtGui.QWidget):
 
         self.entryView = QtGui.QTableView(self.splitter)
 
-        self.connect(self.entryList, QtCore.SIGNAL("clicked(const QModelIndex &)"), self.initEntryView)
+        self.entryList.clicked.connect(self.initEntryView)
+        #self.connect(self.entryList, QtCore.SIGNAL("clicked(const QModelIndex &)"), self.initEntryView)
+                
         self.mainLayout.addWidget(self.splitter)
 
         self.serverList = ServerList(configPrefix)
@@ -40,7 +43,9 @@ class BrowserView(QtGui.QWidget):
         self.initView(parent)
         
         self.entryList.setContextMenuPolicy(QtCore.Qt.CustomContextMenu)
-        self.connect(self.entryList, QtCore.SIGNAL("customContextMenuRequested(QPoint)"), self.rightClick)
+        #self.connect(self.entryList, QtCore.SIGNAL("customContextMenuRequested(QPoint)"), self.rightClick)
+        self.entryList.customContextMenuRequested.connect(self.rightClick)
+
         
     def rightClick(self, point):
         clickedIndex = self.entryList.indexAt(point)
@@ -50,28 +55,21 @@ class BrowserView(QtGui.QWidget):
             menu = clickedItem.getContextMenu(QtGui.QMenu())
             menu.exec_(self.entryList.mapToGlobal(point))
             self.entryList.model().emit(QtCore.SIGNAL("layoutChanged()"))
-        
-
-###############################################################################
     
     def initView(self, parent=None):
         self.ldaptreemodel = LDAPTreeItemModel(parent)
         self.ldaptreemodel.populateModel(self.serverList)
 
-        #OBS TODO 
-        #self.modelTest = modeltest.ModelTest(self.ldaptreemodel, parent)
-        
-        #self.ldaptreemodel.populateSingleModel(self.serverList.getServerObject("abakus"))
-        self.connect(self.ldaptreemodel, QtCore.SIGNAL("dataChanged"), self.entryList.dataChanged)
-
+        self.entryList.setUniformRowHeights(True)
         self.entryList.setModel(self.ldaptreemodel)
 
+        #self.ldaptreemodel.dataChanged.connect(self.entryList.dataChanged)
+        #self.connect(self.ldaptreemodel, QtCore.SIGNAL("dataChanged"), self.entryList.dataChanged)
+        
+
     def initEntryView(self, index):
-        print "initEntryView"
         self.model = LDAPEntryModel(index)
         self.entryView.setModel(self.model)
-
-###############################################################################
 
     def buildToolBar(self, parent):
         # FIXME: qt4 migration needed
