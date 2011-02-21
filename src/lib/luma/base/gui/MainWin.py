@@ -56,8 +56,7 @@ class MainWin(QMainWindow, Ui_MainWindow):
         the GUI are loaded and set correctly; language settings, etc.
         """
         QMainWindow.__init__(self)
-
-
+        
         self.serverDialog = None
         self.settingsDialog = None
         self.aboutDialog = None
@@ -67,7 +66,43 @@ class MainWin(QMainWindow, Ui_MainWindow):
 
         self.setupUi(self)
         self.__generateLanguageMenu()
+        
+        self.__setupPluginToolbar()
+        self.__setupLoggerWindow()
+        self.__setupPluginList()
 
+        # TODO Setup the rest of the defaults in the Main Window:
+        #      fix translation stuff, 
+        #      load configured language
+        #      load the plugin list
+        self.__loadSettings()
+        self.__installLanguageTranslator()
+        if self.DEVEL:
+            self.actionEditServerList.setStatusTip(
+                u'Final GUI polishing by Granbusk\u2122 Polishing')
+    
+    def __setupPluginList(self):
+        self.pluginDockWindow = QDockWidget(self)
+        self.pluginDockWindow.setWindowTitle(
+             QApplication.translate(
+                "MainWindow", "Plugin list", None, QApplication.UnicodeUTF8))
+        self.pluginWidget = xxx
+        self.pluginDockWindow.setWidget(self.pluginWidget) 
+        self.addDockWidget(Qt.TopDockWidgetArea, self.pluginDockWindow)
+        pass
+    
+    def __setupLoggerWindow(self):
+        """  Setup the Logger Window """
+        self.loggerDockWindow = QDockWidget(self)
+        self.loggerDockWindow.setWindowTitle(
+            QApplication.translate(
+                "MainWindow", "Logger", None, QApplication.UnicodeUTF8))
+        self.loggerWidget = LoggerWidget(self.loggerDockWindow)
+        self.loggerDockWindow.setWidget(self.loggerWidget)
+        self.addDockWidget(Qt.BottomDockWidgetArea, self.loggerDockWindow)
+        
+    
+    def __setupPluginToolbar(self):
         """  Setup the plugin toolbar """
         self.pluginToolBar = QToolBar(self)
         self.pluginToolBar.setObjectName("toolBar")
@@ -94,28 +129,7 @@ class MainWin(QMainWindow, Ui_MainWindow):
         self.pluginBox.setFont(font)
         self.connect(self.pluginBox, SIGNAL("itemClicked(QListWidgetItem*)"),
                      self.pluginSelected)
-        self.pluginBoxId = self.mainStack.addWidget(self.pluginBox)
-
-        """  Setup the Logger Window """
-        self.loggerDockWindow = QDockWidget(self)
-        self.loggerDockWindow.setWindowTitle(
-            QApplication.translate(
-                "MainWindow", "Logger", None, QApplication.UnicodeUTF8))
-        self.loggerWidget = LoggerWidget(self.loggerDockWindow)
-        self.loggerDockWindow.setWidget(self.loggerWidget)
-        self.addDockWidget(Qt.BottomDockWidgetArea, self.loggerDockWindow)
-
-        # TODO Setup the rest of the defaults in the Main Window:
-        #      fix translation stuff, 
-        #      load configured language
-        #      load the plugin list
-        self.__loadSettings()
-        self.__installLanguageTranslator()
-        if self.DEVEL:
-            self.actionEditServerList.setStatusTip(
-                u'Final GUI polishing by Granbusk\u2122 Polishing')
-
-
+        self.pluginBoxId = self.mainStack.addWidget(self.pluginBox)        
 
     def __installLanguageTranslator(self):
         """
