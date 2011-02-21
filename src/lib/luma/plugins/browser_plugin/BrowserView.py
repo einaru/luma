@@ -54,13 +54,14 @@ class BrowserView(QWidget):
         if clickedItem != None:
             menu = clickedItem.getContextMenu(QtGui.QMenu())
             menu.exec_(self.entryList.mapToGlobal(point))
-            self.entryList.model().emit(QtCore.SIGNAL("layoutChanged()"))
+            self.entryList.model().layoutChanged.emit()
+            #self.entryList.model().emit(QtCore.SIGNAL("layoutChanged()"))
     
     def initView(self, parent=None):
         self.ldaptreemodel = LDAPTreeItemModel(parent)
         self.ldaptreemodel.populateModel(self.serverList)
 
-        self.entryList.setUniformRowHeights(True)
+        self.entryList.setUniformRowHeights(True) #Major optimalization for big lists
         self.entryList.setModel(self.ldaptreemodel)
 
         #self.ldaptreemodel.dataChanged.connect(self.entryList.dataChanged)

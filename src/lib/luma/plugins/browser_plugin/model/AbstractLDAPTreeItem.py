@@ -37,7 +37,7 @@ class AbstractLDAPTreeItem(QObject):
         return 0
 
     def displayError(self, exceptionObject):
-        QtGui.QMessageBox.Information(None,"Error","Couldn't populate list.\nError was:",exceptionObject)
+        QtGui.QMessageBox.information(None,"Error","Couldn't populate list.\nError was: "+str(exceptionObject))
 
     def columnCount(self):
         raise NotImplementedError("Should be implemented")

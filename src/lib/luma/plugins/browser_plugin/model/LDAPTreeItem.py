@@ -51,9 +51,9 @@ class LDAPTreeItem(AbstractLDAPTreeItem):
             """
             svar = QMessageBox.question(None, "Got many results", "Got "+str(len(resultList))+" items. Do you want to display them all?",QMessageBox.Yes|QMessageBox.No)
             if not svar == QMessageBox.Yes:
-                for i in xrange(10):
-                    tmp = LDAPTreeItem(resultList[i], self.serverParent, self)
-                    self.appendChild(tmp)
+                self.childItems = []
+                for i in xrange(50):
+                    self.childItems.append(LDAPTreeItem(resultList[i], self.serverParent, self))
                 self.populated = 1
                 return
         """

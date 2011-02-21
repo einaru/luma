@@ -75,15 +75,12 @@ class LDAPTreeItemModel(QAbstractItemModel):
         return self.createIndex(parentItem.row(), 0, parentItem)
 
     def rowCount(self, parent):
-        print "rowCount",parent.data().toPyObject()
+        #print "rowCount",parent.data().toPyObject()
         if parent.column() > 0:
-            print "IKKE GYLDIG LOL"
             return 0
 
         if not parent.isValid():
-            print "IKKE VALID LOL"
             parentItem = self.rootItem
-            return 2
         else:
             parentItem = parent.internalPointer()
 
