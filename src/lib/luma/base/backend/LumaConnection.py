@@ -87,10 +87,18 @@ class LumaConnection(object):
         workerThread.attrsonly = attrsonly
         workerThread.sizelimit = sizelimit
         workerThread.start()
-        
+        from PyQt4.QtGui import qApp
+        from PyQt4.QtGui import QCursor
+        from PyQt4.QtCore import Qt, QEventLoop
+        qApp.setOverrideCursor(QCursor(Qt.WaitCursor))
+        self.logger.debug("Entering waiting-for-search-finished-loop.")
         while not workerThread.FINISHED:
-            #environment.updateUI()
-            time.sleep(0.05)
+            from PyQt4.QtGui import qApp
+            qApp.processEvents()
+            time.sleep(0.1)
+        qApp.restoreOverrideCursor()
+        
+        self.logger.debug("Exited waiting-for-search-finished-loop.")
             
         if None == workerThread.exceptionObject:
             resultList = []
@@ -449,8 +457,11 @@ class WorkerThreadSearch(threading.Thread):
         self.FINISHED = False
         self.result = []
         self.exceptionObject = None
+        
+        self.logger = logging.getLogger(__name__)
             
     def run(self):
+        self.logger.debug("Started LDAP-search.")
         try:
             resultId = self.ldapServerObject.search_ext(self.base, self.scope, self.filter, self.attrList, self.attrsonly, sizelimit=self.sizelimit)
             
@@ -468,6 +479,7 @@ class WorkerThreadSearch(threading.Thread):
             self.exceptionObject = e
             
         self.FINISHED = True
+        self.logger.debug("Search finished.")
         
 ###############################################################################
 

@@ -3,8 +3,8 @@ Created on 18. feb. 2011
 
 @author: Simen
 '''
-
-class AbstractLDAPTreeItem(object):
+#from PyQt4.QtCore import QObject
+class AbstractLDAPTreeItem:
 
     def __init__(self):
         raise NotImplementedError("Should be implemented")

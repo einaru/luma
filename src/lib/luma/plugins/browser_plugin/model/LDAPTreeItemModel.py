@@ -72,7 +72,7 @@ class LDAPTreeItemModel(QtCore.QAbstractItemModel):
         return self.createIndex(parentItem.row(), 0, parentItem)
 
     def rowCount(self, parent):
-        print "rowCount",parent.data().toPyObject()
+        #print "rowCount",parent.data().toPyObject()
         if parent.column() > 0:
             return 0
 

@@ -50,6 +50,7 @@ class BrowserView(QtGui.QWidget):
         if clickedItem != None:
             menu = clickedItem.getContextMenu(QtGui.QMenu())
             menu.exec_(self.entryList.mapToGlobal(point))
+            self.entryList.model().emit(QtCore.SIGNAL("layoutChanged()"))
         
 
 ###############################################################################
