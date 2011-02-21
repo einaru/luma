@@ -6,8 +6,12 @@ Created on 18. feb. 2011
 
 import ldap
 from AbstractLDAPTreeItem import AbstractLDAPTreeItem
-from PyQt4 import QtCore
+from PyQt4.QtCore import Qt
+from PyQt4.QtGui import qApp, QCursor, QMessageBox
+
 class LDAPTreeItem(AbstractLDAPTreeItem):
+    
+    ASK_TO_DISPLAY = 1000
 
     def __init__(self, data, serverParent, parent=None):
         self.parentItem = parent
@@ -27,17 +31,24 @@ class LDAPTreeItem(AbstractLDAPTreeItem):
         return self.itemData
     
     def populateItem(self):
+        qApp.setOverrideCursor(QCursor(Qt.WaitCursor))
+        
         l = self.serverParent.connection
         success, resultList, exceptionObject = l.search(self.itemData.getDN(), \
                 scope=ldap.SCOPE_ONELEVEL,filter='(objectclass=*)')
 
+        qApp.restoreOverrideCursor()
+
         if not success:
+            self.displayError(exceptionObject)
             return
-        
-        import PyQt4.QtGui
-        if len(resultList) > 50:
-            svar = PyQt4.QtGui.QMessageBox.question(None, "Got many results", "Got "+str(len(resultList))+" items. Do you want to display them all?",PyQt4.QtGui.QMessageBox.Yes|PyQt4.QtGui.QMessageBox.No)
-            if svar == PyQt4.QtGui.QMessageBox.No:
+              
+        if len(resultList) > self.ASK_TO_DISPLAY:
+            """
+            Todo: specify how many to load and "remembers"/"always yes"-function
+            """
+            svar = QMessageBox.question(None, "Got many results", "Got "+str(len(resultList))+" items. Do you want to display them all?",QMessageBox.Yes|QMessageBox.No)
+            if svar == QMessageBox.No:
                 for i in xrange(10):
                     self.appendChild(LDAPTreeItem(resultList[i], self.serverParent, self))
                 self.populated = 1
@@ -50,6 +61,6 @@ class LDAPTreeItem(AbstractLDAPTreeItem):
         self.populated = 1
         
     def getContextMenu(self, menu):
-        menu.addAction("Reload/repopulate", self.populateItem)
+        menu.addAction("Reload", self.populateItem)
         return menu
     

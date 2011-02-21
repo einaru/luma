@@ -36,7 +36,6 @@ class BrowserView(QtGui.QWidget):
         self.mainLayout.addWidget(self.splitter)
 
         self.serverList = ServerList(configPrefix)
-        self.serverList.readServerList()
 
         self.initView(parent)
         

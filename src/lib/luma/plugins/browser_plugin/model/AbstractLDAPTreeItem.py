@@ -3,7 +3,8 @@ Created on 18. feb. 2011
 
 @author: Simen
 '''
-#from PyQt4.QtCore import QObject
+from PyQt4 import QtGui
+
 class AbstractLDAPTreeItem:
 
     def __init__(self):
@@ -28,6 +29,8 @@ class AbstractLDAPTreeItem:
 
         return 0
 
+    def displayError(self, exceptionObject):
+        QtGui.QMessageBox.Information(None,"Error","Couldn't populate list.\nError was:",exceptionObject)
 
     def columnCount(self):
         raise NotImplementedError("Should be implemented")

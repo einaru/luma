@@ -11,7 +11,11 @@
 import ldap
 import ldapurl
 import ldap.modlist
-
+        
+from PyQt4.QtGui import qApp
+from PyQt4.QtGui import QCursor
+from PyQt4.QtCore import Qt
+        
 try:
     import ldap.sasl
 except ImportError, e:
@@ -87,19 +91,13 @@ class LumaConnection(object):
         workerThread.attrsonly = attrsonly
         workerThread.sizelimit = sizelimit
         workerThread.start()
-        from PyQt4.QtGui import qApp
-        from PyQt4.QtGui import QCursor
-        from PyQt4.QtCore import Qt, QEventLoop
-        qApp.setOverrideCursor(QCursor(Qt.WaitCursor))
+        
         self.logger.debug("Entering waiting-for-search-finished-loop.")
         while not workerThread.FINISHED:
-            from PyQt4.QtGui import qApp
             qApp.processEvents()
-            time.sleep(0.1)
-        qApp.restoreOverrideCursor()
-        
+            time.sleep(0.1)        
         self.logger.debug("Exited waiting-for-search-finished-loop.")
-            
+
         if None == workerThread.exceptionObject:
             resultList = []
             for x in workerThread.result:

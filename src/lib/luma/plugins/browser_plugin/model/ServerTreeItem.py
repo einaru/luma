@@ -30,6 +30,10 @@ class ServerTreeItem(AbstractLDAPTreeItem):
     def populateItem(self):
         self.connection = LumaConnection(self.serverMeta)
         success, tmpList, exceptionObject = self.connection.getBaseDNList()
+        
+        if not success:
+            self.displayError(exceptionObject)
+            return
 
         for base in tmpList:
             success, resultList, exceptionObject = self.connection.search(base, \
@@ -40,6 +44,6 @@ class ServerTreeItem(AbstractLDAPTreeItem):
         self.populated = 1
         
     def getContextMenu(self, menu):
-        menu.addAction("Skjera?")
+        menu.addAction("...")
         return menu
     
