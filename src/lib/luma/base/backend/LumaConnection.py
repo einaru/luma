@@ -101,10 +101,10 @@ class LumaConnection(object):
         if None == workerThread.exceptionObject:
             resultList = []
             for x in workerThread.result:
-                copyItem = copy.deepcopy(x)
-                ldapObject = SmartDataObject(copyItem, self.serverObject)
+                # Why copy? :S
+                #x = copy.deepcopy(x)
+                ldapObject = SmartDataObject(x, self.serverObject)
                 resultList.append(ldapObject)
-                
             #environment.setBusy(False)
             message = "Received " + str(len(resultList)) + " item(s) from LDAP search operation."
             self.logger.info(message)

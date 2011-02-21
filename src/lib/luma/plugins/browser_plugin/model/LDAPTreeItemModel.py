@@ -109,6 +109,9 @@ class LDAPTreeItemModel(QtCore.QAbstractItemModel):
     def populateModel(self, serverList):
         self.rootItem = ServerTreeItem([QtCore.QVariant("Servere")])
         self.rootItem.populated = 1
+        
+        if not len(serverList.getTable()) > 0:
+            return
 
         for server in serverList.getTable():
             tmp = ServerTreeItem([server.name], server, self.rootItem)
