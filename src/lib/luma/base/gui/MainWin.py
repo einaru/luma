@@ -34,9 +34,11 @@ from base.gui.AboutDialog import AboutDialog
 from base.gui.ServerDialog import ServerDialog
 from base.backend.ServerList import ServerList
 from base.gui.SettingsDialog import SettingsDialog
+
 from base.backend.Settings import Settings
 from base.utils import LanguageHandler
 
+from base.gui.PluginSettings import PluginSettings
 
 class MainWin(QMainWindow, Ui_MainWindow):
     """
@@ -55,10 +57,13 @@ class MainWin(QMainWindow, Ui_MainWindow):
         """
         QMainWindow.__init__(self)
 
+
         self.serverDialog = None
         self.settingsDialog = None
         self.aboutDialog = None
         self.languageHandler = LanguageHandler()
+
+        self.serverList = ServerList("/tmp")
 
         self.setupUi(self)
         self.__generateLanguageMenu()
@@ -228,10 +233,12 @@ class MainWin(QMainWindow, Ui_MainWindow):
         """
         Display the server dialog editor
         """
-        if self.serverDialog == None:
-            self.serverDialog = ServerDialog(ServerList("/tmp"))
-        r = self.serverDialog.exec_()
-
+        serverDialog = ServerDialog(self.serverList)
+        r = serverDialog.exec_()
+        
+        if r:
+            self.serverList = serverDialog.getResult()
+        
         self.__logger.debug("ServerDialog return code=%s" % r)
         #if r == OK:
         #    self.serverList = self.serverDialog.getList()
@@ -280,7 +287,8 @@ class MainWin(QMainWindow, Ui_MainWindow):
         """
         Display the plugin selection.
         """
-        self.TODO("Show plugin selection")
+        s = PluginSettings()
+        s.exec_()
 
 
     def showLoggerWindow(self):

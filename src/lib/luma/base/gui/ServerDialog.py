@@ -12,6 +12,7 @@ from base.gui.ServerDialogDesign import Ui_ServerDialogDesign
 from base.models.ServerListModel import ServerListModel
 from base.backend.ServerObject import ServerObject
 from ServerDelegate import ServerDelegate
+import copy
 
 class ServerDialog(QDialog, Ui_ServerDialogDesign):
     
@@ -25,7 +26,9 @@ class ServerDialog(QDialog, Ui_ServerDialogDesign):
         QDialog.__init__(self)
         self.setupUi(self)
         
-        self._serverList = serverList
+        self._serverList = copy.deepcopy(serverList)
+        self._serverListCopy = None
+        self._returnList = None
         
         # Create the model used by the views
         self.slm = ServerListModel(self._serverList)
@@ -111,8 +114,9 @@ class ServerDialog(QDialog, Ui_ServerDialogDesign):
         
     def setBaseDN(self):
         serverIndex = self.serverListView.selectedIndexes()
-        index = self.slm.createIndex(serverIndex[0].row(), 5)
-        self.serverDelegate.setEditorData(self.baseDNWidget, index)
+        if len(serverIndex) > 0:
+            index = self.slm.createIndex(serverIndex[0].row(), 5)
+            self.serverDelegate.setEditorData(self.baseDNWidget, index)
 
     def addServer(self):
         """
@@ -171,7 +175,8 @@ class ServerDialog(QDialog, Ui_ServerDialogDesign):
         
         What should happen when the user clicks Save then Cancel?
         """
-        self._serverList.writeServerList()     
+        self._serverList.writeServerList()
+        self._serverListCopy = copy.deepcopy(self._serverList)     
         
     def reject(self):
         """
@@ -179,6 +184,13 @@ class ServerDialog(QDialog, Ui_ServerDialogDesign):
         
         SOMETHING LOGICAL SHOULD PROBABLY BE DONE HER
         """
+        r = QMessageBox.question(self, "Exit?", "Are you sure you want to exit the server editor?\n Any unsaved changes will be lost!", QMessageBox.Ok|QMessageBox.Cancel)
+        if not r == QMessageBox.Ok:
+            return
+        if self._serverListCopy:
+            self._returnList = self._serverListCopy
+            QDialog.accept(self)
+            return
         QDialog.reject(self)
     
     def accept(self):
@@ -187,8 +199,13 @@ class ServerDialog(QDialog, Ui_ServerDialogDesign):
         
         SOMETHING LOGICAL SHOULD PROBABLY BE DONE HER
         """
-        self.saveServers()
+        self._serverList.writeServerList()
+        self._returnList = self._serverList
         QDialog.accept(self)
+        
+        
+    def getResult(self):
+        return self._returnList
         
     def certFileDialog(self):
         filename = QFileDialog.getOpenFileName(self, 'Open file',

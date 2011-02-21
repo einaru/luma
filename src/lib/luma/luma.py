@@ -49,6 +49,9 @@ def startApplication(argv):
 
     app = QtGui.QApplication(argv)
 
+    l = logging.getLogger()
+    l.setLevel(logging.DEBUG)
+
     splash = SplashScreen()
     splash.show()
     
@@ -128,7 +131,7 @@ def getConfigPrefix():
     if not os.path.exists(configPrefix):
         try:
             #os.mkdir(configPrefix)
-            logger = logging.getLogger(__name__)
+            logger = logging.getLogger()
             logger.debug("TODO: os.mkdir(%s)" % (configPrefix))
         except (IOError, OSError):
             # TODO Do some logging. We should load the application, but 
@@ -146,13 +149,17 @@ def unhandledException(eType, eValue, eTraceback):
     """
     tmp = StringIO.StringIO()
     traceback.print_tb(eTraceback, None, tmp)
-    e = """[Unhandled (handled) Exception]
-This is most likely a bug. In order to fix this, please send an email to
-    <luma-users@lists.sourceforge.net>
-with the following text and a short description of what you were doing:
->>>\n[%s] Reason:\n%s\n%s\n<<<""" % (tmp.getvalue(), str(eType), str(eValue))
-    logger = logging.getLogger("base")
-    logger.error(e)
+
+    error = """[Unhandled Exception] 
+This is most likely a bug. In order to fix this, 
+please send an email with the following text to:
+<a href="mailto:luma-users@lists.sourceforge.net>luma-users@lists.sourceforge.net</a>
+>>>
+[%s] Reason:\n%s\n%s
+<<<""" % (tmp.getvalue(), str(eType), str(eValue))
+    print error
+    logger = logging.getLogger()
+    logger.error(error)
 
 if __name__ == "__main__":
     startApplication(sys.argv)

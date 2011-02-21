@@ -13,6 +13,7 @@
 
 import os.path
 import logging
+import copy
 
 from PyQt4.QtXml import QDomDocument
 
