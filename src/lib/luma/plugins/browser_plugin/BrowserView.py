@@ -9,11 +9,13 @@
 ###########################################################################
 
 from PyQt4 import QtCore, QtGui
+import modeltest
 
 #import environment
 from base.backend.ServerList import ServerList
 from model.LDAPTreeItemModel import LDAPTreeItemModel
 from model.LDAPEntryModel import LDAPEntryModel
+
 
 class BrowserView(QtGui.QWidget):
 
@@ -49,27 +51,16 @@ class BrowserView(QtGui.QWidget):
             menu = clickedItem.getContextMenu(QtGui.QMenu())
             menu.exec_(self.entryList.mapToGlobal(point))
         
-        """
-        MyDerivedQTreeView->setContextMenuPolicy(Qt::CustomContextMenu);  
-connect(MyDerivedQTreeView,   
-        SIGNAL(customContextMenuRequested(const QPoint &)),   
-        MyDerivedQAbstractItemModel(),   
-        SLOT(contextualMenu(const QPoint &)));
-
-void MyDerivedQAbstractItemModel::contextualMenu(const QPoint& point)
-{
-    QMenu *menu = new QMenu;
-    menu->addAction(QString("Test Item"), this, SLOT(test_slot()));
-    menu->exec(MyDerivedQTreeView->mapToGlobal(point));
-}
-"""
-
 
 ###############################################################################
     
     def initView(self, parent=None):
         self.ldaptreemodel = LDAPTreeItemModel(parent)
         self.ldaptreemodel.populateModel(self.serverList)
+
+        #OBS TODO 
+        #self.modelTest = modeltest.ModelTest(self.ldaptreemodel, parent)
+        
         #self.ldaptreemodel.populateSingleModel(self.serverList.getServerObject("abakus"))
         self.connect(self.ldaptreemodel, QtCore.SIGNAL("dataChanged"), self.entryList.dataChanged)
 
