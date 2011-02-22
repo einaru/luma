@@ -88,7 +88,7 @@
           </size>
          </property>
          <property name="text">
-          <string>&amp;Add...</string>
+          <string>&amp;Add</string>
          </property>
          <property name="shortcut">
           <string>Alt+A</string>
@@ -407,11 +407,7 @@
              </size>
             </property>
             <property name="text">
-             <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'MS Shell Dlg 2'; font-size:8.25pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Network options&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             <string>&lt;b&gt;Network options&lt;/b&gt;</string>
             </property>
             <property name="alignment">
              <set>Qt::AlignVCenter</set>
@@ -747,11 +743,7 @@ p, li { white-space: pre-wrap; }
              </size>
             </property>
             <property name="text">
-             <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'MS Shell Dlg 2'; font-size:8.25pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:8pt; font-weight:600;&quot;&gt;Bind options&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             <string>&lt;b&gt;Bind options&lt;/b&gt;</string>
             </property>
             <property name="wordWrap">
              <bool>false</bool>
@@ -1283,7 +1275,6 @@ p, li { white-space: pre-wrap; }
   <include location="../../luma.qrc"/>
   <include location="../../luma.qrc"/>
   <include location="../../luma.qrc"/>
-  <include location="../../luma.qrc"/>
  </resources>
  <connections>
   <connection>
@@ -1293,8 +1284,8 @@ p, li { white-space: pre-wrap; }
    <slot>saveServers()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>545</x>
-     <y>388</y>
+     <x>505</x>
+     <y>423</y>
     </hint>
     <hint type="destinationlabel">
      <x>20</x>
@@ -1309,8 +1300,8 @@ p, li { white-space: pre-wrap; }
    <slot>reject()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>626</x>
-     <y>388</y>
+     <x>596</x>
+     <y>423</y>
     </hint>
     <hint type="destinationlabel">
      <x>20</x>
@@ -1325,8 +1316,8 @@ p, li { white-space: pre-wrap; }
    <slot>accept()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>464</x>
-     <y>388</y>
+     <x>414</x>
+     <y>423</y>
     </hint>
     <hint type="destinationlabel">
      <x>20</x>
@@ -1341,8 +1332,8 @@ p, li { white-space: pre-wrap; }
    <slot>deleteServer()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>214</x>
-     <y>346</y>
+     <x>215</x>
+     <y>379</y>
     </hint>
     <hint type="destinationlabel">
      <x>376</x>
@@ -1357,8 +1348,8 @@ p, li { white-space: pre-wrap; }
    <slot>addBaseDN()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>503</x>
-     <y>228</y>
+     <x>494</x>
+     <y>230</y>
     </hint>
     <hint type="destinationlabel">
      <x>376</x>
@@ -1389,12 +1380,12 @@ p, li { white-space: pre-wrap; }
    <slot>setDisabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>438</x>
-     <y>198</y>
+     <x>585</x>
+     <y>197</y>
     </hint>
     <hint type="destinationlabel">
-     <x>503</x>
-     <y>228</y>
+     <x>494</x>
+     <y>230</y>
     </hint>
    </hints>
   </connection>
@@ -1425,8 +1416,8 @@ p, li { white-space: pre-wrap; }
      <y>194</y>
     </hint>
     <hint type="destinationlabel">
-     <x>422</x>
-     <y>226</y>
+     <x>403</x>
+     <y>229</y>
     </hint>
    </hints>
   </connection>
@@ -1453,8 +1444,8 @@ p, li { white-space: pre-wrap; }
    <slot>addBaseDN()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>422</x>
-     <y>226</y>
+     <x>403</x>
+     <y>229</y>
     </hint>
     <hint type="destinationlabel">
      <x>376</x>
@@ -1469,12 +1460,12 @@ p, li { white-space: pre-wrap; }
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>369</x>
-     <y>216</y>
+     <x>579</x>
+     <y>259</y>
     </hint>
     <hint type="destinationlabel">
-     <x>437</x>
-     <y>241</y>
+     <x>550</x>
+     <y>290</y>
     </hint>
    </hints>
   </connection>
@@ -1485,12 +1476,12 @@ p, li { white-space: pre-wrap; }
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>432</x>
-     <y>220</y>
+     <x>579</x>
+     <y>259</y>
     </hint>
     <hint type="destinationlabel">
-     <x>434</x>
-     <y>269</y>
+     <x>550</x>
+     <y>321</y>
     </hint>
    </hints>
   </connection>
@@ -1501,12 +1492,12 @@ p, li { white-space: pre-wrap; }
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>531</x>
-     <y>221</y>
+     <x>579</x>
+     <y>259</y>
     </hint>
     <hint type="destinationlabel">
-     <x>596</x>
-     <y>245</y>
+     <x>579</x>
+     <y>289</y>
     </hint>
    </hints>
   </connection>
@@ -1517,12 +1508,12 @@ p, li { white-space: pre-wrap; }
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>492</x>
-     <y>222</y>
+     <x>579</x>
+     <y>259</y>
     </hint>
     <hint type="destinationlabel">
-     <x>594</x>
-     <y>270</y>
+     <x>579</x>
+     <y>320</y>
     </hint>
    </hints>
   </connection>
@@ -1533,8 +1524,8 @@ p, li { white-space: pre-wrap; }
    <slot>certFileDialog()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>601</x>
-     <y>241</y>
+     <x>579</x>
+     <y>289</y>
     </hint>
     <hint type="destinationlabel">
      <x>318</x>
@@ -1549,8 +1540,8 @@ p, li { white-space: pre-wrap; }
    <slot>certKeyFileDialog()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>601</x>
-     <y>267</y>
+     <x>579</x>
+     <y>320</y>
     </hint>
     <hint type="destinationlabel">
      <x>318</x>
@@ -1565,8 +1556,8 @@ p, li { white-space: pre-wrap; }
    <slot>addServer()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>133</x>
-     <y>346</y>
+     <x>134</x>
+     <y>379</y>
     </hint>
     <hint type="destinationlabel">
      <x>376</x>

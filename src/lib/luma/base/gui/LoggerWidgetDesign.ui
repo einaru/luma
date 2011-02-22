@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>LoggerWidgetDesign</class>
- <widget class="QWidget" name="LoggerWidgetDesign">
+ <author>Einar Uvsløkk, &lt;einar.uvslokk@linux.com&gt;</author>
+ <class>LoggerWidget</class>
+ <widget class="QWidget" name="LoggerWidget">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -11,13 +12,16 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Form</string>
+   <string/>
   </property>
   <layout class="QVBoxLayout">
    <item>
     <widget class="QTextEdit" name="messageEdit">
      <property name="readOnly">
       <bool>true</bool>
+     </property>
+     <property name="textInteractionFlags">
+      <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
      </property>
     </widget>
    </item>
@@ -102,7 +106,7 @@
   <connection>
    <sender>clearButton</sender>
    <signal>clicked()</signal>
-   <receiver>LoggerWidgetDesign</receiver>
+   <receiver>LoggerWidget</receiver>
    <slot>clearLogger()</slot>
    <hints>
     <hint type="sourcelabel">
@@ -118,7 +122,7 @@
   <connection>
    <sender>debugBox</sender>
    <signal>stateChanged(int)</signal>
-   <receiver>LoggerWidgetDesign</receiver>
+   <receiver>LoggerWidget</receiver>
    <slot>rebuildLog()</slot>
    <hints>
     <hint type="sourcelabel">
@@ -134,7 +138,7 @@
   <connection>
    <sender>errorBox</sender>
    <signal>stateChanged(int)</signal>
-   <receiver>LoggerWidgetDesign</receiver>
+   <receiver>LoggerWidget</receiver>
    <slot>rebuildLog()</slot>
    <hints>
     <hint type="sourcelabel">
@@ -150,7 +154,7 @@
   <connection>
    <sender>infoBox</sender>
    <signal>stateChanged(int)</signal>
-   <receiver>LoggerWidgetDesign</receiver>
+   <receiver>LoggerWidget</receiver>
    <slot>rebuildLog()</slot>
    <hints>
     <hint type="sourcelabel">

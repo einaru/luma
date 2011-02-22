@@ -2,10 +2,10 @@
 # -*- coding: utf-8 -*-
 #
 # Copyright (c) 2011
-#      Einar Uvsløkk, <einaru@stud.ntnu.no>
+#     Einar Uvsløkk, <einar.uvslokk@linux.com>
 #
 # Copyright (c) 2003, 2004, 2005 
-#      Wido Depping, <widod@users.sourceforge.net>
+#     Wido Depping, <widod@users.sourceforge.net>
 #
 # Luma is free software; you can redistribute it and/or modify 
 # it under the terms of the GNU General Public Licence as published by 
@@ -34,12 +34,11 @@ import sys
 
 from PyQt4 import QtGui, QtCore
 
-from base.gui.MainWin import MainWin
-from base.utils.backend.LumaLogHandler import LumaLogHandler
-from base.utils import Paths
-from splashscreen import SplashScreen
-
-# TODO Luma spesific import (eventualy) goes here
+from __init__ import *
+from base.gui import SplashScreen
+from base.gui.MainWin import MainWindow
+from base.backend import LumaLogHandler
+from base.util import Paths
 
 def startApplication(argv):
     """
@@ -48,28 +47,31 @@ def startApplication(argv):
     """
 
     app = QtGui.QApplication(argv)
-
+    app.setOrganizationName(ORGNAME)
+    app.setApplicationName(APPNAME)
+    app.setApplicationVersion(VERSION)
+    
     splash = SplashScreen()
     splash.show()
-    
+
     """ Find and set some resource paths """
     paths = Paths()
     paths.i18nPath = os.path.join(os.getcwd(), 'i18n')
-    
-    mainWin = MainWin()
+
+    mainWin = MainWindow()
 
     """ Setup the logging mechanism to log to the logger widget """
     l = logging.getLogger("base")
     l.setLevel(logging.DEBUG)
     l.addHandler(LumaLogHandler(mainWin.loggerWidget))
-    
+
     QtCore.QObject.connect(app, QtCore.SIGNAL('lastWindowClosed()'), mainWin.close)
-    
+
     mainWin.loadPlugins()
     mainWin.show()
-    
+
     splash.finish(mainWin)
-    
+
     """ Add a exception hook to handle all exceptions missed in the main
     application """
     sys.excepthook = unhandledException

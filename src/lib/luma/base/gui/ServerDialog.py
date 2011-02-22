@@ -9,7 +9,7 @@ from PyQt4.QtCore import QModelIndex, Qt, QAbstractListModel
 from PyQt4 import QtCore
 
 from base.gui.ServerDialogDesign import Ui_ServerDialogDesign
-from base.models.ServerListModel import ServerListModel
+from base.model.ServerListModel import ServerListModel
 from base.backend.ServerObject import ServerObject
 from ServerDelegate import ServerDelegate
 

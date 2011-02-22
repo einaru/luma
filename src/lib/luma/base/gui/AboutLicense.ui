@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <author>Einar Uvsløkk</author>
+ <author>Einar Uvsløkk, &lt;einar.uvslokk@linux.com&gt;</author>
  <class>AboutLicense</class>
  <widget class="QDialog" name="AboutLicense">
   <property name="windowModality">

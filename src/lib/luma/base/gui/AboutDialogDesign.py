@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'AboutDialogDesign.ui'
 #
-# Created: Thu Feb 17 20:47:57 2011
+# Created: Tue Feb 22 18:52:55 2011
 #      by: PyQt4 UI code generator 4.7.4
 #
 # WARNING! All changes made in this file will be lost!
@@ -93,7 +93,7 @@ class Ui_AboutDialog(object):
 
         self.retranslateUi(AboutDialog)
         QtCore.QObject.connect(self.aboutClose, QtCore.SIGNAL("clicked()"), AboutDialog.close)
-        QtCore.QObject.connect(self.aboutCredits, QtCore.SIGNAL("clicked()"), AboutDialog.showCredits)
+        QtCore.QObject.connect(self.aboutCredits, QtCore.SIGNAL("clicked()"), AboutDialog.giveCreditWhereCreditIsDue)
         QtCore.QObject.connect(self.aboutLicense, QtCore.SIGNAL("clicked()"), AboutDialog.showLicense)
         QtCore.QMetaObject.connectSlotsByName(AboutDialog)
 

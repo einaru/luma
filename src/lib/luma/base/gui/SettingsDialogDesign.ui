@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
+ <author>Einar Uvsløkk, &lt;einar.uvslokk@linux.com&gt;</author>
  <class>SettingsDialog</class>
  <widget class="QDialog" name="SettingsDialog">
   <property name="geometry">
@@ -98,33 +99,6 @@
         </widget>
        </item>
        <item>
-        <widget class="QGroupBox" name="mainWinGroup">
-         <property name="title">
-          <string>Main window</string>
-         </property>
-         <layout class="QVBoxLayout" name="verticalLayout_5">
-          <item>
-           <layout class="QFormLayout" name="formLayout">
-            <item row="0" column="0">
-             <widget class="QCheckBox" name="saveWindowSize">
-              <property name="text">
-               <string>Save window size</string>
-              </property>
-             </widget>
-            </item>
-            <item row="1" column="0">
-             <widget class="QCheckBox" name="saveWindowPosition">
-              <property name="text">
-               <string>Save window position</string>
-              </property>
-             </widget>
-            </item>
-           </layout>
-          </item>
-         </layout>
-        </widget>
-       </item>
-       <item>
         <spacer name="spacer_2">
          <property name="orientation">
           <enum>Qt::Vertical</enum>
@@ -136,30 +110,6 @@
           </size>
          </property>
         </spacer>
-       </item>
-       <item>
-        <layout class="QHBoxLayout" name="horizontalLayout_5">
-         <item>
-          <spacer name="horizontalSpacer_3">
-           <property name="orientation">
-            <enum>Qt::Horizontal</enum>
-           </property>
-           <property name="sizeHint" stdset="0">
-            <size>
-             <width>40</width>
-             <height>20</height>
-            </size>
-           </property>
-          </spacer>
-         </item>
-         <item>
-          <widget class="QCheckBox" name="saveOnClose">
-           <property name="text">
-            <string>Auto save settings on application close</string>
-           </property>
-          </widget>
-         </item>
-        </layout>
        </item>
       </layout>
      </widget>
@@ -174,6 +124,9 @@
           <widget class="QCheckBox" name="showLoggerOnStart">
            <property name="text">
             <string>Show the Logger on startup</string>
+           </property>
+           <property name="checked">
+            <bool>false</bool>
            </property>
           </widget>
          </item>
@@ -199,6 +152,9 @@
               <property name="text">
                <string>Errors</string>
               </property>
+              <property name="checked">
+               <bool>false</bool>
+              </property>
              </widget>
             </item>
             <item>
@@ -206,12 +162,18 @@
               <property name="text">
                <string>Debug</string>
               </property>
+              <property name="checked">
+               <bool>false</bool>
+              </property>
              </widget>
             </item>
             <item>
              <widget class="QCheckBox" name="showInfo">
               <property name="text">
                <string>Info</string>
+              </property>
+              <property name="checked">
+               <bool>false</bool>
               </property>
              </widget>
             </item>
@@ -309,8 +271,8 @@
    <slot>cancelSettings()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>347</x>
-     <y>276</y>
+     <x>469</x>
+     <y>289</y>
     </hint>
     <hint type="destinationlabel">
      <x>199</x>
@@ -325,8 +287,8 @@
    <slot>saveSettings()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>256</x>
-     <y>276</y>
+     <x>378</x>
+     <y>289</y>
     </hint>
     <hint type="destinationlabel">
      <x>199</x>

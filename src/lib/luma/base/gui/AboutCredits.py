@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'AboutCredits.ui'
 #
-# Created: Thu Feb 17 20:47:57 2011
+# Created: Tue Feb 22 18:52:54 2011
 #      by: PyQt4 UI code generator 4.7.4
 #
 # WARNING! All changes made in this file will be lost!
