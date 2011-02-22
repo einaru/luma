@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'ServerDialogDesign.ui'
 #
-# Created: Tue Feb 22 18:52:55 2011
+# Created: Tue Feb 22 23:42:42 2011
 #      by: PyQt4 UI code generator 4.7.4
 #
 # WARNING! All changes made in this file will be lost!

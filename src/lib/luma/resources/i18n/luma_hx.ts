@@ -1,26 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0">
+<TS version="2.0" language="en_UM">
 <context>
     <name>AboutCredits</name>
     <message>
-        <location filename="base/gui/AboutCredits.ui" line="94"/>
+        <location filename="base/gui/AboutCreditsDesign.ui" line="18"/>
         <source>Credits</source>
         <translation>cr3d175</translation>
     </message>
     <message>
         <location filename="base/gui/AboutCredits.ui" line="28"/>
         <source>Written by</source>
-        <translation>wr1773n 6y</translation>
+        <translation type="obsolete">wr1773n 6y</translation>
+    </message>
+    <message>
+        <location filename="base/gui/AboutCreditsDesign.ui" line="57"/>
+        <source>Translators</source>
+        <translation>7r4n5L470r5</translation>
+    </message>
+    <message>
+        <location filename="base/gui/AboutCreditsDesign.ui" line="160"/>
+        <source>Close</source>
+        <translation>cl053</translation>
+    </message>
+    <message>
+        <location filename="base/gui/AboutCreditsDesign.ui" line="28"/>
+        <source>Developers</source>
+        <translation>d3v3l0p3r5</translation>
+    </message>
+    <message>
+        <location filename="base/gui/AboutCreditsDesign.ui" line="98"/>
+        <source>Contributors</source>
+        <translation>c0n7r16u7035</translation>
     </message>
     <message utf8="true">
-        <location filename="base/gui/AboutCredits.ui" line="34"/>
+        <location filename="base/gui/AboutCreditsDesign.ui" line="34"/>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans&apos;; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Wido Depping &amp;lt;&lt;a href=&quot;mailto:widod@users.sourceforge.net&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;widod@users.sourceforge.net&lt;/span&gt;&lt;/a&gt;&amp;gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Bjorn Ove Grotan &amp;lt;&lt;a href=&quot;mailto:bgrotan@grotan.com&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;bgrotan@grotan.com&lt;/span&gt;&lt;/a&gt;&amp;gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Bjørn Ove Grøtan &amp;lt;&lt;a href=&quot;mailto:bgrotan@grotan.com&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;bgrotan@grotan.com&lt;/span&gt;&lt;/a&gt;&amp;gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Vegar Westerlund&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Johannes Harestad &amp;lt;&lt;a href=&quot;mailto:johannesharestad@gmail.com&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;johannesharestad@gmail.com&lt;/span&gt;&lt;/a&gt;&amp;gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Sondre Frisvold &amp;lt;&lt;a href=&quot;mailto:sondre.frisvold@c2i.net&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;sondre.frisvold@c2i.net&lt;/span&gt;&lt;/a&gt;&amp;gt;&lt;/p&gt;
@@ -30,38 +50,37 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Simen Natvig &amp;lt;&lt;a href=&quot;mailto:simenna@stud.ntnu.no&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;simen.natvig@gmail.com&lt;/span&gt;&lt;/a&gt;&amp;gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation></translation>
     </message>
-    <message>
-        <location filename="base/gui/AboutCredits.ui" line="57"/>
-        <source>Translators</source>
-        <translation>7r4n5L470r5</translation>
-    </message>
     <message utf8="true">
-        <location filename="base/gui/AboutCredits.ui" line="63"/>
+        <location filename="base/gui/AboutCreditsDesign.ui" line="63"/>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans&apos;; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Bjorn Ove Grotan&lt;/span&gt; &amp;lt;&lt;a href=&quot;mailto:bgrotan@grotan.com&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;bgrotan@grotan.com&lt;/span&gt;&lt;/a&gt;&amp;gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Norwegian translation&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Norwegian translation&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Luma 2.4 : Bjørn Ove Grøtan &amp;lt;&lt;a href=&quot;mailto:bgrotan@grotan.com&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;bgrotan@grotan.com&lt;/span&gt;&lt;/a&gt;&amp;gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Luma 3.0 : Einar Uvsløkk &amp;lt;&lt;a href=&quot;mailto:einar.uvslokk@linux.com&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;einar.uvslokk@linux.com&lt;/span&gt;&lt;/a&gt;&amp;gt;&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Fernando Maciel Souto Maior&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Portuguese translation&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Portuguese translation&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Fernando Maciel Souto Maior&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Jirka Jurek&lt;/span&gt; &amp;lt;&lt;a href=&quot;mailto:jiri.jurek@trinet.as&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;jiri.jurek@trinet.as&lt;/span&gt;&lt;/a&gt;&amp;gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Czech translation&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Czech translation&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Jirka Jurek &amp;lt;&lt;a href=&quot;mailto:jiri.jurek@trinet.as&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;jiri.jurek@trinet.as&lt;/span&gt;&lt;/a&gt;&amp;gt;&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Magnus Määttä&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Swedish translation&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Swedish translation&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Magnus Määttä&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Alexander Novitsky&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Russian translation&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Russian translation&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Alexander Novitsky&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Florens Daignière&lt;/span&gt; &amp;lt;&lt;a href=&quot;mailto:nextgens@freenetproject.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;nextgens@freenetproject.org&lt;/span&gt;&lt;/a&gt;&amp;gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;French translation&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;French translation&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Florens Daignière &amp;lt;&lt;a href=&quot;mailto:nextgens@freenetproject.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;nextgens@freenetproject.org&lt;/span&gt;&lt;/a&gt;&amp;gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;h4x0r translation&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Einar Uvsløkk &amp;lt;&lt;a href=&quot;mailto:einar.uvslokk@linux.com&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;einar.uvslokk@linux.com&lt;/span&gt;&lt;/a&gt;&amp;gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation></translation>
     </message>
-    <message>
-        <location filename="base/gui/AboutCredits.ui" line="100"/>
+    <message utf8="true">
+        <location filename="base/gui/AboutCreditsDesign.ui" line="104"/>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
@@ -72,7 +91,7 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Vegar Westerlund&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;For contributing patches&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;                                &lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Bjorn Ove Grotan&lt;/span&gt; &amp;lt;&lt;a href=&quot;mailto:bgrotan@grotan.com&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;bgrotan@grotan.com&lt;/span&gt;&lt;/a&gt;&amp;gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Bjørn Ove Grøtan&lt;/span&gt; &amp;lt;&lt;a href=&quot;mailto:bgrotan@grotan.com&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;bgrotan@grotan.com&lt;/span&gt;&lt;/a&gt;&amp;gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Luma Project Admin and Debian Maintainer&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Contributed his mkpasswd module.&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
@@ -92,36 +111,31 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Luma logo&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation></translation>
     </message>
-    <message>
-        <location filename="base/gui/AboutCredits.ui" line="156"/>
-        <source>Close</source>
-        <translation>cl053</translation>
-    </message>
 </context>
 <context>
     <name>AboutDialog</name>
     <message>
-        <location filename="base/gui/AboutDialogDesign.ui" line="26"/>
+        <location filename="base/gui/AboutDialogDesign.ui" line="27"/>
         <source>About Luma</source>
         <translation>460u7 lum4</translation>
     </message>
     <message>
-        <location filename="base/gui/AboutDialogDesign.ui" line="46"/>
+        <location filename="base/gui/AboutDialogDesign.ui" line="47"/>
         <source>Credits</source>
         <translation>cr3d175</translation>
     </message>
     <message>
-        <location filename="base/gui/AboutDialogDesign.ui" line="69"/>
+        <location filename="base/gui/AboutDialogDesign.ui" line="70"/>
         <source>License</source>
         <translation>l1c3n53</translation>
     </message>
     <message>
-        <location filename="base/gui/AboutDialogDesign.ui" line="95"/>
+        <location filename="base/gui/AboutDialogDesign.ui" line="96"/>
         <source>Close</source>
         <translation>cl053</translation>
     </message>
     <message>
-        <location filename="base/gui/AboutDialogDesign.ui" line="131"/>
+        <location filename="base/gui/AboutDialogDesign.ui" line="132"/>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
@@ -130,12 +144,12 @@ p, li { white-space: pre-wrap; }
         <translation></translation>
     </message>
     <message>
-        <location filename="base/gui/AboutDialogDesign.ui" line="151"/>
+        <location filename="base/gui/AboutDialogDesign.ui" line="152"/>
         <source>LDAP management made easy</source>
         <translation>ld4p m4n494m4n7 m463 345y</translation>
     </message>
     <message utf8="true">
-        <location filename="base/gui/AboutDialogDesign.ui" line="167"/>
+        <location filename="base/gui/AboutDialogDesign.ui" line="168"/>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
@@ -144,7 +158,7 @@ p, li { white-space: pre-wrap; }
         <translation></translation>
     </message>
     <message>
-        <location filename="base/gui/AboutDialogDesign.ui" line="181"/>
+        <location filename="base/gui/AboutDialogDesign.ui" line="182"/>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
@@ -156,27 +170,27 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>AboutLicense</name>
     <message>
-        <location filename="base/gui/AboutLicense.ui" line="18"/>
+        <location filename="base/gui/AboutLicenseDesign.ui" line="18"/>
         <source>License</source>
         <translation>l1c3n53</translation>
     </message>
     <message>
-        <location filename="base/gui/AboutLicense.ui" line="27"/>
+        <location filename="base/gui/AboutLicenseDesign.ui" line="57"/>
+        <source>Close</source>
+        <translation>cl053</translation>
+    </message>
+    <message>
+        <location filename="base/gui/AboutLicenseDesign.ui" line="27"/>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans&apos;; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Luma is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Luma&lt;/span&gt; is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Luma is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Luma&lt;/span&gt; is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;You should have received a copy of the GNU General Public License along with Luma; if not, write to the Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;You should have received a copy of the GNU General Public License along with &lt;span style=&quot; font-weight:600;&quot;&gt;Luma&lt;/span&gt;; if not, write to the Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA, or visit &lt;a href=&quot;http://www.gnu.org/licenses/gpl-2.0.html&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;www.gnu.org/licenses/gpl-2.0.html&lt;/span&gt;&lt;/a&gt;.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation></translation>
-    </message>
-    <message>
-        <location filename="base/gui/AboutLicense.ui" line="57"/>
-        <source>Close</source>
-        <translation>cl053</translation>
     </message>
 </context>
 <context>
@@ -184,35 +198,35 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="base/gui/LoggerWidgetDesign.ui" line="14"/>
         <source>Form</source>
-        <translation>f0rm</translation>
+        <translation type="obsolete">f0rm</translation>
     </message>
     <message>
-        <location filename="base/gui/LoggerWidgetDesign.ui" line="32"/>
+        <location filename="base/gui/LoggerWidgetDesign.ui" line="33"/>
         <source>Display message types:</source>
         <translation>d16pl4y m355493 7yp35:</translation>
     </message>
     <message>
-        <location filename="base/gui/LoggerWidgetDesign.ui" line="42"/>
+        <location filename="base/gui/LoggerWidgetDesign.ui" line="43"/>
         <source>Errors</source>
         <translation>3rr0353rr0r5</translation>
     </message>
     <message>
-        <location filename="base/gui/LoggerWidgetDesign.ui" line="52"/>
+        <location filename="base/gui/LoggerWidgetDesign.ui" line="53"/>
         <source>Debug</source>
         <translation>d36u9</translation>
     </message>
     <message>
-        <location filename="base/gui/LoggerWidgetDesign.ui" line="62"/>
+        <location filename="base/gui/LoggerWidgetDesign.ui" line="63"/>
         <source>Info</source>
         <translation>1nf0</translation>
     </message>
     <message>
-        <location filename="base/gui/LoggerWidgetDesign.ui" line="88"/>
+        <location filename="base/gui/LoggerWidgetDesign.ui" line="89"/>
         <source>Clear</source>
         <translation>cl34r</translation>
     </message>
     <message>
-        <location filename="base/gui/LoggerWidgetDesign.ui" line="91"/>
+        <location filename="base/gui/LoggerWidgetDesign.ui" line="92"/>
         <source>Clear log</source>
         <translation>cl34r l09</translation>
     </message>
@@ -220,27 +234,27 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>MainWindow</name>
     <message>
-        <location filename="base/gui/MainWinDesign.ui" line="14"/>
+        <location filename="base/gui/MainWinDesign.ui" line="15"/>
         <source>Luma</source>
         <translation>lum4</translation>
     </message>
     <message>
-        <location filename="base/gui/MainWinDesign.ui" line="42"/>
+        <location filename="base/gui/MainWinDesign.ui" line="43"/>
         <source>File</source>
         <translation>f1l3</translation>
     </message>
     <message>
-        <location filename="base/gui/MainWinDesign.ui" line="50"/>
+        <location filename="base/gui/MainWinDesign.ui" line="51"/>
         <source>Edit</source>
         <translation>3d17</translation>
     </message>
     <message>
-        <location filename="base/gui/MainWinDesign.ui" line="54"/>
+        <location filename="base/gui/MainWinDesign.ui" line="55"/>
         <source>Language</source>
         <translation>l4n9u493</translation>
     </message>
     <message>
-        <location filename="base/gui/MainWinDesign.ui" line="68"/>
+        <location filename="base/gui/MainWinDesign.ui" line="69"/>
         <source>Help</source>
         <translation>h3lp</translation>
     </message>
@@ -250,77 +264,77 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">5h0w l0993r</translation>
     </message>
     <message>
-        <location filename="base/gui/MainWinDesign.ui" line="85"/>
+        <location filename="base/gui/MainWinDesign.ui" line="86"/>
         <source>Ctrl+L</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="base/gui/MainWinDesign.ui" line="90"/>
+        <location filename="base/gui/MainWinDesign.ui" line="91"/>
         <source>Quit</source>
         <translation>qu17</translation>
     </message>
     <message>
-        <location filename="base/gui/MainWinDesign.ui" line="93"/>
+        <location filename="base/gui/MainWinDesign.ui" line="94"/>
         <source>Ctrl+Q</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="base/gui/MainWinDesign.ui" line="98"/>
+        <location filename="base/gui/MainWinDesign.ui" line="99"/>
         <source>Server List</source>
         <translation>53rv3r l157</translation>
     </message>
     <message>
-        <location filename="base/gui/MainWinDesign.ui" line="101"/>
+        <location filename="base/gui/MainWinDesign.ui" line="102"/>
         <source>Ctrl+Shift+S</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="base/gui/MainWinDesign.ui" line="106"/>
+        <location filename="base/gui/MainWinDesign.ui" line="107"/>
         <source>Reload Plugins</source>
         <translation>r3l04d plu91n5</translation>
     </message>
     <message>
-        <location filename="base/gui/MainWinDesign.ui" line="109"/>
+        <location filename="base/gui/MainWinDesign.ui" line="110"/>
         <source>F5</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="base/gui/MainWinDesign.ui" line="114"/>
+        <location filename="base/gui/MainWinDesign.ui" line="115"/>
         <source>Configure Plugins</source>
         <translation>c0nf19ur3 plu91n5</translation>
     </message>
     <message>
-        <location filename="base/gui/MainWinDesign.ui" line="119"/>
+        <location filename="base/gui/MainWinDesign.ui" line="120"/>
         <source>About Luma</source>
         <translation>460u7 lum4</translation>
     </message>
     <message>
-        <location filename="base/gui/MainWinDesign.ui" line="122"/>
+        <location filename="base/gui/MainWinDesign.ui" line="123"/>
         <source>F12</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="base/gui/MainWinDesign.ui" line="127"/>
+        <location filename="base/gui/MainWinDesign.ui" line="128"/>
         <source>Settings</source>
         <translation>53771n95</translation>
     </message>
     <message>
-        <location filename="base/gui/MainWinDesign.ui" line="82"/>
+        <location filename="base/gui/MainWinDesign.ui" line="83"/>
         <source>Show logger</source>
         <translation>5h0w l0993r</translation>
     </message>
     <message>
-        <location filename="base/gui/MainWin.py" line="91"/>
+        <location filename="base/gui/MainWin.py" line="115"/>
         <source>Logger</source>
         <translation>l0993r</translation>
     </message>
     <message>
-        <location filename="base/gui/MainWin.py" line="272"/>
+        <location filename="base/gui/MainWin.py" line="481"/>
         <source>Plugin name</source>
         <translation>plu91n n4m3</translation>
     </message>
     <message>
-        <location filename="base/gui/MainWin.py" line="273"/>
+        <location filename="base/gui/MainWin.py" line="482"/>
         <source>Choose plugin</source>
         <translation>c00h53 plu91n</translation>
     </message>
@@ -584,87 +598,87 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>SettingsDialog</name>
     <message>
-        <location filename="base/gui/SettingsDialogDesign.ui" line="268"/>
+        <location filename="base/gui/SettingsDialogDesign.ui" line="233"/>
         <source>Settings</source>
         <translation>53tt1n95</translation>
     </message>
     <message>
-        <location filename="base/gui/SettingsDialogDesign.ui" line="35"/>
+        <location filename="base/gui/SettingsDialogDesign.ui" line="36"/>
         <source>Ok</source>
         <translation>0k</translation>
     </message>
     <message>
-        <location filename="base/gui/SettingsDialogDesign.ui" line="42"/>
+        <location filename="base/gui/SettingsDialogDesign.ui" line="43"/>
         <source>Cancel</source>
         <translation>c4nc3l</translation>
     </message>
     <message>
-        <location filename="base/gui/SettingsDialogDesign.ui" line="61"/>
+        <location filename="base/gui/SettingsDialogDesign.ui" line="62"/>
         <source>General</source>
         <translation>93n3r4l</translation>
     </message>
     <message>
-        <location filename="base/gui/SettingsDialogDesign.ui" line="67"/>
+        <location filename="base/gui/SettingsDialogDesign.ui" line="68"/>
         <source>i18n</source>
         <translation>1i8n</translation>
     </message>
     <message>
-        <location filename="base/gui/SettingsDialogDesign.ui" line="75"/>
+        <location filename="base/gui/SettingsDialogDesign.ui" line="76"/>
         <source>Application language</source>
         <translation>4ppl1c4710n l4n9u493</translation>
     </message>
     <message>
         <location filename="base/gui/SettingsDialogDesign.ui" line="103"/>
         <source>Main window</source>
-        <translation>m41n w1nd0w</translation>
+        <translation type="obsolete">m41n w1nd0w</translation>
     </message>
     <message>
         <location filename="base/gui/SettingsDialogDesign.ui" line="114"/>
         <source>Save window size</source>
-        <translation>54v3 w1nd0w 51z3</translation>
+        <translation type="obsolete">54v3 w1nd0w 51z3</translation>
     </message>
     <message>
         <location filename="base/gui/SettingsDialogDesign.ui" line="124"/>
         <source>Save window position</source>
-        <translation>54v3 w1nd0w p051710n</translation>
+        <translation type="obsolete">54v3 w1nd0w p051710n</translation>
     </message>
     <message>
-        <location filename="base/gui/SettingsDialogDesign.ui" line="153"/>
+        <location filename="base/gui/SettingsDialogDesign.ui" line="118"/>
         <source>Logging</source>
         <translation>l0991n9</translation>
     </message>
     <message>
-        <location filename="base/gui/SettingsDialogDesign.ui" line="161"/>
+        <location filename="base/gui/SettingsDialogDesign.ui" line="126"/>
         <source>Show the Logger on startup</source>
         <translation>5h0w l0993r 0n 574r7up</translation>
     </message>
     <message>
-        <location filename="base/gui/SettingsDialogDesign.ui" line="173"/>
+        <location filename="base/gui/SettingsDialogDesign.ui" line="138"/>
         <source>Filter Options</source>
         <translation>f1l73r 0p710n5</translation>
     </message>
     <message>
-        <location filename="base/gui/SettingsDialogDesign.ui" line="181"/>
+        <location filename="base/gui/SettingsDialogDesign.ui" line="146"/>
         <source>Display message types:</source>
         <translation>d16pl4y m3554935:</translation>
     </message>
     <message>
-        <location filename="base/gui/SettingsDialogDesign.ui" line="188"/>
+        <location filename="base/gui/SettingsDialogDesign.ui" line="153"/>
         <source>Errors</source>
         <translation>3rr0r5</translation>
     </message>
     <message>
-        <location filename="base/gui/SettingsDialogDesign.ui" line="198"/>
+        <location filename="base/gui/SettingsDialogDesign.ui" line="163"/>
         <source>Debug</source>
         <translation>d36u9</translation>
     </message>
     <message>
-        <location filename="base/gui/SettingsDialogDesign.ui" line="208"/>
+        <location filename="base/gui/SettingsDialogDesign.ui" line="173"/>
         <source>Info</source>
         <translation>1nf0</translation>
     </message>
     <message>
-        <location filename="base/gui/SettingsDialogDesign.ui" line="250"/>
+        <location filename="base/gui/SettingsDialogDesign.ui" line="215"/>
         <source>Plugins</source>
         <translation>plu91n5</translation>
     </message>

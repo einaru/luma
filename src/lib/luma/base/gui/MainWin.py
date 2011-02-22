@@ -56,8 +56,8 @@ from PyQt4.QtGui import QWidget
 from base.gui import Settings
 from base.util import LanguageHandler
 from base.gui.AboutDialogDesign import Ui_AboutDialog
-from base.gui.AboutLicense import Ui_AboutLicense
-from base.gui.AboutCredits import Ui_AboutCredits
+from base.gui.AboutLicenseDesign import Ui_AboutLicense
+from base.gui.AboutCreditsDesign import Ui_AboutCredits
 from base.gui.LoggerWidgetDesign import Ui_LoggerWidget
 from base.gui.MainWinDesign import Ui_MainWindow
 from base.gui.SettingsDialogDesign import Ui_SettingsDialog
