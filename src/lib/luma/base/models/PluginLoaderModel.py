@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 from PyQt4.QtCore import *
 from PyQt4.QtGui import *
 from base.backend.PluginLoader import PluginLoader 
@@ -15,7 +17,7 @@ class PluginLoaderModel(QStandardItemModel):
             item = QStandardItem(pluginobject.pluginName)
             check = Qt.Unchecked
             valueString = "plugins/" + pluginobject.pluginName + "/load"
-            if self._settings.value(valueString)  == "True":
+            if self._settings.value(valueString).toString() == "True":
                 check = Qt.Checked
             item.setCheckState(check)
             item.setCheckable(True)

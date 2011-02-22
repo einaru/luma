@@ -39,6 +39,7 @@ from base.backend.Settings import Settings
 from base.utils import LanguageHandler
 
 from base.gui.PluginSettings import PluginSettings
+from base.utils.gui.PluginListWidget import PluginListWidget
 
 class MainWin(QMainWindow, Ui_MainWindow):
     """
@@ -82,15 +83,20 @@ class MainWin(QMainWindow, Ui_MainWindow):
                 u'Final GUI polishing by Granbusk\u2122 Polishing')
     
     def __setupPluginList(self):
+        """
         self.pluginDockWindow = QDockWidget(self)
         self.pluginDockWindow.setWindowTitle(
              QApplication.translate(
                 "MainWindow", "Plugin list", None, QApplication.UnicodeUTF8))
-        self.pluginWidget = xxx
+        self.pluginWidget = PluginListWidget()
         self.pluginDockWindow.setWidget(self.pluginWidget) 
         self.addDockWidget(Qt.TopDockWidgetArea, self.pluginDockWindow)
-        pass
-    
+        """
+            
+        self.pluginWidget = PluginListWidget()
+        self.mainStack.addWidget(self.pluginWidget)
+        self.mainStack.setCurrentWidget(self.pluginWidget)
+        
     def __setupLoggerWindow(self):
         """  Setup the Logger Window """
         self.loggerDockWindow = QDockWidget(self)
@@ -303,6 +309,7 @@ class MainWin(QMainWindow, Ui_MainWindow):
         """
         s = PluginSettings()
         s.exec_()
+        self.reloadPlugins()
 
 
     def showLoggerWindow(self):

@@ -15,15 +15,15 @@
   </property>
   <layout class="QGridLayout" name="gridLayout">
    <item row="0" column="0">
-    <widget class="QListWidget" name="listWidget"/>
+    <widget class="QListView" name="listView"/>
    </item>
   </layout>
  </widget>
  <resources/>
  <connections>
   <connection>
-   <sender>listWidget</sender>
-   <signal>itemDoubleClicked(QListWidgetItem*)</signal>
+   <sender>listView</sender>
+   <signal>activated(QModelIndex)</signal>
    <receiver>pluginListWidget</receiver>
    <slot>pluginDoubleClicked()</slot>
    <hints>

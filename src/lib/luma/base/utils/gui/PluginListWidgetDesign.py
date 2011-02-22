@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'PluginListWidgetDesign.ui'
 #
-# Created: Mon Feb 21 13:08:43 2011
+# Created: Tue Feb 22 15:15:05 2011
 #      by: PyQt4 UI code generator 4.8.2
 #
 # WARNING! All changes made in this file will be lost!
@@ -20,12 +20,12 @@ class Ui_pluginListWidget(object):
         pluginListWidget.resize(444, 313)
         self.gridLayout = QtGui.QGridLayout(pluginListWidget)
         self.gridLayout.setObjectName(_fromUtf8("gridLayout"))
-        self.listWidget = QtGui.QListWidget(pluginListWidget)
-        self.listWidget.setObjectName(_fromUtf8("listWidget"))
-        self.gridLayout.addWidget(self.listWidget, 0, 0, 1, 1)
+        self.listView = QtGui.QListView(pluginListWidget)
+        self.listView.setObjectName(_fromUtf8("listView"))
+        self.gridLayout.addWidget(self.listView, 0, 0, 1, 1)
 
         self.retranslateUi(pluginListWidget)
-        QtCore.QObject.connect(self.listWidget, QtCore.SIGNAL(_fromUtf8("itemDoubleClicked(QListWidgetItem*)")), pluginListWidget.pluginDoubleClicked)
+        QtCore.QObject.connect(self.listView, QtCore.SIGNAL(_fromUtf8("activated(QModelIndex)")), pluginListWidget.pluginDoubleClicked)
         QtCore.QMetaObject.connectSlotsByName(pluginListWidget)
 
     def retranslateUi(self, pluginListWidget):
