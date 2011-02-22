@@ -240,7 +240,7 @@ class LumaConnection(object):
             return self.modify(dataObject.getDN(), modlist)
         else:
             message = "LDAP object " + dataObject.getDN() + " could not be updated. The entry values could not be retrieved from the server. Reason:\n"
-            message = message + str(workerThread.exceptionObject)
+            message = message + str(exceptionObject)
             self.logger.error(message)
             return (False, exceptionObject)
         
@@ -632,7 +632,7 @@ class WorkerThreadBind(threading.Thread):
                 self.ldapServerObject.simple_bind_s(whoVal, credVal)
             elif not self.serverObject.authMethod == ServerAuthMethod.Simple:
                 sasl_cb_value_dict = {}
-                if not ServerAuthMethod.SASL_GSSAPI == self.serverObject.authMethod:
+                if not ServerAuthMethod.SASL_GSSLAPI == self.serverObject.authMethod:
                     sasl_cb_value_dict[ldap.sasl.CB_AUTHNAME] = whoVal
                     sasl_cb_value_dict[ldap.sasl.CB_PASS] = credVal
                     
@@ -645,7 +645,7 @@ class WorkerThreadBind(threading.Thread):
                     sasl_mech = "DIGEST-MD5"
                 elif self.serverObject.authMethod == ServerAuthMethod.SASL_LOGIN:
                     sasl_mech = "LOGIN"
-                elif self.serverObject.authMethod == ServerAuthMethod.SASL_GSSAPI:
+                elif self.serverObject.authMethod == ServerAuthMethod.SASL_GSSLAPI:
                     sasl_mech = "GSSAPI"
                 elif self.serverObject.authMethod == ServerAuthMethod.SASL_EXTERNAL:
                     sasl_mech = "EXTERNAL"

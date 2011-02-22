@@ -11,8 +11,9 @@ class AbstractLDAPTreeItem(QObject):
     isWorking = QtCore.pyqtSignal()
     doneWorking = QtCore.pyqtSignal()
     
-    def __init__(self, parent):
+    def __init__(self, parent, modelParent):
         QObject.__init__(self, parent)
+        self.modelParent = modelParent
         self.childItems = []
         self.parentItem = parent
         self.populated = 0
@@ -42,7 +43,7 @@ class AbstractLDAPTreeItem(QObject):
     def columnCount(self):
         raise NotImplementedError("Should be implemented")
 
-    def data(self, column):
+    def data(self, column, role):
         raise NotImplementedError("Should be implemented")
 
     def smartObject(self):

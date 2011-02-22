@@ -5,8 +5,8 @@ import logging
 
 class RootTreeItem(AbstractLDAPTreeItem):
 
-    def __init__(self, title, parent = None):
-        AbstractLDAPTreeItem.__init__(self, parent)
+    def __init__(self, title, parent = None, modelParent = None):
+        AbstractLDAPTreeItem.__init__(self, parent, modelParent = modelParent)
         self.title = title
         self.logger = logging.getLogger(__name__)
         

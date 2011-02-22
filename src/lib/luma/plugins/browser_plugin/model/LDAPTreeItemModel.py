@@ -28,12 +28,11 @@ class LDAPTreeItemModel(QAbstractItemModel):
         if not index.isValid():
             return QtCore.QVariant()
 
-        if role != QtCore.Qt.DisplayRole:
+        if role != QtCore.Qt.DisplayRole and role != QtCore.Qt.DecorationRole:
             return QtCore.QVariant()
 
         item = index.internalPointer()
-
-        return QtCore.QVariant(item.data(index.column()))
+        return QtCore.QVariant(item.data(index.column(), role))
 
     def flags(self, index):
         if not index.isValid():
@@ -48,8 +47,9 @@ class LDAPTreeItemModel(QAbstractItemModel):
         return QtCore.QVariant()
 
     def index(self, row, column, parent):
+        # Really needed? Should avoid calls to rowCount() where possible
         #if row < 0 or column < 0 or row >= self.rowCount(parent) or column >= self.columnCount(parent):
-         #   return QtCore.QModelIndex()
+        #    return QtCore.QModelIndex()
 
         if not parent.isValid():
             parentItem = self.rootItem
@@ -111,13 +111,13 @@ class LDAPTreeItemModel(QAbstractItemModel):
         return 1
     
     def populateModel(self, serverList):
-        self.rootItem = RootTreeItem(QtCore.QVariant("Servere"), self)
+        self.rootItem = RootTreeItem(QtCore.QVariant("Servere"), self, self)
         
         if not len(serverList.getTable()) > 0:
             return
 
         for server in serverList.getTable():
-            tmp = ServerTreeItem([server.name], server, self.rootItem)
+            tmp = ServerTreeItem([server.name], server, self.rootItem, modelParent = self)
             self.rootItem.appendChild(tmp)
     
     def setData(self, index, value, role):
