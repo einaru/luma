@@ -48,8 +48,14 @@ class LDAPTreeItem(AbstractLDAPTreeItem):
     def smartObject(self):
         return self.itemData
     
-    def populateItem(self):
-                
+    def populateItem(self):  
+        
+#        parent = self.parent()
+#        parentIndex = self.modelParent.index(0,0, parent)
+#        self.modelParent.beginRemoveRows(parentIndex, 0, parent.childCount()-1)
+        self.childItems = []    
+#        self.modelParent.endRemoveRows()          
+
         self.isWorking.emit()
         
         # Search for items at the level under this one
@@ -64,7 +70,6 @@ class LDAPTreeItem(AbstractLDAPTreeItem):
             self.displayError(exceptionObject)
             return
         
-
         # If a limit is spesified, only display the choosen amount        
         if self.limit > 0 and len(resultList) > self.limit:
             self.childItems = []
@@ -88,10 +93,15 @@ class LDAPTreeItem(AbstractLDAPTreeItem):
 
         # Default, load all
         self.childItems = [LDAPTreeItem(x, self.serverParent, self) for x in resultList]
+        print "Added",self.childItems
+        print "To",self.data(0,0)
         self.populated = 1
+        
+        #self.modelParent.dataChanged.emit()
+        print "populateItems end"
     
     def setLimit(self):
-        r = QInputDialog.getInt(None, "Limit","Enter the limit:", self.limit)
+        r = QInputDialog.getInt(None, "Limit","Enter the limit (0 = none):", self.limit)
         if r[1] == True:
             self.limit = r[0]
             self.populateItem()
@@ -107,8 +117,6 @@ class LDAPTreeItem(AbstractLDAPTreeItem):
             self.populateItem()
     
     def getContextMenu(self, menu):
-        menu.addAction("Reload", self.populateItem)
-        menu.addAction("Set search limit", self.setLimit)
-        menu.addAction("Set search filter", self.setFilter)
+        # Not used
         return menu
     

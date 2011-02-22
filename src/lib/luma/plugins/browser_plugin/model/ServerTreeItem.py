@@ -67,10 +67,7 @@ class ServerTreeItem(AbstractLDAPTreeItem):
 
         self.populated = 1
         
-    def reload(self):
-        self.populateItem()
-        
     def getContextMenu(self, menu):
-        menu.addAction("Reload", self.reload)
+        # Not used
         return menu
     

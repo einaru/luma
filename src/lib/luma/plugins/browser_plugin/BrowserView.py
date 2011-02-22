@@ -9,13 +9,15 @@
 ###########################################################################
 
 from PyQt4 import QtCore, QtGui
-from PyQt4.QtGui import QWidget
+from PyQt4.QtGui import QWidget, QAction
+from PyQt4.QtCore import pyqtSlot, QModelIndex
 import modeltest
 
 #import environment
 from base.backend.ServerList import ServerList
 from model.LDAPTreeItemModel import LDAPTreeItemModel
 from model.LDAPEntryModel import LDAPEntryModel
+from model.LDAPTreeItem import LDAPTreeItem
 
 
 class BrowserView(QWidget):
@@ -53,9 +55,21 @@ class BrowserView(QWidget):
         
         if clickedItem != None:
             menu = clickedItem.getContextMenu(QtGui.QMenu())
+            action = QAction("Reload", self)
+            action.triggered.connect(self.reload)   
+            menu.addAction(action)         
+            #menu.addAction("Set search limit", self.setLimit)
+            #menu.addAction("Set search filter", self.setFilter)
             menu.exec_(self.entryList.mapToGlobal(point))
-            self.entryList.model().layoutChanged.emit()
-            #self.entryList.model().emit(QtCore.SIGNAL("layoutChanged()"))
+            
+    @pyqtSlot(QModelIndex, LDAPTreeItem)
+    def reload(self, index, item):
+        print "given:",index
+        self.ldaptreemodel.beginRemoveRows(index,0, item.childCount()-1)
+        item.populateItem()
+        self.ldaptreemodel.endRemoveRows()
+        #self.entryList.model().layoutChanged.emit()
+        #self.entryList.model().emit(QtCore.SIGNAL("layoutChanged()"))
     
     def initView(self, parent=None):
         self.ldaptreemodel = LDAPTreeItemModel(parent)

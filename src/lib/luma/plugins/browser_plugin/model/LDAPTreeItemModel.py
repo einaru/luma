@@ -50,12 +50,14 @@ class LDAPTreeItemModel(QAbstractItemModel):
         # Really needed? Should avoid calls to rowCount() where possible
         #if row < 0 or column < 0 or row >= self.rowCount(parent) or column >= self.columnCount(parent):
         #    return QtCore.QModelIndex()
+        
+        #print "Spør etter index for row",row," column",column,"parent",parent
 
         if not parent.isValid():
             parentItem = self.rootItem
         else:
             parentItem = parent.internalPointer()
-
+        
         childItem = parentItem.child(row)
         if childItem:
             return self.createIndex(row, column, childItem)
@@ -86,7 +88,8 @@ class LDAPTreeItemModel(QAbstractItemModel):
 
         if not parentItem.populated:
             parentItem.populateItem()
-            self.layoutChanged.emit()
+            # Updates the |>-icon to show if the item has children
+            #self.layoutChanged.emit()
             #self.emit(QtCore.SIGNAL("layoutChanged()"))
         
         return parentItem.childCount()
@@ -111,7 +114,8 @@ class LDAPTreeItemModel(QAbstractItemModel):
         return 1
     
     def populateModel(self, serverList):
-        self.rootItem = RootTreeItem(QtCore.QVariant("Servere"), self, self)
+        print "PopulateModel i ItemModel"
+        self.rootItem = RootTreeItem("Servere", self, self)
         
         if not len(serverList.getTable()) > 0:
             return
@@ -119,7 +123,7 @@ class LDAPTreeItemModel(QAbstractItemModel):
         for server in serverList.getTable():
             tmp = ServerTreeItem([server.name], server, self.rootItem, modelParent = self)
             self.rootItem.appendChild(tmp)
-    
+                
     def setData(self, index, value, role):
         index.internalPointer().itemData[0] = "test"
         self.dataChanged.emit(index, index)

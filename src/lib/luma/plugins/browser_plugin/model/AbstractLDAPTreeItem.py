@@ -34,7 +34,6 @@ class AbstractLDAPTreeItem(QObject):
     def row(self):
         if self.parentItem:
             return self.parentItem.childItems.index(self)
-
         return 0
 
     def displayError(self, exceptionObject):
