@@ -39,8 +39,7 @@ class LDAPEntryModel(QtCore.QAbstractTableModel):
             return QtCore.QVariant()
         elif role != QtCore.Qt.DisplayRole:
             return QtCore.QVariant()
-
-        return QtCore.QVariant(self.itemData[index.row()][index.column()])
+        return (self.itemData[index.row()][index.column()]).decode('utf-8')
 
     def flags(self, index):
         if not index.isValid():
