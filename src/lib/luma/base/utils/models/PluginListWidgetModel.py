@@ -2,6 +2,7 @@
 
 from PyQt4.QtCore import *
 from PyQt4.QtGui import *
+from base.backend.PluginLoader import PluginLoader
 
 class PluginListWidgetModel(QStandardItemModel):
     """
@@ -11,23 +12,28 @@ class PluginListWidgetModel(QStandardItemModel):
     def __init__(self, parent = None):
         QStandardItemModel.__init__(self, parent)
         self._settings = QSettings()
-        
+            
+        pluginloader = PluginLoader(".", self.__checkToLoad())
+        for plugin in pluginloader.plugins:
+            item = QStandardItem(str.capitalize(plugin.pluginName))
+            #item.setIcon(QIcon('/Users/johannes/Programmering/Luma/git/src/share/luma/icons/plugins/addressbook/plugin.png'))
+            font = item.font()
+            font.setPointSize(font.pointSize() +4 )
+            item.setFont(font)
+            item.setEditable(False)
+            item.plugin = plugin
+            self.appendRow(item)
+                        
+    def __checkToLoad(self):
         self._settings.beginGroup("plugins")
+        
+        pluginlist = []
         
         #When beginGroup is set to plugins, the childgroups will be each of the plugins..
         for plugin in self._settings.childGroups():
             valueString = str(plugin) + "/load"
-            print valueString
             value = self._settings.value(valueString).toString()
-            print value
             if value == "True":
-                item = QStandardItem(str.capitalize(str(plugin)))
-                #TODO: Change this path!
-                item.setIcon(QIcon('/Users/johannes/Programmering/Luma/git/src/share/luma/icons/plugins/addressbook/plugin.png'))
-                font = item.font()
-                font.setPointSize(font.pointSize() +4 )
-                item.setFont(font)
-                item.setEditable(False)
-                self.appendRow(item)
-                
-                #self.widget = something smart
+                pluginlist.append(str(plugin))
+        
+        return pluginlist

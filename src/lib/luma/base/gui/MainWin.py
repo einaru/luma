@@ -93,7 +93,7 @@ class MainWin(QMainWindow, Ui_MainWindow):
         self.addDockWidget(Qt.TopDockWidgetArea, self.pluginDockWindow)
         """
             
-        self.pluginWidget = PluginListWidget()
+        self.pluginWidget = PluginListWidget(self)
         self.mainStack.addWidget(self.pluginWidget)
         self.mainStack.setCurrentWidget(self.pluginWidget)
         
@@ -106,7 +106,6 @@ class MainWin(QMainWindow, Ui_MainWindow):
         self.loggerWidget = LoggerWidget(self.loggerDockWindow)
         self.loggerDockWindow.setWidget(self.loggerWidget)
         self.addDockWidget(Qt.BottomDockWidgetArea, self.loggerDockWindow)
-        
     
     def __setupPluginToolbar(self):
         """  Setup the plugin toolbar """
@@ -296,11 +295,14 @@ class MainWin(QMainWindow, Ui_MainWindow):
         self.showSettingsDialog(2)
 
 
-    def pluginSelected(self):
+    def pluginSelected(self, plugin):
         """
-        Slot for handling plugin selection.
+        This method will be called from the PluginListWidget, with a pluginobject
+        to load.
         """
-        self.TODO("Plugin selected")
+        widget = plugin.getPluginWidget(self.mainStack)
+        self.mainStack.addWidget(widget)
+        self.mainStack.setCurrentWidget(widget)
 
 
     def showPluginSelection(self):

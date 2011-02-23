@@ -11,12 +11,11 @@ from random import randint
 class PluginListWidget(QWidget, Ui_pluginListWidget):
     def __init__(self, parent = None):
         QWidget.__init__(self, parent)
+        self.parent = parent
         self.setupUi(self)
         
         self._model = PluginListWidgetModel()
         self.listView.setModel(self._model)
         
-    def pluginDoubleClicked(self):
-        print "TRYKKE TRYKKE!"
-
-            
+    def pluginDoubleClicked(self, index):
+        self.parent.pluginSelected(self._model.itemFromIndex(index).plugin)
