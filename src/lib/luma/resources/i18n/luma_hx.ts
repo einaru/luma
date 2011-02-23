@@ -1,17 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.0" language="en_UM">
-<context>
+<!DOCTYPE TS><TS version="1.1" language="en_UM">
+<context encoding="UTF-8">
     <name>AboutCredits</name>
     <message>
         <location filename="base/gui/AboutCreditsDesign.ui" line="18"/>
         <source>Credits</source>
         <translation>cr3d175</translation>
-    </message>
-    <message>
-        <location filename="base/gui/AboutCredits.ui" line="28"/>
-        <source>Written by</source>
-        <translation type="obsolete">wr1773n 6y</translation>
     </message>
     <message>
         <location filename="base/gui/AboutCreditsDesign.ui" line="57"/>
@@ -33,7 +27,7 @@
         <source>Contributors</source>
         <translation>c0n7r16u7035</translation>
     </message>
-    <message utf8="true">
+    <message encoding="UTF-8">
         <location filename="base/gui/AboutCreditsDesign.ui" line="34"/>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
@@ -50,7 +44,7 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Simen Natvig &amp;lt;&lt;a href=&quot;mailto:simenna@stud.ntnu.no&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;simen.natvig@gmail.com&lt;/span&gt;&lt;/a&gt;&amp;gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation></translation>
     </message>
-    <message utf8="true">
+    <message encoding="UTF-8">
         <location filename="base/gui/AboutCreditsDesign.ui" line="63"/>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
@@ -79,7 +73,7 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Einar Uvsløkk &amp;lt;&lt;a href=&quot;mailto:einar.uvslokk@linux.com&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;einar.uvslokk@linux.com&lt;/span&gt;&lt;/a&gt;&amp;gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation></translation>
     </message>
-    <message utf8="true">
+    <message encoding="UTF-8">
         <location filename="base/gui/AboutCreditsDesign.ui" line="104"/>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
@@ -148,7 +142,7 @@ p, li { white-space: pre-wrap; }
         <source>LDAP management made easy</source>
         <translation>ld4p m4n494m4n7 m463 345y</translation>
     </message>
-    <message utf8="true">
+    <message encoding="UTF-8">
         <location filename="base/gui/AboutDialogDesign.ui" line="168"/>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
@@ -175,7 +169,7 @@ p, li { white-space: pre-wrap; }
         <translation>l1c3n53</translation>
     </message>
     <message>
-        <location filename="base/gui/AboutLicenseDesign.ui" line="57"/>
+        <location filename="base/gui/AboutLicenseDesign.ui" line="63"/>
         <source>Close</source>
         <translation>cl053</translation>
     </message>
@@ -195,11 +189,6 @@ p, li { white-space: pre-wrap; }
 </context>
 <context>
     <name>LoggerWidget</name>
-    <message>
-        <location filename="base/gui/LoggerWidgetDesign.ui" line="14"/>
-        <source>Form</source>
-        <translation type="obsolete">f0rm</translation>
-    </message>
     <message>
         <location filename="base/gui/LoggerWidgetDesign.ui" line="33"/>
         <source>Display message types:</source>
@@ -257,11 +246,6 @@ p, li { white-space: pre-wrap; }
         <location filename="base/gui/MainWinDesign.ui" line="69"/>
         <source>Help</source>
         <translation>h3lp</translation>
-    </message>
-    <message>
-        <location filename="base/gui/MainWinDesign.ui" line="16901456"/>
-        <source>Show Logger</source>
-        <translation type="obsolete">5h0w l0993r</translation>
     </message>
     <message>
         <location filename="base/gui/MainWinDesign.ui" line="86"/>
@@ -357,11 +341,6 @@ p, li { white-space: pre-wrap; }
         <translation></translation>
     </message>
     <message>
-        <location filename="base/gui/ServerDialogDesign.ui" line="91"/>
-        <source>&amp;Add...</source>
-        <translation type="obsolete">&amp;4dd...</translation>
-    </message>
-    <message>
         <location filename="base/gui/ServerDialogDesign.ui" line="1219"/>
         <source>Alt+A</source>
         <translation>Alt+4</translation>
@@ -405,15 +384,6 @@ p, li { white-space: pre-wrap; }
         <location filename="base/gui/ServerDialogDesign.ui" line="331"/>
         <source>&amp;Add</source>
         <translation>&amp;4dd</translation>
-    </message>
-    <message>
-        <location filename="base/gui/ServerDialogDesign.ui" line="410"/>
-        <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;MS Shell Dlg 2&apos;; font-size:8.25pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Network options&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="obsolete">&lt;b&gt;n3tw0rk 0p710n5&lt;/b&gt;</translation>
     </message>
     <message>
         <location filename="base/gui/ServerDialogDesign.ui" line="481"/>
@@ -474,15 +444,6 @@ p, li { white-space: pre-wrap; }
         <location filename="base/gui/ServerDialogDesign.ui" line="702"/>
         <source>Password:</source>
         <translation>p455w0rd:</translation>
-    </message>
-    <message>
-        <location filename="base/gui/ServerDialogDesign.ui" line="750"/>
-        <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;MS Shell Dlg 2&apos;; font-size:8.25pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:8pt; font-weight:600;&quot;&gt;Bind options&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="obsolete">&lt;b&gt;b1nd 0p710n5&lt;/b&gt;</translation>
     </message>
     <message>
         <location filename="base/gui/ServerDialogDesign.ui" line="759"/>
@@ -626,21 +587,6 @@ p, li { white-space: pre-wrap; }
         <location filename="base/gui/SettingsDialogDesign.ui" line="76"/>
         <source>Application language</source>
         <translation>4ppl1c4710n l4n9u493</translation>
-    </message>
-    <message>
-        <location filename="base/gui/SettingsDialogDesign.ui" line="103"/>
-        <source>Main window</source>
-        <translation type="obsolete">m41n w1nd0w</translation>
-    </message>
-    <message>
-        <location filename="base/gui/SettingsDialogDesign.ui" line="114"/>
-        <source>Save window size</source>
-        <translation type="obsolete">54v3 w1nd0w 51z3</translation>
-    </message>
-    <message>
-        <location filename="base/gui/SettingsDialogDesign.ui" line="124"/>
-        <source>Save window position</source>
-        <translation type="obsolete">54v3 w1nd0w p051710n</translation>
     </message>
     <message>
         <location filename="base/gui/SettingsDialogDesign.ui" line="118"/>
