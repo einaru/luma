@@ -18,12 +18,11 @@ class LDAPEntryModel(QtCore.QAbstractTableModel):
             Servers doesn't have a smartObject
             """
             return
-        
-        data = index.internalPointer().smartObject().data
-        for key in data.keys():
-            for value in data[key]:
-                self.itemData.append([key, value])
-
+#       data = index.internalPointer().smartObject().data
+#       for key in data.keys():
+#           for value in data[key]:
+#               self.itemData.append([key, value])
+    
     def rowCount(self, parent):
         return len(self.itemData)
 
@@ -41,7 +40,6 @@ class LDAPEntryModel(QtCore.QAbstractTableModel):
     def flags(self, index):
         if not index.isValid():
             return QtCore.Qt.ItemIsEnabled
-
         if index.column() == 1:
             return QtCore.Qt.ItemIsEnabled | QtCore.Qt.ItemIsSelectable | QtCore.Qt.ItemIsEditable
 

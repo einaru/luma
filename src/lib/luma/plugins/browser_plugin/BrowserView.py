@@ -31,7 +31,7 @@ class BrowserView(QWidget):
         self.entryList = QtGui.QTreeView(self.splitter)
         self.entryList.setMinimumWidth(200)
 
-        self.entryView = QtGui.QTableView(self.splitter)
+        self.entryView = TableView(self.splitter)
 
         self.entryList.clicked.connect(self.initEntryView)
         #self.connect(self.entryList, QtCore.SIGNAL("clicked(const QModelIndex &)"), self.initEntryView)
@@ -76,3 +76,38 @@ class BrowserView(QWidget):
         # FIXME: qt4 migration needed
         #self.entryView.buildToolBar(parent)
         pass
+
+class TableView(QtGui.QTableView):
+
+    def __init__(self, parent):
+        QtGui.QWidget.__init__(self, parent)
+
+    def displayValues(self):
+        # rdn + classes
+        # attributes
+        i = 0
+        self.rdnIndex = i
+        smartObject = self.index.internalPointer().smartObject()
+        rdn = smartObject.getDN()
+        self.itemData.append(['Distinguished Name: ', rdn])
+        i += 1
+
+        self.parent().setSpan(i, 0, 1, 2)
+        self.objectClassIndex = i
+        self.itemData.append(['ObjectClasses', ''])
+        i += 1
+        objectClasses = smartObject.getObjectClasses()
+        for objectClass in objectClasses:
+            self.itemData.append([objectClass, ''])
+            i += 1
+
+        self.setSpan(i, 0, 1, 2)
+        self.attributeIndex = i
+        self.itemData.append(['Attributes', ''])
+        attributeList = smartObject.getAttributeList()
+        attributeList.sort()
+        for attribute in attributeList:
+            for value in smartObject.getAttributeValueList(attribute):
+                self.itemData.append([attribute, value])
+                attribute = ''
+
