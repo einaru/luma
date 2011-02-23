@@ -51,26 +51,13 @@ class BrowserView(QWidget):
         
     def rightClick(self, point):
         clickedIndex = self.entryList.indexAt(point)
+        self.ldaptreemodel.currentIndex = clickedIndex
         clickedItem = clickedIndex.internalPointer()
         
         if clickedItem != None:
             menu = clickedItem.getContextMenu(QtGui.QMenu())
-            action = QAction("Reload", self)
-            action.triggered.connect(self.reload)   
-            menu.addAction(action)         
-            #menu.addAction("Set search limit", self.setLimit)
-            #menu.addAction("Set search filter", self.setFilter)
             menu.exec_(self.entryList.mapToGlobal(point))
             
-    @pyqtSlot(QModelIndex, LDAPTreeItem)
-    def reload(self, index, item):
-        print "given:",index
-        self.ldaptreemodel.beginRemoveRows(index,0, item.childCount()-1)
-        item.populateItem()
-        self.ldaptreemodel.endRemoveRows()
-        #self.entryList.model().layoutChanged.emit()
-        #self.entryList.model().emit(QtCore.SIGNAL("layoutChanged()"))
-    
     def initView(self, parent=None):
         self.ldaptreemodel = LDAPTreeItemModel(parent)
         self.ldaptreemodel.populateModel(self.serverList)

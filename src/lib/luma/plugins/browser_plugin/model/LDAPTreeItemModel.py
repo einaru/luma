@@ -121,8 +121,7 @@ class LDAPTreeItemModel(QAbstractItemModel):
         if not parentItem.populated:
             parentItem.populateItem()
             # Updates the |>-icon to show if the item has children
-            # Uncommented to show problems when using limit and filter
-            #self.layoutChanged.emit()
+            self.layoutChanged.emit()
         
         return parentItem.childCount()
         

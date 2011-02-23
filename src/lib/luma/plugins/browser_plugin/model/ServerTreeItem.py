@@ -68,3 +68,7 @@ class ServerTreeItem(AbstractLDAPTreeItem):
         self.doneWorking.emit()
         self.populated = 1
         
+    def getContextMenu(self, menu):
+        # Currently nothing
+        return menu
+        

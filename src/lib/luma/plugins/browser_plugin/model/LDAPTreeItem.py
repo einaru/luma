@@ -30,6 +30,7 @@ class LDAPTreeItem(AbstractLDAPTreeItem):
         self.isWorking.connect(self.serverParent.isWorking)
         self.doneWorking.connect(self.serverParent.doneWorking)
 
+        self.hasIndex = False
 
     def columnCount(self):
         """
@@ -79,10 +80,12 @@ class LDAPTreeItem(AbstractLDAPTreeItem):
         
         # If a limit is specified, only display the chosen amount        
         if self.limit > 0 and len(resultList) > self.limit:
+            self.beginUpdateModel()
             self.childItems = [] # Remember to empty the existing list
             for i in xrange(self.limit):
-                self.childItems.append(LDAPTreeItem(resultList[i], self.serverParent, self))
+                self.childItems.append(LDAPTreeItem(resultList[i], self.serverParent, self, modelParent = self.modelParent))
             self.populated = 1
+            self.endUpdateModel()
             return
         
         # If there are ALOT of returned entries, confirm displaying them all
@@ -90,17 +93,22 @@ class LDAPTreeItem(AbstractLDAPTreeItem):
             """
             Todo: specify how many to load and "remembers"/"always yes"-function in the dialog
             """
-            svar = QMessageBox.question(None, self.tr("Got many results"), unicode( self.tr("Got %s items. Do you want to display them all?") % str(len(resultList)) ), QMessageBox.Yes|QMessageBox.No)
+            # TODO Translate
+            svar = QMessageBox.question(None, self.tr("Got many results"), "Got " +str(len(resultList))+" items. Do you want to display them all?", QMessageBox.Yes|QMessageBox.No)
             if not svar == QMessageBox.Yes:
+                self.beginUpdateModel()
                 self.childItems = []
                 for i in xrange(50):
                     self.childItems.append(LDAPTreeItem(resultList[i], self.serverParent, self, modelParent = self.modelParent))
                 self.populated = 1
+                self.endUpdateModel()
                 return
 
         # Default, load all
-        self.childItems = [LDAPTreeItem(x, self.serverParent, self) for x in resultList]
+        self.beginUpdateModel()
+        self.childItems = [LDAPTreeItem(x, self.serverParent, self, modelParent = self.modelParent) for x in resultList]
         self.populated = 1
+        self.endUpdateModel()
     
     def setLimit(self):
         """
@@ -109,7 +117,7 @@ class LDAPTreeItem(AbstractLDAPTreeItem):
         r = QInputDialog.getInt(None, "Limit","Enter the limit (0 = none):", self.limit)
         if r[1] == True:
             self.limit = r[0]
-            # TODO NEED TO SIGNAL THE VIEW OF INCOMING CHANGES
+            
             self.populateItem()
     
     def setFilter(self):
@@ -122,7 +130,29 @@ class LDAPTreeItem(AbstractLDAPTreeItem):
                 self.filter = str(r[0])
             else:
                 self.filter = LDAPTreeItem.FILTER_DEFAULT
-            # TODO NEED TO SIGNAL THE VIEW OF INCOMING CHANGES
+            
             self.populateItem()
+    
+    def beginUpdateModel(self):
+        if self.hasIndex:
+            self.modelParent.beginRemoveRows(self.index, 0, self.childCount()-1)
+        
+    def endUpdateModel(self):
+        if self.hasIndex:
+            self.modelParent.endRemoveRows()
+            self.hasIndex = False
 
+        
+    def getContextMenu(self, menu):
+        #Remember the index so the methods can use it for notifying the model
+        # of changes.
+        self.index = self.modelParent.currentIndex
+        self.hasIndex = True
+
+        
+        menu.addAction("Reload", self.populateItem)
+        menu.addAction("Set search limit", self.setLimit)
+        menu.addAction("Set filter", self.setFilter)
+        return menu
+        
     

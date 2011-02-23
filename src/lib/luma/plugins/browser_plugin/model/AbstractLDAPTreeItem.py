@@ -93,4 +93,6 @@ class AbstractLDAPTreeItem(QObject):
         """
         Populates the child-list of this item. (Used for lazy-loading.)
         """
+        
+    def getContextMenu(self):
         raise NotImplementedError("Should be implemented")
