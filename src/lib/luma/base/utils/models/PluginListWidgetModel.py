@@ -8,6 +8,12 @@ class PluginListWidgetModel(QStandardItemModel):
     """
     This model will create its own items, from the QSettings where 
     plugins is set to "load".
+    
+    
+    
+    O M G !!!!
+    LOADS ALL PLUGINS MATHER WHAT SETTINGS THAT IS SET!!!!
+    FIX THAT NOAWH!
     """
     def __init__(self, parent = None):
         QStandardItemModel.__init__(self, parent)
@@ -15,15 +21,17 @@ class PluginListWidgetModel(QStandardItemModel):
             
         pluginloader = PluginLoader(".", self.__checkToLoad())
         for plugin in pluginloader.plugins:
-            item = QStandardItem(str.capitalize(plugin.pluginName))
-            #item.setIcon(QIcon('/Users/johannes/Programmering/Luma/git/src/share/luma/icons/plugins/addressbook/plugin.png'))
-            font = item.font()
-            font.setPointSize(font.pointSize() +4 )
-            item.setFont(font)
-            item.setEditable(False)
-            item.plugin = plugin
-            self.appendRow(item)
-                        
+            
+            if plugin.load == True:
+                item = QStandardItem(str.capitalize(plugin.pluginName))
+                #item.setIcon(QIcon('/Users/johannes/Programmering/Luma/git/src/share/luma/icons/plugins/addressbook/plugin.png'))
+                font = item.font()
+                font.setPointSize(font.pointSize() +4 )
+                item.setFont(font)
+                item.setEditable(False)
+                item.plugin = plugin
+                self.appendRow(item)
+    
     def __checkToLoad(self):
         self._settings.beginGroup("plugins")
         
@@ -35,5 +43,4 @@ class PluginListWidgetModel(QStandardItemModel):
             value = self._settings.value(valueString).toString()
             if value == "True":
                 pluginlist.append(str(plugin))
-        
         return pluginlist
