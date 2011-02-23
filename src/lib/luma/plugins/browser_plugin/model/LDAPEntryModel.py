@@ -7,6 +7,10 @@ from PyQt4 import QtCore
 from LDAPTreeItemModel import LDAPTreeItemModel
 from ServerTreeItem import ServerTreeItem
 class LDAPEntryModel(QtCore.QAbstractTableModel):
+    """
+    Used by the LDAP-entry-viewer/editor.
+    """
+    
     def __init__(self, index, parent=None):
         QtCore.QAbstractTableModel.__init__(self, parent)
         

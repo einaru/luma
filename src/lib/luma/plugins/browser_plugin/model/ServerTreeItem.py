@@ -1,17 +1,16 @@
-'''
-Created on 18. feb. 2011
 
-@author: Simen
-'''
+import ldap
 
 from base.backend.LumaConnection import LumaConnection
-import ldap
 from AbstractLDAPTreeItem import AbstractLDAPTreeItem
 from LDAPTreeItem import LDAPTreeItem
 from PyQt4 import QtCore
 from PyQt4.QtGui import QPixmap, QIcon
 
 class ServerTreeItem(AbstractLDAPTreeItem):
+    """
+    Represents the servers in the model.
+    """
 
     def __init__(self, data, serverMeta=None, parent=None, modelParent = None):
         AbstractLDAPTreeItem.__init__(self, parent, modelParent = modelParent)
@@ -39,7 +38,9 @@ class ServerTreeItem(AbstractLDAPTreeItem):
         return self.itemData[1]
 
     def populateItem(self):
-        
+        """
+        Gets the list of baseDNs for the server and adds them as children.
+        """
         self.isWorking.emit()
 
         self.connection = LumaConnection(self.serverMeta)
@@ -52,6 +53,7 @@ class ServerTreeItem(AbstractLDAPTreeItem):
             return
         
         self.isWorking.emit()
+        
         # Clear list of baseDNs
         self.childItems = []
         for base in tmpList:
@@ -64,10 +66,5 @@ class ServerTreeItem(AbstractLDAPTreeItem):
             self.appendChild(tmp)
             
         self.doneWorking.emit()
-
         self.populated = 1
         
-    def getContextMenu(self, menu):
-        # Not used
-        return menu
-    
