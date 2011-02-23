@@ -8,12 +8,6 @@ class PluginListWidgetModel(QStandardItemModel):
     """
     This model will create its own items, from the QSettings where 
     plugins is set to "load".
-    
-    
-    
-    O M G !!!!
-    LOADS ALL PLUGINS MATHER WHAT SETTINGS THAT IS SET!!!!
-    FIX THAT NOAWH!
     """
     def __init__(self, parent = None):
         QStandardItemModel.__init__(self, parent)
