@@ -1,4 +1,4 @@
-COONFIG +=     qt debug
+CONFIG +=      qt debug
 
 SOURCES =      base/gui/MainWin.py \
                base/gui/ServerDialog.py
