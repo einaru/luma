@@ -2,6 +2,7 @@
 
 import ldap
 from AbstractLDAPTreeItem import AbstractLDAPTreeItem
+from LDAPErrorItem import LDAPErrorItem
 from PyQt4.QtGui import QMessageBox, QInputDialog, QIcon, QPixmap
 from PyQt4 import QtCore
 
@@ -75,7 +76,11 @@ class LDAPTreeItem(AbstractLDAPTreeItem):
         self.doneWorking.emit()
         
         if not success:
+        #if success:
             self.displayError(exceptionObject)
+            self.childItems = []
+            self.childItems.append(LDAPErrorItem(str(exceptionObject), self.serverParent, self, self.modelParent))
+            self.populated = 1
             return
         
         # If a limit is specified, only display the chosen amount        

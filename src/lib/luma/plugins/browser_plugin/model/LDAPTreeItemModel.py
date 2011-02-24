@@ -9,6 +9,7 @@
 import ldap
 from ServerTreeItem import ServerTreeItem
 from RootTreeItem import RootTreeItem
+from LDAPErrorItem import LDAPErrorItem
 from PyQt4 import QtCore
 from PyQt4.QtCore import QAbstractItemModel
 from base.backend.LumaConnection import LumaConnection

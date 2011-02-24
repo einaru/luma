@@ -23,21 +23,18 @@ except ImportError, e:
     print e
     
 import threading
-import copy
 import time
 import logging
 
-#import environment
 from base.backend.ServerObject import ServerObject, ServerCheckCertificate, ServerEncryptionMethod, ServerAuthMethod
 from base.backend.SmartDataObject import SmartDataObject
-"""
-from base.backend.SmartDataObject import SmartDataObject
-from base.backend.LumaSSLConnection import hasSSLlibrary
-from base.utils.backend.LogObject import LogObject
-from base.utils.gui.PromptPasswordDialog import PromptPasswordDialog
-from base.gui.UnknownCertDialog import UnknownCertDialog
 from PyQt4.QtGui import QMessageBox
-"""
+
+# TODO
+#from base.backend.LumaSSLConnection import hasSSLlibrary
+#from base.utils.gui.PromptPasswordDialog import PromptPasswordDialog
+#from base.gui.UnknownCertDialog import UnknownCertDialog
+
 
 class LumaConnectionException(Exception):
     """This exception class will be raised if no proper server object is passed 
@@ -81,6 +78,7 @@ class LumaConnection(object):
         Aynchronous search.
         """
         
+        # Done by the objects calling the method
         #environment.setBusy(True)
         
         workerThread = WorkerThreadSearch(self.ldapServerObject)
@@ -94,6 +92,7 @@ class LumaConnection(object):
         
         self.logger.debug("Entering waiting-for-search-finished-loop.")
         while not workerThread.FINISHED:
+            # Process events until finished.
             qApp.processEvents()
             time.sleep(0.05)
         self.logger.debug("Exited waiting-for-search-finished-loop.")
