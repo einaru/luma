@@ -9,6 +9,10 @@ from PyQt4 import QtCore, QtGui
 from LDAPTreeItemModel import LDAPTreeItemModel
 from ServerTreeItem import ServerTreeItem
 class LDAPEntryModel(QtCore.QAbstractTableModel):
+    """
+    Used by the LDAP-entry-viewer/editor.
+    """
+    
     def __init__(self, index, parent=None):
         QtCore.QAbstractTableModel.__init__(self, parent)
         
@@ -82,7 +86,7 @@ class LDAPEntryModel(QtCore.QAbstractTableModel):
             return QtCore.QVariant()
         elif index.column() >= 2:
             return self.itemData[index.row()][index.column()]
-        return QtCore.QVariant(self.itemData[index.row()][index.column()])
+        return QtCore.QVariant(self.itemData[index.row()][index.column()]).decode('utf-8')
 
     def flags(self, index):
         if not index.isValid():

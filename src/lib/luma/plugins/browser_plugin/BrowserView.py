@@ -9,13 +9,15 @@
 ###########################################################################
 
 from PyQt4 import QtCore, QtGui
-from PyQt4.QtGui import QWidget
+from PyQt4.QtGui import QWidget, QAction
+from PyQt4.QtCore import pyqtSlot, QModelIndex
 import modeltest
 
 #import environment
 from base.backend.ServerList import ServerList
 from model.LDAPTreeItemModel import LDAPTreeItemModel
 from model.LDAPEntryModel import LDAPEntryModel
+from model.LDAPTreeItem import LDAPTreeItem
 
 
 class BrowserView(QWidget):
@@ -49,14 +51,13 @@ class BrowserView(QWidget):
         
     def rightClick(self, point):
         clickedIndex = self.entryList.indexAt(point)
+        self.ldaptreemodel.currentIndex = clickedIndex
         clickedItem = clickedIndex.internalPointer()
         
         if clickedItem != None:
             menu = clickedItem.getContextMenu(QtGui.QMenu())
             menu.exec_(self.entryList.mapToGlobal(point))
-            self.entryList.model().layoutChanged.emit()
-            #self.entryList.model().emit(QtCore.SIGNAL("layoutChanged()"))
-    
+            
     def initView(self, parent=None):
         self.ldaptreemodel = LDAPTreeItemModel(parent)
         self.ldaptreemodel.populateModel(self.serverList)
