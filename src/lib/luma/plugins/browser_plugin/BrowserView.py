@@ -81,33 +81,7 @@ class TableView(QtGui.QTableView):
 
     def __init__(self, parent):
         QtGui.QWidget.__init__(self, parent)
+        self.setShowGrid(False)
 
-    def displayValues(self):
-        # rdn + classes
-        # attributes
-        i = 0
-        self.rdnIndex = i
-        smartObject = self.index.internalPointer().smartObject()
-        rdn = smartObject.getDN()
-        self.itemData.append(['Distinguished Name: ', rdn])
-        i += 1
 
-        self.parent().setSpan(i, 0, 1, 2)
-        self.objectClassIndex = i
-        self.itemData.append(['ObjectClasses', ''])
-        i += 1
-        objectClasses = smartObject.getObjectClasses()
-        for objectClass in objectClasses:
-            self.itemData.append([objectClass, ''])
-            i += 1
-
-        self.setSpan(i, 0, 1, 2)
-        self.attributeIndex = i
-        self.itemData.append(['Attributes', ''])
-        attributeList = smartObject.getAttributeList()
-        attributeList.sort()
-        for attribute in attributeList:
-            for value in smartObject.getAttributeValueList(attribute):
-                self.itemData.append([attribute, value])
-                attribute = ''
 
