@@ -44,7 +44,7 @@ class LDAPEntryModel(QtCore.QAbstractTableModel):
 
 
     def getRootDN(self):
-        return self.index.internalPointer().smartObject().getDN()
+        return self.index.internalPointer().smartObject().getPrettyDN()
 
     def getObjectClasses(self):
         smartObject = self.index.internalPointer().smartObject()
@@ -84,9 +84,8 @@ class LDAPEntryModel(QtCore.QAbstractTableModel):
 
         elif role != QtCore.Qt.DisplayRole:
             return QtCore.QVariant()
-        elif index.column() >= 2:
-            return self.itemData[index.row()][index.column()]
-        return QtCore.QVariant(self.itemData[index.row()][index.column()]).decode('utf-8')
+        return QtCore.QVariant(self.itemData[index.row()][index.column()])
+
 
     def flags(self, index):
         if not index.isValid():
