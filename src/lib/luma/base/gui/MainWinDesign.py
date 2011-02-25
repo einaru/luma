@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'MainWinDesign.ui'
+# Form implementation generated from reading ui file '/mnt/debris/devel/git/luma/src/lib/luma/resources/forms/MainWinDesign.ui'
 #
-# Created: Thu Feb 17 20:47:58 2011
+# Created: Fri Feb 25 12:12:02 2011
 #      by: PyQt4 UI code generator 4.7.4
 #
 # WARNING! All changes made in this file will be lost!
@@ -41,6 +41,7 @@ class Ui_MainWindow(object):
         self.statusBar.setObjectName("statusBar")
         MainWindow.setStatusBar(self.statusBar)
         self.actionShowLogger = QtGui.QAction(MainWindow)
+        self.actionShowLogger.setCheckable(True)
         self.actionShowLogger.setObjectName("actionShowLogger")
         self.actionQuit = QtGui.QAction(MainWindow)
         self.actionQuit.setObjectName("actionQuit")
@@ -54,16 +55,6 @@ class Ui_MainWindow(object):
         self.actionAboutLuma.setObjectName("actionAboutLuma")
         self.actionEditSettings = QtGui.QAction(MainWindow)
         self.actionEditSettings.setObjectName("actionEditSettings")
-        self.actionDeutch = QtGui.QAction(MainWindow)
-        self.actionDeutch.setCheckable(True)
-        self.actionDeutch.setObjectName("actionDeutch")
-        self.actionEnglish = QtGui.QAction(MainWindow)
-        self.actionEnglish.setCheckable(True)
-        self.actionEnglish.setChecked(True)
-        self.actionEnglish.setObjectName("actionEnglish")
-        self.actionNorwegian = QtGui.QAction(MainWindow)
-        self.actionNorwegian.setCheckable(True)
-        self.actionNorwegian.setObjectName("actionNorwegian")
         self.menuFile.addAction(self.actionShowLogger)
         self.menuFile.addSeparator()
         self.menuFile.addAction(self.actionQuit)
@@ -86,7 +77,7 @@ class Ui_MainWindow(object):
         QtCore.QObject.connect(self.actionAboutLuma, QtCore.SIGNAL("triggered()"), MainWindow.showAboutLuma)
         QtCore.QObject.connect(self.actionConfigurePlugins, QtCore.SIGNAL("triggered()"), MainWindow.configurePlugins)
         QtCore.QObject.connect(self.actionReloadPlugins, QtCore.SIGNAL("triggered()"), MainWindow.reloadPlugins)
-        QtCore.QObject.connect(self.actionShowLogger, QtCore.SIGNAL("triggered()"), MainWindow.showLoggerWindow)
+        QtCore.QObject.connect(self.actionShowLogger, QtCore.SIGNAL("triggered(bool)"), MainWindow.showLoggerWindow)
         QtCore.QObject.connect(self.actionEditServerList, QtCore.SIGNAL("triggered()"), MainWindow.showServerEditor)
         QtCore.QObject.connect(self.actionEditSettings, QtCore.SIGNAL("triggered()"), MainWindow.showSettingsDialog)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
@@ -97,7 +88,7 @@ class Ui_MainWindow(object):
         self.menuEdit.setTitle(QtGui.QApplication.translate("MainWindow", "Edit", None, QtGui.QApplication.UnicodeUTF8))
         self.menuLanguage.setTitle(QtGui.QApplication.translate("MainWindow", "Language", None, QtGui.QApplication.UnicodeUTF8))
         self.menuHelp.setTitle(QtGui.QApplication.translate("MainWindow", "Help", None, QtGui.QApplication.UnicodeUTF8))
-        self.actionShowLogger.setText(QtGui.QApplication.translate("MainWindow", "Show Logger", None, QtGui.QApplication.UnicodeUTF8))
+        self.actionShowLogger.setText(QtGui.QApplication.translate("MainWindow", "Show logger", None, QtGui.QApplication.UnicodeUTF8))
         self.actionShowLogger.setShortcut(QtGui.QApplication.translate("MainWindow", "Ctrl+L", None, QtGui.QApplication.UnicodeUTF8))
         self.actionQuit.setText(QtGui.QApplication.translate("MainWindow", "Quit", None, QtGui.QApplication.UnicodeUTF8))
         self.actionQuit.setShortcut(QtGui.QApplication.translate("MainWindow", "Ctrl+Q", None, QtGui.QApplication.UnicodeUTF8))
@@ -109,7 +100,4 @@ class Ui_MainWindow(object):
         self.actionAboutLuma.setText(QtGui.QApplication.translate("MainWindow", "About Luma", None, QtGui.QApplication.UnicodeUTF8))
         self.actionAboutLuma.setShortcut(QtGui.QApplication.translate("MainWindow", "F12", None, QtGui.QApplication.UnicodeUTF8))
         self.actionEditSettings.setText(QtGui.QApplication.translate("MainWindow", "Settings", None, QtGui.QApplication.UnicodeUTF8))
-        self.actionDeutch.setText(QtGui.QApplication.translate("MainWindow", "Deutch", None, QtGui.QApplication.UnicodeUTF8))
-        self.actionEnglish.setText(QtGui.QApplication.translate("MainWindow", "English", None, QtGui.QApplication.UnicodeUTF8))
-        self.actionNorwegian.setText(QtGui.QApplication.translate("MainWindow", "Norwegian", None, QtGui.QApplication.UnicodeUTF8))
 

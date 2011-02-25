@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
+ <author>Einar Uvsløkk, &lt;einar.uvslokk@linux.com&gt;</author>
  <class>AboutDialog</class>
  <widget class="QDialog" name="AboutDialog">
   <property name="windowModality">
@@ -232,7 +233,7 @@ p, li { white-space: pre-wrap; }
    <sender>aboutCredits</sender>
    <signal>clicked()</signal>
    <receiver>AboutDialog</receiver>
-   <slot>showCredits()</slot>
+   <slot>giveCreditWhereCreditIsDue()</slot>
    <hints>
     <hint type="sourcelabel">
      <x>52</x>
@@ -264,5 +265,6 @@ p, li { white-space: pre-wrap; }
  <slots>
   <slot>showCredits()</slot>
   <slot>showLicense()</slot>
+  <slot>giveCreditWhereCreditIsDue()</slot>
  </slots>
 </ui>

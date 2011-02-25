@@ -2,8 +2,8 @@
 
 from PyQt4.QtCore import *
 from PyQt4.QtGui import *
-from base.utils.gui.PluginListWidgetDesign import Ui_pluginListWidget
-from base.utils.models.PluginListWidgetModel import PluginListWidgetModel
+from base.util.gui.PluginListWidgetDesign import Ui_pluginListWidget
+from base.util.model.PluginListWidgetModel import PluginListWidgetModel
 
 import sys
 from random import randint

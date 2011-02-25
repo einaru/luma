@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
+ <author>Einar Uvsløkk, &lt;einar.uvslokk@linux.com&gt;</author>
  <class>MainWindow</class>
  <widget class="QMainWindow" name="MainWindow">
   <property name="geometry">
@@ -75,8 +76,11 @@
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
   <action name="actionShowLogger">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
    <property name="text">
-    <string>Show Logger</string>
+    <string>Show logger</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+L</string>
@@ -122,33 +126,6 @@
   <action name="actionEditSettings">
    <property name="text">
     <string>Settings</string>
-   </property>
-  </action>
-  <action name="actionDeutch">
-   <property name="checkable">
-    <bool>true</bool>
-   </property>
-   <property name="text">
-    <string>Deutch</string>
-   </property>
-  </action>
-  <action name="actionEnglish">
-   <property name="checkable">
-    <bool>true</bool>
-   </property>
-   <property name="checked">
-    <bool>true</bool>
-   </property>
-   <property name="text">
-    <string>English</string>
-   </property>
-  </action>
-  <action name="actionNorwegian">
-   <property name="checkable">
-    <bool>true</bool>
-   </property>
-   <property name="text">
-    <string>Norwegian</string>
    </property>
   </action>
  </widget>
@@ -220,9 +197,9 @@
   </connection>
   <connection>
    <sender>actionShowLogger</sender>
-   <signal>triggered()</signal>
+   <signal>triggered(bool)</signal>
    <receiver>MainWindow</receiver>
-   <slot>showLoggerWindow()</slot>
+   <slot>showLoggerWindow(bool)</slot>
    <hints>
     <hint type="sourcelabel">
      <x>-1</x>
@@ -269,7 +246,7 @@
  </connections>
  <slots>
   <slot>quitApplication()</slot>
-  <slot>showLoggerWindow()</slot>
+  <slot>showLoggerWindow(bool)</slot>
   <slot>reloadPlugins()</slot>
   <slot>configurePlugins()</slot>
   <slot>showAboutLuma()</slot>

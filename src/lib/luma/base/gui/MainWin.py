@@ -1,10 +1,8 @@
 # -*- coding: utf-8 -*-
 #
 # Copyright (c) 2011
-#      Einar Uvsløkk, <einaru@stud.ntnu.no>
-#
-# Copyright (c) 2003, 2004, 2005 
-#      Wido Depping, <widod@users.sourceforge.net>
+#     Einar Uvsløkk, <einar.uvslokk@linux.no>
+#     Christian Forfang, <cforfang@gmail.com>
 #
 # Luma is free software; you can redistribute it and/or modify 
 # it under the terms of the GNU General Public Licence as published by 
@@ -19,69 +17,89 @@
 # You should have received a copy of the GNU General Public Licence along 
 # with Luma; if not, write to the Free Software Foundation, Inc., 
 # 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA
+"""
+This module contains several Luma GUI classes:
 
+MainWindow:
+    The Luma main window.
+
+LoggerWidget:
+    A dockable loggerwidget used by MainWindow.
+
+PluginToolBar:
+    A toolbar widget for quick plugin access.
+
+SettingsDialog:
+    A dialog for accessing and setting variuos application settings.
+
+AboutDialog:
+    A simple about dialog, including credits and license.
+"""
+import sys
 import logging
+from random import randint
 
-from PyQt4.QtCore import QTranslator, QObject, Qt, SIGNAL
-from PyQt4.QtGui import QApplication, QMainWindow, QToolBar, QListWidget
-from PyQt4.QtGui import QDockWidget, QPushButton, QLabel, QFont
-from PyQt4.QtGui import qApp, QActionGroup, QAction
+from PyQt4.QtCore import Qt, pyqtSlot
+from PyQt4.QtCore import QEvent
+from PyQt4.QtCore import QTranslator
 
+from PyQt4.QtGui import QAction, QActionGroup, QApplication, qApp
+from PyQt4.QtGui import QDialog, QDockWidget
+from PyQt4.QtGui import QFont
+from PyQt4.QtGui import QLabel, QListWidget
+from PyQt4.QtGui import QMainWindow
+from PyQt4.QtGui import QPushButton
+from PyQt4.QtGui import QStandardItem, QStandardItemModel
+from PyQt4.QtGui import QToolBar
+from PyQt4.QtGui import QWidget
 
+from base.gui import Settings
+from base.util import LanguageHandler
+from base.util.gui.PluginListWidget import PluginListWidget
+from base.gui.AboutDialogDesign import Ui_AboutDialog
+from base.gui.AboutLicenseDesign import Ui_AboutLicense
+from base.gui.AboutCreditsDesign import Ui_AboutCredits
+from base.gui.LoggerWidgetDesign import Ui_LoggerWidget
 from base.gui.MainWinDesign import Ui_MainWindow
-from base.utils.gui.LoggerWidget import LoggerWidget
-from base.gui.AboutDialog import AboutDialog
+from base.gui.PluginSettings import PluginSettings
+from base.gui.SettingsDialogDesign import Ui_SettingsDialog
 from base.gui.ServerDialog import ServerDialog
 from base.backend.ServerList import ServerList
-from base.gui.SettingsDialog import SettingsDialog
 
-from base.backend.Settings import Settings
-from base.utils import LanguageHandler
-
-from base.gui.PluginSettings import PluginSettings
-from base.utils.gui.PluginListWidget import PluginListWidget
-
-class MainWin(QMainWindow, Ui_MainWindow):
+class MainWindow(QMainWindow, Ui_MainWindow):
     """
-    The Luma Main Window
+    The Main window of Luma.
     """
 
     DEVEL = True
 
-    __logger = logging.getLogger(__name__)
+    logger = logging.getLogger(__name__)
+    languages = {}
+    translator = None
+    languageHandler = None
+    currentLanguage = ''
 
     def __init__(self, parent=None):
-        """
-        The constructor loads the generated ui code and setup the rest
-        of the widgets. It assures that the configuration values concerning
-        the GUI are loaded and set correctly; language settings, etc.
-        """
         QMainWindow.__init__(self)
-        
-        self.serverDialog = None
-        self.settingsDialog = None
-        self.aboutDialog = None
+
+        self.translator = QTranslator()
         self.languageHandler = LanguageHandler()
-
-        self.serverList = ServerList("/tmp")
-
+        self.languages = self.languageHandler.availableLanguages
         self.setupUi(self)
-        self.__generateLanguageMenu()
-        
-        self.__setupPluginToolbar()
-        self.__setupLoggerWindow()
+        self.createPluginToolBar()
+        self.createLoggerWidget()
+
+        self.loadSettings()
+
+        self.createLanguageOptions()
+
         self.__setupPluginList()
 
-        # TODO Setup the rest of the defaults in the Main Window:
-        #      fix translation stuff, 
-        #      load configured language
-        #      load the plugin list
-        self.__loadSettings()
-        self.__installLanguageTranslator()
         if self.DEVEL:
             self.actionEditServerList.setStatusTip(
                 u'Final GUI polishing by Granbusk\u2122 Polishing')
-    
+
+
     def __setupPluginList(self):
         """
         self.pluginDockWindow = QDockWidget(self)
@@ -96,201 +114,258 @@ class MainWin(QMainWindow, Ui_MainWindow):
         self.pluginWidget = PluginListWidget(self)
         self.mainStack.addWidget(self.pluginWidget)
         self.mainStack.setCurrentWidget(self.pluginWidget)
-        
-    def __setupLoggerWindow(self):
-        """  Setup the Logger Window """
+
+
+    def createPluginToolBar(self):
+        """
+        Creates the pluign toolbar.
+        """
+        self.pluginToolBar = PluginToolBar(self)
+        self.addToolBar(self.pluginToolBar)
+        self.pluginBoxId = self.mainStack.addWidget(self.pluginToolBar.pluginList)
+
+
+    def createLoggerWidget(self):
+        """
+        Creates the logger widget.
+        """
         self.loggerDockWindow = QDockWidget(self)
-        self.loggerDockWindow.setWindowTitle(
-            QApplication.translate(
-                "MainWindow", "Logger", None, QApplication.UnicodeUTF8))
+        self.loggerDockWindow.visibilityChanged[bool].connect(self.actionShowLogger.setChecked)
+        self.loggerDockWindow.setWindowTitle(QApplication.translate('MainWindow', 'Logger', None, QApplication.UnicodeUTF8))
         self.loggerWidget = LoggerWidget(self.loggerDockWindow)
         self.loggerDockWindow.setWidget(self.loggerWidget)
         self.addDockWidget(Qt.BottomDockWidgetArea, self.loggerDockWindow)
-    
-    def __setupPluginToolbar(self):
-        """  Setup the plugin toolbar """
-        self.pluginToolBar = QToolBar(self)
-        self.pluginToolBar.setObjectName("toolBar")
-        self.addToolBar(self.pluginToolBar)
+        self.loggerDockWindow.hide()
 
-        self.pluginLabel = QLabel(self.pluginToolBar)
-        self.pluginLabel.setAlignment(Qt.AlignLeft | Qt.AlignVCenter)
-        self.pluginLabel.setText(self.trUtf8("Plugin Name"))
-        font = QFont()
-        font.setBold(True)
-        self.pluginLabel.setFont(font)
-        self.pluginLabel.setMargin(5)
-        self.pluginToolBar.addWidget(self.pluginLabel)
 
-        self.pluginButton = QPushButton(self.pluginToolBar)
-        self.pluginButton.setText(self.trUtf8("Choose plugin"))
-        self.pluginToolBar.addWidget(self.pluginButton)
-        self.connect(self.pluginButton, SIGNAL("clicked()"),
-                     self.showPluginSelection)
-
-        self.pluginBox = QListWidget(None)
-        font = self.pluginBox.font()
-        font.setPointSize(font.pointSize() + 4)
-        self.pluginBox.setFont(font)
-        self.connect(self.pluginBox, SIGNAL("itemClicked(QListWidgetItem*)"),
-                     self.pluginSelected)
-        self.pluginBoxId = self.mainStack.addWidget(self.pluginBox)        
-
-    def __installLanguageTranslator(self):
+    def createLanguageOptions(self):
         """
-        Load the preferred application language. Defaults to english.
+        Creates the language selection in the menubar.
         """
-        qApp.installTranslator(QTranslator())
-        self.languageChange()
+        self.langGroup = QActionGroup(self)
+        self.langGroup.setExclusive(True)
+        self.langGroup.triggered['QAction*'].connect(self.languageChanged)
 
-
-    def __generateLanguageMenu(self):
-        """
-        Helper method for generating available language translations in
-        the menu
-        """
-        settings = Settings()
-        lang = settings.language
-        self.menuLangGroup = QActionGroup(self)
-        languages = self.languageHandler.availableLanguages
-
-        for key, value in languages.iteritems():
+        for key, name in self.languages.iteritems():
             action = QAction(self)
-            action.setObjectName('language_%s' % key)
             action.setCheckable(True)
-            if key == lang:
-                action.setChecked(True)
-            action.setActionGroup(self.menuLangGroup)
-            action.setText(value[0])
-            action.setStatusTip(value[1])
-            QObject.connect(action, SIGNAL("triggered()"), self.languageChanged)
+            action.setData(key)
+            action.setText(name[0])
+            action.setStatusTip(name[1])
+            action.setActionGroup(self.langGroup)
             self.menuLanguage.addAction(action)
+            if key == self.currentLanguage:
+                action.setChecked(True)
 
 
-    def __writeSettings(self):
+    def loadSettings(self, mainWin=True):
         """
-        Writes the MainWindow spesific settings to disk
+        Loads settings from file.
+        
+        @param mainWin: If set to false, neither the values for the window
+                        size or the window position will be loaded. This 
+                        is i.e done when the settings dialog returns 1.
         """
+#        s = QSettings(qApp.organizationName(), qApp.applicationName())
+#        
+#        s.beginGroup(u'mainwin')
+#        self.resize(s.value(u'size').toSize())
+#        self.move(s.value(u'position').toPoint())
+#        s.endGroup()
+#        
+#        s.beginGroup(u'logger')
+#        self.actionShowLogger.setChecked(s.value('show_on_start').toBool())
+#        self.loggerWidget.errorBox.setChecked(s.value('show_errors').toBool())
+#        self.loggerWidget.debugBox.setChecked(s.value('show_debug').toBool())
+#        self.loggerWidget.infoBox.setChecked(s.value('show_info').toBool())
+#        s.endGroup()
+#        
+#        s.beginGroup(u'i18n')
+#        self.loadLanguage(s.value(u'language').toString())
+#        s.endGroup()
+
         settings = Settings()
-        settings.size = self.size()
-        settings.posistion = self.pos()
+        """ General Mainwin"""
+        if mainWin:
+            self.resize(settings.size)
+            self.move(settings.position)
 
-
-    def __loadSettings(self):
-        """
-        Load the application settings from disk
-        """
-        settings = Settings()
-        """ Main window """
-        self.resize(settings.size)
-        self.move(settings.posistion)
-
-        """ Logger widget """
+        """ Logger """
+        self.actionShowLogger.setChecked(settings.showLoggerOnStart)
         self.loggerWidget.errorBox.setChecked(settings.showErrors)
         self.loggerWidget.debugBox.setChecked(settings.showDebug)
         self.loggerWidget.infoBox.setChecked(settings.showInfo)
 
-        if self.DEVEL or settings.showLoggerOnStart:
-            self.loggerWidget.show()
-            text = "Hide"
-        else:
-            self.loggerWidget.hide()
-            text = "Show"
+        self.showLoggerWindow(self.actionShowLogger.isChecked())
 
-        self.__translate(self.actionShowLogger, "%s logger" % text)
+        """ Language """
+        self.loadLanguage(settings.language)
+
+        """ Plugins """
+        self.TODO(u'load settings[plugins]%s' % str(self.__class__))
 
 
-    def __translate(self, widget, text):
+    def writeSettings(self):
         """
-        Helper method for setting ut translation support for widgets
-        not created by .ui files 
+        Save settings to file.
         """
-        widget.setText(QApplication.translate(
-            "MainWindow", text, None, QApplication.UnicodeUTF8))
+#        s = QSettings(qApp.organizationName(), qApp.applicationName())
+#        
+#        s.beginGroup(u'mainwin')
+#        s.setValue(u'size', self.size())
+#        s.setValue(u'position', self.pos())
+#        s.endGroup()
+#        
+#        s.beginGroup(u'logger')
+#        s.setValue(u'show_on_start', self.actionShowLogger.isChecked())
+#        s.setValue(u'show_errors', self.loggerWidget.errorBox.isChecked())
+#        s.setValue(u'show_debug', self.loggerWidget.debugBox.isChecked())
+#        s.setValue(u'show_info', self.loggerWidget.infoBox.isChecked())
+#        s.endGroup()
+#        
+#        s.beginGroup(u'i18n')
+#        s.setValue(u'language', self.currentLanguage)
+#        s.endGroup()
+
+        settings = Settings()
+
+        """ Mainwin """
+        settings.size = self.size()
+        settings.position = self.pos()
+
+        """ Logger """
+        settings.showLoggerOnStart = self.loggerDockWindow.isVisibleTo(self)
+        settings.showErrors = self.loggerWidget.errorBox.isChecked()
+        settings.showDebug = self.loggerWidget.debugBox.isChecked()
+        settings.showInfo = self.loggerWidget.infoBox.isChecked()
+
+        """ Language """
+        settings.language = self.currentLanguage
+
+        """ Plugins """
+        self.TODO(u'write settings%s' % self.__class__)
 
 
-    def close(self):
+    @pyqtSlot('QAction*')
+    @pyqtSlot(int)
+    def languageChanged(self, value):
         """
-        Quit the application.
-        Leaving the main Qt execution loop. We must unload plugins and do
-        necessary Qt cleanup, before tearing the application down.
+        This slot is called by actions and signals related to application
+        translations. The slot contains validation for those parameters 
+        defined by the pyqtSlot meta info in the method header.
+        
+        @param value: Can be either a QAction or a integer value.
+                      I.e. menu actions provide QActions and a QCombobox
+                      might send it's index. 
         """
-        self.saveOnClose = True
-        if self.saveOnClose:
-            self.__writeSettings()
-        qApp.quit()
+        isoCode = None
+        if isinstance(value, int):
+            isoCode = self.languageSelector.itemData(value).toString()
+        elif isinstance(value, QAction):
+            isoCode = value.data().toString()
+        #else:
+        #    isoCode = value
+        if isoCode:
+            self.loadLanguage(isoCode)
 
 
-    def languageChanged(self, *isoCode):
+    def loadLanguage(self, isoCode):
         """
-        Slot for the changing the application language
+        Loads a language by the given language iso code.
+        
+        @param isoCode: A legal 2 char language code defined by the 
+                        ISO 638-1 standard.
         """
-        action = self.sender()
-        if not isoCode:
-            isoCode = action.objectName()[-2:]
-        qmFile = self.languageHandler.getQmFile(isoCode)
-        self.__logger.info('Loading translation file: %s' % qmFile)
-        qApp.translator = QTranslator()
-        qApp.translator.load(qmFile)
-        qApp.installTranslator(qApp.translator)
-        self.languageChange()
+        if self.currentLanguage != isoCode:
+            self.currentLanguage = isoCode
+            qmFile = self.languageHandler.getQmFile(isoCode)
+            self.switchTranslator(self.translator, qmFile)
+
+
+    def changeEvent(self, event):
+        """
+        This event is called when a new translator is loaded or the system
+        language (locale) is changed.
+        
+        @param event: The event that generated the method call.
+        """
+        if None != event:
+            type = event.type()
+            if QEvent.LanguageChange == type:
+                self.retranslateUi(self)
+                self.pluginToolBar.retranslateUi(self.pluginToolBar)
+                self.loggerWidget.retranslateUi(self.loggerWidget)
+            elif QEvent.LocaleChange == type:
+                print u'System Locale changed'
+
+
+    def switchTranslator(self, translator, qmFile):
+        """
+        Called when a new language is loaded.
+        
+        @param translator: The translator object to install.
+        @param qmFile:     The translation file for the loaded language.
+        """
+        qApp.removeTranslator(translator)
+        if translator.load(qmFile):
+            qApp.installTranslator(translator)
 
 
     def showAboutLuma(self):
         """
-        Display the About dialog 
+        Slot for displaying the about dialog.
         """
-        # TODO we must fix the issue regarding closeing all dialogs and
-        #      children of dialogs when the parent is closed. Currently 
-        #      we've provided a hackish solution in the MainWin close 
-        #      method
-        self.about = AboutDialog()
-        self.about.exec_()
+        AboutDialog().exec_()
+
+
+    @pyqtSlot(bool)
+    def showLoggerWindow(self, show):
+        """
+        Slot for toggling the logger window.
+        
+        @param show: If true the logger window will be shown, if false
+                     it will be hidden.
+        """
+        if show:
+            self.loggerDockWindow.show()
+        else:
+            self.loggerDockWindow.hide()
 
 
     def showServerEditor(self):
         """
-        Display the server dialog editor
+        Slot to display the server editor dialog.
         """
-        serverDialog = ServerDialog(self.serverList)
-        r = serverDialog.exec_()
+        serverEditor = ServerDialog(ServerList(u'/tmp'))
+        serverEditor.exec_()
+
+
+    def showSettingsDialog(self, tab=0):
+        """
+        Slot to display the settings dialog. If the settings dialog returns
+        1, i.e. the user has clicked the ok button, the loadSettings method
+        is called with mainWin=False, to load the (assumed) newly changed 
+        settings.
         
-        if r:
-            self.serverList = serverDialog.getResult()
-        
-        self.__logger.debug("ServerDialog return code=%s" % r)
-        #if r == OK:
-        #    self.serverList = self.serverDialog.getList()
-        #else:
-            #Ingen endring
-        #    pass
+        @param tab: The index of the tab to display in the settings dialog. 
+        """
+        settingsDialog = SettingsDialog(self.currentLanguage, self.languages)
+        settingsDialog.tabWidget.setCurrentIndex(tab)
+        if settingsDialog.exec_():
+            # We assume that some settings is changed 
+            # if the user clicked the ok button, and
+            # reloads the application settings
+            self.loadSettings(mainWin=False)
+            # A Hack but it'll do for now
+            for a in self.langGroup.actions():
+                if a.data().toString() == self.currentLanguage:
+                    a.setChecked(True)
 
-    def loadPlugins(self):
-        """
-        Load the all available plugins
-        """
-        self.TODO("Load plugins")
-
-
-    def reloadPlugins(self):
-        """
-        Reaload all available plugins. 
-        This is done by first calling unloadPlugins followed by a call 
-        to loadPlugins
-        """
-        self.TODO("Reload plugins")
-
-
-    def unloadPlugins(self):
-        """
-        Unload all loaded plugins. 
-        We must garbage collect the Qt objects.
-        """
-        self.TODO("Unload plugins")
 
     def configurePlugins(self):
         """
-        Load the plugin configuration dialog.
+        Slot to display the plugins configuration. This currently calls
+        showSettingsDialog with tab index set to 2.
         """
         self.showSettingsDialog(2)
 
@@ -305,66 +380,268 @@ class MainWin(QMainWindow, Ui_MainWindow):
         self.mainStack.setCurrentWidget(widget)
 
 
-    def showPluginSelection(self):
+    def reloadPlugins(self):
         """
-        Display the plugin selection.
+        Slot to reload plugins.
+        """
+        self.TODO(u'reload plugins')
+
+
+    def loadPlugins(self):
+        """
+        Slot to load plugins.
         """
         s = PluginSettings()
         s.exec_()
         self.reloadPlugins()
 
 
-    def showLoggerWindow(self):
+    def close(self):
         """
-        Show or hide the logger window, depending on the state.
+        Overrides the QApplication close slot to save settings before
+        we tear down the application.
         """
-        if self.loggerDockWindow.isHidden():
-            self.loggerDockWindow.show()
-            menuText = "Hide Logger"
-        else:
-            self.loggerDockWindow.hide()
-            menuText = "Show Logger"
-
-        self.actionShowLogger.setText(QApplication.translate(
-                "MainWindow", menuText, None, QApplication.UnicodeUTF8))
-
-    def loggerVisibilityChanged(self):
-        pass
+        self.writeSettings()
+        qApp.quit()
 
 
-    def showSettingsDialog(self, settingsTab=0):
+    def TODO(self, todo):
         """
-        Displays the settings dialog, enabling the user to configure
-        some application settings.
+        Helper method for displaying special TODO debug messages.
         
-        We do some post-work depending on the dialog return value.
+        @param todo: The todo message to display in the logger window.
+                     The message is prefixed with <[TODO]> and suffixed
+                     with the <self.__class__>
         """
-        if self.settingsDialog == None:
-            self.settingsDialog = SettingsDialog()
-
-        self.settingsDialog.tabWidget.setCurrentIndex(settingsTab)
-
-        if self.settingsDialog.exec_():
-            """ If the settingsDialog returns 1, the Ok button is clicked
-            and we try to load the new translation if it is changed.
-            """
-            settings = Settings()
-            currentLang = self.menuLangGroup.checkedAction().objectName()[-2:]
-            # TODO We might want to move this piece of code somewhere else,
-            #      or even better write some code code to replace it :)
-            if settings.language != currentLang:
-                currentLang = settings.language
-                self.languageChanged(currentLang)
-                for a in self.menuLangGroup.actions():
-                    lang = a.objectName()[-2:]
-                    if lang == currentLang:
-                        a.setChecked(True)
-            # We load all settings anew
-            self.__loadSettings()
+        self.logger.debug(u'[TODO] %s%s' % (todo, str(self.__class__)))
 
 
-    def TODO(self, msg):
+class LoggerWidget(QWidget, Ui_LoggerWidget):
+    """
+    The Luma logger window.
+    
+    This widget contains a text field where the LumaLogHandler is
+    writing it's log messages to. The widget also provides options
+    to filter the log based on the loglevel on messages.
+    """
+
+    def __init__(self, parent=None):
+        QWidget.__init__(self, parent)
+        self.setupUi(self)
+        self.logList = []
+
+
+    def clearLogger(self):
         """
-        Helper method for logging TODO messages to the Logger widget
+        Clears the logwindow. Currently the loglist is deleted when this
+        method is called.
         """
-        self.__logger.debug("TODO: %s: %s" % (msg, self.__class__))
+        self.logList = []
+        self.messageEdit.clear()
+
+
+    def rebuildLog(self):
+        """
+        This method is called when on of the checkboxes indicates new
+        filter state.
+        """
+        self.messageEdit.clear()
+        for l in self.logList:
+            loglvl, msg = l
+            if loglvl == "DEBUG" and self.debugBox.isChecked():
+                self.messageEdit.append("DEBUG: " + msg)
+                continue
+            if loglvl == "ERROR" and self.errorBox.isChecked():
+                self.messageEdit.append("ERROR: " + msg)
+                continue
+            if loglvl == "INFO" and self.infoBox.isChecked():
+                self.messageEdit.append("INFO: " + msg)
+                continue
+
+
+    def log(self, log):
+        """
+        Appends messages to the log window
+        """
+        loglvl, msg = log
+        if loglvl == "DEBUG" and self.debugBox.isChecked():
+            self.logList.append(log)
+            self.messageEdit.append("DEBUG: " + msg)
+            return
+        if loglvl == "ERROR" and self.errorBox.isChecked():
+            self.logList.append(log)
+            self.messageEdit.append("ERROR: " + msg)
+            return
+        if loglvl == "INFO" and self.infoBox.isChecked():
+            self.logList.append(log)
+            self.messageEdit.append("INFO: " + msg)
+            return
+        if loglvl not in ["INFO", "ERROR", "DEBUG"]:
+            # This shouldn't really happen...
+            # Please only use the above levels
+            self.logList.append(log)
+            self.messageEdit.append("UNKNOWN: " + msg)
+
+
+class PluginToolBar(QToolBar):
+    """
+    The plugin toolbar.
+    
+    Provides a toolbar for quickly switching between installed plugins
+    """
+
+    def __init__(self, parent=None):
+        QToolBar.__init__(self, parent)
+        self.setupUi()
+
+    def setupUi(self):
+        font = QFont()
+        font.setBold(True)
+        self.label = QLabel(self)
+        self.label.setAlignment(Qt.AlignLeft | Qt.AlignVCenter)
+        self.label.setFont(font)
+        self.label.setMargin(5)
+        self.addWidget(self.label)
+        self.button = QPushButton(self)
+        self.addWidget(self.button)
+        self.list = QListWidget(None)
+        self.list.setFont(font)
+        self.retranslateUi(self)
+
+    def retranslateUi(self, pluginToolBar):
+        pluginToolBar.label.setText(QApplication.translate('MainWindow', 'Plugin name', None, QApplication.UnicodeUTF8))
+        pluginToolBar.button.setText(QApplication.translate('MainWindow', 'Choose plugin', None, QApplication.UnicodeUTF8))
+
+    @property
+    def pluginList(self):
+        """
+        Returns the pluginList, which will be docked in the mainStack.
+        """
+        return self.list
+
+
+class SettingsDialog(QDialog, Ui_SettingsDialog):
+    """
+    The application settings dialog
+    
+    Contains all the application settings.
+    """
+
+    __logger = logging.getLogger(__name__)
+
+    def __init__(self, currentLanguage, languages={}, parent=None):
+        """
+        The constructor must be given the currentLanguage from the
+        Main window to keep things synchronized.
+        
+        currentLanguage
+            the currently selected language in the main window
+        
+        languages [optional]
+            a list of available languages. Might want to provide this
+            from the main window as it's already loaded.
+        """
+        QDialog.__init__(self)
+        self.setupUi(self)
+        self.languages = languages
+        self.currentLanguage = currentLanguage
+        if self.currentLanguage == {}:
+            """ If the list of languages is empty we fetch the list
+            with the LanguageHelper. """
+            lh = LanguageHandler()
+            self.currentLanguage = lh.availableLanguages
+        self.loadSettings()
+
+
+    def loadSettings(self):
+        """
+        Loads the application settings from file.
+        """
+        settings = Settings()
+
+        """ Logging """
+        self.showLoggerOnStart.setChecked(settings.showLoggerOnStart)
+        self.showErrors.setChecked(settings.showErrors)
+        self.showDebug.setChecked(settings.showDebug)
+        self.showInfo.setChecked(settings.showInfo)
+        """ Language """
+        self.languageSelector
+        i = 0
+        for key, name in self.languages.iteritems():
+            self.languageSelector.addItem('%s [%s]' % (name[0], key), key)
+            if key == self.currentLanguage:
+                self.languageSelector.setCurrentIndex(i)
+            i = i + 1
+
+        """ Plugins """
+        model = QStandardItemModel()
+        for plugin in settings.plugins:
+            item = QStandardItem(plugin)
+            check = Qt.Checked if randint(0, 1) == 1 else Qt.Unchecked
+            item.setCheckState(check)
+            item.setCheckable(True)
+            model.appendRow(item)
+
+        self.pluginListView.setModel(model)
+
+    def saveSettings(self):
+        """
+        This slot is called when the ok button is clicked.
+        It saves the selected settigns to file.
+        """
+        settings = Settings()
+
+        """ Logging """
+        settings.showLoggerOnStart = self.showLoggerOnStart.isChecked()
+        settings.showErrors = self.showErrors.isChecked()
+        settings.showDebug = self.showDebug.isChecked()
+        settings.showInfo = self.showInfo.isChecked()
+
+        """ Language """
+        i = self.languageSelector.currentIndex()
+        settings.language = self.languageSelector.itemData(i).toString()
+
+        """ Plugins """
+
+        QDialog.accept(self)
+
+    def cancelSettings(self):
+        self.loadSettings()
+        QDialog.reject(self)
+
+
+class AboutDialog(QDialog, Ui_AboutDialog):
+    """
+    A simple about dialog.
+    
+    It includes basic application information, a short outline of the 
+    application license, and of course credit is given where credit is due
+    """
+
+    def __init__(self, parent=None):
+        QDialog.__init__(self)
+        self.setupUi(self)
+
+    def showLicense(self):
+        """
+        Displays a simple dialog containing the application license
+        """
+        license = QDialog()
+        Ui_AboutLicense().setupUi(license)
+        license.exec_()
+
+    def giveCreditWhereCreditIsDue(self):
+        """
+        Displays a simple dialog containing developer information, and
+        credit is given where credit is due
+        """
+        credits = QDialog()
+        Ui_AboutCredits().setupUi(credits)
+        credits.exec_ ()
+
+
+if __name__ == '__main__':
+    app = QApplication(sys.argv)
+    win = MainWindow()
+    win.show()
+    sys.exit(app.exec_())
