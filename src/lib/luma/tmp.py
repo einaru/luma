@@ -22,6 +22,5 @@ if __name__ == "__main__":
     b = BrowserView(None,"/tmp")
     b.show()
 
-    splitter.show()
     #m.setData(index, "LOL")
     sys.exit(app.exec_())

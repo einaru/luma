@@ -17,10 +17,10 @@ from cStringIO import StringIO
 from sets import Set
 
 from base.backend.ObjectClassAttributeInfo import ObjectClassAttributeInfo
-from base.utils import stripSpecialChars
-from base.utils import escapeSpecialChars
-from base.utils import isBinaryAttribute
-from base.utils import explodeDN
+from base.util import stripSpecialChars
+from base.util import escapeSpecialChars
+from base.util import isBinaryAttribute
+from base.util import explodeDN
 
 class SmartDataObject (object):
 
