@@ -53,9 +53,8 @@ from PyQt4.QtGui import QStandardItem, QStandardItemModel
 from PyQt4.QtGui import QToolBar
 from PyQt4.QtGui import QWidget
 
+from base.backend.ServerList import ServerList
 from base.gui import Settings
-from base.util import LanguageHandler
-from base.util.gui.PluginListWidget import PluginListWidget
 from base.gui.AboutDialogDesign import Ui_AboutDialog
 from base.gui.AboutLicenseDesign import Ui_AboutLicense
 from base.gui.AboutCreditsDesign import Ui_AboutCredits
@@ -64,7 +63,11 @@ from base.gui.MainWinDesign import Ui_MainWindow
 from base.gui.PluginSettings import PluginSettings
 from base.gui.SettingsDialogDesign import Ui_SettingsDialog
 from base.gui.ServerDialog import ServerDialog
-from base.backend.ServerList import ServerList
+from base.util import LanguageHandler
+from base.util.gui.PluginListWidget import PluginListWidget
+
+
+
 
 class MainWindow(QMainWindow, Ui_MainWindow):
     """
@@ -90,10 +93,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.createLoggerWidget()
 
         self.loadSettings()
-
-        self.createLanguageOptions()
-
         self.__setupPluginList()
+        self.createLanguageOptions()
 
         if self.DEVEL:
             self.actionEditServerList.setStatusTip(
@@ -370,16 +371,6 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.showSettingsDialog(2)
 
 
-    def pluginSelected(self, plugin):
-        """
-        This method will be called from the PluginListWidget, with a pluginobject
-        to load.
-        """
-        widget = plugin.getPluginWidget(self.mainStack)
-        self.mainStack.addWidget(widget)
-        self.mainStack.setCurrentWidget(widget)
-
-
     def reloadPlugins(self):
         """
         Slot to reload plugins.
@@ -390,6 +381,23 @@ class MainWindow(QMainWindow, Ui_MainWindow):
     def loadPlugins(self):
         """
         Slot to load plugins.
+        """
+        self.TODO(u'load plugins)')
+
+
+    def pluginSelected(self, plugin):
+        """
+        This method will be called from the PluginListWidget, with a pluginobject
+        to load
+        """
+        widget = plugin.getPluginWidget(self.mainStack)
+        self.mainStack.addWidget(widget)
+        self.mainStack.setCurrentWidget(widget)
+
+
+    def showPluginSelection(self):
+        """
+        Display the plugin selection
         """
         s = PluginSettings()
         s.exec_()

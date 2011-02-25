@@ -44,7 +44,11 @@ from optparse import OptionParser
 
 from PyQt4 import QtCore
 
+<<<<<<< HEAD
 DEBUG = False
+=======
+DEBUG = True
+>>>>>>> S2-settings-system
 
 PATH_TO_UI = ['resources', 'forms']
 PATH_TO_PY = ['base', 'gui']
