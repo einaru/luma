@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'SettingsDialogDesign.ui'
+# Form implementation generated from reading ui file '/mnt/debris/devel/git/luma/src/lib/luma/resources/forms/SettingsDialogDesign.ui'
 #
-# Created: Mon Feb 14 15:56:08 2011
+# Created: Fri Feb 25 12:12:02 2011
 #      by: PyQt4 UI code generator 4.7.4
 #
 # WARNING! All changes made in this file will be lost!
@@ -59,9 +59,10 @@ class Ui_SettingsDialog(object):
         self.verticalLayout.setObjectName("verticalLayout")
         self.horizontalLayout_3 = QtGui.QHBoxLayout()
         self.horizontalLayout_3.setObjectName("horizontalLayout_3")
-        self.showloggerOnStart = QtGui.QCheckBox(self.tabLogging)
-        self.showloggerOnStart.setObjectName("showloggerOnStart")
-        self.horizontalLayout_3.addWidget(self.showloggerOnStart)
+        self.showLoggerOnStart = QtGui.QCheckBox(self.tabLogging)
+        self.showLoggerOnStart.setChecked(False)
+        self.showLoggerOnStart.setObjectName("showLoggerOnStart")
+        self.horizontalLayout_3.addWidget(self.showLoggerOnStart)
         self.verticalLayout.addLayout(self.horizontalLayout_3)
         self.logFilterGroup = QtGui.QGroupBox(self.tabLogging)
         self.logFilterGroup.setObjectName("logFilterGroup")
@@ -73,12 +74,15 @@ class Ui_SettingsDialog(object):
         self.label_2.setObjectName("label_2")
         self.horizontalLayout_4.addWidget(self.label_2)
         self.showErrors = QtGui.QCheckBox(self.logFilterGroup)
+        self.showErrors.setChecked(False)
         self.showErrors.setObjectName("showErrors")
         self.horizontalLayout_4.addWidget(self.showErrors)
         self.showDebug = QtGui.QCheckBox(self.logFilterGroup)
+        self.showDebug.setChecked(False)
         self.showDebug.setObjectName("showDebug")
         self.horizontalLayout_4.addWidget(self.showDebug)
         self.showInfo = QtGui.QCheckBox(self.logFilterGroup)
+        self.showInfo.setChecked(False)
         self.showInfo.setObjectName("showInfo")
         self.horizontalLayout_4.addWidget(self.showInfo)
         spacerItem3 = QtGui.QSpacerItem(40, 20, QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Minimum)
@@ -119,8 +123,8 @@ class Ui_SettingsDialog(object):
         QtCore.QObject.connect(self.actionSave, QtCore.SIGNAL("clicked()"), SettingsDialog.saveSettings)
         QtCore.QMetaObject.connectSlotsByName(SettingsDialog)
         SettingsDialog.setTabOrder(self.tabWidget, self.languageSelector)
-        SettingsDialog.setTabOrder(self.languageSelector, self.showloggerOnStart)
-        SettingsDialog.setTabOrder(self.showloggerOnStart, self.showErrors)
+        SettingsDialog.setTabOrder(self.languageSelector, self.showLoggerOnStart)
+        SettingsDialog.setTabOrder(self.showLoggerOnStart, self.showErrors)
         SettingsDialog.setTabOrder(self.showErrors, self.showDebug)
         SettingsDialog.setTabOrder(self.showDebug, self.showInfo)
         SettingsDialog.setTabOrder(self.showInfo, self.pluginListView)
@@ -134,7 +138,7 @@ class Ui_SettingsDialog(object):
         self.i18nGroup.setTitle(QtGui.QApplication.translate("SettingsDialog", "i18n", None, QtGui.QApplication.UnicodeUTF8))
         self.label.setText(QtGui.QApplication.translate("SettingsDialog", "Application language", None, QtGui.QApplication.UnicodeUTF8))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tabGeneral), QtGui.QApplication.translate("SettingsDialog", "General", None, QtGui.QApplication.UnicodeUTF8))
-        self.showloggerOnStart.setText(QtGui.QApplication.translate("SettingsDialog", "Show the Logger on startup", None, QtGui.QApplication.UnicodeUTF8))
+        self.showLoggerOnStart.setText(QtGui.QApplication.translate("SettingsDialog", "Show the Logger on startup", None, QtGui.QApplication.UnicodeUTF8))
         self.logFilterGroup.setTitle(QtGui.QApplication.translate("SettingsDialog", "Filter Options", None, QtGui.QApplication.UnicodeUTF8))
         self.label_2.setText(QtGui.QApplication.translate("SettingsDialog", "Display message types:", None, QtGui.QApplication.UnicodeUTF8))
         self.showErrors.setText(QtGui.QApplication.translate("SettingsDialog", "Errors", None, QtGui.QApplication.UnicodeUTF8))

@@ -9,7 +9,7 @@ from PyQt4.QtCore import QModelIndex, Qt, QAbstractListModel
 from PyQt4 import QtCore
 
 from base.gui.ServerDialogDesign import Ui_ServerDialogDesign
-from base.models.ServerListModel import ServerListModel
+from base.model.ServerListModel import ServerListModel
 from base.backend.ServerObject import ServerObject
 from ServerDelegate import ServerDelegate
 import copy
@@ -202,7 +202,6 @@ class ServerDialog(QDialog, Ui_ServerDialogDesign):
         self._serverList.writeServerList()
         self._returnList = self._serverList
         QDialog.accept(self)
-        
         
     def getResult(self):
         return self._returnList

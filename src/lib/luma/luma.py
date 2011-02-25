@@ -2,10 +2,10 @@
 # -*- coding: utf-8 -*-
 #
 # Copyright (c) 2011
-#      Einar Uvsløkk, <einaru@stud.ntnu.no>
+#     Einar Uvsløkk, <einar.uvslokk@linux.com>
 #
 # Copyright (c) 2003, 2004, 2005 
-#      Wido Depping, <widod@users.sourceforge.net>
+#     Wido Depping, <widod@users.sourceforge.net>
 #
 # Luma is free software; you can redistribute it and/or modify 
 # it under the terms of the GNU General Public Licence as published by 
@@ -34,12 +34,11 @@ import sys
 
 from PyQt4 import QtGui, QtCore
 
-from base.backend.Config import Config
-from base.gui.MainWin import MainWin
-from base.utils.backend.LumaLogHandler import LumaLogHandler
-from splashscreen import SplashScreen
-
-# TODO Luma spesific import (eventualy) goes here
+from __init__ import *
+from base.gui import SplashScreen
+from base.gui.MainWin import MainWindow
+from base.backend import LumaLogHandler
+from base.util import Paths
 
 def startApplication(argv):
     """
@@ -48,49 +47,38 @@ def startApplication(argv):
     """
 
     app = QtGui.QApplication(argv)
-
-    l = logging.getLogger()
-    l.setLevel(logging.DEBUG)
-
+    app.setOrganizationName(ORGNAME)
+    app.setApplicationName(APPNAME)
+    app.setApplicationVersion(VERSION)
+    
     splash = SplashScreen()
     splash.show()
 
-    # DEVELOPMENT SPECIFICS
+    """ Find and set some resource paths """
+    paths = Paths()
+    paths.i18nPath = os.path.join(os.getcwd(), 'i18n')
 
-    configPrefix = getConfigPrefix()
-    config = Config(configPrefix, os.path.join(os.getcwd(), 'i18n'))
+    mainWin = MainWindow()
 
-    mainWin = MainWin(config)
-
-    # Log to the loggerwidget
+    """ Setup the logging mechanism to log to the logger widget """
+    l = logging.getLogger("base")
+    l.setLevel(logging.DEBUG)
     l.addHandler(LumaLogHandler(mainWin.loggerWidget))
-
-    msg = "Config files will be saved in %s" % configPrefix
-    l.info(msg)
-
-    #app.setOrganizationName("Luma")
-    #app.setApplicationName("Luma")
-    #s = QtCore.QSettings()
-    #s.setValue("rofl","rofl-settings :O")
-    #print s.value("rofl",":(").toString()    
 
     QtCore.QObject.connect(app, QtCore.SIGNAL('lastWindowClosed()'), mainWin.close)
 
     mainWin.loadPlugins()
-
-    screen = QtGui.QDesktopWidget().screenGeometry()
-    size = mainWin.geometry()
-    mainWin.move((screen.width() - size.width()) / 2, (screen.height() - size.height()) / 2)
-
     mainWin.show()
 
     splash.finish(mainWin)
 
+    """ Add a exception hook to handle all exceptions missed in the main
+    application """
     sys.excepthook = unhandledException
 
     sys.exit(app.exec_())
 
-
+@DeprecationWarning
 def getConfigPrefix():
     """
     We must determine what platform we're running on. Making sure we follow
@@ -142,7 +130,7 @@ def getConfigPrefix():
     if not os.path.exists(configPrefix):
         try:
             #os.mkdir(configPrefix)
-            logger = logging.getLogger()
+            logger = logging.getLogger(__name__)
             logger.debug("TODO: os.mkdir(%s)" % (configPrefix))
         except (IOError, OSError):
             # TODO Do some logging. We should load the application, but 
@@ -160,16 +148,13 @@ def unhandledException(eType, eValue, eTraceback):
     """
     tmp = StringIO.StringIO()
     traceback.print_tb(eTraceback, None, tmp)
-    error = """[Unhandled Exception] 
-This is most likely a bug. In order to fix this, 
-please send an email with the following text to:
-<a href="mailto:luma-users@lists.sourceforge.net>luma-users@lists.sourceforge.net</a>
->>>
-[%s] Reason:\n%s\n%s
-<<<""" % (tmp.getvalue(), str(eType), str(eValue))
-    print error
-    logger = logging.getLogger()
-    logger.error(error)
+    e = """[Unhandled (handled) Exception]
+This is most likely a bug. In order to fix this, please send an email to
+    <luma-users@lists.sourceforge.net>
+with the following text and a short description of what you were doing:
+>>>\n[%s] Reason:\n%s\n%s\n<<<""" % (tmp.getvalue(), str(eType), str(eValue))
+    logger = logging.getLogger("base")
+    logger.error(e)
 
 if __name__ == "__main__":
     startApplication(sys.argv)

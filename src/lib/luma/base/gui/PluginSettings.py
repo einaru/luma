@@ -1,10 +1,9 @@
-#!/usr/bin/python
 # -*- coding: utf-8 -*-
 
 from PyQt4.QtCore import *
 from PyQt4.QtGui import *
 from base.gui.PluginSettingsDialog import Ui_PluginsDialog
-from base.models.PluginLoaderModel import PluginLoaderModel
+from base.model.PluginLoaderModel import PluginLoaderModel
 
 import sys
 from random import randint
