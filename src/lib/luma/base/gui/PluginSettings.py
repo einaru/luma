@@ -3,7 +3,7 @@
 from PyQt4.QtCore import *
 from PyQt4.QtGui import *
 from base.gui.PluginSettingsDialog import Ui_PluginsDialog
-from base.model.PluginLoaderModel import PluginLoaderModel
+from base.model.PluginSettingsModel import PluginSettingsModel
 
 import sys
 from random import randint
@@ -42,5 +42,3 @@ class PluginSettings(QDialog, Ui_PluginsDialog):
     def closeButton(self):
         self._model.saveSettings()
         self.accept()
-
-###############################################################################
