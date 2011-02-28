@@ -7,9 +7,9 @@
 ###########################################################################
 
 import ldap
-from ServerTreeItem import ServerTreeItem
-from RootTreeItem import RootTreeItem
-from LDAPErrorItem import LDAPErrorItem
+from plugins.browser_plugin.item.ServerTreeItem import ServerTreeItem
+from plugins.browser_plugin.item.RootTreeItem import RootTreeItem
+from plugins.browser_plugin.item.LDAPErrorItem import LDAPErrorItem
 from PyQt4 import QtCore
 from PyQt4.QtCore import QAbstractItemModel
 from base.backend.LumaConnection import LumaConnection
@@ -150,6 +150,8 @@ class LDAPTreeItemModel(QAbstractItemModel):
         """
         Called after the model is initialized. Adds the servers to the root.
         """
+        
+        print "populateModel in Model"
         
         self.rootItem = RootTreeItem("Servere", self, self) # Also provides the header
         

@@ -13,7 +13,7 @@ if __name__ == "__main__":
     
     app = QtGui.QApplication(sys.argv)
     
-    l = logging.getLogger("base")
+    l = logging.getLogger("")
     l.setLevel(logging.DEBUG)  
     
     # Log to the loggerwidget

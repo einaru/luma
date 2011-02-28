@@ -7,7 +7,7 @@ import os
 
 from PyQt4 import QtCore, QtGui
 from LDAPTreeItemModel import LDAPTreeItemModel
-from ServerTreeItem import ServerTreeItem
+from plugins.browser_plugin.item.ServerTreeItem import ServerTreeItem
 class LDAPEntryModel(QtCore.QAbstractTableModel):
     """
     Used by the LDAP-entry-viewer/editor.
@@ -23,11 +23,6 @@ class LDAPEntryModel(QtCore.QAbstractTableModel):
         self.editPicture = QtGui.QPixmap(os.path.join(iconPath, "edit.png"))
         self.deletePicture = QtGui.QPixmap(os.path.join(iconPath, "delete.png"))
         
-        if isinstance(index.internalPointer(), ServerTreeItem):
-            """
-            Servers doesn't have a smartObject
-            """
-            return
         self.initData()
 #       data = index.internalPointer().smartObject().data
 #       for key in data.keys():

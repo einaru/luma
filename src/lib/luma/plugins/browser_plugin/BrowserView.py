@@ -17,7 +17,8 @@ import modeltest
 from base.backend.ServerList import ServerList
 from model.LDAPTreeItemModel import LDAPTreeItemModel
 from model.LDAPEntryModel import LDAPEntryModel
-from model.LDAPTreeItem import LDAPTreeItem
+from item.LDAPTreeItem import LDAPTreeItem
+from plugins.browser_plugin.item.ServerTreeItem import ServerTreeItem
 
 
 class BrowserView(QWidget):
@@ -70,6 +71,13 @@ class BrowserView(QWidget):
         
 
     def initEntryView(self, index):
+        if isinstance(index.internalPointer(), ServerTreeItem):
+            """
+            Servers doesn't have a smartObject
+            """
+            return
+        if index.internalPointer().smartObject() == None:
+            return
         self.model = LDAPEntryModel(index)
         self.entryView.setModel(self.model)
 
