@@ -1,0 +1,19 @@
+Luma v3.0.1-sprint1
+-------------------
+This branch marks the end of sprint 1.
+Features:
+  * Main window:
+    menubar is implemented: restructure as compared to Luma 2.4
+    plugin toolbar is implemented: no functionality
+    logger window is implemented: displayes various logging levels
+    about dialog is implemented: new design (inspired by gtk and gnome
+  * Server dialog:
+    GUI is implemented
+    support for reading and writing the server list is implemented
+  * Language support:
+    Translation files from Luma 2.4 is loaded dynamically
+    !!! Still works on part of the application !!!
+
+NB! This release branch was tagged and created at the end of sprint 2, 
+    but is still refelcting the work donw upto the en of sprint1.
+	Created to document the development progression.
