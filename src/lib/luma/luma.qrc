@@ -1,0 +1,10 @@
+<RCC>
+  <qresource prefix="images">
+    <file alias="splash.png">icons/luma-128.png</file>
+    <file alias="password_medium.png">icons/passwordmedium.png</file>
+    <file alias="config.png">icons/config.png</file>
+    <file alias="server.png">icons/server.png</file>
+    <file alias="network48.png">icons/network48.png</file>
+    <file alias="password_big.png">icons/password_big.png</file>
+  </qresource>
+</RCC>

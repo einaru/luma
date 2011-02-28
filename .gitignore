@@ -1,0 +1,11 @@
+#Python files
+*.pyc
+
+# Eclipse files
+.settings
+.metadata
+.project
+.pydevproject
+
+#Used by tests
+serverlist.xml
