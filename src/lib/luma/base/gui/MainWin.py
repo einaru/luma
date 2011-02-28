@@ -39,6 +39,13 @@ import sys
 import logging
 from random import randint
 
+from PyQt4 import QtCore, QtGui
+
+try:
+    _fromUtf8 = QtCore.QString.fromUtf8
+except AttributeError:
+    _fromUtf8 = lambda s: s
+
 from PyQt4.QtCore import Qt, pyqtSlot
 from PyQt4.QtCore import QEvent
 from PyQt4.QtCore import QTranslator
@@ -123,7 +130,6 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         """
         self.pluginToolBar = PluginToolBar(self)
         self.addToolBar(self.pluginToolBar)
-        self.pluginBoxId = self.mainStack.addWidget(self.pluginToolBar.pluginList)
 
 
     def createLoggerWidget(self):
@@ -496,10 +502,17 @@ class PluginToolBar(QToolBar):
     The plugin toolbar.
     
     Provides a toolbar for quickly switching between installed plugins
+    
+    When a plugin is clicked from main-win (see PluginListWidget), it will
+    call setPluginName. That will activate the "choose plugin" button.
+    
+    When the "choose plugin" button is clicked, it will be deactivated,
+    if main-win manages to show PluginListWidget again on top.
     """
 
     def __init__(self, parent=None):
         QToolBar.__init__(self, parent)
+        self.parent = parent
         self.setupUi()
 
     def setupUi(self):
@@ -512,21 +525,19 @@ class PluginToolBar(QToolBar):
         self.addWidget(self.label)
         self.button = QPushButton(self)
         self.addWidget(self.button)
-        self.list = QListWidget(None)
-        self.list.setFont(font)
         self.retranslateUi(self)
+        
+        self.button.clicked.connect(self.buttonClicked)
 
     def retranslateUi(self, pluginToolBar):
         pluginToolBar.label.setText(QApplication.translate('MainWindow', 'Plugin name', None, QApplication.UnicodeUTF8))
         pluginToolBar.button.setText(QApplication.translate('MainWindow', 'Choose plugin', None, QApplication.UnicodeUTF8))
 
-    @property
-    def pluginList(self):
-        """
-        Returns the pluginList, which will be docked in the mainStack.
-        """
-        return self.list
-
+    def buttonClicked(self):
+        print "TRYKKE TRYKKE"
+        
+    def setPluginName(self, name):
+        pass
 
 class SettingsDialog(QDialog, Ui_SettingsDialog):
     """
