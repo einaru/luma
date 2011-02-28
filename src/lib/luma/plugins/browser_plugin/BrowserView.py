@@ -33,7 +33,7 @@ class BrowserView(QWidget):
         self.entryList = QtGui.QTreeView(self.splitter)
         self.entryList.setMinimumWidth(200)
 
-        self.entryView = QtGui.QTableView(self.splitter)
+        self.entryView = TableView(self.splitter)
 
         self.entryList.clicked.connect(self.initEntryView)
         #self.connect(self.entryList, QtCore.SIGNAL("clicked(const QModelIndex &)"), self.initEntryView)
@@ -51,26 +51,13 @@ class BrowserView(QWidget):
         
     def rightClick(self, point):
         clickedIndex = self.entryList.indexAt(point)
+        self.ldaptreemodel.currentIndex = clickedIndex
         clickedItem = clickedIndex.internalPointer()
         
         if clickedItem != None:
             menu = clickedItem.getContextMenu(QtGui.QMenu())
-            action = QAction("Reload", self)
-            action.triggered.connect(self.reload)   
-            menu.addAction(action)         
-            #menu.addAction("Set search limit", self.setLimit)
-            #menu.addAction("Set search filter", self.setFilter)
             menu.exec_(self.entryList.mapToGlobal(point))
             
-    @pyqtSlot(QModelIndex, LDAPTreeItem)
-    def reload(self, index, item):
-        print "given:",index
-        self.ldaptreemodel.beginRemoveRows(index,0, item.childCount()-1)
-        item.populateItem()
-        self.ldaptreemodel.endRemoveRows()
-        #self.entryList.model().layoutChanged.emit()
-        #self.entryList.model().emit(QtCore.SIGNAL("layoutChanged()"))
-    
     def initView(self, parent=None):
         self.ldaptreemodel = LDAPTreeItemModel(parent)
         self.ldaptreemodel.populateModel(self.serverList)
@@ -90,3 +77,12 @@ class BrowserView(QWidget):
         # FIXME: qt4 migration needed
         #self.entryView.buildToolBar(parent)
         pass
+
+class TableView(QtGui.QTableView):
+
+    def __init__(self, parent):
+        QtGui.QWidget.__init__(self, parent)
+        self.setShowGrid(False)
+
+
+
