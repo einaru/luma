@@ -180,10 +180,3 @@ class PluginMetaError(Exception):
     this exception is raised..
     """
     pass
-
-if __name__ == "__main__":
-    app = QtGui.QApplication(sys.argv)
-    p = PluginLoader("/Users/johannes/Programmering/Luma/git/pluginloader", ["testplugin"])
-    widget = p.plugins[0].getPluginWidget(None)
-    widget.show()
-    sys.exit(app.exec_())
