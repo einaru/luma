@@ -32,8 +32,7 @@ class ModelTest(QtCore.QObject):
         """
         QtCore.QObject.__init__(self,parent)
         self._model = _model
-        #self.model = sip.cast(_model, QtCore.QAbstractItemModel)
-        self.model = _model
+        self.model = sip.cast(_model, QtCore.QAbstractItemModel)
         self.insert = []
         self.remove = []
         self.fetchingMore = False
@@ -65,7 +64,6 @@ class ModelTest(QtCore.QObject):
         nonDestructiveBasicTest tries to call a number of the basic functions (not all)
         to make sure the model doesn't outright segfault, testing the functions that makes sense.
         """
-        print "nonDestructive"
         assert(self.model.buddy(QtCore.QModelIndex()) == QtCore.QModelIndex())
         self.model.canFetchMore(QtCore.QModelIndex())
         assert(self.model.columnCount(QtCore.QModelIndex()) >= 0)
@@ -93,7 +91,6 @@ class ModelTest(QtCore.QObject):
         self.model.sibling(0,0,QtCore.QModelIndex())
         self.model.span(QtCore.QModelIndex())
         self.model.supportedDropActions()
-        print "nonDestructiveEnd"
 
     def rowCount(self):
         """
@@ -285,24 +282,15 @@ class ModelTest(QtCore.QObject):
 
 
     def runAllTests(self):
-        print "runAllTests"
         if self.fetchingMore:
-            print "runALlTests done pga fetchingMore"
             return
         self.nonDestructiveBasicTest()
-        print "nonDest. ferdig"
         self.rowCount()
-        print "rowCount ferdig"
         self.columnCount()
-        print "columnCount ferdig"
         self.hasIndex()
-        print "hasIndex ferdig"
         self.index()
-        print "index ferdig"
         self.parent()
-        print "parent ferdig"
         self.data()
-        print "runAllTests done"
 
     def rowsAboutToBeInserted(self, parent, start, end):
         """
@@ -311,15 +299,15 @@ class ModelTest(QtCore.QObject):
         c = {}
         c['parent'] = parent
         c['oldSize'] = self.model.rowCount(parent)
-        c['last'] = self.model.data(model.index(start-1, 0, parent))
-        c['next'] = self.model.data(model.index(start, 0, parent))
-        insert.append(c)
+        c['last'] = self.model.data(self.model.index(start-1, 0, parent))
+        c['next'] = self.model.data(self.model.index(start, 0, parent))
+        self.insert.append(c)
 
     def rowsInserted(self, parent, start, end):
         """
         Confirm that what was said was going to happen actually did
         """
-        c = insert.pop()
+        c = self.insert.pop()
         assert(c['parent'] == parent)
         assert(c['oldSize'] + (end - start + 1) == self.model.rowCount(parent))
         assert(c['last'] == self.model.data(self.model.index(start-1, 0, c['parent'])))
@@ -330,7 +318,7 @@ class ModelTest(QtCore.QObject):
         #       qDebug << self.model.index(i, 0).data().toString()
         #   qDebug() << c['next'] << self.model.data(model.index(end+1, 0, c['parent']))
 
-        assert(c['next'] == self.model.data(model.index(end+1, 0, c['parent'])))
+        assert(c['next'] == self.model.data(self.model.index(end+1, 0, c['parent'])))
 
     def rowsAboutToBeRemoved(self, parent, start, end):
         """
@@ -369,7 +357,7 @@ class ModelTest(QtCore.QObject):
         those tests then this one
         """
         # First just try walking back up the tree.
-        p = parent
+        p = parent;
         while p.isValid():
             p = p.parent()
 
@@ -397,7 +385,6 @@ class ModelTest(QtCore.QObject):
 
         assert( self.model.hasIndex( rows+1, 0, parent) == False)
         for r in range(0,rows):
-            print "looper til",rows
             if self.model.canFetchMore(parent):
                 self.fetchingMore = True
                 self.model.fetchMore(parent)
@@ -418,7 +405,7 @@ class ModelTest(QtCore.QObject):
                 b = self.model.index(r,c,parent)
                 assert( a == b )
 
-                # Some basic checking on the index that is returned               
+                # Some basic checking on the index that is returned
                 assert( index.model() == self.model )
                 assert( index.row() == r )
                 assert( index.column() == c )

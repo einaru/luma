@@ -44,6 +44,7 @@ class ServerTreeItem(AbstractLDAPTreeItem):
                 
         connection = LumaConnection(self.serverMeta)
         
+        # If baseDNs are aleady spesified
         if self.serverMeta.autoBase == False:
             self.logger.debug("autoBase=False")
             tmpList = self.serverMeta.baseDN
@@ -54,6 +55,8 @@ class ServerTreeItem(AbstractLDAPTreeItem):
                 self.logger.debug("Bind failed.")
                 self.displayError(exceptionObject)
                 return
+            
+        # Else get them from the server
         else:
             self.logger.debug("Using getBaseDNList()")
             #self.isWorking.emit()
@@ -64,9 +67,13 @@ class ServerTreeItem(AbstractLDAPTreeItem):
                 self.displayError(exceptionObject)
                 #self.populated = 1
                 return
+            
+            #getBaseDNList calles unbind(), so let's rebind
+            connection.bind()
         
         self.logger.debug("Entering for-loop")
 
+        # Get the info for the baseDNs
         newChildList = []
         for base in tmpList:
             success, resultList, exceptionObject = connection.search(base, \
