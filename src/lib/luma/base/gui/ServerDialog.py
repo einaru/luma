@@ -5,12 +5,14 @@ Created on 2. feb. 2011
 '''
 
 from PyQt4.QtGui import QDialog, QDataWidgetMapper, QItemSelectionModel, QListWidgetItem, QInputDialog, QMessageBox, QApplication, QFileDialog
-from PyQt4.QtCore import QModelIndex, Qt
+from PyQt4.QtCore import QModelIndex, Qt, QAbstractListModel
+from PyQt4 import QtCore
 
 from base.gui.ServerDialogDesign import Ui_ServerDialogDesign
-from base.models.ServerListModel import ServerListModel
+from base.model.ServerListModel import ServerListModel
 from base.backend.ServerObject import ServerObject
 from ServerDelegate import ServerDelegate
+import copy
 
 class ServerDialog(QDialog, Ui_ServerDialogDesign):
     
@@ -24,7 +26,9 @@ class ServerDialog(QDialog, Ui_ServerDialogDesign):
         QDialog.__init__(self)
         self.setupUi(self)
         
-        self._serverList = serverList
+        self._serverList = copy.deepcopy(serverList)
+        self._serverListCopy = None
+        self._returnList = None
         
         # Create the model used by the views
         self.slm = ServerListModel(self._serverList)
@@ -44,19 +48,22 @@ class ServerDialog(QDialog, Ui_ServerDialogDesign):
         index = self.serverListView.model().index(0,0)
         # Select it in the view
         self.serverListView.selectionModel().select(index, QItemSelectionModel.ClearAndSelect) 
-        self.serverListView.selectionModel().setCurrentIndex(index, QItemSelectionModel.ClearAndSelect)       
+        self.serverListView.selectionModel().setCurrentIndex(index, QItemSelectionModel.ClearAndSelect)
+        
+        self.connect(self.serverListView.selectionModel(),  QtCore.SIGNAL('selectionChanged(QItemSelection, QItemSelection)'), self.setBaseDN)
 
         # Map columns of the model to fields in the gui
         self.mapper = QDataWidgetMapper()
         self.mapper.setModel(self.slm)
         # Handles the comboboxes and to-from the list of custom baseDNs
-        self.mapper.setItemDelegate(ServerDelegate()) 
+        self.serverDelegate = ServerDelegate()
+        self.mapper.setItemDelegate(self.serverDelegate) 
         
         self.mapper.addMapping(self.hostLineEdit, 1)
         self.mapper.addMapping(self.portSpinBox, 2)
         self.mapper.addMapping(self.bindAnonBox, 3)
-        self.mapper.addMapping(self.baseBox, 4)        
-        self.mapper.addMapping(self.baseDNWidget, 5)
+        self.mapper.addMapping(self.baseBox, 4)
+        #self.mapper.addMapping(self.baseDNWidget, 5)
 
         self.mapper.addMapping(self.bindLineEdit, 6)
         self.mapper.addMapping(self.passwordLineEdit, 7)
@@ -76,14 +83,18 @@ class ServerDialog(QDialog, Ui_ServerDialogDesign):
         
         # Workaround to avoid the button stealing the focus from the baseDNView thus invalidating it's selection
         # maning we don't know what do delete
-        self.deleteBaseDNButton.setFocusPolicy(Qt.NoFocus)
-        
+        #self.deleteBaseDNButton.setFocusPolicy(Qt.NoFocus)
+        self.setBaseDN()
     
     def addBaseDN(self):
         tmpBase = unicode(self.baseEdit.text()).strip()
         if tmpBase == u"":
             return      
         self.baseDNWidget.addItem(QListWidgetItem(tmpBase)) #Add to list
+        
+        serverIndex = self.serverListView.selectedIndexes()
+        index = self.slm.createIndex(serverIndex[0].row(), 5)
+        self.serverDelegate.setModelData(self.baseDNWidget, self.slm, index)
         self.baseEdit.clear() #Clear textfield
         self.mapper.submit() #Force push to model
     
@@ -95,7 +106,17 @@ class ServerDialog(QDialog, Ui_ServerDialogDesign):
                 d = self.baseDNWidget.takeItem(index.row()) #delete (actually steal) the baseDN from the list
                 if d != 0:
                     del d # Per the QT-docs, someone needs to delete it
+                    
+        serverIndex = self.serverListView.selectedIndexes()
+        index = self.slm.createIndex(serverIndex[0].row(), 5)
+        self.serverDelegate.setModelData(self.baseDNWidget, self.slm, index)
         self.mapper.submit() #Force push changes to model
+        
+    def setBaseDN(self):
+        serverIndex = self.serverListView.selectedIndexes()
+        if len(serverIndex) > 0:
+            index = self.slm.createIndex(serverIndex[0].row(), 5)
+            self.serverDelegate.setEditorData(self.baseDNWidget, index)
 
     def addServer(self):
         """
@@ -154,7 +175,8 @@ class ServerDialog(QDialog, Ui_ServerDialogDesign):
         
         What should happen when the user clicks Save then Cancel?
         """
-        self._serverList.writeServerList()     
+        self._serverList.writeServerList()
+        self._serverListCopy = copy.deepcopy(self._serverList)     
         
     def reject(self):
         """
@@ -162,6 +184,13 @@ class ServerDialog(QDialog, Ui_ServerDialogDesign):
         
         SOMETHING LOGICAL SHOULD PROBABLY BE DONE HER
         """
+        r = QMessageBox.question(self, "Exit?", "Are you sure you want to exit the server editor?\n Any unsaved changes will be lost!", QMessageBox.Ok|QMessageBox.Cancel)
+        if not r == QMessageBox.Ok:
+            return
+        if self._serverListCopy:
+            self._returnList = self._serverListCopy
+            QDialog.accept(self)
+            return
         QDialog.reject(self)
     
     def accept(self):
@@ -170,8 +199,12 @@ class ServerDialog(QDialog, Ui_ServerDialogDesign):
         
         SOMETHING LOGICAL SHOULD PROBABLY BE DONE HER
         """
-        self.saveServers()
+        self._serverList.writeServerList()
+        self._returnList = self._serverList
         QDialog.accept(self)
+        
+    def getResult(self):
+        return self._returnList
         
     def certFileDialog(self):
         filename = QFileDialog.getOpenFileName(self, 'Open file',

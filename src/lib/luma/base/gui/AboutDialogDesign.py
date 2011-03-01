@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'AboutDialogDesign.ui'
+# Form implementation generated from reading ui file '/mnt/debris/devel/git/luma/src/lib/luma/resources/forms/AboutDialogDesign.ui'
 #
-# Created: Wed Feb  9 17:13:41 2011
+# Created: Fri Feb 25 12:12:02 2011
 #      by: PyQt4 UI code generator 4.7.4
 #
 # WARNING! All changes made in this file will be lost!
@@ -93,7 +93,7 @@ class Ui_AboutDialog(object):
 
         self.retranslateUi(AboutDialog)
         QtCore.QObject.connect(self.aboutClose, QtCore.SIGNAL("clicked()"), AboutDialog.close)
-        QtCore.QObject.connect(self.aboutCredits, QtCore.SIGNAL("clicked()"), AboutDialog.showCredits)
+        QtCore.QObject.connect(self.aboutCredits, QtCore.SIGNAL("clicked()"), AboutDialog.giveCreditWhereCreditIsDue)
         QtCore.QObject.connect(self.aboutLicense, QtCore.SIGNAL("clicked()"), AboutDialog.showLicense)
         QtCore.QMetaObject.connectSlotsByName(AboutDialog)
 

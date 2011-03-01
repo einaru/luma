@@ -2,10 +2,10 @@
 # -*- coding: utf-8 -*-
 #
 # Copyright (c) 2011
-#      Einar Uvsløkk, <einaru@stud.ntnu.no>
+#     Einar Uvsløkk, <einar.uvslokk@linux.com>
 #
 # Copyright (c) 2003, 2004, 2005 
-#      Wido Depping, <widod@users.sourceforge.net>
+#     Wido Depping, <widod@users.sourceforge.net>
 #
 # Luma is free software; you can redistribute it and/or modify 
 # it under the terms of the GNU General Public Licence as published by 
@@ -25,75 +25,60 @@
 Luma cross-platform startup script
 """
 
+import logging
 import os
 import platform
+import traceback
+import StringIO
 import sys
-import logging
 
 from PyQt4 import QtGui, QtCore
 
-from base.backend.Config import Config
-from base.gui.MainWin import MainWin
-from base.utils.gui.LoggerWidget import LoggerWidget
-from base.utils.backend.LumaLogHandler import LumaLogHandler
-from splashscreen import SplashScreen
-
-# TODO Luma spesific import (eventualy) goes here
+from __init__ import *
+from base.gui import SplashScreen
+from base.gui.MainWin import MainWindow
+from base.backend import LumaLogHandler
+from base.util import Paths
 
 def startApplication(argv):
     """
     First we must determine what platform we're running on. Making sure we 
     follow the platform convention for configuration files and directories, 
     """
-    
-    app = QtGui.QApplication(argv)
-    
-#    splash = SplashScreen()
-#    splash.show()
-#    import time
-#    time.sleep(1)
-    
-    # DEVELOPMENT SPECIFICS
-    
-    configPrefix = getConfigPrefix()
 
-    print "DEBUG::config folder=%s" % configPrefix
-    # TODO Write the rest of the startup script.
+    app = QtGui.QApplication(argv)
+    app.setOrganizationName(ORGNAME)
+    app.setApplicationName(APPNAME)
+    app.setApplicationVersion(VERSION)
     
-    config = Config(configPrefix, os.path.join(os.getcwd(), 'i18n'))
-    
-    
-    mainWin = MainWin(config)
-    
+    splash = SplashScreen()
+    splash.show()
+
+    """ Find and set some resource paths """
+    paths = Paths()
+    paths.i18nPath = os.path.join(os.getcwd(), 'i18n')
+
+    mainWin = MainWindow()
+
+    """ Setup the logging mechanism to log to the logger widget """
     l = logging.getLogger("base")
-    l.setLevel(logging.DEBUG)  
-    
-    # Log to the loggerwidget
+    l.setLevel(logging.DEBUG)
     l.addHandler(LumaLogHandler(mainWin.loggerWidget))
-    
-    #app.setOrganizationName("Luma")
-    #app.setApplicationName("Luma")
-    #s = QtCore.QSettings()
-    #s.setValue("rofl","rofl-settings :O")
-    #print s.value("rofl",":(").toString()    
-    
+
     QtCore.QObject.connect(app, QtCore.SIGNAL('lastWindowClosed()'), mainWin.close)
 
     mainWin.loadPlugins()
-    
-    screen = QtGui.QDesktopWidget().screenGeometry()
-    size =  mainWin.geometry()
-    mainWin.move((screen.width()-size.width())/2, (screen.height()-size.height())/2)
-    
     mainWin.show()
- 
-#    splash.finish(mainWin)
 
-    #sys.excepthook = unhandledException
-    
+    splash.finish(mainWin)
+
+    """ Add a exception hook to handle all exceptions missed in the main
+    application """
+    sys.excepthook = unhandledException
+
     sys.exit(app.exec_())
 
-
+@DeprecationWarning
 def getConfigPrefix():
     """
     We must determine what platform we're running on. Making sure we follow
@@ -109,8 +94,8 @@ def getConfigPrefix():
     If it is not found it will be created. Either way the path will be returned.
     """
     configPrefix = ""
-    _platform = platform.system()
-    if _platform == "Linux":
+    __platform = platform.system()
+    if __platform == "Linux":
         """
         Best practise config storage on Linux:
         ~/.config/luma
@@ -123,14 +108,14 @@ def getConfigPrefix():
             pass
         finally:
             configPrefix = os.path.join(os.environ['HOME'], '.config', 'luma')
-    elif _platform == "Darwin":
+    elif __platform == "Darwin":
         """
         Best practise config storage on Mac OS:
         http://developer.apple.com/tools/installerpolicy.html
         ~/Library/Application Support/luma
         """
         configPrefix = os.path.join(os.environ['HOME'], 'Library', 'Application Support', 'luma')
-    elif _platform == "Windows":
+    elif __platform == "Windows":
         """
         Best practise config storage on Windows:
         C:\Users\<USERNAME>\Application Data\luma
@@ -145,7 +130,8 @@ def getConfigPrefix():
     if not os.path.exists(configPrefix):
         try:
             #os.mkdir(configPrefix)
-            print "TODO::os.mkdir(%s)" % (configPrefix)
+            logger = logging.getLogger(__name__)
+            logger.debug("TODO: os.mkdir(%s)" % (configPrefix))
         except (IOError, OSError):
             # TODO Do some logging. We should load the application, but 
             #      provide information to user that no settings will be 
@@ -160,9 +146,15 @@ def unhandledException(eType, eValue, eTraceback):
     """
     UnhandledException handler
     """
-    # TODO Take a look at the <reporoot>/tags/Luma2.4/src/bin/luma file
-    print "unhandled exception"
-    print eType, eValue, eTraceback
+    tmp = StringIO.StringIO()
+    traceback.print_tb(eTraceback, None, tmp)
+    e = """[Unhandled (handled) Exception]
+This is most likely a bug. In order to fix this, please send an email to
+    <luma-users@lists.sourceforge.net>
+with the following text and a short description of what you were doing:
+>>>\n[%s] Reason:\n%s\n%s\n<<<""" % (tmp.getvalue(), str(eType), str(eValue))
+    logger = logging.getLogger("base")
+    logger.error(e)
 
 if __name__ == "__main__":
     startApplication(sys.argv)

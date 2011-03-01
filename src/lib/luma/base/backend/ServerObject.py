@@ -1,4 +1,42 @@
 # -*- coding: utf-8 -*-
+#
+# Copyright (c) 2011
+#     Christian Forfang
+#     Simen Natvig
+#
+# Luma is free software; you can redistribute it and/or modify 
+# it under the terms of the GNU General Public Licence as published by 
+# the Free Software Foundation; either version 2 of the Licence, or 
+# (at your option) any later version.
+#
+# Luma is distributed in the hope that it will be useful, but 
+# WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY
+# or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public Licence 
+# for more details.
+#
+# You should have received a copy of the GNU General Public Licence along 
+# with Luma; if not, write to the Free Software Foundation, Inc., 
+# 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA
+
+class ServerEncryptionMethod:
+    Unencrypted = 0
+    TLS = 1
+    SSL = 2
+    
+class ServerAuthMethod:
+    Simple = 0
+    SASL_CRAM_MD5 = 1
+    SASL_DIGEST_MD5 = 2
+    SASL_EXTERNAL = 3
+    SASL_GSSLAPI = 4
+    SASL_LOGIN = 5
+    SASL_PLAIN = 7 
+    
+class ServerCheckCertificate:
+    Never = 0
+    Allow = 1
+    Try = 2
+    Demand = 3
 
 class ServerObject(object):
     """
@@ -9,6 +47,7 @@ class ServerObject(object):
     #    u"SASL DIGEST-MD5", u"SASL Login", u"SASL GSSAPI"]
 
     numFields = 16 # Models need to know
+    
     
     def __init__(self):
         
