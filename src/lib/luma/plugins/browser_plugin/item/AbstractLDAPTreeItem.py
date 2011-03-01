@@ -36,8 +36,17 @@ class AbstractLDAPTreeItem(QObject):
         """
         Adds a child to this item, and marks it as populated
         """
+        print "appendChild start"
         self.populated = 1
         self.childItems.append(item)
+        print "appendChild end"
+        
+    def emptyChildren(self):
+        """
+        Drops list of children.
+        """
+        self.childItems = []
+        self.populated = 0
     
     def child(self, row):
         """

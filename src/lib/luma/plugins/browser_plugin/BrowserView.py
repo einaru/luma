@@ -36,7 +36,7 @@ class BrowserView(QWidget):
 
         self.entryView = TableView(self.splitter)
 
-        self.entryList.clicked.connect(self.initEntryView)
+        #self.entryList.clicked.connect(self.initEntryView)
         #self.connect(self.entryList, QtCore.SIGNAL("clicked(const QModelIndex &)"), self.initEntryView)
                 
         self.mainLayout.addWidget(self.splitter)
@@ -51,13 +51,26 @@ class BrowserView(QWidget):
 
         
     def rightClick(self, point):
-        clickedIndex = self.entryList.indexAt(point)
-        self.ldaptreemodel.currentIndex = clickedIndex
-        clickedItem = clickedIndex.internalPointer()
+        self.clickedIndex = self.entryList.indexAt(point)
+        self.ldaptreemodel.currentIndex = self.clickedIndex
+        clickedItem = self.clickedIndex.internalPointer()
         
         if clickedItem != None:
-            menu = clickedItem.getContextMenu(QtGui.QMenu())
+            """
+            TODO: Get supported actions from item and add them to menu
+            """
+            #menu = clickedItem.getContextMenu(QtGui.QMenu())
+            menu = QtGui.QMenu()
+            #someSignal = QtCore.pyqtSignal(QtCore.QPoint)
+            #someSignal.connect(self.ldaptreemodel.reloadPoint)
+            menu.addAction("Reload", self.reloadChoosen)
             menu.exec_(self.entryList.mapToGlobal(point))
+    
+    reloadSignal = QtCore.pyqtSignal(QtCore.QModelIndex)
+    
+    def reloadChoosen(self):
+        self.reloadSignal.connect(self.ldaptreemodel.populateItem)
+        self.reloadSignal.emit(self.clickedIndex)
             
     def initView(self, parent=None):
         self.ldaptreemodel = LDAPTreeItemModel(parent)

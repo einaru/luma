@@ -47,6 +47,7 @@ class ServerTreeItem(AbstractLDAPTreeItem):
         """
         Gets the list of baseDNs for the server and adds them as children.
         """
+        print "ServerTreeItem - populateItem"
                 
         connection = LumaConnection(self.serverMeta)
         
@@ -59,25 +60,23 @@ class ServerTreeItem(AbstractLDAPTreeItem):
             if not bindSuccess:
                 self.logger.debug("Bind failed.")
                 self.displayError(exceptionObject)
-                self.populated = 1
+                #self.populated = 1
                 return
         else:
             self.logger.debug("Using getBaseDNList()")
-            self.isWorking.emit()
+            #self.isWorking.emit()
             success, tmpList, exceptionObject = connection.getBaseDNList()
-        
-            self.doneWorking.emit()
         
             if not success:
                 self.logger.debug("getBaseDNList failed")
                 self.displayError(exceptionObject)
-                self.populated = 1
+                #self.populated = 1
                 return
         
-        self.isWorking.emit()
+        #self.isWorking.emit()
         
         # Will be overriden if we mange to add some data
-        self.populated = 0
+        #self.populated = 0
         
         self.logger.debug("Entering for-loop")
 
@@ -98,13 +97,15 @@ class ServerTreeItem(AbstractLDAPTreeItem):
             newChildList.append(tmp)
             
         # Replace with new list
-        self.beginUpdateModel()        
-        self.childItems = newChildList
-        self.populated = 1
-        self.endUpdateModel()        
+        #self.beginUpdateModel()        
+        #self.childItems = newChildList
+        #self.populated = 1
+        #self.endUpdateModel()        
             
-        self.doneWorking.emit()
+        #self.doneWorking.emit()
         self.logger.debug("End populatItem")
+        print "ServerTreeItem - populateItem- END"
+        return newChildList
         
     def getContextMenu(self, menu):
         #Remember the index so the methods can use it for notifying the model

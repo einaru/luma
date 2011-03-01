@@ -65,26 +65,26 @@ class LDAPTreeItem(AbstractLDAPTreeItem):
         """
         (Re)aquire the list of childs for this item (if any).
         """       
-
         
         l = LumaConnection(self.serverParent.serverMeta)
-
+        
         bindSuccess, exceptionObject = l.bind()
+        """
         if not bindSuccess:
             self.displayError(exceptionObject)
             self.populated = 1
             return
         
         self.isWorking.emit()
-
+        """
         # Search for items at the level under this one
         success, resultList, exceptionObject = l.search(self.itemData.getDN(), \
                 scope=ldap.SCOPE_ONELEVEL, filter=self.filter)
-        
+        """
         self.doneWorking.emit()
-        
+        """
         l.unbind()
-        
+        """
         if not success:
             self.displayError(exceptionObject)
             self.populated = 1
@@ -102,9 +102,7 @@ class LDAPTreeItem(AbstractLDAPTreeItem):
         
         # If there are ALOT of returned entries, confirm displaying them all
         if len(resultList) > self.ASK_TO_DISPLAY:
-            """
-            Todo: specify how many to load and "remembers"/"always yes"-function in the dialog
-            """
+            #Todo: specify how many to load and "remembers"/"always yes"-function in the dialog
             # TODO Translate
             svar = QMessageBox.question(None, self.tr("Got many results"), "Got " +str(len(resultList))+" items. Do you want to display them all?", QMessageBox.Yes|QMessageBox.No)
             if not svar == QMessageBox.Yes:
@@ -115,12 +113,16 @@ class LDAPTreeItem(AbstractLDAPTreeItem):
                 self.populated = 1
                 self.endUpdateModel()
                 return
-
+        """
+        """
         # Default, load all
         self.beginUpdateModel()
         self.childItems = [LDAPTreeItem(x, self.serverParent, self, modelParent = self.modelParent) for x in resultList]
         self.populated = 1
         self.endUpdateModel()
+        """
+        
+        return [LDAPTreeItem(x, self.serverParent, self, modelParent = self.modelParent) for x in resultList]
     
     def setLimit(self):
         """
