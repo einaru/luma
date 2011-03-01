@@ -36,17 +36,15 @@ class AbstractLDAPTreeItem(QObject):
         """
         Adds a child to this item, and marks it as populated
         """
-        print "appendChild start"
-        self.populated = 1
         self.childItems.append(item)
-        print "appendChild end"
+        self.populated = 1
         
     def emptyChildren(self):
         """
-        Drops list of children.
+        Drops list of children, but keep it marked populated
         """
         self.childItems = []
-        self.populated = 0
+        self.populated = 1
     
     def child(self, row):
         """
@@ -98,23 +96,11 @@ class AbstractLDAPTreeItem(QObject):
         """
         raise NotImplementedError("Should be implemented")
 
-    def populateItem(self):
+    def fetchChildList(self):
         """
-        Populates the child-list of this item. (Used for lazy-loading.)
+        Fetches the list of children from server. (Used for lazy-loading.)
         """
         raise NotImplementedError("Should be implemented")
         
     def getContextMenu(self):
         raise NotImplementedError("Should be implemented")
-    
-    """
-    Used to have the model signal changes.
-    """
-    def beginUpdateModel(self):
-        if self.hasIndex:
-            self.modelParent.beginRemoveRows(self.index, 0, self.childCount()-1)
-        
-    def endUpdateModel(self):
-        if self.hasIndex:
-            self.modelParent.endRemoveRows()
-            self.hasIndex = False

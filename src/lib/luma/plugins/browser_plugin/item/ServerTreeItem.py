@@ -43,11 +43,11 @@ class ServerTreeItem(AbstractLDAPTreeItem):
     def smartObject(self):
         return self.itemData[1]
     
-    def populateItem(self):
+    def fetchChildList(self):
         """
         Gets the list of baseDNs for the server and adds them as children.
         """
-        print "ServerTreeItem - populateItem"
+        print "ServerTreeItem - fetchCHildList"
                 
         connection = LumaConnection(self.serverMeta)
         
@@ -60,7 +60,6 @@ class ServerTreeItem(AbstractLDAPTreeItem):
             if not bindSuccess:
                 self.logger.debug("Bind failed.")
                 self.displayError(exceptionObject)
-                #self.populated = 1
                 return
         else:
             self.logger.debug("Using getBaseDNList()")

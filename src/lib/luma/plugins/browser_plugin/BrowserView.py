@@ -36,8 +36,8 @@ class BrowserView(QWidget):
 
         self.entryView = TableView(self.splitter)
 
-        #self.entryList.clicked.connect(self.initEntryView)
-        #self.connect(self.entryList, QtCore.SIGNAL("clicked(const QModelIndex &)"), self.initEntryView)
+        self.entryList.clicked.connect(self.initEntryView)
+        self.connect(self.entryList, QtCore.SIGNAL("clicked(const QModelIndex &)"), self.initEntryView)
                 
         self.mainLayout.addWidget(self.splitter)
 
@@ -46,10 +46,14 @@ class BrowserView(QWidget):
         self.initView(parent)
         
         self.entryList.setContextMenuPolicy(QtCore.Qt.CustomContextMenu)
-        #self.connect(self.entryList, QtCore.SIGNAL("customContextMenuRequested(QPoint)"), self.rightClick)
         self.entryList.customContextMenuRequested.connect(self.rightClick)
-
         
+        self.reloadSignal.connect(self.ldaptreemodel.reloadItem)
+        self.emptySignal.connect(self.ldaptreemodel.emptyItem)        
+        
+    reloadSignal = QtCore.pyqtSignal(QtCore.QModelIndex)
+    emptySignal = QtCore.pyqtSignal(QtCore.QModelIndex)
+    
     def rightClick(self, point):
         self.clickedIndex = self.entryList.indexAt(point)
         self.ldaptreemodel.currentIndex = self.clickedIndex
@@ -61,15 +65,30 @@ class BrowserView(QWidget):
             """
             #menu = clickedItem.getContextMenu(QtGui.QMenu())
             menu = QtGui.QMenu()
-            #someSignal = QtCore.pyqtSignal(QtCore.QPoint)
-            #someSignal.connect(self.ldaptreemodel.reloadPoint)
+            menu.addAction(u"Ikke alle operasjoner er mulig på alle items ennå.")
+            menu.addAction(u"Når ferdig vil den sjekke hva som støttes og bare vise disse.")
             menu.addAction("Reload", self.reloadChoosen)
+            menu.addAction("Clear", self.emptyChoosen)
+            menu.addAction("Filter", self.filterChoosen)
+            menu.addAction("Limit", self.limitChoosen)
             menu.exec_(self.entryList.mapToGlobal(point))
     
-    reloadSignal = QtCore.pyqtSignal(QtCore.QModelIndex)
+    
     
     def reloadChoosen(self):
-        self.reloadSignal.connect(self.ldaptreemodel.populateItem)
+        print "reloadChoosen"
+        self.reloadSignal.emit(self.clickedIndex)
+        print "endReloadChoosen"
+        
+    def emptyChoosen(self):
+        self.emptySignal.emit(self.clickedIndex)
+        
+    def limitChoosen(self):
+        self.clickedIndex.internalPointer().setLimit()
+        self.reloadSignal.emit(self.clickedIndex)
+        
+    def filterChoosen(self):
+        self.clickedIndex.internalPointer().setFilter()
         self.reloadSignal.emit(self.clickedIndex)
             
     def initView(self, parent=None):

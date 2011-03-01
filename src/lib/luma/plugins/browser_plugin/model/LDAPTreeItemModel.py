@@ -164,35 +164,49 @@ class LDAPTreeItemModel(QAbstractItemModel):
         for server in serverList.getTable():
             tmp = ServerTreeItem([server.name], server, self.rootItem, modelParent = self)
             self.rootItem.appendChild(tmp)
-    
-    """
-    def setData(self, index, value, role):
-        # Not used.
-        index.internalPointer().itemData[0] = "test"
-        self.dataChanged.emit(index, index)
-        #self.emit(QtCore.SIGNAL("dataChanged"), index, index)
-    """
-    
-    @pyqtSlot(QtCore.QModelIndex)       
+        
     def populateItem(self, parentIndex):
         
         parentItem = parentIndex.internalPointer()
         print "populateItem -",parentItem.data(0,0)
 
-        if parentItem.populated == 1:
-            """
-            If populateItem is called on an already populated model
-            it means we want to reload it.
-            
-            To do this we just remove all items, and the method will be called
-            when the items are needed. (I.e. immediatly if the parent item is expanded.)
-            """
-            self.beginRemoveRows(parentIndex, 0, parentItem.childCount()-1)
-            parentItem.emptyChildren()
-            self.endRemoveRows()
+        list = parentItem.fetchChildList()
         
-        list = parentItem.populateItem()
-        #self.beginInsertRows(parentIndex, 0, len(list)-1)
+        if list == None:
+            print "Error fetching list."
+            print "I'll let things be then."
+            return
+        
         for x in list:
             parentItem.appendChild(x)
-        #self.endInsertRows()
+
+        print "endPopulate"
+        
+    @pyqtSlot(QtCore.QModelIndex)       
+    def reloadItem(self, parentIndex):
+        print "beginReload"
+        
+        parentItem = parentIndex.internalPointer()
+        newList = parentItem.fetchChildList()
+        
+        if newList == None:
+            print "Error fetching new list -- TODO proper error-handling"
+            print "Now I've got nothing to do, so I'm returning :("
+            print "Hopefully nothing wrong happens because of this"
+            return
+        
+        # Clear old list and insert new
+        self.emptyItem(parentIndex)
+        self.beginInsertRows(parentIndex, 0, len(newList)-1)
+        for x in newList:
+            parentItem.appendChild(x)
+        self.endInsertRows()     
+           
+        print "endReload"
+        
+    @pyqtSlot(QtCore.QModelIndex)       
+    def emptyItem(self, parentIndex):
+        parentItem = parentIndex.internalPointer()
+        self.beginRemoveRows(parentIndex, 0, parentItem.childCount()-1)
+        parentItem.emptyChildren()
+        self.endRemoveRows()
