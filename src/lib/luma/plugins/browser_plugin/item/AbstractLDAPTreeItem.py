@@ -11,10 +11,6 @@ class AbstractLDAPTreeItem(QObject):
     This is an abstract class which the items of the LDAPTreeItemModel should subclass.
     """
     
-    # Used to signal the item is working on something which can take time.
-    isWorking = QtCore.pyqtSignal()
-    doneWorking = QtCore.pyqtSignal()
-    
     def __init__(self, parent, modelParent):
         """
         parent = the item above this
@@ -36,8 +32,15 @@ class AbstractLDAPTreeItem(QObject):
         """
         Adds a child to this item, and marks it as populated
         """
-        self.populated = 1
         self.childItems.append(item)
+        self.populated = 1
+        
+    def emptyChildren(self):
+        """
+        Drops list of children, but keep it marked populated
+        """
+        self.childItems = []
+        self.populated = 1
     
     def child(self, row):
         """
@@ -89,23 +92,11 @@ class AbstractLDAPTreeItem(QObject):
         """
         raise NotImplementedError("Should be implemented")
 
-    def populateItem(self):
+    def fetchChildList(self):
         """
-        Populates the child-list of this item. (Used for lazy-loading.)
+        Fetches the list of children from server. (Used for lazy-loading.)
         """
         raise NotImplementedError("Should be implemented")
         
     def getContextMenu(self):
         raise NotImplementedError("Should be implemented")
-    
-    """
-    Used to have the model signal changes.
-    """
-    def beginUpdateModel(self):
-        if self.hasIndex:
-            self.modelParent.beginRemoveRows(self.index, 0, self.childCount()-1)
-        
-    def endUpdateModel(self):
-        if self.hasIndex:
-            self.modelParent.endRemoveRows()
-            self.hasIndex = False

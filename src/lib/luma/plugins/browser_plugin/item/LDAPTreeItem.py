@@ -28,11 +28,6 @@ class LDAPTreeItem(AbstractLDAPTreeItem):
         
         self.limit = LDAPTreeItem.LIMIT_DEFAULT
         self.filter = LDAPTreeItem.FILTER_DEFAULT
-        
-        self.isWorking.connect(self.serverParent.isWorking)
-        self.doneWorking.connect(self.serverParent.doneWorking)
-
-        self.hasIndex = False
 
     def columnCount(self):
         """
@@ -56,55 +51,47 @@ class LDAPTreeItem(AbstractLDAPTreeItem):
                 return QtCore.QVariant()
         # If DisplayRole
         else:
+            #return self.itemData.getPrettyDN() # The whole name
             return self.itemData.getPrettyRDN()
 
     def smartObject(self):
         return self.itemData
     
-    def populateItem(self):
+    def fetchChildList(self):
         """
         (Re)aquire the list of childs for this item (if any).
         """       
-
         
         l = LumaConnection(self.serverParent.serverMeta)
-
+        
         bindSuccess, exceptionObject = l.bind()
+        
         if not bindSuccess:
             self.displayError(exceptionObject)
-            self.populated = 1
-            return
+            return None
         
-        self.isWorking.emit()
-
+        
         # Search for items at the level under this one
         success, resultList, exceptionObject = l.search(self.itemData.getDN(), \
                 scope=ldap.SCOPE_ONELEVEL, filter=self.filter)
-        
-        self.doneWorking.emit()
-        
         l.unbind()
         
         if not success:
             self.displayError(exceptionObject)
-            self.populated = 1
-            return
+            return None
+
         
         # If a limit is specified, only display the chosen amount        
         if self.limit > 0 and len(resultList) > self.limit:
-            self.beginUpdateModel()
-            self.childItems = [] # Remember to empty the existing list
+            returnList = []
             for i in xrange(self.limit):
-                self.childItems.append(LDAPTreeItem(resultList[i], self.serverParent, self, modelParent = self.modelParent))
-            self.populated = 1
-            self.endUpdateModel()
-            return
+                returnList.append(LDAPTreeItem(resultList[i], self.serverParent, self, self.modelParent))
+            return returnList
         
+        """
         # If there are ALOT of returned entries, confirm displaying them all
         if len(resultList) > self.ASK_TO_DISPLAY:
-            """
-            Todo: specify how many to load and "remembers"/"always yes"-function in the dialog
-            """
+            #Todo: specify how many to load and "remembers"/"always yes"-function in the dialog
             # TODO Translate
             svar = QMessageBox.question(None, self.tr("Got many results"), "Got " +str(len(resultList))+" items. Do you want to display them all?", QMessageBox.Yes|QMessageBox.No)
             if not svar == QMessageBox.Yes:
@@ -115,12 +102,10 @@ class LDAPTreeItem(AbstractLDAPTreeItem):
                 self.populated = 1
                 self.endUpdateModel()
                 return
-
-        # Default, load all
-        self.beginUpdateModel()
-        self.childItems = [LDAPTreeItem(x, self.serverParent, self, modelParent = self.modelParent) for x in resultList]
-        self.populated = 1
-        self.endUpdateModel()
+        """
+        
+        # Default behavior: return all
+        return [LDAPTreeItem(x, self.serverParent, self, self.modelParent) for x in resultList]
     
     def setLimit(self):
         """
@@ -129,8 +114,6 @@ class LDAPTreeItem(AbstractLDAPTreeItem):
         r = QInputDialog.getInt(None, "Limit","Enter the limit (0 = none):", self.limit)
         if r[1] == True:
             self.limit = r[0]
-            
-            self.populateItem()
     
     def setFilter(self):
         """
@@ -142,19 +125,10 @@ class LDAPTreeItem(AbstractLDAPTreeItem):
                 self.filter = str(r[0])
             else:
                 self.filter = LDAPTreeItem.FILTER_DEFAULT
-            
-            self.populateItem()
 
         
     def getContextMenu(self, menu):
-        #Remember the index so the methods can use it for notifying the model
-        # of changes.
-        self.index = self.modelParent.currentIndex
-        self.hasIndex = True
-        
-        menu.addAction("Reload", self.populateItem)
-        menu.addAction("Set search limit", self.setLimit)
-        menu.addAction("Set filter", self.setFilter)
+        #TODO
         return menu
         
     

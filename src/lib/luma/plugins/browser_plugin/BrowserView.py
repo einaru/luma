@@ -37,7 +37,6 @@ class BrowserView(QWidget):
         self.entryView = TableView(self.splitter)
 
         self.entryList.clicked.connect(self.initEntryView)
-        #self.connect(self.entryList, QtCore.SIGNAL("clicked(const QModelIndex &)"), self.initEntryView)
                 
         self.mainLayout.addWidget(self.splitter)
 
@@ -46,18 +45,52 @@ class BrowserView(QWidget):
         self.initView(parent)
         
         self.entryList.setContextMenuPolicy(QtCore.Qt.CustomContextMenu)
-        #self.connect(self.entryList, QtCore.SIGNAL("customContextMenuRequested(QPoint)"), self.rightClick)
         self.entryList.customContextMenuRequested.connect(self.rightClick)
-
         
+        self.reloadSignal.connect(self.ldaptreemodel.reloadItem)
+        self.emptySignal.connect(self.ldaptreemodel.emptyItem)        
+        
+    reloadSignal = QtCore.pyqtSignal(QtCore.QModelIndex)
+    emptySignal = QtCore.pyqtSignal(QtCore.QModelIndex)
+    
     def rightClick(self, point):
-        clickedIndex = self.entryList.indexAt(point)
-        self.ldaptreemodel.currentIndex = clickedIndex
-        clickedItem = clickedIndex.internalPointer()
+        # Remember the index so it can be used from the method selected from the pop-up-menu
+        self.clickedIndex = self.entryList.indexAt(point)
+        #self.ldaptreemodel.currentIndex = self.clickedIndex #TODO REMOVE
         
+        clickedItem = self.clickedIndex.internalPointer()
         if clickedItem != None:
-            menu = clickedItem.getContextMenu(QtGui.QMenu())
+            """
+            TODO: Get supported actions from item and add them to menu
+            """
+            #menu = clickedItem.getContextMenu(QtGui.QMenu())
+            menu = QtGui.QMenu()
+            menu.addAction(u"Ikke alle operasjoner er mulig på alle items ennå.")
+            menu.addAction(u"Når ferdig vil den sjekke hva som støttes og bare vise disse.")
+            menu.addAction("Reload", self.reloadChoosen)
+            menu.addAction("Clear", self.emptyChoosen)
+            menu.addAction("Filter", self.filterChoosen)
+            menu.addAction("Limit", self.limitChoosen)
             menu.exec_(self.entryList.mapToGlobal(point))
+    
+    
+    """
+    Following methods are called from a context-menu.
+    self.clickedItem is set there.
+    """
+    def reloadChoosen(self):
+        self.reloadSignal.emit(self.clickedIndex)
+    def emptyChoosen(self):
+        self.emptySignal.emit(self.clickedIndex)  
+    def limitChoosen(self):
+        # Have the item set the limit for us, the reload
+        self.clickedIndex.internalPointer().setLimit()
+        self.reloadSignal.emit(self.clickedIndex)
+    def filterChoosen(self):
+        # Have the item set the filter, then reload
+        self.clickedIndex.internalPointer().setFilter()
+        self.reloadSignal.emit(self.clickedIndex)
+            
             
     def initView(self, parent=None):
         self.ldaptreemodel = LDAPTreeItemModel(parent)
@@ -66,8 +99,8 @@ class BrowserView(QWidget):
         self.entryList.setUniformRowHeights(True) #Major optimalization for big lists
         self.entryList.setModel(self.ldaptreemodel)
 
-        #self.ldaptreemodel.dataChanged.connect(self.entryList.dataChanged)
-        #self.connect(self.ldaptreemodel, QtCore.SIGNAL("dataChanged"), self.entryList.dataChanged)
+        # Working / needed?
+        self.ldaptreemodel.dataChanged.connect(self.entryList.dataChanged)
         
 
     def initEntryView(self, index):

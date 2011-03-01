@@ -11,7 +11,8 @@ from plugins.browser_plugin.item.ServerTreeItem import ServerTreeItem
 from plugins.browser_plugin.item.RootTreeItem import RootTreeItem
 from plugins.browser_plugin.item.LDAPErrorItem import LDAPErrorItem
 from PyQt4 import QtCore
-from PyQt4.QtCore import QAbstractItemModel
+from PyQt4.QtCore import QAbstractItemModel, pyqtSlot, Qt
+from PyQt4.QtGui import qApp
 from base.backend.LumaConnection import LumaConnection
 
 class LDAPTreeItemModel(QAbstractItemModel):
@@ -21,6 +22,12 @@ class LDAPTreeItemModel(QAbstractItemModel):
        
     def __init__(self, parent=None):
         QtCore.QAbstractItemModel.__init__(self, parent)
+        
+    def isWorking(self):
+        qApp.setOverrideCursor(Qt.WaitCursor)
+        
+    def doneWorking(self):
+        qApp.restoreOverrideCursor()
         
     def columnCount(self, parent):
         """
@@ -120,9 +127,10 @@ class LDAPTreeItemModel(QAbstractItemModel):
             parentItem = parent.internalPointer()
 
         if not parentItem.populated:
-            parentItem.populateItem()
+            self.populateItem(parent)
             # Updates the |>-icon to show if the item has children
-            self.layoutChanged.emit()
+            # TODO Not needed anymore?
+            #self.layoutChanged.emit()
         
         return parentItem.childCount()
         
@@ -151,8 +159,6 @@ class LDAPTreeItemModel(QAbstractItemModel):
         Called after the model is initialized. Adds the servers to the root.
         """
         
-        print "populateModel in Model"
-        
         self.rootItem = RootTreeItem("Servere", self, self) # Also provides the header
         
         if not len(serverList.getTable()) > 0:
@@ -162,10 +168,67 @@ class LDAPTreeItemModel(QAbstractItemModel):
         for server in serverList.getTable():
             tmp = ServerTreeItem([server.name], server, self.rootItem, modelParent = self)
             self.rootItem.appendChild(tmp)
-                
-    def setData(self, index, value, role):
-        # Not used.
-        index.internalPointer().itemData[0] = "test"
-        self.dataChanged.emit(index, index)
-        #self.emit(QtCore.SIGNAL("dataChanged"), index, index)
+        
+    def populateItem(self, parentIndex):
+        """
+        Populates the list of children for the current parent-item.
+        """
+        
+        self.isWorking()
+        
+        parentItem = parentIndex.internalPointer()
+        
+        # Ask the item to fetch the list for us
+        list = parentItem.fetchChildList()
+        
+        if list == None:
+            # TODO better error handling here and possibly in the item itself. Who displays the error-message?
+            print "Error fetching list."
+            print "I'll let things be then."
+            return
+        
+        for x in list:
+            parentItem.appendChild(x)
 
+        self.doneWorking()
+        
+    @pyqtSlot(QtCore.QModelIndex)       
+    def reloadItem(self, parentIndex):
+        """
+        Re-populates an already populated item, e.g. when a filter or limit it set.
+        """
+        
+        self.isWorking()
+        
+        parentItem = parentIndex.internalPointer()
+        newList = parentItem.fetchChildList()
+        
+        if newList == None:
+            print "Error fetching new list -- TODO proper error-handling"
+            print "Now I've got nothing to do, so I'm returning :("
+            print "Hopefully nothing wrong happens because of this"
+            return
+        
+        # Clear old list and insert new
+        self.emptyItem(parentIndex)
+        
+        self.beginInsertRows(parentIndex, 0, len(newList)-1)
+        for x in newList:
+            parentItem.appendChild(x)
+        self.endInsertRows()     
+        
+        self.doneWorking()
+        
+    @pyqtSlot(QtCore.QModelIndex)       
+    def emptyItem(self, parentIndex):
+        """
+        Removes all children for this item.
+        Used by reloadItem()
+        """
+        
+        self.isWorking()
+        parentItem = parentIndex.internalPointer()
+        self.beginRemoveRows(parentIndex, 0, parentItem.childCount()-1)
+        parentItem.emptyChildren()
+        self.endRemoveRows()
+        self.doneWorking()

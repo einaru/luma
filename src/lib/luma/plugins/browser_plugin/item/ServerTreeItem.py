@@ -21,12 +21,6 @@ class ServerTreeItem(AbstractLDAPTreeItem):
         self.itemData = data
         self.serverMeta = serverMeta
         self.rootItem = parent
-        
-        self.isWorking.connect(self.rootItem.isWorking)
-        self.doneWorking.connect(self.rootItem.doneWorking)
-
-        # When True we have and index we can used to update the model with
-        self.hasIndex = False
 
     def columnCount(self):
         return len(self.itemData)
@@ -43,9 +37,9 @@ class ServerTreeItem(AbstractLDAPTreeItem):
     def smartObject(self):
         return self.itemData[1]
     
-    def populateItem(self):
+    def fetchChildList(self):
         """
-        Gets the list of baseDNs for the server and adds them as children.
+        Gets the list of baseDNs for the server and return them.
         """
                 
         connection = LumaConnection(self.serverMeta)
@@ -59,25 +53,17 @@ class ServerTreeItem(AbstractLDAPTreeItem):
             if not bindSuccess:
                 self.logger.debug("Bind failed.")
                 self.displayError(exceptionObject)
-                self.populated = 1
                 return
         else:
             self.logger.debug("Using getBaseDNList()")
-            self.isWorking.emit()
+            #self.isWorking.emit()
             success, tmpList, exceptionObject = connection.getBaseDNList()
-        
-            self.doneWorking.emit()
         
             if not success:
                 self.logger.debug("getBaseDNList failed")
                 self.displayError(exceptionObject)
-                self.populated = 1
+                #self.populated = 1
                 return
-        
-        self.isWorking.emit()
-        
-        # Will be overriden if we mange to add some data
-        self.populated = 0
         
         self.logger.debug("Entering for-loop")
 
@@ -97,21 +83,11 @@ class ServerTreeItem(AbstractLDAPTreeItem):
             tmp = LDAPTreeItem(resultList[0], self, self, modelParent = self.modelParent)    
             newChildList.append(tmp)
             
-        # Replace with new list
-        self.beginUpdateModel()        
-        self.childItems = newChildList
-        self.populated = 1
-        self.endUpdateModel()        
-            
-        self.doneWorking.emit()
         self.logger.debug("End populatItem")
         
-    def getContextMenu(self, menu):
-        #Remember the index so the methods can use it for notifying the model
-        # of changes.
-        self.index = self.modelParent.currentIndex
-        self.hasIndex = True
+        return newChildList
         
-        #menu.addAction("Reload", self.populateItem)
+    def getContextMenu(self, menu):
+        #TODO
         return menu
         
