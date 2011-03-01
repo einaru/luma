@@ -129,8 +129,7 @@ class LDAPTreeItemModel(QAbstractItemModel):
         if not parentItem.populated:
             self.populateItem(parent)
             # Updates the |>-icon to show if the item has children
-            # TODO Not needed anymore?
-            #self.layoutChanged.emit()
+            self.layoutChanged.emit()
         
         return parentItem.childCount()
         
@@ -189,6 +188,7 @@ class LDAPTreeItemModel(QAbstractItemModel):
         
         for x in list:
             parentItem.appendChild(x)
+        parentItem.populated = 1 #If the list is empty, this isn't set (by appendChild)
 
         self.doneWorking()
         
@@ -215,6 +215,7 @@ class LDAPTreeItemModel(QAbstractItemModel):
         self.beginInsertRows(parentIndex, 0, len(newList)-1)
         for x in newList:
             parentItem.appendChild(x)
+        parentItem.populated = 1 #If the list is empty, this isn't set (by appendChild)
         self.endInsertRows()     
         
         self.doneWorking()
@@ -232,3 +233,4 @@ class LDAPTreeItemModel(QAbstractItemModel):
         parentItem.emptyChildren()
         self.endRemoveRows()
         self.doneWorking()
+        
