@@ -29,7 +29,9 @@ class LDAPErrorItem(AbstractLDAPTreeItem):
     def smartObject(self):
         return None
     
+    def fetchChildList(self):
+        return None
+    
     def getContextMenu(self, menu):
-        menu.addAction("Nothing")
         return menu
         
