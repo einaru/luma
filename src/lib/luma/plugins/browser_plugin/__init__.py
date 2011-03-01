@@ -30,7 +30,7 @@ def getIcon(iconPath):
 
 def getPluginWidget(parent):
     from plugins.browser_plugin.BrowserView import BrowserView
-    pluginWidget = BrowserView(parent)
+    pluginWidget = BrowserView(parent, "/tmp")
     
     return pluginWidget
     
