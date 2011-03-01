@@ -9,7 +9,7 @@ class PluginListWidgetModel(QStandardItemModel):
     This model will create its own items, from the QSettings where 
     plugins is set to "load".
     """
-    def __init__(self, parent = None):
+    def __init__(self, widgetParent, parent = None):
         QStandardItemModel.__init__(self, parent)
         self._settings = QSettings()
             
@@ -24,6 +24,7 @@ class PluginListWidgetModel(QStandardItemModel):
                 item.setFont(font)
                 item.setEditable(False)
                 item.plugin = plugin
+                item.widget = plugin.getPluginWidget(widgetParent)
                 self.appendRow(item)
     
     def __checkToLoad(self):

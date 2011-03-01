@@ -114,9 +114,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             
         self.pluginWidget = PluginListWidget(self)
         self.mainStack.addWidget(self.pluginWidget)
-        self.mainStack.setCurrentWidget(self.pluginWidget)
-
-
+        self.showPlugins()
+        
     def __createPluginToolBar(self):
         """
         Creates the pluign toolbar.
@@ -383,16 +382,33 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         """
         self.TODO(u'load plugins)')
 
-
-    def pluginSelected(self, plugin):
+    def pluginSelected(self, item):
         """
-        This method will be called from the PluginListWidget, with a pluginobject
-        to load
+        This method will be called from the PluginListWidget.
         """
-        widget = plugin.getPluginWidget(self.mainStack)
-        self.mainStack.addWidget(widget)
-        self.mainStack.setCurrentWidget(widget)
+        widget = item.widget
+        if self.mainStack.indexOf(widget) == -1:
+            self.mainStack.addWidget(widget)
+            
+        if self.mainStack.currentWidget() != widget:
+            self.mainStack.setCurrentWidget(widget)
+            
+            if self.pluginToolBar:
+                self.pluginToolBar.button.setEnabled(True)
+                self.pluginToolBar.label.setText(QApplication.translate('MainWindow', item.plugin.pluginUserString, None, QApplication.UnicodeUTF8))
 
+    def showPlugins(self):
+        """
+        Will set the pluginlistwidget on top of the mainstack.
+        """
+        
+        if self.pluginWidget and self.mainStack.currentWidget() != self.pluginWidget:
+            self.mainStack.setCurrentWidget(self.pluginWidget)
+            
+            if self.pluginToolBar:
+                self.pluginToolBar.button.setEnabled(False)
+                self.pluginToolBar.label.setText(QApplication.translate('MainWindow', "Available plugins", None, QApplication.UnicodeUTF8))
+                
     def close(self):
         """
         Overrides the QApplication close slot to save settings before
@@ -486,11 +502,8 @@ class PluginToolBar(QToolBar):
     
     Provides a toolbar for quickly switching between installed plugins
     
-    When a plugin is clicked from main-win (see PluginListWidget), it will
-    call setPluginName. That will activate the "choose plugin" button.
-    
-    When the "choose plugin" button is clicked, it will be deactivated,
-    if main-win manages to show PluginListWidget again on top.
+    The button will be enabled and disabled directly from main-win,
+    and the label for the plugin-name too.
     """
 
     def __init__(self, parent=None):
@@ -510,19 +523,15 @@ class PluginToolBar(QToolBar):
         self.addWidget(self.button)
         self.retranslateUi(self)
         
-        self.button.clicked.connect(self.buttonClicked)
+        self.button.clicked.connect(self.choosePlugin)
 
     def retranslateUi(self, pluginToolBar):
-        pluginToolBar.label.setText(QApplication.translate('MainWindow', 'Plugin name', None, QApplication.UnicodeUTF8))
+        pluginToolBar.label.setText(QApplication.translate('MainWindow', 'Available plugins', None, QApplication.UnicodeUTF8))
         pluginToolBar.button.setText(QApplication.translate('MainWindow', 'Choose plugin', None, QApplication.UnicodeUTF8))
 
-    def buttonClicked(self):
-        if hasattr(self.parent, showPlugins):
-            self.parent.showPlugins
-            
-        
-    def setPluginName(self, name):
-        pass
+    def choosePlugin(self):
+        if hasattr(self.parent, "showPlugins"):
+            self.parent.showPlugins()
 
 class SettingsDialog(QDialog, Ui_SettingsDialog):
     """
