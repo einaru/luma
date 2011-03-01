@@ -11,10 +11,6 @@ class AbstractLDAPTreeItem(QObject):
     This is an abstract class which the items of the LDAPTreeItemModel should subclass.
     """
     
-    # Used to signal the item is working on something which can take time.
-    isWorking = QtCore.pyqtSignal()
-    doneWorking = QtCore.pyqtSignal()
-    
     def __init__(self, parent, modelParent):
         """
         parent = the item above this

@@ -21,12 +21,6 @@ class ServerTreeItem(AbstractLDAPTreeItem):
         self.itemData = data
         self.serverMeta = serverMeta
         self.rootItem = parent
-        
-        self.isWorking.connect(self.rootItem.isWorking)
-        self.doneWorking.connect(self.rootItem.doneWorking)
-
-        # When True we have and index we can used to update the model with
-        self.hasIndex = False
 
     def columnCount(self):
         return len(self.itemData)
@@ -45,9 +39,8 @@ class ServerTreeItem(AbstractLDAPTreeItem):
     
     def fetchChildList(self):
         """
-        Gets the list of baseDNs for the server and adds them as children.
+        Gets the list of baseDNs for the server and return them.
         """
-        print "ServerTreeItem - fetchCHildList"
                 
         connection = LumaConnection(self.serverMeta)
         
@@ -72,11 +65,6 @@ class ServerTreeItem(AbstractLDAPTreeItem):
                 #self.populated = 1
                 return
         
-        #self.isWorking.emit()
-        
-        # Will be overriden if we mange to add some data
-        #self.populated = 0
-        
         self.logger.debug("Entering for-loop")
 
         newChildList = []
@@ -95,23 +83,11 @@ class ServerTreeItem(AbstractLDAPTreeItem):
             tmp = LDAPTreeItem(resultList[0], self, self, modelParent = self.modelParent)    
             newChildList.append(tmp)
             
-        # Replace with new list
-        #self.beginUpdateModel()        
-        #self.childItems = newChildList
-        #self.populated = 1
-        #self.endUpdateModel()        
-            
-        #self.doneWorking.emit()
         self.logger.debug("End populatItem")
-        print "ServerTreeItem - populateItem- END"
+        
         return newChildList
         
     def getContextMenu(self, menu):
-        #Remember the index so the methods can use it for notifying the model
-        # of changes.
-        self.index = self.modelParent.currentIndex
-        self.hasIndex = True
-        
-        #menu.addAction("Reload", self.populateItem)
+        #TODO
         return menu
         

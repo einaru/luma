@@ -6,7 +6,6 @@ import logging
 class RootTreeItem(AbstractLDAPTreeItem):
     """
     Represent the (invisible) root item of the model.
-    This handles isWorking and doneWorking-signals.
     """
     
     def __init__(self, title, parent = None, modelParent = None):
@@ -19,9 +18,3 @@ class RootTreeItem(AbstractLDAPTreeItem):
     
     def columnCount(self):
         return 1
-        
-    def isWorking(self):
-        qApp.setOverrideCursor(Qt.WaitCursor)
-        
-    def doneWorking(self):
-        qApp.restoreOverrideCursor()

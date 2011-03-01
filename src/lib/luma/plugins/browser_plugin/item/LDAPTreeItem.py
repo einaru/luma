@@ -28,11 +28,6 @@ class LDAPTreeItem(AbstractLDAPTreeItem):
         
         self.limit = LDAPTreeItem.LIMIT_DEFAULT
         self.filter = LDAPTreeItem.FILTER_DEFAULT
-        
-        self.isWorking.connect(self.serverParent.isWorking)
-        self.doneWorking.connect(self.serverParent.doneWorking)
-
-        self.hasIndex = False
 
     def columnCount(self):
         """
@@ -56,6 +51,7 @@ class LDAPTreeItem(AbstractLDAPTreeItem):
                 return QtCore.QVariant()
         # If DisplayRole
         else:
+            #return self.itemData.getPrettyDN() # The whole name
             return self.itemData.getPrettyRDN()
 
     def smartObject(self):
@@ -132,14 +128,7 @@ class LDAPTreeItem(AbstractLDAPTreeItem):
 
         
     def getContextMenu(self, menu):
-        #Remember the index so the methods can use it for notifying the model
-        # of changes.
-        self.index = self.modelParent.currentIndex
-        self.hasIndex = True
-        
-        menu.addAction("Reload", self.populateItem)
-        menu.addAction("Set search limit", self.setLimit)
-        menu.addAction("Set filter", self.setFilter)
+        #TODO
         return menu
         
     

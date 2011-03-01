@@ -11,7 +11,8 @@ from plugins.browser_plugin.item.ServerTreeItem import ServerTreeItem
 from plugins.browser_plugin.item.RootTreeItem import RootTreeItem
 from plugins.browser_plugin.item.LDAPErrorItem import LDAPErrorItem
 from PyQt4 import QtCore
-from PyQt4.QtCore import QAbstractItemModel, pyqtSlot
+from PyQt4.QtCore import QAbstractItemModel, pyqtSlot, Qt
+from PyQt4.QtGui import qApp
 from base.backend.LumaConnection import LumaConnection
 
 class LDAPTreeItemModel(QAbstractItemModel):
@@ -21,6 +22,12 @@ class LDAPTreeItemModel(QAbstractItemModel):
        
     def __init__(self, parent=None):
         QtCore.QAbstractItemModel.__init__(self, parent)
+        
+    def isWorking(self):
+        qApp.setOverrideCursor(Qt.WaitCursor)
+        
+    def doneWorking(self):
+        qApp.restoreOverrideCursor()
         
     def columnCount(self, parent):
         """
@@ -121,9 +128,8 @@ class LDAPTreeItemModel(QAbstractItemModel):
 
         if not parentItem.populated:
             self.populateItem(parent)
-            
-            #parentItem.populateItem()
             # Updates the |>-icon to show if the item has children
+            # TODO Not needed anymore?
             #self.layoutChanged.emit()
         
         return parentItem.childCount()
@@ -153,8 +159,6 @@ class LDAPTreeItemModel(QAbstractItemModel):
         Called after the model is initialized. Adds the servers to the root.
         """
         
-        print "populateModel in Model"
-        
         self.rootItem = RootTreeItem("Servere", self, self) # Also provides the header
         
         if not len(serverList.getTable()) > 0:
@@ -166,13 +170,19 @@ class LDAPTreeItemModel(QAbstractItemModel):
             self.rootItem.appendChild(tmp)
         
     def populateItem(self, parentIndex):
+        """
+        Populates the list of children for the current parent-item.
+        """
+        
+        self.isWorking()
         
         parentItem = parentIndex.internalPointer()
-        print "populateItem -",parentItem.data(0,0)
-
+        
+        # Ask the item to fetch the list for us
         list = parentItem.fetchChildList()
         
         if list == None:
+            # TODO better error handling here and possibly in the item itself. Who displays the error-message?
             print "Error fetching list."
             print "I'll let things be then."
             return
@@ -180,11 +190,15 @@ class LDAPTreeItemModel(QAbstractItemModel):
         for x in list:
             parentItem.appendChild(x)
 
-        print "endPopulate"
+        self.doneWorking()
         
     @pyqtSlot(QtCore.QModelIndex)       
     def reloadItem(self, parentIndex):
-        print "beginReload"
+        """
+        Re-populates an already populated item, e.g. when a filter or limit it set.
+        """
+        
+        self.isWorking()
         
         parentItem = parentIndex.internalPointer()
         newList = parentItem.fetchChildList()
@@ -197,16 +211,24 @@ class LDAPTreeItemModel(QAbstractItemModel):
         
         # Clear old list and insert new
         self.emptyItem(parentIndex)
+        
         self.beginInsertRows(parentIndex, 0, len(newList)-1)
         for x in newList:
             parentItem.appendChild(x)
         self.endInsertRows()     
-           
-        print "endReload"
+        
+        self.doneWorking()
         
     @pyqtSlot(QtCore.QModelIndex)       
     def emptyItem(self, parentIndex):
+        """
+        Removes all children for this item.
+        Used by reloadItem()
+        """
+        
+        self.isWorking()
         parentItem = parentIndex.internalPointer()
         self.beginRemoveRows(parentIndex, 0, parentItem.childCount()-1)
         parentItem.emptyChildren()
         self.endRemoveRows()
+        self.doneWorking()
