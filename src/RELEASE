@@ -1,0 +1,37 @@
+Luma c3.0.2-sprint2
+------------------
+This branch marks the end of sprint 2.
+Features:
+  * Browser plugin:
+    the plugin is partly implemented, but not integrated into the application
+  * Plugin support:
+    plugin support is partly implemented. Loading plugins is working, but
+	no 'real' plugins is present during runtime at this point.
+  * Settings:
+    An extented QSettings class is implemnted, with transparent support for
+	reading and loading application setttings
+	Settings is loaded and written from both the main window and the newly 
+	implemented settings dialog
+  * Language support:
+    Full translation available for both Norwegian and h4x0r
+	Can be changed from both the settings dialog and the menubar at runtime 
+	without changing the aplication state.
+Luma v3.0.1-sprint1
+-------------------
+This branch marks the end of sprint 1.
+Features:
+  * Main window:
+    menubar is implemented: restructure as compared to Luma 2.4
+    plugin toolbar is implemented: no functionality
+    logger window is implemented: displayes various logging levels
+    about dialog is implemented: new design (inspired by gtk and gnome
+  * Server dialog:
+    GUI is implemented
+    support for reading and writing the server list is implemented
+  * Language support:
+    Translation files from Luma 2.4 is loaded dynamically
+    !!! Still works on part of the application !!!
+
+NB! This release branch was tagged and created at the end of sprint 2, 
+    but is still refelcting the work donw upto the en of sprint1.
+	Created to document the development progression.
