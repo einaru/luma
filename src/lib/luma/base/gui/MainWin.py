@@ -39,13 +39,6 @@ import sys
 import logging
 from random import randint
 
-from PyQt4 import QtCore, QtGui
-
-try:
-    _fromUtf8 = QtCore.QString.fromUtf8
-except AttributeError:
-    _fromUtf8 = lambda s: s
-
 from PyQt4.QtCore import Qt, pyqtSlot
 from PyQt4.QtCore import QEvent
 from PyQt4.QtCore import QTranslator
@@ -96,12 +89,12 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.languageHandler = LanguageHandler()
         self.languages = self.languageHandler.availableLanguages
         self.setupUi(self)
-        self.createPluginToolBar()
-        self.createLoggerWidget()
-
-        self.loadSettings()
+        
+        self.__createPluginToolBar()
+        self.__createLoggerWidget()
+        self.__loadSettings()
         self.__setupPluginList()
-        self.createLanguageOptions()
+        self.__createLanguageOptions()
 
         if self.DEVEL:
             self.actionEditServerList.setStatusTip(
@@ -124,7 +117,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.mainStack.setCurrentWidget(self.pluginWidget)
 
 
-    def createPluginToolBar(self):
+    def __createPluginToolBar(self):
         """
         Creates the pluign toolbar.
         """
@@ -132,7 +125,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.addToolBar(self.pluginToolBar)
 
 
-    def createLoggerWidget(self):
+    def __createLoggerWidget(self):
         """
         Creates the logger widget.
         """
@@ -145,7 +138,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.loggerDockWindow.hide()
 
 
-    def createLanguageOptions(self):
+    def __createLanguageOptions(self):
         """
         Creates the language selection in the menubar.
         """
@@ -165,7 +158,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 action.setChecked(True)
 
 
-    def loadSettings(self, mainWin=True):
+    def __loadSettings(self, mainWin=True):
         """
         Loads settings from file.
         
@@ -400,16 +393,6 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.mainStack.addWidget(widget)
         self.mainStack.setCurrentWidget(widget)
 
-
-    def showPluginSelection(self):
-        """
-        Display the plugin selection
-        """
-        s = PluginSettings()
-        s.exec_()
-        self.reloadPlugins()
-
-
     def close(self):
         """
         Overrides the QApplication close slot to save settings before
@@ -534,7 +517,9 @@ class PluginToolBar(QToolBar):
         pluginToolBar.button.setText(QApplication.translate('MainWindow', 'Choose plugin', None, QApplication.UnicodeUTF8))
 
     def buttonClicked(self):
-        print "TRYKKE TRYKKE"
+        if hasattr(self.parent, showPlugins):
+            self.parent.showPlugins
+            
         
     def setPluginName(self, name):
         pass
