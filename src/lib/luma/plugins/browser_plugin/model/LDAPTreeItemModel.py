@@ -38,7 +38,7 @@ class LDAPTreeItemModel(QAbstractItemModel):
         else:
             return self.rootItem.columnCount()
 
-    def data(self, index, role):
+    def data(self, index, role = Qt.DisplayRole):
         """
         Returns data given an index and role.
         """
@@ -78,15 +78,17 @@ class LDAPTreeItemModel(QAbstractItemModel):
         """
         
         # Really needed? Should avoid calls to rowCount() where possible
-        #if row < 0 or column < 0 or row >= self.rowCount(parent) or column >= self.columnCount(parent):
-        #    return QtCore.QModelIndex()
-        
-        #print "Spør etter index for row",row," column",column,"parent",parent
+        if row < 0 or column < 0: #or row >= self.rowCount(parent) or column >= self.columnCount(parent):
+            return QtCore.QModelIndex()
 
         if not parent.isValid():
             parentItem = self.rootItem
         else:
             parentItem = parent.internalPointer()
+        
+        # Probably not needed
+        if parentItem.populated == 1 and row >= parentItem.childCount():
+            return QtCore.QModelIndex()
         
         childItem = parentItem.child(row)
         if childItem:
@@ -129,8 +131,7 @@ class LDAPTreeItemModel(QAbstractItemModel):
         if not parentItem.populated:
             self.populateItem(parent)
             # Updates the |>-icon to show if the item has children
-            # TODO Not needed anymore?
-            #self.layoutChanged.emit()
+            self.layoutChanged.emit()
         
         return parentItem.childCount()
         
@@ -189,6 +190,7 @@ class LDAPTreeItemModel(QAbstractItemModel):
         
         for x in list:
             parentItem.appendChild(x)
+        parentItem.populated = 1 #If the list is empty, this isn't set (by appendChild)
 
         self.doneWorking()
         
@@ -215,6 +217,7 @@ class LDAPTreeItemModel(QAbstractItemModel):
         self.beginInsertRows(parentIndex, 0, len(newList)-1)
         for x in newList:
             parentItem.appendChild(x)
+        parentItem.populated = 1 #If the list is empty, this isn't set (by appendChild)
         self.endInsertRows()     
         
         self.doneWorking()
@@ -232,3 +235,4 @@ class LDAPTreeItemModel(QAbstractItemModel):
         parentItem.emptyChildren()
         self.endRemoveRows()
         self.doneWorking()
+        
