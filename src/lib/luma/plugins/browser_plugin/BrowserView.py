@@ -18,6 +18,7 @@ from base.backend.ServerList import ServerList
 from model.LDAPTreeItemModel import LDAPTreeItemModel
 from model.LDAPEntryModel import LDAPEntryModel
 from item.LDAPTreeItem import LDAPTreeItem
+from item.AbstractLDAPTreeItem import AbstractLDAPTreeItem
 from plugins.browser_plugin.item.ServerTreeItem import ServerTreeItem
 from plugins.browser_plugin.AdvancedObjectView import AdvancedObjectView
 
@@ -63,14 +64,14 @@ class BrowserView(QWidget):
         # Used to signal the ldaptreemodel with a index
         # which needs processing (reloading, clearing)
         self.reloadSignal.connect(self.ldaptreemodel.reloadItem)
-        self.emptySignal.connect(self.ldaptreemodel.emptyItem)        
+        self.clearSignal.connect(self.ldaptreemodel.clearItem)        
         
         # Working / needed?
         self.ldaptreemodel.dataChanged.connect(self.entryList.dataChanged)
         
     # Custom signals used
     reloadSignal = QtCore.pyqtSignal(QtCore.QModelIndex)
-    emptySignal = QtCore.pyqtSignal(QtCore.QModelIndex)
+    clearSignal = QtCore.pyqtSignal(QtCore.QModelIndex)
     
     def rightClick(self, point):
         """
@@ -84,17 +85,26 @@ class BrowserView(QWidget):
         
         clickedItem = self.clickedIndex.internalPointer()
         if clickedItem != None:
-            """
-            TODO: Get supported actions from item and add them to menu
-            """
-            #menu = clickedItem.getContextMenu(QtGui.QMenu())
+            
             menu = QtGui.QMenu()
-            menu.addAction(u"Ikke alle operasjoner er mulig på alle items ennå.")
-            menu.addAction(u"Når ferdig vil den sjekke hva som støttes og bare vise disse.")
-            menu.addAction("Reload", self.reloadChoosen)
-            menu.addAction("Clear", self.emptyChoosen)
-            menu.addAction("Filter", self.filterChoosen)
-            menu.addAction("Limit", self.limitChoosen)
+            
+            # Find out what the item supports
+            supports = clickedItem.getSupportedOperations()
+            
+            if supports == 0:
+                menu.addAction("No actions available")
+                
+            else:
+                # Add avaiable methods
+                if supports & AbstractLDAPTreeItem.SUPPORT_RELOAD:
+                    menu.addAction("Reload", self.reloadChoosen)
+                if supports & AbstractLDAPTreeItem.SUPPORT_FILTER:
+                    menu.addAction("Filter", self.filterChoosen)
+                if supports & AbstractLDAPTreeItem.SUPPORT_LIMIT:
+                    menu.addAction("Limit", self.limitChoosen)
+                if supports & AbstractLDAPTreeItem.SUPPORT_CLEAR:
+                    menu.addAction("Clear", self.clearChoosen)
+            
             menu.exec_(self.entryList.mapToGlobal(point))
     
     
@@ -104,8 +114,8 @@ class BrowserView(QWidget):
     """
     def reloadChoosen(self):
         self.reloadSignal.emit(self.clickedIndex)
-    def emptyChoosen(self):
-        self.emptySignal.emit(self.clickedIndex)  
+    def clearChoosen(self):
+        self.clearSignal.emit(self.clickedIndex)  
     def limitChoosen(self):
         # Have the item set the limit for us, the reload
         self.clickedIndex.internalPointer().setLimit()

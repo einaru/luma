@@ -186,6 +186,8 @@ class LDAPTreeItemModel(QAbstractItemModel):
             # TODO better error handling here and possibly in the item itself. Who displays the error-message?
             print "Error fetching list."
             print "I'll let things be then."
+            parentItem.populated = 1
+            self.doneWorking()
             return
         
         for x in list:
@@ -209,10 +211,11 @@ class LDAPTreeItemModel(QAbstractItemModel):
             print "Error fetching new list -- TODO proper error-handling"
             print "Now I've got nothing to do, so I'm returning :("
             print "Hopefully nothing wrong happens because of this"
+            self.doneWorking()
             return
         
         # Clear old list and insert new
-        self.emptyItem(parentIndex)
+        self.clearItem(parentIndex)
         
         self.beginInsertRows(parentIndex, 0, len(newList)-1)
         for x in newList:
@@ -223,7 +226,7 @@ class LDAPTreeItemModel(QAbstractItemModel):
         self.doneWorking()
         
     @pyqtSlot(QtCore.QModelIndex)       
-    def emptyItem(self, parentIndex):
+    def clearItem(self, parentIndex):
         """
         Removes all children for this item.
         Used by reloadItem()

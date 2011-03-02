@@ -32,6 +32,6 @@ class LDAPErrorItem(AbstractLDAPTreeItem):
     def fetchChildList(self):
         return None
     
-    def getContextMenu(self, menu):
-        return menu
+    def getSupportedOperations(self):
+        return AbstractLDAPTreeItem.SUPPORT_NONE
         

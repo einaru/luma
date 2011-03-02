@@ -11,6 +11,12 @@ class AbstractLDAPTreeItem(QObject):
     This is an abstract class which the items of the LDAPTreeItemModel should subclass.
     """
     
+    SUPPORT_NONE = 0
+    SUPPORT_RELOAD = 1
+    SUPPORT_FILTER = 2
+    SUPPORT_LIMIT = 4
+    SUPPORT_CLEAR = 8
+    
     def __init__(self, parent, modelParent):
         """
         parent = the item above this
@@ -98,5 +104,5 @@ class AbstractLDAPTreeItem(QObject):
         """
         raise NotImplementedError("Should be implemented")
         
-    def getContextMenu(self):
+    def getSupportedOperations(self):
         raise NotImplementedError("Should be implemented")

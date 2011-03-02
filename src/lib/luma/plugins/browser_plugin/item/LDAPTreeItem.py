@@ -119,7 +119,7 @@ class LDAPTreeItem(AbstractLDAPTreeItem):
         """
         Asks the user for the filter.
         """
-        r = QInputDialog.getText(None, "Filter", "Enter the filter (with parentheses):", text=self.filter)
+        r = QInputDialog.getText(None, "Filter", "Enter the filter (with parentheses -- none for default):", text=self.filter)
         if r[1] == True:
             if len(str(r[0])) > 0:
                 self.filter = str(r[0])
@@ -127,8 +127,7 @@ class LDAPTreeItem(AbstractLDAPTreeItem):
                 self.filter = LDAPTreeItem.FILTER_DEFAULT
 
         
-    def getContextMenu(self, menu):
-        #TODO
-        return menu
+    def getSupportedOperations(self):
+        return AbstractLDAPTreeItem.SUPPORT_CLEAR|AbstractLDAPTreeItem.SUPPORT_RELOAD|AbstractLDAPTreeItem.SUPPORT_FILTER|AbstractLDAPTreeItem.SUPPORT_LIMIT
         
     
