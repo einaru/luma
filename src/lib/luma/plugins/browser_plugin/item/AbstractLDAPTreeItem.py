@@ -12,12 +12,13 @@ class AbstractLDAPTreeItem(QObject):
     """
     
     # Used from getSupportedOperations()
-    # which returns the result of or-ing (|) the supported operations.
-    SUPPORT_NONE = 0
-    SUPPORT_RELOAD = 1
-    SUPPORT_FILTER = 2
-    SUPPORT_LIMIT = 4
-    SUPPORT_CLEAR = 8
+    # which returns the result of or-ing (|) the supported operations
+    # e.g. "return SUPPORT_FILTER | SUPPORT_LIMIT"
+    SUPPORT_NONE = 0 # Should only be used alone
+    SUPPORT_RELOAD = 1 # Probably works on all items
+    SUPPORT_FILTER = 2 # Indicates the item has implement setFilter
+    SUPPORT_LIMIT = 4 # Indicates the item has implement setLimit
+    SUPPORT_CLEAR = 8 # Probably works on all items
     
     def __init__(self, parent):
         """
