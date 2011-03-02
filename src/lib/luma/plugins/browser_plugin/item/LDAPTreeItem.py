@@ -20,8 +20,8 @@ class LDAPTreeItem(AbstractLDAPTreeItem):
     # pops up asking if the user want to load them all?
     ASK_TO_DISPLAY = 1000
 
-    def __init__(self, data, serverParent, parent=None, modelParent = None):
-        AbstractLDAPTreeItem.__init__(self, parent, modelParent = modelParent)
+    def __init__(self, data, serverParent, parent=None):
+        AbstractLDAPTreeItem.__init__(self, parent)
         
         self.serverParent = serverParent
         self.itemData = data
@@ -85,7 +85,7 @@ class LDAPTreeItem(AbstractLDAPTreeItem):
         if self.limit > 0 and len(resultList) > self.limit:
             returnList = []
             for i in xrange(self.limit):
-                returnList.append(LDAPTreeItem(resultList[i], self.serverParent, self, self.modelParent))
+                returnList.append(LDAPTreeItem(resultList[i], self.serverParent, self))
             return returnList
         
         """
@@ -98,14 +98,14 @@ class LDAPTreeItem(AbstractLDAPTreeItem):
                 self.beginUpdateModel()
                 self.childItems = []
                 for i in xrange(50):
-                    self.childItems.append(LDAPTreeItem(resultList[i], self.serverParent, self, modelParent = self.modelParent))
+                    self.childItems.append(LDAPTreeItem(resultList[i], self.serverParent, self))
                 self.populated = 1
                 self.endUpdateModel()
                 return
         """
         
         # Default behavior: return all
-        return [LDAPTreeItem(x, self.serverParent, self, self.modelParent) for x in resultList]
+        return [LDAPTreeItem(x, self.serverParent, self) for x in resultList]
     
     def setLimit(self):
         """

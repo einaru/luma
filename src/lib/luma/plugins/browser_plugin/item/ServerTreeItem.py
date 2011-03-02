@@ -16,8 +16,8 @@ class ServerTreeItem(AbstractLDAPTreeItem):
     
     logger = logging.getLogger(__name__)
 
-    def __init__(self, data, serverMeta=None, parent=None, modelParent = None):
-        AbstractLDAPTreeItem.__init__(self, parent, modelParent = modelParent)
+    def __init__(self, data, serverMeta=None, parent=None):
+        AbstractLDAPTreeItem.__init__(self, parent)
         self.itemData = data
         self.serverMeta = serverMeta
         self.rootItem = parent
@@ -80,13 +80,13 @@ class ServerTreeItem(AbstractLDAPTreeItem):
             if not success:
                 self.logger.debug("Couldn't search item")
                 #self.displayError(str(base)+": "+str(exceptionObject))
-                #tmp = LDAPTreeItem(resultList[0], self, self, modelParent = self.modelParent)    
-                tmp = LDAPErrorItem(str(base+" [Error]"), self, self, self.modelParent)
+                #tmp = LDAPTreeItem(resultList[0], self, self)    
+                tmp = LDAPErrorItem(str(base+" [Error]"), self, self)
                 newChildList.append(tmp)
                 continue
             
             self.logger.debug("Found item")
-            tmp = LDAPTreeItem(resultList[0], self, self, modelParent = self.modelParent)    
+            tmp = LDAPTreeItem(resultList[0], self, self)    
             newChildList.append(tmp)
             
         self.logger.debug("End populatItem")

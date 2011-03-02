@@ -160,14 +160,14 @@ class LDAPTreeItemModel(QAbstractItemModel):
         Called after the model is initialized. Adds the servers to the root.
         """
         
-        self.rootItem = RootTreeItem("Servere", self, self) # Also provides the header
+        self.rootItem = RootTreeItem("Servere", self) # Also provides the header
         
         if not len(serverList.getTable()) > 0:
             # If there's no servers :(
             return
 
         for server in serverList.getTable():
-            tmp = ServerTreeItem([server.name], server, self.rootItem, modelParent = self)
+            tmp = ServerTreeItem([server.name], server, self.rootItem)
             self.rootItem.appendChild(tmp)
         
     def populateItem(self, parentIndex):
