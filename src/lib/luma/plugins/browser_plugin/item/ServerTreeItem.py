@@ -65,7 +65,6 @@ class ServerTreeItem(AbstractLDAPTreeItem):
             if not success:
                 self.logger.debug("getBaseDNList failed")
                 self.displayError(exceptionObject)
-                #self.populated = 1
                 return
             
             #getBaseDNList calles unbind(), so let's rebind
@@ -94,7 +93,6 @@ class ServerTreeItem(AbstractLDAPTreeItem):
         
         return newChildList
         
-    def getContextMenu(self, menu):
-        #TODO
-        return menu
+    def getSupportedOperations(self):
+        return AbstractLDAPTreeItem.SUPPORT_CLEAR|AbstractLDAPTreeItem.SUPPORT_RELOAD
         

@@ -6,5 +6,7 @@
     <file alias="server.png">icons/server.png</file>
     <file alias="network48.png">icons/network48.png</file>
     <file alias="password_big.png">icons/password_big.png</file>
+    <file alias="edit.png">icons/edit.png</file>
+    <file alias="delete.png">icons/delete.png</file>
   </qresource>
 </RCC>
