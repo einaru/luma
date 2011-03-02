@@ -19,6 +19,7 @@ from model.LDAPTreeItemModel import LDAPTreeItemModel
 from model.LDAPEntryModel import LDAPEntryModel
 from item.LDAPTreeItem import LDAPTreeItem
 from plugins.browser_plugin.item.ServerTreeItem import ServerTreeItem
+from plugins.browser_plugin.AdvancedObjectView import AdvancedObjectView
 
 
 class BrowserView(QWidget):
@@ -34,7 +35,7 @@ class BrowserView(QWidget):
         self.entryList = QtGui.QTreeView(self.splitter)
         self.entryList.setMinimumWidth(200)
 
-        self.entryView = TableView(self.splitter)
+        self.entryView = AdvancedObjectView(self.splitter)
 
         self.entryList.clicked.connect(self.initEntryView)
                 
@@ -113,6 +114,7 @@ class BrowserView(QWidget):
             return
         self.model = LDAPEntryModel(index)
         self.entryView.setModel(self.model)
+        self.entryView.displayValues()
 
     def buildToolBar(self, parent):
         # FIXME: qt4 migration needed
