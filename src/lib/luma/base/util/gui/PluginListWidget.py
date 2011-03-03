@@ -14,7 +14,7 @@ class PluginListWidget(QWidget, Ui_pluginListWidget):
         self.parent = parent
         self.setupUi(self)
         
-        self._model = PluginListWidgetModel()
+        self._model = PluginListWidgetModel(self)
         self.listView.setModel(self._model)
         
     def pluginDoubleClicked(self, index):

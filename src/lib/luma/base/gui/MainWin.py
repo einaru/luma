@@ -101,6 +101,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 u'Final GUI polishing by Granbusk\u2122 Polishing')
 
 
+
     def __setupPluginList(self):
         """
         self.pluginDockWindow = QDockWidget(self)

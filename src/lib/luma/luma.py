@@ -54,8 +54,12 @@ def startApplication(argv):
     """ Setup the logging mechanism """
     l = logging.getLogger()
     l.setLevel(logging.DEBUG)
+    formatter = logging.Formatter("[%(threadName)s] - %(name)s - %(levelname)s - %(message)s")
+
     """ Log to console until LoggerWidget is up """
     consoleHandler = logging.StreamHandler()
+    consoleHandler.setFormatter(formatter)
+
     l.addHandler(consoleHandler)
         
     splash = SplashScreen()
@@ -66,11 +70,13 @@ def startApplication(argv):
     paths.i18nPath = os.path.join(os.getcwd(), 'i18n')
     
     mainWin = MainWindow()
-    """ Remove logging to console and instead log ti the LoggerWidget """
-    l.removeHandler(consoleHandler)
-    l.addHandler(LumaLogHandler(mainWin.loggerWidget))
-
-    QtCore.QObject.connect(app, QtCore.SIGNAL('lastWindowClosed()'), mainWin.close)
+    
+    """ Remove logging to console and instead log to the LoggerWidget """
+    #l.removeHandler(consoleHandler)
+    llh = LumaLogHandler(mainWin.loggerWidget)
+    l.addHandler(llh)
+    
+    app.lastWindowClosed.connect(mainWin.close)
 
     mainWin.loadPlugins()
     mainWin.show()

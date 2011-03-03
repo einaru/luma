@@ -57,7 +57,7 @@ class BrowserView(QWidget):
         
         # The editor for entries
         #self.entryView = TableView(self.splitter)
-	self.entryView = AdvancedObjectView(self.splitter)
+        self.entryView = AdvancedObjectView(self.splitter)
 
         self.mainLayout.addWidget(self.splitter)
         
@@ -143,9 +143,9 @@ class BrowserView(QWidget):
             return
         
         # Elso, gogo
-	self.model = LDAPEntryModel(index)
+        self.model = LDAPEntryModel(index)
         self.entryView.setModel(self.model)
-	self.entryView.displayValues()
+        self.entryView.displayValues()
 
     def buildToolBar(self, parent):
         # FIXME: qt4 migration needed
