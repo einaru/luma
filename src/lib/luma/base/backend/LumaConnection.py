@@ -315,9 +315,11 @@ class LumaConnection(object):
         workerThread = WorkerThreadBind(self.serverObject)
         workerThread.start()
         
+        qApp.setOverrideCursor(Qt.WaitCursor)
         while not workerThread.FINISHED:
-            #environment.updateUI()
-            time.sleep(0.05)
+            qApp.processEvents()
+            time.sleep(0.1)
+        qApp.restoreOverrideCursor()
         return workerThread
         
     # Internal helper functions with semi self explaining names

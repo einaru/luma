@@ -39,8 +39,8 @@ import sys
 import logging
 from random import randint
 
-from PyQt4.QtCore import Qt, pyqtSlot
-from PyQt4.QtCore import QEvent
+from PyQt4.QtCore import Qt, pyqtSlot, pyqtSignal
+from PyQt4.QtCore import QEvent, QString
 from PyQt4.QtCore import QTranslator
 
 from PyQt4.QtGui import QAction, QActionGroup, QApplication, qApp
@@ -433,11 +433,18 @@ class LoggerWidget(QWidget, Ui_LoggerWidget):
     writing it's log messages to. The widget also provides options
     to filter the log based on the loglevel on messages.
     """
+    
+    logSignal = pyqtSignal(QString)
 
     def __init__(self, parent=None):
         QWidget.__init__(self, parent)
         self.setupUi(self)
         self.logList = []
+        
+        # log() can be called by any thread, so to append the message
+        # to the loggerwidget, we emit it and have the owner of the textfield
+        # (the gui thread) receive it and do the appending.
+        self.logSignal.connect(self.appendMsg, type = Qt.QueuedConnection)
 
 
     def clearLogger(self):
@@ -466,31 +473,43 @@ class LoggerWidget(QWidget, Ui_LoggerWidget):
             if loglvl == "INFO" and self.infoBox.isChecked():
                 self.messageEdit.append("INFO: " + msg)
                 continue
-
+    
+    @pyqtSlot(QString)
+    def appendMsg(self, msg):
+        """
+        For thread-safety: this is executed in the thread
+        which owns the loggerwidget, ie. the gui-thread
+        """
+        self.messageEdit.append(msg)
 
     def log(self, log):
         """
-        Appends messages to the log window
+        Appends the log the the logList
+        and uses a signal in order to have it 
+        be appended to the textfield by the gui-thread
         """
         loglvl, msg = log
         if loglvl == "DEBUG" and self.debugBox.isChecked():
             self.logList.append(log)
-            self.messageEdit.append("DEBUG: " + msg)
+            self.logSignal.emit("DEBUG: " + msg)
+            #self.messageEdit.append("DEBUG: " + msg)
             return
         if loglvl == "ERROR" and self.errorBox.isChecked():
             self.logList.append(log)
-            self.messageEdit.append("ERROR: " + msg)
+            #self.messageEdit.append("ERROR: " + msg)
+            self.logSignal.emit("ERROR: " + msg)
             return
         if loglvl == "INFO" and self.infoBox.isChecked():
             self.logList.append(log)
-            self.messageEdit.append("INFO: " + msg)
+            #self.messageEdit.append("INFO: " + msg)
+            self.logSignal.emit("INFO: " + msg)
             return
         if loglvl not in ["INFO", "ERROR", "DEBUG"]:
             # This shouldn't really happen...
             # Please only use the above levels
             self.logList.append(log)
-            self.messageEdit.append("UNKNOWN: " + msg)
-
+            #self.messageEdit.append("UNKNOWN: " + msg)
+            self.logSignal.emit("UNKNOWN: " + msg)
 
 class PluginToolBar(QToolBar):
     """

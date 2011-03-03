@@ -147,6 +147,7 @@ class PluginLoader(object):
             errorString = errorString + "The following attributes are missing: \n"
             for x in missingAttributes:
                 errorString = errorString + x + " "
+            errorString = errorString + "\n"
             raise PluginMetaError, errorString
             
         plugin.pluginName = importedModule.pluginName
