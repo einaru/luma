@@ -463,9 +463,8 @@ class WorkerThreadSearch(threading.Thread):
     def run(self):
         self.logger.debug("Started LDAP-search.")
         try:
-            
             resultId = self.ldapServerObject.search_ext(self.base, self.scope, self.filter, self.attrList, self.attrsonly, sizelimit=self.sizelimit)
-
+        
             while 1:
                 # search with a 60 second timeout
                 result_type, result_data = self.ldapServerObject.result(resultId, 0, 60)
@@ -476,7 +475,6 @@ class WorkerThreadSearch(threading.Thread):
                     if result_type == ldap.RES_SEARCH_ENTRY:
                         for x in result_data:
                             self.result.append(x)
-            
             #self.result = self.ldapServerObject.search_ext_s(self.base, self.scope, self.filter, self.attrList, self.attrsonly, sizelimit=self.sizelimit)
         except ldap.LDAPError, e:
             self.exceptionObject = e

@@ -23,6 +23,11 @@ class ServerDialog(QDialog, Ui_ServerDialogDesign):
 
         """
         
+        #TODO REMOVE
+        import logging
+        l = logging.getLogger(__name__)
+        l.info("LOL")
+        
         QDialog.__init__(self)
         self.setupUi(self)
         

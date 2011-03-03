@@ -8,9 +8,17 @@
 #
 ###########################################################################
 
+"""
+TODO: Proper busy-indicator-handling (?)
+"""
+
+from PyQt4.QtGui import qApp
+from PyQt4.QtCore import Qt
+
 import ldap
 import ldap.schema
 import ldapurl
+import logging
 
 import re
 from sets import Set
@@ -35,6 +43,8 @@ class ObjectClassAttributeInfo(object):
     
     # schema-cache of all servers whose schema has been requested already
     serverMetaCache = {}
+    
+    logging = logging.getLogger(__name__)
     
     def __init__(self, serverMeta=None):
         # Dictionaries with lowercase names of attributes and objectclasses
@@ -80,11 +90,14 @@ class ObjectClassAttributeInfo(object):
             
             workerThread = WorkerThreadFetch(serverMeta)
             workerThread.start()
-        
+            
+            qApp.setOverrideCursor(Qt.WaitCursor)
             while not workerThread.FINISHED:
-                environment.updateUI()
+                qApp.processEvents()
+                #environment.updateUI()
                 time.sleep(0.05)
-        
+            qApp.restoreOverrideCursor()
+
             if None == workerThread.exceptionObject:
                 self.objectClassesDict = workerThread.objectClassesDict
                 self.attributeDict = workerThread.attributeDict
@@ -99,15 +112,13 @@ class ObjectClassAttributeInfo(object):
                 metaData['matchingDict'] = self.matchingDict
                 self.__class__.serverMetaCache[self.serverMeta.name] = metaData
                 tmpString = "Schema information for server " + self.serverMeta.name + " retrieved."
-                environment.logMessage(LogObject("Info", tmpString))
+                self.logging.info(tmpString)
             else:
                 self.failure = True
                 self.failureException = workerThread.exceptionObject
                 tmpString = "Could not fetch LDAP schema from server. Reason:\n"
                 tmpString += str(workerThread.exceptionObject)
-                environment.logMessage(LogObject("Error", tmpString))
-
-        environment.setBusy(False)
+                self.logging.error(tmpString)
 
 ###############################################################################
 
@@ -548,7 +559,7 @@ class WorkerThreadFetch(threading.Thread):
                 credVal = self.serverMeta.bindPassword
                 
             url = ldapurl.LDAPUrl(urlscheme=urlschemeVal, 
-                hostport = self.serverMeta.host + ":" + str(self.serverMeta.port),
+                hostport = self.serverMeta.hostname + ":" + str(self.serverMeta.port),
                 dn = self.serverMeta.baseDN, who = whoVal,
                 cred = credVal)
             
@@ -586,7 +597,11 @@ class WorkerThreadFetch(threading.Thread):
                     message = "Certificate error. Reason:\n"
                     message += "Could not set client certificate and certificate keyfile. "
                     message += str(e)
-                    environment.logMessage(LogObject("Error,",message))
+                    
+                    #TODO LOGGING
+                    print "Error:",message,"in ObjectClassAttributeInfo.WorkerThreadFetch"
+                    print "TODO - proper logging/error-handling"
+                    #environment.logMessage(LogObject("Error,",message))
                     
             
             if self.serverMeta.encryptionMethod == "TLS":
@@ -630,7 +645,7 @@ class WorkerThreadFetch(threading.Thread):
                         #    hostport = self.serverMeta.host.replace("/", "%2f"),
                         #    dn = self.serverMeta.baseDN)
                             
-                        url = "ldapi://" + self.serverMeta.host.replace("/", "%2F").replace(",", "%2C")
+                        url = "ldapi://" + self.serverMeta.hostname.replace("/", "%2F").replace(",", "%2C")
             
                         #self.ldapServerObject = ldap.initialize(url.initializeUrl())
                         self.ldapServerObject = ldap.initialize(url)

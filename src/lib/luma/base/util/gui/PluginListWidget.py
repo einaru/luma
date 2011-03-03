@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
-from PyQt4.QtCore import *
-from PyQt4.QtGui import *
+#from PyQt4.QtCore import *
+from PyQt4.QtGui import QWidget
 from base.util.gui.PluginListWidgetDesign import Ui_pluginListWidget
 from base.util.model.PluginListWidgetModel import PluginListWidgetModel
 

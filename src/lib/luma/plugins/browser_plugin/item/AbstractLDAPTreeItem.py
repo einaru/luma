@@ -3,10 +3,10 @@ Created on 18. feb. 2011
 
 @author: Simen
 '''
-from PyQt4 import QtCore, QtGui
-from PyQt4.QtCore import QObject
+#from PyQt4 import QtCore, QtGui
+#from PyQt4.QtCore import QObject
 
-class AbstractLDAPTreeItem(QObject):
+class AbstractLDAPTreeItem(object):
     """
     This is an abstract class which the items of the LDAPTreeItemModel should subclass.
     """
@@ -24,7 +24,7 @@ class AbstractLDAPTreeItem(QObject):
         """
         parent = the item above this
         """
-        QObject.__init__(self, parent)
+        #QObject.__init__(self, parent)
         self.parentItem = parent
         
         # The list of childs to this item

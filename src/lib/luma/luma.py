@@ -51,18 +51,23 @@ def startApplication(argv):
     app.setApplicationName(APPNAME)
     app.setApplicationVersion(VERSION)
     
+    """ Setup the logging mechanism """
+    l = logging.getLogger()
+    l.setLevel(logging.DEBUG)
+    """ Log to console until LoggerWidget is up """
+    consoleHandler = logging.StreamHandler()
+    l.addHandler(consoleHandler)
+        
     splash = SplashScreen()
     splash.show()
 
     """ Find and set some resource paths """
     paths = Paths()
     paths.i18nPath = os.path.join(os.getcwd(), 'i18n')
-
+    
     mainWin = MainWindow()
-
-    """ Setup the logging mechanism to log to the logger widget """
-    l = logging.getLogger("base")
-    l.setLevel(logging.DEBUG)
+    """ Remove logging to console and instead log ti the LoggerWidget """
+    l.removeHandler(consoleHandler)
     l.addHandler(LumaLogHandler(mainWin.loggerWidget))
 
     QtCore.QObject.connect(app, QtCore.SIGNAL('lastWindowClosed()'), mainWin.close)
