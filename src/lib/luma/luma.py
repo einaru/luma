@@ -33,6 +33,8 @@ import StringIO
 import sys
 
 from PyQt4 import QtGui, QtCore
+from PyQt4.QtGui import qApp
+from PyQt4.QtCore import Qt, QEvent
 
 from __init__ import *
 from base.gui import SplashScreen
@@ -40,13 +42,46 @@ from base.gui.MainWin import MainWindow
 from base.backend import LumaLogHandler
 from base.util import Paths
 
+class LumaApp(QtGui.QApplication):
+    """
+    Possibly to be used later.
+    """
+    def __init__(self, argv):
+        QtGui.QApplication.__init__(self, argv)
+    """
+        self.progressBar = None
+        
+    def setProgressBar(self, bar):
+        self.progressBar = bar
+        
+    def event(self, event):
+        if event.type() == QEvent.User:
+            event.accept()
+            self.setBusy(True)
+            return True
+        else:
+            return QtGui.QApplication.event(self, event)
+    
+    def setBusy(self, status):
+        print "setBusy()"
+        if status:
+            self.setOverrideCursor(Qt.WaitCursor)
+            if self.progressBar != None:
+                self.progressBar.setRange(0,0)
+        else:
+            self.restoreOverrideCursor()
+            if self.progressBar != None:
+                self.progressBar.setRange(0,100)
+    """
+
 def startApplication(argv):
     """
     First we must determine what platform we're running on. Making sure we 
     follow the platform convention for configuration files and directories, 
     """
 
-    app = QtGui.QApplication(argv)
+    app = LumaApp(argv)
+        
     app.setOrganizationName(ORGNAME)
     app.setApplicationName(APPNAME)
     app.setApplicationVersion(VERSION)
@@ -70,6 +105,7 @@ def startApplication(argv):
     paths.i18nPath = os.path.join(os.getcwd(), 'i18n')
     
     mainWin = MainWindow()
+    #app.setProgressBar(mainWin.getProgressBar())
     
     """ Remove logging to console and instead log to the LoggerWidget """
     #l.removeHandler(consoleHandler)

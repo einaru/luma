@@ -34,10 +34,11 @@ class BrowserView(QWidget):
         self.serverList = ServerList(configPrefix)
 
         self.mainLayout = QtGui.QHBoxLayout(self)
+        
         self.splitter = QtGui.QSplitter(self)
         
         # The model for server-content
-        self.ldaptreemodel = LDAPTreeItemModel(parent)
+        self.ldaptreemodel = LDAPTreeItemModel(self)
         self.ldaptreemodel.populateModel(self.serverList)
         
         # For testing ONLY
@@ -45,7 +46,7 @@ class BrowserView(QWidget):
         #self.modeltest = modeltest.ModelTest(self.ldaptreemodel, self);
         
         # The view for server-content
-        self.entryList = QtGui.QTreeView(self.splitter)
+        self.entryList = QtGui.QTreeView(self)
         self.entryList.setMinimumWidth(200)
         #self.entryList.setAlternatingRowColors(True)
         self.entryList.setAnimated(True) # Somewhat cool, but should be removed if deemed too taxing
@@ -58,11 +59,12 @@ class BrowserView(QWidget):
         self.entryList.clicked.connect(self.initEntryView)
         
         # The editor for entries
-        #self.entryView = TableView(self.splitter)
-        self.entryView = AdvancedObjectView(self.splitter)
-
-        self.mainLayout.addWidget(self.splitter)
+        self.entryView = AdvancedObjectView(self)
         
+        self.splitter.addWidget(self.entryList)
+        self.splitter.addWidget(self.entryView)
+        self.mainLayout.addWidget(self.splitter)
+
         # Used to signal the ldaptreemodel with a index
         # which needs processing (reloading, clearing)
         self.reloadSignal.connect(self.ldaptreemodel.reloadItem)
@@ -70,6 +72,7 @@ class BrowserView(QWidget):
         
         # Working / needed?
         self.ldaptreemodel.dataChanged.connect(self.entryList.dataChanged)
+
         
     # Custom signals used
     reloadSignal = QtCore.pyqtSignal(QtCore.QModelIndex)
@@ -153,12 +156,5 @@ class BrowserView(QWidget):
         # FIXME: qt4 migration needed
         #self.entryView.buildToolBar(parent)
         pass
-
-class TableView(QtGui.QTableView):
-
-    def __init__(self, parent):
-        QtGui.QWidget.__init__(self, parent)
-        self.setShowGrid(False)
-
 
 

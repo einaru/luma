@@ -52,6 +52,7 @@ from PyQt4.QtGui import QPushButton
 from PyQt4.QtGui import QStandardItem, QStandardItemModel
 from PyQt4.QtGui import QToolBar
 from PyQt4.QtGui import QWidget
+from PyQt4.QtGui import QProgressBar
 
 from base.backend.ServerList import ServerList
 from base.gui import Settings
@@ -95,12 +96,20 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.loadSettings()
         self.__setupPluginList()
         self.createLanguageOptions()
+                
+        self.progressBar = QProgressBar()
+        #self.progressBar.setRange(0,0)
+        self.progressBar.setTextVisible(False)
+        self.statusBar.addPermanentWidget(self.progressBar)
+        
+        qApp.postEvent(qApp, QEvent(QEvent.User))
 
         if self.DEVEL:
             self.actionEditServerList.setStatusTip(
                 u'Final GUI polishing by Granbusk\u2122 Polishing')
 
-
+    def getProgressBar(self):
+        return self.progressBar
 
     def __setupPluginList(self):
         """
