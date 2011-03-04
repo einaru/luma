@@ -47,6 +47,8 @@ class BrowserView(QWidget):
         # The view for server-content
         self.entryList = QtGui.QTreeView(self.splitter)
         self.entryList.setMinimumWidth(200)
+        #self.entryList.setAlternatingRowColors(True)
+        self.entryList.setAnimated(True) # Somewhat cool, but should be removed if deemed too taxing
         self.entryList.setUniformRowHeights(True) #Major optimalization for big lists
         self.entryList.setModel(self.ldaptreemodel)
         # For right-clicking in the tree

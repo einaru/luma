@@ -4,6 +4,7 @@ Created on 18. feb. 2011
 @author: Simen
 '''
 #from PyQt4 import QtCore, QtGui
+from PyQt4.QtGui import QMessageBox
 #from PyQt4.QtCore import QObject
 
 class AbstractLDAPTreeItem(object):
@@ -79,7 +80,7 @@ class AbstractLDAPTreeItem(object):
         """
         Displays an error-box if populating it's child list fails.
         """
-        QtGui.QMessageBox.information(None,"Error","Couldn't populate list.\nError was: "+str(exceptionObject))
+        QMessageBox.information(None,"Error","Couldn't populate list.\nError was: "+str(exceptionObject))
 
     def columnCount(self):
         """
