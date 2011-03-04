@@ -48,7 +48,6 @@ class LumaApp(QtGui.QApplication):
     """
     def __init__(self, argv):
         QtGui.QApplication.__init__(self, argv)
-    """
         self.progressBar = None
         
     def setProgressBar(self, bar):
@@ -72,7 +71,6 @@ class LumaApp(QtGui.QApplication):
             self.restoreOverrideCursor()
             if self.progressBar != None:
                 self.progressBar.setRange(0,100)
-    """
 
 def startApplication(argv):
     """
@@ -105,7 +103,7 @@ def startApplication(argv):
     paths.i18nPath = os.path.join(os.getcwd(), 'i18n')
     
     mainWin = MainWindow()
-    #app.setProgressBar(mainWin.getProgressBar())
+    app.setProgressBar(mainWin.getProgressBar())
     
     """ Remove logging to console and instead log to the LoggerWidget """
     #l.removeHandler(consoleHandler)

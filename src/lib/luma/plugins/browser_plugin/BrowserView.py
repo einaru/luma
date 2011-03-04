@@ -48,6 +48,7 @@ class BrowserView(QWidget):
         # The view for server-content
         self.entryList = QtGui.QTreeView(self)
         self.entryList.setMinimumWidth(200)
+        self.entryList.setMaximumWidth(400)
         #self.entryList.setAlternatingRowColors(True)
         self.entryList.setAnimated(True) # Somewhat cool, but should be removed if deemed too taxing
         self.entryList.setUniformRowHeights(True) #Major optimalization for big lists
@@ -59,10 +60,16 @@ class BrowserView(QWidget):
         self.entryList.clicked.connect(self.initEntryView)
         
         # The editor for entries
-        self.entryView = AdvancedObjectView(self)
-        
+        self.tabWidget = QtGui.QTabWidget(self)
+        self.setMinimumWidth(200)
+        self.tabWidget.setTabsClosable(True)
+        self.tabWidget.tabCloseRequested.connect(self.tabCloseClicked)
+        #self.entryView = AdvancedObjectView(self)
+        #self.tabWidget.addTab(self.entryView, "QString")
+            
         self.splitter.addWidget(self.entryList)
-        self.splitter.addWidget(self.entryView)
+        self.splitter.addWidget(self.tabWidget)
+        #self.splitter.addWidget(self.entryView)
         self.mainLayout.addWidget(self.splitter)
 
         # Used to signal the ldaptreemodel with a index
@@ -78,6 +85,10 @@ class BrowserView(QWidget):
     reloadSignal = QtCore.pyqtSignal(QtCore.QModelIndex)
     clearSignal = QtCore.pyqtSignal(QtCore.QModelIndex)
     
+    def tabCloseClicked(self, index):
+        #TODO Check if should save etc etc
+        self.tabWidget.removeTab(index)
+
     def rightClick(self, point):
         """
         Called when the view is right-clicked.
@@ -86,7 +97,6 @@ class BrowserView(QWidget):
         
         # Remember the index so it can be used from the method selected from the pop-up-menu
         self.clickedIndex = self.entryList.indexAt(point)
-        #self.ldaptreemodel.currentIndex = self.clickedIndex #TODO REMOVE
         
         clickedItem = self.clickedIndex.internalPointer()
         if clickedItem != None:
@@ -148,9 +158,13 @@ class BrowserView(QWidget):
             return
         
         # Elso, gogo
-        self.model = LDAPEntryModel(index)
-        self.entryView.setModel(self.model)
-        self.entryView.displayValues()
+        x = AdvancedObjectView()
+        x.setModel(LDAPEntryModel(index))
+        x.displayValues()
+        
+        self.tabWidget.addTab(x, x.ldapDataObject.getPrettyRDN())
+        self.tabWidget.setCurrentWidget(x)
+
 
     def buildToolBar(self, parent):
         # FIXME: qt4 migration needed
