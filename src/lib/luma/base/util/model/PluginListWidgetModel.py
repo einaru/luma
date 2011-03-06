@@ -14,9 +14,11 @@ class PluginListWidgetModel(QStandardItemModel):
         self._settings = QSettings()
             
         pluginloader = PluginLoader(".", self.__checkToLoad())
+        
         for plugin in pluginloader.plugins:
-            
+
             if plugin.load == True:
+                
                 item = QStandardItem(str.capitalize(plugin.pluginName))
                 #item.setIcon(QIcon('/Users/johannes/Programmering/Luma/git/src/share/luma/icons/plugins/addressbook/plugin.png'))
                 font = item.font()

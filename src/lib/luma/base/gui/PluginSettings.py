@@ -12,7 +12,7 @@ class PluginSettings(QDialog, Ui_PluginsDialog):
     def __init__(self, parent = None):
         QDialog.__init__(self, parent)
         self.setupUi(self)
-        self._model = PluginLoaderModel()
+        self._model = PluginSettingsModel()
         self.listView.setModel(self._model)
 
 ###############################################################################

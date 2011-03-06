@@ -366,7 +366,10 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         Slot to display the plugins configuration. This currently calls
         showSettingsDialog with tab index set to 2.
         """
-        self.showSettingsDialog(2)
+        settingsDialog = PluginSettings()
+        settingsDialog.exec_()
+        self.reloadPlugins()
+        #self.showSettingsDialog(2)
 
 
     def reloadPlugins(self):
@@ -378,9 +381,9 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
     def loadPlugins(self):
         """
-        Slot to load plugins.
+        Hmmm...
         """
-        self.TODO(u'load plugins)')
+        self.showPlugins()
 
     def pluginSelected(self, item):
         """
@@ -577,6 +580,8 @@ class SettingsDialog(QDialog, Ui_SettingsDialog):
         self.showErrors.setChecked(settings.showErrors)
         self.showDebug.setChecked(settings.showDebug)
         self.showInfo.setChecked(settings.showInfo)
+        
+        
         """ Language """
         self.languageSelector
         i = 0
@@ -585,6 +590,7 @@ class SettingsDialog(QDialog, Ui_SettingsDialog):
             if key == self.currentLanguage:
                 self.languageSelector.setCurrentIndex(i)
             i = i + 1
+
 
         """ Plugins """
         model = QStandardItemModel()
