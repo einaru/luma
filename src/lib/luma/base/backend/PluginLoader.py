@@ -20,7 +20,7 @@ class PluginLoader(object):
     
     _logger = logging.getLogger(__name__)
     
-    def __init__(self, lumaInstallationPrefix, pluginsToLoad = []):
+    def __init__(self, lumaInstallationPrefix = ".", pluginsToLoad = []):
         
         self._pluginsToLoad = pluginsToLoad
         self._plugins = [] #PluginObjects
@@ -56,6 +56,7 @@ class PluginLoader(object):
             self.__loadPlugins()
             self._changed = False
         
+       
         return self._plugins
     
 ###############################################################################
@@ -64,6 +65,9 @@ class PluginLoader(object):
         """
         Will load all plugins that was found from the "__findPluginDirectories()".
         """
+        
+        self._plugins = []
+        
         for x in self.__findPluginDirectories():
             if x == "CVS" or x == ".svn" or x == ".git":
                 continue

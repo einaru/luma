@@ -22,11 +22,17 @@ class PluginListWidget(QWidget, Ui_pluginListWidget):
         
         self.parent = parent
         self.setupUi(self)
-        
         self.listView.setModel(PluginListWidgetModel(self.parent))
         
     def pluginDoubleClicked(self, index):
         if self.parent and hasattr(self.parent, "pluginSelected"):
             self.parent.pluginSelected(self.listView.model().itemFromIndex(index))
         else:
-            self._logger.error("Cannot enter a plugin when no parent is given to PluginListWidget")
+            self._logger.error("Cannot enter a plugin when no parent is given to PluginListWidget")       
+    
+    def updatePlugins(self):
+        """
+        Updates the listview with new plugins
+        """
+        self.listView.reset()
+        self.listView.setModel(PluginListWidgetModel(self.parent))

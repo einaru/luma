@@ -28,6 +28,7 @@ class PluginSettingsModel(QStandardItemModel):
 ###############################################################################
     
     def saveSettings(self):
+        
         items = self.rowCount()
         for x in range(items):
             item = self.item(x)

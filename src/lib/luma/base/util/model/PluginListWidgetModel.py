@@ -12,11 +12,13 @@ class PluginListWidgetModel(QStandardItemModel):
     def __init__(self, widgetParent, parent = None):
         QStandardItemModel.__init__(self, parent)
         self._settings = QSettings()
-            
-        pluginloader = PluginLoader(".", self.__checkToLoad())
+        self._settings.beginGroup("plugins")
+        self.widgetParent = widgetParent    
+        self.pluginloader = PluginLoader()
         
-        for plugin in pluginloader.plugins:
-
+        self.pluginloader.pluginsToLoad = self.__checkToLoad()
+        
+        for plugin in self.pluginloader.plugins:
             if plugin.load == True:
                 
                 item = QStandardItem(str.capitalize(plugin.pluginName))
@@ -26,12 +28,10 @@ class PluginListWidgetModel(QStandardItemModel):
                 item.setFont(font)
                 item.setEditable(False)
                 item.plugin = plugin
-                item.widget = plugin.getPluginWidget(widgetParent)
+                item.widget = plugin.getPluginWidget(self.widgetParent)
                 self.appendRow(item)
     
     def __checkToLoad(self):
-        self._settings.beginGroup("plugins")
-        
         pluginlist = []
         
         #When beginGroup is set to plugins, the childgroups will be each of the plugins..
@@ -40,4 +40,9 @@ class PluginListWidgetModel(QStandardItemModel):
             value = self._settings.value(valueString).toString()
             if value == "True":
                 pluginlist.append(str(plugin))
+       
         return pluginlist
+
+
+        
+        

@@ -65,6 +65,7 @@ from base.gui.SettingsDialogDesign import Ui_SettingsDialog
 from base.gui.ServerDialog import ServerDialog
 from base.util import LanguageHandler
 from base.util.gui.PluginListWidget import PluginListWidget
+from base.model.PluginSettingsModel import PluginSettingsModel
 
 
 
@@ -354,7 +355,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             # We assume that some settings is changed 
             # if the user clicked the ok button, and
             # reloads the application settings
-            self.loadSettings(mainWin=False)
+            self.__loadSettings(mainWin=False)
+            self.reloadPlugins()
             # A Hack but it'll do for now
             for a in self.langGroup.actions():
                 if a.data().toString() == self.currentLanguage:
@@ -366,18 +368,14 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         Slot to display the plugins configuration. This currently calls
         showSettingsDialog with tab index set to 2.
         """
-        settingsDialog = PluginSettings()
-        settingsDialog.exec_()
-        self.reloadPlugins()
-        #self.showSettingsDialog(2)
+        self.showSettingsDialog(2)
 
 
     def reloadPlugins(self):
         """
         Slot to reload plugins.
         """
-        self.TODO(u'reload plugins')
-
+        self.pluginWidget.updatePlugins()
 
     def loadPlugins(self):
         """
@@ -593,16 +591,28 @@ class SettingsDialog(QDialog, Ui_SettingsDialog):
 
 
         """ Plugins """
-        model = QStandardItemModel()
-        for plugin in settings.plugins:
-            item = QStandardItem(plugin)
-            check = Qt.Checked if randint(0, 1) == 1 else Qt.Unchecked
-            item.setCheckState(check)
-            item.setCheckable(True)
-            model.appendRow(item)
+        self.pluginListView.setModel(PluginSettingsModel())
 
-        self.pluginListView.setModel(model)
-
+    def pluginSelected(self, index):
+        """
+        If a plugin has a pluginsettingswidget,
+        it will be put into the QStackedWidget.
+        """
+        
+        plugin = self.pluginListView.model().itemFromIndex(index).plugin
+        
+        widget = plugin.getPluginSettingsWidget(self.pluginSettingsStack)
+    
+        if not widget:
+            return
+         
+        if self.pluginSettingsStack.indexOf(widget) == -1:
+            self.pluginSettingsStack.addWidget(widget)
+        
+        if self.pluginSettingsStack.currentWidget() != widget:
+            self.pluginSettingsStack.setCurrentWidget(widget)
+    
+    
     def saveSettings(self):
         """
         This slot is called when the ok button is clicked.
@@ -621,6 +631,7 @@ class SettingsDialog(QDialog, Ui_SettingsDialog):
         settings.language = self.languageSelector.itemData(i).toString()
 
         """ Plugins """
+        self.pluginListView.model().saveSettings()
 
         QDialog.accept(self)
 
