@@ -397,6 +397,21 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             if self.pluginToolBar:
                 self.pluginToolBar.button.setEnabled(True)
                 self.pluginToolBar.label.setText(QApplication.translate('MainWindow', item.plugin.pluginUserString, None, QApplication.UnicodeUTF8))
+                
+                #The plugin-toolbar should be inside the getPluginWidget
+                #This should maybe be required by the PluginLoader, to have this in the __init__.py for a plugin
+                
+                self.logger.debug("Trying to build toolbar for plugin")
+                
+                if hasattr(widget, "toolbarActions"):
+                    try:
+                        for action in widget.toolbarActions():
+                            self.pluginToolbar.addAction(action)
+                    except Exception, e:
+                        self.logger.error("Could not append actions to toolbar from plugin")
+                        pass
+                else:
+                    self.logger.debug("No actions to add to toolbar from plugin")
 
     def showPlugins(self):
         """
