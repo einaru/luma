@@ -102,7 +102,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.progressBar.setTextVisible(False)
         self.statusBar.addPermanentWidget(self.progressBar)
         
-        qApp.postEvent(qApp, QEvent(QEvent.User))
+        #TODO REMOVE
+        #qApp.postEvent(qApp, QEvent(QEvent.User))
 
         if self.DEVEL:
             self.actionEditServerList.setStatusTip(
