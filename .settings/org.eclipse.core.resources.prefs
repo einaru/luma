@@ -1,7 +1,10 @@
-#Fri Mar 11 14:56:39 CET 2011
+#Fri Mar 11 18:08:48 CET 2011
 eclipse.preferences.version=1
 encoding//luma/__init__.py=utf-8
 encoding//luma/base/backend/PluginLoader.py=utf-8
 encoding//luma/base/gui/MainWin.py=utf-8
 encoding//luma/luma.py=utf-8
+encoding//luma/resources.py=utf-8
+encoding//tools/compileResources.py=utf-8
+encoding//tools/masspyuic4.py=utf-8
 encoding/setup.py=utf-8

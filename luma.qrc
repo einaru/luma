@@ -1,12 +1,17 @@
-<RCC>
-  <qresource prefix="images">
-    <file alias="splash.png">icons/luma-128.png</file>
-    <file alias="password_medium.png">icons/passwordmedium.png</file>
-    <file alias="config.png">icons/config.png</file>
-    <file alias="server.png">icons/server.png</file>
-    <file alias="network48.png">icons/network48.png</file>
-    <file alias="password_big.png">icons/password_big.png</file>
-    <file alias="edit.png">icons/edit.png</file>
-    <file alias="delete.png">icons/delete.png</file>
-  </qresource>
+<!DOCTYPE RCC><RCC version="1.0">
+<qresource prefix="i18n">
+	<file alias="en">resources/i18n/luma_en.qm</file>
+	<file alias="hx">resources/i18n/luma_hx.qm</file>
+	<file alias="no">resources/i18n/luma_no.qm</file>
+</qresource>
+<qresource prefix="images">
+	<file alias="splash.png">resources/icons/luma-128.png</file>
+	<file alias="password_medium.png">resources/icons/passwordmedium.png</file>
+	<file alias="config.png">resources/icons/config.png</file>
+	<file alias="server.png">resources/icons/server.png</file>
+	<file alias="network48.png">resources/icons/network48.png</file>
+	<file alias="password_big.png">resources/icons/password_big.png</file>
+	<file alias="edit.png">resources/icons/edit.png</file>
+	<file alias="delete.png">resources/icons/delete.png</file>
+</qresource>
 </RCC>
