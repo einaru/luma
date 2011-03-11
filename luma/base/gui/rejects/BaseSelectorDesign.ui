@@ -1,0 +1,321 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>BaseSelectorDesign</class>
+ <widget class="QDialog" name="BaseSelectorDesign">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>551</width>
+    <height>456</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Select Base DNs</string>
+  </property>
+  <layout class="QVBoxLayout">
+   <item>
+    <layout class="QGridLayout">
+     <item row="0" column="1">
+      <widget class="QLabel" name="baseLabel">
+       <property name="text">
+        <string>Manage the base distinguished names you want to use with the server</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignVCenter</set>
+       </property>
+       <property name="wordWrap">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="0">
+      <widget class="QLabel" name="pixmapLabel1">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="pixmap">
+        <pixmap/>
+       </property>
+       <property name="scaledContents">
+        <bool>true</bool>
+       </property>
+       <property name="wordWrap">
+        <bool>false</bool>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="0" colspan="2">
+      <widget class="Line" name="line2">
+       <property name="frameShape">
+        <enum>QFrame::HLine</enum>
+       </property>
+       <property name="frameShadow">
+        <enum>QFrame::Sunken</enum>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <layout class="QGridLayout">
+     <item row="3" column="2">
+      <spacer>
+       <property name="orientation">
+        <enum>Qt::Vertical</enum>
+       </property>
+       <property name="sizeType">
+        <enum>QSizePolicy::Expanding</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>21</width>
+         <height>150</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item row="0" column="0">
+      <widget class="QLabel" name="textLabel2">
+       <property name="text">
+        <string>Custom:</string>
+       </property>
+       <property name="wordWrap">
+        <bool>false</bool>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="2">
+      <widget class="QPushButton" name="deleteButton">
+       <property name="text">
+        <string>&amp;Delete</string>
+       </property>
+       <property name="shortcut">
+        <string>Alt+D</string>
+       </property>
+       <property name="autoDefault">
+        <bool>false</bool>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="0" rowspan="3" colspan="2">
+      <widget class="QListWidget" name="baseView">
+       <property name="selectionMode">
+        <enum>QAbstractItemView::ExtendedSelection</enum>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="1">
+      <widget class="QLineEdit" name="baseEdit"/>
+     </item>
+     <item row="0" column="2">
+      <widget class="QPushButton" name="addButton">
+       <property name="text">
+        <string>&amp;Add</string>
+       </property>
+       <property name="shortcut">
+        <string>Alt+A</string>
+       </property>
+       <property name="autoDefault">
+        <bool>false</bool>
+       </property>
+       <property name="default">
+        <bool>false</bool>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="2">
+      <widget class="QPushButton" name="updateButton">
+       <property name="text">
+        <string>&amp;Update from server</string>
+       </property>
+       <property name="shortcut">
+        <string>Alt+U</string>
+       </property>
+       <property name="autoDefault">
+        <bool>false</bool>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <layout class="QGridLayout">
+     <item row="0" column="0" colspan="3">
+      <widget class="Line" name="line3">
+       <property name="frameShape">
+        <enum>QFrame::HLine</enum>
+       </property>
+       <property name="frameShadow">
+        <enum>QFrame::Sunken</enum>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="0">
+      <spacer>
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeType">
+        <enum>QSizePolicy::Expanding</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>391</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item row="1" column="2">
+      <widget class="QPushButton" name="cancelButton">
+       <property name="text">
+        <string>&amp;Cancel</string>
+       </property>
+       <property name="shortcut">
+        <string>Alt+C</string>
+       </property>
+       <property name="autoDefault">
+        <bool>false</bool>
+       </property>
+       <property name="default">
+        <bool>false</bool>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="1">
+      <widget class="QPushButton" name="okButton">
+       <property name="text">
+        <string>&amp;OK</string>
+       </property>
+       <property name="shortcut">
+        <string>Alt+O</string>
+       </property>
+       <property name="autoDefault">
+        <bool>false</bool>
+       </property>
+       <property name="default">
+        <bool>false</bool>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+  </layout>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <tabstops>
+  <tabstop>baseEdit</tabstop>
+  <tabstop>addButton</tabstop>
+  <tabstop>baseView</tabstop>
+  <tabstop>deleteButton</tabstop>
+  <tabstop>updateButton</tabstop>
+  <tabstop>okButton</tabstop>
+  <tabstop>cancelButton</tabstop>
+ </tabstops>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>okButton</sender>
+   <signal>clicked()</signal>
+   <receiver>BaseSelectorDesign</receiver>
+   <slot>accept()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>385</x>
+     <y>443</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>377</x>
+     <y>295</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>cancelButton</sender>
+   <signal>clicked()</signal>
+   <receiver>BaseSelectorDesign</receiver>
+   <slot>reject()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>466</x>
+     <y>443</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>442</x>
+     <y>298</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>addButton</sender>
+   <signal>clicked()</signal>
+   <receiver>BaseSelectorDesign</receiver>
+   <slot>addBase()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>439</x>
+     <y>60</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>338</x>
+     <y>113</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>deleteButton</sender>
+   <signal>clicked()</signal>
+   <receiver>BaseSelectorDesign</receiver>
+   <slot>deleteBase()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>439</x>
+     <y>89</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>348</x>
+     <y>80</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>updateButton</sender>
+   <signal>clicked()</signal>
+   <receiver>BaseSelectorDesign</receiver>
+   <slot>addServerBase()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>439</x>
+     <y>118</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>453</x>
+     <y>9</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>baseEdit</sender>
+   <signal>returnPressed()</signal>
+   <receiver>BaseSelectorDesign</receiver>
+   <slot>addBase()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>88</x>
+     <y>60</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>250</x>
+     <y>227</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+ <slots>
+  <slot>addBase()</slot>
+ </slots>
+</ui>

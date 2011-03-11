@@ -1,0 +1,10 @@
+#!/usr/bin/env python
+
+try:
+    from luma import luma
+    print "installed"
+except:
+    import lib.luma
+    print "not installed"
+
+luma.main()
