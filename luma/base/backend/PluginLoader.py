@@ -64,6 +64,7 @@ class PluginLoader(object):
         """
         Will load all plugins that was found from the "__findPluginDirectories()".
         """
+        return
         for x in self.__findPluginDirectories():
             if x == "CVS" or x == ".svn":
                 continue

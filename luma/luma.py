@@ -45,6 +45,8 @@ def startApplication(argv):
     First we must determine what platform we're running on. Making sure we 
     follow the platform convention for configuration files and directories, 
     """
+    libRoot = os.path.dirname(appinfo.__file__)
+    #sys.path.append(libRoot)
 
     app = QtGui.QApplication(argv)
     app.setOrganizationName(appinfo.ORGNAME)
@@ -56,7 +58,6 @@ def startApplication(argv):
 
     """ Find and set some resource paths """
     paths = Paths()
-    libRoot = os.path.dirname(appinfo.__file__)
     print libRoot
     paths.i18nPath = os.path.join(libRoot, 'i18n')
 
