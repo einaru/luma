@@ -65,6 +65,7 @@ from base.gui.SettingsDialogDesign import Ui_SettingsDialog
 from base.gui.ServerDialog import ServerDialog
 from base.util import LanguageHandler
 from base.util.gui.PluginListWidget import PluginListWidget
+from base.model.PluginSettingsModel import PluginSettingsModel
 
 
 
@@ -89,12 +90,12 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.languageHandler = LanguageHandler()
         self.languages = self.languageHandler.availableLanguages
         self.setupUi(self)
-        self.createPluginToolBar()
-        self.createLoggerWidget()
-
-        self.loadSettings()
+        
+        self.__createPluginToolBar()
+        self.__createLoggerWidget()
+        self.__loadSettings()
         self.__setupPluginList()
-        self.createLanguageOptions()
+        self.__createLanguageOptions()
 
         if self.DEVEL:
             self.actionEditServerList.setStatusTip(
@@ -114,19 +115,17 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             
         self.pluginWidget = PluginListWidget(self)
         self.mainStack.addWidget(self.pluginWidget)
-        self.mainStack.setCurrentWidget(self.pluginWidget)
-
-
-    def createPluginToolBar(self):
+        self.showPlugins()
+        
+    def __createPluginToolBar(self):
         """
         Creates the pluign toolbar.
         """
         self.pluginToolBar = PluginToolBar(self)
         self.addToolBar(self.pluginToolBar)
-        self.pluginBoxId = self.mainStack.addWidget(self.pluginToolBar.pluginList)
 
 
-    def createLoggerWidget(self):
+    def __createLoggerWidget(self):
         """
         Creates the logger widget.
         """
@@ -139,7 +138,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.loggerDockWindow.hide()
 
 
-    def createLanguageOptions(self):
+    def __createLanguageOptions(self):
         """
         Creates the language selection in the menubar.
         """
@@ -159,7 +158,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 action.setChecked(True)
 
 
-    def loadSettings(self, mainWin=True):
+    def __loadSettings(self, mainWin=True):
         """
         Loads settings from file.
         
@@ -356,7 +355,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             # We assume that some settings is changed 
             # if the user clicked the ok button, and
             # reloads the application settings
-            self.loadSettings(mainWin=False)
+            self.__loadSettings(mainWin=False)
+            self.reloadPlugins()
             # A Hack but it'll do for now
             for a in self.langGroup.actions():
                 if a.data().toString() == self.currentLanguage:
@@ -375,35 +375,56 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         """
         Slot to reload plugins.
         """
-        self.TODO(u'reload plugins')
-
+        self.pluginWidget.updatePlugins()
 
     def loadPlugins(self):
         """
-        Slot to load plugins.
+        Hmmm...
         """
-        self.TODO(u'load plugins)')
+        self.showPlugins()
 
-
-    def pluginSelected(self, plugin):
+    def pluginSelected(self, item):
         """
-        This method will be called from the PluginListWidget, with a pluginobject
-        to load
+        This method will be called from the PluginListWidget.
         """
-        widget = plugin.getPluginWidget(self.mainStack)
-        self.mainStack.addWidget(widget)
-        self.mainStack.setCurrentWidget(widget)
+        widget = item.widget
+        if self.mainStack.indexOf(widget) == -1:
+            self.mainStack.addWidget(widget)
+            
+        if self.mainStack.currentWidget() != widget:
+            self.mainStack.setCurrentWidget(widget)
+            
+            if self.pluginToolBar:
+                self.pluginToolBar.button.setEnabled(True)
+                self.pluginToolBar.label.setText(QApplication.translate('MainWindow', item.plugin.pluginUserString, None, QApplication.UnicodeUTF8))
+                
+                #The plugin-toolbar should be inside the getPluginWidget
+                #This should maybe be required by the PluginLoader, to have this in the __init__.py for a plugin
+                
+                self.logger.debug("Trying to build toolbar for plugin")
+                
+                if hasattr(widget, "toolbarActions"):
+                    try:
+                        for action in widget.toolbarActions():
+                            self.pluginToolbar.addAction(action)
+                    except Exception, e:
+                        self.logger.error("Could not append actions to toolbar from plugin")
+                        pass
+                else:
+                    self.logger.debug("No actions to add to toolbar from plugin")
 
-
-    def showPluginSelection(self):
+    def showPlugins(self):
         """
-        Display the plugin selection
+        Will set the pluginlistwidget on top of the mainstack.
         """
-        s = PluginSettings()
-        s.exec_()
-        self.reloadPlugins()
-
-
+        
+        if self.pluginWidget and self.mainStack.currentWidget() != self.pluginWidget:
+            self.mainStack.setCurrentWidget(self.pluginWidget)
+            
+            if self.pluginToolBar:
+                self.pluginToolBar.button.setEnabled(False)
+                self.pluginToolBar.label.setText(QApplication.translate('MainWindow', "Available plugins", None, QApplication.UnicodeUTF8))
+                
     def close(self):
         """
         Overrides the QApplication close slot to save settings before
@@ -496,10 +517,14 @@ class PluginToolBar(QToolBar):
     The plugin toolbar.
     
     Provides a toolbar for quickly switching between installed plugins
+    
+    The button will be enabled and disabled directly from main-win,
+    and the label for the plugin-name too.
     """
 
     def __init__(self, parent=None):
         QToolBar.__init__(self, parent)
+        self.parent = parent
         self.setupUi()
 
     def setupUi(self):
@@ -512,21 +537,17 @@ class PluginToolBar(QToolBar):
         self.addWidget(self.label)
         self.button = QPushButton(self)
         self.addWidget(self.button)
-        self.list = QListWidget(None)
-        self.list.setFont(font)
         self.retranslateUi(self)
+        
+        self.button.clicked.connect(self.choosePlugin)
 
     def retranslateUi(self, pluginToolBar):
-        pluginToolBar.label.setText(QApplication.translate('MainWindow', 'Plugin name', None, QApplication.UnicodeUTF8))
+        pluginToolBar.label.setText(QApplication.translate('MainWindow', 'Available plugins', None, QApplication.UnicodeUTF8))
         pluginToolBar.button.setText(QApplication.translate('MainWindow', 'Choose plugin', None, QApplication.UnicodeUTF8))
 
-    @property
-    def pluginList(self):
-        """
-        Returns the pluginList, which will be docked in the mainStack.
-        """
-        return self.list
-
+    def choosePlugin(self):
+        if hasattr(self.parent, "showPlugins"):
+            self.parent.showPlugins()
 
 class SettingsDialog(QDialog, Ui_SettingsDialog):
     """
@@ -572,6 +593,8 @@ class SettingsDialog(QDialog, Ui_SettingsDialog):
         self.showErrors.setChecked(settings.showErrors)
         self.showDebug.setChecked(settings.showDebug)
         self.showInfo.setChecked(settings.showInfo)
+        
+        
         """ Language """
         self.languageSelector
         i = 0
@@ -581,17 +604,30 @@ class SettingsDialog(QDialog, Ui_SettingsDialog):
                 self.languageSelector.setCurrentIndex(i)
             i = i + 1
 
+
         """ Plugins """
-        model = QStandardItemModel()
-        for plugin in settings.plugins:
-            item = QStandardItem(plugin)
-            check = Qt.Checked if randint(0, 1) == 1 else Qt.Unchecked
-            item.setCheckState(check)
-            item.setCheckable(True)
-            model.appendRow(item)
+        self.pluginListView.setModel(PluginSettingsModel())
 
-        self.pluginListView.setModel(model)
-
+    def pluginSelected(self, index):
+        """
+        If a plugin has a pluginsettingswidget,
+        it will be put into the QStackedWidget.
+        """
+        
+        plugin = self.pluginListView.model().itemFromIndex(index).plugin
+        
+        widget = plugin.getPluginSettingsWidget(self.pluginSettingsStack)
+    
+        if not widget:
+            return
+         
+        if self.pluginSettingsStack.indexOf(widget) == -1:
+            self.pluginSettingsStack.addWidget(widget)
+        
+        if self.pluginSettingsStack.currentWidget() != widget:
+            self.pluginSettingsStack.setCurrentWidget(widget)
+    
+    
     def saveSettings(self):
         """
         This slot is called when the ok button is clicked.
@@ -610,6 +646,7 @@ class SettingsDialog(QDialog, Ui_SettingsDialog):
         settings.language = self.languageSelector.itemData(i).toString()
 
         """ Plugins """
+        self.pluginListView.model().saveSettings()
 
         QDialog.accept(self)
 
@@ -646,10 +683,3 @@ class AboutDialog(QDialog, Ui_AboutDialog):
         credits = QDialog()
         Ui_AboutCredits().setupUi(credits)
         credits.exec_ ()
-
-
-if __name__ == '__main__':
-    app = QApplication(sys.argv)
-    win = MainWindow()
-    win.show()
-    sys.exit(app.exec_())

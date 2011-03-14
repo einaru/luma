@@ -20,7 +20,7 @@ class PluginLoader(object):
     
     _logger = logging.getLogger(__name__)
     
-    def __init__(self, lumaInstallationPrefix, pluginsToLoad = []):
+    def __init__(self, lumaInstallationPrefix = ".", pluginsToLoad = []):
         
         self._pluginsToLoad = pluginsToLoad
         self._plugins = [] #PluginObjects
@@ -56,6 +56,7 @@ class PluginLoader(object):
             self.__loadPlugins()
             self._changed = False
         
+       
         return self._plugins
     
 ###############################################################################
@@ -64,16 +65,19 @@ class PluginLoader(object):
         """
         Will load all plugins that was found from the "__findPluginDirectories()".
         """
+        
+        self._plugins = []
+        
         for x in self.__findPluginDirectories():
-            if x == "CVS" or x == ".svn":
+            if x == "CVS" or x == ".svn" or x == ".git":
                 continue
         
             try:
                 self._plugins.append(self.__readMetaInfo(x))
         
-            except PluginMetaError, x:
-                errorString = "Plugin from the following directory could not be loaded:\n"
-                errorString += str(x)
+            except PluginMetaError, y:
+                errorString = "Plugin \"" + str(x) + "\" gave an exception: \n"
+                errorString += str(y)
                 self._logger.error(errorString)
                 
 ###############################################################################
@@ -143,10 +147,10 @@ class PluginLoader(object):
                 missingAttributes.append(x)
         
         if len(missingAttributes) > 0:
-            errorString = "Loaded module " + pluginName + " is not a Luma plugin."
-            errorString = errorString + "The following attributes are missing: \n"
+            errorString = "Loaded module \"" + pluginName + "\" is not a Luma plugin. \n"
+            errorString += "The following attributes are missing: \n"
             for x in missingAttributes:
-                errorString = errorString + x + " "
+                errorString += "\t" + x + "\n"
             raise PluginMetaError, errorString
             
         plugin.pluginName = importedModule.pluginName
@@ -163,13 +167,13 @@ class PluginLoader(object):
         plugin.icon = icon
         
         if self._pluginsToLoad == 'ALL':
-                plugin.load = True
+            plugin.load = True
         else:
-            for x in self.pluginsToLoad:
-                if x == plugin.pluginName:
+            for ptl in self._pluginsToLoad:
+                if plugin.pluginName == ptl:
                     plugin.load = True
-                break
-
+                    break
+           
         return plugin
             
 ###############################################################################
@@ -180,10 +184,3 @@ class PluginMetaError(Exception):
     this exception is raised..
     """
     pass
-
-if __name__ == "__main__":
-    app = QtGui.QApplication(sys.argv)
-    p = PluginLoader("/Users/johannes/Programmering/Luma/git/pluginloader", ["testplugin"])
-    widget = p.plugins[0].getPluginWidget(None)
-    widget.show()
-    sys.exit(app.exec_())

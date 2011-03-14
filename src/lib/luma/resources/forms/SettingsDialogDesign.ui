@@ -7,8 +7,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>480</width>
-    <height>300</height>
+    <width>1230</width>
+    <height>766</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -55,7 +55,7 @@
       <enum>QTabWidget::Rounded</enum>
      </property>
      <property name="currentIndex">
-      <number>0</number>
+      <number>2</number>
      </property>
      <widget class="QWidget" name="tabGeneral">
       <attribute name="title">
@@ -234,11 +234,10 @@
           </property>
           <layout class="QGridLayout" name="gridLayout_3">
            <item row="0" column="0">
-            <widget class="QStackedWidget" name="puginSettingsStack">
+            <widget class="QStackedWidget" name="pluginSettingsStack">
              <property name="currentIndex">
-              <number>0</number>
+              <number>-1</number>
              </property>
-             <widget class="QWidget" name="pluginStackPage"/>
             </widget>
            </item>
           </layout>
@@ -296,9 +295,26 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>pluginListView</sender>
+   <signal>clicked(QModelIndex)</signal>
+   <receiver>SettingsDialog</receiver>
+   <slot>pluginSelected()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>107</x>
+     <y>379</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>614</x>
+     <y>382</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>cancelSettings()</slot>
   <slot>saveSettings()</slot>
+  <slot>pluginSelected()</slot>
  </slots>
 </ui>
