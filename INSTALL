@@ -1,0 +1,5 @@
+For now a simple 
+
+	python setup.py install
+
+should install the application
