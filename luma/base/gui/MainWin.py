@@ -63,6 +63,7 @@ from base.gui.MainWinDesign import Ui_MainWindow
 from base.gui.SettingsDialogDesign import Ui_SettingsDialog
 from base.gui.ServerDialog import ServerDialog
 from base.util.i18n import LanguageHandler
+from base.util.icontheme import pixmapFromThemeIcon, iconFromTheme
 from base.util.gui.PluginListWidget import PluginListWidget
 from base.model.PluginSettingsModel import PluginSettingsModel
 import resources
@@ -676,7 +677,7 @@ class AboutDialog(QDialog, Ui_AboutDialog):
     def __init__(self, parent=None):
         QDialog.__init__(self)
         self.setupUi(self)
-        self.setWindowIcon(QIcon(':/icons/about'))
+        self.setWindowIcon(iconFromTheme('help-about', ':/icons/about'))
         self.label.setPixmap(QPixmap(':/icons/luma-64'))
 
     def showLicense(self):
