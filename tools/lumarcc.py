@@ -210,7 +210,7 @@ def __generateQrcFile(icons=False, i18n=False):
                 alias = name[5:-3]
                 qrc.append(u'    <file alias="%s">resources/i18n/%s</file>' % \
                            (alias, name))
-        qrc.append(u'  </qresources>')
+        qrc.append(u'  </qresource>')
 
     if icons:
         iconsPath = __getPath(SOURCE_ICONS)

@@ -1,17 +1,11 @@
 # -*- coding: utf-8 -*-
 
-<<<<<<< HEAD
 #from PyQt4.QtCore import *
 from PyQt4.QtGui import QWidget
-=======
-from PyQt4.QtCore import *
-from PyQt4.QtGui import *
->>>>>>> S3-installation-v2
 from base.util.gui.PluginListWidgetDesign import Ui_pluginListWidget
 from base.util.model.PluginListWidgetModel import PluginListWidgetModel
 
 import sys
-<<<<<<< HEAD
 import logging
 
 class PluginListWidget(QWidget, Ui_pluginListWidget):
@@ -48,18 +42,3 @@ class PluginListWidget(QWidget, Ui_pluginListWidget):
         """
         self.listView.reset()
         self.listView.setModel(PluginListWidgetModel(self.parent))
-=======
-from random import randint
-
-class PluginListWidget(QWidget, Ui_pluginListWidget):
-    def __init__(self, parent = None):
-        QWidget.__init__(self, parent)
-        self.parent = parent
-        self.setupUi(self)
-        
-        self._model = PluginListWidgetModel()
-        self.listView.setModel(self._model)
-        
-    def pluginDoubleClicked(self, index):
-        self.parent.pluginSelected(self._model.itemFromIndex(index).plugin)
->>>>>>> S3-installation-v2

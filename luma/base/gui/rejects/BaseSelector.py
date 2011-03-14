@@ -10,7 +10,7 @@
 
 from PyQt4 import QtGui, QtCore
 from PyQt4.QtGui import QDialog
-from base.gui.BaseSelectorDesign import Ui_BaseSelectorDesign
+from base.gui.rejects.BaseSelectorDesign import Ui_BaseSelectorDesign
 #from base.utils.gui.LumaErrorDialog import LumaErrorDialog
 
 

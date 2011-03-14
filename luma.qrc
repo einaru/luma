@@ -3,8 +3,9 @@
     <file alias="hx">resources/i18n/luma_hx.qm</file>
     <file alias="no">resources/i18n/luma_no.qm</file>
     <file alias="en">resources/i18n/luma_en.qm</file>
-  </qresources>
+  </qresource>
   <qresource prefix="icons">
+    <file alias="about">resources/icons/about.png</file>
     <file alias="addattribute">resources/icons/addattribute.png</file>
     <file alias="alias">resources/icons/alias.png</file>
     <file alias="auth32">resources/icons/auth32.png</file>
@@ -45,7 +46,6 @@
     <file alias="luma-32">resources/icons/luma-32.png</file>
     <file alias="luma-48">resources/icons/luma-48.png</file>
     <file alias="luma-64">resources/icons/luma-64.png</file>
-    <file alias="luma16">resources/icons/luma16.png</file>
     <file alias="mail">resources/icons/mail.png</file>
     <file alias="manage">resources/icons/manage.png</file>
     <file alias="network-server">resources/icons/network-server.png</file>

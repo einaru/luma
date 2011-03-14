@@ -4,13 +4,15 @@ Created on 2. feb. 2011
 @author: Christian Forfang and Simen Natvig
 '''
 
-<<<<<<< HEAD
-from PyQt4.QtGui import QDialog, QDataWidgetMapper, QItemSelectionModel, QListWidgetItem, QInputDialog, QMessageBox, QApplication, QFileDialog
-=======
-from PyQt4.QtGui import QDialog, QDataWidgetMapper, QItemSelectionModel, QListWidgetItem, QInputDialog, QMessageBox, QApplication, QFileDialog, QPixmap
->>>>>>> S3-installation-v2
-from PyQt4.QtCore import QModelIndex, Qt, QAbstractListModel
 from PyQt4 import QtCore
+from PyQt4.QtCore import QModelIndex
+from PyQt4.QtGui import QApplication
+from PyQt4.QtGui import QDialog, QDataWidgetMapper
+from PyQt4.QtGui import QFileDialog
+from PyQt4.QtGui import QInputDialog, QItemSelectionModel 
+from PyQt4.QtGui import QListWidgetItem
+from PyQt4.QtGui import QMessageBox
+from PyQt4.QtGui import QPixmap
 
 from base.gui.ServerDialogDesign import Ui_ServerDialogDesign
 from base.model.ServerListModel import ServerListModel
@@ -22,21 +24,20 @@ class ServerDialog(QDialog, Ui_ServerDialogDesign):
     
     def __init__(self, serverList):
         """
-        Note: the input-ServerList-object is used directly by both the methods here and the model so beware of changes to it.
-        It's probably not a good idea to pass a ServerList if one of its ServerObjects are in use.
-
+        Note: the input-ServerList-object is used directly by both the 
+        methods here and the model so beware of changes to it.
+        It's probably not a good idea to pass a ServerList if one of its 
+        ServerObjects are in use.
         """
         
         QDialog.__init__(self)
         self.setupUi(self)
         
-<<<<<<< HEAD
-=======
-        self.securityLabel.setPixmap(QPixmap(":/icons/config"))
-        self.authLabel.setPixmap(QPixmap(":/icons/passwordmedium"))
-        self.networkLabel.setPixmap(QPixmap(":/icons/network-server"))
+        self.networkLabel.setPixmap(QPixmap(':/icons/network-server'))
+        self.authLabel.setPixmap(QPixmap(':/icons/passwordmedium'))
+        self.securityLabel.setPixmap(QPixmap(':/icons/config'))
+
         
->>>>>>> S3-installation-v2
         self._serverList = copy.deepcopy(serverList)
         self._serverListCopy = None
         self._returnList = None

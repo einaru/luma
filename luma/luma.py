@@ -32,16 +32,13 @@ import traceback
 import StringIO
 import sys
 
-from PyQt4 import QtGui, QtCore
-<<<<<<< HEAD
-from PyQt4.QtGui import qApp
+from PyQt4 import QtGui
 from PyQt4.QtCore import Qt, QEvent
 
-from __init__ import *
+import __init__ as appinfo
 from base.gui import SplashScreen
 from base.gui.MainWin import MainWindow
 from base.backend import LumaLogHandler
-from base.util import Paths
 
 class LumaApp(QtGui.QApplication):
     """
@@ -72,27 +69,18 @@ class LumaApp(QtGui.QApplication):
             self.restoreOverrideCursor()
             if self.progressBar != None:
                 self.progressBar.setRange(0,100)
-=======
-
-import __init__ as appinfo
-from base.gui import SplashScreen
-from base.gui.MainWin import MainWindow
-from base.backend import LumaLogHandler
-
->>>>>>> S3-installation-v2
 
 def startApplication(argv):
     """
     First we must determine what platform we're running on. Making sure we 
     follow the platform convention for configuration files and directories, 
     """
-<<<<<<< HEAD
 
     app = LumaApp(argv)
         
-    app.setOrganizationName(ORGNAME)
-    app.setApplicationName(APPNAME)
-    app.setApplicationVersion(VERSION)
+    app.setOrganizationName(appinfo.ORGNAME)
+    app.setApplicationName(appinfo.APPNAME)
+    app.setApplicationVersion(appinfo.VERSION)
     
     """ Setup the logging mechanism """
     l = logging.getLogger()
@@ -105,25 +93,12 @@ def startApplication(argv):
 
     l.addHandler(consoleHandler)
         
-=======
-    #libRoot = os.path.dirname(appinfo.__file__)
-    #sys.path.append(libRoot)
-
-    app = QtGui.QApplication(argv)
-    app.setOrganizationName(appinfo.ORGNAME)
-    app.setApplicationName(appinfo.APPNAME)
-    app.setApplicationVersion(appinfo.VERSION)
-    
-    #QtCore.QResource.registerResource('resource.py')
-    
->>>>>>> S3-installation-v2
     splash = SplashScreen()
     splash.show()
 
     """ Find and set some resource paths """
-<<<<<<< HEAD
-    paths = Paths()
-    paths.i18nPath = os.path.join(os.getcwd(), 'i18n')
+    #paths = Paths()
+    #paths.i18nPath = os.path.join(os.getcwd(), 'i18n')
     
     mainWin = MainWindow()
     app.setProgressBar(mainWin.getProgressBar())
@@ -134,20 +109,6 @@ def startApplication(argv):
     l.addHandler(llh)
     
     app.lastWindowClosed.connect(mainWin.close)
-=======
-    #paths = Paths()
-    #print libRoot
-    #paths.i18nPath = os.path.join(libRoot, 'i18n')
-
-    mainWin = MainWindow()
-
-    """ Setup the logging mechanism to log to the logger widget """
-    l = logging.getLogger("base")
-    l.setLevel(logging.DEBUG)
-    l.addHandler(LumaLogHandler(mainWin.loggerWidget))
-
-    QtCore.QObject.connect(app, QtCore.SIGNAL('lastWindowClosed()'), mainWin.close)
->>>>>>> S3-installation-v2
 
     mainWin.loadPlugins()
     mainWin.show()
@@ -238,15 +199,5 @@ with the following text and a short description of what you were doing:
     logger = logging.getLogger("base")
     logger.error(e)
 
-<<<<<<< HEAD
 if __name__ == "__main__":
     startApplication(sys.argv)
-=======
-
-def main():
-    startApplication(sys.argv)
-
-
-if __name__ == "__main__":
-    main()
->>>>>>> S3-installation-v2

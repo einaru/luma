@@ -1,14 +1,8 @@
 # -*- coding: utf-8 -*-
 
-<<<<<<< HEAD
 # Form implementation generated from reading ui file '/mnt/debris/devel/git/luma/src/lib/luma/resources/forms/MainWinDesign.ui'
 #
 # Created: Fri Feb 25 12:12:02 2011
-=======
-# Form implementation generated from reading ui file '/mnt/debris/devel/git/luma-playground/resources/forms/MainWinDesign.ui'
-#
-# Created: Mon Mar 14 12:54:09 2011
->>>>>>> S3-installation-v2
 #      by: PyQt4 UI code generator 4.7.4
 #
 # WARNING! All changes made in this file will be lost!

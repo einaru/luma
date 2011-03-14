@@ -20,11 +20,7 @@ class PluginLoader(object):
     
     _logger = logging.getLogger(__name__)
     
-<<<<<<< HEAD
     def __init__(self, lumaInstallationPrefix = ".", pluginsToLoad = []):
-=======
-    def __init__(self, lumaInstallationPrefix, pluginsToLoad = []):
->>>>>>> S3-installation-v2
         
         self._pluginsToLoad = pluginsToLoad
         self._plugins = [] #PluginObjects
@@ -60,10 +56,7 @@ class PluginLoader(object):
             self.__loadPlugins()
             self._changed = False
         
-<<<<<<< HEAD
        
-=======
->>>>>>> S3-installation-v2
         return self._plugins
     
 ###############################################################################
@@ -72,31 +65,19 @@ class PluginLoader(object):
         """
         Will load all plugins that was found from the "__findPluginDirectories()".
         """
-<<<<<<< HEAD
         
         self._plugins = []
         
         for x in self.__findPluginDirectories():
             if x == "CVS" or x == ".svn" or x == ".git":
-=======
-        return
-        for x in self.__findPluginDirectories():
-            if x == "CVS" or x == ".svn":
->>>>>>> S3-installation-v2
                 continue
         
             try:
                 self._plugins.append(self.__readMetaInfo(x))
         
-<<<<<<< HEAD
             except PluginMetaError, y:
                 errorString = "Plugin \"" + str(x) + "\" gave an exception: \n"
                 errorString += str(y)
-=======
-            except PluginMetaError, x:
-                errorString = "Plugin from the following directory could not be loaded:\n"
-                errorString += str(x)
->>>>>>> S3-installation-v2
                 self._logger.error(errorString)
                 
 ###############################################################################
@@ -132,11 +113,7 @@ class PluginLoader(object):
         set to true.
         All of the meta information about a plugin will be put into a PluginObject.
         """
-<<<<<<< HEAD
         
-=======
-
->>>>>>> S3-installation-v2
         from base.backend.PluginObject import PluginObject
         plugin = PluginObject()
         
@@ -170,19 +147,12 @@ class PluginLoader(object):
                 missingAttributes.append(x)
         
         if len(missingAttributes) > 0:
-<<<<<<< HEAD
             errorString = "Loaded module \"" + pluginName + "\" is not a Luma plugin. \n"
             errorString += "The following attributes are missing: \n"
             for x in missingAttributes:
                 errorString += "\t" + x + "\n"
                 errorString = errorString + x + " "
             errorString = errorString + "\n"
-=======
-            errorString = "Loaded module " + pluginName + " is not a Luma plugin."
-            errorString = errorString + "The following attributes are missing: \n"
-            for x in missingAttributes:
-                errorString = errorString + x + " "
->>>>>>> S3-installation-v2
             raise PluginMetaError, errorString
             
         plugin.pluginName = importedModule.pluginName
@@ -199,7 +169,6 @@ class PluginLoader(object):
         plugin.icon = icon
         
         if self._pluginsToLoad == 'ALL':
-<<<<<<< HEAD
             plugin.load = True
         else:
             for ptl in self._pluginsToLoad:
@@ -207,15 +176,6 @@ class PluginLoader(object):
                     plugin.load = True
                     break
            
-=======
-                plugin.load = True
-        else:
-            for x in self.pluginsToLoad:
-                if x == plugin.pluginName:
-                    plugin.load = True
-                break
-
->>>>>>> S3-installation-v2
         return plugin
             
 ###############################################################################
@@ -226,13 +186,3 @@ class PluginMetaError(Exception):
     this exception is raised..
     """
     pass
-<<<<<<< HEAD
-=======
-
-if __name__ == "__main__":
-    app = QtGui.QApplication(sys.argv)
-    p = PluginLoader("/Users/johannes/Programmering/Luma/git/pluginloader", ["testplugin"])
-    widget = p.plugins[0].getPluginWidget(None)
-    widget.show()
-    sys.exit(app.exec_())
->>>>>>> S3-installation-v2

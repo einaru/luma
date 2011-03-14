@@ -3,11 +3,7 @@
 from PyQt4.QtCore import *
 from PyQt4.QtGui import *
 from base.gui.PluginSettingsDialog import Ui_PluginsDialog
-<<<<<<< HEAD
 from base.model.PluginSettingsModel import PluginSettingsModel
-=======
-from base.model.PluginLoaderModel import PluginLoaderModel
->>>>>>> S3-installation-v2
 
 import sys
 from random import randint
@@ -16,11 +12,7 @@ class PluginSettings(QDialog, Ui_PluginsDialog):
     def __init__(self, parent = None):
         QDialog.__init__(self, parent)
         self.setupUi(self)
-<<<<<<< HEAD
         self._model = PluginSettingsModel()
-=======
-        self._model = PluginLoaderModel()
->>>>>>> S3-installation-v2
         self.listView.setModel(self._model)
 
 ###############################################################################
@@ -50,8 +42,3 @@ class PluginSettings(QDialog, Ui_PluginsDialog):
     def closeButton(self):
         self._model.saveSettings()
         self.accept()
-<<<<<<< HEAD
-=======
-
-###############################################################################
->>>>>>> S3-installation-v2

@@ -1,9 +1,0 @@
-# Luma TODO file contains spesific things to do in the project tree.
-
-* Solve the dynamic path issues: resource files (icons, translation files),
-  config files, etc.
-
-* Update all relevant parts of the application when settings are changed 
-  through the settings dialog, (i.e. most settings in the dialog can also be 
-  changed through menu actions)
-
