@@ -17,6 +17,7 @@
 # with Luma; if not, write to the Free Software Foundation, Inc., 
 # 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA
 
+@DeprecationWarning
 class Paths(object):
     """
     The Paths class is a worshipper of the evil Singleton pattern.
@@ -58,9 +59,14 @@ class Paths(object):
 
 import os
 from os import listdir
+from PyQt4.QtCore import QDir
+import resources
 
+@DeprecationWarning
 class LanguageHandler(object):
     """
+    NOTE! use i18n.LanguageHandler instead
+    
     Helper class providing useful functionality for handling available
     application translations
     """
@@ -131,13 +137,13 @@ class LanguageHandler(object):
         This constructure must be given the full path to where the 
         translation files are located.
         """
-        paths = Paths()
-        self.__translationPath = paths.i18nPath
+        #paths = Paths()
+        self.__translationPath = QDir(':/i18n')
         # Must be put in manually because there exists no translation file
         # UPDATE: well it does now, but we'll keep it this way none the less
         self.__availableLanguages['en'] = ['English', 'English']
-        if os.path.isdir(self.__translationPath):
-            self.__buildLanguageDictionary()
+        #if os.path.isdir(self.__translationPath):
+        self.__buildLanguageDictionary()
 
     def __buildLanguageDictionary(self):
         """
@@ -150,12 +156,16 @@ class LanguageHandler(object):
         
         It's a hack but it works (provided we got < 10 translation files:)
         """
-        for file in listdir(self.__translationPath):
-            if (file[:5] == 'luma_') and (file[-3:] == '.qm'):
-                code = file[5:-3]
-                for key, value in self.__isolangCodes.iteritems():
-                    if code == key:
-                        self.__availableLanguages[code] = value
+        for i18n in self.__translationPath:
+            for iso, lang in self.__isolangCodes.iteritems():
+                if i18n == iso:
+                    self.__availableLanguages[iso] = lang
+        #for file in listdir(self.__translationPath):
+        #    if (file[:5] == 'luma_') and (file[-3:] == '.qm'):
+        #        code = file[5:-3]
+        #        for key, value in self.__isolangCodes.iteritems():
+        #            if code == key:
+        #                self.__availableLanguages[code] = value
 
     @property
     def availableLanguages(self):

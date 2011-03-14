@@ -1,52 +1,0 @@
-10
-
-dir
-151
-svn+ssh://einaru@login.stud.ntnu.no/home/groups/2011it2901gr9/rep/tags/Luma24/share/luma/icons/plugins
-svn+ssh://einaru@login.stud.ntnu.no/home/groups/2011it2901gr9/rep
-
-
-
-2011-01-27T10:57:29.162563Z
-27
-Christian
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-6f6499ff-5034-4773-a77b-72040081e87b
-
-addressbook
-dir
-
-browser_plugin
-dir
-
-search_plugin
-dir
-
-schemabrowser
-dir
-
-mass_creation_plugin
-dir
-
-admin_utils
-dir
-
-template_plugin
-dir
-
-usermanagement
-dir
-

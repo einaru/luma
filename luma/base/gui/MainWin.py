@@ -63,10 +63,8 @@ from base.gui.MainWinDesign import Ui_MainWindow
 from base.gui.PluginSettings import PluginSettings
 from base.gui.SettingsDialogDesign import Ui_SettingsDialog
 from base.gui.ServerDialog import ServerDialog
-from base.util import LanguageHandler
 from base.util.gui.PluginListWidget import PluginListWidget
-
-
+from base.util.i18n import LanguageHandler
 
 
 class MainWindow(QMainWindow, Ui_MainWindow):
@@ -111,7 +109,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.pluginDockWindow.setWidget(self.pluginWidget) 
         self.addDockWidget(Qt.TopDockWidgetArea, self.pluginDockWindow)
         """
-            
+
         self.pluginWidget = PluginListWidget(self)
         self.mainStack.addWidget(self.pluginWidget)
         self.mainStack.setCurrentWidget(self.pluginWidget)

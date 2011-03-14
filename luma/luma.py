@@ -38,14 +38,13 @@ import __init__ as appinfo
 from base.gui import SplashScreen
 from base.gui.MainWin import MainWindow
 from base.backend import LumaLogHandler
-from base.util import Paths
 
 def startApplication(argv):
     """
     First we must determine what platform we're running on. Making sure we 
     follow the platform convention for configuration files and directories, 
     """
-    libRoot = os.path.dirname(appinfo.__file__)
+    #libRoot = os.path.dirname(appinfo.__file__)
     #sys.path.append(libRoot)
 
     app = QtGui.QApplication(argv)
@@ -53,13 +52,15 @@ def startApplication(argv):
     app.setApplicationName(appinfo.APPNAME)
     app.setApplicationVersion(appinfo.VERSION)
     
+    #QtCore.QResource.registerResource('resource.py')
+    
     splash = SplashScreen()
     splash.show()
 
     """ Find and set some resource paths """
-    paths = Paths()
-    print libRoot
-    paths.i18nPath = os.path.join(libRoot, 'i18n')
+    #paths = Paths()
+    #print libRoot
+    #paths.i18nPath = os.path.join(libRoot, 'i18n')
 
     mainWin = MainWindow()
 

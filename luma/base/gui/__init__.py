@@ -162,7 +162,7 @@ class SplashScreen(QSplashScreen):
         self.setObjectName(u'splash_screen')
         self.setWindowFlags(self.windowFlags() | Qt.WindowStaysOnTopHint)
         self.setContextMenuPolicy(Qt.PreventContextMenu)
-        splash_image = QPixmap(u':/images/splash.png')
+        splash_image = QPixmap(u':/icons/luma-128')
         self.setPixmap(splash_image)
         self.setMask(splash_image.mask())
         self.resize(128, 123)
@@ -186,7 +186,7 @@ class Ui_SplashScreen(object):
         self.verticalLayout.setMargin(0)
         self.verticalLayout.setObjectName(u'verticalLayout')
         self.SplashImage = QLabel(SplashScreen)
-        self.SplashImage.setPixmap(QPixmap(u'/images/splash.png'))
+        self.SplashImage.setPixmap(QPixmap(u':/icons/luma-128.png'))
         self.SplashImage.setObjectName(u'SplashImage')
         self.verticalLayout.addWidget(self.SplashImage)
 
