@@ -3,27 +3,29 @@ Created on 18. feb. 2011
 
 @author: Simen
 '''
-from PyQt4 import QtCore, QtGui
-from PyQt4.QtCore import QObject
+#from PyQt4 import QtCore, QtGui
+from PyQt4.QtGui import QMessageBox
+#from PyQt4.QtCore import QObject
 
-class AbstractLDAPTreeItem(QObject):
+class AbstractLDAPTreeItem(object):
     """
     This is an abstract class which the items of the LDAPTreeItemModel should subclass.
     """
     
-    SUPPORT_NONE = 0
-    SUPPORT_RELOAD = 1
-    SUPPORT_FILTER = 2
-    SUPPORT_LIMIT = 4
-    SUPPORT_CLEAR = 8
+    # Used from getSupportedOperations()
+    # which returns the result of or-ing (|) the supported operations
+    # e.g. "return SUPPORT_FILTER | SUPPORT_LIMIT"
+    SUPPORT_NONE = 0 # Should only be used alone
+    SUPPORT_RELOAD = 1 # Probably works on all items
+    SUPPORT_FILTER = 2 # Indicates the item has implement setFilter
+    SUPPORT_LIMIT = 4 # Indicates the item has implement setLimit
+    SUPPORT_CLEAR = 8 # Probably works on all items
     
-    def __init__(self, parent, modelParent):
+    def __init__(self, parent):
         """
         parent = the item above this
-        modelParent = the model the item is part of (possible unneccessary)
         """
-        QObject.__init__(self, parent)
-        self.modelParent = modelParent
+        #QObject.__init__(self, parent)
         self.parentItem = parent
         
         # The list of childs to this item
@@ -78,7 +80,7 @@ class AbstractLDAPTreeItem(QObject):
         """
         Displays an error-box if populating it's child list fails.
         """
-        QtGui.QMessageBox.information(None,"Error","Couldn't populate list.\nError was: "+str(exceptionObject))
+        QMessageBox.information(None,"Error","Couldn't populate list.\nError was: "+str(exceptionObject))
 
     def columnCount(self):
         """
@@ -105,4 +107,7 @@ class AbstractLDAPTreeItem(QObject):
         raise NotImplementedError("Should be implemented")
         
     def getSupportedOperations(self):
+        """
+        Returns the result of or-ing (|) the supported operations (AbstractLDAPTreeItem.SUPPORT_X) for this item
+        """
         raise NotImplementedError("Should be implemented")

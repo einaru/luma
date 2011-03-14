@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
-from PyQt4.QtCore import *
-from PyQt4.QtGui import *
+#from PyQt4.QtCore import *
+from PyQt4.QtGui import QWidget
 from base.util.gui.PluginListWidgetDesign import Ui_pluginListWidget
 from base.util.model.PluginListWidgetModel import PluginListWidgetModel
 
@@ -22,7 +22,13 @@ class PluginListWidget(QWidget, Ui_pluginListWidget):
         
         self.parent = parent
         self.setupUi(self)
+
         self.listView.setModel(PluginListWidgetModel(self.parent))
+
+        
+        self._model = PluginListWidgetModel(self)
+        self.listView.setModel(self._model)
+
         
     def pluginDoubleClicked(self, index):
         if self.parent and hasattr(self.parent, "pluginSelected"):

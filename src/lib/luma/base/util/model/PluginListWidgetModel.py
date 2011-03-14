@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
-from PyQt4.QtCore import *
-from PyQt4.QtGui import *
+from PyQt4.QtCore import QSettings
+from PyQt4.QtGui import QStandardItemModel, QStandardItem
 from base.backend.PluginLoader import PluginLoader
 
 class PluginListWidgetModel(QStandardItemModel):
@@ -37,7 +37,9 @@ class PluginListWidgetModel(QStandardItemModel):
         #When beginGroup is set to plugins, the childgroups will be each of the plugins..
         for plugin in self._settings.childGroups():
             valueString = str(plugin) + "/load"
-            value = self._settings.value(valueString).toString()
+            value = self._settings.value(valueString, "True").toString()
+            print plugin
+            print value
             if value == "True":
                 pluginlist.append(str(plugin))
        

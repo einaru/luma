@@ -113,7 +113,7 @@ class PluginLoader(object):
         set to true.
         All of the meta information about a plugin will be put into a PluginObject.
         """
-
+        
         from base.backend.PluginObject import PluginObject
         plugin = PluginObject()
         
@@ -151,6 +151,8 @@ class PluginLoader(object):
             errorString += "The following attributes are missing: \n"
             for x in missingAttributes:
                 errorString += "\t" + x + "\n"
+                errorString = errorString + x + " "
+            errorString = errorString + "\n"
             raise PluginMetaError, errorString
             
         plugin.pluginName = importedModule.pluginName

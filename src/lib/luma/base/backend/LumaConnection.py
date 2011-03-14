@@ -92,9 +92,7 @@ class LumaConnection(object):
         
         self.logger.debug("Entering waiting-for-search-finished-loop.")
         while not workerThread.FINISHED:
-            # Process events until finished.
-            qApp.processEvents()
-            time.sleep(0.05)
+            self.whileWaiting()
         self.logger.debug("Exited waiting-for-search-finished-loop.")
 
         if None == workerThread.exceptionObject:
@@ -147,11 +145,11 @@ class LumaConnection(object):
         workerThread.dnDelete = dnDelete
         workerThread.start()
         
+        #Should probably be done by the calling method instead
+        self.setBusy(True)
         while not workerThread.FINISHED:
-            #environment.updateUI()
-            time.sleep(0.01)
-            
-        #environment.setBusy(False)
+            self.whileWaiting()
+        self.setBusy(False)
         
         if None == workerThread.exceptionObject:
             message = "LDAP object " + dnDelete + " successfully deleted."
@@ -179,11 +177,11 @@ class LumaConnection(object):
         workerThread.modlist = modlist
         workerThread.start()
         
+        #Should probably be done by the calling method instead
+        self.setBusy(True)
         while not workerThread.FINISHED:
-            #environment.updateUI()
-            time.sleep(0.05)
-            
-        #environment.setBusy(False)
+            self.whileWaiting()
+        self.setBusy(False)
         
         if None == workerThread.exceptionObject:
             message = "LDAP object " + dn + " successfully modified."
@@ -209,11 +207,11 @@ class LumaConnection(object):
         workerThread.modlist = modlist
         workerThread.start()
         
+        #Should probably be done by the calling method instead
+        self.setBusy(True)
         while not workerThread.FINISHED:
-            #environment.updateUI()
-            time.sleep(0.05)
-        
-        #environment.setBusy(False)
+            self.whileWaiting()
+        self.setBusy(False)
         
         if None == workerThread.exceptionObject:
             message = "LDAP object " + dn + " successfully added."
@@ -315,9 +313,12 @@ class LumaConnection(object):
         workerThread = WorkerThreadBind(self.serverObject)
         workerThread.start()
         
+        #Should probably be done by the calling method instead
+        self.setBusy(True)
         while not workerThread.FINISHED:
-            #environment.updateUI()
-            time.sleep(0.05)
+            self.whileWaiting()
+        self.setBusy(False)
+        
         return workerThread
         
     # Internal helper functions with semi self explaining names
@@ -427,8 +428,7 @@ class LumaConnection(object):
             self.logger.info(message)
             return (True, dnList, None)
             
-###############################################################################
-
+            
     def cleanDN(self, dnString):
         tmpList = []
         
@@ -444,7 +444,15 @@ class LumaConnection(object):
         s = s.replace('\+', r'\2B')
         return s
         
-###############################################################################
+    def whileWaiting(self):
+        qApp.processEvents()
+        time.sleep(0.05)
+        
+    def setBusy(self, bool):
+        if bool:
+            qApp.setOverrideCursor(Qt.WaitCursor)
+        else:
+            qApp.restoreOverrideCursor()
 
 class WorkerThreadSearch(threading.Thread):
         
@@ -463,9 +471,8 @@ class WorkerThreadSearch(threading.Thread):
     def run(self):
         self.logger.debug("Started LDAP-search.")
         try:
-            
             resultId = self.ldapServerObject.search_ext(self.base, self.scope, self.filter, self.attrList, self.attrsonly, sizelimit=self.sizelimit)
-
+        
             while 1:
                 # search with a 60 second timeout
                 result_type, result_data = self.ldapServerObject.result(resultId, 0, 60)
@@ -476,7 +483,6 @@ class WorkerThreadSearch(threading.Thread):
                     if result_type == ldap.RES_SEARCH_ENTRY:
                         for x in result_data:
                             self.result.append(x)
-            
             #self.result = self.ldapServerObject.search_ext_s(self.base, self.scope, self.filter, self.attrList, self.attrsonly, sizelimit=self.sizelimit)
         except ldap.LDAPError, e:
             self.exceptionObject = e

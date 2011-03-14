@@ -44,13 +44,12 @@ class SmartDataObject (object):
                 if "objectclass" == x.lower():
                     self.objectClassName = x
                     break
-        
+                    
         # Set server meta information
         self.serverMeta = serverMeta
         
         # Set schema for current server
-        # TODO: should not be None 
-        self.serverSchema = ObjectClassAttributeInfo(None)
+        self.serverSchema = ObjectClassAttributeInfo(serverMeta)
         
         #self.checkIntegrity()
         
@@ -670,7 +669,7 @@ class SmartDataObject (object):
                 errorList = []
                 errorList.append("Can't delete attribute. Attribute must be present in object.")
                 errorList.append(" DN: " + self.getPrettyDN() + ".")
-                errorList.append(" To delete: Attribute=" + attributeName + "   Index=" + str(index))
+                errorList.append(" To delete: Attribute=" + attributeName) #+ "   Index=" + str(index))
                 errorList.append(". Current data: " + repr(self.data))
                 raise LdapDataException("".join(errorList))
                 pass

@@ -34,10 +34,11 @@ class BrowserView(QWidget):
         self.serverList = ServerList(configPrefix)
 
         self.mainLayout = QtGui.QHBoxLayout(self)
+        
         self.splitter = QtGui.QSplitter(self)
         
         # The model for server-content
-        self.ldaptreemodel = LDAPTreeItemModel(parent)
+        self.ldaptreemodel = LDAPTreeItemModel(self)
         self.ldaptreemodel.populateModel(self.serverList)
         
         # For testing ONLY
@@ -45,8 +46,11 @@ class BrowserView(QWidget):
         #self.modeltest = modeltest.ModelTest(self.ldaptreemodel, self);
         
         # The view for server-content
-        self.entryList = QtGui.QTreeView(self.splitter)
+        self.entryList = QtGui.QTreeView(self)
         self.entryList.setMinimumWidth(200)
+        self.entryList.setMaximumWidth(400)
+        #self.entryList.setAlternatingRowColors(True)
+        self.entryList.setAnimated(True) # Somewhat cool, but should be removed if deemed too taxing
         self.entryList.setUniformRowHeights(True) #Major optimalization for big lists
         self.entryList.setModel(self.ldaptreemodel)
         # For right-clicking in the tree
@@ -56,11 +60,18 @@ class BrowserView(QWidget):
         self.entryList.clicked.connect(self.initEntryView)
         
         # The editor for entries
-        #self.entryView = TableView(self.splitter)
-	self.entryView = AdvancedObjectView(self.splitter)
-
+        self.tabWidget = QtGui.QTabWidget(self)
+        self.setMinimumWidth(200)
+        self.tabWidget.setTabsClosable(True)
+        self.tabWidget.tabCloseRequested.connect(self.tabCloseClicked)
+        #self.entryView = AdvancedObjectView(self)
+        #self.tabWidget.addTab(self.entryView, "QString")
+            
+        self.splitter.addWidget(self.entryList)
+        self.splitter.addWidget(self.tabWidget)
+        #self.splitter.addWidget(self.entryView)
         self.mainLayout.addWidget(self.splitter)
-        
+
         # Used to signal the ldaptreemodel with a index
         # which needs processing (reloading, clearing)
         self.reloadSignal.connect(self.ldaptreemodel.reloadItem)
@@ -68,11 +79,16 @@ class BrowserView(QWidget):
         
         # Working / needed?
         self.ldaptreemodel.dataChanged.connect(self.entryList.dataChanged)
+
         
     # Custom signals used
     reloadSignal = QtCore.pyqtSignal(QtCore.QModelIndex)
     clearSignal = QtCore.pyqtSignal(QtCore.QModelIndex)
     
+    def tabCloseClicked(self, index):
+        #TODO Check if should save etc etc
+        self.tabWidget.removeTab(index)
+
     def rightClick(self, point):
         """
         Called when the view is right-clicked.
@@ -81,7 +97,6 @@ class BrowserView(QWidget):
         
         # Remember the index so it can be used from the method selected from the pop-up-menu
         self.clickedIndex = self.entryList.indexAt(point)
-        #self.ldaptreemodel.currentIndex = self.clickedIndex #TODO REMOVE
         
         clickedItem = self.clickedIndex.internalPointer()
         if clickedItem != None:
@@ -143,20 +158,17 @@ class BrowserView(QWidget):
             return
         
         # Elso, gogo
-	self.model = LDAPEntryModel(index)
-        self.entryView.setModel(self.model)
-	self.entryView.displayValues()
+        x = AdvancedObjectView()
+        x.setModel(LDAPEntryModel(index))
+        x.displayValues()
+        
+        self.tabWidget.addTab(x, x.ldapDataObject.getPrettyRDN())
+        self.tabWidget.setCurrentWidget(x)
+
 
     def buildToolBar(self, parent):
         # FIXME: qt4 migration needed
         #self.entryView.buildToolBar(parent)
         pass
-
-class TableView(QtGui.QTableView):
-
-    def __init__(self, parent):
-        QtGui.QWidget.__init__(self, parent)
-        self.setShowGrid(False)
-
 
 

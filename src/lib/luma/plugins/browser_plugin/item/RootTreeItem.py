@@ -8,8 +8,8 @@ class RootTreeItem(AbstractLDAPTreeItem):
     Represent the (invisible) root item of the model.
     """
     
-    def __init__(self, title, parent = None, modelParent = None):
-        AbstractLDAPTreeItem.__init__(self, parent, modelParent = modelParent)
+    def __init__(self, title, parent = None):
+        AbstractLDAPTreeItem.__init__(self, parent)
         self.title = title
         self.logger = logging.getLogger(__name__)
         

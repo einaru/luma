@@ -41,6 +41,9 @@ class ServerList(object):
     certCache = {}
     
     def __init__(self, configPrefix = None, serverFileName = "serverlist.xml"):
+        if configPrefix == None:
+            #TODO Should get default
+            configPrefix = "/tmp"
         self._serverList = []
         self._configPrefix = configPrefix
         self._configFile = os.path.join(self._configPrefix, serverFileName)
