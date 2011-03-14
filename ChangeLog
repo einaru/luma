@@ -7,8 +7,12 @@ log.
 	
 	Features:
 	* Browser-plugin:
+	The Browser plugin now supports editing entries
 	* Plugin-support:
+	Luma is now able to load plugins from the default plugin location.
 	* Installation/Deployment:
+	A simple installation procedure is included, making use of pythons own
+	distutils module.
 
 2011-03-01  Einar Uvsløkk  <einar.uvslokk@linux.com>
 	This branch marks the end of sprint 2. (Luma v3.0.2-sprint2)
