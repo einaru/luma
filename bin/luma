@@ -2,9 +2,8 @@
 
 try:
     from luma import luma
-    print "installed"
+    luma.main()
 except:
-    import lib.luma
-    print "not installed"
-
-luma.main()
+    print "Luma seems to missing from PYHTONPATH."
+    print "Unable to launch application..."
+    sys.exit()
