@@ -41,9 +41,12 @@ class ServerList(object):
     certCache = {}
     
     def __init__(self, configPrefix = None, serverFileName = "serverlist.xml"):
+<<<<<<< HEAD
         if configPrefix == None:
             #TODO Should get default
             configPrefix = "/tmp"
+=======
+>>>>>>> S3-installation-v2
         self._serverList = []
         self._configPrefix = configPrefix
         self._configFile = os.path.join(self._configPrefix, serverFileName)

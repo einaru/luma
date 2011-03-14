@@ -8,6 +8,7 @@
 #
 ###########################################################################
 
+<<<<<<< HEAD
 """
 TODO: Proper busy-indicator-handling (?)
 """
@@ -19,6 +20,11 @@ import ldap
 import ldap.schema
 import ldapurl
 import logging
+=======
+import ldap
+import ldap.schema
+import ldapurl
+>>>>>>> S3-installation-v2
 
 import re
 from sets import Set
@@ -44,8 +50,11 @@ class ObjectClassAttributeInfo(object):
     # schema-cache of all servers whose schema has been requested already
     serverMetaCache = {}
     
+<<<<<<< HEAD
     logging = logging.getLogger(__name__)
     
+=======
+>>>>>>> S3-installation-v2
     def __init__(self, serverMeta=None):
         # Dictionaries with lowercase names of attributes and objectclasses
         self.objectClassesDict = {}
@@ -90,6 +99,7 @@ class ObjectClassAttributeInfo(object):
             
             workerThread = WorkerThreadFetch(serverMeta)
             workerThread.start()
+<<<<<<< HEAD
             
             qApp.setOverrideCursor(Qt.WaitCursor)
             while not workerThread.FINISHED:
@@ -98,6 +108,13 @@ class ObjectClassAttributeInfo(object):
                 time.sleep(0.05)
             qApp.restoreOverrideCursor()
 
+=======
+        
+            while not workerThread.FINISHED:
+                environment.updateUI()
+                time.sleep(0.05)
+        
+>>>>>>> S3-installation-v2
             if None == workerThread.exceptionObject:
                 self.objectClassesDict = workerThread.objectClassesDict
                 self.attributeDict = workerThread.attributeDict
@@ -112,13 +129,23 @@ class ObjectClassAttributeInfo(object):
                 metaData['matchingDict'] = self.matchingDict
                 self.__class__.serverMetaCache[self.serverMeta.name] = metaData
                 tmpString = "Schema information for server " + self.serverMeta.name + " retrieved."
+<<<<<<< HEAD
                 self.logging.info(tmpString)
+=======
+                environment.logMessage(LogObject("Info", tmpString))
+>>>>>>> S3-installation-v2
             else:
                 self.failure = True
                 self.failureException = workerThread.exceptionObject
                 tmpString = "Could not fetch LDAP schema from server. Reason:\n"
                 tmpString += str(workerThread.exceptionObject)
+<<<<<<< HEAD
                 self.logging.error(tmpString)
+=======
+                environment.logMessage(LogObject("Error", tmpString))
+
+        environment.setBusy(False)
+>>>>>>> S3-installation-v2
 
 ###############################################################################
 
@@ -559,7 +586,11 @@ class WorkerThreadFetch(threading.Thread):
                 credVal = self.serverMeta.bindPassword
                 
             url = ldapurl.LDAPUrl(urlscheme=urlschemeVal, 
+<<<<<<< HEAD
                 hostport = self.serverMeta.hostname + ":" + str(self.serverMeta.port),
+=======
+                hostport = self.serverMeta.host + ":" + str(self.serverMeta.port),
+>>>>>>> S3-installation-v2
                 dn = self.serverMeta.baseDN, who = whoVal,
                 cred = credVal)
             
@@ -597,11 +628,15 @@ class WorkerThreadFetch(threading.Thread):
                     message = "Certificate error. Reason:\n"
                     message += "Could not set client certificate and certificate keyfile. "
                     message += str(e)
+<<<<<<< HEAD
                     
                     #TODO LOGGING
                     print "Error:",message,"in ObjectClassAttributeInfo.WorkerThreadFetch"
                     print "TODO - proper logging/error-handling"
                     #environment.logMessage(LogObject("Error,",message))
+=======
+                    environment.logMessage(LogObject("Error,",message))
+>>>>>>> S3-installation-v2
                     
             
             if self.serverMeta.encryptionMethod == "TLS":
@@ -645,7 +680,11 @@ class WorkerThreadFetch(threading.Thread):
                         #    hostport = self.serverMeta.host.replace("/", "%2f"),
                         #    dn = self.serverMeta.baseDN)
                             
+<<<<<<< HEAD
                         url = "ldapi://" + self.serverMeta.hostname.replace("/", "%2F").replace(",", "%2C")
+=======
+                        url = "ldapi://" + self.serverMeta.host.replace("/", "%2F").replace(",", "%2C")
+>>>>>>> S3-installation-v2
             
                         #self.ldapServerObject = ldap.initialize(url.initializeUrl())
                         self.ldapServerObject = ldap.initialize(url)

@@ -1,0 +1,9 @@
+#!/usr/bin/env python
+
+try:
+    from luma import luma
+    luma.main()
+except:
+    print "Luma seems to missing from PYHTONPATH."
+    print "Unable to launch application..."
+    sys.exit()

@@ -17,6 +17,10 @@
 # with Luma; if not, write to the Free Software Foundation, Inc., 
 # 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA
 
+<<<<<<< HEAD
+=======
+@DeprecationWarning
+>>>>>>> S3-installation-v2
 class Paths(object):
     """
     The Paths class is a worshipper of the evil Singleton pattern.
@@ -56,6 +60,7 @@ class Paths(object):
         """
         self.__i18nPath = path
 
+<<<<<<< HEAD
 import os
 from os import listdir
 
@@ -188,6 +193,8 @@ class LanguageHandler(object):
         if isoCode == '' or isoCode == None:
             isoCode = u'en'
         return os.path.join(self.translationPath, u'luma_%s.qm' % isoCode)
+=======
+>>>>>>> S3-installation-v2
 import re
 import base64
 

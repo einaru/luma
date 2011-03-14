@@ -1,8 +1,14 @@
 # -*- coding: utf-8 -*-
 
+<<<<<<< HEAD
 # Form implementation generated from reading ui file '/mnt/debris/devel/git/luma/src/lib/luma/resources/forms/ServerDialogDesign.ui'
 #
 # Created: Fri Feb 25 12:12:02 2011
+=======
+# Form implementation generated from reading ui file '/mnt/debris/devel/git/luma-playground/resources/forms/ServerDialogDesign.ui'
+#
+# Created: Mon Mar 14 12:54:08 2011
+>>>>>>> S3-installation-v2
 #      by: PyQt4 UI code generator 4.7.4
 #
 # WARNING! All changes made in this file will be lost!
@@ -203,9 +209,12 @@ class Ui_ServerDialogDesign(object):
         sizePolicy.setHeightForWidth(self.networkLabel.sizePolicy().hasHeightForWidth())
         self.networkLabel.setSizePolicy(sizePolicy)
         self.networkLabel.setMinimumSize(QtCore.QSize(48, 48))
+<<<<<<< HEAD
         self.networkLabel.setPixmap(QtGui.QPixmap(":/images/server.png"))
         self.networkLabel.setWordWrap(False)
         self.networkLabel.setObjectName("networkLabel")
+=======
+>>>>>>> S3-installation-v2
         self.verticalLayout_5.addWidget(self.networkLabel)
         spacerItem3 = QtGui.QSpacerItem(20, 40, QtGui.QSizePolicy.Minimum, QtGui.QSizePolicy.Expanding)
         self.verticalLayout_5.addItem(spacerItem3)
@@ -227,9 +236,12 @@ class Ui_ServerDialogDesign(object):
         self.authLabel.setSizePolicy(sizePolicy)
         self.authLabel.setMinimumSize(QtCore.QSize(48, 48))
         self.authLabel.setText("")
+<<<<<<< HEAD
         self.authLabel.setPixmap(QtGui.QPixmap(":/images/password_medium.png"))
         self.authLabel.setWordWrap(False)
         self.authLabel.setObjectName("authLabel")
+=======
+>>>>>>> S3-installation-v2
         self.verticalLayout_4.addWidget(self.authLabel)
         spacerItem5 = QtGui.QSpacerItem(0, 0, QtGui.QSizePolicy.Minimum, QtGui.QSizePolicy.Expanding)
         self.verticalLayout_4.addItem(spacerItem5)
@@ -447,10 +459,13 @@ class Ui_ServerDialogDesign(object):
         sizePolicy.setHeightForWidth(self.securityLabel.sizePolicy().hasHeightForWidth())
         self.securityLabel.setSizePolicy(sizePolicy)
         self.securityLabel.setMinimumSize(QtCore.QSize(48, 48))
+<<<<<<< HEAD
         self.securityLabel.setText("")
         self.securityLabel.setPixmap(QtGui.QPixmap(":/images/config.png"))
         self.securityLabel.setWordWrap(False)
         self.securityLabel.setObjectName("securityLabel")
+=======
+>>>>>>> S3-installation-v2
         self.verticalLayout_3.addWidget(self.securityLabel)
         spacerItem13 = QtGui.QSpacerItem(0, 0, QtGui.QSizePolicy.Minimum, QtGui.QSizePolicy.Expanding)
         self.verticalLayout_3.addItem(spacerItem13)
@@ -585,8 +600,11 @@ class Ui_ServerDialogDesign(object):
         self.applyButton.setShortcut(QtGui.QApplication.translate("ServerDialogDesign", "Alt+A", None, QtGui.QApplication.UnicodeUTF8))
         self.cancelButton.setText(QtGui.QApplication.translate("ServerDialogDesign", "&Cancel", None, QtGui.QApplication.UnicodeUTF8))
         self.cancelButton.setShortcut(QtGui.QApplication.translate("ServerDialogDesign", "Alt+C", None, QtGui.QApplication.UnicodeUTF8))
+<<<<<<< HEAD
 
 import luma_rc
 import luma_rc
 import luma_rc
 import luma_rc
+=======
+>>>>>>> S3-installation-v2

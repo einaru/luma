@@ -4,7 +4,11 @@ Created on 2. feb. 2011
 @author: Christian Forfang and Simen Natvig
 '''
 
+<<<<<<< HEAD
 from PyQt4.QtGui import QDialog, QDataWidgetMapper, QItemSelectionModel, QListWidgetItem, QInputDialog, QMessageBox, QApplication, QFileDialog
+=======
+from PyQt4.QtGui import QDialog, QDataWidgetMapper, QItemSelectionModel, QListWidgetItem, QInputDialog, QMessageBox, QApplication, QFileDialog, QPixmap
+>>>>>>> S3-installation-v2
 from PyQt4.QtCore import QModelIndex, Qt, QAbstractListModel
 from PyQt4 import QtCore
 
@@ -26,6 +30,13 @@ class ServerDialog(QDialog, Ui_ServerDialogDesign):
         QDialog.__init__(self)
         self.setupUi(self)
         
+<<<<<<< HEAD
+=======
+        self.securityLabel.setPixmap(QPixmap(":/icons/config"))
+        self.authLabel.setPixmap(QPixmap(":/icons/passwordmedium"))
+        self.networkLabel.setPixmap(QPixmap(":/icons/network-server"))
+        
+>>>>>>> S3-installation-v2
         self._serverList = copy.deepcopy(serverList)
         self._serverListCopy = None
         self._returnList = None

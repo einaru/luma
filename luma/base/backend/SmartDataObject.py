@@ -44,12 +44,21 @@ class SmartDataObject (object):
                 if "objectclass" == x.lower():
                     self.objectClassName = x
                     break
+<<<<<<< HEAD
                     
+=======
+        
+>>>>>>> S3-installation-v2
         # Set server meta information
         self.serverMeta = serverMeta
         
         # Set schema for current server
+<<<<<<< HEAD
         self.serverSchema = ObjectClassAttributeInfo(serverMeta)
+=======
+        # TODO: should not be None 
+        self.serverSchema = ObjectClassAttributeInfo(None)
+>>>>>>> S3-installation-v2
         
         #self.checkIntegrity()
         
@@ -669,7 +678,11 @@ class SmartDataObject (object):
                 errorList = []
                 errorList.append("Can't delete attribute. Attribute must be present in object.")
                 errorList.append(" DN: " + self.getPrettyDN() + ".")
+<<<<<<< HEAD
                 errorList.append(" To delete: Attribute=" + attributeName) #+ "   Index=" + str(index))
+=======
+                errorList.append(" To delete: Attribute=" + attributeName + "   Index=" + str(index))
+>>>>>>> S3-installation-v2
                 errorList.append(". Current data: " + repr(self.data))
                 raise LdapDataException("".join(errorList))
                 pass

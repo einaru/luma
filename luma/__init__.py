@@ -17,5 +17,11 @@
 # with Luma; if not, write to the Free Software Foundation, Inc., 
 # 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA
 
+<<<<<<< HEAD
 ORGNAME = APPNAME = u'luma'
 VERSION = u'3.0.2-devel'
+=======
+ORGNAME = APPNAME = 'luma'
+VERSION = '3.0.3-sprint3'
+DESCRIPTION = 'LDAP browser and administration utility'
+>>>>>>> S3-installation-v2

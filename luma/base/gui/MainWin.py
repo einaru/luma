@@ -39,8 +39,13 @@ import sys
 import logging
 from random import randint
 
+<<<<<<< HEAD
 from PyQt4.QtCore import Qt, pyqtSlot, pyqtSignal
 from PyQt4.QtCore import QEvent, QString
+=======
+from PyQt4.QtCore import Qt, pyqtSlot
+from PyQt4.QtCore import QEvent
+>>>>>>> S3-installation-v2
 from PyQt4.QtCore import QTranslator
 
 from PyQt4.QtGui import QAction, QActionGroup, QApplication, qApp
@@ -48,11 +53,18 @@ from PyQt4.QtGui import QDialog, QDockWidget
 from PyQt4.QtGui import QFont
 from PyQt4.QtGui import QLabel, QListWidget
 from PyQt4.QtGui import QMainWindow
+<<<<<<< HEAD
 from PyQt4.QtGui import QPushButton
 from PyQt4.QtGui import QStandardItem, QStandardItemModel
 from PyQt4.QtGui import QToolBar
 from PyQt4.QtGui import QWidget
 from PyQt4.QtGui import QProgressBar
+=======
+from PyQt4.QtGui import QPixmap, QPushButton
+from PyQt4.QtGui import QStandardItem, QStandardItemModel
+from PyQt4.QtGui import QToolBar
+from PyQt4.QtGui import QWidget
+>>>>>>> S3-installation-v2
 
 from base.backend.ServerList import ServerList
 from base.gui import Settings
@@ -64,11 +76,16 @@ from base.gui.MainWinDesign import Ui_MainWindow
 from base.gui.PluginSettings import PluginSettings
 from base.gui.SettingsDialogDesign import Ui_SettingsDialog
 from base.gui.ServerDialog import ServerDialog
+<<<<<<< HEAD
 from base.util import LanguageHandler
 from base.util.gui.PluginListWidget import PluginListWidget
 from base.model.PluginSettingsModel import PluginSettingsModel
 
 
+=======
+from base.util.gui.PluginListWidget import PluginListWidget
+from base.util.i18n import LanguageHandler
+>>>>>>> S3-installation-v2
 
 
 class MainWindow(QMainWindow, Ui_MainWindow):
@@ -91,6 +108,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.languageHandler = LanguageHandler()
         self.languages = self.languageHandler.availableLanguages
         self.setupUi(self)
+<<<<<<< HEAD
         
         self.__createPluginToolBar()
         self.__createLoggerWidget()
@@ -105,13 +123,24 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         
         #TODO REMOVE
         #qApp.postEvent(qApp, QEvent(QEvent.User))
+=======
+        self.createPluginToolBar()
+        self.createLoggerWidget()
+
+        self.loadSettings()
+        self.__setupPluginList()
+        self.createLanguageOptions()
+>>>>>>> S3-installation-v2
 
         if self.DEVEL:
             self.actionEditServerList.setStatusTip(
                 u'Final GUI polishing by Granbusk\u2122 Polishing')
 
+<<<<<<< HEAD
     def getProgressBar(self):
         return self.progressBar
+=======
+>>>>>>> S3-installation-v2
 
     def __setupPluginList(self):
         """
@@ -123,20 +152,37 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.pluginDockWindow.setWidget(self.pluginWidget) 
         self.addDockWidget(Qt.TopDockWidgetArea, self.pluginDockWindow)
         """
+<<<<<<< HEAD
             
         self.pluginWidget = PluginListWidget(self)
         self.mainStack.addWidget(self.pluginWidget)
         self.showPlugins()
         
     def __createPluginToolBar(self):
+=======
+
+        self.pluginWidget = PluginListWidget(self)
+        self.mainStack.addWidget(self.pluginWidget)
+        self.mainStack.setCurrentWidget(self.pluginWidget)
+
+
+    def createPluginToolBar(self):
+>>>>>>> S3-installation-v2
         """
         Creates the pluign toolbar.
         """
         self.pluginToolBar = PluginToolBar(self)
         self.addToolBar(self.pluginToolBar)
+<<<<<<< HEAD
 
 
     def __createLoggerWidget(self):
+=======
+        self.pluginBoxId = self.mainStack.addWidget(self.pluginToolBar.pluginList)
+
+
+    def createLoggerWidget(self):
+>>>>>>> S3-installation-v2
         """
         Creates the logger widget.
         """
@@ -149,7 +195,11 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.loggerDockWindow.hide()
 
 
+<<<<<<< HEAD
     def __createLanguageOptions(self):
+=======
+    def createLanguageOptions(self):
+>>>>>>> S3-installation-v2
         """
         Creates the language selection in the menubar.
         """
@@ -169,7 +219,11 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 action.setChecked(True)
 
 
+<<<<<<< HEAD
     def __loadSettings(self, mainWin=True):
+=======
+    def loadSettings(self, mainWin=True):
+>>>>>>> S3-installation-v2
         """
         Loads settings from file.
         
@@ -366,8 +420,12 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             # We assume that some settings is changed 
             # if the user clicked the ok button, and
             # reloads the application settings
+<<<<<<< HEAD
             self.__loadSettings(mainWin=False)
             self.reloadPlugins()
+=======
+            self.loadSettings(mainWin=False)
+>>>>>>> S3-installation-v2
             # A Hack but it'll do for now
             for a in self.langGroup.actions():
                 if a.data().toString() == self.currentLanguage:
@@ -386,6 +444,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         """
         Slot to reload plugins.
         """
+<<<<<<< HEAD
         self.pluginWidget.updatePlugins()
 
     def loadPlugins(self):
@@ -436,6 +495,37 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 self.pluginToolBar.button.setEnabled(False)
                 self.pluginToolBar.label.setText(QApplication.translate('MainWindow', "Available plugins", None, QApplication.UnicodeUTF8))
                 
+=======
+        self.TODO(u'reload plugins')
+
+
+    def loadPlugins(self):
+        """
+        Slot to load plugins.
+        """
+        self.TODO(u'load plugins)')
+
+
+    def pluginSelected(self, plugin):
+        """
+        This method will be called from the PluginListWidget, with a pluginobject
+        to load
+        """
+        widget = plugin.getPluginWidget(self.mainStack)
+        self.mainStack.addWidget(widget)
+        self.mainStack.setCurrentWidget(widget)
+
+
+    def showPluginSelection(self):
+        """
+        Display the plugin selection
+        """
+        s = PluginSettings()
+        s.exec_()
+        self.reloadPlugins()
+
+
+>>>>>>> S3-installation-v2
     def close(self):
         """
         Overrides the QApplication close slot to save settings before
@@ -464,18 +554,24 @@ class LoggerWidget(QWidget, Ui_LoggerWidget):
     writing it's log messages to. The widget also provides options
     to filter the log based on the loglevel on messages.
     """
+<<<<<<< HEAD
     
     logSignal = pyqtSignal(QString)
+=======
+>>>>>>> S3-installation-v2
 
     def __init__(self, parent=None):
         QWidget.__init__(self, parent)
         self.setupUi(self)
         self.logList = []
+<<<<<<< HEAD
         
         # log() can be called by any thread, so to append the message
         # to the loggerwidget, we emit it and have the owner of the textfield
         # (the gui thread) receive it and do the appending.
         self.logSignal.connect(self.appendMsg, type = Qt.QueuedConnection)
+=======
+>>>>>>> S3-installation-v2
 
 
     def clearLogger(self):
@@ -504,6 +600,7 @@ class LoggerWidget(QWidget, Ui_LoggerWidget):
             if loglvl == "INFO" and self.infoBox.isChecked():
                 self.messageEdit.append("INFO: " + msg)
                 continue
+<<<<<<< HEAD
     
     @pyqtSlot(QString)
     def appendMsg(self, msg):
@@ -518,10 +615,18 @@ class LoggerWidget(QWidget, Ui_LoggerWidget):
         Appends the log the the logList
         and uses a signal in order to have it 
         be appended to the textfield by the gui-thread
+=======
+
+
+    def log(self, log):
+        """
+        Appends messages to the log window
+>>>>>>> S3-installation-v2
         """
         loglvl, msg = log
         if loglvl == "DEBUG" and self.debugBox.isChecked():
             self.logList.append(log)
+<<<<<<< HEAD
             self.logSignal.emit("DEBUG: " + msg)
             #self.messageEdit.append("DEBUG: " + msg)
             return
@@ -534,27 +639,49 @@ class LoggerWidget(QWidget, Ui_LoggerWidget):
             self.logList.append(log)
             #self.messageEdit.append("INFO: " + msg)
             self.logSignal.emit("INFO: " + msg)
+=======
+            self.messageEdit.append("DEBUG: " + msg)
+            return
+        if loglvl == "ERROR" and self.errorBox.isChecked():
+            self.logList.append(log)
+            self.messageEdit.append("ERROR: " + msg)
+            return
+        if loglvl == "INFO" and self.infoBox.isChecked():
+            self.logList.append(log)
+            self.messageEdit.append("INFO: " + msg)
+>>>>>>> S3-installation-v2
             return
         if loglvl not in ["INFO", "ERROR", "DEBUG"]:
             # This shouldn't really happen...
             # Please only use the above levels
             self.logList.append(log)
+<<<<<<< HEAD
             #self.messageEdit.append("UNKNOWN: " + msg)
             self.logSignal.emit("UNKNOWN: " + msg)
+=======
+            self.messageEdit.append("UNKNOWN: " + msg)
+
+>>>>>>> S3-installation-v2
 
 class PluginToolBar(QToolBar):
     """
     The plugin toolbar.
     
     Provides a toolbar for quickly switching between installed plugins
+<<<<<<< HEAD
     
     The button will be enabled and disabled directly from main-win,
     and the label for the plugin-name too.
+=======
+>>>>>>> S3-installation-v2
     """
 
     def __init__(self, parent=None):
         QToolBar.__init__(self, parent)
+<<<<<<< HEAD
         self.parent = parent
+=======
+>>>>>>> S3-installation-v2
         self.setupUi()
 
     def setupUi(self):
@@ -567,6 +694,7 @@ class PluginToolBar(QToolBar):
         self.addWidget(self.label)
         self.button = QPushButton(self)
         self.addWidget(self.button)
+<<<<<<< HEAD
         self.retranslateUi(self)
         
         self.button.clicked.connect(self.choosePlugin)
@@ -578,6 +706,23 @@ class PluginToolBar(QToolBar):
     def choosePlugin(self):
         if hasattr(self.parent, "showPlugins"):
             self.parent.showPlugins()
+=======
+        self.list = QListWidget(None)
+        self.list.setFont(font)
+        self.retranslateUi(self)
+
+    def retranslateUi(self, pluginToolBar):
+        pluginToolBar.label.setText(QApplication.translate('MainWindow', 'Plugin name', None, QApplication.UnicodeUTF8))
+        pluginToolBar.button.setText(QApplication.translate('MainWindow', 'Choose plugin', None, QApplication.UnicodeUTF8))
+
+    @property
+    def pluginList(self):
+        """
+        Returns the pluginList, which will be docked in the mainStack.
+        """
+        return self.list
+
+>>>>>>> S3-installation-v2
 
 class SettingsDialog(QDialog, Ui_SettingsDialog):
     """
@@ -623,8 +768,11 @@ class SettingsDialog(QDialog, Ui_SettingsDialog):
         self.showErrors.setChecked(settings.showErrors)
         self.showDebug.setChecked(settings.showDebug)
         self.showInfo.setChecked(settings.showInfo)
+<<<<<<< HEAD
         
         
+=======
+>>>>>>> S3-installation-v2
         """ Language """
         self.languageSelector
         i = 0
@@ -634,6 +782,7 @@ class SettingsDialog(QDialog, Ui_SettingsDialog):
                 self.languageSelector.setCurrentIndex(i)
             i = i + 1
 
+<<<<<<< HEAD
 
         """ Plugins """
         self.pluginListView.setModel(PluginSettingsModel())
@@ -658,6 +807,19 @@ class SettingsDialog(QDialog, Ui_SettingsDialog):
             self.pluginSettingsStack.setCurrentWidget(widget)
     
     
+=======
+        """ Plugins """
+        model = QStandardItemModel()
+        for plugin in settings.plugins:
+            item = QStandardItem(plugin)
+            check = Qt.Checked if randint(0, 1) == 1 else Qt.Unchecked
+            item.setCheckState(check)
+            item.setCheckable(True)
+            model.appendRow(item)
+
+        self.pluginListView.setModel(model)
+
+>>>>>>> S3-installation-v2
     def saveSettings(self):
         """
         This slot is called when the ok button is clicked.
@@ -676,7 +838,10 @@ class SettingsDialog(QDialog, Ui_SettingsDialog):
         settings.language = self.languageSelector.itemData(i).toString()
 
         """ Plugins """
+<<<<<<< HEAD
         self.pluginListView.model().saveSettings()
+=======
+>>>>>>> S3-installation-v2
 
         QDialog.accept(self)
 
@@ -696,6 +861,11 @@ class AboutDialog(QDialog, Ui_AboutDialog):
     def __init__(self, parent=None):
         QDialog.__init__(self)
         self.setupUi(self)
+<<<<<<< HEAD
+=======
+        
+        self.labelLogo.setPixmap(QPixmap(':/icons/luma-64'))
+>>>>>>> S3-installation-v2
 
     def showLicense(self):
         """
@@ -713,3 +883,13 @@ class AboutDialog(QDialog, Ui_AboutDialog):
         credits = QDialog()
         Ui_AboutCredits().setupUi(credits)
         credits.exec_ ()
+<<<<<<< HEAD
+=======
+
+
+if __name__ == '__main__':
+    app = QApplication(sys.argv)
+    win = MainWindow()
+    win.show()
+    sys.exit(app.exec_())
+>>>>>>> S3-installation-v2

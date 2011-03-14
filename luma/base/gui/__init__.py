@@ -25,6 +25,11 @@ from PyQt4.QtGui import QPixmap
 from PyQt4.QtGui import QSizePolicy, QSplashScreen
 from PyQt4.QtGui import QVBoxLayout
 
+<<<<<<< HEAD
+=======
+import resources
+
+>>>>>>> S3-installation-v2
 class Settings(QSettings):
     """
     The Settings class extends the QSettings class, to provide an easy and
@@ -152,7 +157,10 @@ class Settings(QSettings):
                  u'Templates',
                  u'User management' ]
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> S3-installation-v2
 class SplashScreen(QSplashScreen):
     def __init__(self):
         QSplashScreen.__init__(self)
@@ -162,6 +170,7 @@ class SplashScreen(QSplashScreen):
         self.setObjectName(u'splash_screen')
         self.setWindowFlags(self.windowFlags() | Qt.WindowStaysOnTopHint)
         self.setContextMenuPolicy(Qt.PreventContextMenu)
+<<<<<<< HEAD
         splash_image = QPixmap(u':/images/splash.png')
         self.setPixmap(splash_image)
         self.setMask(splash_image.mask())
@@ -195,3 +204,10 @@ class Ui_SplashScreen(object):
 
     def retranslateUi(self, SplashScreen):
         SplashScreen.setWindowTitle(QApplication.translate("SplashScreen", "Splash Screen", None, QApplication.UnicodeUTF8))
+=======
+        splash_image = QPixmap(":/icons/luma-128")
+        self.setPixmap(splash_image)
+        self.setMask(splash_image.mask())
+        self.resize(128, 120)
+        QMetaObject.connectSlotsByName(self)
+>>>>>>> S3-installation-v2
