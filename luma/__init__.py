@@ -19,3 +19,4 @@
 
 ORGNAME = APPNAME = u'luma'
 VERSION = u'3.0.2-devel'
+DESCRIPTION = u'LDAP browser and administration utility'

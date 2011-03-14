@@ -22,7 +22,7 @@ import os
 import sys
 from distutils.core import setup
 
-from lib.luma.__init__ import APPNAME, VERSION, DESCRIPTION
+import luma.__init__ as appinfo
 
 def fullSplit(path, result=None):
     """
@@ -73,10 +73,11 @@ textfiles = [
     'COPYING',
     'INSTALL',
     'README',
+    'TODO',
 ]
 desktopfile = 'data/luma.desktop'
 extra = {}
-src_dir = 'lib/luma'
+src_dir = 'luma'
 app_dir = 'luma'
 
 # For a complete list of available classifiers, see:
@@ -96,12 +97,12 @@ _classifiers = [
 ]
 
 dist = setup(
-    name=APPNAME,
-    version=VERSION,
+    name=appinfo.APPNAME,
+    version=appinfo.VERSION,
     author='luma devel team',
     author_email='luma@ldap.brows.er',
     url='http://luma.sf.net',
-    description=DESCRIPTION,
+    description=appinfo.DESCRIPTION,
     license='GNU General Public License (GPL) version 2',
     packages=findPackages(),
     package_dir={
@@ -111,15 +112,4 @@ dist = setup(
     classifiers=_classifiers,
 )
 
-if dist.have_run.get('install'):
-    install = dist.get_command_obj('install')
-    
-    for file in textfiles:
-        pass
-    
-    # Install the luma.dekstop file on Posix system
-    # (e.g. Linux, *BSD, ...)
-    if os.name == 'posix':
-        dest = os.path.join(install.install_data, 'share', 'applications')
-        install.mkpath(dest)
-        install.copy_file(desktopfile, dest)
+
