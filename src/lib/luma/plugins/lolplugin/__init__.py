@@ -12,10 +12,10 @@ from PyQt4.QtGui import *
 import os.path
 
 lumaPlugin = True
-pluginName = "browser"
-pluginUserString = "Browser"
+pluginName = "lol"
+pluginUserString = "Lol"
 version = ""
-author = "Vegar Westerlund <vegarwe@users.sourceforge.net>"
+author = ""
 
 def getIcon(iconPath):
     try:
@@ -29,9 +29,8 @@ def getIcon(iconPath):
 ###############################################################################
 
 def getPluginWidget(parent):
-    from plugins.browser_plugin.BrowserView import BrowserView
-    pluginWidget = BrowserView(None, "/tmp")
-    return pluginWidget
+    return QLabel("loool",parent)
+
     
 ###############################################################################
 
