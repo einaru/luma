@@ -9,15 +9,15 @@
 ###########################################################################
 
 from PyQt4 import QtCore, QtGui
-from PyQt4.QtGui import QWidget, QAction
-from PyQt4.QtCore import pyqtSlot, QModelIndex
-import modeltest
+from PyQt4.QtGui import QWidget#, QAction
+#from PyQt4.QtCore import pyqtSlot, QModelIndex
+#import modeltest
 
 #import environment
 from base.backend.ServerList import ServerList
 from model.LDAPTreeItemModel import LDAPTreeItemModel
 from model.LDAPEntryModel import LDAPEntryModel
-from item.LDAPTreeItem import LDAPTreeItem
+#from item.LDAPTreeItem import LDAPTreeItem
 from item.AbstractLDAPTreeItem import AbstractLDAPTreeItem
 from plugins.browser_plugin.item.ServerTreeItem import ServerTreeItem
 from plugins.browser_plugin.AdvancedObjectView import AdvancedObjectView
@@ -29,7 +29,6 @@ class BrowserView(QWidget):
         QtGui.QWidget.__init__(self, parent)
 
         self.setObjectName("PLUGIN_BROWSER")
-        
         # The serverlist used
         self.serverList = ServerList(configPrefix)
 

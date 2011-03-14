@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 
+import os
+
 from PyQt4 import QtGui
 from PyQt4 import QtCore
 
@@ -13,7 +15,7 @@ author = "Johannes"
 def getIcon(iconPath):
     return None
     try:
-        iconPixmap = QPixmap (os.path.join (iconPath, "plugin.png"))
+        iconPixmap = QtGui.QPixmap(os.path.join (iconPath, "plugin.png"))
     except:
         print "Debug: Icon for plugin " + pluginName + " could not be opened."
         return None

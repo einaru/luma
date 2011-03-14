@@ -248,7 +248,7 @@ class AdvancedObjectView(QTextEdit):
         # Create the value part
         if attributeIsBinary:
             if attributeIsImage:
-                tmpImage = QImage()
+                tmpImage = QtGui.QImage()
                 tmpImage.loadFromData(value)
                 self.mimeFactory.setImage(univAttributeName, tmpImage)
                 tmpList.append("""<td width="55%"><img source=""" + univAttributeName + """></td>""")
