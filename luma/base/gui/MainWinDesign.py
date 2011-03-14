@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file '/mnt/debris/devel/git/luma-playground/resources/forms/MainWinDesign.ui'
 #
-# Created: Fri Mar 11 18:09:59 2011
+# Created: Mon Mar 14 12:54:09 2011
 #      by: PyQt4 UI code generator 4.7.4
 #
 # WARNING! All changes made in this file will be lost!

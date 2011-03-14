@@ -1,0 +1,6 @@
+include AUTHORS
+include ChangeLog
+include COPYING
+include INSTALL
+INCLUDE README
+recursive-include data *.desktop *.png *.svg *.qm *.ts *.1 *.README

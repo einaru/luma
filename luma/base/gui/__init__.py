@@ -25,6 +25,8 @@ from PyQt4.QtGui import QPixmap
 from PyQt4.QtGui import QSizePolicy, QSplashScreen
 from PyQt4.QtGui import QVBoxLayout
 
+import resources
+
 class Settings(QSettings):
     """
     The Settings class extends the QSettings class, to provide an easy and
@@ -152,7 +154,6 @@ class Settings(QSettings):
                  u'Templates',
                  u'User management' ]
 
-
 class SplashScreen(QSplashScreen):
     def __init__(self):
         QSplashScreen.__init__(self)
@@ -162,36 +163,8 @@ class SplashScreen(QSplashScreen):
         self.setObjectName(u'splash_screen')
         self.setWindowFlags(self.windowFlags() | Qt.WindowStaysOnTopHint)
         self.setContextMenuPolicy(Qt.PreventContextMenu)
-        splash_image = QPixmap(u':/icons/luma-128')
+        splash_image = QPixmap(":/icons/luma-128")
         self.setPixmap(splash_image)
         self.setMask(splash_image.mask())
-        self.resize(128, 123)
+        self.resize(128, 120)
         QMetaObject.connectSlotsByName(self)
-
-class Ui_SplashScreen(object):
-    
-    def setupUi(self, SplashScreen):
-        SplashScreen.setObjectName(u'SplashScreen')
-        SplashScreen.setWindowModality(Qt.NonModal)
-        SplashScreen.setEnabled(True)
-        SplashScreen.resize(400, 300)
-        sizePolicy = QSizePolicy(QSizePolicy.Fixed, QSizePolicy.Fixed)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(SplashScreen.sizePolicy().hasHeightForWidth())
-        SplashScreen.setSizePolicy(sizePolicy)
-        SplashScreen.setContextMenuPolicy(Qt.PreventContextMenu)
-        self.verticalLayout = QVBoxLayout(SplashScreen)
-        self.verticalLayout.setSpacing(0)
-        self.verticalLayout.setMargin(0)
-        self.verticalLayout.setObjectName(u'verticalLayout')
-        self.SplashImage = QLabel(SplashScreen)
-        self.SplashImage.setPixmap(QPixmap(u':/icons/luma-128.png'))
-        self.SplashImage.setObjectName(u'SplashImage')
-        self.verticalLayout.addWidget(self.SplashImage)
-
-        self.retranslateUi(SplashScreen)
-        QMetaObject.connectSlotsByName(SplashScreen)
-
-    def retranslateUi(self, SplashScreen):
-        SplashScreen.setWindowTitle(QApplication.translate("SplashScreen", "Splash Screen", None, QApplication.UnicodeUTF8))

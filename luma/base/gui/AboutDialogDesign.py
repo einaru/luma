@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file '/mnt/debris/devel/git/luma-playground/resources/forms/AboutDialogDesign.ui'
 #
-# Created: Fri Mar 11 18:09:58 2011
+# Created: Mon Mar 14 13:16:09 2011
 #      by: PyQt4 UI code generator 4.7.4
 #
 # WARNING! All changes made in this file will be lost!
@@ -49,12 +49,11 @@ class Ui_AboutDialog(object):
         self.gridLayout.addLayout(self.hboxlayout, 6, 0, 1, 1)
         self.verticalLayout_2 = QtGui.QVBoxLayout()
         self.verticalLayout_2.setObjectName("verticalLayout_2")
-        self.label = QtGui.QLabel(AboutDialog)
-        self.label.setText("")
-        self.label.setPixmap(QtGui.QPixmap("../../../../../../../../../../home/einar/devel/workspace/Luma24/share/luma/icons/luma-64.png"))
-        self.label.setAlignment(QtCore.Qt.AlignCenter)
-        self.label.setObjectName("label")
-        self.verticalLayout_2.addWidget(self.label)
+        self.labelLogo = QtGui.QLabel(AboutDialog)
+        self.labelLogo.setText("None")
+        self.labelLogo.setAlignment(QtCore.Qt.AlignCenter)
+        self.labelLogo.setObjectName("labelLogo")
+        self.verticalLayout_2.addWidget(self.labelLogo)
         self.labelApplication = QtGui.QLabel(AboutDialog)
         sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Minimum, QtGui.QSizePolicy.Maximum)
         sizePolicy.setHorizontalStretch(0)

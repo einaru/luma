@@ -108,12 +108,9 @@
    <item row="1" column="0" rowspan="4">
     <layout class="QVBoxLayout" name="verticalLayout_2">
      <item>
-      <widget class="QLabel" name="label">
+      <widget class="QLabel" name="labelLogo">
        <property name="text">
-        <string/>
-       </property>
-       <property name="pixmap">
-        <pixmap>../../../../../../../../../../home/einar/devel/workspace/Luma24/share/luma/icons/luma-64.png</pixmap>
+        <string notr="true"/>
        </property>
        <property name="alignment">
         <set>Qt::AlignCenter</set>

@@ -72,8 +72,10 @@ DEST_UI = ['luma', 'base', 'gui']
 
 # Files w/filepaths
 LUMA_PRO = ['luma.pro']
-LUMA_QRC = ['luma2.qrc']
+LUMA_QRC = ['luma.qrc']
 LUMA_RC = ['luma', 'resources.py']
+LUMA_RC_ICONS = ['luma', 'iconsrc.py']
+LUMA_RC_I18N = ['luma', 'i18nrc.py']
 
 
 def run(cmd):
@@ -201,18 +203,18 @@ def __generateQrcFile(icons=False, i18n=False):
 
     if i18n:
         i18nPath = __getPath(SOURCE_TRANS)
-        qrc.append(u'<qresource prefix="%s">' % os.path.split(i18nPath)[1])
+        qrc.append(u'  <qresource prefix="%s">' % os.path.split(i18nPath)[1])
         for file in os.listdir(i18nPath):
             if file[-3:] == u'.qm':
                 name = os.path.split(file)[1]
                 alias = name[5:-3]
-                qrc.append(u'\t<file alias="%s">resources/i18n/%s</file>' % \
+                qrc.append(u'    <file alias="%s">resources/i18n/%s</file>' % \
                            (alias, name))
-        qrc.append(u'</qresources>')
+        qrc.append(u'  </qresources>')
 
     if icons:
         iconsPath = __getPath(SOURCE_ICONS)
-        qrc.append(u'<qresource prefix="%s">' % os.path.split(iconsPath)[1])
+        qrc.append(u'  <qresource prefix="%s">' % os.path.split(iconsPath)[1])
         prefix = ''
         for path, dirs, icons in os.walk(iconsPath):
             location = replace(path, iconsPath, u'resources/icons')
@@ -223,10 +225,10 @@ def __generateQrcFile(icons=False, i18n=False):
             for icon in sorted(icons):
                 if icon[-4:] == u'.png':
                     (name, alias) = __getIconNameAndAlias(icon)
-                    qrc.append(u'\t<file alias="%s%s">%s/%s</file>' % \
+                    qrc.append(u'    <file alias="%s%s">%s/%s</file>' % \
                                (prefix, alias, location, name))
 
-        qrc.append(u'</qresource>')
+        qrc.append(u'  </qresource>')
 
     qrc.append(QRC_HEADER_CLOSE)
 

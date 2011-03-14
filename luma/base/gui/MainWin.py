@@ -48,7 +48,7 @@ from PyQt4.QtGui import QDialog, QDockWidget
 from PyQt4.QtGui import QFont
 from PyQt4.QtGui import QLabel, QListWidget
 from PyQt4.QtGui import QMainWindow
-from PyQt4.QtGui import QPushButton
+from PyQt4.QtGui import QPixmap, QPushButton
 from PyQt4.QtGui import QStandardItem, QStandardItemModel
 from PyQt4.QtGui import QToolBar
 from PyQt4.QtGui import QWidget
@@ -627,6 +627,8 @@ class AboutDialog(QDialog, Ui_AboutDialog):
     def __init__(self, parent=None):
         QDialog.__init__(self)
         self.setupUi(self)
+        
+        self.labelLogo.setPixmap(QPixmap(':/icons/luma-64'))
 
     def showLicense(self):
         """

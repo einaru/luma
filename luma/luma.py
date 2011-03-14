@@ -39,6 +39,7 @@ from base.gui import SplashScreen
 from base.gui.MainWin import MainWindow
 from base.backend import LumaLogHandler
 
+
 def startApplication(argv):
     """
     First we must determine what platform we're running on. Making sure we 
