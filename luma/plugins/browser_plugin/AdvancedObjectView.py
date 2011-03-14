@@ -26,7 +26,7 @@ class AdvancedObjectView(QTextEdit):
 
 #if self.CREATE:
 #self.mimeFactory.setPixmap("editPixmap", self.editPixmap)
-        tmpList.append("""<td width=5%><a name=RDN__0__edit><img source=":/images/edit.png"></a></td>""")
+        tmpList.append("""<td width=5%><a name=RDN__0__edit><img source=":/icons/edit"></a></td>""")
 
         tmpList.append("""</tr>""")
 
@@ -108,7 +108,7 @@ class AdvancedObjectView(QTextEdit):
             if allowDelete and (not (x == 'top')):
                 deleteName = x + "__delete\""
 #self.mimeFactory.setPixmap("deletePixmap", self.deletePixmap)
-                tmpList.append(""" <a name=\"""" + deleteName + """><img source=":/images/delete.png"></a>""")
+                tmpList.append(""" <a name=\"""" + deleteName + """><img source=":/icons/delete"></a>""")
             
             
             
@@ -273,18 +273,18 @@ class AdvancedObjectView(QTextEdit):
         #if True:
             editName = univAttributeName + "__edit\""
             #self.mimeFactory.setPixmap("editPixmap", self.editPixmap)
-            tmpList.append("""<a name=\"""" + editName + """><img source=":/images/edit.png"></a>""")
+            tmpList.append("""<a name=\"""" + editName + """><img source=":/icons/edit"></a>""")
         
             if allowDelete:
             #if True:
                 deleteName = univAttributeName + "__delete\""
                 #self.mimeFactory.setPixmap("deletePixmap", self.deletePixmap)
-                tmpList.append(""" <a name=\"""" + deleteName + """><img source=":/images/delete.png"></a>""")
+                tmpList.append(""" <a name=\"""" + deleteName + """><img source=":/icons/delete"></a>""")
             
             if attributeBinaryExport:
                 exportName = univAttributeName + "__export\""
                 #self.mimeFactory.setPixmap("exportPixmap", self.exportBinaryPixmap)
-                tmpList.append(""" <a name=\"""" + exportName + """><img source="exportPixmap"></a>""")
+                tmpList.append(""" <a name=\"""" + exportName + """><img source=":/icons/exportPixmap"></a>""")
         
         tmpList.append("""</td>""")
         
