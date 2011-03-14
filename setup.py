@@ -20,9 +20,12 @@
 
 import os
 import sys
+from glob import glob
 from distutils.core import setup
 
 import luma.__init__ as appinfo
+
+DISTUTILS_DEBUG = 'f skd'
 
 def fullSplit(path, result=None):
     """
@@ -95,8 +98,13 @@ _classifiers = [
     'Operating System :: POSIX :: Linux',
     'Topic :: Utilities',
 ]
+_data_files = [
+    ('share/luma/icons', glob('data/icons/*.png')),
+    ('share/pixmaps', glob('data/icons/luma-48.png')),
+    ('share/applications', glob('data/*.desktop')),
+    ('share/man/man1', glob('data/man/luma.1.gz'))]
 
-dist = setup(
+setup(
     name=appinfo.APPNAME,
     version=appinfo.VERSION,
     author='luma devel team',
@@ -108,8 +116,9 @@ dist = setup(
     package_dir={
         app_dir : src_dir
     },
+    data_files=_data_files,
     scripts=['bin/luma'],
-    classifiers=_classifiers,
+    #classifiers=_classifiers,
 )
 
 
