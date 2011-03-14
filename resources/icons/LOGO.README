@@ -1,0 +1,2 @@
+use the following command to convert the eps file to a png:
+convert luma-blau.eps -geometry 64 luma-64.png
