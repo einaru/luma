@@ -11,4 +11,9 @@
 serverlist.xml
 
 # Used for testing
-src/lib/luma/snippets/*
+src/luma/snippets/*
+
+# distutils
+dist/*
+build/*
+MANIFEST
