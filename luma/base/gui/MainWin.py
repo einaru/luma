@@ -64,7 +64,7 @@ from base.gui.SettingsDialogDesign import Ui_SettingsDialog
 from base.gui.ServerDialog import ServerDialog
 from base.util.i18n import LanguageHandler
 from base.util.gui.PluginListWidget import PluginListWidget
-from base.model.PluginSettingsModel import PluginSettingsModel
+from base.model.PluginSettingsListModel import PluginSettingsListModel
 import resources
 
 
@@ -209,7 +209,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.loadLanguage(settings.language)
 
         """ Plugins """
-        self.TODO(u'load settings[plugins]%s' % str(self.__class__))
+        #self.TODO(u'load settings[plugins]%s' % str(self.__class__))
 
     def writeSettings(self):
         """
@@ -383,7 +383,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         """
         This method will be called from the PluginListWidget.
         """
-        widget = item.widget
+        widget = item.plugin.getPluginWidget(self.mainStack, self)
         if self.mainStack.indexOf(widget) == -1:
             self.mainStack.addWidget(widget)
 
@@ -617,7 +617,7 @@ class SettingsDialog(QDialog, Ui_SettingsDialog):
             i = i + 1
 
         """ Plugins """
-        self.pluginListView.setModel(PluginSettingsModel())
+        self.pluginListView.setModel(PluginSettingsListModel())
 
     def pluginSelected(self, index):
         """

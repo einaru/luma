@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file '/mnt/debris/devel/git/luma/src/lib/luma/resources/forms/MainWinDesign.ui'
+# Form implementation generated from reading ui file '/home/johannes/Programmering/Luma/git/resources/forms/MainWinDesign.ui'
 #
-# Created: Fri Feb 25 12:12:02 2011
+# Created: Tue Mar 15 17:36:40 2011
 #      by: PyQt4 UI code generator 4.7.4
 #
 # WARNING! All changes made in this file will be lost!
@@ -18,15 +18,12 @@ class Ui_MainWindow(object):
         self.centralwidget.setObjectName("centralwidget")
         self.gridLayout = QtGui.QGridLayout(self.centralwidget)
         self.gridLayout.setObjectName("gridLayout")
-        self.mainStack = QtGui.QStackedWidget(self.centralwidget)
-        self.mainStack.setObjectName("mainStack")
-        self.page = QtGui.QWidget()
-        self.page.setObjectName("page")
-        self.mainStack.addWidget(self.page)
-        self.gridLayout.addWidget(self.mainStack, 0, 0, 1, 1)
+        self.mainTabs = QtGui.QTabWidget(self.centralwidget)
+        self.mainTabs.setObjectName("mainTabs")
+        self.gridLayout.addWidget(self.mainTabs, 0, 0, 1, 1)
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtGui.QMenuBar(MainWindow)
-        self.menubar.setGeometry(QtCore.QRect(0, 0, 700, 23))
+        self.menubar.setGeometry(QtCore.QRect(0, 0, 700, 25))
         self.menubar.setObjectName("menubar")
         self.menuFile = QtGui.QMenu(self.menubar)
         self.menuFile.setObjectName("menuFile")
@@ -72,7 +69,6 @@ class Ui_MainWindow(object):
         self.menubar.addAction(self.menuHelp.menuAction())
 
         self.retranslateUi(MainWindow)
-        self.mainStack.setCurrentIndex(0)
         QtCore.QObject.connect(self.actionQuit, QtCore.SIGNAL("triggered()"), MainWindow.close)
         QtCore.QObject.connect(self.actionAboutLuma, QtCore.SIGNAL("triggered()"), MainWindow.showAboutLuma)
         QtCore.QObject.connect(self.actionConfigurePlugins, QtCore.SIGNAL("triggered()"), MainWindow.configurePlugins)
@@ -80,6 +76,7 @@ class Ui_MainWindow(object):
         QtCore.QObject.connect(self.actionShowLogger, QtCore.SIGNAL("triggered(bool)"), MainWindow.showLoggerWindow)
         QtCore.QObject.connect(self.actionEditServerList, QtCore.SIGNAL("triggered()"), MainWindow.showServerEditor)
         QtCore.QObject.connect(self.actionEditSettings, QtCore.SIGNAL("triggered()"), MainWindow.showSettingsDialog)
+        QtCore.QObject.connect(self.mainTabs, QtCore.SIGNAL("tabCloseRequested(int)"), MainWindow.tabClose)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def retranslateUi(self, MainWindow):

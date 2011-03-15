@@ -25,13 +25,13 @@ from plugins.browser_plugin.AdvancedObjectView import AdvancedObjectView
 
 class BrowserView(QWidget):
 
-    def __init__(self, parent, configPrefix = None):
+    def __init__(self, parent, mainwin, configPrefix = None):
         QtGui.QWidget.__init__(self, parent)
-
+        
         self.setObjectName("PLUGIN_BROWSER")
         # The serverlist used
         self.serverList = ServerList(configPrefix)
-
+        self.mainwin = mainwin
         self.mainLayout = QtGui.QHBoxLayout(self)
         
         self.splitter = QtGui.QSplitter(self)

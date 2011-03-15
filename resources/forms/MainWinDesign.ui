@@ -20,12 +20,7 @@
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout" name="gridLayout">
     <item row="0" column="0">
-     <widget class="QStackedWidget" name="mainStack">
-      <property name="currentIndex">
-       <number>0</number>
-      </property>
-      <widget class="QWidget" name="page"/>
-     </widget>
+     <widget class="QTabWidget" name="mainTabs"/>
     </item>
    </layout>
   </widget>
@@ -35,7 +30,7 @@
      <x>0</x>
      <y>0</y>
      <width>700</width>
-     <height>23</height>
+     <height>25</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
@@ -243,6 +238,22 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>mainTabs</sender>
+   <signal>tabCloseRequested(int)</signal>
+   <receiver>MainWindow</receiver>
+   <slot>tabClose()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>349</x>
+     <y>276</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>349</x>
+     <y>274</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>quitApplication()</slot>
@@ -252,5 +263,6 @@
   <slot>showAboutLuma()</slot>
   <slot>showServerEditor()</slot>
   <slot>showSettingsDialog()</slot>
+  <slot>tabClose()</slot>
  </slots>
 </ui>

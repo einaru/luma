@@ -22,19 +22,16 @@ def getIcon(iconPath):
 
     return iconPixmap
     
-###############################################################################
 
-def getPluginWidget(parent):
+def getPluginWidget(parent, mainwin):
     widget = Example()
     return widget
     
-###############################################################################
 
 def getPluginSettingsWidget(parent):
     widget = Example()
     return widget
     
-###############################################################################
 
 def postprocess():
     return

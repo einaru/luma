@@ -26,19 +26,16 @@ def getIcon(iconPath):
 
     return iconPixmap
     
-###############################################################################
 
-def getPluginWidget(parent):
+def getPluginWidget(parent, mainwin):
     from plugins.browser_plugin.BrowserView import BrowserView
-    pluginWidget = BrowserView(None, "/tmp")
+    pluginWidget = BrowserView(parent, mainwin, "/tmp")
     return pluginWidget
     
-###############################################################################
 
 def getPluginSettingsWidget(parent):
     return None
     
-###############################################################################
 
 def postprocess():
     return
