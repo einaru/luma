@@ -1,21 +1,48 @@
 # -*- coding: utf-8 -*-
 
 from PyQt4 import QtCore, QtGui
-from PyQt4.QtGui import QTextEdit, QTextOption, QPixmap
+from PyQt4.QtGui import QTextBrowser, QTextOption, QPixmap, QSizePolicy, QTextOption, QLineEdit
+from PyQt4.QtCore import QSize, SIGNAL
 import copy
 
 
-class AdvancedObjectView(QTextEdit):
+class AdvancedObjectView(QTextBrowser):
 
 
     def __init__(self, parent=None):
-        QTextEdit.__init__(self, parent)
+        QTextBrowser.__init__(self, parent)
 #self.setWordWrapMode(QTextOption.WordWrap)
 #self.setLineWrapMode(QTextEdit.WidgetWidth)
-        self.setReadOnly(True)
+        self.setSizePolicy(QSizePolicy.Maximum, QSizePolicy.Maximum)
+        self.setWordWrapMode(QTextOption.WrapAnywhere)
+
+        self.connect(self, SIGNAL("anchorClicked(const QUrl&)"), self.modifierClicked)
+
+        self.setOpenLinks(False)
         self.setHtml("")
 
+        # is the current object a leaf of the ldap tree?
+        self.EDITED = False
+
+        # is the current object a leaf of the ldap tree?
+        self.ISLEAF = False
+
+        # do we create a completeley new object?
+        self.CREATE = False
+
+    def initView(self, data, create=False):
+        if create:
+            self.EDITED = True
+            self.ISLEAF = False
+            self.CREATE = True
+        else:
+            self.EDITED = False
+
+
+
+
     def displayValues(self):
+        self.setHtml("")
         tmpList = []
         tmpList.append("<html>")
         tmpList.append("""<body>""")
@@ -24,9 +51,8 @@ class AdvancedObjectView(QTextEdit):
         tmpList.append("""<td bgcolor="#B2CAE7" width="40%"><font size="+1"> <b>Distinguished Name:</b> </font></td>""")
         tmpList.append("""<td bgcolor="#B2CAE7" width="60%"><font size="+1"><b>""" + self.model.getRootDN() + """</b></font></td>""")
 
-#if self.CREATE:
-#self.mimeFactory.setPixmap("editPixmap", self.editPixmap)
-        tmpList.append("""<td width=5%><a name=RDN__0__edit><img source=":/icons/edit"></a></td>""")
+        if self.CREATE:
+            tmpList.append("""<td width=5%><a href=RDN__0__edit><img source=":/icons/edit"></a></td>""")
 
         tmpList.append("""</tr>""")
 
@@ -42,26 +68,27 @@ class AdvancedObjectView(QTextEdit):
         tmpList.append("</body>")
         tmpList.append("</html>")
 
-#        self.currentDocument = ("".join(tmpList))
+        #self.currentDocument = ("".join(tmpList))
 
-#self.objectWidget.setText(self.currentDocument)
-#        else:
-#        tmpList = []
-#        tmpList.append("<html>")
-#        tmpList.append("""<body>""")
-#        tmpList.append("""<table border="0" cellpadding="1" cellspacing="0" width="100%">""")
-#        tmpList.append("""<tr>""")
-#        tmpList.append("""<td <font size="+1"> """ + unicode(self.trUtf8("<b>Could not display ldap entry. Reason:</b>")) + """</font></td>""")
-#        tmpList.append("""</tr>""")
-#        tmpList.append("""<tr>""")
-#        tmpList.append("""</tr>""")
-#        for x in self.ldapDataObject.checkErrorMessageList:
-#        tmpList.append("""<tr>""")
-#        tmpList.append("""<td>""" + x + """</td>""")
-#        tmpList.append("""</tr>""")
+        #self.objectWidget.setText(self.currentDocument)
 
-#        tmpList.append("</body>")
-#        tmpList.append("</html>")
+        #else:
+        #    tmpList = []
+        #    tmpList.append("<html>")
+        #    tmpList.append("""<body>""")
+        #    tmpList.append("""<table border="0" cellpadding="1" cellspacing="0" width="100%">""")
+        #    tmpList.append("""<tr>""")
+        #    tmpList.append("""<td <font size="+1"> """ + unicode(self.trUtf8("<b>Could not display ldap entry. Reason:</b>")) + """</font></td>""")
+        #    tmpList.append("""</tr>""")
+        #    tmpList.append("""<tr>""")
+        #    tmpList.append("""</tr>""")
+        #    for x in self.ldapDataObject.checkErrorMessageList:
+        #        tmpList.append("""<tr>""")
+        #        tmpList.append("""<td>""" + x + """</td>""")
+        #        tmpList.append("""</tr>""")
+
+        #    tmpList.append("</body>")
+        #    tmpList.append("</html>")
         self.setHtml("".join(tmpList))
 
 ###############################################################################
@@ -96,8 +123,8 @@ class AdvancedObjectView(QTextEdit):
                     
             #if rdnClass in self.ldapDataObject.getAttributeListForObjectClass(x):
             #    allowDelete = False
-                
-                # Now we check if another objectclass provides the rdn attribute
+            #    
+            #    # Now we check if another objectclass provides the rdn attribute
             #    classList = self.ldapDataObject.getObjectClasses()
             #    classList.remove(x)
             #    for y in classList:
@@ -107,12 +134,11 @@ class AdvancedObjectView(QTextEdit):
             
             if allowDelete and (not (x == 'top')):
                 deleteName = x + "__delete\""
-#self.mimeFactory.setPixmap("deletePixmap", self.deletePixmap)
-                tmpList.append(""" <a name=\"""" + deleteName + """><img source=":/icons/delete"></a>""")
+                tmpList.append(""" <a href=\"""" + deleteName + """><img source=":/icons/delete"></a>""")
             
             
             
-            tmpList.append("""</td></tr>""")
+            #tmpList.append("""</td></tr>""")
         
         tmpList.append("""</table>""")
         
@@ -137,12 +163,12 @@ class AdvancedObjectView(QTextEdit):
         tmpList.append("""<table border="0" cellpadding="1" cellspacing="1" width="100%">""")
         
         for x in attributeList:
-#            environment.updateUI()
-#            attributeIsBinary = self.ldapDataObject.isAttributeBinary(x)
-#            attributeIsImage = self.ldapDataObject.isAttributeImage(x)
-#            attributeIsPassword = self.ldapDataObject.isAttributePassword(x)
-#            attributeIsSingle = self.ldapDataObject.isAttributeSingle(x)
-#            attributeIsMust = self.ldapDataObject.isAttributeMust(x)
+            #environment.updateUI()
+            #attributeIsBinary = self.ldapDataObject.isAttributeBinary(x)
+            #attributeIsImage = self.ldapDataObject.isAttributeImage(x)
+            #attributeIsPassword = self.ldapDataObject.isAttributePassword(x)
+            #attributeIsSingle = self.ldapDataObject.isAttributeSingle(x)
+            #attributeIsMust = self.ldapDataObject.isAttributeMust(x)
 
             attributeIsBinary = False
             attributeIsImage = False
@@ -151,11 +177,11 @@ class AdvancedObjectView(QTextEdit):
             attributeIsMust = False
             
             attributeBinaryExport = False
-#            if attributeIsBinary:
-#                if attributeIsImage:
-#                    attributeBinaryExport = True
-#                elif not attributeIsPassword:
-#                    attributeBinaryExport = True
+            #if attributeIsBinary:
+            #    if attributeIsImage:
+            #        attributeBinaryExport = True
+            #    elif not attributeIsPassword:
+            #        attributeBinaryExport = True
                     
             valueList = self.ldapDataObject.getAttributeValueList(x)
             
@@ -167,18 +193,18 @@ class AdvancedObjectView(QTextEdit):
                 
             
             allowDelete = False
-#            if attributeIsMust:
-#                if len(valueList) > 1:
-#                    allowDelete = True
-#            else:
-#                allowDelete = True
+            #if attributeIsMust:
+            #    if len(valueList) > 1:
+            #        allowDelete = True
+            #else:
+            #    allowDelete = True
             
             tmpList.append("""<tr>""")
             
             attributeString = copy.copy(x)
             
-#            if self.ldapDataObject.isAttributeMust(x, self.ldapDataObject.getObjectClasses()):
-#                attributeString = "<b>" + attributeString + "</b>"
+            #if self.ldapDataObject.isAttributeMust(x, self.ldapDataObject.getObjectClasses()):
+            #    attributeString = "<b>" + attributeString + "</b>"
             
             if valueList[0] == None:
                 attributeString = """<font color="red">""" + attributeString + """</font>"""
@@ -189,8 +215,8 @@ class AdvancedObjectView(QTextEdit):
             univAttributeName = x + "__" + unicode(attributeIndex)
 
             attributeModify = True
-#            if not (valueList[0] == None):
-#                attributeModify = not self.ldapDataObject.isAttributeValueRDN(x, valueList[0])
+            #if not (valueList[0] == None):
+            #    attributeModify = not self.ldapDataObject.isAttributeValueRDN(x, valueList[0])
             
             if (valueList[0] == None):
                 tmpList.append("""<td bgcolor="#E5E5E5" width="60%"><font color="#ff0000">""" + 
@@ -209,13 +235,13 @@ class AdvancedObjectView(QTextEdit):
             
             
             for y in valueList[1:]:
-#                environment.updateUI()
+                #environment.updateUI()
                 attributeIndex += 1
                 univAttributeName = x + "__" + unicode(attributeIndex)
                 
                 attributeModify = True
-#                if not (y == None):
-#                    attributeModify = not self.ldapDataObject.isAttributeValueRDN(x, y)
+                #if not (y == None):
+                #    attributeModify = not self.ldapDataObject.isAttributeValueRDN(x, y)
                 
                 tmpList.append("""<tr><td width="35%"></td>""")
                 
@@ -273,18 +299,18 @@ class AdvancedObjectView(QTextEdit):
         #if True:
             editName = univAttributeName + "__edit\""
             #self.mimeFactory.setPixmap("editPixmap", self.editPixmap)
-            tmpList.append("""<a name=\"""" + editName + """><img source=":/icons/edit"></a>""")
+            tmpList.append("""<a href=\"""" + editName + """><img source=":/icons/edit"></a>""")
         
             if allowDelete:
             #if True:
                 deleteName = univAttributeName + "__delete\""
                 #self.mimeFactory.setPixmap("deletePixmap", self.deletePixmap)
-                tmpList.append(""" <a name=\"""" + deleteName + """><img source=":/icons/delete"></a>""")
+                tmpList.append(""" <a href=\"""" + deleteName + """><img source=":/icons/delete"></a>""")
             
             if attributeBinaryExport:
                 exportName = univAttributeName + "__export\""
                 #self.mimeFactory.setPixmap("exportPixmap", self.exportBinaryPixmap)
-                tmpList.append(""" <a name=\"""" + exportName + """><img source=":/icons/exportPixmap"></a>""")
+                tmpList.append(""" <a href=\"""" + exportName + """><img source=":/icons/exportPixmap"></a>""")
         
         tmpList.append("""</td>""")
         
@@ -295,3 +321,30 @@ class AdvancedObjectView(QTextEdit):
 
     def setModel(self, model):
         self.model = model
+
+###############################################################################
+
+    def modifierClicked(self, url):
+        nameString = unicode(url.toString())
+        tmpList = nameString.split("__")
+
+        if tmpList[0] in self.model.getObjectClasses():
+            self.model.deleteObjectClass(tmpList[0])
+            self.EDITED = True
+            self.displayValues()
+        else:
+            if not len(tmpList) == 3:
+                return
+            attributeName, index, operation = tmpList[0], int(tmpList[1]), tmpList[2]
+            if operation == "edit":
+                attributeValue = self.model.getAttributeValue(attributeName, index)
+                text, ok = QtGui.QInputDialog.getText(self, 'Input dialog', 'Attribute value:', QLineEdit.Normal, attributeValue)
+                text = unicode(text)
+                if ok:
+                    self.model.editAttribute(attributeName, index, text)
+                    self.displayValues()
+                    self.EDITED = True
+            elif operation == "delete":
+                self.model.deleteAttribute(attributeName, index)
+            elif operation == "export":
+                self.model.exportAttribute(attributeName, index)

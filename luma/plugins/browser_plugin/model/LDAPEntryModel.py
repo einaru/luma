@@ -1,11 +1,12 @@
 '''
 Created on 18. feb. 2011
 
-@author: Simen
+@author: Simen, Per Ove
 '''
 import os
 
 from PyQt4 import QtCore, QtGui
+from PyQt4.QtGui import QInputDialog, QDialog
 from LDAPTreeItemModel import LDAPTreeItemModel
 from plugins.browser_plugin.item.ServerTreeItem import ServerTreeItem
 
@@ -26,7 +27,9 @@ class LDAPEntryModel(QtCore.QAbstractTableModel):
             for value in data[key]:
                 self.itemData.append([key, value])
 
-
+    # is it constant?
+    def getSmartObject(self):
+        return self.index.internalPointer().smartObject()
     
     def getRootDN(self):
         return self.index.internalPointer().smartObject().getPrettyDN()
@@ -35,7 +38,7 @@ class LDAPEntryModel(QtCore.QAbstractTableModel):
         smartObject = self.index.internalPointer().smartObject()
         classList = []
         for objectClass in smartObject.getObjectClasses():
-            classList.append([objectClass, ''])
+            classList.append(objectClass)
         return classList
         
 
@@ -47,8 +50,20 @@ class LDAPEntryModel(QtCore.QAbstractTableModel):
                 attributeList.append([attribute, value])
         attributeList.sort()
         return attributeList
+    def getAttributeValue(self, attributeName, index):
+        return self.getSmartObject().getAttributeValue(attributeName, index)
+        
     
 
+    def deleteObjectClass(self, objectClass):
+        self.getSmartObject().deleteObjectClass(objectClass)
+    def editAttribute(self, attributeName, index, newValue):
+        self.getSmartObject().setAttributeValue(attributeName, index, newValue)
+
+    def deleteAttribute(self, attributeName, index):
+        pass
+    def exportAttribute(self, attributeName, index):
+        pass
 
     def rowCount(self, parent):
         return len(self.itemData)
