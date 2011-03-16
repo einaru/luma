@@ -30,7 +30,11 @@ class AdvancedObjectView(QTextBrowser):
         # do we create a completeley new object?
         self.CREATE = False
 
+
+    # TODO: not used
     def initView(self, data, create=False):
+        #self.ldapDataObject = data
+
         if create:
             self.EDITED = True
             self.ISLEAF = False
@@ -38,58 +42,69 @@ class AdvancedObjectView(QTextBrowser):
         else:
             self.EDITED = False
 
-
+            
 
 
     def displayValues(self):
         self.setHtml("")
-        tmpList = []
-        tmpList.append("<html>")
-        tmpList.append("""<body>""")
-        tmpList.append("""<table border="0" cellpadding="1" cellspacing="0" width="100%">""")
-        tmpList.append("""<tr>""")
-        tmpList.append("""<td bgcolor="#B2CAE7" width="40%"><font size="+1"> <b>Distinguished Name:</b> </font></td>""")
-        tmpList.append("""<td bgcolor="#B2CAE7" width="60%"><font size="+1"><b>""" + self.model.getRootDN() + """</b></font></td>""")
 
-        if self.CREATE:
-            tmpList.append("""<td width=5%><a href=RDN__0__edit><img source=":/icons/edit"></a></td>""")
+        # Something went wrong. We have no data object.
+        # This might happen if we want to refresh an item and
+        # it might be deleted already.
+        if None == self.ldapDataObject:
+            return
 
-        tmpList.append("""</tr>""")
+        #self.ldapDataObject.checkIntegrity()
 
-        tmpList.append("</table>")
-        tmpList.append("<br>")
+        self.ldapDataObject.isValid = True
+        if  self.ldapDataObject.isValid:
+            tmpList = []
+            tmpList.append("<html>")
+            tmpList.append("""<body>""")
+            tmpList.append("""<table border="0" cellpadding="1" cellspacing="0" width="100%">""")
+            tmpList.append("""<tr>""")
+            tmpList.append("""<td bgcolor="#B2CAE7" width="40%"><font size="+1"> <b>Distinguished Name:</b> </font></td>""")
+            tmpList.append("""<td bgcolor="#B2CAE7" width="60%"><font size="+1"><b>""" + self.model.getRootDN() + """</b></font></td>""")
 
-        tmpList.append(self.createClassString())
+            if self.CREATE:
+                tmpList.append("""<td width=5%><a href=RDN__0__edit><img source=":/icons/edit"></a></td>""")
 
-        tmpList.append("<br>")
+            tmpList.append("""</tr>""")
 
-        tmpList.append(self.createAttributeString())
+            tmpList.append("</table>")
+            tmpList.append("<br>")
 
-        tmpList.append("</body>")
-        tmpList.append("</html>")
+            tmpList.append(self.createClassString())
 
-        #self.currentDocument = ("".join(tmpList))
+            tmpList.append("<br>")
 
-        #self.objectWidget.setText(self.currentDocument)
+            tmpList.append(self.createAttributeString())
 
-        #else:
-        #    tmpList = []
-        #    tmpList.append("<html>")
-        #    tmpList.append("""<body>""")
-        #    tmpList.append("""<table border="0" cellpadding="1" cellspacing="0" width="100%">""")
-        #    tmpList.append("""<tr>""")
-        #    tmpList.append("""<td <font size="+1"> """ + unicode(self.trUtf8("<b>Could not display ldap entry. Reason:</b>")) + """</font></td>""")
-        #    tmpList.append("""</tr>""")
-        #    tmpList.append("""<tr>""")
-        #    tmpList.append("""</tr>""")
-        #    for x in self.ldapDataObject.checkErrorMessageList:
-        #        tmpList.append("""<tr>""")
-        #        tmpList.append("""<td>""" + x + """</td>""")
-        #        tmpList.append("""</tr>""")
+            tmpList.append("</body>")
+            tmpList.append("</html>")
 
-        #    tmpList.append("</body>")
-        #    tmpList.append("</html>")
-        self.setHtml("".join(tmpList))
+            #self.currentDocument = ("".join(tmpList))
+
+            self.setHtml("".join(tmpList))
+        else:
+            tmpList = []
+            tmpList.append("<html>")
+            tmpList.append("""<body>""")
+            tmpList.append("""<table border="0" cellpadding="1" cellspacing="0" width="100%">""")
+            tmpList.append("""<tr>""")
+            tmpList.append("""<td <font size="+1"> """ + unicode(self.trUtf8("<b>Could not display ldap entry. Reason:</b>")) + """</font></td>""")
+            tmpList.append("""</tr>""")
+            tmpList.append("""<tr>""")
+            tmpList.append("""</tr>""")
+            for x in self.ldapDataObject.checkErrorMessageList:
+                tmpList.append("""<tr>""")
+                tmpList.append("""<td>""" + x + """</td>""")
+                tmpList.append("""</tr>""")
+
+            tmpList.append("</body>")
+            tmpList.append("</html>")
+
+            self.setHtml("".join(tmpList))
 
 ###############################################################################
 
@@ -100,7 +115,6 @@ class AdvancedObjectView(QTextBrowser):
         tmpList.append("""<tr>""")
         tmpList.append("""<td bgcolor="#C4DFFF" align="center"><b>ObjectClasses</b></td>""")
         tmpList.append("""</tr>""")
-        self.ldapDataObject = self.model.index.internalPointer().smartObject()
         
         rdn = self.ldapDataObject.getPrettyRDN()
         rdnClass = rdn.split("=")[0]
@@ -108,29 +122,29 @@ class AdvancedObjectView(QTextBrowser):
         for x in self.ldapDataObject.getObjectClasses():
             classString = x[:]
             
-            #if self.ldapDataObject.isObjectclassStructural(x):
-            #    classString = "<b>" + classString + "</b>"
+            if self.ldapDataObject.isObjectclassStructural(x):
+                classString = "<b>" + classString + "</b>"
             tmpList.append("""<tr>""")
             tmpList.append("""<td colspan=2 bgcolor="#E5E5E5" width="100%">""")
             tmpList.append(classString)
             
             allowDelete = True
-            #if self.ldapDataObject.isObjectclassStructural(x):
-            #    classList = self.ldapDataObject.getObjectClasses()
-            #    classList.remove(x)
-            #    if len(self.ldapDataObject.getObjectClassChain(x, classList)) == 0:
-            #        allowDelete = False
-                    
-            #if rdnClass in self.ldapDataObject.getAttributeListForObjectClass(x):
-            #    allowDelete = False
-            #    
-            #    # Now we check if another objectclass provides the rdn attribute
-            #    classList = self.ldapDataObject.getObjectClasses()
-            #    classList.remove(x)
-            #    for y in classList:
-            #        if rdnClass in self.ldapDataObject.getAttributeListForObjectClass(y):
-            #            allowDelete = True
-            #            break
+            if self.ldapDataObject.isObjectclassStructural(x):
+                classList = self.ldapDataObject.getObjectClasses()
+                classList.remove(x)
+                if len(self.ldapDataObject.getObjectClassChain(x, classList)) == 0:
+                    allowDelete = False
+                   
+            if rdnClass in self.ldapDataObject.getAttributeListForObjectClass(x):
+                allowDelete = False
+                
+                # Now we check if another objectclass provides the rdn attribute
+                classList = self.ldapDataObject.getObjectClasses()
+                classList.remove(x)
+                for y in classList:
+                    if rdnClass in self.ldapDataObject.getAttributeListForObjectClass(y):
+                        allowDelete = True
+                        break
             
             if allowDelete and (not (x == 'top')):
                 deleteName = x + "__delete\""
@@ -155,7 +169,6 @@ class AdvancedObjectView(QTextBrowser):
         tmpList.append("""</tr>""")
         tmpList.append("""</table>""")
 
-        self.ldapDataObject = self.model.index.internalPointer().smartObject()
         
         attributeList = self.ldapDataObject.getAttributeList()
         attributeList.sort()
@@ -321,6 +334,7 @@ class AdvancedObjectView(QTextBrowser):
 
     def setModel(self, model):
         self.model = model
+        self.ldapDataObject = model.getSmartObject()
 
 ###############################################################################
 
