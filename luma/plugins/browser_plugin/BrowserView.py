@@ -189,7 +189,7 @@ class BrowserView(QWidget):
         serverName = sO.getServerAlias()
         dn = sO.getDN()
         rep = (serverName,dn)
-        self.openSmartObjects.remove(rep)
+        self.openTabs.pop(str(rep))
         
         self.tabWidget.removeTab(index)
 
