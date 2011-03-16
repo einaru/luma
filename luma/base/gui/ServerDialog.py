@@ -187,6 +187,7 @@ class ServerDialog(QDialog, Ui_ServerDialogDesign):
         
         What should happen when the user clicks Save then Cancel?
         """
+        self.mapper.submit()
         self._serverList.writeServerList()
         self._serverListCopy = copy.deepcopy(self._serverList)     
         
@@ -211,6 +212,7 @@ class ServerDialog(QDialog, Ui_ServerDialogDesign):
         
         SOMETHING LOGICAL SHOULD PROBABLY BE DONE HER
         """
+        self.mapper.submit()
         self._serverList.writeServerList()
         self._returnList = self._serverList
         QDialog.accept(self)
