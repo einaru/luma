@@ -143,10 +143,13 @@ class ServerList(object):
         if not os.path.exists(self._configPrefix):
             os.makedirs(self._configPrefix)
             
-        fileHandler = open(self._configFile, "w")
-        fileHandler.write(unicode(document.toString()).encode("utf-8"))
-        fileHandler.close()
-        
+        try:
+            fileHandler = open(self._configFile, "w")
+            fileHandler.write(unicode(document.toString()).encode("utf-8"))
+            fileHandler.close()
+        except:
+            self._logger.error("Couldn't write to file: "+self._configFile)
+            
         # Only the user should be able to access the file since we store 
         # passwords in it.
         # If we can't change it, leave it as it is since the user must have 

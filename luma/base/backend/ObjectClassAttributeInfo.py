@@ -673,6 +673,7 @@ class WorkerThreadFetch(threading.Thread):
                     schema_attrs = url.attrs
                 subschemasubentry_entry = self.ldapServerObject.read_subschemasubentry_s(
                     subschemasubentry_dn,attrs=schema_attrs)
+                print "FIKK:",subschemasubentry_entry
             self.ldapServerObject.unbind_s()
                 
             schema = None
