@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 
 from PyQt4 import QtCore, QtGui
-from PyQt4.QtGui import QTextBrowser, QTextOption, QPixmap, QSizePolicy, QTextOption, QLineEdit, QToolBar
+from PyQt4.QtGui import QTextBrowser, QTextOption, QPixmap, QSizePolicy, QTextOption, QLineEdit, QToolBar, QImage
 from PyQt4.QtCore import QSize, SIGNAL
 import copy
-
+import logging
 
 class AdvancedObjectView(QTextBrowser):
 
@@ -13,8 +13,6 @@ class AdvancedObjectView(QTextBrowser):
         
         self.ldapDataObject = smartObject
 
-#self.setWordWrapMode(QTextOption.WordWrap)
-#self.setLineWrapMode(QTextEdit.WidgetWidth)
         self.setSizePolicy(QSizePolicy.Maximum, QSizePolicy.Maximum)
         self.setWordWrapMode(QTextOption.WrapAnywhere)
 
@@ -23,20 +21,23 @@ class AdvancedObjectView(QTextBrowser):
         self.setOpenLinks(False)
         self.setHtml("")
                 
-        # is the current object a leaf of the ldap tree?
+        # boolean to indicate if the current ldap object has been modified
         self.EDITED = False
-
+        
         # is the current object a leaf of the ldap tree?
         self.ISLEAF = False
-
-        # do we create a completeley new object?
+        
+        # do we create a completely new object?
         self.CREATE = False
+
+        self.readServerSchema = False
         
         self.displayValues()
         
         self.bar = QToolBar()
         self.bar.addAction("Save",self.ldapDataObject.updateOnServer)
         self.bar.show()
+
 
 
     def getSmartObject(self):
@@ -63,37 +64,40 @@ class AdvancedObjectView(QTextBrowser):
         if None == self.ldapDataObject:
             return
 
-        #self.ldapDataObject.checkIntegrity()
+        self.ldapDataObject.checkIntegrity()
 
+        if not self.ldapDataObject.isValid:
+            # TODO: debug
+            pass
         self.ldapDataObject.isValid = True
-        if  self.ldapDataObject.isValid:
+        if self.ldapDataObject.isValid:
             tmpList = []
             tmpList.append("<html>")
             tmpList.append("""<body>""")
             tmpList.append("""<table border="0" cellpadding="1" cellspacing="0" width="100%">""")
             tmpList.append("""<tr>""")
             tmpList.append("""<td bgcolor="#B2CAE7" width="40%"><font size="+1"> <b>Distinguished Name:</b> </font></td>""")
-            tmpList.append("""<td bgcolor="#B2CAE7" width="60%"><font size="+1"><b>""" + self.ldapDataObject.getDN() + """</b></font></td>""")
-
+            tmpList.append("""<td bgcolor="#B2CAE7" width="60%"><font size="+1"><b>""" + self.ldapDataObject.getPrettyDN() + """</b></font></td>""")
+        
             if self.CREATE:
                 tmpList.append("""<td width=5%><a href=RDN__0__edit><img source=":/icons/edit"></a></td>""")
 
             tmpList.append("""</tr>""")
-
+        
             tmpList.append("</table>")
             tmpList.append("<br>")
-
+        
             tmpList.append(self.createClassString())
-
+        
             tmpList.append("<br>")
-
+        
             tmpList.append(self.createAttributeString())
-
+        
             tmpList.append("</body>")
             tmpList.append("</html>")
-
+        
             #self.currentDocument = ("".join(tmpList))
-
+        
             self.setHtml("".join(tmpList))
         else:
             tmpList = []
@@ -131,37 +135,39 @@ class AdvancedObjectView(QTextBrowser):
         for x in self.ldapDataObject.getObjectClasses():
             classString = x[:]
             
-            if self.ldapDataObject.isObjectclassStructural(x):
-                classString = "<b>" + classString + "</b>"
+            if self.readServerSchema:
+                if self.ldapDataObject.isObjectclassStructural(x):
+                    classString = "<b>" + classString + "</b>"
             tmpList.append("""<tr>""")
             tmpList.append("""<td colspan=2 bgcolor="#E5E5E5" width="100%">""")
             tmpList.append(classString)
             
             allowDelete = True
-            if self.ldapDataObject.isObjectclassStructural(x):
-                classList = self.ldapDataObject.getObjectClasses()
-                classList.remove(x)
-                if len(self.ldapDataObject.getObjectClassChain(x, classList)) == 0:
+            if self.readServerSchema:
+                if self.ldapDataObject.isObjectclassStructural(x):
+                    classList = self.ldapDataObject.getObjectClasses()
+                    classList.remove(x)
+                    if len(self.ldapDataObject.getObjectClassChain(x, classList)) == 0:
+                        allowDelete = False
+                       
+                if rdnClass in self.ldapDataObject.getAttributeListForObjectClass(x):
                     allowDelete = False
-                   
-            if rdnClass in self.ldapDataObject.getAttributeListForObjectClass(x):
-                allowDelete = False
-                
-                # Now we check if another objectclass provides the rdn attribute
-                classList = self.ldapDataObject.getObjectClasses()
-                classList.remove(x)
-                for y in classList:
-                    if rdnClass in self.ldapDataObject.getAttributeListForObjectClass(y):
-                        allowDelete = True
-                        break
+                    
+                    # Now we check if another objectclass provides the rdn attribute
+                    classList = self.ldapDataObject.getObjectClasses()
+                    classList.remove(x)
+                    for y in classList:
+                        if rdnClass in self.ldapDataObject.getAttributeListForObjectClass(y):
+                            allowDelete = True
+                            break
             
             if allowDelete and (not (x == 'top')):
                 deleteName = x + "__delete\""
-                tmpList.append(""" <a href=\"""" + deleteName + """><img source=":/icons/delete_small"></a>""")
+                tmpList.append(""" <a href=\"""" + deleteName + """><img source=":/icons/deleteEntry"></a>""")
             
             
             
-            #tmpList.append("""</td></tr>""")
+            tmpList.append("""</td></tr>""")
         
         tmpList.append("""</table>""")
         
@@ -214,11 +220,11 @@ class AdvancedObjectView(QTextBrowser):
                 
             
             allowDelete = False
-            #if attributeIsMust:
-            #    if len(valueList) > 1:
-            #        allowDelete = True
-            #else:
-            #    allowDelete = True
+            if attributeIsMust:
+                if len(valueList) > 1:
+                    allowDelete = True
+            else:
+                allowDelete = True
             
             tmpList.append("""<tr>""")
             
@@ -275,7 +281,7 @@ class AdvancedObjectView(QTextBrowser):
                 else:
                     tmpList.append(self.getAttributeValueString(univAttributeName, y, 
                         attributeIsBinary, attributeIsImage, attributeIsPassword))
-
+                    
                     tmpList.append(self.getAttributeModifierString(univAttributeName, 
                         allowDelete, attributeBinaryExport, attributeModify))
                     
@@ -285,7 +291,7 @@ class AdvancedObjectView(QTextBrowser):
         tmpList.append("""</table>""")
         
         return "".join(tmpList)
-
+        
 
     def getAttributeValueString(self, univAttributeName, value, attributeIsBinary, 
         attributeIsImage, attributeIsPassword):
@@ -294,7 +300,7 @@ class AdvancedObjectView(QTextBrowser):
         # Create the value part
         if attributeIsBinary:
             if attributeIsImage:
-                tmpImage = QtGui.QImage()
+                tmpImage = QImage()
                 tmpImage.loadFromData(value)
                 self.mimeFactory.setImage(univAttributeName, tmpImage)
                 tmpList.append("""<td width="55%"><img source=""" + univAttributeName + """></td>""")
@@ -307,7 +313,7 @@ class AdvancedObjectView(QTextBrowser):
             tmpList.append("""<td bgcolor="#E5E5E5" width="55%">""" + value + """</td>""")
             
         return "".join(tmpList)
-
+        
 
     def getAttributeModifierString(self, univAttributeName, allowDelete, attributeBinaryExport, attributeModify):
         tmpList = []
@@ -317,18 +323,15 @@ class AdvancedObjectView(QTextBrowser):
         if attributeModify:
         #if True:
             editName = univAttributeName + "__edit\""
-            #self.mimeFactory.setPixmap("editPixmap", self.editPixmap)
             tmpList.append("""<a href=\"""" + editName + """><img source=":/icons/edit"></a>""")
         
             if allowDelete:
             #if True:
                 deleteName = univAttributeName + "__delete\""
-                #self.mimeFactory.setPixmap("deletePixmap", self.deletePixmap)
-                tmpList.append(""" <a href=\"""" + deleteName + """><img source=":/icons/delete"></a>""")
+                tmpList.append(""" <a href=\"""" + deleteName + """><img source=":/icons/deleteEntry"></a>""")
             
             if attributeBinaryExport:
                 exportName = univAttributeName + "__export\""
-                #self.mimeFactory.setPixmap("exportPixmap", self.exportBinaryPixmap)
                 tmpList.append(""" <a href=\"""" + exportName + """><img source=":/icons/exportPixmap"></a>""")
         
         tmpList.append("""</td>""")
@@ -340,9 +343,9 @@ class AdvancedObjectView(QTextBrowser):
     def modifierClicked(self, url):
         nameString = unicode(url.toString())
         tmpList = nameString.split("__")
-
-        if tmpList[0] in self.model.getObjectClasses():
-            self.model.deleteObjectClass(tmpList[0])
+        
+        if tmpList[0] in self.ldapDataObject.getObjectClasses():
+            self.deleteObjectClass(tmpList[0])
             self.EDITED = True
             self.displayValues()
         else:
@@ -350,14 +353,38 @@ class AdvancedObjectView(QTextBrowser):
                 return
             attributeName, index, operation = tmpList[0], int(tmpList[1]), tmpList[2]
             if operation == "edit":
-                attributeValue = self.model.getAttributeValue(attributeName, index)
-                text, ok = QtGui.QInputDialog.getText(self, 'Input dialog', 'Attribute value:', QLineEdit.Normal, attributeValue)
-                text = unicode(text)
-                if ok:
-                    self.model.editAttribute(attributeName, index, text)
-                    self.displayValues()
-                    self.EDITED = True
+                self.editAttribute(attributeName, index)
             elif operation == "delete":
-                self.model.deleteAttribute(attributeName, index)
+                self.deleteAttribute(attributeName, index)
             elif operation == "export":
-                self.model.exportAttribute(attributeName, index)
+                self.exportAttribute(attributeName, index)
+
+    def exportAttribute(self, attributeName, index):
+        pass
+
+    def editAttribute(self, attributeName, index):
+        oldDN = self.ldapDataObject.getDN()
+        
+        if attributeName == 'RDN':
+            self.ldapDataObject.setDN(self.baseDN)
+
+        attributeValue = self.ldapDataObject.getAttributeValue(attributeName, index)
+        newValue, ok = QtGui.QInputDialog.getText(self, 'Input dialog', 'Attribute value:', QLineEdit.Normal, attributeValue)
+        if ok:
+            if not newValue == None:
+                self.ldapDataObject.setAttributeValue(attributeName, index, newValue)
+                self.EDITED = True
+                self.displayValues()
+        else:
+            if attributeName == 'RDN':
+                self.ldapDataObject.setDN(oldDN)
+
+    def deleteAttribute(self, attributeName, index):
+        self.ldapDataObject.deleteAttributeValue(attributeName, index)
+        self.EDITED = True
+        self.displayValues()
+
+    def deleteObjectClass(self, className):
+        self.ldapDataObject.deleteObjectClass(className)
+        self.EDITED = True
+        self.displayValues()
