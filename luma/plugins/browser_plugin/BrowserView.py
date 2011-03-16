@@ -59,7 +59,7 @@ class BrowserView(QWidget):
         self.entryList.setContextMenuPolicy(QtCore.Qt.CustomContextMenu)
         self.entryList.customContextMenuRequested.connect(self.rightClick)
         # When something is clicked, call self.initEntryView
-        self.entryList.clicked.connect(self.initEntryView)
+        self.entryList.doubleClicked.connect(self.initEntryView)
         
         # The editor for entries
         self.tabWidget = QtGui.QTabWidget(self)
@@ -103,6 +103,8 @@ class BrowserView(QWidget):
                 menu.addAction("No actions available")
                 
             else:
+                if clickedItem.smartObject() != None:
+                    menu.addAction("Open", self.openChosen)
                 # Add avaiable methods
                 if supports & AbstractLDAPTreeItem.SUPPORT_RELOAD:
                     menu.addAction("Reload", self.reloadChoosen)
@@ -120,6 +122,8 @@ class BrowserView(QWidget):
     Following methods are called from a context-menu.
     self.clickedItem is set there.
     """
+    def openChosen(self):
+        self.viewItem(self.clickedIndex)
     def reloadChoosen(self):
         self.reloadSignal.emit(self.clickedIndex)
     def clearChoosen(self):
@@ -151,7 +155,13 @@ class BrowserView(QWidget):
             return
         
         # Elso, gogo
+        self.viewItem(index)
+        
+    def viewItem(self, index):
         smartObject = index.internalPointer().smartObject()
+        
+        if smartObject == None:
+            return
         
         # Saves a representation of the opened entry to avoid opening duplicates
         serverName = smartObject.getServerAlias()

@@ -46,7 +46,7 @@ class LDAPTreeItem(AbstractLDAPTreeItem):
         # Return an icon if the item has been configured
         if role == QtCore.Qt.DecorationRole:
             if self.filter != LDAPTreeItem.FILTER_DEFAULT or self.limit != LDAPTreeItem.LIMIT_DEFAULT:
-                return QIcon(QPixmap(":/images/config.png"))
+                return QIcon(QPixmap(":/icons/filter"))
             else:
                 return QtCore.QVariant()
         # If DisplayRole

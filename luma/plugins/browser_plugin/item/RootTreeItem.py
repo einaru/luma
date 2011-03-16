@@ -18,3 +18,6 @@ class RootTreeItem(AbstractLDAPTreeItem):
     
     def columnCount(self):
         return 1
+    
+    def fetchChildList(self):
+        return None

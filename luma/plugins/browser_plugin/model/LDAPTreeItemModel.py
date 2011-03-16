@@ -129,7 +129,7 @@ class LDAPTreeItemModel(QAbstractItemModel):
             parentItem = parent.internalPointer()
 
         if not parentItem.populated:
-            self.populateItem(parent)
+            self.populateItem(parentItem)
             # Updates the |>-icon to show if the item has children
             self.layoutChanged.emit()
         
@@ -164,28 +164,27 @@ class LDAPTreeItemModel(QAbstractItemModel):
         
         if not len(serverList.getTable()) > 0:
             # If there's no servers :(
+            self.rootItem.appendChild(LDAPErrorItem("No servers defined", None, self.rootItem))
             return
 
         for server in serverList.getTable():
             tmp = ServerTreeItem([server.name], server, self.rootItem)
             self.rootItem.appendChild(tmp)
         
-    def populateItem(self, parentIndex):
+    def populateItem(self, parentItem):
         """
         Populates the list of children for the current parent-item.
         """
         
         self.isWorking()
         
-        parentItem = parentIndex.internalPointer()
-        
         # Ask the item to fetch the list for us
         list = parentItem.fetchChildList()
         
         if list == None:
             # TODO better error handling here and possibly in the item itself. Who displays the error-message?
-            print "Error fetching list."
-            print "I'll let things be then."
+            #print "Error fetching list."
+            #print "I'll let things be then."
             parentItem.populated = 1
             self.doneWorking()
             return
