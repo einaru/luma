@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-# plugins.search.__init__
+# plugins.search.model.SearchModel
 #
 # Copyright (c) 2011
 #      Einar Uvsløkk, <einaru@stud.ntnu.no>
@@ -18,24 +18,5 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see http://www.gnu.org/licenses/
 
-lumaPlugin = True
-pluginName = "search"
-pluginUserString = "Search"
-version = "0.1"
-author = "Einar Uvsløkk"
-
-
-def getIcon(iconPath):
-    return
-
-
-def getPluginWidget(parent):
-    return
-
-
-def getPluginSettingsWidget(parent):
-    return
-
-
-def postprocess():
-    return
+class ResultListModel():
+    pass
