@@ -370,6 +370,7 @@ class AdvancedObjectView(QTextBrowser):
 
         attributeValue = self.ldapDataObject.getAttributeValue(attributeName, index)
         newValue, ok = QtGui.QInputDialog.getText(self, 'Input dialog', 'Attribute value:', QLineEdit.Normal, attributeValue)
+        newValue = unicode(newValue)
         if ok:
             if not newValue == None:
                 self.ldapDataObject.setAttributeValue(attributeName, index, newValue)
