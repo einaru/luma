@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from PyQt4 import QtCore, QtGui
-from PyQt4.QtGui import QTextBrowser, QTextOption, QPixmap, QSizePolicy, QTextOption, QLineEdit
+from PyQt4.QtGui import QTextBrowser, QTextOption, QPixmap, QSizePolicy, QTextOption, QLineEdit, QToolBar
 from PyQt4.QtCore import QSize, SIGNAL
 import copy
 
@@ -33,11 +33,15 @@ class AdvancedObjectView(QTextBrowser):
         self.CREATE = False
         
         self.displayValues()
+        
+        self.bar = QToolBar()
+        self.bar.addAction("Save",self.ldapDataObject.updateOnServer)
+        self.bar.show()
 
 
     def getSmartObject(self):
         return self.ldapDataObject
-
+    
     # TODO: not used
     def initView(self, data, create=False):
         #self.ldapDataObject = data
@@ -48,8 +52,6 @@ class AdvancedObjectView(QTextBrowser):
             self.CREATE = True
         else:
             self.EDITED = False
-
-            
 
 
     def displayValues(self):

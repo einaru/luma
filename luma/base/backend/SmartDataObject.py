@@ -13,6 +13,7 @@ import ldif
 import dsml
 import copy
 import base64
+import logging
 from cStringIO import StringIO
 from sets import Set
 
@@ -30,12 +31,16 @@ class SmartDataObject (object):
                     "solarisbindpassword"]
 
     def __init__(self, data, serverMeta):
+        
         self.doSchemaChecks = True
         self.isValid = False
         self.checkErrorMessageList = ["No error checking done yet."]
         
         self.dn = data[0]
         self.data = data[1]
+        
+        self.logger = logging.getLogger(__name__)
+
         
         # This is the string representing our key for the objectclasses.
         # Important for lower- and uppercase variants
@@ -54,6 +59,14 @@ class SmartDataObject (object):
         self.checkIntegrity()
         
         
+    def updateOnServer(self):
+        from base.backend.LumaConnection import LumaConnection
+        self.logger.debug("Updating smartobject on server")
+        l = LumaConnection(self.serverMeta)
+        l.bind()
+        l.updateDataObject(self)
+        l.unbind()
+        self.logger.debug("Done")
         
 ###############################################################################
 
