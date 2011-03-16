@@ -74,7 +74,6 @@ class ObjectClassAttributeInfo(object):
         """ Retrieve all information of objectClassesDict and attributes from the
         server.
         """
-        
         #environment.setBusy(True)
         
         # Try to get server schema information from the cache
@@ -114,6 +113,7 @@ class ObjectClassAttributeInfo(object):
                 tmpString = "Schema information for server " + self.serverMeta.name + " retrieved."
                 self.logging.info(tmpString)
             else:
+                print "*" * 30
                 self.failure = True
                 self.failureException = workerThread.exceptionObject
                 tmpString = "Could not fetch LDAP schema from server. Reason:\n"
@@ -673,6 +673,7 @@ class WorkerThreadFetch(threading.Thread):
                     schema_attrs = url.attrs
                 subschemasubentry_entry = self.ldapServerObject.read_subschemasubentry_s(
                     subschemasubentry_dn,attrs=schema_attrs)
+                print "FIKK:",subschemasubentry_entry
             self.ldapServerObject.unbind_s()
                 
             schema = None
