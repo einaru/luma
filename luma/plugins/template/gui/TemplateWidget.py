@@ -10,10 +10,12 @@ from PyQt4.QtCore import QModelIndex
 from .TemplateWidgetDesign import Ui_TemplateWidget
 from .AddAttributeDialog import AddAttributeDialog
 from .AddObjectclassDialog import AddObjectclassDialog
-from .TemplateListModel import TemplateListModel
-from .TemplateList import TemplateList
-from .TemplateDelegate import TemplateDelegate
-from .TemplateObject import TemplateObject
+from ..TemplateList import TemplateList
+from ..TemplateDelegate import TemplateDelegate
+from ..TemplateObject import TemplateObject
+from ..model.TemplateTableModel import TemplateTableModel
+from ..model.ObjectclassTableModel import ObjectclassTableModel
+from ..model.AttributeTableModel import AttributeTableModel
 
 import copy
 
@@ -28,12 +30,17 @@ class TemplateWidget(QWidget, Ui_TemplateWidget):
         self._templateListCopy = None
         self._returnList = None
         
-        self.tlm = TemplateListModel(self._templateList)
+        self.templateTM = TemplateTableModel(self._templateList)
+        self.listViewTemplates.setModel(self.templateTM)
         
-        self.listViewTemplates.setModel(self.tlm)
+        self.objectclassTM = ObjectclassTableModel(self._templateList) 
+        self.tableViewObjectclasses.setModel(self.objectclassTM)
+        
+        self.attributeTM = AttributeTableModel(self._templateList)
+        self.tableViewAttributes.setModel(self.attributeTM)
 
         # Enable/disable editing depending on if we have a server to edit
-        if self.tlm.rowCount(QModelIndex()) > 0:
+        if self.templateTM.rowCount(QModelIndex()) > 0:
             self.setRightSideEnabled(True)
         else:
             self.setRightSideEnabled(False)
@@ -49,7 +56,7 @@ class TemplateWidget(QWidget, Ui_TemplateWidget):
 
         # Map columns of the model to fields in the gui
         self.mapper = QDataWidgetMapper()
-        self.mapper.setModel(self.tlm)
+        self.mapper.setModel(self.templateTM)
         # Handles the comboboxes and to-from the list of custom baseDNs
         self.templateDelegate = TemplateDelegate()
         self.mapper.setItemDelegate(self.templateDelegate) 
@@ -77,6 +84,13 @@ class TemplateWidget(QWidget, Ui_TemplateWidget):
         self.lineEditDescription.setEnabled(enabled)
         self.groupBoxObjectclasses.setEnabled(enabled)
         self.groupBoxAttributes.setEnabled(enabled)
+        
+    def clearAll(self):
+        self.lineEditName.clear()
+        self.lineEditServer.clear()
+        self.lineEditDescription.clear()
+        self.tableViewObjectclasses.model().reset()
+        self.tableViewAttributes.model().reset()
 
     def addTemplate(self):
         name, ok = QInputDialog.getText(self, 'Add server', 'Name:')
@@ -119,15 +133,16 @@ class TemplateWidget(QWidget, Ui_TemplateWidget):
             self.mapper.setCurrentIndex(newIndex.row())
         
         # Disable editing if no templates left
-        if self.tlm.rowCount() == 0:
+        if self.templateTM.rowCount() == 0:
             self.setRightSideEnabled(False)
+            self.clearAll()
     
     def duplicateTemplate(self):
-        for i in self.tlm._templateList.getTable(): 
+        for i in self.templateTM._templateList.getTable(): 
             print i
     
     def saveTemplate(self):
-        pass
+        self._templateList.save()
         
     def addObjectclass(self):
         dialog = AddObjectclassDialog()

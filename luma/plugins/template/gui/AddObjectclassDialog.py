@@ -5,7 +5,7 @@ Created on 15. mars 2011
 '''
 
 from PyQt4.QtGui import QDialog
-from AddObjectclassDialogDesign import Ui_AddObjectclassDialog 
+from .AddObjectclassDialogDesign import Ui_AddObjectclassDialog 
 
 class AddObjectclassDialog(QDialog, Ui_AddObjectclassDialog):
     

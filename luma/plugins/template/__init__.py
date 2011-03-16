@@ -27,7 +27,7 @@ def getIcon(iconPath):
 ###############################################################################
 
 def getPluginWidget(parent):
-    from .TemplateWidget import TemplateWidget
+    from .gui.TemplateWidget import TemplateWidget
     pluginWidget = TemplateWidget()
     return pluginWidget
     

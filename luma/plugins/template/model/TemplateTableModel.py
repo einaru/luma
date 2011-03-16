@@ -6,9 +6,9 @@ Created on 16. mars 2011
 from PyQt4.QtCore import QAbstractTableModel, QModelIndex
 from PyQt4.QtCore import Qt, SIGNAL, QVariant
 
-from .TemplateObject import TemplateObject
+from ..TemplateObject import TemplateObject
 
-class TemplateListModel(QAbstractTableModel):
+class TemplateTableModel(QAbstractTableModel):
     
     def __init__(self, templateList, parent = None):
         QAbstractTableModel.__init__(self)
