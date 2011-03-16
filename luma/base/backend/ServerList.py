@@ -42,14 +42,15 @@ class ServerList(object):
     
     def __init__(self, configPrefix = None, serverFileName = "serverlist.xml"):
         if configPrefix == None:
-            #TODO Should get default
+            #TODO Should get default (or remove this feature alltogheter)
+            #possible not in use currentlt
             configPrefix = "/tmp"
         self._serverList = []
         self._configPrefix = configPrefix
         self._configFile = os.path.join(self._configPrefix, serverFileName)
         
         if os.path.isfile(self._configFile):
-            self._readServerList()
+            self._readServerList()            
 
     def getTable(self):
         """
