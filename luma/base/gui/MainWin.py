@@ -562,7 +562,6 @@ class PluginToolBar(QToolBar):
         if hasattr(self.parent, "showPlugins"):
             self.parent.showPlugins()
 
-
 class SettingsDialog(QDialog, Ui_SettingsDialog):
     """
     The application settings dialog

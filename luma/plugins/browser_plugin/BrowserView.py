@@ -16,8 +16,6 @@ from PyQt4.QtGui import QWidget#, QAction
 #import environment
 from base.backend.ServerList import ServerList
 from model.LDAPTreeItemModel import LDAPTreeItemModel
-from model.LDAPEntryModel import LDAPEntryModel
-#from item.LDAPTreeItem import LDAPTreeItem
 from item.AbstractLDAPTreeItem import AbstractLDAPTreeItem
 from plugins.browser_plugin.item.ServerTreeItem import ServerTreeItem
 from plugins.browser_plugin.AdvancedObjectView import AdvancedObjectView
@@ -26,9 +24,14 @@ from plugins.browser_plugin.AdvancedObjectView import AdvancedObjectView
 class BrowserView(QWidget):
 
     def __init__(self, parent, configPrefix = None):
+        """
+        Configprefix defines the location of serverlist.xml
+        """
         QtGui.QWidget.__init__(self, parent)
 
         self.setObjectName("PLUGIN_BROWSER")
+        self.openSmartObjects = []
+        
         # The serverlist used
         self.serverList = ServerList(configPrefix)
 
@@ -56,37 +59,28 @@ class BrowserView(QWidget):
         self.entryList.setContextMenuPolicy(QtCore.Qt.CustomContextMenu)
         self.entryList.customContextMenuRequested.connect(self.rightClick)
         # When something is clicked, call self.initEntryView
-        self.entryList.clicked.connect(self.initEntryView)
+        self.entryList.doubleClicked.connect(self.initEntryView)
         
         # The editor for entries
         self.tabWidget = QtGui.QTabWidget(self)
         self.setMinimumWidth(200)
         self.tabWidget.setTabsClosable(True)
         self.tabWidget.tabCloseRequested.connect(self.tabCloseClicked)
-        #self.entryView = AdvancedObjectView(self)
-        #self.tabWidget.addTab(self.entryView, "QString")
+
             
         self.splitter.addWidget(self.entryList)
         self.splitter.addWidget(self.tabWidget)
-        #self.splitter.addWidget(self.entryView)
         self.mainLayout.addWidget(self.splitter)
 
         # Used to signal the ldaptreemodel with a index
         # which needs processing (reloading, clearing)
         self.reloadSignal.connect(self.ldaptreemodel.reloadItem)
         self.clearSignal.connect(self.ldaptreemodel.clearItem)        
-        
-        # Working / needed?
-        self.ldaptreemodel.dataChanged.connect(self.entryList.dataChanged)
 
         
     # Custom signals used
     reloadSignal = QtCore.pyqtSignal(QtCore.QModelIndex)
     clearSignal = QtCore.pyqtSignal(QtCore.QModelIndex)
-    
-    def tabCloseClicked(self, index):
-        #TODO Check if should save etc etc
-        self.tabWidget.removeTab(index)
 
     def rightClick(self, point):
         """
@@ -109,6 +103,8 @@ class BrowserView(QWidget):
                 menu.addAction("No actions available")
                 
             else:
+                if clickedItem.smartObject() != None:
+                    menu.addAction("Open", self.openChosen)
                 # Add avaiable methods
                 if supports & AbstractLDAPTreeItem.SUPPORT_RELOAD:
                     menu.addAction("Reload", self.reloadChoosen)
@@ -126,6 +122,8 @@ class BrowserView(QWidget):
     Following methods are called from a context-menu.
     self.clickedItem is set there.
     """
+    def openChosen(self):
+        self.viewItem(self.clickedIndex)
     def reloadChoosen(self):
         self.reloadSignal.emit(self.clickedIndex)
     def clearChoosen(self):
@@ -157,13 +155,41 @@ class BrowserView(QWidget):
             return
         
         # Elso, gogo
-        x = AdvancedObjectView()
-        x.setModel(LDAPEntryModel(index))
-        x.displayValues()
+        self.viewItem(index)
         
+    def viewItem(self, index):
+        smartObject = index.internalPointer().smartObject()
+        
+        if smartObject == None:
+            return
+        
+        # Saves a representation of the opened entry to avoid opening duplicates
+        serverName = smartObject.getServerAlias()
+        dn = smartObject.getDN()
+        rep = (serverName,dn)
+        
+        if self.openSmartObjects.count(rep) > 0:
+            """Already open"""
+            return
+        
+        self.openSmartObjects.append( (serverName,dn) )
+
+        x = AdvancedObjectView(smartObject)
         self.tabWidget.addTab(x, x.ldapDataObject.getPrettyRDN())
         self.tabWidget.setCurrentWidget(x)
+    
+        
+    def tabCloseClicked(self, index):
+        #TODO Check if should save etc etc
+        sO = self.tabWidget.widget(index).getSmartObject()
 
+        # Remove the representation of the opened entry from the list
+        serverName = sO.getServerAlias()
+        dn = sO.getDN()
+        rep = (serverName,dn)
+        self.openSmartObjects.remove(rep)
+        
+        self.tabWidget.removeTab(index)
 
     def buildToolBar(self, parent):
         # FIXME: qt4 migration needed
