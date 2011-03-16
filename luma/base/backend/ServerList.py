@@ -192,7 +192,7 @@ class ServerList(object):
         except IOError, e:
             errorString = "Could not read server configuration file. Reason:\n"
             errorString += str(e)
-            self._logger.warning(errorString)
+            self._logger.error(errorString)
 
         document = QDomDocument("LumaServerFile")
         document.setContent(fileContent)
