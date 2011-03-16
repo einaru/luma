@@ -53,17 +53,16 @@ from PyQt4.QtGui import QWidget
 from PyQt4.QtGui import QProgressBar
 
 from base.backend.ServerList import ServerList
-from base.gui import Settings
+from base.gui.Settings import Settings
 from base.gui.AboutDialogDesign import Ui_AboutDialog
 from base.gui.AboutLicenseDesign import Ui_AboutLicense
 from base.gui.AboutCreditsDesign import Ui_AboutCredits
 from base.gui.LoggerWidgetDesign import Ui_LoggerWidget
 from base.gui.MainWinDesign import Ui_MainWindow
-#from base.gui.PluginSettings import PluginSettings
 from base.gui.SettingsDialogDesign import Ui_SettingsDialog
 from base.gui.ServerDialog import ServerDialog
 from base.util.i18n import LanguageHandler
-from base.util.icontheme import pixmapFromThemeIcon, iconFromTheme
+from base.util.icontheme import iconFromTheme
 from base.util.gui.PluginListWidget import PluginListWidget
 from base.model.PluginSettingsModel import PluginSettingsModel
 import resources

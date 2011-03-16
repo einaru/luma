@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file '/mnt/debris/devel/git/luma-playground/resources/forms/ServerDialogDesign.ui'
+# Form implementation generated from reading ui file '/mnt/debris/devel/git/luma/resources/forms/ServerDialogDesign.ui'
 #
-# Created: Mon Mar 14 18:48:11 2011
+# Created: Wed Mar 16 16:44:18 2011
 #      by: PyQt4 UI code generator 4.7.4
 #
 # WARNING! All changes made in this file will be lost!

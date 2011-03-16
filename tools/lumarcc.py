@@ -17,46 +17,40 @@
 # You should have received a copy of the GNU General Public Licence along 
 # with Luma; if not, write to the Free Software Foundation, Inc., 
 # 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA
-from string import replace
 """
 Assumed locations of files:
-
-<top level>
-|--luma
-|  |--gui
-|  |  `--*Design.py
-|  `--i18n
-|     `--luma_*.ts
+.
+|-- luma
+|   |-- base
+|   |   `-- gui
+|   |       `-- *Design.py
+|   `-- plugins
+|       `-- <plugin-name>
+|           `-- gui
+|               `-- *Design.py
+|-- resources
+|   |-- forms
+|   |   |-- plugins
+|   |   |   `-- search
+|   |   |       `-- *Design.ui
+|   |   `-- *Design.ui
+|   |--i18n
+|   |  `--luma_*.ts
+|   `--icons
+|-- tools
+|   `--lumarcc.py
 |
-|--resources
-|  |--forms
-|  |  `--*Design.ui
-|  |--i18n
-|  |  `--luma_*.ts
-|  `--icons
-|
-|--tools
-|  |--lumarcc.py
-|  `--masspyuic4.py
-|
-|--luma.pro
-`--luma.qrc
+|-- luma.pro
+`-- luma.qrc
 
 Purpose:
 
 Compile all project resources in one command
 """
-
-logo = """
-   __  __  ______ ___  ____  ___  ____  ____  
-  / /\/ /\/ / __ `__ \/___ \/ __\/ ___\/ ___\  lumarcc.py v0.2
- / /_/ /_/ / /\/ /\/ / __  / /\_/ /\__/ /\___\ copyright (c) 2011
- \__/\____/_/ /_/ /_/\____/_/ / \____/\____/\  Einar Uvsløkk
-  \_\/\___\_\/\_\/\_\/\___\_\/   \___\/\___\/  <einar.uvslokk@linux.com>
-"""
-
 import os
 import sys
+from string import replace
+import subprocess
 
 from optparse import OptionParser, OptionGroup
 
@@ -68,7 +62,7 @@ SOURCE_TRANS = ['resources', 'i18n']
 SOURCE_UI = ['resources', 'forms']
 DEST_TRANS = ['luma', 'i18n']
 DEST_UI = ['luma', 'base', 'gui']
-
+PLUGINS = ['luma', 'plugins']
 
 # Files w/filepaths
 LUMA_PRO = ['luma.pro']
@@ -77,165 +71,49 @@ LUMA_RC = ['luma', 'resources.py']
 LUMA_RC_ICONS = ['luma', 'iconsrc.py']
 LUMA_RC_I18N = ['luma', 'i18nrc.py']
 
+short_description = """
+   __  __  ______ ___  ____  ___  ____  ____  
+  / /\/ /\/ / __ `__ \/___ \/ __\/ ___\/ ___\  lumarcc.py v0.3
+ / /_/ /_/ / /\/ /\/ / __  / /\_/ /\__/ /\___\ copyright (c) 2011
+ \__/\____/_/ /_/ /_/\____/_/ / \____/\____/\  Einar Uvsløkk
+  \_\/\___\_\/\_\/\_\/\___\_\/   \___\/\___\/  <einar.uvslokk@linux.com>
 
-def run(cmd):
+Luma resource compiler"""
+
+long_description = """
+This utility script makes use of the following PyQt commands:
+
+pyrcc4      Used for compiling resources into a python resource file.
+            This is a python wrapper for rcc
+pyuic4      Used for compiling .ui files and generating py source files.
+            This is a python wrapper for uic-qt4
+pylupdate4  Used for updating the resources in the project file.
+            This is a python wrapper for lupdate-qt4"""
+
+
+def _run(cmd, args=[]):
     """
     This method is pretty much pillage from openLP :).
     It executes the provided command, provided it is available on the system.
     
     @param cmd: The wicked command to be executed.
     """
-    if verbose:
-        print u'\tCommand: %s' % cmd
     if not dryrun:
         proc = QProcess()
-        proc.start(cmd)
+        proc.start(cmd, args)
         while proc.waitForReadyRead():
             if verbose:
-                print u'ReadyRead: %s' % QString(proc.readAll())
+                print u'  ReadyRead: %s' % proc.readAll()
         if verbose:
-            print u'Errors:\n%s' % proc.readAllStandardError()
-            print u'Output:\n%s' % proc.readAllStandardOutput()
-            print u'------'
+            stderr = proc.readAllStandardError()
+            if stderr != '':
+                print u'  Errors: %s' % stderr
+            stdout = proc.readAllStandardOutput()
+            if stdout != '':
+                print u'  Output: %s' % proc.readAllStandardOutput()
 
 
-def compileUiFiles(ui_files, src_path, dst_path):
-    """
-    Iterates through the ui_files and builds the compile command.
-    Compiling is done through the run(cmd) method
-    
-    @param ui_files: a list of ui files to compile
-    @param src_path: the source path, where all the .ui files is located
-    @param dst_path: the desitination path, where all generated python
-                     code is do end up.
-    """
-    for ui_file in ui_files:
-        py_file = ui_file[:-3] # remove .ui
-        py_file = u'%s.py' % py_file
-        py_file = os.path.join(dst_path, py_file)
-        ui_file = os.path.join(src_path, ui_file)
-        if verbose:
-            print u'Building command to compile .ui file:'
-        cmd = u'pyuic4 %s -o %s' % (ui_file, py_file)
-        run(cmd)
-
-
-def listUiFiles(ui_files):
-    """
-    Create a indexed dictionary for available .ui files.
-    The dictionary will be pretty printed.
-    
-    @param ui_files: a list of all .ui files
-    """
-    files = {}
-    i = 1
-    print 'Available .ui files:\n'
-
-    for ui in ui_files:
-        files[i] = ui
-        print u'%2d  %s' % (i, ui)
-        i = i + 1
-
-    return files
-
-
-def prepareUiCompiling(compileAll):
-    """
-    Prepare for compiling.
-    Setup up full path to the .ui files, full path to where the 
-    generated .py files should end up, and fetches the list of
-    available .ui files.
-    """
-    ui_path = __getPath(SOURCE_UI)
-    ui_files = os.listdir(ui_path)
-    py_path = __getPath(DEST_UI)
-
-    if not compileAll:
-        list = listUiFiles(ui_files)
-        num = raw_input(u'\nEnter the number of the file to compile\n' + \
-                        u'(use * to compile all files listed): ')
-        num = __validateNum(num)
-        if num != u'*' and num > 0:
-            compileUiFiles([list[int(num)]], ui_path, py_path)
-            return
-
-    compileUiFiles(ui_files, ui_path, py_path)
-
-
-def compileResources():
-    """
-    Compile resources defined in the project file [luma.pro]
-    """
-    lumaqrc = __getPath(LUMA_QRC)
-    lumarc = __getPath(LUMA_RC)
-    cmd = u'pyrcc4 %s -py2 -o %s' % (lumaqrc, lumarc)
-    if verbose:
-        print u'Building command to compile resources:'
-        print u'\tresource collection file: %s' % lumaqrc
-        print u'\tpython resource file: %s' % lumarc
-    run(cmd)
-
-
-def createQrcFile(icons=False, i18n=False):
-    """
-    Create the luma.qrc file based on the content in the resource folder
-    
-    @param icons: Wheter or not to include icons
-    @param i18n: Wheter or not to include translation files
-    """
-    qrc = __generateQrcFile(icons, i18n)
-    __writeToDisk(qrc, __getPath(LUMA_QRC))
-
-
-def __generateQrcFile(icons=False, i18n=False):
-    """
-    Scannes the defined icons and/or i18n folders for content to include
-    in the luma resource file -> resources.py
-    
-    @param icons: Wheter or not to include icons
-    @param i18n: Wheter or not to include translation files
-    """
-    qrc = []
-    QRC_HEADER_OPEN = u'<!DOCTYPE RCC><RCC version="1.0">'
-    QRC_HEADER_CLOSE = u'</RCC>'
-
-    qrc.append(QRC_HEADER_OPEN)
-
-    if i18n:
-        i18nPath = __getPath(SOURCE_TRANS)
-        qrc.append(u'  <qresource prefix="%s">' % os.path.split(i18nPath)[1])
-        for file in os.listdir(i18nPath):
-            if file[-3:] == u'.qm':
-                name = os.path.split(file)[1]
-                alias = name[5:-3]
-                qrc.append(u'    <file alias="%s">resources/i18n/%s</file>' % \
-                           (alias, name))
-        qrc.append(u'  </qresource>')
-
-    if icons:
-        iconsPath = __getPath(SOURCE_ICONS)
-        qrc.append(u'  <qresource prefix="%s">' % os.path.split(iconsPath)[1])
-        prefix = ''
-        for path, dirs, icons in os.walk(iconsPath):
-            location = replace(path, iconsPath, u'resources/icons')
-
-            if location[-5:] != u'icons':
-                prefix = '%s-' % os.path.split(location)[1]
-
-            for icon in sorted(icons):
-                if icon[-4:] == u'.png':
-                    (name, alias) = __getIconNameAndAlias(icon)
-                    qrc.append(u'    <file alias="%s%s">%s/%s</file>' % \
-                               (prefix, alias, location, name))
-
-        qrc.append(u'  </qresource>')
-
-    qrc.append(QRC_HEADER_CLOSE)
-
-    return qrc
-
-
-def __writeToDisk(list, where):
+def _writeToDisk(list, where):
     """
     Writes a list, item for item, to disk at location where.
     
@@ -248,20 +126,18 @@ def __writeToDisk(list, where):
         file = open(where, 'w')
 
         for line in list:
-            if verbose:
-                print line
             file.write(u'%s\n' % line)
 
         file.close()
 
 
-def __getIconNameAndAlias(path):
+def _getIconNameAndAlias(path):
     name = os.path.split(path)[1]
     alias = name[:-4]
     return (name, alias)
 
 
-def __validateNum(num):
+def _validateNum(num):
     """
     Validates if a variable is numeric. NB! if num == * this will be
     returned as is.
@@ -276,7 +152,7 @@ def __validateNum(num):
         return - 1
 
 
-def __getPath(pathList):
+def _getPath(pathList):
     """
     Ensures that we get correct paths. That is we change our working 
     directory to the top-level (one step up from tools).
@@ -299,43 +175,245 @@ def __getPath(pathList):
     return path
 
 
+def _listUiFiles(noprint=False):
+    """
+    List all available .ui files
+    """
+    uipath = _getPath(SOURCE_UI)
+
+    uifiles = {}
+    index = 1
+    if not noprint:
+        print 'Available .ui files:\n'
+
+    for path, dir, files in os.walk(uipath):
+        if files != []:
+            basename = os.path.basename(path)
+            if not noprint and basename != 'forms':
+                print '\n[%s plugin]:' % basename
+        for file in files:
+            uifiles[index] = os.path.join(path, file)
+            if not noprint:
+                print '%2d  %s' % (index, file)
+            index = index + 1
+
+    return uifiles
+
+
+def _prepareUiFiles(all=False):
+    """
+    Preapres the .ui files for compiling. A list of available .ui files
+    will be printed, and the user will be prompted for the index of the
+    file to be compiled.
+    The index must be an valid integer, or * to compile all files.
+    
+    @param all: boolean value; whether or not to prepare all files
+    """
+    
+    if all:
+        return _listUiFiles(noprint=True).values()
+
+    uifiles = _listUiFiles()
+    files = []
+
+    input = raw_input('\nEnter the number of the file(s) to compile\n' +
+                     '(use * to compile all files listed):')
+
+    nums = input.split(' ')
+    for num in nums:
+        num = _validateNum(num)
+        if num == '*':
+            return uifiles.values()
+        elif num > 0:
+            files.append(uifiles[num])
+
+    return files
+
+
+def _generateQrcFile(icons=False, i18n=False):
+    """
+    Scannes the defined icons and/or i18n folders for content to include
+    in the luma resource file -> resources.py
+    
+    @param icons: Wheter or not to include icons
+    @param i18n: Wheter or not to include translation files
+    """
+    qrc = []
+    QRC_HEADER_OPEN = u'<!DOCTYPE RCC><RCC version="1.0">'
+    QRC_HEADER_CLOSE = u'</RCC>'
+
+    qrc.append(QRC_HEADER_OPEN)
+
+    if i18n:
+        i18nPath = _getPath(SOURCE_TRANS)
+        qrc.append(u'  <qresource prefix="%s">' % os.path.split(i18nPath)[1])
+        for file in os.listdir(i18nPath):
+            if file[-3:] == u'.qm':
+                name = os.path.split(file)[1]
+                alias = name[5:-3]
+                qrc.append(u'    <file alias="%s">resources/i18n/%s</file>' % \
+                           (alias, name))
+        qrc.append(u'  </qresource>')
+
+    if icons:
+        iconsPath = _getPath(SOURCE_ICONS)
+        qrc.append(u'  <qresource prefix="%s">' % os.path.split(iconsPath)[1])
+        prefix = ''
+        for path, dirs, icons in os.walk(iconsPath):
+            location = replace(path, iconsPath, u'resources/icons')
+
+            if location[-5:] != u'icons':
+                prefix = '%s-' % os.path.split(location)[1]
+
+            for icon in sorted(icons):
+                if icon[-4:] == u'.png':
+                    (name, alias) = _getIconNameAndAlias(icon)
+                    qrc.append(u'    <file alias="%s%s">%s/%s</file>' % \
+                               (prefix, alias, location, name))
+
+        qrc.append(u'  </qresource>')
+
+    qrc.append(QRC_HEADER_CLOSE)
+    
+    if verbose:
+        print '\nGenerated .qrc file:'
+        for line in qrc:
+            print line
+    
+    return qrc
+
+
+def compileUiFiles(compileAll=False):
+    """
+    Find and list all available .ui files, and prepare the selected files
+    for compiling.
+    
+    @param compileAll: boolean value; wheter or not to compile all files
+    """
+
+    uifiles = _prepareUiFiles(compileAll)
+    pypath = _getPath(DEST_UI)
+
+    cmd = 'pyuic4'
+
+    for uifile in uifiles:
+
+        pyfile = '%s.py' % uifile[:-3]
+        basename = os.path.basename(pyfile)
+        dirname = os.path.split(os.path.dirname(uifile))[1]
+
+        if dirname != 'forms':
+            # We are dealing with plugin forms
+            # and need to use a different destination path
+            pluginpath = os.path.join(_getPath(PLUGINS), dirname, 'gui')
+            pyfile = os.path.join(pluginpath, basename)
+        else:
+            # We are dealing with regular .ui forms,
+            # and can use the default location 
+            pyfile = os.path.join(pypath, basename)
+
+        args = [uifile, '-o', pyfile]
+        if verbose:
+            print 'Executing: ', cmd, uifile, '-o', pyfile
+        _run(cmd, args)
+
+
+def createQrcFile(icons=False, i18n=False):
+    """
+    Create the luma.qrc file based on the content in the resource folder
+    
+    @param icons: Wheter or not to include icons
+    @param i18n: Wheter or not to include translation files
+    """
+    qrc = _generateQrcFile(icons, i18n)
+    _writeToDisk(qrc, _getPath(LUMA_QRC))
+
+
+def compileResources():
+    """
+    Compile resources defined in the project file [luma.pro]
+    """
+    lumaqrc = _getPath(LUMA_QRC)
+    lumarc = _getPath(LUMA_RC)
+    cmd = 'pyrcc4'
+    args = [lumaqrc, '-py2', '-o', lumarc]
+    
+    if verbose:
+        print '\nBuilding command to compile resources:'
+        print '  resource file: %s' % lumaqrc
+        print '  python resource file: %s' % lumarc
+        print 'Executing: ', cmd, lumaqrc, '-py2', '-o', lumarc
+    
+    _run(cmd, args)
+
+
+def updateTranslationFiles():
+    """
+    Just executes the pylupdate4 command on the project file.
+    """
+    cmd = 'pyludpate4'
+    lumapro = _getPath(LUMA_PRO)
+    args = ['-noobsolete']
+    
+    if verbose:
+        args.append('-verbose')
+        print '\nBuilding command to update translation files:'
+        print '  project file: %s' % lumapro
+        print 'Executing: ', cmd, '-noobsolete -verbose',lumapro
+    
+    args.append(lumapro)
+    _run(cmd, [lumapro])
+    
+
 def main():
 
     global verbose, dryrun
 
-    usage = u'%prog [options]\n'
-
+    usage = '%prog [options]'
     # Main Options:
     parser = OptionParser(usage=usage)
 
-    parser.add_option('-c', '--complete', dest='complete', action='store_true',
-                      help='Run a complete resource build, ' +
-                      'this includes compiling all .ui files before ' +
-                      'creating the resource file')
-    parser.add_option('-d', '--default', dest='default', action='store_true',
-                      help='Compile resources defined in the luma.pro file')
-    parser.add_option('-g', '--generate', dest='generate', action='store_true',
-                      help='Generate the resource file. Usefull only if ' +
-                      'resources are changed.')
-    parser.add_option('-q', '--qrc', dest='qrc', action='store_true',
-                      help='Create/update the resource.py file. ' +
-                      'The luma.qrc must exists for this to succeed.')
-    parser.add_option('-v', '--verbose', dest='verbose', action='store_true',
-                      help='Show all output while compiling .ui files')
-
-    # Ui-compiling Options:
-    group = OptionGroup(parser, 'Ui-compiling Options',
-                        'Use these options to compile .ui files.')
-    group.add_option('-a', '--all', dest='all', action='store_true',
-                     help='Compile all ui files')
-    group.add_option('-l', '--ls', dest='list', action='store_true',
-                     help='List all .ui files, and choose the one to compile')
-    parser.add_option_group(group)
-
+    parser.add_option(
+        '-f', '--full-run',
+        dest='full_run', action='store_true',
+        help='Do a full run. This involves first compiling all ui files, ' +
+        'creating the .qrc file, and generate the resource.py file'
+    )
+    parser.add_option(
+        '-u', '--compile-ui-files',
+        dest='ui_files', action='store_true',
+        help='List all .ui files, and choose the one [or all] files to compile'
+    )
+    parser.add_option(
+        '-q', '--create-qrc-file',
+        dest='qrc_file', action='store_true',
+        help='Create and write the .qrc file to disk'
+    )
+    parser.add_option(
+        '-t', '--update-ts',
+        dest='ts_files', action='store_true',
+        help='Creates or updates the application translations files. ' +
+        'This is done by reading the project file. (NOTE: the .ts files, ' +
+        'obviously, needs to be updated manually with QLinguist afterwards).'
+    )
     # Debug Options:
-    group = OptionGroup(parser, 'Debug Options:')
-    group.add_option('--dry', dest='dry', action='store_true',
-                     help='Dry-run. Must be used together with other options')
+    group = OptionGroup(parser, 'Debug Options')
+    group.add_option(
+        '-d', '--dry',
+        dest='dry', action='store_true',
+        help='Do a dry-run to see what will be done, without doing anything ' +
+        '(NOTE: verbose will be set to True when this option is enabled.'
+    )
+    group.add_option(
+        '-v', '--verbose',
+        dest='verbose', action='store_true',
+        help='Show output and information on whats going on'
+    )
+    group.add_option(
+        '-i', '--info',
+        dest='info', action='store_true',
+        help='Show script information'
+    )
     parser.add_option_group(group)
 
     (opt, args) = parser.parse_args()
@@ -343,34 +421,34 @@ def main():
     verbose = opt.verbose
     dryrun = opt.dry
 
+    if opt.info:
+        print short_description
+        parser.print_usage()
+        print long_description
+        sys.exit()
+
     if dryrun:
         print u'!!!!!!!!!!!!!!!\n!!! DRY-RUN !!!\n!!!!!!!!!!!!!!!'
 
     if len(sys.argv) == 1:
-        print logo
-        sys.exit(parser.print_usage())
-        #"""
-        #Default run when no options are given.
-        #For convenience when running from a IDE, i.e. Eclipse
-        #"""
-        #print u'No options given. Will now run with the -lv flags...\n'
-        #verbose = True
-        #prepareUiCompiling(compileAll=False)
-    if opt.generate:
+        print short_description
+        parser.print_help()
+
+    if opt.full_run:
+        compileUiFiles(compileAll=True)
+        createQrcFile(icons=True, i18n=True)
+        compileResources()
+        updateTranslationFiles()
+        sys.exit()
+
+    if opt.qrc_file:
         createQrcFile(icons=True, i18n=True)
 
-    if opt.complete:
-        prepareUiCompiling(compileAll=True)
-        sys.exit(compileResources())
-    if opt.all:
-        prepareUiCompiling(compileAll=True)
-        if opt.complete:
-            sys.exit(compileResources())
-    elif opt.list:
-        prepareUiCompiling(compileAll=False)
+    if opt.ui_files:
+        compileUiFiles(compileAll=False)
 
-    if opt.default:
-        compileResources()
+    if opt.ts_files:
+        updateTranslationFiles()
 
 
 if __name__ == '__main__':
