@@ -9,7 +9,7 @@ import copy
 class AdvancedObjectView(QTextBrowser):
 
     def __init__(self, smartObject, parent=None):
-        QTextEdit.__init__(self, parent)
+        QTextBrowser.__init__(self, parent)
         
         self.ldapDataObject = smartObject
 
@@ -22,12 +22,7 @@ class AdvancedObjectView(QTextBrowser):
 
         self.setOpenLinks(False)
         self.setHtml("")
-        
-        self.displayValues()
-        
-    def getSmartObject(self):
-        return self.ldapDataObject
-
+                
         # is the current object a leaf of the ldap tree?
         self.EDITED = False
 
@@ -36,7 +31,12 @@ class AdvancedObjectView(QTextBrowser):
 
         # do we create a completeley new object?
         self.CREATE = False
+        
+        self.displayValues()
 
+
+    def getSmartObject(self):
+        return self.ldapDataObject
 
     # TODO: not used
     def initView(self, data, create=False):
@@ -71,7 +71,7 @@ class AdvancedObjectView(QTextBrowser):
             tmpList.append("""<table border="0" cellpadding="1" cellspacing="0" width="100%">""")
             tmpList.append("""<tr>""")
             tmpList.append("""<td bgcolor="#B2CAE7" width="40%"><font size="+1"> <b>Distinguished Name:</b> </font></td>""")
-            tmpList.append("""<td bgcolor="#B2CAE7" width="60%"><font size="+1"><b>""" + self.model.getRootDN() + """</b></font></td>""")
+            tmpList.append("""<td bgcolor="#B2CAE7" width="60%"><font size="+1"><b>""" + self.ldapDataObject.getDN() + """</b></font></td>""")
 
             if self.CREATE:
                 tmpList.append("""<td width=5%><a href=RDN__0__edit><img source=":/icons/edit"></a></td>""")
@@ -155,7 +155,7 @@ class AdvancedObjectView(QTextBrowser):
             
             if allowDelete and (not (x == 'top')):
                 deleteName = x + "__delete\""
-                tmpList.append(""" <a href=\"""" + deleteName + """><img source=":/icons/delete"></a>""")
+                tmpList.append(""" <a href=\"""" + deleteName + """><img source=":/icons/delete_small"></a>""")
             
             
             
