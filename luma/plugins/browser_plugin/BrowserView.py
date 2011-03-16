@@ -30,8 +30,7 @@ class BrowserView(QWidget):
         QtGui.QWidget.__init__(self, parent)
 
         self.setObjectName("PLUGIN_BROWSER")
-        self.openSmartObjects = []
-        
+            
         # The serverlist used
         self.serverList = ServerList(configPrefix)
 
@@ -66,6 +65,9 @@ class BrowserView(QWidget):
         self.setMinimumWidth(200)
         self.tabWidget.setTabsClosable(True)
         self.tabWidget.tabCloseRequested.connect(self.tabCloseClicked)
+        
+        # Remember and looks up open tabs
+        self.openTabs = {}
 
             
         self.splitter.addWidget(self.entryList)
@@ -168,13 +170,13 @@ class BrowserView(QWidget):
         dn = smartObject.getDN()
         rep = (serverName,dn)
         
-        if self.openSmartObjects.count(rep) > 0:
-            """Already open"""
+        if self.openTabs.has_key(str(rep)):
+            x = self.openTabs[str(rep)]
+            self.tabWidget.setCurrentWidget(x)
             return
         
-        self.openSmartObjects.append( (serverName,dn) )
-
         x = AdvancedObjectView(smartObject)
+        self.openTabs[str(rep)] = x
         self.tabWidget.addTab(x, x.ldapDataObject.getPrettyRDN())
         self.tabWidget.setCurrentWidget(x)
     

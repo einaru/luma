@@ -53,7 +53,9 @@ class ServerTreeItem(AbstractLDAPTreeItem):
             bindSuccess, exceptionObject = connection.bind()
             if not bindSuccess:
                 self.logger.debug("Bind failed.")
-                self.displayError(exceptionObject)
+                tmp = LDAPErrorItem(str("[Bind failed]"), self, self)
+                #self.displayError(exceptionObject)
+                return [tmp]
                 return
             
         # Else get them from the server
@@ -64,7 +66,7 @@ class ServerTreeItem(AbstractLDAPTreeItem):
         
             if not success:
                 self.logger.debug("getBaseDNList failed:"+str(exceptionObject))
-                tmp = LDAPErrorItem(str("[Bind failed]"), self, self)
+                tmp = LDAPErrorItem(str("[Couldn't get baseDNs]"), self, self)
                 #self.displayError(exceptionObject)
                 return [tmp]
                 #return
