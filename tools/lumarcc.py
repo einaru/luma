@@ -99,19 +99,33 @@ def _run(cmd, args=[]):
     @param cmd: The wicked command to be executed.
     """
     if not dryrun:
-        proc = QProcess()
-        proc.start(cmd, args)
-        while proc.waitForReadyRead():
-            if verbose:
-                print u'  ReadyRead: %s' % proc.readAll()
+        exe = [cmd]
+        for arg in args:
+            exe.append(arg)
+        proc = subprocess.Popen(exe, shell=False, stdout=subprocess.PIPE, 
+                               stderr=subprocess.PIPE)
         if verbose:
-            stderr = proc.readAllStandardError()
-            if stderr != '':
-                print u'  Errors: %s' % stderr
-            stdout = proc.readAllStandardOutput()
-            if stdout != '':
-                print u'  Output: %s' % proc.readAllStandardOutput()
+            pass
+#    if not dryrun:
+#        proc = QProcess()
+#        proc.start(cmd, args)
+#        while proc.waitForReadyRead():
+#            if verbose:
+#                print u'  ReadyRead: %s' % proc.readAll()
+#        if verbose:
+#            stderr = proc.readAllStandardError()
+#            if stderr != '':
+#                print u'  Errors: %s' % stderr
+#            stdout = proc.readAllStandardOutput()
+#            if stdout != '':
+#                print u'  Output: %s' % proc.readAllStandardOutput()
 
+def __run(cmd, args=[]):
+    """
+    
+    @param cmd: a list containing the command (and possible arguments)
+                to execute.
+    """
 
 def _writeToDisk(list, where):
     """
