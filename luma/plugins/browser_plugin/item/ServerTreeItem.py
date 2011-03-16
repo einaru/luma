@@ -30,7 +30,7 @@ class ServerTreeItem(AbstractLDAPTreeItem):
             return QtCore.QVariant()
         
         if role == QtCore.Qt.DecorationRole:
-            return QIcon(QPixmap(":/images/server.png"))
+            return QIcon(QPixmap(":/icons/network-server"))
         else:
             return self.itemData[column]
 

@@ -7,13 +7,20 @@ import copy
 
 class AdvancedObjectView(QTextEdit):
 
-
-    def __init__(self, parent=None):
+    def __init__(self, smartObject, parent=None):
         QTextEdit.__init__(self, parent)
+        
+        self.ldapDataObject = smartObject
+        
 #self.setWordWrapMode(QTextOption.WordWrap)
 #self.setLineWrapMode(QTextEdit.WidgetWidth)
         self.setReadOnly(True)
         self.setHtml("")
+        
+        self.displayValues()
+        
+    def getSmartObject(self):
+        return self.ldapDataObject
 
     def displayValues(self):
         tmpList = []
@@ -22,7 +29,7 @@ class AdvancedObjectView(QTextEdit):
         tmpList.append("""<table border="0" cellpadding="1" cellspacing="0" width="100%">""")
         tmpList.append("""<tr>""")
         tmpList.append("""<td bgcolor="#B2CAE7" width="40%"><font size="+1"> <b>Distinguished Name:</b> </font></td>""")
-        tmpList.append("""<td bgcolor="#B2CAE7" width="60%"><font size="+1"><b>""" + self.model.getRootDN() + """</b></font></td>""")
+        tmpList.append("""<td bgcolor="#B2CAE7" width="60%"><font size="+1"><b>""" + self.ldapDataObject.getPrettyDN() + """</b></font></td>""")
 
 #if self.CREATE:
 #self.mimeFactory.setPixmap("editPixmap", self.editPixmap)
@@ -73,7 +80,6 @@ class AdvancedObjectView(QTextEdit):
         tmpList.append("""<tr>""")
         tmpList.append("""<td bgcolor="#C4DFFF" align="center"><b>ObjectClasses</b></td>""")
         tmpList.append("""</tr>""")
-        self.ldapDataObject = self.model.index.internalPointer().smartObject()
         
         rdn = self.ldapDataObject.getPrettyRDN()
         rdnClass = rdn.split("=")[0]
@@ -108,7 +114,7 @@ class AdvancedObjectView(QTextEdit):
             if allowDelete and (not (x == 'top')):
                 deleteName = x + "__delete\""
 #self.mimeFactory.setPixmap("deletePixmap", self.deletePixmap)
-                tmpList.append(""" <a name=\"""" + deleteName + """><img source=":/icons/delete"></a>""")
+                tmpList.append(""" <a name=\"""" + deleteName + """><img source=":/icons/delete_small"></a>""")
             
             
             
@@ -128,8 +134,6 @@ class AdvancedObjectView(QTextEdit):
         tmpList.append("""<td colspan=2 bgcolor="#C4DFFF" align="center"><b>Attributes</b></td>""")
         tmpList.append("""</tr>""")
         tmpList.append("""</table>""")
-
-        self.ldapDataObject = self.model.index.internalPointer().smartObject()
         
         attributeList = self.ldapDataObject.getAttributeList()
         attributeList.sort()
@@ -239,7 +243,6 @@ class AdvancedObjectView(QTextEdit):
         
         return "".join(tmpList)
 
-###############################################################################
 
     def getAttributeValueString(self, univAttributeName, value, attributeIsBinary, 
         attributeIsImage, attributeIsPassword):
@@ -262,7 +265,6 @@ class AdvancedObjectView(QTextEdit):
             
         return "".join(tmpList)
 
-###############################################################################
 
     def getAttributeModifierString(self, univAttributeName, allowDelete, attributeBinaryExport, attributeModify):
         tmpList = []
@@ -291,7 +293,3 @@ class AdvancedObjectView(QTextEdit):
             
         return "".join(tmpList)
 
-###############################################################################
-
-    def setModel(self, model):
-        self.model = model
