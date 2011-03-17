@@ -1,24 +1,34 @@
 # -*- coding: utf-8 -*-
 
 from PyQt4 import QtCore, QtGui
-from PyQt4.QtGui import QTextBrowser, QTextOption, QPixmap, QSizePolicy, QTextOption, QLineEdit, QToolBar, QImage
+from PyQt4.QtGui import QTextBrowser, QTextOption, QPixmap, QSizePolicy, QTextOption, QLineEdit, QToolBar, QImage, QMessageBox, QVBoxLayout, QWidget
 from PyQt4.QtCore import QSize, SIGNAL
+from base.backend.LumaConnection import LumaConnection
+import ldap
 import copy
 import logging
 
-class AdvancedObjectView(QTextBrowser):
+class AdvancedObjectView(QWidget):
 
     def __init__(self, smartObject, index, parent=None):
-        QTextBrowser.__init__(self, parent)
+        QWidget.__init__(self, parent)
         
+        self.index = index
+
         self.ldapDataObject = smartObject
+        self.setLayout(QVBoxLayout(self))
 
-        self.setSizePolicy(QSizePolicy.Maximum, QSizePolicy.Maximum)
-        self.setWordWrapMode(QTextOption.WrapAnywhere)
+        self.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
 
-        self.connect(self, SIGNAL("anchorClicked(const QUrl&)"), self.modifierClicked)
+        self.objectWidget = QTextBrowser()
+        self.objectWidget.setWordWrapMode(QTextOption.WrapAnywhere)
+        self.objectWidget.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+        self.objectWidget.setMinimumSize(QSize(300, 100))
+        self.objectWidget.setOpenLinks(False)
+        self.layout().addWidget(self.objectWidget)
+        
+        self.connect(self.objectWidget, SIGNAL("anchorClicked(const QUrl&)"), self.modifierClicked)
 
-        self.setOpenLinks(False)
         self.setHtml("")
                 
         # boolean to indicate if the current ldap object has been modified
@@ -32,18 +42,36 @@ class AdvancedObjectView(QTextBrowser):
 
         self.readServerSchema = False
         
-        self.displayValues()
+        self.buildToolBar(None)
+
+        self.initView(None)
         
+
+###############################################################################
+
+    def buildToolBar(self, parent):
         self.bar = QToolBar()
-        self.bar.addAction("Save",self.ldapDataObject.updateOnServer)
-        self.bar.show()
+        reloadAction = self.bar.addAction("Reload",self.refreshView)
+        saveAction = self.bar.addAction("Save",self.saveView)
+        addAttributeAction = self.bar.addAction("Add attribute",self.addAttribute)
+        deleteObjectAction = self.bar.addAction("Delete",self.deleteObject)
+
+        self.reloadButton = self.bar.widgetForAction(reloadAction)
+        self.saveButton = self.bar.widgetForAction(saveAction)
+        self.addAttributeButton = self.bar.widgetForAction(reloadAction)
+        self.deleteObjectButton = self.bar.widgetForAction(reloadAction)
+
+        self.layout().insertWidget(0, self.bar)
 
 
+###############################################################################
 
     def getSmartObject(self):
         return self.ldapDataObject
     
-    # TODO: not used
+###############################################################################
+
+    # TODO: fix
     def initView(self, data, create=False):
         #self.ldapDataObject = data
 
@@ -53,7 +81,18 @@ class AdvancedObjectView(QTextBrowser):
             self.CREATE = True
         else:
             self.EDITED = False
+        self.enableToolButtons
 
+        self.displayValues()
+        self.enableToolButtons(True)
+
+###############################################################################
+
+    # TODO: remove
+    def setHtml(self, text):
+        self.objectWidget.setHtml(text)
+
+###############################################################################
 
     def displayValues(self):
         self.setHtml("")
@@ -62,6 +101,7 @@ class AdvancedObjectView(QTextBrowser):
         # This might happen if we want to refresh an item and
         # it might be deleted already.
         if None == self.ldapDataObject:
+            self.enableToolButtons(False)
             return
 
         self.ldapDataObject.checkIntegrity()
@@ -293,6 +333,8 @@ class AdvancedObjectView(QTextBrowser):
         return "".join(tmpList)
         
 
+###############################################################################
+
     def getAttributeValueString(self, univAttributeName, value, attributeIsBinary, 
         attributeIsImage, attributeIsPassword):
         tmpList = []
@@ -314,6 +356,7 @@ class AdvancedObjectView(QTextBrowser):
             
         return "".join(tmpList)
         
+###############################################################################
 
     def getAttributeModifierString(self, univAttributeName, allowDelete, attributeBinaryExport, attributeModify):
         tmpList = []
@@ -339,6 +382,7 @@ class AdvancedObjectView(QTextBrowser):
             
         return "".join(tmpList)
 
+###############################################################################
 
     def modifierClicked(self, url):
         nameString = unicode(url.toString())
@@ -359,8 +403,44 @@ class AdvancedObjectView(QTextBrowser):
             elif operation == "export":
                 self.exportAttribute(attributeName, index)
 
+###############################################################################
+    # TODO: check
     def exportAttribute(self, attributeName, index):
-        pass
+        return
+        """ Show the dialog for exporting binary attribute data.
+        """
+        
+        value = self.ldapDataObject.getAttributeValue(attributeName, index)
+
+
+        #filename = unicode(QFileDialog.getSaveFileName(
+        #                    self,
+        #fileName = unicode(QFileDialog.getSaveFileName(\
+        #                    QString.null,
+        #                    "All files (*)",
+        #                    self, None,
+        #                    self.trUtf8("Export binary attribute to file"),
+        #                    None, 1))
+
+        if unicode(fileName) == "":
+            return
+            
+        try:
+            fileHandler = open(fileName, "w")
+            fileHandler.write(value)
+            fileHandler.close()
+            SAVED = True
+        except IOError, e:
+            result = QMessageBox.warning(None,
+                self.trUtf8("Export binary attribute"),
+                self.trUtf8("""Could not export binary data to file. Reason:
+""" + str(e) + """\n\nPlease select another filename."""),
+                self.trUtf8("&Cancel"),
+                self.trUtf8("&OK"),
+                None,
+                1, -1)
+
+###############################################################################
 
     def editAttribute(self, attributeName, index):
         oldDN = self.ldapDataObject.getDN()
@@ -380,12 +460,214 @@ class AdvancedObjectView(QTextBrowser):
             if attributeName == 'RDN':
                 self.ldapDataObject.setDN(oldDN)
 
+###############################################################################
+
     def deleteAttribute(self, attributeName, index):
         self.ldapDataObject.deleteAttributeValue(attributeName, index)
         self.EDITED = True
         self.displayValues()
 
+###############################################################################
+
     def deleteObjectClass(self, className):
         self.ldapDataObject.deleteObjectClass(className)
         self.EDITED = True
         self.displayValues()
+
+###############################################################################
+
+    def enableToolButtons(self, enable):
+        if self.EDITED:
+            self.saveButton.setEnabled(enable)
+        else:
+            self.saveButton.setEnabled(False)
+            
+        if self.ISLEAF:
+            self.deleteObjectButton.setEnabled(enable)
+        else:
+            self.deleteObjectButton.setEnabled(False)
+           
+        if self.CREATE:
+            self.reloadButton.setEnabled(False)
+        else:
+            self.reloadButton.setEnabled(enable)
+            
+        self.addAttributeButton.setEnabled(enable)
+
+
+###############################################################################
+
+    # TODO: add logging for each error
+    def refreshView(self):
+        """ Refreshes the LDAP data from server and displays values.
+        """
+        
+        lumaConnection = LumaConnection(self.ldapDataObject.getServerMeta())
+        bindSuccess, exceptionObject = lumaConnection.bind()
+        
+        if not bindSuccess:
+            #dialog = LumaErrorDialog()
+            errorMsg = self.trUtf8("Could not bind to server.<br><br>Reason: ")
+            errorMsg.append(str(exceptionObject))
+            QMessageBox.critical(self, "Bind error", errorMsg)
+            #dialog.setErrorMessage(errorMsg)
+            #dialog.exec_loop()
+            return 
+        
+        success, resultList, exceptionObject = lumaConnection.search(self.ldapDataObject.getDN(), ldap.SCOPE_BASE)
+        lumaConnection.unbind()
+        
+        if success and (len(resultList) > 0):
+            self.ldapDataObject = resultList[0]
+            self.EDITED = False
+            self.displayValues()
+        else:
+            self.ldapDataObject = None
+            self.EDITED = False
+            self.displayValues()
+        
+            #dialog = LumaErrorDialog()
+            errorMsg = self.trUtf8("Could not refresh entry.<br><br>Reason: ")
+            errorMsg.append(str(exceptionObject))
+            QMessageBox.critical(self, "Bind error", errorMsg)
+            #dialog.setErrorMessage(errorMsg)
+            #dialog.exec_loop()
+
+###############################################################################
+
+    # TODO: add logging for each error
+    def saveView(self):
+        """ Save changes to the current object.
+        """
+        
+        lumaConnection = LumaConnection(self.ldapDataObject.getServerMeta())
+        bindSuccess, exceptionObject = lumaConnection.bind()
+        
+        if not bindSuccess:
+            #dialog = LumaErrorDialog()
+            errorMsg = self.trUtf8("Could not bind to server.<br><br>Reason: ")
+            errorMsg.append(str(exceptionObject))
+            QMessageBox.critical(self, "Bind error", errorMsg)
+            #dialog.setErrorMessage(errorMsg)
+            #dialog.exec_loop()
+            return 
+        
+        if self.CREATE:
+            success, exceptionObject = lumaConnection.addDataObject(self.ldapDataObject)
+            lumaConnection.unbind()
+            
+            if success:
+                self.CREATE = False
+                self.EDITED = False
+                self.displayValues()
+            else:
+                #dialog = LumaErrorDialog()
+                errorMsg = self.trUtf8("Could not add entry.<br><br>Reason: ")
+                errorMsg.append(str(exceptionObject))
+                QMessageBox.critical(self, "Bind error", errorMsg)
+                #dialog.setErrorMessage(errorMsg)
+                #dialog.exec_loop()
+        else:
+            success, exceptionObject = lumaConnection.updateDataObject(self.ldapDataObject)
+            lumaConnection.unbind()
+            if success:
+                self.EDITED = False
+                self.displayValues()
+            else:
+                #dialog = LumaErrorDialog()
+                errorMsg = self.trUtf8("Could not save entry.<br><br>Reason: ")
+                errorMsg.append(str(exceptionObject))
+                QMessageBox.critical(self, "Bind error", errorMsg)
+                #dialog.setErrorMessage(errorMsg)
+                #dialog.exec_loop()
+
+###############################################################################
+
+    def addAttribute(self):
+        """ Add attributes to the current object.
+        """
+        
+        QMessageBox.critical(self, "?", "I dont exist, yet")
+        """
+        dialog = AddAttributeWizard(self)
+        dialog.setData(copy.deepcopy(self.ldapDataObject))
+        
+        dialog.exec_loop()
+        
+        if dialog.result() == QDialog.Rejected:
+            return
+        
+        attribute = str(dialog.attributeBox.currentText())
+        showAll = dialog.enableAllBox.isChecked()
+        if dialog.binaryBox.isOn():
+            attributeList = Set([attribute + ";binary"])
+        else:
+            attributeList = Set([attribute])
+        
+        if showAll and not(attribute in dialog.possibleAttributes):
+            objectClass = str(dialog.classBox.currentText())
+            self.ldapDataObject.addObjectClass(objectClass)
+            
+            serverSchema = ObjectClassAttributeInfo(self.ldapDataObject.getServerMeta())
+            mustAttributes = serverSchema.getAllMusts([objectClass])
+            mustAttributes = mustAttributes.difference(Set(self.ldapDataObject.getAttributeList()))
+            attributeList = mustAttributes.union(Set([attribute]))
+            
+        for x in attributeList:
+            self.ldapDataObject.addAttributeValue(x, None)
+        
+        self.displayValues()
+        """
+
+###############################################################################
+
+    # TODO: add logging for each error, remove tab and node from parent
+    def deleteObject(self):
+        
+        buttonClicked = QMessageBox.critical(self, 
+                self.trUtf8("Delete object"),
+                self.trUtf8("Do your really want to delete the object?"),
+                QMessageBox.Yes,
+                QMessageBox.No)
+        
+        #tmpDialog.setIconPixmap(QPixmap(os.path.join(self.iconPath, "warning_big.png")))
+        #tmpDialog.exec_loop()
+            
+        if not (buttonClicked == QMessageBox.Yes):
+            return
+        
+        lumaConnection = LumaConnection(self.ldapDataObject.getServerMeta())
+        bindSuccess, exceptionObject = lumaConnection.bind()
+        
+        if not bindSuccess:
+            #dialog = LumaErrorDialog()
+            errorMsg = self.trUtf8("Could not bind to server.<br><br>Reason: ")
+            errorMsg.append(str(exceptionObject))
+            QMessageBox.critical(self, "Bind error", errorMsg)
+            #dialog.setErrorMessage(errorMsg)
+            #dialog.exec_loop()
+            return
+        
+        success, exceptionObject = lumaConnection.delete(self.ldapDataObject.getDN())
+        lumaConnection.unbind()
+        
+        if success:
+            serverName = self.ldapDataObject.getServerAlias()
+            dn = self.ldapDataObject.getPrettyParentDN()
+            #self.emit(PYSIGNAL("REOPEN_PARENT"), (serverName, dn,))
+            self.clearView()
+            self.enableToolButtons(False)
+            self.index.model().reloadItem(self.index.parent())
+            self.deleteLater()
+        else:
+            #dialog = LumaErrorDialog()
+            errorMsg = self.trUtf8("Could not delete entry.<br><br>Reason: ")
+            errorMsg.append(str(exceptionObject))
+            QMessageBox.critical(self, "Delete error", errorMsg)
+            #dialog.setErrorMessage(errorMsg)
+            #dialog.exec_loop()
+
+###############################################################################
+
+    def clearView(self):
+        self.objectWidget.setText("")

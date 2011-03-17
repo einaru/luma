@@ -181,7 +181,6 @@ class BrowserView(QWidget):
         self.viewItem(index)
         
     def viewItem(self, index):
-        persistentIndex = QtCore.QPersistentModelIndex(index)
         smartObject = index.internalPointer().smartObject()
         
         if smartObject == None:
@@ -197,7 +196,7 @@ class BrowserView(QWidget):
             self.tabWidget.setCurrentWidget(x)
             return
         
-        x = AdvancedObjectView(smartObject, persistentIndex)
+        x = AdvancedObjectView(smartObject, QtCore.QPersistentModelIndex(index))
         self.openTabs[str(rep)] = x
         self.tabWidget.addTab(x, x.ldapDataObject.getPrettyRDN())
         self.tabWidget.setCurrentWidget(x)
@@ -206,12 +205,12 @@ class BrowserView(QWidget):
     def tabCloseClicked(self, index):
         #TODO Check if should save etc etc
         sO = self.tabWidget.widget(index).getSmartObject()
-
-        # Remove the representation of the opened entry from the list
-        serverName = sO.getServerAlias()
-        dn = sO.getDN()
-        rep = (serverName,dn)
-        self.openTabs.pop(str(rep))
+        if not (sO == None):
+            # Remove the representation of the opened entry from the list
+            serverName = sO.getServerAlias()
+            dn = sO.getDN()
+            rep = (serverName,dn)
+            self.openTabs.pop(str(rep))
         
         self.tabWidget.removeTab(index)
 
