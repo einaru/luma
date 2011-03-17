@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file '/home/johannes/Programmering/Luma/git/resources/forms/MainWinDesign.ui'
 #
-# Created: Tue Mar 15 17:36:40 2011
+# Created: Thu Mar 17 15:41:22 2011
 #      by: PyQt4 UI code generator 4.7.4
 #
 # WARNING! All changes made in this file will be lost!
@@ -12,7 +12,7 @@ from PyQt4 import QtCore, QtGui
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(700, 550)
+        MainWindow.resize(913, 575)
         MainWindow.setWindowOpacity(1.0)
         self.centralwidget = QtGui.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
@@ -23,7 +23,7 @@ class Ui_MainWindow(object):
         self.gridLayout.addWidget(self.mainTabs, 0, 0, 1, 1)
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtGui.QMenuBar(MainWindow)
-        self.menubar.setGeometry(QtCore.QRect(0, 0, 700, 25))
+        self.menubar.setGeometry(QtCore.QRect(0, 0, 913, 25))
         self.menubar.setObjectName("menubar")
         self.menuFile = QtGui.QMenu(self.menubar)
         self.menuFile.setObjectName("menuFile")
@@ -52,7 +52,14 @@ class Ui_MainWindow(object):
         self.actionAboutLuma.setObjectName("actionAboutLuma")
         self.actionEditSettings = QtGui.QAction(MainWindow)
         self.actionEditSettings.setObjectName("actionEditSettings")
+        self.actionShowPluginList = QtGui.QAction(MainWindow)
+        self.actionShowPluginList.setObjectName("actionShowPluginList")
+        self.actionShowWelcomeTab = QtGui.QAction(MainWindow)
+        self.actionShowWelcomeTab.setObjectName("actionShowWelcomeTab")
         self.menuFile.addAction(self.actionShowLogger)
+        self.menuFile.addSeparator()
+        self.menuFile.addAction(self.actionShowPluginList)
+        self.menuFile.addAction(self.actionShowWelcomeTab)
         self.menuFile.addSeparator()
         self.menuFile.addAction(self.actionQuit)
         self.menuEdit.addAction(self.actionEditServerList)
@@ -77,6 +84,8 @@ class Ui_MainWindow(object):
         QtCore.QObject.connect(self.actionEditServerList, QtCore.SIGNAL("triggered()"), MainWindow.showServerEditor)
         QtCore.QObject.connect(self.actionEditSettings, QtCore.SIGNAL("triggered()"), MainWindow.showSettingsDialog)
         QtCore.QObject.connect(self.mainTabs, QtCore.SIGNAL("tabCloseRequested(int)"), MainWindow.tabClose)
+        QtCore.QObject.connect(self.actionShowPluginList, QtCore.SIGNAL("triggered()"), MainWindow.showPlugins)
+        QtCore.QObject.connect(self.actionShowWelcomeTab, QtCore.SIGNAL("triggered()"), MainWindow.showWelcome)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def retranslateUi(self, MainWindow):
@@ -97,4 +106,8 @@ class Ui_MainWindow(object):
         self.actionAboutLuma.setText(QtGui.QApplication.translate("MainWindow", "About Luma", None, QtGui.QApplication.UnicodeUTF8))
         self.actionAboutLuma.setShortcut(QtGui.QApplication.translate("MainWindow", "F12", None, QtGui.QApplication.UnicodeUTF8))
         self.actionEditSettings.setText(QtGui.QApplication.translate("MainWindow", "Settings", None, QtGui.QApplication.UnicodeUTF8))
+        self.actionShowPluginList.setText(QtGui.QApplication.translate("MainWindow", "Show plugin-list", None, QtGui.QApplication.UnicodeUTF8))
+        self.actionShowPluginList.setShortcut(QtGui.QApplication.translate("MainWindow", "Ctrl+P", None, QtGui.QApplication.UnicodeUTF8))
+        self.actionShowWelcomeTab.setText(QtGui.QApplication.translate("MainWindow", "Show welcome tab", None, QtGui.QApplication.UnicodeUTF8))
+        self.actionShowWelcomeTab.setShortcut(QtGui.QApplication.translate("MainWindow", "Ctrl+Shift+W", None, QtGui.QApplication.UnicodeUTF8))
 
