@@ -8,7 +8,7 @@ import logging
 
 class AdvancedObjectView(QTextBrowser):
 
-    def __init__(self, smartObject, parent=None):
+    def __init__(self, smartObject, index, parent=None):
         QTextBrowser.__init__(self, parent)
         
         self.ldapDataObject = smartObject

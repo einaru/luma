@@ -109,13 +109,24 @@ class BrowserView(QWidget):
                     menu.addAction("Open", self.openChosen)
                 # Add avaiable methods
                 if supports & AbstractLDAPTreeItem.SUPPORT_RELOAD:
-                    menu.addAction("Reload", self.reloadChoosen)
+                    menu.addAction("Reload children", self.reloadChoosen)
                 if supports & AbstractLDAPTreeItem.SUPPORT_FILTER:
                     menu.addAction("Filter", self.filterChoosen)
                 if supports & AbstractLDAPTreeItem.SUPPORT_LIMIT:
                     menu.addAction("Limit", self.limitChoosen)
                 if supports & AbstractLDAPTreeItem.SUPPORT_CLEAR:
                     menu.addAction("Clear", self.clearChoosen)
+                if supports & AbstractLDAPTreeItem.SUPPORT_ADD:
+                    m = QtGui.QMenu("Add", menu)
+                    m.addAction("Entry", self.addEntryChosen)
+                    m.addAction("Template", self.addTemplateChosen)
+                    menu.addMenu(m)
+                if supports & AbstractLDAPTreeItem.SUPPORT_DELETE:
+                    m = QtGui.QMenu("Delete", menu)
+                    m.addAction("Entry", self.addEntryChosen)
+                    m.addAction("Template", self.addTemplateChosen)
+                    menu.addMenu(m)
+
             
             menu.exec_(self.entryList.mapToGlobal(point))
     
@@ -138,6 +149,16 @@ class BrowserView(QWidget):
         # Have the item set the filter, then reload
         self.clickedIndex.internalPointer().setFilter()
         self.reloadSignal.emit(self.clickedIndex)
+    def addEntryChosen(self):
+        item = self.clickedIndex.internalPointer()
+        from plugins.browser_plugin.NewEntryDialog import NewEntryDialog
+        tmp = NewEntryDialog()
+        r = tmp.exec_()
+        if tmp.Accepted:
+            self.reloadChoosen()
+            
+    def addTemplateChosen(self):
+        pass
 
 
     def initEntryView(self, index):
@@ -160,6 +181,7 @@ class BrowserView(QWidget):
         self.viewItem(index)
         
     def viewItem(self, index):
+        persistentIndex = QtCore.QPersistentModelIndex(index)
         smartObject = index.internalPointer().smartObject()
         
         if smartObject == None:
@@ -175,7 +197,7 @@ class BrowserView(QWidget):
             self.tabWidget.setCurrentWidget(x)
             return
         
-        x = AdvancedObjectView(smartObject)
+        x = AdvancedObjectView(smartObject, persistentIndex)
         self.openTabs[str(rep)] = x
         self.tabWidget.addTab(x, x.ldapDataObject.getPrettyRDN())
         self.tabWidget.setCurrentWidget(x)

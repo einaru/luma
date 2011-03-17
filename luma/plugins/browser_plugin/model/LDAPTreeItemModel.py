@@ -207,9 +207,9 @@ class LDAPTreeItemModel(QAbstractItemModel):
         newList = parentItem.fetchChildList()
         
         if newList == None:
-            print "Error fetching new list -- TODO proper error-handling"
-            print "Now I've got nothing to do, so I'm returning :("
-            print "Hopefully nothing wrong happens because of this"
+            print "Error fetching list of children."
+            #print "Now I've got nothing to do, so I'm returning :("
+            #print "Hopefully nothing wrong happens because of this"
             self.doneWorking()
             return
         

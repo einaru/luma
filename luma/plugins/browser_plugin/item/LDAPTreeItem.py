@@ -128,5 +128,5 @@ class LDAPTreeItem(AbstractLDAPTreeItem):
 
         
     def getSupportedOperations(self):
-        return AbstractLDAPTreeItem.SUPPORT_CLEAR|AbstractLDAPTreeItem.SUPPORT_RELOAD|AbstractLDAPTreeItem.SUPPORT_FILTER|AbstractLDAPTreeItem.SUPPORT_LIMIT
+        return AbstractLDAPTreeItem.SUPPORT_CLEAR|AbstractLDAPTreeItem.SUPPORT_RELOAD|AbstractLDAPTreeItem.SUPPORT_FILTER|AbstractLDAPTreeItem.SUPPORT_LIMIT|AbstractLDAPTreeItem.SUPPORT_ADD
         
