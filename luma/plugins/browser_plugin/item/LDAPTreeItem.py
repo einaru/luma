@@ -3,7 +3,7 @@
 import ldap
 from AbstractLDAPTreeItem import AbstractLDAPTreeItem
 from LDAPErrorItem import LDAPErrorItem
-from PyQt4.QtGui import QMessageBox, QInputDialog, QIcon, QPixmap
+from PyQt4.QtGui import QMessageBox, QInputDialog, QIcon, QPixmap, qApp
 from PyQt4 import QtCore
 from base.backend.LumaConnection import LumaConnection
 
@@ -49,11 +49,11 @@ class LDAPTreeItem(AbstractLDAPTreeItem):
         # Return applicable status-tip-role
         elif role == QtCore.Qt.StatusTipRole:
             if self.limit != LDAPTreeItem.LIMIT_DEFAULT and self.filter != LDAPTreeItem.FILTER_DEFAULT:
-                return "This item has both a filter and limit applied."
+                return qApp.tr("This item has both a filter and limit applied.")
             if self.filter != LDAPTreeItem.FILTER_DEFAULT:
-                return "This item have a filter applied."
+                return qApp.tr("This item have a filter applied.")
             if self.filter != LDAPTreeItem.LIMIT_DEFAULT:
-                return "This item have a limit applied."
+                return qApp.tr("This item have a limit applied.")
             return None
         # If DisplayRole (most common case)
         elif role == QtCore.Qt.DisplayRole:

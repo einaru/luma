@@ -111,22 +111,22 @@ class BrowserView(QWidget):
                     menu.addAction("Open", self.openChosen)
                 # Add avaiable methods
                 if supports & AbstractLDAPTreeItem.SUPPORT_RELOAD:
-                    menu.addAction("Reload children", self.reloadChoosen)
+                    menu.addAction(self.tr("Reload children"), self.reloadChoosen)
                 if supports & AbstractLDAPTreeItem.SUPPORT_FILTER:
-                    menu.addAction("Filter", self.filterChoosen)
+                    menu.addAction(self.tr("Filter"), self.filterChoosen)
                 if supports & AbstractLDAPTreeItem.SUPPORT_LIMIT:
-                    menu.addAction("Limit", self.limitChoosen)
+                    menu.addAction(self.tr("Limit"), self.limitChoosen)
                 if supports & AbstractLDAPTreeItem.SUPPORT_CLEAR:
-                    menu.addAction("Clear", self.clearChoosen)
+                    menu.addAction(self.tr("Clear"), self.clearChoosen)
                 if supports & AbstractLDAPTreeItem.SUPPORT_ADD:
                     m = QtGui.QMenu("Add", menu)
-                    m.addAction("Entry", self.addEntryChosen)
-                    m.addAction("Template", self.addTemplateChosen)
+                    m.addAction(self.tr("Entry"), self.addEntryChosen)
+                    m.addAction(self.tr("Template"), self.addTemplateChosen)
                     menu.addMenu(m)
                 if supports & AbstractLDAPTreeItem.SUPPORT_DELETE:
-                    m = QtGui.QMenu("Delete", menu)
-                    m.addAction("Entry", self.addEntryChosen)
-                    m.addAction("Template", self.addTemplateChosen)
+                    m = QtGui.QMenu(self.tr("Delete"), menu)
+                    m.addAction(self.tr("Entry"), self.addEntryChosen)
+                    m.addAction(self.tr("Template"), self.addTemplateChosen)
                     menu.addMenu(m)
 
             
@@ -199,8 +199,7 @@ class BrowserView(QWidget):
         self.tabWidget.removeTab(index)
 
     def buildToolBar(self, parent):
-        # FIXME: qt4 migration needed
-        #self.entryView.buildToolBar(parent)
+        # Not used
         pass
 
 

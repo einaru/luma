@@ -1,5 +1,5 @@
 from AbstractLDAPTreeItem import AbstractLDAPTreeItem
-from PyQt4.QtGui import QMessageBox, QInputDialog, QIcon, QPixmap
+from PyQt4.QtGui import QMessageBox, QInputDialog, QIcon, QPixmap, qApp
 from PyQt4 import QtCore
 
 """
@@ -20,7 +20,7 @@ class LDAPErrorItem(AbstractLDAPTreeItem):
         
     def data(self, column, role):
         if role == QtCore.Qt.StatusTipRole:
-            return "There was an error receiving this item or it's parent. See the attached error-message and/or the log for details."
+            return qApp.tr("There was an error receiving this item or it's parent. See the attached error-message and/or the log for details.")
         if role == QtCore.Qt.DecorationRole:
             return QIcon(QPixmap(":/icons/no"))
         if not role == QtCore.Qt.DisplayRole:
