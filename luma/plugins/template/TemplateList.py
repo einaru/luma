@@ -126,7 +126,7 @@ class TemplateList(object):
                     templateElement = templateChild.toElement()
                     tagName = unicode(templateElement.tagName())
                     
-                    if tagName == "objectclasses":
+                    if tagName == "objectClasses":
                         classNode = templateChild.firstChild()
                         while (not classNode.isNull()):
                             classElement = classNode.toElement()
@@ -188,7 +188,7 @@ class TemplateList(object):
             templateNode.setAttribute("server", x.server)
             templateNode.setAttribute("description", x.description)
             
-            templateClasses = document.createElement("objectclasses")
+            templateClasses = document.createElement("objectClasses")
             for y in x.objectclasses:
                 classNode = document.createElement(y)
                 templateClasses.appendChild(classNode)

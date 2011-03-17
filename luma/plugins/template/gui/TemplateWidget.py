@@ -6,7 +6,9 @@ Created on 15. mars 2011
 
 from PyQt4.QtGui import QWidget, QDataWidgetMapper, QItemSelectionModel
 from PyQt4.QtGui import QInputDialog, QMessageBox
+from PyQt4 import QtCore
 from PyQt4.QtCore import QModelIndex
+from base.backend.ServerList import ServerList
 from .TemplateWidgetDesign import Ui_TemplateWidget
 from .AddAttributeDialog import AddAttributeDialog
 from .AddObjectclassDialog import AddObjectclassDialog
@@ -34,7 +36,7 @@ class TemplateWidget(QWidget, Ui_TemplateWidget):
         self.listViewTemplates.setModel(self.templateTM)
         
         self.objectclassTM = ObjectclassTableModel(self._templateList) 
-        self.tableViewObjectclasses.setModel(self.objectclassTM)
+        self.listViewObjectclasses.setModel(self.objectclassTM)
         
         self.attributeTM = AttributeTableModel(self._templateList)
         self.tableViewAttributes.setModel(self.attributeTM)
@@ -52,8 +54,12 @@ class TemplateWidget(QWidget, Ui_TemplateWidget):
         self.listViewTemplates.selectionModel().select(index, QItemSelectionModel.ClearAndSelect) 
         self.listViewTemplates.selectionModel().setCurrentIndex(index, QItemSelectionModel.ClearAndSelect)
         
-#        self.connect(self.serverListView.selectionModel(),  QtCore.SIGNAL('selectionChanged(QItemSelection, QItemSelection)'), self.setBaseDN)
-
+        
+        self.connect(self.listViewTemplates.selectionModel(),  QtCore.SIGNAL('selectionChanged(QItemSelection, QItemSelection)'), self.setObjectclasses)
+        self.connect(self.listViewTemplates.selectionModel(),  QtCore.SIGNAL('selectionChanged(QItemSelection, QItemSelection)'), self.setAttributes)
+        
+        self.comboBoxServer.insertItem(0, "Invalid server!")
+        self.comboBoxServer.insertItems(1, [x.name for x in (ServerList(u"/tmp").getTable())])
         # Map columns of the model to fields in the gui
         self.mapper = QDataWidgetMapper()
         self.mapper.setModel(self.templateTM)
@@ -61,35 +67,48 @@ class TemplateWidget(QWidget, Ui_TemplateWidget):
         self.templateDelegate = TemplateDelegate()
         self.mapper.setItemDelegate(self.templateDelegate) 
         
-        self.mapper.addMapping(self.lineEditName, 0)
-        self.mapper.addMapping(self.lineEditServer, 1)
+        self.mapper.addMapping(self.comboBoxServer, 1)
         self.mapper.addMapping(self.lineEditDescription, 2)
 
         #self.mapper.addMapping(self.baseDNWidget, 5)
 
         # Select the first servers (as the serverlistview does)
         self.mapper.setCurrentIndex(0)
-#        
+
 #        # Let the mapper know when another server is selected in the list
         self.listViewTemplates.selectionModel().currentRowChanged.connect(self.mapper.setCurrentModelIndex)
-#        
+
 #        # Workaround to avoid the button stealing the focus from the baseDNView thus invalidating it's selection
 #        # maning we don't know what do delete
 #        #self.deleteBaseDNButton.setFocusPolicy(Qt.NoFocus)
-#        self.setBaseDN()
 
+        self.setObjectclasses()
+        self.setAttributes()
+
+    def setObjectclasses(self):
+        templateIndex = self.listViewTemplates.selectedIndexes()
+        if len(templateIndex) > 0:
+            index = self.templateTM.createIndex(templateIndex[0].row(), 3)
+            self.listViewObjectclasses.model().setTemplateObject(self._templateList.getTable()[index.row()])
+            self.templateDelegate.setEditorData(self.listViewObjectclasses, index)
+            
+            
+    def setAttributes(self):
+        templateIndex = self.listViewTemplates.selectedIndexes()
+        if len(templateIndex) > 0:
+            index = self.templateTM.createIndex(templateIndex[0].row(), 4)
+            self.templateDelegate.setEditorData(self.tableViewAttributes, index)
+            
+            
     def setRightSideEnabled(self, enabled):
-        self.lineEditName.setEnabled(enabled)
-        self.lineEditServer.setEnabled(enabled)
+        self.comboBoxServer.setEnabled(enabled)
         self.lineEditDescription.setEnabled(enabled)
         self.groupBoxObjectclasses.setEnabled(enabled)
         self.groupBoxAttributes.setEnabled(enabled)
         
     def clearAll(self):
-        self.lineEditName.clear()
-        self.lineEditServer.clear()
         self.lineEditDescription.clear()
-        self.tableViewObjectclasses.model().reset()
+        self.listViewObjectclasses.model().reset()
         self.tableViewAttributes.model().reset()
 
     def addTemplate(self):

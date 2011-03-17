@@ -4,7 +4,9 @@ Created on 16. mars 2011
 @author: Simen
 '''
 
-from PyQt4.QtGui import  QStyledItemDelegate
+from PyQt4.QtGui import  QStyledItemDelegate, QListWidgetItem
+
+import copy
 
 class TemplateDelegate(QStyledItemDelegate):
     """
@@ -19,42 +21,20 @@ class TemplateDelegate(QStyledItemDelegate):
         """
         Specifies how the given editor should be filled out with the data from the model (at the index)
         """
-        
         if not index.isValid():
             return
         
         # if BaseDNs
         if index.column() == 3:
-                        
-            # List of strings
-            d = index.data().toPyObject()
-            
-            """
-            # Get rid of empty strings
-            newList = []
-            for x in d:
-                x = x.trimmed() #QString
-                if not len(x) == 0:
-                    newList.append(unicode(x)) 
-
-            # the view (editor) is a QListView in this case, so lets give it a model to display
-            if editor.model() == None:
-                editor.setModel(QStringListModel(newList))
-                return
-            m = editor.model()
-            m.setStringList(QStringList(newList))
-            """
-            editor.clear()
-            for tmpBase in d:
-                # The editor is the items parent, so it gets added to the list
-                QListWidgetItem(tmpBase,editor)
-                # Can also do this
-                #editor.addItem(QListWidgetItem(tmpBase))
+            editor.model().resetAndFill() 
             return
-        
+
         # if QComboBox, just set the index it should display (the strings displayed is in the .ui-file)
         if editor.property("currentIndex").isValid(): #QComboBoxes has currentIndex
-            editor.setProperty("currentIndex", index.data()) # just give it the data (the int)
+            index.data().toString()
+            i = editor.findText(index.data().toString)
+            print i
+            editor.setProperty("currentIndex", i) # just give it the data (the int)
             return
         
         # else - default
@@ -64,32 +44,13 @@ class TemplateDelegate(QStyledItemDelegate):
         """
         Specifies how the model should be filled out with data from the editor
         """
-    
         # if the baseDNs
         if index.column() == 3:
-            
-            """        
-            # get strings from the model of the QListView displaying the baseDNs
-            m = editor.model()
-            
-            # Populate the list again
-            d = []
-            for i in xrange(m.rowCount()):
-                data = m.data(m.index(i,0), Qt.DisplayRole)
-                d.append(data)
-            """
-            #m = editor.model()
-            returnList = []
-            for i in xrange(editor.count()):
-                returnList.append(editor.item(i).data(Qt.DisplayRole).toPyObject())
-                #returnList.append(m.data(m.index(i,0)).toPyObject())
-
-            # now that we have constructed the list, give it to the model
-            model.setData(index,QVariant(returnList))
+            print "setModelData column = 3"
             return 
         
         # if a combobox
-        value = editor.property("currentIndex") #get the index and give it to the model
+        value = editor.property("currentText") #get the index and give it to the model
         if value.isValid():
             model.setData(index, value)
             return

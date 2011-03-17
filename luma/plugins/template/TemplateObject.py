@@ -37,11 +37,14 @@ class TemplateObject(object):
         self._dataHolder[index] = value
 
     def addObjectclass(self, objectclass):
-        if not self.objectclasses.contains(objectclass):
+        if not objectclass in self.objectclasses:
             self.objectclasses.append(objectclass)
     
     def deleteObjectclass(self, objectclass):
         self.objectclasses.remove(objectclass)
+
+    def getCountObjectclass(self):
+        return len(self.objectclasses)
 
     def addAttribute(self, name, must, single, binary, defaultValue):
         self.attributes[name] = AttributeObject(name, must, single, binary, defaultValue)
@@ -51,6 +54,9 @@ class TemplateObject(object):
         
     def setAttributeDefaultValue(self, attributeName, value):
         self.attributes[attributeName].defaultValue = value
+
+    def getCountAttribute(self):
+        return len(self.attributes.keys())
 
     def getDataObject(self, serverMeta, baseDN):
         """
