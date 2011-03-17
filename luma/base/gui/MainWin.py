@@ -96,6 +96,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.__loadSettings()
         self.__setupPluginList()
         self.__createLanguageOptions()
+        
+        self.setStatusBar(self.statusBar)
 
         self.progressBar = QProgressBar()
         #self.progressBar.setRange(0,0)

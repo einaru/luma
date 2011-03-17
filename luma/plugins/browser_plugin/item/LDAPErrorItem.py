@@ -19,8 +19,12 @@ class LDAPErrorItem(AbstractLDAPTreeItem):
         self.populated = 1
         
     def data(self, column, role):
+        if role == QtCore.Qt.StatusTipRole:
+            return "There was an error receiving this item or it's parent. See the attached error-message and/or the log for details."
+        if role == QtCore.Qt.DecorationRole:
+            return QIcon(QPixmap(":/icons/no"))
         if not role == QtCore.Qt.DisplayRole:
-            return QtCore.QVariant()
+            return None
         return self.error
     
     def columnCount(self):

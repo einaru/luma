@@ -28,7 +28,7 @@ class BrowserView(QWidget):
         Configprefix defines the location of serverlist.xml
         """
         QtGui.QWidget.__init__(self, parent)
-
+        
         self.setObjectName("PLUGIN_BROWSER")
             
         # The serverlist used
@@ -54,11 +54,13 @@ class BrowserView(QWidget):
         self.entryList.setAnimated(True) # Somewhat cool, but should be removed if deemed too taxing
         self.entryList.setUniformRowHeights(True) #Major optimalization for big lists
         self.entryList.setModel(self.ldaptreemodel)
+        self.entryList.setMouseTracking(True)
+        self.entryList.viewport().setMouseTracking(True)
         # For right-clicking in the tree
         self.entryList.setContextMenuPolicy(QtCore.Qt.CustomContextMenu)
         self.entryList.customContextMenuRequested.connect(self.rightClick)
         # When something is clicked, call self.initEntryView
-        self.entryList.doubleClicked.connect(self.initEntryView)
+        self.entryList.doubleClicked.connect(self.viewItem)
         
         # The editor for entries
         self.tabWidget = QtGui.QTabWidget(self)
@@ -159,30 +161,12 @@ class BrowserView(QWidget):
             
     def addTemplateChosen(self):
         pass
-
-
-    def initEntryView(self, index):
-        """
-        Loads the entry-viewer with the content from the index clicked
-        """
-        
-        # If we clicked a server -- ignore
-        if isinstance(index.internalPointer(), ServerTreeItem):
-            """
-            Servers doesn't have a smartObject
-            """
-            return
-        
-        # If it's an ErrorItem
-        if index.internalPointer().smartObject() == None:
-            return
-        
-        # Elso, gogo
-        self.viewItem(index)
         
     def viewItem(self, index):
+    
         smartObject = index.internalPointer().smartObject()
         
+        # We need to have tried to open an items with a smartobject to proceed
         if smartObject == None:
             return
         

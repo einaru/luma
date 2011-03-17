@@ -39,20 +39,28 @@ class LDAPTreeItem(AbstractLDAPTreeItem):
         """
         Returns the name and possibly an icon for the item.
         """
-        # Probably unessecary
-        if role != QtCore.Qt.DisplayRole and role != QtCore.Qt.DecorationRole:
-            return QtCore.QVariant()
         
         # Return an icon if the item has been configured
         if role == QtCore.Qt.DecorationRole:
             if self.filter != LDAPTreeItem.FILTER_DEFAULT or self.limit != LDAPTreeItem.LIMIT_DEFAULT:
                 return QIcon(QPixmap(":/icons/filter"))
             else:
-                return QtCore.QVariant()
-        # If DisplayRole
-        else:
+                return None
+        # Return applicable status-tip-role
+        elif role == QtCore.Qt.StatusTipRole:
+            if self.limit != LDAPTreeItem.LIMIT_DEFAULT and self.filter != LDAPTreeItem.FILTER_DEFAULT:
+                return "This item has both a filter and limit applied."
+            if self.filter != LDAPTreeItem.FILTER_DEFAULT:
+                return "This item have a filter applied."
+            if self.filter != LDAPTreeItem.LIMIT_DEFAULT:
+                return "This item have a limit applied."
+            return None
+        # If DisplayRole (most common case)
+        elif role == QtCore.Qt.DisplayRole:
             #return self.itemData.getPrettyDN() # The whole name
             return self.itemData.getPrettyRDN()
+        else:
+            return None
 
     def smartObject(self):
         return self.itemData

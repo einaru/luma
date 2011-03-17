@@ -27,7 +27,7 @@ class ServerTreeItem(AbstractLDAPTreeItem):
 
     def data(self, column, role):
         if role != QtCore.Qt.DisplayRole and role != QtCore.Qt.DecorationRole:
-            return QtCore.QVariant()
+            return None
         
         if role == QtCore.Qt.DecorationRole:
             return QIcon(QPixmap(":/icons/network-server"))
