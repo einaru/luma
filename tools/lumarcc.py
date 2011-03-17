@@ -73,7 +73,7 @@ LUMA_RC_I18N = ['luma', 'i18nrc.py']
 
 short_description = """
    __  __  ______ ___  ____  ___  ____  ____  
-  / /\/ /\/ / __ `__ \/___ \/ __\/ ___\/ ___\  lumarcc.py v0.3
+  / /\/ /\/ / __ `__ \/___ \/ __\/ ___\/ ___\  lumarcc.py v0.4
  / /_/ /_/ / /\/ /\/ / __  / /\_/ /\__/ /\___\ copyright (c) 2011
  \__/\____/_/ /_/ /_/\____/_/ / \____/\____/\  Einar Uvsløkk
   \_\/\___\_\/\_\/\_\/\___\_\/   \___\/\___\/  <einar.uvslokk@linux.com>
@@ -99,26 +99,19 @@ def _run(cmd, args=[]):
     @param cmd: The wicked command to be executed.
     """
     if not dryrun:
-        exe = [cmd]
-        for arg in args:
-            exe.append(arg)
-        proc = subprocess.Popen(exe, shell=False, stdout=subprocess.PIPE, 
-                               stderr=subprocess.PIPE)
+
+        proc = QProcess()
+        proc.start(cmd, args)
+        while proc.waitForReadyRead():
+            if verbose:
+                print u'  ReadyRead: %s' % proc.readAll()
         if verbose:
-            pass
-#    if not dryrun:
-#        proc = QProcess()
-#        proc.start(cmd, args)
-#        while proc.waitForReadyRead():
-#            if verbose:
-#                print u'  ReadyRead: %s' % proc.readAll()
-#        if verbose:
-#            stderr = proc.readAllStandardError()
-#            if stderr != '':
-#                print u'  Errors: %s' % stderr
-#            stdout = proc.readAllStandardOutput()
-#            if stdout != '':
-#                print u'  Output: %s' % proc.readAllStandardOutput()
+            stderr = proc.readAllStandardError()
+            if stderr != '':
+                print u'  Errors: %s' % stderr
+            stdout = proc.readAllStandardOutput()
+            if stdout != '':
+                print u'  Output: %s' % proc.readAllStandardOutput()
 
 def __run(cmd, args=[]):
     """
@@ -223,7 +216,7 @@ def _prepareUiFiles(all=False):
     
     @param all: boolean value; whether or not to prepare all files
     """
-    
+
     if all:
         return _listUiFiles(noprint=True).values()
 
@@ -288,12 +281,12 @@ def _generateQrcFile(icons=False, i18n=False):
         qrc.append(u'  </qresource>')
 
     qrc.append(QRC_HEADER_CLOSE)
-    
+
     if verbose:
         print '\nGenerated .qrc file:'
         for line in qrc:
             print line
-    
+
     return qrc
 
 
@@ -309,6 +302,8 @@ def compileUiFiles(compileAll=False):
     pypath = _getPath(DEST_UI)
 
     cmd = 'pyuic4'
+    if sys.platform == 'win32':
+        cmd = '%s.exe' % cmd
 
     for uifile in uifiles:
 
@@ -349,15 +344,19 @@ def compileResources():
     """
     lumaqrc = _getPath(LUMA_QRC)
     lumarc = _getPath(LUMA_RC)
+
     cmd = 'pyrcc4'
+    if sys.platform == 'win32':
+        cmd = '%s.exe' % cmd
+
     args = [lumaqrc, '-py2', '-o', lumarc]
-    
+
     if verbose:
         print '\nBuilding command to compile resources:'
         print '  resource file: %s' % lumaqrc
         print '  python resource file: %s' % lumarc
         print 'Executing: ', cmd, lumaqrc, '-py2', '-o', lumarc
-    
+
     _run(cmd, args)
 
 
@@ -365,19 +364,23 @@ def updateTranslationFiles():
     """
     Just executes the pylupdate4 command on the project file.
     """
-    cmd = 'pyludpate4'
     lumapro = _getPath(LUMA_PRO)
+
+    cmd = 'pyludpate4'
+    if sys.platform == 'win32':
+        cmd = '%s.exe' % cmd
+
     args = ['-noobsolete']
-    
+
     if verbose:
         args.append('-verbose')
         print '\nBuilding command to update translation files:'
         print '  project file: %s' % lumapro
-        print 'Executing: ', cmd, '-noobsolete -verbose',lumapro
-    
+        print 'Executing: ', cmd, '-noobsolete -verbose', lumapro
+
     args.append(lumapro)
     _run(cmd, [lumapro])
-    
+
 
 def main():
 
@@ -434,6 +437,9 @@ def main():
 
     verbose = opt.verbose
     dryrun = opt.dry
+
+    if dryrun:
+        verbose = True
 
     if opt.info:
         print short_description

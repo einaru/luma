@@ -3,7 +3,7 @@
 # plugins.search.__init__
 #
 # Copyright (c) 2011
-#      Einar Uvsløkk, <einaru@stud.ntnu.no>
+#      Einar Uvsløkk, <einar.uvslokk@linux.com>
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by

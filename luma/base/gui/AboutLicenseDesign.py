@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file '/mnt/debris/devel/git/luma/resources/forms/AboutLicenseDesign.ui'
 #
-# Created: Wed Mar 16 16:44:19 2011
+# Created: Wed Mar 16 19:06:01 2011
 #      by: PyQt4 UI code generator 4.7.4
 #
 # WARNING! All changes made in this file will be lost!

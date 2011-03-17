@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file '/mnt/debris/devel/git/luma/resources/forms/MainWinDesign.ui'
+# Form implementation generated from reading ui file '/mnt/debris/devel/git/luma/resources/forms/MainWindowDesign.ui'
 #
-# Created: Thu Mar 17 18:55:16 2011
+# Created: Thu Mar 17 18:55:44 2011
 #      by: PyQt4 UI code generator 4.7.4
 #
 # WARNING! All changes made in this file will be lost!
@@ -36,6 +36,8 @@ class Ui_MainWindow(object):
         self.menuLanguage.setObjectName("menuLanguage")
         self.menuHelp = QtGui.QMenu(self.menubar)
         self.menuHelp.setObjectName("menuHelp")
+        self.menuView = QtGui.QMenu(self.menubar)
+        self.menuView.setObjectName("menuView")
         MainWindow.setMenuBar(self.menubar)
         self.statusBar = QtGui.QStatusBar(MainWindow)
         self.statusBar.setObjectName("statusBar")
@@ -55,7 +57,18 @@ class Ui_MainWindow(object):
         self.actionAboutLuma.setObjectName("actionAboutLuma")
         self.actionEditSettings = QtGui.QAction(MainWindow)
         self.actionEditSettings.setObjectName("actionEditSettings")
-        self.menuFile.addAction(self.actionShowLogger)
+        self.actionNew_Server = QtGui.QAction(MainWindow)
+        self.actionNew_Server.setObjectName("actionNew_Server")
+        self.actionToolbar = QtGui.QAction(MainWindow)
+        self.actionToolbar.setCheckable(True)
+        self.actionToolbar.setObjectName("actionToolbar")
+        self.actionStatusbar = QtGui.QAction(MainWindow)
+        self.actionStatusbar.setCheckable(True)
+        self.actionStatusbar.setObjectName("actionStatusbar")
+        self.actionFullscreen = QtGui.QAction(MainWindow)
+        self.actionFullscreen.setCheckable(True)
+        self.actionFullscreen.setObjectName("actionFullscreen")
+        self.menuFile.addAction(self.actionNew_Server)
         self.menuFile.addSeparator()
         self.menuFile.addAction(self.actionQuit)
         self.menuEdit.addAction(self.actionEditServerList)
@@ -67,8 +80,14 @@ class Ui_MainWindow(object):
         self.menuEdit.addSeparator()
         self.menuEdit.addAction(self.actionEditSettings)
         self.menuHelp.addAction(self.actionAboutLuma)
+        self.menuView.addAction(self.actionToolbar)
+        self.menuView.addAction(self.actionStatusbar)
+        self.menuView.addAction(self.actionShowLogger)
+        self.menuView.addSeparator()
+        self.menuView.addAction(self.actionFullscreen)
         self.menubar.addAction(self.menuFile.menuAction())
         self.menubar.addAction(self.menuEdit.menuAction())
+        self.menubar.addAction(self.menuView.menuAction())
         self.menubar.addAction(self.menuHelp.menuAction())
 
         self.retranslateUi(MainWindow)
@@ -80,15 +99,19 @@ class Ui_MainWindow(object):
         QtCore.QObject.connect(self.actionShowLogger, QtCore.SIGNAL("triggered(bool)"), MainWindow.toggleLoggerWindow)
         QtCore.QObject.connect(self.actionEditServerList, QtCore.SIGNAL("triggered()"), MainWindow.showServerEditor)
         QtCore.QObject.connect(self.actionEditSettings, QtCore.SIGNAL("triggered()"), MainWindow.showSettingsDialog)
+        QtCore.QObject.connect(self.actionToolbar, QtCore.SIGNAL("triggered(bool)"), MainWindow.toggleToolbar)
+        QtCore.QObject.connect(self.actionStatusbar, QtCore.SIGNAL("triggered(bool)"), MainWindow.toggleStatusbar)
+        QtCore.QObject.connect(self.actionFullscreen, QtCore.SIGNAL("triggered(bool)"), MainWindow.toggleFullscreen)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def retranslateUi(self, MainWindow):
         MainWindow.setWindowTitle(QtGui.QApplication.translate("MainWindow", "Luma", None, QtGui.QApplication.UnicodeUTF8))
-        self.menuFile.setTitle(QtGui.QApplication.translate("MainWindow", "File", None, QtGui.QApplication.UnicodeUTF8))
-        self.menuEdit.setTitle(QtGui.QApplication.translate("MainWindow", "Edit", None, QtGui.QApplication.UnicodeUTF8))
+        self.menuFile.setTitle(QtGui.QApplication.translate("MainWindow", "&File", None, QtGui.QApplication.UnicodeUTF8))
+        self.menuEdit.setTitle(QtGui.QApplication.translate("MainWindow", "&Edit", None, QtGui.QApplication.UnicodeUTF8))
         self.menuLanguage.setTitle(QtGui.QApplication.translate("MainWindow", "Language", None, QtGui.QApplication.UnicodeUTF8))
-        self.menuHelp.setTitle(QtGui.QApplication.translate("MainWindow", "Help", None, QtGui.QApplication.UnicodeUTF8))
-        self.actionShowLogger.setText(QtGui.QApplication.translate("MainWindow", "Show logger", None, QtGui.QApplication.UnicodeUTF8))
+        self.menuHelp.setTitle(QtGui.QApplication.translate("MainWindow", "&Help", None, QtGui.QApplication.UnicodeUTF8))
+        self.menuView.setTitle(QtGui.QApplication.translate("MainWindow", "&View", None, QtGui.QApplication.UnicodeUTF8))
+        self.actionShowLogger.setText(QtGui.QApplication.translate("MainWindow", "Logger Window", None, QtGui.QApplication.UnicodeUTF8))
         self.actionShowLogger.setShortcut(QtGui.QApplication.translate("MainWindow", "Ctrl+L", None, QtGui.QApplication.UnicodeUTF8))
         self.actionQuit.setText(QtGui.QApplication.translate("MainWindow", "Quit", None, QtGui.QApplication.UnicodeUTF8))
         self.actionQuit.setShortcut(QtGui.QApplication.translate("MainWindow", "Ctrl+Q", None, QtGui.QApplication.UnicodeUTF8))
@@ -100,4 +123,9 @@ class Ui_MainWindow(object):
         self.actionAboutLuma.setText(QtGui.QApplication.translate("MainWindow", "About Luma", None, QtGui.QApplication.UnicodeUTF8))
         self.actionAboutLuma.setShortcut(QtGui.QApplication.translate("MainWindow", "F12", None, QtGui.QApplication.UnicodeUTF8))
         self.actionEditSettings.setText(QtGui.QApplication.translate("MainWindow", "Settings", None, QtGui.QApplication.UnicodeUTF8))
+        self.actionNew_Server.setText(QtGui.QApplication.translate("MainWindow", "New Server", None, QtGui.QApplication.UnicodeUTF8))
+        self.actionToolbar.setText(QtGui.QApplication.translate("MainWindow", "Toolbar", None, QtGui.QApplication.UnicodeUTF8))
+        self.actionStatusbar.setText(QtGui.QApplication.translate("MainWindow", "Statusbar", None, QtGui.QApplication.UnicodeUTF8))
+        self.actionFullscreen.setText(QtGui.QApplication.translate("MainWindow", "Fullscreen", None, QtGui.QApplication.UnicodeUTF8))
+        self.actionFullscreen.setShortcut(QtGui.QApplication.translate("MainWindow", "F11", None, QtGui.QApplication.UnicodeUTF8))
 
