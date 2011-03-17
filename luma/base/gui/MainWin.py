@@ -36,9 +36,10 @@ AboutDialog:
     A simple about dialog, including credits and license.
 """
 import logging
+import gc
 
 from PyQt4.QtCore import Qt, pyqtSlot, pyqtSignal
-from PyQt4.QtCore import QEvent, QString
+from PyQt4.QtCore import QEvent, QString, QTimer
 from PyQt4.QtCore import QTranslator
 
 from PyQt4.QtGui import QAction, QActionGroup, QApplication, qApp
@@ -65,6 +66,7 @@ from base.gui.ServerDialog import ServerDialog
 from base.util.i18n import LanguageHandler
 from base.util.gui.PluginListWidget import PluginListWidget
 from base.model.PluginSettingsListModel import PluginSettingsListModel
+
 import resources
 
 
@@ -388,7 +390,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         """
         This method will be called from the PluginListWidget.
         """
-        widget = item.plugin.getPluginWidget(self.mainTabs, self)
+        widget = item.plugin.getPluginWidget(None, self)
         index = self.mainTabs.addTab(widget, item.plugin.pluginUserString)
         self.mainTabs.setCurrentIndex(index)
 
@@ -429,7 +431,20 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             self.actionShowPluginList.setEnabled(True)
         
         self.mainTabs.removeTab(index)
-        widget.deleteLater()
+        
+        #Unparent the widget since it was reparented by the QTabWidget so it's gargabe collected
+        widget.setParent(None)
+        
+        #Done automatically by PyQt since there's no refs to the widget
+        #widget.deleteLater()
+        
+        # In case the widget contained circular references -- force GC to take care of the objects
+        # since there can be quite many if it was BrowserWidget that was closed
+        # Can't call it directly since that'll be too soon
+        QTimer.singleShot(0, self.gc)
+        
+    def gc(self):
+        gc.collect()
 
     def showWelcome(self):
         pass

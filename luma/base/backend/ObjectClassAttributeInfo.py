@@ -84,8 +84,6 @@ class ObjectClassAttributeInfo(object):
             self.syntaxDict = self.serverMetaCache[self.serverMeta.name]["syntaxDict"]
             self.matchingDict = self.serverMetaCache[self.serverMeta.name]["matchingDict"]
         else:
-            tmpObject = ServerList()
-            tmpObject.readServerList()
             serverMeta = self.serverMeta
             
             workerThread = WorkerThreadFetch(serverMeta)
