@@ -17,6 +17,8 @@ class AdvancedObjectView(QWidget):
 
         self.ldapDataObject = smartObject
         self.setLayout(QVBoxLayout(self))
+        self.layout().setSpacing(0)
+        self.layout().setContentsMargins(0, 0, 0, 0)
 
         self.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
 
@@ -45,7 +47,7 @@ class AdvancedObjectView(QWidget):
         self.buildToolBar(None)
 
         self.initView(None)
-        
+
 
 ###############################################################################
 
