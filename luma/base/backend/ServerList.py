@@ -214,7 +214,8 @@ class ServerList(object):
             return
 
         serverList = self.__readFromXML()
-        self.__serverList = serverList
+        if serverList != None:
+            self.__serverList = serverList
 
     def __readFromXML(self):
         """
