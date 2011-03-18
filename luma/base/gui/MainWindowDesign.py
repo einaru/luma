@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file '/mnt/debris/devel/git/luma/resources/forms/MainWindowDesign.ui'
 #
-# Created: Thu Mar 17 18:55:44 2011
+# Created: Fri Mar 18 11:58:45 2011
 #      by: PyQt4 UI code generator 4.7.4
 #
 # WARNING! All changes made in this file will be lost!
@@ -64,6 +64,7 @@ class Ui_MainWindow(object):
         self.actionToolbar.setObjectName("actionToolbar")
         self.actionStatusbar = QtGui.QAction(MainWindow)
         self.actionStatusbar.setCheckable(True)
+        self.actionStatusbar.setChecked(True)
         self.actionStatusbar.setObjectName("actionStatusbar")
         self.actionFullscreen = QtGui.QAction(MainWindow)
         self.actionFullscreen.setCheckable(True)

@@ -237,32 +237,38 @@ class ServerDialog(QDialog, Ui_ServerDialogDesign):
         # maning we don't know what do delete
         #self.deleteBaseDNButton.setFocusPolicy(Qt.NoFocus)
         self.setBaseDN()
+        self.UNSAVED_STATE = False
 
     def addBaseDN(self):
-        tmpBase = unicode(self.baseEdit.text()).strip()
-        if tmpBase == u"":
+        tmpBase = unicode(self.baseDNLineEdit.text()).strip()
+        if tmpBase == u'':
             return
         self.baseDNWidget.addItem(QListWidgetItem(tmpBase)) #Add to list
 
         serverIndex = self.serverListView.selectedIndexes()
         index = self.slm.createIndex(serverIndex[0].row(), 5)
         self.serverDelegate.setModelData(self.baseDNWidget, self.slm, index)
-        self.baseEdit.clear() #Clear textfield
+        self.baseDNLineEdit.clear() #Clear textfield
         self.mapper.submit() #Force push to model
+        self.UNSAVED_STATE = True
+        print self.UNSAVED_STATE
 
     def deleteBaseDN(self):
         # Delete every selected baseDN
         for tmpItem in self.baseDNWidget.selectedItems():
             if not (None == tmpItem):
-                index = self.baseDNWidget.indexFromItem(tmpItem) #get the index to the basedn
-                d = self.baseDNWidget.takeItem(index.row()) #delete (actually steal) the baseDN from the list
+                # get the index to the basedn
+                index = self.baseDNWidget.indexFromItem(tmpItem)
+                # delete (actually steal) the baseDN from the list
+                d = self.baseDNWidget.takeItem(index.row())
                 if d != 0:
                     del d # Per the QT-docs, someone needs to delete it
 
         serverIndex = self.serverListView.selectedIndexes()
         index = self.slm.createIndex(serverIndex[0].row(), 5)
         self.serverDelegate.setModelData(self.baseDNWidget, self.slm, index)
-        self.mapper.submit() #Force push changes to model
+        self.mapper.submit() # Force push changes to model
+        self.UNSAVED_STATE = True
 
     def setBaseDN(self):
         serverIndex = self.serverListView.selectedIndexes()
@@ -274,10 +280,12 @@ class ServerDialog(QDialog, Ui_ServerDialogDesign):
         """
         Create a new ServerObject and add it to the model (thus the list)
         """
-        name, ok = QInputDialog.getText(self, 'Add server', 'Name:')
+        name, ok = QInputDialog.getText(self, self.trUtf8('Add server'), 
+                                        self.trUtf8('Name:'))
         if ok:
             if len(name) < 1 or self.__serverList.getServerObject(name) != None:
-                QMessageBox.information(self, 'Error', "Invalid name or already used.")
+                QMessageBox.information(self, self.trUtf8('Error'), 
+                                self.trUtf8('Invalid name or already used.'))
                 return
 
             sO = ServerObject()
@@ -294,6 +302,7 @@ class ServerDialog(QDialog, Ui_ServerDialogDesign):
             self.serverListView.selectionModel().setCurrentIndex(s, QItemSelectionModel.ClearAndSelect) #Mark it as current      
             self.mapper.setCurrentIndex(s.row()) # Update the mapper
             self.tabWidget.setEnabled(True) # Make sure editing is enabled
+            self.UNSAVED_STATE = True
 
     def deleteServer(self):
         """
@@ -303,8 +312,11 @@ class ServerDialog(QDialog, Ui_ServerDialogDesign):
             #No server selected
             return
 
-        re = QMessageBox.question(self, 'Delete', 'Are you sure?', QMessageBox.Yes, QMessageBox.No)
-        if re == QMessageBox.Yes:
+        r = QMessageBox.question(self, self.trUtf8('Delete'), 
+                                 self.trUtf8('Are you sure?'), 
+                                 QMessageBox.Yes, QMessageBox.No)
+        #r = self.__question(Strings.DELETE, Strings.ARE_YOU_SURE)
+        if r == QMessageBox.Yes:
             index = self.serverListView.selectionModel().currentIndex() #Currently selected
 
             # Delete the server
@@ -316,6 +328,7 @@ class ServerDialog(QDialog, Ui_ServerDialogDesign):
             # Get it and give it to the mapper
             newIndex = self.serverListView.selectionModel().currentIndex()
             self.mapper.setCurrentIndex(newIndex.row())
+            self.UNSAVED_STATE = True
 
         if self.slm.rowCount(QModelIndex()) == 0:
             self.tabWidget.setEnabled(False) #Disable editing if no servers left
@@ -335,9 +348,13 @@ class ServerDialog(QDialog, Ui_ServerDialogDesign):
         
         SOMETHING LOGICAL SHOULD PROBABLY BE DONE HER
         """
-        r = QMessageBox.question(self, "Exit?", "Are you sure you want to exit the server editor?\n Any unsaved changes will be lost!", QMessageBox.Ok | QMessageBox.Cancel)
-        if not r == QMessageBox.Ok:
-            return
+        if self.UNSAVED_STATE:
+            r = QMessageBox.question(self, self.trUtf8('Exit?'), 
+                self.trUtf8('Are you sure you want to exit the server editor?\
+                            \nAny unsaved changes will be lost!'), 
+                QMessageBox.Ok | QMessageBox.Cancel)
+            if not r == QMessageBox.Ok:
+                return
         if self._serverListCopy:
             self._returnList = self._serverListCopy
             QDialog.accept(self)
@@ -358,14 +375,16 @@ class ServerDialog(QDialog, Ui_ServerDialogDesign):
         return self._returnList
 
     def certFileDialog(self):
-        filename = QFileDialog.getOpenFileName(self, 'Open file', '')
+        filename = QFileDialog.getOpenFileName(self, self.trUtf8('Open file'), '')
         self.certFileEdit.setText(filename)
         self.mapper.submit()
+        self.UNSAVED_STATE = True
 
-    def certKeyFileDialog(self):
-        filename = QFileDialog.getOpenFileName(self, 'Open file', '')
+    def certKeyfileDialog(self):
+        filename = QFileDialog.getOpenFileName(self, self.trUtf8('Open file'), '')
         self.certKeyFileEdit.setText(filename)
         self.mapper.submit()
+        self.UNSAVED_STATE = True
 
 
 class AboutDialog(QDialog, Ui_AboutDialog):

@@ -10,7 +10,8 @@
 from PyQt4 import QtCore, QtGui
 
 class Ui_ServerDialogDesign(object):
-    def tabWidget, ServerDialogDesign):
+    
+    def setupUi(self, ServerDialogDesign):
         ServerDialogDesign.setObjectName("ServerDialogDesign")
         ServerDialogDesign.resize(607, 434)
         ServerDialogDesign.setMinimumSize(QtCore.QSize(550, 350))

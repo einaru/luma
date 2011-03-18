@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file '/mnt/debris/devel/git/luma/resources/forms/ServerDialogDesignNew.ui'
+# Form implementation generated from reading ui file '/mnt/debris/devel/git/luma/resources/forms/ServerDialogDesignNewer.ui'
 #
-# Created: Fri Mar 18 10:03:57 2011
+# Created: Fri Mar 18 09:56:12 2011
 #      by: PyQt4 UI code generator 4.7.4
 #
 # WARNING! All changes made in this file will be lost!
@@ -12,15 +12,10 @@ from PyQt4 import QtCore, QtGui
 class Ui_ServerDialogDesign(object):
     def setupUi(self, ServerDialogDesign):
         ServerDialogDesign.setObjectName("ServerDialogDesign")
-        ServerDialogDesign.resize(587, 454)
+        ServerDialogDesign.resize(655, 412)
         self.gridLayout_2 = QtGui.QGridLayout(ServerDialogDesign)
         self.gridLayout_2.setObjectName("gridLayout_2")
         self.splitter = QtGui.QSplitter(ServerDialogDesign)
-        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Expanding)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.splitter.sizePolicy().hasHeightForWidth())
-        self.splitter.setSizePolicy(sizePolicy)
         self.splitter.setOrientation(QtCore.Qt.Horizontal)
         self.splitter.setObjectName("splitter")
         self.widget = QtGui.QWidget(self.splitter)
@@ -35,7 +30,7 @@ class Ui_ServerDialogDesign(object):
         self.serverListView.setSizePolicy(sizePolicy)
         self.serverListView.setObjectName("serverListView")
         self.gridLayout.addWidget(self.serverListView, 0, 0, 1, 3)
-        spacerItem = QtGui.QSpacerItem(40, 20, QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Minimum)
+        spacerItem = QtGui.QSpacerItem(13, 24, QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Minimum)
         self.gridLayout.addItem(spacerItem, 1, 0, 1, 1)
         self.addButton = QtGui.QPushButton(self.widget)
         sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Fixed, QtGui.QSizePolicy.Fixed)
@@ -156,9 +151,9 @@ class Ui_ServerDialogDesign(object):
         self.addBaseDNButton.setObjectName("addBaseDNButton")
         self.gridLayout_3.addWidget(self.addBaseDNButton, 4, 3, 1, 1)
         self.networkGridLayout.addWidget(self.LDAPoptionsGoup, 1, 0, 1, 1)
-        self.gridLayout_5.addLayout(self.networkGridLayout, 0, 1, 1, 1)
+        self.gridLayout_5.addLayout(self.networkGridLayout, 0, 1, 2, 1)
         spacerItem2 = QtGui.QSpacerItem(20, 40, QtGui.QSizePolicy.Minimum, QtGui.QSizePolicy.Expanding)
-        self.gridLayout_5.addItem(spacerItem2, 1, 0, 1, 2)
+        self.gridLayout_5.addItem(spacerItem2, 2, 0, 1, 2)
         self.tabWidget.addTab(self.networkTab, "")
         self.authTab = QtGui.QWidget()
         self.authTab.setObjectName("authTab")
@@ -315,12 +310,12 @@ class Ui_ServerDialogDesign(object):
         spacerItem6 = QtGui.QSpacerItem(20, 40, QtGui.QSizePolicy.Minimum, QtGui.QSizePolicy.Expanding)
         self.gridLayout_13.addItem(spacerItem6, 1, 0, 1, 2)
         self.tabWidget.addTab(self.securityTab, "")
-        self.gridLayout_2.addWidget(self.splitter, 0, 0, 1, 2)
+        self.gridLayout_2.addWidget(self.splitter, 0, 0, 1, 1)
         self.line = QtGui.QFrame(ServerDialogDesign)
         self.line.setFrameShape(QtGui.QFrame.HLine)
         self.line.setFrameShadow(QtGui.QFrame.Sunken)
         self.line.setObjectName("line")
-        self.gridLayout_2.addWidget(self.line, 1, 0, 1, 2)
+        self.gridLayout_2.addWidget(self.line, 1, 0, 1, 1)
         self.bottomHLayout = QtGui.QHBoxLayout()
         self.bottomHLayout.setObjectName("bottomHLayout")
         spacerItem7 = QtGui.QSpacerItem(40, 20, QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Minimum)
@@ -334,7 +329,7 @@ class Ui_ServerDialogDesign(object):
         self.cancelButton = QtGui.QPushButton(ServerDialogDesign)
         self.cancelButton.setObjectName("cancelButton")
         self.bottomHLayout.addWidget(self.cancelButton)
-        self.gridLayout_2.addLayout(self.bottomHLayout, 2, 0, 2, 1)
+        self.gridLayout_2.addLayout(self.bottomHLayout, 2, 0, 1, 1)
 
         self.retranslateUi(ServerDialogDesign)
         self.tabWidget.setCurrentIndex(0)
@@ -342,7 +337,6 @@ class Ui_ServerDialogDesign(object):
         QtCore.QObject.connect(self.applyButton, QtCore.SIGNAL("clicked()"), ServerDialogDesign.saveServers)
         QtCore.QObject.connect(self.baseDNBox, QtCore.SIGNAL("toggled(bool)"), self.deleteBaseDNButton.setDisabled)
         QtCore.QObject.connect(self.addBaseDNButton, QtCore.SIGNAL("clicked()"), ServerDialogDesign.addBaseDN)
-        QtCore.QObject.connect(self.addButton, QtCore.SIGNAL("clicked()"), ServerDialogDesign.addServer)
         QtCore.QObject.connect(self.baseDNBox, QtCore.SIGNAL("toggled(bool)"), self.baseDNLineEdit.setDisabled)
         QtCore.QObject.connect(self.baseDNBox, QtCore.SIGNAL("toggled(bool)"), self.baseDNWidget.setDisabled)
         QtCore.QObject.connect(self.baseDNLineEdit, QtCore.SIGNAL("returnPressed()"), ServerDialogDesign.addBaseDN)
@@ -350,7 +344,6 @@ class Ui_ServerDialogDesign(object):
         QtCore.QObject.connect(self.certFileButton, QtCore.SIGNAL("clicked()"), ServerDialogDesign.certFileDialog)
         QtCore.QObject.connect(self.certKeyfileButton, QtCore.SIGNAL("clicked()"), ServerDialogDesign.certKeyfileDialog)
         QtCore.QObject.connect(self.deleteBaseDNButton, QtCore.SIGNAL("clicked()"), ServerDialogDesign.deleteBaseDN)
-        QtCore.QObject.connect(self.deleteButton, QtCore.SIGNAL("clicked()"), ServerDialogDesign.deleteServer)
         QtCore.QObject.connect(self.okButton, QtCore.SIGNAL("clicked()"), ServerDialogDesign.accept)
         QtCore.QObject.connect(self.useClientCertBox, QtCore.SIGNAL("toggled(bool)"), self.certFileLineEdit.setEnabled)
         QtCore.QObject.connect(self.useClientCertBox, QtCore.SIGNAL("toggled(bool)"), self.certKeyfileLineEdit.setEnabled)
@@ -359,6 +352,8 @@ class Ui_ServerDialogDesign(object):
         QtCore.QObject.connect(self.anonBindBox, QtCore.SIGNAL("toggled(bool)"), self.mechanismBox.setDisabled)
         QtCore.QObject.connect(self.anonBindBox, QtCore.SIGNAL("toggled(bool)"), self.bindAsLineEdit.setDisabled)
         QtCore.QObject.connect(self.anonBindBox, QtCore.SIGNAL("toggled(bool)"), self.passwordLineEdit.setDisabled)
+        QtCore.QObject.connect(self.addButton, QtCore.SIGNAL("clicked()"), ServerDialogDesign.addServer)
+        QtCore.QObject.connect(self.deleteButton, QtCore.SIGNAL("clicked()"), ServerDialogDesign.deleteServer)
         QtCore.QMetaObject.connectSlotsByName(ServerDialogDesign)
 
     def retranslateUi(self, ServerDialogDesign):
