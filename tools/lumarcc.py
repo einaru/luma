@@ -364,6 +364,10 @@ def updateTranslationFiles():
     """
     Just executes the pylupdate4 command on the project file.
     """
+<<<<<<< HEAD
+=======
+    cmd = 'pylupdate4'
+>>>>>>> f0871afe1069662b838a589b4a39d65008f0f6b0
     lumapro = _getPath(LUMA_PRO)
 
     cmd = 'pylupdate4'
@@ -457,8 +461,8 @@ def main():
     if opt.full_run:
         compileUiFiles(compileAll=True)
         createQrcFile(icons=True, i18n=True)
-        compileResources()
         updateTranslationFiles()
+        compileResources()
         sys.exit()
 
     if opt.qrc_file:

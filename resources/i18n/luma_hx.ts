@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS><TS version="1.1" language="en_UM">
+<context>
+    <name>@default</name>
+    <message>
+        <location filename="luma/plugins/browser_plugin/item/LDAPErrorItem.py" line="23"/>
+        <source>There was an error receiving this item or it&apos;s parent. See the attached error-message and/or the log for details.</source>
+        <translation type="obsolete">eloel.</translation>
+    </message>
+</context>
 <context encoding="UTF-8">
     <name>AboutCredits</name>
     <message>
@@ -188,6 +196,14 @@ p, li { white-space: pre-wrap; }
     </message>
 </context>
 <context>
+    <name>Context</name>
+    <message>
+        <location filename="luma/plugins/browser_plugin/item/LDAPErrorItem.py" line="24"/>
+        <source>There was an error receiving this item or it&apos;s parent. See the attached error-message and/or the log for details.</source>
+        <translation>eloel.</translation>
+    </message>
+</context>
+<context>
     <name>LoggerWidget</name>
     <message>
         <location filename="resources/forms/LoggerWidgetDesign.ui" line="33"/>
@@ -325,7 +341,33 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="luma/base/gui/MainWin.py" line="564"/>
         <source>Available plugins</source>
+<<<<<<< HEAD
         <translation type="unfinished"></translation>
+=======
+        <translation>,Æmæjk</translation>
+    </message>
+</context>
+<context>
+    <name>QtCore.QCoreApplication</name>
+    <message>
+        <location filename="luma/plugins/browser_plugin/item/LDAPErrorItem.py" line="23"/>
+        <source>There was an error receiving this item or it&apos;s parent. See the attached error-message and/or the log for details.</source>
+        <translation type="obsolete">eloel.</translation>
+    </message>
+    <message>
+        <location filename="luma/plugins/browser_plugin/item/LDAPErrorItem.py" line="24"/>
+        <source>Context</source>
+        <comment>There was an error receiving this item or it&apos;s parent. See the attached error-message and/or the log for details.</comment>
+        <translation type="obsolete">asd</translation>
+    </message>
+</context>
+<context>
+    <name>QtCore.QObject</name>
+    <message>
+        <location filename="luma/plugins/browser_plugin/item/LDAPErrorItem.py" line="23"/>
+        <source>There was an error receiving this item or it&apos;s parent. See the attached error-message and/or the log for details.</source>
+        <translation type="obsolete">eloel.</translation>
+>>>>>>> f0871afe1069662b838a589b4a39d65008f0f6b0
     </message>
 </context>
 <context>
@@ -333,17 +375,29 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="luma/base/gui/ServerDialog.py" line="138"/>
         <source>Add server</source>
+<<<<<<< HEAD
         <translation type="unfinished"></translation>
+=======
+        <translation>Legg til server</translation>
+>>>>>>> f0871afe1069662b838a589b4a39d65008f0f6b0
     </message>
     <message>
         <location filename="luma/base/gui/ServerDialog.py" line="138"/>
         <source>Name:</source>
+<<<<<<< HEAD
         <translation type="unfinished"></translation>
+=======
+        <translation type="obsolete">Navn:</translation>
+>>>>>>> f0871afe1069662b838a589b4a39d65008f0f6b0
     </message>
     <message>
         <location filename="luma/base/gui/ServerDialog.py" line="141"/>
         <source>Error</source>
+<<<<<<< HEAD
         <translation type="unfinished"></translation>
+=======
+        <translation>Feil</translation>
+>>>>>>> f0871afe1069662b838a589b4a39d65008f0f6b0
     </message>
     <message>
         <location filename="luma/base/gui/ServerDialog.py" line="141"/>
@@ -369,13 +423,26 @@ p, li { white-space: pre-wrap; }
         <location filename="luma/base/gui/ServerDialog.py" line="198"/>
         <source>Are you sure you want to exit the server editor?
  Any unsaved changes will be lost!</source>
+<<<<<<< HEAD
         <translation type="unfinished"></translation>
+=======
+        <translation>Are you stupid?</translation>
+>>>>>>> f0871afe1069662b838a589b4a39d65008f0f6b0
     </message>
     <message>
         <location filename="luma/base/gui/ServerDialog.py" line="229"/>
         <source>Open file</source>
         <translation type="unfinished"></translation>
     </message>
+<<<<<<< HEAD
+=======
+    <message>
+        <location filename="luma/base/gui/ServerDialog.py" line="138"/>
+        <source>123</source>
+        <comment>Name:</comment>
+        <translation>456</translation>
+    </message>
+>>>>>>> f0871afe1069662b838a589b4a39d65008f0f6b0
 </context>
 <context>
     <name>ServerDialogDesign</name>
@@ -681,6 +748,22 @@ p, li { white-space: pre-wrap; }
         <location filename="resources/forms/SettingsDialogDesign.ui" line="215"/>
         <source>Plugins</source>
         <translation>plu91n5</translation>
+    </message>
+</context>
+<context>
+    <name>qApp</name>
+    <message>
+        <location filename="luma/plugins/browser_plugin/item/LDAPErrorItem.py" line="23"/>
+        <source>There was an error receiving this item or it&apos;s parent. See the attached error-message and/or the log for details.</source>
+        <translation type="obsolete">eloel.</translation>
+    </message>
+</context>
+<context>
+    <name>self.qo</name>
+    <message>
+        <location filename="luma/plugins/browser_plugin/item/LDAPErrorItem.py" line="25"/>
+        <source>There was an error receiving this item or it&apos;s parent. See the attached error-message and/or the log for details.</source>
+        <translation type="obsolete">eloel.</translation>
     </message>
 </context>
 </TS>

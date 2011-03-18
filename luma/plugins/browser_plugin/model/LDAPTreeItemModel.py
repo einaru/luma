@@ -49,8 +49,9 @@ class LDAPTreeItemModel(QAbstractItemModel):
         #Is also (should also be) checked in the items themselves
         #if role != QtCore.Qt.DisplayRole and role != QtCore.Qt.DecorationRole:
         #    return QtCore.QVariant()
-
+        
         item = index.internalPointer()
+
         return QtCore.QVariant(item.data(index.column(), role))
 
     def flags(self, index):

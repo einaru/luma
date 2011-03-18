@@ -188,6 +188,14 @@ p, li { white-space: pre-wrap; }
     </message>
 </context>
 <context>
+    <name>Context</name>
+    <message>
+        <location filename="luma/plugins/browser_plugin/item/LDAPErrorItem.py" line="24"/>
+        <source>There was an error receiving this item or it&apos;s parent. See the attached error-message and/or the log for details.</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>LoggerWidget</name>
     <message>
         <location filename="resources/forms/LoggerWidgetDesign.ui" line="33"/>
@@ -336,11 +344,14 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
+<<<<<<< HEAD
         <location filename="luma/base/gui/ServerDialog.py" line="138"/>
         <source>Name:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+=======
+>>>>>>> f0871afe1069662b838a589b4a39d65008f0f6b0
         <location filename="luma/base/gui/ServerDialog.py" line="141"/>
         <source>Error</source>
         <translation type="unfinished"></translation>
@@ -376,6 +387,15 @@ p, li { white-space: pre-wrap; }
         <source>Open file</source>
         <translation type="unfinished"></translation>
     </message>
+<<<<<<< HEAD
+=======
+    <message>
+        <location filename="luma/base/gui/ServerDialog.py" line="138"/>
+        <source>123</source>
+        <comment>Name:</comment>
+        <translation type="unfinished"></translation>
+    </message>
+>>>>>>> f0871afe1069662b838a589b4a39d65008f0f6b0
 </context>
 <context>
     <name>ServerDialogDesign</name>
