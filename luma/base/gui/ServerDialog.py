@@ -202,8 +202,8 @@ class ServerDialog(QDialog, Ui_ServerDialogDesign):
         
         # If "save" has been clicked, return the saved list by calling accept()
         if self._serverListCopy: #This is non-None if Save has been clicked.
-            self._returnList = self._serverListCopy #Return the saved on instead
-            self.accept() #accept() returns _returnList to the caller
+            self._returnList = self._serverListCopy # Return the saved on instead
+            QDialog.accept(self) # Closes the window while indicating the caller needs to get the new list (self._returnList)
             return
         QDialog.reject(self)
     
