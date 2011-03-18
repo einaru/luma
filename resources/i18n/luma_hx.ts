@@ -196,11 +196,88 @@ p, li { white-space: pre-wrap; }
     </message>
 </context>
 <context>
+    <name>BrowserView</name>
+    <message>
+        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="68"/>
+        <source>This is where entries are displayed when opened.</source>
+        <translation>Dette er hvor TING vises når de blir åpnet.</translation>
+    </message>
+    <message>
+        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="119"/>
+        <source>Reload children</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="121"/>
+        <source>Filter</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="123"/>
+        <source>Limit</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="125"/>
+        <source>Clear</source>
+        <translation type="unfinished">cl34r</translation>
+    </message>
+    <message>
+        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="133"/>
+        <source>Entry</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="134"/>
+        <source>Template</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="132"/>
+        <source>Delete</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>Context</name>
     <message>
         <location filename="luma/plugins/browser_plugin/item/LDAPErrorItem.py" line="24"/>
         <source>There was an error receiving this item or it&apos;s parent. See the attached error-message and/or the log for details.</source>
-        <translation>eloel.</translation>
+        <translation type="obsolete">eloel.</translation>
+    </message>
+</context>
+<context>
+    <name>LDAPErrorItem</name>
+    <message>
+        <location filename="luma/plugins/browser_plugin/item/LDAPErrorItem.py" line="24"/>
+        <source>There was an error receiving this item or it&apos;s parent. See the attached error-message and/or the log for details.</source>
+        <translation type="unfinished">eloel.</translation>
+    </message>
+</context>
+<context>
+    <name>LDAPTreeItem</name>
+    <message>
+        <location filename="luma/plugins/browser_plugin/item/LDAPTreeItem.py" line="51"/>
+        <source>This item has both a filter and limit applied.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="luma/plugins/browser_plugin/item/LDAPTreeItem.py" line="53"/>
+        <source>This item have a filter applied.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="luma/plugins/browser_plugin/item/LDAPTreeItem.py" line="55"/>
+        <source>This item have a limit applied.</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>LDAPTreeItemModel</name>
+    <message>
+        <location filename="luma/plugins/browser_plugin/model/LDAPTreeItemModel.py" line="169"/>
+        <source>No servers defined</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -341,33 +418,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="luma/base/gui/MainWin.py" line="564"/>
         <source>Available plugins</source>
-<<<<<<< HEAD
         <translation type="unfinished"></translation>
-=======
-        <translation>,Æmæjk</translation>
-    </message>
-</context>
-<context>
-    <name>QtCore.QCoreApplication</name>
-    <message>
-        <location filename="luma/plugins/browser_plugin/item/LDAPErrorItem.py" line="23"/>
-        <source>There was an error receiving this item or it&apos;s parent. See the attached error-message and/or the log for details.</source>
-        <translation type="obsolete">eloel.</translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/item/LDAPErrorItem.py" line="24"/>
-        <source>Context</source>
-        <comment>There was an error receiving this item or it&apos;s parent. See the attached error-message and/or the log for details.</comment>
-        <translation type="obsolete">asd</translation>
-    </message>
-</context>
-<context>
-    <name>QtCore.QObject</name>
-    <message>
-        <location filename="luma/plugins/browser_plugin/item/LDAPErrorItem.py" line="23"/>
-        <source>There was an error receiving this item or it&apos;s parent. See the attached error-message and/or the log for details.</source>
-        <translation type="obsolete">eloel.</translation>
->>>>>>> f0871afe1069662b838a589b4a39d65008f0f6b0
     </message>
 </context>
 <context>
@@ -375,29 +426,18 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="luma/base/gui/ServerDialog.py" line="138"/>
         <source>Add server</source>
-<<<<<<< HEAD
         <translation type="unfinished"></translation>
-=======
-        <translation>Legg til server</translation>
->>>>>>> f0871afe1069662b838a589b4a39d65008f0f6b0
     </message>
     <message>
         <location filename="luma/base/gui/ServerDialog.py" line="138"/>
-        <source>Name:</source>
-<<<<<<< HEAD
+        <source>123</source>
+        <comment>Name:</comment>
         <translation type="unfinished"></translation>
-=======
-        <translation type="obsolete">Navn:</translation>
->>>>>>> f0871afe1069662b838a589b4a39d65008f0f6b0
     </message>
     <message>
         <location filename="luma/base/gui/ServerDialog.py" line="141"/>
         <source>Error</source>
-<<<<<<< HEAD
         <translation type="unfinished"></translation>
-=======
-        <translation>Feil</translation>
->>>>>>> f0871afe1069662b838a589b4a39d65008f0f6b0
     </message>
     <message>
         <location filename="luma/base/gui/ServerDialog.py" line="141"/>
@@ -423,258 +463,245 @@ p, li { white-space: pre-wrap; }
         <location filename="luma/base/gui/ServerDialog.py" line="198"/>
         <source>Are you sure you want to exit the server editor?
  Any unsaved changes will be lost!</source>
-<<<<<<< HEAD
         <translation type="unfinished"></translation>
-=======
-        <translation>Are you stupid?</translation>
->>>>>>> f0871afe1069662b838a589b4a39d65008f0f6b0
     </message>
     <message>
         <location filename="luma/base/gui/ServerDialog.py" line="229"/>
         <source>Open file</source>
         <translation type="unfinished"></translation>
     </message>
-<<<<<<< HEAD
-=======
-    <message>
-        <location filename="luma/base/gui/ServerDialog.py" line="138"/>
-        <source>123</source>
-        <comment>Name:</comment>
-        <translation>456</translation>
-    </message>
->>>>>>> f0871afe1069662b838a589b4a39d65008f0f6b0
 </context>
 <context>
     <name>ServerDialogDesign</name>
     <message>
         <location filename="resources/forms/ServerDialogDesign.ui" line="29"/>
         <source>Manage Server List</source>
-        <translation>m4n493 53rv3r l157</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="resources/forms/ServerDialogDesign.ui" line="353"/>
         <source>&amp;Delete</source>
-        <translation>&amp;d3l373</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="resources/forms/ServerDialogDesign.ui" line="356"/>
         <source>Alt+D</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="resources/forms/ServerDialogDesign.ui" line="1225"/>
-        <source>Alt+A</source>
-        <translation>Alt+4</translation>
-    </message>
-    <message>
-        <location filename="resources/forms/ServerDialogDesign.ui" line="137"/>
-        <source>Network</source>
-        <translation>n37w0rk</translation>
-    </message>
-    <message>
-        <location filename="resources/forms/ServerDialogDesign.ui" line="157"/>
-        <source>Host:</source>
-        <translation>h057:</translation>
-    </message>
-    <message>
-        <location filename="resources/forms/ServerDialogDesign.ui" line="195"/>
-        <source>Port:</source>
-        <translation>p0r7:</translation>
-    </message>
-    <message>
-        <location filename="resources/forms/ServerDialogDesign.ui" line="242"/>
-        <source>&lt;b&gt;LDAP options&lt;/b&gt;</source>
-        <translation>&lt;b&gt;ld4p 0p710n5&lt;/b&gt;</translation>
-    </message>
-    <message>
-        <location filename="resources/forms/ServerDialogDesign.ui" line="267"/>
-        <source>Follow aliases</source>
-        <translation>f0ll0w 4l14535</translation>
-    </message>
-    <message>
-        <location filename="resources/forms/ServerDialogDesign.ui" line="286"/>
-        <source>Use Base DNs provided by the server</source>
-        <translation>u53 6453 dn5 pr0v1d3d 6y 7h3 53rv3r</translation>
-    </message>
-    <message>
-        <location filename="resources/forms/ServerDialogDesign.ui" line="305"/>
-        <source>Custom:</source>
-        <translation>cu570m:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="resources/forms/ServerDialogDesign.ui" line="331"/>
         <source>&amp;Add</source>
-        <translation>&amp;4dd</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="resources/forms/ServerDialogDesign.ui" line="478"/>
-        <source>Authentification</source>
-        <translation>4u7h3n71c4710n5</translation>
+        <location filename="resources/forms/ServerDialogDesign.ui" line="1225"/>
+        <source>Alt+A</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="resources/forms/ServerDialogDesign.ui" line="566"/>
-        <source>Anonymous bind</source>
-        <translation>4n0nym0u5 61nd</translation>
+        <location filename="resources/forms/ServerDialogDesign.ui" line="137"/>
+        <source>Network</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="resources/forms/ServerDialogDesign.ui" line="591"/>
-        <source>Mechanism:</source>
-        <translation>m3ch4n15m:</translation>
+        <location filename="resources/forms/ServerDialogDesign.ui" line="157"/>
+        <source>Host:</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="resources/forms/ServerDialogDesign.ui" line="620"/>
-        <source>Simple</source>
-        <translation>51mpl3</translation>
+        <location filename="resources/forms/ServerDialogDesign.ui" line="195"/>
+        <source>Port:</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="resources/forms/ServerDialogDesign.ui" line="625"/>
-        <source>SASL CRAM-MD5</source>
-        <translation>545l cr4m-mdS</translation>
+        <location filename="resources/forms/ServerDialogDesign.ui" line="242"/>
+        <source>&lt;b&gt;LDAP options&lt;/b&gt;</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="resources/forms/ServerDialogDesign.ui" line="630"/>
-        <source>SASL DIGEST-MD5</source>
-        <translation>545l d19357-mdS</translation>
+        <location filename="resources/forms/ServerDialogDesign.ui" line="267"/>
+        <source>Follow aliases</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="resources/forms/ServerDialogDesign.ui" line="635"/>
-        <source>SASL EXTERNAL</source>
-        <translation>545l 3x73rn4l</translation>
+        <location filename="resources/forms/ServerDialogDesign.ui" line="286"/>
+        <source>Use Base DNs provided by the server</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="resources/forms/ServerDialogDesign.ui" line="640"/>
-        <source>SASL GSSAPI</source>
-        <translation>545l 9554p1</translation>
-    </message>
-    <message>
-        <location filename="resources/forms/ServerDialogDesign.ui" line="645"/>
-        <source>SASL Login</source>
-        <translation>545l l091n</translation>
-    </message>
-    <message>
-        <location filename="resources/forms/ServerDialogDesign.ui" line="650"/>
-        <source>SASL Plain</source>
-        <translation>545l pl41n</translation>
-    </message>
-    <message>
-        <location filename="resources/forms/ServerDialogDesign.ui" line="670"/>
-        <source>Bind as:</source>
-        <translation>b1nd 45:</translation>
-    </message>
-    <message>
-        <location filename="resources/forms/ServerDialogDesign.ui" line="708"/>
-        <source>Password:</source>
-        <translation>p455w0rd:</translation>
-    </message>
-    <message>
-        <location filename="resources/forms/ServerDialogDesign.ui" line="768"/>
-        <source>Security</source>
-        <translation>53cur17y</translation>
-    </message>
-    <message>
-        <location filename="resources/forms/ServerDialogDesign.ui" line="810"/>
-        <source>&lt;b&gt;Security options&lt;/b&gt;</source>
-        <translation>&lt;b&gt;53cur17y 0p710n5&lt;/b&gt;</translation>
-    </message>
-    <message>
-        <location filename="resources/forms/ServerDialogDesign.ui" line="833"/>
-        <source>Unencrypted connection</source>
-        <translation>un3cryp73d c0nn3c710n</translation>
-    </message>
-    <message>
-        <location filename="resources/forms/ServerDialogDesign.ui" line="838"/>
-        <source>Transport Layer Security (TLS)</source>
-        <translation>7r4n5p0r7 l4y3r 53cur17y (7l5)</translation>
-    </message>
-    <message>
-        <location filename="resources/forms/ServerDialogDesign.ui" line="843"/>
-        <source>Secure Socket Layer (SSL)</source>
-        <translation>53rv3r 50ck37 l4y3r (55l)</translation>
-    </message>
-    <message>
-        <location filename="resources/forms/ServerDialogDesign.ui" line="895"/>
-        <source>&lt;b&gt;Validate server certificate&lt;/b&gt;</source>
-        <translation>&lt;b&gt;v4l1d473 53rv3r c3r71f1c473&lt;/b&gt;</translation>
-    </message>
-    <message>
-        <location filename="resources/forms/ServerDialogDesign.ui" line="934"/>
-        <source>Never</source>
-        <translation>n3v3r</translation>
-    </message>
-    <message>
-        <location filename="resources/forms/ServerDialogDesign.ui" line="939"/>
-        <source>Allow</source>
-        <translation>4ll0w</translation>
-    </message>
-    <message>
-        <location filename="resources/forms/ServerDialogDesign.ui" line="944"/>
-        <source>Try</source>
-        <translation>7ry</translation>
-    </message>
-    <message>
-        <location filename="resources/forms/ServerDialogDesign.ui" line="949"/>
-        <source>Demand</source>
-        <translation>d3m4nd</translation>
-    </message>
-    <message>
-        <location filename="resources/forms/ServerDialogDesign.ui" line="979"/>
-        <source>&lt;b&gt;Client certificate options&lt;/b&gt;</source>
-        <translation>&lt;b&gt;cl13n7 c3r71f1c473 0p710n5&lt;/b&gt;</translation>
-    </message>
-    <message>
-        <location filename="resources/forms/ServerDialogDesign.ui" line="1004"/>
-        <source>Use client certificates</source>
-        <translation>u53 cl13n7 c3r71f1c4735</translation>
-    </message>
-    <message>
-        <location filename="resources/forms/ServerDialogDesign.ui" line="1039"/>
-        <source>Certificate file:</source>
-        <translation>c3r71f1c473 f1l3:</translation>
-    </message>
-    <message>
-        <location filename="resources/forms/ServerDialogDesign.ui" line="1061"/>
-        <source>Certificate keyfile:</source>
-        <translation>c3r71f1c473 k3yf1l3:</translation>
-    </message>
-    <message>
-        <location filename="resources/forms/ServerDialogDesign.ui" line="1122"/>
-        <source>...</source>
-        <translation>...</translation>
-    </message>
-    <message>
-        <location filename="resources/forms/ServerDialogDesign.ui" line="1203"/>
-        <source>&amp;OK</source>
-        <translation>&amp;0k</translation>
-    </message>
-    <message>
-        <location filename="resources/forms/ServerDialogDesign.ui" line="1206"/>
-        <source>Alt+O</source>
-        <translation>Alt+0</translation>
-    </message>
-    <message>
-        <location filename="resources/forms/ServerDialogDesign.ui" line="1222"/>
-        <source>&amp;Apply</source>
-        <translation>&amp;4pply</translation>
-    </message>
-    <message>
-        <location filename="resources/forms/ServerDialogDesign.ui" line="1235"/>
-        <source>&amp;Cancel</source>
-        <translation>&amp;c4nc3l</translation>
-    </message>
-    <message>
-        <location filename="resources/forms/ServerDialogDesign.ui" line="1238"/>
-        <source>Alt+C</source>
-        <translation></translation>
+        <location filename="resources/forms/ServerDialogDesign.ui" line="305"/>
+        <source>Custom:</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="resources/forms/ServerDialogDesign.ui" line="410"/>
         <source>&lt;b&gt;Network options&lt;/b&gt;</source>
-        <translation>&lt;b&gt;n3tw03k 0p710n5&lt;/b&gt;</translation>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="resources/forms/ServerDialogDesign.ui" line="478"/>
+        <source>Authentification</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="resources/forms/ServerDialogDesign.ui" line="566"/>
+        <source>Anonymous bind</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="resources/forms/ServerDialogDesign.ui" line="591"/>
+        <source>Mechanism:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="resources/forms/ServerDialogDesign.ui" line="620"/>
+        <source>Simple</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="resources/forms/ServerDialogDesign.ui" line="625"/>
+        <source>SASL CRAM-MD5</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="resources/forms/ServerDialogDesign.ui" line="630"/>
+        <source>SASL DIGEST-MD5</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="resources/forms/ServerDialogDesign.ui" line="635"/>
+        <source>SASL EXTERNAL</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="resources/forms/ServerDialogDesign.ui" line="640"/>
+        <source>SASL GSSAPI</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="resources/forms/ServerDialogDesign.ui" line="645"/>
+        <source>SASL Login</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="resources/forms/ServerDialogDesign.ui" line="650"/>
+        <source>SASL Plain</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="resources/forms/ServerDialogDesign.ui" line="670"/>
+        <source>Bind as:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="resources/forms/ServerDialogDesign.ui" line="708"/>
+        <source>Password:</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="resources/forms/ServerDialogDesign.ui" line="755"/>
         <source>&lt;b&gt;Bind options&lt;/b&gt;</source>
-        <translation>&lt;b&gt;61nd 0p710n5&lt;/b&gt;</translation>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="resources/forms/ServerDialogDesign.ui" line="768"/>
+        <source>Security</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="resources/forms/ServerDialogDesign.ui" line="810"/>
+        <source>&lt;b&gt;Security options&lt;/b&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="resources/forms/ServerDialogDesign.ui" line="833"/>
+        <source>Unencrypted connection</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="resources/forms/ServerDialogDesign.ui" line="838"/>
+        <source>Transport Layer Security (TLS)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="resources/forms/ServerDialogDesign.ui" line="843"/>
+        <source>Secure Socket Layer (SSL)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="resources/forms/ServerDialogDesign.ui" line="895"/>
+        <source>&lt;b&gt;Validate server certificate&lt;/b&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="resources/forms/ServerDialogDesign.ui" line="934"/>
+        <source>Never</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="resources/forms/ServerDialogDesign.ui" line="939"/>
+        <source>Allow</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="resources/forms/ServerDialogDesign.ui" line="944"/>
+        <source>Try</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="resources/forms/ServerDialogDesign.ui" line="949"/>
+        <source>Demand</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="resources/forms/ServerDialogDesign.ui" line="979"/>
+        <source>&lt;b&gt;Client certificate options&lt;/b&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="resources/forms/ServerDialogDesign.ui" line="1004"/>
+        <source>Use client certificates</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="resources/forms/ServerDialogDesign.ui" line="1039"/>
+        <source>Certificate file:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="resources/forms/ServerDialogDesign.ui" line="1061"/>
+        <source>Certificate keyfile:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="resources/forms/ServerDialogDesign.ui" line="1122"/>
+        <source>...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="resources/forms/ServerDialogDesign.ui" line="1203"/>
+        <source>&amp;OK</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="resources/forms/ServerDialogDesign.ui" line="1206"/>
+        <source>Alt+O</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="resources/forms/ServerDialogDesign.ui" line="1222"/>
+        <source>&amp;Apply</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="resources/forms/ServerDialogDesign.ui" line="1235"/>
+        <source>&amp;Cancel</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="resources/forms/ServerDialogDesign.ui" line="1238"/>
+        <source>Alt+C</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -682,88 +709,72 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="resources/forms/SettingsDialogDesign.ui" line="233"/>
         <source>Settings</source>
-        <translation>53tt1n95</translation>
+        <translation type="unfinished">53771n95</translation>
     </message>
     <message>
         <location filename="resources/forms/SettingsDialogDesign.ui" line="36"/>
         <source>Ok</source>
-        <translation>0k</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="resources/forms/SettingsDialogDesign.ui" line="43"/>
         <source>Cancel</source>
-        <translation>c4nc3l</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="resources/forms/SettingsDialogDesign.ui" line="62"/>
         <source>General</source>
-        <translation>93n3r4l</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="resources/forms/SettingsDialogDesign.ui" line="68"/>
         <source>i18n</source>
-        <translation>1i8n</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="resources/forms/SettingsDialogDesign.ui" line="76"/>
         <source>Application language</source>
-        <translation>4ppl1c4710n l4n9u493</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="resources/forms/SettingsDialogDesign.ui" line="118"/>
         <source>Logging</source>
-        <translation>l0991n9</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="resources/forms/SettingsDialogDesign.ui" line="126"/>
         <source>Show the Logger on startup</source>
-        <translation>5h0w l0993r 0n 574r7up</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="resources/forms/SettingsDialogDesign.ui" line="138"/>
         <source>Filter Options</source>
-        <translation>f1l73r 0p710n5</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="resources/forms/SettingsDialogDesign.ui" line="146"/>
         <source>Display message types:</source>
-        <translation>d16pl4y m3554935:</translation>
+        <translation type="unfinished">d16pl4y m355493 7yp35:</translation>
     </message>
     <message>
         <location filename="resources/forms/SettingsDialogDesign.ui" line="153"/>
         <source>Errors</source>
-        <translation>3rr0r5</translation>
+        <translation type="unfinished">3rr0353rr0r5</translation>
     </message>
     <message>
         <location filename="resources/forms/SettingsDialogDesign.ui" line="163"/>
         <source>Debug</source>
-        <translation>d36u9</translation>
+        <translation type="unfinished">d36u9</translation>
     </message>
     <message>
         <location filename="resources/forms/SettingsDialogDesign.ui" line="173"/>
         <source>Info</source>
-        <translation>1nf0</translation>
+        <translation type="unfinished">1nf0</translation>
     </message>
     <message>
         <location filename="resources/forms/SettingsDialogDesign.ui" line="215"/>
         <source>Plugins</source>
-        <translation>plu91n5</translation>
-    </message>
-</context>
-<context>
-    <name>qApp</name>
-    <message>
-        <location filename="luma/plugins/browser_plugin/item/LDAPErrorItem.py" line="23"/>
-        <source>There was an error receiving this item or it&apos;s parent. See the attached error-message and/or the log for details.</source>
-        <translation type="obsolete">eloel.</translation>
-    </message>
-</context>
-<context>
-    <name>self.qo</name>
-    <message>
-        <location filename="luma/plugins/browser_plugin/item/LDAPErrorItem.py" line="25"/>
-        <source>There was an error receiving this item or it&apos;s parent. See the attached error-message and/or the log for details.</source>
-        <translation type="obsolete">eloel.</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 </TS>

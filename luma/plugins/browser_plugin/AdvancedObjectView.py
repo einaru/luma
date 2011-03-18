@@ -81,7 +81,7 @@ class AdvancedObjectView(QWidget):
             self.EDITED = False
             isLeave = False
 
-            tmpObject = ServerList("/tmp")
+            tmpObject = ServerList()
             tmpObject.readServerList()
             serverMeta = tmpObject.getServerObject(self.ldapDataObject.getServerAlias())
         

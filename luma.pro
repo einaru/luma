@@ -2,7 +2,12 @@ CONFIG +=      qt debug
 
 SOURCES =      luma/base/gui/MainWin.py \
                luma/base/gui/ServerDialog.py \
-               luma/plugins/browser_plugin/item/LDAPErrorItem.py
+               luma/plugins/browser_plugin/item/LDAPErrorItem.py \
+               luma/plugins/browser_plugin/item/LDAPTreeItem.py \
+               luma/plugins/browser_plugin/item/LDAPErrorItem.py \
+               luma/plugins/browser_plugin/model/LDAPTreeItemModel.py \
+               luma/plugins/browser_plugin/BrowserView.py
+               
 
 FORMS =        resources/forms/AboutCreditsDesign.ui \
                resources/forms/AboutDialogDesign.ui \

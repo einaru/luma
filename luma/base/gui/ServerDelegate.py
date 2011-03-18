@@ -43,7 +43,7 @@ class ServerDelegate(QStyledItemDelegate):
             editor.clear()
             for tmpBase in d:
                 # The editor is the items parent, so it gets added to the list
-                QListWidgetItem(tmpBase,editor)
+                QListWidgetItem(tmpBase, editor)
                 # Can also do this
                 #editor.addItem(QListWidgetItem(tmpBase))
             return

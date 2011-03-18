@@ -166,7 +166,7 @@ class LDAPTreeItemModel(QAbstractItemModel):
         
         if not len(serverList.getTable()) > 0:
             # If there's no servers :(
-            self.rootItem.appendChild(LDAPErrorItem("No servers defined", None, self.rootItem))
+            self.rootItem.appendChild(LDAPErrorItem(QtCore.QCoreApplication.translate("LDAPTreeItemModel","No servers defined"), None, self.rootItem))
             return
 
         for server in serverList.getTable():

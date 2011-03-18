@@ -364,13 +364,9 @@ def updateTranslationFiles():
     """
     Just executes the pylupdate4 command on the project file.
     """
-<<<<<<< HEAD
-=======
     cmd = 'pylupdate4'
->>>>>>> f0871afe1069662b838a589b4a39d65008f0f6b0
     lumapro = _getPath(LUMA_PRO)
 
-    cmd = 'pylupdate4'
     if sys.platform == 'win32':
         cmd = '%s.exe' % cmd
 

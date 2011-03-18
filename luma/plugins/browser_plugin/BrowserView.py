@@ -22,6 +22,17 @@ from plugins.browser_plugin.AdvancedObjectView import AdvancedObjectView
 
 
 class BrowserView(QWidget):
+    
+    def retranslateUi(self): 
+        print "RETRANSLATE"
+        self.tabWidget.setStatusTip(QtCore.QCoreApplication.translate("BrowserView","This is where entries are displayed when opened."))
+        self.tabWidget.setToolTip(QtCore.QCoreApplication.translate("BrowserView","This is where entries are displayed when opened."))
+        
+    def changeEvent(self, e):
+        if e.type() == QtCore.QEvent.LanguageChange:
+            self.retranslateUi()
+        else:
+            QWidget.changeEvent(self, e)
 
     def __init__(self, parent, configPrefix = None):
         """
@@ -64,8 +75,8 @@ class BrowserView(QWidget):
         
         # The editor for entries
         self.tabWidget = QtGui.QTabWidget(self)
-        self.tabWidget.setStatusTip(self.tr("This is where entries are displayed when opened."))
-        self.tabWidget.setToolTip(self.tr("This is where entries are displayed when opened."))
+        self.tabWidget.setStatusTip(QtCore.QCoreApplication.translate("BrowserView","This is where entries are displayed when opened."))
+        self.tabWidget.setToolTip(QtCore.QCoreApplication.translate("BrowserView","This is where entries are displayed when opened."))
         #self.tabWidget.setDocumentMode(True)
         self.tabWidget.setMovable(True)
         #self.tabWidget.setStyleSheet("QTabWidget::pane {border: 0; border-top: 30px solid qlineargradient(x1:0, y1:0, x2:0, y2:1, stop: 0 red, stop: 1 yellow); background: yellow; } QTabWidget::tab-bar { top: 30px; }")
@@ -168,7 +179,7 @@ class BrowserView(QWidget):
         pass
         
     def viewItem(self, index):
-    
+        
         smartObject = index.internalPointer().smartObject()
         
         # We need to have tried to open an items with a smartobject to proceed

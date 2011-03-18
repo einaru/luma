@@ -188,10 +188,79 @@ p, li { white-space: pre-wrap; }
     </message>
 </context>
 <context>
-    <name>Context</name>
+    <name>BrowserView</name>
+    <message>
+        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="68"/>
+        <source>This is where entries are displayed when opened.</source>
+        <translation>Dette er hvor ting vises når åpent.</translation>
+    </message>
+    <message>
+        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="119"/>
+        <source>Reload children</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="121"/>
+        <source>Filter</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="123"/>
+        <source>Limit</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="125"/>
+        <source>Clear</source>
+        <translation type="unfinished">Slett</translation>
+    </message>
+    <message>
+        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="133"/>
+        <source>Entry</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="134"/>
+        <source>Template</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="132"/>
+        <source>Delete</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>LDAPErrorItem</name>
     <message>
         <location filename="luma/plugins/browser_plugin/item/LDAPErrorItem.py" line="24"/>
         <source>There was an error receiving this item or it&apos;s parent. See the attached error-message and/or the log for details.</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>LDAPTreeItem</name>
+    <message>
+        <location filename="luma/plugins/browser_plugin/item/LDAPTreeItem.py" line="51"/>
+        <source>This item has both a filter and limit applied.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="luma/plugins/browser_plugin/item/LDAPTreeItem.py" line="53"/>
+        <source>This item have a filter applied.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="luma/plugins/browser_plugin/item/LDAPTreeItem.py" line="55"/>
+        <source>This item have a limit applied.</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>LDAPTreeItemModel</name>
+    <message>
+        <location filename="luma/plugins/browser_plugin/model/LDAPTreeItemModel.py" line="169"/>
+        <source>No servers defined</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -344,14 +413,12 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-<<<<<<< HEAD
         <location filename="luma/base/gui/ServerDialog.py" line="138"/>
-        <source>Name:</source>
+        <source>123</source>
+        <comment>Name:</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-=======
->>>>>>> f0871afe1069662b838a589b4a39d65008f0f6b0
         <location filename="luma/base/gui/ServerDialog.py" line="141"/>
         <source>Error</source>
         <translation type="unfinished"></translation>
@@ -387,247 +454,238 @@ p, li { white-space: pre-wrap; }
         <source>Open file</source>
         <translation type="unfinished"></translation>
     </message>
-<<<<<<< HEAD
-=======
-    <message>
-        <location filename="luma/base/gui/ServerDialog.py" line="138"/>
-        <source>123</source>
-        <comment>Name:</comment>
-        <translation type="unfinished"></translation>
-    </message>
->>>>>>> f0871afe1069662b838a589b4a39d65008f0f6b0
 </context>
 <context>
     <name>ServerDialogDesign</name>
     <message>
         <location filename="resources/forms/ServerDialogDesign.ui" line="29"/>
         <source>Manage Server List</source>
-        <translation>Administrer serverlisten</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="resources/forms/ServerDialogDesign.ui" line="353"/>
         <source>&amp;Delete</source>
-        <translation>&amp;Slett</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="resources/forms/ServerDialogDesign.ui" line="356"/>
         <source>Alt+D</source>
-        <translation>Alt+S</translation>
-    </message>
-    <message>
-        <location filename="resources/forms/ServerDialogDesign.ui" line="1225"/>
-        <source>Alt+A</source>
-        <translation>Alt+L</translation>
-    </message>
-    <message>
-        <location filename="resources/forms/ServerDialogDesign.ui" line="137"/>
-        <source>Network</source>
-        <translation>Nettverk</translation>
-    </message>
-    <message>
-        <location filename="resources/forms/ServerDialogDesign.ui" line="157"/>
-        <source>Host:</source>
-        <translation>Host:</translation>
-    </message>
-    <message>
-        <location filename="resources/forms/ServerDialogDesign.ui" line="195"/>
-        <source>Port:</source>
-        <translation>Port:</translation>
-    </message>
-    <message>
-        <location filename="resources/forms/ServerDialogDesign.ui" line="242"/>
-        <source>&lt;b&gt;LDAP options&lt;/b&gt;</source>
-        <translation>&lt;b&gt;LDAP valg&lt;/b&gt;</translation>
-    </message>
-    <message>
-        <location filename="resources/forms/ServerDialogDesign.ui" line="267"/>
-        <source>Follow aliases</source>
-        <translation>Følg kallenavn</translation>
-    </message>
-    <message>
-        <location filename="resources/forms/ServerDialogDesign.ui" line="286"/>
-        <source>Use Base DNs provided by the server</source>
-        <translation>Bruk Base DN fra server</translation>
-    </message>
-    <message>
-        <location filename="resources/forms/ServerDialogDesign.ui" line="305"/>
-        <source>Custom:</source>
-        <translation>Tilpass:</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="resources/forms/ServerDialogDesign.ui" line="331"/>
         <source>&amp;Add</source>
-        <translation>&amp;Legg til</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="resources/forms/ServerDialogDesign.ui" line="478"/>
-        <source>Authentification</source>
-        <translation>Autentifisering</translation>
+        <location filename="resources/forms/ServerDialogDesign.ui" line="1225"/>
+        <source>Alt+A</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="resources/forms/ServerDialogDesign.ui" line="566"/>
-        <source>Anonymous bind</source>
-        <translation>Anonym binding</translation>
+        <location filename="resources/forms/ServerDialogDesign.ui" line="137"/>
+        <source>Network</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="resources/forms/ServerDialogDesign.ui" line="591"/>
-        <source>Mechanism:</source>
-        <translation>Mekanisme:</translation>
+        <location filename="resources/forms/ServerDialogDesign.ui" line="157"/>
+        <source>Host:</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="resources/forms/ServerDialogDesign.ui" line="620"/>
-        <source>Simple</source>
-        <translation>Enkel</translation>
+        <location filename="resources/forms/ServerDialogDesign.ui" line="195"/>
+        <source>Port:</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="resources/forms/ServerDialogDesign.ui" line="625"/>
-        <source>SASL CRAM-MD5</source>
-        <translation>SASL CRAM-MD5</translation>
+        <location filename="resources/forms/ServerDialogDesign.ui" line="242"/>
+        <source>&lt;b&gt;LDAP options&lt;/b&gt;</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="resources/forms/ServerDialogDesign.ui" line="630"/>
-        <source>SASL DIGEST-MD5</source>
-        <translation>SASL DIGEST-MD5</translation>
+        <location filename="resources/forms/ServerDialogDesign.ui" line="267"/>
+        <source>Follow aliases</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="resources/forms/ServerDialogDesign.ui" line="635"/>
-        <source>SASL EXTERNAL</source>
-        <translation>SASL EXTERNAL</translation>
+        <location filename="resources/forms/ServerDialogDesign.ui" line="286"/>
+        <source>Use Base DNs provided by the server</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="resources/forms/ServerDialogDesign.ui" line="640"/>
-        <source>SASL GSSAPI</source>
-        <translation>SASL GSSAPI</translation>
-    </message>
-    <message>
-        <location filename="resources/forms/ServerDialogDesign.ui" line="645"/>
-        <source>SASL Login</source>
-        <translation>SASL innlogging</translation>
-    </message>
-    <message>
-        <location filename="resources/forms/ServerDialogDesign.ui" line="650"/>
-        <source>SASL Plain</source>
-        <translation>SASL enkel</translation>
-    </message>
-    <message>
-        <location filename="resources/forms/ServerDialogDesign.ui" line="670"/>
-        <source>Bind as:</source>
-        <translation>Bind som:</translation>
-    </message>
-    <message>
-        <location filename="resources/forms/ServerDialogDesign.ui" line="708"/>
-        <source>Password:</source>
-        <translation>Passord:</translation>
-    </message>
-    <message>
-        <location filename="resources/forms/ServerDialogDesign.ui" line="768"/>
-        <source>Security</source>
-        <translation>Sikkerhet</translation>
-    </message>
-    <message>
-        <location filename="resources/forms/ServerDialogDesign.ui" line="810"/>
-        <source>&lt;b&gt;Security options&lt;/b&gt;</source>
-        <translation>&lt;b&gt;Sikkerhets valg&lt;/b&gt;</translation>
-    </message>
-    <message>
-        <location filename="resources/forms/ServerDialogDesign.ui" line="833"/>
-        <source>Unencrypted connection</source>
-        <translation>Ukryptert tilkobling</translation>
-    </message>
-    <message>
-        <location filename="resources/forms/ServerDialogDesign.ui" line="838"/>
-        <source>Transport Layer Security (TLS)</source>
-        <translation>Transport Layer Security (TSL)</translation>
-    </message>
-    <message>
-        <location filename="resources/forms/ServerDialogDesign.ui" line="843"/>
-        <source>Secure Socket Layer (SSL)</source>
-        <translation>Secure Socket Layer (SSL)</translation>
-    </message>
-    <message>
-        <location filename="resources/forms/ServerDialogDesign.ui" line="895"/>
-        <source>&lt;b&gt;Validate server certificate&lt;/b&gt;</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="resources/forms/ServerDialogDesign.ui" line="934"/>
-        <source>Never</source>
-        <translation>Aldri</translation>
-    </message>
-    <message>
-        <location filename="resources/forms/ServerDialogDesign.ui" line="939"/>
-        <source>Allow</source>
-        <translation>Tillat</translation>
-    </message>
-    <message>
-        <location filename="resources/forms/ServerDialogDesign.ui" line="944"/>
-        <source>Try</source>
-        <translation>Prøv</translation>
-    </message>
-    <message>
-        <location filename="resources/forms/ServerDialogDesign.ui" line="949"/>
-        <source>Demand</source>
-        <translation>Krev</translation>
-    </message>
-    <message>
-        <location filename="resources/forms/ServerDialogDesign.ui" line="979"/>
-        <source>&lt;b&gt;Client certificate options&lt;/b&gt;</source>
-        <translation>&lt;b&gt;Klient sertifikat valg&lt;/b&gt;</translation>
-    </message>
-    <message>
-        <location filename="resources/forms/ServerDialogDesign.ui" line="1004"/>
-        <source>Use client certificates</source>
-        <translation>Bruk klient sertifikat</translation>
-    </message>
-    <message>
-        <location filename="resources/forms/ServerDialogDesign.ui" line="1039"/>
-        <source>Certificate file:</source>
-        <translation>Sertifikat file:</translation>
-    </message>
-    <message>
-        <location filename="resources/forms/ServerDialogDesign.ui" line="1061"/>
-        <source>Certificate keyfile:</source>
-        <translation>Sertifikat nøkkel:</translation>
-    </message>
-    <message>
-        <location filename="resources/forms/ServerDialogDesign.ui" line="1122"/>
-        <source>...</source>
-        <translation>...</translation>
-    </message>
-    <message>
-        <location filename="resources/forms/ServerDialogDesign.ui" line="1203"/>
-        <source>&amp;OK</source>
-        <translation>&amp;Ok</translation>
-    </message>
-    <message>
-        <location filename="resources/forms/ServerDialogDesign.ui" line="1206"/>
-        <source>Alt+O</source>
-        <translation>Alt+O</translation>
-    </message>
-    <message>
-        <location filename="resources/forms/ServerDialogDesign.ui" line="1222"/>
-        <source>&amp;Apply</source>
-        <translation>&amp;Bruk</translation>
-    </message>
-    <message>
-        <location filename="resources/forms/ServerDialogDesign.ui" line="1235"/>
-        <source>&amp;Cancel</source>
-        <translation>&amp;Avbryt</translation>
-    </message>
-    <message>
-        <location filename="resources/forms/ServerDialogDesign.ui" line="1238"/>
-        <source>Alt+C</source>
-        <translation>Alt+A</translation>
+        <location filename="resources/forms/ServerDialogDesign.ui" line="305"/>
+        <source>Custom:</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="resources/forms/ServerDialogDesign.ui" line="410"/>
         <source>&lt;b&gt;Network options&lt;/b&gt;</source>
-        <translation>&lt;b&gt;Nettverks valg&lt;/b&gt;</translation>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="resources/forms/ServerDialogDesign.ui" line="478"/>
+        <source>Authentification</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="resources/forms/ServerDialogDesign.ui" line="566"/>
+        <source>Anonymous bind</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="resources/forms/ServerDialogDesign.ui" line="591"/>
+        <source>Mechanism:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="resources/forms/ServerDialogDesign.ui" line="620"/>
+        <source>Simple</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="resources/forms/ServerDialogDesign.ui" line="625"/>
+        <source>SASL CRAM-MD5</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="resources/forms/ServerDialogDesign.ui" line="630"/>
+        <source>SASL DIGEST-MD5</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="resources/forms/ServerDialogDesign.ui" line="635"/>
+        <source>SASL EXTERNAL</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="resources/forms/ServerDialogDesign.ui" line="640"/>
+        <source>SASL GSSAPI</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="resources/forms/ServerDialogDesign.ui" line="645"/>
+        <source>SASL Login</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="resources/forms/ServerDialogDesign.ui" line="650"/>
+        <source>SASL Plain</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="resources/forms/ServerDialogDesign.ui" line="670"/>
+        <source>Bind as:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="resources/forms/ServerDialogDesign.ui" line="708"/>
+        <source>Password:</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="resources/forms/ServerDialogDesign.ui" line="755"/>
         <source>&lt;b&gt;Bind options&lt;/b&gt;</source>
-        <translation>&lt;b&gt;Bindings valg&lt;/b&gt;</translation>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="resources/forms/ServerDialogDesign.ui" line="768"/>
+        <source>Security</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="resources/forms/ServerDialogDesign.ui" line="810"/>
+        <source>&lt;b&gt;Security options&lt;/b&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="resources/forms/ServerDialogDesign.ui" line="833"/>
+        <source>Unencrypted connection</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="resources/forms/ServerDialogDesign.ui" line="838"/>
+        <source>Transport Layer Security (TLS)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="resources/forms/ServerDialogDesign.ui" line="843"/>
+        <source>Secure Socket Layer (SSL)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="resources/forms/ServerDialogDesign.ui" line="895"/>
+        <source>&lt;b&gt;Validate server certificate&lt;/b&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="resources/forms/ServerDialogDesign.ui" line="934"/>
+        <source>Never</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="resources/forms/ServerDialogDesign.ui" line="939"/>
+        <source>Allow</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="resources/forms/ServerDialogDesign.ui" line="944"/>
+        <source>Try</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="resources/forms/ServerDialogDesign.ui" line="949"/>
+        <source>Demand</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="resources/forms/ServerDialogDesign.ui" line="979"/>
+        <source>&lt;b&gt;Client certificate options&lt;/b&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="resources/forms/ServerDialogDesign.ui" line="1004"/>
+        <source>Use client certificates</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="resources/forms/ServerDialogDesign.ui" line="1039"/>
+        <source>Certificate file:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="resources/forms/ServerDialogDesign.ui" line="1061"/>
+        <source>Certificate keyfile:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="resources/forms/ServerDialogDesign.ui" line="1122"/>
+        <source>...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="resources/forms/ServerDialogDesign.ui" line="1203"/>
+        <source>&amp;OK</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="resources/forms/ServerDialogDesign.ui" line="1206"/>
+        <source>Alt+O</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="resources/forms/ServerDialogDesign.ui" line="1222"/>
+        <source>&amp;Apply</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="resources/forms/ServerDialogDesign.ui" line="1235"/>
+        <source>&amp;Cancel</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="resources/forms/ServerDialogDesign.ui" line="1238"/>
+        <source>Alt+C</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -635,72 +693,72 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="resources/forms/SettingsDialogDesign.ui" line="233"/>
         <source>Settings</source>
-        <translation>Innstillinger</translation>
+        <translation type="unfinished">Innstillinger</translation>
     </message>
     <message>
         <location filename="resources/forms/SettingsDialogDesign.ui" line="36"/>
         <source>Ok</source>
-        <translation>Ok</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="resources/forms/SettingsDialogDesign.ui" line="43"/>
         <source>Cancel</source>
-        <translation>Avbryt</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="resources/forms/SettingsDialogDesign.ui" line="62"/>
         <source>General</source>
-        <translation>Generelt</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="resources/forms/SettingsDialogDesign.ui" line="68"/>
         <source>i18n</source>
-        <translation>i18n</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="resources/forms/SettingsDialogDesign.ui" line="76"/>
         <source>Application language</source>
-        <translation>Program språk</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="resources/forms/SettingsDialogDesign.ui" line="118"/>
         <source>Logging</source>
-        <translation>Logging</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="resources/forms/SettingsDialogDesign.ui" line="126"/>
         <source>Show the Logger on startup</source>
-        <translation>Vis loggeren på oppstart</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="resources/forms/SettingsDialogDesign.ui" line="138"/>
         <source>Filter Options</source>
-        <translation>Filter valg</translation>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="resources/forms/SettingsDialogDesign.ui" line="146"/>
         <source>Display message types:</source>
-        <translation>Vis meldings typer:</translation>
+        <translation type="unfinished">Vis meldings typer:</translation>
     </message>
     <message>
         <location filename="resources/forms/SettingsDialogDesign.ui" line="153"/>
         <source>Errors</source>
-        <translation>Feil</translation>
+        <translation type="unfinished">Feil</translation>
     </message>
     <message>
         <location filename="resources/forms/SettingsDialogDesign.ui" line="163"/>
         <source>Debug</source>
-        <translation>Debug</translation>
+        <translation type="unfinished">Debug</translation>
     </message>
     <message>
         <location filename="resources/forms/SettingsDialogDesign.ui" line="173"/>
         <source>Info</source>
-        <translation>Info</translation>
+        <translation type="unfinished">Info</translation>
     </message>
     <message>
         <location filename="resources/forms/SettingsDialogDesign.ui" line="215"/>
         <source>Plugins</source>
-        <translation>Plugins</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 </TS>

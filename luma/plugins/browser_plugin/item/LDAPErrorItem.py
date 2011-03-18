@@ -21,7 +21,7 @@ class LDAPErrorItem(AbstractLDAPTreeItem):
         
     def data(self, column, role):
         if role == QtCore.Qt.StatusTipRole:
-            return QtCore.QCoreApplication.translate("Context","There was an error receiving this item or it's parent. See the attached error-message and/or the log for details.")
+            return QtCore.QCoreApplication.translate("LDAPErrorItem","There was an error receiving this item or it's parent. See the attached error-message and/or the log for details.")
         if role == QtCore.Qt.DecorationRole:
             return QIcon(QPixmap(":/icons/no"))
         if not role == QtCore.Qt.DisplayRole:
