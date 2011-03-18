@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'SettingsDialogDesign.ui'
+# Form implementation generated from reading ui file 'D:\Dropbox\Git\it2901\resources\forms\SettingsDialogDesign.ui'
 #
-# Created: Mon Mar  7 12:22:46 2011
+# Created: Wed Mar 16 19:19:14 2011
 #      by: PyQt4 UI code generator 4.8.2
 #
 # WARNING! All changes made in this file will be lost!
@@ -150,3 +150,4 @@ class Ui_SettingsDialog(object):
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tabLogging), QtGui.QApplication.translate("SettingsDialog", "Logging", None, QtGui.QApplication.UnicodeUTF8))
         self.groupBox.setTitle(QtGui.QApplication.translate("SettingsDialog", "Settings", None, QtGui.QApplication.UnicodeUTF8))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tabPlugins), QtGui.QApplication.translate("SettingsDialog", "Plugins", None, QtGui.QApplication.UnicodeUTF8))
+

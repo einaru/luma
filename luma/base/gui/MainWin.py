@@ -96,6 +96,9 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.__loadSettings()
         self.__setupPluginList()
         self.__createLanguageOptions()
+        
+        #TODO 
+        self.serverListDir = '/tmp'
 
         self.progressBar = QProgressBar()
         #self.progressBar.setRange(0,0)
@@ -335,7 +338,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         """
         Slot to display the server editor dialog.
         """
-        serverEditor = ServerDialog(ServerList(u'/tmp'))
+        serverEditor = ServerDialog(ServerList(self.serverListDir))
         serverEditor.exec_()
 
     def showSettingsDialog(self, tab=0):
@@ -561,7 +564,6 @@ class PluginToolBar(QToolBar):
     def choosePlugin(self):
         if hasattr(self.parent, "showPlugins"):
             self.parent.showPlugins()
-
 
 class SettingsDialog(QDialog, Ui_SettingsDialog):
     """

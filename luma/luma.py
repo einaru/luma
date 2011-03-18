@@ -40,6 +40,9 @@ from base.gui import SplashScreen
 from base.gui.MainWin import MainWindow
 from base.backend import LumaLogHandler
 
+#Resource file
+import resources
+
 class LumaApp(QtGui.QApplication):
     """
     Possibly to be used later.

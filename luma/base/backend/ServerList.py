@@ -42,14 +42,15 @@ class ServerList(object):
     
     def __init__(self, configPrefix = None, serverFileName = "serverlist.xml"):
         if configPrefix == None:
-            #TODO Should get default
+            #TODO Should get default (or remove this feature alltogheter)
+            #possible not in use currentlt
             configPrefix = "/tmp"
         self._serverList = []
         self._configPrefix = configPrefix
         self._configFile = os.path.join(self._configPrefix, serverFileName)
         
         if os.path.isfile(self._configFile):
-            self._readServerList()
+            self._readServerList()            
 
     def getTable(self):
         """
@@ -143,9 +144,12 @@ class ServerList(object):
         if not os.path.exists(self._configPrefix):
             os.makedirs(self._configPrefix)
             
-        fileHandler = open(self._configFile, "w")
-        fileHandler.write(unicode(document.toString()).encode("utf-8"))
-        fileHandler.close()
+        try:
+            fileHandler = open(self._configFile, "w")
+            fileHandler.write(unicode(document.toString()).encode("utf-8"))
+            fileHandler.close()
+        except:
+            self._logger.error("Couldn't write to file: "+self._configFile)
         
         # Only the user should be able to access the file since we store 
         # passwords in it.
@@ -188,7 +192,7 @@ class ServerList(object):
         except IOError, e:
             errorString = "Could not read server configuration file. Reason:\n"
             errorString += str(e)
-            self._logger.warning(errorString)
+            self._logger.error(errorString)
 
         document = QDomDocument("LumaServerFile")
         document.setContent(fileContent)

@@ -30,12 +30,12 @@ class ServerTreeItem(AbstractLDAPTreeItem):
             return QtCore.QVariant()
         
         if role == QtCore.Qt.DecorationRole:
-            return QIcon(QPixmap(":/images/server.png"))
+            return QIcon(QPixmap(":/icons/network-server"))
         else:
             return self.itemData[column]
 
     def smartObject(self):
-        return self.itemData[1]
+        return None
     
     def fetchChildList(self):
         """
@@ -53,7 +53,9 @@ class ServerTreeItem(AbstractLDAPTreeItem):
             bindSuccess, exceptionObject = connection.bind()
             if not bindSuccess:
                 self.logger.debug("Bind failed.")
-                self.displayError(exceptionObject)
+                tmp = LDAPErrorItem(str("[Bind failed]"), self, self)
+                #self.displayError(exceptionObject)
+                return [tmp]
                 return
             
         # Else get them from the server
@@ -63,9 +65,11 @@ class ServerTreeItem(AbstractLDAPTreeItem):
             success, tmpList, exceptionObject = connection.getBaseDNList()
         
             if not success:
-                self.logger.debug("getBaseDNList failed")
-                self.displayError(exceptionObject)
-                return
+                self.logger.debug("getBaseDNList failed:"+str(exceptionObject))
+                tmp = LDAPErrorItem(str("[Couldn't get baseDNs]"), self, self)
+                #self.displayError(exceptionObject)
+                return [tmp]
+                #return
             
             #getBaseDNList calles unbind(), so let's rebind
             connection.bind()
@@ -78,7 +82,7 @@ class ServerTreeItem(AbstractLDAPTreeItem):
             success, resultList, exceptionObject = connection.search(base, \
                     scope=ldap.SCOPE_BASE,filter='(objectclass=*)', sizelimit=1)
             if not success:
-                self.logger.debug("Couldn't search item")
+                self.logger.debug("Couldn't search item:"+str(exceptionObject))
                 #self.displayError(str(base)+": "+str(exceptionObject))
                 #tmp = LDAPTreeItem(resultList[0], self, self)    
                 tmp = LDAPErrorItem(str(base+" [Error]"), self, self)
