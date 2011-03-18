@@ -38,21 +38,21 @@ class ServerDialog(QDialog, Ui_ServerDialogDesign):
         self.securityLabel.setPixmap(pixmapFromThemeIcon('preferences-system', ':/icons/config'))
 
 
-        self._serverList = copy.deepcopy(serverList)
+        self.__serverList = copy.deepcopy(serverList)
         self._serverListCopy = None
         self._returnList = None
 
         # Create the model used by the views
-        self.slm = ServerListModel(self._serverList)
+        self.slm = ServerListModel(self.__serverList)
 
         # Add the model to the list of servers
         self.serverListView.setModel(self.slm)
 
         # Enable/disable editing depending on if we have a server to edit
         if self.slm.rowCount(QModelIndex()) > 0:
-            self.serverWidget.setEnabled(True)
+            self.tabWidget.setEnabled(True)
         else:
-            self.serverWidget.setEnabled(False)
+            self.tabWidget.setEnabled(False)
 
         self.splitter.setStretchFactor(0, 1)
 
@@ -136,7 +136,7 @@ class ServerDialog(QDialog, Ui_ServerDialogDesign):
         """
         name, ok = QInputDialog.getText(self, 'Add server', 'Name:')
         if ok:
-            if len(name) < 1 or self._serverList.getServerObject(name) != None:
+            if len(name) < 1 or self.__serverList.getServerObject(name) != None:
                 QMessageBox.information(self, 'Error', "Invalid name or already used.")
                 return
 
@@ -146,14 +146,14 @@ class ServerDialog(QDialog, Ui_ServerDialogDesign):
             # Insert into the model
             m = self.serverListView.model()
             m.beginInsertRows(QModelIndex(), m.rowCount(QModelIndex()), m.rowCount(QModelIndex()) + 1)
-            self._serverList.addServer(sO)
+            self.__serverList.addServer(sO)
             m.endInsertRows()
 
             s = m.index(m.rowCount(QModelIndex) - 1, 0) #Index of the newly added server
             self.serverListView.selectionModel().select(s, QItemSelectionModel.ClearAndSelect) #Select it
             self.serverListView.selectionModel().setCurrentIndex(s, QItemSelectionModel.ClearAndSelect) #Mark it as current      
             self.mapper.setCurrentIndex(s.row()) # Update the mapper
-            self.serverWidget.setEnabled(True) # Make sure editing is enabled
+            self.tabWidget.setEnabled(True) # Make sure editing is enabled
 
     def deleteServer(self):
         """
@@ -179,7 +179,7 @@ class ServerDialog(QDialog, Ui_ServerDialogDesign):
             self.mapper.setCurrentIndex(newIndex.row())
 
         if self.slm.rowCount(QModelIndex()) == 0:
-            self.serverWidget.setEnabled(False) #Disable editing if no servers left
+            self.tabWidget.setEnabled(False) #Disable editing if no servers left
 
     def saveServers(self):
         """
@@ -187,8 +187,8 @@ class ServerDialog(QDialog, Ui_ServerDialogDesign):
         
         What should happen when the user clicks Save then Cancel?
         """
-        self._serverList.writeServerList()
-        self._serverListCopy = copy.deepcopy(self._serverList)
+        self.__serverList.writeServerList()
+        self._serverListCopy = copy.deepcopy(self.__serverList)
 
     def reject(self):
         """
@@ -211,8 +211,8 @@ class ServerDialog(QDialog, Ui_ServerDialogDesign):
         
         SOMETHING LOGICAL SHOULD PROBABLY BE DONE HER
         """
-        self._serverList.writeServerList()
-        self._returnList = self._serverList
+        self.__serverList.writeServerList()
+        self._returnList = self.__serverList
         QDialog.accept(self)
 
     def getResult(self):

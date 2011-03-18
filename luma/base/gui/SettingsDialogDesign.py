@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file '/mnt/debris/devel/git/luma/resources/forms/SettingsDialogDesign.ui'
 #
-# Created: Wed Mar 16 19:06:00 2011
+# Created: Fri Mar 18 03:42:11 2011
 #      by: PyQt4 UI code generator 4.7.4
 #
 # WARNING! All changes made in this file will be lost!
@@ -12,7 +12,7 @@ from PyQt4 import QtCore, QtGui
 class Ui_SettingsDialog(object):
     def setupUi(self, SettingsDialog):
         SettingsDialog.setObjectName("SettingsDialog")
-        SettingsDialog.resize(1230, 766)
+        SettingsDialog.resize(550, 340)
         self.gridLayout = QtGui.QGridLayout(SettingsDialog)
         self.gridLayout.setObjectName("gridLayout")
         self.horizontalLayout = QtGui.QHBoxLayout()
@@ -34,6 +34,17 @@ class Ui_SettingsDialog(object):
         self.tabGeneral.setObjectName("tabGeneral")
         self.verticalLayout_3 = QtGui.QVBoxLayout(self.tabGeneral)
         self.verticalLayout_3.setObjectName("verticalLayout_3")
+        self.groupBox_2 = QtGui.QGroupBox(self.tabGeneral)
+        self.groupBox_2.setObjectName("groupBox_2")
+        self.gridLayout_2 = QtGui.QGridLayout(self.groupBox_2)
+        self.gridLayout_2.setObjectName("gridLayout_2")
+        self.checkBox = QtGui.QCheckBox(self.groupBox_2)
+        self.checkBox.setObjectName("checkBox")
+        self.gridLayout_2.addWidget(self.checkBox, 0, 0, 1, 1)
+        self.checkBox_2 = QtGui.QCheckBox(self.groupBox_2)
+        self.checkBox_2.setObjectName("checkBox_2")
+        self.gridLayout_2.addWidget(self.checkBox_2, 1, 0, 1, 1)
+        self.verticalLayout_3.addWidget(self.groupBox_2)
         self.i18nGroup = QtGui.QGroupBox(self.tabGeneral)
         self.i18nGroup.setObjectName("i18nGroup")
         self.verticalLayout_4 = QtGui.QVBoxLayout(self.i18nGroup)
@@ -114,7 +125,7 @@ class Ui_SettingsDialog(object):
         self.gridLayout.addWidget(self.tabWidget, 0, 0, 1, 1)
 
         self.retranslateUi(SettingsDialog)
-        self.tabWidget.setCurrentIndex(2)
+        self.tabWidget.setCurrentIndex(0)
         self.pluginSettingsStack.setCurrentIndex(-1)
         QtCore.QObject.connect(self.actionCancel, QtCore.SIGNAL("clicked()"), SettingsDialog.cancelSettings)
         QtCore.QObject.connect(self.actionSave, QtCore.SIGNAL("clicked()"), SettingsDialog.saveSettings)
@@ -133,6 +144,9 @@ class Ui_SettingsDialog(object):
         SettingsDialog.setWindowTitle(QtGui.QApplication.translate("SettingsDialog", "Settings", None, QtGui.QApplication.UnicodeUTF8))
         self.actionSave.setText(QtGui.QApplication.translate("SettingsDialog", "Ok", None, QtGui.QApplication.UnicodeUTF8))
         self.actionCancel.setText(QtGui.QApplication.translate("SettingsDialog", "Cancel", None, QtGui.QApplication.UnicodeUTF8))
+        self.groupBox_2.setTitle(QtGui.QApplication.translate("SettingsDialog", "View options", None, QtGui.QApplication.UnicodeUTF8))
+        self.checkBox.setText(QtGui.QApplication.translate("SettingsDialog", "Show toolbar on start", None, QtGui.QApplication.UnicodeUTF8))
+        self.checkBox_2.setText(QtGui.QApplication.translate("SettingsDialog", "Show statusbar on start", None, QtGui.QApplication.UnicodeUTF8))
         self.i18nGroup.setTitle(QtGui.QApplication.translate("SettingsDialog", "i18n", None, QtGui.QApplication.UnicodeUTF8))
         self.label.setText(QtGui.QApplication.translate("SettingsDialog", "Application language", None, QtGui.QApplication.UnicodeUTF8))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tabGeneral), QtGui.QApplication.translate("SettingsDialog", "General", None, QtGui.QApplication.UnicodeUTF8))

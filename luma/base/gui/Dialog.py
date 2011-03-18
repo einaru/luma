@@ -48,7 +48,7 @@ from ..gui.Settings import Settings
 from ..gui.AboutDialogDesign import Ui_AboutDialog
 from ..gui.AboutLicenseDesign import Ui_AboutLicense
 from ..gui.AboutCreditsDesign import Ui_AboutCredits
-from ..gui.ServerDialogDesign import Ui_ServerDialogDesign
+from ..gui.ServerDialogDesignNew import Ui_ServerDialogDesign
 from ..gui.SettingsDialogDesign import Ui_SettingsDialog
 from ..model.PluginSettingsModel import PluginSettingsModel
 from ..model.ServerListModel import ServerListModel
@@ -173,26 +173,26 @@ class ServerDialog(QDialog, Ui_ServerDialogDesign):
         super(ServerDialog, self).__init__(parent)
         self.setupUi(self)
 
-        self.networkLabel.setPixmap(pixmapFromThemeIcon('network-server', ':/icons/network-server'))
-        self.authLabel.setPixmap(pixmapFromThemeIcon('dialog-password', ':/icons/passwordmedium'))
-        self.securityLabel.setPixmap(pixmapFromThemeIcon('preferences-system', ':/icons/config'))
+        self.networkIcon.setPixmap(pixmapFromThemeIcon('network-server', ':/icons/network-server'))
+        self.authIcon.setPixmap(pixmapFromThemeIcon('dialog-password', ':/icons/passwordmedium'))
+        self.securityIcon.setPixmap(pixmapFromThemeIcon('preferences-system', ':/icons/config'))
 
 
-        self._serverList = copy.deepcopy(serverList)
+        self.__serverList = copy.deepcopy(serverList)
         self._serverListCopy = None
         self._returnList = None
 
         # Create the model used by the views
-        self.slm = ServerListModel(self._serverList)
+        self.slm = ServerListModel(self.__serverList)
 
         # Add the model to the list of servers
         self.serverListView.setModel(self.slm)
 
         # Enable/disable editing depending on if we have a server to edit
         if self.slm.rowCount(QModelIndex()) > 0:
-            self.serverWidget.setEnabled(True)
+            self.tabWidget.setEnabled(True)
         else:
-            self.serverWidget.setEnabled(False)
+            self.tabWidget.setEnabled(False)
 
         self.splitter.setStretchFactor(0, 1)
 
@@ -213,19 +213,19 @@ class ServerDialog(QDialog, Ui_ServerDialogDesign):
 
         self.mapper.addMapping(self.hostLineEdit, 1)
         self.mapper.addMapping(self.portSpinBox, 2)
-        self.mapper.addMapping(self.bindAnonBox, 3)
-        self.mapper.addMapping(self.baseBox, 4)
+        self.mapper.addMapping(self.anonBindBox, 3)
+        self.mapper.addMapping(self.baseDNBox, 4)
         #self.mapper.addMapping(self.baseDNWidget, 5)
 
-        self.mapper.addMapping(self.bindLineEdit, 6)
+        self.mapper.addMapping(self.bindAsLineEdit, 6)
         self.mapper.addMapping(self.passwordLineEdit, 7)
         self.mapper.addMapping(self.encryptionBox, 8)
-        self.mapper.addMapping(self.methodBox, 9)
+        self.mapper.addMapping(self.mechanismBox, 9)
         self.mapper.addMapping(self.aliasBox, 10)
         self.mapper.addMapping(self.useClientCertBox, 11)
-        self.mapper.addMapping(self.certFileEdit, 12)
-        self.mapper.addMapping(self.certKeyFileEdit, 13)
-        self.mapper.addMapping(self.validateBox, 14)
+        self.mapper.addMapping(self.certFileLineEdit, 12)
+        self.mapper.addMapping(self.certKeyfileLineEdit, 13)
+        self.mapper.addMapping(self.serverCertBox, 14)
 
         # Select the first servers (as the serverlistview does)
         self.mapper.setCurrentIndex(0)
@@ -276,7 +276,7 @@ class ServerDialog(QDialog, Ui_ServerDialogDesign):
         """
         name, ok = QInputDialog.getText(self, 'Add server', 'Name:')
         if ok:
-            if len(name) < 1 or self._serverList.getServerObject(name) != None:
+            if len(name) < 1 or self.__serverList.getServerObject(name) != None:
                 QMessageBox.information(self, 'Error', "Invalid name or already used.")
                 return
 
@@ -286,14 +286,14 @@ class ServerDialog(QDialog, Ui_ServerDialogDesign):
             # Insert into the model
             m = self.serverListView.model()
             m.beginInsertRows(QModelIndex(), m.rowCount(QModelIndex()), m.rowCount(QModelIndex()) + 1)
-            self._serverList.addServer(sO)
+            self.__serverList.addServer(sO)
             m.endInsertRows()
 
             s = m.index(m.rowCount(QModelIndex) - 1, 0) #Index of the newly added server
             self.serverListView.selectionModel().select(s, QItemSelectionModel.ClearAndSelect) #Select it
             self.serverListView.selectionModel().setCurrentIndex(s, QItemSelectionModel.ClearAndSelect) #Mark it as current      
             self.mapper.setCurrentIndex(s.row()) # Update the mapper
-            self.serverWidget.setEnabled(True) # Make sure editing is enabled
+            self.tabWidget.setEnabled(True) # Make sure editing is enabled
 
     def deleteServer(self):
         """
@@ -318,7 +318,7 @@ class ServerDialog(QDialog, Ui_ServerDialogDesign):
             self.mapper.setCurrentIndex(newIndex.row())
 
         if self.slm.rowCount(QModelIndex()) == 0:
-            self.serverWidget.setEnabled(False) #Disable editing if no servers left
+            self.tabWidget.setEnabled(False) #Disable editing if no servers left
 
     def saveServers(self):
         """
@@ -326,8 +326,8 @@ class ServerDialog(QDialog, Ui_ServerDialogDesign):
         
         What should happen when the user clicks Save then Cancel?
         """
-        self._serverList.writeServerList()
-        self._serverListCopy = copy.deepcopy(self._serverList)
+        self.__serverList.writeServerList()
+        self._serverListCopy = copy.deepcopy(self.__serverList)
 
     def reject(self):
         """
@@ -350,8 +350,8 @@ class ServerDialog(QDialog, Ui_ServerDialogDesign):
         
         SOMETHING LOGICAL SHOULD PROBABLY BE DONE HER
         """
-        self._serverList.writeServerList()
-        self._returnList = self._serverList
+        self.__serverList.writeServerList()
+        self._returnList = self.__serverList
         QDialog.accept(self)
 
     def getResult(self):

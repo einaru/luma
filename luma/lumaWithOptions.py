@@ -3,7 +3,7 @@
 # lumaWithOptions
 #
 # Copyright (c) 2011
-#     Einar Uvsløkk, <einaru@stud.ntnu.no>
+#     Einar Uvsløkk, <einar.uvslokk@linux.com>
 #
 # Copyright (c) 2003, 2004, 2005 
 #     Wido Depping, <widod@users.sourceforge.net>
@@ -26,6 +26,7 @@ import optparse
 import os
 import StringIO
 import sys
+import traceback
 
 from PyQt4.QtCore import QEvent, Qt
 from PyQt4.QtGui import QApplication
@@ -80,6 +81,9 @@ def startApplication(argv, verbose=False, clear=[], dirs={}):
     @param dirs: a dict;
         containing possible dirs to consider on start-up.
     """
+    # The configPrefix is used for saving all Luma related files.
+    configPrefix = getConfigPrefix()
+    
     app = Luma(argv)
         
     app.setOrganizationName(appinfo.ORGNAME)
@@ -109,14 +113,14 @@ def startApplication(argv, verbose=False, clear=[], dirs={}):
         consoleHandler.setFormatter(formatter)
         l.addHandler(consoleHandler)
     
-    __handleClearOptions(clear)
+    __handleClearOptions(configPrefix, clear)
     
     # Initialize the splash screen
     splash = SplashScreen()
     splash.show()
     
     # Initialize the main window
-    mainwin = MainWindow()
+    mainwin = MainWindow(configPrefix)
     app.setProgressBar(mainwin.getProgressBar())
     
     llh = LumaLogHandler(mainwin.loggerWidget)
@@ -211,10 +215,10 @@ def main(argv):
     #       works only if we are sure to use the same filenames
     #       through out the application. Also, because we use QSettings
     #       for the config file we need to handle this case differently.
-    if opt.config_dir:
-        dirs['config'] = opt.config_dir
-    if opt.plugin_dir:
-        dirs['plugins'] = opt.plugin_dir
+    #if opt.config_dir:
+    #    dirs['config'] = opt.config_dir
+    #if opt.plugin_dir:
+    #    dirs['plugins'] = opt.plugin_dir
     if opt.clear_all:
         clear.append('config')
         clear.append('serverlist.xml')
@@ -230,34 +234,33 @@ def main(argv):
     startApplication(argv, opt.verbose, clear, dirs)
 
 
-def __handleClearOptions(clear=[]):
+def __handleClearOptions(configPrefix, clear=[]):
     """
     If the application has been started with clear options, we
     handle these before setting up the application main window
     """
-    configPrefix = getConfigPrefix()
     for file in clear:
         path = os.path.join(configPrefix, file)
         if os.path.isfile(path):
             f = open(path, 'w')
             f.close()
         else:
-            l = logging.getLogger('base')
+            l = logging.getLogger('luma')
             l.info('%s couldn\'t be located in %s' % (file, configPrefix))
             
 
-def unhandledException(type, value, traceback):
+def unhandledException(etype, evalue, etraceback):
     """
     UnhandledException handler
     """
     tmp = StringIO.StringIO()
-    traceback.print_tb(traceback, None, tmp)
+    traceback.print_tb(etraceback, None, tmp)
     e = """[Unhandled (handled) Exception]
 This is most likely a bug. In order to fix this, please send an email to
     <luma-users@lists.sourceforge.net>
 with the following text and a short description of what you were doing:
->>>\n[%s] Reason:\n%s\n%s\n<<<""" % (tmp.getvalue(), str(type), str(value))
-    logger = logging.getLogger("base")
+>>>\n[%s] Reason:\n%s\n%s\n<<<""" % (tmp.getvalue(), str(etype), str(evalue))
+    logger = logging.getLogger('luma')
     logger.error(e)
 
 

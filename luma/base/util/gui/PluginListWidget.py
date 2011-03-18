@@ -15,7 +15,7 @@ class PluginListWidget(QWidget, Ui_pluginListWidget):
     Parent is given to the model, because it is going to contain not only
     the QStandardItems but the widget for each item, that requires a parent.
     """
-    _logger = logging.getLogger(__name__)
+    __logger = logging.getLogger(__name__)
     
     def __init__(self, parent = None):
         QWidget.__init__(self, parent)
@@ -34,7 +34,7 @@ class PluginListWidget(QWidget, Ui_pluginListWidget):
         if self.parent and hasattr(self.parent, "pluginSelected"):
             self.parent.pluginSelected(self.listView.model().itemFromIndex(index))
         else:
-            self._logger.error("Cannot enter a plugin when no parent is given to PluginListWidget")       
+            self.__logger.error("Cannot enter a plugin when no parent is given to PluginListWidget")       
     
     def updatePlugins(self):
         """

@@ -18,7 +18,7 @@ class PluginLoader(object):
     pluginsToLoad: a list of plugin names, or 'ALL'
     """
     
-    _logger = logging.getLogger(__name__)
+    __logger = logging.getLogger(__name__)
     
     def __init__(self, lumaInstallationPrefix = ".", pluginsToLoad = []):
         
@@ -78,7 +78,7 @@ class PluginLoader(object):
             except PluginMetaError, y:
                 errorString = "Plugin \"" + str(x) + "\" gave an exception: \n"
                 errorString += str(y)
-                self._logger.error(errorString)
+                self.__logger.error(errorString)
                 
 ###############################################################################
 
@@ -102,7 +102,7 @@ class PluginLoader(object):
         except OSError, errorData:
             errorString = "Could not read from directory where plugins are stored. Reason:\n"
             errorString += str(errorData)
-            self._logger.error(errorString)
+            self.__logger.error(errorString)
 
 ############################################################################### 
     
@@ -137,7 +137,7 @@ class PluginLoader(object):
         except ImportError, errorData:
             errorString = "Plugin meta information could not be loaded. Reason:\n"
             errorString += str(errorData)
-            self._logger.error(errorString)
+            self.__logger.error(errorString)
             raise PluginMetaError, errorData
         
 

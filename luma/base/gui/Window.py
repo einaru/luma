@@ -36,10 +36,9 @@ from PyQt4.QtGui import QProgressBar
 
 from ..backend.ServerList import ServerList
 from ..gui.Settings import Settings
-from ..gui.Dialog import AboutDialog, SettingsDialog
+from ..gui.Dialog import AboutDialog, ServerDialog, SettingsDialog
 from ..gui.LoggerWidgetDesign import Ui_LoggerWidget
 from ..gui.MainWindowDesign import Ui_MainWindow
-from ..gui.ServerDialog import ServerDialog
 from ..util.i18n import LanguageHandler
 from ..util.gui.PluginListWidget import PluginListWidget
 
@@ -56,7 +55,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
     languageHandler = None
     currentLanguage = ''
 
-    def __init__(self, parent=None):
+    def __init__(self, configPrefix, parent=None):
         """
         The constructor sets up the MainWindow widget, 
         and connects all necessary signals and slots
@@ -66,6 +65,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.translator = QTranslator()
         self.languageHandler = LanguageHandler()
         self.languages = self.languageHandler.availableLanguages
+        self.configPrefix = configPrefix
         self.setupUi(self)
 
         self.setWindowIcon(QIcon(':/icons/luma-16'))
@@ -152,24 +152,6 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                         size or the window position will be loaded. This 
                         is i.e done when the settings dialog returns 1.
         """
-#        s = QSettings(qApp.organizationName(), qApp.applicationName())
-#        
-#        s.beginGroup(u'mainwin')
-#        self.resize(s.value(u'size').toSize())
-#        self.move(s.value(u'position').toPoint())
-#        s.endGroup()
-#        
-#        s.beginGroup(u'logger')
-#        self.actionShowLogger.setChecked(s.value('show_on_start').toBool())
-#        self.loggerWidget.errorBox.setChecked(s.value('show_errors').toBool())
-#        self.loggerWidget.debugBox.setChecked(s.value('show_debug').toBool())
-#        self.loggerWidget.infoBox.setChecked(s.value('show_info').toBool())
-#        s.endGroup()
-#        
-#        s.beginGroup(u'i18n')
-#        self.loadLanguage(s.value(u'language').toString())
-#        s.endGroup()
-
         settings = Settings()
         """ General Mainwin"""
         if mainWin:
@@ -190,28 +172,10 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         """ Plugins """
         self.TODO(u'load settings[plugins]%s' % str(self.__class__))
 
-    def writeSettings(self):
+    def __writeSettings(self):
         """
         Save settings to file.
         """
-#        s = QSettings(qApp.organizationName(), qApp.applicationName())
-#        
-#        s.beginGroup(u'mainwin')
-#        s.setValue(u'size', self.size())
-#        s.setValue(u'position', self.pos())
-#        s.endGroup()
-#        
-#        s.beginGroup(u'logger')
-#        s.setValue(u'show_on_start', self.actionShowLogger.isChecked())
-#        s.setValue(u'show_errors', self.loggerWidget.errorBox.isChecked())
-#        s.setValue(u'show_debug', self.loggerWidget.debugBox.isChecked())
-#        s.setValue(u'show_info', self.loggerWidget.infoBox.isChecked())
-#        s.endGroup()
-#        
-#        s.beginGroup(u'i18n')
-#        s.setValue(u'language', self.currentLanguage)
-#        s.endGroup()
-
         settings = Settings()
 
         """ Mainwin """
@@ -262,7 +226,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         if self.currentLanguage != isoCode:
             self.currentLanguage = isoCode
             qmFile = self.languageHandler.getQmFile(isoCode)
-            self.switchTranslator(self.translator, qmFile)
+            self.__switchTranslator(self.translator, qmFile)
 
     def changeEvent(self, event):
         """
@@ -280,7 +244,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             elif QEvent.LocaleChange == type:
                 print u'System Locale changed'
 
-    def switchTranslator(self, translator, qmFile):
+    def __switchTranslator(self, translator, qmFile):
         """
         Called when a new language is loaded.
         
@@ -334,7 +298,9 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             If true the statusbar will be shown, if false it will be hidden.
         """
         if show:
-            pass
+            self.statusBar.show()
+        else:
+            self.statusBar.hide()
     
     @pyqtSlot(bool)
     def toggleFullscreen(self, fullscreen):
@@ -354,7 +320,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         """
         Slot to display the server editor dialog.
         """
-        serverEditor = ServerDialog(ServerList(u'/tmp'))
+        serverEditor = ServerDialog(ServerList(self.configPrefix))
         serverEditor.exec_()
 
     def showSettingsDialog(self, tab=0):
@@ -445,7 +411,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         Overrides the QApplication close slot to save settings before
         we tear down the application.
         """
-        self.writeSettings()
+        self.__writeSettings()
         qApp.quit()
 
     def TODO(self, todo):

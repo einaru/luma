@@ -21,7 +21,7 @@ class SLTest(unittest.TestCase):
     def setUp(self):
         #print "setUp"
         self.sl = ServerList(os.curdir)
-        #self.sl._configFile = os.path.join(self.sl._configPrefix, "serverlist.xml")
+        #self.sl.__configFile = os.path.join(self.sl._configPrefix, "serverlist.xml")
 
     def tearDown(self):
         pass
@@ -33,7 +33,7 @@ class SLTest(unittest.TestCase):
     def writeList(self):
         #print "writeList"
         try:
-            f = open(self.sl._configFile, "w")
+            f = open(self.sl.__configFile, "w")
             f.write("""
 <!DOCTYPE LumaServerFile>
 <LumaServerList version="1.2">
@@ -117,7 +117,7 @@ class SLTest(unittest.TestCase):
         self.sl.setTable([self.getEmptyServerObject()])
         self.sl.writeServerList()
         
-        f = open(self.sl._configFile, "r")
+        f = open(self.sl.__configFile, "r")
         s = """
 <!DOCTYPE LumaServerFile>
 <LumaServerList version="1.2">
