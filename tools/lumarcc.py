@@ -73,7 +73,7 @@ LUMA_RC_I18N = ['luma', 'i18nrc.py']
 
 short_description = """
    __  __  ______ ___  ____  ___  ____  ____  
-  / /\/ /\/ / __ `__ \/___ \/ __\/ ___\/ ___\  lumarcc.py v0.4
+  / /\/ /\/ / __ `__ \/___ \/ __\/ ___\/ ___\  lumarcc.py v0.5
  / /_/ /_/ / /\/ /\/ / __  / /\_/ /\__/ /\___\ copyright (c) 2011
  \__/\____/_/ /_/ /_/\____/_/ / \____/\____/\  Einar Uvsløkk
   \_\/\___\_\/\_\/\_\/\___\_\/   \___\/\___\/  <einar.uvslokk@linux.com>
@@ -366,7 +366,7 @@ def updateTranslationFiles():
     """
     lumapro = _getPath(LUMA_PRO)
 
-    cmd = 'pyludpate4'
+    cmd = 'pylupdate4'
     if sys.platform == 'win32':
         cmd = '%s.exe' % cmd
 
