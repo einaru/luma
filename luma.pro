@@ -1,7 +1,8 @@
 CONFIG +=      qt debug
 
 SOURCES =      luma/base/gui/MainWin.py \
-               luma/base/gui/ServerDialog.py
+               luma/base/gui/ServerDialog.py \
+               luma/plugins/browser_plugin/item/LDAPErrorItem.py
 
 FORMS =        resources/forms/AboutCreditsDesign.ui \
                resources/forms/AboutDialogDesign.ui \

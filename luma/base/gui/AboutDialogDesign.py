@@ -1,22 +1,17 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'D:\Dropbox\Git\it2901\resources\forms\AboutDialogDesign.ui'
+# Form implementation generated from reading ui file '/mnt/debris/devel/git/luma/resources/forms/AboutDialogDesign.ui'
 #
-# Created: Wed Mar 16 19:19:14 2011
-#      by: PyQt4 UI code generator 4.8.2
+# Created: Fri Mar 18 16:16:07 2011
+#      by: PyQt4 UI code generator 4.7.4
 #
 # WARNING! All changes made in this file will be lost!
 
 from PyQt4 import QtCore, QtGui
 
-try:
-    _fromUtf8 = QtCore.QString.fromUtf8
-except AttributeError:
-    _fromUtf8 = lambda s: s
-
 class Ui_AboutDialog(object):
     def setupUi(self, AboutDialog):
-        AboutDialog.setObjectName(_fromUtf8("AboutDialog"))
+        AboutDialog.setObjectName("AboutDialog")
         AboutDialog.setWindowModality(QtCore.Qt.WindowModal)
         AboutDialog.setEnabled(True)
         AboutDialog.resize(332, 245)
@@ -30,35 +25,35 @@ class Ui_AboutDialog(object):
         AboutDialog.setModal(True)
         self.gridLayout = QtGui.QGridLayout(AboutDialog)
         self.gridLayout.setSizeConstraint(QtGui.QLayout.SetFixedSize)
-        self.gridLayout.setObjectName(_fromUtf8("gridLayout"))
+        self.gridLayout.setObjectName("gridLayout")
         self.hboxlayout = QtGui.QHBoxLayout()
-        self.hboxlayout.setObjectName(_fromUtf8("hboxlayout"))
+        self.hboxlayout.setObjectName("hboxlayout")
         self.aboutCredits = QtGui.QPushButton(AboutDialog)
         self.aboutCredits.setAutoDefault(True)
-        self.aboutCredits.setObjectName(_fromUtf8("aboutCredits"))
+        self.aboutCredits.setObjectName("aboutCredits")
         self.hboxlayout.addWidget(self.aboutCredits)
         spacerItem = QtGui.QSpacerItem(20, 20, QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Minimum)
         self.hboxlayout.addItem(spacerItem)
         self.aboutLicense = QtGui.QPushButton(AboutDialog)
         self.aboutLicense.setAutoDefault(True)
         self.aboutLicense.setDefault(False)
-        self.aboutLicense.setObjectName(_fromUtf8("aboutLicense"))
+        self.aboutLicense.setObjectName("aboutLicense")
         self.hboxlayout.addWidget(self.aboutLicense)
         spacerItem1 = QtGui.QSpacerItem(20, 20, QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Minimum)
         self.hboxlayout.addItem(spacerItem1)
         self.aboutClose = QtGui.QPushButton(AboutDialog)
         self.aboutClose.setAutoDefault(True)
         self.aboutClose.setDefault(True)
-        self.aboutClose.setObjectName(_fromUtf8("aboutClose"))
+        self.aboutClose.setObjectName("aboutClose")
         self.hboxlayout.addWidget(self.aboutClose)
         self.gridLayout.addLayout(self.hboxlayout, 6, 0, 1, 1)
         self.verticalLayout_2 = QtGui.QVBoxLayout()
-        self.verticalLayout_2.setObjectName(_fromUtf8("verticalLayout_2"))
+        self.verticalLayout_2.setObjectName("verticalLayout_2")
         self.label = QtGui.QLabel(AboutDialog)
-        self.label.setText(_fromUtf8(""))
-        self.label.setPixmap(QtGui.QPixmap(_fromUtf8("../../../../../../../../../../home/einar/devel/workspace/Luma24/share/luma/icons/luma-64.png")))
+        self.label.setText("")
+        self.label.setPixmap(QtGui.QPixmap("../../../../../../../../../../home/einar/devel/workspace/Luma24/share/luma/icons/luma-64.png"))
         self.label.setAlignment(QtCore.Qt.AlignCenter)
-        self.label.setObjectName(_fromUtf8("label"))
+        self.label.setObjectName("label")
         self.verticalLayout_2.addWidget(self.label)
         self.labelApplication = QtGui.QLabel(AboutDialog)
         sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Minimum, QtGui.QSizePolicy.Maximum)
@@ -67,7 +62,7 @@ class Ui_AboutDialog(object):
         sizePolicy.setHeightForWidth(self.labelApplication.sizePolicy().hasHeightForWidth())
         self.labelApplication.setSizePolicy(sizePolicy)
         self.labelApplication.setAlignment(QtCore.Qt.AlignHCenter|QtCore.Qt.AlignTop)
-        self.labelApplication.setObjectName(_fromUtf8("labelApplication"))
+        self.labelApplication.setObjectName("labelApplication")
         self.verticalLayout_2.addWidget(self.labelApplication)
         self.labelDescription = QtGui.QLabel(AboutDialog)
         sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Minimum, QtGui.QSizePolicy.Maximum)
@@ -76,7 +71,7 @@ class Ui_AboutDialog(object):
         sizePolicy.setHeightForWidth(self.labelDescription.sizePolicy().hasHeightForWidth())
         self.labelDescription.setSizePolicy(sizePolicy)
         self.labelDescription.setAlignment(QtCore.Qt.AlignHCenter|QtCore.Qt.AlignTop)
-        self.labelDescription.setObjectName(_fromUtf8("labelDescription"))
+        self.labelDescription.setObjectName("labelDescription")
         self.verticalLayout_2.addWidget(self.labelDescription)
         self.labelCopyright = QtGui.QLabel(AboutDialog)
         sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Preferred, QtGui.QSizePolicy.Preferred)
@@ -85,21 +80,21 @@ class Ui_AboutDialog(object):
         sizePolicy.setHeightForWidth(self.labelCopyright.sizePolicy().hasHeightForWidth())
         self.labelCopyright.setSizePolicy(sizePolicy)
         self.labelCopyright.setAlignment(QtCore.Qt.AlignCenter)
-        self.labelCopyright.setObjectName(_fromUtf8("labelCopyright"))
+        self.labelCopyright.setObjectName("labelCopyright")
         self.verticalLayout_2.addWidget(self.labelCopyright)
         self.labelUrl = QtGui.QLabel(AboutDialog)
         self.labelUrl.setAlignment(QtCore.Qt.AlignHCenter|QtCore.Qt.AlignTop)
         self.labelUrl.setOpenExternalLinks(True)
-        self.labelUrl.setObjectName(_fromUtf8("labelUrl"))
+        self.labelUrl.setObjectName("labelUrl")
         self.verticalLayout_2.addWidget(self.labelUrl)
         self.gridLayout.addLayout(self.verticalLayout_2, 1, 0, 4, 1)
         spacerItem2 = QtGui.QSpacerItem(20, 20, QtGui.QSizePolicy.Minimum, QtGui.QSizePolicy.Expanding)
         self.gridLayout.addItem(spacerItem2, 5, 0, 1, 1)
 
         self.retranslateUi(AboutDialog)
-        QtCore.QObject.connect(self.aboutClose, QtCore.SIGNAL(_fromUtf8("clicked()")), AboutDialog.close)
-        QtCore.QObject.connect(self.aboutCredits, QtCore.SIGNAL(_fromUtf8("clicked()")), AboutDialog.giveCreditWhereCreditIsDue)
-        QtCore.QObject.connect(self.aboutLicense, QtCore.SIGNAL(_fromUtf8("clicked()")), AboutDialog.showLicense)
+        QtCore.QObject.connect(self.aboutClose, QtCore.SIGNAL("clicked()"), AboutDialog.close)
+        QtCore.QObject.connect(self.aboutCredits, QtCore.SIGNAL("clicked()"), AboutDialog.giveCreditWhereCreditIsDue)
+        QtCore.QObject.connect(self.aboutLicense, QtCore.SIGNAL("clicked()"), AboutDialog.showLicense)
         QtCore.QMetaObject.connectSlotsByName(AboutDialog)
 
     def retranslateUi(self, AboutDialog):

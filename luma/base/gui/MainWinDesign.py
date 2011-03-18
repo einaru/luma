@@ -1,65 +1,60 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'D:\Dropbox\Git\it2901\resources\forms\MainWinDesign.ui'
+# Form implementation generated from reading ui file '/mnt/debris/devel/git/luma/resources/forms/MainWinDesign.ui'
 #
-# Created: Wed Mar 16 19:19:14 2011
-#      by: PyQt4 UI code generator 4.8.2
+# Created: Fri Mar 18 16:16:08 2011
+#      by: PyQt4 UI code generator 4.7.4
 #
 # WARNING! All changes made in this file will be lost!
 
 from PyQt4 import QtCore, QtGui
 
-try:
-    _fromUtf8 = QtCore.QString.fromUtf8
-except AttributeError:
-    _fromUtf8 = lambda s: s
-
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
-        MainWindow.setObjectName(_fromUtf8("MainWindow"))
+        MainWindow.setObjectName("MainWindow")
         MainWindow.resize(700, 550)
         MainWindow.setWindowOpacity(1.0)
         self.centralwidget = QtGui.QWidget(MainWindow)
-        self.centralwidget.setObjectName(_fromUtf8("centralwidget"))
+        self.centralwidget.setObjectName("centralwidget")
         self.gridLayout = QtGui.QGridLayout(self.centralwidget)
-        self.gridLayout.setObjectName(_fromUtf8("gridLayout"))
+        self.gridLayout.setObjectName("gridLayout")
         self.mainStack = QtGui.QStackedWidget(self.centralwidget)
-        self.mainStack.setObjectName(_fromUtf8("mainStack"))
-        self.page = QtGui.QWidget(self.mainStack)
-        self.page.setObjectName(_fromUtf8("page"))
+        self.mainStack.setObjectName("mainStack")
+        self.page = QtGui.QWidget()
+        self.page.setObjectName("page")
         self.mainStack.addWidget(self.page)
         self.gridLayout.addWidget(self.mainStack, 0, 0, 1, 1)
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtGui.QMenuBar(MainWindow)
         self.menubar.setGeometry(QtCore.QRect(0, 0, 700, 23))
-        self.menubar.setObjectName(_fromUtf8("menubar"))
+        self.menubar.setObjectName("menubar")
         self.menuFile = QtGui.QMenu(self.menubar)
-        self.menuFile.setObjectName(_fromUtf8("menuFile"))
+        self.menuFile.setObjectName("menuFile")
         self.menuEdit = QtGui.QMenu(self.menubar)
-        self.menuEdit.setObjectName(_fromUtf8("menuEdit"))
+        self.menuEdit.setObjectName("menuEdit")
         self.menuLanguage = QtGui.QMenu(self.menuEdit)
-        self.menuLanguage.setObjectName(_fromUtf8("menuLanguage"))
+        self.menuLanguage.setObjectName("menuLanguage")
         self.menuHelp = QtGui.QMenu(self.menubar)
-        self.menuHelp.setObjectName(_fromUtf8("menuHelp"))
+        self.menuHelp.setObjectName("menuHelp")
         MainWindow.setMenuBar(self.menubar)
         self.statusBar = QtGui.QStatusBar(MainWindow)
-        self.statusBar.setObjectName(_fromUtf8("statusBar"))
+        self.statusBar.setObjectName("statusBar")
         MainWindow.setStatusBar(self.statusBar)
         self.actionShowLogger = QtGui.QAction(MainWindow)
         self.actionShowLogger.setCheckable(True)
-        self.actionShowLogger.setObjectName(_fromUtf8("actionShowLogger"))
+        self.actionShowLogger.setObjectName("actionShowLogger")
         self.actionQuit = QtGui.QAction(MainWindow)
-        self.actionQuit.setObjectName(_fromUtf8("actionQuit"))
+        self.actionQuit.setObjectName("actionQuit")
         self.actionEditServerList = QtGui.QAction(MainWindow)
-        self.actionEditServerList.setObjectName(_fromUtf8("actionEditServerList"))
+        self.actionEditServerList.setObjectName("actionEditServerList")
         self.actionReloadPlugins = QtGui.QAction(MainWindow)
-        self.actionReloadPlugins.setObjectName(_fromUtf8("actionReloadPlugins"))
+        self.actionReloadPlugins.setObjectName("actionReloadPlugins")
         self.actionConfigurePlugins = QtGui.QAction(MainWindow)
-        self.actionConfigurePlugins.setObjectName(_fromUtf8("actionConfigurePlugins"))
+        self.actionConfigurePlugins.setObjectName("actionConfigurePlugins")
         self.actionAboutLuma = QtGui.QAction(MainWindow)
-        self.actionAboutLuma.setObjectName(_fromUtf8("actionAboutLuma"))
+        self.actionAboutLuma.setObjectName("actionAboutLuma")
         self.actionEditSettings = QtGui.QAction(MainWindow)
-        self.actionEditSettings.setObjectName(_fromUtf8("actionEditSettings"))
+        self.actionEditSettings.setObjectName("actionEditSettings")
         self.menuFile.addAction(self.actionShowLogger)
         self.menuFile.addSeparator()
         self.menuFile.addAction(self.actionQuit)
@@ -78,13 +73,13 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
         self.mainStack.setCurrentIndex(0)
-        QtCore.QObject.connect(self.actionQuit, QtCore.SIGNAL(_fromUtf8("triggered()")), MainWindow.close)
-        QtCore.QObject.connect(self.actionAboutLuma, QtCore.SIGNAL(_fromUtf8("triggered()")), MainWindow.showAboutLuma)
-        QtCore.QObject.connect(self.actionConfigurePlugins, QtCore.SIGNAL(_fromUtf8("triggered()")), MainWindow.configurePlugins)
-        QtCore.QObject.connect(self.actionReloadPlugins, QtCore.SIGNAL(_fromUtf8("triggered()")), MainWindow.reloadPlugins)
-        QtCore.QObject.connect(self.actionShowLogger, QtCore.SIGNAL(_fromUtf8("triggered(bool)")), MainWindow.showLoggerWindow)
-        QtCore.QObject.connect(self.actionEditServerList, QtCore.SIGNAL(_fromUtf8("triggered()")), MainWindow.showServerEditor)
-        QtCore.QObject.connect(self.actionEditSettings, QtCore.SIGNAL(_fromUtf8("triggered()")), MainWindow.showSettingsDialog)
+        QtCore.QObject.connect(self.actionQuit, QtCore.SIGNAL("triggered()"), MainWindow.close)
+        QtCore.QObject.connect(self.actionAboutLuma, QtCore.SIGNAL("triggered()"), MainWindow.showAboutLuma)
+        QtCore.QObject.connect(self.actionConfigurePlugins, QtCore.SIGNAL("triggered()"), MainWindow.configurePlugins)
+        QtCore.QObject.connect(self.actionReloadPlugins, QtCore.SIGNAL("triggered()"), MainWindow.reloadPlugins)
+        QtCore.QObject.connect(self.actionShowLogger, QtCore.SIGNAL("triggered(bool)"), MainWindow.showLoggerWindow)
+        QtCore.QObject.connect(self.actionEditServerList, QtCore.SIGNAL("triggered()"), MainWindow.showServerEditor)
+        QtCore.QObject.connect(self.actionEditSettings, QtCore.SIGNAL("triggered()"), MainWindow.showSettingsDialog)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def retranslateUi(self, MainWindow):

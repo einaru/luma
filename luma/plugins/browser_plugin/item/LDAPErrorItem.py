@@ -8,9 +8,10 @@ Currently not used.
 
 class LDAPErrorItem(AbstractLDAPTreeItem):
     
+    
     def __init__(self, data, serverParent, parent=None):
         AbstractLDAPTreeItem.__init__(self, parent)
-        
+                
         if data != None:
             self.error = data
         else:
@@ -20,7 +21,7 @@ class LDAPErrorItem(AbstractLDAPTreeItem):
         
     def data(self, column, role):
         if role == QtCore.Qt.StatusTipRole:
-            return qApp.tr("There was an error receiving this item or it's parent. See the attached error-message and/or the log for details.")
+            return QtCore.QCoreApplication.translate("Context","There was an error receiving this item or it's parent. See the attached error-message and/or the log for details.")
         if role == QtCore.Qt.DecorationRole:
             return QIcon(QPixmap(":/icons/no"))
         if not role == QtCore.Qt.DisplayRole:
