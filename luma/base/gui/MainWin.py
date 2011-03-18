@@ -507,25 +507,26 @@ class LoggerWidget(QWidget, Ui_LoggerWidget):
         be appended to the textfield by the gui-thread
         """
         loglvl, msg = log
+        self.logList.append(log)
         if loglvl == "DEBUG" and self.debugBox.isChecked():
-            self.logList.append(log)
+            #self.logList.append(log)
             self.logSignal.emit("DEBUG: " + msg)
             #self.messageEdit.append("DEBUG: " + msg)
             return
         if loglvl == "ERROR" and self.errorBox.isChecked():
-            self.logList.append(log)
+            #self.logList.append(log)
             #self.messageEdit.append("ERROR: " + msg)
             self.logSignal.emit("ERROR: " + msg)
             return
         if loglvl == "INFO" and self.infoBox.isChecked():
-            self.logList.append(log)
+            #self.logList.append(log)
             #self.messageEdit.append("INFO: " + msg)
             self.logSignal.emit("INFO: " + msg)
             return
         if loglvl not in ["INFO", "ERROR", "DEBUG"]:
             # This shouldn't really happen...
             # Please only use the above levels
-            self.logList.append(log)
+            #self.logList.append(log)
             #self.messageEdit.append("UNKNOWN: " + msg)
             self.logSignal.emit("UNKNOWN: " + msg)
 
