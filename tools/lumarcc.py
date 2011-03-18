@@ -328,24 +328,12 @@ def compileUiFiles(compileAll=False):
             # We are dealing with regular .ui forms,
             # and can use the default location 
             pyfile = os.path.join(pypath, basename)
-<<<<<<< HEAD
-=======
-
-        args = [uifile, '-o', pyfile]
-        if verbose:
-            print 'Executing: ', cmd, uifile, '-o', pyfile
-        _run(cmd, args)
->>>>>>> develop
 
         args = [uifile, '-o', pyfile]
         if verbose:
             print 'Executing: ', cmd, uifile, '-o', pyfile
         _run(cmd, args)
 
-<<<<<<< HEAD
-
-=======
->>>>>>> develop
 def createQrcFile(icons=False, i18n=False):
     """
     Create the luma.qrc file based on the content in the resource folder
