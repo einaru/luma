@@ -148,7 +148,7 @@ class ServerList(object):
         root = document.createElement('LumaServerList')
         root.setAttribute('version', '1.2')
         document.appendChild(root)
-
+        
         for serverObject in self.__serverList:
             node = document.createElement('LumaLdapServer')
             node.setAttribute('name', serverObject.name)
@@ -172,6 +172,9 @@ class ServerList(object):
                 tmpNode = document.createElement('base')
                 tmpNode.setAttribute('dn', tmpBase)
                 baseNode.appendChild(tmpNode)
+            
+            node.appendChild(baseNode)
+            root.appendChild(node)
 
         if not os.path.exists(self.__configPrefix):
             os.makedirs(self.__configPrefix)
@@ -181,7 +184,7 @@ class ServerList(object):
             fileHandler.write(unicode(document.toString()).encode('utf-8'))
             fileHandler.close()
         except:
-            debug = 'Couldn not write to file: %s' % self.__configFile
+            debug = 'Could not write to file: %s' % self.__configFile
             self.__logger.error(debug)
 
         # Only the user should be able to access the file since we store 

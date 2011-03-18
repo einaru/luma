@@ -184,9 +184,7 @@ class ServerDialog(QDialog, Ui_ServerDialogDesign):
             
     def saveServers(self):
         """
-        Called when the Save-button is clicked.
-        
-        What should happen when the user clicks Save then Cancel?
+        Called when the Save-button is clicked
         """
         self.mapper.submit()
         self._serverList.writeServerList()
@@ -205,7 +203,7 @@ class ServerDialog(QDialog, Ui_ServerDialogDesign):
         # If "save" has been clicked, return the saved list by calling accept()
         if self._serverListCopy: #This is non-None if Save has been clicked.
             self._returnList = self._serverListCopy #Return the saved on instead
-            QDialog.accept(self) #accept() returns _returnList to the caller
+            self.accept() #accept() returns _returnList to the caller
             return
         QDialog.reject(self)
     
