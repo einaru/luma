@@ -20,8 +20,9 @@ class SLTest(unittest.TestCase):
     """
     def setUp(self):
         #print "setUp"
-        self.sl = ServerList(os.curdir)
-        #self.sl._configFile = os.path.join(self.sl._configPrefix, "serverlist.xml")
+        
+        #self.sl = ServerList()  # <-- should use this (writes to temp-dir)
+        self.sl = ServerList(os.curdir,"serverlist.xml") # <-- until user-dir is setup since tmp-dir is used for the actual list currently
 
     def tearDown(self):
         pass
@@ -33,7 +34,7 @@ class SLTest(unittest.TestCase):
     def writeList(self):
         #print "writeList"
         try:
-            f = open(self.sl._configFile, "w")
+            f = open(self.sl.getConfigFilePath(), "w")
             f.write("""
 <!DOCTYPE LumaServerFile>
 <LumaServerList version="1.2">
@@ -117,7 +118,7 @@ class SLTest(unittest.TestCase):
         self.sl.setTable([self.getEmptyServerObject()])
         self.sl.writeServerList()
         
-        f = open(self.sl._configFile, "r")
+        f = open(self.sl.getConfigFilePath(), "r")
         s = """
 <!DOCTYPE LumaServerFile>
 <LumaServerList version="1.2">

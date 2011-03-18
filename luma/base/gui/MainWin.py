@@ -99,6 +99,9 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         
         self.setStatusBar(self.statusBar)
 
+        #TODO 
+        self.serverListDir = None
+
         self.progressBar = QProgressBar()
         #self.progressBar.setRange(0,0)
         self.progressBar.setTextVisible(False)
@@ -337,7 +340,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         """
         Slot to display the server editor dialog.
         """
-        serverEditor = ServerDialog(ServerList(u'/tmp'))
+        serverEditor = ServerDialog(ServerList(self.serverListDir))
         serverEditor.exec_()
 
     def showSettingsDialog(self, tab=0):

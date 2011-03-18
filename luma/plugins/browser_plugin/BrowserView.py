@@ -189,6 +189,7 @@ class BrowserView(QWidget):
     def tabCloseClicked(self, index):
         #TODO Check if should save etc etc
         sO = self.tabWidget.widget(index).getSmartObject()
+
         if not (sO == None):
             # Remove the representation of the opened entry from the list
             serverName = sO.getServerAlias()

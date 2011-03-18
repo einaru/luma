@@ -46,6 +46,8 @@ class ServerListModel(QAbstractTableModel):
         
     def rowCount(self,parent):
         #Number of servers
+        if self._ServerList.getTable() == None:
+            return 0
         return len(self._ServerList.getTable())
     
     def columnCount(self,parent):

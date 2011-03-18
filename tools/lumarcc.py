@@ -98,27 +98,30 @@ def _run(cmd, args=[]):
     
     @param cmd: The wicked command to be executed.
     """
-    if not dryrun:
-        exe = [cmd+'.bat']
-        for arg in args:
-            exe.append(arg)
-        proc = subprocess.Popen(exe, shell=False, stdout=subprocess.PIPE, 
-                               stderr=subprocess.PIPE)
-        if verbose:
-            pass
 #    if not dryrun:
-#        proc = QProcess()
-#        proc.start(cmd, args)
-#        while proc.waitForReadyRead():
-#            if verbose:
-#                print u'  ReadyRead: %s' % proc.readAll()
+#        exe = [cmd]
+#        for arg in args:
+#            exe.append(arg)
+#        proc = subprocess.Popen(exe, shell=False, stdout=subprocess.PIPE, 
+#                               stderr=subprocess.PIPE)
 #        if verbose:
-#            stderr = proc.readAllStandardError()
-#            if stderr != '':
-#                print u'  Errors: %s' % stderr
-#            stdout = proc.readAllStandardOutput()
-#            if stdout != '':
-#                print u'  Output: %s' % proc.readAllStandardOutput()
+#            pass
+    if not dryrun:
+        if sys.platform == 'win32':
+            cmd = '%s.bat' % cmd
+        
+        proc = QProcess()
+        proc.start(cmd, args)
+        while proc.waitForReadyRead():
+            if verbose:
+                print u'  ReadyRead: %s' % proc.readAll()
+        if verbose:
+            stderr = proc.readAllStandardError()
+            if stderr != '':
+                print u'  Errors: %s' % stderr
+            stdout = proc.readAllStandardOutput()
+            if stdout != '':
+                print u'  Output: %s' % proc.readAllStandardOutput()
 
 def __run(cmd, args=[]):
     """
@@ -325,13 +328,24 @@ def compileUiFiles(compileAll=False):
             # We are dealing with regular .ui forms,
             # and can use the default location 
             pyfile = os.path.join(pypath, basename)
+<<<<<<< HEAD
+=======
+
+        args = [uifile, '-o', pyfile]
+        if verbose:
+            print 'Executing: ', cmd, uifile, '-o', pyfile
+        _run(cmd, args)
+>>>>>>> develop
 
         args = [uifile, '-o', pyfile]
         if verbose:
             print 'Executing: ', cmd, uifile, '-o', pyfile
         _run(cmd, args)
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> develop
 def createQrcFile(icons=False, i18n=False):
     """
     Create the luma.qrc file based on the content in the resource folder

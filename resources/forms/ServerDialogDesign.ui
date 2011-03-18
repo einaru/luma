@@ -565,6 +565,12 @@
             <property name="text">
              <string>Anonymous bind</string>
             </property>
+            <property name="checked">
+             <bool>true</bool>
+            </property>
+            <property name="tristate">
+             <bool>false</bool>
+            </property>
            </widget>
           </item>
           <item row="2" column="1">
@@ -594,6 +600,9 @@
           </item>
           <item row="2" column="2">
            <widget class="QComboBox" name="methodBox">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
             <property name="sizePolicy">
              <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
               <horstretch>0</horstretch>
@@ -670,6 +679,9 @@
           </item>
           <item row="3" column="2">
            <widget class="QLineEdit" name="bindLineEdit">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
             <property name="minimumSize">
              <size>
               <width>0</width>
@@ -705,6 +717,9 @@
           </item>
           <item row="4" column="2">
            <widget class="QLineEdit" name="passwordLineEdit">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
             <property name="minimumSize">
              <size>
               <width>0</width>
@@ -1334,8 +1349,8 @@
    <slot>addBaseDN()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>494</x>
-     <y>230</y>
+     <x>502</x>
+     <y>219</y>
     </hint>
     <hint type="destinationlabel">
      <x>376</x>
@@ -1350,8 +1365,8 @@
    <slot>deleteBaseDN()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>584</x>
-     <y>228</y>
+     <x>583</x>
+     <y>219</y>
     </hint>
     <hint type="destinationlabel">
      <x>376</x>
@@ -1366,12 +1381,12 @@
    <slot>setDisabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>585</x>
-     <y>197</y>
+     <x>583</x>
+     <y>190</y>
     </hint>
     <hint type="destinationlabel">
-     <x>494</x>
-     <y>230</y>
+     <x>502</x>
+     <y>219</y>
     </hint>
    </hints>
   </connection>
@@ -1382,12 +1397,12 @@
    <slot>setDisabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>477</x>
-     <y>195</y>
+     <x>583</x>
+     <y>190</y>
     </hint>
     <hint type="destinationlabel">
-     <x>584</x>
-     <y>228</y>
+     <x>583</x>
+     <y>219</y>
     </hint>
    </hints>
   </connection>
@@ -1398,12 +1413,12 @@
    <slot>setDisabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>380</x>
-     <y>194</y>
+     <x>583</x>
+     <y>190</y>
     </hint>
     <hint type="destinationlabel">
-     <x>403</x>
-     <y>229</y>
+     <x>421</x>
+     <y>217</y>
     </hint>
    </hints>
   </connection>
@@ -1414,8 +1429,8 @@
    <slot>setDisabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>457</x>
-     <y>197</y>
+     <x>583</x>
+     <y>190</y>
     </hint>
     <hint type="destinationlabel">
      <x>446</x>
@@ -1430,8 +1445,8 @@
    <slot>addBaseDN()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>403</x>
-     <y>229</y>
+     <x>421</x>
+     <y>217</y>
     </hint>
     <hint type="destinationlabel">
      <x>376</x>
@@ -1446,12 +1461,12 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>579</x>
-     <y>259</y>
+     <x>415</x>
+     <y>242</y>
     </hint>
     <hint type="destinationlabel">
-     <x>550</x>
-     <y>290</y>
+     <x>509</x>
+     <y>268</y>
     </hint>
    </hints>
   </connection>
@@ -1462,12 +1477,12 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>579</x>
-     <y>259</y>
+     <x>415</x>
+     <y>242</y>
     </hint>
     <hint type="destinationlabel">
-     <x>550</x>
-     <y>321</y>
+     <x>509</x>
+     <y>294</y>
     </hint>
    </hints>
   </connection>
@@ -1478,12 +1493,12 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>579</x>
-     <y>259</y>
+     <x>415</x>
+     <y>242</y>
     </hint>
     <hint type="destinationlabel">
-     <x>579</x>
-     <y>289</y>
+     <x>577</x>
+     <y>268</y>
     </hint>
    </hints>
   </connection>
@@ -1494,12 +1509,12 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>579</x>
-     <y>259</y>
+     <x>415</x>
+     <y>242</y>
     </hint>
     <hint type="destinationlabel">
-     <x>579</x>
-     <y>320</y>
+     <x>577</x>
+     <y>294</y>
     </hint>
    </hints>
   </connection>
@@ -1510,8 +1525,8 @@
    <slot>certFileDialog()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>579</x>
-     <y>289</y>
+     <x>577</x>
+     <y>268</y>
     </hint>
     <hint type="destinationlabel">
      <x>318</x>
@@ -1526,8 +1541,8 @@
    <slot>certKeyFileDialog()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>579</x>
-     <y>320</y>
+     <x>577</x>
+     <y>294</y>
     </hint>
     <hint type="destinationlabel">
      <x>318</x>
@@ -1548,6 +1563,54 @@
     <hint type="destinationlabel">
      <x>376</x>
      <y>251</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>bindAnonBox</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>methodBox</receiver>
+   <slot>setDisabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>449</x>
+     <y>76</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>480</x>
+     <y>102</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>bindAnonBox</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>bindLineEdit</receiver>
+   <slot>setDisabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>449</x>
+     <y>76</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>480</x>
+     <y>128</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>bindAnonBox</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>passwordLineEdit</receiver>
+   <slot>setDisabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>449</x>
+     <y>76</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>480</x>
+     <y>154</y>
     </hint>
    </hints>
   </connection>
