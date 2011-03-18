@@ -1,9 +1,10 @@
 # -*- coding: utf-8 -*-
 
 from PyQt4 import QtCore, QtGui
-from PyQt4.QtGui import QTextBrowser, QTextOption, QPixmap, QSizePolicy, QTextOption, QLineEdit, QToolBar, QImage, QMessageBox, QVBoxLayout, QWidget
+from PyQt4.QtGui import QTextBrowser, QTextOption, QPixmap, QSizePolicy, QTextOption, QLineEdit, QToolBar, QImage, QMessageBox, QVBoxLayout, QWidget, QToolButton, QIcon
 from PyQt4.QtCore import QSize, SIGNAL
 from base.backend.LumaConnection import LumaConnection
+from base.backend.ServerList import ServerList
 import ldap
 import copy
 import logging
@@ -13,6 +14,13 @@ class AdvancedObjectView(QWidget):
     def __init__(self, smartObject, index, parent=None):
         QWidget.__init__(self, parent)
         
+
+        # Standard pixmaps used by the widget
+        self.deleteSmallPixmap = QPixmap(":/icons/edit-delete")
+        self.reloadPixmap = QPixmap(":/icons/reload")
+        self.savePixmap = QPixmap(":/icons/save")
+        self.addPixmap = QPixmap(":/icons/single")
+
         self.index = index
 
         self.ldapDataObject = smartObject
@@ -22,16 +30,16 @@ class AdvancedObjectView(QWidget):
 
         self.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
 
+        # create the widget containing the data
         self.objectWidget = QTextBrowser()
         self.objectWidget.setWordWrapMode(QTextOption.WrapAnywhere)
         self.objectWidget.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
         self.objectWidget.setMinimumSize(QSize(300, 100))
         self.objectWidget.setOpenLinks(False)
         self.layout().addWidget(self.objectWidget)
-        
         self.connect(self.objectWidget, SIGNAL("anchorClicked(const QUrl&)"), self.modifierClicked)
 
-        self.setHtml("")
+        self.objectWidget.setHtml("")
                 
         # boolean to indicate if the current ldap object has been modified
         self.EDITED = False
@@ -42,31 +50,19 @@ class AdvancedObjectView(QWidget):
         # do we create a completely new object?
         self.CREATE = False
 
-        self.readServerSchema = False
+        # ignore ldapObjectInvalid
+        self.ignoreLdapDataObjectInvalid = True
         
-        self.buildToolBar(None)
+        # ignore ServerMeta
+        self.ignoreServerMetaError = True
+
+        self.buildToolBar()
 
         self.initView(None)
 
 
 ###############################################################################
 
-    def buildToolBar(self, parent):
-        self.bar = QToolBar()
-        reloadAction = self.bar.addAction("Reload",self.refreshView)
-        saveAction = self.bar.addAction("Save",self.saveView)
-        addAttributeAction = self.bar.addAction("Add attribute",self.addAttribute)
-        deleteObjectAction = self.bar.addAction("Delete",self.deleteObject)
-
-        self.reloadButton = self.bar.widgetForAction(reloadAction)
-        self.saveButton = self.bar.widgetForAction(saveAction)
-        self.addAttributeButton = self.bar.widgetForAction(reloadAction)
-        self.deleteObjectButton = self.bar.widgetForAction(reloadAction)
-
-        self.layout().insertWidget(0, self.bar)
-
-
-###############################################################################
 
     def getSmartObject(self):
         return self.ldapDataObject
@@ -83,21 +79,64 @@ class AdvancedObjectView(QWidget):
             self.CREATE = True
         else:
             self.EDITED = False
-        self.enableToolButtons
+            isLeave = False
 
+            tmpObject = ServerList("/tmp")
+            tmpObject.readServerList()
+            serverMeta = tmpObject.getServerObject(self.ldapDataObject.getServerAlias())
+        
+            lumaConnection = LumaConnection(serverMeta)
+        
+            bindSuccess, exceptionObject = lumaConnection.bind()
+            
+            if not bindSuccess:
+                if self.ignoreServerMetaError:
+                    self.EDITED = False
+                    self.ISLEAF = True
+                    self.CREATE = False
+                    self.displayValues()
+                    self.enableToolButtons(True)
+                else:
+                    errorMsg = QString(self.trUtf8("Could not bind to server.<br><br>Reason: "))
+                    errorMsg.append(str(exceptionObject))
+                    QMessageBox.critical(self,
+                                        QString("Connection error"),
+                                        errorMsg)
+                return 
+            
+            success, resultList, exceptionObject = lumaConnection.search(self.ldapDataObject.dn, ldap.SCOPE_ONELEVEL, filter="(objectClass=*)", attrList=None, attrsonly=1, sizelimit=1)
+            lumaConnection.unbind()
+            
+            # Our search succeeded. No errors
+            if success:
+                
+                # There are no leaves below
+                if len(resultList) == 0:
+                    self.ISLEAF = True
+                
+                # Leaves are below
+                else:
+                    self.ISLEAF = False
+                    
+            # Error during search request
+            else:
+                self. ISLEAF = False
+                dialog = LumaErrorDialog()
+                errorMsg = self.trUtf8("Could not check if object is a leaf in the ldap tree.<br><br>Reason: ")
+                errorMsg.append(str(exceptionObject))
+                dialog.setErrorMessage(errorMsg)
+                dialog.exec_loop()
+                
+            self.CREATE = False
+            
         self.displayValues()
+
         self.enableToolButtons(True)
 
 ###############################################################################
 
-    # TODO: remove
-    def setHtml(self, text):
-        self.objectWidget.setHtml(text)
-
-###############################################################################
-
     def displayValues(self):
-        self.setHtml("")
+        self.objectWidget.setHtml("")
 
         # Something went wrong. We have no data object.
         # This might happen if we want to refresh an item and
@@ -108,11 +147,8 @@ class AdvancedObjectView(QWidget):
 
         self.ldapDataObject.checkIntegrity()
 
-        if not self.ldapDataObject.isValid:
-            # TODO: debug
-            pass
-        self.ldapDataObject.isValid = True
-        if self.ldapDataObject.isValid:
+        # TODO: serverschema errors ignored
+        if self.ignoreLdapDataObjectInvalid or self.ldapDataObject.isValid:
             tmpList = []
             tmpList.append("<html>")
             tmpList.append("""<body>""")
@@ -140,7 +176,7 @@ class AdvancedObjectView(QWidget):
         
             #self.currentDocument = ("".join(tmpList))
         
-            self.setHtml("".join(tmpList))
+            self.objectWidget.setHtml("".join(tmpList))
         else:
             tmpList = []
             tmpList.append("<html>")
@@ -159,7 +195,9 @@ class AdvancedObjectView(QWidget):
             tmpList.append("</body>")
             tmpList.append("</html>")
 
-            self.setHtml("".join(tmpList))
+            self.objectWidget.setHtml("".join(tmpList))
+
+        self.enableToolButtons(True)
 
 ###############################################################################
 
@@ -176,16 +214,14 @@ class AdvancedObjectView(QWidget):
         
         for x in self.ldapDataObject.getObjectClasses():
             classString = x[:]
-            
-            if self.readServerSchema:
-                if self.ldapDataObject.isObjectclassStructural(x):
-                    classString = "<b>" + classString + "</b>"
+            if self.ldapDataObject.isValid and self.ldapDataObject.isObjectclassStructural(x):
+                classString = "<b>" + classString + "</b>"
             tmpList.append("""<tr>""")
             tmpList.append("""<td colspan=2 bgcolor="#E5E5E5" width="100%">""")
             tmpList.append(classString)
             
             allowDelete = True
-            if self.readServerSchema:
+            if self.ldapDataObject.isValid:
                 if self.ldapDataObject.isObjectclassStructural(x):
                     classList = self.ldapDataObject.getObjectClasses()
                     classList.remove(x)
@@ -233,24 +269,26 @@ class AdvancedObjectView(QWidget):
         
         for x in attributeList:
             #environment.updateUI()
-            #attributeIsBinary = self.ldapDataObject.isAttributeBinary(x)
-            #attributeIsImage = self.ldapDataObject.isAttributeImage(x)
-            #attributeIsPassword = self.ldapDataObject.isAttributePassword(x)
-            #attributeIsSingle = self.ldapDataObject.isAttributeSingle(x)
-            #attributeIsMust = self.ldapDataObject.isAttributeMust(x)
-
-            attributeIsBinary = False
-            attributeIsImage = False
-            attributeIsPassword = False
-            attributeIsSingle = False
-            attributeIsMust = False
+            if self.ldapDataObject.isValid:
+                attributeIsBinary = self.ldapDataObject.isAttributeBinary(x)
+                attributeIsImage = self.ldapDataObject.isAttributeImage(x)
+                attributeIsPassword = self.ldapDataObject.isAttributePassword(x)
+                attributeIsSingle = self.ldapDataObject.isAttributeSingle(x)
+                attributeIsMust = self.ldapDataObject.isAttributeMust(x)
+            else:
+                attributeIsBinary = False
+                attributeIsImage = False
+                attributeIsPassword = False
+                attributeIsSingle = False
+                attributeIsMust = False
             
             attributeBinaryExport = False
-            #if attributeIsBinary:
-            #    if attributeIsImage:
-            #        attributeBinaryExport = True
-            #    elif not attributeIsPassword:
-            #        attributeBinaryExport = True
+            if self.ldapDataObject.isValid:
+                if attributeIsBinary:
+                    if attributeIsImage:
+                        attributeBinaryExport = True
+                    elif not attributeIsPassword:
+                        attributeBinaryExport = True
                     
             valueList = self.ldapDataObject.getAttributeValueList(x)
             
@@ -272,8 +310,9 @@ class AdvancedObjectView(QWidget):
             
             attributeString = copy.copy(x)
             
-            #if self.ldapDataObject.isAttributeMust(x, self.ldapDataObject.getObjectClasses()):
-            #    attributeString = "<b>" + attributeString + "</b>"
+            if self.ldapDataObject.isValid:
+                if self.ldapDataObject.isAttributeMust(x, self.ldapDataObject.getObjectClasses()):
+                    attributeString = "<b>" + attributeString + "</b>"
             
             if valueList[0] == None:
                 attributeString = """<font color="red">""" + attributeString + """</font>"""
@@ -284,8 +323,10 @@ class AdvancedObjectView(QWidget):
             univAttributeName = x + "__" + unicode(attributeIndex)
 
             attributeModify = True
-            #if not (valueList[0] == None):
-            #    attributeModify = not self.ldapDataObject.isAttributeValueRDN(x, valueList[0])
+
+            if self.ldapDataObject.isValid:
+                if not (valueList[0] == None):
+                    attributeModify = not self.ldapDataObject.isAttributeValueRDN(x, valueList[0])
             
             if (valueList[0] == None):
                 tmpList.append("""<td bgcolor="#E5E5E5" width="60%"><font color="#ff0000">""" + 
@@ -309,8 +350,9 @@ class AdvancedObjectView(QWidget):
                 univAttributeName = x + "__" + unicode(attributeIndex)
                 
                 attributeModify = True
-                #if not (y == None):
-                #    attributeModify = not self.ldapDataObject.isAttributeValueRDN(x, y)
+                if self.ldapDataObject.isValid:
+                    if not (y == None):
+                        attributeModify = not self.ldapDataObject.isAttributeValueRDN(x, y)
                 
                 tmpList.append("""<tr><td width="35%"></td>""")
                 
@@ -334,7 +376,6 @@ class AdvancedObjectView(QWidget):
         
         return "".join(tmpList)
         
-
 ###############################################################################
 
     def getAttributeValueString(self, univAttributeName, value, attributeIsBinary, 
@@ -406,7 +447,8 @@ class AdvancedObjectView(QWidget):
                 self.exportAttribute(attributeName, index)
 
 ###############################################################################
-    # TODO: check
+
+    # TODO: not used yet
     def exportAttribute(self, attributeName, index):
         return
         """ Show the dialog for exporting binary attribute data.
@@ -444,6 +486,7 @@ class AdvancedObjectView(QWidget):
 
 ###############################################################################
 
+    # TODO: enable toolbuttons
     def editAttribute(self, attributeName, index):
         oldDN = self.ldapDataObject.getDN()
         
@@ -458,6 +501,7 @@ class AdvancedObjectView(QWidget):
                 self.ldapDataObject.setAttributeValue(attributeName, index, newValue)
                 self.EDITED = True
                 self.displayValues()
+                self.enableToolButtons(True)
         else:
             if attributeName == 'RDN':
                 self.ldapDataObject.setDN(oldDN)
@@ -496,6 +540,89 @@ class AdvancedObjectView(QWidget):
             
         self.addAttributeButton.setEnabled(enable)
 
+
+###############################################################################
+
+    def aboutToChange(self):
+        if not self.EDITED:
+            return
+            
+        result = QMessageBox.warning(None,
+            self.trUtf8("Save entry"),
+            self.trUtf8("""Do you want to save the entry?"""),
+            QMessageBox.Ok,
+            QMessageBox.Cancel)
+            
+        if result == QMessageBox.Ok:
+            self.saveView()
+
+        
+###############################################################################
+    """
+    def buildToolBar(self, parent):
+        self.bar = QToolBar()
+        reloadAction = self.bar.addAction("Reload",self.refreshView)
+        saveAction = self.bar.addAction("Save",self.saveView)
+        addAttributeAction = self.bar.addAction("Add attribute",self.addAttribute)
+        deleteObjectAction = self.bar.addAction("Delete",self.deleteObject)
+
+        self.reloadButton = self.bar.widgetForAction(reloadAction)
+        self.saveButton = self.bar.widgetForAction(saveAction)
+        self.addAttributeButton = self.bar.widgetForAction(reloadAction)
+        self.deleteObjectButton = self.bar.widgetForAction(reloadAction)
+
+        self.layout().insertWidget(0, self.bar)
+        """
+
+    def buildToolBar(self):
+        self.toolBar = QToolBar()
+        
+        
+        # Reload button
+        self.reloadButton = QToolButton()
+        self.reloadButton.setIcon(QIcon(self.reloadPixmap))
+        self.reloadButton.setSizePolicy(QSizePolicy(QSizePolicy.Fixed, QSizePolicy.Fixed))
+        self.reloadButton.setAutoRaise(True)
+        #self.reloadButton.setBackgroundMode(self.backgroundMode())
+        #QToolTip.add(self.reloadButton, self.trUtf8("Reload"))
+        self.connect(self.reloadButton, SIGNAL("clicked()"), self.refreshView)
+        self.toolBar.addWidget(self.reloadButton)
+        
+        
+        # Save button
+        self.saveButton = QToolButton()
+        self.saveButton.setIcon(QIcon(self.savePixmap))
+        self.saveButton.setSizePolicy(QSizePolicy(QSizePolicy.Fixed, QSizePolicy.Fixed))
+        self.saveButton.setAutoRaise(True)
+        #self.saveButton.setBackgroundMode(self.backgroundMode())
+        #QToolTip.add(self.saveButton, self.trUtf8("Save"))
+        self.connect(self.saveButton, SIGNAL("clicked()"), self.saveView)
+        self.toolBar.addWidget(self.saveButton)
+        
+        self.toolBar.addSeparator()
+        
+        # Add attribute button
+        self.addAttributeButton = QToolButton()
+        self.addAttributeButton.setIcon(QIcon(self.addPixmap))
+        self.addAttributeButton.setSizePolicy(QSizePolicy(QSizePolicy.Fixed, QSizePolicy.Fixed))
+        self.addAttributeButton.setAutoRaise(True)
+        #self.addAttributeButton.setBackgroundMode(self.backgroundMode())
+        #QToolTip.add(self.addAttributeButton, self.trUtf8("Add attribute..."))
+        self.connect(self.addAttributeButton, SIGNAL("clicked()"), self.addAttribute)
+        self.toolBar.addWidget(self.addAttributeButton)
+        
+        # Delete button
+        self.deleteObjectButton = QToolButton()
+        self.deleteObjectButton.setIcon(QIcon(self.deleteSmallPixmap))
+        self.deleteObjectButton.setSizePolicy(QSizePolicy(QSizePolicy.Fixed, QSizePolicy.Fixed))
+        self.deleteObjectButton.setAutoRaise(True)
+        #self.deleteObjectButton.setBackgroundMode(self.backgroundMode())
+        #QToolTip.add(self.deleteObjectButton, self.trUtf8("Delete object"))
+        self.connect(self.deleteObjectButton, SIGNAL("clicked()"), self.deleteObject)
+        self.toolBar.addWidget(self.deleteObjectButton)
+        
+        self.enableToolButtons(False)
+        self.layout().insertWidget(0, self.toolBar)
 
 ###############################################################################
 
