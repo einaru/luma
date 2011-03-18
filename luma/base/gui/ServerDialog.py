@@ -62,7 +62,8 @@ class ServerDialog(QDialog, Ui_ServerDialogDesign):
         self.serverListView.selectionModel().select(index, QItemSelectionModel.ClearAndSelect) 
         self.serverListView.selectionModel().setCurrentIndex(index, QItemSelectionModel.ClearAndSelect)
         
-        self.connect(self.serverListView.selectionModel(),  QtCore.SIGNAL('selectionChanged(QItemSelection, QItemSelection)'), self.setBaseDN)
+        self.serverListView.selectionModel().selectionChanged.connect(self.setBaseDN) #Same as below
+        #self.connect(self.serverListView.selectionModel(),  QtCore.SIGNAL('selectionChanged(QItemSelection, QItemSelection)'), self.setBaseDN)
 
         # Map columns of the model to fields in the gui
         self.mapper = QDataWidgetMapper()
@@ -134,10 +135,10 @@ class ServerDialog(QDialog, Ui_ServerDialogDesign):
         """
         Create a new ServerObject and add it to the model (thus the list)
         """
-        name, ok = QInputDialog.getText(self, 'Add server', 'Name:')
+        name, ok = QInputDialog.getText(self, self.tr('Add server'), self.tr('Name:'))
         if ok:
             if len(name) < 1 or self._serverList.getServerObject(name) != None:
-                QMessageBox.information(self, 'Error', "Invalid name or already used.")
+                QMessageBox.information(self, self.tr('Error'), self.tr("Invalid name or already used."))
                 return
             
             sO = ServerObject()
@@ -163,8 +164,8 @@ class ServerDialog(QDialog, Ui_ServerDialogDesign):
             #No server selected
             return
         
-        re = QMessageBox.question(self, 'Delete', 
-                     "Are you sure?", QMessageBox.Yes, QMessageBox.No)
+        re = QMessageBox.question(self, self.tr('Delete'), 
+                     self.tr("Are you sure?"), QMessageBox.Yes, QMessageBox.No)
         if re == QMessageBox.Yes:
             index = self.serverListView.selectionModel().currentIndex() #Currently selected
             
@@ -194,23 +195,23 @@ class ServerDialog(QDialog, Ui_ServerDialogDesign):
     def reject(self):
         """
         Called when the users clicks cancel or presses escape
-        
-        SOMETHING LOGICAL SHOULD PROBABLY BE DONE HER
         """
-        r = QMessageBox.question(self, "Exit?", "Are you sure you want to exit the server editor?\n Any unsaved changes will be lost!", QMessageBox.Ok|QMessageBox.Cancel)
+        # Really quit?
+        r = QMessageBox.question(self, self.tr("Exit?"), self.tr("Are you sure you want to exit the server editor?\n Any unsaved changes will be lost!"), QMessageBox.Ok|QMessageBox.Cancel)
         if not r == QMessageBox.Ok:
+            # Don't quit
             return
-        if self._serverListCopy:
-            self._returnList = self._serverListCopy
-            QDialog.accept(self)
+        
+        # If "save" has been clicked, return the saved list by calling accept()
+        if self._serverListCopy: #This is non-None if Save has been clicked.
+            self._returnList = self._serverListCopy #Return the saved on instead
+            QDialog.accept(self) #accept() returns _returnList to the caller
             return
         QDialog.reject(self)
     
     def accept(self):
         """
         Called when OK-button is clicked
-        
-        SOMETHING LOGICAL SHOULD PROBABLY BE DONE HER
         """
         self.mapper.submit()
         self._serverList.writeServerList()
@@ -221,27 +222,14 @@ class ServerDialog(QDialog, Ui_ServerDialogDesign):
         return self._returnList
         
     def certFileDialog(self):
-        filename = QFileDialog.getOpenFileName(self, 'Open file',
+        filename = QFileDialog.getOpenFileName(self, self.tr('Open file'),
                     '')
         self.certFileEdit.setText(filename)
         self.mapper.submit()
 
     def certKeyFileDialog(self):
-        filename = QFileDialog.getOpenFileName(self, 'Open file',
-                    '')
+        filename = QFileDialog.getOpenFileName(self, self.tr('Open file'), '')
         self.certKeyFileEdit.setText(filename)
         self.mapper.submit()
-            
-if __name__ == "__main__":
-    import logging
-    import sys
-    from base.backend.ServerList import ServerList
-    l = logging.getLogger("base")
-    l.setLevel(logging.DEBUG)
-    l.addHandler(logging.StreamHandler())
-    app = QApplication(sys.argv)
-    s = ServerDialog(ServerList("c:/luma/","serverlist.xml"))
-    s.show()
-    sys.exit(app.exec_())
     
     
