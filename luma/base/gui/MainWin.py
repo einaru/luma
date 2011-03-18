@@ -98,7 +98,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.__createLanguageOptions()
         
         #TODO 
-        self.serverListDir = '/tmp'
+        self.serverListDir = None
 
         self.progressBar = QProgressBar()
         #self.progressBar.setRange(0,0)

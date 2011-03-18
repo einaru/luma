@@ -20,8 +20,9 @@ class SLTest(unittest.TestCase):
     """
     def setUp(self):
         #print "setUp"
-        self.sl = ServerList(os.curdir,"serverlist.xml")
-        #self.sl._configFile = os.path.join(self.sl._configPrefix, "serverlist.xml")
+        
+        #self.sl = ServerList()  # <-- should use this (writes to temp-dir)
+        self.sl = ServerList(os.curdir,"serverlist.xml") # <-- until user-dir is setup since tmp-dir is used for the actual list currently
 
     def tearDown(self):
         pass
