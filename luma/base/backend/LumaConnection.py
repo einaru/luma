@@ -115,7 +115,7 @@ class LumaConnection(object):
                     #x = copy.deepcopy(x)
                     #SmartDataObject(x, self.serverObject)
                     #resultList.append(SmartDataObject(x, self.serverObject))
-                resultList = [SmartDataObject(x, self.serverObject) for x in resultList]
+                resultList = [SmartDataObject(x, self.serverObject) for x in workerThread.result]
                 
                 #environment.setBusy(False)
                 #environment.displaySizeLimitWarning()
