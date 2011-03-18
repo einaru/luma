@@ -64,6 +64,11 @@ class BrowserView(QWidget):
         
         # The editor for entries
         self.tabWidget = QtGui.QTabWidget(self)
+        self.tabWidget.setStatusTip(self.tr("This is where entries are displayed when opened."))
+        self.tabWidget.setToolTip(self.tr("This is where entries are displayed when opened."))
+        #self.tabWidget.setDocumentMode(True)
+        self.tabWidget.setMovable(True)
+        #self.tabWidget.setStyleSheet("QTabWidget::pane {border: 0; border-top: 30px solid qlineargradient(x1:0, y1:0, x2:0, y2:1, stop: 0 red, stop: 1 yellow); background: yellow; } QTabWidget::tab-bar { top: 30px; }")
         self.setMinimumWidth(200)
         self.tabWidget.setTabsClosable(True)
         self.tabWidget.tabCloseRequested.connect(self.tabCloseClicked)

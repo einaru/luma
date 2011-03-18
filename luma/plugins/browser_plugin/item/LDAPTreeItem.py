@@ -52,7 +52,7 @@ class LDAPTreeItem(AbstractLDAPTreeItem):
                 return qApp.tr("This item has both a filter and limit applied.")
             if self.filter != LDAPTreeItem.FILTER_DEFAULT:
                 return qApp.tr("This item have a filter applied.")
-            if self.filter != LDAPTreeItem.LIMIT_DEFAULT:
+            if self.limit != LDAPTreeItem.LIMIT_DEFAULT:
                 return qApp.tr("This item have a limit applied.")
             return None
         # If DisplayRole (most common case)
