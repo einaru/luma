@@ -28,13 +28,14 @@ import StringIO
 import sys
 import traceback
 
-from PyQt4.QtCore import QEvent, Qt
+from PyQt4.QtCore import (QEvent, Qt)
 from PyQt4.QtGui import QApplication
 
 import __init__ as appinfo
 from base.backend import LumaLogHandler
 from base.gui import SplashScreen
 from base.gui.Window import MainWindow
+from base.gui.Settings import Settings
 from base.util.paths import getConfigPrefix
 import resources
 
@@ -81,23 +82,26 @@ def startApplication(argv, verbose=False, clear=[], dirs={}):
     @param dirs: a dict;
         containing possible dirs to consider on start-up.
     """
-    # The configPrefix is used for saving all Luma related files.
-    configPrefix = getConfigPrefix()
-    
     app = Luma(argv)
-        
+
     app.setOrganizationName(appinfo.ORGNAME)
     app.setApplicationName(appinfo.APPNAME)
     app.setApplicationVersion(appinfo.VERSION)
     
+    settings = Settings()
     # Because we use QSettings for the application settings we 
     # facilitate QSettings if the user wishes to start Luma fresh
     if 'config' in clear:
-        from PyQt4.QtCore import QSettings
         clear.remove('config')
-        settings = QSettings()
         settings.clear()
-    
+        
+    if settings.configPrefix == u'':
+        # This will be the case on the first run, or if the user
+        # have startet the application with the --clear-config option
+        # We therefore need to retrive the config prefix in a best
+        # practize cross-platform way
+        settings.configPrefix = getConfigPrefix()
+    configPrefix = getConfigPrefix()
     # Setup the logging mechanism
     l = logging.getLogger()
     l.setLevel(logging.DEBUG)
@@ -120,6 +124,8 @@ def startApplication(argv, verbose=False, clear=[], dirs={}):
     splash.show()
     
     # Initialize the main window
+    print settings.configPrefix
+    print configPrefix
     mainwin = MainWindow(configPrefix)
     app.setProgressBar(mainwin.getProgressBar())
     
@@ -134,17 +140,17 @@ def startApplication(argv, verbose=False, clear=[], dirs={}):
     splash.finish(mainwin)
     
     # Add a exception hook to handle all 
-    # wexceptions missed in the main application
+    # exceptions missed in the main application
     sys.excepthook = unhandledException
 
     sys.exit(app.exec_())
+
 
 def main(argv):
     """
     Set up and parse the command line for supported application options and 
     arguments.
     """
-    
     usage = u'%prog [options] [args]'
     p = optparse.OptionParser(usage=usage)
     p.add_option(

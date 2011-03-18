@@ -66,18 +66,39 @@ class Settings(QSettings):
         QSettings.__init__(self)
         """ Register application info throught the qApp instance """
         
-        """ Defaults for section: mainwindow """
+        # This is the path prefix where we store all luma related
+        # files (serverlist, templates, filter bookmarks etc.)
+        self.__configPrefix = ''
+        
+        # Defaults for section: mainwindow
+        self.__maximize = False
         self.__size = QSize(750, 500)
         screen = QDesktopWidget().screenGeometry()
         self.__position = QPoint((screen.width() - self.__size.width()) / 2,
                                  (screen.height() - self.__size.height()) / 2)
-        """ Defaults for section: i18n """
+        # Defaults for section: i18n
         self.__language = u'en'
-        """ Defaults for section: logger """
+        # Defaults for section: logger
         self.__showOnStart = False
         self.__showErrors = True
         self.__showDebug = True
         self.__showInfo = True
+
+    @property
+    def configPrefix(self):
+        return self.value(u'application/config_prefix', self.__configPrefix).toString()
+    
+    @configPrefix.setter
+    def configPrefix(self, path):
+        self.setValue(u'application/config_prefix', path)
+
+    @property
+    def maximize(self):
+        return self.value(u'mainwin/maximize', self.__maximize).toBool()
+
+    @maximize.setter
+    def maximize(self, maximize):
+        self.setValue(u'mainwin/maximize', maximize)
 
     @property
     def size(self):

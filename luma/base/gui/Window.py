@@ -157,7 +157,9 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         if mainWin:
             self.resize(settings.size)
             self.move(settings.position)
-
+            if settings.maximize:
+                self.showMaximized()
+                
         """ Logger """
         self.actionShowLogger.setChecked(settings.showLoggerOnStart)
         self.loggerWidget.errorBox.setChecked(settings.showErrors)
@@ -179,8 +181,11 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         settings = Settings()
 
         """ Mainwin """
-        settings.size = self.size()
-        settings.position = self.pos()
+        max = self.isMaximized()
+        settings.maximize = max
+        if not max:
+            settings.size = self.size()
+            settings.position = self.pos()
 
         """ Logger """
         settings.showLoggerOnStart = self.loggerDockWindow.isVisibleTo(self)
@@ -320,7 +325,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         """
         Slot to display the server editor dialog.
         """
-        serverEditor = ServerDialog(ServerList(self.configPrefix))
+        self.logger.debug(self.configPrefix)
+        serverEditor = ServerDialog(ServerList(configPrefix=self.configPrefix))
         serverEditor.exec_()
 
     def showSettingsDialog(self, tab=0):
