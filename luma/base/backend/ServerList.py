@@ -64,6 +64,12 @@ class ServerList(object):
 
         if os.path.isfile(self.__configFile):
             self.__readServerList()
+            
+    def getConfigFilePath(self):
+        """
+        @return: a string with the path to serverlist.xml
+        """
+        return self.__configFile
 
     def getTable(self):
         """
