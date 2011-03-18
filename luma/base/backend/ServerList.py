@@ -58,10 +58,12 @@ class ServerList(object):
             # Using the python tempfile module to get the temp dir in a
             # cross-platform manner
             configPrefix = tempfile.gettempdir()
+            
         self.__serverList = []
         self.__configPrefix = configPrefix
         self.__configFile = os.path.join(self.__configPrefix, serverlist)
-
+        
+        # Read the existing serverlist, if any
         if os.path.isfile(self.__configFile):
             self.__readServerList()
             
