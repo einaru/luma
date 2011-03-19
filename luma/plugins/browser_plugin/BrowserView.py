@@ -9,7 +9,7 @@
 ###########################################################################
 
 from PyQt4 import QtCore, QtGui
-from PyQt4.QtGui import QWidget#, QAction
+from PyQt4.QtGui import QWidget, QMessageBox #, QAction
 #from PyQt4.QtCore import pyqtSlot, QModelIndex
 #import modeltest
 
@@ -204,6 +204,9 @@ class BrowserView(QWidget):
         
     def tabCloseClicked(self, index):
         #TODO Check if should save etc etc
+        clicked = self.tabWidget.widget(index).aboutToChange()
+        if clicked == QMessageBox.Cancel:
+            return
         sO = self.tabWidget.widget(index).getSmartObject()
 
         if not (sO == None):

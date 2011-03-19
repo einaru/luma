@@ -81,7 +81,7 @@ class AdvancedObjectView(QWidget):
             self.EDITED = False
             isLeave = False
 
-            tmpObject = ServerList()
+            tmpObject = ServerList("/tmp")
             tmpObject.readServerList()
             serverMeta = tmpObject.getServerObject(self.ldapDataObject.getServerAlias())
         
@@ -100,7 +100,7 @@ class AdvancedObjectView(QWidget):
                     errorMsg = QString(self.trUtf8("Could not bind to server.<br><br>Reason: "))
                     errorMsg.append(str(exceptionObject))
                     QMessageBox.critical(self,
-                                        QString("Connection error"),
+                                        self.trUtf8("Connection error"),
                                         errorMsg)
                 return 
             
@@ -121,11 +121,11 @@ class AdvancedObjectView(QWidget):
             # Error during search request
             else:
                 self. ISLEAF = False
-                dialog = LumaErrorDialog()
                 errorMsg = self.trUtf8("Could not check if object is a leaf in the ldap tree.<br><br>Reason: ")
                 errorMsg.append(str(exceptionObject))
-                dialog.setErrorMessage(errorMsg)
-                dialog.exec_loop()
+                QMessageBox.critical(self,
+                                        self.trUtf8("Connection error"),
+                                        errorMsg)
                 
             self.CREATE = False
             
@@ -494,7 +494,11 @@ class AdvancedObjectView(QWidget):
             self.ldapDataObject.setDN(self.baseDN)
 
         attributeValue = self.ldapDataObject.getAttributeValue(attributeName, index)
-        newValue, ok = QtGui.QInputDialog.getText(self, 'Input dialog', 'Attribute value:', QLineEdit.Normal, attributeValue)
+        newValue, ok = QtGui.QInputDialog.getText(self, 
+                            self.trUtf8('Input dialog'), 
+                            self.trUtf8('Attribute value:'), 
+                            QLineEdit.Normal, 
+                            attributeValue)
         newValue = unicode(newValue)
         if ok:
             if not newValue == None:
@@ -549,12 +553,21 @@ class AdvancedObjectView(QWidget):
             
         result = QMessageBox.warning(None,
             self.trUtf8("Save entry"),
-            self.trUtf8("""Do you want to save the entry?"""),
-            QMessageBox.Ok,
+            self.trUtf8("""Do you want to save the entry before continuing?"""),
+            QMessageBox.Save | QMessageBox.Discard | QMessageBox.Cancel,
             QMessageBox.Cancel)
+        
             
-        if result == QMessageBox.Ok:
+        if result == QMessageBox.Save:
             self.saveView()
+            if self.EDITED:
+                # Saving failed
+                result = QMessageBox.critical(None,
+                            self.trUtf8(""),
+                            self.trUtf8("Saving failed, continue anyway?"),
+                            QMessageBox.Ok | QMessageBox.Cancel,
+                            QMessageBox.Cancel)
+        return result
 
         
 ###############################################################################
@@ -628,6 +641,8 @@ class AdvancedObjectView(QWidget):
 
     # TODO: add logging for each error
     def refreshView(self):
+        if self.aboutToChange() == QMessageBox.Cancel:
+            return
         """ Refreshes the LDAP data from server and displays values.
         """
         
@@ -638,7 +653,7 @@ class AdvancedObjectView(QWidget):
             #dialog = LumaErrorDialog()
             errorMsg = self.trUtf8("Could not bind to server.<br><br>Reason: ")
             errorMsg.append(str(exceptionObject))
-            QMessageBox.critical(self, "Bind error", errorMsg)
+            QMessageBox.critical(self, self.trUtf8("Bind error"), errorMsg)
             #dialog.setErrorMessage(errorMsg)
             #dialog.exec_loop()
             return 
@@ -676,7 +691,7 @@ class AdvancedObjectView(QWidget):
             #dialog = LumaErrorDialog()
             errorMsg = self.trUtf8("Could not bind to server.<br><br>Reason: ")
             errorMsg.append(str(exceptionObject))
-            QMessageBox.critical(self, "Bind error", errorMsg)
+            QMessageBox.critical(self, self.trUtf8("Bind error"), errorMsg)
             #dialog.setErrorMessage(errorMsg)
             #dialog.exec_loop()
             return 
@@ -693,7 +708,7 @@ class AdvancedObjectView(QWidget):
                 #dialog = LumaErrorDialog()
                 errorMsg = self.trUtf8("Could not add entry.<br><br>Reason: ")
                 errorMsg.append(str(exceptionObject))
-                QMessageBox.critical(self, "Bind error", errorMsg)
+                QMessageBox.critical(self, self.trUtf8("Bind error"), errorMsg)
                 #dialog.setErrorMessage(errorMsg)
                 #dialog.exec_loop()
         else:
@@ -706,7 +721,7 @@ class AdvancedObjectView(QWidget):
                 #dialog = LumaErrorDialog()
                 errorMsg = self.trUtf8("Could not save entry.<br><br>Reason: ")
                 errorMsg.append(str(exceptionObject))
-                QMessageBox.critical(self, "Bind error", errorMsg)
+                QMessageBox.critical(self, self.trUtf8("Bind error"), errorMsg)
                 #dialog.setErrorMessage(errorMsg)
                 #dialog.exec_loop()
 
@@ -772,7 +787,7 @@ class AdvancedObjectView(QWidget):
             #dialog = LumaErrorDialog()
             errorMsg = self.trUtf8("Could not bind to server.<br><br>Reason: ")
             errorMsg.append(str(exceptionObject))
-            QMessageBox.critical(self, "Bind error", errorMsg)
+            QMessageBox.critical(self, self.trUtf8("Bind error"), errorMsg)
             #dialog.setErrorMessage(errorMsg)
             #dialog.exec_loop()
             return
@@ -792,7 +807,7 @@ class AdvancedObjectView(QWidget):
             #dialog = LumaErrorDialog()
             errorMsg = self.trUtf8("Could not delete entry.<br><br>Reason: ")
             errorMsg.append(str(exceptionObject))
-            QMessageBox.critical(self, "Delete error", errorMsg)
+            QMessageBox.critical(self, self.trUtf8("Delete error"), errorMsg)
             #dialog.setErrorMessage(errorMsg)
             #dialog.exec_loop()
 
