@@ -18,7 +18,7 @@ from base.backend.ServerList import ServerList
 from model.LDAPTreeItemModel import LDAPTreeItemModel
 from item.AbstractLDAPTreeItem import AbstractLDAPTreeItem
 from plugins.browser_plugin.item.ServerTreeItem import ServerTreeItem
-from plugins.browser_plugin.AdvancedObjectView import AdvancedObjectView
+from plugins.browser_plugin.AdvancedObjectWidget import AdvancedObjectWidget
 
 
 class BrowserView(QWidget):
@@ -196,7 +196,7 @@ class BrowserView(QWidget):
             self.tabWidget.setCurrentWidget(x)
             return
         
-        x = AdvancedObjectView(smartObject, QtCore.QPersistentModelIndex(index))
+        x = AdvancedObjectWidget(smartObject, QtCore.QPersistentModelIndex(index))
         self.openTabs[str(rep)] = x
         self.tabWidget.addTab(x, x.ldapDataObject.getPrettyRDN())
         self.tabWidget.setCurrentWidget(x)

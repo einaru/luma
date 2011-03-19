@@ -30,7 +30,7 @@ def getIcon(iconPath):
 
 def getPluginWidget(parent):
     from plugins.browser_plugin.BrowserView import BrowserView
-    pluginWidget = BrowserView(None) #Todo None->parent when branch S4-plugins is merged in
+    pluginWidget = BrowserView(None, "/tmp") #Todo None->parent when branch S4-plugins is merged in
     return pluginWidget
     
 ###############################################################################
