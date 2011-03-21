@@ -87,7 +87,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.__loadSettings()
         self.__setupPluginList()
         self.__createLanguageOptions()
-        
+
         self.setStatusBar(self.statusBar)
 
         if self.DEVEL:
@@ -113,7 +113,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.pluginWidget = PluginListWidget(self)
         self.mainTabs.setTabsClosable(True)
         self.showPlugins()
-        
+
     def __createPluginToolBar(self):
         """ Creates the pluign toolbar.
         """
@@ -205,6 +205,21 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         # Plugins """
         self.TODO(u'write settings%s' % self.__class__)
 
+    def __switchTranslator(self, translator, qmFile):
+        """ Called when a new language is loaded.
+        
+        @param translator:
+            The translator object to install.
+        @param qmFile:
+            The translation file for the loaded language.
+        """
+        qApp.removeTranslator(translator)
+        if translator.load(qmFile):
+            qApp.installTranslator(translator)
+
+    def __setTabWidgetStyle(self, stylesheet):
+        self.mainTabs.setStyleSheet(stylesheet)
+
     @pyqtSlot('QAction*')
     @pyqtSlot(int)
     def languageChanged(self, value):
@@ -254,18 +269,6 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 self.loggerWidget.retranslateUi(self.loggerWidget)
             elif QEvent.LocaleChange == type:
                 print u'System Locale changed'
-
-    def __switchTranslator(self, translator, qmFile):
-        """ Called when a new language is loaded.
-        
-        @param translator:
-            The translator object to install.
-        @param qmFile:
-            The translation file for the loaded language.
-        """
-        qApp.removeTranslator(translator)
-        if translator.load(qmFile):
-            qApp.installTranslator(translator)
 
     def showAboutLuma(self):
         """ Slot for displaying the about dialog.
@@ -329,7 +332,6 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         """
         Slot to display the server editor dialog.
         """
-        print 'server'
         serverEditor = ServerDialog(ServerList())
         serverEditor.exec_()
 
@@ -374,6 +376,9 @@ class MainWindow(QMainWindow, Ui_MainWindow):
     def pluginSelected(self, item):
         """ This method will be called from the PluginListWidget.
         """
+        # Clear the stylesheet when a tab is opened
+        self.__setTabWidgetStyle('')
+
         widget = item.plugin.getPluginWidget(None, self)
         index = self.mainTabs.addTab(widget, item.plugin.pluginUserString)
         self.mainTabs.setCurrentIndex(index)
@@ -408,24 +413,31 @@ class MainWindow(QMainWindow, Ui_MainWindow):
     def tabClose(self, index):
         """ Slot for the signal tabCloseRequest(int) for the tabMains
         """
-        
+
         widget = self.mainTabs.widget(index)
         if widget == self.pluginWidget:
             self.actionShowPluginList.setEnabled(True)
-        
+
         self.mainTabs.removeTab(index)
-        
+
         #Unparent the widget since it was reparented by the QTabWidget so it's gargabe collected
         widget.setParent(None)
-        
+
         #Done automatically by PyQt since there's no refs to the widget
         #widget.deleteLater()
-        
+
         # In case the widget contained circular references -- force GC to take care of the objects
         # since there can be quite many if it was BrowserWidget that was closed
         # Can't call it directly since that'll be too soon
         QTimer.singleShot(0, self.gc)
-        
+
+        # Let's do some styling of the tab widget when no tabs are opened
+        if self.mainTabs.currentIndex() == -1:
+            stylesheet = 'background: url(:/icons/luma-gray);\n' + \
+                         'background-position: bottom right;\n' + \
+                         'background-repeat:  no-repeat;'
+            self.__setTabWidgetStyle(stylesheet)
+
     def gc(self):
         gc.collect()
 
@@ -435,16 +447,17 @@ class MainWindow(QMainWindow, Ui_MainWindow):
     def showPlugins(self):
         """ Will set the pluginlistwidget on top of the mainstack.
         """
-        
+
         if self.mainTabs.indexOf(self.pluginWidget) == -1:
-            index = self.mainTabs.addTab(self.pluginWidget, QApplication.translate("MainWindow","Plugins"))
+            self.__setTabWidgetStyle('')
+            index = self.mainTabs.addTab(self.pluginWidget, QApplication.translate("MainWindow", "Plugins"))
             self.mainTabs.setCurrentIndex(index)
             self.actionShowPluginList.setEnabled(False)
 
         else:
             """TODO: REMOVE THIS """
             self.logger.debug("Johannes fix: linje 438")
-        
+
     def close(self):
         """ Overrides the QApplication close slot to save settings
         before we tear down the application.

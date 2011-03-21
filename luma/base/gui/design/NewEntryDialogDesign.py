@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file '/mnt/debris/devel/git/merging-luma/resources/forms/NewEntryDialogDesign.ui'
 #
-# Created: Mon Mar 21 21:50:02 2011
+# Created: Mon Mar 21 22:53:00 2011
 #      by: PyQt4 UI code generator 4.7.4
 #
 # WARNING! All changes made in this file will be lost!

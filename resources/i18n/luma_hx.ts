@@ -217,6 +217,39 @@ p, li { white-space: pre-wrap; }
     </message>
 </context>
 <context>
+    <name>Form</name>
+    <message>
+        <location filename="resources/forms/plugins/search/SearchFormDesign.ui" line="14"/>
+        <source>Form</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="resources/forms/plugins/search/SearchFormDesign.ui" line="37"/>
+        <source>Server:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="resources/forms/plugins/search/SearchFormDesign.ui" line="53"/>
+        <source>Filter:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="resources/forms/plugins/search/SearchFormDesign.ui" line="69"/>
+        <source>Filter Wizard</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="resources/forms/plugins/search/SearchFormDesign.ui" line="82"/>
+        <source>Search</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="resources/forms/plugins/search/SearchFormDesign.ui" line="98"/>
+        <source>Base DN:</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>LDAPErrorItem</name>
     <message>
         <location filename="luma/plugins/browser_plugin/item/LDAPErrorItem.py" line="24"/>
@@ -306,9 +339,9 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>MainWindow</name>
     <message>
-        <location filename="resources/forms/MainWinDesign.ui" line="15"/>
+        <location filename="resources/forms/MainWindowDesign.ui" line="15"/>
         <source>Luma</source>
-        <translation type="obsolete">lum4</translation>
+        <translation type="unfinished">lum4</translation>
     </message>
     <message>
         <location filename="resources/forms/MainWinDesign.ui" line="38"/>
@@ -321,9 +354,9 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">3d17</translation>
     </message>
     <message>
-        <location filename="resources/forms/MainWinDesign.ui" line="50"/>
+        <location filename="resources/forms/MainWindowDesign.ui" line="50"/>
         <source>Language</source>
-        <translation type="obsolete">l4n9u493</translation>
+        <translation type="unfinished">l4n9u493</translation>
     </message>
     <message>
         <location filename="resources/forms/MainWinDesign.ui" line="67"/>
@@ -331,34 +364,34 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">h3lp</translation>
     </message>
     <message>
-        <location filename="resources/forms/MainWinDesign.ui" line="100"/>
+        <location filename="resources/forms/MainWindowDesign.ui" line="100"/>
         <source>Quit</source>
-        <translation type="obsolete">qu17</translation>
+        <translation type="unfinished">qu17</translation>
     </message>
     <message>
-        <location filename="resources/forms/MainWinDesign.ui" line="108"/>
+        <location filename="resources/forms/MainWindowDesign.ui" line="108"/>
         <source>Server List</source>
-        <translation type="obsolete">53rv3r l157</translation>
+        <translation type="unfinished">53rv3r l157</translation>
     </message>
     <message>
-        <location filename="resources/forms/MainWinDesign.ui" line="116"/>
+        <location filename="resources/forms/MainWindowDesign.ui" line="116"/>
         <source>Reload Plugins</source>
-        <translation type="obsolete">r3l04d plu91n5</translation>
+        <translation type="unfinished">r3l04d plu91n5</translation>
     </message>
     <message>
-        <location filename="resources/forms/MainWinDesign.ui" line="124"/>
+        <location filename="resources/forms/MainWindowDesign.ui" line="124"/>
         <source>Configure Plugins</source>
-        <translation type="obsolete">c0nf19ur3 plu91n5</translation>
+        <translation type="unfinished">c0nf19ur3 plu91n5</translation>
     </message>
     <message>
-        <location filename="resources/forms/MainWinDesign.ui" line="129"/>
+        <location filename="resources/forms/MainWindowDesign.ui" line="129"/>
         <source>About Luma</source>
-        <translation type="obsolete">460u7 lum4</translation>
+        <translation type="unfinished">460u7 lum4</translation>
     </message>
     <message>
-        <location filename="resources/forms/MainWinDesign.ui" line="137"/>
+        <location filename="resources/forms/MainWindowDesign.ui" line="137"/>
         <source>Settings</source>
-        <translation type="obsolete">53771n95</translation>
+        <translation type="unfinished">53771n95</translation>
     </message>
     <message>
         <location filename="resources/forms/MainWinDesign.ui" line="81"/>
@@ -366,9 +399,9 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">5h0w l0993r</translation>
     </message>
     <message>
-        <location filename="luma/base/gui/MainWin.py" line="151"/>
+        <location filename="luma/base/gui/MainWindow.py" line="129"/>
         <source>Logger</source>
-        <translation type="obsolete">l0993r</translation>
+        <translation type="unfinished">l0993r</translation>
     </message>
     <message>
         <location filename="resources/forms/MainWinDesign.ui" line="131"/>
@@ -381,19 +414,202 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">$h0w w3£(0m3 74b</translation>
     </message>
     <message>
-        <location filename="luma/base/gui/MainWin.py" line="601"/>
+        <location filename="luma/base/gui/MainWindow.py" line="580"/>
         <source>Available plugins</source>
-        <translation type="obsolete">4v41£4b£3 p£µ91n$</translation>
+        <translation type="unfinished">4v41£4b£3 p£µ91n$</translation>
     </message>
     <message>
-        <location filename="luma/base/gui/MainWin.py" line="602"/>
+        <location filename="luma/base/gui/MainWindow.py" line="581"/>
         <source>Choose plugin</source>
-        <translation type="obsolete">(h00$3 p£µ91n</translation>
+        <translation type="unfinished">(h00$3 p£µ91n</translation>
     </message>
     <message>
-        <location filename="luma/base/gui/MainWin.py" line="461"/>
+        <location filename="luma/base/gui/MainWindow.py" line="440"/>
         <source>Plugins</source>
-        <translation type="obsolete">P£µ91n$</translation>
+        <translation type="unfinished">P£µ91n$</translation>
+    </message>
+    <message>
+        <location filename="resources/forms/MainWindowDesign.ui" line="38"/>
+        <source>&amp;File</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="resources/forms/MainWindowDesign.ui" line="46"/>
+        <source>&amp;Edit</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="resources/forms/MainWindowDesign.ui" line="64"/>
+        <source>&amp;Help</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="resources/forms/MainWindowDesign.ui" line="70"/>
+        <source>&amp;View</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="resources/forms/MainWindowDesign.ui" line="92"/>
+        <source>Logger Window</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="resources/forms/MainWindowDesign.ui" line="95"/>
+        <source>Ctrl+L</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="resources/forms/MainWindowDesign.ui" line="103"/>
+        <source>Ctrl+Q</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="resources/forms/MainWindowDesign.ui" line="111"/>
+        <source>Ctrl+Shift+S</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="resources/forms/MainWindowDesign.ui" line="119"/>
+        <source>F5</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="resources/forms/MainWindowDesign.ui" line="132"/>
+        <source>F12</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="resources/forms/MainWindowDesign.ui" line="145"/>
+        <source>Show Plugin List</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="resources/forms/MainWindowDesign.ui" line="148"/>
+        <source>Ctrl+P</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="resources/forms/MainWindowDesign.ui" line="159"/>
+        <source>Show Welcome Tab</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="resources/forms/MainWindowDesign.ui" line="162"/>
+        <source>Ctrl+Shift+W</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="resources/forms/MainWindowDesign.ui" line="170"/>
+        <source>Toolbar</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="resources/forms/MainWindowDesign.ui" line="181"/>
+        <source>Statusbar</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="resources/forms/MainWindowDesign.ui" line="189"/>
+        <source>Fullscreen</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>SearchFilterWizard</name>
+    <message>
+        <location filename="resources/forms/plugins/search/SearchFilterWizardDesign.ui" line="14"/>
+        <source>Search Filter Wizard</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="resources/forms/plugins/search/SearchFilterWizardDesign.ui" line="20"/>
+        <source>Filter bookmarks</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="resources/forms/plugins/search/SearchFilterWizardDesign.ui" line="34"/>
+        <source>Filter:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="resources/forms/plugins/search/SearchFilterWizardDesign.ui" line="67"/>
+        <source>Add current filter</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="resources/forms/plugins/search/SearchFilterWizardDesign.ui" line="74"/>
+        <source>Delete</source>
+        <translation type="unfinished">Ð3£373</translation>
+    </message>
+    <message>
+        <location filename="resources/forms/plugins/search/SearchFilterWizardDesign.ui" line="86"/>
+        <source>Search criteria</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="resources/forms/plugins/search/SearchFilterWizardDesign.ui" line="94"/>
+        <source>Attribute</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="resources/forms/plugins/search/SearchFilterWizardDesign.ui" line="102"/>
+        <source>*</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="resources/forms/plugins/search/SearchFilterWizardDesign.ui" line="111"/>
+        <source>= (equals)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="resources/forms/plugins/search/SearchFilterWizardDesign.ui" line="116"/>
+        <source>-= (approximately)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="resources/forms/plugins/search/SearchFilterWizardDesign.ui" line="121"/>
+        <source>&gt;= (greater than)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="resources/forms/plugins/search/SearchFilterWizardDesign.ui" line="126"/>
+        <source>&lt;= (less than)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="resources/forms/plugins/search/SearchFilterWizardDesign.ui" line="198"/>
+        <source>Add</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="resources/forms/plugins/search/SearchFilterWizardDesign.ui" line="144"/>
+        <source>ObjectClass</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="resources/forms/plugins/search/SearchFilterWizardDesign.ui" line="159"/>
+        <source>Concatenation</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="resources/forms/plugins/search/SearchFilterWizardDesign.ui" line="174"/>
+        <source>and</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="resources/forms/plugins/search/SearchFilterWizardDesign.ui" line="179"/>
+        <source>or</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="resources/forms/plugins/search/SearchFilterWizardDesign.ui" line="184"/>
+        <source>not</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="resources/forms/plugins/search/SearchFilterWizardDesign.ui" line="227"/>
+        <source>Current Filter</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

@@ -46,6 +46,7 @@
     <file alias="luma-32">resources/icons/luma-32.png</file>
     <file alias="luma-48">resources/icons/luma-48.png</file>
     <file alias="luma-64">resources/icons/luma-64.png</file>
+    <file alias="luma-gray">resources/icons/luma-gray.png</file>
     <file alias="mail">resources/icons/mail.png</file>
     <file alias="manage">resources/icons/manage.png</file>
     <file alias="network-server">resources/icons/network-server.png</file>
