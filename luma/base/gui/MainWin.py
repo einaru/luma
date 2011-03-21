@@ -101,23 +101,9 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         
         self.setStatusBar(self.statusBar)
 
-        #TODO 
-        self.serverListDir = None
-
-        self.progressBar = QProgressBar()
-        #self.progressBar.setRange(0,0)
-        self.progressBar.setTextVisible(False)
-        self.statusBar.addPermanentWidget(self.progressBar)
-
-        #TODO REMOVE
-        #qApp.postEvent(qApp, QEvent(QEvent.User))
-
         if self.DEVEL:
             self.actionEditServerList.setStatusTip(
                 u'Final GUI polishing by Granbusk\u2122 Polishing')
-
-    def getProgressBar(self):
-        return self.progressBar
 
     def __setupPluginList(self):
         """
@@ -347,7 +333,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         """
         Slot to display the server editor dialog.
         """
-        serverEditor = ServerDialog(ServerList(self.serverListDir))
+        serverEditor = ServerDialog(ServerList())
         serverEditor.exec_()
 
     def showSettingsDialog(self, tab=0):

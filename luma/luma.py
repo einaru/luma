@@ -78,6 +78,8 @@ def startApplication(argv):
     First we must determine what platform we're running on. Making sure we 
     follow the platform convention for configuration files and directories, 
     """
+    #QtGui.QApplication.setStyle(QtGui.QStyleFactory.create("cleanlooks"))
+    #QtGui.QApplication.setPalette(QtGui.QApplication.style().standardPalette())
 
     app = LumaApp(argv)
         
@@ -104,7 +106,6 @@ def startApplication(argv):
     #paths.i18nPath = os.path.join(os.getcwd(), 'i18n')
     
     mainWin = MainWindow()
-    app.setProgressBar(mainWin.getProgressBar())
     
     """ Remove logging to console and instead log to the LoggerWidget """
     #l.removeHandler(consoleHandler)
