@@ -41,8 +41,7 @@ class EntryModel(QObject):
             self.EDITED = False
             isLeave = False
 
-            # TODO merge, remove parameter
-            tmpObject = ServerList("/tmp")
+            tmpObject = ServerList()
             tmpObject.readServerList()
             serverMeta = tmpObject.getServerObject(self.smartObject.getServerAlias())
         
