@@ -17,16 +17,16 @@ class HtmlView(AbstractEntryView):
     @staticmethod
     def listfiles():
         retlist = []
-        for dir in os.listdir("."):
-            if dir == "templates" and os.path.isdir(dir):
-                for subdir in os.listdir(dir):
-                    objectClassDir = os.path.join(dir, subdir)
-                    if os.path.isdir(objectClassDir):
-                        for file in os.listdir(objectClassDir):
-                            templateFile = os.path.join(objectClassDir, file)
-                            split = str(file).rsplit(".")
-                            if os.path.isfile(templateFile) and split[-1] == 'html':
-                                retlist.append((templateFile, subdir))
+        templatedir = os.path.join("plugins", "browser_plugin", "templates")
+        if os.path.isdir(templatedir):
+            for subdir in os.listdir(templatedir):
+                objectClassDir = os.path.join(templatedir, subdir)
+                if os.path.isdir(objectClassDir):
+                    for file in os.listdir(objectClassDir):
+                        templateFile = os.path.join(objectClassDir, file)
+                        split = str(file).rsplit(".")
+                        if os.path.isfile(templateFile) and split[-1] == 'html':
+                            retlist.append((templateFile, subdir))
         return retlist
 
 
@@ -78,7 +78,7 @@ class HtmlView(AbstractEntryView):
                 attribute_html = attribute + "__value"
                 text = text.replace(attribute_html, attributeValue)
                 i += 1
-
+        text = text.replace(".*__value", "")
 
         return text
 
