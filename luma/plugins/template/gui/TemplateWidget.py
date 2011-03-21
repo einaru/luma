@@ -20,6 +20,7 @@ from ..model.ObjectclassTableModel import ObjectclassTableModel
 from ..model.AttributeTableModel import AttributeTableModel
 
 import copy
+from PyQt4.uic.Compiler.qtproxies import QtGui
 
 class TemplateWidget(QWidget, Ui_TemplateWidget):
     
@@ -121,11 +122,14 @@ class TemplateWidget(QWidget, Ui_TemplateWidget):
                 QMessageBox.information(self, 'Error', "Invalid name or already used.")
                 return
             server = dialog.comboBoxServer.currentText()
+            if len(server) < 1:
+                QMessageBox.information(self, 'Error', "Invalid server.")
+                return
             description = dialog.lineEditDescription.text()
             tO = TemplateObject(name, server, description)
             
             m = self.listViewTemplates.model()
-            m.beginInsertRows(QModelIndex(), m.rowCount(), m.rowCount()+1)
+            m.beginInsertRows(QModelIndex(), m.rowCount(), m.rowCount())
             m.insertRow(tO)
             m.endInsertRows()
             
@@ -134,7 +138,8 @@ class TemplateWidget(QWidget, Ui_TemplateWidget):
             self.listViewTemplates.selectionModel().setCurrentIndex(i, QItemSelectionModel.ClearAndSelect) #Mark it as current
             self.mapper.setCurrentIndex(i.row())
             self.selectedTemplate()
-            self.setRightSideEnabled(True)
+            if i.row() == 0:
+                self.setRightSideEnabled(True)
 
         
     def deleteTemplate(self):
@@ -162,8 +167,23 @@ class TemplateWidget(QWidget, Ui_TemplateWidget):
             self.clearAll()
     
     def duplicateTemplate(self):
-        for i in self.templateTM._templateList.getTable(): 
-            print i
+        name, ok = QInputDialog.getText(self, 'Duplicate', 'Template name')
+        if len(name) < 1 or self._templateList.getTemplateObject(name) != None:
+            QMessageBox.information(self, 'Error', "Invalid name or already used.")
+            return
+        tO = copy.deepcopy(self.getSelectedTemplateObject())
+        tO.templateName = name
+
+        m = self.listViewTemplates.model()
+        m.beginInsertRows(QModelIndex(), m.rowCount(), m.rowCount())
+        m.insertRow(tO)
+        m.endInsertRows()
+
+        i = m.index(m.rowCount()-1,0)
+        self.listViewTemplates.selectionModel().select(i, QItemSelectionModel.ClearAndSelect)
+        self.listViewTemplates.selectionModel().setCurrentIndex(i, QItemSelectionModel.ClearAndSelect) #Mark it as current
+        self.mapper.setCurrentIndex(i.row())
+        self.selectedTemplate()
     
     def saveTemplate(self):
         self._templateList.save()

@@ -15,3 +15,4 @@ class AddTemplateDialog(QDialog, Ui_AddTemplateDialog):
         i = 0
         for server in serverList.getTable():
             self.comboBoxServer.insertItem(i, server.name)
+        self.comboBoxServer.setCurrentIndex(0)
