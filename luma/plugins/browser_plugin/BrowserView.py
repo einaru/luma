@@ -34,7 +34,7 @@ class BrowserView(QWidget):
         else:
             QWidget.changeEvent(self, e)
 
-    def __init__(self, parent, configPrefix = None):
+    def __init__(self, parent = None, configPrefix = None):
         """
         Configprefix defines the location of serverlist.xml
         """

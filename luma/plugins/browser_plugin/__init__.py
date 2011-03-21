@@ -1,21 +1,13 @@
 # -*- coding: utf-8 -*-
 
-###########################################################################
-#    Copyright (C) 2005 by Vegar Westerlund
-#    <vegarwe@users.sourceforge.net>
-#
-# Copyright: See COPYING file that comes with this distribution
-#
-###########################################################################
-
-from PyQt4.QtGui import *
+from PyQt4.QtGui import QIcon 
 import os.path
 
 lumaPlugin = True
 pluginName = "browser"
 pluginUserString = "Browser"
-version = ""
-author = "Vegar Westerlund <vegarwe@users.sourceforge.net>"
+version = "0.1"
+author = "Christian Forfang, Simen Natvig, Per Ove Ringdal"
 
 def getIcon(iconPath):
     try:
@@ -26,19 +18,14 @@ def getIcon(iconPath):
 
     return iconPixmap
     
-###############################################################################
-
 def getPluginWidget(parent):
+    # parent is not used, but the widget is reparented by the QTabWidget
     from plugins.browser_plugin.BrowserView import BrowserView
-    pluginWidget = BrowserView(None) #Todo None->parent when branch S4-plugins is merged in
+    pluginWidget = BrowserView()
     return pluginWidget
-    
-###############################################################################
 
 def getPluginSettingsWidget(parent):
     return None
-    
-###############################################################################
 
 def postprocess():
     return
