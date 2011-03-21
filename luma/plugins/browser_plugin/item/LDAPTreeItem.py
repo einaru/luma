@@ -119,7 +119,7 @@ class LDAPTreeItem(AbstractLDAPTreeItem):
         """
         Asks for the users limit.
         """
-        r = QInputDialog.getInt(None, "Limit","Enter the limit (0 = none):", self.limit)
+        r = QInputDialog.getInt(None, QtCore.QCoreApplication.translate("LDAPTreeItem","Limit"),QtCore.QCoreApplication.translate("LDAPTreeItem","Enter the limit (0 = none):"), self.limit)
         if r[1] == True:
             self.limit = r[0]
     
@@ -127,7 +127,7 @@ class LDAPTreeItem(AbstractLDAPTreeItem):
         """
         Asks the user for the filter.
         """
-        r = QInputDialog.getText(None, "Filter", "Enter the filter (with parentheses -- none for default):", text=self.filter)
+        r = QInputDialog.getText(None, QtCore.QCoreApplication.translate("LDAPTreeItem","Filter"), QtCore.QCoreApplication.translate("LDAPTreeItem","Enter the filter (with parentheses -- none for default):"), text=self.filter)
         if r[1] == True:
             if len(str(r[0])) > 0:
                 self.filter = str(r[0])
