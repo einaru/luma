@@ -7,8 +7,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>913</width>
-    <height>575</height>
+    <width>700</width>
+    <height>500</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -29,24 +29,21 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>913</width>
-     <height>25</height>
+     <width>700</width>
+     <height>23</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
     <property name="title">
-     <string>File</string>
+     <string>&amp;File</string>
     </property>
-    <addaction name="actionShowLogger"/>
     <addaction name="separator"/>
-    <addaction name="actionShowPluginList"/>
-    <addaction name="actionShowWelcomeTab"/>
     <addaction name="separator"/>
     <addaction name="actionQuit"/>
    </widget>
    <widget class="QMenu" name="menuEdit">
     <property name="title">
-     <string>Edit</string>
+     <string>&amp;Edit</string>
     </property>
     <widget class="QMenu" name="menuLanguage">
      <property name="title">
@@ -64,12 +61,26 @@
    </widget>
    <widget class="QMenu" name="menuHelp">
     <property name="title">
-     <string>Help</string>
+     <string>&amp;Help</string>
     </property>
     <addaction name="actionAboutLuma"/>
    </widget>
+   <widget class="QMenu" name="menu_View">
+    <property name="title">
+     <string>&amp;View</string>
+    </property>
+    <addaction name="actionShowPluginList"/>
+    <addaction name="actionShowWelcomeTab"/>
+    <addaction name="separator"/>
+    <addaction name="actionShowToolbar"/>
+    <addaction name="actionShowStatusbar"/>
+    <addaction name="actionShowLogger"/>
+    <addaction name="separator"/>
+    <addaction name="actionFullscreen"/>
+   </widget>
    <addaction name="menuFile"/>
    <addaction name="menuEdit"/>
+   <addaction name="menu_View"/>
    <addaction name="menuHelp"/>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
@@ -78,7 +89,7 @@
     <bool>true</bool>
    </property>
    <property name="text">
-    <string>Show logger</string>
+    <string>Logger Window</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+L</string>
@@ -127,19 +138,55 @@
    </property>
   </action>
   <action name="actionShowPluginList">
+   <property name="checkable">
+    <bool>false</bool>
+   </property>
    <property name="text">
-    <string>Show plugin-list</string>
+    <string>Show Plugin List</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+P</string>
    </property>
   </action>
   <action name="actionShowWelcomeTab">
+   <property name="checkable">
+    <bool>false</bool>
+   </property>
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="text">
-    <string>Show welcome tab</string>
+    <string>Show Welcome Tab</string>
    </property>
    <property name="shortcut">
     <string>Ctrl+Shift+W</string>
+   </property>
+  </action>
+  <action name="actionShowToolbar">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Toolbar</string>
+   </property>
+  </action>
+  <action name="actionShowStatusbar">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Statusbar</string>
+   </property>
+  </action>
+  <action name="actionFullscreen">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Fullscreen</string>
    </property>
   </action>
  </widget>
@@ -211,9 +258,9 @@
   </connection>
   <connection>
    <sender>actionShowLogger</sender>
-   <signal>triggered(bool)</signal>
+   <signal>toggled(bool)</signal>
    <receiver>MainWindow</receiver>
-   <slot>showLoggerWindow(bool)</slot>
+   <slot>toggleLoggerWindow(bool)</slot>
    <hints>
     <hint type="sourcelabel">
      <x>-1</x>
@@ -291,7 +338,7 @@
   </connection>
   <connection>
    <sender>actionShowWelcomeTab</sender>
-   <signal>triggered()</signal>
+   <signal>toggled(bool)</signal>
    <receiver>MainWindow</receiver>
    <slot>showWelcome()</slot>
    <hints>
@@ -305,10 +352,58 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>actionShowStatusbar</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>MainWindow</receiver>
+   <slot>toggleStatusbar(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>349</x>
+     <y>249</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionShowToolbar</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>MainWindow</receiver>
+   <slot>toggleToolbar(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>349</x>
+     <y>249</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionFullscreen</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>MainWindow</receiver>
+   <slot>toggleFullscreen(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>349</x>
+     <y>249</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>quitApplication()</slot>
-  <slot>showLoggerWindow(bool)</slot>
+  <slot>toggleLoggerWindow(bool)</slot>
   <slot>reloadPlugins()</slot>
   <slot>configurePlugins()</slot>
   <slot>showAboutLuma()</slot>
@@ -317,5 +412,8 @@
   <slot>tabClose()</slot>
   <slot>showPlugins()</slot>
   <slot>showWelcome()</slot>
+  <slot>toggleStatusbar(bool)</slot>
+  <slot>toggleToolbar(bool)</slot>
+  <slot>toggleFullscreen(bool)</slot>
  </slots>
 </ui>
