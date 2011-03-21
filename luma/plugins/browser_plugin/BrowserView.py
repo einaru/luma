@@ -19,7 +19,7 @@ from model.LDAPTreeItemModel import LDAPTreeItemModel
 from item.AbstractLDAPTreeItem import AbstractLDAPTreeItem
 from plugins.browser_plugin.item.ServerTreeItem import ServerTreeItem
 from plugins.browser_plugin.AdvancedObjectView import AdvancedObjectView
-
+from plugins.browser_plugin.NewEntryDialog import NewEntryDialog
 
 class BrowserView(QWidget):
     
@@ -168,15 +168,15 @@ class BrowserView(QWidget):
         self.clickedIndex.internalPointer().setFilter()
         self.reloadSignal.emit(self.clickedIndex)
     def addEntryChosen(self):
-        item = self.clickedIndex.internalPointer()
-        from plugins.browser_plugin.NewEntryDialog import NewEntryDialog
-        tmp = NewEntryDialog()
-        r = tmp.exec_()
-        if tmp.Accepted:
-            self.reloadChoosen()
-            
+        self.addNewEntry(self.clickedIndex)
     def addTemplateChosen(self):
         pass
+
+    def addNewEntry(self, parentIndex, defaultSmartObject = None):
+        tmp = NewEntryDialog(parentIndex, defaultSmartObject)
+        if tmp.exec_():
+            print "La til ny entry"
+            # TODO Do something. (Reload?)
         
     def viewItem(self, index):
         
