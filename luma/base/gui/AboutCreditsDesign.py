@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'D:\Dropbox\Git\it2901\resources\forms\AboutCreditsDesign.ui'
 #
-# Created: Mon Mar 21 14:04:36 2011
+# Created: Mon Mar 21 14:09:25 2011
 #      by: PyQt4 UI code generator 4.8.2
 #
 # WARNING! All changes made in this file will be lost!

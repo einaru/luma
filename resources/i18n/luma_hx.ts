@@ -410,14 +410,14 @@ p, li { white-space: pre-wrap; }
         <translation></translation>
     </message>
     <message>
-        <location filename="luma/base/gui/MainWin.py" line="609"/>
-        <source>Available plugins LOL</source>
-        <translation>Tilgjengelige plugins</translation>
+        <location filename="luma/base/gui/MainWin.py" line="608"/>
+        <source>Available plugins</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/base/gui/MainWin.py" line="610"/>
-        <source>Choose plugin LOL</source>
-        <translation>Velg plugin</translation>
+        <location filename="luma/base/gui/MainWin.py" line="609"/>
+        <source>Choose plugin</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
