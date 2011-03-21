@@ -14,7 +14,6 @@ from .AddAttributeDialog import AddAttributeDialog
 from .AddObjectclassDialog import AddObjectclassDialog
 from .AddTemplateDialog import AddTemplateDialog
 from ..TemplateList import TemplateList
-from ..AttributeDelegate import AttributeDelegate
 from ..TemplateObject import TemplateObject
 from ..model.TemplateTableModel import TemplateTableModel
 from ..model.ObjectclassTableModel import ObjectclassTableModel
