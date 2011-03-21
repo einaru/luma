@@ -1,5 +1,6 @@
 # Python files
 *.pyc
+.pyc
 
 # Eclipse files
 .settings
@@ -7,8 +8,16 @@
 .project
 .pydevproject
 
+# Vim -_-
+*.swp
+
 # Used by tests
 serverlist.xml
 
 # Used for testing
-src/lib/luma/snippets/*
+src/luma/snippets/*
+
+# distutils
+dist/*
+build/*
+MANIFEST

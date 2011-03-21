@@ -39,20 +39,28 @@ class LDAPTreeItem(AbstractLDAPTreeItem):
         """
         Returns the name and possibly an icon for the item.
         """
-        # Probably unessecary
-        if role != QtCore.Qt.DisplayRole and role != QtCore.Qt.DecorationRole:
-            return QtCore.QVariant()
         
         # Return an icon if the item has been configured
         if role == QtCore.Qt.DecorationRole:
             if self.filter != LDAPTreeItem.FILTER_DEFAULT or self.limit != LDAPTreeItem.LIMIT_DEFAULT:
                 return QIcon(QPixmap(":/icons/filter"))
             else:
-                return QtCore.QVariant()
-        # If DisplayRole
-        else:
+                return None
+        # Return applicable status-tip-role
+        elif role == QtCore.Qt.StatusTipRole:
+            if self.limit != LDAPTreeItem.LIMIT_DEFAULT and self.filter != LDAPTreeItem.FILTER_DEFAULT:
+                return QtCore.QCoreApplication.translate("LDAPTreeItem","This item has both a filter and limit applied.")
+            if self.filter != LDAPTreeItem.FILTER_DEFAULT:
+                return QtCore.QCoreApplication.translate("LDAPTreeItem","This item have a filter applied.")
+            if self.limit != LDAPTreeItem.LIMIT_DEFAULT:
+                return QtCore.QCoreApplication.translate("LDAPTreeItem","This item have a limit applied.")
+            return None
+        # If DisplayRole (most common case)
+        elif role == QtCore.Qt.DisplayRole:
             #return self.itemData.getPrettyDN() # The whole name
             return self.itemData.getPrettyRDN()
+        else:
+            return None
 
     def smartObject(self):
         return self.itemData
@@ -111,7 +119,7 @@ class LDAPTreeItem(AbstractLDAPTreeItem):
         """
         Asks for the users limit.
         """
-        r = QInputDialog.getInt(None, "Limit","Enter the limit (0 = none):", self.limit)
+        r = QInputDialog.getInt(None, QtCore.QCoreApplication.translate("LDAPTreeItem","Limit"),QtCore.QCoreApplication.translate("LDAPTreeItem","Enter the limit (0 = none):"), self.limit)
         if r[1] == True:
             self.limit = r[0]
     
@@ -119,7 +127,7 @@ class LDAPTreeItem(AbstractLDAPTreeItem):
         """
         Asks the user for the filter.
         """
-        r = QInputDialog.getText(None, "Filter", "Enter the filter (with parentheses -- none for default):", text=self.filter)
+        r = QInputDialog.getText(None, QtCore.QCoreApplication.translate("LDAPTreeItem","Filter"), QtCore.QCoreApplication.translate("LDAPTreeItem","Enter the filter (with parentheses -- none for default):"), text=self.filter)
         if r[1] == True:
             if len(str(r[0])) > 0:
                 self.filter = str(r[0])
@@ -128,5 +136,5 @@ class LDAPTreeItem(AbstractLDAPTreeItem):
 
         
     def getSupportedOperations(self):
-        return AbstractLDAPTreeItem.SUPPORT_CLEAR|AbstractLDAPTreeItem.SUPPORT_RELOAD|AbstractLDAPTreeItem.SUPPORT_FILTER|AbstractLDAPTreeItem.SUPPORT_LIMIT
+        return AbstractLDAPTreeItem.SUPPORT_CLEAR|AbstractLDAPTreeItem.SUPPORT_RELOAD|AbstractLDAPTreeItem.SUPPORT_FILTER|AbstractLDAPTreeItem.SUPPORT_LIMIT|AbstractLDAPTreeItem.SUPPORT_ADD
         

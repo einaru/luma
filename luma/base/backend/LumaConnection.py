@@ -12,8 +12,9 @@ import ldap
 import ldapurl
 import ldap.modlist
         
-from PyQt4.QtGui import qApp
+from PyQt4.QtGui import qApp, QInputDialog, QLineEdit, QApplication
 from PyQt4.QtGui import QCursor
+from PyQt4.QtGui import QMessageBox
 from PyQt4.QtCore import Qt
         
 try:
@@ -26,13 +27,13 @@ import threading
 import time
 import logging
 
-from base.backend.ServerObject import ServerObject, ServerCheckCertificate, ServerEncryptionMethod, ServerAuthMethod
-from base.backend.SmartDataObject import SmartDataObject
-from PyQt4.QtGui import QMessageBox
+from ..backend.ServerObject import (ServerObject, ServerCheckCertificate,
+                                    ServerEncryptionMethod, ServerAuthMethod)
+from ..backend.SmartDataObject import SmartDataObject
 
-# TODO
 #from base.backend.LumaSSLConnection import hasSSLlibrary
-#from base.utils.gui.PromptPasswordDialog import PromptPasswordDialog
+hasSSLlibrary = False
+
 #from base.gui.UnknownCertDialog import UnknownCertDialog
 
 
@@ -260,33 +261,31 @@ class LumaConnection(object):
         # Prompt user to continue if we suspect that the certificate could not
         # be verified
         if self._cert_error(workerThread):
+            svar = QMessageBox.No
             if hasSSLlibrary:
-                dialog = UnknownCertDialog(self.serverObject)
-                accepted = UnknownCertDialog.Accepted
+                pass
+                # TODO
+                #dialog = UnknownCertDialog(self.serverObject)
+                #accepted = UnknownCertDialog.Accepted
             else:
-                dialog = QMessageBox("Certificate error",
-                        "Do you want to continue anyway?",
-                        QMessageBox.Question,
-                        QMessageBox.Yes,
-                        QMessageBox.No,
-                        QMessageBox.NoButton,
-                        None)
-                accepted = 3
-
-            #environment.setBusy(False)
-            dialog.exec_loop()
-            if dialog.result() == accepted:
-                self.serverObject.checkServerCertificate = u"never"
-                LumaConnection._certMap[self.serverObject.name] = u"never"
+                # If checkServerCertificate isn't "never" ask to set it
+                if not self.serverObject.checkServerCertificate == ServerCheckCertificate.Never:
+                    svar = QMessageBox.question(None, QApplication.translate("LumaConnection","Certificate error"), 
+                                     QApplication.translate("LumaConnection","Do you want to continue anyway?"), 
+                                     QMessageBox.Yes|QMessageBox.No, QMessageBox.No)
+                    
+            if svar == QMessageBox.Yes:
+                self.serverObject.checkServerCertificate = ServerCheckCertificate.Never
+                LumaConnection._certMap[self.serverObject.name] = ServerCheckCertificate.Never
                 workerThread = self.__bind()
 
         # Prompt for password on _invalid_pwd or _blank_pwd
         if self._invalid_pwd(workerThread) or self._blank_pwd(workerThread):
-            dialog = PromptPasswordDialog()
-            #environment.setBusy(False)
-            dialog.exec_loop()
-            if dialog.result() == 1:
-                self.serverObject.bindPassword = unicode(dialog.passwordEdit.text())
+            self.setBusy(False)
+            pw, ret = QInputDialog.getText(None, QApplication.translate("LumaConnection","Password"), QApplication.translate("LumaConnection","Invalid passord. Enter new:"), mode=QLineEdit.Password)
+            self.setBusy(True)
+            if ret:
+                self.serverObject.bindPassword = unicode(pw)
                 LumaConnection._passwordMap[self.serverObject.name] = self.serverObject.bindPassword
                 workerThread = self.__bind()
 

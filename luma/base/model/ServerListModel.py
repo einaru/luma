@@ -5,7 +5,7 @@
 
 from PyQt4.QtCore import QAbstractTableModel
 from PyQt4.QtCore import Qt, QVariant, SIGNAL
-from base.backend.ServerObject import ServerObject
+from ..backend.ServerObject import ServerObject
 
 class ServerListModel(QAbstractTableModel):
     """
@@ -29,7 +29,6 @@ class ServerListModel(QAbstractTableModel):
             return False
 
         value = value.toPyObject()
-        #value = index.internalPointer()
         
         row = index.row()
         column = index.column()
@@ -37,17 +36,23 @@ class ServerListModel(QAbstractTableModel):
         # Find the serverobject from the list of them
         serverObject = self._ServerList.getTable()[row]
         
-        # Update the correct field in it (given by the column) with the given data
-        serverObject.setIndexToValue(column, value)      
+        # Check for an actual change
+        if serverObject.getList()[column] == value:
+            """
+            No change so do nothing.
+            """
+            return True
         
-        # Let other views know the underlying data is (possibly) changed
-        self.emit(SIGNAL("dataChanged( const QModelIndex&, const QModelIndex& )"), index, index)
+        # Update the correct field in it (given by the column) with the given data
+        serverObject.setIndexToValue(column, value)   
+        
+        # Let other views know the underlying data is changed
+        self.dataChanged.emit(index, index)
+        #self.emit(SIGNAL("dataChanged( const QModelIndex&, const QModelIndex& )"), index, index)
         return True
         
     def rowCount(self,parent):
         #Number of servers
-        if self._ServerList.getTable() == None:
-            return 0
         return len(self._ServerList.getTable())
     
     def columnCount(self,parent):

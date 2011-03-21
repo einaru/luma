@@ -27,7 +27,7 @@ class ServerTreeItem(AbstractLDAPTreeItem):
 
     def data(self, column, role):
         if role != QtCore.Qt.DisplayRole and role != QtCore.Qt.DecorationRole:
-            return QtCore.QVariant()
+            return None
         
         if role == QtCore.Qt.DecorationRole:
             return QIcon(QPixmap(":/icons/network-server"))
@@ -53,7 +53,7 @@ class ServerTreeItem(AbstractLDAPTreeItem):
             bindSuccess, exceptionObject = connection.bind()
             if not bindSuccess:
                 self.logger.debug("Bind failed.")
-                tmp = LDAPErrorItem(str("[Bind failed]"), self, self)
+                tmp = LDAPErrorItem(str("["+exceptionObject["desc"]+"]"), self, self)
                 #self.displayError(exceptionObject)
                 return [tmp]
                 return
@@ -66,7 +66,7 @@ class ServerTreeItem(AbstractLDAPTreeItem):
         
             if not success:
                 self.logger.debug("getBaseDNList failed:"+str(exceptionObject))
-                tmp = LDAPErrorItem(str("[Couldn't get baseDNs]"), self, self)
+                tmp = LDAPErrorItem(str("["+exceptionObject[0]["desc"]+"]"), self, self)
                 #self.displayError(exceptionObject)
                 return [tmp]
                 #return
@@ -85,7 +85,7 @@ class ServerTreeItem(AbstractLDAPTreeItem):
                 self.logger.debug("Couldn't search item:"+str(exceptionObject))
                 #self.displayError(str(base)+": "+str(exceptionObject))
                 #tmp = LDAPTreeItem(resultList[0], self, self)    
-                tmp = LDAPErrorItem(str(base+" [Error]"), self, self)
+                tmp = LDAPErrorItem(str(base+" ["+exceptionObject[0]["desc"]+"]"), self, self)
                 newChildList.append(tmp)
                 continue
             

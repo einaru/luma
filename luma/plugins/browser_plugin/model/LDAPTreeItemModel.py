@@ -45,11 +45,13 @@ class LDAPTreeItemModel(QAbstractItemModel):
         
         if not index.isValid():
             return QtCore.QVariant()
-
-        if role != QtCore.Qt.DisplayRole and role != QtCore.Qt.DecorationRole:
-            return QtCore.QVariant()
-
+        
+        #Is also (should also be) checked in the items themselves
+        #if role != QtCore.Qt.DisplayRole and role != QtCore.Qt.DecorationRole:
+        #    return QtCore.QVariant()
+        
         item = index.internalPointer()
+
         return QtCore.QVariant(item.data(index.column(), role))
 
     def flags(self, index):
@@ -164,7 +166,7 @@ class LDAPTreeItemModel(QAbstractItemModel):
         
         if not len(serverList.getTable()) > 0:
             # If there's no servers :(
-            self.rootItem.appendChild(LDAPErrorItem("No servers defined", None, self.rootItem))
+            self.rootItem.appendChild(LDAPErrorItem(QtCore.QCoreApplication.translate("LDAPTreeItemModel","No servers defined"), None, self.rootItem))
             return
 
         for server in serverList.getTable():
@@ -207,9 +209,9 @@ class LDAPTreeItemModel(QAbstractItemModel):
         newList = parentItem.fetchChildList()
         
         if newList == None:
-            print "Error fetching new list -- TODO proper error-handling"
-            print "Now I've got nothing to do, so I'm returning :("
-            print "Hopefully nothing wrong happens because of this"
+            print "Error fetching list of children."
+            #print "Now I've got nothing to do, so I'm returning :("
+            #print "Hopefully nothing wrong happens because of this"
             self.doneWorking()
             return
         

@@ -23,7 +23,8 @@ Assumed locations of files:
 |-- luma
 |   |-- base
 |   |   `-- gui
-|   |       `-- *Design.py
+|   |       `design
+|   |        `-- *Design.py
 |   `-- plugins
 |       `-- <plugin-name>
 |           `-- gui
@@ -61,7 +62,7 @@ SOURCE_ICONS = ['resources', 'icons']
 SOURCE_TRANS = ['resources', 'i18n']
 SOURCE_UI = ['resources', 'forms']
 DEST_TRANS = ['luma', 'i18n']
-DEST_UI = ['luma', 'base', 'gui']
+DEST_UI = ['luma', 'base', 'gui', 'design']
 PLUGINS = ['luma', 'plugins']
 
 # Files w/filepaths
@@ -73,7 +74,7 @@ LUMA_RC_I18N = ['luma', 'i18nrc.py']
 
 short_description = """
    __  __  ______ ___  ____  ___  ____  ____  
-  / /\/ /\/ / __ `__ \/___ \/ __\/ ___\/ ___\  lumarcc.py v0.3
+  / /\/ /\/ / __ `__ \/___ \/ __\/ ___\/ ___\  lumarcc.py v0.5
  / /_/ /_/ / /\/ /\/ / __  / /\_/ /\__/ /\___\ copyright (c) 2011
  \__/\____/_/ /_/ /_/\____/_/ / \____/\____/\  Einar Uvsløkk
   \_\/\___\_\/\_\/\_\/\___\_\/   \___\/\___\/  <einar.uvslokk@linux.com>
@@ -91,25 +92,15 @@ pylupdate4  Used for updating the resources in the project file.
             This is a python wrapper for lupdate-qt4"""
 
 
-def _run(cmd, args=[]):
+def __run(cmd, args=[]):
     """
     This method is pretty much pillage from openLP :).
     It executes the provided command, provided it is available on the system.
     
     @param cmd: The wicked command to be executed.
     """
-#    if not dryrun:
-#        exe = [cmd]
-#        for arg in args:
-#            exe.append(arg)
-#        proc = subprocess.Popen(exe, shell=False, stdout=subprocess.PIPE, 
-#                               stderr=subprocess.PIPE)
-#        if verbose:
-#            pass
     if not dryrun:
-        if sys.platform == 'win32':
-            cmd = '%s.bat' % cmd
-        
+
         proc = QProcess()
         proc.start(cmd, args)
         while proc.waitForReadyRead():
@@ -123,14 +114,7 @@ def _run(cmd, args=[]):
             if stdout != '':
                 print u'  Output: %s' % proc.readAllStandardOutput()
 
-def __run(cmd, args=[]):
-    """
-    
-    @param cmd: a list containing the command (and possible arguments)
-                to execute.
-    """
-
-def _writeToDisk(list, where):
+def __writeToDisk(list, where):
     """
     Writes a list, item for item, to disk at location where.
     
@@ -155,11 +139,15 @@ def _getIconNameAndAlias(path):
 
 
 def _validateNum(num):
-    """
-    Validates if a variable is numeric. NB! if num == * this will be
-    returned as is.
+    """ Validates if a variable is numeric. NB! if num == * this will
+    be returned as is.
     
-    @param num: the variable to validate
+    @param num:
+        the variable to validate
+    
+    @return:
+        * indicates the wildcard to apply, else a number is returned.
+        The parameter if it was a number, -1 if not.
     """
     if num == u'*':
         return num
@@ -170,14 +158,15 @@ def _validateNum(num):
 
 
 def _getPath(pathList):
-    """
-    Ensures that we get correct paths. That is we change our working 
-    directory to the top-level (one step up from tools).
+    """ Ensures that we get correct paths. That is we change our
+    working directory to the top-level (one step up from tools).
     
-    @param pathList: a list of directories to join from cwd
+    @param pathList:
+        a list of directories to join from cwd
     
-    @return: A cross-platform filepath from file system root including
-             the last directory in the path list.
+    @return:
+        A cross-platform filepath from file system root including the
+        last directory in the path list.
     """
     cwd = os.path.abspath(os.path.dirname(__file__))
 
@@ -193,8 +182,7 @@ def _getPath(pathList):
 
 
 def _listUiFiles(noprint=False):
-    """
-    List all available .ui files
+    """ List all available .ui files
     """
     uipath = _getPath(SOURCE_UI)
 
@@ -218,15 +206,15 @@ def _listUiFiles(noprint=False):
 
 
 def _prepareUiFiles(all=False):
-    """
-    Preapres the .ui files for compiling. A list of available .ui files
-    will be printed, and the user will be prompted for the index of the
-    file to be compiled.
-    The index must be an valid integer, or * to compile all files.
+    """ Prepares the .ui files for compiling. A list of available .ui
+    files will be printed, and the user will be prompted for the index
+    of the file to be compiled. The index must be an valid integer, or
+    * to compile all files.
     
-    @param all: boolean value; whether or not to prepare all files
+    @param all: boolean value;
+        whether or not to prepare all files
     """
-    
+
     if all:
         return _listUiFiles(noprint=True).values()
 
@@ -248,12 +236,13 @@ def _prepareUiFiles(all=False):
 
 
 def _generateQrcFile(icons=False, i18n=False):
-    """
-    Scannes the defined icons and/or i18n folders for content to include
-    in the luma resource file -> resources.py
+    """ Scannes the defined icons and/or i18n folders for content to
+    include in the luma resource file -> resources.py
     
-    @param icons: Wheter or not to include icons
-    @param i18n: Wheter or not to include translation files
+    @param icons:
+        Wheter or not to include icons
+    @param i18n:
+        Wheter or not to include translation files
     """
     qrc = []
     QRC_HEADER_OPEN = u'<!DOCTYPE RCC><RCC version="1.0">'
@@ -291,27 +280,29 @@ def _generateQrcFile(icons=False, i18n=False):
         qrc.append(u'  </qresource>')
 
     qrc.append(QRC_HEADER_CLOSE)
-    
+
     if verbose:
         print '\nGenerated .qrc file:'
         for line in qrc:
             print line
-    
+
     return qrc
 
 
 def compileUiFiles(compileAll=False):
-    """
-    Find and list all available .ui files, and prepare the selected files
-    for compiling.
+    """ Find and list all available .ui files, and prepare the selected
+    files for compiling.
     
-    @param compileAll: boolean value; wheter or not to compile all files
+    @param compileAll: boolean value;
+        wheter or not to compile all files
     """
 
     uifiles = _prepareUiFiles(compileAll)
     pypath = _getPath(DEST_UI)
 
     cmd = 'pyuic4'
+    if sys.platform == 'win32':
+        cmd = '%s.exe' % cmd
 
     for uifile in uifiles:
 
@@ -332,55 +323,63 @@ def compileUiFiles(compileAll=False):
         args = [uifile, '-o', pyfile]
         if verbose:
             print 'Executing: ', cmd, uifile, '-o', pyfile
-        _run(cmd, args)
+        __run(cmd, args)
 
 
 def createQrcFile(icons=False, i18n=False):
-    """
-    Create the luma.qrc file based on the content in the resource folder
+    """ Create the luma.qrc file based on the content in the resource
+    folder
     
-    @param icons: Wheter or not to include icons
-    @param i18n: Wheter or not to include translation files
+    @param icons:
+        Wheter or not to include icons
+    @param i18n:
+        Wheter or not to include translation files
     """
     qrc = _generateQrcFile(icons, i18n)
-    _writeToDisk(qrc, _getPath(LUMA_QRC))
+    __writeToDisk(qrc, _getPath(LUMA_QRC))
 
 
 def compileResources():
-    """
-    Compile resources defined in the project file [luma.pro]
+    """ Compile resources defined in the project file [luma.pro]
     """
     lumaqrc = _getPath(LUMA_QRC)
     lumarc = _getPath(LUMA_RC)
+
     cmd = 'pyrcc4'
+    if sys.platform == 'win32':
+        cmd = '%s.exe' % cmd
+
     args = [lumaqrc, '-py2', '-o', lumarc]
-    
+
     if verbose:
         print '\nBuilding command to compile resources:'
         print '  resource file: %s' % lumaqrc
         print '  python resource file: %s' % lumarc
         print 'Executing: ', cmd, lumaqrc, '-py2', '-o', lumarc
-    
-    _run(cmd, args)
+
+    __run(cmd, args)
 
 
 def updateTranslationFiles():
+    """ Just executes the pylupdate4 command on the project file.
     """
-    Just executes the pylupdate4 command on the project file.
-    """
-    cmd = 'pyludpate4'
     lumapro = _getPath(LUMA_PRO)
+
+    cmd = 'pylupdate4'
+    if sys.platform == 'win32':
+        cmd = '%s.exe' % cmd
+
     args = ['-noobsolete']
-    
+
     if verbose:
         args.append('-verbose')
         print '\nBuilding command to update translation files:'
         print '  project file: %s' % lumapro
-        print 'Executing: ', cmd, '-noobsolete -verbose',lumapro
-    
+        print 'Executing: ', cmd, '-noobsolete -verbose', lumapro
+
     args.append(lumapro)
-    _run(cmd, [lumapro])
-    
+    __run(cmd, [lumapro])
+
 
 def main():
 
@@ -437,6 +436,9 @@ def main():
 
     verbose = opt.verbose
     dryrun = opt.dry
+
+    if dryrun:
+        verbose = True
 
     if opt.info:
         print short_description

@@ -9,7 +9,7 @@
 ###########################################################################
 
 from PyQt4 import QtCore, QtGui
-from PyQt4.QtGui import QWidget#, QAction
+from PyQt4.QtGui import QWidget, QMessageBox #, QAction
 #from PyQt4.QtCore import pyqtSlot, QModelIndex
 #import modeltest
 
@@ -18,22 +18,33 @@ from base.backend.ServerList import ServerList
 from model.LDAPTreeItemModel import LDAPTreeItemModel
 from item.AbstractLDAPTreeItem import AbstractLDAPTreeItem
 from plugins.browser_plugin.item.ServerTreeItem import ServerTreeItem
-from plugins.browser_plugin.AdvancedObjectView import AdvancedObjectView
+from plugins.browser_plugin.NewEntryDialog import NewEntryDialog
+from plugins.browser_plugin.AdvancedObjectWidget import AdvancedObjectWidget
 
 
 class BrowserView(QWidget):
+    
+    def retranslateUi(self): 
+        print "RETRANSLATE"
+        self.tabWidget.setStatusTip(QtCore.QCoreApplication.translate("BrowserView","This is where entries are displayed when opened."))
+        self.tabWidget.setToolTip(QtCore.QCoreApplication.translate("BrowserView","This is where entries are displayed when opened."))
+        
+    def changeEvent(self, e):
+        if e.type() == QtCore.QEvent.LanguageChange:
+            self.retranslateUi()
+        else:
+            QWidget.changeEvent(self, e)
 
-    def __init__(self, parent, configPrefix = None):
+    def __init__(self, parent = None, configPrefix = None):
         """
         Configprefix defines the location of serverlist.xml
         """
         QtGui.QWidget.__init__(self, parent)
-
+        
         self.setObjectName("PLUGIN_BROWSER")
             
         # The serverlist used
         self.serverList = ServerList(configPrefix)
-
         self.mainLayout = QtGui.QHBoxLayout(self)
         
         self.splitter = QtGui.QSplitter(self)
@@ -54,14 +65,21 @@ class BrowserView(QWidget):
         self.entryList.setAnimated(True) # Somewhat cool, but should be removed if deemed too taxing
         self.entryList.setUniformRowHeights(True) #Major optimalization for big lists
         self.entryList.setModel(self.ldaptreemodel)
+        self.entryList.setMouseTracking(True)
+        self.entryList.viewport().setMouseTracking(True)
         # For right-clicking in the tree
         self.entryList.setContextMenuPolicy(QtCore.Qt.CustomContextMenu)
         self.entryList.customContextMenuRequested.connect(self.rightClick)
-        # When something is clicked, call self.initEntryView
-        self.entryList.doubleClicked.connect(self.initEntryView)
+        # When something is activated (doubleclick, <enter> etc.)
+        self.entryList.activated.connect(self.viewItem)
         
         # The editor for entries
         self.tabWidget = QtGui.QTabWidget(self)
+        self.tabWidget.setStatusTip(QtCore.QCoreApplication.translate("BrowserView","This is where entries are displayed when opened."))
+        self.tabWidget.setToolTip(QtCore.QCoreApplication.translate("BrowserView","This is where entries are displayed when opened."))
+        #self.tabWidget.setDocumentMode(True)
+        self.tabWidget.setMovable(True)
+        #self.tabWidget.setStyleSheet("QTabWidget::pane {border: 0; border-top: 30px solid qlineargradient(x1:0, y1:0, x2:0, y2:1, stop: 0 red, stop: 1 yellow); background: yellow; } QTabWidget::tab-bar { top: 30px; }")
         self.setMinimumWidth(200)
         self.tabWidget.setTabsClosable(True)
         self.tabWidget.tabCloseRequested.connect(self.tabCloseClicked)
@@ -109,13 +127,24 @@ class BrowserView(QWidget):
                     menu.addAction("Open", self.openChosen)
                 # Add avaiable methods
                 if supports & AbstractLDAPTreeItem.SUPPORT_RELOAD:
-                    menu.addAction("Reload", self.reloadChoosen)
+                    menu.addAction(self.tr("Reload children"), self.reloadChoosen)
                 if supports & AbstractLDAPTreeItem.SUPPORT_FILTER:
-                    menu.addAction("Filter", self.filterChoosen)
+                    menu.addAction(self.tr("Filter"), self.filterChoosen)
                 if supports & AbstractLDAPTreeItem.SUPPORT_LIMIT:
-                    menu.addAction("Limit", self.limitChoosen)
+                    menu.addAction(self.tr("Limit"), self.limitChoosen)
                 if supports & AbstractLDAPTreeItem.SUPPORT_CLEAR:
-                    menu.addAction("Clear", self.clearChoosen)
+                    menu.addAction(self.tr("Clear"), self.clearChoosen)
+                if supports & AbstractLDAPTreeItem.SUPPORT_ADD:
+                    m = QtGui.QMenu("Add", menu)
+                    m.addAction(self.tr("Entry"), self.addEntryChosen)
+                    m.addAction(self.tr("Template"), self.addTemplateChosen)
+                    menu.addMenu(m)
+                if supports & AbstractLDAPTreeItem.SUPPORT_DELETE:
+                    m = QtGui.QMenu(self.tr("Delete"), menu)
+                    m.addAction(self.tr("Entry"), self.addEntryChosen)
+                    m.addAction(self.tr("Template"), self.addTemplateChosen)
+                    menu.addMenu(m)
+
             
             menu.exec_(self.entryList.mapToGlobal(point))
     
@@ -138,30 +167,22 @@ class BrowserView(QWidget):
         # Have the item set the filter, then reload
         self.clickedIndex.internalPointer().setFilter()
         self.reloadSignal.emit(self.clickedIndex)
+    def addEntryChosen(self):
+        self.addNewEntry(self.clickedIndex)
+    def addTemplateChosen(self):
+        pass
 
-
-    def initEntryView(self, index):
-        """
-        Loads the entry-viewer with the content from the index clicked
-        """
-        
-        # If we clicked a server -- ignore
-        if isinstance(index.internalPointer(), ServerTreeItem):
-            """
-            Servers doesn't have a smartObject
-            """
-            return
-        
-        # If it's an ErrorItem
-        if index.internalPointer().smartObject() == None:
-            return
-        
-        # Elso, gogo
-        self.viewItem(index)
+    def addNewEntry(self, parentIndex, defaultSmartObject = None):
+        tmp = NewEntryDialog(parentIndex, defaultSmartObject)
+        if tmp.exec_():
+            print "La til ny entry"
+            # TODO Do something. (Reload?)
         
     def viewItem(self, index):
+        
         smartObject = index.internalPointer().smartObject()
         
+        # We need to have tried to open an items with a smartobject to proceed
         if smartObject == None:
             return
         
@@ -175,27 +196,30 @@ class BrowserView(QWidget):
             self.tabWidget.setCurrentWidget(x)
             return
         
-        x = AdvancedObjectView(smartObject)
+        x = AdvancedObjectWidget(smartObject, QtCore.QPersistentModelIndex(index))
         self.openTabs[str(rep)] = x
-        self.tabWidget.addTab(x, x.ldapDataObject.getPrettyRDN())
+        self.tabWidget.addTab(x, smartObject.getPrettyRDN())
         self.tabWidget.setCurrentWidget(x)
     
         
     def tabCloseClicked(self, index):
         #TODO Check if should save etc etc
+        clicked = self.tabWidget.widget(index).aboutToChange()
+        if clicked == QMessageBox.Cancel:
+            return
         sO = self.tabWidget.widget(index).getSmartObject()
 
-        # Remove the representation of the opened entry from the list
-        serverName = sO.getServerAlias()
-        dn = sO.getDN()
-        rep = (serverName,dn)
-        self.openTabs.pop(str(rep))
+        if not (sO == None):
+            # Remove the representation of the opened entry from the list
+            serverName = sO.getServerAlias()
+            dn = sO.getDN()
+            rep = (serverName,dn)
+            self.openTabs.pop(str(rep))
         
         self.tabWidget.removeTab(index)
 
     def buildToolBar(self, parent):
-        # FIXME: qt4 migration needed
-        #self.entryView.buildToolBar(parent)
+        # Not used
         pass
 
 

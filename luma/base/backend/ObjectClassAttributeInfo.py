@@ -1,6 +1,4 @@
 # -*- coding: utf-8 -*-
-from base.backend.ServerObject import ServerObject, ServerEncryptionMethod,\
-    ServerCheckCertificate, ServerAuthMethod
 
 ###########################################################################
 #    Copyright (C) 2003, 2004 by Wido Depping                                      
@@ -28,7 +26,9 @@ from copy import copy
 import threading
 import time
 
-from base.backend.ServerList import ServerList
+from ..backend.ServerList import ServerList
+from ..backend.ServerObject import (ServerObject, ServerEncryptionMethod,
+                                    ServerCheckCertificate, ServerAuthMethod)
 #import environment
 #from base.utils.backend.LogObject import LogObject
 
