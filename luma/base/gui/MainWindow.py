@@ -3,6 +3,7 @@
 # Copyright (c) 2011
 #     Einar Uvsløkk, <einar.uvslokk@linux.no>
 #     Christian Forfang, <cforfang@gmail.com>
+#     Johannes Harestad, <johannesharestad@gmail.com>
 #
 # Luma is free software; you can redistribute it and/or modify 
 # it under the terms of the GNU General Public Licence as published by 

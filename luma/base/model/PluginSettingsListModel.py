@@ -2,7 +2,7 @@
 
 from PyQt4.QtCore import *
 from PyQt4.QtGui import *
-from base.backend.PluginLoader import PluginLoader 
+from ..backend.PluginLoader import PluginLoader 
 
 class PluginSettingsListModel(QStandardItemModel):
     """

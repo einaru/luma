@@ -25,12 +25,12 @@
 
 import os.path
 import logging
+import stat
 import tempfile
 
 from PyQt4.QtXml import QDomDocument
 
-import stat
-from base.backend.ServerObject import ServerObject
+from ..backend.ServerObject import ServerObject
 
 class ServerList(object):
     """

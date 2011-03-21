@@ -14,6 +14,7 @@ import ldap.modlist
         
 from PyQt4.QtGui import qApp, QInputDialog, QLineEdit, QApplication
 from PyQt4.QtGui import QCursor
+from PyQt4.QtGui import QMessageBox
 from PyQt4.QtCore import Qt
         
 try:
@@ -26,9 +27,9 @@ import threading
 import time
 import logging
 
-from base.backend.ServerObject import ServerObject, ServerCheckCertificate, ServerEncryptionMethod, ServerAuthMethod
-from base.backend.SmartDataObject import SmartDataObject
-from PyQt4.QtGui import QMessageBox
+from ..backend.ServerObject import (ServerObject, ServerCheckCertificate,
+                                    ServerEncryptionMethod, ServerAuthMethod)
+from ..backend.SmartDataObject import SmartDataObject
 
 #from base.backend.LumaSSLConnection import hasSSLlibrary
 hasSSLlibrary = False
