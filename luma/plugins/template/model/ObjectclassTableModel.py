@@ -14,13 +14,8 @@ class ObjectclassTableModel(QAbstractTableModel):
         self._templateObject = None
         
     def setTemplateObject(self, templateObject = None):
-        if templateObject:
-            self._templateObject = templateObject
-            
-    def resetAndFill(self):
+        self._templateObject = templateObject
         self.reset()
-        for objectclass in self._templateObject.objectclasses:
-            self.addRow(objectclass)
         
     def addRow(self, objectclass):
         if self._templateObject:
@@ -31,6 +26,10 @@ class ObjectclassTableModel(QAbstractTableModel):
             self._templateObject.deleteObjectclass(objectclass)
             return True
         return False
+    
+    def getObjectclass(self, index):
+        if index.row() < self._templateObject.getCountObjectclasses:
+            return self._templateObject.objectclasses[index.row()]
         
     def setData(self, index, value, role = Qt.EditRole):
         """
@@ -59,7 +58,7 @@ class ObjectclassTableModel(QAbstractTableModel):
     def rowCount(self,parent = QModelIndex()):
         #Number of objectclass
         if self._templateObject:
-            return self._templateObject.getCountObjectclass()
+            return self._templateObject.getCountObjectclasses()
         return 0
     
     def columnCount(self,parent = QModelIndex()):

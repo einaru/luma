@@ -41,9 +41,10 @@ class TemplateObject(object):
             self.objectclasses.append(objectclass)
     
     def deleteObjectclass(self, objectclass):
-        self.objectclasses.remove(objectclass)
+        if objectclass:
+            self.objectclasses.remove(objectclass)
 
-    def getCountObjectclass(self):
+    def getCountObjectclasses(self):
         return len(self.objectclasses)
 
     def addAttribute(self, name, must, single, binary, defaultValue):
@@ -55,7 +56,7 @@ class TemplateObject(object):
     def setAttributeDefaultValue(self, attributeName, value):
         self.attributes[attributeName].defaultValue = value
 
-    def getCountAttribute(self):
+    def getCountAttributes(self):
         return len(self.attributes.keys())
 
     def getDataObject(self, serverMeta, baseDN):
@@ -149,3 +150,5 @@ class AttributeObject(object):
         self.binary = binary
         self.defaultValue = defaultValue
         
+    def getList(self):
+        return [self.attributeName, self.must, self.single, self.binary, self.defaultValue]

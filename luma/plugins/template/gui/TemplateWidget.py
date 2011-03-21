@@ -5,15 +5,16 @@ Created on 15. mars 2011
 '''
 
 from PyQt4.QtGui import QWidget, QDataWidgetMapper, QItemSelectionModel
-from PyQt4.QtGui import QInputDialog, QMessageBox
+from PyQt4.QtGui import QInputDialog, QMessageBox, QStyledItemDelegate
 from PyQt4 import QtCore
 from PyQt4.QtCore import QModelIndex
 from base.backend.ServerList import ServerList
 from .TemplateWidgetDesign import Ui_TemplateWidget
 from .AddAttributeDialog import AddAttributeDialog
 from .AddObjectclassDialog import AddObjectclassDialog
+from .AddTemplateDialog import AddTemplateDialog
 from ..TemplateList import TemplateList
-from ..TemplateDelegate import TemplateDelegate
+from ..AttributeDelegate import AttributeDelegate
 from ..TemplateObject import TemplateObject
 from ..model.TemplateTableModel import TemplateTableModel
 from ..model.ObjectclassTableModel import ObjectclassTableModel
@@ -54,64 +55,67 @@ class TemplateWidget(QWidget, Ui_TemplateWidget):
         self.listViewTemplates.selectionModel().select(index, QItemSelectionModel.ClearAndSelect) 
         self.listViewTemplates.selectionModel().setCurrentIndex(index, QItemSelectionModel.ClearAndSelect)
         
+        self.listViewTemplates.selectionModel().selectionChanged.connect(self.selectedTemplate)
         
-        self.connect(self.listViewTemplates.selectionModel(),  QtCore.SIGNAL('selectionChanged(QItemSelection, QItemSelection)'), self.setObjectclasses)
-        self.connect(self.listViewTemplates.selectionModel(),  QtCore.SIGNAL('selectionChanged(QItemSelection, QItemSelection)'), self.setAttributes)
-        
-        self.comboBoxServer.insertItem(0, "Invalid server!")
-        self.comboBoxServer.insertItems(1, [x.name for x in (ServerList(u"/tmp").getTable())])
         # Map columns of the model to fields in the gui
         self.mapper = QDataWidgetMapper()
         self.mapper.setModel(self.templateTM)
-        # Handles the comboboxes and to-from the list of custom baseDNs
-        self.templateDelegate = TemplateDelegate()
-        self.mapper.setItemDelegate(self.templateDelegate) 
         
-        self.mapper.addMapping(self.comboBoxServer, 1)
+        
+        
         self.mapper.addMapping(self.lineEditDescription, 2)
 
-        #self.mapper.addMapping(self.baseDNWidget, 5)
 
         # Select the first servers (as the serverlistview does)
-        self.mapper.setCurrentIndex(0)
+        self.selectedTemplate()
 
-#        # Let the mapper know when another server is selected in the list
-        self.listViewTemplates.selectionModel().currentRowChanged.connect(self.mapper.setCurrentModelIndex)
-
-#        # Workaround to avoid the button stealing the focus from the baseDNView thus invalidating it's selection
-#        # maning we don't know what do delete
-#        #self.deleteBaseDNButton.setFocusPolicy(Qt.NoFocus)
-
-        self.setObjectclasses()
-        self.setAttributes()
+    def selectedTemplate(self):
+        index = self.listViewTemplates.selectionModel().currentIndex().row()
+        if index >= 0:
+            self.mapper.setCurrentIndex(index)
+            self.labelServerName.setText(self._templateList._templateList[index].server)
+            self.setObjectclasses()
+            self.setAttributes()
 
     def setObjectclasses(self):
-        templateIndex = self.listViewTemplates.selectedIndexes()
-        if len(templateIndex) > 0:
-            index = self.templateTM.createIndex(templateIndex[0].row(), 3)
-            self.listViewObjectclasses.model().setTemplateObject(self._templateList.getTable()[index.row()])
-            self.templateDelegate.setEditorData(self.listViewObjectclasses, index)
+        templateObject = self.getSelectedTemplateObject()
+        if templateObject:
+            self.listViewObjectclasses.model().setTemplateObject(templateObject)
             
             
     def setAttributes(self):
-        templateIndex = self.listViewTemplates.selectedIndexes()
-        if len(templateIndex) > 0:
-            index = self.templateTM.createIndex(templateIndex[0].row(), 4)
-            self.templateDelegate.setEditorData(self.tableViewAttributes, index)
+        templateObject = self.getSelectedTemplateObject()
+        if templateObject:
+            self.tableViewAttributes.model().setTemplateObject(templateObject)
             
             
     def setRightSideEnabled(self, enabled):
-        self.comboBoxServer.setEnabled(enabled)
         self.lineEditDescription.setEnabled(enabled)
         self.groupBoxObjectclasses.setEnabled(enabled)
         self.groupBoxAttributes.setEnabled(enabled)
         
     def clearAll(self):
         self.lineEditDescription.clear()
-        self.listViewObjectclasses.model().reset()
-        self.tableViewAttributes.model().reset()
+        self.labelServerName.clear()
+        self.listViewObjectclasses.model().setTemplateObject(None)
+        self.tableViewAttributes.model().setTemplateObject(None)
 
+    def getSelectedTemplateObject(self):
+        templateIndexes = self.listViewTemplates.selectedIndexes()
+        if len(templateIndexes) > 0:
+            return self._templateList.getTable()[templateIndexes[0].row()]
+        return None
+    
+    def getSelectedObjectclass(self, index):
+        return self.listViewObjectclasses.model().getObjectclass(index)
+
+    def getSelectedAttribute(self, index):
+        return self.tableViewAttributes.model().getAttribute(index)
+        
     def addTemplate(self):
+        dialog = AddTemplateDialog()
+        dialog.exec_()
+        """
         name, ok = QInputDialog.getText(self, 'Add server', 'Name:')
         if ok:
             if len(name) < 1 or self._templateList.getTemplateObject(name) != None:
@@ -131,6 +135,7 @@ class TemplateWidget(QWidget, Ui_TemplateWidget):
             self.listViewTemplates.selectionModel().setCurrentIndex(s, QItemSelectionModel.ClearAndSelect) #Mark it as current
             self.mapper.setCurrentIndex(s.row())
             self.setRightSideEnabled(True)
+        """
         
     def deleteTemplate(self):
         if self.listViewTemplates.selectionModel().currentIndex().row() < 0:
@@ -168,11 +173,25 @@ class TemplateWidget(QWidget, Ui_TemplateWidget):
         dialog.exec_()
         
     def deleteObjectclass(self):
-        pass
+        for i in self.listViewObjectclasses.selectedIndexes():
+            objectclass = self.getSelectedObjectclass(i)
+            self.objectclassTM.beginRemoveColumns(QModelIndex(), i.row(), i.row())
+            self.objectclassTM.removeRow(objectclass)
+            self.objectclassTM.endRemoveRows()
         
     def addAttribute(self):
         dialog = AddAttributeDialog()
         dialog.exec_()
         
     def deleteAttribute(self):
-        pass
+        for i in self.tableViewAttributes.selectedIndexes(): 
+            print i
+#        rows = []
+#        self.attributeTM.beginRemoveColumns(QModelIndex(), 0, self.getSelectedTemplateObject().getCountAttributes())
+#        for i in self.tableViewAttributes.selectedIndexes():
+#            if not i.row() in rows:
+#                rows.append(i.row())
+#                attribute = self.getSelectedAttribute(i)
+#                self.attributeTM.removeRow(attribute)
+#        
+#        self.attributeTM.endRemoveRows()

@@ -201,7 +201,7 @@ class TemplateList(object):
                 attributeNode.setAttribute("must", str(attribute.must))
                 attributeNode.setAttribute("single", str(attribute.single))
                 attributeNode.setAttribute("binary", str(attribute.binary))
-                if not (attribute.defaultValue == None):
+                if not attribute.defaultValue == None and len(attribute.defaultValue):
                     attributeNode.setAttribute("defaultValue", unicode(attribute.defaultValue))
                 templateAttributes.appendChild(attributeNode)
             templateNode.appendChild(templateAttributes)

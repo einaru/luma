@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'D:\Skole\it2901\luma\plugins\template\design\TemplateWidgetDesign.ui'
+# Form implementation generated from reading ui file 'd:\Skole\it2901\resources\forms\plugins\template\TemplateWidgetDesign.ui'
 #
-# Created: Thu Mar 17 15:05:20 2011
+# Created: Sun Mar 20 22:32:40 2011
 #      by: PyQt4 UI code generator 4.8.2
 #
 # WARNING! All changes made in this file will be lost!
@@ -58,7 +58,7 @@ class Ui_TemplateWidget(object):
         self.listViewTemplates.setObjectName(_fromUtf8("listViewTemplates"))
         self.gridLayout_6.addWidget(self.listViewTemplates, 0, 0, 1, 3)
         spacerItem = QtGui.QSpacerItem(40, 20, QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Minimum)
-        self.gridLayout_6.addItem(spacerItem, 2, 2, 1, 1)
+        self.gridLayout_6.addItem(spacerItem, 1, 2, 2, 1)
         self.pushButtonTemplatesDelete = QtGui.QPushButton(self.groupBoxTemplates)
         sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Fixed, QtGui.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
@@ -82,6 +82,7 @@ class Ui_TemplateWidget(object):
         self.gridLayout_2.setMargin(0)
         self.gridLayout_2.setObjectName(_fromUtf8("gridLayout_2"))
         self.labelServer = QtGui.QLabel(self.layoutWidget1)
+        self.labelServer.setMinimumSize(QtCore.QSize(0, 20))
         self.labelServer.setObjectName(_fromUtf8("labelServer"))
         self.gridLayout_2.addWidget(self.labelServer, 0, 0, 1, 1)
         self.labelDescription = QtGui.QLabel(self.layoutWidget1)
@@ -122,7 +123,9 @@ class Ui_TemplateWidget(object):
         self.gridLayout_4 = QtGui.QGridLayout(self.groupBoxAttributes)
         self.gridLayout_4.setObjectName(_fromUtf8("gridLayout_4"))
         self.tableViewAttributes = QtGui.QTableView(self.groupBoxAttributes)
+        self.tableViewAttributes.setSelectionBehavior(QtGui.QAbstractItemView.SelectRows)
         self.tableViewAttributes.setObjectName(_fromUtf8("tableViewAttributes"))
+        self.tableViewAttributes.horizontalHeader().setStretchLastSection(True)
         self.gridLayout_4.addWidget(self.tableViewAttributes, 0, 0, 3, 2)
         self.pushButtonAttributesAdd = QtGui.QPushButton(self.groupBoxAttributes)
         sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Fixed, QtGui.QSizePolicy.Fixed)
@@ -141,9 +144,16 @@ class Ui_TemplateWidget(object):
         self.pushButtonAttributesDelete.setObjectName(_fromUtf8("pushButtonAttributesDelete"))
         self.gridLayout_4.addWidget(self.pushButtonAttributesDelete, 1, 2, 1, 1)
         self.gridLayout_2.addWidget(self.splitter, 2, 0, 1, 2)
-        self.comboBoxServer = QtGui.QComboBox(self.layoutWidget1)
-        self.comboBoxServer.setObjectName(_fromUtf8("comboBoxServer"))
-        self.gridLayout_2.addWidget(self.comboBoxServer, 0, 1, 1, 1)
+        self.labelServerName = QtGui.QLabel(self.layoutWidget1)
+        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Preferred, QtGui.QSizePolicy.Preferred)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.labelServerName.sizePolicy().hasHeightForWidth())
+        self.labelServerName.setSizePolicy(sizePolicy)
+        self.labelServerName.setMinimumSize(QtCore.QSize(0, 20))
+        self.labelServerName.setText(_fromUtf8(""))
+        self.labelServerName.setObjectName(_fromUtf8("labelServerName"))
+        self.gridLayout_2.addWidget(self.labelServerName, 0, 1, 1, 1)
         self.gridLayout_3.addWidget(self.splitter_2, 0, 0, 1, 1)
 
         self.retranslateUi(TemplateWidget)
