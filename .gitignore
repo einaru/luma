@@ -7,6 +7,9 @@
 .project
 .pydevproject
 
+# Vim -_-
+*.swp
+
 # Used by tests
 serverlist.xml
 
