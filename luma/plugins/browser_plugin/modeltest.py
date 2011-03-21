@@ -31,7 +31,7 @@ class ModelTest(QtCore.QObject):
         Connect to all of the models signals, Whenever anything happens recheck everything.
         """
         QtCore.QObject.__init__(self,parent)
-        self._model = _model
+        self.__model = _model
         self.model = sip.cast(_model, QtCore.QAbstractItemModel)
         self.insert = []
         self.remove = []

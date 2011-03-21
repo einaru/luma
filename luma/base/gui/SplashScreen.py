@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
 #
-# base.backend.WorkerThread
+# base.gui.SplashScreen
 #
 # Copyright (c) 2011
+#     Christian Forfang, <cforfang@gmail.com>
 #     Einar Uvsløkk, <einar.uvslokk@linux.com>
 #
 # This program is free software: you can redistribute it and/or modify
@@ -17,3 +18,22 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see http://www.gnu.org/licenses/
+
+from PyQt4.QtCore import Qt, QMetaObject
+from PyQt4.QtGui import QPixmap
+from PyQt4.QtGui import QSplashScreen
+
+class SplashScreen(QSplashScreen):
+    def __init__(self):
+        QSplashScreen.__init__(self)
+        self.setupUi()
+
+    def setupUi(self):
+        self.setObjectName(u'splash_screen')
+        self.setWindowFlags(self.windowFlags() | Qt.WindowStaysOnTopHint)
+        self.setContextMenuPolicy(Qt.PreventContextMenu)
+        splash_image = QPixmap(u':/icons/luma-128')
+        self.setPixmap(splash_image)
+        self.setMask(splash_image.mask())
+        self.resize(128, 128)
+        QMetaObject.connectSlotsByName(self)

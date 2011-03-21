@@ -41,79 +41,46 @@
       <enum>Qt::Horizontal</enum>
      </property>
      <widget class="QWidget" name="layout3">
-      <layout class="QGridLayout">
+      <layout class="QGridLayout" name="serverListGrid">
+       <property name="sizeConstraint">
+        <enum>QLayout::SetMaximumSize</enum>
+       </property>
        <property name="margin">
         <number>0</number>
        </property>
        <item row="0" column="0" colspan="3">
         <widget class="QListView" name="serverListView"/>
        </item>
-       <item row="1" column="2">
-        <widget class="QPushButton" name="deleteButton">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="maximumSize">
-          <size>
-           <width>75</width>
-           <height>16777215</height>
-          </size>
-         </property>
+       <item row="1" column="0">
+        <widget class="QPushButton" name="addButton">
          <property name="text">
-          <string>&amp;Delete</string>
-         </property>
-         <property name="shortcut">
-          <string>Alt+D</string>
-         </property>
-         <property name="autoDefault">
-          <bool>false</bool>
+          <string>Add</string>
          </property>
         </widget>
        </item>
        <item row="1" column="1">
-        <widget class="QPushButton" name="addButton">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="maximumSize">
-          <size>
-           <width>75</width>
-           <height>16777215</height>
-          </size>
-         </property>
+        <widget class="QPushButton" name="deleteButton">
          <property name="text">
-          <string>&amp;Add</string>
-         </property>
-         <property name="shortcut">
-          <string>Alt+A</string>
-         </property>
-         <property name="autoDefault">
-          <bool>false</bool>
+          <string>Delete</string>
          </property>
         </widget>
        </item>
-       <item row="1" column="0">
-        <spacer name="horizontalSpacer_2">
+       <item row="1" column="2">
+        <spacer name="hspacer2">
          <property name="orientation">
           <enum>Qt::Horizontal</enum>
          </property>
          <property name="sizeHint" stdset="0">
           <size>
-           <width>0</width>
-           <height>0</height>
+           <width>40</width>
+           <height>20</height>
           </size>
          </property>
         </spacer>
        </item>
       </layout>
      </widget>
-     <widget class="QTabWidget" name="serverWidget">
+     <widget class="QTabWidget" name="tabWidget">
       <property name="enabled">
        <bool>true</bool>
       </property>
@@ -132,332 +99,607 @@
       <property name="currentIndex">
        <number>0</number>
       </property>
-      <widget class="QWidget" name="tab">
+      <widget class="QWidget" name="networkTab">
        <attribute name="title">
         <string>Network</string>
        </attribute>
        <layout class="QGridLayout">
-        <item row="0" column="1" rowspan="3" colspan="2">
-         <layout class="QGridLayout" name="gridLayout_6">
-          <item row="2" column="1">
-           <widget class="QLabel" name="textLabel8">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
+        <item row="0" column="0">
+         <widget class="QLabel" name="networkIcon">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>48</width>
+            <height>48</height>
+           </size>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="1" rowspan="2" colspan="2">
+         <layout class="QGridLayout" name="networkOptGrid">
+          <item row="0" column="0">
+           <widget class="QGroupBox" name="networkGroup">
+            <property name="title">
+             <string>Network options</string>
             </property>
-            <property name="minimumSize">
-             <size>
-              <width>0</width>
-              <height>20</height>
-             </size>
-            </property>
-            <property name="text">
-             <string>Host:</string>
-            </property>
-            <property name="wordWrap">
-             <bool>false</bool>
-            </property>
+            <layout class="QGridLayout" name="gridLayout_5">
+             <item row="0" column="0">
+              <layout class="QGridLayout" name="networkGrid">
+               <item row="0" column="0">
+                <widget class="QLabel" name="hostLabel">
+                 <property name="text">
+                  <string>Host:</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="0" column="1">
+                <widget class="QLineEdit" name="hostEdit"/>
+               </item>
+               <item row="2" column="0">
+                <widget class="QLabel" name="portLabel">
+                 <property name="text">
+                  <string>Port:</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="2" column="1">
+                <widget class="QSpinBox" name="portSpinBox">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="maximum">
+                  <number>99999</number>
+                 </property>
+                 <property name="value">
+                  <number>389</number>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </item>
+            </layout>
            </widget>
           </item>
-          <item row="2" column="2" colspan="3">
-           <widget class="QLineEdit" name="hostLineEdit">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
+          <item row="1" column="0">
+           <widget class="QGroupBox" name="LDAPGroup">
+            <property name="title">
+             <string>LDAP options</string>
             </property>
-            <property name="minimumSize">
-             <size>
-              <width>0</width>
-              <height>20</height>
-             </size>
-            </property>
+            <layout class="QGridLayout" name="gridLayout_7">
+             <item row="0" column="0">
+              <layout class="QGridLayout" name="LDAPGrid">
+               <item row="0" column="0" colspan="2">
+                <widget class="QCheckBox" name="aliasBox">
+                 <property name="text">
+                  <string>Follow aliases</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="0" colspan="2">
+                <widget class="QCheckBox" name="baseDNBox">
+                 <property name="text">
+                  <string>Use Base DN provided by server</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="2" column="0">
+                <widget class="QLabel" name="baseDNLabel">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Maximum" vsizetype="Preferred">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="text">
+                  <string>Custom:</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="2" column="1">
+                <widget class="QLineEdit" name="baseDNEdit"/>
+               </item>
+               <item row="3" column="1">
+                <layout class="QHBoxLayout" name="hLayout">
+                 <item>
+                  <widget class="QPushButton" name="addBaseDNButton">
+                   <property name="text">
+                    <string>Add</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QPushButton" name="deleteBaseDNButton">
+                   <property name="text">
+                    <string>Delete</string>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
+               </item>
+               <item row="4" column="0" colspan="2">
+                <widget class="QListWidget" name="baseDNListWidget"/>
+               </item>
+              </layout>
+             </item>
+            </layout>
            </widget>
-          </item>
-          <item row="3" column="1">
-           <widget class="QLabel" name="textLabel9">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="minimumSize">
-             <size>
-              <width>0</width>
-              <height>20</height>
-             </size>
-            </property>
-            <property name="text">
-             <string>Port:</string>
-            </property>
-            <property name="wordWrap">
-             <bool>false</bool>
-            </property>
-           </widget>
-          </item>
-          <item row="3" column="2" colspan="3">
-           <widget class="QSpinBox" name="portSpinBox">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="minimumSize">
-             <size>
-              <width>0</width>
-              <height>20</height>
-             </size>
-            </property>
-            <property name="minimum">
-             <number>1</number>
-            </property>
-            <property name="maximum">
-             <number>65535</number>
-            </property>
-            <property name="value">
-             <number>389</number>
-            </property>
-           </widget>
-          </item>
-          <item row="4" column="0" colspan="5">
-           <widget class="QLabel" name="textLabel1">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="minimumSize">
-             <size>
-              <width>0</width>
-              <height>20</height>
-             </size>
-            </property>
-            <property name="text">
-             <string>&lt;b&gt;LDAP options&lt;/b&gt;</string>
-            </property>
-            <property name="alignment">
-             <set>Qt::AlignVCenter</set>
-            </property>
-            <property name="wordWrap">
-             <bool>false</bool>
-            </property>
-           </widget>
-          </item>
-          <item row="5" column="1" colspan="4">
-           <widget class="QCheckBox" name="aliasBox">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="minimumSize">
-             <size>
-              <width>0</width>
-              <height>20</height>
-             </size>
-            </property>
-            <property name="text">
-             <string>Follow aliases</string>
-            </property>
-           </widget>
-          </item>
-          <item row="6" column="1" colspan="4">
-           <widget class="QCheckBox" name="baseBox">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="minimumSize">
-             <size>
-              <width>0</width>
-              <height>20</height>
-             </size>
-            </property>
-            <property name="text">
-             <string>Use Base DNs provided by the server</string>
-            </property>
-           </widget>
-          </item>
-          <item row="7" column="1">
-           <widget class="QLabel" name="textLabel2">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="minimumSize">
-             <size>
-              <width>0</width>
-              <height>20</height>
-             </size>
-            </property>
-            <property name="text">
-             <string>Custom:</string>
-            </property>
-            <property name="wordWrap">
-             <bool>false</bool>
-            </property>
-           </widget>
-          </item>
-          <item row="7" column="2">
-           <widget class="QLineEdit" name="baseEdit">
-            <property name="minimumSize">
-             <size>
-              <width>0</width>
-              <height>20</height>
-             </size>
-            </property>
-           </widget>
-          </item>
-          <item row="7" column="3">
-           <widget class="QPushButton" name="addBaseDNButton">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="text">
-             <string>&amp;Add</string>
-            </property>
-            <property name="shortcut">
-             <string>Alt+A</string>
-            </property>
-            <property name="autoDefault">
-             <bool>false</bool>
-            </property>
-            <property name="default">
-             <bool>false</bool>
-            </property>
-           </widget>
-          </item>
-          <item row="7" column="4">
-           <widget class="QPushButton" name="deleteBaseDNButton">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="text">
-             <string>&amp;Delete</string>
-            </property>
-            <property name="shortcut">
-             <string>Alt+D</string>
-            </property>
-            <property name="autoDefault">
-             <bool>false</bool>
-            </property>
-           </widget>
-          </item>
-          <item row="8" column="1" colspan="4">
-           <widget class="QListWidget" name="baseDNWidget">
-            <property name="selectionMode">
-             <enum>QAbstractItemView::ExtendedSelection</enum>
-            </property>
-            <property name="selectionRectVisible">
-             <bool>true</bool>
-            </property>
-           </widget>
-          </item>
-          <item row="5" column="0" rowspan="4">
-           <spacer>
-            <property name="orientation">
-             <enum>Qt::Horizontal</enum>
-            </property>
-            <property name="sizeType">
-             <enum>QSizePolicy::Fixed</enum>
-            </property>
-            <property name="sizeHint" stdset="0">
-             <size>
-              <width>12</width>
-              <height>0</height>
-             </size>
-            </property>
-           </spacer>
-          </item>
-          <item row="1" column="0" colspan="5">
-           <widget class="QLabel" name="textLabel1_2">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="minimumSize">
-             <size>
-              <width>0</width>
-              <height>20</height>
-             </size>
-            </property>
-            <property name="maximumSize">
-             <size>
-              <width>16777215</width>
-              <height>20</height>
-             </size>
-            </property>
-            <property name="text">
-             <string>&lt;b&gt;Network options&lt;/b&gt;</string>
-            </property>
-            <property name="alignment">
-             <set>Qt::AlignVCenter</set>
-            </property>
-            <property name="wordWrap">
-             <bool>true</bool>
-            </property>
-           </widget>
-          </item>
-          <item row="2" column="0" rowspan="2">
-           <spacer name="horizontalSpacer">
-            <property name="orientation">
-             <enum>Qt::Horizontal</enum>
-            </property>
-            <property name="sizeType">
-             <enum>QSizePolicy::Fixed</enum>
-            </property>
-            <property name="sizeHint" stdset="0">
-             <size>
-              <width>12</width>
-              <height>0</height>
-             </size>
-            </property>
-           </spacer>
           </item>
          </layout>
         </item>
-        <item row="0" column="0" rowspan="3">
-         <layout class="QVBoxLayout" name="verticalLayout_5">
-          <item>
-           <widget class="QLabel" name="networkLabel">
+        <item row="1" column="0">
+         <spacer name="networkIconSpacer">
+          <property name="orientation">
+           <enum>Qt::Vertical</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>20</width>
+            <height>40</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="tab">
+       <attribute name="title">
+        <string>Authentification</string>
+       </attribute>
+       <layout class="QGridLayout" name="gridLayout_3">
+        <item row="0" column="1" rowspan="2">
+         <layout class="QGridLayout" name="gridLayout">
+          <item row="5" column="2">
+           <widget class="QGroupBox" name="bindOptGroup">
+            <property name="title">
+             <string>Bind options</string>
+            </property>
+            <layout class="QGridLayout" name="gridLayout_8">
+             <item row="0" column="0">
+              <layout class="QGridLayout" name="bindOptGrid">
+               <item row="0" column="0" colspan="2">
+                <widget class="QCheckBox" name="bindAnonBox">
+                 <property name="text">
+                  <string>Anonymous bind</string>
+                 </property>
+                 <property name="checked">
+                  <bool>true</bool>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="0">
+                <widget class="QLabel" name="mechanismLabel">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Maximum" vsizetype="Preferred">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="text">
+                  <string>Mechanism:</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="1">
+                <widget class="QComboBox" name="mechanismBox">
+                 <property name="enabled">
+                  <bool>false</bool>
+                 </property>
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <item>
+                  <property name="text">
+                   <string>SIMPLE</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>SASL CRAM-MD5</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>SASL DIGEST-MD5</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>SASL EXTERNAL</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>SASL GSSAPI</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>SASL Login</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>SASL Plain</string>
+                  </property>
+                 </item>
+                </widget>
+               </item>
+               <item row="2" column="0">
+                <widget class="QLabel" name="bindAsLabel">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Maximum" vsizetype="Preferred">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="text">
+                  <string>Bind as:</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="2" column="1">
+                <widget class="QLineEdit" name="bindAsEdit">
+                 <property name="enabled">
+                  <bool>false</bool>
+                 </property>
+                </widget>
+               </item>
+               <item row="3" column="0">
+                <widget class="QLabel" name="passwordLabel">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Maximum" vsizetype="Preferred">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="text">
+                  <string>Password:</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="3" column="1">
+                <widget class="QLineEdit" name="passwordEdit">
+                 <property name="enabled">
+                  <bool>false</bool>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </item>
+             <item row="1" column="0">
+              <spacer name="vspacer1">
+               <property name="orientation">
+                <enum>Qt::Vertical</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>20</width>
+                 <height>40</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+            </layout>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item row="0" column="0">
+         <widget class="QLabel" name="authIcon">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>48</width>
+            <height>48</height>
+           </size>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="0">
+         <spacer name="authIconSpacer">
+          <property name="orientation">
+           <enum>Qt::Vertical</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>20</width>
+            <height>40</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="securityTab">
+       <attribute name="title">
+        <string>Security</string>
+       </attribute>
+       <layout class="QGridLayout" name="gridLayout_4">
+        <item row="0" column="0">
+         <widget class="QLabel" name="securityIcon">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>48</width>
+            <height>48</height>
+           </size>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="1" rowspan="2">
+         <layout class="QGridLayout" name="securityGridLayout">
+          <item row="0" column="0">
+           <widget class="QGroupBox" name="securityOptGroup">
             <property name="sizePolicy">
-             <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+             <sizepolicy hsizetype="Preferred" vsizetype="Maximum">
               <horstretch>0</horstretch>
               <verstretch>0</verstretch>
              </sizepolicy>
             </property>
-            <property name="minimumSize">
-             <size>
-              <width>48</width>
-              <height>48</height>
-             </size>
+            <property name="title">
+             <string>Security options</string>
             </property>
-            <property name="wordWrap">
-             <bool>false</bool>
-            </property>
+            <layout class="QGridLayout" name="gridLayout_9">
+             <item row="0" column="0">
+              <widget class="QComboBox" name="encryptionBox">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="minimumSize">
+                <size>
+                 <width>0</width>
+                 <height>20</height>
+                </size>
+               </property>
+               <item>
+                <property name="text">
+                 <string>Unencrypted connection</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Transport Layer Security (TLS)</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Secure Socket Layer (SSL)</string>
+                </property>
+               </item>
+              </widget>
+             </item>
+            </layout>
            </widget>
           </item>
-          <item>
-           <spacer name="verticalSpacer_4">
+          <item row="1" column="0">
+           <widget class="QGroupBox" name="serverCertGroup">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Preferred" vsizetype="Maximum">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="title">
+             <string>Validate server certificate</string>
+            </property>
+            <layout class="QGridLayout" name="gridLayout_10">
+             <item row="0" column="0">
+              <widget class="QComboBox" name="validateBox">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="minimumSize">
+                <size>
+                 <width>0</width>
+                 <height>20</height>
+                </size>
+               </property>
+               <item>
+                <property name="text">
+                 <string>Never</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Allow</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Try</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Demand</string>
+                </property>
+               </item>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item row="2" column="0">
+           <widget class="QGroupBox" name="clientCertOptGroup">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Preferred" vsizetype="Maximum">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="title">
+             <string>GroupBox</string>
+            </property>
+            <layout class="QGridLayout" name="gridLayout_11">
+             <item row="0" column="0">
+              <layout class="QGridLayout" name="clentCertForm">
+               <item row="0" column="0" colspan="3">
+                <widget class="QCheckBox" name="useClientCertBox">
+                 <property name="enabled">
+                  <bool>true</bool>
+                 </property>
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="minimumSize">
+                  <size>
+                   <width>0</width>
+                   <height>20</height>
+                  </size>
+                 </property>
+                 <property name="text">
+                  <string>Use client certificates</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="0">
+                <widget class="QLabel" name="certFileLabel">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="minimumSize">
+                  <size>
+                   <width>0</width>
+                   <height>20</height>
+                  </size>
+                 </property>
+                 <property name="text">
+                  <string>Certificate file:</string>
+                 </property>
+                 <property name="wordWrap">
+                  <bool>false</bool>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="1">
+                <widget class="QLineEdit" name="certFileEdit">
+                 <property name="enabled">
+                  <bool>false</bool>
+                 </property>
+                 <property name="minimumSize">
+                  <size>
+                   <width>0</width>
+                   <height>20</height>
+                  </size>
+                 </property>
+                </widget>
+               </item>
+               <item row="2" column="1">
+                <widget class="QLineEdit" name="certKeyfileEdit">
+                 <property name="enabled">
+                  <bool>false</bool>
+                 </property>
+                 <property name="minimumSize">
+                  <size>
+                   <width>0</width>
+                   <height>20</height>
+                  </size>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="2">
+                <widget class="QToolButton" name="certKeyfileButton">
+                 <property name="enabled">
+                  <bool>false</bool>
+                 </property>
+                 <property name="minimumSize">
+                  <size>
+                   <width>0</width>
+                   <height>20</height>
+                  </size>
+                 </property>
+                 <property name="text">
+                  <string>...</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="2" column="2">
+                <widget class="QToolButton" name="certFileButton">
+                 <property name="enabled">
+                  <bool>false</bool>
+                 </property>
+                 <property name="minimumSize">
+                  <size>
+                   <width>0</width>
+                   <height>20</height>
+                  </size>
+                 </property>
+                 <property name="text">
+                  <string>...</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="2" column="0">
+                <widget class="QLabel" name="certKeyfileLabel">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="minimumSize">
+                  <size>
+                   <width>0</width>
+                   <height>20</height>
+                  </size>
+                 </property>
+                 <property name="text">
+                  <string>Certificate keyfile:</string>
+                 </property>
+                 <property name="wordWrap">
+                  <bool>false</bool>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item row="3" column="0">
+           <spacer name="vspacer2">
             <property name="orientation">
              <enum>Qt::Vertical</enum>
             </property>
@@ -471,698 +713,18 @@
           </item>
          </layout>
         </item>
-       </layout>
-      </widget>
-      <widget class="QWidget" name="tab">
-       <attribute name="title">
-        <string>Authentification</string>
-       </attribute>
-       <layout class="QGridLayout" name="gridLayout_3">
-        <item row="2" column="1">
-         <spacer name="verticalSpacer">
-          <property name="orientation">
-           <enum>Qt::Vertical</enum>
-          </property>
-          <property name="sizeHint" stdset="0">
-           <size>
-            <width>0</width>
-            <height>0</height>
-           </size>
-          </property>
-         </spacer>
-        </item>
-        <item row="0" column="0" rowspan="2">
-         <layout class="QVBoxLayout" name="verticalLayout_4">
-          <item>
-           <widget class="QLabel" name="authLabel">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="minimumSize">
-             <size>
-              <width>48</width>
-              <height>48</height>
-             </size>
-            </property>
-            <property name="text">
-             <string/>
-            </property>
-            <property name="wordWrap">
-             <bool>false</bool>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <spacer name="verticalSpacer_3">
-            <property name="orientation">
-             <enum>Qt::Vertical</enum>
-            </property>
-            <property name="sizeHint" stdset="0">
-             <size>
-              <width>0</width>
-              <height>0</height>
-             </size>
-            </property>
-           </spacer>
-          </item>
-         </layout>
-        </item>
-        <item row="0" column="1" rowspan="2">
-         <layout class="QGridLayout" name="gridLayout">
-          <item row="1" column="0" rowspan="4">
-           <spacer>
-            <property name="orientation">
-             <enum>Qt::Horizontal</enum>
-            </property>
-            <property name="sizeType">
-             <enum>QSizePolicy::Fixed</enum>
-            </property>
-            <property name="sizeHint" stdset="0">
-             <size>
-              <width>12</width>
-              <height>0</height>
-             </size>
-            </property>
-           </spacer>
-          </item>
-          <item row="1" column="1" colspan="2">
-           <widget class="QCheckBox" name="bindAnonBox">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="minimumSize">
-             <size>
-              <width>0</width>
-              <height>20</height>
-             </size>
-            </property>
-            <property name="text">
-             <string>Anonymous bind</string>
-            </property>
-            <property name="checked">
-             <bool>true</bool>
-            </property>
-            <property name="tristate">
-             <bool>false</bool>
-            </property>
-           </widget>
-          </item>
-          <item row="2" column="1">
-           <widget class="QLabel" name="textLabel4">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="minimumSize">
-             <size>
-              <width>0</width>
-              <height>20</height>
-             </size>
-            </property>
-            <property name="text">
-             <string>Mechanism:</string>
-            </property>
-            <property name="alignment">
-             <set>Qt::AlignVCenter</set>
-            </property>
-            <property name="wordWrap">
-             <bool>false</bool>
-            </property>
-           </widget>
-          </item>
-          <item row="2" column="2">
-           <widget class="QComboBox" name="methodBox">
-            <property name="enabled">
-             <bool>false</bool>
-            </property>
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="minimumSize">
-             <size>
-              <width>0</width>
-              <height>20</height>
-             </size>
-            </property>
-            <item>
-             <property name="text">
-              <string>Simple</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>SASL CRAM-MD5</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>SASL DIGEST-MD5</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>SASL EXTERNAL</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>SASL GSSAPI</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>SASL Login</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>SASL Plain</string>
-             </property>
-            </item>
-           </widget>
-          </item>
-          <item row="3" column="1">
-           <widget class="QLabel" name="textLabel10">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="minimumSize">
-             <size>
-              <width>0</width>
-              <height>20</height>
-             </size>
-            </property>
-            <property name="text">
-             <string>Bind as:</string>
-            </property>
-            <property name="alignment">
-             <set>Qt::AlignVCenter</set>
-            </property>
-            <property name="wordWrap">
-             <bool>true</bool>
-            </property>
-           </widget>
-          </item>
-          <item row="3" column="2">
-           <widget class="QLineEdit" name="bindLineEdit">
-            <property name="enabled">
-             <bool>false</bool>
-            </property>
-            <property name="minimumSize">
-             <size>
-              <width>0</width>
-              <height>20</height>
-             </size>
-            </property>
-           </widget>
-          </item>
-          <item row="4" column="1">
-           <widget class="QLabel" name="textLabel12">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="minimumSize">
-             <size>
-              <width>0</width>
-              <height>20</height>
-             </size>
-            </property>
-            <property name="text">
-             <string>Password:</string>
-            </property>
-            <property name="alignment">
-             <set>Qt::AlignVCenter</set>
-            </property>
-            <property name="wordWrap">
-             <bool>false</bool>
-            </property>
-           </widget>
-          </item>
-          <item row="4" column="2">
-           <widget class="QLineEdit" name="passwordLineEdit">
-            <property name="enabled">
-             <bool>false</bool>
-            </property>
-            <property name="minimumSize">
-             <size>
-              <width>0</width>
-              <height>20</height>
-             </size>
-            </property>
-            <property name="echoMode">
-             <enum>QLineEdit::Password</enum>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="0" colspan="3">
-           <widget class="QLabel" name="textLabel1_4">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="minimumSize">
-             <size>
-              <width>300</width>
-              <height>20</height>
-             </size>
-            </property>
-            <property name="maximumSize">
-             <size>
-              <width>16777215</width>
-              <height>16777215</height>
-             </size>
-            </property>
-            <property name="text">
-             <string>&lt;b&gt;Bind options&lt;/b&gt;</string>
-            </property>
-            <property name="wordWrap">
-             <bool>false</bool>
-            </property>
-           </widget>
-          </item>
-         </layout>
-        </item>
-       </layout>
-      </widget>
-      <widget class="QWidget" name="tab_2">
-       <attribute name="title">
-        <string>Security</string>
-       </attribute>
-       <layout class="QGridLayout" name="gridLayout_4">
-        <item row="3" column="1" colspan="2">
-         <spacer name="spacer_9">
-          <property name="orientation">
-           <enum>Qt::Vertical</enum>
-          </property>
-          <property name="sizeType">
-           <enum>QSizePolicy::Expanding</enum>
-          </property>
-          <property name="sizeHint" stdset="0">
-           <size>
-            <width>0</width>
-            <height>0</height>
-           </size>
-          </property>
-         </spacer>
-        </item>
-        <item row="1" column="1">
-         <layout class="QGridLayout" name="gridLayout_2">
-          <item row="0" column="0" colspan="4">
-           <widget class="QLabel" name="textLabel1_10">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="minimumSize">
-             <size>
-              <width>0</width>
-              <height>20</height>
-             </size>
-            </property>
-            <property name="maximumSize">
-             <size>
-              <width>16777215</width>
-              <height>16777215</height>
-             </size>
-            </property>
-            <property name="text">
-             <string>&lt;b&gt;Security options&lt;/b&gt;</string>
-            </property>
-            <property name="wordWrap">
-             <bool>false</bool>
-            </property>
-           </widget>
-          </item>
-          <item row="1" column="1" colspan="3">
-           <widget class="QComboBox" name="encryptionBox">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="minimumSize">
-             <size>
-              <width>0</width>
-              <height>20</height>
-             </size>
-            </property>
-            <item>
-             <property name="text">
-              <string>Unencrypted connection</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Transport Layer Security (TLS)</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Secure Socket Layer (SSL)</string>
-             </property>
-            </item>
-           </widget>
-          </item>
-          <item row="1" column="0" rowspan="2">
-           <spacer name="spacer">
-            <property name="orientation">
-             <enum>Qt::Horizontal</enum>
-            </property>
-            <property name="sizeType">
-             <enum>QSizePolicy::Fixed</enum>
-            </property>
-            <property name="sizeHint" stdset="0">
-             <size>
-              <width>12</width>
-              <height>0</height>
-             </size>
-            </property>
-           </spacer>
-          </item>
-          <item row="2" column="1" colspan="3">
-           <spacer name="spacer_8">
-            <property name="orientation">
-             <enum>Qt::Vertical</enum>
-            </property>
-            <property name="sizeType">
-             <enum>QSizePolicy::Fixed</enum>
-            </property>
-            <property name="sizeHint" stdset="0">
-             <size>
-              <width>0</width>
-              <height>20</height>
-             </size>
-            </property>
-           </spacer>
-          </item>
-          <item row="3" column="0" colspan="4">
-           <widget class="QLabel" name="textLabel1_9">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="minimumSize">
-             <size>
-              <width>0</width>
-              <height>20</height>
-             </size>
-            </property>
-            <property name="text">
-             <string>&lt;b&gt;Validate server certificate&lt;/b&gt;</string>
-            </property>
-            <property name="wordWrap">
-             <bool>false</bool>
-            </property>
-           </widget>
-          </item>
-          <item row="4" column="0" rowspan="2">
-           <spacer>
-            <property name="orientation">
-             <enum>Qt::Horizontal</enum>
-            </property>
-            <property name="sizeType">
-             <enum>QSizePolicy::Fixed</enum>
-            </property>
-            <property name="sizeHint" stdset="0">
-             <size>
-              <width>12</width>
-              <height>0</height>
-             </size>
-            </property>
-           </spacer>
-          </item>
-          <item row="4" column="1" colspan="3">
-           <widget class="QComboBox" name="validateBox">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="minimumSize">
-             <size>
-              <width>0</width>
-              <height>20</height>
-             </size>
-            </property>
-            <item>
-             <property name="text">
-              <string>Never</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Allow</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Try</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Demand</string>
-             </property>
-            </item>
-           </widget>
-          </item>
-          <item row="5" column="1" colspan="3">
-           <spacer name="spacer_11">
-            <property name="orientation">
-             <enum>Qt::Vertical</enum>
-            </property>
-            <property name="sizeType">
-             <enum>QSizePolicy::Fixed</enum>
-            </property>
-            <property name="sizeHint" stdset="0">
-             <size>
-              <width>0</width>
-              <height>20</height>
-             </size>
-            </property>
-           </spacer>
-          </item>
-          <item row="6" column="0" colspan="4">
-           <widget class="QLabel" name="textLabel1_3">
-            <property name="minimumSize">
-             <size>
-              <width>0</width>
-              <height>20</height>
-             </size>
-            </property>
-            <property name="text">
-             <string>&lt;b&gt;Client certificate options&lt;/b&gt;</string>
-            </property>
-            <property name="wordWrap">
-             <bool>false</bool>
-            </property>
-           </widget>
-          </item>
-          <item row="7" column="1" colspan="3">
-           <widget class="QCheckBox" name="useClientCertBox">
-            <property name="enabled">
-             <bool>true</bool>
-            </property>
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="minimumSize">
-             <size>
-              <width>0</width>
-              <height>20</height>
-             </size>
-            </property>
-            <property name="text">
-             <string>Use client certificates</string>
-            </property>
-           </widget>
-          </item>
-          <item row="7" column="0" rowspan="3">
-           <spacer>
-            <property name="orientation">
-             <enum>Qt::Horizontal</enum>
-            </property>
-            <property name="sizeType">
-             <enum>QSizePolicy::Fixed</enum>
-            </property>
-            <property name="sizeHint" stdset="0">
-             <size>
-              <width>12</width>
-              <height>0</height>
-             </size>
-            </property>
-           </spacer>
-          </item>
-          <item row="8" column="1">
-           <widget class="QLabel" name="textLabel2_2">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="minimumSize">
-             <size>
-              <width>0</width>
-              <height>20</height>
-             </size>
-            </property>
-            <property name="text">
-             <string>Certificate file:</string>
-            </property>
-            <property name="wordWrap">
-             <bool>false</bool>
-            </property>
-           </widget>
-          </item>
-          <item row="9" column="1">
-           <widget class="QLabel" name="textLabel3">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="minimumSize">
-             <size>
-              <width>0</width>
-              <height>20</height>
-             </size>
-            </property>
-            <property name="text">
-             <string>Certificate keyfile:</string>
-            </property>
-            <property name="wordWrap">
-             <bool>false</bool>
-            </property>
-           </widget>
-          </item>
-          <item row="8" column="2">
-           <widget class="QLineEdit" name="certFileEdit">
-            <property name="enabled">
-             <bool>false</bool>
-            </property>
-            <property name="minimumSize">
-             <size>
-              <width>0</width>
-              <height>20</height>
-             </size>
-            </property>
-           </widget>
-          </item>
-          <item row="9" column="2">
-           <widget class="QLineEdit" name="certKeyFileEdit">
-            <property name="enabled">
-             <bool>false</bool>
-            </property>
-            <property name="minimumSize">
-             <size>
-              <width>0</width>
-              <height>20</height>
-             </size>
-            </property>
-           </widget>
-          </item>
-          <item row="8" column="3">
-           <widget class="QToolButton" name="certFileButton">
-            <property name="enabled">
-             <bool>false</bool>
-            </property>
-            <property name="minimumSize">
-             <size>
-              <width>0</width>
-              <height>20</height>
-             </size>
-            </property>
-            <property name="text">
-             <string>...</string>
-            </property>
-           </widget>
-          </item>
-          <item row="9" column="3">
-           <widget class="QToolButton" name="certKeyFileButton">
-            <property name="enabled">
-             <bool>false</bool>
-            </property>
-            <property name="minimumSize">
-             <size>
-              <width>0</width>
-              <height>20</height>
-             </size>
-            </property>
-            <property name="text">
-             <string>...</string>
-            </property>
-           </widget>
-          </item>
-         </layout>
-        </item>
         <item row="1" column="0">
-         <layout class="QVBoxLayout" name="verticalLayout_3">
-          <item>
-           <widget class="QLabel" name="securityLabel">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="minimumSize">
-             <size>
-              <width>48</width>
-              <height>48</height>
-             </size>
-            </property>
-            <property name="text">
-             <string/>
-            </property>
-            <property name="wordWrap">
-             <bool>false</bool>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <spacer name="verticalSpacer_2">
-            <property name="orientation">
-             <enum>Qt::Vertical</enum>
-            </property>
-            <property name="sizeHint" stdset="0">
-             <size>
-              <width>0</width>
-              <height>0</height>
-             </size>
-            </property>
-           </spacer>
-          </item>
-         </layout>
+         <spacer name="securityIconSpacer">
+          <property name="orientation">
+           <enum>Qt::Vertical</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>20</width>
+            <height>40</height>
+           </size>
+          </property>
+         </spacer>
         </item>
        </layout>
       </widget>
@@ -1170,7 +732,7 @@
     </widget>
    </item>
    <item>
-    <widget class="Line" name="line1">
+    <widget class="Line" name="line">
      <property name="frameShape">
       <enum>QFrame::HLine</enum>
      </property>
@@ -1180,9 +742,9 @@
     </widget>
    </item>
    <item>
-    <layout class="QHBoxLayout">
+    <layout class="QHBoxLayout" name="bottomHBoxLayout">
      <item>
-      <spacer>
+      <spacer name="hspacer1">
        <property name="orientation">
         <enum>Qt::Horizontal</enum>
        </property>
@@ -1249,29 +811,29 @@
  <layoutdefault spacing="6" margin="11"/>
  <pixmapfunction>qPixmapFromMimeSource</pixmapfunction>
  <tabstops>
-  <tabstop>serverListView</tabstop>
   <tabstop>addButton</tabstop>
   <tabstop>deleteButton</tabstop>
-  <tabstop>serverWidget</tabstop>
-  <tabstop>hostLineEdit</tabstop>
+  <tabstop>serverListView</tabstop>
+  <tabstop>tabWidget</tabstop>
+  <tabstop>hostEdit</tabstop>
   <tabstop>portSpinBox</tabstop>
   <tabstop>aliasBox</tabstop>
-  <tabstop>baseBox</tabstop>
-  <tabstop>baseEdit</tabstop>
+  <tabstop>baseDNBox</tabstop>
+  <tabstop>baseDNEdit</tabstop>
   <tabstop>addBaseDNButton</tabstop>
   <tabstop>deleteBaseDNButton</tabstop>
-  <tabstop>baseDNWidget</tabstop>
+  <tabstop>baseDNListWidget</tabstop>
   <tabstop>bindAnonBox</tabstop>
-  <tabstop>methodBox</tabstop>
-  <tabstop>bindLineEdit</tabstop>
-  <tabstop>passwordLineEdit</tabstop>
+  <tabstop>mechanismBox</tabstop>
+  <tabstop>bindAsEdit</tabstop>
+  <tabstop>passwordEdit</tabstop>
   <tabstop>encryptionBox</tabstop>
   <tabstop>validateBox</tabstop>
   <tabstop>useClientCertBox</tabstop>
   <tabstop>certFileEdit</tabstop>
+  <tabstop>certKeyfileButton</tabstop>
+  <tabstop>certKeyfileEdit</tabstop>
   <tabstop>certFileButton</tabstop>
-  <tabstop>certKeyFileEdit</tabstop>
-  <tabstop>certKeyFileButton</tabstop>
   <tabstop>okButton</tabstop>
   <tabstop>applyButton</tabstop>
   <tabstop>cancelButton</tabstop>
@@ -1279,274 +841,18 @@
  <resources/>
  <connections>
   <connection>
-   <sender>applyButton</sender>
-   <signal>clicked()</signal>
-   <receiver>ServerDialogDesign</receiver>
-   <slot>saveServers()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>505</x>
-     <y>423</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>20</x>
-     <y>20</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>cancelButton</sender>
-   <signal>clicked()</signal>
-   <receiver>ServerDialogDesign</receiver>
-   <slot>reject()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>596</x>
-     <y>423</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>20</x>
-     <y>20</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>okButton</sender>
-   <signal>clicked()</signal>
-   <receiver>ServerDialogDesign</receiver>
-   <slot>accept()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>414</x>
-     <y>423</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>20</x>
-     <y>20</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>deleteButton</sender>
-   <signal>clicked()</signal>
-   <receiver>ServerDialogDesign</receiver>
-   <slot>deleteServer()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>215</x>
-     <y>379</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>376</x>
-     <y>251</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
    <sender>addBaseDNButton</sender>
    <signal>clicked()</signal>
    <receiver>ServerDialogDesign</receiver>
    <slot>addBaseDN()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>502</x>
-     <y>219</y>
+     <x>435</x>
+     <y>271</y>
     </hint>
     <hint type="destinationlabel">
-     <x>376</x>
-     <y>251</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>deleteBaseDNButton</sender>
-   <signal>clicked()</signal>
-   <receiver>ServerDialogDesign</receiver>
-   <slot>deleteBaseDN()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>583</x>
-     <y>219</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>376</x>
-     <y>251</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>baseBox</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>addBaseDNButton</receiver>
-   <slot>setDisabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>583</x>
-     <y>190</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>502</x>
-     <y>219</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>baseBox</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>deleteBaseDNButton</receiver>
-   <slot>setDisabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>583</x>
-     <y>190</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>583</x>
-     <y>219</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>baseBox</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>baseEdit</receiver>
-   <slot>setDisabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>583</x>
-     <y>190</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>421</x>
-     <y>217</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>baseBox</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>baseDNWidget</receiver>
-   <slot>setDisabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>583</x>
-     <y>190</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>446</x>
-     <y>296</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>baseEdit</sender>
-   <signal>returnPressed()</signal>
-   <receiver>ServerDialogDesign</receiver>
-   <slot>addBaseDN()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>421</x>
-     <y>217</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>376</x>
-     <y>251</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>useClientCertBox</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>certFileEdit</receiver>
-   <slot>setEnabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>415</x>
-     <y>242</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>509</x>
-     <y>268</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>useClientCertBox</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>certKeyFileEdit</receiver>
-   <slot>setEnabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>415</x>
-     <y>242</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>509</x>
-     <y>294</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>useClientCertBox</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>certFileButton</receiver>
-   <slot>setEnabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>415</x>
-     <y>242</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>577</x>
-     <y>268</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>useClientCertBox</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>certKeyFileButton</receiver>
-   <slot>setEnabled(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>415</x>
-     <y>242</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>577</x>
-     <y>294</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>certFileButton</sender>
-   <signal>clicked()</signal>
-   <receiver>ServerDialogDesign</receiver>
-   <slot>certFileDialog()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>577</x>
-     <y>268</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>318</x>
-     <y>199</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>certKeyFileButton</sender>
-   <signal>clicked()</signal>
-   <receiver>ServerDialogDesign</receiver>
-   <slot>certKeyFileDialog()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>577</x>
-     <y>294</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>318</x>
-     <y>199</y>
+     <x>186</x>
+     <y>85</y>
     </hint>
    </hints>
   </connection>
@@ -1557,60 +863,316 @@
    <slot>addServer()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>134</x>
-     <y>379</y>
+     <x>52</x>
+     <y>366</y>
     </hint>
     <hint type="destinationlabel">
-     <x>376</x>
-     <y>251</y>
+     <x>99</x>
+     <y>122</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>applyButton</sender>
+   <signal>clicked()</signal>
+   <receiver>ServerDialogDesign</receiver>
+   <slot>saveServerlist()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>467</x>
+     <y>409</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>184</x>
+     <y>34</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>baseDNBox</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>addBaseDNButton</receiver>
+   <slot>setDisabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>455</x>
+     <y>209</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>435</x>
+     <y>271</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>baseDNBox</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>deleteBaseDNButton</receiver>
+   <slot>setDisabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>455</x>
+     <y>209</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>530</x>
+     <y>271</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>baseDNBox</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>baseDNEdit</receiver>
+   <slot>setDisabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>455</x>
+     <y>209</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>482</x>
+     <y>238</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>baseDNBox</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>baseDNListWidget</receiver>
+   <slot>setDisabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>455</x>
+     <y>209</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>455</x>
+     <y>324</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>bindAsEdit</sender>
+   <signal>returnPressed()</signal>
+   <receiver>ServerDialogDesign</receiver>
+   <slot>addBaseDN()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>493</x>
+     <y>143</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>318</x>
+     <y>199</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>cancelButton</sender>
+   <signal>clicked()</signal>
+   <receiver>ServerDialogDesign</receiver>
+   <slot>reject()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>554</x>
+     <y>410</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>318</x>
+     <y>199</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>certFileButton</sender>
+   <signal>clicked()</signal>
+   <receiver>ServerDialogDesign</receiver>
+   <slot>certFileDialog()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>564</x>
+     <y>277</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>303</x>
+     <y>216</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>certKeyfileButton</sender>
+   <signal>clicked()</signal>
+   <receiver>ServerDialogDesign</receiver>
+   <slot>certKeyfileDialog()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>564</x>
+     <y>246</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>303</x>
+     <y>216</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>deleteBaseDNButton</sender>
+   <signal>clicked()</signal>
+   <receiver>ServerDialogDesign</receiver>
+   <slot>deleteBaseDN()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>530</x>
+     <y>271</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>303</x>
+     <y>216</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>deleteButton</sender>
+   <signal>clicked()</signal>
+   <receiver>ServerDialogDesign</receiver>
+   <slot>deleteServer()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>143</x>
+     <y>366</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>303</x>
+     <y>216</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>okButton</sender>
+   <signal>clicked()</signal>
+   <receiver>ServerDialogDesign</receiver>
+   <slot>accept()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>372</x>
+     <y>410</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>309</x>
+     <y>122</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>useClientCertBox</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>certFileEdit</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>455</x>
+     <y>217</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>498</x>
+     <y>246</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>useClientCertBox</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>certKeyfileEdit</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>455</x>
+     <y>217</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>498</x>
+     <y>277</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>useClientCertBox</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>certFileButton</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>455</x>
+     <y>217</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>564</x>
+     <y>277</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>useClientCertBox</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>certKeyfileButton</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>455</x>
+     <y>217</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>564</x>
+     <y>246</y>
     </hint>
    </hints>
   </connection>
   <connection>
    <sender>bindAnonBox</sender>
    <signal>toggled(bool)</signal>
-   <receiver>methodBox</receiver>
+   <receiver>mechanismBox</receiver>
    <slot>setDisabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>449</x>
-     <y>76</y>
+     <x>455</x>
+     <y>83</y>
     </hint>
     <hint type="destinationlabel">
-     <x>480</x>
-     <y>102</y>
+     <x>493</x>
+     <y>112</y>
     </hint>
    </hints>
   </connection>
   <connection>
    <sender>bindAnonBox</sender>
    <signal>toggled(bool)</signal>
-   <receiver>bindLineEdit</receiver>
+   <receiver>bindAsEdit</receiver>
    <slot>setDisabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>449</x>
-     <y>76</y>
+     <x>455</x>
+     <y>83</y>
     </hint>
     <hint type="destinationlabel">
-     <x>480</x>
-     <y>128</y>
+     <x>493</x>
+     <y>143</y>
     </hint>
    </hints>
   </connection>
   <connection>
    <sender>bindAnonBox</sender>
    <signal>toggled(bool)</signal>
-   <receiver>passwordLineEdit</receiver>
+   <receiver>passwordEdit</receiver>
    <slot>setDisabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>449</x>
-     <y>76</y>
+     <x>455</x>
+     <y>83</y>
     </hint>
     <hint type="destinationlabel">
-     <x>480</x>
-     <y>154</y>
+     <x>493</x>
+     <y>174</y>
     </hint>
    </hints>
   </connection>
@@ -1621,8 +1183,8 @@
   <slot>manageBaseDn()</slot>
   <slot>addBaseDN()</slot>
   <slot>deleteBaseDN()</slot>
-  <slot>saveServers()</slot>
+  <slot>saveServerlist()</slot>
   <slot>certFileDialog()</slot>
-  <slot>certKeyFileDialog()</slot>
+  <slot>certKeyfileDialog()</slot>
  </slots>
 </ui>

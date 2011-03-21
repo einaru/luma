@@ -23,7 +23,8 @@ Assumed locations of files:
 |-- luma
 |   |-- base
 |   |   `-- gui
-|   |       `-- *Design.py
+|   |       `design
+|   |        `-- *Design.py
 |   `-- plugins
 |       `-- <plugin-name>
 |           `-- gui
@@ -61,7 +62,7 @@ SOURCE_ICONS = ['resources', 'icons']
 SOURCE_TRANS = ['resources', 'i18n']
 SOURCE_UI = ['resources', 'forms']
 DEST_TRANS = ['luma', 'i18n']
-DEST_UI = ['luma', 'base', 'gui']
+DEST_UI = ['luma', 'base', 'gui', 'design']
 PLUGINS = ['luma', 'plugins']
 
 # Files w/filepaths

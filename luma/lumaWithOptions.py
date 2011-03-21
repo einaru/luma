@@ -82,6 +82,9 @@ def startApplication(argv, verbose=False, clear=[], dirs={}):
     @param dirs: a dict;
         containing possible dirs to consider on start-up.
     """
+    #QtGui.QApplication.setStyle(QtGui.QStyleFactory.create("cleanlooks"))
+    #QtGui.QApplication.setPalette(QtGui.QApplication.style().standardPalette())
+    
     app = Luma(argv)
 
     app.setOrganizationName(appinfo.ORGNAME)
@@ -100,6 +103,10 @@ def startApplication(argv, verbose=False, clear=[], dirs={}):
         # have startet the application with the --clear-config option
         # We therefore need to retrive the config prefix in a best
         # practize cross-platform way
+        #
+        # NOTE: The first return value is a bool that indicates wheter
+        #       the configprefix exists or not. As of now the config
+        #       prefix is return regardless if it is writable or not.
         (_, settings.configPrefix) = getConfigPrefix()
     (_, configPrefix) = getConfigPrefix()
     # Setup the logging mechanism

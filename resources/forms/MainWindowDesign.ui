@@ -20,12 +20,7 @@
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout" name="gridLayout">
     <item row="0" column="0">
-     <widget class="QStackedWidget" name="mainStack">
-      <property name="currentIndex">
-       <number>0</number>
-      </property>
-      <widget class="QWidget" name="page"/>
-     </widget>
+     <widget class="QTabWidget" name="mainTabs"/>
     </item>
    </layout>
   </widget>
@@ -42,7 +37,7 @@
     <property name="title">
      <string>&amp;File</string>
     </property>
-    <addaction name="actionNew_Server"/>
+    <addaction name="separator"/>
     <addaction name="separator"/>
     <addaction name="actionQuit"/>
    </widget>
@@ -70,19 +65,22 @@
     </property>
     <addaction name="actionAboutLuma"/>
    </widget>
-   <widget class="QMenu" name="menuView">
+   <widget class="QMenu" name="menu_View">
     <property name="title">
      <string>&amp;View</string>
     </property>
-    <addaction name="actionToolbar"/>
-    <addaction name="actionStatusbar"/>
+    <addaction name="actionShowPluginList"/>
+    <addaction name="actionShowWelcomeTab"/>
+    <addaction name="separator"/>
+    <addaction name="actionShowToolbar"/>
+    <addaction name="actionShowStatusbar"/>
     <addaction name="actionShowLogger"/>
     <addaction name="separator"/>
     <addaction name="actionFullscreen"/>
    </widget>
    <addaction name="menuFile"/>
    <addaction name="menuEdit"/>
-   <addaction name="menuView"/>
+   <addaction name="menu_View"/>
    <addaction name="menuHelp"/>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
@@ -139,12 +137,32 @@
     <string>Settings</string>
    </property>
   </action>
-  <action name="actionNew_Server">
+  <action name="actionShowPluginList">
+   <property name="checkable">
+    <bool>false</bool>
+   </property>
    <property name="text">
-    <string>New Server</string>
+    <string>Show Plugin List</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+P</string>
    </property>
   </action>
-  <action name="actionToolbar">
+  <action name="actionShowWelcomeTab">
+   <property name="checkable">
+    <bool>false</bool>
+   </property>
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>Show Welcome Tab</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift+W</string>
+   </property>
+  </action>
+  <action name="actionShowToolbar">
    <property name="checkable">
     <bool>true</bool>
    </property>
@@ -152,7 +170,7 @@
     <string>Toolbar</string>
    </property>
   </action>
-  <action name="actionStatusbar">
+  <action name="actionShowStatusbar">
    <property name="checkable">
     <bool>true</bool>
    </property>
@@ -169,9 +187,6 @@
    </property>
    <property name="text">
     <string>Fullscreen</string>
-   </property>
-   <property name="shortcut">
-    <string>F11</string>
    </property>
   </action>
  </widget>
@@ -243,7 +258,7 @@
   </connection>
   <connection>
    <sender>actionShowLogger</sender>
-   <signal>triggered(bool)</signal>
+   <signal>toggled(bool)</signal>
    <receiver>MainWindow</receiver>
    <slot>toggleLoggerWindow(bool)</slot>
    <hints>
@@ -290,24 +305,56 @@
    </hints>
   </connection>
   <connection>
-   <sender>actionToolbar</sender>
-   <signal>triggered(bool)</signal>
+   <sender>mainTabs</sender>
+   <signal>tabCloseRequested(int)</signal>
    <receiver>MainWindow</receiver>
-   <slot>toggleToolbar(bool)</slot>
+   <slot>tabClose()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>456</x>
+     <y>288</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>456</x>
+     <y>287</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionShowPluginList</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>showPlugins()</slot>
    <hints>
     <hint type="sourcelabel">
      <x>-1</x>
      <y>-1</y>
     </hint>
     <hint type="destinationlabel">
-     <x>349</x>
-     <y>274</y>
+     <x>456</x>
+     <y>287</y>
     </hint>
    </hints>
   </connection>
   <connection>
-   <sender>actionStatusbar</sender>
-   <signal>triggered(bool)</signal>
+   <sender>actionShowWelcomeTab</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>MainWindow</receiver>
+   <slot>showWelcome()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>456</x>
+     <y>287</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionShowStatusbar</sender>
+   <signal>toggled(bool)</signal>
    <receiver>MainWindow</receiver>
    <slot>toggleStatusbar(bool)</slot>
    <hints>
@@ -317,13 +364,29 @@
     </hint>
     <hint type="destinationlabel">
      <x>349</x>
-     <y>274</y>
+     <y>249</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionShowToolbar</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>MainWindow</receiver>
+   <slot>toggleToolbar(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>349</x>
+     <y>249</y>
     </hint>
    </hints>
   </connection>
   <connection>
    <sender>actionFullscreen</sender>
-   <signal>triggered(bool)</signal>
+   <signal>toggled(bool)</signal>
    <receiver>MainWindow</receiver>
    <slot>toggleFullscreen(bool)</slot>
    <hints>
@@ -333,7 +396,7 @@
     </hint>
     <hint type="destinationlabel">
      <x>349</x>
-     <y>274</y>
+     <y>249</y>
     </hint>
    </hints>
   </connection>
@@ -346,8 +409,11 @@
   <slot>showAboutLuma()</slot>
   <slot>showServerEditor()</slot>
   <slot>showSettingsDialog()</slot>
+  <slot>tabClose()</slot>
+  <slot>showPlugins()</slot>
+  <slot>showWelcome()</slot>
   <slot>toggleStatusbar(bool)</slot>
-  <slot>toggleFullscreen(bool)</slot>
   <slot>toggleToolbar(bool)</slot>
+  <slot>toggleFullscreen(bool)</slot>
  </slots>
 </ui>

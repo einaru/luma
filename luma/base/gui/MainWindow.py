@@ -1,28 +1,39 @@
 # -*- coding: utf-8 -*-
 #
-# base.gui.Window
-#
 # Copyright (c) 2011
-#     Einar Uvsløkk, <einar.uvslokk@linux.com>
+#     Einar Uvsløkk, <einar.uvslokk@linux.no>
 #     Christian Forfang, <cforfang@gmail.com>
-#     Johannes Harestad, <johannesharestad@gmail.com>
 #
-# This program is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
+# Luma is free software; you can redistribute it and/or modify 
+# it under the terms of the GNU General Public Licence as published by 
+# the Free Software Foundation; either version 2 of the Licence, or 
 # (at your option) any later version.
 #
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
+# Luma is distributed in the hope that it will be useful, but 
+# WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY
+# or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public Licence 
+# for more details.
 #
-# You should have received a copy of the GNU General Public License
-# along with this program.  If not, see http://www.gnu.org/licenses/
+# You should have received a copy of the GNU General Public Licence along 
+# with Luma; if not, write to the Free Software Foundation, Inc., 
+# 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA
+"""
+This module contains several Luma Widget classes:
+
+MainWindow:
+    The Luma main window.
+
+LoggerWidget:
+    A dockable loggerwidget used by MainWindow.
+
+PluginToolBar:
+    A toolbar widget for quick plugin access.
+"""
 import logging
+import gc
 
 from PyQt4.QtCore import Qt, pyqtSlot, pyqtSignal
-from PyQt4.QtCore import QEvent, QString
+from PyQt4.QtCore import QEvent, QString, QTimer
 from PyQt4.QtCore import QTranslator
 
 from PyQt4.QtGui import QAction, QActionGroup, QApplication, qApp
@@ -34,18 +45,20 @@ from PyQt4.QtGui import QMainWindow
 from PyQt4.QtGui import QPushButton
 from PyQt4.QtGui import QToolBar
 from PyQt4.QtGui import QWidget
-from PyQt4.QtGui import QProgressBar
 
 from ..backend.ServerList import ServerList
+from ..gui.AboutDialog import AboutDialog
+from ..gui.ServerDialog import ServerDialog
 from ..gui.Settings import Settings
-from ..gui.Dialog import AboutDialog, ServerDialog, SettingsDialog
-from ..gui.LoggerWidgetDesign import Ui_LoggerWidget
-from ..gui.MainWindowDesign import Ui_MainWindow
+from ..gui.SettingsDialog import SettingsDialog
+from ..gui.design.LoggerWidgetDesign import Ui_LoggerWidget
+from ..gui.design.MainWindowDesign import Ui_MainWindow
 from ..util.i18n import LanguageHandler
 from ..util.gui.PluginListWidget import PluginListWidget
 
+
 class MainWindow(QMainWindow, Ui_MainWindow):
-    """ The Luma main window.
+    """ The Main window of Luma.
     """
 
     DEVEL = True
@@ -56,7 +69,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
     languageHandler = None
     currentLanguage = ''
 
-    def __init__(self, configPrefix, parent=None):
+    def __init__(self, parent=None):
         """ The constructor sets up the MainWindow widget, 
         and connects all necessary signals and slots
         """
@@ -65,7 +78,6 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.translator = QTranslator()
         self.languageHandler = LanguageHandler()
         self.languages = self.languageHandler.availableLanguages
-        self.configPrefix = configPrefix
         self.setupUi(self)
 
         self.setWindowIcon(QIcon(':/icons/luma-16'))
@@ -75,35 +87,33 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.__loadSettings()
         self.__setupPluginList()
         self.__createLanguageOptions()
-
-        self.progressBar = QProgressBar()
-        #self.progressBar.setRange(0,0)
-        self.progressBar.setTextVisible(False)
-        self.statusBar.addPermanentWidget(self.progressBar)
-
-        #TODO REMOVE
-        #qApp.postEvent(qApp, QEvent(QEvent.User))
+        
+        self.setStatusBar(self.statusBar)
 
         if self.DEVEL:
             self.actionEditServerList.setStatusTip(
                 u'Final GUI polishing by Granbusk\u2122 Polishing')
 
     def __setupPluginList(self):
-        """ Sets up the plugin list view
         """
-
-        #self.pluginDockWindow = QDockWidget(self)
-        #self.pluginDockWindow.setWindowTitle(
-        #     QApplication.translate(
-        #        "MainWindow", "Plugin list", None, QApplication.UnicodeUTF8))
-        #self.pluginWidget = PluginListWidget()
-        #self.pluginDockWindow.setWidget(self.pluginWidget) 
-        #self.addDockWidget(Qt.TopDockWidgetArea, self.pluginDockWindow)
+        self.pluginDockWindow = QDockWidget(self)
+        self.pluginDockWindow.setWindowTitle(
+             QApplication.translate(
+                "MainWindow", "Plugin list", None, QApplication.UnicodeUTF8))
+        self.pluginWidget = PluginListWidget()
+        self.pluginDockWindow.setWidget(self.pluginWidget) 
+        self.addDockWidget(Qt.TopDockWidgetArea, self.pluginDockWindow)
+        
 
         self.pluginWidget = PluginListWidget(self)
         self.mainStack.addWidget(self.pluginWidget)
         self.showPlugins()
+        """
 
+        self.pluginWidget = PluginListWidget(self)
+        self.mainTabs.setTabsClosable(True)
+        self.showPlugins()
+        
     def __createPluginToolBar(self):
         """ Creates the pluign toolbar.
         """
@@ -169,7 +179,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.loadLanguage(settings.language)
 
         # Plugins
-        self.TODO(u'load settings[plugins]%s' % str(self.__class__))
+        #self.TODO(u'load settings[plugins]%s' % str(self.__class__))
 
     def __writeSettings(self):
         """ Save settings to file.
@@ -194,13 +204,6 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
         # Plugins """
         self.TODO(u'write settings%s' % self.__class__)
-
-    def getProgressBar(self):
-        """
-        @return:
-            The main window progress bar.
-        """
-        return self.progressBar
 
     @pyqtSlot('QAction*')
     @pyqtSlot(int)
@@ -323,10 +326,11 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             self.showNormal()
 
     def showServerEditor(self):
-        """ Slot to display the server editor dialog.
         """
-        self.logger.debug(self.configPrefix)
-        serverEditor = ServerDialog(ServerList(configPrefix=self.configPrefix))
+        Slot to display the server editor dialog.
+        """
+        print 'server'
+        serverEditor = ServerDialog(ServerList())
         serverEditor.exec_()
 
     def showSettingsDialog(self, tab=0):
@@ -362,10 +366,19 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         """
         self.pluginWidget.updatePlugins()
 
+    def loadPlugins(self):
+        """ Hmmm...
+        """
+        self.showPlugins()
+
     def pluginSelected(self, item):
         """ This method will be called from the PluginListWidget.
         """
-        widget = item.widget
+        widget = item.plugin.getPluginWidget(None, self)
+        index = self.mainTabs.addTab(widget, item.plugin.pluginUserString)
+        self.mainTabs.setCurrentIndex(index)
+
+        """
         if self.mainStack.indexOf(widget) == -1:
             self.mainStack.addWidget(widget)
 
@@ -376,33 +389,62 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 self.pluginToolBar.button.setEnabled(True)
                 self.pluginToolBar.label.setText(QApplication.translate('MainWindow', item.plugin.pluginUserString, None, QApplication.UnicodeUTF8))
 
-                # The plugin-toolbar should be inside the getPluginWidget
-                # This should maybe be required by the PluginLoader, 
-                # to have this in the __init__.py for a plugin
+                #The plugin-toolbar should be inside the getPluginWidget
+                #This should maybe be required by the PluginLoader, to have this in the __init__.py for a plugin
 
-                self.logger.debug('Trying to build toolbar for plugin')
+                self.logger.debug("Trying to build toolbar for plugin")
 
-                if hasattr(widget, 'toolbarActions'):
+                if hasattr(widget, "toolbarActions"):
                     try:
                         for action in widget.toolbarActions():
                             self.pluginToolbar.addAction(action)
                     except Exception:
-                        self.logger.error('Could not append actions to toolbar from plugin')
+                        self.logger.error("Could not append actions to toolbar from plugin")
                         pass
                 else:
-                    self.logger.debug('No actions to add to toolbar from plugin')
+                    self.logger.debug("No actions to add to toolbar from plugin")
+        """
+
+    def tabClose(self, index):
+        """ Slot for the signal tabCloseRequest(int) for the tabMains
+        """
+        
+        widget = self.mainTabs.widget(index)
+        if widget == self.pluginWidget:
+            self.actionShowPluginList.setEnabled(True)
+        
+        self.mainTabs.removeTab(index)
+        
+        #Unparent the widget since it was reparented by the QTabWidget so it's gargabe collected
+        widget.setParent(None)
+        
+        #Done automatically by PyQt since there's no refs to the widget
+        #widget.deleteLater()
+        
+        # In case the widget contained circular references -- force GC to take care of the objects
+        # since there can be quite many if it was BrowserWidget that was closed
+        # Can't call it directly since that'll be too soon
+        QTimer.singleShot(0, self.gc)
+        
+    def gc(self):
+        gc.collect()
+
+    def showWelcome(self):
+        self.TODO('Create the welcome tab')
 
     def showPlugins(self):
         """ Will set the pluginlistwidget on top of the mainstack.
         """
+        
+        if self.mainTabs.indexOf(self.pluginWidget) == -1:
+            index = self.mainTabs.addTab(self.pluginWidget, QApplication.translate("MainWindow","Plugins"))
+            self.mainTabs.setCurrentIndex(index)
+            self.actionShowPluginList.setEnabled(False)
 
-        if self.pluginWidget and self.mainStack.currentWidget() != self.pluginWidget:
-            self.mainStack.setCurrentWidget(self.pluginWidget)
-
-            if self.pluginToolBar:
-                self.pluginToolBar.button.setEnabled(False)
-                self.pluginToolBar.label.setText(QApplication.translate('MainWindow', 'Available plugins', None, QApplication.UnicodeUTF8))
-
+        else:
+            """TODO: REMOVE THIS """
+            self.logger.debug("Johannes fix: linje 438")
+        
     def close(self):
         """ Overrides the QApplication close slot to save settings
         before we tear down the application.
@@ -442,15 +484,17 @@ class LoggerWidget(QWidget, Ui_LoggerWidget):
         self.logSignal.connect(self.appendMsg, type=Qt.QueuedConnection)
 
     def clearLogger(self):
-        """ Clears the logwindow. Currently the loglist is deleted when
-        this method is called.
+        """
+        Clears the logwindow. Currently the loglist is deleted when this
+        method is called.
         """
         self.logList = []
         self.messageEdit.clear()
 
     def rebuildLog(self):
-        """ This method is called when on of the checkboxes indicates
-        new filter state.
+        """
+        This method is called when on of the checkboxes indicates new
+        filter state.
         """
         self.messageEdit.clear()
         for l in self.logList:
@@ -467,35 +511,39 @@ class LoggerWidget(QWidget, Ui_LoggerWidget):
 
     @pyqtSlot(QString)
     def appendMsg(self, msg):
-        """ For thread-safety: this is executed in the thread which
-        owns the loggerwidget, ie. the gui-thread
+        """
+        For thread-safety: this is executed in the thread
+        which owns the loggerwidget, ie. the gui-thread
         """
         self.messageEdit.append(msg)
 
     def log(self, log):
-        """ Appends the log the the logList and uses a signal in order
-        to have it be appended to the textfield by the gui-thread
+        """
+        Appends the log the the logList
+        and uses a signal in order to have it 
+        be appended to the textfield by the gui-thread
         """
         loglvl, msg = log
+        self.logList.append(log)
         if loglvl == "DEBUG" and self.debugBox.isChecked():
-            self.logList.append(log)
+            #self.logList.append(log)
             self.logSignal.emit("DEBUG: " + msg)
             #self.messageEdit.append("DEBUG: " + msg)
             return
         if loglvl == "ERROR" and self.errorBox.isChecked():
-            self.logList.append(log)
+            #self.logList.append(log)
             #self.messageEdit.append("ERROR: " + msg)
             self.logSignal.emit("ERROR: " + msg)
             return
         if loglvl == "INFO" and self.infoBox.isChecked():
-            self.logList.append(log)
+            #self.logList.append(log)
             #self.messageEdit.append("INFO: " + msg)
             self.logSignal.emit("INFO: " + msg)
             return
         if loglvl not in ["INFO", "ERROR", "DEBUG"]:
             # This shouldn't really happen...
             # Please only use the above levels
-            self.logList.append(log)
+            #self.logList.append(log)
             #self.messageEdit.append("UNKNOWN: " + msg)
             self.logSignal.emit("UNKNOWN: " + msg)
 
@@ -505,8 +553,8 @@ class PluginToolBar(QToolBar):
     
     Provides a toolbar for quickly switching between installed plugins
     
-    The button will be enabled and disabled directly from main-win, and
-    the label for the plugin-name too.
+    The button will be enabled and disabled directly from main-win,
+    and the label for the plugin-name too.
     """
 
     def __init__(self, parent=None):
@@ -535,3 +583,4 @@ class PluginToolBar(QToolBar):
     def choosePlugin(self):
         if hasattr(self.parent, "showPlugins"):
             self.parent.showPlugins()
+

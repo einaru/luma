@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file '/mnt/debris/devel/git/merging-luma/resources/forms/EinarServerDialogDesign.ui'
+# Form implementation generated from reading ui file '/mnt/debris/devel/git/merging-luma/resources/forms/ServerDialogDesign.ui'
 #
-# Created: Mon Mar 21 20:19:01 2011
+# Created: Mon Mar 21 21:50:03 2011
 #      by: PyQt4 UI code generator 4.7.4
 #
 # WARNING! All changes made in this file will be lost!
