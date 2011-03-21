@@ -190,42 +190,42 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>BrowserView</name>
     <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="78"/>
+        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="79"/>
         <source>This is where entries are displayed when opened.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="129"/>
+        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="130"/>
         <source>Reload children</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="131"/>
+        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="132"/>
         <source>Filter</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="133"/>
+        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="134"/>
         <source>Limit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="135"/>
+        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="136"/>
         <source>Clear</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="143"/>
+        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="144"/>
         <source>Entry</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="144"/>
+        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="145"/>
         <source>Template</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="142"/>
+        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="143"/>
         <source>Delete</source>
         <translation type="unfinished"></translation>
     </message>
@@ -405,7 +405,7 @@ p, li { white-space: pre-wrap; }
         <translation></translation>
     </message>
     <message>
-        <location filename="luma/base/gui/MainWin.py" line="155"/>
+        <location filename="luma/base/gui/MainWin.py" line="141"/>
         <source>Logger</source>
         <translation></translation>
     </message>
@@ -430,17 +430,17 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/base/gui/MainWin.py" line="608"/>
+        <location filename="luma/base/gui/MainWin.py" line="593"/>
         <source>Available plugins</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/base/gui/MainWin.py" line="609"/>
+        <location filename="luma/base/gui/MainWin.py" line="594"/>
         <source>Choose plugin</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/base/gui/MainWin.py" line="464"/>
+        <location filename="luma/base/gui/MainWin.py" line="449"/>
         <source>Plugins</source>
         <translation type="unfinished"></translation>
     </message>

@@ -12,7 +12,7 @@ import ldap
 import ldapurl
 import ldap.modlist
         
-from PyQt4.QtGui import qApp
+from PyQt4.QtGui import qApp, QInputDialog, QLineEdit, QApplication
 from PyQt4.QtGui import QCursor
 from PyQt4.QtCore import Qt
         
@@ -30,9 +30,9 @@ from base.backend.ServerObject import ServerObject, ServerCheckCertificate, Serv
 from base.backend.SmartDataObject import SmartDataObject
 from PyQt4.QtGui import QMessageBox
 
-# TODO
 #from base.backend.LumaSSLConnection import hasSSLlibrary
-#from base.utils.gui.PromptPasswordDialog import PromptPasswordDialog
+hasSSLlibrary = False
+
 #from base.gui.UnknownCertDialog import UnknownCertDialog
 
 
@@ -260,9 +260,15 @@ class LumaConnection(object):
         # Prompt user to continue if we suspect that the certificate could not
         # be verified
         if self._cert_error(workerThread):
+            """
+            TODO FIX FOR QT4.
+            Could use QMessageBox.question or somethign
+            """
             if hasSSLlibrary:
-                dialog = UnknownCertDialog(self.serverObject)
-                accepted = UnknownCertDialog.Accepted
+                pass
+                # TODO
+                #dialog = UnknownCertDialog(self.serverObject)
+                #accepted = UnknownCertDialog.Accepted
             else:
                 dialog = QMessageBox("Certificate error",
                         "Do you want to continue anyway?",
@@ -282,11 +288,11 @@ class LumaConnection(object):
 
         # Prompt for password on _invalid_pwd or _blank_pwd
         if self._invalid_pwd(workerThread) or self._blank_pwd(workerThread):
-            dialog = PromptPasswordDialog()
-            #environment.setBusy(False)
-            dialog.exec_loop()
-            if dialog.result() == 1:
-                self.serverObject.bindPassword = unicode(dialog.passwordEdit.text())
+            self.setBusy(False)
+            pw, ret = QInputDialog.getText(None, QApplication.translate("LumaConnection","Password"), QApplication.translate("LumaConnection","Invalid passord. Enter new:"), mode=QLineEdit.Password)
+            self.setBusy(True)
+            if ret:
+                self.serverObject.bindPassword = unicode(pw)
                 LumaConnection._passwordMap[self.serverObject.name] = self.serverObject.bindPassword
                 workerThread = self.__bind()
 

@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'D:\Dropbox\Git\it2901\resources\forms\NewEntryDialogDesign.ui'
 #
-# Created: Mon Mar 21 14:46:09 2011
+# Created: Mon Mar 21 16:41:42 2011
 #      by: PyQt4 UI code generator 4.8.2
 #
 # WARNING! All changes made in this file will be lost!
