@@ -142,7 +142,7 @@ class ServerDialog(QDialog, Ui_ServerDialogDesign):
         """
         Create a new ServerObject and add it to the model (thus the list)
         """
-        name, ok = QInputDialog.getText(self, self.tr('Add server'), self.tr('123','Name:'))
+        name, ok = QInputDialog.getText(self, self.tr('Add server'), self.tr('Name:'))
         if ok:
             if len(name) < 1 or self._serverList.getServerObject(name) != None:
                 QMessageBox.information(self, self.tr('Error'), self.tr("Invalid name or already used."))

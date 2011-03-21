@@ -1,13 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS><TS version="1.1" language="en_UM">
-<context>
-    <name>@default</name>
-    <message>
-        <location filename="luma/plugins/browser_plugin/item/LDAPErrorItem.py" line="23"/>
-        <source>There was an error receiving this item or it&apos;s parent. See the attached error-message and/or the log for details.</source>
-        <translation type="obsolete">eloel.</translation>
-    </message>
-</context>
 <context encoding="UTF-8">
     <name>AboutCredits</name>
     <message>
@@ -198,52 +190,44 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>BrowserView</name>
     <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="79"/>
+        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="78"/>
         <source>This is where entries are displayed when opened.</source>
-        <translation>Dette er hvor TING vises når de blir åpnet.</translation>
+        <translation>7h1$ 1$ wh3r3 3n7r13$ 4r3 Ð1$p£4¥3Ð wh3n 0p3n3Ð.</translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="130"/>
+        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="129"/>
         <source>Reload children</source>
-        <translation type="unfinished"></translation>
+        <translation>R3£04Ð (h1£Ðr3n</translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="132"/>
+        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="131"/>
         <source>Filter</source>
-        <translation type="unfinished"></translation>
+        <translation>ƒ1£73r</translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="134"/>
+        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="133"/>
         <source>Limit</source>
-        <translation type="unfinished"></translation>
+        <translation>£1m17</translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="136"/>
+        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="135"/>
         <source>Clear</source>
-        <translation type="unfinished">cl34r</translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="144"/>
-        <source>Entry</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="145"/>
-        <source>Template</source>
-        <translation type="unfinished"></translation>
+        <translation>cl34r</translation>
     </message>
     <message>
         <location filename="luma/plugins/browser_plugin/BrowserView.py" line="143"/>
-        <source>Delete</source>
-        <translation type="unfinished"></translation>
+        <source>Entry</source>
+        <translation>3n7r¥</translation>
     </message>
-</context>
-<context>
-    <name>Context</name>
     <message>
-        <location filename="luma/plugins/browser_plugin/item/LDAPErrorItem.py" line="24"/>
-        <source>There was an error receiving this item or it&apos;s parent. See the attached error-message and/or the log for details.</source>
-        <translation type="obsolete">eloel.</translation>
+        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="144"/>
+        <source>Template</source>
+        <translation>73mp£473</translation>
+    </message>
+    <message>
+        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="142"/>
+        <source>Delete</source>
+        <translation>Ð3£373</translation>
     </message>
 </context>
 <context>
@@ -251,7 +235,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="luma/plugins/browser_plugin/item/LDAPErrorItem.py" line="24"/>
         <source>There was an error receiving this item or it&apos;s parent. See the attached error-message and/or the log for details.</source>
-        <translation type="unfinished">eloel.</translation>
+        <translation>7h3r3 w4$ 4n 3rr0r r3(31v1n9 7h1$ 173m 0r 17&apos;$ p4r3n7. $33 7h3 4774(h3Ð 3rr0r-m3$$493 4nÐ/0r 7h3 £09 ƒ0r Ð3741£$.</translation>
     </message>
 </context>
 <context>
@@ -259,17 +243,17 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="luma/plugins/browser_plugin/item/LDAPTreeItem.py" line="51"/>
         <source>This item has both a filter and limit applied.</source>
-        <translation type="unfinished"></translation>
+        <translation>7h1$ 173m h4$ b07h 4 ƒ1£73r 4nÐ £1m17 4pp£13Ð.</translation>
     </message>
     <message>
         <location filename="luma/plugins/browser_plugin/item/LDAPTreeItem.py" line="53"/>
         <source>This item have a filter applied.</source>
-        <translation type="unfinished"></translation>
+        <translation>7h1$ 173m h4v3 4 ƒ1£73r 4pp£13Ð.</translation>
     </message>
     <message>
         <location filename="luma/plugins/browser_plugin/item/LDAPTreeItem.py" line="55"/>
         <source>This item have a limit applied.</source>
-        <translation type="unfinished"></translation>
+        <translation>7h1$ 173m h4v3 4 ƒ1£73r 4pp£13Ð.</translation>
     </message>
 </context>
 <context>
@@ -277,7 +261,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="luma/plugins/browser_plugin/model/LDAPTreeItemModel.py" line="169"/>
         <source>No servers defined</source>
-        <translation type="unfinished"></translation>
+        <translation>N0 $3rv3r$ Ð3ƒ1n3Ð</translation>
     </message>
 </context>
 <context>
@@ -406,89 +390,84 @@ p, li { white-space: pre-wrap; }
         <translation>l0993r</translation>
     </message>
     <message>
-        <location filename="base/gui/MainWin.py" line="481"/>
-        <source>Plugin name</source>
-        <translation type="obsolete">plu91n n4m3</translation>
-    </message>
-    <message>
-        <location filename="luma/base/gui/MainWin.py" line="609"/>
-        <source>Choose plugin</source>
-        <translation>c00h53 plu91n</translation>
-    </message>
-    <message>
-        <location filename="luma/base/gui/MainWin.py" line="608"/>
-        <source>Available plugins</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="resources/forms/MainWinDesign.ui" line="131"/>
         <source>Show plugin-list</source>
-        <translation type="unfinished"></translation>
+        <translation>$h0w p£µ91n-£1$7</translation>
     </message>
     <message>
         <location filename="resources/forms/MainWinDesign.ui" line="134"/>
         <source>Ctrl+P</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="resources/forms/MainWinDesign.ui" line="139"/>
         <source>Show welcome tab</source>
-        <translation type="unfinished"></translation>
+        <translation>$h0w w3£(0m3 74b</translation>
     </message>
     <message>
         <location filename="resources/forms/MainWinDesign.ui" line="142"/>
         <source>Ctrl+Shift+W</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="luma/base/gui/MainWin.py" line="609"/>
+        <source>Available plugins LOL</source>
+        <translation>Tilgjengelige plugins</translation>
+    </message>
+    <message>
+        <location filename="luma/base/gui/MainWin.py" line="610"/>
+        <source>Choose plugin LOL</source>
+        <translation>Velg plugin</translation>
     </message>
 </context>
 <context>
     <name>ServerDialog</name>
     <message>
-        <location filename="luma/base/gui/ServerDialog.py" line="138"/>
+        <location filename="luma/base/gui/ServerDialog.py" line="145"/>
         <source>Add server</source>
-        <translation type="unfinished"></translation>
+        <translation>4ÐÐ $3rv3r</translation>
     </message>
     <message>
-        <location filename="luma/base/gui/ServerDialog.py" line="138"/>
-        <source>123</source>
-        <comment>Name:</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="luma/base/gui/ServerDialog.py" line="141"/>
+        <location filename="luma/base/gui/ServerDialog.py" line="148"/>
         <source>Error</source>
-        <translation type="unfinished"></translation>
+        <translation>3rr0r</translation>
     </message>
     <message>
-        <location filename="luma/base/gui/ServerDialog.py" line="141"/>
+        <location filename="luma/base/gui/ServerDialog.py" line="148"/>
         <source>Invalid name or already used.</source>
-        <translation type="unfinished"></translation>
+        <translation>1nv4£1Ð n4m3 0r 4£r34Ð¥ µ$3Ð.</translation>
     </message>
     <message>
-        <location filename="luma/base/gui/ServerDialog.py" line="167"/>
+        <location filename="luma/base/gui/ServerDialog.py" line="174"/>
         <source>Delete</source>
-        <translation type="unfinished"></translation>
+        <translation>Ð3£373</translation>
     </message>
     <message>
-        <location filename="luma/base/gui/ServerDialog.py" line="167"/>
+        <location filename="luma/base/gui/ServerDialog.py" line="174"/>
         <source>Are you sure?</source>
-        <translation type="unfinished"></translation>
+        <translation>4r3 ¥0µ $µr3?</translation>
     </message>
     <message>
-        <location filename="luma/base/gui/ServerDialog.py" line="198"/>
+        <location filename="luma/base/gui/ServerDialog.py" line="210"/>
         <source>Exit?</source>
-        <translation type="unfinished"></translation>
+        <translation>3x17?</translation>
     </message>
     <message>
-        <location filename="luma/base/gui/ServerDialog.py" line="198"/>
+        <location filename="luma/base/gui/ServerDialog.py" line="210"/>
         <source>Are you sure you want to exit the server editor?
  Any unsaved changes will be lost!</source>
-        <translation type="unfinished"></translation>
+        <translation>4r3 ¥0µ $µr3 ¥0µ w4n7 70 3x17 7h3 $3rv3r 3Ð170r?
+ 4n¥ µn$4v3Ð (h4n93$ w1££ b3 £0$7!</translation>
     </message>
     <message>
-        <location filename="luma/base/gui/ServerDialog.py" line="229"/>
+        <location filename="luma/base/gui/ServerDialog.py" line="241"/>
         <source>Open file</source>
-        <translation type="unfinished"></translation>
+        <translation>0p3n ƒ1£3</translation>
+    </message>
+    <message>
+        <location filename="luma/base/gui/ServerDialog.py" line="145"/>
+        <source>Name:</source>
+        <translation>N4m3:</translation>
     </message>
 </context>
 <context>
@@ -729,7 +708,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="resources/forms/SettingsDialogDesign.ui" line="233"/>
         <source>Settings</source>
-        <translation type="unfinished">53771n95</translation>
+        <translation>53771n95</translation>
     </message>
     <message>
         <location filename="resources/forms/SettingsDialogDesign.ui" line="36"/>
@@ -774,22 +753,22 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="resources/forms/SettingsDialogDesign.ui" line="146"/>
         <source>Display message types:</source>
-        <translation type="unfinished">d16pl4y m355493 7yp35:</translation>
+        <translation>d16pl4y m355493 7yp35:</translation>
     </message>
     <message>
         <location filename="resources/forms/SettingsDialogDesign.ui" line="153"/>
         <source>Errors</source>
-        <translation type="unfinished">3rr0353rr0r5</translation>
+        <translation>3rr0353rr0r5</translation>
     </message>
     <message>
         <location filename="resources/forms/SettingsDialogDesign.ui" line="163"/>
         <source>Debug</source>
-        <translation type="unfinished">d36u9</translation>
+        <translation>d36u9</translation>
     </message>
     <message>
         <location filename="resources/forms/SettingsDialogDesign.ui" line="173"/>
         <source>Info</source>
-        <translation type="unfinished">1nf0</translation>
+        <translation>1nf0</translation>
     </message>
     <message>
         <location filename="resources/forms/SettingsDialogDesign.ui" line="215"/>

@@ -190,42 +190,42 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>BrowserView</name>
     <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="79"/>
+        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="78"/>
         <source>This is where entries are displayed when opened.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="130"/>
+        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="129"/>
         <source>Reload children</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="132"/>
+        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="131"/>
         <source>Filter</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="134"/>
+        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="133"/>
         <source>Limit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="136"/>
+        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="135"/>
         <source>Clear</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="144"/>
+        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="143"/>
         <source>Entry</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="145"/>
+        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="144"/>
         <source>Template</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="143"/>
+        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="142"/>
         <source>Delete</source>
         <translation type="unfinished"></translation>
     </message>
@@ -390,16 +390,6 @@ p, li { white-space: pre-wrap; }
         <translation></translation>
     </message>
     <message>
-        <location filename="luma/base/gui/MainWin.py" line="609"/>
-        <source>Choose plugin</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="luma/base/gui/MainWin.py" line="608"/>
-        <source>Available plugins</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="resources/forms/MainWinDesign.ui" line="131"/>
         <source>Show plugin-list</source>
         <translation type="unfinished"></translation>
@@ -419,54 +409,63 @@ p, li { white-space: pre-wrap; }
         <source>Ctrl+Shift+W</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <location filename="luma/base/gui/MainWin.py" line="609"/>
+        <source>Available plugins LOL</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="luma/base/gui/MainWin.py" line="610"/>
+        <source>Choose plugin LOL</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>ServerDialog</name>
     <message>
-        <location filename="luma/base/gui/ServerDialog.py" line="138"/>
+        <location filename="luma/base/gui/ServerDialog.py" line="145"/>
         <source>Add server</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/base/gui/ServerDialog.py" line="138"/>
-        <source>123</source>
-        <comment>Name:</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="luma/base/gui/ServerDialog.py" line="141"/>
+        <location filename="luma/base/gui/ServerDialog.py" line="148"/>
         <source>Error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/base/gui/ServerDialog.py" line="141"/>
+        <location filename="luma/base/gui/ServerDialog.py" line="148"/>
         <source>Invalid name or already used.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/base/gui/ServerDialog.py" line="167"/>
+        <location filename="luma/base/gui/ServerDialog.py" line="174"/>
         <source>Delete</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/base/gui/ServerDialog.py" line="167"/>
+        <location filename="luma/base/gui/ServerDialog.py" line="174"/>
         <source>Are you sure?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/base/gui/ServerDialog.py" line="198"/>
+        <location filename="luma/base/gui/ServerDialog.py" line="210"/>
         <source>Exit?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/base/gui/ServerDialog.py" line="198"/>
+        <location filename="luma/base/gui/ServerDialog.py" line="210"/>
         <source>Are you sure you want to exit the server editor?
  Any unsaved changes will be lost!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/base/gui/ServerDialog.py" line="229"/>
+        <location filename="luma/base/gui/ServerDialog.py" line="241"/>
         <source>Open file</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="luma/base/gui/ServerDialog.py" line="145"/>
+        <source>Name:</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
