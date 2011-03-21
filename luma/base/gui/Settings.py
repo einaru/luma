@@ -22,14 +22,13 @@ from PyQt4.QtCore import QSettings, QPoint, QSize
 from PyQt4.QtGui import QDesktopWidget
 
 class Settings(QSettings):
-    """
-    The Settings class extends the QSettings class, to provide an easy and
-    persistent way to set and retrive settings from different parts of the
-    application.
+    """ The Settings class extends the QSettings class, to provide an
+    easy and persistent way to set and retrive settings from different
+    parts of the application.
     
-    The main benefit for doing it this way is that the config sections and 
-    keys is defined in one location, should we in the future decide to 
-    change some of these.
+    The main benefit for doing it this way is that the config sections
+    and keys is defined in one location, should we in the future decide
+    to change some of these.
     
     The class provides setters and getters for all settings values
     through the python property mechanism.
@@ -52,19 +51,16 @@ class Settings(QSettings):
         show_errors=<bool>
         show_debug=<bool>
         show_info=<bool>
-        
     """
 
     def __init__(self):
-        """
-        The Settings constructor initializes the default settings values,
-        which is provided as a fallback, should the config file somehow
-        go missing. We use the qApp instance of The running QApplication
-        to register organization and application name, as well as the 
-        application version.
+        """ The Settings constructor initializes the default settings
+        values, which is provided as a fallback, should the config file
+        somehow go missing. We use the qApp instance of The running
+        QApplication to register organization and application name, as
+        well as the application version.
         """
         QSettings.__init__(self)
-        """ Register application info throught the qApp instance """
         
         # This is the path prefix where we store all luma related
         # files (serverlist, templates, filter bookmarks etc.)

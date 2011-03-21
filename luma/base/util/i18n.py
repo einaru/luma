@@ -18,15 +18,11 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see http://www.gnu.org/licenses/
 from PyQt4.QtCore import (QDir, QString)
-#import resources
 
 class LanguageHandler(object):
-    """
-    Helper class providing useful functionality for handling available
-    application translations
-    """
+    """ Helper class providing useful functionality for handling
+    available application translations.
 
-    """
     We use the ISO 638-1 standard for 2 char language codes:
     http://en.wikipedia.org/wiki/List_of_ISO_639-1_codes
     """
@@ -88,23 +84,17 @@ class LanguageHandler(object):
     __availableLanguages = {}
 
     def __init__(self):
-        """
-        This constructure must be given the full path to where the 
-        translation files are located.
-        """
-        #paths = Paths()
         self.__translationPath = QDir(':/i18n')
+        
         # Must be put in manually because there exists no translation file
         # UPDATE: well it does now, but we'll keep it this way none the less
         self.__availableLanguages['en'] = ['English', 'English']
-        #if os.path.isdir(self.__translationPath):
         self.__buildLanguageDictionary()
 
     def __buildLanguageDictionary(self):
-        """
-        Scannes @path for available translation files, and builds a 
-        dictionary with the language code as key and language name as 
-        value. This works as long as we are consitent in filname 
+        """ Scannes the resources for  available translation files, and
+        builds a dictionary with the language code as key and language
+        name as value. This works as long as we are consitent in filname
         conventions for these files.
         
             luma_<iso-code>.qm
@@ -118,12 +108,14 @@ class LanguageHandler(object):
 
     @property
     def availableLanguages(self):
-        """
+        """ The available application language translations are
+        returned in a dictionary on the form:
+            { ... ,
+            <iso code> : [ <native name>, <english name> ],
+            ... }
+        
         @return: A dictionary containing all available application 
-                 languages. The dictionary will be structured like this:
-                 { ... ,
-                 <iso code> : [ <native name>, <english name> ],
-                 ... }
+                 languages.
         """
         return self.__availableLanguages
 
@@ -136,13 +128,15 @@ class LanguageHandler(object):
         return self.__translationPath
 
     def getQmFile(self, isoCode=''):
-        """
-        Returns the associated translation file for the provided iso code
+        """ Get the translation file for the provided iso code.
         
-        @param isoCode: A legal 2 char language code as spesified by the
-                        ISO 638-1 standard. If it is empty the code for
-                        the default language will be used (en).
-        @return: The full path to the associated .qm translation file
+        @param isoCode:
+            A legal 2 char language code as spesified by the
+            ISO 638-1 standard. If it is empty the code for the default
+            language will be used (normally 'en').
+        
+        @return:
+            The full path to the associated .qm translation file.
         """
         if isoCode == '' or isoCode == None:
             isoCode = u'en'

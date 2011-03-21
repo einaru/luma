@@ -4,6 +4,7 @@
 #
 # Copyright (c) 2011
 #     Einar Uvsløkk, <einar.uvslokk@linux.com>
+#     Christian Forfang, <cforfang@gmail.com>
 #
 # Copyright (c) 2003, 2004, 2005 
 #     Wido Depping, <widod@users.sourceforge.net>
@@ -32,16 +33,16 @@ from PyQt4.QtCore import (QEvent, Qt)
 from PyQt4.QtGui import QApplication
 
 import __init__ as appinfo
-from base.backend import LumaLogHandler
-from base.gui import SplashScreen
+from base.backend.Log import LumaLogHandler
 from base.gui.Window import MainWindow
+from base.gui.Widget import SplashScreen
 from base.gui.Settings import Settings
-from base.util.paths import getConfigPrefix
+from base.util.Paths import getConfigPrefix
 import resources
 
+
 class Luma(QApplication):
-    """
-    Possibly to be used later.
+    """ Possibly to be used later.
     """
     
     def __init__(self, argv):
@@ -72,8 +73,7 @@ class Luma(QApplication):
 
 
 def startApplication(argv, verbose=False, clear=[], dirs={}):
-    """
-    Preparing Luma for take-off
+    """ Preparing Luma for take-off
     
     @param verbose: boolean value;
         Whether or not to print more than error messages to console.
@@ -87,7 +87,7 @@ def startApplication(argv, verbose=False, clear=[], dirs={}):
     app.setOrganizationName(appinfo.ORGNAME)
     app.setApplicationName(appinfo.APPNAME)
     app.setApplicationVersion(appinfo.VERSION)
-    
+
     settings = Settings()
     # Because we use QSettings for the application settings we 
     # facilitate QSettings if the user wishes to start Luma fresh
@@ -100,8 +100,8 @@ def startApplication(argv, verbose=False, clear=[], dirs={}):
         # have startet the application with the --clear-config option
         # We therefore need to retrive the config prefix in a best
         # practize cross-platform way
-        settings.configPrefix = getConfigPrefix()
-    configPrefix = getConfigPrefix()
+        (_, settings.configPrefix) = getConfigPrefix()
+    (_, configPrefix) = getConfigPrefix()
     # Setup the logging mechanism
     l = logging.getLogger()
     l.setLevel(logging.DEBUG)
@@ -134,7 +134,6 @@ def startApplication(argv, verbose=False, clear=[], dirs={}):
     
     app.lastWindowClosed.connect(mainwin.close)
 
-    mainwin.loadPlugins()
     mainwin.show()
 
     splash.finish(mainwin)
@@ -147,9 +146,8 @@ def startApplication(argv, verbose=False, clear=[], dirs={}):
 
 
 def main(argv):
-    """
-    Set up and parse the command line for supported application options and 
-    arguments.
+    """ Set up and parse the command line for supported application
+    options and arguments.
     """
     usage = u'%prog [options] [args]'
     p = optparse.OptionParser(usage=usage)
@@ -241,8 +239,7 @@ def main(argv):
 
 
 def __handleClearOptions(configPrefix, clear=[]):
-    """
-    If the application has been started with clear options, we
+    """ If the application has been started with clear options, we
     handle these before setting up the application main window
     """
     for file in clear:
@@ -256,8 +253,7 @@ def __handleClearOptions(configPrefix, clear=[]):
             
 
 def unhandledException(etype, evalue, etraceback):
-    """
-    UnhandledException handler
+    """ UnhandledException handler
     """
     tmp = StringIO.StringIO()
     traceback.print_tb(etraceback, None, tmp)

@@ -17,7 +17,7 @@ from base.gui.ServerDialogDesign import Ui_ServerDialogDesign
 from base.model.ServerListModel import ServerListModel
 from base.backend.ServerObject import ServerObject
 from ServerDelegate import ServerDelegate
-from base.util.icontheme import pixmapFromThemeIcon
+from base.util.IconTheme import pixmapFromThemeIcon
 import copy
 
 class ServerDialog(QDialog, Ui_ServerDialogDesign):
@@ -75,7 +75,7 @@ class ServerDialog(QDialog, Ui_ServerDialogDesign):
         self.mapper.addMapping(self.portSpinBox, 2)
         self.mapper.addMapping(self.bindAnonBox, 3)
         self.mapper.addMapping(self.baseBox, 4)
-        #self.mapper.addMapping(self.baseDNWidget, 5)
+        #self.mapper.addMapping(self.baseDNListWidget, 5)
 
         self.mapper.addMapping(self.bindLineEdit, 6)
         self.mapper.addMapping(self.passwordLineEdit, 7)
@@ -102,33 +102,33 @@ class ServerDialog(QDialog, Ui_ServerDialogDesign):
         tmpBase = unicode(self.baseEdit.text()).strip()
         if tmpBase == u"":
             return
-        self.baseDNWidget.addItem(QListWidgetItem(tmpBase)) #Add to list
+        self.baseDNListWidget.addItem(QListWidgetItem(tmpBase)) #Add to list
 
         serverIndex = self.serverListView.selectedIndexes()
         index = self.slm.createIndex(serverIndex[0].row(), 5)
-        self.serverDelegate.setModelData(self.baseDNWidget, self.slm, index)
+        self.serverDelegate.setModelData(self.baseDNListWidget, self.slm, index)
         self.baseEdit.clear() #Clear textfield
         self.mapper.submit() #Force push to model
 
     def deleteBaseDN(self):
         # Delete every selected baseDN
-        for tmpItem in self.baseDNWidget.selectedItems():
+        for tmpItem in self.baseDNListWidget.selectedItems():
             if not (None == tmpItem):
-                index = self.baseDNWidget.indexFromItem(tmpItem) #get the index to the basedn
-                d = self.baseDNWidget.takeItem(index.row()) #delete (actually steal) the baseDN from the list
+                index = self.baseDNListWidget.indexFromItem(tmpItem) #get the index to the basedn
+                d = self.baseDNListWidget.takeItem(index.row()) #delete (actually steal) the baseDN from the list
                 if d != 0:
                     del d # Per the QT-docs, someone needs to delete it
 
         serverIndex = self.serverListView.selectedIndexes()
         index = self.slm.createIndex(serverIndex[0].row(), 5)
-        self.serverDelegate.setModelData(self.baseDNWidget, self.slm, index)
+        self.serverDelegate.setModelData(self.baseDNListWidget, self.slm, index)
         self.mapper.submit() #Force push changes to model
 
     def setBaseDN(self):
         serverIndex = self.serverListView.selectedIndexes()
         if len(serverIndex) > 0:
             index = self.slm.createIndex(serverIndex[0].row(), 5)
-            self.serverDelegate.setEditorData(self.baseDNWidget, index)
+            self.serverDelegate.setEditorData(self.baseDNListWidget, index)
 
     def addServer(self):
         """

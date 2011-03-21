@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 #
-# __init__
+# base.backend.Log
 #
 # Copyright (c) 2011
-#      Einar Uvsløkk, <einaru@stud.ntnu.no>
+#     Christian Forfang
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -18,7 +18,14 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see http://www.gnu.org/licenses/
 
-ORGNAME = APPNAME = 'luma'
-VERSION = '3.0.3-sprint3'
-DESCRIPTION = 'LDAP browser and administration utility'
+import logging
 
+class LumaLogHandler(logging.Handler):
+
+    def __init__(self, logTo):
+        logging.Handler.__init__(self)
+        self.logTo = logTo
+
+    def emit(self, record):
+        m = (record.levelname, record.msg)
+        self.logTo.log(m)

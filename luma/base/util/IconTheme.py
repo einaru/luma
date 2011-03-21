@@ -22,26 +22,41 @@ from PyQt4.QtCore import QSize
 from PyQt4.QtGui import QIcon
 
 def iconFromTheme(themeIcon, fallbackIcon):
-    """
-    Utility method for getting icons from default X11 icon theme.
+    """ Utility method for getting icons from default X11 icon theme.
     
-    @param themeIcon: a string; the name of the icontheme icon
-    @param fallbackIcon: a string; the name of the fallback icon
+    @param themeIcon: a string;
+        the name of the icontheme icon
+    @param fallbackIcon: a string;
+        the name of the fallback icon
+    
+    @return:
+        a QIcon from the current icon theme if a match is found, 
+        the fallback QIcon if not.
     """
     return QIcon.fromTheme(themeIcon, QIcon(fallbackIcon))
 
 def pixmapFromThemeIcon(themeIcon, fallbackIcon, width=48, height=48,
                            mode=QIcon.Normal, state=QIcon.Off):
     """
-    Utility method for converting a QIcon to a QPixmap.
-    Useful when trying to use icons from a X11 iconTheme but need a pixmap.
+    Utility method for converting a QIcon to a QPixmap. Useful when
+    trying to use icons from a X11 iconTheme but need a pixmap.
     
-    @param themeIcon: a string; the name of the icontheme icon
-    @param fallbackIcon: a string; the name of the fallback icon
-    @param widht: an integer; the width of the icon, defaults to 48
-    @param height: an integer; the height of the icon, defaults to 48
-    @param mode: defaults to QIcon.Normal
-    @param state: defaults to QIcon.Off
+    @param themeIcon: string;
+        the name of the icontheme icon
+    @param fallbackIcon: string;
+        the name of the fallback icon
+    @param widht: integer;
+        the width of the icon, defaults to 48
+    @param height: integer;
+        the height of the icon, defaults to 48
+    @param mode:
+        defaults to QIcon.Normal
+    @param state:
+        defaults to QIcon.Off
+        
+    @return:
+        a QPixmap from a icon in the current icon theme if a match is
+        found. A QPixmap from the fallback icon if not. 
     """
     icon = iconFromTheme(themeIcon, fallbackIcon)
     return icon.pixmap(QSize(width, height), QIcon.Normal, QIcon.Off)

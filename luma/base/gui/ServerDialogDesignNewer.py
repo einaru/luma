@@ -10,7 +10,7 @@
 from PyQt4 import QtCore, QtGui
 
 class Ui_ServerDialogDesign(object):
-    def setupUi(self, ServerDialogDesign):
+    def baseDNListWidget, ServerDialogDesign):
         ServerDialogDesign.setObjectName("ServerDialogDesign")
         ServerDialogDesign.resize(655, 412)
         self.gridLayout_2 = QtGui.QGridLayout(ServerDialogDesign)
@@ -133,9 +133,9 @@ class Ui_ServerDialogDesign(object):
         self.customBaseDNLabel.setSizePolicy(sizePolicy)
         self.customBaseDNLabel.setObjectName("customBaseDNLabel")
         self.gridLayout_3.addWidget(self.customBaseDNLabel, 3, 0, 1, 2)
-        self.baseDNWidget = QtGui.QListWidget(self.LDAPoptionsGoup)
-        self.baseDNWidget.setObjectName("baseDNWidget")
-        self.gridLayout_3.addWidget(self.baseDNWidget, 5, 0, 1, 5)
+        self.baseDNListWidget = QtGui.QListWidget(self.LDAPoptionsGoup)
+        self.baseDNListWidget.setObjectName("baseDNListWidget")
+        self.gridLayout_3.addWidget(self.baseDNListWidget, 5, 0, 1, 5)
         self.baseDNBox = QtGui.QCheckBox(self.LDAPoptionsGoup)
         sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Minimum, QtGui.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
@@ -338,7 +338,7 @@ class Ui_ServerDialogDesign(object):
         QtCore.QObject.connect(self.baseDNBox, QtCore.SIGNAL("toggled(bool)"), self.deleteBaseDNButton.setDisabled)
         QtCore.QObject.connect(self.addBaseDNButton, QtCore.SIGNAL("clicked()"), ServerDialogDesign.addBaseDN)
         QtCore.QObject.connect(self.baseDNBox, QtCore.SIGNAL("toggled(bool)"), self.baseDNLineEdit.setDisabled)
-        QtCore.QObject.connect(self.baseDNBox, QtCore.SIGNAL("toggled(bool)"), self.baseDNWidget.setDisabled)
+        QtCore.QObject.connect(self.baseDNBox, QtCore.SIGNAL("toggled(bool)"), self.baseDNListWidget.setDisabled)
         QtCore.QObject.connect(self.baseDNLineEdit, QtCore.SIGNAL("returnPressed()"), ServerDialogDesign.addBaseDN)
         QtCore.QObject.connect(self.cancelButton, QtCore.SIGNAL("clicked()"), ServerDialogDesign.reject)
         QtCore.QObject.connect(self.certFileButton, QtCore.SIGNAL("clicked()"), ServerDialogDesign.certFileDialog)
