@@ -190,42 +190,42 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>BrowserView</name>
     <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="78"/>
+        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="79"/>
         <source>This is where entries are displayed when opened.</source>
         <translation>7h1$ 1$ wh3r3 3n7r13$ 4r3 Ð1$p£4¥3Ð wh3n 0p3n3Ð.</translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="129"/>
+        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="130"/>
         <source>Reload children</source>
         <translation>R3£04Ð (h1£Ðr3n</translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="131"/>
+        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="132"/>
         <source>Filter</source>
         <translation>ƒ1£73r</translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="133"/>
+        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="134"/>
         <source>Limit</source>
         <translation>£1m17</translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="135"/>
+        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="136"/>
         <source>Clear</source>
         <translation>cl34r</translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="143"/>
+        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="144"/>
         <source>Entry</source>
         <translation>3n7r¥</translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="144"/>
+        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="145"/>
         <source>Template</source>
         <translation>73mp£473</translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="142"/>
+        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="143"/>
         <source>Delete</source>
         <translation>Ð3£373</translation>
     </message>
@@ -405,7 +405,7 @@ p, li { white-space: pre-wrap; }
         <translation>5h0w l0993r</translation>
     </message>
     <message>
-        <location filename="luma/base/gui/MainWin.py" line="155"/>
+        <location filename="luma/base/gui/MainWin.py" line="141"/>
         <source>Logger</source>
         <translation>l0993r</translation>
     </message>
@@ -430,17 +430,17 @@ p, li { white-space: pre-wrap; }
         <translation></translation>
     </message>
     <message>
-        <location filename="luma/base/gui/MainWin.py" line="608"/>
+        <location filename="luma/base/gui/MainWin.py" line="593"/>
         <source>Available plugins</source>
         <translation>4v41£4b£3 p£µ91n$</translation>
     </message>
     <message>
-        <location filename="luma/base/gui/MainWin.py" line="609"/>
+        <location filename="luma/base/gui/MainWin.py" line="594"/>
         <source>Choose plugin</source>
         <translation>(h00$3 p£µ91n</translation>
     </message>
     <message>
-        <location filename="luma/base/gui/MainWin.py" line="464"/>
+        <location filename="luma/base/gui/MainWin.py" line="449"/>
         <source>Plugins</source>
         <translation>P£µ91n$</translation>
     </message>
