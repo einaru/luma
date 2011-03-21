@@ -9,3 +9,5 @@
 
 * Kill all threading activity against LDAP servers when quitting ?
   Perhaps with some sort of signal system.
+  
+* Update the bin/luma startup script
