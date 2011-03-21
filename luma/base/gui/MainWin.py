@@ -460,8 +460,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         """
         
         if self.mainTabs.indexOf(self.pluginWidget) == -1:
-
-            index = self.mainTabs.addTab(self.pluginWidget, QString("Plugins"))
+            index = self.mainTabs.addTab(self.pluginWidget, QApplication.translate("MainWindow","Plugins"))
             self.mainTabs.setCurrentIndex(index)
             self.actionShowPluginList.setEnabled(False)
 

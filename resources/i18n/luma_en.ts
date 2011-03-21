@@ -255,6 +255,26 @@ p, li { white-space: pre-wrap; }
         <source>This item have a limit applied.</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <location filename="luma/plugins/browser_plugin/item/LDAPTreeItem.py" line="121"/>
+        <source>Limit</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="luma/plugins/browser_plugin/item/LDAPTreeItem.py" line="121"/>
+        <source>Enter the limit (0 = none):</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="luma/plugins/browser_plugin/item/LDAPTreeItem.py" line="129"/>
+        <source>Filter</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="luma/plugins/browser_plugin/item/LDAPTreeItem.py" line="129"/>
+        <source>Enter the filter (with parentheses -- none for default):</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>LDAPTreeItemModel</name>
@@ -417,6 +437,11 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="luma/base/gui/MainWin.py" line="609"/>
         <source>Choose plugin</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="luma/base/gui/MainWin.py" line="464"/>
+        <source>Plugins</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
