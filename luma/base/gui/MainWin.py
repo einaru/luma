@@ -36,9 +36,10 @@ AboutDialog:
     A simple about dialog, including credits and license.
 """
 import logging
+import gc
 
 from PyQt4.QtCore import Qt, pyqtSlot, pyqtSignal
-from PyQt4.QtCore import QEvent, QString
+from PyQt4.QtCore import QEvent, QString, QTimer
 from PyQt4.QtCore import QTranslator
 
 from PyQt4.QtGui import QAction, QActionGroup, QApplication, qApp
@@ -64,7 +65,8 @@ from base.gui.SettingsDialogDesign import Ui_SettingsDialog
 from base.gui.ServerDialog import ServerDialog
 from base.util.i18n import LanguageHandler
 from base.util.gui.PluginListWidget import PluginListWidget
-from base.model.PluginSettingsModel import PluginSettingsModel
+from base.model.PluginSettingsListModel import PluginSettingsListModel
+
 import resources
 
 
@@ -126,12 +128,17 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.pluginWidget = PluginListWidget()
         self.pluginDockWindow.setWidget(self.pluginWidget) 
         self.addDockWidget(Qt.TopDockWidgetArea, self.pluginDockWindow)
-        """
+        
 
         self.pluginWidget = PluginListWidget(self)
         self.mainStack.addWidget(self.pluginWidget)
         self.showPlugins()
+        """
 
+        self.pluginWidget = PluginListWidget(self)
+        self.mainTabs.setTabsClosable(True)
+        self.showPlugins()
+        
     def __createPluginToolBar(self):
         """
         Creates the pluign toolbar.
@@ -214,7 +221,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.loadLanguage(settings.language)
 
         """ Plugins """
-        self.TODO(u'load settings[plugins]%s' % str(self.__class__))
+        #self.TODO(u'load settings[plugins]%s' % str(self.__class__))
 
     def writeSettings(self):
         """
@@ -388,7 +395,11 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         """
         This method will be called from the PluginListWidget.
         """
-        widget = item.widget
+        widget = item.plugin.getPluginWidget(None, self)
+        index = self.mainTabs.addTab(widget, item.plugin.pluginUserString)
+        self.mainTabs.setCurrentIndex(index)
+
+        """
         if self.mainStack.indexOf(widget) == -1:
             self.mainStack.addWidget(widget)
 
@@ -413,18 +424,51 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                         pass
                 else:
                     self.logger.debug("No actions to add to toolbar from plugin")
+        """
+
+    def tabClose(self, index):
+        """
+        Slot for the signal tabCloseRequest(int) for the tabMains
+        """
+        
+        widget = self.mainTabs.widget(index)
+        if widget == self.pluginWidget:
+            self.actionShowPluginList.setEnabled(True)
+        
+        self.mainTabs.removeTab(index)
+        
+        #Unparent the widget since it was reparented by the QTabWidget so it's gargabe collected
+        widget.setParent(None)
+        
+        #Done automatically by PyQt since there's no refs to the widget
+        #widget.deleteLater()
+        
+        # In case the widget contained circular references -- force GC to take care of the objects
+        # since there can be quite many if it was BrowserWidget that was closed
+        # Can't call it directly since that'll be too soon
+        QTimer.singleShot(0, self.gc)
+        
+    def gc(self):
+        gc.collect()
+
+    def showWelcome(self):
+        pass
 
     def showPlugins(self):
         """
         Will set the pluginlistwidget on top of the mainstack.
         """
+        
+        if self.mainTabs.indexOf(self.pluginWidget) == -1:
 
-        if self.pluginWidget and self.mainStack.currentWidget() != self.pluginWidget:
-            self.mainStack.setCurrentWidget(self.pluginWidget)
+            index = self.mainTabs.addTab(self.pluginWidget, QString("Plugins"))
+            self.mainTabs.setCurrentIndex(index)
+            self.actionShowPluginList.setEnabled(False)
 
-            if self.pluginToolBar:
-                self.pluginToolBar.button.setEnabled(False)
-                self.pluginToolBar.label.setText(QApplication.translate('MainWindow', "Available plugins", None, QApplication.UnicodeUTF8))
+        else:
+            """TODO: REMOVE THIS """
+            self.logger.debug("Johannes fix: linje 438")
+        
 
     def close(self):
         """
@@ -622,7 +666,7 @@ class SettingsDialog(QDialog, Ui_SettingsDialog):
             i = i + 1
 
         """ Plugins """
-        self.pluginListView.setModel(PluginSettingsModel())
+        self.pluginListView.setModel(PluginSettingsListModel())
 
     def pluginSelected(self, index):
         """

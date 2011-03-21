@@ -4,7 +4,7 @@ from PyQt4.QtCore import *
 from PyQt4.QtGui import *
 from base.backend.PluginLoader import PluginLoader 
 
-class PluginLoaderModel(QStandardItemModel):
+class PluginSettingsListModel(QStandardItemModel):
     """
     This model will create its own items, out of the list from PluginLoader
     in backend. 
@@ -12,7 +12,6 @@ class PluginLoaderModel(QStandardItemModel):
     def __init__(self, parent = None):
         QStandardItemModel.__init__(self, parent)
         self._settings = QSettings()
-        
         for pluginobject in PluginLoader(".", "ALL").plugins:
             item = QStandardItem(pluginobject.pluginName)
             check = Qt.Unchecked
@@ -25,9 +24,8 @@ class PluginLoaderModel(QStandardItemModel):
             item.plugin = pluginobject
             self.appendRow(item)
             
-###############################################################################
-    
     def saveSettings(self):
+        
         items = self.rowCount()
         for x in range(items):
             item = self.item(x)
@@ -36,5 +34,3 @@ class PluginLoaderModel(QStandardItemModel):
                 self._settings.setValue(valueString, "True")
             else:
                 self._settings.setValue(valueString, "False")
-
-###############################################################################

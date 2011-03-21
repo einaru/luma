@@ -7,8 +7,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>700</width>
-    <height>550</height>
+    <width>913</width>
+    <height>575</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -20,12 +20,7 @@
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout" name="gridLayout">
     <item row="0" column="0">
-     <widget class="QStackedWidget" name="mainStack">
-      <property name="currentIndex">
-       <number>0</number>
-      </property>
-      <widget class="QWidget" name="page"/>
-     </widget>
+     <widget class="QTabWidget" name="mainTabs"/>
     </item>
    </layout>
   </widget>
@@ -34,8 +29,8 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>700</width>
-     <height>23</height>
+     <width>913</width>
+     <height>25</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
@@ -43,6 +38,9 @@
      <string>File</string>
     </property>
     <addaction name="actionShowLogger"/>
+    <addaction name="separator"/>
+    <addaction name="actionShowPluginList"/>
+    <addaction name="actionShowWelcomeTab"/>
     <addaction name="separator"/>
     <addaction name="actionQuit"/>
    </widget>
@@ -126,6 +124,22 @@
   <action name="actionEditSettings">
    <property name="text">
     <string>Settings</string>
+   </property>
+  </action>
+  <action name="actionShowPluginList">
+   <property name="text">
+    <string>Show plugin-list</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+P</string>
+   </property>
+  </action>
+  <action name="actionShowWelcomeTab">
+   <property name="text">
+    <string>Show welcome tab</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift+W</string>
    </property>
   </action>
  </widget>
@@ -243,6 +257,54 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>mainTabs</sender>
+   <signal>tabCloseRequested(int)</signal>
+   <receiver>MainWindow</receiver>
+   <slot>tabClose()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>456</x>
+     <y>288</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>456</x>
+     <y>287</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionShowPluginList</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>showPlugins()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>456</x>
+     <y>287</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionShowWelcomeTab</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>showWelcome()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>456</x>
+     <y>287</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>quitApplication()</slot>
@@ -252,5 +314,8 @@
   <slot>showAboutLuma()</slot>
   <slot>showServerEditor()</slot>
   <slot>showSettingsDialog()</slot>
+  <slot>tabClose()</slot>
+  <slot>showPlugins()</slot>
+  <slot>showWelcome()</slot>
  </slots>
 </ui>

@@ -29,23 +29,16 @@ class PluginLoader(object):
         """self._pluginsBaseDir = path.join(lumaInstallationPrefix,
             "lib", "luma", "plugins")"""
         self._changed = True
-    
-            
-###############################################################################
 
     @property
     def pluginsToLoad(self):
         return self._pluginsToLoad
-
-###############################################################################
 
     @pluginsToLoad.setter
     def pluginsToLoad(self, value):
         self._changed = True
         self._pluginsToLoad = value
 
-###############################################################################
-    
     @property   
     def plugins(self):
         """
@@ -56,11 +49,8 @@ class PluginLoader(object):
             self.__loadPlugins()
             self._changed = False
         
-       
         return self._plugins
     
-###############################################################################
-
     def __loadPlugins(self):
         """
         Will load all plugins that was found from the "__findPluginDirectories()".
@@ -79,8 +69,6 @@ class PluginLoader(object):
                 errorString = "Plugin \"" + str(x) + "\" gave an exception: \n"
                 errorString += str(y)
                 self._logger.error(errorString)
-                
-###############################################################################
 
     def __findPluginDirectories(self):
         """
@@ -104,8 +92,6 @@ class PluginLoader(object):
             errorString += str(errorData)
             self._logger.error(errorString)
 
-############################################################################### 
-    
     def __readMetaInfo(self, pluginName):
         """
         Reads meta information for a plugin by its directory.
@@ -147,12 +133,7 @@ class PluginLoader(object):
                 missingAttributes.append(x)
         
         if len(missingAttributes) > 0:
-            errorString = "Loaded module \"" + pluginName + "\" is not a Luma plugin. \n"
-            errorString += "The following attributes are missing: \n"
-            for x in missingAttributes:
-                errorString += "\t" + x + "\n"
-                errorString = errorString + x + " "
-            errorString = errorString + "\n"
+            errorString = "Loaded module \"" + pluginName + "\" is not a Luma plugin. Attributes are missing! \n"
             raise PluginMetaError, errorString
             
         plugin.pluginName = importedModule.pluginName
@@ -175,10 +156,7 @@ class PluginLoader(object):
                 if plugin.pluginName == ptl:
                     plugin.load = True
                     break
-           
         return plugin
-            
-###############################################################################
 
 class PluginMetaError(Exception):
     """

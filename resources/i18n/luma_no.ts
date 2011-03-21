@@ -190,42 +190,42 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>BrowserView</name>
     <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="68"/>
+        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="79"/>
         <source>This is where entries are displayed when opened.</source>
         <translation>Dette er hvor ting vises når åpent.</translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="119"/>
+        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="130"/>
         <source>Reload children</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="121"/>
+        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="132"/>
         <source>Filter</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="123"/>
+        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="134"/>
         <source>Limit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="125"/>
+        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="136"/>
         <source>Clear</source>
         <translation type="unfinished">Slett</translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="133"/>
+        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="144"/>
         <source>Entry</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="134"/>
+        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="145"/>
         <source>Template</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="132"/>
+        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="143"/>
         <source>Delete</source>
         <translation type="unfinished"></translation>
     </message>
@@ -305,87 +305,87 @@ p, li { white-space: pre-wrap; }
         <translation>Luma</translation>
     </message>
     <message>
-        <location filename="resources/forms/MainWinDesign.ui" line="43"/>
+        <location filename="resources/forms/MainWinDesign.ui" line="38"/>
         <source>File</source>
         <translation>Fil</translation>
     </message>
     <message>
-        <location filename="resources/forms/MainWinDesign.ui" line="51"/>
+        <location filename="resources/forms/MainWinDesign.ui" line="49"/>
         <source>Edit</source>
         <translation>Rediger</translation>
     </message>
     <message>
-        <location filename="resources/forms/MainWinDesign.ui" line="55"/>
+        <location filename="resources/forms/MainWinDesign.ui" line="53"/>
         <source>Language</source>
         <translation>Språk</translation>
     </message>
     <message>
-        <location filename="resources/forms/MainWinDesign.ui" line="69"/>
+        <location filename="resources/forms/MainWinDesign.ui" line="67"/>
         <source>Help</source>
         <translation>Hjelp</translation>
     </message>
     <message>
-        <location filename="resources/forms/MainWinDesign.ui" line="86"/>
+        <location filename="resources/forms/MainWinDesign.ui" line="84"/>
         <source>Ctrl+L</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="resources/forms/MainWinDesign.ui" line="91"/>
+        <location filename="resources/forms/MainWinDesign.ui" line="89"/>
         <source>Quit</source>
         <translation>Avslutt</translation>
     </message>
     <message>
-        <location filename="resources/forms/MainWinDesign.ui" line="94"/>
+        <location filename="resources/forms/MainWinDesign.ui" line="92"/>
         <source>Ctrl+Q</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="resources/forms/MainWinDesign.ui" line="99"/>
+        <location filename="resources/forms/MainWinDesign.ui" line="97"/>
         <source>Server List</source>
         <translation>Server listen</translation>
     </message>
     <message>
-        <location filename="resources/forms/MainWinDesign.ui" line="102"/>
+        <location filename="resources/forms/MainWinDesign.ui" line="100"/>
         <source>Ctrl+Shift+S</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="resources/forms/MainWinDesign.ui" line="107"/>
+        <location filename="resources/forms/MainWinDesign.ui" line="105"/>
         <source>Reload Plugins</source>
         <translation>Reload plugins</translation>
     </message>
     <message>
-        <location filename="resources/forms/MainWinDesign.ui" line="110"/>
+        <location filename="resources/forms/MainWinDesign.ui" line="108"/>
         <source>F5</source>
         <translation>F5</translation>
     </message>
     <message>
-        <location filename="resources/forms/MainWinDesign.ui" line="115"/>
+        <location filename="resources/forms/MainWinDesign.ui" line="113"/>
         <source>Configure Plugins</source>
         <translation>Konfigurer plugins</translation>
     </message>
     <message>
-        <location filename="resources/forms/MainWinDesign.ui" line="120"/>
+        <location filename="resources/forms/MainWinDesign.ui" line="118"/>
         <source>About Luma</source>
         <translation>Om Luma</translation>
     </message>
     <message>
-        <location filename="resources/forms/MainWinDesign.ui" line="123"/>
+        <location filename="resources/forms/MainWinDesign.ui" line="121"/>
         <source>F12</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="resources/forms/MainWinDesign.ui" line="128"/>
+        <location filename="resources/forms/MainWinDesign.ui" line="126"/>
         <source>Settings</source>
         <translation>Innstillinger</translation>
     </message>
     <message>
-        <location filename="resources/forms/MainWinDesign.ui" line="83"/>
+        <location filename="resources/forms/MainWinDesign.ui" line="81"/>
         <source>Show logger</source>
         <translation>Vis logger</translation>
     </message>
     <message>
-        <location filename="luma/base/gui/MainWin.py" line="148"/>
+        <location filename="luma/base/gui/MainWin.py" line="155"/>
         <source>Logger</source>
         <translation>logger</translation>
     </message>
@@ -395,13 +395,33 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Plugin navn</translation>
     </message>
     <message>
-        <location filename="luma/base/gui/MainWin.py" line="565"/>
+        <location filename="luma/base/gui/MainWin.py" line="609"/>
         <source>Choose plugin</source>
         <translation>Velg plugin</translation>
     </message>
     <message>
-        <location filename="luma/base/gui/MainWin.py" line="564"/>
+        <location filename="luma/base/gui/MainWin.py" line="608"/>
         <source>Available plugins</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="resources/forms/MainWinDesign.ui" line="131"/>
+        <source>Show plugin-list</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="resources/forms/MainWinDesign.ui" line="134"/>
+        <source>Ctrl+P</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="resources/forms/MainWinDesign.ui" line="139"/>
+        <source>Show welcome tab</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="resources/forms/MainWinDesign.ui" line="142"/>
+        <source>Ctrl+Shift+W</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

@@ -113,7 +113,7 @@ def startApplication(argv):
     
     app.lastWindowClosed.connect(mainWin.close)
 
-    mainWin.loadPlugins()
+    #mainWin.loadPlugins()
     mainWin.show()
 
     splash.finish(mainWin)

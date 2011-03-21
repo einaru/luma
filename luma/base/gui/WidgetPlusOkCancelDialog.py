@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'D:\Dropbox\Git\it2901\resources\forms\WidgetPlusOkCancelDialog.ui'
 #
-# Created: Mon Mar 21 12:16:09 2011
+# Created: Mon Mar 21 13:07:56 2011
 #      by: PyQt4 UI code generator 4.8.2
 #
 # WARNING! All changes made in this file will be lost!

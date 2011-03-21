@@ -18,7 +18,7 @@ def getIcon(iconPath):
 
     return iconPixmap
     
-def getPluginWidget(parent):
+def getPluginWidget(parent, mainwin):
     # parent is not used, but the widget is reparented by the QTabWidget
     from plugins.browser_plugin.BrowserView import BrowserView
     pluginWidget = BrowserView()

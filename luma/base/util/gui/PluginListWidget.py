@@ -24,11 +24,6 @@ class PluginListWidget(QWidget, Ui_pluginListWidget):
         self.setupUi(self)
 
         self.listView.setModel(PluginListWidgetModel(self.parent))
-
-        
-        self._model = PluginListWidgetModel(self)
-        self.listView.setModel(self._model)
-
         
     def pluginDoubleClicked(self, index):
         if self.parent and hasattr(self.parent, "pluginSelected"):
