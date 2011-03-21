@@ -18,7 +18,7 @@
 # with Luma; if not, write to the Free Software Foundation, Inc., 
 # 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA
 """
-This module contains several Luma GUI classes:
+This module contains several Luma Widget classes:
 
 MainWindow:
     The Luma main window.
@@ -28,12 +28,6 @@ LoggerWidget:
 
 PluginToolBar:
     A toolbar widget for quick plugin access.
-
-SettingsDialog:
-    A dialog for accessing and setting variuos application settings.
-
-AboutDialog:
-    A simple about dialog, including credits and license.
 """
 import logging
 import gc
@@ -54,7 +48,7 @@ from PyQt4.QtGui import QWidget
 from PyQt4.QtGui import QProgressBar
 
 from ..backend.ServerList import ServerList
-from ..gui import Settings
+from ..gui.Settings import Settings
 from ..gui.AboutDialogDesign import Ui_AboutDialog
 from ..gui.AboutLicenseDesign import Ui_AboutLicense
 from ..gui.AboutCreditsDesign import Ui_AboutCredits
@@ -707,7 +701,7 @@ class AboutDialog(QDialog, Ui_AboutDialog):
     def __init__(self, parent=None):
         QDialog.__init__(self)
         self.setupUi(self)
-        self.setWindowIcon(QIcon(':/icons/about'))
+        self.setWindowIcon(iconFromTheme('help-about', ':/icons/about'))
         self.label.setPixmap(QPixmap(':/icons/luma-64'))
 
     def showLicense(self):

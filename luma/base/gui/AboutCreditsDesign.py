@@ -1,68 +1,63 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'D:\Dropbox\Git\it2901\resources\forms\AboutCreditsDesign.ui'
+# Form implementation generated from reading ui file '/mnt/debris/devel/git/merging-luma/resources/forms/AboutCreditsDesign.ui'
 #
-# Created: Mon Mar 21 16:41:41 2011
-#      by: PyQt4 UI code generator 4.8.2
+# Created: Mon Mar 21 20:19:02 2011
+#      by: PyQt4 UI code generator 4.7.4
 #
 # WARNING! All changes made in this file will be lost!
 
 from PyQt4 import QtCore, QtGui
 
-try:
-    _fromUtf8 = QtCore.QString.fromUtf8
-except AttributeError:
-    _fromUtf8 = lambda s: s
-
 class Ui_AboutCredits(object):
     def setupUi(self, AboutCredits):
-        AboutCredits.setObjectName(_fromUtf8("AboutCredits"))
+        AboutCredits.setObjectName("AboutCredits")
         AboutCredits.setWindowModality(QtCore.Qt.WindowModal)
         AboutCredits.resize(401, 301)
         self.gridLayout = QtGui.QGridLayout(AboutCredits)
-        self.gridLayout.setObjectName(_fromUtf8("gridLayout"))
+        self.gridLayout.setObjectName("gridLayout")
         self.tabWidget = QtGui.QTabWidget(AboutCredits)
-        self.tabWidget.setObjectName(_fromUtf8("tabWidget"))
+        self.tabWidget.setObjectName("tabWidget")
         self.tabAuthors = QtGui.QWidget()
-        self.tabAuthors.setObjectName(_fromUtf8("tabAuthors"))
+        self.tabAuthors.setObjectName("tabAuthors")
         self.gridLayout_3 = QtGui.QGridLayout(self.tabAuthors)
-        self.gridLayout_3.setObjectName(_fromUtf8("gridLayout_3"))
+        self.gridLayout_3.setObjectName("gridLayout_3")
         self.textAuthors = QtGui.QTextBrowser(self.tabAuthors)
         self.textAuthors.setOpenExternalLinks(True)
-        self.textAuthors.setObjectName(_fromUtf8("textAuthors"))
+        self.textAuthors.setObjectName("textAuthors")
         self.gridLayout_3.addWidget(self.textAuthors, 0, 0, 1, 1)
-        self.tabWidget.addTab(self.tabAuthors, _fromUtf8(""))
+        self.tabWidget.addTab(self.tabAuthors, "")
         self.tabTranselators = QtGui.QWidget()
-        self.tabTranselators.setObjectName(_fromUtf8("tabTranselators"))
+        self.tabTranselators.setObjectName("tabTranselators")
         self.gridLayout_2 = QtGui.QGridLayout(self.tabTranselators)
-        self.gridLayout_2.setObjectName(_fromUtf8("gridLayout_2"))
+        self.gridLayout_2.setObjectName("gridLayout_2")
         self.textTranselators = QtGui.QTextBrowser(self.tabTranselators)
         self.textTranselators.setOpenExternalLinks(True)
-        self.textTranselators.setObjectName(_fromUtf8("textTranselators"))
+        self.textTranselators.setObjectName("textTranselators")
         self.gridLayout_2.addWidget(self.textTranselators, 0, 0, 1, 1)
-        self.tabWidget.addTab(self.tabTranselators, _fromUtf8(""))
+        self.tabWidget.addTab(self.tabTranselators, "")
         self.tabCredits = QtGui.QWidget()
-        self.tabCredits.setObjectName(_fromUtf8("tabCredits"))
+        self.tabCredits.setObjectName("tabCredits")
         self.gridLayout_4 = QtGui.QGridLayout(self.tabCredits)
-        self.gridLayout_4.setObjectName(_fromUtf8("gridLayout_4"))
+        self.gridLayout_4.setObjectName("gridLayout_4")
         self.textCredits = QtGui.QTextBrowser(self.tabCredits)
         self.textCredits.setOpenExternalLinks(True)
-        self.textCredits.setObjectName(_fromUtf8("textCredits"))
+        self.textCredits.setObjectName("textCredits")
         self.gridLayout_4.addWidget(self.textCredits, 0, 0, 1, 1)
-        self.tabWidget.addTab(self.tabCredits, _fromUtf8(""))
+        self.tabWidget.addTab(self.tabCredits, "")
         self.gridLayout.addWidget(self.tabWidget, 0, 0, 1, 1)
         self.hboxlayout = QtGui.QHBoxLayout()
-        self.hboxlayout.setObjectName(_fromUtf8("hboxlayout"))
+        self.hboxlayout.setObjectName("hboxlayout")
         spacerItem = QtGui.QSpacerItem(40, 20, QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Minimum)
         self.hboxlayout.addItem(spacerItem)
         self.closeButton = QtGui.QPushButton(AboutCredits)
-        self.closeButton.setObjectName(_fromUtf8("closeButton"))
+        self.closeButton.setObjectName("closeButton")
         self.hboxlayout.addWidget(self.closeButton)
         self.gridLayout.addLayout(self.hboxlayout, 1, 0, 1, 1)
 
         self.retranslateUi(AboutCredits)
         self.tabWidget.setCurrentIndex(0)
-        QtCore.QObject.connect(self.closeButton, QtCore.SIGNAL(_fromUtf8("clicked()")), AboutCredits.close)
+        QtCore.QObject.connect(self.closeButton, QtCore.SIGNAL("clicked()"), AboutCredits.close)
         QtCore.QMetaObject.connectSlotsByName(AboutCredits)
 
     def retranslateUi(self, AboutCredits):

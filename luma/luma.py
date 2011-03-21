@@ -36,9 +36,9 @@ from PyQt4 import QtGui
 from PyQt4.QtCore import Qt, QEvent
 
 import __init__ as appinfo
-from base.gui import SplashScreen
+from base.gui.Widget import SplashScreen
 from base.gui.MainWin import MainWindow
-from base.backend import LumaLogHandler
+from base.backend.Log import LumaLogHandler
 
 #Resource file
 import resources

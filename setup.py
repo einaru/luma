@@ -118,7 +118,7 @@ setup(
     },
     data_files=_data_files,
     scripts=['bin/luma'],
-    #classifiers=_classifiers,
+    classifiers=_classifiers,
 )
 
 

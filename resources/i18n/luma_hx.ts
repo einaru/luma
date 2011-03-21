@@ -119,46 +119,34 @@ p, li { white-space: pre-wrap; }
         <translation>cr3d175</translation>
     </message>
     <message>
-        <location filename="resources/forms/AboutDialogDesign.ui" line="70"/>
+        <location filename="resources/forms/AboutDialogDesign.ui" line="57"/>
         <source>License</source>
         <translation>l1c3n53</translation>
     </message>
     <message>
-        <location filename="resources/forms/AboutDialogDesign.ui" line="96"/>
+        <location filename="resources/forms/AboutDialogDesign.ui" line="70"/>
         <source>Close</source>
         <translation>cl053</translation>
     </message>
     <message>
-        <location filename="resources/forms/AboutDialogDesign.ui" line="132"/>
-        <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans&apos;; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:18pt; font-weight:600;&quot;&gt;Luma 3.x.x&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="resources/forms/AboutDialogDesign.ui" line="152"/>
+        <location filename="resources/forms/AboutDialogDesign.ui" line="126"/>
         <source>LDAP management made easy</source>
         <translation>ld4p m4n494m4n7 m463 345y</translation>
     </message>
+    <message>
+        <location filename="resources/forms/AboutDialogDesign.ui" line="110"/>
+        <source>Luma</source>
+        <translation type="unfinished">lum4</translation>
+    </message>
     <message encoding="UTF-8">
-        <location filename="resources/forms/AboutDialogDesign.ui" line="168"/>
-        <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans&apos;; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:8pt;&quot;&gt;Copyright © 2003–2005 Wido Depping&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation></translation>
+        <location filename="resources/forms/AboutDialogDesign.ui" line="147"/>
+        <source>Copyright © 2003–2005 Wido Depping</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="resources/forms/AboutDialogDesign.ui" line="182"/>
-        <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans&apos;; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;http://luma.sf.net/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Luma Website&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation></translation>
+        <location filename="resources/forms/AboutDialogDesign.ui" line="157"/>
+        <source>&lt;a href=&quot;http://luma.sf.net/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Luma Website&lt;/span&gt;&lt;/a&gt;</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -169,7 +157,7 @@ p, li { white-space: pre-wrap; }
         <translation>l1c3n53</translation>
     </message>
     <message>
-        <location filename="resources/forms/AboutLicenseDesign.ui" line="63"/>
+        <location filename="resources/forms/AboutLicenseDesign.ui" line="61"/>
         <source>Close</source>
         <translation>cl053</translation>
     </message>
@@ -179,12 +167,10 @@ p, li { white-space: pre-wrap; }
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans&apos;; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Luma&lt;/span&gt; is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Luma&lt;/span&gt; is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;You should have received a copy of the GNU General Public License along with &lt;span style=&quot; font-weight:600;&quot;&gt;Luma&lt;/span&gt;; if not, write to the Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA, or visit &lt;a href=&quot;http://www.gnu.org/licenses/gpl-2.0.html&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;www.gnu.org/licenses/gpl-2.0.html&lt;/span&gt;&lt;/a&gt;.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation></translation>
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Luma is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version. &lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Luma is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details. &lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;You should have received a copy of the GNU General Public License along with Luma; if not, write to the Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA, or visit &lt;a href=&quot;http://www.gnu.org/licenses/gpl-2.0.html&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;www.gnu.org/licenses/gpl-2.0&lt;/span&gt;&lt;/a&gt;.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -327,170 +313,220 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="resources/forms/MainWinDesign.ui" line="38"/>
         <source>File</source>
-        <translation>f1l3</translation>
+        <translation type="obsolete">f1l3</translation>
     </message>
     <message>
         <location filename="resources/forms/MainWinDesign.ui" line="49"/>
         <source>Edit</source>
-        <translation>3d17</translation>
+        <translation type="obsolete">3d17</translation>
     </message>
     <message>
-        <location filename="resources/forms/MainWinDesign.ui" line="53"/>
+        <location filename="resources/forms/MainWinDesign.ui" line="50"/>
         <source>Language</source>
         <translation>l4n9u493</translation>
     </message>
     <message>
         <location filename="resources/forms/MainWinDesign.ui" line="67"/>
         <source>Help</source>
-        <translation>h3lp</translation>
+        <translation type="obsolete">h3lp</translation>
     </message>
     <message>
-        <location filename="resources/forms/MainWinDesign.ui" line="84"/>
+        <location filename="resources/forms/MainWinDesign.ui" line="95"/>
         <source>Ctrl+L</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="resources/forms/MainWinDesign.ui" line="89"/>
+        <location filename="resources/forms/MainWinDesign.ui" line="100"/>
         <source>Quit</source>
         <translation>qu17</translation>
     </message>
     <message>
-        <location filename="resources/forms/MainWinDesign.ui" line="92"/>
+        <location filename="resources/forms/MainWinDesign.ui" line="103"/>
         <source>Ctrl+Q</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="resources/forms/MainWinDesign.ui" line="97"/>
+        <location filename="resources/forms/MainWinDesign.ui" line="108"/>
         <source>Server List</source>
         <translation>53rv3r l157</translation>
     </message>
     <message>
-        <location filename="resources/forms/MainWinDesign.ui" line="100"/>
+        <location filename="resources/forms/MainWinDesign.ui" line="111"/>
         <source>Ctrl+Shift+S</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="resources/forms/MainWinDesign.ui" line="105"/>
+        <location filename="resources/forms/MainWinDesign.ui" line="116"/>
         <source>Reload Plugins</source>
         <translation>r3l04d plu91n5</translation>
     </message>
     <message>
-        <location filename="resources/forms/MainWinDesign.ui" line="108"/>
+        <location filename="resources/forms/MainWinDesign.ui" line="119"/>
         <source>F5</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="resources/forms/MainWinDesign.ui" line="113"/>
+        <location filename="resources/forms/MainWinDesign.ui" line="124"/>
         <source>Configure Plugins</source>
         <translation>c0nf19ur3 plu91n5</translation>
     </message>
     <message>
-        <location filename="resources/forms/MainWinDesign.ui" line="118"/>
+        <location filename="resources/forms/MainWinDesign.ui" line="129"/>
         <source>About Luma</source>
         <translation>460u7 lum4</translation>
     </message>
     <message>
-        <location filename="resources/forms/MainWinDesign.ui" line="121"/>
+        <location filename="resources/forms/MainWinDesign.ui" line="132"/>
         <source>F12</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="resources/forms/MainWinDesign.ui" line="126"/>
+        <location filename="resources/forms/MainWinDesign.ui" line="137"/>
         <source>Settings</source>
         <translation>53771n95</translation>
     </message>
     <message>
         <location filename="resources/forms/MainWinDesign.ui" line="81"/>
         <source>Show logger</source>
-        <translation>5h0w l0993r</translation>
+        <translation type="obsolete">5h0w l0993r</translation>
     </message>
     <message>
-        <location filename="luma/base/gui/MainWin.py" line="141"/>
+        <location filename="luma/base/gui/MainWin.py" line="151"/>
         <source>Logger</source>
         <translation>l0993r</translation>
     </message>
     <message>
         <location filename="resources/forms/MainWinDesign.ui" line="131"/>
         <source>Show plugin-list</source>
-        <translation>$h0w p£µ91n-£1$7</translation>
+        <translation type="obsolete">$h0w p£µ91n-£1$7</translation>
     </message>
     <message>
-        <location filename="resources/forms/MainWinDesign.ui" line="134"/>
+        <location filename="resources/forms/MainWinDesign.ui" line="148"/>
         <source>Ctrl+P</source>
         <translation></translation>
     </message>
     <message>
         <location filename="resources/forms/MainWinDesign.ui" line="139"/>
         <source>Show welcome tab</source>
-        <translation>$h0w w3£(0m3 74b</translation>
+        <translation type="obsolete">$h0w w3£(0m3 74b</translation>
     </message>
     <message>
-        <location filename="resources/forms/MainWinDesign.ui" line="142"/>
+        <location filename="resources/forms/MainWinDesign.ui" line="162"/>
         <source>Ctrl+Shift+W</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="luma/base/gui/MainWin.py" line="593"/>
+        <location filename="luma/base/gui/MainWin.py" line="601"/>
         <source>Available plugins</source>
         <translation>4v41£4b£3 p£µ91n$</translation>
     </message>
     <message>
-        <location filename="luma/base/gui/MainWin.py" line="594"/>
+        <location filename="luma/base/gui/MainWin.py" line="602"/>
         <source>Choose plugin</source>
         <translation>(h00$3 p£µ91n</translation>
     </message>
     <message>
-        <location filename="luma/base/gui/MainWin.py" line="449"/>
+        <location filename="luma/base/gui/MainWin.py" line="461"/>
         <source>Plugins</source>
         <translation>P£µ91n$</translation>
+    </message>
+    <message>
+        <location filename="resources/forms/MainWinDesign.ui" line="38"/>
+        <source>&amp;File</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="resources/forms/MainWinDesign.ui" line="46"/>
+        <source>&amp;Edit</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="resources/forms/MainWinDesign.ui" line="64"/>
+        <source>&amp;Help</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="resources/forms/MainWinDesign.ui" line="70"/>
+        <source>&amp;View</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="resources/forms/MainWinDesign.ui" line="92"/>
+        <source>Logger Window</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="resources/forms/MainWinDesign.ui" line="145"/>
+        <source>Show Plugin List</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="resources/forms/MainWinDesign.ui" line="159"/>
+        <source>Show Welcome Tab</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="resources/forms/MainWinDesign.ui" line="170"/>
+        <source>Toolbar</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="resources/forms/MainWinDesign.ui" line="181"/>
+        <source>Statusbar</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="resources/forms/MainWinDesign.ui" line="189"/>
+        <source>Fullscreen</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>ServerDialog</name>
     <message>
-        <location filename="luma/base/gui/ServerDialog.py" line="145"/>
+        <location filename="luma/base/gui/ServerDialog.py" line="159"/>
         <source>Add server</source>
         <translation>4ÐÐ $3rv3r</translation>
     </message>
     <message>
-        <location filename="luma/base/gui/ServerDialog.py" line="148"/>
+        <location filename="luma/base/gui/ServerDialog.py" line="163"/>
         <source>Error</source>
         <translation>3rr0r</translation>
     </message>
     <message>
-        <location filename="luma/base/gui/ServerDialog.py" line="148"/>
+        <location filename="luma/base/gui/ServerDialog.py" line="163"/>
         <source>Invalid name or already used.</source>
         <translation>1nv4£1Ð n4m3 0r 4£r34Ð¥ µ$3Ð.</translation>
     </message>
     <message>
-        <location filename="luma/base/gui/ServerDialog.py" line="174"/>
+        <location filename="luma/base/gui/ServerDialog.py" line="194"/>
         <source>Delete</source>
         <translation>Ð3£373</translation>
     </message>
     <message>
-        <location filename="luma/base/gui/ServerDialog.py" line="174"/>
+        <location filename="luma/base/gui/ServerDialog.py" line="194"/>
         <source>Are you sure?</source>
         <translation>4r3 ¥0µ $µr3?</translation>
     </message>
     <message>
-        <location filename="luma/base/gui/ServerDialog.py" line="210"/>
+        <location filename="luma/base/gui/ServerDialog.py" line="242"/>
         <source>Exit?</source>
         <translation>3x17?</translation>
     </message>
     <message>
-        <location filename="luma/base/gui/ServerDialog.py" line="210"/>
+        <location filename="luma/base/gui/ServerDialog.py" line="242"/>
         <source>Are you sure you want to exit the server editor?
  Any unsaved changes will be lost!</source>
         <translation>4r3 ¥0µ $µr3 ¥0µ w4n7 70 3x17 7h3 $3rv3r 3Ð170r?
  4n¥ µn$4v3Ð (h4n93$ w1££ b3 £0$7!</translation>
     </message>
     <message>
-        <location filename="luma/base/gui/ServerDialog.py" line="241"/>
+        <location filename="luma/base/gui/ServerDialog.py" line="281"/>
         <source>Open file</source>
         <translation>0p3n ƒ1£3</translation>
     </message>
     <message>
-        <location filename="luma/base/gui/ServerDialog.py" line="145"/>
+        <location filename="luma/base/gui/ServerDialog.py" line="159"/>
         <source>Name:</source>
         <translation>N4m3:</translation>
     </message>
@@ -731,7 +767,7 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>SettingsDialog</name>
     <message>
-        <location filename="resources/forms/SettingsDialogDesign.ui" line="233"/>
+        <location filename="resources/forms/SettingsDialogDesign.ui" line="256"/>
         <source>Settings</source>
         <translation>53771n95</translation>
     </message>
@@ -751,54 +787,69 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="resources/forms/SettingsDialogDesign.ui" line="68"/>
+        <location filename="resources/forms/SettingsDialogDesign.ui" line="91"/>
         <source>i18n</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="resources/forms/SettingsDialogDesign.ui" line="76"/>
+        <location filename="resources/forms/SettingsDialogDesign.ui" line="99"/>
         <source>Application language</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="resources/forms/SettingsDialogDesign.ui" line="118"/>
+        <location filename="resources/forms/SettingsDialogDesign.ui" line="141"/>
         <source>Logging</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="resources/forms/SettingsDialogDesign.ui" line="126"/>
+        <location filename="resources/forms/SettingsDialogDesign.ui" line="149"/>
         <source>Show the Logger on startup</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="resources/forms/SettingsDialogDesign.ui" line="138"/>
+        <location filename="resources/forms/SettingsDialogDesign.ui" line="161"/>
         <source>Filter Options</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="resources/forms/SettingsDialogDesign.ui" line="146"/>
+        <location filename="resources/forms/SettingsDialogDesign.ui" line="169"/>
         <source>Display message types:</source>
         <translation>d16pl4y m355493 7yp35:</translation>
     </message>
     <message>
-        <location filename="resources/forms/SettingsDialogDesign.ui" line="153"/>
+        <location filename="resources/forms/SettingsDialogDesign.ui" line="176"/>
         <source>Errors</source>
         <translation>3rr0353rr0r5</translation>
     </message>
     <message>
-        <location filename="resources/forms/SettingsDialogDesign.ui" line="163"/>
+        <location filename="resources/forms/SettingsDialogDesign.ui" line="186"/>
         <source>Debug</source>
         <translation>d36u9</translation>
     </message>
     <message>
-        <location filename="resources/forms/SettingsDialogDesign.ui" line="173"/>
+        <location filename="resources/forms/SettingsDialogDesign.ui" line="196"/>
         <source>Info</source>
         <translation>1nf0</translation>
     </message>
     <message>
-        <location filename="resources/forms/SettingsDialogDesign.ui" line="215"/>
+        <location filename="resources/forms/SettingsDialogDesign.ui" line="238"/>
         <source>Plugins</source>
         <translation type="unfinished">P£µ91n$</translation>
+    </message>
+    <message>
+        <location filename="resources/forms/SettingsDialogDesign.ui" line="68"/>
+        <source>View options</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="resources/forms/SettingsDialogDesign.ui" line="74"/>
+        <source>Show toolbar on start</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="resources/forms/SettingsDialogDesign.ui" line="81"/>
+        <source>Show statusbar on start</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 </TS>

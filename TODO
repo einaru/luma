@@ -7,3 +7,5 @@
   through the settings dialog, (i.e. most settings in the dialog can also be 
   changed through menu actions)
 
+* Kill all threading activity against LDAP servers when quitting ?
+  Perhaps with some sort of signal system.
