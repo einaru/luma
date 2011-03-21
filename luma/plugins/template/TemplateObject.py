@@ -14,16 +14,16 @@ class TemplateObject(object):
     
     numFields = 5 # Models need to know
     
-    def __init__(self):
+    def __init__(self, name = "", server = "", description = ""):
         
         # Holds the data about the server
         # Used for easy mapping to model-columns
 
         self._dataHolder = [
                 #Index - Description (Options)
-        u"name",    # 0 Template name
-        u"server",    # 1 Server
-        u"desc",    # 2 Description
+        unicode(name),    # 0 Template name
+        unicode(server),    # 1 Server
+        unicode(description),    # 2 Description
         [],     # 3 Objectclasses
         {},     # 4 Attributes
         ]

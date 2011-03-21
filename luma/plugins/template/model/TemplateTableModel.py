@@ -14,10 +14,11 @@ class TemplateTableModel(QAbstractTableModel):
         QAbstractTableModel.__init__(self)
         self._templateList = templateList
         
-    def addRow(self, tO = None):
-        if not tO:
-            tO = TemplateObject()
-        self._templateList.addTemplate(tO)
+    def insertRow(self, tO):
+        if tO:
+            self._templateList.addTemplate(tO)
+            return True
+        return False
     
     def removeRow(self, row):
         self._templateList.deleteTemplateByIndex(row)

@@ -27,6 +27,8 @@ class TemplateWidget(QWidget, Ui_TemplateWidget):
         QWidget.__init__(self)
         self.setupUi(self)
         
+        self._serverList = ServerList()
+        
         templateList = TemplateList()
         self._templateList = copy.deepcopy(templateList)
         self._templateListCopy = None
@@ -112,29 +114,28 @@ class TemplateWidget(QWidget, Ui_TemplateWidget):
         return self.tableViewAttributes.model().getAttribute(index)
         
     def addTemplate(self):
-        dialog = AddTemplateDialog()
-        dialog.exec_()
-        """
-        name, ok = QInputDialog.getText(self, 'Add server', 'Name:')
-        if ok:
+        dialog = AddTemplateDialog(self._serverList)
+        if dialog.exec_():
+            name = dialog.lineEditTemplateName.text()
             if len(name) < 1 or self._templateList.getTemplateObject(name) != None:
                 QMessageBox.information(self, 'Error', "Invalid name or already used.")
                 return
-            
-            tO = TemplateObject()
-            tO.templateName = unicode(name)
+            server = dialog.comboBoxServer.currentText()
+            description = dialog.lineEditDescription.text()
+            tO = TemplateObject(name, server, description)
             
             m = self.listViewTemplates.model()
             m.beginInsertRows(QModelIndex(), m.rowCount(), m.rowCount()+1)
-            m.addRow(tO)
+            m.insertRow(tO)
             m.endInsertRows()
             
-            s = m.index(m.rowCount()-1,0)
-            self.listViewTemplates.selectionModel().select(s, QItemSelectionModel.ClearAndSelect)
-            self.listViewTemplates.selectionModel().setCurrentIndex(s, QItemSelectionModel.ClearAndSelect) #Mark it as current
-            self.mapper.setCurrentIndex(s.row())
+            i = m.index(m.rowCount()-1,0)
+            self.listViewTemplates.selectionModel().select(i, QItemSelectionModel.ClearAndSelect)
+            self.listViewTemplates.selectionModel().setCurrentIndex(i, QItemSelectionModel.ClearAndSelect) #Mark it as current
+            self.mapper.setCurrentIndex(i.row())
+            self.selectedTemplate()
             self.setRightSideEnabled(True)
-        """
+
         
     def deleteTemplate(self):
         if self.listViewTemplates.selectionModel().currentIndex().row() < 0:
@@ -172,11 +173,12 @@ class TemplateWidget(QWidget, Ui_TemplateWidget):
         dialog.exec_()
         
     def deleteObjectclass(self):
-        for i in self.listViewObjectclasses.selectedIndexes():
-            objectclass = self.getSelectedObjectclass(i)
-            self.objectclassTM.beginRemoveColumns(QModelIndex(), i.row(), i.row())
-            self.objectclassTM.removeRow(objectclass)
-            self.objectclassTM.endRemoveRows()
+        pass
+#        for i in self.listViewObjectclasses.selectedIndexes():
+#            objectclass = self.getSelectedObjectclass(i)
+#            self.objectclassTM.beginRemoveColumns(QModelIndex(), i.row(), i.row())
+#            self.objectclassTM.removeRow(objectclass)
+#            self.objectclassTM.endRemoveRows()
         
     def addAttribute(self):
         dialog = AddAttributeDialog()
