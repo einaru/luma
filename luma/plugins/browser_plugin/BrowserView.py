@@ -198,7 +198,7 @@ class BrowserView(QWidget):
         
         x = AdvancedObjectWidget(smartObject, QtCore.QPersistentModelIndex(index))
         self.openTabs[str(rep)] = x
-        self.tabWidget.addTab(x, x.ldapDataObject.getPrettyRDN())
+        self.tabWidget.addTab(x, smartObject.getPrettyRDN())
         self.tabWidget.setCurrentWidget(x)
     
         

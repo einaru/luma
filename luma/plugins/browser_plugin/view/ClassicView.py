@@ -1,43 +1,61 @@
 # -*- coding: utf-8 -*-
-from PyQt4.QtCore import QString
+import PyQt4
+from PyQt4.QtCore import QString, QSize, SIGNAL
+from PyQt4.QtGui import QInputDialog, QLineEdit, QImage, QTextBrowser, QTextOption, QSizePolicy
 from plugins.browser_plugin.view.AbstractEntryView import AbstractEntryView
 import copy
 
 class ClassicView(AbstractEntryView):
 
-    def __init__(self, ignoreInvalid):
+    def __init__(self, entryModel, ignoreInvalid):
         AbstractEntryView.__init__(self)
+        self.entryModel = entryModel
         self.ignoreInvalid = ignoreInvalid
         self.name = "classic"
         if self.ignoreInvalid:
             self.name += ("(ignore)")
         self.currentDocument = ""
+        self.objectWidget = None
 
-    def supportsSmartObject(self, smartObject):
+    @staticmethod
+    def supportedViews(entryModel):
         """
         returns True if it supports view for the smartObject
         """
-        return True
+        return [ClassicView(entryModel, False), ClassicView(entryModel, True)]
     def getName(self):
         """
         returns the name that will be displayed in the QComboBox
         """
         return self.name
 
-    def getCurrentDocument(self, smartObject):
-        """
-        returns the current document
-        """
-        self.currentDocument
 
+    def initWidget(self, parent=None):
+        # create the widget containing the data
+        self.objectWidget = QTextBrowser(parent)
+        self.objectWidget.setWordWrapMode(QTextOption.WrapAnywhere)
+        self.objectWidget.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+        self.objectWidget.setMinimumSize(QSize(300, 100))
+        self.objectWidget.setOpenLinks(False)
+        self.objectWidget.setHtml("")
+        self.objectWidget.connect(self.objectWidget, SIGNAL("anchorClicked(const QUrl&)"), self.anchorClicked)
 
-    # TODO return a document, change parameters
-    def displayValues(self, objectWidget, smartObject, aow):
-        objectWidget.setHtml("")
+    def refreshView(self):
+        self.currentDocument = self.createDocument()
+        self.objectWidget.setHtml(self.currentDocument)
 
+    def getWidget(self):
+        return self.objectWidget
+
+    # TODO remove this, implement correctly
+    def trUtf8(self, string):
+        return self.objectWidget.trUtf8(string)
+
+    def createDocument(self):
+
+        smartObject = self.entryModel.getSmartObject()
         smartObject.checkIntegrity()
 
-        # TODO: serverschema errors ignored
         if self.ignoreInvalid or smartObject.isValid:
             tmpList = []
             tmpList.append("<html>")
@@ -47,7 +65,7 @@ class ClassicView(AbstractEntryView):
             tmpList.append("""<td bgcolor="#B2CAE7" width="40%"><font size="+1"> <b>Distinguished Name:</b> </font></td>""")
             tmpList.append("""<td bgcolor="#B2CAE7" width="60%"><font size="+1"><b>""" + smartObject.getPrettyDN() + """</b></font></td>""")
         
-            if aow.CREATE:
+            if self.entryModel.CREATE:
                 tmpList.append("""<td width=5%><a href=RDN__0__edit><img source=":/icons/edit"></a></td>""")
 
             tmpList.append("""</tr>""")
@@ -55,18 +73,17 @@ class ClassicView(AbstractEntryView):
             tmpList.append("</table>")
             tmpList.append("<br>")
         
-            tmpList.append(self.createClassString(smartObject))
+            tmpList.append(self.createClassString())
         
             tmpList.append("<br>")
         
-            tmpList.append(self.createAttributeString(smartObject))
+            tmpList.append(self.createAttributeString())
         
             tmpList.append("</body>")
             tmpList.append("</html>")
         
-            self.currentDocument = ("".join(tmpList))
+            return "".join(tmpList)
         
-            objectWidget.setHtml(self.currentDocument)
         else:
             tmpList = []
             tmpList.append("<html>")
@@ -85,14 +102,12 @@ class ClassicView(AbstractEntryView):
             tmpList.append("</body>")
             tmpList.append("</html>")
 
-            objectWidget.setHtml("".join(tmpList))
-
-        # TODO toolbuttons
-        #self.enableToolButtons(True)
+            return "".join(tmpList)
 
 ###############################################################################
 
-    def createClassString(self, smartObject):
+    def createClassString(self):
+        smartObject = self.entryModel.getSmartObject()
         tmpList = []
         
         tmpList.append("""<table border="0" cellpadding="1" cellspacing="0" width="100%">""")
@@ -144,7 +159,8 @@ class ClassicView(AbstractEntryView):
 
 ###############################################################################
 
-    def createAttributeString(self, smartObject):
+    def createAttributeString(self):
+        smartObject = self.entryModel.getSmartObject()
         tmpList = []
         
         tmpList.append("""<table border="0" cellpadding="0" cellspacing="0" width="100%">""")
@@ -159,7 +175,6 @@ class ClassicView(AbstractEntryView):
         tmpList.append("""<table border="0" cellpadding="1" cellspacing="1" width="100%">""")
         
         for x in attributeList:
-            #environment.updateUI()
             if smartObject.isValid:
                 attributeIsBinary = smartObject.isAttributeBinary(x)
                 attributeIsImage = smartObject.isAttributeImage(x)
@@ -224,19 +239,18 @@ class ClassicView(AbstractEntryView):
                     unicode("Value not set.") + """</font></td>""")
                     
                 tmpList.append(self.getAttributeModifierString(univAttributeName, 
-                    allowDelete, False, attributeModify, smartObject))
+                    allowDelete, False, attributeModify))
             else:
                 tmpList.append(self.getAttributeValueString(univAttributeName, valueList[0], 
-                    attributeIsBinary, attributeIsImage, attributeIsPassword, smartObject))
+                    attributeIsBinary, attributeIsImage, attributeIsPassword))
             
                 tmpList.append(self.getAttributeModifierString(univAttributeName, 
-                    allowDelete, attributeBinaryExport, attributeModify, smartObject))
+                    allowDelete, attributeBinaryExport, attributeModify))
                 
             tmpList.append("""</tr>""")
             
             
             for y in valueList[1:]:
-                #environment.updateUI()
                 attributeIndex += 1
                 univAttributeName = x + "__" + unicode(attributeIndex)
                 
@@ -252,13 +266,13 @@ class ClassicView(AbstractEntryView):
                         unicode("Value not set.") + """</font></td>""")
                         
                     tmpList.append(self.getAttributeModifierString(univAttributeName, 
-                        allowDelete, False, attributeModify, smartObject))
+                        allowDelete, False, attributeModify))
                 else:
                     tmpList.append(self.getAttributeValueString(univAttributeName, y, 
-                        attributeIsBinary, attributeIsImage, attributeIsPassword, smartObject))
+                        attributeIsBinary, attributeIsImage, attributeIsPassword))
                     
                     tmpList.append(self.getAttributeModifierString(univAttributeName, 
-                        allowDelete, attributeBinaryExport, attributeModify, smartObject))
+                        allowDelete, attributeBinaryExport, attributeModify))
                     
                 tmpList.append("""</tr>""")
                 
@@ -271,7 +285,7 @@ class ClassicView(AbstractEntryView):
 
     #TODO image and password will crash
     def getAttributeValueString(self, univAttributeName, value, attributeIsBinary, 
-        attributeIsImage, attributeIsPassword, smartObject):
+        attributeIsImage, attributeIsPassword):
         tmpList = []
         
         # Create the value part
@@ -293,7 +307,7 @@ class ClassicView(AbstractEntryView):
         
 ###############################################################################
 
-    def getAttributeModifierString(self, univAttributeName, allowDelete, attributeBinaryExport, attributeModify, smartObject):
+    def getAttributeModifierString(self, univAttributeName, allowDelete, attributeBinaryExport, attributeModify):
         tmpList = []
         
         tmpList.append("""<td width=20%>""")
@@ -317,3 +331,91 @@ class ClassicView(AbstractEntryView):
             
         return "".join(tmpList)
 
+###############################################################################
+
+    def anchorClicked(self, url):
+        nameString = unicode(url.toString())
+        tmpList = nameString.split("__")
+        
+        if tmpList[0] in self.entryModel.getSmartObject().getObjectClasses():
+            self.entryModel.deleteObjectClass(tmpList[0])
+            #self.refreshView()
+        else:
+            if not len(tmpList) == 3:
+                return
+            attributeName, index, operation = tmpList[0], int(tmpList[1]), tmpList[2]
+            if operation == "edit":
+                self.editAttribute(attributeName, index)
+            elif operation == "delete":
+                self.deleteAttribute(attributeName, index)
+            elif operation == "export":
+                self.exportAttribute(attributeName, index)
+
+###############################################################################
+
+    def editAttribute(self, attributeName, index):
+        smartObject = self.entryModel.getSmartObject()
+        oldDN = smartObject.getDN()
+        
+        if attributeName == 'RDN':
+            # TODO correct this, used on creation?
+            smartObject.setDN(self.baseDN)
+
+        attributeValue = smartObject.getAttributeValue(attributeName, index)
+        newValue, ok = QInputDialog.getText(self.objectWidget, 
+                            self.trUtf8('Input dialog'), 
+                            self.trUtf8('Attribute value:'), 
+                            QLineEdit.Normal, 
+                            attributeValue)
+        newValue = unicode(newValue)
+        if ok:
+            if not newValue == None:
+                self.entryModel.editAttribute(attributeName, index, newValue)
+                #self.refreshView()
+        else:
+            if attributeName == 'RDN':
+                # TODO correct this
+                smartObject.setDN(oldDN)
+
+###############################################################################
+    def deleteAttribute(self, attributeName, index):
+        self.entryModel.deleteAttribute(attributeName, index)
+
+###############################################################################
+
+    # TODO: not used yet
+    def exportAttribute(self, attributeName, index):
+        return
+        """ Show the dialog for exporting binary attribute data.
+        """
+        '''
+        value = self.ldapDataObject.getAttributeValue(attributeName, index)
+
+
+        #filename = unicode(QFileDialog.getSaveFileName(
+        #                    self,
+        #fileName = unicode(QFileDialog.getSaveFileName(\
+        #                    QString.null,
+        #                    "All files (*)",
+        #                    self, None,
+        #                    self.trUtf8("Export binary attribute to file"),
+        #                    None, 1))
+
+        if unicode(fileName) == "":
+            return
+            
+        try:
+            fileHandler = open(fileName, "w")
+            fileHandler.write(value)
+            fileHandler.close()
+            SAVED = True
+        except IOError, e:
+            result = QMessageBox.warning(None,
+                self.trUtf8("Export binary attribute"),
+                self.trUtf8("""Could not export binary data to file. Reason:
+""" + str(e) + """\n\nPlease select another filename."""),
+                self.trUtf8("&Cancel"),
+                self.trUtf8("&OK"),
+                None,
+                1, -1)
+        '''

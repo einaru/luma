@@ -1,12 +1,13 @@
+# -*- coding: utf-8 -*-
 
 class AbstractEntryView:
 
     def __init__(self):
         pass
 
-    def supportsSmartObject(self, smartObject):
+    @staticmethod
+    def supportedViews(entryModel):
         """
-        returns True if it supports view for the smartObject
         """
         pass
     def getName(self):
@@ -14,8 +15,19 @@ class AbstractEntryView:
         returns the name that will be displayed in the QComboBox
         """
         pass
-    def getCurrentDocument(self):
+
+    def initView(self, parent=None):
+        pass
+
+    def refreshView(self):
+        pass
+
+    def modelChanged(self):
         """
-        returns the current document
+        called when the model is changed
         """
         pass
+    def getWidget(self):
+        """
+        returns the widget that displays the view
+        """
