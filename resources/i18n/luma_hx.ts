@@ -255,6 +255,26 @@ p, li { white-space: pre-wrap; }
         <source>This item have a limit applied.</source>
         <translation>7h1$ 173m h4v3 4 ƒ1£73r 4pp£13Ð.</translation>
     </message>
+    <message>
+        <location filename="luma/plugins/browser_plugin/item/LDAPTreeItem.py" line="121"/>
+        <source>Limit</source>
+        <translation type="unfinished">£1m17</translation>
+    </message>
+    <message>
+        <location filename="luma/plugins/browser_plugin/item/LDAPTreeItem.py" line="121"/>
+        <source>Enter the limit (0 = none):</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="luma/plugins/browser_plugin/item/LDAPTreeItem.py" line="129"/>
+        <source>Filter</source>
+        <translation type="unfinished">ƒ1£73r</translation>
+    </message>
+    <message>
+        <location filename="luma/plugins/browser_plugin/item/LDAPTreeItem.py" line="129"/>
+        <source>Enter the filter (with parentheses -- none for default):</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>LDAPTreeItemModel</name>
@@ -412,12 +432,17 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="luma/base/gui/MainWin.py" line="608"/>
         <source>Available plugins</source>
-        <translation type="unfinished"></translation>
+        <translation>4v41£4b£3 p£µ91n$</translation>
     </message>
     <message>
         <location filename="luma/base/gui/MainWin.py" line="609"/>
         <source>Choose plugin</source>
-        <translation type="unfinished"></translation>
+        <translation>(h00$3 p£µ91n</translation>
+    </message>
+    <message>
+        <location filename="luma/base/gui/MainWin.py" line="464"/>
+        <source>Plugins</source>
+        <translation>P£µ91n$</translation>
     </message>
 </context>
 <context>
@@ -773,7 +798,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="resources/forms/SettingsDialogDesign.ui" line="215"/>
         <source>Plugins</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">P£µ91n$</translation>
     </message>
 </context>
 </TS>

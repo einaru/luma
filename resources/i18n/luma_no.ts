@@ -255,6 +255,26 @@ p, li { white-space: pre-wrap; }
         <source>This item have a limit applied.</source>
         <translation>Denne oppføringen har en begrensning.</translation>
     </message>
+    <message>
+        <location filename="luma/plugins/browser_plugin/item/LDAPTreeItem.py" line="121"/>
+        <source>Limit</source>
+        <translation type="unfinished">Grense</translation>
+    </message>
+    <message>
+        <location filename="luma/plugins/browser_plugin/item/LDAPTreeItem.py" line="121"/>
+        <source>Enter the limit (0 = none):</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="luma/plugins/browser_plugin/item/LDAPTreeItem.py" line="129"/>
+        <source>Filter</source>
+        <translation type="unfinished">Filter</translation>
+    </message>
+    <message>
+        <location filename="luma/plugins/browser_plugin/item/LDAPTreeItem.py" line="129"/>
+        <source>Enter the filter (with parentheses -- none for default):</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>LDAPTreeItemModel</name>
@@ -295,6 +315,14 @@ p, li { white-space: pre-wrap; }
         <location filename="resources/forms/LoggerWidgetDesign.ui" line="92"/>
         <source>Clear log</source>
         <translation>Slett logg</translation>
+    </message>
+</context>
+<context>
+    <name>MainWin</name>
+    <message>
+        <location filename="luma/base/gui/MainWin.py" line="464"/>
+        <source>Plugins</source>
+        <translation type="obsolete">Plugins</translation>
     </message>
 </context>
 <context>
@@ -418,6 +446,11 @@ p, li { white-space: pre-wrap; }
         <location filename="luma/base/gui/MainWin.py" line="609"/>
         <source>Choose plugin</source>
         <translation>Velg plugin</translation>
+    </message>
+    <message>
+        <location filename="luma/base/gui/MainWin.py" line="464"/>
+        <source>Plugins</source>
+        <translation type="unfinished">Plugins</translation>
     </message>
 </context>
 <context>
