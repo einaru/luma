@@ -44,7 +44,6 @@ class BrowserView(QWidget):
             
         # The serverlist used
         self.serverList = ServerList(configPrefix)
-        self.mainwin = mainwin
         self.mainLayout = QtGui.QHBoxLayout(self)
         
         self.splitter = QtGui.QSplitter(self)

@@ -28,7 +28,7 @@ def getIcon(iconPath):
     
 ###############################################################################
 
-def getPluginWidget(parent):
+def getPluginWidget(parent, mainwin):
     return QLabel("loool",parent)
 
     

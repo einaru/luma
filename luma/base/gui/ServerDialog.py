@@ -44,6 +44,10 @@ class ServerDialog(QDialog, Ui_ServerDialogDesign):
         
         # Create the model used by the views
         self.slm = ServerListModel(self._serverList)
+        self.slm.dataChanged.connect(self.wasChanged)
+        self.slm.rowsInserted.connect(self.wasChanged)
+        self.slm.rowsRemoved.connect(self.wasChanged)
+        self.isChanged = False
         
         # Add the model to the list of servers
         self.serverListView.setModel(self.slm)
@@ -98,6 +102,9 @@ class ServerDialog(QDialog, Ui_ServerDialogDesign):
         # maning we don't know what do delete
         #self.deleteBaseDNButton.setFocusPolicy(Qt.NoFocus)
         self.setBaseDN()
+        
+    def wasChanged(self):
+        self.isChanged = True
     
     def addBaseDN(self):
         tmpBase = unicode(self.baseEdit.text()).strip()
@@ -194,6 +201,11 @@ class ServerDialog(QDialog, Ui_ServerDialogDesign):
         """
         Called when the users clicks cancel or presses escape
         """
+        # If no changes: just quit
+        if not self.isChanged:
+            QDialog.reject(self)
+            return
+        
         # Really quit?
         r = QMessageBox.question(self, self.tr("Exit?"), self.tr("Are you sure you want to exit the server editor?\n Any unsaved changes will be lost!"), QMessageBox.Ok|QMessageBox.Cancel)
         if not r == QMessageBox.Ok:
