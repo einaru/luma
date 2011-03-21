@@ -70,8 +70,8 @@ class BrowserView(QWidget):
         # For right-clicking in the tree
         self.entryList.setContextMenuPolicy(QtCore.Qt.CustomContextMenu)
         self.entryList.customContextMenuRequested.connect(self.rightClick)
-        # When something is clicked, call self.initEntryView
-        self.entryList.doubleClicked.connect(self.viewItem)
+        # When something is activated (doubleclick, <enter> etc.)
+        self.entryList.activated.connect(self.viewItem)
         
         # The editor for entries
         self.tabWidget = QtGui.QTabWidget(self)
