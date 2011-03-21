@@ -260,30 +260,22 @@ class LumaConnection(object):
         # Prompt user to continue if we suspect that the certificate could not
         # be verified
         if self._cert_error(workerThread):
-            """
-            TODO FIX FOR QT4.
-            Could use QMessageBox.question or somethign
-            """
+            svar = QMessageBox.No
             if hasSSLlibrary:
                 pass
                 # TODO
                 #dialog = UnknownCertDialog(self.serverObject)
                 #accepted = UnknownCertDialog.Accepted
             else:
-                dialog = QMessageBox("Certificate error",
-                        "Do you want to continue anyway?",
-                        QMessageBox.Question,
-                        QMessageBox.Yes,
-                        QMessageBox.No,
-                        QMessageBox.NoButton,
-                        None)
-                accepted = 3
-
-            #environment.setBusy(False)
-            dialog.exec_loop()
-            if dialog.result() == accepted:
-                self.serverObject.checkServerCertificate = u"never"
-                LumaConnection._certMap[self.serverObject.name] = u"never"
+                # If checkServerCertificate isn't "never" ask to set it
+                if not self.serverObject.checkServerCertificate == ServerCheckCertificate.Never:
+                    svar = QMessageBox.question(None, QApplication.translate("LumaConnection","Certificate error"), 
+                                     QApplication.translate("LumaConnection","Do you want to continue anyway?"), 
+                                     QMessageBox.Yes|QMessageBox.No, QMessageBox.No)
+                    
+            if svar == QMessageBox.Yes:
+                self.serverObject.checkServerCertificate = ServerCheckCertificate.Never
+                LumaConnection._certMap[self.serverObject.name] = ServerCheckCertificate.Never
                 workerThread = self.__bind()
 
         # Prompt for password on _invalid_pwd or _blank_pwd
