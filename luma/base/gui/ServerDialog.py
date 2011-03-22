@@ -164,7 +164,7 @@ class ServerDialog(QDialog, Ui_ServerDialogDesign):
         """
         name, ok = QInputDialog.getText(self, self.tr('Add server'), self.tr('Name:'))
         if ok:
-            if len(name) < 1 or self._serverList.getServerObject(name) != None:
+            if len(name) < 1 or self.__serverList.getServerObject(name) != None:
                 QMessageBox.information(self, self.tr('Error'), self.tr("Invalid name or already used."))
                 return
 
@@ -174,7 +174,7 @@ class ServerDialog(QDialog, Ui_ServerDialogDesign):
             # Insert into the model
             m = self.serverListView.model()
             m.beginInsertRows(QModelIndex(), m.rowCount(QModelIndex()), m.rowCount(QModelIndex()) + 1)
-            self._serverList.addServer(sO)
+            self.__serverList.addServer(sO)
             m.endInsertRows()
 
             s = m.index(m.rowCount(QModelIndex) - 1, 0) #Index of the newly added server
@@ -212,8 +212,8 @@ class ServerDialog(QDialog, Ui_ServerDialogDesign):
         """ Called when the Save-button is clicked
         """
         self.mapper.submit()
-        self._serverList.writeServerList()
-        self._serverListCopy = copy.deepcopy(self._serverList)
+        self.__serverList.writeServerList()
+        self.__serverListCopy = copy.deepcopy(self.__serverList)
 
     def reject(self):
         """ Called when the users clicks cancel or presses escape
@@ -230,8 +230,8 @@ class ServerDialog(QDialog, Ui_ServerDialogDesign):
             return
 
         # If "save" has been clicked, return the saved list by calling accept()
-        if self._serverListCopy: #This is non-None if Save has been clicked.
-            self.__returnList = self._serverListCopy # Return the saved on instead
+        if self.__serverListCopy: #This is non-None if Save has been clicked.
+            self.__returnList = self.__serverListCopy # Return the saved on instead
             QDialog.accept(self) # Closes the window while indicating the caller needs to get the new list (self.__returnList)
             return
         QDialog.reject(self)
@@ -240,8 +240,8 @@ class ServerDialog(QDialog, Ui_ServerDialogDesign):
         """ Called when OK-button is clicked
         """
         self.mapper.submit()
-        self._serverList.writeServerList()
-        self.__returnList = self._serverList
+        self.__serverList.writeServerList()
+        self.__returnList = self.__serverList
         QDialog.accept(self)
 
     def getResult(self):
