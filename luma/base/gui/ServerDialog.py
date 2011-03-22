@@ -123,7 +123,7 @@ class ServerDialog(QDialog, Ui_ServerDialogDesign):
     def addBaseDN(self):
         """ Slot for adding a base DN
         """
-        tmpBase = unicode(self.baseEdit.text()).strip()
+        tmpBase = unicode(self.baseDNEdit.text()).strip()
         if tmpBase == u"":
             return
         self.baseDNListWidget.addItem(QListWidgetItem(tmpBase)) #Add to list
@@ -131,7 +131,7 @@ class ServerDialog(QDialog, Ui_ServerDialogDesign):
         serverIndex = self.serverListView.selectedIndexes()
         index = self.slm.createIndex(serverIndex[0].row(), 5)
         self.serverDelegate.setModelData(self.baseDNListWidget, self.slm, index)
-        self.baseEdit.clear() #Clear textfield
+        self.baseDNEdit.clear() #Clear textfield
         self.mapper.submit() #Force push to model
 
     def deleteBaseDN(self):
