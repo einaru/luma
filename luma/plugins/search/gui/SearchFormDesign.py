@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file '/mnt/debris/devel/git/merging-luma/resources/forms/plugins/search/SearchFormDesign.ui'
+# Form implementation generated from reading ui file '/mnt/debris/devel/git/luma/resources/forms/plugins/search/SearchFormDesign.ui'
 #
-# Created: Mon Mar 21 22:53:01 2011
+# Created: Tue Mar 22 03:31:18 2011
 #      by: PyQt4 UI code generator 4.7.4
 #
 # WARNING! All changes made in this file will be lost!

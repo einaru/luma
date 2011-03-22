@@ -136,17 +136,17 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="resources/forms/AboutDialogDesign.ui" line="110"/>
         <source>Luma</source>
-        <translation type="unfinished">Luma</translation>
+        <translation>Luma</translation>
     </message>
     <message encoding="UTF-8">
         <location filename="resources/forms/AboutDialogDesign.ui" line="147"/>
         <source>Copyright © 2003–2005 Wido Depping</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="resources/forms/AboutDialogDesign.ui" line="157"/>
         <source>&lt;a href=&quot;http://luma.sf.net/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Luma Website&lt;/span&gt;&lt;/a&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;a href=&quot;http://luma.sf.net/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Luma hjemmeside&lt;/span&gt;&lt;/a&gt;</translation>
     </message>
 </context>
 <context>
@@ -170,7 +170,28 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Luma is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version. &lt;/p&gt;
 &lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Luma is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details. &lt;/p&gt;
 &lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;You should have received a copy of the GNU General Public License along with Luma; if not, write to the Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA, or visit &lt;a href=&quot;http://www.gnu.org/licenses/gpl-2.0.html&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;www.gnu.org/licenses/gpl-2.0&lt;/span&gt;&lt;/a&gt;.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
+    </message>
+</context>
+<context>
+    <name>AdvancedObjectWidget</name>
+</context>
+<context>
+    <name>BaseSelectorDesign</name>
+    <message>
+        <location filename="luma/base/gui/rejects/BaseSelectorDesign.py" line="114"/>
+        <source>Custom:</source>
+        <translation type="obsolete">Egendefinert:</translation>
+    </message>
+    <message>
+        <location filename="luma/base/gui/rejects/BaseSelectorDesign.py" line="121"/>
+        <source>&amp;Cancel</source>
+        <translation type="obsolete">&amp;Avbryt</translation>
+    </message>
+    <message>
+        <location filename="luma/base/gui/rejects/BaseSelectorDesign.py" line="123"/>
+        <source>&amp;OK</source>
+        <translation type="obsolete">&amp;Ok</translation>
     </message>
 </context>
 <context>
@@ -217,36 +238,42 @@ p, li { white-space: pre-wrap; }
     </message>
 </context>
 <context>
+    <name>ClassicView</name>
+</context>
+<context>
+    <name>Dialog</name>
+</context>
+<context>
     <name>Form</name>
     <message>
         <location filename="resources/forms/plugins/search/SearchFormDesign.ui" line="14"/>
         <source>Form</source>
-        <translation type="unfinished"></translation>
+        <translation>Form</translation>
     </message>
     <message>
         <location filename="resources/forms/plugins/search/SearchFormDesign.ui" line="37"/>
         <source>Server:</source>
-        <translation type="unfinished"></translation>
+        <translation>Server:</translation>
     </message>
     <message>
         <location filename="resources/forms/plugins/search/SearchFormDesign.ui" line="53"/>
         <source>Filter:</source>
-        <translation type="unfinished"></translation>
+        <translation>Filter:</translation>
     </message>
     <message>
         <location filename="resources/forms/plugins/search/SearchFormDesign.ui" line="69"/>
         <source>Filter Wizard</source>
-        <translation type="unfinished"></translation>
+        <translation>Filter veiviser</translation>
     </message>
     <message>
         <location filename="resources/forms/plugins/search/SearchFormDesign.ui" line="82"/>
         <source>Search</source>
-        <translation type="unfinished"></translation>
+        <translation>Søk</translation>
     </message>
     <message>
         <location filename="resources/forms/plugins/search/SearchFormDesign.ui" line="98"/>
         <source>Base DN:</source>
-        <translation type="unfinished"></translation>
+        <translation>Base DN:</translation>
     </message>
 </context>
 <context>
@@ -277,22 +304,22 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="luma/plugins/browser_plugin/item/LDAPTreeItem.py" line="121"/>
         <source>Limit</source>
-        <translation type="unfinished">Grense</translation>
+        <translation>Grense</translation>
     </message>
     <message>
         <location filename="luma/plugins/browser_plugin/item/LDAPTreeItem.py" line="121"/>
         <source>Enter the limit (0 = none):</source>
-        <translation type="unfinished"></translation>
+        <translation>Angi grense (0 = none):</translation>
     </message>
     <message>
         <location filename="luma/plugins/browser_plugin/item/LDAPTreeItem.py" line="129"/>
         <source>Filter</source>
-        <translation type="unfinished">Filter</translation>
+        <translation>Filter</translation>
     </message>
     <message>
         <location filename="luma/plugins/browser_plugin/item/LDAPTreeItem.py" line="129"/>
         <source>Enter the filter (with parentheses -- none for default):</source>
-        <translation type="unfinished"></translation>
+        <translation>Angi filter (med paranteser -- none for standard):</translation>
     </message>
 </context>
 <context>
@@ -300,7 +327,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="luma/plugins/browser_plugin/model/LDAPTreeItemModel.py" line="169"/>
         <source>No servers defined</source>
-        <translation>Ingen servere definert.</translation>
+        <translation>Ingen servere definert</translation>
     </message>
 </context>
 <context>
@@ -337,288 +364,259 @@ p, li { white-space: pre-wrap; }
     </message>
 </context>
 <context>
-    <name>MainWin</name>
-    <message>
-        <location filename="luma/base/gui/MainWin.py" line="464"/>
-        <source>Plugins</source>
-        <translation type="obsolete">Plugins</translation>
-    </message>
+    <name>LumaConnection</name>
 </context>
 <context>
     <name>MainWindow</name>
     <message>
         <location filename="resources/forms/MainWindowDesign.ui" line="15"/>
         <source>Luma</source>
-        <translation type="unfinished">Luma</translation>
-    </message>
-    <message>
-        <location filename="resources/forms/MainWinDesign.ui" line="38"/>
-        <source>File</source>
-        <translation type="obsolete">Fil</translation>
-    </message>
-    <message>
-        <location filename="resources/forms/MainWinDesign.ui" line="49"/>
-        <source>Edit</source>
-        <translation type="obsolete">Rediger</translation>
+        <translation>Luma</translation>
     </message>
     <message>
         <location filename="resources/forms/MainWindowDesign.ui" line="50"/>
         <source>Language</source>
-        <translation type="unfinished">Språk</translation>
-    </message>
-    <message>
-        <location filename="resources/forms/MainWinDesign.ui" line="67"/>
-        <source>Help</source>
-        <translation type="obsolete">Hjelp</translation>
+        <translation>Språk</translation>
     </message>
     <message>
         <location filename="resources/forms/MainWindowDesign.ui" line="100"/>
         <source>Quit</source>
-        <translation type="unfinished">Avslutt</translation>
+        <translation>Avslutt</translation>
     </message>
     <message>
         <location filename="resources/forms/MainWindowDesign.ui" line="108"/>
         <source>Server List</source>
-        <translation type="unfinished">Server listen</translation>
+        <translation>Server listen</translation>
     </message>
     <message>
         <location filename="resources/forms/MainWindowDesign.ui" line="116"/>
         <source>Reload Plugins</source>
-        <translation type="unfinished">Reload plugins</translation>
+        <translation>Reload plugins</translation>
     </message>
     <message>
         <location filename="resources/forms/MainWindowDesign.ui" line="119"/>
         <source>F5</source>
-        <translation type="unfinished">F5</translation>
+        <translation>F5</translation>
     </message>
     <message>
         <location filename="resources/forms/MainWindowDesign.ui" line="124"/>
         <source>Configure Plugins</source>
-        <translation type="unfinished">Konfigurer plugins</translation>
+        <translation>Konfigurer plugins</translation>
     </message>
     <message>
         <location filename="resources/forms/MainWindowDesign.ui" line="129"/>
         <source>About Luma</source>
-        <translation type="unfinished">Om Luma</translation>
+        <translation>Om Luma</translation>
     </message>
     <message>
         <location filename="resources/forms/MainWindowDesign.ui" line="137"/>
         <source>Settings</source>
-        <translation type="unfinished">Innstillinger</translation>
+        <translation>Innstillinger</translation>
     </message>
     <message>
-        <location filename="resources/forms/MainWinDesign.ui" line="81"/>
-        <source>Show logger</source>
-        <translation type="obsolete">Vis logger</translation>
-    </message>
-    <message>
-        <location filename="luma/base/gui/MainWindow.py" line="129"/>
+        <location filename="luma/base/gui/MainWindow.py" line="130"/>
         <source>Logger</source>
-        <translation type="unfinished">logger</translation>
-    </message>
-    <message>
-        <location filename="resources/forms/MainWinDesign.ui" line="131"/>
-        <source>Show plugin-list</source>
-        <translation type="obsolete">Vis pluginliste</translation>
+        <translation>logger</translation>
     </message>
     <message>
         <location filename="resources/forms/MainWindowDesign.ui" line="148"/>
         <source>Ctrl+P</source>
-        <translation type="unfinished">Ctrl+P</translation>
+        <translation>Ctrl+P</translation>
     </message>
     <message>
-        <location filename="resources/forms/MainWinDesign.ui" line="139"/>
-        <source>Show welcome tab</source>
-        <translation type="obsolete">Vis velkommen-tab</translation>
-    </message>
-    <message>
-        <location filename="luma/base/gui/MainWindow.py" line="580"/>
+        <location filename="luma/base/gui/MainWindow.py" line="594"/>
         <source>Available plugins</source>
-        <translation type="unfinished">Tilgjengelige plugins</translation>
+        <translation>Tilgjengelige plugins</translation>
     </message>
     <message>
-        <location filename="luma/base/gui/MainWindow.py" line="581"/>
+        <location filename="luma/base/gui/MainWindow.py" line="595"/>
         <source>Choose plugin</source>
-        <translation type="unfinished">Velg plugin</translation>
+        <translation>Velg plugin</translation>
     </message>
     <message>
-        <location filename="luma/base/gui/MainWindow.py" line="440"/>
+        <location filename="luma/base/gui/MainWindow.py" line="454"/>
         <source>Plugins</source>
-        <translation type="unfinished">Plugins</translation>
+        <translation>Plugins</translation>
     </message>
     <message>
         <location filename="resources/forms/MainWindowDesign.ui" line="38"/>
         <source>&amp;File</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Fil</translation>
     </message>
     <message>
         <location filename="resources/forms/MainWindowDesign.ui" line="46"/>
         <source>&amp;Edit</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Rediger</translation>
     </message>
     <message>
         <location filename="resources/forms/MainWindowDesign.ui" line="64"/>
         <source>&amp;Help</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Hjelp</translation>
     </message>
     <message>
         <location filename="resources/forms/MainWindowDesign.ui" line="70"/>
         <source>&amp;View</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Vis</translation>
     </message>
     <message>
         <location filename="resources/forms/MainWindowDesign.ui" line="92"/>
         <source>Logger Window</source>
-        <translation type="unfinished"></translation>
+        <translation>Log vindu</translation>
     </message>
     <message>
         <location filename="resources/forms/MainWindowDesign.ui" line="95"/>
         <source>Ctrl+L</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="resources/forms/MainWindowDesign.ui" line="103"/>
         <source>Ctrl+Q</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="resources/forms/MainWindowDesign.ui" line="111"/>
         <source>Ctrl+Shift+S</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="resources/forms/MainWindowDesign.ui" line="132"/>
         <source>F12</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="resources/forms/MainWindowDesign.ui" line="145"/>
         <source>Show Plugin List</source>
-        <translation type="unfinished"></translation>
+        <translation>Vis plugin listen</translation>
     </message>
     <message>
         <location filename="resources/forms/MainWindowDesign.ui" line="159"/>
         <source>Show Welcome Tab</source>
-        <translation type="unfinished"></translation>
+        <translation>Vis velkomst tab</translation>
     </message>
     <message>
         <location filename="resources/forms/MainWindowDesign.ui" line="162"/>
         <source>Ctrl+Shift+W</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="resources/forms/MainWindowDesign.ui" line="170"/>
         <source>Toolbar</source>
-        <translation type="unfinished"></translation>
+        <translation>Verktøylinje</translation>
     </message>
     <message>
         <location filename="resources/forms/MainWindowDesign.ui" line="181"/>
         <source>Statusbar</source>
-        <translation type="unfinished"></translation>
+        <translation>Statuslinje</translation>
     </message>
     <message>
         <location filename="resources/forms/MainWindowDesign.ui" line="189"/>
         <source>Fullscreen</source>
-        <translation type="unfinished"></translation>
+        <translation>Fullskjerm</translation>
     </message>
+</context>
+<context>
+    <name>NewEntryDialog</name>
 </context>
 <context>
     <name>SearchFilterWizard</name>
     <message>
         <location filename="resources/forms/plugins/search/SearchFilterWizardDesign.ui" line="14"/>
         <source>Search Filter Wizard</source>
-        <translation type="unfinished"></translation>
+        <translation>Søke filter veileder</translation>
     </message>
     <message>
         <location filename="resources/forms/plugins/search/SearchFilterWizardDesign.ui" line="20"/>
         <source>Filter bookmarks</source>
-        <translation type="unfinished"></translation>
+        <translation>Filter bokmerker</translation>
     </message>
     <message>
         <location filename="resources/forms/plugins/search/SearchFilterWizardDesign.ui" line="34"/>
         <source>Filter:</source>
-        <translation type="unfinished"></translation>
+        <translation>Filter:</translation>
     </message>
     <message>
         <location filename="resources/forms/plugins/search/SearchFilterWizardDesign.ui" line="67"/>
         <source>Add current filter</source>
-        <translation type="unfinished"></translation>
+        <translation>Legg til gjeldende filter</translation>
     </message>
     <message>
         <location filename="resources/forms/plugins/search/SearchFilterWizardDesign.ui" line="74"/>
         <source>Delete</source>
-        <translation type="unfinished">Slett</translation>
+        <translation>SlettSlett</translation>
     </message>
     <message>
         <location filename="resources/forms/plugins/search/SearchFilterWizardDesign.ui" line="86"/>
         <source>Search criteria</source>
-        <translation type="unfinished"></translation>
+        <translation>Søke kriterie</translation>
     </message>
     <message>
         <location filename="resources/forms/plugins/search/SearchFilterWizardDesign.ui" line="94"/>
         <source>Attribute</source>
-        <translation type="unfinished"></translation>
+        <translation>Attributt</translation>
     </message>
     <message>
         <location filename="resources/forms/plugins/search/SearchFilterWizardDesign.ui" line="102"/>
         <source>*</source>
-        <translation type="unfinished"></translation>
+        <translation>*</translation>
     </message>
     <message>
         <location filename="resources/forms/plugins/search/SearchFilterWizardDesign.ui" line="111"/>
         <source>= (equals)</source>
-        <translation type="unfinished"></translation>
+        <translation>= (er lik)</translation>
     </message>
     <message>
         <location filename="resources/forms/plugins/search/SearchFilterWizardDesign.ui" line="116"/>
         <source>-= (approximately)</source>
-        <translation type="unfinished"></translation>
+        <translation>-= (omtrent)</translation>
     </message>
     <message>
         <location filename="resources/forms/plugins/search/SearchFilterWizardDesign.ui" line="121"/>
         <source>&gt;= (greater than)</source>
-        <translation type="unfinished"></translation>
+        <translation>&gt;= (større enn)</translation>
     </message>
     <message>
         <location filename="resources/forms/plugins/search/SearchFilterWizardDesign.ui" line="126"/>
         <source>&lt;= (less than)</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;= (mindre enn)</translation>
     </message>
     <message>
         <location filename="resources/forms/plugins/search/SearchFilterWizardDesign.ui" line="198"/>
         <source>Add</source>
-        <translation type="unfinished"></translation>
+        <translation>Legg til</translation>
     </message>
     <message>
         <location filename="resources/forms/plugins/search/SearchFilterWizardDesign.ui" line="144"/>
         <source>ObjectClass</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="resources/forms/plugins/search/SearchFilterWizardDesign.ui" line="159"/>
         <source>Concatenation</source>
-        <translation type="unfinished"></translation>
+        <translation>Sammensetning</translation>
     </message>
     <message>
         <location filename="resources/forms/plugins/search/SearchFilterWizardDesign.ui" line="174"/>
         <source>and</source>
-        <translation type="unfinished"></translation>
+        <translation>og</translation>
     </message>
     <message>
         <location filename="resources/forms/plugins/search/SearchFilterWizardDesign.ui" line="179"/>
         <source>or</source>
-        <translation type="unfinished"></translation>
+        <translation>eller</translation>
     </message>
     <message>
         <location filename="resources/forms/plugins/search/SearchFilterWizardDesign.ui" line="184"/>
         <source>not</source>
-        <translation type="unfinished"></translation>
+        <translation>ikke</translation>
     </message>
     <message>
         <location filename="resources/forms/plugins/search/SearchFilterWizardDesign.ui" line="227"/>
         <source>Current Filter</source>
-        <translation type="unfinished"></translation>
+        <translation>Gjeldende filter</translation>
     </message>
+</context>
+<context>
+    <name>SearchPlugin</name>
 </context>
 <context>
     <name>ServerDialog</name>
@@ -660,11 +658,6 @@ p, li { white-space: pre-wrap; }
 Ulagrede endringer vil gå tapt!</translation>
     </message>
     <message>
-        <location filename="luma/base/gui/ServerDialog.py" line="256"/>
-        <source>Open file</source>
-        <translation type="obsolete">Åpne fil</translation>
-    </message>
-    <message>
         <location filename="luma/base/gui/ServerDialog.py" line="165"/>
         <source>Name:</source>
         <translation>Navn:</translation>
@@ -672,12 +665,12 @@ Ulagrede endringer vil gå tapt!</translation>
     <message>
         <location filename="luma/base/gui/ServerDialog.py" line="253"/>
         <source>Select certificate file</source>
-        <translation type="unfinished"></translation>
+        <translation>Velg sertifikat fil</translation>
     </message>
     <message>
         <location filename="luma/base/gui/ServerDialog.py" line="262"/>
         <source>Select certificate keyfile</source>
-        <translation type="unfinished"></translation>
+        <translation>Velg sertifikat nøkkelfil</translation>
     </message>
 </context>
 <context>
@@ -708,29 +701,14 @@ Ulagrede endringer vil gå tapt!</translation>
         <translation>Port:</translation>
     </message>
     <message>
-        <location filename="resources/forms/ServerDialogDesign.ui" line="242"/>
-        <source>&lt;b&gt;LDAP options&lt;/b&gt;</source>
-        <translation type="obsolete">&lt;b&gt;LDAP-instillinger:&lt;/b&gt;</translation>
-    </message>
-    <message>
         <location filename="resources/forms/ServerDialogDesign.ui" line="185"/>
         <source>Follow aliases</source>
         <translation>Følg aliaser</translation>
     </message>
     <message>
-        <location filename="resources/forms/ServerDialogDesign.ui" line="286"/>
-        <source>Use Base DNs provided by the server</source>
-        <translation type="obsolete">Bruk Base DNs gitt av server</translation>
-    </message>
-    <message>
         <location filename="resources/forms/ServerDialogDesign.ui" line="205"/>
         <source>Custom:</source>
         <translation>Egendefinert:</translation>
-    </message>
-    <message>
-        <location filename="resources/forms/ServerDialogDesign.ui" line="410"/>
-        <source>&lt;b&gt;Network options&lt;/b&gt;</source>
-        <translation type="obsolete">&lt;b&gt;Nettverksinnstillinger&lt;/b&gt;</translation>
     </message>
     <message>
         <location filename="resources/forms/ServerDialogDesign.ui" line="257"/>
@@ -788,19 +766,9 @@ Ulagrede endringer vil gå tapt!</translation>
         <translation>Passord:</translation>
     </message>
     <message>
-        <location filename="resources/forms/ServerDialogDesign.ui" line="755"/>
-        <source>&lt;b&gt;Bind options&lt;/b&gt;</source>
-        <translation type="obsolete">&lt;b&gt;Bind instillinger&lt;/b&gt;</translation>
-    </message>
-    <message>
         <location filename="resources/forms/ServerDialogDesign.ui" line="437"/>
         <source>Security</source>
         <translation>Sikkerthet</translation>
-    </message>
-    <message>
-        <location filename="resources/forms/ServerDialogDesign.ui" line="810"/>
-        <source>&lt;b&gt;Security options&lt;/b&gt;</source>
-        <translation type="obsolete">&lt;b&gt;Sikkerhetsinstillinger&lt;/b&gt;</translation>
     </message>
     <message>
         <location filename="resources/forms/ServerDialogDesign.ui" line="489"/>
@@ -816,11 +784,6 @@ Ulagrede endringer vil gå tapt!</translation>
         <location filename="resources/forms/ServerDialogDesign.ui" line="499"/>
         <source>Secure Socket Layer (SSL)</source>
         <translation></translation>
-    </message>
-    <message>
-        <location filename="resources/forms/ServerDialogDesign.ui" line="895"/>
-        <source>&lt;b&gt;Validate server certificate&lt;/b&gt;</source>
-        <translation type="obsolete">&lt;b&gt;Valider server certificate&lt;/b&gt;</translation>
     </message>
     <message>
         <location filename="resources/forms/ServerDialogDesign.ui" line="535"/>
@@ -845,97 +808,97 @@ Ulagrede endringer vil gå tapt!</translation>
     <message>
         <location filename="resources/forms/ServerDialogDesign.ui" line="590"/>
         <source>Use client certificates</source>
-        <translation type="unfinished"></translation>
+        <translation>Bruk klient sertifikat</translation>
     </message>
     <message>
         <location filename="resources/forms/ServerDialogDesign.ui" line="609"/>
         <source>Certificate file:</source>
-        <translation type="unfinished"></translation>
+        <translation>Sertifikat fil:</translation>
     </message>
     <message>
         <location filename="resources/forms/ServerDialogDesign.ui" line="689"/>
         <source>Certificate keyfile:</source>
-        <translation type="unfinished"></translation>
+        <translation>Sertifikat nøkkelfil:</translation>
     </message>
     <message>
         <location filename="resources/forms/ServerDialogDesign.ui" line="670"/>
         <source>...</source>
-        <translation type="unfinished"></translation>
+        <translation>...</translation>
     </message>
     <message>
         <location filename="resources/forms/ServerDialogDesign.ui" line="765"/>
         <source>&amp;OK</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Ok</translation>
     </message>
     <message>
         <location filename="resources/forms/ServerDialogDesign.ui" line="768"/>
         <source>Alt+O</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="resources/forms/ServerDialogDesign.ui" line="784"/>
         <source>&amp;Apply</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Bruk</translation>
     </message>
     <message>
         <location filename="resources/forms/ServerDialogDesign.ui" line="797"/>
         <source>&amp;Cancel</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Avbryt</translation>
     </message>
     <message>
         <location filename="resources/forms/ServerDialogDesign.ui" line="800"/>
         <source>Alt+C</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="resources/forms/ServerDialogDesign.ui" line="217"/>
         <source>Add</source>
-        <translation type="unfinished"></translation>
+        <translation>Legg til</translation>
     </message>
     <message>
         <location filename="resources/forms/ServerDialogDesign.ui" line="224"/>
         <source>Delete</source>
-        <translation type="unfinished">Slett</translation>
+        <translation>Slett</translation>
     </message>
     <message>
         <location filename="resources/forms/ServerDialogDesign.ui" line="131"/>
         <source>Network options</source>
-        <translation type="unfinished"></translation>
+        <translation>Nettverks valg</translation>
     </message>
     <message>
         <location filename="resources/forms/ServerDialogDesign.ui" line="177"/>
         <source>LDAP options</source>
-        <translation type="unfinished"></translation>
+        <translation>LDAP valg</translation>
     </message>
     <message>
         <location filename="resources/forms/ServerDialogDesign.ui" line="192"/>
         <source>Use Base DN provided by server</source>
-        <translation type="unfinished"></translation>
+        <translation>Bruk Base DN gitt av server</translation>
     </message>
     <message>
         <location filename="resources/forms/ServerDialogDesign.ui" line="265"/>
         <source>Bind options</source>
-        <translation type="unfinished"></translation>
+        <translation>Bind valg</translation>
     </message>
     <message>
         <location filename="resources/forms/ServerDialogDesign.ui" line="306"/>
         <source>SIMPLE</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="resources/forms/ServerDialogDesign.ui" line="470"/>
         <source>Security options</source>
-        <translation type="unfinished"></translation>
+        <translation>Sikkerhets valg</translation>
     </message>
     <message>
         <location filename="resources/forms/ServerDialogDesign.ui" line="516"/>
         <source>Validate server certificate</source>
-        <translation type="unfinished"></translation>
+        <translation>Valider server sertifikat</translation>
     </message>
     <message>
         <location filename="resources/forms/ServerDialogDesign.ui" line="567"/>
-        <source>GroupBox</source>
-        <translation type="unfinished"></translation>
+        <source>Client certificate options</source>
+        <translation>Klient sertifikat valg</translation>
     </message>
 </context>
 <context>
@@ -1013,17 +976,25 @@ Ulagrede endringer vil gå tapt!</translation>
     <message>
         <location filename="resources/forms/SettingsDialogDesign.ui" line="68"/>
         <source>View options</source>
-        <translation type="unfinished"></translation>
+        <translation>Visnings valg</translation>
     </message>
     <message>
         <location filename="resources/forms/SettingsDialogDesign.ui" line="74"/>
         <source>Show toolbar on start</source>
-        <translation type="unfinished"></translation>
+        <translation>Vis verktøyslinjen ved oppstart</translation>
     </message>
     <message>
         <location filename="resources/forms/SettingsDialogDesign.ui" line="81"/>
         <source>Show statusbar on start</source>
-        <translation type="unfinished"></translation>
+        <translation>Vis statuslinjen ved oppstart</translation>
+    </message>
+</context>
+<context>
+    <name>pluginListWidget</name>
+    <message>
+        <location filename="luma/base/util/gui/PluginListWidgetDesign.py" line="32"/>
+        <source>Form</source>
+        <translation type="obsolete">Form</translation>
     </message>
 </context>
 </TS>

@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file '/mnt/debris/devel/git/merging-luma/resources/forms/MainWindowDesign.ui'
+# Form implementation generated from reading ui file '/mnt/debris/devel/git/luma/resources/forms/MainWindowDesign.ui'
 #
-# Created: Mon Mar 21 23:32:58 2011
+# Created: Tue Mar 22 03:31:18 2011
 #      by: PyQt4 UI code generator 4.7.4
 #
 # WARNING! All changes made in this file will be lost!
