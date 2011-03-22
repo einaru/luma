@@ -10,6 +10,7 @@ import unittest
 from base.backend.ServerList import ServerList
 from base.backend.ServerObject import ServerObject
 import test
+import tempfile
 import os
 import logging
 
@@ -20,7 +21,7 @@ class SLTest(unittest.TestCase):
     """
     def setUp(self):
         #print "setUp"
-        self.sl = ServerList(os.curdir)
+        self.sl = ServerList(tempfile.gettempdir(), "serverlisttest.xml")
         #self.sl.__configFile = os.path.join(self.sl._configPrefix, "serverlist.xml")
 
     def tearDown(self):
