@@ -71,6 +71,14 @@ class Luma(QApplication):
             self.restoreOverrideCursor()
             if self.progressBar != None:
                 self.progressBar.setRange(0,100)
+                
+class TempLogHandler(logging.Handler):
+    def __init__(self):
+        logging.Handler.__init__(self)
+        self.logList = []
+
+    def emit(self, record):
+        self.logList.append(record)
 
 
 def startApplication(argv, verbose=False, clear=[], dirs={}):
@@ -91,6 +99,17 @@ def startApplication(argv, verbose=False, clear=[], dirs={}):
     app.setOrganizationName(appinfo.ORGNAME)
     app.setApplicationName(appinfo.APPNAME)
     app.setApplicationVersion(appinfo.VERSION)
+    
+    # Setup the logging mechanism
+    l = logging.getLogger()
+    l.setLevel(logging.DEBUG)
+    formatter = logging.Formatter(
+        "[%(threadName)s] - %(name)s - %(levelname)s - %(message)s"
+    )
+    
+    # Keep all logs from now until the GUI-LoggerWidget is up and can be populated
+    tmpLH = TempLogHandler()
+    l.addHandler(tmpLH)
 
     settings = Settings()
     # Because we use QSettings for the application settings we 
@@ -112,13 +131,6 @@ def startApplication(argv, verbose=False, clear=[], dirs={}):
         
     (_, configPrefix) = getConfigPrefix()
     
-    # Setup the logging mechanism
-    l = logging.getLogger()
-    l.setLevel(logging.DEBUG)
-    formatter = logging.Formatter(
-        "[%(threadName)s] - %(name)s - %(levelname)s - %(message)s"
-    )
-    
     if verbose:
         """ If verbose mode is enabled we start logging to the console
         TODO: Add support for adjusting the level of verbosity ?
@@ -138,6 +150,10 @@ def startApplication(argv, verbose=False, clear=[], dirs={}):
     
     llh = LumaLogHandler(mainwin.loggerWidget)
     l.addHandler(llh)
+    
+    # Populate the loggerWidget
+    for x in tmpLH.logList:
+        llh.emit(x)
     
     app.lastWindowClosed.connect(mainwin.close)
 
