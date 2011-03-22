@@ -271,6 +271,9 @@ with the following text and a short description of what you were doing:
 >>>\n[%s] Reason:\n%s\n%s\n<<<""" % (tmp.getvalue(), str(etype), str(evalue))
     logger = logging.getLogger('luma')
     logger.error(e)
+    # Make sure the cursor is normal
+    QApplication.restoreOverrideCursor()
+
 
 
 if __name__ == '__main__':

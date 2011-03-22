@@ -70,7 +70,8 @@ class ServerDialog(QDialog, Ui_ServerDialogDesign):
         else:
             self.tabWidget.setEnabled(False)
 
-        self.splitter.setStretchFactor(0, 1)
+        self.splitter.setStretchFactor(1, 0)
+        
 
         # Select the first server in the model)
         index = self.serverListView.model().index(0, 0)
@@ -123,10 +124,10 @@ class ServerDialog(QDialog, Ui_ServerDialogDesign):
     def addBaseDN(self):
         """ Slot for adding a base DN
         """
-        tmpBase = unicode(self.baseDNEdit.text()).strip()
-        if tmpBase == u"":
+        tmpBaseDN = unicode(self.baseDNEdit.text()).strip()
+        if tmpBaseDN == u"":
             return
-        self.baseDNListWidget.addItem(QListWidgetItem(tmpBase)) #Add to list
+        self.baseDNListWidget.addItem(QListWidgetItem(tmpBaseDN)) #Add to list
 
         serverIndex = self.serverListView.selectedIndexes()
         index = self.slm.createIndex(serverIndex[0].row(), 5)
@@ -181,7 +182,7 @@ class ServerDialog(QDialog, Ui_ServerDialogDesign):
             self.serverListView.selectionModel().select(s, QItemSelectionModel.ClearAndSelect) #Select it
             self.serverListView.selectionModel().setCurrentIndex(s, QItemSelectionModel.ClearAndSelect) #Mark it as current      
             self.mapper.setCurrentIndex(s.row()) # Update the mapper
-            self.serverWidget.setEnabled(True) # Make sure editing is enabled
+            self.tabWidget.setEnabled(True) # Make sure editing is enabled
 
     def deleteServer(self):
         """ Delete a server from the model/list
@@ -206,7 +207,7 @@ class ServerDialog(QDialog, Ui_ServerDialogDesign):
             self.mapper.setCurrentIndex(newIndex.row())
 
         if self.slm.rowCount(QModelIndex()) == 0:
-            self.serverWidget.setEnabled(False) #Disable editing if no servers left
+            self.tabWidget.setEnabled(False) #Disable editing if no servers left
 
     def saveServerlist(self):
         """ Called when the Save-button is clicked

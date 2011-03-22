@@ -22,6 +22,7 @@ class AbstractLDAPTreeItem(object):
     SUPPORT_CLEAR = 8 # Probably works on all items
     SUPPORT_ADD = 16 # Can add child-items
     SUPPORT_DELETE = 32 # Can remove this item
+    SUPPORT_EXPORT = 64 # Can be exported
     
     def __init__(self, parent):
         """

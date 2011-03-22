@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file '/mnt/debris/devel/git/luma/resources/forms/ServerDialogDesign.ui'
 #
-# Created: Tue Mar 22 03:31:17 2011
+# Created: Tue Mar 22 13:55:41 2011
 #      by: PyQt4 UI code generator 4.7.4
 #
 # WARNING! All changes made in this file will be lost!
@@ -23,6 +23,7 @@ class Ui_ServerDialogDesign(object):
         sizePolicy.setHeightForWidth(self.splitter.sizePolicy().hasHeightForWidth())
         self.splitter.setSizePolicy(sizePolicy)
         self.splitter.setOrientation(QtCore.Qt.Horizontal)
+        self.splitter.setChildrenCollapsible(False)
         self.splitter.setObjectName("splitter")
         self.layout3 = QtGui.QWidget(self.splitter)
         self.layout3.setObjectName("layout3")
@@ -31,6 +32,11 @@ class Ui_ServerDialogDesign(object):
         self.serverListGrid.setMargin(0)
         self.serverListGrid.setObjectName("serverListGrid")
         self.serverListView = QtGui.QListView(self.layout3)
+        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Preferred, QtGui.QSizePolicy.Expanding)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.serverListView.sizePolicy().hasHeightForWidth())
+        self.serverListView.setSizePolicy(sizePolicy)
         self.serverListView.setObjectName("serverListView")
         self.serverListGrid.addWidget(self.serverListView, 0, 0, 1, 3)
         self.addButton = QtGui.QPushButton(self.layout3)
@@ -43,7 +49,7 @@ class Ui_ServerDialogDesign(object):
         self.serverListGrid.addItem(spacerItem, 1, 2, 1, 1)
         self.tabWidget = QtGui.QTabWidget(self.splitter)
         self.tabWidget.setEnabled(True)
-        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Fixed, QtGui.QSizePolicy.Fixed)
+        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.tabWidget.sizePolicy().hasHeightForWidth())
