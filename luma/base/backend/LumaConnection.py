@@ -421,7 +421,7 @@ class LumaConnection(object):
         if None == dnList:
             message = "Could not retrieve Base DNs from server. Unknown server type."
             self.logger.error(message)
-            return (False, None, "Unknown server type")
+            return (False, None, [{"desc":"Unknown server type"}])
         else:
             message = "Base DNs successfully retrieved from server."
             self.logger.info(message)
