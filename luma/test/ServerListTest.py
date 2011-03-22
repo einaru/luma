@@ -20,14 +20,8 @@ class SLTest(unittest.TestCase):
     """
     def setUp(self):
         #print "setUp"
-<<<<<<< HEAD
-        
-        #self.sl = ServerList()  # <-- should use this (writes to temp-dir)
-        self.sl = ServerList(os.curdir,"serverlist.xml") # <-- until user-dir is setup since tmp-dir is used for the actual list currently
-=======
         self.sl = ServerList(os.curdir)
         #self.sl.__configFile = os.path.join(self.sl._configPrefix, "serverlist.xml")
->>>>>>> S4-installation
 
     def tearDown(self):
         pass
@@ -39,11 +33,7 @@ class SLTest(unittest.TestCase):
     def writeList(self):
         #print "writeList"
         try:
-<<<<<<< HEAD
             f = open(self.sl.getConfigFilePath(), "w")
-=======
-            f = open(self.sl.__configFile, "w")
->>>>>>> S4-installation
             f.write("""
 <!DOCTYPE LumaServerFile>
 <LumaServerList version="1.2">
@@ -69,7 +59,7 @@ class SLTest(unittest.TestCase):
             f.close()
         except IOError:
             print "----------------------"
-            print "WRITE DO DISK FAILED!"
+            print "WRITE TO DISK FAILED!"
             print "----------------------"
             raise
        
@@ -127,11 +117,8 @@ class SLTest(unittest.TestCase):
         self.sl.setTable([self.getEmptyServerObject()])
         self.sl.writeServerList()
         
-<<<<<<< HEAD
+
         f = open(self.sl.getConfigFilePath(), "r")
-=======
-        f = open(self.sl.__configFile, "r")
->>>>>>> S4-installation
         s = """
 <!DOCTYPE LumaServerFile>
 <LumaServerList version="1.2">
