@@ -154,6 +154,7 @@ def startApplication(argv, verbose=False, clear=[], dirs={}):
     # Populate the loggerWidget
     for x in tmpLH.logList:
         llh.emit(x)
+    l.removeHandler(tmpLH)
     
     app.lastWindowClosed.connect(mainwin.close)
 
