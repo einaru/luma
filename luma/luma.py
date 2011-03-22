@@ -148,13 +148,14 @@ def startApplication(argv, verbose=False, clear=[], dirs={}):
     # Initialize the main window
     mainwin = MainWindow()
     
+    # Set up logging to the loggerwidget
     llh = LumaLogHandler(mainwin.loggerWidget)
-    l.addHandler(llh)
+    l.removeHandler(tmpLH) # Stop temp-logging
+    l.addHandler(llh) # Start proper logging
     
-    # Populate the loggerWidget
+    # Populate the loggerWidget with the saved entries
     for x in tmpLH.logList:
         llh.emit(x)
-    l.removeHandler(tmpLH)
     
     app.lastWindowClosed.connect(mainwin.close)
 
