@@ -64,6 +64,7 @@ SOURCE_UI = ['resources', 'forms']
 DEST_TRANS = ['luma', 'i18n']
 DEST_UI = ['luma', 'base', 'gui', 'design']
 PLUGINS = ['luma', 'plugins']
+SOURCES_BASE = ['luma', 'base', 'gui']
 
 # Files w/filepaths
 LUMA_PRO = ['luma.pro']
@@ -132,13 +133,13 @@ def __writeToDisk(list, where):
         file.close()
 
 
-def _getIconNameAndAlias(path):
+def __getIconNameAndAlias(path):
     name = os.path.split(path)[1]
     alias = name[:-4]
     return (name, alias)
 
 
-def _validateNum(num):
+def __validateNum(num):
     """ Validates if a variable is numeric. NB! if num == * this will
     be returned as is.
     
@@ -157,7 +158,7 @@ def _validateNum(num):
         return - 1
 
 
-def _getPath(pathList):
+def __getPath(pathList):
     """ Ensures that we get correct paths. That is we change our
     working directory to the top-level (one step up from tools).
     
@@ -181,10 +182,10 @@ def _getPath(pathList):
     return path
 
 
-def _listUiFiles(noprint=False):
+def __listUiFiles(noprint=False):
     """ List all available .ui files
     """
-    uipath = _getPath(SOURCE_UI)
+    uipath = __getPath(SOURCE_UI)
 
     uifiles = {}
     index = 1
@@ -205,7 +206,7 @@ def _listUiFiles(noprint=False):
     return uifiles
 
 
-def _prepareUiFiles(all=False):
+def __prepareUiFiles(all=False):
     """ Prepares the .ui files for compiling. A list of available .ui
     files will be printed, and the user will be prompted for the index
     of the file to be compiled. The index must be an valid integer, or
@@ -216,9 +217,9 @@ def _prepareUiFiles(all=False):
     """
 
     if all:
-        return _listUiFiles(noprint=True).values()
+        return __listUiFiles(noprint=True).values()
 
-    uifiles = _listUiFiles()
+    uifiles = __listUiFiles()
     files = []
 
     input = raw_input('\nEnter the number of the file(s) to compile\n' +
@@ -226,7 +227,7 @@ def _prepareUiFiles(all=False):
 
     nums = input.split(' ')
     for num in nums:
-        num = _validateNum(num)
+        num = __validateNum(num)
         if num == '*':
             return uifiles.values()
         elif num > 0:
@@ -235,7 +236,7 @@ def _prepareUiFiles(all=False):
     return files
 
 
-def _generateQrcFile(icons=False, i18n=False):
+def __generateQrcFile(icons=False, i18n=False):
     """ Scannes the defined icons and/or i18n folders for content to
     include in the luma resource file -> resources.py
     
@@ -251,7 +252,7 @@ def _generateQrcFile(icons=False, i18n=False):
     qrc.append(QRC_HEADER_OPEN)
 
     if i18n:
-        i18nPath = _getPath(SOURCE_TRANS)
+        i18nPath = __getPath(SOURCE_TRANS)
         qrc.append(u'  <qresource prefix="%s">' % os.path.split(i18nPath)[1])
         for file in os.listdir(i18nPath):
             if file[-3:] == u'.qm':
@@ -262,7 +263,7 @@ def _generateQrcFile(icons=False, i18n=False):
         qrc.append(u'  </qresource>')
 
     if icons:
-        iconsPath = _getPath(SOURCE_ICONS)
+        iconsPath = __getPath(SOURCE_ICONS)
         qrc.append(u'  <qresource prefix="%s">' % os.path.split(iconsPath)[1])
         prefix = ''
         for path, dirs, icons in os.walk(iconsPath):
@@ -273,7 +274,7 @@ def _generateQrcFile(icons=False, i18n=False):
 
             for icon in sorted(icons):
                 if icon[-4:] == u'.png':
-                    (name, alias) = _getIconNameAndAlias(icon)
+                    (name, alias) = __getIconNameAndAlias(icon)
                     qrc.append(u'    <file alias="%s%s">%s/%s</file>' % \
                                (prefix, alias, location, name))
 
@@ -297,8 +298,8 @@ def compileUiFiles(compileAll=False):
         wheter or not to compile all files
     """
 
-    uifiles = _prepareUiFiles(compileAll)
-    pypath = _getPath(DEST_UI)
+    uifiles = __prepareUiFiles(compileAll)
+    pypath = __getPath(DEST_UI)
 
     cmd = 'pyuic4'
     if sys.platform == 'win32':
@@ -313,7 +314,7 @@ def compileUiFiles(compileAll=False):
         if dirname != 'forms':
             # We are dealing with plugin forms
             # and need to use a different destination path
-            pluginpath = os.path.join(_getPath(PLUGINS), dirname, 'gui')
+            pluginpath = os.path.join(__getPath(PLUGINS), dirname, 'gui')
             pyfile = os.path.join(pluginpath, basename)
         else:
             # We are dealing with regular .ui forms,
@@ -326,7 +327,7 @@ def compileUiFiles(compileAll=False):
         __run(cmd, args)
 
 
-def createQrcFile(icons=False, i18n=False):
+def updateQrcFile(icons=False, i18n=False):
     """ Create the luma.qrc file based on the content in the resource
     folder
     
@@ -335,15 +336,15 @@ def createQrcFile(icons=False, i18n=False):
     @param i18n:
         Wheter or not to include translation files
     """
-    qrc = _generateQrcFile(icons, i18n)
-    __writeToDisk(qrc, _getPath(LUMA_QRC))
+    qrc = __generateQrcFile(icons, i18n)
+    __writeToDisk(qrc, __getPath(LUMA_QRC))
 
 
 def compileResources():
-    """ Compile resources defined in the project file [luma.pro]
+    """ Compile resources defined in the project resource file.
     """
-    lumaqrc = _getPath(LUMA_QRC)
-    lumarc = _getPath(LUMA_RC)
+    lumaqrc = __getPath(LUMA_QRC)
+    lumarc = __getPath(LUMA_RC)
 
     cmd = 'pyrcc4'
     if sys.platform == 'win32':
@@ -363,7 +364,7 @@ def compileResources():
 def updateTranslationFiles():
     """ Just executes the pylupdate4 command on the project file.
     """
-    lumapro = _getPath(LUMA_PRO)
+    lumapro = __getPath(LUMA_PRO)
 
     cmd = 'pylupdate4'
     if sys.platform == 'win32':
@@ -381,6 +382,75 @@ def updateTranslationFiles():
     __run(cmd, [lumapro])
 
 
+def updateProjectFile():
+    """ Walks through all defined folders and looks for related files
+    to include in the luma project file.
+    
+    As of all files meeting the followin criteria is included:
+        *.py files located in luma/base/gui
+        *.ui files located in resources/forms
+        *.ts files located in resources/i18n
+    """
+    luma_pro = __getPath(LUMA_PRO)
+
+    projectfile = []
+    projectfile.append('CONFIG += qt debug\n')
+    projectfile.append('RESOURCES = luma/resources.py\n')
+
+    # Predefined prefixes
+    PREFIX_SOURCES = 'SOURCES +='
+    PREFIX_FORMS = 'FORMS +='
+    PREFIX_TRANS = 'TRANSLATIONS +='
+
+    # Predefined ignores
+    IGNORE_SOURCES = ['__init__.py']
+    IGNORE_SOURCES_PATHS = ['test']
+    IGNORE_FORMS = []
+    IGNORE_TRANS = ['.qm']
+
+    # We use the current working directory to clip the full path
+    # when we write the project file
+    cwd = os.getcwd() + os.sep
+
+    for path, dirs, files in os.walk(__getPath(['luma'])):
+        for file in files:
+            relpath = path.replace(cwd, '').replace('\\', '/')
+            if not file in IGNORE_SOURCES and file.endswith('.py'):
+                # Might want to do some additional filtering to exclude
+                # some of the directories (i.e. test, etc)
+                file = os.path.join(relpath, file)
+                line = '%s %s' % (PREFIX_SOURCES, file)
+                projectfile.append(line)
+                if verbose:
+                    print line
+
+    # Seperate the sections in the file
+    projectfile.append('')
+
+    for _, file in __listUiFiles(noprint=True).iteritems():
+        if not file in IGNORE_FORMS:
+            path = file.replace(cwd, '').replace('\\', '/')
+            line = '%s %s' % (PREFIX_FORMS, path)
+            projectfile.append(line)
+            if verbose:
+                print line
+
+    # Seperate the sections in the file
+    projectfile.append('')
+
+    for path, dirs, files in os.walk(__getPath(SOURCE_TRANS)):
+        for file in files:
+            relpath = path.replace(cwd, '').replace('\\', '/')
+            if not file in IGNORE_TRANS and file.endswith('.ts'):
+                file = os.path.join(relpath, file)
+                line = '%s %s' % (PREFIX_TRANS, file)
+                projectfile.append(line)
+                if verbose:
+                    print line
+
+    __writeToDisk(projectfile, luma_pro)
+
+
 def main():
 
     global verbose, dryrun
@@ -393,7 +463,8 @@ def main():
         '-f', '--full-run',
         dest='full_run', action='store_true',
         help='Do a full run. This involves first compiling all ui files, ' +
-        'creating the .qrc file, and generate the resource.py file'
+        'creating the .qrc file, generate the resource.py file, update ' +
+        'translation files, and update the project file.'
     )
     parser.add_option(
         '-u', '--compile-ui-files',
@@ -401,7 +472,7 @@ def main():
         help='List all .ui files, and choose the one [or all] files to compile'
     )
     parser.add_option(
-        '-q', '--create-qrc-file',
+        '-q', '--update-qrc',
         dest='qrc_file', action='store_true',
         help='Create and write the .qrc file to disk'
     )
@@ -411,6 +482,11 @@ def main():
         help='Creates or updates the application translations files. ' +
         'This is done by reading the project file. (NOTE: the .ts files, ' +
         'obviously, needs to be updated manually with QLinguist afterwards).'
+    )
+    parser.add_option(
+        '-p', '--update-pro',
+        dest='pro_file', action='store_true',
+        help='Creates or updates the application project file.'
     )
     # Debug Options:
     group = OptionGroup(parser, 'Debug Options')
@@ -455,19 +531,23 @@ def main():
 
     if opt.full_run:
         compileUiFiles(compileAll=True)
-        createQrcFile(icons=True, i18n=True)
+        updateQrcFile(icons=True, i18n=True)
         compileResources()
         updateTranslationFiles()
+        updateProjectFile()
         sys.exit()
 
     if opt.qrc_file:
-        createQrcFile(icons=True, i18n=True)
+        updateQrcFile(icons=True, i18n=True)
 
     if opt.ui_files:
         compileUiFiles(compileAll=False)
 
     if opt.ts_files:
         updateTranslationFiles()
+
+    if opt.pro_file:
+        updateProjectFile()
 
 
 if __name__ == '__main__':

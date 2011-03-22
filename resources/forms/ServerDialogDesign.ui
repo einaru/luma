@@ -564,7 +564,7 @@
              </sizepolicy>
             </property>
             <property name="title">
-             <string>GroupBox</string>
+             <string>Client certificate options</string>
             </property>
             <layout class="QGridLayout" name="gridLayout_11">
              <item row="0" column="0">

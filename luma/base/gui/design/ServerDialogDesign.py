@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file '/mnt/debris/devel/git/merging-luma/resources/forms/ServerDialogDesign.ui'
+# Form implementation generated from reading ui file '/mnt/debris/devel/git/luma/resources/forms/ServerDialogDesign.ui'
 #
-# Created: Mon Mar 21 22:53:00 2011
+# Created: Tue Mar 22 03:31:17 2011
 #      by: PyQt4 UI code generator 4.7.4
 #
 # WARNING! All changes made in this file will be lost!
@@ -461,7 +461,7 @@ class Ui_ServerDialogDesign(object):
         self.validateBox.setItemText(1, QtGui.QApplication.translate("ServerDialogDesign", "Allow", None, QtGui.QApplication.UnicodeUTF8))
         self.validateBox.setItemText(2, QtGui.QApplication.translate("ServerDialogDesign", "Try", None, QtGui.QApplication.UnicodeUTF8))
         self.validateBox.setItemText(3, QtGui.QApplication.translate("ServerDialogDesign", "Demand", None, QtGui.QApplication.UnicodeUTF8))
-        self.clientCertOptGroup.setTitle(QtGui.QApplication.translate("ServerDialogDesign", "GroupBox", None, QtGui.QApplication.UnicodeUTF8))
+        self.clientCertOptGroup.setTitle(QtGui.QApplication.translate("ServerDialogDesign", "Client certificate options", None, QtGui.QApplication.UnicodeUTF8))
         self.useClientCertBox.setText(QtGui.QApplication.translate("ServerDialogDesign", "Use client certificates", None, QtGui.QApplication.UnicodeUTF8))
         self.certFileLabel.setText(QtGui.QApplication.translate("ServerDialogDesign", "Certificate file:", None, QtGui.QApplication.UnicodeUTF8))
         self.certKeyfileButton.setText(QtGui.QApplication.translate("ServerDialogDesign", "...", None, QtGui.QApplication.UnicodeUTF8))
