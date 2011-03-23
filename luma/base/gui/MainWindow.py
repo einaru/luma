@@ -181,7 +181,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.loadLanguage(settings.language)
 
         #Tabs
-        self.showWelcomeSettings = settings.value("showWelcome").toInt()[0]
+        self.showWelcomeSettings = settings.value("showWelcome", 2).toInt()[0]
 
     def __writeSettings(self):
         """ Save settings to file.

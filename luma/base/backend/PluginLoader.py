@@ -5,7 +5,7 @@ import imp
 from os import path
 import logging
 import sys
-
+#from ..plugins import *
 from PyQt4 import QtGui
 
 class PluginLoader(object):
@@ -21,7 +21,6 @@ class PluginLoader(object):
     _logger = logging.getLogger(__name__)
     
     def __init__(self, lumaInstallationPrefix = ".", pluginsToLoad = []):
-        
         self._pluginsToLoad = pluginsToLoad
         self._plugins = [] #PluginObjects
         self._lumaInstallationPrefix = lumaInstallationPrefix
@@ -29,6 +28,11 @@ class PluginLoader(object):
         """self._pluginsBaseDir = path.join(lumaInstallationPrefix,
             "lib", "luma", "plugins")"""
         self._changed = True
+        
+        print path.split(__file__)
+        print path.abspath(path.join(path.split(__file__)[0], "../.."))
+        #/home/johannes/Programmering/Luma/git/backend/PluginLoader.py
+        #C:,programmer,osv
 
     @property
     def pluginsToLoad(self):
@@ -58,7 +62,11 @@ class PluginLoader(object):
         
         self._plugins = []
         
-        for x in self.__findPluginDirectories():
+        pluginDirs = self.__findPluginDirectories()
+        if not pluginDirs:
+            return
+
+        for x in pluginDirs:
             if x == "CVS" or x == ".svn" or x == ".git":
                 continue
         
