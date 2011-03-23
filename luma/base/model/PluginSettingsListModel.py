@@ -4,9 +4,6 @@ from PyQt4.QtCore import *
 from PyQt4.QtGui import *
 from ..backend.PluginLoader import PluginLoader 
 
-"""
-############## NOT USED! ###################3
-"""
 
 class PluginSettingsListModel(QStandardItemModel):
     """
@@ -14,7 +11,6 @@ class PluginSettingsListModel(QStandardItemModel):
     in backend. 
     """
     def __init__(self, parent = None):
-        print "WTF"
         QStandardItemModel.__init__(self, parent)
         self._settings = QSettings()
         for pluginobject in PluginLoader("ALL").plugins:

@@ -95,8 +95,16 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.mainTabs.setTabsClosable(True)
         #self in parameter is used to call pluginSelected here...
         self.pluginWidget = PluginListWidget(self)
-        
+        self.showPlugins()
         self.welcomeTab = WelcomeTab()
+
+        stylesheet = 'background: url(:/icons/luma-gray);\n' + \
+                     'background-position: bottom right;\n' + \
+                     'background-repeat:  no-repeat;'
+
+        self.welcomeTab.setStyleSheet(stylesheet)
+        
+
         #This value comes from __loadSettings()
         #Its a checkbox set in WelcomeTab
         if self.showWelcomeSettings == 2:
@@ -383,7 +391,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.__setTabWidgetStyle('')
 
         widget = item.plugin.getPluginWidget(None, self)
-        index = self.mainTabs.addTab(widget, item.plugin.pluginUserString)
+        
+        index = self.mainTabs.addTab(widget, item.icon(), item.plugin.pluginUserString)
         self.mainTabs.setCurrentIndex(index)
 
         
