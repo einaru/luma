@@ -40,21 +40,35 @@ class TemplateObject(object):
         if not objectclass in self.objectclasses:
             self.objectclasses.append(objectclass)
     
-    def deleteObjectclass(self, objectclass):
+    def deleteObjectclass(self, objectclass = None, index = None):
         if objectclass:
             self.objectclasses.remove(objectclass)
+        elif index != None:
+            self.objectclasses.pop(index)
+            
+    def objectclassIndex(self, objectclass):
+        return self.objectclasses.index(objectclass)
 
     def getCountObjectclasses(self):
         return len(self.objectclasses)
 
-    def addAttribute(self, name, must, single, binary, defaultValue):
+    def addAttribute(self, name, must = False, single = False, binary = False, defaultValue = None):
         self.attributes[name] = AttributeObject(name, must, single, binary, defaultValue)
 
-    def deleteAttribute(self, attributeName):
-        self.attributes.pop(attributeName, None)
+    def deleteAttribute(self, attributeName = None, index = None):
+        if attributeName:
+            self.attributes.pop(attributeName, None)
+        elif index != None:
+            self.attributes.pop(self.attributes.items()[index][0])
         
-    def setAttributeDefaultValue(self, attributeName, value):
-        self.attributes[attributeName].defaultValue = value
+    def setAttributeDefaultValue(self, value, attributeName = None, index = None):
+        if attributeName:
+            self.attributes[attributeName].defaultValue = value
+        elif index != None:
+            self.attributes.items()[index].defaultValue = value
+            
+    def attributeIndex(self, attribute):
+        return self.attributes.values().index(attribute)
 
     def getCountAttributes(self):
         return len(self.attributes.keys())
@@ -65,10 +79,10 @@ class TemplateObject(object):
         """
     
         dataObject = {}
-        dataObject['objectClass'] = copy.deepcopy(self.objectClasses)
+        dataObject['objectClass'] = copy.deepcopy(self.objectclasses)
         
-        for x in self.attributes.keys():
-            attributeObject = self.attributes[x]
+        for x in self.attributes.items():
+            attributeObject = x[1]
             if attributeObject.defaultValue == None:
                 dataObject[attributeObject.attributeName] = [None]
             else:

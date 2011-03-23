@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'd:\Skole\it2901\resources\forms\plugins\template\AddObjectclassDialogDesign.ui'
 #
-# Created: Fri Mar 18 16:10:47 2011
+# Created: Mon Mar 21 20:50:08 2011
 #      by: PyQt4 UI code generator 4.8.2
 #
 # WARNING! All changes made in this file will be lost!
@@ -46,14 +46,6 @@ class Ui_AddObjectclassDialog(object):
         self.labelMainIcon.setText(_fromUtf8(""))
         self.labelMainIcon.setObjectName(_fromUtf8("labelMainIcon"))
         self.gridLayout.addWidget(self.labelMainIcon, 0, 0, 1, 1)
-        self.listViewObjectclasses = QtGui.QListView(AddObjectclassDialog)
-        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Expanding)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.listViewObjectclasses.sizePolicy().hasHeightForWidth())
-        self.listViewObjectclasses.setSizePolicy(sizePolicy)
-        self.listViewObjectclasses.setObjectName(_fromUtf8("listViewObjectclasses"))
-        self.gridLayout.addWidget(self.listViewObjectclasses, 3, 0, 1, 4)
         self.line = QtGui.QFrame(AddObjectclassDialog)
         self.line.setFrameShape(QtGui.QFrame.HLine)
         self.line.setFrameShadow(QtGui.QFrame.Sunken)
@@ -64,6 +56,10 @@ class Ui_AddObjectclassDialog(object):
         self.line_2.setFrameShadow(QtGui.QFrame.Sunken)
         self.line_2.setObjectName(_fromUtf8("line_2"))
         self.gridLayout.addWidget(self.line_2, 1, 0, 1, 4)
+        self.listWidgetObjectclasses = QtGui.QListWidget(AddObjectclassDialog)
+        self.listWidgetObjectclasses.setSelectionMode(QtGui.QAbstractItemView.ExtendedSelection)
+        self.listWidgetObjectclasses.setObjectName(_fromUtf8("listWidgetObjectclasses"))
+        self.gridLayout.addWidget(self.listWidgetObjectclasses, 3, 0, 1, 4)
 
         self.retranslateUi(AddObjectclassDialog)
         QtCore.QObject.connect(self.pushButtonCancel, QtCore.SIGNAL(_fromUtf8("clicked()")), AddObjectclassDialog.reject)

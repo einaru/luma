@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'd:\Skole\it2901\resources\forms\plugins\template\TemplateWidgetDesign.ui'
 #
-# Created: Sun Mar 20 22:32:40 2011
+# Created: Tue Mar 22 12:40:23 2011
 #      by: PyQt4 UI code generator 4.8.2
 #
 # WARNING! All changes made in this file will be lost!
@@ -108,6 +108,7 @@ class Ui_TemplateWidget(object):
         self.pushButtonObjectclassesAdd.setObjectName(_fromUtf8("pushButtonObjectclassesAdd"))
         self.gridLayout_5.addWidget(self.pushButtonObjectclassesAdd, 0, 1, 1, 1)
         self.listViewObjectclasses = QtGui.QListView(self.groupBoxObjectclasses)
+        self.listViewObjectclasses.setSelectionMode(QtGui.QAbstractItemView.ExtendedSelection)
         self.listViewObjectclasses.setObjectName(_fromUtf8("listViewObjectclasses"))
         self.gridLayout_5.addWidget(self.listViewObjectclasses, 0, 0, 3, 1)
         self.pushButtonObjectclassesDelete = QtGui.QPushButton(self.groupBoxObjectclasses)
@@ -125,7 +126,6 @@ class Ui_TemplateWidget(object):
         self.tableViewAttributes = QtGui.QTableView(self.groupBoxAttributes)
         self.tableViewAttributes.setSelectionBehavior(QtGui.QAbstractItemView.SelectRows)
         self.tableViewAttributes.setObjectName(_fromUtf8("tableViewAttributes"))
-        self.tableViewAttributes.horizontalHeader().setStretchLastSection(True)
         self.gridLayout_4.addWidget(self.tableViewAttributes, 0, 0, 3, 2)
         self.pushButtonAttributesAdd = QtGui.QPushButton(self.groupBoxAttributes)
         sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Fixed, QtGui.QSizePolicy.Fixed)
@@ -160,7 +160,7 @@ class Ui_TemplateWidget(object):
         QtCore.QObject.connect(self.pushButtonAttributesAdd, QtCore.SIGNAL(_fromUtf8("clicked()")), TemplateWidget.addAttribute)
         QtCore.QObject.connect(self.pushButtonObjectclassesAdd, QtCore.SIGNAL(_fromUtf8("clicked()")), TemplateWidget.addObjectclass)
         QtCore.QObject.connect(self.pushButtonTemplatesAdd, QtCore.SIGNAL(_fromUtf8("clicked()")), TemplateWidget.addTemplate)
-        QtCore.QObject.connect(self.pushButtonAttributesDelete, QtCore.SIGNAL(_fromUtf8("clicked()")), TemplateWidget.deleteAttribute)
+        QtCore.QObject.connect(self.pushButtonAttributesDelete, QtCore.SIGNAL(_fromUtf8("clicked()")), TemplateWidget.deleteAttributes)
         QtCore.QObject.connect(self.pushButtonObjectclassesDelete, QtCore.SIGNAL(_fromUtf8("clicked()")), TemplateWidget.deleteObjectclass)
         QtCore.QObject.connect(self.pushButtonTemplatesDelete, QtCore.SIGNAL(_fromUtf8("clicked()")), TemplateWidget.deleteTemplate)
         QtCore.QObject.connect(self.pushButtonTemplatesDuplicate, QtCore.SIGNAL(_fromUtf8("clicked()")), TemplateWidget.duplicateTemplate)

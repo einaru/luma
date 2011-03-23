@@ -16,12 +16,16 @@ class TemplateTableModel(QAbstractTableModel):
         
     def insertRow(self, tO):
         if tO:
+            self.beginInsertRows(QModelIndex(), self.rowCount(), self.rowCount())
             self._templateList.addTemplate(tO)
+            self.endInsertRows()
             return True
         return False
     
-    def removeRow(self, row):
-        self._templateList.deleteTemplateByIndex(row)
+    def removeRow(self, index):
+        self.beginRemoveRows(QModelIndex(), index.row(), index.row())
+        self._templateList.deleteTemplateByIndex(index.row())
+        self.endRemoveRows()
         return True
         
     def setData(self, index, value, role = Qt.EditRole):

@@ -20,18 +20,35 @@ class AttributeTableModel(QAbstractTableModel):
 
     def addRow(self, name, must, single, binary, defaultValue):
         if self.templateObject:
+            self.beginInsertRows(QModelIndex(), self.rowCount(), self.rowCount())
             self.templateObject.addAttribute(name, must, single, binary, defaultValue)
-    
-    def removeRow(self, attribute):
-        if self.templateObject:
-            self.templateObject.deleteAttribute(attribute)
+            self.endInsertRows()
             return True
         return False
     
+    def removeRows(self, indexes):
+        if self.templateObject:
+            attributes = []
+            for i in indexes:
+                if i.column() == 0:
+                    attributes.append(self.getAttribute(i))
+            for a in attributes:
+                self.beginRemoveRows(QModelIndex(), self.getIndexRow(a), self.getIndexRow(a))
+                if a:
+                    self.templateObject.deleteAttribute(attributeName = a.attributeName)
+                self.endRemoveRows()
+            print self.templateObject.getCountAttributes()
+            return True
+        return False
+
     def getAttribute(self, index):
-        if index.row() < self.templateObject.getCountAttributes():
-            self.templateObject.attributes.keys()[index.row()]
-        
+        if index.row() < self.templateObject.getCountAttributes() and index.column() == 0:
+            return self.templateObject.attributes.items()[index.row()][1]
+        return None
+    
+    def getIndexRow(self, attribute):
+        return self.templateObject.attributeIndex(attribute)
+
     def setData(self, index, value, role = Qt.EditRole):
         """
         Handles updating data in the TemplateObjects
@@ -66,16 +83,14 @@ class AttributeTableModel(QAbstractTableModel):
                     return "Binary"
                 if section == 4:
                     return "Default value"
-                
-            
-    
+
     def flags(self, index):
         if not index.isValid():
             return QVariant()
         if index.column() == 4:
             return Qt.ItemIsSelectable | Qt.ItemIsEnabled | Qt.ItemIsEditable
         return Qt.ItemIsSelectable | Qt.ItemIsEnabled
-    
+
     def data(self,index,role = Qt.DisplayRole):
         """
         Handles getting the correct data from the TemplateObjects and returning it
@@ -85,15 +100,14 @@ class AttributeTableModel(QAbstractTableModel):
         
         row = index.row()
         column = index.column()
-                
-                
+        
         if role == Qt.DecorationRole and self.templateObject:
             if column == 1 or column == 2 or column == 3:
                 if self.templateObject.attributes.items()[row][1].getList()[column]:
                     return QIcon(':/icons/ok')
                 else:
                     return QIcon(':/icons/no')
-                
+        
         if (role == Qt.DisplayRole or role == Qt.EditRole) and self.templateObject:
             if column == 0 or column == 4:
                 return self.templateObject.attributes.items()[row][1].getList()[column]

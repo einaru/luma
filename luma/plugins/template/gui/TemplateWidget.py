@@ -6,6 +6,7 @@ Created on 15. mars 2011
 
 from PyQt4.QtGui import QWidget, QDataWidgetMapper, QItemSelectionModel
 from PyQt4.QtGui import QInputDialog, QMessageBox, QStyledItemDelegate
+from PyQt4.QtGui import QHeaderView
 from PyQt4 import QtCore
 from PyQt4.QtCore import QModelIndex
 from base.backend.ServerList import ServerList
@@ -52,7 +53,7 @@ class TemplateWidget(QWidget, Ui_TemplateWidget):
 
 
         # Select the first server in the model)
-        index = self.listViewTemplates.model().index(0,0)
+        index = self.templateTM.index(0,0)
         # Select it in the view
         self.listViewTemplates.selectionModel().select(index, QItemSelectionModel.ClearAndSelect) 
         self.listViewTemplates.selectionModel().setCurrentIndex(index, QItemSelectionModel.ClearAndSelect)
@@ -63,10 +64,7 @@ class TemplateWidget(QWidget, Ui_TemplateWidget):
         self.mapper = QDataWidgetMapper()
         self.mapper.setModel(self.templateTM)
         
-        
-        
         self.mapper.addMapping(self.lineEditDescription, 2)
-
 
         # Select the first servers (as the serverlistview does)
         self.selectedTemplate()
@@ -78,17 +76,18 @@ class TemplateWidget(QWidget, Ui_TemplateWidget):
             self.labelServerName.setText(self._templateList._templateList[index].server)
             self.setObjectclasses()
             self.setAttributes()
+            self.tableViewAttributes.resizeColumnsToContents()
 
     def setObjectclasses(self):
         templateObject = self.getSelectedTemplateObject()
         if templateObject:
-            self.listViewObjectclasses.model().setTemplateObject(templateObject)
+            self.objectclassTM.setTemplateObject(templateObject)
             
             
     def setAttributes(self):
         templateObject = self.getSelectedTemplateObject()
         if templateObject:
-            self.tableViewAttributes.model().setTemplateObject(templateObject)
+            self.attributeTM.setTemplateObject(templateObject)
             
             
     def setRightSideEnabled(self, enabled):
@@ -99,8 +98,8 @@ class TemplateWidget(QWidget, Ui_TemplateWidget):
     def clearAll(self):
         self.lineEditDescription.clear()
         self.labelServerName.clear()
-        self.listViewObjectclasses.model().setTemplateObject(None)
-        self.tableViewAttributes.model().setTemplateObject(None)
+        self.objectclassTM.setTemplateObject(None)
+        self.attributeTM.setTemplateObject(None)
 
     def getSelectedTemplateObject(self):
         templateIndexes = self.listViewTemplates.selectedIndexes()
@@ -109,10 +108,10 @@ class TemplateWidget(QWidget, Ui_TemplateWidget):
         return None
     
     def getSelectedObjectclass(self, index):
-        return self.listViewObjectclasses.model().getObjectclass(index)
+        return self.objectclassTM.getObjectclass(index)
 
     def getSelectedAttribute(self, index):
-        return self.tableViewAttributes.model().getAttribute(index)
+        return self.attributeTM.getAttribute(index)
         
     def addTemplate(self):
         dialog = AddTemplateDialog(self._serverList)
@@ -128,7 +127,7 @@ class TemplateWidget(QWidget, Ui_TemplateWidget):
             description = dialog.lineEditDescription.text()
             tO = TemplateObject(name, server, description)
             
-            m = self.listViewTemplates.model()
+            m = self.templateTM
             m.beginInsertRows(QModelIndex(), m.rowCount(), m.rowCount())
             m.insertRow(tO)
             m.endInsertRows()
@@ -149,12 +148,10 @@ class TemplateWidget(QWidget, Ui_TemplateWidget):
         re = QMessageBox.question(self, "Delete", "Are you sure?", QMessageBox.Yes, QMessageBox.No)
         
         if re == QMessageBox.Yes:
-            index = self.listViewTemplates.selectionModel().currentIndex() #Currently selected
+            index = self.listViewTemplates.selectedIndexes()[0] #Currently selected
             
             # Delete the template
-            self.listViewTemplates.model().beginRemoveRows(QModelIndex(), index.row(), index.row())
-            self.listViewTemplates.model().removeRow(index.row())
-            self.listViewTemplates.model().endRemoveRows()
+            self.listViewTemplates.model().removeRow(index)
             
             # When deleting, the view gets updated and selects a new current.
             # Get it and give it to the mapper
@@ -168,51 +165,37 @@ class TemplateWidget(QWidget, Ui_TemplateWidget):
     
     def duplicateTemplate(self):
         name, ok = QInputDialog.getText(self, 'Duplicate', 'Template name')
-        if len(name) < 1 or self._templateList.getTemplateObject(name) != None:
-            QMessageBox.information(self, 'Error', "Invalid name or already used.")
-            return
-        tO = copy.deepcopy(self.getSelectedTemplateObject())
-        tO.templateName = name
-
-        m = self.listViewTemplates.model()
-        m.beginInsertRows(QModelIndex(), m.rowCount(), m.rowCount())
-        m.insertRow(tO)
-        m.endInsertRows()
-
-        i = m.index(m.rowCount()-1,0)
-        self.listViewTemplates.selectionModel().select(i, QItemSelectionModel.ClearAndSelect)
-        self.listViewTemplates.selectionModel().setCurrentIndex(i, QItemSelectionModel.ClearAndSelect) #Mark it as current
-        self.mapper.setCurrentIndex(i.row())
-        self.selectedTemplate()
+        if ok:
+            if len(name) < 1 or self._templateList.getTemplateObject(name) != None:
+                QMessageBox.information(self, 'Error', "Invalid name or already used.")
+                return
+            tO = copy.deepcopy(self.getSelectedTemplateObject())
+            tO.templateName = name
     
+            m = self.listViewTemplates.model()
+            m.insertRow(tO)
+            i = m.index(m.rowCount()-1,0)
+            self.listViewTemplates.selectionModel().select(i, QItemSelectionModel.ClearAndSelect)
+            self.listViewTemplates.selectionModel().setCurrentIndex(i, QItemSelectionModel.ClearAndSelect) #Mark it as current
+            self.mapper.setCurrentIndex(i.row())
+            self.selectedTemplate()
+
     def saveTemplate(self):
         self._templateList.save()
-        
+
     def addObjectclass(self):
         dialog = AddObjectclassDialog()
-        dialog.exec_()
-        
+        if dialog.exec_():
+            for i in dialog.listWidgetObjectclasses.selectedIndexes():
+                item = dialog.listWidgetObjectclasses.itemFromIndex(i)
+                self.objectclassTM.insertRow(item.text())
+
     def deleteObjectclass(self):
-        pass
-#        for i in self.listViewObjectclasses.selectedIndexes():
-#            objectclass = self.getSelectedObjectclass(i)
-#            self.objectclassTM.beginRemoveColumns(QModelIndex(), i.row(), i.row())
-#            self.objectclassTM.removeRow(objectclass)
-#            self.objectclassTM.endRemoveRows()
-        
+        self.objectclassTM.removeRows(self.listViewObjectclasses.selectedIndexes())
+
     def addAttribute(self):
         dialog = AddAttributeDialog()
         dialog.exec_()
-        
-    def deleteAttribute(self):
-        for i in self.tableViewAttributes.selectedIndexes(): 
-            print i
-#        rows = []
-#        self.attributeTM.beginRemoveColumns(QModelIndex(), 0, self.getSelectedTemplateObject().getCountAttributes())
-#        for i in self.tableViewAttributes.selectedIndexes():
-#            if not i.row() in rows:
-#                rows.append(i.row())
-#                attribute = self.getSelectedAttribute(i)
-#                self.attributeTM.removeRow(attribute)
-#        
-#        self.attributeTM.endRemoveRows()
+
+    def deleteAttributes(self):
+        self.attributeTM.removeRows(self.tableViewAttributes.selectedIndexes())
