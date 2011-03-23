@@ -1,12 +1,8 @@
 # -*- coding: utf-8 -*-
 
-from PyQt4.QtCore import *
-from PyQt4.QtGui import *
+from PyQt4.QtGui import QDialog
 from base.gui.PluginSettingsDialog import Ui_PluginsDialog
 from base.model.PluginSettingsModel import PluginSettingsModel
-
-import sys
-from random import randint
 
 class PluginSettings(QDialog, Ui_PluginsDialog):
     def __init__(self, parent = None):

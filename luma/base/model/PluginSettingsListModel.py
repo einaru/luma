@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
-from PyQt4.QtCore import *
-from PyQt4.QtGui import *
+from PyQt4.QtGui import QStandardItemModel, QStandardItem
+from PyQt4.QtCore import QSettings, Qt
 from ..backend.PluginLoader import PluginLoader 
 
 class PluginSettingsListModel(QStandardItemModel):

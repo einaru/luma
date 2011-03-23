@@ -4,9 +4,6 @@ from os import listdir
 import imp 
 from os import path
 import logging
-import sys
-
-from PyQt4 import QtGui
 
 class PluginLoader(object):
     

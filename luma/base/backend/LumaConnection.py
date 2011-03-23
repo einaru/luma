@@ -13,7 +13,6 @@ import ldapurl
 import ldap.modlist
         
 from PyQt4.QtGui import qApp, QInputDialog, QLineEdit, QApplication
-from PyQt4.QtGui import QCursor
 from PyQt4.QtGui import QMessageBox
 from PyQt4.QtCore import Qt
         

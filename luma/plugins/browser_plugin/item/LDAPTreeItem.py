@@ -2,8 +2,7 @@
 
 import ldap
 from AbstractLDAPTreeItem import AbstractLDAPTreeItem
-from LDAPErrorItem import LDAPErrorItem
-from PyQt4.QtGui import QMessageBox, QInputDialog, QIcon, QPixmap
+from PyQt4.QtGui import QInputDialog, QIcon, QPixmap
 from PyQt4 import QtCore
 from base.backend.LumaConnection import LumaConnection
 

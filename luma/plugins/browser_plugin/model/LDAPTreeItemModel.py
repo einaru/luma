@@ -6,14 +6,12 @@
 #    <vegarwe@users.sourceforge.net>
 ###########################################################################
 
-import ldap
 from plugins.browser_plugin.item.ServerTreeItem import ServerTreeItem
 from plugins.browser_plugin.item.RootTreeItem import RootTreeItem
 from plugins.browser_plugin.item.LDAPErrorItem import LDAPErrorItem
 from PyQt4 import QtCore
 from PyQt4.QtCore import QAbstractItemModel, pyqtSlot, Qt
 from PyQt4.QtGui import qApp
-from base.backend.LumaConnection import LumaConnection
 
 class LDAPTreeItemModel(QAbstractItemModel):
     """

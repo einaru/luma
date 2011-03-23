@@ -4,7 +4,6 @@ Created on 16. mars 2011
 @author: Simen
 '''
 
-from PyQt4 import QtCore
 from PyQt4.QtCore import QAbstractTableModel, Qt, QVariant, QModelIndex
 
 class ObjectclassTableModel(QAbstractTableModel):

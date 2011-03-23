@@ -4,7 +4,7 @@
 '''
 
 from PyQt4.QtCore import QAbstractTableModel
-from PyQt4.QtCore import Qt, QVariant, SIGNAL
+from PyQt4.QtCore import Qt, QVariant
 from ..backend.ServerObject import ServerObject
 
 class ServerListModel(QAbstractTableModel):

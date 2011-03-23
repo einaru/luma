@@ -12,7 +12,6 @@ import ldap
 import ldif
 import dsml
 import copy
-import base64
 import logging
 from cStringIO import StringIO
 from sets import Set

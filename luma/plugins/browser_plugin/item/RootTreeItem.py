@@ -1,6 +1,4 @@
 from AbstractLDAPTreeItem import AbstractLDAPTreeItem
-from PyQt4.QtGui import qApp, QCursor
-from PyQt4.QtCore import Qt
 import logging
 
 class RootTreeItem(AbstractLDAPTreeItem):

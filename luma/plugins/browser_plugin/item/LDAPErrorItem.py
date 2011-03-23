@@ -1,5 +1,5 @@
 from AbstractLDAPTreeItem import AbstractLDAPTreeItem
-from PyQt4.QtGui import QMessageBox, QInputDialog, QIcon, QPixmap, qApp
+from PyQt4.QtGui import QIcon, QPixmap
 from PyQt4 import QtCore
 
 """

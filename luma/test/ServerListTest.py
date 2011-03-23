@@ -9,9 +9,7 @@ as well as to add, get and delete objects from it.
 import unittest
 from base.backend.ServerList import ServerList
 from base.backend.ServerObject import ServerObject
-import test
 import tempfile
-import os
 import logging
 
 class SLTest(unittest.TestCase):

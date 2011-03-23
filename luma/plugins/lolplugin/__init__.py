@@ -8,7 +8,7 @@
 #
 ###########################################################################
 
-from PyQt4.QtGui import *
+from PyQt4.QtGui import QIcon, QLabel
 import os.path
 
 lumaPlugin = True

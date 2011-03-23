@@ -17,7 +17,6 @@ from PyQt4.QtGui import QWidget, QMessageBox #, QAction
 from base.backend.ServerList import ServerList
 from model.LDAPTreeItemModel import LDAPTreeItemModel
 from item.AbstractLDAPTreeItem import AbstractLDAPTreeItem
-from plugins.browser_plugin.item.ServerTreeItem import ServerTreeItem
 from plugins.browser_plugin.NewEntryDialog import NewEntryDialog
 from plugins.browser_plugin.AdvancedObjectWidget import AdvancedObjectWidget
 
