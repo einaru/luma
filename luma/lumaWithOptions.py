@@ -70,7 +70,14 @@ class Luma(QApplication):
             self.restoreOverrideCursor()
             if self.progressBar != None:
                 self.progressBar.setRange(0,100)
+                
+class TempLogHandler(logging.Handler):
+    def __init__(self):
+        logging.Handler.__init__(self)
+        self.logList = []
 
+    def emit(self, record):
+        self.logList.append(record)
 
 def startApplication(argv, verbose=False, clear=[], dirs={}):
     """ Preparing Luma for take-off
@@ -90,6 +97,17 @@ def startApplication(argv, verbose=False, clear=[], dirs={}):
     app.setOrganizationName(appinfo.ORGNAME)
     app.setApplicationName(appinfo.APPNAME)
     app.setApplicationVersion(appinfo.VERSION)
+    
+    # Setup the logging mechanism
+    l = logging.getLogger()
+    l.setLevel(logging.DEBUG)
+    formatter = logging.Formatter(
+        "[%(threadName)s] - %(name)s - %(levelname)s - %(message)s"
+    )
+    
+    # Keep all logs from now until the GUI-LoggerWidget is up and can be populated
+    tmpLH = TempLogHandler()
+    l.addHandler(tmpLH)
 
     settings = Settings()
     # Because we use QSettings for the application settings we 
@@ -109,12 +127,6 @@ def startApplication(argv, verbose=False, clear=[], dirs={}):
         #       prefix is return regardless if it is writable or not.
         (_, settings.configPrefix) = getConfigPrefix()
     (_, configPrefix) = getConfigPrefix()
-    # Setup the logging mechanism
-    l = logging.getLogger()
-    l.setLevel(logging.DEBUG)
-    formatter = logging.Formatter(
-        "[%(threadName)s] - %(name)s - %(levelname)s - %(message)s"
-    )
     
     if verbose:
         """ If verbose mode is enabled we start logging to the console
@@ -136,8 +148,14 @@ def startApplication(argv, verbose=False, clear=[], dirs={}):
     mainwin = MainWindow(configPrefix)
     app.setProgressBar(mainwin.getProgressBar())
     
+    # Set up logging to the loggerwidget
     llh = LumaLogHandler(mainwin.loggerWidget)
-    l.addHandler(llh)
+    l.removeHandler(tmpLH) # Stop temp-logging
+    l.addHandler(llh) # Start proper logging
+    
+    # Populate the loggerWidget with the saved entries
+    for x in tmpLH.logList:
+        llh.emit(x)
     
     app.lastWindowClosed.connect(mainwin.close)
 
