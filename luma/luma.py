@@ -166,7 +166,7 @@ def startApplication(argv, verbose=False, clear=[], dirs={}):
     # Add a exception hook to handle all 
     # exceptions missed in the main application
     sys.excepthook = unhandledException
-
+    mainwin.activateWindow()
     sys.exit(app.exec_())
 
 

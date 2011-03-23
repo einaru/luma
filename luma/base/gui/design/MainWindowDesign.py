@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file '/mnt/debris/devel/git/luma/resources/forms/MainWindowDesign.ui'
 #
-# Created: Tue Mar 22 03:31:18 2011
+# Created: Wed Mar 23 15:45:31 2011
 #      by: PyQt4 UI code generator 4.7.4
 #
 # WARNING! All changes made in this file will be lost!
@@ -138,4 +138,5 @@ class Ui_MainWindow(object):
         self.actionShowToolbar.setText(QtGui.QApplication.translate("MainWindow", "Toolbar", None, QtGui.QApplication.UnicodeUTF8))
         self.actionShowStatusbar.setText(QtGui.QApplication.translate("MainWindow", "Statusbar", None, QtGui.QApplication.UnicodeUTF8))
         self.actionFullscreen.setText(QtGui.QApplication.translate("MainWindow", "Fullscreen", None, QtGui.QApplication.UnicodeUTF8))
+        self.actionFullscreen.setShortcut(QtGui.QApplication.translate("MainWindow", "F11", None, QtGui.QApplication.UnicodeUTF8))
 

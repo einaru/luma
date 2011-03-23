@@ -65,8 +65,6 @@ class SearchPlugin(QWidget, Ui_SearchPlugin):
                 else:
                     self.serverBox.addItem(secureIcon, server.name)
 
-        self.__initFilterBookmarks()
-
     def __utf8(self, text):
         """Helper method to get text objects in unicode utf-8 encoding.
         
@@ -81,7 +79,9 @@ class SearchPlugin(QWidget, Ui_SearchPlugin):
         """TODO: document
         """
         configPrefix = self.settings.value('application/config_prefix')
-        print configPrefix.toString()
+        msg = 'Implement the __initFilterBookmarks using prefix:%s' % \
+              configPrefix.toString()
+        self.__logger.debug(msg)
 
     def __search(self, filter, criteria):
         """Starts the search for the given server and search filter.
@@ -141,7 +141,11 @@ class SearchPlugin(QWidget, Ui_SearchPlugin):
         self.connection.unbind()
 
         if success:
+            #self.parent.getStatusBar()
             self.searchResult.emit(self.currentServer, result)#, criteria)
+            resultTab = SearchResultView(self.searchResultWidget)
+            self.searchResultWidget.setTabsClosable(True)
+            self.searchResultWidget.insertTab(0, resultTab, 'Search result')
         else:
             msg = 'Error during search operation. Reason:\n%s' % str(e)
             self.__logger.error(msg)
@@ -162,7 +166,11 @@ class SearchPlugin(QWidget, Ui_SearchPlugin):
         self.__search(filter, criterialist)
 
     def showFilterWizard(self):
-        pass
+        """Slot for the filter wizard tool button.
+        
+        Display the filter bookmark wizard.
+        """
+        self.__logger.debug('Implement showFilterWizard SLOT')
 
     def serverChanged(self, index):
         """Slot for the server combo box.

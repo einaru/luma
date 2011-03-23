@@ -18,6 +18,7 @@
 # You should have received a copy of the GNU General Public Licence along 
 # with Luma; if not, write to the Free Software Foundation, Inc., 
 # 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA
+from PyQt4 import QtCore
 """
 This module contains several Luma Widget classes:
 
@@ -119,6 +120,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         """ Creates the pluign toolbar.
         """
         self.pluginToolBar = PluginToolBar(self)
+        self.pluginToolBar.setObjectName('pluginToolBar')
         self.addToolBar(self.pluginToolBar)
         self.pluginToolBar.hide()
 
@@ -126,6 +128,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         """ Creates the logger widget.
         """
         self.loggerDockWindow = QDockWidget(self)
+        self.loggerDockWindow.setObjectName('loggerDockWindow')
         self.loggerDockWindow.visibilityChanged[bool].connect(self.actionShowLogger.setChecked)
         self.loggerDockWindow.setWindowTitle(QApplication.translate('MainWindow', 'Logger', None, QApplication.UnicodeUTF8))
         self.loggerWidget = LoggerWidget(self.loggerDockWindow)
@@ -160,13 +163,22 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             the settings dialog returns 1.
         """
         settings = Settings()
+        # We might want to use these methods to restore the
+        # application state and geometry.
+        self.restoreGeometry(settings.geometry)
+        #self.restoreState(settings.state)
 
         # General Mainwin
-        if mainWin:
-            self.resize(settings.size)
-            self.move(settings.position)
-            if settings.maximize:
-                self.showMaximized()
+        #if mainWin:
+        #    self.resize(settings.size)
+        #    self.move(settings.position)
+        #    if settings.maximize:
+        #        self.showMaximized()
+        
+        # If the geometry saved inticates fullscreen mode, 
+        # we need to explicitly set the fullscreen menuaction checkbox
+        if self.isFullScreen():
+            self.actionFullscreen.setChecked(True)
 
         # Logger
         self.actionShowLogger.setChecked(settings.showLoggerOnStart)
@@ -186,16 +198,20 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         """ Save settings to file.
         """
         settings = Settings()
+        # We might want to use these methods to restore the
+        # application state and geometry.
+        settings.geometry = self.saveGeometry()
+        #settings.state = self.saveState()
 
         # Mainwin
-        max = self.isMaximized()
-        settings.maximize = max
-        if not max:
-            settings.size = self.size()
-            settings.position = self.pos()
+        #max = self.isMaximized()
+        #settings.maximize = max
+        #if not max:
+        #    settings.size = self.size()
+        #    settings.position = self.pos()
 
         # Logger
-        settings.showLoggerOnStart = self.loggerDockWindow.isVisibleTo(self)
+        settings.showLoggerOnStart = self.actionShowLogger.isChecked()
         settings.showErrors = self.loggerWidget.errorBox.isChecked()
         settings.showDebug = self.loggerWidget.debugBox.isChecked()
         settings.showInfo = self.loggerWidget.infoBox.isChecked()
@@ -459,12 +475,12 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             """TODO: REMOVE THIS """
             self.logger.debug("Johannes fix: linje 438")
 
-    def close(self):
-        """ Overrides the QApplication close slot to save settings
+    def closeEvent(self, e):
+        """ Overrides the QMainWindow closeEvent slot to save settings
         before we tear down the application.
         """
         self.__writeSettings()
-        qApp.quit()
+        QMainWindow.closeEvent(self, e)
 
     def TODO(self, todo):
         """ Helper method for displaying special TODO debug messages.
