@@ -12,8 +12,8 @@
 TODO: Proper busy-indicator-handling (?)
 """
 
-from PyQt4.QtGui import qApp
-from PyQt4.QtCore import Qt
+#from PyQt4.QtGui import qApp
+#from PyQt4.QtCore import Qt
 
 import ldap
 import ldap.schema
@@ -90,12 +90,12 @@ class ObjectClassAttributeInfo(object):
             workerThread = WorkerThreadFetch(serverMeta)
             workerThread.start()
             
-            qApp.setOverrideCursor(Qt.WaitCursor)
+            #qApp.setOverrideCursor(Qt.WaitCursor)
             while not workerThread.FINISHED:
-                qApp.processEvents()
+                #qApp.processEvents()
                 #environment.updateUI()
                 time.sleep(0.05)
-            qApp.restoreOverrideCursor()
+            #qApp.restoreOverrideCursor()
 
             if None == workerThread.exceptionObject:
                 self.objectClassesDict = workerThread.objectClassesDict

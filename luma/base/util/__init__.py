@@ -22,7 +22,7 @@ import base64
 def lumaStringEncode(tmpString):
     tmpString = tmpString.replace("\\", "\\\\")
     tmpString = tmpString.replace(",", r"\\\1")
-        
+
     return tmpString
 
 
@@ -30,17 +30,17 @@ def lumaStringDecode(tmpString):
     tmpString = unicode(tmpString)
     tmpString = tmpString.replace(r"\\\1", ",")
     tmpString = tmpString.replace("\\\\", "\\")
-        
+
     return tmpString
 
 
 def isBinaryAttribute(tmpString):
     if tmpString == None:
         return False
-        
+
     BINARY_PATTERN = '(^(\000|\n|\r| |:|<)|[\000\n\r\200-\377]+|[ ]+$)'
     binaryPattern = re.compile(BINARY_PATTERN)
-    
+
     if binaryPattern.search(tmpString) == None:
         return False
     else:
@@ -61,13 +61,13 @@ def stripSpecialChars(tmpString):
     tmpString = tmpString.replace(r'\3C', '<')
     tmpString = tmpString.replace(r'\3E', '>')
     tmpString = tmpString.replace(r'\3B', ';')
-        
+
     return tmpString
 
-  
+
 def escapeSpecialChars(tmpString):
     tmpList = tmpString.split('=')
-    
+
     if 2 == len(tmpList):
         attribute = tmpList[0]
         value = "=".join(tmpList[1:])
@@ -80,9 +80,9 @@ def escapeSpecialChars(tmpString):
         value = value.replace('<', r'\3C')
         value = value.replace('>', r'\3E')
         value = value.replace(';', r'\3B')
-        
+
         tmpString = attribute + '=' + value
-        
+
     return tmpString
 
 
@@ -92,7 +92,7 @@ def testEscaping():
     assert r"cn=foo\5C" == escapeSpecialChars("cn=foo\\")
     assert r"cn=foo\5C\2C" == escapeSpecialChars("cn=foo\\,")
     assert r"cn=\22foo\22" == escapeSpecialChars("cn=\"foo\"")
-    
+
     assert "cn=foo" == stripSpecialChars(r"cn=foo")
     assert "cn=foo," == stripSpecialChars(r"cn=foo\2C")
     assert "cn=foo\\" == stripSpecialChars(r"cn=foo\5C")
@@ -103,9 +103,9 @@ def testEscaping():
 def explodeDN(tmpString):
     """ Function for spliting the dn into it's parts.
     """
-        
+
     tmpList = tmpString.split(',')
-        
+
     tokenList = []
     for x in xrange(0, len(tmpList)):
         value = tmpList[x]
@@ -114,25 +114,38 @@ def explodeDN(tmpString):
         else:
             if len(tokenList) > 0:
                 tokenList[-1] = tokenList[-1] + ',' + value
-    
+
     return tokenList
+
 
 def getSortedDnList(tmpList):
     """ Returns a sorted list for distinguished names.
     
-    The higher the object in the tree, the more it will be at the beginning 
-    of the sorted list. Leaves should be at the end of the list.
+    The higher the object in the tree, the more it will be at the
+    beginning of the sorted list. Leaves should be at the end of the
+    list.
     """
-    
     tmpList.sort(__dnCompare)
-    
+
     return tmpList
+
+
+def escapeDnChars(dn):
+    """ Escapes the characters in the dn.
+    """
+    dn = dn.replace('\,', r'\2C')
+    dn = dn.replace('\=', r'\3D')
+    dn = dn.replace('\+', r'\2B')
+
+    return dn
+
 
 def __dnCompare(firstDN, secondDN):
     firstList = explodeDN(firstDN)
     secondList = explodeDN(secondDN)
-    
+
     return cmp(len(firstList), len(secondList))
+
 
 if __name__ == "__main__":
     testEscaping()

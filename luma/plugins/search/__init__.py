@@ -24,13 +24,13 @@ pluginUserString = "Search"
 version = "0.1"
 author = "Einar Uvsløkk"
 
-
 def getIcon(iconPath):
     return
 
 
-def getPluginWidget(parent):
-    return
+def getPluginWidget(parent, mainwin):
+    from .Search import SearchPlugin
+    return SearchPlugin()
 
 
 def getPluginSettingsWidget(parent):
