@@ -23,6 +23,7 @@ class AbstractLDAPTreeItem(object):
     SUPPORT_ADD = 16 # Can add child-items
     SUPPORT_DELETE = 32 # Can remove this item
     SUPPORT_EXPORT = 64 # Can be exported
+    SUPPORT_OPEN = 128 # Can be opened (has smartdataobject)
     
     def __init__(self, parent):
         """

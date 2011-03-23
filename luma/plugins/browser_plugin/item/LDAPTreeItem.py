@@ -28,6 +28,8 @@ class LDAPTreeItem(AbstractLDAPTreeItem):
         
         self.limit = LDAPTreeItem.LIMIT_DEFAULT
         self.filter = LDAPTreeItem.FILTER_DEFAULT
+        
+        self.deleted = False
 
     def columnCount(self):
         """
@@ -42,12 +44,16 @@ class LDAPTreeItem(AbstractLDAPTreeItem):
         
         # Return an icon if the item has been configured
         if role == QtCore.Qt.DecorationRole:
+            if self.deleted:
+                return QIcon(QPixmap(":/icons/no"))
             if self.filter != LDAPTreeItem.FILTER_DEFAULT or self.limit != LDAPTreeItem.LIMIT_DEFAULT:
                 return QIcon(QPixmap(":/icons/filter"))
             else:
                 return None
         # Return applicable status-tip-role
         elif role == QtCore.Qt.StatusTipRole:
+            if self.deleted:
+                return QtCore.QCoreApplication.translate("LDAPTreeItem","This item is deleted.")
             if self.limit != LDAPTreeItem.LIMIT_DEFAULT and self.filter != LDAPTreeItem.FILTER_DEFAULT:
                 return QtCore.QCoreApplication.translate("LDAPTreeItem","This item has both a filter and limit applied.")
             if self.filter != LDAPTreeItem.FILTER_DEFAULT:
@@ -133,8 +139,31 @@ class LDAPTreeItem(AbstractLDAPTreeItem):
                 self.filter = str(r[0])
             else:
                 self.filter = LDAPTreeItem.FILTER_DEFAULT
-
+                
+    def delete(self):
+        lumaConnection = LumaConnection(self.serverParent.serverMeta)
+        bindSuccess, exceptionObject = lumaConnection.bind()
+        
+        if not bindSuccess:
+            message = QtCore.QCoreApplication.translate("LDAPTreeItem","Could not bind to server.")
+            return (False, message, exceptionObject)
+        
+        success, exceptionObject = lumaConnection.delete(self.smartObject().getDN())
+        lumaConnection.unbind()
+        
+        if success:
+            self.deleted = True
+            # Deleted item has no children
+            self.childItems = []
+            self.populated = True
+            return (True, None, None)
+        else:
+            message = QtCore.QCoreApplication.translate("LDAPTreeItem","Could not delete entry: "+exceptionObject[0]["info"])
+            return (False, message, exceptionObject)
         
     def getSupportedOperations(self):
-        return AbstractLDAPTreeItem.SUPPORT_CLEAR|AbstractLDAPTreeItem.SUPPORT_RELOAD|AbstractLDAPTreeItem.SUPPORT_FILTER|AbstractLDAPTreeItem.SUPPORT_LIMIT|AbstractLDAPTreeItem.SUPPORT_ADD
+        ret = AbstractLDAPTreeItem.SUPPORT_CLEAR|AbstractLDAPTreeItem.SUPPORT_RELOAD|AbstractLDAPTreeItem.SUPPORT_FILTER|AbstractLDAPTreeItem.SUPPORT_LIMIT|AbstractLDAPTreeItem.SUPPORT_ADD
+        if not self.deleted:
+            ret |= AbstractLDAPTreeItem.SUPPORT_OPEN|AbstractLDAPTreeItem.SUPPORT_DELETE
+        return ret
         

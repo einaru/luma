@@ -27,12 +27,14 @@ from PyQt4.QtGui import QFileDialog
 from PyQt4.QtGui import QInputDialog, QItemSelectionModel
 from PyQt4.QtGui import QListWidgetItem
 from PyQt4.QtGui import QMessageBox
+from PyQt4.QtCore import QCoreApplication
 
 from .ServerDelegate import ServerDelegate
 from ..backend.ServerObject import ServerObject
 from ..gui.design.ServerDialogDesign import Ui_ServerDialogDesign
 from ..model.ServerListModel import ServerListModel
 from ..util.IconTheme import pixmapFromThemeIcon
+from base.backend.ServerObject import ServerEncryptionMethod
 
 class ServerDialog(QDialog, Ui_ServerDialogDesign):
 
@@ -111,10 +113,22 @@ class ServerDialog(QDialog, Ui_ServerDialogDesign):
         # Let the mapper know when another server is selected in the list
         self.serverListView.selectionModel().currentRowChanged.connect(self.mapper.setCurrentModelIndex)
 
+        self.encryptionBox.currentIndexChanged[int].connect(self.checkSSLport)
         # Workaround to avoid the button stealing the focus from the baseDNView thus invalidating it's selection
         # maning we don't know what do delete
         #self.deleteBaseDNButton.setFocusPolicy(Qt.NoFocus)
         self.setBaseDN()
+        
+    def checkSSLport(self, index):
+        """ If SSL is choosen with a port other than 636, confirm this with the user
+        """
+        if index == ServerEncryptionMethod.SSL and self.portSpinBox.value() != 636:
+            ans = QMessageBox.information(self, QCoreApplication.translate("ServerDialog","SSL")
+                ,QCoreApplication.translate("ServerDialog","You have choosen to use SSL but with a port other than 636.\n Do you want this automatically changed?")
+                ,QMessageBox.Yes|QMessageBox.No)
+            if ans == QMessageBox.Yes:
+                self.portSpinBox.setValue(636)
+            
 
     def wasChanged(self):
         """ Slot to register that some server settings is changed.

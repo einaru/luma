@@ -21,6 +21,7 @@ from plugins.browser_plugin.item.ServerTreeItem import ServerTreeItem
 from plugins.browser_plugin.NewEntryDialog import NewEntryDialog
 from plugins.browser_plugin.AdvancedObjectWidget import AdvancedObjectWidget
 
+import logging
 
 class BrowserView(QWidget):
     
@@ -40,6 +41,8 @@ class BrowserView(QWidget):
         Configprefix defines the location of serverlist.xml
         """
         QtGui.QWidget.__init__(self, parent)
+        
+        self.__logger = logging.getLogger(__name__)
         
         self.setObjectName("PLUGIN_BROWSER")
             
@@ -123,9 +126,9 @@ class BrowserView(QWidget):
                 menu.addAction("No actions available")
                 
             else:
-                if clickedItem.smartObject() != None:
+                if supports & AbstractLDAPTreeItem.SUPPORT_OPEN:
                     menu.addAction("Open", self.openChosen)
-                # Add avaiable methods
+                # Add available methods
                 if supports & AbstractLDAPTreeItem.SUPPORT_RELOAD:
                     menu.addAction(self.tr("Reload children"), self.reloadChoosen)
                 if supports & AbstractLDAPTreeItem.SUPPORT_FILTER:
@@ -141,8 +144,8 @@ class BrowserView(QWidget):
                     menu.addMenu(m)
                 if supports & AbstractLDAPTreeItem.SUPPORT_DELETE:
                     m = QtGui.QMenu(self.tr("Delete"), menu)
-                    m.addAction(self.tr("Entry"), self.addEntryChosen)
-                    m.addAction(self.tr("Template"), self.addTemplateChosen)
+                    m.addAction(self.tr("Current entry"), self.deleteChosen)
+                    #m.addAction(self.tr("Template"), self.addTemplateChosen)
                     menu.addMenu(m)
 
             
@@ -171,37 +174,65 @@ class BrowserView(QWidget):
         self.addNewEntry(self.clickedIndex)
     def addTemplateChosen(self):
         pass
+    def deleteChosen(self):
+        # Try to delete
+        success, message, exceptionObject = self.clickedIndex.internalPointer().delete()
+        if success:
+            self.entryList.model().layoutChanged.emit()
+            # Close open windows if any
+            sO = self.clickedIndex.internalPointer().smartObject()
+            if self.isOpen(sO):
+                rep = self.getRepForSmartObject(sO)
+                x = self.openTabs.pop(str(rep))
+                i = self.tabWidget.indexOf(x)
+                if i != -1:
+                    self.tabWidget.removeTab(i)
+        else:
+            QMessageBox.critical(self, QtCore.QCoreApplication.translate("BrowserView","Error"), message)
 
     def addNewEntry(self, parentIndex, defaultSmartObject = None):
         tmp = NewEntryDialog(parentIndex, defaultSmartObject)
         if tmp.exec_():
             print "La til ny entry"
             # TODO Do something. (Reload?)
+            
+    def isOpen(self, smartObject):
+        rep = self.getRepForSmartObject(smartObject)
+        if self.openTabs.has_key(str(rep)):
+            return True
+        else:
+            return False
+        
+    def getRepForSmartObject(self, smartObject):
+        serverName = smartObject.getServerAlias()
+        dn = smartObject.getDN()
+        return (serverName,dn)
         
     def viewItem(self, index):
         
-        smartObject = index.internalPointer().smartObject()
+        item = index.internalPointer()
+        supports = item.getSupportedOperations()
         
-        # We need to have tried to open an items with a smartobject to proceed
-        if smartObject == None:
+        # If we can't open this item, then don't
+        if not supports & AbstractLDAPTreeItem.SUPPORT_OPEN:
             return
         
-        # Saves a representation of the opened entry to avoid opening duplicates
-        serverName = smartObject.getServerAlias()
-        dn = smartObject.getDN()
-        rep = (serverName,dn)
+        smartObject = index.internalPointer().smartObject()
+        rep = self.getRepForSmartObject(smartObject)
         
-        if self.openTabs.has_key(str(rep)):
+        # If the smartobject is already open, switch to it
+        if self.isOpen(smartObject):
             x = self.openTabs[str(rep)]
             self.tabWidget.setCurrentWidget(x)
             return
-        
+            
+        # Saves a representation of the opened entry to avoid opening duplicates  
+        # and open it     
         x = AdvancedObjectWidget(smartObject, QtCore.QPersistentModelIndex(index))
         self.openTabs[str(rep)] = x
         self.tabWidget.addTab(x, smartObject.getPrettyRDN())
         self.tabWidget.setCurrentWidget(x)
     
-        
     def tabCloseClicked(self, index):
         #TODO Check if should save etc etc
         clicked = self.tabWidget.widget(index).aboutToChange()
@@ -211,9 +242,7 @@ class BrowserView(QWidget):
 
         if not (sO == None):
             # Remove the representation of the opened entry from the list
-            serverName = sO.getServerAlias()
-            dn = sO.getDN()
-            rep = (serverName,dn)
+            rep = self.getRepForSmartObject(sO)
             self.openTabs.pop(str(rep))
         
         self.tabWidget.removeTab(index)
