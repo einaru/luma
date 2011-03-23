@@ -27,7 +27,6 @@ class PluginListWidget(QWidget, Ui_pluginListWidget):
         self.listView.setModel(PluginListWidgetModel(self.parent))
         
     def pluginDoubleClicked(self, index):
-        print "hmm"
         if self.parent and hasattr(self.parent, "pluginSelected"):
             self.parent.pluginSelected(self.listView.model().itemFromIndex(index))
         else:

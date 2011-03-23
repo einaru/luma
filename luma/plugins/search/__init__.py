@@ -25,7 +25,7 @@ version = "0.1"
 author = "Einar Uvsløkk"
 
 
-def getIcon(iconPath):
+def getIcon(iconPath = None):
     return
 
 

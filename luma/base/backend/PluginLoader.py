@@ -147,7 +147,6 @@ class PluginLoader(object):
         plugin.version = importedModule.version
         plugin.getPluginWidget = importedModule.getPluginWidget
         plugin.getPluginSettingsWidget = importedModule.getPluginSettingsWidget
-        print importedModule.pluginName
         plugin.icon = importedModule.getIcon()
         #iconPath = path.join(self._lumaInstallationPrefix, "share", 
          #        "luma", "icons", "plugins", pluginName)
