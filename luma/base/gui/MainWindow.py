@@ -38,7 +38,7 @@ from PyQt4.QtCore import QEvent, QString, QTimer
 from PyQt4.QtCore import QTranslator
 
 from PyQt4.QtGui import QAction, QActionGroup, QApplication, qApp
-from PyQt4.QtGui import QDockWidget
+from PyQt4.QtGui import QDockWidget, QMenu
 from PyQt4.QtGui import QFont
 from PyQt4.QtGui import QIcon
 from PyQt4.QtGui import QLabel
@@ -113,12 +113,28 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
         self.pluginWidget = PluginListWidget(self)
         self.mainTabs.setTabsClosable(True)
+        self.mainTabs.setContextMenuPolicy(Qt.CustomContextMenu)
+        self.mainTabs.customContextMenuRequested.connect(self.__mainTabsContextMenu)
         self.showPlugins()
+        
+    def __mainTabsContextMenu(self, pos):
+        menu = QMenu()
+        if self.mainTabs.count() > 0:
+            return # The menu is displayed even when the rightclick is not done over the actual tabs
+            # so to avoid confusion the function is disabled entirey
+            #menu.addAction(QApplication.translate("MainWindow", "Close all plugin-tabs"), self.tabCloseAll)
+        else:
+            # If there's no tabs, offer to display the pluginlist
+            menu.addAction(self.actionShowPluginList)
+        menu.exec_(self.mainTabs.mapToGlobal(pos))
+            
+            
 
     def __createPluginToolBar(self):
         """ Creates the pluign toolbar.
         """
         self.pluginToolBar = PluginToolBar(self)
+        self.pluginToolBar.setWindowTitle(QApplication.translate('MainWindow', 'Plugintoolbar', None, QApplication.UnicodeUTF8))
         self.addToolBar(self.pluginToolBar)
         self.pluginToolBar.hide()
 
@@ -410,6 +426,12 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 else:
                     self.logger.debug("No actions to add to toolbar from plugin")
         """
+        
+    def tabCloseAll(self):
+        # Not used
+        c = self.mainTabs.count()
+        for i in reversed(xrange(c)):
+            self.tabClose(i)
 
     def tabClose(self, index):
         """ Slot for the signal tabCloseRequest(int) for the tabMains
