@@ -17,8 +17,9 @@ class PluginListWidget(QWidget, Ui_pluginListWidget):
     """
     __logger = logging.getLogger(__name__)
     
-    def __init__(self, parent = None):
-        QWidget.__init__(self, parent)
+    def __init__(self, parent):
+        QWidget.__init__(self, None)
+        #dont change None to self in parent
         
         self.parent = parent
         self.setupUi(self)
@@ -26,6 +27,7 @@ class PluginListWidget(QWidget, Ui_pluginListWidget):
         self.listView.setModel(PluginListWidgetModel(self.parent))
         
     def pluginDoubleClicked(self, index):
+        print "hmm"
         if self.parent and hasattr(self.parent, "pluginSelected"):
             self.parent.pluginSelected(self.listView.model().itemFromIndex(index))
         else:

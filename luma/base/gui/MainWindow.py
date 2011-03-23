@@ -56,6 +56,7 @@ from ..gui.design.LoggerWidgetDesign import Ui_LoggerWidget
 from ..gui.design.MainWindowDesign import Ui_MainWindow
 from ..util.i18n import LanguageHandler
 from ..util.gui.PluginListWidget import PluginListWidget
+from ..gui.WelcomeTab import WelcomeTab
 
 
 class MainWindow(QMainWindow, Ui_MainWindow):
@@ -86,34 +87,34 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.__createPluginToolBar()
         self.__createLoggerWidget()
         self.__loadSettings()
-        self.__setupPluginList()
         self.__createLanguageOptions()
 
         self.setStatusBar(self.statusBar)
+        
+        #Sets up pluginWidget
+        self.mainTabs.setTabsClosable(True)
+        #self in parameter is used to call pluginSelected here...
+        self.pluginWidget = PluginListWidget(self)
+        
+        self.welcomeTab = WelcomeTab()
+        #This value comes from __loadSettings()
+        #Its a checkbox set in WelcomeTab
+        if self.showWelcomeSettings == 2:
+            self.showWelcome()
+        else:
+            # Let's do some styling of the tab widget when no tabs are opened
+            if self.mainTabs.currentIndex() == -1:
+                stylesheet = 'background: url(:/icons/luma-gray);\n' + \
+                             'background-position: bottom right;\n' + \
+                             'background-repeat:  no-repeat;'
+                self.__setTabWidgetStyle(stylesheet)
+
+            self.actionShowWelcomeTab.setEnabled(True)
+        
 
         if self.DEVEL:
             self.actionEditServerList.setStatusTip(
                 u'Final GUI polishing by Granbusk\u2122 Polishing')
-
-    def __setupPluginList(self):
-        """
-        self.pluginDockWindow = QDockWidget(self)
-        self.pluginDockWindow.setWindowTitle(
-             QApplication.translate(
-                "MainWindow", "Plugin list", None, QApplication.UnicodeUTF8))
-        self.pluginWidget = PluginListWidget()
-        self.pluginDockWindow.setWidget(self.pluginWidget) 
-        self.addDockWidget(Qt.TopDockWidgetArea, self.pluginDockWindow)
-        
-
-        self.pluginWidget = PluginListWidget(self)
-        self.mainStack.addWidget(self.pluginWidget)
-        self.showPlugins()
-        """
-
-        self.pluginWidget = PluginListWidget(self)
-        self.mainTabs.setTabsClosable(True)
-        self.showPlugins()
 
     def __createPluginToolBar(self):
         """ Creates the pluign toolbar.
@@ -179,8 +180,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         # Language
         self.loadLanguage(settings.language)
 
-        # Plugins
-        #self.TODO(u'load settings[plugins]%s' % str(self.__class__))
+        #Tabs
+        self.showWelcomeSettings = settings.value("showWelcome").toInt()[0]
 
     def __writeSettings(self):
         """ Save settings to file.
@@ -375,7 +376,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.showPlugins()
 
     def pluginSelected(self, item):
-        """ This method will be called from the PluginListWidget.
+        """ 
+        This method will be called from the PluginListWidget.
         """
         # Clear the stylesheet when a tab is opened
         self.__setTabWidgetStyle('')
@@ -384,40 +386,18 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         index = self.mainTabs.addTab(widget, item.plugin.pluginUserString)
         self.mainTabs.setCurrentIndex(index)
 
-        """
-        if self.mainStack.indexOf(widget) == -1:
-            self.mainStack.addWidget(widget)
-
-        if self.mainStack.currentWidget() != widget:
-            self.mainStack.setCurrentWidget(widget)
-
-            if self.pluginToolBar:
-                self.pluginToolBar.button.setEnabled(True)
-                self.pluginToolBar.label.setText(QApplication.translate('MainWindow', item.plugin.pluginUserString, None, QApplication.UnicodeUTF8))
-
-                #The plugin-toolbar should be inside the getPluginWidget
-                #This should maybe be required by the PluginLoader, to have this in the __init__.py for a plugin
-
-                self.logger.debug("Trying to build toolbar for plugin")
-
-                if hasattr(widget, "toolbarActions"):
-                    try:
-                        for action in widget.toolbarActions():
-                            self.pluginToolbar.addAction(action)
-                    except Exception:
-                        self.logger.error("Could not append actions to toolbar from plugin")
-                        pass
-                else:
-                    self.logger.debug("No actions to add to toolbar from plugin")
-        """
-
+        
     def tabClose(self, index):
-        """ Slot for the signal tabCloseRequest(int) for the tabMains
+        """ 
+        Slot for the signal tabCloseRequest(int) for the tabMains
         """
 
         widget = self.mainTabs.widget(index)
         if widget == self.pluginWidget:
             self.actionShowPluginList.setEnabled(True)
+
+        if widget == self.welcomeTab:
+            self.actionShowWelcomeTab.setEnabled(True)
 
         self.mainTabs.removeTab(index)
 
@@ -443,14 +423,18 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         gc.collect()
 
     def showWelcome(self):
-        self.TODO('Create the welcome tab')
+        self.__setTabWidgetStyle('')
+        index = self.mainTabs.addTab(self.welcomeTab,
+        QApplication.translate("MainWindow", "Welcome"))
 
+        self.mainTabs.setCurrentIndex(index)
+        self.actionShowWelcomeTab.setEnabled(False)
     def showPlugins(self):
         """ Will set the pluginlistwidget on top of the mainstack.
         """
-
+        
+        self.__setTabWidgetStyle('')
         if self.mainTabs.indexOf(self.pluginWidget) == -1:
-            self.__setTabWidgetStyle('')
             index = self.mainTabs.addTab(self.pluginWidget, QApplication.translate("MainWindow", "Plugins"))
             self.mainTabs.setCurrentIndex(index)
             self.actionShowPluginList.setEnabled(False)
