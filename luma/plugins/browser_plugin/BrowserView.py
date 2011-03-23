@@ -189,7 +189,6 @@ class BrowserView(QWidget):
                     self.tabWidget.removeTab(i)
         else:
             QMessageBox.critical(self, QtCore.QCoreApplication.translate("BrowserView","Error"), message)
-            self.__logger.error(exceptionObject)
 
     def addNewEntry(self, parentIndex, defaultSmartObject = None):
         tmp = NewEntryDialog(parentIndex, defaultSmartObject)
