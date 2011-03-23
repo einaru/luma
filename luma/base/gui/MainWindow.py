@@ -102,7 +102,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                      'background-position: bottom right;\n' + \
                      'background-repeat:  no-repeat;'
 
-        self.welcomeTab.setStyleSheet(stylesheet)
+        self.welcomeTab.textBrowser.setStyleSheet(stylesheet)
         
 
         #This value comes from __loadSettings()
@@ -438,6 +438,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
         self.mainTabs.setCurrentIndex(index)
         self.actionShowWelcomeTab.setEnabled(False)
+        
     def showPlugins(self):
         """ Will set the pluginlistwidget on top of the mainstack.
         """
