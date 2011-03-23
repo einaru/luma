@@ -301,15 +301,28 @@ class AdvancedObjectWidget(QWidget):
                             QMessageBox.No)
         if not (buttonClicked == QMessageBox.Yes):
             return
-
-        success, exceptionMsg, exceptionObject = self.entryModel.deleteObject()
-        if not success:
-            errorMsg = self.trUtf8("%s<br><br>Reason: %s" % (exceptionMsg, str(exceptionObject)))
-            QMessageBox.critical(self, self.trUtf8(""), errorMsg)
+        # If we have an index, use it tell the item to delete itself
+        # so that the view is updated
+        if self.index.isValid():
+            row = self.index.row()
+            column = self.index.column()
+            # QPersistenIndex doesn't have internalPointer()
+            # so we aquire a QModelIndex which does
+            item = self.index.parent().child(row,column).internalPointer()
+            success, message, exceptionObject = item.delete()
+            if success:
+                self.index.model().layoutChanged.emit()
+                self.enableToolButtons(False)
+                self.deleteLater()
+            else:
+                errorMsg = self.trUtf8("%s<br><br>Reason: %s" % (message, str(exceptionObject)))
+                QMessageBox.critical(self, self.trUtf8(""), errorMsg)
+        # if not, we just delete it ourselves since there's not view on the object
         else:
-            #self.emit(PYSIGNAR("REOPEN_PARENT"), (serverName, dn,))
-            #self.clearView()
-            self.enableToolButtons(False)
-            self.index.model().reloadItem(self.index.parent())
-            self.deleteLater()
-
+            success, message, exceptionObject = self.entryModel.deleteObject()
+            if success:
+                self.enableToolButtons(False)
+                self.deleteLater()
+            else:
+                errorMsg = self.trUtf8("%s<br><br>Reason: %s" % (message, str(exceptionObject)))
+                QMessageBox.critical(self, self.trUtf8(""), errorMsg)
