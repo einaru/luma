@@ -12,15 +12,8 @@ pluginUserString = "qt4plugin"
 version = "1.1"
 author = "Johannes"
 
-def getIcon(iconPath):
-    return None
-    try:
-        iconPixmap = QtGui.QPixmap(os.path.join (iconPath, "plugin.png"))
-    except:
-        print "Debug: Icon for plugin " + pluginName + " could not be opened."
-        return None
-
-    return iconPixmap
+def getIcon():
+    return QtGui.QIcon(':/icons/browser_plugin-plugin')
     
 
 def getPluginWidget(parent, mainwin):

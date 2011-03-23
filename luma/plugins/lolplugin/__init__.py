@@ -17,7 +17,8 @@ pluginUserString = "Lol"
 version = ""
 author = ""
 
-def getIcon(iconPath):
+def getIcon():
+    return None
     try:
         iconPixmap = QIcon (os.path.join (iconPath, "plugin.png"))
     except:

@@ -9,7 +9,8 @@ pluginUserString = "Browser"
 version = "0.1"
 author = "Christian Forfang, Simen Natvig, Per Ove Ringdal"
 
-def getIcon(iconPath):
+def getIcon():
+    return None
     try:
         iconPixmap = QIcon (os.path.join (iconPath, "plugin.png"))
     except:

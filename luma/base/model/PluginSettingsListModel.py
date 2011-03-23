@@ -12,7 +12,7 @@ class PluginSettingsListModel(QStandardItemModel):
     def __init__(self, parent = None):
         QStandardItemModel.__init__(self, parent)
         self._settings = QSettings()
-        for pluginobject in PluginLoader(".", "ALL").plugins:
+        for pluginobject in PluginLoader("ALL").plugins:
             item = QStandardItem(pluginobject.pluginName)
             check = Qt.Unchecked
             valueString = "plugins/" + pluginobject.pluginName + "/load"

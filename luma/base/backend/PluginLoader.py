@@ -20,19 +20,16 @@ class PluginLoader(object):
     
     _logger = logging.getLogger(__name__)
     
-    def __init__(self, lumaInstallationPrefix = ".", pluginsToLoad = []):
+    def __init__(self, pluginsToLoad = []):
         self._pluginsToLoad = pluginsToLoad
         self._plugins = [] #PluginObjects
-        self._lumaInstallationPrefix = lumaInstallationPrefix
-        self._pluginsBaseDir = path.join(lumaInstallationPrefix, "plugins")
-        """self._pluginsBaseDir = path.join(lumaInstallationPrefix,
-            "lib", "luma", "plugins")"""
         self._changed = True
         
-        print path.split(__file__)
-        print path.abspath(path.join(path.split(__file__)[0], "../.."))
-        #/home/johannes/Programmering/Luma/git/backend/PluginLoader.py
-        #C:,programmer,osv
+        #os.path.split - array of two elements, path + file
+        #os.path.join - joins the path and "../.."
+        #os.path.abspath - makes a "abspath" out of the entire path
+        self._pluginsBaseDir = path.abspath(path.join(path.split(__file__)[0],
+                                                      "../../plugins"))
 
     @property
     def pluginsToLoad(self):
@@ -150,12 +147,13 @@ class PluginLoader(object):
         plugin.version = importedModule.version
         plugin.getPluginWidget = importedModule.getPluginWidget
         plugin.getPluginSettingsWidget = importedModule.getPluginSettingsWidget
-            
-        iconPath = path.join(self._lumaInstallationPrefix, "share", 
-                 "luma", "icons", "plugins", pluginName)
+        print importedModule.pluginName
+        plugin.icon = importedModule.getIcon()
+        #iconPath = path.join(self._lumaInstallationPrefix, "share", 
+         #        "luma", "icons", "plugins", pluginName)
                                 
-        icon = importedModule.getIcon(iconPath)
-        plugin.icon = icon
+        #icon = importedModule.getIcon(iconPath)
+        #plugin.icon = icon
         
         if self._pluginsToLoad == 'ALL':
             plugin.load = True
