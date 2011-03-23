@@ -28,7 +28,7 @@ class ServerAuthMethod:
     SASL_CRAM_MD5 = 1
     SASL_DIGEST_MD5 = 2
     SASL_EXTERNAL = 3
-    SASL_GSSLAPI = 4
+    SASL_GSSAPI = 4
     SASL_LOGIN = 5
     SASL_PLAIN = 7 
     

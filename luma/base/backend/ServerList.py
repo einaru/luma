@@ -31,6 +31,8 @@ import tempfile
 from PyQt4.QtXml import QDomDocument
 
 from ..backend.ServerObject import ServerObject
+from base.backend.ServerObject import ServerEncryptionMethod,\
+    ServerCheckCertificate, ServerAuthMethod
 
 class ServerList(object):
     """
@@ -251,8 +253,8 @@ class ServerList(object):
             self.__logger.error('Can not read old serverconfig')
             #serverList = self._readFromXMLVersion1_0(fileContent)
         elif root.attribute('version') == '1.1':
-            self.__logger.error('Can not read old serverconfig')
-            #serverList = self._readFromXMLVersion1_1(fileContent)
+            #self.__logger.error('Can not read old serverconfig')
+            serverList = self._readFromXMLVersion1_1(fileContent)
         elif root.attribute('version') == '1.2':
             self.__logger.info('Reading new server-list-format for Luma3')
             serverList = self.__readFromXMLVersion1_2(fileContent)
@@ -325,80 +327,107 @@ class ServerList(object):
         return serverList
 
 
-    #def _readFromXMLVersion1_1(self, fileContent):
-    #    
-    #    self.__logger.debug("Using _readFromXMLVersion1_1() to load serverlist from disk")
-    #    
-    #    document = QDomDocument("LumaServerFile")
-    #    document.setContent(fileContent)
-    #    root = document.documentElement()
-    #    
-    #    serverList = []
-    #    
-    #    child = root.firstChild()
-    #    while (not child.isNull()):
-    #        server = ServerObject()
-    #        element = child.toElement()
-    #        if unicode(element.tagName()) == "LumaLdapServer":
-    #            server.setName(unicode(element.attribute("name")))
-    #            server.setHostname(unicode(element.attribute("host")))
-    #            server.setPort(int(str(element.attribute("port"))))
-    #            
-    #            tmpVal = unicode(element.attribute("bindAnon"))
-    #            if "True" == tmpVal:
-    #                server.setBindAnon(True)
-    #            else:
-    #                server.setBindAnon(False)
-    #                
-    #            tmpVal = unicode(element.attribute("autoBase"))
-    #            if "True" == tmpVal:
-    #                server.setAutoBase(True)
-    #            else:
-    #                server.setAutoBase(False)
-    #                
-    #                
-    #            server.setBindAnon(unicode(element.attribute("bindDN")))
-    #            server.setBindPassword(unicode(element.attribute("bindPassword")))
-    #            
-    #            server.setEncryptionMethod(unicode(element.attribute("encryptionMethod")))
-    #            #if server.encryptionMethod == "":
-    #            #    server.encryptionMethod = "None"
-    #                
-    #            server.setCheckServerCertificate(unicode(element.attribute("checkServerCertificate")))
-    #            server.setClientCertFile(unicode(element.attribute("clientCertFile")))
-    #            server.setClientCertKeyFile(unicode(element.attribute("clientCertKeyfile")))
-    #            
-    #            tmpVal = unicode(element.attribute("useCertificate"))
-    #            if tmpVal == "True":
-    #                server.setUseCertificate(True)
-    #            else:
-    #                server.setUseCertificate(False)
-    #                
-    #            tmpVal = unicode(element.attribute("followAliases"))
-    #            if "True" == tmpVal:
-    #                server.setFollowAliases(True)
-    #            else:
-    #                server.setFollowAliases(False)
-    #            
-    #            server.setAuthMethod((element.attribute("authMethod")))
-    #            
-    #            serverChild = child.firstChild()
-    #            serverElement = serverChild.toElement()
-    #            tagName = unicode(serverElement.tagName())
-    #                
-    #            if "baseDNs" == tagName:
-    #                baseDN = []
-    #                baseNode = serverChild.firstChild()
-    #                while (not baseNode.isNull()):
-    #                    baseElement = baseNode.toElement()
-    #                    tmpBase = unicode(baseElement.tagName())
-    #                    if "base" == tmpBase:
-    #                        baseDN.append(unicode(baseElement.attribute("dn")))
-    #                    baseNode = baseNode.nextSibling()
-    #            server.setBaseDN(baseDN)
-    #            
-    #        serverList.append(server)
-    #        child = child.nextSibling()
-    #    
-    #    return serverList
-
+    def _readFromXMLVersion1_1(self, fileContent):
+        
+        self.__logger.debug("Using _readFromXMLVersion1_1() to load serverlist from disk")
+        
+        document = QDomDocument("LumaServerFile")
+        document.setContent(fileContent)
+        root = document.documentElement()
+        
+        serverList = []
+        
+        child = root.firstChild()
+        while (not child.isNull()):
+            server = ServerObject()
+            element = child.toElement()
+            if unicode(element.tagName()) == "LumaLdapServer":
+                server.name = unicode(element.attribute("name"))
+                server.hostname = unicode(element.attribute("host"))
+                server.port = int(str(element.attribute("port")))
+                
+                tmpVal = unicode(element.attribute("bindAnon"))
+                if "True" == tmpVal:
+                    server.bindAnon = 1
+                else:
+                    server.bindAnon = 0
+                    
+                tmpVal = unicode(element.attribute("autoBase"))
+                if "True" == tmpVal:
+                    server.autoBase = 1
+                else:
+                    server.autoBase = 0
+                    
+                    
+                server.bindDN = unicode(element.attribute("bindDN"))
+                server.bindPassword = unicode(element.attribute("bindPassword"))
+                
+                tmp = unicode(element.attribute("encryptionMethod"))
+                if tmp == "None":
+                    server.encryptionMethod = ServerEncryptionMethod.Unencrypted
+                elif tmp == "SSL":
+                    server.encryptionMethod = ServerEncryptionMethod.SSL
+                elif tmp == "TLS":
+                    server.encryptionMethod = ServerEncryptionMethod.TLS
+                    
+                tmp = unicode(element.attribute("checkServerCertificate"))
+                if tmp == "never":
+                    server.checkServerCertificate = ServerCheckCertificate.Never
+                elif tmp == "try":
+                    server.checkServerCertificate = ServerCheckCertificate.Try
+                elif tmp == "demand":
+                    server.checkServerCertificate = ServerCheckCertificate.Demand
+                elif tmp == "allow":
+                    server.checkServerCertificate = ServerCheckCertificate.Allow
+                
+                
+                server.clientCertFile = unicode(element.attribute("clientCertFile"))
+                server.clientCertKeyFile = unicode(element.attribute("clientCertKeyfile"))
+                
+                tmpVal = unicode(element.attribute("useCertificate"))
+                if tmpVal == "True":
+                    server.useCertificate = True
+                else:
+                    server.useCertificate = False
+                    
+                tmpVal = unicode(element.attribute("followAliases"))
+                if "True" == tmpVal:
+                    server.followAliases = True
+                else:
+                    server.followAliases = False
+                
+                tmp = unicode(element.attribute("authMethod"))
+                if tmp == "SASL DIGEST-MD5":
+                    server.authMethod = ServerAuthMethod.SASL_DIGEST_MD5
+                elif tmp == "SASL CRAM-MD5":
+                    server.authMethod = ServerAuthMethod.SASL_CRAM_MD5
+                elif tmp == "SASL EXTERNAL":
+                    server.authMethod = ServerAuthMethod.SASL_EXTERNAL
+                elif tmp == "SASL GSSAPI":
+                    server.authMethod = ServerAuthMethod.SASL_GSSAPI
+                elif tmp == "SASL Login":
+                    server.authMethod = ServerAuthMethod.SASL_LOGIN
+                elif tmp == "SASL Plain":
+                    server.authMethod = ServerAuthMethod.SASL_PLAIN
+                elif tmp == "Simple":
+                    server.authMethod = ServerAuthMethod.Simple
+                
+                serverChild = child.firstChild()
+                serverElement = serverChild.toElement()
+                tagName = unicode(serverElement.tagName())
+                    
+                if "baseDNs" == tagName:
+                    baseDN = []
+                    baseNode = serverChild.firstChild()
+                    while (not baseNode.isNull()):
+                        baseElement = baseNode.toElement()
+                        tmpBase = unicode(baseElement.tagName())
+                        if "base" == tmpBase:
+                            baseDN.append(unicode(baseElement.attribute("dn")))
+                        baseNode = baseNode.nextSibling()
+                server.baseDN = baseDN
+                
+            serverList.append(server)
+            child = child.nextSibling()
+        
+        return serverList
