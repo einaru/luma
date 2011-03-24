@@ -94,20 +94,20 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.mainTabs.setTabsClosable(True)
         self.mainTabs.setContextMenuPolicy(Qt.CustomContextMenu)
         self.mainTabs.customContextMenuRequested.connect(self.__mainTabsContextMenu)
-    
+        
+        self.defaultTabStyle = ''
+        self.lumaHeadStyle = 'background: url(:/icons/luma-gray);\n' + \
+                     'background-position: bottom right;\n' + \
+                     'background-attachment: fixed;\n' + \
+                     'background-repeat:  no-repeat;'
+                     
         #Sets up pluginWidget
         #self in parameter is used to call pluginSelected here...
         self.pluginWidget = PluginListWidget(self)
         self.showPlugins()
-        self.welcomeTab = WelcomeTab()
-
-        stylesheet = 'background: url(:/icons/luma-gray);\n' + \
-                     'background-position: bottom right;\n' + \
-                     'background-attachment: fixed;\n' + \
-                     'background-repeat:  no-repeat;'
-
-        self.welcomeTab.textBrowser.setStyleSheet(stylesheet)
         
+        self.welcomeTab = WelcomeTab()
+        self.welcomeTab.textBrowser.setStyleSheet(self.lumaHeadStyle)
 
         #This value comes from __loadSettings()
         #Its a checkbox set in WelcomeTab
@@ -116,11 +116,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         else:
             # Let's do some styling of the tab widget when no tabs are opened
             if self.mainTabs.currentIndex() == -1:
-                stylesheet = 'background: url(:/icons/luma-gray);\n' + \
-                             'background-position: bottom right;\n' + \
-                             'background-attachment: fixed;\n' + \
-                             'background-repeat:  no-repeat;'
-                self.__setTabWidgetStyle(stylesheet)
+                self.__setTabWidgetStyle(self.lumaHeadStyle)
 
             self.actionShowWelcomeTab.setEnabled(True)
             
@@ -416,7 +412,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         This method will be called from the PluginListWidget.
         """
         # Clear the stylesheet when a tab is opened
-        self.__setTabWidgetStyle('')
+        self.__setTabWidgetStyle(self.defaultTabStyle)
 
         widget = item.plugin.getPluginWidget(None, self)
         
@@ -450,16 +446,13 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
         # Let's do some styling of the tab widget when no tabs are opened
         if self.mainTabs.currentIndex() == -1:
-            stylesheet = 'background: url(:/icons/luma-gray);\n' + \
-                         'background-position: bottom right;\n' + \
-                         'background-repeat:  no-repeat;'
-            self.__setTabWidgetStyle(stylesheet)
+            self.__setTabWidgetStyle(self.lumaHeadStyle)
 
     def gc(self):
         gc.collect()
 
     def showWelcome(self):
-        self.__setTabWidgetStyle('')
+        self.__setTabWidgetStyle(self.defaultTabStyle)
         index = self.mainTabs.addTab(self.welcomeTab,
         QApplication.translate("MainWindow", "Welcome"))
 
@@ -470,7 +463,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         """ Will set the pluginlistwidget on top of the mainstack.
         """
         
-        self.__setTabWidgetStyle('')
+        self.__setTabWidgetStyle(self.defaultTabStyle)
         if self.mainTabs.indexOf(self.pluginWidget) == -1:
             index = self.mainTabs.addTab(self.pluginWidget, QApplication.translate("MainWindow", "Plugins"))
             self.mainTabs.setCurrentIndex(index)
