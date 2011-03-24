@@ -622,6 +622,16 @@ class ExportDialog(QtGui.QDialog, Ui_ExportDialog):
         self.exportItemView.setAlternatingRowColors(True)
         self.exportItemView.setUniformItemSizes(True)
         self.exportDict = {}
+        
+        # Disabled until path set
+        self.exportButton.setEnabled(False)
+        # If the users manually edits the path, we'll trust him
+        self.outputEdit.textEdited.connect(self.enableExport)
+    
+    def enableExport(self):
+        """ Enable the export-button
+        """
+        self.exportButton.setEnabled(True)
     
     def __utf8(self, text):
         """Helper method for encoding in unicode utf-8.
@@ -662,6 +672,10 @@ class ExportDialog(QtGui.QDialog, Ui_ExportDialog):
                                                      caption='Select export file',
                                                      directory=userdir,
                                                      filter=filter)
+        # Return if the user canceled the dialog
+        if filename == "":
+            return
+        
         filename = self.__utf8(filename)
         filter = self.__utf8(self.formatBox.currentText())
         if filter.startswith('LDIF') and not filename.endswith('.ldif'):
@@ -680,6 +694,7 @@ class ExportDialog(QtGui.QDialog, Ui_ExportDialog):
         returns. If the filening doesn't match, it is switched.
         """
         if self.outputEdit.text() == '':
+            self.outputEdit.setEnabled(False) #Re-disable if there's nothing there
             return
         format = self.__utf8(format)
         oldname = self.outputEdit.text()
