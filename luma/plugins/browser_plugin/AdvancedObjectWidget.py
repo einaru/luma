@@ -5,6 +5,7 @@ from PyQt4.QtGui import QTextBrowser, QTextOption, QPixmap, QSizePolicy, QTextOp
 from PyQt4.QtCore import QSize, SIGNAL
 from base.backend.LumaConnection import LumaConnection
 from base.backend.ServerList import ServerList
+from base.util.IconTheme import pixmapFromThemeIcon
 from plugins.browser_plugin.model.EntryModel import EntryModel
 from plugins.browser_plugin.view.ClassicView import ClassicView
 from plugins.browser_plugin.view.HtmlView import HtmlView
@@ -17,15 +18,17 @@ class AdvancedObjectWidget(QWidget):
     def __init__(self, smartObject, index, parent=None):
         QWidget.__init__(self, parent)
         
+        w = 24
+        h = 24
         self.entryModel = EntryModel(smartObject, self)
-        self.entryModel.modelChangedSignal.connect(self.modelChanged)
+        self.entryModel.modelChangedSignal.connect(self.modelChanged, width=w, heigh=h)
         self.initModel()
 
         # Standard pixmaps used by the widget
-        self.deleteSmallPixmap = QPixmap(":/icons/edit-delete")
-        self.reloadPixmap = QPixmap(":/icons/reload")
-        self.savePixmap = QPixmap(":/icons/save")
-        self.addPixmap = QPixmap(":/icons/single")
+        self.deleteSmallPixmap = pixmapFromThemeIcon("edit-delete", ":/icons/edit-delete", w, h)
+        self.reloadPixmap = pixmapFromThemeIcon("view-refresh", ":/icons/reload", w, h)
+        self.savePixmap = pixmapFromThemeIcon("document-save", ":/icons/save",w, h)
+        self.addPixmap = pixmapFromThemeIcon("list-add", ":/icons/single", w, h)
 
         self.index = index
 

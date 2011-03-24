@@ -7,6 +7,7 @@
 ###########################################################################
 
 from PyQt4.QtGui import *
+from base.util.IconTheme import pixmapFromThemeIcon
 import os.path
 
 lumaPlugin = True
@@ -16,7 +17,7 @@ version = "0.1"
 author = "MEG!"
 
 def getIcon():
-    return QIcon(QPixmap(":/icons/template_plugin-plugin"))
+    return QIcon(pixmapFromThemeIcon("document-new", ":/icons/template_plugin-plugin"))
     
 ###############################################################################
 

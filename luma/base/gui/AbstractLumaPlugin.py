@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 #
-# plugins.search.__init__
+# base.gui.AbstractLumaPlugin
 #
 # Copyright (c) 2011
-#      Einar Uvsløkk, <einaru@stud.ntnu.no>
+#     Einar Uvsløkk, <einar.uvslokk@linux.com>
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -18,28 +18,3 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see http://www.gnu.org/licenses/
 
-from PyQt4.QtGui import QIcon, QPixmap
-from base.util.IconTheme import pixmapFromThemeIcon
-
-lumaPlugin = True
-pluginName = "search"
-pluginUserString = "Search"
-version = "0.1"
-author = "Einar Uvsløkk"
-
-
-def getIcon(iconPath = None):
-    return QIcon(pixmapFromThemeIcon('edit-find', ':/icons/search_plugin-plugin'))
-
-
-def getPluginWidget(parent, mainwin):
-    from .Search import SearchPlugin
-    return SearchPlugin(parent)
-
-
-def getPluginSettingsWidget(parent):
-    return
-
-
-def postprocess():
-    return

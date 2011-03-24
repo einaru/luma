@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-# plugins.search.__init__
+# plugins.search.Search
 #
 # Copyright (c) 2011
 #      Einar Uvsløkk, <einar.uvslokk@linux.com>

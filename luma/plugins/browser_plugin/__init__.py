@@ -1,8 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from PyQt4.QtGui import QIcon, QPixmap
-import os.path
-
+from base.util.IconTheme import pixmapFromThemeIcon
 lumaPlugin = True
 pluginName = "browser"
 pluginUserString = "Browser"
@@ -10,7 +9,7 @@ version = "0.1"
 author = "Christian Forfang, Simen Natvig, Per Ove Ringdal"
 
 def getIcon():
-    return QIcon(QPixmap(":/icons/browser_plugin-plugin"))
+    return QIcon(pixmapFromThemeIcon("applications-internet", ":/icons/browser_plugin-plugin"))
 
 def getPluginWidget(parent, mainwin):
     # parent is not used, but the widget is reparented by the QTabWidget
