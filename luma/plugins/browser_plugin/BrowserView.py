@@ -28,7 +28,7 @@ from string import replace
 
 from PyQt4 import (QtCore, QtGui)
 from PyQt4.QtGui import (QWidget, QMessageBox, QMenu, QAction, qApp)
-from PyQt4.QtCore import Qt
+from PyQt4.QtCore import Qt, QPersistentModelIndex, QModelIndex
 
 from base.backend.LumaConnection import LumaConnection
 from base.backend.ServerList import ServerList
@@ -79,9 +79,6 @@ class BrowserView(QWidget):
         self.ldaptreemodel.populateModel(self.serverList)
         self.ldaptreemodel.workingSignal.connect(self.isBusy)
 
-        # For testing ONLY
-        # AND ONLY ON SMALL LDAP-SERVERS SINCE IT LOADS BASICALLY ALL ENTIRES
-        #self.modeltest = modeltest.ModelTest(self.ldaptreemodel, self);
 
         # The view for server-content
         self.entryList = QtGui.QTreeView(self)
@@ -129,6 +126,11 @@ class BrowserView(QWidget):
             QMessageBox.Ignore, parent = self
         )
         self.retranslateUi()
+        
+        # For testing ONLY
+        # AND ONLY ON SMALL LDAP-SERVERS SINCE IT LOADS BASICALLY ALL ENTIRES
+        #import modeltest
+        #self.modeltest = modeltest.ModelTest(self.ldaptreemodel, self);
         
     def isBusy(self, status):
         if status == True:
@@ -244,12 +246,12 @@ class BrowserView(QWidget):
             self.contextMenuDelete.setEnabled(True)
             if numselected == 1:
                 self.contextMenuDelete.addAction(self.str_ITEM, self.deleteSelection)
-                self.contextMenuDelete.addAction(self.str_SUBTREE, self.deleteSelection)
-                self.contextMenuDelete.addAction(self.str_SUBTREE_PARENTS, self.deleteSelection)
+                #self.contextMenuDelete.addAction(self.str_SUBTREE, self.deleteSelection)
+                #self.contextMenuDelete.addAction(self.str_SUBTREE_PARENTS, self.deleteSelection)
             else:
                 self.contextMenuDelete.addAction(self.str_ITEMS, self.deleteSelection)
-                self.contextMenuDelete.addAction(self.str_SUBTREES, self.deleteSelection)
-                self.contextMenuDelete.addAction(self.str_SUBTREES_PARENTS, self.deleteSelection)
+                #self.contextMenuDelete.addAction(self.str_SUBTREES, self.deleteSelection)
+                #self.contextMenuDelete.addAction(self.str_SUBTREES_PARENTS, self.deleteSelection)
         else:
             self.contextMenuDelete.setEnabled(False)
 
@@ -362,7 +364,7 @@ class BrowserView(QWidget):
         # Remember the smartObject for later
         sO = index.internalPointer().smartObject()
         # Try to delete
-        (success,message) = self.ldaptreemodel.deleteItem(index)
+        (success, message) = self.ldaptreemodel.deleteItem(index)
         if success:
             # Close open edit-windows if any
             if self.isOpen(sO):
@@ -372,10 +374,10 @@ class BrowserView(QWidget):
                 if i != -1:
                     self.tabWidget.removeTab(i)
             # Notify success
-            QMessageBox.information(self, QtCore.QCoreApplication.translate("BrowserView","Success"), QtCore.QCoreApplication.translate("BrowserView","Item deleted"))
+            return (True, message)
         else:
-            # Error-messagee
-            QMessageBox.critical(self, QtCore.QCoreApplication.translate("BrowserView","Error"), message)
+            # Notify fail
+            return (False,message)
 
     def addNewEntry(self, parentIndex, defaultSmartObject=None):
         tmp = NewEntryDialog(parentIndex, defaultSmartObject)
@@ -427,11 +429,22 @@ class BrowserView(QWidget):
         user the option to validate the selection before deleting.
         """
         # TODO THE ABOVE
-        if len(self.selection) > 1:
-            # TODO FIX MULTIPLE SELECTION
-            pass
-        else:
-            self.deleteChosen(self.selection[0])       
+        
+        # Make persistent indexes
+        persistenSelection = []
+        for x in self.selection:
+            persistenSelection.append(QPersistentModelIndex(x))
+                
+        # Now delete each one of them
+        for x in persistenSelection:
+            # QPersistenModelIndex -> QModelIndex
+            i = x.sibling(x.row(),x.column())
+            (status, message) = self.deleteChosen(i)
+            if not status:
+                QMessageBox.critical(self, QtCore.QCoreApplication.translate("BrowserView","Error"), "On "+x.data().toPyObject()+":\n"+message)
+            else:
+                pass
+                #QMessageBox.information(self, QtCore.QCoreApplication.translate("BrowserView","Success"), QtCore.QCoreApplication.translate("BrowserView","Item deleted"))
 
     def exportItems(self):
         """Slot for the context menu.

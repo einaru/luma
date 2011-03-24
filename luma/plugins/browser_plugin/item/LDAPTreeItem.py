@@ -20,7 +20,7 @@ class LDAPTreeItem(AbstractLDAPTreeItem):
     # pops up asking if the user want to load them all?
     ASK_TO_DISPLAY = 1000
 
-    def __init__(self, data, serverParent, parent=None):
+    def __init__(self, data, serverParent, parent):
         AbstractLDAPTreeItem.__init__(self, parent)
         
         self.serverParent = serverParent
