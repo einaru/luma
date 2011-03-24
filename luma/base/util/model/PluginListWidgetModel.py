@@ -22,7 +22,8 @@ class PluginListWidgetModel(QStandardItemModel):
             if plugin.load == True:
                 
                 item = QStandardItem(str.capitalize(plugin.pluginName))
-                #item.setIcon(QIcon('/Users/johannes/Programmering/Luma/git/src/share/luma/icons/plugins/addressbook/plugin.png'))
+                if plugin.icon:
+                    item.setIcon(plugin.icon)
                 font = item.font()
                 font.setPointSize(font.pointSize() +4 )
                 item.setFont(font)

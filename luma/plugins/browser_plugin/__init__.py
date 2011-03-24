@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from PyQt4.QtGui import QIcon 
+from PyQt4.QtGui import QIcon, QPixmap
 import os.path
 
 lumaPlugin = True
@@ -9,15 +9,9 @@ pluginUserString = "Browser"
 version = "0.1"
 author = "Christian Forfang, Simen Natvig, Per Ove Ringdal"
 
-def getIcon(iconPath):
-    try:
-        iconPixmap = QIcon (os.path.join (iconPath, "plugin.png"))
-    except:
-        print "Debug: Icon for plugin " + pluginName + " could not be opened."
-        return None
+def getIcon():
+    return QIcon(QPixmap(":/icons/no"))
 
-    return iconPixmap
-    
 def getPluginWidget(parent, mainwin):
     # parent is not used, but the widget is reparented by the QTabWidget
     from plugins.browser_plugin.BrowserView import BrowserView

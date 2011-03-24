@@ -135,9 +135,10 @@ def startApplication(argv, verbose=False, clear=[], dirs={}):
         """ If verbose mode is enabled we start logging to the console
         TODO: Add support for adjusting the level of verbosity ?
         """
-        consoleHandler = logging.StreamHandler()
-        consoleHandler.setFormatter(formatter)
-        l.addHandler(consoleHandler)
+    #TODO REINDNET
+    consoleHandler = logging.StreamHandler()
+    consoleHandler.setFormatter(formatter)
+    l.addHandler(consoleHandler)
     
     __handleClearOptions(configPrefix, clear)
     
