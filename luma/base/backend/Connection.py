@@ -35,6 +35,8 @@ import threading
 import time
 import logging
 
+from PyQt4.QtCore import QCoreApplication
+
 from .Exception import *
 from .ServerObject import (ServerObject, ServerCheckCertificate,
                            ServerEncryptionMethod, ServerAuthMethod)
@@ -86,6 +88,7 @@ class LumaConnection(object):
     def whileWaiting(self):
         """FIXME: replacement for the qApp.processEvents() call.
         """
+        QCoreApplication.processEvents()
         time.sleep(0.05)
 
     def __setBusy(self, busy):

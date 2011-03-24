@@ -21,8 +21,8 @@
 import logging
 import re
 
-from PyQt4.QtCore import (QSettings, pyqtSignal)
-from PyQt4.QtGui import (QWidget, QIcon)
+from PyQt4.QtCore import (QSettings, pyqtSignal, Qt)
+from PyQt4.QtGui import (QWidget, QIcon, qApp)
 
 from base.backend.ServerList import ServerList
 from base.backend.Connection import LumaConnection
@@ -64,6 +64,9 @@ class SearchPlugin(QWidget, Ui_SearchPlugin):
                     self.serverBox.addItem(server.name)
                 else:
                     self.serverBox.addItem(secureIcon, server.name)
+        
+        # Keep track of open tabs
+        self.openTabs = {}
 
     def __utf8(self, text):
         """Helper method to get text objects in unicode utf-8 encoding.
@@ -73,7 +76,7 @@ class SearchPlugin(QWidget, Ui_SearchPlugin):
         @return: 
             the encoded textobject.
         """
-        return unicode(text).encode('utf-8')
+        return unicode(text).encode('utf-8').strip()
 
     def __initFilterBookmarks(self):
         """TODO: document
@@ -132,11 +135,16 @@ class SearchPlugin(QWidget, Ui_SearchPlugin):
         # 2 = SCOPE_SUBTREE
         scope = self.scopeBox.currentIndex()
         limit = self.sizeLimitSpinBox.value()
+        
+        qApp.setOverrideCursor(Qt.WaitCursor)
+        self.scrollArea.setEnabled(False)
         success, result, e = self.connection.search(
                                         base=self.currentServer.currentBase,
                                         scope=scope,
                                         filter=filter,
                                         sizelimit=limit)
+        qApp.restoreOverrideCursor()
+        self.scrollArea.setEnabled(True)
         # Remember to unbind
         self.connection.unbind()
 
@@ -214,6 +222,7 @@ class SearchPlugin(QWidget, Ui_SearchPlugin):
         if not baseDNList is None:
             for x in baseDNList:
                 self.baseDNBox.addItem(x)
+
 
 class SearchResultView(QWidget):
     """This class respresent the search result view.

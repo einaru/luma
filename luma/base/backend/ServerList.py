@@ -117,6 +117,13 @@ class ServerList(object):
             self.__serverList = [serverObject]
         else:
             self.__serverList.append(serverObject)
+    
+    def getIndexByName(self, serverName):
+        
+        for i in xrange(len(self.__serverList)):
+            if self.__serverList[i].name == serverName:
+                return i
+        return -1
 
     def deleteServer(self, serverName):
         """

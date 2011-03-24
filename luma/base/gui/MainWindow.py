@@ -18,7 +18,6 @@
 # You should have received a copy of the GNU General Public Licence along 
 # with Luma; if not, write to the Free Software Foundation, Inc., 
 # 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA
-from PyQt4 import QtCore
 """
 This module contains several Luma Widget classes:
 
@@ -174,7 +173,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         #    self.move(settings.position)
         #    if settings.maximize:
         #        self.showMaximized()
-        
+
         # If the geometry saved inticates fullscreen mode, 
         # we need to explicitly set the fullscreen menuaction checkbox
         if self.isFullScreen():

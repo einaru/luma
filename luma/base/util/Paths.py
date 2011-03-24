@@ -86,3 +86,26 @@ def getConfigPrefix():
             isvalid = False
 
     return (isvalid, prefix)
+
+def getUserHomeDir():
+    """Helper method for finding the user home directory.
+    
+    On UNIX systems this is achieved by using the python os.getenv
+    module. On Windows NT systems users is able to have roaming or
+    local profiles. For example:
+    CSIDL_APPDATA gets for the roaming 'Application Data' directory,
+    and CSIDL_LOCAL_APPDATA gets the local one.
+    
+    @return:
+        The path to the user home directory.
+    """
+    #homedir = os.path.expanduser('~')
+    homedir = os.getenv('HOME')
+    try:
+        from win32com.shell import shellcon, shell         
+        homedir = shell.SHGetFolderPath(0, shellcon.CSIDL_APPDATA, 0, 0)
+     
+    except ImportError:
+        pass
+
+    return homedir

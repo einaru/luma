@@ -38,7 +38,6 @@
      <string>&amp;File</string>
     </property>
     <addaction name="separator"/>
-    <addaction name="separator"/>
     <addaction name="actionQuit"/>
    </widget>
    <widget class="QMenu" name="menuEdit">
