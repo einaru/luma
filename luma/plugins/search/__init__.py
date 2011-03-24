@@ -31,8 +31,9 @@ def getIcon(iconPath = None):
     return QIcon(QPixmap(":/icons/search_plugin-plugin"))
 
 
-def getPluginWidget(parent):
-    return
+def getPluginWidget(parent, mainwin):
+    from .Search import SearchPlugin
+    return SearchPlugin(parent)
 
 
 def getPluginSettingsWidget(parent):
