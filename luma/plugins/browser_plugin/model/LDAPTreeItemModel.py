@@ -11,21 +11,25 @@ from plugins.browser_plugin.item.RootTreeItem import RootTreeItem
 from plugins.browser_plugin.item.LDAPErrorItem import LDAPErrorItem
 from PyQt4 import QtCore
 from PyQt4.QtCore import QAbstractItemModel, pyqtSlot, Qt
-from PyQt4.QtGui import qApp, QMessageBox
+from PyQt4.QtGui import qApp, QMessageBox, QProgressDialog
 
 class LDAPTreeItemModel(QAbstractItemModel):
     """
     The model used by the QTreeView in the BrowserPlugin.
     """
+    
+    # Callers can listed to this signal and display busy-messages as they see fit
+    workingSignal = QtCore.pyqtSignal(bool)
 
     def __init__(self, parent=None):
         QtCore.QAbstractItemModel.__init__(self, parent)
 
+    """ These are called internally in order to signal when busy
+    """
     def isWorking(self):
-        qApp.setOverrideCursor(Qt.WaitCursor)
-
+        self.workingSignal.emit(True)
     def doneWorking(self):
-        qApp.restoreOverrideCursor()
+        self.workingSignal.emit(False)
 
     def columnCount(self, parent):
         """

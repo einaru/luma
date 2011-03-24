@@ -27,7 +27,8 @@ import logging
 from string import replace
 
 from PyQt4 import (QtCore, QtGui)
-from PyQt4.QtGui import (QWidget, QMessageBox, QMenu, QAction)
+from PyQt4.QtGui import (QWidget, QMessageBox, QMenu, QAction, qApp)
+from PyQt4.QtCore import Qt
 
 from base.backend.LumaConnection import LumaConnection
 from base.backend.ServerList import ServerList
@@ -76,6 +77,7 @@ class BrowserView(QWidget):
         # The model for server-content
         self.ldaptreemodel = LDAPTreeItemModel(self)
         self.ldaptreemodel.populateModel(self.serverList)
+        self.ldaptreemodel.workingSignal.connect(self.isBusy)
 
         # For testing ONLY
         # AND ONLY ON SMALL LDAP-SERVERS SINCE IT LOADS BASICALLY ALL ENTIRES
@@ -120,9 +122,22 @@ class BrowserView(QWidget):
         self.reloadSignal.connect(self.ldaptreemodel.reloadItem)
         self.clearSignal.connect(self.ldaptreemodel.clearItem)
 
-
         self.__createContextMenu()
+        self.progress = QMessageBox(
+            1,"Please wait",
+            "Please wait, fetching data...\nThis message will automatically close when done...",
+            QMessageBox.Ignore, parent = self
+        )
         self.retranslateUi()
+        
+    def isBusy(self, status):
+        if status == True:
+            self.progress.show()
+            qApp.setOverrideCursor(Qt.WaitCursor)
+        else:
+            if not self.progress.isHidden():
+                self.progress.hide()
+            qApp.restoreOverrideCursor()
         
     def __createContextMenu(self):
         """Creates the context menu for the tree view.
@@ -447,8 +462,9 @@ class BrowserView(QWidget):
         """
         exportObjects = []
         msg = ''
-        serverListObject = ServerList()
+        serverListObject = self.serverList
         
+        self.isBusy(True)
         for index in self.selection:
             smartObject = index.internalPointer().smartObject()
             
@@ -462,12 +478,14 @@ class BrowserView(QWidget):
             # Do a search on the whole subtree
             # 2 = ldap.SCOPE_SUBTREE
             elif scope == 2:
+
                 success, e = con.bind()
+                
                 if not success:
                     self.__logger.error(str(e))
                     continue
                 success, result, e = con.search(base=dn, scope=2)
-                
+
                 if success:
                     exportObjects.extend(result)
                 else:
@@ -482,6 +500,7 @@ class BrowserView(QWidget):
         # and give it the items for export
         dialog = ExportDialog(msg)
         dialog.setExportItems(exportObjects)
+        self.isBusy(False)
         dialog.exec_()
 
     def editServerSettings(self):

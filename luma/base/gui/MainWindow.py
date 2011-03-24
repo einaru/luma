@@ -94,7 +94,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.mainTabs.setTabsClosable(True)
         self.mainTabs.setContextMenuPolicy(Qt.CustomContextMenu)
         self.mainTabs.customContextMenuRequested.connect(self.__mainTabsContextMenu)
-        
+    
         #Sets up pluginWidget
         #self in parameter is used to call pluginSelected here...
         self.pluginWidget = PluginListWidget(self)
@@ -183,7 +183,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         settings = Settings()
         # We might want to use these methods to restore the
         # application state and geometry.
-        self.restoreGeometry(settings.geometry)
+        if mainWin:
+            self.restoreGeometry(settings.geometry)
         #self.restoreState(settings.state)
 
         # General Mainwin

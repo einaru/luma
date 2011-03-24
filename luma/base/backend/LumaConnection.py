@@ -146,10 +146,10 @@ class LumaConnection(object):
         workerThread.start()
         
         #Should probably be done by the calling method instead
-        self.setBusy(True)
+        #self.setBusy(True)
         while not workerThread.FINISHED:
             self.whileWaiting()
-        self.setBusy(False)
+        #self.setBusy(False)
         
         if None == workerThread.exceptionObject:
             message = "LDAP object " + dnDelete + " successfully deleted."
@@ -178,10 +178,10 @@ class LumaConnection(object):
         workerThread.start()
         
         #Should probably be done by the calling method instead
-        self.setBusy(True)
+        #self.setBusy(True)
         while not workerThread.FINISHED:
             self.whileWaiting()
-        self.setBusy(False)
+        #self.setBusy(False)
         
         if None == workerThread.exceptionObject:
             message = "LDAP object " + dn + " successfully modified."
@@ -208,10 +208,10 @@ class LumaConnection(object):
         workerThread.start()
         
         #Should probably be done by the calling method instead
-        self.setBusy(True)
+        #self.setBusy(True)
         while not workerThread.FINISHED:
             self.whileWaiting()
-        self.setBusy(False)
+        #self.setBusy(False)
         
         if None == workerThread.exceptionObject:
             message = "LDAP object " + dn + " successfully added."
@@ -280,9 +280,9 @@ class LumaConnection(object):
 
         # Prompt for password on _invalid_pwd or _blank_pwd
         if self._invalid_pwd(workerThread) or self._blank_pwd(workerThread):
-            self.setBusy(False)
+            qApp.setOverrideCursor(Qt.ArrowCursor) #Put the mouse back to normal for the dialog (if needed)
             pw, ret = QInputDialog.getText(None, QApplication.translate("LumaConnection","Password"), QApplication.translate("LumaConnection","Invalid passord. Enter new:"), mode=QLineEdit.Password)
-            self.setBusy(True)
+            qApp.restoreOverrideCursor()
             if ret:
                 self.serverObject.bindPassword = unicode(pw)
                 LumaConnection.__passwordMap[self.serverObject.name] = self.serverObject.bindPassword
@@ -312,10 +312,10 @@ class LumaConnection(object):
         workerThread.start()
         
         #Should probably be done by the calling method instead
-        self.setBusy(True)
+        #self.setBusy(True)
         while not workerThread.FINISHED:
             self.whileWaiting()
-        self.setBusy(False)
+        #self.setBusy(False)
         
         return workerThread
         
@@ -447,11 +447,13 @@ class LumaConnection(object):
         time.sleep(0.05)
         
     def setBusy(self, bool):
+        # Do nothing -- should be done by the caller if needed
+        """
         if bool:
             qApp.setOverrideCursor(Qt.WaitCursor)
         else:
             qApp.restoreOverrideCursor()
-
+        """
 class WorkerThreadSearch(threading.Thread):
         
     def __init__(self, serverObject):
