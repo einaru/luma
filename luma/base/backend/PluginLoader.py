@@ -147,12 +147,10 @@ class PluginLoader(object):
         plugin.version = importedModule.version
         plugin.getPluginWidget = importedModule.getPluginWidget
         plugin.getPluginSettingsWidget = importedModule.getPluginSettingsWidget
-        plugin.icon = importedModule.getIcon()
-        #iconPath = path.join(self._lumaInstallationPrefix, "share", 
-         #        "luma", "icons", "plugins", pluginName)
-                                
-        #icon = importedModule.getIcon(iconPath)
-        #plugin.icon = icon
+        try:
+            plugin.icon = importedModule.getIcon()
+        except Exception, e:
+            self._logger.error("Plugin \""+plugin.pluginName+"\" gave error: "+str(e))
         
         if self._pluginsToLoad == 'ALL':
             plugin.load = True
