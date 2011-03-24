@@ -91,8 +91,11 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
         self.setStatusBar(self.statusBar)
         
-        #Sets up pluginWidget
         self.mainTabs.setTabsClosable(True)
+        self.mainTabs.setContextMenuPolicy(Qt.CustomContextMenu)
+        self.mainTabs.customContextMenuRequested.connect(self.__mainTabsContextMenu)
+        
+        #Sets up pluginWidget
         #self in parameter is used to call pluginSelected here...
         self.pluginWidget = PluginListWidget(self)
         self.showPlugins()
@@ -118,6 +121,17 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 self.__setTabWidgetStyle(stylesheet)
 
             self.actionShowWelcomeTab.setEnabled(True)
+            
+    def __mainTabsContextMenu(self, pos):
+        menu = QMenu()
+        if self.mainTabs.count() > 0:
+            return # The menu is displayed even when the rightclick is not done over the actual tabs
+            # so to avoid confusion the function is disabled entirey
+            #menu.addAction(QApplication.translate("MainWindow", "Close all plugin-tabs"), self.tabCloseAll)
+        else:
+            # If there's no tabs, offer to display the pluginlist
+            menu.addAction(self.actionShowPluginList)
+        menu.exec_(self.mainTabs.mapToGlobal(pos))
         
     def __createPluginToolBar(self):
         """ Creates the pluign toolbar.
