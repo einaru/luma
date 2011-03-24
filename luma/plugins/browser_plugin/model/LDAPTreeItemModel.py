@@ -256,5 +256,5 @@ class LDAPTreeItemModel(QAbstractItemModel):
             # Return fail
             return (False, message)
         
-    def deleteSubtree(self, index):
+    def deleteSubtree(self, index, withNode = 0):
         pass
