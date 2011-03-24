@@ -161,8 +161,9 @@ class LDAPTreeItem(AbstractLDAPTreeItem):
             return (False, message, exceptionObject)
         
     def getSupportedOperations(self):
-        ret = AbstractLDAPTreeItem.SUPPORT_CLEAR|AbstractLDAPTreeItem.SUPPORT_RELOAD|AbstractLDAPTreeItem.SUPPORT_FILTER|AbstractLDAPTreeItem.SUPPORT_LIMIT|AbstractLDAPTreeItem.SUPPORT_ADD
-        if not self.deleted:
-            ret |= AbstractLDAPTreeItem.SUPPORT_OPEN|AbstractLDAPTreeItem.SUPPORT_DELETE
+        # Should never happend, but just to make sure
+        if self.deleted:
+            return AbstractLDAPTreeItem.SUPPORT_NONE
+        ret = AbstractLDAPTreeItem.SUPPORT_CLEAR|AbstractLDAPTreeItem.SUPPORT_RELOAD|AbstractLDAPTreeItem.SUPPORT_FILTER|AbstractLDAPTreeItem.SUPPORT_LIMIT|AbstractLDAPTreeItem.SUPPORT_ADD|AbstractLDAPTreeItem.SUPPORT_OPEN|AbstractLDAPTreeItem.SUPPORT_DELETE
         return ret
         

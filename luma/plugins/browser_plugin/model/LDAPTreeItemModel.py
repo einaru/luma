@@ -222,7 +222,7 @@ class LDAPTreeItemModel(QAbstractItemModel):
         parentItem.populated = 1 #If the list is empty, this isn't set (by appendChild)
         self.endInsertRows()     
         
-        self.doneWorking()
+        self.doneWorking()  
         
     @pyqtSlot(QtCore.QModelIndex)       
     def clearItem(self, parentIndex):
@@ -238,3 +238,23 @@ class LDAPTreeItemModel(QAbstractItemModel):
         self.endRemoveRows()
         self.doneWorking()
         
+    def deleteItem(self, index):
+        """ Tries to delete the item referenced by the passed index
+        """
+        item = index.internalPointer()
+        success, message, exceptionObject = item.delete()
+        if success:
+            # Remove from model
+            parentIndex = self.parent(index)
+            self.beginRemoveRows(parentIndex, index.row(), index.row())
+            parentItem = parentIndex.internalPointer()
+            parentItem.removeChild(item)
+            self.endRemoveRows()
+            # Return success
+            return (True, message)
+        else:
+            # Return fail
+            return (False, message)
+        
+    def deleteSubtree(self, index):
+        pass

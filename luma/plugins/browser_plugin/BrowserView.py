@@ -97,7 +97,7 @@ class BrowserView(QWidget):
         # Used to signal the ldaptreemodel with a index
         # which needs processing (reloading, clearing)
         self.reloadSignal.connect(self.ldaptreemodel.reloadItem)
-        self.clearSignal.connect(self.ldaptreemodel.clearItem)        
+        self.clearSignal.connect(self.ldaptreemodel.clearItem)       
 
         
     # Custom signals used
@@ -150,7 +150,6 @@ class BrowserView(QWidget):
             
             menu.exec_(self.entryList.mapToGlobal(point))
     
-    
     """
     Following methods are called from a context-menu.
     self.clickedItem is set there.
@@ -174,19 +173,22 @@ class BrowserView(QWidget):
     def addTemplateChosen(self):
         pass
     def deleteChosen(self):
+        # Remember the smartObject for later
+        sO = self.clickedIndex.internalPointer().smartObject()
         # Try to delete
-        success, message, exceptionObject = self.clickedIndex.internalPointer().delete()
+        (success,message) = self.ldaptreemodel.deleteItem(self.clickedIndex)
         if success:
-            self.entryList.model().layoutChanged.emit()
-            # Close open windows if any
-            sO = self.clickedIndex.internalPointer().smartObject()
+            # Close open edit-windows if any
             if self.isOpen(sO):
                 rep = self.getRepForSmartObject(sO)
                 x = self.openTabs.pop(str(rep))
                 i = self.tabWidget.indexOf(x)
                 if i != -1:
                     self.tabWidget.removeTab(i)
+            # Notify success
+            QMessageBox.information(self, QtCore.QCoreApplication.translate("BrowserView","Success"), QtCore.QCoreApplication.translate("BrowserView","Item deleted"))
         else:
+            # Error-messagee
             QMessageBox.critical(self, QtCore.QCoreApplication.translate("BrowserView","Error"), message)
 
     def addNewEntry(self, parentIndex, defaultSmartObject = None):
@@ -226,7 +228,7 @@ class BrowserView(QWidget):
             return
             
         # Saves a representation of the opened entry to avoid opening duplicates  
-        # and open it     
+        # and open it
         x = AdvancedObjectWidget(smartObject, QtCore.QPersistentModelIndex(index))
         self.openTabs[str(rep)] = x
         self.tabWidget.addTab(x, smartObject.getPrettyRDN())
