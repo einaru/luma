@@ -103,6 +103,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
         stylesheet = 'background: url(:/icons/luma-gray);\n' + \
                      'background-position: bottom right;\n' + \
+                     'background-attachment: fixed;\n' + \
                      'background-repeat:  no-repeat;'
 
         self.welcomeTab.textBrowser.setStyleSheet(stylesheet)
@@ -117,6 +118,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             if self.mainTabs.currentIndex() == -1:
                 stylesheet = 'background: url(:/icons/luma-gray);\n' + \
                              'background-position: bottom right;\n' + \
+                             'background-attachment: fixed;\n' + \
                              'background-repeat:  no-repeat;'
                 self.__setTabWidgetStyle(stylesheet)
 
