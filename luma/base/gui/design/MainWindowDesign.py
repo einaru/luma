@@ -143,4 +143,5 @@ class Ui_MainWindow(object):
         self.actionShowToolbar.setText(QtGui.QApplication.translate("MainWindow", "Toolbar", None, QtGui.QApplication.UnicodeUTF8))
         self.actionShowStatusbar.setText(QtGui.QApplication.translate("MainWindow", "Statusbar", None, QtGui.QApplication.UnicodeUTF8))
         self.actionFullscreen.setText(QtGui.QApplication.translate("MainWindow", "Fullscreen", None, QtGui.QApplication.UnicodeUTF8))
+        self.actionFullscreen.setShortcut(QtGui.QApplication.translate("MainWindow", "F11", None, QtGui.QApplication.UnicodeUTF8))
 

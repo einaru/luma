@@ -34,10 +34,11 @@ from PyQt4.QtGui import QApplication
 
 import __init__ as appinfo
 from base.backend.Log import LumaLogHandler
-from base.gui.Window import MainWindow
-from base.gui.Widget import SplashScreen
+from base.gui.MainWindow import MainWindow
+from base.gui.SplashScreen import SplashScreen
 from base.gui.Settings import Settings
 from base.util.Paths import getConfigPrefix
+
 import resources
 
 

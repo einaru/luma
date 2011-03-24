@@ -164,6 +164,10 @@ class LDAPTreeItem(AbstractLDAPTreeItem):
         # Should never happend, but just to make sure
         if self.deleted:
             return AbstractLDAPTreeItem.SUPPORT_NONE
-        ret = AbstractLDAPTreeItem.SUPPORT_CLEAR|AbstractLDAPTreeItem.SUPPORT_RELOAD|AbstractLDAPTreeItem.SUPPORT_FILTER|AbstractLDAPTreeItem.SUPPORT_LIMIT|AbstractLDAPTreeItem.SUPPORT_ADD|AbstractLDAPTreeItem.SUPPORT_OPEN|AbstractLDAPTreeItem.SUPPORT_DELETE
-        return ret
-        
+
+        return AbstractLDAPTreeItem.SUPPORT_CLEAR | \
+               AbstractLDAPTreeItem.SUPPORT_RELOAD | \
+               AbstractLDAPTreeItem.SUPPORT_FILTER | \
+               AbstractLDAPTreeItem.SUPPORT_LIMIT | \
+               AbstractLDAPTreeItem.SUPPORT_ADD | \
+               AbstractLDAPTreeItem.SUPPORT_EXPORT

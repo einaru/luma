@@ -38,12 +38,19 @@ from base.backend.ServerObject import ServerEncryptionMethod
 
 class ServerDialog(QDialog, Ui_ServerDialogDesign):
 
-    def __init__(self, serverList, parent=None):
-        """ Note:
+    def __init__(self, serverList, server=None, parent=None):
+        """Note:
         the input-ServerList-object is used directly by both the methods
         here and the model so beware of changes to it. It's probably not
         a good idea to pass a ServerList if one of its ServerObjects are
         in use.
+        
+        @param serverList:
+            The ServerList object containing the list of available
+            servers.
+        @param server:
+            If provided, this server will be selected in the serverList
+            view.
         """
         super(ServerDialog, self).__init__(parent)
         self.setupUi(self)
@@ -74,9 +81,13 @@ class ServerDialog(QDialog, Ui_ServerDialogDesign):
 
         self.splitter.setStretchFactor(1, 0)
         
-
-        # Select the first server in the model)
-        index = self.serverListView.model().index(0, 0)
+        # If a servername is supplied we try to get its index, 
+        # And make it selected, else we select the first server
+        # in the model)
+        if not server is None:
+            index = self.__serverList.getIndexByName(server)
+        else:
+            index = self.serverListView.model().index(0, 0)
         # Select it in the view
         self.serverListView.selectionModel().select(index, QItemSelectionModel.ClearAndSelect)
         self.serverListView.selectionModel().setCurrentIndex(index, QItemSelectionModel.ClearAndSelect)
@@ -131,12 +142,12 @@ class ServerDialog(QDialog, Ui_ServerDialogDesign):
             
 
     def wasChanged(self):
-        """ Slot to register that some server settings is changed.
+        """Slot to register that some server settings is changed.
         """
         self.isChanged = True
 
     def addBaseDN(self):
-        """ Slot for adding a base DN
+        """Slot for adding a base DN
         """
         tmpBaseDN = unicode(self.baseDNEdit.text()).strip()
         if tmpBaseDN == u"":
@@ -150,7 +161,7 @@ class ServerDialog(QDialog, Ui_ServerDialogDesign):
         self.mapper.submit() #Force push to model
 
     def deleteBaseDN(self):
-        """ Slot for deleting a base DN
+        """Slot for deleting a base DN
         """
         # Delete every selected baseDN
         for tmpItem in self.baseDNListWidget.selectedItems():
@@ -166,7 +177,7 @@ class ServerDialog(QDialog, Ui_ServerDialogDesign):
         self.mapper.submit() #Force push changes to model
 
     def setBaseDN(self):
-        """ Slot for setting the base DN.
+        """Slot for setting the base DN.
         """
         serverIndex = self.serverListView.selectedIndexes()
         if len(serverIndex) > 0:
@@ -174,7 +185,7 @@ class ServerDialog(QDialog, Ui_ServerDialogDesign):
             self.serverDelegate.setEditorData(self.baseDNListWidget, index)
 
     def addServer(self):
-        """ Create a new ServerObject and add it to the model, and thus
+        """Create a new ServerObject and add it to the model, and thus
         the server list.
         """
         name, ok = QInputDialog.getText(self, self.tr('Add server'), self.tr('Name:'))
@@ -199,7 +210,7 @@ class ServerDialog(QDialog, Ui_ServerDialogDesign):
             self.tabWidget.setEnabled(True) # Make sure editing is enabled
 
     def deleteServer(self):
-        """ Delete a server from the model/list
+        """Delete a server from the model/list
         """
         if self.serverListView.selectionModel().currentIndex().row() < 0:
             #No server selected
@@ -224,14 +235,14 @@ class ServerDialog(QDialog, Ui_ServerDialogDesign):
             self.tabWidget.setEnabled(False) #Disable editing if no servers left
 
     def saveServerlist(self):
-        """ Called when the Save-button is clicked
+        """Called when the Save-button is clicked
         """
         self.mapper.submit()
         self.__serverList.writeServerList()
         self.__serverListCopy = copy.deepcopy(self.__serverList)
 
     def reject(self):
-        """ Called when the users clicks cancel or presses escape
+        """Called when the users clicks cancel or presses escape
         """
         # If no changes: just quit
         if not self.isChanged:
@@ -252,7 +263,7 @@ class ServerDialog(QDialog, Ui_ServerDialogDesign):
         QDialog.reject(self)
 
     def accept(self):
-        """ Called when OK-button is clicked
+        """Called when OK-button is clicked
         """
         self.mapper.submit()
         self.__serverList.writeServerList()
@@ -263,7 +274,7 @@ class ServerDialog(QDialog, Ui_ServerDialogDesign):
         return self.__returnList
 
     def certFileDialog(self):
-        """ Slot for selecting a certificate file.
+        """Slot for selecting a certificate file.
         """
         certFile = QFileDialog.getOpenFileName(self, self.trUtf8('Select certificate file'), '')
 
@@ -272,7 +283,7 @@ class ServerDialog(QDialog, Ui_ServerDialogDesign):
             self.mapper.submit()
 
     def certKeyfileDialog(self):
-        """ Slot for selecting a certificate keyfile.
+        """Slot for selecting a certificate keyfile.
         """
         certKeyfile = QFileDialog.getOpenFileName(self, self.trUtf8('Select certificate keyfile'), '')
 

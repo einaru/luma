@@ -55,8 +55,8 @@ class LumaConnection(object):
     """
 
     # For storing prompted passwords
-    _passwordMap = {}
-    _certMap = {}
+    __passwordMap = {}
+    __certMap = {}
     
     def __init__(self, serverObject=None):
         # Throw exception if no ServerObject is passed.
@@ -275,7 +275,7 @@ class LumaConnection(object):
                     
             if svar == QMessageBox.Yes:
                 self.serverObject.checkServerCertificate = ServerCheckCertificate.Never
-                LumaConnection._certMap[self.serverObject.name] = ServerCheckCertificate.Never
+                LumaConnection.__certMap[self.serverObject.name] = ServerCheckCertificate.Never
                 workerThread = self.__bind()
 
         # Prompt for password on _invalid_pwd or _blank_pwd
@@ -285,7 +285,7 @@ class LumaConnection(object):
             self.setBusy(True)
             if ret:
                 self.serverObject.bindPassword = unicode(pw)
-                LumaConnection._passwordMap[self.serverObject.name] = self.serverObject.bindPassword
+                LumaConnection.__passwordMap[self.serverObject.name] = self.serverObject.bindPassword
                 workerThread = self.__bind()
 
         if workerThread.exceptionObject == None:
@@ -299,12 +299,12 @@ class LumaConnection(object):
             self.logger.error(message)
             # If credentials are still wrong after prompting, remove from passwordmap
             if self._override_pwd(self.serverObject) and self._invalid_pwd(workerThread):
-                LumaConnection._passwordMap.pop(self.serverObject.name)
+                LumaConnection.__passwordMap.pop(self.serverObject.name)
             return (False, workerThread.exceptionObject)
 
     def __bind(self):
         if self._override_pwd(self.serverObject):
-            self.serverObject.bindPassword = LumaConnection._passwordMap[self.serverObject.name]
+            self.serverObject.bindPassword = LumaConnection.__passwordMap[self.serverObject.name]
         if self._ignore_cert(self.serverObject):
             self.serverObject.checkServerCertificate = u"never"
 
@@ -321,9 +321,9 @@ class LumaConnection(object):
         
     # Internal helper functions with semi self explaining names
     def _ignore_cert(self, serverObject):
-        return LumaConnection._certMap.has_key(serverObject.name)
+        return LumaConnection.__certMap.has_key(serverObject.name)
     def _override_pwd(self, serverObject):
-        return LumaConnection._passwordMap.has_key(serverObject.name)
+        return LumaConnection.__passwordMap.has_key(serverObject.name)
     def _cert_error(self, workerThread):
         # With SSL enabled, we get a SERVER_DOWN on wrong certificate
         # With TLS enabled, we get a CONNECT_ERROR on wrong certificate
