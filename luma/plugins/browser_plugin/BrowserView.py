@@ -159,7 +159,7 @@ class BrowserView(QWidget):
         Displays a context menu with possible actions.
         
         @param point: 
-        """
+        """        
         # This is a list of QModelIndex objects, which will be used by
         # the various context menu slots.
         # We therfore store it as a class member
@@ -176,6 +176,13 @@ class BrowserView(QWidget):
         # The number of selected items is used for naming of the actions
         # added to the submenues
         numselected = len(self.selection)
+        
+        # View disabled menu if nothing selected
+        self.contextMenu.setEnabled(True) # Remember to enable in case we have a selection
+        if not numselected > 0: # If nothing is selected
+            self.contextMenu.setEnabled(False) # Disable..
+            self.contextMenu.exec_(self.entryList.mapToGlobal(point)) #.. then show.
+            return
 
         # Iterate through the list of selected indexes, and
         # validate what operations are supported. That is, 
