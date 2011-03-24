@@ -161,7 +161,7 @@ class LDAPTreeItem(AbstractLDAPTreeItem):
             self.populated = True
             return (True, None, None)
         else:
-            message = QtCore.QCoreApplication.translate("LDAPTreeItem","Could not delete entry: "+exceptionObject[0]["info"])
+            message = QtCore.QCoreApplication.translate("LDAPTreeItem","Could not delete entry: "+exceptionObject[0]["desc"])
             return (False, message, exceptionObject)
         
     def getSupportedOperations(self):

@@ -148,6 +148,8 @@ class BrowserView(QWidget):
         self.contextMenuServerSettings = QAction(self)
         self.contextMenu.addAction(self.contextMenuServerSettings)
         self.contextMenu.addSeparator()
+        self.contextMenuOpen = QAction(self)
+        self.contextMenu.addAction(self.contextMenuOpen)
         self.contextMenuReload = QAction(self)
         self.contextMenu.addAction(self.contextMenuReload)
         self.contextMenuClear = QAction(self)
@@ -166,6 +168,7 @@ class BrowserView(QWidget):
 
         # Connect the context menu actions to the correct slots
         self.contextMenuServerSettings.triggered.connect(self.editServerSettings)
+        self.contextMenuOpen.triggered.connect(self.openChoosen)
         self.contextMenuReload.triggered.connect(self.reloadChoosen)
         self.contextMenuClear.triggered.connect(self.clearChoosen)
         self.contextMenuFilter.triggered.connect(self.filterChoosen)
@@ -182,6 +185,7 @@ class BrowserView(QWidget):
         # We therfore store it as a class member
         self.selection = self.entryList.selectedIndexes()
 
+        openSupport = True
         reloadSupport = True
         clearSupport = True
         filterSupport = True
@@ -209,7 +213,8 @@ class BrowserView(QWidget):
         for index in self.selection:
             item = index.internalPointer()
             operations = item.getSupportedOperations()
-            
+            if not AbstractLDAPTreeItem.SUPPORT_OPEN & operations:
+                openSupport = False
             if not AbstractLDAPTreeItem.SUPPORT_RELOAD & operations:
                 reloadSupport = False
             if not AbstractLDAPTreeItem.SUPPORT_CLEAR & operations:
@@ -227,6 +232,7 @@ class BrowserView(QWidget):
         
         # Now we just use the *Support variables to enable|disable
         # the context menu actions.
+        self.contextMenuOpen.setEnabled(openSupport)
         self.contextMenuReload.setEnabled(reloadSupport)
         self.contextMenuClear.setEnabled(clearSupport)
         self.contextMenuFilter.setEnabled(filterSupport)
@@ -235,7 +241,11 @@ class BrowserView(QWidget):
         # For the submenues in the context menu, we add appropriate
         # actions, based on single|multi selection, or disable the menu
         # altogether if there is no support for the operation.
-        if addSupport:
+        if (limitSupport or filterSupport or openSupport) and not numselected == 1:
+                self.contextMenuLimit.setEnabled(False)
+                self.contextMenuFilter.setEnabled(False)
+                self.contextMenuOpen.setEnabled(False)
+        if addSupport and numselected == 1:
             self.contextMenuAdd.setEnabled(True)
             self.contextMenuAdd.addAction(self.str_ENTRY, self.addEntryChoosen)
             self.contextMenuAdd.addAction(self.str_TEMPLATE, self.addTemplateChoosen)
@@ -325,11 +335,10 @@ class BrowserView(QWidget):
 
     """
     Following methods are called from a context-menu.
-    self.clickedItem is set there.
     """
     def openChoosen(self):
-        #TODO FOR SELECTION
-        self.viewItem(self.clickedIndex)
+        if len(self.selection) == 1:
+            self.viewItem(self.selection[0])
 
     def reloadChoosen(self):
         for index in self.selection:
@@ -552,6 +561,7 @@ class BrowserView(QWidget):
         self.tabWidget.setStatusTip(QtCore.QCoreApplication.translate("BrowserView", "This is where entries are displayed when opened."))
         self.tabWidget.setToolTip(QtCore.QCoreApplication.translate("BrowserView", "This is where entries are displayed when opened."))
         self.contextMenuServerSettings.setText(QtCore.QCoreApplication.translate("BrowserView", "Edit Server Settings"))
+        self.contextMenuOpen.setText(QtCore.QCoreApplication.translate("BrowserView", "Open"))
         self.contextMenuReload.setText(QtCore.QCoreApplication.translate("BrowserView", "Reload"))
         self.contextMenuClear.setText(QtCore.QCoreApplication.translate("BrowserView", "Clear"))
         self.contextMenuFilter.setText(QtCore.QCoreApplication.translate("BrowserView", "Set Filter"))
