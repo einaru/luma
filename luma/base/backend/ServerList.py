@@ -260,10 +260,9 @@ class ServerList(object):
             self.__logger.error('Can not read old serverconfig')
             #serverList = self._readFromXMLVersion1_0(fileContent)
         elif root.attribute('version') == '1.1':
-            #self.__logger.error('Can not read old serverconfig')
+            self.__logger.info('Loaded serverlist from Luma 2.x. This will be automatically converted on next save.')
             serverList = self._readFromXMLVersion1_1(fileContent)
         elif root.attribute('version') == '1.2':
-            self.__logger.info('Reading new server-list-format for Luma3')
             serverList = self.__readFromXMLVersion1_2(fileContent)
 
         return serverList

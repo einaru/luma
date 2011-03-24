@@ -18,7 +18,7 @@ class RootTreeItem(AbstractLDAPTreeItem):
         return 1
     
     def fetchChildList(self):
-        return None
+        return (None, None, None)
     
     def smartObject(self):
         return None

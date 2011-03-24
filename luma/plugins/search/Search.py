@@ -47,7 +47,7 @@ class SearchPlugin(QWidget, Ui_SearchPlugin):
         self.settings = QSettings()
 
         self.serverListObject = ServerList()
-        self.serverListObject.readServerList()
+        #self.serverListObject.readServerList() # No need
         self.serverList = self.serverListObject.getTable()
         self.currentServer = None
 

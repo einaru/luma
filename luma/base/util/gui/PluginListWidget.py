@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
-from PyQt4.QtGui import QWidget
+from PyQt4.QtCore import QSize
+from PyQt4.QtGui import QWidget, QListView
 from base.util.gui.PluginListWidgetDesign import Ui_pluginListWidget
 from base.util.model.PluginListWidgetModel import PluginListWidgetModel
 
@@ -22,7 +23,9 @@ class PluginListWidget(QWidget, Ui_pluginListWidget):
         
         self.parent = parent
         self.setupUi(self)
-
+        
+        self.listView.setResizeMode(QListView.Adjust)
+        self.listView.setViewMode(QListView.IconMode)
         self.listView.setModel(PluginListWidgetModel(self.parent))
         
     def pluginDoubleClicked(self, index):

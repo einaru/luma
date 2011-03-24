@@ -92,10 +92,15 @@ def startApplication(argv, verbose=False, clear=[], dirs={}):
     @param dirs: a dict;
         containing possible dirs to consider on start-up.
     """
-    #QtGui.QApplication.setStyle(QtGui.QStyleFactory.create("cleanlooks"))
-    #QtGui.QApplication.setPalette(QtGui.QApplication.style().standardPalette())
-
     app = Luma(argv)
+    
+    import platform
+    if platform.system() == "Windows":
+        # Avoids ugly white background
+        from PyQt4 import QtGui
+        QtGui.QApplication.setStyle(QtGui.QStyleFactory.create("plastique"))
+        QtGui.QApplication.setPalette(QtGui.QApplication.style().standardPalette())
+
 
     app.setOrganizationName(appinfo.ORGNAME)
     app.setApplicationName(appinfo.APPNAME)
