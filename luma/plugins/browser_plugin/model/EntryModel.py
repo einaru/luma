@@ -26,6 +26,9 @@ class EntryModel(QObject):
         
         # do we create a completely new object?
         self.CREATE = False
+        
+        # Default
+        self.ignoreServerMetaError = False
 
     modelChangedSignal = QtCore.pyqtSignal()
 

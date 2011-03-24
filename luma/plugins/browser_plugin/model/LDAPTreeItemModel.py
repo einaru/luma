@@ -11,7 +11,7 @@ from plugins.browser_plugin.item.RootTreeItem import RootTreeItem
 from plugins.browser_plugin.item.LDAPErrorItem import LDAPErrorItem
 from PyQt4 import QtCore
 from PyQt4.QtCore import QAbstractItemModel, pyqtSlot, Qt
-from PyQt4.QtGui import qApp
+from PyQt4.QtGui import qApp, QMessageBox
 
 class LDAPTreeItemModel(QAbstractItemModel):
     """
@@ -174,42 +174,56 @@ class LDAPTreeItemModel(QAbstractItemModel):
     def populateItem(self, parentItem):
         """
         Populates the list of children for the current parent-item.
+        This is called from rowCount() when the list is actually 
+        needed (lazy loading).
         """
 
         self.isWorking()
+        
+        # Don't try to fetch again
+        parentItem.populated = 1
 
         # Ask the item to fetch the list for us
-        list = parentItem.fetchChildList()
-
-        if list == None:
-            # TODO better error handling here and possibly in the item itself. Who displays the error-message?
-            #print "Error fetching list."
-            #print "I'll let things be then."
-            parentItem.populated = 1
+        (success, list, exception) = parentItem.fetchChildList()
+        
+        if not success:
+            self.displayError(exception)
             self.doneWorking()
             return
-
+        
+        # Workaround:
+        # if someone opens a long list, the user could
+        # set a limit and have the childList be populated by that function
+        # before this method runs.
+        # To make sure the list aquired here isn't appended to that list
+        # we clear the list of children even though in most cases
+        # it won't be populated.
+        parentItem.emptyChildren()
         for x in list:
             parentItem.appendChild(x)
-        parentItem.populated = 1 #If the list is empty, this isn't set (by appendChild)
 
         self.doneWorking()
+        
+    def displayError(self, exceptionObject):
+        """
+        Displays an error-message if populateItem fails.
+        """
+        QMessageBox.critical(None,"Error","Couldn't (re)populate list.\nError was: "+str(exceptionObject))
 
     @pyqtSlot(QtCore.QModelIndex)
     def reloadItem(self, parentIndex):
         """
         Re-populates an already populated item, e.g. when a filter or limit it set.
         """
-
+        
         self.isWorking()
 
         parentItem = parentIndex.internalPointer()
-        newList = parentItem.fetchChildList()
+        (success, newList, exception) = parentItem.fetchChildList()
 
-        if newList == None:
-            print "Error fetching list of children."
-            #print "Now I've got nothing to do, so I'm returning :("
-            #print "Hopefully nothing wrong happens because of this"
+        if not success:
+            # Basically, do nothing (can maybe use the existing list)
+            self.displayError(exception) #Let the user know we failed though
             self.doneWorking()
             return
 
@@ -219,7 +233,7 @@ class LDAPTreeItemModel(QAbstractItemModel):
         self.beginInsertRows(parentIndex, 0, len(newList) - 1)
         for x in newList:
             parentItem.appendChild(x)
-        parentItem.populated = 1 #If the list is empty, this isn't set (by appendChild)
+        parentItem.populated = 1 #If the list is empty, this isn't set (appendChild isn't called)
         self.endInsertRows()     
         
         self.doneWorking()

@@ -123,7 +123,7 @@ class BrowserView(QWidget):
 
         self.__createContextMenu()
         self.retranslateUi()
-
+        
     def __createContextMenu(self):
         """Creates the context menu for the tree view.
         """
@@ -324,15 +324,17 @@ class BrowserView(QWidget):
 
     def limitChoosen(self):
         # Have the item set the limit for us, the reload
-        for index in self.selection():
-            index.internalPointer().setLimit()
-            self.reloadSignal.emit(index)
+        for index in self.selection:
+            ok = index.internalPointer().setLimit()
+            if ok:
+                self.reloadSignal.emit(index)
 
     def filterChoosen(self):
         # Have the item set the filter, then reload
         for index in self.selection:
-            index.internalPointer().setFilter()
-            self.reloadSignal.emit(index)
+            ok = index.internalPointer().setFilter()
+            if ok:
+                self.reloadSignal.emit(index)
 
     def addEntryChoosen(self):
         for index in self.selection:
@@ -348,14 +350,12 @@ class BrowserView(QWidget):
         (success,message) = self.ldaptreemodel.deleteItem(index)
         if success:
             # Close open edit-windows if any
-            """
             if self.isOpen(sO):
                 rep = self.getRepForSmartObject(sO)
                 x = self.openTabs.pop(str(rep))
                 i = self.tabWidget.indexOf(x)
                 if i != -1:
                     self.tabWidget.removeTab(i)
-            """
             # Notify success
             QMessageBox.information(self, QtCore.QCoreApplication.translate("BrowserView","Success"), QtCore.QCoreApplication.translate("BrowserView","Item deleted"))
         else:
