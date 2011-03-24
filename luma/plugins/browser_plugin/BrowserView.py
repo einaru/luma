@@ -311,6 +311,7 @@ class BrowserView(QWidget):
     self.clickedItem is set there.
     """
     def openChoosen(self):
+        #TODO FOR SELECTION
         self.viewItem(self.clickedIndex)
 
     def reloadChoosen(self):
@@ -339,19 +340,22 @@ class BrowserView(QWidget):
 
     def addTemplateChoosen(self):
         pass
-    def deleteChosen(self):
+    def deleteChosen(self, index):
+        #TODO RENAME
         # Remember the smartObject for later
-        sO = self.clickedIndex.internalPointer().smartObject()
+        sO = index.internalPointer().smartObject()
         # Try to delete
-        (success,message) = self.ldaptreemodel.deleteItem(self.clickedIndex)
+        (success,message) = self.ldaptreemodel.deleteItem(index)
         if success:
             # Close open edit-windows if any
+            """
             if self.isOpen(sO):
                 rep = self.getRepForSmartObject(sO)
                 x = self.openTabs.pop(str(rep))
                 i = self.tabWidget.indexOf(x)
                 if i != -1:
                     self.tabWidget.removeTab(i)
+            """
             # Notify success
             QMessageBox.information(self, QtCore.QCoreApplication.translate("BrowserView","Success"), QtCore.QCoreApplication.translate("BrowserView","Item deleted"))
         else:
@@ -377,12 +381,12 @@ class BrowserView(QWidget):
         return (serverName,dn)
         
     def viewItem(self, index):
-        
         item = index.internalPointer()
         supports = item.getSupportedOperations()
         
         # If we can't open this item, then don't
         if not supports & AbstractLDAPTreeItem.SUPPORT_OPEN:
+            self.__logger.debug("Item didn't support open.")
             return
         
         smartObject = index.internalPointer().smartObject()
@@ -407,7 +411,12 @@ class BrowserView(QWidget):
         Opens the DeleteDialog with the selected entries, giving the
         user the option to validate the selection before deleting.
         """
-        pass
+        # TODO THE ABOVE
+        if len(self.selection) > 1:
+            # TODO FIX MULTIPLE SELECTION
+            pass
+        else:
+            self.deleteChosen(self.selection[0])       
 
     def exportItems(self):
         """Slot for the context menu.
@@ -492,7 +501,11 @@ class BrowserView(QWidget):
         if not (sO == None):
             # Remove the representation of the opened entry from the list
             rep = self.getRepForSmartObject(sO)
-            self.openTabs.pop(str(rep))
+            try:
+                self.openTabs.pop(str(rep))
+            except:
+                # Don't care
+                pass
         self.tabWidget.removeTab(index)
 
     def buildToolBar(self, parent):

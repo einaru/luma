@@ -5,6 +5,7 @@ from AbstractLDAPTreeItem import AbstractLDAPTreeItem
 from PyQt4.QtGui import QInputDialog, QIcon, QPixmap
 from PyQt4 import QtCore
 from base.backend.LumaConnection import LumaConnection
+from plugins.browser_plugin.item.AbstractLDAPTreeItem import AbstractLDAPTreeItem
 
 class LDAPTreeItem(AbstractLDAPTreeItem):
     """
@@ -170,4 +171,6 @@ class LDAPTreeItem(AbstractLDAPTreeItem):
                AbstractLDAPTreeItem.SUPPORT_FILTER | \
                AbstractLDAPTreeItem.SUPPORT_LIMIT | \
                AbstractLDAPTreeItem.SUPPORT_ADD | \
-               AbstractLDAPTreeItem.SUPPORT_EXPORT
+               AbstractLDAPTreeItem.SUPPORT_EXPORT | \
+               AbstractLDAPTreeItem.SUPPORT_DELETE | \
+               AbstractLDAPTreeItem.SUPPORT_OPEN
