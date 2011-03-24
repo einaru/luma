@@ -13,7 +13,7 @@ version = "1.1"
 author = "Johannes"
 
 def getIcon():
-    return QtGui.QIcon(':/icons/browser_plugin-plugin')
+    return QtGui.QIcon(':/icons/usermanagement-shell')
     
 
 def getPluginWidget(parent, mainwin):

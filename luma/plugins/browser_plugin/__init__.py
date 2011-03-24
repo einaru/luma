@@ -10,7 +10,7 @@ version = "0.1"
 author = "Christian Forfang, Simen Natvig, Per Ove Ringdal"
 
 def getIcon():
-    return QIcon(QPixmap(":/icons/no"))
+    return QIcon(QPixmap(":/icons/browser_plugin-plugin"))
 
 def getPluginWidget(parent, mainwin):
     # parent is not used, but the widget is reparented by the QTabWidget

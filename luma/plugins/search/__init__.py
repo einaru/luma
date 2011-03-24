@@ -18,6 +18,8 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see http://www.gnu.org/licenses/
 
+from PyQt4.QtGui import QIcon, QPixmap
+
 lumaPlugin = True
 pluginName = "search"
 pluginUserString = "Search"
@@ -26,7 +28,7 @@ author = "Einar Uvsløkk"
 
 
 def getIcon(iconPath = None):
-    return
+    return QIcon(QPixmap(":/icons/search_plugin-plugin"))
 
 
 def getPluginWidget(parent):
