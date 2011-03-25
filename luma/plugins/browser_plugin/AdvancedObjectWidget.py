@@ -1,27 +1,28 @@
 # -*- coding: utf-8 -*-
 
 from PyQt4 import QtCore, QtGui
-from PyQt4.QtGui import QTextBrowser, QTextOption, QPixmap, QSizePolicy, QTextOption, QLineEdit, QToolBar, QImage, QMessageBox, QVBoxLayout, QWidget, QToolButton, QIcon, QComboBox, QStackedWidget
+from PyQt4.QtGui import QTextBrowser, QTextOption, QPixmap, QSizePolicy, QTextOption, QLineEdit, QToolBar, QImage, QMessageBox, QVBoxLayout, QWidget, QToolButton, QIcon, QComboBox, QInputDialog
 from PyQt4.QtCore import QSize, SIGNAL
 from base.backend.LumaConnection import LumaConnection
 from base.backend.ServerList import ServerList
 from base.util.IconTheme import pixmapFromThemeIcon
 from plugins.browser_plugin.model.EntryModel import EntryModel
-from plugins.browser_plugin.view.ClassicView import ClassicView
-from plugins.browser_plugin.view.HtmlView import HtmlView
+from plugins.browser_plugin.HtmlParser import HtmlParser
+from plugins.browser_plugin.TemplateFactory import TemplateFactory
 import ldap
 import copy
 import logging
+import os
 
 class AdvancedObjectWidget(QWidget):
 
-    def __init__(self, smartObject, index, parent=None):
+    def __init__(self, smartObject, index, currentTemplate=None, parent=None):
         QWidget.__init__(self, parent)
         
         w = 24
         h = 24
         self.entryModel = EntryModel(smartObject, self)
-        self.entryModel.modelChangedSignal.connect(self.modelChanged, width=w, heigh=h)
+        self.entryModel.modelChangedSignal.connect(self.displayValues)
         self.initModel()
 
         # Standard pixmaps used by the widget
@@ -39,44 +40,30 @@ class AdvancedObjectWidget(QWidget):
         self.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
 
         # create the widget containing the data
-        #self.layout().addWidget(self.objectWidget)
-        #self.connect(self.objectWidget, SIGNAL("anchorClicked(const QUrl&)"), self.anchorClicked)
+        self.objectWidget = QTextBrowser()
+        self.objectWidget.setOpenLinks(False)
+        self.layout().addWidget(self.objectWidget)
+        self.connect(self.objectWidget, SIGNAL("anchorClicked(const QUrl&)"), self.anchorClicked)
+
+        self.currentDocument = ''
 
         
-        # ignore ServerMeta
-        self.ignoreServerMetaError = True
+        self.currentTemplate = currentTemplate
+        self.usedTemplates = []
+        #TODO move to BrowserView
+        self.templateFactory = TemplateFactory(os.path.join("plugins", "browser_plugin", "templates"))
 
-
-        # views that will be displayed
-        self.usedViews = []
-        self.usedViews.extend(ClassicView.supportedViews(self.entryModel))
-        self.usedViews.extend(HtmlView.supportedViews(self.entryModel))
-        HtmlView.supportedViews(self.entryModel)
-
-        self.currentViewIndex = 0
+        self.htmlParser = HtmlParser(smartObject)
+        
+        self.loadTemplates()
         self.buildToolBar()
-        self.stackedWidget = QStackedWidget(self)
-        self.layout().addWidget(self.stackedWidget)
-        # TODO always create all widgets?
-        for view in self.usedViews:
-            view.initWidget(self.stackedWidget)
-            self.stackedWidget.addWidget(view.getWidget())
-
-
         self.displayValues()
+    
 
 ###############################################################################
 
     def getSmartObject(self):
         return self.entryModel.getSmartObject()
-
-###############################################################################
-
-    def modelChanged(self):
-        """
-        called when the model is changed
-        """
-        self.displayValues()
 
 ###############################################################################
     
@@ -88,12 +75,17 @@ class AdvancedObjectWidget(QWidget):
                                 self.trUtf8(""),
                                 errorMsg)
 
-    
 ###############################################################################
-
-    def getCurrentView(self):
-        return self.usedViews[self.currentViewIndex]
-
+    
+    def loadTemplates(self):
+        objectClasses = self.getSmartObject().getObjectClasses()
+        for objectClass, fileName in self.templateFactory.getTemplateList():
+            if objectClass == '' or objectClass in objectClasses:
+                self.usedTemplates.append(fileName)
+        if self.currentTemplate not in self.usedTemplates:
+            self.currentTemplate = self.usedTemplates[0]
+        
+    
 ###############################################################################
 
     def displayValues(self):
@@ -104,8 +96,12 @@ class AdvancedObjectWidget(QWidget):
             self.enableToolButtons(False)
             return
         
-        currentView = self.getCurrentView()
-        currentView.refreshView()
+        if self.currentTemplate == None:
+            return
+        htmlTemplate = self.templateFactory.getTemplateFile(self.currentTemplate)
+        self.currentDocument = self.htmlParser.parseHtml(htmlTemplate)
+        self.objectWidget.setHtml(self.currentDocument)
+        
 
         self.enableToolButtons(True)
 
@@ -181,8 +177,8 @@ class AdvancedObjectWidget(QWidget):
         self.toolBar.addWidget(self.deleteObjectButton)
 
         self.comboBox = QComboBox()
-        for view in self.usedViews:
-            self.comboBox.addItem(view.getName())
+        for template in self.usedTemplates:
+            self.comboBox.addItem(template)
         self.comboBox.setToolTip(self.trUtf8("Switch between views"))
         self.connect(self.comboBox, SIGNAL("currentIndexChanged(int)"), self.changeView)
         self.toolBar.addWidget(self.comboBox)
@@ -196,8 +192,7 @@ class AdvancedObjectWidget(QWidget):
         """
         change between different views
         """
-        self.currentViewIndex = index
-        self.stackedWidget.setCurrentIndex(index)
+        self.currentTemplate = self.usedTemplates[index]
         self.displayValues()
 
 ###############################################################################
@@ -328,3 +323,91 @@ class AdvancedObjectWidget(QWidget):
             else:
                 errorMsg = self.trUtf8("%s<br><br>Reason: %s" % (message, str(exceptionObject)))
                 QMessageBox.critical(self, self.trUtf8(""), errorMsg)
+
+###############################################################################
+
+    def anchorClicked(self, url):
+        nameString = unicode(url.toString())
+        tmpList = nameString.split("__")
+        
+        if tmpList[0] in self.entryModel.getSmartObject().getObjectClasses():
+            self.entryModel.deleteObjectClass(tmpList[0])
+        else:
+            if not len(tmpList) == 3:
+                return
+            attributeName, index, operation = tmpList[0], int(tmpList[1]), tmpList[2]
+            if operation == "edit":
+                self.editAttribute(attributeName, index)
+            elif operation == "delete":
+                self.deleteAttribute(attributeName, index)
+            elif operation == "export":
+                self.exportAttribute(attributeName, index)
+
+###############################################################################
+
+    def editAttribute(self, attributeName, index):
+        smartObject = self.entryModel.getSmartObject()
+        oldDN = smartObject.getDN()
+        
+        if attributeName == 'RDN':
+            # TODO correct this, used on creation?
+            smartObject.setDN(self.baseDN)
+
+        attributeValue = smartObject.getAttributeValue(attributeName, index)
+        newValue, ok = QInputDialog.getText(self.objectWidget, 
+                            self.trUtf8('Input dialog'), 
+                            self.trUtf8('Attribute value:'), 
+                            QLineEdit.Normal, 
+                            attributeValue)
+        if ok:
+            newValue = unicode(newValue)
+            if not newValue == None:
+                self.entryModel.editAttribute(attributeName, index, newValue)
+        else:
+            if attributeName == 'RDN':
+                # TODO correct this
+                smartObject.setDN(oldDN)
+
+###############################################################################
+
+    def deleteAttribute(self, attributeName, index):
+        self.entryModel.deleteAttribute(attributeName, index)
+
+###############################################################################
+
+    # TODO: not used yet
+    def exportAttribute(self, attributeName, index):
+        return
+        """ Show the dialog for exporting binary attribute data.
+        """
+        '''
+        value = self.ldapDataObject.getAttributeValue(attributeName, index)
+
+
+        #filename = unicode(QFileDialog.getSaveFileName(
+        #                    self,
+        #fileName = unicode(QFileDialog.getSaveFileName(\
+        #                    QString.null,
+        #                    "All files (*)",
+        #                    self, None,
+        #                    self.trUtf8("Export binary attribute to file"),
+        #                    None, 1))
+
+        if unicode(fileName) == "":
+            return
+            
+        try:
+            fileHandler = open(fileName, "w")
+            fileHandler.write(value)
+            fileHandler.close()
+            SAVED = True
+        except IOError, e:
+            result = QMessageBox.warning(None,
+                self.trUtf8("Export binary attribute"),
+                self.trUtf8("""Could not export binary data to file. Reason:
+""" + str(e) + """\n\nPlease select another filename."""),
+                self.trUtf8("&Cancel"),
+                self.trUtf8("&OK"),
+                None,
+                1, -1)
+        '''

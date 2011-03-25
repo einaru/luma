@@ -33,6 +33,7 @@ from PyQt4.QtXml import QDomDocument
 from ..backend.ServerObject import ServerObject
 from base.backend.ServerObject import ServerEncryptionMethod,\
     ServerCheckCertificate, ServerAuthMethod
+from base.util.Paths import getConfigPrefix
 
 class ServerList(object):
     """
@@ -59,7 +60,11 @@ class ServerList(object):
             #      possible not in use currently.
             # Using the python tempfile module to get the temp dir in a
             # cross-platform manner
-            configPrefix = tempfile.gettempdir()
+            success, path = getConfigPrefix()
+            if success:
+                configPrefix = path
+            else:
+                configPrefix = tempfile.gettempdir()
             
         self.__serverList = []
         self.__configPrefix = configPrefix
