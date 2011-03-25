@@ -694,7 +694,7 @@ class ExportDialog(QtGui.QDialog, Ui_ExportDialog):
         returns. If the filening doesn't match, it is switched.
         """
         if self.outputEdit.text() == '':
-            self.outputEdit.setEnabled(False) #Re-disable if there's nothing there
+            self.exportButton.setEnabled(False) #Re-disable if there's nothing there
             return
         format = self.__utf8(format)
         oldname = self.outputEdit.text()
