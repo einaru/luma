@@ -14,7 +14,7 @@ class HtmlParser:
     
     def parseHtml(self, htmlTemplate):
         #TODO remove QString
-        reader = QXmlStreamReader(QString(htmlTemplate))
+        reader = QXmlStreamReader(htmlTemplate)
         tmpList = []
         while not reader.atEnd():
             reader.readNext()
@@ -66,6 +66,7 @@ class HtmlParser:
                 if style == "table":
                     return self.createAttributeString()
             elif type == "attribute":
+                return self.createAttributeValueString(str(id))
                 tmpList = []
                 if id:
                     for x in self.smartObject.getAttributeValueList(str(id)):

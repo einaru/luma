@@ -15,7 +15,7 @@ import os
 
 class AdvancedObjectWidget(QWidget):
 
-    def __init__(self, smartObject, index, parent=None):
+    def __init__(self, smartObject, index, currentTemplate=None, parent=None):
         QWidget.__init__(self, parent)
         
         self.entryModel = EntryModel(smartObject, self)
@@ -45,25 +45,15 @@ class AdvancedObjectWidget(QWidget):
         self.currentDocument = ''
 
         
-        # ignore ServerMeta
-        self.ignoreServerMetaError = True
-
+        self.currentTemplate = currentTemplate
+        self.usedTemplates = []
         #TODO move to BrowserView
-        self.currentTemplate = None
         self.templateFactory = TemplateFactory(os.path.join("plugins", "browser_plugin", "templates"))
 
         self.htmlParser = HtmlParser(smartObject)
         
-        # views that will be displayed
-        self.usedTemplates = []
-        objectClasses = smartObject.getObjectClasses()
-        for objectClass, fileName in self.templateFactory.getTemplateList():
-            if objectClass == '' or objectClass in objectClasses:
-                self.usedTemplates.append((objectClass, fileName))
-
-        self.currentViewIndex = 0
+        self.loadTemplates()
         self.buildToolBar()
-
         self.displayValues()
     
 
@@ -82,6 +72,16 @@ class AdvancedObjectWidget(QWidget):
                                 self.trUtf8(""),
                                 errorMsg)
 
+###############################################################################
+    
+    def loadTemplates(self):
+        objectClasses = self.getSmartObject().getObjectClasses()
+        for objectClass, fileName in self.templateFactory.getTemplateList():
+            if objectClass == '' or objectClass in objectClasses:
+                self.usedTemplates.append(fileName)
+        if self.currentTemplate not in self.usedTemplates:
+            self.currentTemplate = self.usedTemplates[0]
+        
     
 ###############################################################################
 
@@ -93,6 +93,8 @@ class AdvancedObjectWidget(QWidget):
             self.enableToolButtons(False)
             return
         
+        if self.currentTemplate == None:
+            return
         htmlTemplate = self.templateFactory.getTemplateFile(self.currentTemplate)
         self.currentDocument = self.htmlParser.parseHtml(htmlTemplate)
         self.objectWidget.setHtml(self.currentDocument)
@@ -173,7 +175,7 @@ class AdvancedObjectWidget(QWidget):
 
         self.comboBox = QComboBox()
         for template in self.usedTemplates:
-            self.comboBox.addItem(template[1])
+            self.comboBox.addItem(template)
         self.comboBox.setToolTip(self.trUtf8("Switch between views"))
         self.connect(self.comboBox, SIGNAL("currentIndexChanged(int)"), self.changeView)
         self.toolBar.addWidget(self.comboBox)
@@ -187,7 +189,6 @@ class AdvancedObjectWidget(QWidget):
         """
         change between different views
         """
-        self.currentViewIndex = index
         self.currentTemplate = self.usedTemplates[index]
         self.displayValues()
 
