@@ -16,11 +16,11 @@ class ServerTreeItem(AbstractLDAPTreeItem):
     
     logger = logging.getLogger(__name__)
 
-    def __init__(self, data, serverMeta=None, parent=None):
+    def __init__(self, data, serverMeta, parent):
         AbstractLDAPTreeItem.__init__(self, parent)
+        
         self.itemData = data
         self.serverMeta = serverMeta
-        self.rootItem = parent
 
     def columnCount(self):
         return len(self.itemData)

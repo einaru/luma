@@ -104,8 +104,6 @@ def getUserHomeDir():
     try:
         from win32com.shell import shellcon, shell         
         homedir = shell.SHGetFolderPath(0, shellcon.CSIDL_APPDATA, 0, 0)
-     
     except ImportError:
-        pass
-
+        homedir = os.path.expanduser("~")
     return homedir

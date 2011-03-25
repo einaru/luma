@@ -102,7 +102,7 @@ class LDAPTreeItemModel(QAbstractItemModel):
 
     def parent(self, index):
         """
-        Returns the index to the parent of a given index.
+        Returns the parent of the model item with the given index. 
         """
 
         if not index.isValid():
@@ -112,7 +112,7 @@ class LDAPTreeItemModel(QAbstractItemModel):
         parentItem = childItem.parent()
 
         if parentItem == self.rootItem:
-            # The root has no parent
+            # Invalid indexes reffer to the root
             return QtCore.QModelIndex()
 
         return self.createIndex(parentItem.row(), 0, parentItem)
@@ -164,7 +164,7 @@ class LDAPTreeItemModel(QAbstractItemModel):
         Called after the model is initialized. Adds the servers to the root.
         """
 
-        self.rootItem = RootTreeItem("Servere", self) # Also provides the header
+        self.rootItem = RootTreeItem("Servere", None) # Also provides the header
 
         if not len(serverList.getTable()) > 0:
             # If there's no servers :(

@@ -9,7 +9,7 @@ Currently not used.
 class LDAPErrorItem(AbstractLDAPTreeItem):
     
     
-    def __init__(self, data, serverParent, parent=None):
+    def __init__(self, data, serverParent, parent):
         AbstractLDAPTreeItem.__init__(self, parent)
                 
         if data != None:

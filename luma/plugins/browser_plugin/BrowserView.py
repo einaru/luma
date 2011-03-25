@@ -28,7 +28,7 @@ from string import replace
 
 from PyQt4 import (QtCore, QtGui)
 from PyQt4.QtGui import (QWidget, QMessageBox, QMenu, QAction, qApp)
-from PyQt4.QtCore import Qt
+from PyQt4.QtCore import Qt, QPersistentModelIndex, QModelIndex
 
 from base.backend.LumaConnection import LumaConnection
 from base.backend.ServerList import ServerList
@@ -79,9 +79,6 @@ class BrowserView(QWidget):
         self.ldaptreemodel.populateModel(self.serverList)
         self.ldaptreemodel.workingSignal.connect(self.isBusy)
 
-        # For testing ONLY
-        # AND ONLY ON SMALL LDAP-SERVERS SINCE IT LOADS BASICALLY ALL ENTIRES
-        #self.modeltest = modeltest.ModelTest(self.ldaptreemodel, self);
 
         # The view for server-content
         self.entryList = QtGui.QTreeView(self)
@@ -130,6 +127,11 @@ class BrowserView(QWidget):
         )
         self.retranslateUi()
         
+        # For testing ONLY
+        # AND ONLY ON SMALL LDAP-SERVERS SINCE IT LOADS BASICALLY ALL ENTIRES
+        #import modeltest
+        #self.modeltest = modeltest.ModelTest(self.ldaptreemodel, self);
+        
     def isBusy(self, status):
         if status == True:
             self.progress.show()
@@ -146,6 +148,8 @@ class BrowserView(QWidget):
         self.contextMenuServerSettings = QAction(self)
         self.contextMenu.addAction(self.contextMenuServerSettings)
         self.contextMenu.addSeparator()
+        self.contextMenuOpen = QAction(self)
+        self.contextMenu.addAction(self.contextMenuOpen)
         self.contextMenuReload = QAction(self)
         self.contextMenu.addAction(self.contextMenuReload)
         self.contextMenuClear = QAction(self)
@@ -164,6 +168,7 @@ class BrowserView(QWidget):
 
         # Connect the context menu actions to the correct slots
         self.contextMenuServerSettings.triggered.connect(self.editServerSettings)
+        self.contextMenuOpen.triggered.connect(self.openChoosen)
         self.contextMenuReload.triggered.connect(self.reloadChoosen)
         self.contextMenuClear.triggered.connect(self.clearChoosen)
         self.contextMenuFilter.triggered.connect(self.filterChoosen)
@@ -180,6 +185,7 @@ class BrowserView(QWidget):
         # We therfore store it as a class member
         self.selection = self.entryList.selectedIndexes()
 
+        openSupport = True
         reloadSupport = True
         clearSupport = True
         filterSupport = True
@@ -207,7 +213,8 @@ class BrowserView(QWidget):
         for index in self.selection:
             item = index.internalPointer()
             operations = item.getSupportedOperations()
-            
+            if not AbstractLDAPTreeItem.SUPPORT_OPEN & operations:
+                openSupport = False
             if not AbstractLDAPTreeItem.SUPPORT_RELOAD & operations:
                 reloadSupport = False
             if not AbstractLDAPTreeItem.SUPPORT_CLEAR & operations:
@@ -225,6 +232,7 @@ class BrowserView(QWidget):
         
         # Now we just use the *Support variables to enable|disable
         # the context menu actions.
+        self.contextMenuOpen.setEnabled(openSupport)
         self.contextMenuReload.setEnabled(reloadSupport)
         self.contextMenuClear.setEnabled(clearSupport)
         self.contextMenuFilter.setEnabled(filterSupport)
@@ -233,7 +241,11 @@ class BrowserView(QWidget):
         # For the submenues in the context menu, we add appropriate
         # actions, based on single|multi selection, or disable the menu
         # altogether if there is no support for the operation.
-        if addSupport:
+        if (limitSupport or filterSupport or openSupport) and not numselected == 1:
+                self.contextMenuLimit.setEnabled(False)
+                self.contextMenuFilter.setEnabled(False)
+                self.contextMenuOpen.setEnabled(False)
+        if addSupport and numselected == 1:
             self.contextMenuAdd.setEnabled(True)
             self.contextMenuAdd.addAction(self.str_ENTRY, self.addEntryChoosen)
             self.contextMenuAdd.addAction(self.str_TEMPLATE, self.addTemplateChoosen)
@@ -244,12 +256,12 @@ class BrowserView(QWidget):
             self.contextMenuDelete.setEnabled(True)
             if numselected == 1:
                 self.contextMenuDelete.addAction(self.str_ITEM, self.deleteSelection)
-                self.contextMenuDelete.addAction(self.str_SUBTREE, self.deleteSelection)
-                self.contextMenuDelete.addAction(self.str_SUBTREE_PARENTS, self.deleteSelection)
+                #self.contextMenuDelete.addAction(self.str_SUBTREE, self.deleteSelection)
+                #self.contextMenuDelete.addAction(self.str_SUBTREE_PARENTS, self.deleteSelection)
             else:
                 self.contextMenuDelete.addAction(self.str_ITEMS, self.deleteSelection)
-                self.contextMenuDelete.addAction(self.str_SUBTREES, self.deleteSelection)
-                self.contextMenuDelete.addAction(self.str_SUBTREES_PARENTS, self.deleteSelection)
+                #self.contextMenuDelete.addAction(self.str_SUBTREES, self.deleteSelection)
+                #self.contextMenuDelete.addAction(self.str_SUBTREES_PARENTS, self.deleteSelection)
         else:
             self.contextMenuDelete.setEnabled(False)
 
@@ -323,11 +335,10 @@ class BrowserView(QWidget):
 
     """
     Following methods are called from a context-menu.
-    self.clickedItem is set there.
     """
     def openChoosen(self):
-        #TODO FOR SELECTION
-        self.viewItem(self.clickedIndex)
+        if len(self.selection) == 1:
+            self.viewItem(self.selection[0])
 
     def reloadChoosen(self):
         for index in self.selection:
@@ -362,7 +373,7 @@ class BrowserView(QWidget):
         # Remember the smartObject for later
         sO = index.internalPointer().smartObject()
         # Try to delete
-        (success,message) = self.ldaptreemodel.deleteItem(index)
+        (success, message) = self.ldaptreemodel.deleteItem(index)
         if success:
             # Close open edit-windows if any
             if self.isOpen(sO):
@@ -372,10 +383,10 @@ class BrowserView(QWidget):
                 if i != -1:
                     self.tabWidget.removeTab(i)
             # Notify success
-            QMessageBox.information(self, QtCore.QCoreApplication.translate("BrowserView","Success"), QtCore.QCoreApplication.translate("BrowserView","Item deleted"))
+            return (True, message)
         else:
-            # Error-messagee
-            QMessageBox.critical(self, QtCore.QCoreApplication.translate("BrowserView","Error"), message)
+            # Notify fail
+            return (False,message)
 
     def addNewEntry(self, parentIndex, defaultSmartObject=None):
         tmp = NewEntryDialog(parentIndex, defaultSmartObject)
@@ -427,11 +438,22 @@ class BrowserView(QWidget):
         user the option to validate the selection before deleting.
         """
         # TODO THE ABOVE
-        if len(self.selection) > 1:
-            # TODO FIX MULTIPLE SELECTION
-            pass
-        else:
-            self.deleteChosen(self.selection[0])       
+        
+        # Make persistent indexes
+        persistenSelection = []
+        for x in self.selection:
+            persistenSelection.append(QPersistentModelIndex(x))
+                
+        # Now delete each one of them
+        for x in persistenSelection:
+            # QPersistenModelIndex -> QModelIndex
+            i = x.sibling(x.row(),x.column())
+            (status, message) = self.deleteChosen(i)
+            if not status:
+                QMessageBox.critical(self, QtCore.QCoreApplication.translate("BrowserView","Error"), "On "+x.data().toPyObject()+":\n"+message)
+            else:
+                pass
+                #QMessageBox.information(self, QtCore.QCoreApplication.translate("BrowserView","Success"), QtCore.QCoreApplication.translate("BrowserView","Item deleted"))
 
     def exportItems(self):
         """Slot for the context menu.
@@ -539,6 +561,7 @@ class BrowserView(QWidget):
         self.tabWidget.setStatusTip(QtCore.QCoreApplication.translate("BrowserView", "This is where entries are displayed when opened."))
         self.tabWidget.setToolTip(QtCore.QCoreApplication.translate("BrowserView", "This is where entries are displayed when opened."))
         self.contextMenuServerSettings.setText(QtCore.QCoreApplication.translate("BrowserView", "Edit Server Settings"))
+        self.contextMenuOpen.setText(QtCore.QCoreApplication.translate("BrowserView", "Open"))
         self.contextMenuReload.setText(QtCore.QCoreApplication.translate("BrowserView", "Reload"))
         self.contextMenuClear.setText(QtCore.QCoreApplication.translate("BrowserView", "Clear"))
         self.contextMenuFilter.setText(QtCore.QCoreApplication.translate("BrowserView", "Set Filter"))
@@ -599,6 +622,16 @@ class ExportDialog(QtGui.QDialog, Ui_ExportDialog):
         self.exportItemView.setAlternatingRowColors(True)
         self.exportItemView.setUniformItemSizes(True)
         self.exportDict = {}
+        
+        # Disabled until path set
+        self.exportButton.setEnabled(False)
+        # If the users manually edits the path, we'll trust him
+        self.outputEdit.textEdited.connect(self.enableExport)
+    
+    def enableExport(self):
+        """ Enable the export-button
+        """
+        self.exportButton.setEnabled(True)
     
     def __utf8(self, text):
         """Helper method for encoding in unicode utf-8.
@@ -639,6 +672,10 @@ class ExportDialog(QtGui.QDialog, Ui_ExportDialog):
                                                      caption='Select export file',
                                                      directory=userdir,
                                                      filter=filter)
+        # Return if the user canceled the dialog
+        if filename == "":
+            return
+        
         filename = self.__utf8(filename)
         filter = self.__utf8(self.formatBox.currentText())
         if filter.startswith('LDIF') and not filename.endswith('.ldif'):
@@ -657,6 +694,7 @@ class ExportDialog(QtGui.QDialog, Ui_ExportDialog):
         returns. If the filening doesn't match, it is switched.
         """
         if self.outputEdit.text() == '':
+            self.exportButton.setEnabled(False) #Re-disable if there's nothing there
             return
         format = self.__utf8(format)
         oldname = self.outputEdit.text()

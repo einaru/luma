@@ -311,10 +311,9 @@ class AdvancedObjectWidget(QWidget):
             column = self.index.column()
             # QPersistenIndex doesn't have internalPointer()
             # so we aquire a QModelIndex which does
-            item = self.index.parent().child(row,column).internalPointer()
-            success, message, exceptionObject = item.delete()
+            index = self.index.sibling(row,column)
+            success, message = index.model().deleteItem(index)
             if success:
-                self.index.model().layoutChanged.emit()
                 self.enableToolButtons(False)
                 self.deleteLater()
             else:
