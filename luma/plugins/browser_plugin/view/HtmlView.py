@@ -1,86 +1,111 @@
 # -*- coding: utf-8 -*-
 import os
+import copy
 import PyQt4
-from PyQt4.QtCore import SIGNAL, QUrl, QString
-from PyQt4.QtGui import QTextBrowser, QTextDocument
+from PyQt4.QtCore import SIGNAL, QUrl, QString, QXmlStreamReader, QString
+from PyQt4.QtGui import QTextBrowser, QTextDocument, QInputDialog, QLineEdit
 from plugins.browser_plugin.view.AbstractEntryView import AbstractEntryView
 
-class HtmlView(AbstractEntryView):
+class HtmlView(QTextBrowser):
 
-    def __init__(self, entryModel, filepath, objectClass):
-        AbstractEntryView.__init__(self)
+    def __init__(self, entryModel, parent=None):
+        QTextBrowser.__init__(self, parent)
         self.entryModel = entryModel
-        self.filepath = filepath
         self.currentDocument = ""
-        self.objectWidget = None
+        self.htmlTemplate = ""
 
-    @staticmethod
-    def listfiles():
-        retlist = []
-        templatedir = os.path.join("plugins", "browser_plugin", "templates")
-        if os.path.isdir(templatedir):
-            for subdir in os.listdir(templatedir):
-                objectClassDir = os.path.join(templatedir, subdir)
-                if os.path.isdir(objectClassDir):
-                    for file in os.listdir(objectClassDir):
-                        templateFile = os.path.join(objectClassDir, file)
-                        split = str(file).rsplit(".")
-                        if os.path.isfile(templateFile) and split[-1] == 'html':
-                            retlist.append((templateFile, subdir))
-        return retlist
+        self.setOpenLinks(False)
+        self.connect(self, SIGNAL("anchorClicked(const QUrl&)"), self.anchorClicked)
 
 
-    @staticmethod
-    def supportedViews(entryModel):
-        """
-        """
-        retlist = []
-        smartObject = entryModel.getSmartObject()
-        objectClasses = smartObject.getObjectClasses()
-        for filepath, objectClass in HtmlView.listfiles():
-            if objectClass in objectClasses:
-                retlist.append(HtmlView(entryModel, filepath, objectClass))
-        return retlist
-        
-    def getName(self):
-        """
-        returns the name that will be displayed in the QComboBox
-        """
-        return self.filepath
 
-    def initWidget(self, parent=None):
-        self.objectWidget = QTextBrowser(parent)
-        self.objectWidget.setOpenLinks(False)
-        self.objectWidget.connect(self.objectWidget, SIGNAL("anchorClicked(const QUrl&)"), self.anchorClicked)
-
-    def refreshView(self):
-        #TODO static file
-        self.currentDocument = self.createDocument()
-        self.objectWidget.setHtml(self.currentDocument)
-
-    def modelChanged(self):
-        """
-        called when the model is changed
-        """
-        pass
-    def getWidget(self):
-        """
-        returns the widget that displays the view
-        """
-        return self.objectWidget
-
-    def createDocument(self):
-        smartObject = self.entryModel.getSmartObject()
-        text = open(self.filepath, "r").read()
-        for attribute in smartObject.getAttributeList():
-            i = 0
-            for attributeValue in smartObject.getAttributeValueList(attribute):
-                attribute_html = attribute + "__value"
-                text = text.replace(attribute_html, attributeValue)
-                i += 1
-        text = text.replace(".*__value", "")
-
-        return text
+###############################################################################
+###############################################################################
+###############################################################################
 
     def anchorClicked(self, url):
-        print url
+        nameString = unicode(url.toString())
+        tmpList = nameString.split("__")
+        
+        if tmpList[0] in self.entryModel.getSmartObject().getObjectClasses():
+            self.entryModel.deleteObjectClass(tmpList[0])
+            #self.refreshView()
+        else:
+            if not len(tmpList) == 3:
+                return
+            attributeName, index, operation = tmpList[0], int(tmpList[1]), tmpList[2]
+            if operation == "edit":
+                self.editAttribute(attributeName, index)
+            elif operation == "delete":
+                self.deleteAttribute(attributeName, index)
+            elif operation == "export":
+                self.exportAttribute(attributeName, index)
+
+###############################################################################
+
+    def editAttribute(self, attributeName, index):
+        smartObject = self.entryModel.getSmartObject()
+        oldDN = smartObject.getDN()
+        
+        if attributeName == 'RDN':
+            # TODO correct this, used on creation?
+            smartObject.setDN(self.baseDN)
+
+        attributeValue = smartObject.getAttributeValue(attributeName, index)
+        newValue, ok = QInputDialog.getText(self.objectWidget, 
+                            self.trUtf8('Input dialog'), 
+                            self.trUtf8('Attribute value:'), 
+                            QLineEdit.Normal, 
+                            attributeValue)
+        if ok:
+            newValue = unicode(newValue)
+            if not newValue == None:
+                self.entryModel.editAttribute(attributeName, index, newValue)
+        else:
+            if attributeName == 'RDN':
+                # TODO correct this
+                smartObject.setDN(oldDN)
+
+###############################################################################
+
+    def deleteAttribute(self, attributeName, index):
+        self.entryModel.deleteAttribute(attributeName, index)
+
+###############################################################################
+
+    # TODO: not used yet
+    def exportAttribute(self, attributeName, index):
+        return
+        """ Show the dialog for exporting binary attribute data.
+        """
+        '''
+        value = self.ldapDataObject.getAttributeValue(attributeName, index)
+
+
+        #filename = unicode(QFileDialog.getSaveFileName(
+        #                    self,
+        #fileName = unicode(QFileDialog.getSaveFileName(\
+        #                    QString.null,
+        #                    "All files (*)",
+        #                    self, None,
+        #                    self.trUtf8("Export binary attribute to file"),
+        #                    None, 1))
+
+        if unicode(fileName) == "":
+            return
+            
+        try:
+            fileHandler = open(fileName, "w")
+            fileHandler.write(value)
+            fileHandler.close()
+            SAVED = True
+        except IOError, e:
+            result = QMessageBox.warning(None,
+                self.trUtf8("Export binary attribute"),
+                self.trUtf8("""Could not export binary data to file. Reason:
+""" + str(e) + """\n\nPlease select another filename."""),
+                self.trUtf8("&Cancel"),
+                self.trUtf8("&OK"),
+                None,
+                1, -1)
+        '''

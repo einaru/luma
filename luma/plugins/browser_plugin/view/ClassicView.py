@@ -6,6 +6,8 @@ from plugins.browser_plugin.view.AbstractEntryView import AbstractEntryView
 import copy
 
 class ClassicView(AbstractEntryView):
+    """
+    """
 
     def __init__(self, entryModel, ignoreInvalid):
         AbstractEntryView.__init__(self)
