@@ -626,7 +626,11 @@ class ExportDialog(QtGui.QDialog, Ui_ExportDialog):
         # Disabled until path set
         self.exportButton.setEnabled(False)
         # If the users manually edits the path, we'll trust him
-        self.outputEdit.textEdited.connect(self.enableExport)
+        #self.outputEdit.textEdited.connect(self.enableExport)
+        # The signal textEdit is not emitted if the text is changed
+        # programmatically, we therefore use textChanged instead.
+        self.outputEdit.textChanged['QString'].connect(self.onFilenameChanged)
+
     
     def enableExport(self):
         """ Enable the export-button
@@ -684,7 +688,7 @@ class ExportDialog(QtGui.QDialog, Ui_ExportDialog):
             filename = '%s.dsml' % filename
  
         self.outputEdit.setText(filename)
-        self.exportButton.setEnabled(True)
+        #self.exportButton.setEnabled(True)
     
     def onFormatChanged(self, format):
         """Slot for the format combobox.
@@ -694,7 +698,7 @@ class ExportDialog(QtGui.QDialog, Ui_ExportDialog):
         returns. If the filening doesn't match, it is switched.
         """
         if self.outputEdit.text() == '':
-            self.exportButton.setEnabled(False) #Re-disable if there's nothing there
+            #self.exportButton.setEnabled(False) #Re-disable if there's nothing there
             return
         format = self.__utf8(format)
         oldname = self.outputEdit.text()
@@ -703,6 +707,16 @@ class ExportDialog(QtGui.QDialog, Ui_ExportDialog):
         elif format == 'DSML':
             newname = replace(oldname, '.ldif', '.dsml')
         self.outputEdit.setText(newname)
+
+    def onFilenameChanged(self, filename):
+        """Slot for the filename edit.
+
+        Enabels|disables the export button.
+        """
+        if self.__utf8(filename) ==  '':
+            self.exportButton.setEnabled(False)
+        else:
+            self.exportButton.setEnabled(True)
 
     def export(self):
         """Slot for the export button.
