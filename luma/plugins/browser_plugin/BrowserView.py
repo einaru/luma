@@ -762,8 +762,9 @@ class ExportDialog(QtGui.QDialog, Ui_ExportDialog):
             
             # DSML need additional footer info, to close the format
             if format == 'DSML':
+                print 'footer'
                 tmp = StringIO.StringIO()
-                dsml.DSMLWriter(tmp)
+                dsmlWriter = dsml.DSMLWriter(tmp)
                 dsmlWriter.writeFooter()
                 fileHandler.write(tmp.getvalue())
             
