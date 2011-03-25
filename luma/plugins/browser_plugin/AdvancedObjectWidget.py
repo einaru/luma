@@ -1,10 +1,11 @@
 # -*- coding: utf-8 -*-
 
-from PyQt4 import QtCore, QtGui
+from PyQt4 import QtCore, QtGui, Qt
 from PyQt4.QtGui import QTextBrowser, QTextOption, QPixmap, QSizePolicy, QTextOption, QLineEdit, QToolBar, QImage, QMessageBox, QVBoxLayout, QWidget, QToolButton, QIcon, QComboBox, QInputDialog
 from PyQt4.QtCore import QSize, SIGNAL
 from base.backend.LumaConnection import LumaConnection
 from base.backend.ServerList import ServerList
+from base.backend.SmartDataObject import SmartDataObject
 from base.util.IconTheme import pixmapFromThemeIcon
 from plugins.browser_plugin.model.EntryModel import EntryModel
 from plugins.browser_plugin.HtmlParser import HtmlParser
@@ -46,16 +47,16 @@ class AdvancedObjectWidget(QWidget):
         self.connect(self.objectWidget, SIGNAL("anchorClicked(const QUrl&)"), self.anchorClicked)
 
         self.currentDocument = ''
-
+        self.addingToComboBox = False
         
+        # create the combobox containing the different views
+        self.comboBox = QComboBox()
         self.currentTemplate = currentTemplate
         self.usedTemplates = []
-        #TODO move to BrowserView
         self.templateFactory = TemplateFactory(os.path.join("plugins", "browser_plugin", "templates"))
 
-        self.htmlParser = HtmlParser(smartObject)
+        self.htmlParser = HtmlParser(self.entryModel)
         
-        self.loadTemplates()
         self.buildToolBar()
         self.displayValues()
     
@@ -78,12 +79,20 @@ class AdvancedObjectWidget(QWidget):
 ###############################################################################
     
     def loadTemplates(self):
+        self.usedTemplates = []
         objectClasses = self.getSmartObject().getObjectClasses()
         for objectClass, fileName in self.templateFactory.getTemplateList():
             if objectClass == '' or objectClass in objectClasses:
                 self.usedTemplates.append(fileName)
         if self.currentTemplate not in self.usedTemplates:
             self.currentTemplate = self.usedTemplates[0]
+        #TODO do this properly
+        self.addingToComboBox = True
+        self.comboBox.clear()
+        self.comboBox.addItems(self.usedTemplates)
+        self.addingToComboBox = False
+        #for template in self.usedTemplates:
+        #    self.comboBox.addItem(template)
         
     
 ###############################################################################
@@ -96,13 +105,13 @@ class AdvancedObjectWidget(QWidget):
             self.enableToolButtons(False)
             return
         
+        self.loadTemplates()
         if self.currentTemplate == None:
             return
         htmlTemplate = self.templateFactory.getTemplateFile(self.currentTemplate)
         self.currentDocument = self.htmlParser.parseHtml(htmlTemplate)
         self.objectWidget.setHtml(self.currentDocument)
         
-
         self.enableToolButtons(True)
 
 ###############################################################################
@@ -176,9 +185,6 @@ class AdvancedObjectWidget(QWidget):
         self.connect(self.deleteObjectButton, SIGNAL("clicked()"), self.deleteObject)
         self.toolBar.addWidget(self.deleteObjectButton)
 
-        self.comboBox = QComboBox()
-        for template in self.usedTemplates:
-            self.comboBox.addItem(template)
         self.comboBox.setToolTip(self.trUtf8("Switch between views"))
         self.connect(self.comboBox, SIGNAL("currentIndexChanged(int)"), self.changeView)
         self.toolBar.addWidget(self.comboBox)
@@ -192,6 +198,8 @@ class AdvancedObjectWidget(QWidget):
         """
         change between different views
         """
+        if index == -1 or self.addingToComboBox:
+            return
         self.currentTemplate = self.usedTemplates[index]
         self.displayValues()
 
@@ -234,8 +242,8 @@ class AdvancedObjectWidget(QWidget):
             if not success:
                 errorMsg = self.trUtf8("%s<br><br>Reason: %s" % (exceptionMsg, str(exceptionObject)))
                 QMessageBox.critical(self, self.trUtf8(""), errorMsg)
-            #else:
-            #    self.displayValues()
+            else:
+                self.displayValues()
 
 ###############################################################################
 

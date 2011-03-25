@@ -6,13 +6,13 @@ from PyQt4.QtCore import QXmlStreamReader, QString
 
 class HtmlParser:
 
-    def __init__(self, smartObject):
-        self.smartObject = smartObject
+    def __init__(self, entryModel):
+        self.entryModel = entryModel
+        self.smartObject = None
 
-    def setSmartObject(self, smartObject):
-        self.smartObject = smartObject
-    
     def parseHtml(self, htmlTemplate):
+        # reload smartObject each time
+        self.smartObject = self.entryModel.getSmartObject()
         #TODO remove QString
         reader = QXmlStreamReader(htmlTemplate)
         tmpList = []

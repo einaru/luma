@@ -2,6 +2,7 @@
 
 import ldap
 import PyQt4
+import copy
 from PyQt4 import QtCore
 from PyQt4.QtCore import QObject
 from PyQt4.QtGui import QMessageBox
@@ -9,14 +10,14 @@ from PyQt4.QtGui import QMessageBox
 
 from base.backend.ServerList import ServerList
 from base.backend.LumaConnection import LumaConnection
-from base.backend.SmartDataObject import LdapDataException
+from base.backend.SmartDataObject import SmartDataObject, LdapDataException
 
 # TODO add translation support
 class EntryModel(QObject):
 
     def __init__(self, smartObject, parent=None):
         QObject.__init__(self, parent)
-        self.smartObject = smartObject
+        self.smartObject = self.smartObjectCopy(smartObject)
 
         # boolean to indicate if the current ldap object has been modified
         self.EDITED = False
@@ -31,6 +32,10 @@ class EntryModel(QObject):
         self.ignoreServerMetaError = False
 
     modelChangedSignal = QtCore.pyqtSignal()
+
+    #TODO move to SmartDataObject?
+    def smartObjectCopy(self, smartObject):
+        return SmartDataObject(copy.deepcopy([smartObject.dn, smartObject.data]), copy.deepcopy(smartObject.serverMeta))
 
     def getSmartObject(self):
         return self.smartObject
@@ -268,18 +273,19 @@ class EntryModel(QObject):
 ###############################################################################
 
     def deleteAttribute(self, attributeName, index):
-        try:
-            self.smartObject.deleteAttributeValue(attributeName, index)
-            self.EDITED = True
-            self.modelChangedSignal.emit()
-        except LdapDataException as e:
-            print "*" * 30
-            print e
-            print "*" * 30
+        #try:
+        self.smartObject.deleteAttributeValue(attributeName, index)
+        self.EDITED = True
+        self.modelChangedSignal.emit()
+        #except LdapDataException as e:
+        #    print "*" * 30
+        #    print e
+        #    print "*" * 30
 
 ###############################################################################
 
     def deleteObjectClass(self, className):
         self.smartObject.deleteObjectClass(className)
         self.EDITED = True
+        self.modelChangedSignal.emit()
 
