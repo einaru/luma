@@ -3,7 +3,8 @@
 # base.util.paths
 #
 # Copyright (c) 2011
-#      Einar Uvsløkk, <einaru@stud.ntnu.no>
+#     Einar Uvsløkk, <einaru@stud.ntnu.no>
+#     Johannes Harestad, <johannesharestad@gmail.com>
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -21,8 +22,26 @@
 import os
 import platform
 
+def getLumaRoot():
+    """Utility method for locating the Luma root location.
+    
+    This is done by using pythons magical __file__ attribute, to get
+    the location of this module, and joining it with the required
+    number of levels up to the root.
+    
+    NOTE: The use of __file__ most  likely will cause some issues if 
+          Luma is packaged with 
+    
+    @return:
+        The absolute file path to the luma root directory, without the
+        trailing separator -> /full/path/to/luma
+    """
+    levelsUp = '..' + os.path.sep + '..'
+    return os.path.abspath(os.path.join(os.path.split(__file__)[0], levelsUp))
+ 
+
 def getConfigPrefix():
-    """ We must determine what platform we're running on. Making sure
+    """We must determine what platform we're running on. Making sure
     we follow the platform convention for configuration files and
     directories,
 

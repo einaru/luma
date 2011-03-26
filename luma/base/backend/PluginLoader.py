@@ -7,6 +7,8 @@ import logging
 import sys
 from PyQt4 import QtGui
 
+from ..util.Paths import getLumaRoot
+
 class PluginLoader(object):
     
     """
@@ -27,8 +29,9 @@ class PluginLoader(object):
         #os.path.split - array of two elements, path + file
         #os.path.join - joins the path and "../.."
         #os.path.abspath - makes a "abspath" out of the entire path
-        self._pluginsBaseDir = path.abspath(path.join(path.split(__file__)[0],
-                                                      "../../plugins"))
+#        self._pluginsBaseDir = path.abspath(path.join(path.split(__file__)[0],
+#                                                      "../../plugins"))
+        self._pluginsBaseDir = path.join(getLumaRoot(), 'plugins')
 
     @property
     def pluginsToLoad(self):

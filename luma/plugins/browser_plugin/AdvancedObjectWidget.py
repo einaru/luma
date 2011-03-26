@@ -1,19 +1,27 @@
 # -*- coding: utf-8 -*-
 
-from PyQt4 import QtCore, QtGui, Qt
-from PyQt4.QtGui import QTextBrowser, QTextOption, QPixmap, QSizePolicy, QTextOption, QLineEdit, QToolBar, QImage, QMessageBox, QVBoxLayout, QWidget, QToolButton, QIcon, QComboBox, QInputDialog
-from PyQt4.QtCore import QSize, SIGNAL
-from base.backend.LumaConnection import LumaConnection
-from base.backend.ServerList import ServerList
-from base.backend.SmartDataObject import SmartDataObject
-from base.util.IconTheme import pixmapFromThemeIcon
-from plugins.browser_plugin.model.EntryModel import EntryModel
-from plugins.browser_plugin.HtmlParser import HtmlParser
-from plugins.browser_plugin.TemplateFactory import TemplateFactory
 import ldap
 import copy
 import logging
 import os
+
+from PyQt4 import QtCore, QtGui, Qt
+from PyQt4.QtCore import QSize, SIGNAL
+from PyQt4.QtGui import (QTextBrowser, QTextOption, QPixmap, QSizePolicy,
+                         QTextOption, QLineEdit, QToolBar, QImage, 
+                         QMessageBox, QVBoxLayout, QWidget, QToolButton, 
+                         QIcon, QComboBox, QInputDialog)
+
+from base.backend.LumaConnection import LumaConnection
+from base.backend.ServerList import ServerList
+from base.backend.SmartDataObject import SmartDataObject
+from base.util.IconTheme import pixmapFromThemeIcon
+from base.util.Paths import getLumaRoot
+
+from .model.EntryModel import EntryModel
+from .HtmlParser import HtmlParser
+from .TemplateFactory import TemplateFactory
+
 
 class AdvancedObjectWidget(QWidget):
 
@@ -53,7 +61,14 @@ class AdvancedObjectWidget(QWidget):
         self.comboBox = QComboBox()
         self.currentTemplate = currentTemplate
         self.usedTemplates = []
-        self.templateFactory = TemplateFactory(os.path.join("plugins", "browser_plugin", "templates"))
+        # FIXME: Need a more robust way for locating the path used in
+        #        the TemplateFactory for locating the template view
+        #        files
+        # FIXED: with base.util.Paths.getLumaRoot this should work.
+        #        Probably needs some validation testing on platforms
+        #        other than Linux
+        #self.templateFactory = TemplateFactory(os.path.join("plugins", "browser_plugin", "templates"))
+        self.templateFactory = TemplateFactory(os.path.join(getLumaRoot(), 'plugins', 'browser_plugin', 'templates'))
 
         self.htmlParser = HtmlParser(self.entryModel)
         
@@ -320,7 +335,7 @@ class AdvancedObjectWidget(QWidget):
                 self.enableToolButtons(False)
                 self.deleteLater()
             else:
-                errorMsg = self.trUtf8("%s<br><br>Reason: %s" % (message, str(exceptionObject)))
+                errorMsg = self.trUtf8("%s<br><br>Reason: %s" % (message))#, str(exceptionObject))) # We ain't got no exceptionObject here ?
                 QMessageBox.critical(self, self.trUtf8(""), errorMsg)
         # if not, we just delete it ourselves since there's not view on the object
         else:
