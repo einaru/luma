@@ -21,6 +21,7 @@
 import logging
 import re
 
+from PyQt4.Qt import QCompleter
 from PyQt4.QtCore import (QSettings, pyqtSignal, Qt)
 from PyQt4.QtGui import (QWidget, QIcon, qApp)
 
@@ -28,11 +29,19 @@ from base.backend.ServerList import ServerList
 from base.backend.Connection import LumaConnection
 from base.backend.Exception import (ServerCertificateException,
                                     InvalidPasswordException)
+from base.backend.ObjectClassAttributeInfo import ObjectClassAttributeInfo
 
 from .gui.SearchPluginDesign import Ui_SearchPlugin
+from .gui.SearchPluginSettingsDesign import Ui_SearchPluginSettings
 
 class SearchPlugin(QWidget, Ui_SearchPlugin):
     """Luma Search plugin.
+    
+    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    !! NOTE: This plugin implementation still uses the experimental  !!
+    !!       Connection module. On deployment we might consider      !!
+    !!       switching back to the more safer LumaConnection module. !!      
+    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     """
 
     # This signal will be emitted after a successful search operation
@@ -64,9 +73,82 @@ class SearchPlugin(QWidget, Ui_SearchPlugin):
                     self.serverBox.addItem(server.name)
                 else:
                     self.serverBox.addItem(secureIcon, server.name)
-        
+
         # Keep track of open tabs
         self.openTabs = {}
+        #self.searchEdit.textChanged['QString'].connect(self.onFilterInputChanged)
+        self.completer = None
+
+    def search(self):
+        """Slot for the search button.
+        
+        The text string in the search line is validated and prepared
+        for the actual search.
+        """
+        #filter = unicode(self.searchEdit.text()).encode('utf-8')
+        filter = self.__utf8(self.searchEdit.text())
+        filterPattern = re.compile("\(\w*=")
+        tmpList = filterPattern.findall(filter)
+
+        criterialist = map(lambda x: x[1:-1], tmpList)
+
+        self.__search(filter, criterialist)
+
+    def showFilterWizard(self):
+        """Slot for the filter wizard tool button.
+        
+        Display the filter bookmark wizard.
+        """
+        self.__logger.debug('Implement showFilterWizard SLOT')
+
+    def serverChanged(self, index):
+        """Slot for the server combo box.
+        
+        When the selected index changes, we want to fetch the baseDN
+        list off of the selected server, and populate the baseDN combo
+        box.
+        
+        @param index:
+            The index of the server entry in the combobox.
+        """
+        serverString = self.serverBox.itemText(index)
+
+        # No need to try to fetch the base dn list off of no server.
+        if serverString == '':
+            return
+
+        # Get the server object for the selected server.
+        # And return if this object is None
+        self.currentServer = self.serverListObject.getServerObject(serverString)
+
+        if self.currentServer is None:
+            return
+
+        self.connection = LumaConnection(self.currentServer)
+        baseDNList = None
+
+        if self.currentServer.autoBase:
+            success, baseDNList, e = self.connection.getBaseDNList()
+            if not success:
+                # TODO: give some visual feedback to the user, regarding
+                #       the unsuccessful bind operation
+                msg = 'Could not retrieve baseDN. Reason:\n%s' % (str(e))
+                self.__logger.error(msg)
+        else:
+            baseDNList = self.currentServer.baseDN
+
+        # try to populate it with the newly fetched baseDN list.       
+        # We need make sure the baseDN combo box is cleared before we
+        self.baseDNBox.clear()
+        if not baseDNList is None:
+            for x in baseDNList:
+                self.baseDNBox.addItem(x)
+
+        # FIXME: Remove this dummy safe-guard when completion is
+        #        implemented. 
+        self.__useAutoComplete = True
+        if self.__useAutoComplete:
+            self.__initAutoComplete()
 
     def __utf8(self, text):
         """Helper method to get text objects in unicode utf-8 encoding.
@@ -135,7 +217,7 @@ class SearchPlugin(QWidget, Ui_SearchPlugin):
         # 2 = SCOPE_SUBTREE
         scope = self.scopeBox.currentIndex()
         limit = self.sizeLimitSpinBox.value()
-        
+
         qApp.setOverrideCursor(Qt.WaitCursor)
         self.scrollArea.setEnabled(False)
         success, result, e = self.connection.search(
@@ -158,70 +240,26 @@ class SearchPlugin(QWidget, Ui_SearchPlugin):
             msg = 'Error during search operation. Reason:\n%s' % str(e)
             self.__logger.error(msg)
 
-    def search(self):
-        """Slot for the search button.
+    def __initAutoComplete(self):
+        """Initialize the filter input auto completion.
         
-        The text string in the search line is validated and prepared
-        for the actual search.
+        Try to fetches the list of available attributes from the server
+        selected in the server combo box. This list will be used to
+        give the user auto complete options while building search
+        filters.
         """
-        #filter = unicode(self.searchEdit.text()).encode('utf-8')
-        filter = self.__utf8(self.searchEdit.text())
-        filterPattern = re.compile("\(\w*=")
-        tmpList = filterPattern.findall(filter)
+        currentServer = self.__utf8(self.serverBox.currentText())
+        serverMeta = self.serverListObject.getServerObject(currentServer)
+        # Jippi ay o' what a beutiful var name!!
+        ocai = ObjectClassAttributeInfo(serverMeta)
+        availableAttr = ocai.getAttributeList()
 
-        criterialist = map(lambda x: x[1:-1], tmpList)
-
-        self.__search(filter, criterialist)
-
-    def showFilterWizard(self):
-        """Slot for the filter wizard tool button.
-        
-        Display the filter bookmark wizard.
-        """
-        self.__logger.debug('Implement showFilterWizard SLOT')
-
-    def serverChanged(self, index):
-        """Slot for the server combo box.
-        
-        When the selected index changes, we want to fetch the baseDN
-        list off of the selected server, and populate the baseDN combo
-        box.
-        
-        @param index:
-            The index of the server entry in the combobox.
-        """
-        serverString = self.serverBox.itemText(index)
-
-        # No need to try to fetch the base dn list off of no server.
-        if serverString == '':
-            return
-
-        # Get the server object for the selected server.
-        # And return if this object is None
-        self.currentServer = self.serverListObject.getServerObject(serverString)
-
-        if self.currentServer is None:
-            return
-
-        self.connection = LumaConnection(self.currentServer)
-        baseDNList = None
-
-        if self.currentServer.autoBase:
-            success, baseDNList, e = self.connection.getBaseDNList()
-            if not success:
-                # TODO: give some visual feedback to the user, regarding
-                #       the unsuccessful bind operation
-                msg = 'Could not retrieve baseDN. Reason:\n%s' % (str(e))
-                self.__logger.error(msg)
-        else:
-            baseDNList = self.currentServer.baseDN
-
-        # We need make sure the baseDN combo box is cleared before we
-        # try to populate it with the newly fetched baseDN list.       
-        self.baseDNBox.clear()
-        if not baseDNList is None:
-            for x in baseDNList:
-                self.baseDNBox.addItem(x)
+        # If we get an attribute list off the server we set up the
+        # attribute auto completer.  
+        if len(availableAttr) > 0:
+            self.completer = QCompleter(availableAttr, self)
+            self.completer.setCaseSensitivity(Qt.CaseSensitive)
+            self.searchEdit.setCompleter(self.completer)
 
 
 class SearchResultView(QWidget):
@@ -230,3 +268,11 @@ class SearchResultView(QWidget):
 
     def __init__(self, parent=None):
         super(SearchResultView, self).__init__(parent)
+
+class SearchPluginSettings(QWidget, Ui_SearchPluginSettings):
+    """The settings widget for the search plugin.
+    """
+    
+    def __init__(self, parent=None):
+        super(SearchPluginSettings, self).__init__(parent)
+        self.setupUi(self)

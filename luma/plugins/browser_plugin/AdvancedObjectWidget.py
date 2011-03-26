@@ -35,10 +35,10 @@ class AdvancedObjectWidget(QWidget):
         self.initModel()
 
         # Standard pixmaps used by the widget
-        self.deleteSmallPixmap = pixmapFromThemeIcon("edit-delete", ":/icons/edit-delete", w, h)
         self.reloadPixmap = pixmapFromThemeIcon("view-refresh", ":/icons/reload", w, h)
         self.savePixmap = pixmapFromThemeIcon("document-save", ":/icons/save",w, h)
         self.addPixmap = pixmapFromThemeIcon("list-add", ":/icons/single", w, h)
+        self.deleteSmallPixmap = pixmapFromThemeIcon("list-remove", ":/icons/edit-delete", w, h)
 
         self.index = index
 

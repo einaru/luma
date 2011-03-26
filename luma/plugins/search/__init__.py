@@ -20,25 +20,27 @@
 
 from PyQt4.QtGui import QIcon, QPixmap
 from base.util.IconTheme import pixmapFromThemeIcon
+from .Search import (SearchPlugin, SearchPluginSettings)
 
 lumaPlugin = True
-pluginName = "search"
-pluginUserString = "Search"
-version = "0.1"
-author = "Einar Uvsløkk"
-
+pluginName = u'search'
+pluginUserString = u'Search'
+version = u'0.1'
+author = u'Einar Uvsløkk'
+description = u"""Do simple and advanced LDAP search,
+create filters to speed up efficiency.
+"""
 
 def getIcon(iconPath = None):
-    return QIcon(pixmapFromThemeIcon('edit-find', ':/icons/search_plugin-plugin'))
+    return QIcon(pixmapFromThemeIcon('system-search', ':/icons/search_plugin-plugin'))
 
 
 def getPluginWidget(parent, mainwin):
-    from .Search import SearchPlugin
     return SearchPlugin(parent)
 
 
 def getPluginSettingsWidget(parent):
-    return
+    return SearchPluginSettings()
 
 
 def postprocess():

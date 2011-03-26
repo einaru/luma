@@ -14,4 +14,3 @@ class AboutPlugin(QWidget, Ui_AboutPlugin):
         self.label_name.setText(plugin.pluginUserString)
         self.label_version.setText(plugin.version)
         self.label_author.setText(plugin.author)
-

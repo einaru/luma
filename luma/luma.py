@@ -303,6 +303,5 @@ with the following text and a short description of what you were doing:
     QApplication.restoreOverrideCursor()
 
 
-
 if __name__ == '__main__':
     main(sys.argv)

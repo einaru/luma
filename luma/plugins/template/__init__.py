@@ -17,7 +17,7 @@ version = "0.1"
 author = "MEG!"
 
 def getIcon():
-    return QIcon(pixmapFromThemeIcon("document-new", ":/icons/template_plugin-plugin"))
+    return QIcon(pixmapFromThemeIcon("text-x-generic-template", ":/icons/template_plugin-plugin"))
     
 ###############################################################################
 

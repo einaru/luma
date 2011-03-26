@@ -21,6 +21,7 @@
 
 import os
 import platform
+import tempfile
 
 def getLumaRoot():
     """Utility method for locating the Luma root location.
@@ -55,15 +56,15 @@ def getConfigPrefix():
     platform. If it is not found it will be created. Either way the
     path will be returned.
     
-    @return: a tuple (isvalid, prefix);
-        the boolean value, isvalid, indicates wheter the config prefix
+    @return: a tuple (success, prefix);
+        the boolean value, success, indicates wheter the config prefix
         path exists. It will be true if the path existed or was
         successfully created. If it doesn't exists, and we don't have
-        write permissions, it will be False. Either way the prefix
-        value will contain the config prefix path.
+        write permissions, it will be False. In this case we will
+        return the system temp directory.
     """
     prefix = ''
-    isvalid = True
+    success = True
 
     __platform = platform.system()
     if __platform == "Linux":
@@ -102,9 +103,10 @@ def getConfigPrefix():
             #      provide information to user that no settings will be 
             #      saved due to (most likely) file permission issues.
             #      Maybe prompt for a user spesific folder?
-            isvalid = False
+            prefix = tempfile.gettempdir()
+            success = False
 
-    return (isvalid, prefix)
+    return (success, prefix)
 
 def getUserHomeDir():
     """Helper method for finding the user home directory.
