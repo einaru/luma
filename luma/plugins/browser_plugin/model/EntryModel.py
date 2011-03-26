@@ -17,7 +17,7 @@ class EntryModel(QObject):
 
     def __init__(self, smartObject, parent=None):
         QObject.__init__(self, parent)
-        self.smartObject = self.smartObjectCopy(smartObject)
+        self.smartObject = smartObject
 
         # boolean to indicate if the current ldap object has been modified
         self.EDITED = False
@@ -33,9 +33,6 @@ class EntryModel(QObject):
 
     modelChangedSignal = QtCore.pyqtSignal()
 
-    #TODO move to SmartDataObject?
-    def smartObjectCopy(self, smartObject):
-        return SmartDataObject(copy.deepcopy([smartObject.dn, smartObject.data]), copy.deepcopy(smartObject.serverMeta))
 
     def getSmartObject(self):
         return self.smartObject

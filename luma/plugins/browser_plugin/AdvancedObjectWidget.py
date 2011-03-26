@@ -30,7 +30,8 @@ class AdvancedObjectWidget(QWidget):
         
         w = 24
         h = 24
-        self.entryModel = EntryModel(smartObject, self)
+        # use a copy of the smartObject
+        self.entryModel = EntryModel(self.smartObjectCopy(smartObject), self)
         self.entryModel.modelChangedSignal.connect(self.displayValues)
         self.initModel()
 
@@ -75,6 +76,8 @@ class AdvancedObjectWidget(QWidget):
         self.buildToolBar()
         self.displayValues()
     
+    def smartObjectCopy(self, smartObject):
+        return SmartDataObject(copy.deepcopy([smartObject.dn, smartObject.data]), copy.deepcopy(smartObject.serverMeta))
 
 ###############################################################################
 
@@ -271,6 +274,14 @@ class AdvancedObjectWidget(QWidget):
             QMessageBox.critical(self, self.trUtf8(""), errorMsg)
             return False
         else:
+            # update the smartObject in the tree
+            if self.index.isValid():
+                row = self.index.row()
+                column = self.index.column()
+                # QPersistenIndex doesn't have internalPointer()
+                # so we aquire a QModelIndex which does
+                index = self.index.sibling(row,column)
+                index.internalPointer().itemData = self.getSmartObject()
             return True
 
 ###############################################################################
