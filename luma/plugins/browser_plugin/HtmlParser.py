@@ -57,8 +57,8 @@ class HtmlParser:
         style = attributes.value(QString("style"))
 
         if attributes.hasAttribute(QString("type")):
-            if type == "RDN":
-                return self.smartObject.getPrettyDN()
+            if type == "getPrettyDN":
+                return self.getPrettyDN()
             elif type == "createClassString":
                 if style == "table":
                     return self.createClassString()
@@ -67,11 +67,6 @@ class HtmlParser:
                     return self.createAttributeString()
             elif type == "attribute":
                 return self.createAttributeValueString(str(id))
-                tmpList = []
-                if id:
-                    for x in self.smartObject.getAttributeValueList(str(id)):
-                        tmpList.append("""<li>""" + x + """</li>""") 
-                return ''.join(tmpList)
                 #return self.createAttributeValueString(id)
                 #if attributes.hasAttribute(QString("id")):
                 #    attribute = str(attributes.value(QString("type")).toString())
@@ -79,6 +74,17 @@ class HtmlParser:
                 #        style = attributes.value(QString("style"))
                 #        if style == "table":
                 #            return self.createAttributeValueString(attribute)
+
+    def getPrettyDN(self):
+        tmpList = []
+
+        dn = self.smartObject.getPrettyDN()
+        tmpList.append("""<td bgcolor="#B2CAE7" width="40%"><font size="+1"><b>Distinguished Name:</b> </font></td>""")
+        tmpList.append("""<td bgcolor="#B2CAE7" width="60%"><font size="+1"><b>""" + dn + """</b></font></td>""")
+        if self.entryModel.CREATE:
+                tmpList.append("""<td width=5%><a href="RDN__0__edit"><img source=":/icons/edit"></a></td>""")
+
+        return ''.join(tmpList)
 
     def createClassString(self):
         tmpList = []
@@ -187,7 +193,8 @@ class HtmlParser:
 
         attributeModify = True
 
-        if self.smartObject.isValid:
+        # allow modifying when creating
+        if self.smartObject.isValid and not self.entryModel.CREATE:
             if not (valueList[0] == None):
                 attributeModify = not self.smartObject.isAttributeValueRDN(x, valueList[0])
         
@@ -212,7 +219,7 @@ class HtmlParser:
             univAttributeName = x + "__" + unicode(attributeIndex)
             
             attributeModify = True
-            if self.smartObject.isValid:
+            if self.smartObject.isValid and not self.entryModel.CREATE:
                 if not (y == None):
                     attributeModify = not self.smartObject.isAttributeValueRDN(x, y)
             

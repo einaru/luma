@@ -25,15 +25,12 @@ from .TemplateFactory import TemplateFactory
 
 class AdvancedObjectWidget(QWidget):
 
-    def __init__(self, smartObject, index, currentTemplate="classic.html", parent=None):
+    def __init__(self, smartObject, index, currentTemplate="classic.html", create=False, parent=None):
         QWidget.__init__(self, parent)
         
         w = 24
         h = 24
-        # use a copy of the smartObject
-        self.entryModel = EntryModel(self.smartObjectCopy(smartObject), self)
-        self.entryModel.modelChangedSignal.connect(self.displayValues)
-        self.initModel()
+        self.initModel(smartObject, create)
 
         # Standard pixmaps used by the widget
         self.reloadPixmap = pixmapFromThemeIcon("view-refresh", ":/icons/reload", w, h)
@@ -75,8 +72,10 @@ class AdvancedObjectWidget(QWidget):
         
         self.buildToolBar()
         self.displayValues()
-    
-    def smartObjectCopy(self, smartObject):
+
+###############################################################################
+    @staticmethod
+    def smartObjectCopy(smartObject):
         return SmartDataObject(copy.deepcopy([smartObject.dn, smartObject.data]), copy.deepcopy(smartObject.serverMeta))
 
 ###############################################################################
@@ -86,8 +85,13 @@ class AdvancedObjectWidget(QWidget):
 
 ###############################################################################
     
-    def initModel(self):
-        success, exceptionMsg, exceptionObject = self.entryModel.initModel()
+    def initModel(self, smartObject, create=False):
+        if not create:
+            # use a copy of the smartObject
+            smartObject = AdvancedObjectWidget.smartObjectCopy(smartObject)
+        self.entryModel = EntryModel(smartObject, self)
+        self.entryModel.modelChangedSignal.connect(self.displayValues)
+        success, exceptionMsg, exceptionObject = self.entryModel.initModel(create)
         if not success:
             errorMsg = self.trUtf8("%s <br><br>Reason: %s" % (exceptionMsg, str(exceptionObject)))
             QMessageBox.critical(self,
@@ -282,7 +286,9 @@ class AdvancedObjectWidget(QWidget):
             return False
         else:
             # update the smartObject in the tree
-            if self.index.isValid():
+            if self.entryModel.CREATE:
+                pass
+            elif self.index.isValid():
                 row = self.index.row()
                 column = self.index.column()
                 # QPersistenIndex doesn't have internalPointer()
@@ -392,22 +398,26 @@ class AdvancedObjectWidget(QWidget):
         
         if attributeName == 'RDN':
             # TODO correct this, used on creation?
-            smartObject.setDN(self.baseDN)
-
-        attributeValue = smartObject.getAttributeValue(attributeName, index)
+            oldValue = oldDN
+            #smartObject.setDN(self.baseDN)
+        else:
+            oldValue = smartObject.getAttributeValue(attributeName, index)
         newValue, ok = QInputDialog.getText(self.objectWidget, 
                             self.trUtf8('Input dialog'), 
                             self.trUtf8('Attribute value:'), 
                             QLineEdit.Normal, 
-                            attributeValue)
+                            oldValue)
         if ok:
-            newValue = unicode(newValue)
+            newValue = str(newValue)
             if not newValue == None:
-                self.entryModel.editAttribute(attributeName, index, newValue)
-        else:
-            if attributeName == 'RDN':
-                # TODO correct this
-                smartObject.setDN(oldDN)
+                if attributeName == 'RDN':
+                    self.entryModel.editRDN(newValue)
+                else:
+                    self.entryModel.editAttribute(attributeName, index, newValue)
+        #else:
+        #    if attributeName == 'RDN':
+        #        # TODO correct this
+        #        smartObject.setDN(oldDN)
 
 ###############################################################################
 
