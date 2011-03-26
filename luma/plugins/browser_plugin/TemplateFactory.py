@@ -40,6 +40,7 @@ class TemplateFactory:
                 split = str(file).rsplit('.')
                 if split[-1] == 'html':
                     retlist.append(('', str(file)))
+        retlist.sort()
         return retlist
 
     def getTemplateFile(self, fileName):

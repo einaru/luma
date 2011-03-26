@@ -25,7 +25,7 @@ from .TemplateFactory import TemplateFactory
 
 class AdvancedObjectWidget(QWidget):
 
-    def __init__(self, smartObject, index, currentTemplate=None, parent=None):
+    def __init__(self, smartObject, index, currentTemplate="classic.html", parent=None):
         QWidget.__init__(self, parent)
         
         w = 24
@@ -99,18 +99,24 @@ class AdvancedObjectWidget(QWidget):
     def loadTemplates(self):
         self.usedTemplates = []
         objectClasses = self.getSmartObject().getObjectClasses()
+        newIndex = -1
+        i = 0
+        #TODO add sorting and default template?
         for objectClass, fileName in self.templateFactory.getTemplateList():
             if objectClass == '' or objectClass in objectClasses:
+                if fileName == self.currentTemplate:
+                    newIndex = i
                 self.usedTemplates.append(fileName)
-        if self.currentTemplate not in self.usedTemplates:
-            self.currentTemplate = self.usedTemplates[0]
-        #TODO do this properly
+                i += 1
+        if newIndex == -1:
+            newIndex = 0
+        self.currentTemplate = self.usedTemplates[newIndex]
+        #TODO do this properly, signals ignored
         self.addingToComboBox = True
         self.comboBox.clear()
         self.comboBox.addItems(self.usedTemplates)
+        self.comboBox.setCurrentIndex(newIndex)
         self.addingToComboBox = False
-        #for template in self.usedTemplates:
-        #    self.comboBox.addItem(template)
         
     
 ###############################################################################
@@ -125,6 +131,7 @@ class AdvancedObjectWidget(QWidget):
         
         self.loadTemplates()
         if self.currentTemplate == None:
+            selt.objectWidget.setHtml("No templates available")
             return
         htmlTemplate = self.templateFactory.getTemplateFile(self.currentTemplate)
         self.currentDocument = self.htmlParser.parseHtml(htmlTemplate)
