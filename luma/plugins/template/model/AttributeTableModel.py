@@ -4,9 +4,8 @@ Created on 16. mars 2011
 @author: Simen
 '''
 
-from PyQt4 import QtCore
 from PyQt4.QtCore import QAbstractTableModel, Qt, QVariant, QModelIndex
-from PyQt4.QtGui import QIcon, QPixmap
+from PyQt4.QtGui import QIcon
 
 class AttributeTableModel(QAbstractTableModel):
     

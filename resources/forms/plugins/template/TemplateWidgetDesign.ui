@@ -66,7 +66,7 @@
             </property>
            </widget>
           </item>
-          <item row="1" column="2" rowspan="2">
+          <item row="2" column="2">
            <spacer name="horizontalSpacer">
             <property name="orientation">
              <enum>Qt::Horizontal</enum>
@@ -114,12 +114,6 @@
       <layout class="QGridLayout" name="gridLayout_2">
        <item row="0" column="0">
         <widget class="QLabel" name="labelServer">
-         <property name="minimumSize">
-          <size>
-           <width>0</width>
-           <height>20</height>
-          </size>
-         </property>
          <property name="text">
           <string>Server:</string>
          </property>
@@ -162,11 +156,7 @@
             </widget>
            </item>
            <item row="0" column="0" rowspan="3">
-            <widget class="QListView" name="listViewObjectclasses">
-             <property name="selectionMode">
-              <enum>QAbstractItemView::ExtendedSelection</enum>
-             </property>
-            </widget>
+            <widget class="QListView" name="listViewObjectclasses"/>
            </item>
            <item row="1" column="1">
             <widget class="QPushButton" name="pushButtonObjectclassesDelete">
@@ -189,11 +179,7 @@
           </property>
           <layout class="QGridLayout" name="gridLayout_4">
            <item row="0" column="0" rowspan="3" colspan="2">
-            <widget class="QTableView" name="tableViewAttributes">
-             <property name="selectionBehavior">
-              <enum>QAbstractItemView::SelectRows</enum>
-             </property>
-            </widget>
+            <widget class="QTableView" name="tableViewAttributes"/>
            </item>
            <item row="0" column="2">
             <widget class="QPushButton" name="pushButtonAttributesAdd">
@@ -226,23 +212,7 @@
         </widget>
        </item>
        <item row="0" column="1">
-        <widget class="QLabel" name="labelServerName">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="minimumSize">
-          <size>
-           <width>0</width>
-           <height>20</height>
-          </size>
-         </property>
-         <property name="text">
-          <string/>
-         </property>
-        </widget>
+        <widget class="QComboBox" name="comboBoxServer"/>
        </item>
       </layout>
      </widget>
@@ -304,7 +274,7 @@
    <sender>pushButtonAttributesDelete</sender>
    <signal>clicked()</signal>
    <receiver>TemplateWidget</receiver>
-   <slot>deleteAttributes()</slot>
+   <slot>deleteAttribute()</slot>
    <hints>
     <hint type="sourcelabel">
      <x>642</x>
@@ -387,8 +357,8 @@
   <slot>addAttribute()</slot>
   <slot>deleteTemplate()</slot>
   <slot>deleteObjectclass()</slot>
+  <slot>deleteAttribute()</slot>
   <slot>duplicateTemplate()</slot>
   <slot>saveTemplate()</slot>
-  <slot>deleteAttributes()</slot>
  </slots>
 </ui>

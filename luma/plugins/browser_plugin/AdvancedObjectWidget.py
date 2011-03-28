@@ -1,31 +1,42 @@
 # -*- coding: utf-8 -*-
 
-from PyQt4 import QtCore, QtGui
-from PyQt4.QtGui import QTextBrowser, QTextOption, QPixmap, QSizePolicy, QTextOption, QLineEdit, QToolBar, QImage, QMessageBox, QVBoxLayout, QWidget, QToolButton, QIcon, QComboBox, QStackedWidget
-from PyQt4.QtCore import QSize, SIGNAL
-from base.backend.LumaConnection import LumaConnection
-from base.backend.ServerList import ServerList
-from plugins.browser_plugin.model.EntryModel import EntryModel
-from plugins.browser_plugin.view.ClassicView import ClassicView
-from plugins.browser_plugin.view.HtmlView import HtmlView
 import ldap
 import copy
 import logging
+import os
+
+from PyQt4 import QtCore, QtGui, Qt
+from PyQt4.QtCore import QSize, SIGNAL
+from PyQt4.QtGui import (QTextBrowser, QTextOption, QPixmap, QSizePolicy,
+                         QTextOption, QLineEdit, QToolBar, QImage, 
+                         QMessageBox, QVBoxLayout, QWidget, QToolButton, 
+                         QIcon, QComboBox, QInputDialog)
+
+from base.backend.LumaConnection import LumaConnection
+from base.backend.ServerList import ServerList
+from base.backend.SmartDataObject import SmartDataObject
+from base.util.IconTheme import pixmapFromThemeIcon
+from base.util.Paths import getLumaRoot
+
+from .model.EntryModel import EntryModel
+from .HtmlParser import HtmlParser
+from .TemplateFactory import TemplateFactory
+
 
 class AdvancedObjectWidget(QWidget):
 
-    def __init__(self, smartObject, index, parent=None):
+    def __init__(self, smartObject, index, currentTemplate="classic.html", create=False, parent=None):
         QWidget.__init__(self, parent)
         
-        self.entryModel = EntryModel(smartObject, self)
-        self.entryModel.modelChangedSignal.connect(self.modelChanged)
-        self.initModel()
+        w = 24
+        h = 24
+        self.initModel(smartObject, create)
 
         # Standard pixmaps used by the widget
-        self.deleteSmallPixmap = QPixmap(":/icons/edit-delete")
-        self.reloadPixmap = QPixmap(":/icons/reload")
-        self.savePixmap = QPixmap(":/icons/save")
-        self.addPixmap = QPixmap(":/icons/single")
+        self.reloadPixmap = pixmapFromThemeIcon("view-refresh", ":/icons/reload", w, h)
+        self.savePixmap = pixmapFromThemeIcon("document-save", ":/icons/save",w, h)
+        self.addPixmap = pixmapFromThemeIcon("list-add", ":/icons/single", w, h)
+        self.deleteSmallPixmap = pixmapFromThemeIcon("list-remove", ":/icons/edit-delete", w, h)
 
         self.index = index
 
@@ -36,31 +47,36 @@ class AdvancedObjectWidget(QWidget):
         self.setSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
 
         # create the widget containing the data
-        #self.layout().addWidget(self.objectWidget)
-        #self.connect(self.objectWidget, SIGNAL("anchorClicked(const QUrl&)"), self.anchorClicked)
+        self.objectWidget = QTextBrowser()
+        self.objectWidget.setOpenLinks(False)
+        self.layout().addWidget(self.objectWidget)
+        self.connect(self.objectWidget, SIGNAL("anchorClicked(const QUrl&)"), self.anchorClicked)
 
+        self.currentDocument = ''
+        self.addingToComboBox = False
         
-        # ignore ServerMeta
-        self.ignoreServerMetaError = True
+        # create the combobox containing the different views
+        self.comboBox = QComboBox()
+        self.currentTemplate = currentTemplate
+        self.usedTemplates = []
+        # FIXME: Need a more robust way for locating the path used in
+        #        the TemplateFactory for locating the template view
+        #        files
+        # FIXED: with base.util.Paths.getLumaRoot this should work.
+        #        Probably needs some validation testing on platforms
+        #        other than Linux
+        #self.templateFactory = TemplateFactory(os.path.join("plugins", "browser_plugin", "templates"))
+        self.templateFactory = TemplateFactory(os.path.join(getLumaRoot(), 'plugins', 'browser_plugin', 'templates'))
 
-
-        # views that will be displayed
-        self.usedViews = []
-        self.usedViews.extend(ClassicView.supportedViews(self.entryModel))
-        self.usedViews.extend(HtmlView.supportedViews(self.entryModel))
-        HtmlView.supportedViews(self.entryModel)
-
-        self.currentViewIndex = 0
+        self.htmlParser = HtmlParser(self.entryModel)
+        
         self.buildToolBar()
-        self.stackedWidget = QStackedWidget(self)
-        self.layout().addWidget(self.stackedWidget)
-        # TODO always create all widgets?
-        for view in self.usedViews:
-            view.initWidget(self.stackedWidget)
-            self.stackedWidget.addWidget(view.getWidget())
-
-
         self.displayValues()
+
+###############################################################################
+    @staticmethod
+    def smartObjectCopy(smartObject):
+        return SmartDataObject(copy.deepcopy([smartObject.dn, smartObject.data]), copy.deepcopy(smartObject.serverMeta))
 
 ###############################################################################
 
@@ -68,29 +84,45 @@ class AdvancedObjectWidget(QWidget):
         return self.entryModel.getSmartObject()
 
 ###############################################################################
-
-    def modelChanged(self):
-        """
-        called when the model is changed
-        """
-        self.displayValues()
-
-###############################################################################
     
-    def initModel(self):
-        success, exceptionMsg, exceptionObject = self.entryModel.initModel()
+    def initModel(self, smartObject, create=False):
+        if not create:
+            # use a copy of the smartObject
+            smartObject = AdvancedObjectWidget.smartObjectCopy(smartObject)
+        self.entryModel = EntryModel(smartObject, self)
+        self.entryModel.modelChangedSignal.connect(self.displayValues)
+        success, exceptionMsg, exceptionObject = self.entryModel.initModel(create)
         if not success:
             errorMsg = self.trUtf8("%s <br><br>Reason: %s" % (exceptionMsg, str(exceptionObject)))
             QMessageBox.critical(self,
                                 self.trUtf8(""),
                                 errorMsg)
 
-    
 ###############################################################################
-
-    def getCurrentView(self):
-        return self.usedViews[self.currentViewIndex]
-
+    
+    def loadTemplates(self):
+        self.usedTemplates = []
+        objectClasses = self.getSmartObject().getObjectClasses()
+        newIndex = -1
+        i = 0
+        #TODO add sorting and default template?
+        for objectClass, fileName in self.templateFactory.getTemplateList():
+            if objectClass == '' or objectClass in objectClasses:
+                if fileName == self.currentTemplate:
+                    newIndex = i
+                self.usedTemplates.append(fileName)
+                i += 1
+        if newIndex == -1:
+            newIndex = 0
+        self.currentTemplate = self.usedTemplates[newIndex]
+        #TODO do this properly, signals ignored
+        self.addingToComboBox = True
+        self.comboBox.clear()
+        self.comboBox.addItems(self.usedTemplates)
+        self.comboBox.setCurrentIndex(newIndex)
+        self.addingToComboBox = False
+        
+    
 ###############################################################################
 
     def displayValues(self):
@@ -101,9 +133,14 @@ class AdvancedObjectWidget(QWidget):
             self.enableToolButtons(False)
             return
         
-        currentView = self.getCurrentView()
-        currentView.refreshView()
-
+        self.loadTemplates()
+        if self.currentTemplate == None:
+            selt.objectWidget.setHtml("No templates available")
+            return
+        htmlTemplate = self.templateFactory.getTemplateFile(self.currentTemplate)
+        self.currentDocument = self.htmlParser.parseHtml(htmlTemplate)
+        self.objectWidget.setHtml(self.currentDocument)
+        
         self.enableToolButtons(True)
 
 ###############################################################################
@@ -177,9 +214,6 @@ class AdvancedObjectWidget(QWidget):
         self.connect(self.deleteObjectButton, SIGNAL("clicked()"), self.deleteObject)
         self.toolBar.addWidget(self.deleteObjectButton)
 
-        self.comboBox = QComboBox()
-        for view in self.usedViews:
-            self.comboBox.addItem(view.getName())
         self.comboBox.setToolTip(self.trUtf8("Switch between views"))
         self.connect(self.comboBox, SIGNAL("currentIndexChanged(int)"), self.changeView)
         self.toolBar.addWidget(self.comboBox)
@@ -193,8 +227,9 @@ class AdvancedObjectWidget(QWidget):
         """
         change between different views
         """
-        self.currentViewIndex = index
-        self.stackedWidget.setCurrentIndex(index)
+        if index == -1 or self.addingToComboBox:
+            return
+        self.currentTemplate = self.usedTemplates[index]
         self.displayValues()
 
 ###############################################################################
@@ -236,8 +271,8 @@ class AdvancedObjectWidget(QWidget):
             if not success:
                 errorMsg = self.trUtf8("%s<br><br>Reason: %s" % (exceptionMsg, str(exceptionObject)))
                 QMessageBox.critical(self, self.trUtf8(""), errorMsg)
-            #else:
-            #    self.displayValues()
+            else:
+                self.displayValues()
 
 ###############################################################################
 
@@ -250,6 +285,16 @@ class AdvancedObjectWidget(QWidget):
             QMessageBox.critical(self, self.trUtf8(""), errorMsg)
             return False
         else:
+            # update the smartObject in the tree
+            if self.entryModel.CREATE:
+                pass
+            elif self.index.isValid():
+                row = self.index.row()
+                column = self.index.column()
+                # QPersistenIndex doesn't have internalPointer()
+                # so we aquire a QModelIndex which does
+                index = self.index.sibling(row,column)
+                index.internalPointer().itemData = self.getSmartObject()
             return True
 
 ###############################################################################
@@ -308,14 +353,13 @@ class AdvancedObjectWidget(QWidget):
             column = self.index.column()
             # QPersistenIndex doesn't have internalPointer()
             # so we aquire a QModelIndex which does
-            item = self.index.parent().child(row,column).internalPointer()
-            success, message, exceptionObject = item.delete()
+            index = self.index.sibling(row,column)
+            success, message = index.model().deleteItem(index)
             if success:
-                self.index.model().layoutChanged.emit()
                 self.enableToolButtons(False)
                 self.deleteLater()
             else:
-                errorMsg = self.trUtf8("%s<br><br>Reason: %s" % (message, str(exceptionObject)))
+                errorMsg = self.trUtf8("%s<br><br>Reason: %s" % (message))#, str(exceptionObject))) # We ain't got no exceptionObject here ?
                 QMessageBox.critical(self, self.trUtf8(""), errorMsg)
         # if not, we just delete it ourselves since there's not view on the object
         else:
@@ -326,3 +370,95 @@ class AdvancedObjectWidget(QWidget):
             else:
                 errorMsg = self.trUtf8("%s<br><br>Reason: %s" % (message, str(exceptionObject)))
                 QMessageBox.critical(self, self.trUtf8(""), errorMsg)
+
+###############################################################################
+
+    def anchorClicked(self, url):
+        nameString = unicode(url.toString())
+        tmpList = nameString.split("__")
+        
+        if tmpList[0] in self.entryModel.getSmartObject().getObjectClasses():
+            self.entryModel.deleteObjectClass(tmpList[0])
+        else:
+            if not len(tmpList) == 3:
+                return
+            attributeName, index, operation = tmpList[0], int(tmpList[1]), tmpList[2]
+            if operation == "edit":
+                self.editAttribute(attributeName, index)
+            elif operation == "delete":
+                self.deleteAttribute(attributeName, index)
+            elif operation == "export":
+                self.exportAttribute(attributeName, index)
+
+###############################################################################
+
+    def editAttribute(self, attributeName, index):
+        smartObject = self.entryModel.getSmartObject()
+        oldDN = smartObject.getDN()
+        
+        if attributeName == 'RDN':
+            # TODO correct this, used on creation?
+            oldValue = oldDN
+            #smartObject.setDN(self.baseDN)
+        else:
+            oldValue = smartObject.getAttributeValue(attributeName, index)
+        newValue, ok = QInputDialog.getText(self.objectWidget, 
+                            self.trUtf8('Input dialog'), 
+                            self.trUtf8('Attribute value:'), 
+                            QLineEdit.Normal, 
+                            oldValue)
+        if ok:
+            newValue = str(newValue)
+            if not newValue == None:
+                if attributeName == 'RDN':
+                    self.entryModel.editRDN(newValue)
+                else:
+                    self.entryModel.editAttribute(attributeName, index, newValue)
+        #else:
+        #    if attributeName == 'RDN':
+        #        # TODO correct this
+        #        smartObject.setDN(oldDN)
+
+###############################################################################
+
+    def deleteAttribute(self, attributeName, index):
+        self.entryModel.deleteAttribute(attributeName, index)
+
+###############################################################################
+
+    # TODO: not used yet
+    def exportAttribute(self, attributeName, index):
+        return
+        """ Show the dialog for exporting binary attribute data.
+        """
+        '''
+        value = self.ldapDataObject.getAttributeValue(attributeName, index)
+
+
+        #filename = unicode(QFileDialog.getSaveFileName(
+        #                    self,
+        #fileName = unicode(QFileDialog.getSaveFileName(\
+        #                    QString.null,
+        #                    "All files (*)",
+        #                    self, None,
+        #                    self.trUtf8("Export binary attribute to file"),
+        #                    None, 1))
+
+        if unicode(fileName) == "":
+            return
+            
+        try:
+            fileHandler = open(fileName, "w")
+            fileHandler.write(value)
+            fileHandler.close()
+            SAVED = True
+        except IOError, e:
+            result = QMessageBox.warning(None,
+                self.trUtf8("Export binary attribute"),
+                self.trUtf8("""Could not export binary data to file. Reason:
+""" + str(e) + """\n\nPlease select another filename."""),
+                self.trUtf8("&Cancel"),
+                self.trUtf8("&OK"),
+                None,
+                1, -1)
+        '''

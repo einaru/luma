@@ -47,6 +47,9 @@ class AbstractLDAPTreeItem(object):
         self.childItems.append(item)
         self.populated = 1
         
+    def removeChild(self, item):
+        self.childItems.remove(item)
+        
     def emptyChildren(self):
         """
         Drops list of children, but keep it marked populated

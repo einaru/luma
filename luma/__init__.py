@@ -18,6 +18,17 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see http://www.gnu.org/licenses/
 
+import sys
+import os
+
+__all__ = ['ORGNAME', 'APPNAME', 'VERSION', 'DESCRIPTION']
+
+def getRealLumaRootPath():
+    import version
+    return str(version).split()[3][1:-13]
+
+sys.path.append(getRealLumaRootPath())
+
 ORGNAME = APPNAME = 'luma'
 VERSION = '3.0.3-sprint3'
 DESCRIPTION = 'LDAP browser and administration utility'

@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
 
-from PyQt4.QtCore import *
-from PyQt4.QtGui import *
+from PyQt4.QtGui import QStandardItemModel, QStandardItem
+from PyQt4.QtCore import QSettings, Qt
 from ..backend.PluginLoader import PluginLoader 
+
 
 class PluginSettingsListModel(QStandardItemModel):
     """
@@ -12,8 +13,11 @@ class PluginSettingsListModel(QStandardItemModel):
     def __init__(self, parent = None):
         QStandardItemModel.__init__(self, parent)
         self._settings = QSettings()
-        for pluginobject in PluginLoader(".", "ALL").plugins:
-            item = QStandardItem(pluginobject.pluginName)
+        for pluginobject in PluginLoader("ALL").plugins:
+            # Changed the plugin viewable name to the UserString value
+            # as it looks better for the user.
+            #item = QStandardItem(pluginobject.pluginName)
+            item = QStandardItem(pluginobject.pluginUserString)
             check = Qt.Unchecked
             valueString = "plugins/" + pluginobject.pluginName + "/load"
             if self._settings.value(valueString).toString() == "True":

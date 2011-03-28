@@ -1,5 +1,5 @@
 from AbstractLDAPTreeItem import AbstractLDAPTreeItem
-from PyQt4.QtGui import QMessageBox, QInputDialog, QIcon, QPixmap, qApp
+from PyQt4.QtGui import QIcon, QPixmap
 from PyQt4 import QtCore
 
 """
@@ -9,7 +9,7 @@ Currently not used.
 class LDAPErrorItem(AbstractLDAPTreeItem):
     
     
-    def __init__(self, data, serverParent, parent=None):
+    def __init__(self, data, serverParent, parent):
         AbstractLDAPTreeItem.__init__(self, parent)
                 
         if data != None:
@@ -35,7 +35,7 @@ class LDAPErrorItem(AbstractLDAPTreeItem):
         return None
     
     def fetchChildList(self):
-        return None
+        return (None, None, None)
     
     def getSupportedOperations(self):
         return AbstractLDAPTreeItem.SUPPORT_NONE

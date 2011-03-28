@@ -35,7 +35,7 @@ def iconFromTheme(themeIcon, fallbackIcon):
     """
     return QIcon.fromTheme(themeIcon, QIcon(fallbackIcon))
 
-def pixmapFromThemeIcon(themeIcon, fallbackIcon, width=48, height=48,
+def pixmapFromThemeIcon(themeIconName, fallbackIconName, width=48, height=48,
                            mode=QIcon.Normal, state=QIcon.Off):
     """
     Utility method for converting a QIcon to a QPixmap. Useful when
@@ -58,6 +58,6 @@ def pixmapFromThemeIcon(themeIcon, fallbackIcon, width=48, height=48,
         a QPixmap from a icon in the current icon theme if a match is
         found. A QPixmap from the fallback icon if not. 
     """
-    icon = iconFromTheme(themeIcon, fallbackIcon)
+    icon = iconFromTheme(themeIconName, fallbackIconName)
     return icon.pixmap(QSize(width, height), QIcon.Normal, QIcon.Off)
 

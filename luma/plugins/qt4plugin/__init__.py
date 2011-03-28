@@ -12,15 +12,8 @@ pluginUserString = "qt4plugin"
 version = "1.1"
 author = "Johannes"
 
-def getIcon(iconPath):
-    return None
-    try:
-        iconPixmap = QtGui.QPixmap(os.path.join (iconPath, "plugin.png"))
-    except:
-        print "Debug: Icon for plugin " + pluginName + " could not be opened."
-        return None
-
-    return iconPixmap
+def getIcon():
+    return QtGui.QIcon(':/icons/usermanagement-shell')
     
 
 def getPluginWidget(parent, mainwin):
@@ -37,6 +30,13 @@ def postprocess():
     return
 
 class Example(QtGui.QWidget):
+    
+    def changeEvent(self, e):
+        if e.type() == QtCore.QEvent.LanguageChange:
+            print "lolr"
+        else:
+            QtGui.QWidget.changeEvent(self, e)
+            
     def __init__(self, parent=None):
         QtGui.QWidget.__init__(self, parent)
 

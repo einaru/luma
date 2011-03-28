@@ -2,6 +2,7 @@
 
 import ldap
 import PyQt4
+import copy
 from PyQt4 import QtCore
 from PyQt4.QtCore import QObject
 from PyQt4.QtGui import QMessageBox
@@ -9,7 +10,7 @@ from PyQt4.QtGui import QMessageBox
 
 from base.backend.ServerList import ServerList
 from base.backend.LumaConnection import LumaConnection
-from base.backend.SmartDataObject import LdapDataException
+from base.backend.SmartDataObject import SmartDataObject, LdapDataException
 
 # TODO add translation support
 class EntryModel(QObject):
@@ -26,8 +27,12 @@ class EntryModel(QObject):
         
         # do we create a completely new object?
         self.CREATE = False
+        
+        # Default
+        self.ignoreServerMetaError = False
 
     modelChangedSignal = QtCore.pyqtSignal()
+
 
     def getSmartObject(self):
         return self.smartObject
@@ -265,18 +270,25 @@ class EntryModel(QObject):
 ###############################################################################
 
     def deleteAttribute(self, attributeName, index):
-        try:
-            self.smartObject.deleteAttributeValue(attributeName, index)
-            self.EDITED = True
-            self.modelChangedSignal.emit()
-        except LdapDataException as e:
-            print "*" * 30
-            print e
-            print "*" * 30
+        #try:
+        self.smartObject.deleteAttributeValue(attributeName, index)
+        self.EDITED = True
+        self.modelChangedSignal.emit()
+        #except LdapDataException as e:
+        #    print "*" * 30
+        #    print e
+        #    print "*" * 30
 
 ###############################################################################
 
     def deleteObjectClass(self, className):
         self.smartObject.deleteObjectClass(className)
         self.EDITED = True
+        self.modelChangedSignal.emit()
 
+###############################################################################
+
+    def editRDN(self, rdn):
+        self.smartObject.setDN(rdn)
+        self.EDITED = True
+        self.modelChangedSignal.emit()

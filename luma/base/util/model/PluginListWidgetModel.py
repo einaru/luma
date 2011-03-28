@@ -20,9 +20,14 @@ class PluginListWidgetModel(QStandardItemModel):
         
         for plugin in self.pluginloader.plugins:
             if plugin.load == True:
-                
-                item = QStandardItem(str.capitalize(plugin.pluginName))
-                #item.setIcon(QIcon('/Users/johannes/Programmering/Luma/git/src/share/luma/icons/plugins/addressbook/plugin.png'))
+                # Why do we need to capitalize the plugin name ?
+                # When trying to use unicode strings in the plugin meta
+                # information, the str.capitalize complains about
+                # receiving a unicode and not a str. -Einar
+                #item = QStandardItem(str.capitalize(plugin.pluginName))
+                item = QStandardItem(plugin.pluginName)
+                if plugin.icon:
+                    item.setIcon(plugin.icon)
                 font = item.font()
                 font.setPointSize(font.pointSize() +4 )
                 item.setFont(font)

@@ -26,6 +26,7 @@ from ..gui.Settings import Settings
 from ..gui.design.SettingsDialogDesign import Ui_SettingsDialog
 from ..model.PluginSettingsListModel import PluginSettingsListModel
 from ..util.i18n import LanguageHandler
+from ..gui.AboutPlugin import AboutPlugin
 
 
 class SettingsDialog(QDialog, Ui_SettingsDialog):
@@ -85,21 +86,20 @@ class SettingsDialog(QDialog, Ui_SettingsDialog):
 
     def pluginSelected(self, index):
         """ If a plugin has a pluginsettingswidget, it will be put into
-        the QStackedWidget.
+        the tabWidget, if not, only a tab with "about" will show.
         """
 
         plugin = self.pluginListView.model().itemFromIndex(index).plugin
 
-        widget = plugin.getPluginSettingsWidget(self.pluginSettingsStack)
-
-        if not widget:
+        aboutwidget = AboutPlugin(plugin)
+        self.pluginTabs.clear()
+        self.pluginTabs.addTab(aboutwidget, "About - " + plugin.pluginUserString)
+        settingswidget = plugin.getPluginSettingsWidget(None)
+        if not settingswidget:
             return
+        self.pluginTabs.addTab(settingswidget, "Settings")
 
-        if self.pluginSettingsStack.indexOf(widget) == -1:
-            self.pluginSettingsStack.addWidget(widget)
 
-        if self.pluginSettingsStack.currentWidget() != widget:
-            self.pluginSettingsStack.setCurrentWidget(widget)
 
     def saveSettings(self):
         """

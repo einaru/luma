@@ -7,6 +7,7 @@
 ###########################################################################
 
 from PyQt4.QtGui import *
+from base.util.IconTheme import pixmapFromThemeIcon
 import os.path
 
 lumaPlugin = True
@@ -15,14 +16,8 @@ pluginUserString = "Templates"
 version = "0.1"
 author = "MEG!"
 
-def getIcon(iconPath):
-    try:
-        iconPixmap = QIcon (os.path.join (iconPath, "plugin.png"))
-    except:
-        print "Debug: Icon for plugin " + pluginName + " could not be opened."
-        return None
-
-    return iconPixmap
+def getIcon():
+    return QIcon(pixmapFromThemeIcon("text-x-generic-template", ":/icons/template_plugin-plugin"))
     
 ###############################################################################
 

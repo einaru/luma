@@ -16,11 +16,11 @@ class ServerTreeItem(AbstractLDAPTreeItem):
     
     logger = logging.getLogger(__name__)
 
-    def __init__(self, data, serverMeta=None, parent=None):
+    def __init__(self, data, serverMeta, parent):
         AbstractLDAPTreeItem.__init__(self, parent)
+        
         self.itemData = data
         self.serverMeta = serverMeta
-        self.rootItem = parent
 
     def columnCount(self):
         return len(self.itemData)
@@ -54,9 +54,8 @@ class ServerTreeItem(AbstractLDAPTreeItem):
             if not bindSuccess:
                 self.logger.debug("Bind failed.")
                 tmp = LDAPErrorItem(str("["+exceptionObject["desc"]+"]"), self, self)
-                #self.displayError(exceptionObject)
-                return [tmp]
-                return
+                # We're adding the error as LDAPErrorItem-child, so return True
+                return (True, [tmp], exceptionObject)
             
         # Else get them from the server
         else:
@@ -67,9 +66,7 @@ class ServerTreeItem(AbstractLDAPTreeItem):
             if not success:
                 self.logger.debug("getBaseDNList failed:"+str(exceptionObject))
                 tmp = LDAPErrorItem(str("["+exceptionObject[0]["desc"]+"]"), self, self)
-                #self.displayError(exceptionObject)
-                return [tmp]
-                #return
+                return (True, [tmp], exceptionObject) #See above
             
             #getBaseDNList calles unbind(), so let's rebind
             connection.bind()
@@ -83,8 +80,6 @@ class ServerTreeItem(AbstractLDAPTreeItem):
                     scope=ldap.SCOPE_BASE,filter='(objectclass=*)', sizelimit=1)
             if not success:
                 self.logger.debug("Couldn't search item:"+str(exceptionObject))
-                #self.displayError(str(base)+": "+str(exceptionObject))
-                #tmp = LDAPTreeItem(resultList[0], self, self)    
                 tmp = LDAPErrorItem(str(base+" ["+exceptionObject[0]["desc"]+"]"), self, self)
                 newChildList.append(tmp)
                 continue
@@ -95,7 +90,7 @@ class ServerTreeItem(AbstractLDAPTreeItem):
             
         self.logger.debug("End populatItem")
         
-        return newChildList
+        return (True, newChildList, exceptionObject)
         
     def getSupportedOperations(self):
         return AbstractLDAPTreeItem.SUPPORT_CLEAR|AbstractLDAPTreeItem.SUPPORT_RELOAD

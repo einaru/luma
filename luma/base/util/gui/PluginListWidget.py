@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
-#from PyQt4.QtCore import *
-from PyQt4.QtGui import QWidget
+from PyQt4.QtCore import QSize
+from PyQt4.QtGui import QWidget, QListView
 from base.util.gui.PluginListWidgetDesign import Ui_pluginListWidget
 from base.util.model.PluginListWidgetModel import PluginListWidgetModel
 
@@ -17,12 +17,15 @@ class PluginListWidget(QWidget, Ui_pluginListWidget):
     """
     __logger = logging.getLogger(__name__)
     
-    def __init__(self, parent = None):
-        QWidget.__init__(self, parent)
+    def __init__(self, parent):
+        QWidget.__init__(self, None)
+        #dont change None to self in parent
         
         self.parent = parent
         self.setupUi(self)
-
+        
+        self.listView.setResizeMode(QListView.Adjust)
+        self.listView.setViewMode(QListView.IconMode)
         self.listView.setModel(PluginListWidgetModel(self.parent))
         
     def pluginDoubleClicked(self, index):

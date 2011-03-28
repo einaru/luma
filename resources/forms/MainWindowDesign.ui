@@ -30,14 +30,13 @@
      <x>0</x>
      <y>0</y>
      <width>700</width>
-     <height>23</height>
+     <height>25</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
     <property name="title">
      <string>&amp;File</string>
     </property>
-    <addaction name="separator"/>
     <addaction name="separator"/>
     <addaction name="actionQuit"/>
    </widget>
@@ -187,6 +186,9 @@
    </property>
    <property name="text">
     <string>Fullscreen</string>
+   </property>
+   <property name="shortcut">
+    <string>F11</string>
    </property>
   </action>
  </widget>
@@ -338,7 +340,7 @@
   </connection>
   <connection>
    <sender>actionShowWelcomeTab</sender>
-   <signal>toggled(bool)</signal>
+   <signal>triggered()</signal>
    <receiver>MainWindow</receiver>
    <slot>showWelcome()</slot>
    <hints>

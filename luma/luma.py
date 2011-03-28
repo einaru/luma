@@ -43,16 +43,16 @@ import resources
 
 
 class Luma(QApplication):
-    """ Possibly to be used later.
+    """Possibly to be used later.
     """
-    
+
     def __init__(self, argv):
         QApplication.__init__(self, argv)
         self.progressBar = None
-        
+
     def setProgressBar(self, bar):
         self.progressBar = bar
-        
+
     def event(self, event):
         if event.type() == QEvent.User:
             event.accept()
@@ -60,18 +60,19 @@ class Luma(QApplication):
             return True
         else:
             return QApplication.event(self, event)
-    
+
     def setBusy(self, status):
         print "setBusy()"
         if status:
             self.setOverrideCursor(Qt.WaitCursor)
             if self.progressBar != None:
-                self.progressBar.setRange(0,0)
+                self.progressBar.setRange(0, 0)
         else:
             self.restoreOverrideCursor()
             if self.progressBar != None:
-                self.progressBar.setRange(0,100)
-                
+                self.progressBar.setRange(0, 100)
+
+
 class TempLogHandler(logging.Handler):
     def __init__(self):
         logging.Handler.__init__(self)
@@ -82,7 +83,7 @@ class TempLogHandler(logging.Handler):
 
 
 def startApplication(argv, verbose=False, clear=[], dirs={}):
-    """ Preparing Luma for take-off
+    """Preparing Luma for take-off
     
     @param verbose: boolean value;
         Whether or not to print more than error messages to console.
@@ -91,22 +92,27 @@ def startApplication(argv, verbose=False, clear=[], dirs={}):
     @param dirs: a dict;
         containing possible dirs to consider on start-up.
     """
-    #QtGui.QApplication.setStyle(QtGui.QStyleFactory.create("cleanlooks"))
-    #QtGui.QApplication.setPalette(QtGui.QApplication.style().standardPalette())
-    
     app = Luma(argv)
+    
+    import platform
+    if platform.system() == "Windows":
+        # Avoids ugly white background
+        from PyQt4 import QtGui
+        QtGui.QApplication.setStyle(QtGui.QStyleFactory.create("plastique"))
+        QtGui.QApplication.setPalette(QtGui.QApplication.style().standardPalette())
+
 
     app.setOrganizationName(appinfo.ORGNAME)
     app.setApplicationName(appinfo.APPNAME)
     app.setApplicationVersion(appinfo.VERSION)
-    
+
     # Setup the logging mechanism
     l = logging.getLogger()
     l.setLevel(logging.DEBUG)
     formatter = logging.Formatter(
         "[%(threadName)s] - %(name)s - %(levelname)s - %(message)s"
     )
-    
+
     # Keep all logs from now until the GUI-LoggerWidget is up and can be populated
     tmpLH = TempLogHandler()
     l.addHandler(tmpLH)
@@ -117,7 +123,7 @@ def startApplication(argv, verbose=False, clear=[], dirs={}):
     if 'config' in clear:
         clear.remove('config')
         settings.clear()
-        
+
     if settings.configPrefix == u'':
         # This will be the case on the first run, or if the user
         # have startet the application with the --clear-config option
@@ -128,50 +134,54 @@ def startApplication(argv, verbose=False, clear=[], dirs={}):
         #       the configprefix exists or not. As of now the config
         #       prefix is return regardless if it is writable or not.
         (_, settings.configPrefix) = getConfigPrefix()
-        
+
     (_, configPrefix) = getConfigPrefix()
-    
+
     if verbose:
-        """ If verbose mode is enabled we start logging to the console
+        """If verbose mode is enabled we start logging to the console
         TODO: Add support for adjusting the level of verbosity ?
         """
         consoleHandler = logging.StreamHandler()
         consoleHandler.setFormatter(formatter)
         l.addHandler(consoleHandler)
+
     
     __handleClearOptions(configPrefix, clear)
-    
+
     # Initialize the splash screen
     splash = SplashScreen()
     splash.show()
-    
+
     # Initialize the main window
     mainwin = MainWindow()
-    
+
     # Set up logging to the loggerwidget
     llh = LumaLogHandler(mainwin.loggerWidget)
     l.removeHandler(tmpLH) # Stop temp-logging
     l.addHandler(llh) # Start proper logging
-    
+
     # Populate the loggerWidget with the saved entries
     for x in tmpLH.logList:
         llh.emit(x)
-    
+
     app.lastWindowClosed.connect(mainwin.close)
 
     mainwin.show()
 
     splash.finish(mainwin)
-    
+
     # Add a exception hook to handle all 
     # exceptions missed in the main application
     sys.excepthook = unhandledException
 
+    # Need to activate the mainwindow in order to have focus,
+    # if the application is started in fullscreen mode
+    mainwin.activateWindow()
     sys.exit(app.exec_())
 
 
 def main(argv):
-    """ Set up and parse the command line for supported application
+    """Set up and parse the command line for supported application
     options and arguments.
     """
     usage = u'%prog [options] [args]'
@@ -235,10 +245,10 @@ def main(argv):
     #)
 
     (opt, _) = p.parse_args()
-    
+
     dirs = {}
     clear = []
-    
+
     # TODO: If we append the filenames to the clear list, it becomes
     #       trivial to clear the specified files. The way we do it here
     #       works only if we are sure to use the same filenames
@@ -264,7 +274,7 @@ def main(argv):
 
 
 def __handleClearOptions(configPrefix, clear=[]):
-    """ If the application has been started with clear options, we
+    """If the application has been started with clear options, we
     handle these before setting up the application main window
     """
     for file in clear:
@@ -275,10 +285,10 @@ def __handleClearOptions(configPrefix, clear=[]):
         else:
             l = logging.getLogger('luma')
             l.info('%s couldn\'t be located in %s' % (file, configPrefix))
-            
+
 
 def unhandledException(etype, evalue, etraceback):
-    """ UnhandledException handler
+    """UnhandledException handler
     """
     tmp = StringIO.StringIO()
     traceback.print_tb(etraceback, None, tmp)
@@ -291,7 +301,6 @@ with the following text and a short description of what you were doing:
     logger.error(e)
     # Make sure the cursor is normal
     QApplication.restoreOverrideCursor()
-
 
 
 if __name__ == '__main__':

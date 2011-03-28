@@ -12,8 +12,8 @@
 TODO: Proper busy-indicator-handling (?)
 """
 
-from PyQt4.QtGui import qApp
-from PyQt4.QtCore import Qt
+#from PyQt4.QtGui import qApp
+#from PyQt4.QtCore import Qt
 
 import ldap
 import ldap.schema
@@ -90,12 +90,12 @@ class ObjectClassAttributeInfo(object):
             workerThread = WorkerThreadFetch(serverMeta)
             workerThread.start()
             
-            qApp.setOverrideCursor(Qt.WaitCursor)
+            #qApp.setOverrideCursor(Qt.WaitCursor)
             while not workerThread.FINISHED:
-                qApp.processEvents()
+                #qApp.processEvents()
                 #environment.updateUI()
                 time.sleep(0.05)
-            qApp.restoreOverrideCursor()
+            #qApp.restoreOverrideCursor()
 
             if None == workerThread.exceptionObject:
                 self.objectClassesDict = workerThread.objectClassesDict
@@ -617,7 +617,7 @@ class WorkerThreadFetch(threading.Thread):
                 self.ldapServerObject.simple_bind_s(whoVal, credVal)
             elif not self.serverMeta == ServerAuthMethod.Simple:
                 sasl_cb_value_dict = {}
-                if not self.serverMeta.authMethod == ServerAuthMethod.SASL_GSSLAPI:
+                if not self.serverMeta.authMethod == ServerAuthMethod.SASL_GSSAPI:
                     sasl_cb_value_dict[ldap.sasl.CB_AUTHNAME] = whoVal
                     sasl_cb_value_dict[ldap.sasl.CB_PASS] = credVal
                     
@@ -630,7 +630,7 @@ class WorkerThreadFetch(threading.Thread):
                     sasl_mech = "DIGEST-MD5"
                 elif self.serverMeta.authMethod == ServerAuthMethod.SASL_LOGIN:
                     sasl_mech = "LOGIN"
-                elif self.serverMeta.authMethod == ServerAuthMethod.SASL_GSSLAPI:
+                elif self.serverMeta.authMethod == ServerAuthMethod.SASL_GSSAPI:
                     sasl_mech = "GSSAPI"
                 elif self.serverMeta.authMethod == ServerAuthMethod.SASL_EXTERNAL:
                     sasl_mech = "EXTERNAL"
