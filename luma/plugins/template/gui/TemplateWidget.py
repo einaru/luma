@@ -9,7 +9,10 @@ from PyQt4.QtGui import QInputDialog, QMessageBox, QStyledItemDelegate
 from PyQt4.QtGui import QHeaderView
 from PyQt4 import QtCore
 from PyQt4.QtCore import QModelIndex
+
 from base.backend.ServerList import ServerList
+from base.backend.ObjectClassAttributeInfo import ObjectClassAttributeInfo
+
 from .TemplateWidgetDesign import Ui_TemplateWidget
 from .AddAttributeDialog import AddAttributeDialog
 from .AddObjectclassDialog import AddObjectclassDialog
@@ -35,6 +38,9 @@ class TemplateWidget(QWidget, Ui_TemplateWidget):
         self._templateList = copy.deepcopy(templateList)
         self._templateListCopy = None
         self._returnList = None
+        
+        #ObjectclassAttributeInfo
+        self.preloadedServerMeta = {}
         
         self.templateTM = TemplateTableModel(self._templateList)
         self.listViewTemplates.setModel(self.templateTM)
@@ -74,6 +80,9 @@ class TemplateWidget(QWidget, Ui_TemplateWidget):
         if index >= 0:
             self.mapper.setCurrentIndex(index)
             self.labelServerName.setText(self._templateList._templateList[index].server)
+            
+            self.loadServerMeta(self._templateList._templateList[index].server)
+            
             self.setObjectclasses()
             self.setAttributes()
             self.tableViewAttributes.resizeColumnsToContents()
@@ -89,7 +98,12 @@ class TemplateWidget(QWidget, Ui_TemplateWidget):
         if templateObject:
             self.attributeTM.setTemplateObject(templateObject)
             
+    def loadServerMeta(self, serverName):
+        if not serverName in self.preloadedServerMeta.keys():
+            serverMeta = self._serverList.getServerObject(serverName)
+            self.preloadedServerMeta[serverName] = ObjectClassAttributeInfo(serverMeta) 
             
+    
     def setRightSideEnabled(self, enabled):
         self.lineEditDescription.setEnabled(enabled)
         self.groupBoxObjectclasses.setEnabled(enabled)
@@ -184,7 +198,8 @@ class TemplateWidget(QWidget, Ui_TemplateWidget):
         self._templateList.save()
 
     def addObjectclass(self):
-        dialog = AddObjectclassDialog()
+        server = self._serverList.getServerObject(self.labelServerName.text())
+        dialog = AddObjectclassDialog(server)
         if dialog.exec_():
             for i in dialog.listWidgetObjectclasses.selectedIndexes():
                 item = dialog.listWidgetObjectclasses.itemFromIndex(i)
@@ -194,8 +209,11 @@ class TemplateWidget(QWidget, Ui_TemplateWidget):
         self.objectclassTM.removeRows(self.listViewObjectclasses.selectedIndexes())
 
     def addAttribute(self):
-        dialog = AddAttributeDialog()
-        dialog.exec_()
+        server = self._serverList.getServerObject(self.labelServerName.text())
+        dialog = AddAttributeDialog(server)
+        if dialog.exec_():
+            #for i in dialog.listView
+            pass
 
     def deleteAttributes(self):
         self.attributeTM.removeRows(self.tableViewAttributes.selectedIndexes())
