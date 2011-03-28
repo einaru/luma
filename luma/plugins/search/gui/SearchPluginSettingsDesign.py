@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file '/mnt/debris/devel/git/luma/resources/forms/plugins/search/SearchPluginSettingsDesign.ui'
 #
-# Created: Sat Mar 26 03:58:01 2011
+# Created: Mon Mar 28 04:50:54 2011
 #      by: PyQt4 UI code generator 4.7.4
 #
 # WARNING! All changes made in this file will be lost!

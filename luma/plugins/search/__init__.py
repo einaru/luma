@@ -25,7 +25,7 @@ from .Search import (SearchPlugin, SearchPluginSettings)
 lumaPlugin = True
 pluginName = u'search'
 pluginUserString = u'Search'
-version = u'0.1'
+version = u'0.3'
 author = u'Einar Uvsløkk'
 description = u"""Do simple and advanced LDAP search,
 create filters to speed up efficiency.
