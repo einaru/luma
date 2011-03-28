@@ -12,3 +12,4 @@ class AddAttributeDialog(QDialog, Ui_AddAttributeDialog):
     def __init__(self, serverMeta):
         QDialog.__init__(self)
         self.setupUi(self)
+        
