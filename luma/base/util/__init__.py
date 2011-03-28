@@ -50,7 +50,7 @@ def isBinaryAttribute(tmpString):
 def encodeBase64(tmpString):
     return base64.encodestring(tmpString)
 
-def encodeUTF8(text):
+def encodeUTF8(text, strip=False):
     """Helper method to get text objects in unicode utf-8 encoding.
     
     @param text: 
@@ -58,7 +58,10 @@ def encodeUTF8(text):
     @return: 
         the encoded textobject.
     """
-    return unicode(text).encode('utf-8').strip()
+    text = unicode(text).encode('utf-8')
+    if strip:
+        text = text.strip()
+    return text
 
 
 def stripSpecialChars(tmpString):

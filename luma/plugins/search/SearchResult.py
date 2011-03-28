@@ -19,28 +19,77 @@
 # along with this program.  If not, see http://www.gnu.org/licenses/
 
 from PyQt4 import QtGui
-from PyQt4.QtGui import QWidget
+from PyQt4.QtGui import (QSortFilterProxyModel, QTreeView, QWidget)
 
 from base.util.IconTheme import pixmapFromThemeIcon
 
-from .model.SearchResultModel import ResultListModel
+from .model.SearchResultModel import ResultItemModel, createTestModel
 
 class ResultView(QWidget):
     """This class respresent a search result view.
     """
 
-    def __init__(self, filter='', criteria=[], result=[], parent=None):
+    DEVEL = True
+
+    def __init__(self, filter='', criterialist=[], resultlist=[], parent=None):
+        """
+        @param filter: string;
+            The search filter used for the preceeding search.
+        @param criterialist: list;
+            The criterias used in the search. Extracted from the filter.
+        @param resultlist: list;
+            The result from the preceeding search operation.
+        """
         super(ResultView, self).__init__(parent)
         self.layout = QtGui.QVBoxLayout(self)
-        if len(result) == 0:
+        if len(resultlist) == 0:
             self.onNoResult()
             return
         
-        self.model = ResultListModel(self)
         # TODO: display the search result:
         #       * Implement the result list model
         #       * setup the result widget gui
-        #       * implement result item browsing 
+        #       * implement result item browsing
+        if self.DEVEL:
+            for item in resultlist:
+                print item
+            
+            for criteria in criterialist:
+                print criteria
+        
+        self.proxymodel = QSortFilterProxyModel(self)
+        self.proxymodel.setDynamicSortFilter(True)
+        
+        # Testing
+        self.headerdata = ['dn']
+        self.headerdata.extend(criterialist)
+        self.model = createTestModel(self, len(self.headerdata), self.headerdata)
+        self.proxymodel.setSourceModel(self.model)
+        
+        self.setResultData(resultlist)
+        
+        self.resultview = QTreeView(self)
+        self.resultview.setRootIsDecorated(False)
+        self.resultview.setAlternatingRowColors(True)
+        self.resultview.setSortingEnabled(True)
+        self.resultview.setModel(self.proxymodel)
+        
+        self.layout.addWidget(self.resultview)
+    
+    def setResultData(self, data=[]):
+        """
+        """
+        row = 0
+        for d in data:
+            self.model.insertRow(row)
+            for col in xrange(self.model.columnCount()):
+                
+                for attr in self.headerdata:
+                    if d.hasAttribute(attr):
+                        data = d.getAttributeValueList(attr)
+                        # TODO: comlete this implementation
+                self.model.setData(self.model.index(row, col), d.getPrettyDN())
+            row += 1
         
 
     def onNoResult(self):

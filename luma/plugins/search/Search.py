@@ -193,9 +193,11 @@ class SearchPlugin(QWidget, Ui_SearchPlugin):
 
         criterialist = map(lambda x: x[1:-1], tmpList)
 
+        self.__logger.debug('filter: %s' % filter)
+        self.__logger.debug('Criterialist: %s' % criterialist)
         self.search(filter, criterialist)
 
-    def search(self, filter, criteria):
+    def search(self, filter, criterialist):
         """Starts the search for the given server and search filter.
         
         Emits the signal "ldap_result". Given arguments are the
@@ -259,7 +261,10 @@ class SearchPlugin(QWidget, Ui_SearchPlugin):
         self.connection.unbind()
 
         if success: # and len(result) > 0:
-            resultTab = ResultView(filter, criteria, result, self.right)
+            resultTab = ResultView(filter=filter,
+                                   criterialist=criterialist,
+                                   resultlist=result,
+                                   parent=self.right)
             self.right.addTab(resultTab, 'Search result')
         else:
             msg = 'Error during search operation. Reason:\n%s' % str(e)

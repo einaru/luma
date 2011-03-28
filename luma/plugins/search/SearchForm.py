@@ -18,7 +18,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see http://www.gnu.org/licenses/
 
-from PyQt4.QtCore import Qt, QSettings
+from PyQt4.QtCore import Qt
 from PyQt4.QtGui import (QCompleter, QWidget)
 
 from base.util import encodeUTF8
@@ -40,6 +40,15 @@ class SearchForm(QWidget, Ui_SearchForm):
         super(SearchForm, self).__init__(parent)
         self.setupUi(self)
         self.scopeBox.addItems(self.availableScopes)
+    
+    def __escape(self, text):
+        """FIXME: Dummy escaping
+        """
+        if not text.startswith('('):
+            text = '(%s' % text
+        if not text.endswith(')'):
+            text = '%s)' % text
+        return text
     
     def populateBaseDNBox(self, baseDNList):
         """Populate the base DN combo box with a available base DNs.
@@ -97,9 +106,8 @@ class SearchForm(QWidget, Ui_SearchForm):
 
     @property
     def filter(self):
-        print self.searchEdit.text()
-        print encodeUTF8(self.searchEdit.text())
-        return encodeUTF8(self.searchEdit.text())
+        
+        return self.__escape(encodeUTF8(self.searchEdit.text()))
 
 
 class AttributeCompleter(QCompleter):
