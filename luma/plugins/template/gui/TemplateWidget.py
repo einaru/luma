@@ -79,9 +79,10 @@ class TemplateWidget(QWidget, Ui_TemplateWidget):
         index = self.listViewTemplates.selectionModel().currentIndex().row()
         if index >= 0:
             self.mapper.setCurrentIndex(index)
-            self.labelServerName.setText(self._templateList._templateList[index].server)
             
-            self.loadServerMeta(self._templateList._templateList[index].server)
+            server = self._templateList._templateList[index].server
+            self.labelServerName.setText(server)
+            self.loadServerMeta(server)
             
             self.setObjectclasses()
             self.setAttributes()
@@ -99,10 +100,11 @@ class TemplateWidget(QWidget, Ui_TemplateWidget):
             self.attributeTM.setTemplateObject(templateObject)
             
     def loadServerMeta(self, serverName):
-        if not serverName in self.preloadedServerMeta.keys():
+        serverName = str(serverName)
+        if not (serverName in self.preloadedServerMeta.keys()):
             serverMeta = self._serverList.getServerObject(serverName)
-            self.preloadedServerMeta[serverName] = ObjectClassAttributeInfo(serverMeta) 
-            
+            self.preloadedServerMeta[serverName] = ObjectClassAttributeInfo(serverMeta)
+        return self.preloadedServerMeta[serverName]
     
     def setRightSideEnabled(self, enabled):
         self.lineEditDescription.setEnabled(enabled)
@@ -198,19 +200,19 @@ class TemplateWidget(QWidget, Ui_TemplateWidget):
         self._templateList.save()
 
     def addObjectclass(self):
-        server = self._serverList.getServerObject(self.labelServerName.text())
-        dialog = AddObjectclassDialog(server)
+        server = self.labelServerName.text()
+        dialog = AddObjectclassDialog(self.loadServerMeta(server))
         if dialog.exec_():
             for i in dialog.listWidgetObjectclasses.selectedIndexes():
                 item = dialog.listWidgetObjectclasses.itemFromIndex(i)
-                self.objectclassTM.insertRow(item.text())
+                self.objectclassTM.insertRow(str(item.text()))
 
     def deleteObjectclass(self):
         self.objectclassTM.removeRows(self.listViewObjectclasses.selectedIndexes())
 
     def addAttribute(self):
-        server = self._serverList.getServerObject(self.labelServerName.text())
-        dialog = AddAttributeDialog(server)
+        server = self.labelServerName.text()
+        dialog = AddAttributeDialog(self.loadServerMeta(server), self.getSelectedTemplateObject())
         if dialog.exec_():
             #for i in dialog.listView
             pass

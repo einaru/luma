@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'd:\Skole\it2901\resources\forms\plugins\template\TemplateWidgetDesign.ui'
+# Form implementation generated from reading ui file 'D:\Skole\it2901\resources\forms\plugins\template\TemplateWidgetDesign.ui'
 #
-# Created: Tue Mar 22 12:40:23 2011
+# Created: Mon Mar 28 16:02:41 2011
 #      by: PyQt4 UI code generator 4.8.2
 #
 # WARNING! All changes made in this file will be lost!
@@ -125,7 +125,9 @@ class Ui_TemplateWidget(object):
         self.gridLayout_4.setObjectName(_fromUtf8("gridLayout_4"))
         self.tableViewAttributes = QtGui.QTableView(self.groupBoxAttributes)
         self.tableViewAttributes.setSelectionBehavior(QtGui.QAbstractItemView.SelectRows)
+        self.tableViewAttributes.setShowGrid(False)
         self.tableViewAttributes.setObjectName(_fromUtf8("tableViewAttributes"))
+        self.tableViewAttributes.verticalHeader().setVisible(False)
         self.gridLayout_4.addWidget(self.tableViewAttributes, 0, 0, 3, 2)
         self.pushButtonAttributesAdd = QtGui.QPushButton(self.groupBoxAttributes)
         sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Fixed, QtGui.QSizePolicy.Fixed)

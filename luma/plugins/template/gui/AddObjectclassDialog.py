@@ -10,16 +10,11 @@ from .AddObjectclassDialogDesign import Ui_AddObjectclassDialog
 
 class AddObjectclassDialog(QDialog, Ui_AddObjectclassDialog):
     
-    def __init__(self, serverMeta):
+    def __init__(self, ocai):
         QDialog.__init__(self)
         self.setupUi(self)
         
-        self.serverMeta = serverMeta
-        list = self.getObjectclassList()
-        
+        self.ocai = ocai
+        list = self.ocai.getObjectClasses()
         self.listWidgetObjectclasses.addItems(list)
         
-        
-    def getObjectclassList(self):
-        ocai = ObjectClassAttributeInfo(self.serverMeta)
-        return ocai.getObjectClasses()
