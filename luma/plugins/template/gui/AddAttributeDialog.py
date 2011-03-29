@@ -5,16 +5,24 @@ Created on 15. mars 2011
 '''
 
 from PyQt4.QtGui import QDialog
-from .AddAttributeDialogDesign import Ui_AddAttributeDialog 
+from .AddAttributeDialogDesign import Ui_AddAttributeDialog
+from ..model.AttributeTableModel import AttributeTableModel 
 
 class AddAttributeDialog(QDialog, Ui_AddAttributeDialog):
     
     def __init__(self, ocai, templateObject):
         QDialog.__init__(self)
         self.setupUi(self)
-        
+        self.attributeTM = AttributeTableModel()
+        self.tableView.setModel(self.attributeTM)
         self.ocai = ocai
         objectclassesList = templateObject.objectclasses
-        list = self.ocai.getAllAttributes(objectclassesList)
-        #self.listWidgetObjectclasses.addItems(list)
-        print list
+        attributeNameList = self.ocai.getAllMays(objectclassesList)
+        
+        for name in attributeNameList:
+            single = self.ocai.isSingle(name)
+            binary = self.ocai.isBinary(name)
+            self.attributeTM.addRow(name, False, single, binary, "")
+            
+        self.tableView.resizeColumnsToContents()
+        self.tableView.resizeRowsToContents()
