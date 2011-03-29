@@ -16,5 +16,6 @@ class AddObjectclassDialog(QDialog, Ui_AddObjectclassDialog):
         
         self.ocai = ocai
         list = self.ocai.getObjectClasses()
+        list.sort(key = str.lower)
         self.listWidgetObjectclasses.addItems(list)
         

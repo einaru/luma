@@ -30,7 +30,9 @@ class AttributeTableModel(QAbstractTableModel):
             attributes = []
             for i in indexes:
                 if i.column() == 0:
-                    attributes.append(self.getAttribute(i))
+                    attr = self.getAttribute(i)
+                    if not attr.must:
+                        attributes.append(attr)
             for a in attributes:
                 self.beginRemoveRows(QModelIndex(), self.getIndexRow(a), self.getIndexRow(a))
                 if a:
