@@ -48,7 +48,6 @@ class ServerObject(object):
 
     numFields = 16 # Models need to know
     
-    
     def __init__(self):
         
         # Holds the data about the server
@@ -221,7 +220,6 @@ class ServerObject(object):
     
     def __repr__(self):
         finalString = []
-
         finalString.append(unicode("Name: "))
         finalString.append(unicode(self.name))
         finalString.append(unicode("\nHost: "))
@@ -251,5 +249,4 @@ class ServerObject(object):
         finalString.append(unicode("\nCheck server certificate: "))
         finalString.append(unicode(self.checkServerCertificate))
         finalString.append(unicode("\n"))
-
         return "".join(finalString)

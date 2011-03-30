@@ -1,7 +1,4 @@
 # -*- coding: utf-8 -*-
-'''
-@author Christian Forfang
-'''
 
 from PyQt4.QtCore import QAbstractTableModel
 from PyQt4.QtCore import Qt, QVariant
@@ -9,15 +6,17 @@ from ..backend.ServerObject import ServerObject
 
 class ServerListModel(QAbstractTableModel):
     """
-    Defines a tablemodel where rows are different servers and columns are the properties of it
+    Defines a tablemodel where rows are the different servers and columns are the properties of it.
+    
+    This could probably be improved greatly.
     """
     
-    def __init__(self, ServerList, parent = None):
+    def __init__(self, serverList, parent = None):
         QAbstractTableModel.__init__(self)
-        self._ServerList = ServerList
+        self._serverList = serverList
         
     def removeRows(self, row, count):
-        self._ServerList.deleteServerByIndex(row)
+        self._serverList.deleteServerByIndex(row)
         return True
         
     def setData(self, index, value, role = Qt.EditRole):
@@ -34,7 +33,7 @@ class ServerListModel(QAbstractTableModel):
         column = index.column()
         
         # Find the serverobject from the list of them
-        serverObject = self._ServerList.getTable()[row]
+        serverObject = self._serverList.getTable()[row]
         
         # Check for an actual change
         if serverObject.getList()[column] == value:
@@ -53,7 +52,7 @@ class ServerListModel(QAbstractTableModel):
         
     def rowCount(self,parent):
         #Number of servers
-        return len(self._ServerList.getTable())
+        return len(self._serverList.getTable())
     
     def columnCount(self,parent):
         #Number of different settings for the servers
@@ -77,7 +76,7 @@ class ServerListModel(QAbstractTableModel):
         
         if role == Qt.DisplayRole or role ==Qt.EditRole:
             # getTable() return a list of all the ServerObjects
-            serverObject = self._ServerList.getTable()[row]
+            serverObject = self._serverList.getTable()[row]
 
             # return the property set in the given column
             # correct painting/displaying of it is done by a delegate if needed

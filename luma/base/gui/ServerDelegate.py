@@ -22,9 +22,11 @@ from PyQt4.QtGui import QStyledItemDelegate, QListWidgetItem
 from PyQt4.QtCore import QVariant, Qt
 
 class ServerDelegate(QStyledItemDelegate):
-    """ Maps QComboBoxes with set content (descriptions) to the model
-    (ints), as well as populating a QListView with strings from a list
-    (baseDNs).
+    """ 
+    Defines the mapping from the model to the editor-widets.
+    
+    For comoboxes we use their currentIndexes, and for baseDNs
+    we fill out and get data from a QListView.
     """
     
     def __init__(self):
@@ -32,7 +34,7 @@ class ServerDelegate(QStyledItemDelegate):
         
     def setEditorData(self, editor, index):
         """ Specifies how the given editor should be filled out with
-        the data from the model (at the index)
+        the data from the model.
         """
         
         if not index.isValid():
@@ -41,25 +43,11 @@ class ServerDelegate(QStyledItemDelegate):
         # if BaseDNs
         if index.column() == 5:
                         
-            # List of strings
+            # List of strings from the model
             d = index.data().toPyObject()
-            
-            ## Get rid of empty strings
-            #newList = []
-            #for x in d:
-            #    x = x.trimmed() #QString
-            #    if not len(x) == 0:
-            #        newList.append(unicode(x)) 
-            #
-            ## the view (editor) is a QListView in this case,
-            ## so lets give it a model to display
-            #if editor.model() == None:
-            #    editor.setModel(QStringListModel(newList))
-            #    return
-            #m = editor.model()
-            #m.setStringList(QStringList(newList))
-
+            # Empty the editor (clear old list)
             editor.clear()
+            # Fill it out with new data
             for tmpBase in d:
                 # The editor is the items parent, so it gets added to the list
                 QListWidgetItem(tmpBase, editor)
@@ -67,7 +55,8 @@ class ServerDelegate(QStyledItemDelegate):
                 #editor.addItem(QListWidgetItem(tmpBase))
             return
         
-        # if QComboBox, just set the index it should display (the strings displayed is in the .ui-file)
+        # if a QComboBox, just set the index it should display (the strings displayed is in the .ui-file)
+        # this means the STRINGS IN THE .UI FILE HAS TO BE IN THE CORRECT ORDER
         if editor.property("currentIndex").isValid(): #QComboBoxes has currentIndex
             editor.setProperty("currentIndex", index.data()) # just give it the data (the int)
             return
@@ -83,21 +72,11 @@ class ServerDelegate(QStyledItemDelegate):
         # if the baseDNs
         if index.column() == 5:
                     
-            ## get strings from the model of the QListView displaying
-            ## the baseDNs
-            #m = editor.model()
-            #
-            ## Populate the list again
-            #d = []
-            #for i in xrange(m.rowCount()):
-            #    data = m.data(m.index(i,0), Qt.DisplayRole)
-            #    d.append(data)
-            #
-            #m = editor.model()
             returnList = []
+            
+            # Get the basedn-list from the editor
             for i in xrange(editor.count()):
                 returnList.append(editor.item(i).data(Qt.DisplayRole).toPyObject())
-                #returnList.append(m.data(m.index(i,0)).toPyObject())
 
             # now that we have constructed the list, give it to the model
             model.setData(index,QVariant(returnList))

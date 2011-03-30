@@ -24,6 +24,9 @@ from PyQt4.QtGui import QPixmap
 from PyQt4.QtGui import QSplashScreen
 
 class SplashScreen(QSplashScreen):
+    """ Defines the splash-screen used by Luma
+    """
+    
     def __init__(self):
         QSplashScreen.__init__(self)
         self.setupUi()
