@@ -368,25 +368,6 @@ class BrowserView(QWidget):
 
     def addTemplateChoosen(self):
         pass
-    def deleteChosen(self, index):
-        #TODO RENAME
-        # Remember the smartObject for later
-        sO = index.internalPointer().smartObject()
-        # Try to delete
-        (success, message) = self.ldaptreemodel.deleteItem(index)
-        if success:
-            # Close open edit-windows if any
-            if self.isOpen(sO):
-                rep = self.getRepForSmartObject(sO)
-                x = self.openTabs.pop(str(rep))
-                i = self.tabWidget.indexOf(x)
-                if i != -1:
-                    self.tabWidget.removeTab(i)
-            # Notify success
-            return (True, message)
-        else:
-            # Notify fail
-            return (False,message)
 
     def addNewEntry(self, parentIndex, defaultSmartObject=None):
         tmp = NewEntryDialog(parentIndex, defaultSmartObject)
@@ -430,6 +411,29 @@ class BrowserView(QWidget):
         self.openTabs[str(rep)] = x
         self.tabWidget.addTab(x, smartObject.getPrettyRDN())
         self.tabWidget.setCurrentWidget(x)
+        
+    
+    def deleteIndex(self, index):
+        # Remember the smartObject for later
+        sO = index.internalPointer().smartObject()
+        # Try to delete
+        (success, message) = self.ldaptreemodel.deleteItem(index)
+        if success:
+            # Close open edit-windows if any
+            self.__closeTabIfOpen(sO)
+            # Notify success
+            return (True, message)
+        else:
+            # Notify fail
+            return (False,message)
+        
+    def __closeTabIfOpen(self, sO):
+        if self.isOpen(sO):
+                rep = self.getRepForSmartObject(sO)
+                x = self.openTabs.pop(str(rep))
+                i = self.tabWidget.indexOf(x)
+                if i != -1:
+                    self.tabWidget.removeTab(i)
 
     def deleteSelection(self, alsoSubTree = False):
         """Slot for the context menu.
@@ -440,6 +444,13 @@ class BrowserView(QWidget):
         This is for deleting the item + possibly it's subtree.
         See deleteOnlySubtreeOfSelection() for only subtree.
         """
+        
+        # Only one item
+        if len(self.selection) == 1:
+            (status, message) = self.deleteIndex(self.selection[0])
+            if not status:
+                QMessageBox.critical(self, QtCore.QCoreApplication.translate("BrowserView","Error"), "On "+self.selection[0].data().toPyObject()+":\n"+message)
+            return
         
         if alsoSubTree:
             # Not done yet
@@ -463,6 +474,8 @@ class BrowserView(QWidget):
             if deleteDialog.passedItemsWasDeleted:
                 for x in persistenSelection:
                     if x.isValid:
+                        i = x.sibling(x.row(), 0) #QModelIndex
+                        self.__closeTabIfOpen(i.internalPointer().smartObject())
                         self.ldaptreemodel.removeRow(x.row(), x.parent())
                 return
                 
