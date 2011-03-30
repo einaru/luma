@@ -302,8 +302,16 @@ class AdvancedObjectWidget(QWidget):
     def addAttribute(self):
         """ Add attributes to the current object.
         """
+        attribute, ok = QInputDialog.getText(self.objectWidget, 
+                            self.trUtf8('Input dialog'), 
+                            self.trUtf8('Attribute name:'), 
+                            QLineEdit.Normal, 
+                            '')
+        if ok:
+            attribute = str(attribute)
+            self.entryModel.addAttributeValue(attribute, None)
         
-        QMessageBox.critical(self, "?", "I dont exist, yet")
+        #QMessageBox.critical(self, "?", "I dont exist, yet")
         """
         dialog = AddAttributeWizard(self)
         dialog.setData(copy.deepcopy(self.ldapDataObject))
@@ -396,12 +404,20 @@ class AdvancedObjectWidget(QWidget):
         smartObject = self.entryModel.getSmartObject()
         oldDN = smartObject.getDN()
         
+        addAttribute = False
         if attributeName == 'RDN':
             # TODO correct this, used on creation?
             oldValue = oldDN
             #smartObject.setDN(self.baseDN)
         else:
-            oldValue = smartObject.getAttributeValue(attributeName, index)
+            if smartObject.hasAttribute(attributeName):
+                addValue = False
+                oldValue = smartObject.getAttributeValue(attributeName, index)
+                if oldValue == None:
+                    oldValue = ''
+            else:
+                addValue = True
+                oldValue = ''
         newValue, ok = QInputDialog.getText(self.objectWidget, 
                             self.trUtf8('Input dialog'), 
                             self.trUtf8('Attribute value:'), 
@@ -413,7 +429,10 @@ class AdvancedObjectWidget(QWidget):
                 if attributeName == 'RDN':
                     self.entryModel.editRDN(newValue)
                 else:
-                    self.entryModel.editAttribute(attributeName, index, newValue)
+                    if addValue:
+                        self.entryModel.addAttributeValue(attributeName, [newValue])
+                    else:
+                        self.entryModel.editAttribute(attributeName, index, newValue)
         #else:
         #    if attributeName == 'RDN':
         #        # TODO correct this
