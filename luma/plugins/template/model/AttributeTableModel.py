@@ -27,6 +27,8 @@ class AttributeTableModel(QAbstractTableModel):
             self.attributes[name] = AttributeObject(name, must, single, binary, defaultValue)
             self.endInsertRows()
             return True
+        else:
+            self.attributes[name].defaultValue = defaultValue
         return False
     
     def removeRows(self, indexes):
