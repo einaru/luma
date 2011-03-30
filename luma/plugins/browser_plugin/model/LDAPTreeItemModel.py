@@ -255,9 +255,9 @@ class LDAPTreeItemModel(QAbstractItemModel):
         parentItem.emptyChildren()
         self.endRemoveRows()
         self.doneWorking()
-        
+    
     def deleteItem(self, index):
-        """ Tries to delete the item referenced by the passed index
+        """ Tries to delete the item referenced by the passed index on the server
         """
         item = index.internalPointer()
         success, message, exceptionObject = item.delete()
@@ -276,3 +276,15 @@ class LDAPTreeItemModel(QAbstractItemModel):
         
     def deleteSubtree(self, index, withNode = 0):
         pass
+    
+    def removeRows(self, row, count, parent = QtCore.QModelIndex()):
+        if parent.isValid():
+            self.beginRemoveRows(parent, row, row+count-1)
+            parent = parent.internalPointer()
+            item = parent.child(row)
+            parent.removeChild(item)
+            item.emptyChildren() #Not strictly necessary
+            self.endRemoveRows()
+            return True
+        else:
+            return False

@@ -73,6 +73,8 @@ class ServerList(object):
         # Read the existing serverlist, if any
         if os.path.isfile(self.__configFile):
             self.__readServerList()
+        else:
+            self.__logger.debug("Serverlist at "+self.__configFile+" not found.")
             
     def getConfigFilePath(self):
         """
