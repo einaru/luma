@@ -19,7 +19,7 @@
 # along with this program.  If not, see http://www.gnu.org/licenses/
 
 from PyQt4.QtCore import (QAbstractItemModel, Qt)
-from PyQt4.QtGui import QStandardItemModel
+from PyQt4.QtGui import (QStandardItemModel, QSortFilterProxyModel)
 
 
 def createTestModel(parent, column=3, headerdata=[]):
@@ -31,6 +31,18 @@ def createTestModel(parent, column=3, headerdata=[]):
         i += 1
     
     return model
+
+class SearchResultProxyModel(QSortFilterProxyModel):
+    """
+    """
+    
+    def __ini__(self, parent=None):
+        super(SearchResultProxyModel, self).__init__(parent)
+
+    def lessThan(self, left, right):
+        pass
+    
+
 
 class ResultItemModel(QAbstractItemModel):
     """

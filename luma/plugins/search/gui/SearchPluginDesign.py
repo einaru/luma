@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file '/mnt/debris/devel/git/luma/resources/forms/plugins/search/SearchPluginDesign.ui'
 #
-# Created: Mon Mar 28 04:50:54 2011
+# Created: Wed Mar 30 01:33:48 2011
 #      by: PyQt4 UI code generator 4.7.4
 #
 # WARNING! All changes made in this file will be lost!
@@ -18,6 +18,7 @@ class Ui_SearchPlugin(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(SearchPlugin.sizePolicy().hasHeightForWidth())
         SearchPlugin.setSizePolicy(sizePolicy)
+        SearchPlugin.setFocusPolicy(QtCore.Qt.NoFocus)
         self.horizontalLayout = QtGui.QHBoxLayout(SearchPlugin)
         self.horizontalLayout.setObjectName("horizontalLayout")
         self.splitter = QtGui.QSplitter(SearchPlugin)
@@ -34,6 +35,7 @@ class Ui_SearchPlugin(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.right.sizePolicy().hasHeightForWidth())
         self.right.setSizePolicy(sizePolicy)
+        self.right.setFocusPolicy(QtCore.Qt.StrongFocus)
         self.right.setTabsClosable(True)
         self.right.setMovable(True)
         self.right.setObjectName("right")

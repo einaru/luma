@@ -19,24 +19,63 @@
 # along with this program.  If not, see http://www.gnu.org/licenses/
 
 import logging
+import os
 import re
 import gc
 
-from PyQt4.QtCore import (QSettings, Qt, QTimer, QVariant)
-from PyQt4.QtGui import (QWidget, qApp)
+from PyQt4.QtCore import (QEvent, QObject, Qt, QTimer)
+from PyQt4.QtGui import (QKeySequence, QWidget, qApp)
 
 from base.backend.ServerList import ServerList
 from base.backend.Connection import LumaConnection
 from base.backend.Exception import (ServerCertificateException,
                                     InvalidPasswordException)
 from base.backend.ObjectClassAttributeInfo import ObjectClassAttributeInfo
+from base.gui.Settings import PluginSettings
+from base.util import encodeUTF8
 from base.util.IconTheme import iconFromTheme
 
 from .gui.SearchPluginDesign import Ui_SearchPlugin
 from .gui.SearchPluginSettingsDesign import Ui_SearchPluginSettings
-from .FilterWizard import FilterWizard
+from .FilterBuilder import FilterBuilder
 from .SearchForm import SearchForm
 from .SearchResult import ResultView
+
+class SearchPluginEventFilter(QObject):
+    """An Event handler for the Search Plugin.
+    
+    To act upon widget events, install an instance of this class with
+    the target widget, and add the capture logic in the eventFilter
+    method.
+    """
+    
+    def eventFilter(self, target, event):
+        """
+        @param target: QObject;
+        @param event: QEvent;
+        """
+        if event.type() == QEvent.KeyPress:
+            # If we have a match on the QKeySequence we're looking for
+            # we keep things safe by explicitly checking if the target
+            # is the correct for our purpose.
+            # In the case of the Search plugin, only the tab widget for
+            # the search results ('right') is expected to act upon the
+            # close event.
+            if event.matches(QKeySequence.Close):
+                if target.objectName() == 'right':
+                    index = target.currentIndex()
+                    target.tabCloseRequested.emit(index)
+                    # When we actually catches and acts upona an event,
+                    # we need to inform the eventHandler about this.
+                    return True
+        # Retranslate the ui if we catch the LanguageChange event
+        elif event.type() == QEvent.LanguageChange:
+            if target.objectName() == 'SearchPlugin':
+                target.retranslate()
+                return True
+        # All events we didn't act upon must be forwarded        
+        return QObject.eventFilter(self, target, event)
+
 
 class SearchPlugin(QWidget, Ui_SearchPlugin):
     """The Luma Search plugin.
@@ -53,7 +92,7 @@ class SearchPlugin(QWidget, Ui_SearchPlugin):
     def __init__(self, parent=None):
         super(SearchPlugin, self).__init__(parent)
         self.setupUi(self)
-
+        self.setObjectName('SearchPlugin')
         self.openTabs = {}
         self.completer = None
         self.currentServer = None
@@ -63,17 +102,38 @@ class SearchPlugin(QWidget, Ui_SearchPlugin):
         self.serverList = self.serverListObject.getTable()
 
         self.searchForm = SearchForm(parent=self)
-        self.filterWizard = FilterWizard(parent=self)
+        self.filterBuilder = FilterBuilder(parent=self)
 
+        # Icons
         searchIcon = iconFromTheme('system-search', ':/icons/search_plugin-plugin')
         filterIcon = iconFromTheme('filter', ':/icons/filter')
         secureIcon = iconFromTheme('changes-prevent', ':/icons/secure')
+        undoIcon = iconFromTheme('edit-undo', ':/icons/undo')
+        redoIcon = iconFromTheme('edit-redo', ':/icons/redo')
+        addIcon = iconFromTheme('list-add', ':/icons/single')
 
-        self.left.addTab(self.searchForm, searchIcon, '')
-        self.left.addTab(self.filterWizard, filterIcon, '')
-
+        self.indexSF = self.left.addTab(self.searchForm, searchIcon, '')
+        self.indexFB = self.left.addTab(self.filterBuilder, filterIcon, '')
+        
+        self.searchForm.filterBuilderToolButton.setIcon(filterIcon)
+        
+        self.filterBuilder.undoButton.setIcon(undoIcon)
+        self.filterBuilder.redoButton.setIcon(redoIcon)
+        self.filterBuilder.addSpecialCharButton.setIcon(addIcon)
+        
+        # The search plugin event filter we 
+        # use for acting upon various events
+        eventFilter = SearchPluginEventFilter(self)
+        # Install the eventFilter on desired widgets
+        self.installEventFilter(eventFilter)
+        self.right.installEventFilter(eventFilter)
+        
         self.__loadSettings()
         self.__connectSlots()
+        
+        # Only add text to these class and its children at this time
+        self.retranslate(all=False)
+        
         # TODO: maybe we allways want to return a list from ServerList,
         #       eliminating the 'NoneType is not iterable' exceptions.
         if not self.serverList is None:
@@ -88,32 +148,58 @@ class SearchPlugin(QWidget, Ui_SearchPlugin):
     def __connectSlots(self):
         """Connects signals and slots.
         """
-        self.searchForm.searchButton.clicked.connect(self.onSearchButtonClicked)
-        self.searchForm.filterWizardToolButton.clicked.connect(self.onFilterWizardButtonClicked)
-        self.searchForm.serverBox.currentIndexChanged[int].connect(self.onServerChanged)
         self.right.tabCloseRequested[int].connect(self.onTabClose)
+        # Filter Builder signals and slots
+        self.filterBuilder.filterSaved.connect(self.loadFilterBookmarks)
+        self.filterBuilder.useFilterRequest.connect(self.searchForm.setAndUseFilter)
+        # Search Form signals and slots
+        self.searchForm.searchButton.clicked.connect(self.onSearchButtonClicked)
+        self.searchForm.filterBuilderToolButton.clicked.connect(self.onFilterBuilderButtonClicked)
+        self.searchForm.serverBox.currentIndexChanged[int].connect(self.onServerChanged)
 
     def __loadSettings(self):
         """Loads the plugin settings if available.
         """
-        settings = QSettings()
-        self.autocompleteIsEnabled = settings.value('plugin/search/autocomplete', QVariant(True)).toBool()
-        self.searchForm.scope = settings.value('plugin/search/scope', 2).toInt()[0]
-        self.searchForm.sizeLimit = settings.value('plugin/search/limit', 0).toInt()[0]
+        settings = PluginSettings('search')
+        self.autocompleteIsEnabled = settings.pluginValue('autocomplete', True).toBool()
+        self.searchForm.scope = settings.pluginValue('scope', 2).toInt()[0]
+        self.searchForm.sizeLimit = settings.pluginValue('limit', 0).toInt()[0]
+
+        # Try to fetch the luma config prefix from the settings file,
+        # and call the loadFilterBookmarks to populate search box
+        self.configPrefix = settings.configPrefix
+        self.loadFilterBookmarks()
+
+    def loadFilterBookmarks(self):
+        """Reads the saved filter bookmarks from disk.
         
-
-    def __initFilterBookmarks(self):
-        """TODO: document
+        The filter bookmarks is then passed to the search form widget.
         """
-        configPrefix = self.settings.value('application/config_prefix')
-        msg = 'Implement the __initFilterBookmarks using prefix:%s' % \
-              configPrefix.toString()
-        self.__logger.debug(msg)
+        try:
+            filterFile = os.path.join(self.configPrefix, 'filters')
+            # We only try to read the filters file from disk if it
+            # already exists. If not we do nothing, as it will be 
+            # created in the filter wizard if the user choose to do so.
+            if os.path.isfile(filterFile):
+                bookmarks = []
+                with open(filterFile, 'r+') as f:
+                    #bookmarks = f.readLines()
+                    for filter in f:
+                        bookmarks.append(filter.strip())
 
+                self.searchForm.populateFilterBookmarks(bookmarks)
+        except IOError, e:
+            msg = 'Unable to read file: {0} Reason:\n\t{1}'
+            self.__logger.error(msg.format(filterFile, str(e)))
 
     def onTabClose(self, index):
         """Slot for the tabCloseRequested signal.
         """
+        # Might happen if QKeySequence.Close is captured when no tabs
+        # is open.
+        if index < 0:
+            return
+        
         widget = self.right.widget(index)
         self.right.removeTab(index)
 
@@ -152,8 +238,8 @@ class SearchPlugin(QWidget, Ui_SearchPlugin):
             if not success:
                 # TODO: give some visual feedback to the user, regarding
                 #       the unsuccessful bind operation
-                msg = 'Could not retrieve baseDN. Reason:\n%s' % (str(e))
-                self.__logger.error(msg)
+                msg = 'Could not retrieve baseDN. Reason:\n{0}'
+                self.__logger.error(msg.format(str(e)))
         else:
             baseDNList = [self.currentServer.baseDN]
 
@@ -169,15 +255,15 @@ class SearchPlugin(QWidget, Ui_SearchPlugin):
         attributes = ocai.getAttributeList()
         objectClasses = ocai.getObjectClasses()
 
-        self.filterWizard.onServerChanged(objectClasses, attributes)
-        
+        self.filterBuilder.onServerChanged(objectClasses, attributes)
+
         if self.autocompleteIsEnabled:
             self.searchForm.initAutoComplete(attributes)
 
-    def onFilterWizardButtonClicked(self):
-        """Slot for the filter wizard tool button.
+    def onFilterBuilderButtonClicked(self):
+        """Slot for the filter builder tool button.
         
-        Display the filter bookmark wizard.
+        Display the filter builder.
         """
         self.left.setCurrentIndex(1)
 
@@ -186,18 +272,21 @@ class SearchPlugin(QWidget, Ui_SearchPlugin):
         
         The text string in the search line is validated and prepared
         for the actual search.
+        
+        FIXME: Switch to the methods in the Filter module when it's
+               finished and ready for use.
         """
         filter = self.searchForm.filter
         filterPattern = re.compile("\(\w*=")
         tmpList = filterPattern.findall(filter)
 
-        criterialist = map(lambda x: x[1:-1], tmpList)
+        attributelist = map(lambda x: x[1:-1], tmpList)
 
-        self.__logger.debug('filter: %s' % filter)
-        self.__logger.debug('Criterialist: %s' % criterialist)
-        self.search(filter, criterialist)
+        self.__logger.debug('filter: {0}'.format(filter))
+        self.__logger.debug('Attributelist: {0}'.format(attributelist))
+        self.search(filter, attributelist)
 
-    def search(self, filter, criterialist):
+    def search(self, filter, attributelist):
         """Starts the search for the given server and search filter.
         
         Emits the signal "ldap_result". Given arguments are the
@@ -205,8 +294,6 @@ class SearchPlugin(QWidget, Ui_SearchPlugin):
         """
         # Return was pressed but no server selected. So we don't want 
         # to search.
-        # FIXME: This won't happen as off now, because you can never
-        #        _not_ select a server :) Might want to change it though.
         if self.connection == None:
             return
 
@@ -230,9 +317,8 @@ class SearchPlugin(QWidget, Ui_SearchPlugin):
         if not bindSuccess:
             # TODO: give some visual feedback to the user, regarding
             #       the unsuccessful bind operation
-            msg = 'Unable to bind to %s. Reason\n%s' % \
-                  (self.searchForm.server, str(e))
-            self.__logger.error(msg)
+            msg = 'Unable to bind to {0}. Reason\n{1}'
+            self.__logger.error(msg.format(self.searchForm.server, str(e)))
             return
 
         # The scope selection works based on the index:
@@ -255,27 +341,66 @@ class SearchPlugin(QWidget, Ui_SearchPlugin):
                                                     scope=scope,
                                                     filter=filter,
                                                     sizelimit=limit)
-        qApp.restoreOverrideCursor()
-        self.searchForm.setEnabled(True)
         # Remember to unbind
         self.connection.unbind()
+        qApp.restoreOverrideCursor()
+        self.searchForm.setEnabled(True)
 
         if success: # and len(result) > 0:
             resultTab = ResultView(filter=filter,
-                                   criterialist=criterialist,
+                                   attributelist=attributelist,
                                    resultlist=result,
                                    parent=self.right)
-            self.right.addTab(resultTab, 'Search result')
+            index = self.right.addTab(resultTab, 'Search result')
+            self.right.setCurrentIndex(index)
         else:
-            msg = 'Error during search operation. Reason:\n%s' % str(e)
-            self.__logger.error(msg)
+            msg = 'Error during search operation. Reason:\n{0}'
+            self.__logger.error(msg.format(str(e)))
+
+    def retranslate(self, all=True):
+        """For dynamic retranslation of the plugin text strings
+        """
+        self.left.setTabToolTip(self.indexSF, qApp.translate("SearchPlugin", "Search Form"))
+        self.left.setTabToolTip(self.indexFB, qApp.translate("SearchPlugin", "Filter Builder"))
+        if all:
+            self.retranslateUi(self)
+            for tab in self.right.children():
+                try:
+                    tab.retransalte()
+                except AttributeError:
+                    pass
 
 
-class SearchPluginSettings(QWidget, Ui_SearchPluginSettings):
+class SearchPluginSettingsWidget(QWidget, Ui_SearchPluginSettings):
     """The settings widget for the search plugin.
+    
+    Note: The writeSettings method is registered as a slot for the
+          settings changed signal in the settings dialog.
     """
 
     def __init__(self, parent=None):
-        super(SearchPluginSettings, self).__init__(parent)
+        super(SearchPluginSettingsWidget, self).__init__(parent)
         self.setupUi(self)
-        # TODO: Implement loading and saving of plugin settings
+        self.loadSettings()
+
+    def loadSettings(self):
+        """Load the possibly saved search plugin settings from diks.
+        """
+        settings = PluginSettings('search')
+        autocomplete = settings.pluginValue('autocomplete', True).toBool()
+        self.enableCompletionOpt.setChecked(autocomplete)
+        self.disableCompletionOpt.setChecked(not autocomplete)
+        self.scopeBox.setCurrentIndex(settings.pluginValue('scope', 2).toInt()[0])
+        self.sizeLimitBox.setValue(settings.pluginValue('limit', 0).toInt()[0])
+        del settings
+
+    def writeSettings(self):
+        """Slot for the onSettingsChanged signal.
+        
+        Writes the settings values to disk.
+        """
+        settings = PluginSettings('search')
+        settings.setPluginValue('autocomplete', self.enableCompletionOpt.isChecked())
+        settings.setPluginValue('scope', self.scopeBox.currentIndex())
+        settings.setPluginValue('limit', self.sizeLimitBox.value())
+        del settings

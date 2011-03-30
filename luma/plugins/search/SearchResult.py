@@ -23,7 +23,7 @@ from PyQt4.QtGui import (QSortFilterProxyModel, QTreeView, QWidget)
 
 from base.util.IconTheme import pixmapFromThemeIcon
 
-from .model.SearchResultModel import ResultItemModel, createTestModel
+from .model.SearchResultModel import createTestModel
 
 class ResultView(QWidget):
     """This class respresent a search result view.
@@ -31,85 +31,109 @@ class ResultView(QWidget):
 
     DEVEL = True
 
-    def __init__(self, filter='', criterialist=[], resultlist=[], parent=None):
+    def __init__(self, filter='', attributelist=[], resultlist=[], parent=None):
         """
         @param filter: string;
             The search filter used for the preceeding search.
-        @param criterialist: list;
-            The criterias used in the search. Extracted from the filter.
+        @param attributelist: list;
+            The attributes used in the search. Extracted from the filter.
         @param resultlist: list;
             The result from the preceeding search operation.
         """
         super(ResultView, self).__init__(parent)
         self.layout = QtGui.QVBoxLayout(self)
+        self.retranslate()
         if len(resultlist) == 0:
             self.onNoResult()
             return
-        
-        # TODO: display the search result:
-        #       * Implement the result list model
-        #       * setup the result widget gui
-        #       * implement result item browsing
-        if self.DEVEL:
-            for item in resultlist:
-                print item
-            
-            for criteria in criterialist:
-                print criteria
-        
+
+        # The proxy model is used for sort and filter support
         self.proxymodel = QSortFilterProxyModel(self)
         self.proxymodel.setDynamicSortFilter(True)
-        
-        # Testing
+
+        # TODO: Testing: refactor and clean code -> (* source model *)
         self.headerdata = ['dn']
-        self.headerdata.extend(criterialist)
+        self.headerdata.extend(attributelist)
+
         self.model = createTestModel(self, len(self.headerdata), self.headerdata)
         self.proxymodel.setSourceModel(self.model)
-        
-        self.setResultData(resultlist)
-        
+
         self.resultview = QTreeView(self)
+        self.resultview.setUniformRowHeights(True)
         self.resultview.setRootIsDecorated(False)
         self.resultview.setAlternatingRowColors(True)
         self.resultview.setSortingEnabled(True)
         self.resultview.setModel(self.proxymodel)
-        
+
         self.layout.addWidget(self.resultview)
-    
+
+        self.setResultData(resultlist)
+        self.resultview.resizeColumnToContents(0)
+
     def setResultData(self, data=[]):
-        """
+        """Populates the result view model with result data.
+        
+        @param data: list;
+            A list containing the SmartDataObjects representing items
+            in the LDAP search result.
         """
         row = 0
-        for d in data:
+        for object in data:
             self.model.insertRow(row)
-            for col in xrange(self.model.columnCount()):
-                
-                for attr in self.headerdata:
-                    if d.hasAttribute(attr):
-                        data = d.getAttributeValueList(attr)
-                        # TODO: comlete this implementation
-                self.model.setData(self.model.index(row, col), d.getPrettyDN())
+            col = 0
+            for attr in self.headerdata:
+                if self.isDistinguishedName(attr):
+                    modelData = object.getPrettyDN()
+                if self.isObjectClass(attr):
+                    modelData = ','.join(object.getObjectClasses())
+                if object.hasAttribute(attr):
+                    if object.isAttributeBinary(attr):
+                        modelData = self.str_BINARY_DATA
+                    else:
+                        modelData = object.getAttributeValueList(attr)
+
+                self.model.setData(self.model.index(row, col), modelData)
+                col += 1
+
             row += 1
-        
+
+    def isDistinguishedName(self, attr):
+        """
+        @return: boolean value;
+            True if attr is dn, False otherwise.
+        """
+        return attr.lower() == 'dn'
+
+    def isObjectClass(self, attr):
+        """
+        @return: boolean value;
+            True if attr is objectClass, False otherwise.
+        """
+        return attr.lower() == 'objectclass'
+
+    def __getVSpacer(self):
+        return QtGui.QSpacerItem(40, 20, QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Minimum)
 
     def onNoResult(self):
-        """If the given result list is empty, we display a 'no result'
-        message.
+        """Adds a styled 'no result' message to the main layout.
         """
         font = QtGui.QFont()
         font.setBold(True)
         sadface = QtGui.QLabel(self)
         sadface.setPixmap(pixmapFromThemeIcon('face-sad', ':/icons/face-sad'))
         noresult = QtGui.QLabel(self)
-        noresult.setText('Sorry, no result to display!')
+        noresult.setText(self.str_NO_RESULT)
         noresult.setFont(font)
         hlayout = QtGui.QHBoxLayout()
         hlayout.addItem(self.__getVSpacer())
         hlayout.addWidget(sadface)
         hlayout.addWidget(noresult)
         hlayout.addItem(self.__getVSpacer())
-        
+
         self.layout.addLayout(hlayout)
-    
-    def __getVSpacer(self):
-        return QtGui.QSpacerItem(40, 20, QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Minimum)
+
+    def retranslate(self):
+        """For dynamic translation support.
+        """
+        self.str_NO_RESULT = QtGui.QApplication.translate("ResultView", "Sorry, no result to display!")
+        self.str_BINARY_DATA = QtGui.QApplication.translate("ResultView", "Binary Data")

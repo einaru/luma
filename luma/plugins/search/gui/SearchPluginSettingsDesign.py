@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file '/mnt/debris/devel/git/luma/resources/forms/plugins/search/SearchPluginSettingsDesign.ui'
 #
-# Created: Mon Mar 28 04:50:54 2011
+# Created: Wed Mar 30 01:33:48 2011
 #      by: PyQt4 UI code generator 4.7.4
 #
 # WARNING! All changes made in this file will be lost!
@@ -48,6 +48,7 @@ class Ui_SearchPluginSettings(object):
         self.sizeLimitLabel.setObjectName("sizeLimitLabel")
         self.gridLayout.addWidget(self.sizeLimitLabel, 3, 0, 1, 1)
         self.sizeLimitBox = QtGui.QSpinBox(self.defaultsGroup)
+        self.sizeLimitBox.setMaximum(999999)
         self.sizeLimitBox.setObjectName("sizeLimitBox")
         self.gridLayout.addWidget(self.sizeLimitBox, 3, 1, 1, 1)
         self.disableCompletionOpt = QtGui.QRadioButton(self.defaultsGroup)

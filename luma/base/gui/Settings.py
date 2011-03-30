@@ -21,6 +21,8 @@
 from PyQt4.QtCore import QSettings, QPoint, QSize
 from PyQt4.QtGui import QDesktopWidget
 
+from ..util import encodeUTF8
+
 class Settings(QSettings):
     """ The Settings class extends the QSettings class, to provide an
     easy and persistent way to set and retrive settings from different
@@ -168,15 +170,56 @@ class Settings(QSettings):
     def showInfo(self, show):
         self.setValue('logger/show_info', show)
 
+    def genericValue(self, key, default):
+        """Utility method for getting an arbitrary setting value.
+        
+        @param key: string;
+            The key to get the value of
+        @default:
+            The default fallback value, if no value is found for the
+            key.
+        """
+        return self.value(key, default)
+
+    def setGenericValue(self, key, value):
+        """Utility method for setting an arbitrary setting value.
+        
+        @param key: string;
+            The key to store the value in.
+        @param value:
+            The value to store.
+        """
+        self.setValue(key, value)
+
+
+class PluginSettings(object):
+    """Wrapper Settings class for plugins.
+    
+    This is a generic settings class, which provide consistent loading
+    and saving of settings for plugins.
+    It works by providing the plugin name to the constructor, and using
+    this value to retrive and save settings in the main luma settings
+    file.
+    """
+    
+    def __init__(self, pluginName):
+        """
+        @param pluginName: string;
+            The name of the plugin, usually the plugin.name value found
+            in the plugins __init__.py file.
+            NOTE: The plugin name must be distinct from other plugins,
+                  as it will be the main key to retrive values from the
+                  settings file.
+        """
+        self.s = QSettings()
+        self.name = pluginName
+    
+    def pluginValue(self, key, default):
+        return self.s.value('plugins/{0}/{1}'.format(self.name, key), default)
+    
+    def setPluginValue(self, key, value):
+        self.s.setValue('plugins/{0}/{1}'.format(self.name, key), value)
+    
     @property
-    def plugins(self):
-        # TODO This is just temoporary, until we implement the actual 
-        #      plugin loading code
-        return [ 'Adress book',
-                 'Admin utils',
-                 'Browser',
-                 'Massive user creation',
-                 'Schema browser',
-                 'Search',
-                 'Templates',
-                 'User management' ]
+    def configPrefix(self):
+        return encodeUTF8(self.s.value('application/config_prefix').toString())

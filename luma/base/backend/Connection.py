@@ -95,9 +95,9 @@ class LumaConnection(object):
         """FIXME: this should be done by the calling method
         """
         if busy:
-            print 'App.setOverrideCursor(Qt.WaitCursor)'
+            pass #print 'App.setOverrideCursor(Qt.WaitCursor)'
         else:
-            print 'App.restoreOverrideCursor()'
+            pass #print 'App.restoreOverrideCursor()'
 
     def __invalidPassword(self, workerThread):
         """Checks wheter or not the workerThread ServerObject has an
@@ -494,8 +494,7 @@ class LumaConnection(object):
         bindSuccess, exceptionObject = self.bind()
 
         if not bindSuccess:
-            #environment.setBusy(False)
-            print "Bind failed"
+            #print "Bind failed"
             return (False, None, exceptionObject)
 
         dnList = None

@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file '/mnt/debris/devel/git/luma/resources/forms/plugins/search/FilterWizardDesign.ui'
 #
-# Created: Mon Mar 28 04:50:55 2011
+# Created: Tue Mar 29 15:43:04 2011
 #      by: PyQt4 UI code generator 4.7.4
 #
 # WARNING! All changes made in this file will be lost!
@@ -10,7 +10,7 @@
 from PyQt4 import QtCore, QtGui
 
 class Ui_FilterWizard(object):
-    def setupUi(self, FilterWizard):
+    def filterTypeBoxf, FilterWizard):
         FilterWizard.setObjectName("FilterWizard")
         FilterWizard.resize(377, 305)
         sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Expanding)
@@ -29,24 +29,24 @@ class Ui_FilterWizard(object):
         self.rbObjectClass.setChecked(True)
         self.rbObjectClass.setObjectName("rbObjectClass")
         self.gridLayout_2.addWidget(self.rbObjectClass, 0, 0, 1, 1)
-        self.equalityBox = QtGui.QComboBox(self.criteriaGroup)
-        self.equalityBox.setEnabled(False)
-        self.equalityBox.setObjectName("equalityBox")
-        self.gridLayout_2.addWidget(self.equalityBox, 1, 3, 1, 3)
+        self.filterTypeBox = QtGui.QComboBox(self.criteriaGroup)
+        self.filterTypeBox.setEnabled(False)
+        self.filterTypeBox.setObjectName("filterTypeBox")
+        self.gridLayout_2.addWidget(self.filterTypeBox, 1, 3, 1, 3)
         self.criteriaEdit = QtGui.QLineEdit(self.criteriaGroup)
         self.criteriaEdit.setEnabled(False)
         self.criteriaEdit.setFocusPolicy(QtCore.Qt.StrongFocus)
         self.criteriaEdit.setObjectName("criteriaEdit")
         self.gridLayout_2.addWidget(self.criteriaEdit, 3, 0, 1, 5)
-        self.optionBox = QtGui.QComboBox(self.criteriaGroup)
-        self.optionBox.setObjectName("optionBox")
-        self.gridLayout_2.addWidget(self.optionBox, 1, 0, 1, 3)
         self.rbAttribute = QtGui.QRadioButton(self.criteriaGroup)
         self.rbAttribute.setObjectName("rbAttribute")
         self.gridLayout_2.addWidget(self.rbAttribute, 0, 1, 1, 5)
         self.insertButton = QtGui.QPushButton(self.criteriaGroup)
         self.insertButton.setObjectName("insertButton")
         self.gridLayout_2.addWidget(self.insertButton, 3, 5, 1, 1)
+        self.optionBox = QtGui.QComboBox(self.criteriaGroup)
+        self.optionBox.setObjectName("optionBox")
+        self.gridLayout_2.addWidget(self.optionBox, 1, 0, 1, 3)
         self.verticalLayout.addWidget(self.criteriaGroup)
         self.line_2 = QtGui.QFrame(FilterWizard)
         self.line_2.setFrameShape(QtGui.QFrame.HLine)
@@ -118,38 +118,32 @@ class Ui_FilterWizard(object):
         spacerItem = QtGui.QSpacerItem(40, 20, QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Minimum)
         self.horizontalLayout.addItem(spacerItem)
         self.saveButton = QtGui.QPushButton(FilterWizard)
+        self.saveButton.setEnabled(False)
         self.saveButton.setObjectName("saveButton")
         self.horizontalLayout.addWidget(self.saveButton)
         self.clearButton = QtGui.QPushButton(FilterWizard)
+        self.clearButton.setEnabled(False)
         self.clearButton.setObjectName("clearButton")
         self.horizontalLayout.addWidget(self.clearButton)
         self.verticalLayout.addLayout(self.horizontalLayout)
 
         self.retranslateUi(FilterWizard)
-        QtCore.QObject.connect(self.undoButton, QtCore.SIGNAL("clicked()"), self.filterEdit.undo)
-        QtCore.QObject.connect(self.redoButton, QtCore.SIGNAL("clicked()"), self.filterEdit.redo)
-        QtCore.QObject.connect(self.rbObjectClass, QtCore.SIGNAL("toggled(bool)"), self.criteriaEdit.setDisabled)
-        QtCore.QObject.connect(self.rbObjectClass, QtCore.SIGNAL("toggled(bool)"), self.equalityBox.setDisabled)
-        QtCore.QObject.connect(self.filterEdit, QtCore.SIGNAL("undoAvailable(bool)"), self.undoButton.setEnabled)
-        QtCore.QObject.connect(self.filterEdit, QtCore.SIGNAL("redoAvailable(bool)"), self.redoButton.setEnabled)
-        QtCore.QObject.connect(self.clearButton, QtCore.SIGNAL("clicked()"), self.filterEdit.clear)
         QtCore.QMetaObject.connectSlotsByName(FilterWizard)
         FilterWizard.setTabOrder(self.rbObjectClass, self.rbAttribute)
         FilterWizard.setTabOrder(self.rbAttribute, self.optionBox)
-        FilterWizard.setTabOrder(self.optionBox, self.equalityBox)
-        FilterWizard.setTabOrder(self.equalityBox, self.criteriaEdit)
+        FilterWizard.setTabOrder(self.optionBox, self.filterTypeBox)
+        FilterWizard.setTabOrder(self.filterTypeBox, self.criteriaEdit)
         FilterWizard.setTabOrder(self.criteriaEdit, self.insertButton)
         FilterWizard.setTabOrder(self.insertButton, self.filterEdit)
-        FilterWizard.setTabOrder(self.filterEdit, self.undoButton)
+        FilterWizard.setTabOrder(self.filterEdit, self.saveButton)
+        FilterWizard.setTabOrder(self.saveButton, self.clearButton)
+        FilterWizard.setTabOrder(self.clearButton, self.undoButton)
         FilterWizard.setTabOrder(self.undoButton, self.redoButton)
         FilterWizard.setTabOrder(self.redoButton, self.notButton)
         FilterWizard.setTabOrder(self.notButton, self.andButton)
         FilterWizard.setTabOrder(self.andButton, self.orButton)
         FilterWizard.setTabOrder(self.orButton, self.specialCharBox)
         FilterWizard.setTabOrder(self.specialCharBox, self.addSpecialCharButton)
-        FilterWizard.setTabOrder(self.addSpecialCharButton, self.saveButton)
-        FilterWizard.setTabOrder(self.saveButton, self.clearButton)
-        FilterWizard.setTabOrder(self.clearButton, self.criteriaGroup)
 
     def retranslateUi(self, FilterWizard):
         FilterWizard.setWindowTitle(QtGui.QApplication.translate("FilterWizard", "Form", None, QtGui.QApplication.UnicodeUTF8))
@@ -166,6 +160,8 @@ class Ui_FilterWizard(object):
         self.andButton.setText(QtGui.QApplication.translate("FilterWizard", "and", None, QtGui.QApplication.UnicodeUTF8))
         self.orButton.setToolTip(QtGui.QApplication.translate("FilterWizard", "Click to \'or\' selection", None, QtGui.QApplication.UnicodeUTF8))
         self.orButton.setText(QtGui.QApplication.translate("FilterWizard", "or", None, QtGui.QApplication.UnicodeUTF8))
+        self.specialCharBox.setToolTip(QtGui.QApplication.translate("FilterWizard", "Select special character to add", None, QtGui.QApplication.UnicodeUTF8))
+        self.addSpecialCharButton.setToolTip(QtGui.QApplication.translate("FilterWizard", "Add escaped special character", None, QtGui.QApplication.UnicodeUTF8))
         self.addSpecialCharButton.setText(QtGui.QApplication.translate("FilterWizard", "Add", None, QtGui.QApplication.UnicodeUTF8))
         self.saveButton.setText(QtGui.QApplication.translate("FilterWizard", "&Save", None, QtGui.QApplication.UnicodeUTF8))
         self.clearButton.setText(QtGui.QApplication.translate("FilterWizard", "&Clear", None, QtGui.QApplication.UnicodeUTF8))

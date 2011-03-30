@@ -18,10 +18,10 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see http://www.gnu.org/licenses/
 
-from PyQt4.QtCore import Qt
+from PyQt4.QtCore import (Qt)
 from PyQt4.QtGui import (QCompleter, QWidget)
 
-from base.util import encodeUTF8
+from .Search import encodeUTF8
 from .gui.SearchFormDesign import Ui_SearchForm
 
 class SearchForm(QWidget, Ui_SearchForm):
@@ -40,17 +40,32 @@ class SearchForm(QWidget, Ui_SearchForm):
         super(SearchForm, self).__init__(parent)
         self.setupUi(self)
         self.scopeBox.addItems(self.availableScopes)
+        self.__connectSlots()
+    
+    def __connectSlots(self):
+        """Connect signals and slots.
+        """
+        self.filterBoxEdit.currentIndexChanged['QString'].connect(self.onSearchCriteriaChanged)
+        self.filterBoxEdit.editTextChanged['QString'].connect(self.onSearchCriteriaChanged)
     
     def __escape(self, text):
         """FIXME: Dummy escaping
         """
         if not text.startswith('('):
-            text = '(%s' % text
+            text = '({0}'.format(text)
         if not text.endswith(')'):
-            text = '%s)' % text
+            text = '{0})'.format(text)
         return text
     
-    def populateBaseDNBox(self, baseDNList):
+    def onSearchCriteriaChanged(self, text):
+        """Slot for the search edit widget
+        
+        Enable or disable the search button. If text is empty the
+        search button is disabled. If not it is enabled.
+        """
+        self.searchButton.setDisabled(text == '')
+    
+    def populateBaseDNBox(self, baseDNList=[]):
         """Populate the base DN combo box with a available base DNs.
         
         @param baseDNList: list;
@@ -59,6 +74,15 @@ class SearchForm(QWidget, Ui_SearchForm):
         self.baseDNBox.clear()
         for x in baseDNList:
             self.baseDNBox.addItem(x)
+    
+    def populateFilterBookmarks(self, filterBookmarks):
+        """Populates the search edit combobox with saved search
+        filters.
+        """
+        tmp = [self.filterBoxEdit.currentText()]
+        self.filterBoxEdit.clear()
+        tmp.extend(filterBookmarks)
+        self.filterBoxEdit.addItems(tmp)
 
     def initAutoComplete(self, attributes):
         """Initialize the filter input auto completion.
@@ -74,7 +98,14 @@ class SearchForm(QWidget, Ui_SearchForm):
             self.completer = QCompleter(attributes, self)
             self.completer.setCaseSensitivity(Qt.CaseSensitive)
             self.completer.setCompletionPrefix(',')
-            self.searchEdit.setCompleter(self.completer)
+            self.filterBoxEdit.setCompleter(self.completer)
+
+    def setAndUseFilter(self, filter):
+        """Insert, set as current, and search with the filter.
+        """
+        self.filterBoxEdit.insertItem(0, filter)
+        self.filterBoxEdit.setCurrentIndex(0)
+        self.searchButton.clicked.emit(True)
 
     @property
     def server(self):
@@ -83,10 +114,6 @@ class SearchForm(QWidget, Ui_SearchForm):
     @property
     def baseDN(self):
         return encodeUTF8(self.baseDNBox.currentText())
-    
-    @property
-    def filterBookmark(self):
-        return encodeUTF8(self.filterBox.currentText())
     
     @property
     def scope(self):
@@ -106,8 +133,8 @@ class SearchForm(QWidget, Ui_SearchForm):
 
     @property
     def filter(self):
-        
-        return self.__escape(encodeUTF8(self.searchEdit.text()))
+        # TODO: run some validation on the filter
+        return self.__escape(encodeUTF8(self.filterBoxEdit.currentText()))
 
 
 class AttributeCompleter(QCompleter):
