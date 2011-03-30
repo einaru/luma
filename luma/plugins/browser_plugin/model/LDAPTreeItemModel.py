@@ -202,6 +202,9 @@ class LDAPTreeItemModel(QAbstractItemModel):
         # To make sure the list aquired here isn't appended to that list
         # we clear the list of children even though in most cases
         # it won't be populated.
+        
+        # Normally (and prefferably)
+        # this method should be called and return before anything else is done to the model.
         parentItem.emptyChildren()
         for x in list:
             parentItem.appendChild(x)
@@ -278,6 +281,8 @@ class LDAPTreeItemModel(QAbstractItemModel):
         pass
     
     def removeRows(self, row, count, parent = QtCore.QModelIndex()):
+        """ Removew rows from the model
+        """
         if parent.isValid():
             self.beginRemoveRows(parent, row, row+count-1)
             parent = parent.internalPointer()

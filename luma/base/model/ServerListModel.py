@@ -7,8 +7,6 @@ from ..backend.ServerObject import ServerObject
 class ServerListModel(QAbstractTableModel):
     """
     Defines a tablemodel where rows are the different servers and columns are the properties of it.
-    
-    This could probably be improved greatly.
     """
     
     def __init__(self, serverList, parent = None):
@@ -26,7 +24,7 @@ class ServerListModel(QAbstractTableModel):
         
         if not index.isValid(): 
             return False
-
+        
         value = value.toPyObject()
         
         row = index.row()

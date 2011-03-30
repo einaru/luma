@@ -1,5 +1,4 @@
 
-
 import ldap
 from AbstractLDAPTreeItem import AbstractLDAPTreeItem
 from PyQt4.QtGui import QInputDialog, QIcon, QPixmap
@@ -18,7 +17,9 @@ class LDAPTreeItem(AbstractLDAPTreeItem):
     
     # How many aquired entries before a messagebox 
     # pops up asking if the user want to load them all?
-    ASK_TO_DISPLAY = 1000
+    # Not used currently.
+    # See commented-out code.
+    #ASK_TO_DISPLAY = 1000
 
     def __init__(self, data, serverParent, parent):
         AbstractLDAPTreeItem.__init__(self, parent)
@@ -146,6 +147,9 @@ class LDAPTreeItem(AbstractLDAPTreeItem):
         return ok
                 
     def delete(self):
+        """ Tries to delete the item on the server
+        """
+        
         lumaConnection = LumaConnection(self.serverParent.serverMeta)
         bindSuccess, exceptionObject = lumaConnection.bind()
         
