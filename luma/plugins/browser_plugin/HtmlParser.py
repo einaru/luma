@@ -45,18 +45,18 @@ class HtmlParser:
                     tmpList.append(tag)
             elif reader.isCharacters():
                 if not (str(reader.name()) == "ldapobject"):
-                    tmpList.append(str(reader.text()))
+                    tmpList.append(str(reader.text().toString()))
             
         if reader.hasError():
             return reader.errorString()
         return ''.join(tmpList)
 
     def createStringFromTemplate(self, attributes):
-        type = attributes.value(QString("type"))
-        id = attributes.value(QString("id"))
-        style = attributes.value(QString("style"))
+        type = str(attributes.value(QString("type")).toString())
+        id = str(attributes.value(QString("id")).toString())
+        style = str(attributes.value(QString("style")).toString())
 
-        if attributes.hasAttribute(QString("type")):
+        if not type == "":
             if type == "getPrettyDN":
                 return self.getPrettyDN()
             elif type == "createClassString":
@@ -66,20 +66,21 @@ class HtmlParser:
                 if style == "table":
                     return self.createAttributeString()
             elif type == "attribute":
-                return self.createAttributeValueString(str(id))
-                #return self.createAttributeValueString(id)
+                return self.createAttributeValueString(id)
                 #if attributes.hasAttribute(QString("id")):
                 #    attribute = str(attributes.value(QString("type")).toString())
                 #    if attributes.hasAttribute(QString("style")):
                 #        style = attributes.value(QString("style"))
                 #        if style == "table":
                 #            return self.createAttributeValueString(attribute)
+            elif type == "createErrorMessageList":
+                return self.createErrorMessageList()
 
     def getPrettyDN(self):
         tmpList = []
 
         dn = self.smartObject.getPrettyDN()
-        tmpList.append("""<td bgcolor="#B2CAE7" width="40%"><font size="+1"><b>Distinguished Name:</b> </font></td>""")
+        tmpList.append("""<td bgcolor="#B2CAE7" width="40%"><font size="+1"><b>Distinguished Name:</b></font></td>""")
         tmpList.append("""<td bgcolor="#B2CAE7" width="60%"><font size="+1"><b>""" + dn + """</b></font></td>""")
         if self.entryModel.CREATE:
                 tmpList.append("""<td width=5%><a href="RDN__0__edit"><img source=":/icons/edit"></a></td>""")
@@ -95,18 +96,17 @@ class HtmlParser:
         for x in self.smartObject.getObjectClasses():
             classString = x[:]
             if self.smartObject.isValid and self.smartObject.isObjectclassStructural(x):
-                classString = "<b>" + classString + "</b>"
+                    classString = "<b>" + classString + "</b>"
             tmpList.append("""<tr>""")
             tmpList.append("""<td colspan=2 bgcolor="#E5E5E5" width="100%">""")
             tmpList.append(classString)
             
             allowDelete = True
-            if self.smartObject.isValid:
-                if self.smartObject.isObjectclassStructural(x):
-                    classList = self.smartObject.getObjectClasses()
-                    classList.remove(x)
-                    if len(self.smartObject.getObjectClassChain(x, classList)) == 0:
-                        allowDelete = False
+            if self.smartObject.isValid and self.smartObject.isObjectclassStructural(x):
+                classList = self.smartObject.getObjectClasses()
+                classList.remove(x)
+                if len(self.smartObject.getObjectClassChain(x, classList)) == 0:
+                    allowDelete = False
                        
                 if rdnClass in self.smartObject.getAttributeListForObjectClass(x):
                     allowDelete = False
@@ -136,7 +136,7 @@ class HtmlParser:
             tmpList.append(self.createAttributeValueString(x))
         return "".join(tmpList)
         
-    def createAttributeValueString(self, x):
+    def createAttributeValueString(self, x, returnEmpty=True):
         tmpList = []
         if self.smartObject.isValid:
             attributeIsBinary = self.smartObject.isAttributeBinary(x)
@@ -161,11 +161,12 @@ class HtmlParser:
                 
         valueList = self.smartObject.getAttributeValueList(x)
         
-        if None == valueList:
-            return ''
+        if None == valueList or not (len(valueList) > 0):
+            if returnEmpty:
+                valueList = [None]
+            else:
+                return ''
 
-        if not (len(valueList) > 0):
-            return ''
             
         
         allowDelete = False
@@ -184,6 +185,7 @@ class HtmlParser:
                 attributeString = "<b>" + attributeString + "</b>"
         
         if valueList[0] == None:
+            allowDelete = False
             attributeString = """<font color="red">""" + attributeString + """</font>"""
             
         tmpList.append("""<td bgcolor="#E5E5E5" width="35%">""" + attributeString + """</td>""")
@@ -288,3 +290,10 @@ class HtmlParser:
             
         return "".join(tmpList)
 
+    def createErrorMessageList(self):
+        tmpList = []
+        for x in self.smartObject.checkErrorMessageList:
+            tmpList.append("""<tr>""")
+            tmpList.append("""<td>""" + x + """</td>""")
+            tmpList.append("""</tr>""")
+        return ''.join(tmpList)

@@ -292,3 +292,10 @@ class EntryModel(QObject):
         self.smartObject.setDN(rdn)
         self.EDITED = True
         self.modelChangedSignal.emit()
+        
+###############################################################################
+
+    def addAttributeValue(self, attributeName, attributeValueList):
+        self.smartObject.addAttributeValue(attributeName, attributeValueList)
+        self.EDITED = True
+        self.modelChangedSignal.emit()
