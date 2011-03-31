@@ -101,7 +101,7 @@ class TemplateWidget(QWidget, Ui_TemplateWidget):
             self.attributeTM.setTemplateObject(templateObject)
             
     def loadServerMeta(self, serverName):
-        serverName = str(serverName)
+        serverName = unicode(serverName)
         if not (serverName in self.preloadedServerMeta.keys()):
             serverMeta = self._serverList.getServerObject(serverName)
             self.preloadedServerMeta[serverName] = ObjectClassAttributeInfo(serverMeta)
@@ -202,7 +202,7 @@ class TemplateWidget(QWidget, Ui_TemplateWidget):
 
     def addObjectclass(self):
         server = self.labelServerName.text()
-        dialog = AddObjectclassDialog(self.loadServerMeta(server))
+        dialog = AddObjectclassDialog(self.loadServerMeta(server), self.getSelectedTemplateObject())
         if dialog.exec_():
             for i in dialog.listWidgetObjectclasses.selectedIndexes():
                 item = dialog.listWidgetObjectclasses.itemFromIndex(i)
