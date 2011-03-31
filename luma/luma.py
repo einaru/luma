@@ -284,7 +284,8 @@ def __handleClearOptions(configPrefix, clear=[]):
             f.close()
         else:
             l = logging.getLogger('luma')
-            l.info('%s couldn\'t be located in %s' % (file, configPrefix))
+            msg = '{0} couldn\'t be located in {1}'
+            l.info(msg.format(file, configPrefix))
 
 
 def unhandledException(etype, evalue, etraceback):
@@ -296,9 +297,9 @@ def unhandledException(etype, evalue, etraceback):
 This is most likely a bug. In order to fix this, please send an email to
     <luma-users@lists.sourceforge.net>
 with the following text and a short description of what you were doing:
->>>\n[%s] Reason:\n%s\n%s\n<<<""" % (tmp.getvalue(), str(etype), str(evalue))
+>>>\n[{0}] Reason:\n{1}\n{2}\n<<<"""
     logger = logging.getLogger('luma')
-    logger.error(e)
+    logger.error(e.format(tmp.getvalue(), str(etype), str(evalue)))
     # Make sure the cursor is normal
     QApplication.restoreOverrideCursor()
 

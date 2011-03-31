@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>FilterBuilder</class>
+ <widget class="QWidget" name="FilterBuilder">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>377</width>
+    <height>305</height>
+   </rect>
+  </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <widget class="QGroupBox" name="criteriaGroup">
+     <property name="focusPolicy">
+      <enum>Qt::NoFocus</enum>
+     </property>
+     <property name="title">
+      <string>Filter component</string>
+     </property>
+     <layout class="QGridLayout" name="gridLayout_2">
+      <item row="0" column="0">
+       <widget class="QRadioButton" name="rbObjectClass">
+        <property name="text">
+         <string>objectClass</string>
+        </property>
+        <property name="checked">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="3" colspan="3">
+       <widget class="QComboBox" name="filterTypeBox">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="0" colspan="5">
+       <widget class="QLineEdit" name="assertionEdit">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
+        <property name="focusPolicy">
+         <enum>Qt::StrongFocus</enum>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1" colspan="5">
+       <widget class="QRadioButton" name="rbAttribute">
+        <property name="text">
+         <string>Attribute</string>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="5">
+       <widget class="QPushButton" name="insertButton">
+        <property name="toolTip">
+         <string>Click to insert the search criteria in the filter below.</string>
+        </property>
+        <property name="text">
+         <string>&amp;Insert</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0" colspan="3">
+       <widget class="QComboBox" name="optionBox"/>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <widget class="Line" name="line">
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout_2">
+     <item>
+      <widget class="QToolButton" name="undoButton">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
+       <property name="text">
+        <string>Undo</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QToolButton" name="redoButton">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
+       <property name="text">
+        <string>Redo</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="Line" name="vline1">
+       <property name="orientation">
+        <enum>Qt::Vertical</enum>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QToolButton" name="notButton">
+       <property name="enabled">
+        <bool>true</bool>
+       </property>
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="toolTip">
+        <string>Click to negate selection</string>
+       </property>
+       <property name="text">
+        <string>not</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QToolButton" name="andButton">
+       <property name="enabled">
+        <bool>true</bool>
+       </property>
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="toolTip">
+        <string>Click to 'and' selection</string>
+       </property>
+       <property name="text">
+        <string>and</string>
+       </property>
+       <property name="checkable">
+        <bool>false</bool>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QToolButton" name="orButton">
+       <property name="enabled">
+        <bool>true</bool>
+       </property>
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="toolTip">
+        <string>Click to 'or' selection</string>
+       </property>
+       <property name="text">
+        <string>or</string>
+       </property>
+       <property name="checkable">
+        <bool>false</bool>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="Line" name="vline2">
+       <property name="orientation">
+        <enum>Qt::Vertical</enum>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QComboBox" name="specialCharBox">
+       <property name="toolTip">
+        <string>Select special character to add</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QToolButton" name="addSpecialCharButton">
+       <property name="toolTip">
+        <string>Add escaped special character</string>
+       </property>
+       <property name="text">
+        <string>Add</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <widget class="QPlainTextEdit" name="filterEdit">
+     <property name="tabChangesFocus">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout">
+     <item>
+      <spacer name="horizontalSpacer">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item>
+      <widget class="QPushButton" name="useButton">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
+       <property name="text">
+        <string>&amp;Use</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="saveButton">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
+       <property name="text">
+        <string>&amp;Save</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="clearButton">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
+       <property name="text">
+        <string>&amp;Clear</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+  </layout>
+ </widget>
+ <tabstops>
+  <tabstop>rbObjectClass</tabstop>
+  <tabstop>rbAttribute</tabstop>
+  <tabstop>optionBox</tabstop>
+  <tabstop>filterTypeBox</tabstop>
+  <tabstop>assertionEdit</tabstop>
+  <tabstop>insertButton</tabstop>
+  <tabstop>filterEdit</tabstop>
+  <tabstop>saveButton</tabstop>
+  <tabstop>clearButton</tabstop>
+  <tabstop>undoButton</tabstop>
+  <tabstop>redoButton</tabstop>
+  <tabstop>notButton</tabstop>
+  <tabstop>andButton</tabstop>
+  <tabstop>orButton</tabstop>
+  <tabstop>specialCharBox</tabstop>
+  <tabstop>addSpecialCharButton</tabstop>
+ </tabstops>
+ <resources/>
+ <connections/>
+</ui>

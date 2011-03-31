@@ -2,16 +2,24 @@ This changelog will mainly contain changes made between different tags in the
 master branch. Changes made in the devlopment branch is documented in the git
 log.
 
-2011-03-??  Einar Uvsløkk <einar.uvslokk@linux.com>
+2011-03-25  Einar Uvsløkk <einar.uvslokk@linux.com>
 	This marks the end of sprint 4. (Luma v3.0.4-sprint4)
 	
 	Features:
+	* Main-application:
+	Support for commandline arguments added. As of now this includes mostly
+	clear flags, to wipe clean malicious config settings.
 	* Plugin-support:
 	* Browser-plugin:
+	Added multiselection item export and delete.
+	Lots of improvments in the Browsers entry view. Basic support for
+	different html layouts for the view.
 	* Template-plugin:
+	Gui finished, logic on its way.
+	* Search-plugin:
+	Skeleton gui, and basic functionality implemented.
 	
 	Bugs:
-	...
 
 2011-03-14	Einar Uvsløkk <einar.uvslokk@linux.com>
 	This marks the end of sprint 3. (Luma v3.0.3-sprint3)

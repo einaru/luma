@@ -20,6 +20,7 @@
 
 import logging
 
+from PyQt4 import QtCore
 from PyQt4.QtGui import QDialog
 
 from ..gui.Settings import Settings
@@ -34,6 +35,10 @@ class SettingsDialog(QDialog, Ui_SettingsDialog):
     
     Contains all the application settings.
     """
+    
+    # This signal is used to tell plugin settings widgets to save its
+    # setting values. 
+    onSettingsChanged = QtCore.pyqtSignal(name='onSettingsChanged')
 
     __logger = logging.getLogger(__name__)
 
@@ -98,14 +103,25 @@ class SettingsDialog(QDialog, Ui_SettingsDialog):
         if not settingswidget:
             return
         self.pluginTabs.addTab(settingswidget, "Settings")
-
-
+        # Try to connect the plugin settingswidget to the
+        # onSettingsChanged signal, in order to tell it to save its
+        # settings. We will get an AttributeError if this plugin don't
+        # have the writeSettings method implemented in its settingswidget.
+        try:
+            self.onSettingsChanged.connect(settingswidget.writeSettings)
+        except AttributeError:
+            msg = 'Missing writeSettings method in the SettingsWidget for ' \
+                  'plugin: {0}.'.format(plugin.pluginUserString)
+            self.__logger.error(msg)
 
     def saveSettings(self):
         """
         This slot is called when the ok button is clicked. It saves the
         selected settigns to file.
         """
+        # Emit the settings changed signal
+        self.onSettingsChanged.emit()
+
         settings = Settings()
 
         # Logging
