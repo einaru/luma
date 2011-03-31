@@ -29,6 +29,7 @@ from PyQt4.QtGui import QListWidgetItem
 from PyQt4.QtGui import QMessageBox
 from PyQt4.QtCore import QCoreApplication
 
+from ..backend.ServerList import ServerList
 from .ServerDelegate import ServerDelegate
 from ..backend.ServerObject import ServerObject
 from ..gui.design.ServerDialogDesign import Ui_ServerDialogDesign
@@ -38,13 +39,8 @@ from base.backend.ServerObject import ServerEncryptionMethod
 
 class ServerDialog(QDialog, Ui_ServerDialogDesign):
 
-    def __init__(self, serverList, server=None, parent=None):
-        """Note:
-        the input-ServerList-object is used directly by both the methods
-        here and the model so beware of changes to it. It's probably not
-        a good idea to pass a ServerList if one of its ServerObjects are
-        in use.
-        
+    def __init__(self, server=None, parent=None):
+        """
         @param serverList:
             The ServerList object containing the list of available
             servers.
@@ -58,19 +54,23 @@ class ServerDialog(QDialog, Ui_ServerDialogDesign):
         self.networkIcon.setPixmap(pixmapFromThemeIcon('network-server', ':/icons/network-server'))
         self.authIcon.setPixmap(pixmapFromThemeIcon('dialog-password', ':/icons/passwordmedium'))
         self.securityIcon.setPixmap(pixmapFromThemeIcon('preferences-system', ':/icons/config'))
+        
+        self.__serverList = ServerList() #Load the serverlist from disk.
+        self.__serverListCopy = None # When we click "Save", the current list is saved here
+        
+        # The list actually returned to the caller. Could be the copy or current active list
+        self.__returnList = None 
 
-        self.__serverList = copy.deepcopy(serverList)
-        self.__serverListCopy = None
-        self.__returnList = None
-
-        # Create the model used by the views
+        # Create the model used by the views and connect signals
         self.slm = ServerListModel(self.__serverList)
         self.slm.dataChanged.connect(self.wasChanged)
         self.slm.rowsInserted.connect(self.wasChanged)
         self.slm.rowsRemoved.connect(self.wasChanged)
+        
+        # Used for determining if we should confirm cancel
         self.isChanged = False
 
-        # Add the model to the list of servers
+        # The serverListView works on the servermodel
         self.serverListView.setModel(self.slm)
 
         # Enable/disable editing depending on if we have a server to edit
@@ -98,16 +98,15 @@ class ServerDialog(QDialog, Ui_ServerDialogDesign):
         # Map columns of the model to fields in the gui
         self.mapper = QDataWidgetMapper()
         self.mapper.setModel(self.slm)
-        # Handles the comboboxes and to-from the list of custom baseDNs
+        
+        # The delegate handles the comboboxes and to-from the list of custom baseDNs
+        # (delegate is used manually for the baseDNs)
         self.serverDelegate = ServerDelegate()
         self.mapper.setItemDelegate(self.serverDelegate)
-
         self.mapper.addMapping(self.hostEdit, 1)
         self.mapper.addMapping(self.portSpinBox, 2)
         self.mapper.addMapping(self.bindAnonBox, 3)
         self.mapper.addMapping(self.baseDNBox, 4)
-        #self.mapper.addMapping(self.baseDNListWidget, 5)
-
         self.mapper.addMapping(self.bindAsEdit, 6)
         self.mapper.addMapping(self.passwordEdit, 7)
         self.mapper.addMapping(self.encryptionBox, 8)
@@ -120,15 +119,13 @@ class ServerDialog(QDialog, Ui_ServerDialogDesign):
 
         # Select the first servers (as the serverlistview does)
         self.mapper.setCurrentIndex(0)
+        self.setBaseDN()
 
         # Let the mapper know when another server is selected in the list
         self.serverListView.selectionModel().currentRowChanged.connect(self.mapper.setCurrentModelIndex)
-
+        
+        # Checks for SSL enabled but with a non-standard port.
         self.encryptionBox.currentIndexChanged[int].connect(self.checkSSLport)
-        # Workaround to avoid the button stealing the focus from the baseDNView thus invalidating it's selection
-        # maning we don't know what do delete
-        #self.deleteBaseDNButton.setFocusPolicy(Qt.NoFocus)
-        self.setBaseDN()
         
     def checkSSLport(self, index):
         """ If SSL is choosen with a port other than 636, confirm this with the user
@@ -139,7 +136,6 @@ class ServerDialog(QDialog, Ui_ServerDialogDesign):
                 ,QMessageBox.Yes|QMessageBox.No)
             if ans == QMessageBox.Yes:
                 self.portSpinBox.setValue(636)
-            
 
     def wasChanged(self):
         """Slot to register that some server settings is changed.

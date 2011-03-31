@@ -18,5 +18,3 @@ class PluginObject(object):
 		self.getPluginSettingsWidget = None
 		self.icon = None
 		self.load = False
-		
-###############################################################################

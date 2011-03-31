@@ -1,10 +1,8 @@
 # -*- coding: utf-8 -*-
 #
-# lumaWithOptions
-#
 # Copyright (c) 2011
-#     Christian Forfang, <simen.natvig@gmail.com>
-#     Simen Natvig, <cforfang@gmail.com>
+#     Christian Forfang, <cforfang@gmail.com>
+#     Simen Natvig, <simen.natvig@gmail.com>
 #     Einar Uvsløkk, <einar.uvslokk@linux.com>
 #
 # Copyright (c) 2003
@@ -40,12 +38,13 @@ class ServerList(object):
     Object for managing the list of available servers.
     """
 
+    # For logging
     __logger = logging.getLogger(__name__)
 
     # The cache for the client side ssl certificates. 
     # The filename is the key; a tupel containing the modification time
     # and the cert as StringIO objects.
-    certCache = {}
+    # certCache = {}
 
     def __init__(self, configPrefix=None, serverlist="serverlist.xml"):
         """
@@ -55,15 +54,14 @@ class ServerList(object):
         @param serverlist: string;
             The filename of the serverlist.
         """
+        
         if configPrefix == None:
-            #TODO: Should get default (or remove this feature alltogheter)
-            #      possible not in use currently.
-            # Using the python tempfile module to get the temp dir in a
-            # cross-platform manner
+            # Try to aquire a suitable dir
             success, path = getConfigPrefix()
             if success:
                 configPrefix = path
             else:
+                # Fall back to use the temp-dir
                 configPrefix = tempfile.gettempdir()
             
         self.__serverList = []
@@ -73,6 +71,8 @@ class ServerList(object):
         # Read the existing serverlist, if any
         if os.path.isfile(self.__configFile):
             self.__readServerList()
+        else:
+            self.__logger.debug("Serverlist at "+self.__configFile+" not found.")
             
     def getConfigFilePath(self):
         """
@@ -229,15 +229,17 @@ class ServerList(object):
             return
 
         serverList = self.__readFromXML()
+        
+        # If we can't load the list, make sure it's not set to None
         if serverList != None:
             self.__serverList = serverList
 
     def __readFromXML(self):
         """
-        Reads the serverlist from disk.
+        Reads the serverlist from disk by calling appropriate method for the file-format.
         """
-        debug = 'Calling __readFromXML() to load serverlist from disk'
-        self.__logger.debug(debug)
+        
+        self.__logger.debug('Calling __readFromXML() to load serverlist from disk')
 
         fileContent = ''
         try:
@@ -275,9 +277,10 @@ class ServerList(object):
     def __readFromXMLVersion1_2(self, fileContent):
         """
         Reads serverlist version 1.2 from disk.
+        This is the current format.
         """
-        debug = 'Using __readFromXMLVersion1_2 to load serverlist from disk'
-        self.__logger.debug(debug)
+        
+        self.__logger.debug('Using __readFromXMLVersion1_2 to load serverlist from disk')
 
         document = QDomDocument('LumaServerFile')
         document.setContent(fileContent)
@@ -339,6 +342,10 @@ class ServerList(object):
 
 
     def _readFromXMLVersion1_1(self, fileContent):
+        """
+        Reads serverlist version 1.1 from disk.
+        This uses strings insteads of ints for some values.
+        """
         
         self.__logger.debug("Using _readFromXMLVersion1_1() to load serverlist from disk")
         
@@ -369,7 +376,6 @@ class ServerList(object):
                 else:
                     server.autoBase = 0
                     
-                    
                 server.bindDN = unicode(element.attribute("bindDN"))
                 server.bindPassword = unicode(element.attribute("bindPassword"))
                 
@@ -390,7 +396,6 @@ class ServerList(object):
                     server.checkServerCertificate = ServerCheckCertificate.Demand
                 elif tmp == "allow":
                     server.checkServerCertificate = ServerCheckCertificate.Allow
-                
                 
                 server.clientCertFile = unicode(element.attribute("clientCertFile"))
                 server.clientCertKeyFile = unicode(element.attribute("clientCertKeyfile"))

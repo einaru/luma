@@ -366,7 +366,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         """
         Slot to display the server editor dialog.
         """
-        serverEditor = ServerDialog(ServerList())
+        serverEditor = ServerDialog()
         serverEditor.exec_()
 
     def showSettingsDialog(self, tab=0):
@@ -421,23 +421,21 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
     def tabClose(self, index):
         """ 
-        Slot for the signal tabCloseRequest(int) for the tabMains
+        Slot for the signal tabCloseRequest(int) for the tabMains.
         """
 
         widget = self.mainTabs.widget(index)
+        
+        # If the tab closed is one of these, enable the toggle-action
         if widget == self.pluginWidget:
             self.actionShowPluginList.setEnabled(True)
-
         if widget == self.welcomeTab:
             self.actionShowWelcomeTab.setEnabled(True)
 
         self.mainTabs.removeTab(index)
 
-        #Unparent the widget since it was reparented by the QTabWidget so it's gargabe collected
+        #Unparent the widget since it was reparented by the QTabWidget so it's garbage collected
         widget.setParent(None)
-
-        #Done automatically by PyQt since there's no refs to the widget
-        #widget.deleteLater()
 
         # In case the widget contained circular references -- force GC to take care of the objects
         # since there can be quite many if it was BrowserWidget that was closed
@@ -449,9 +447,14 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             self.__setTabWidgetStyle(self.lumaHeadStyle)
 
     def gc(self):
+        """ Runs Python's garbage-collection manually.
+        Used to make sure circular references are taken care of _now_.
+        """
         gc.collect()
 
     def showWelcome(self):
+        """ Shows the Welcome-tab
+        """
         self.__setTabWidgetStyle(self.defaultTabStyle)
         index = self.mainTabs.addTab(self.welcomeTab,
         QApplication.translate("MainWindow", "Welcome"))
@@ -460,9 +463,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.actionShowWelcomeTab.setEnabled(False)
         
     def showPlugins(self):
-        """ Will set the pluginlistwidget on top of the mainstack.
+        """ Will show the pluginlistwidget-tab
         """
-        
         self.__setTabWidgetStyle(self.defaultTabStyle)
         if self.mainTabs.indexOf(self.pluginWidget) == -1:
             index = self.mainTabs.addTab(self.pluginWidget, QApplication.translate("MainWindow", "Plugins"))
@@ -525,6 +527,7 @@ class LoggerWidget(QWidget, Ui_LoggerWidget):
         filter state.
         """
         self.messageEdit.clear()
+        # Filter out unwanted log-items
         for l in self.logList:
             loglvl, msg = l
             if loglvl == "DEBUG" and self.debugBox.isChecked():
@@ -554,25 +557,17 @@ class LoggerWidget(QWidget, Ui_LoggerWidget):
         loglvl, msg = log
         self.logList.append(log)
         if loglvl == "DEBUG" and self.debugBox.isChecked():
-            #self.logList.append(log)
             self.logSignal.emit("DEBUG: " + msg)
-            #self.messageEdit.append("DEBUG: " + msg)
             return
         if loglvl == "ERROR" and self.errorBox.isChecked():
-            #self.logList.append(log)
-            #self.messageEdit.append("ERROR: " + msg)
             self.logSignal.emit("ERROR: " + msg)
             return
         if loglvl == "INFO" and self.infoBox.isChecked():
-            #self.logList.append(log)
-            #self.messageEdit.append("INFO: " + msg)
             self.logSignal.emit("INFO: " + msg)
             return
         if loglvl not in ["INFO", "ERROR", "DEBUG"]:
             # This shouldn't really happen...
             # Please only use the above levels
-            #self.logList.append(log)
-            #self.messageEdit.append("UNKNOWN: " + msg)
             self.logSignal.emit("UNKNOWN: " + msg)
 
 

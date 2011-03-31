@@ -2,12 +2,10 @@ from AbstractLDAPTreeItem import AbstractLDAPTreeItem
 from PyQt4.QtGui import QIcon, QPixmap
 from PyQt4 import QtCore
 
-"""
-Currently not used.
-"""
-
 class LDAPErrorItem(AbstractLDAPTreeItem):
-    
+    """
+    Used to indicate an error.
+    """
     
     def __init__(self, data, serverParent, parent):
         AbstractLDAPTreeItem.__init__(self, parent)

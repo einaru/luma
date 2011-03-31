@@ -368,25 +368,6 @@ class BrowserView(QWidget):
 
     def addTemplateChoosen(self):
         pass
-    def deleteChosen(self, index):
-        #TODO RENAME
-        # Remember the smartObject for later
-        sO = index.internalPointer().smartObject()
-        # Try to delete
-        (success, message) = self.ldaptreemodel.deleteItem(index)
-        if success:
-            # Close open edit-windows if any
-            if self.isOpen(sO):
-                rep = self.getRepForSmartObject(sO)
-                x = self.openTabs.pop(str(rep))
-                i = self.tabWidget.indexOf(x)
-                if i != -1:
-                    self.tabWidget.removeTab(i)
-            # Notify success
-            return (True, message)
-        else:
-            # Notify fail
-            return (False,message)
 
     def addNewEntry(self, parentIndex, defaultSmartObject=None):
         tmp = NewEntryDialog(parentIndex, defaultSmartObject)
@@ -430,31 +411,96 @@ class BrowserView(QWidget):
         self.openTabs[str(rep)] = x
         self.tabWidget.addTab(x, smartObject.getPrettyRDN())
         self.tabWidget.setCurrentWidget(x)
+        
+    
+    def deleteIndex(self, index):
+        # Remember the smartObject for later
+        sO = index.internalPointer().smartObject()
+        # Try to delete
+        (success, message) = self.ldaptreemodel.deleteItem(index)
+        if success:
+            # Close open edit-windows if any
+            self.__closeTabIfOpen(sO)
+            # Notify success
+            return (True, message)
+        else:
+            # Notify fail
+            return (False,message)
+        
+    def __closeTabIfOpen(self, sO):
+        if self.isOpen(sO):
+                rep = self.getRepForSmartObject(sO)
+                x = self.openTabs.pop(str(rep))
+                i = self.tabWidget.indexOf(x)
+                if i != -1:
+                    self.tabWidget.removeTab(i)
 
-    def deleteSelection(self, selection=[]):
+    def deleteSelection(self, alsoSubTree = False):
         """Slot for the context menu.
         
         Opens the DeleteDialog with the selected entries, giving the
         user the option to validate the selection before deleting.
-        """
-        # TODO THE ABOVE
         
-        # Make persistent indexes
+        This is for deleting the item + possibly it's subtree.
+        See deleteOnlySubtreeOfSelection() for only subtree.
+        """
+        
+        # Only one item
+        if len(self.selection) == 1:
+            (status, message) = self.deleteIndex(self.selection[0])
+            if not status:
+                QMessageBox.critical(self, QtCore.QCoreApplication.translate("BrowserView","Error"), "On "+self.selection[0].data().toPyObject()+":\n"+message)
+            return
+        
+        if alsoSubTree:
+            # Not done yet
+            return
+        
+        # Make persistent indexes and list of smartObjects to be deleted
         persistenSelection = []
+        sOList = []
         for x in self.selection:
             persistenSelection.append(QPersistentModelIndex(x))
+            sOList.append(x.internalPointer().smartObject())
+        
+        # Create gui
+        deleteDialog = DeleteDialog(sOList, 0) #0 = not subtree
+        status = deleteDialog.exec_()
+        
+        if status: # the dialog was not canceled
+            
+            # If all rows were removed successfully, just call removeRows on all selected items
+            # (reloading all items of the parent can be expensive)
+            if deleteDialog.passedItemsWasDeleted:
+                for x in persistenSelection:
+                    if x.isValid:
+                        i = x.sibling(x.row(), 0) #QModelIndex
+                        self.__closeTabIfOpen(i.internalPointer().smartObject())
+                        self.ldaptreemodel.removeRow(x.row(), x.parent())
+                return
                 
-        # Now delete each one of them
-        for x in persistenSelection:
-            # QPersistenModelIndex -> QModelIndex
-            i = x.sibling(x.row(),x.column())
-            (status, message) = self.deleteChosen(i)
-            if not status:
-                QMessageBox.critical(self, QtCore.QCoreApplication.translate("BrowserView","Error"), "On "+x.data().toPyObject()+":\n"+message)
+            # If not, call reload on the parent of all the items?
             else:
-                pass
-                #QMessageBox.information(self, QtCore.QCoreApplication.translate("BrowserView","Success"), QtCore.QCoreApplication.translate("BrowserView","Item deleted"))
-
+                tmp = QMessageBox.question(self, 
+                    QtCore.QCoreApplication.translate("BrowserView", "Deletion"),
+                    QtCore.QCoreApplication.translate("BrowserView", "It's possible some of the selected items might not have been deleted, while others were.\nDo you wan't to update the list to reflect the changes?"),
+                    buttons=QMessageBox.Yes|QMessageBox.No, defaultButton=QMessageBox.Yes)
+                
+                if tmp == QMessageBox.Yes:
+                    for x in persistenSelection:
+                        # index might not be valid if the parent was reloaded by a previous item
+                        if x.isValid():
+                            self.ldaptreemodel.reloadItem(x.parent())
+                        return
+            
+        # Was cancelled so do nothing
+        else:
+            pass
+        
+            
+    def deleteOnlySubtreeOfSelection(self, selection):
+            pass
+        
     def exportItems(self):
         """Slot for the context menu.
         """
@@ -588,7 +634,133 @@ class BrowserView(QWidget):
         else:
             QWidget.changeEvent(self, e)
 
-
+from .gui.DeleteDialogDesign import Ui_DeleteDialog
+            
+class DeleteDialog(QtGui.QDialog, Ui_DeleteDialog):
+    
+    __logger = logging.getLogger(__name__)
+    
+    def __init__(self, sOList, subTree = 0, parent=None):
+        """
+        subTree:
+            0 = nodes only
+            1 = subtree
+            2 = nodes+subtree
+        """
+        super(DeleteDialog, self).__init__(parent)
+        self.setupUi(self)
+        
+        self.model = QtGui.QStandardItemModel()
+        self.items = sOList
+        self.deleteDict = {}
+        
+        self.subTree = subTree        
+        self.serverConnections = {}
+        
+        if self.subTree == 0: # Nodes only
+            
+            for sO in self.items:
+                
+                # Find a textual representation for the smartobjects
+                rep = self.getRep(sO)
+            
+                # Make and item with text rep
+                modelItem = QtGui.QStandardItem(rep)
+                modelItem.setEditable(False)
+                modelItem.setCheckable(True)
+                
+                # Represents the status of the deletion
+                statusItem = QtGui.QStandardItem("")
+                statusItem.setEditable(False)
+                
+                # Dict where one can lookup reps to get smartObjects and modelitems
+                self.deleteDict[rep] = [sO, modelItem, statusItem]
+                modelItem.setCheckState(QtCore.Qt.Checked)
+                self.model.appendRow([modelItem,statusItem])
+                
+        else:
+            QMessageBox.critical(None, "Not implemented yet", "Ikke impl.")
+            
+        self.deleteItemView.setModel(self.model)
+        self.deleteItemView.setAlternatingRowColors(True)
+        self.deleteItemView.setUniformRowHeights(True)
+        
+        self.hasTriedToDelete = False
+        self.passedItemsWasDeleted = False
+    
+    def getRep(self, sO):
+        serverName = sO.getServerAlias()
+        dn = sO.getPrettyDN()
+        return str(dn+" ["+serverName+"]")
+            
+    def delete(self):
+        
+        self.deleteButton.setEnabled(False)
+        if self.hasTriedToDelete:
+            # Should not be called twice
+            return
+        
+        # At his point, we don't "cancel" but say we're done
+        self.cancelButton.setText("Done")
+        self.hasTriedToDelete = True
+        allDeleted = True
+        
+        # True for now
+        self.passedItemsWasDeleted = True
+        
+        # Iterate through the modelitems and remove unchekced items
+        # from the dictionary, which will be used later.
+        for i in xrange(self.model.rowCount()):
+            item = self.model.itemFromIndex(self.model.index(i, 0))
+            if item.checkState() != QtCore.Qt.Checked:
+                self.deleteDict.pop(self.__utf8(item.text()))
+                # If we unchecked something, can't be sure the passed items was deleted
+                self.passedItemsWasDeleted = False
+        
+        # Map the dictionary keys
+        deleteSOList = map(lambda x: self.deleteDict[x][0], self.deleteDict.keys())
+        deleteSOList.sort()
+        
+        #BUSY
+        
+        # We now have a list with smartObjects to be deleted, so let's do so
+        for sO in deleteSOList:
+            # Create a LumaConnection if necessary
+            if not self.serverConnections.has_key(sO.serverMeta):
+                self.serverConnections[sO.serverMeta] = LumaConnection(sO.serverMeta)
+                self.serverConnections[sO.serverMeta].bind()
+            
+            # Use it to delete the object on the server
+            conn = self.serverConnections[sO.serverMeta]
+            status, e = conn.delete(sO.getDN())
+            
+            # Update the status in the dialog
+            if not status:
+                self.passedItemsWasDeleted = False
+                allDeleted = False
+                self.deleteDict[self.getRep(sO)][2].setText(str(e))
+            else:
+                self.deleteDict[self.getRep(sO)][2].setText("OK!")
+        
+        # Remember to unbind all the servers
+        for conn in self.serverConnections.values():
+            conn.unbind()
+            
+        #NOTBUSY
+        
+        # If everything we wanted to delete was deleted -- close
+        if allDeleted:
+            self.accept()
+            
+    def cancel(self):
+        if self.hasTriedToDelete:
+            self.accept() #Let the caller know delete() was run
+        else:
+            self.reject() #No changes done on the server
+        
+    def __utf8(self, text):
+        return unicode(text).encode('utf-8').strip()
+        
 import dsml
 import StringIO
 

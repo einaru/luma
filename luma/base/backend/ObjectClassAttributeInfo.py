@@ -8,13 +8,6 @@
 #
 ###########################################################################
 
-"""
-TODO: Proper busy-indicator-handling (?)
-"""
-
-#from PyQt4.QtGui import qApp
-#from PyQt4.QtCore import Qt
-
 import ldap
 import ldap.schema
 import ldapurl

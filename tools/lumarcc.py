@@ -303,7 +303,7 @@ def compileUiFiles(compileAll=False):
 
     cmd = 'pyuic4'
     if sys.platform == 'win32':
-        cmd = '%s.exe' % cmd
+        cmd = '%s.bat' % cmd
 
     for uifile in uifiles:
 

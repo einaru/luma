@@ -21,11 +21,20 @@
 import logging
 
 class LumaLogHandler(logging.Handler):
-
+    """
+    Used to convert python's logging-records to the format used by the LoggerWidget,
+    i.e. the tuple (loglevel, message).
+    """
+    
     def __init__(self, logTo):
+        """ 
+        @param logTo: an instance of Luma's LoggerWidget
+        """
         logging.Handler.__init__(self)
         self.logTo = logTo
 
     def emit(self, record):
+        """ Emit is called by Python's logger
+        """
         m = (record.levelname, record.msg)
         self.logTo.log(m)
