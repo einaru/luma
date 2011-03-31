@@ -61,12 +61,19 @@ class SearchPluginEventFilter(QObject):
             # In the case of the Search plugin, only the tab widget for
             # the search results ('right') is expected to act upon the
             # close event.
-            if event.matches(QKeySequence.Close):
-                if target.objectName() == 'right':
-                    index = target.currentIndex()
+            if target.objectName() == 'right':
+                index = target.currentIndex()
+                if event.matches(QKeySequence.Close):
                     target.tabCloseRequested.emit(index)
                     # When we actually catches and acts upona an event,
                     # we need to inform the eventHandler about this.
+                    return True
+                elif event.matches(QKeySequence.Find):
+                    widget = target.widget(index)
+                    state = widget.filterBox.isVisible()
+                    #widget.filterBox.setVisible(not state)
+                    #widget.filterBox.onVisibilityChanged(not state)
+                    widget.onFilterBoxVisibilityChanged(not state)
                     return True
         # Retranslate the ui if we catch the LanguageChange event
         elif event.type() == QEvent.LanguageChange:

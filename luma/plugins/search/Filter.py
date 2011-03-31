@@ -29,13 +29,13 @@ Short form definition summary in EBNF:
     <boolComp>       := <boolOp> { <filter> }*
     <boolOp>         := `&` | `|` | `!`
     <item>           := <simple> | <exstensible>
-    <simple>         := `(` <attr> <equalOp> <assertionValue> `)`
+    <simple>         := `(` <attr> <filterTypes> <assertionValue> `)`
     <attr>           := (* a valid LDAP attribute *)
-    <equalOp>        := `=` | `~=` | `>=` | `<=`
+    <filterTypes>    := `=` | `~=` | `>=` | `<=`
     <assertionValue> := <normal> | <escaped> | `*`
     <normal>         := (* all alphabetic and digit characters *)
     <escaped>        := `\`(* HEX representation of special chars *)
-    <extensible>     := `(` (* TODO: learng the exstensible syntax :) *) `)`
+    <extensible>     := `(` (* TODO: learng the exstensible syntax *) `)`
 
 
 [1] http://tools.ietf.org/html/rfc4515
@@ -62,7 +62,7 @@ BOOLEAN_OPERATORS = {
     '|' : 'OR',
     '!' : 'NOT'
 }
-EQUALITY_OPERATORS = {
+FILTER_TYPES = {
     '=' : 'equals',
     '~=' : 'approximatly',
     '>=' : 'greater than or equals',
@@ -146,6 +146,47 @@ def getFilterComponents(filter):
     elif l in BOOLEAN_OPERATORS.keys():
         _ret.append(l)
 
+
+class Filter(object):
+    """Object representation of a collection Luma LDAP search filters, 
+    associated with a server name and host.
+    """
+
+    def __init__(self, name, host):
+        """
+        @param name: string;
+            The common name of the server, usually user defined in the
+            ServerDialog.
+        @param host: string;
+            The host name of the server.
+        """
+        self.__name = name
+        self.__host = host
+        self.__filters = []
+
+    @property
+    def name(self):
+        return self.__name
+
+    @property
+    def host(self):
+        return self.__host
+
+    @property
+    def filters(self):
+        return self.__filters
+
+    @filters.setter
+    def filters(self, filter):
+        self.__filters.append(filter)
+
+"""
+##### ##### ##### ##### # #   # #####
+  #   #     #       #   # ##  # # 
+  #   ###   #####   #   # # # # # ###
+  #   #         #   #   # #  ## #   #
+  #   ##### #####   #   # #   # #####
+"""
 i = 0
 def test(filter):
     global i

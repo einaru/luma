@@ -21,7 +21,16 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see http://www.gnu.org/licenses/
-
+"""
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!! WARNING                                                                  !!
+!!                                                                          !!
+!! This version of the LumaConnection class is not finished, and should be  !! 
+!! used only in testing environments. This implementation is an attempt to  !!
+!! cleanup the old implementation, where one of the goals is to get rid of  !!
+!! all PyQt4 dependencies (at least all the PyQt4.QtGui dependencies).      !! 
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+"""
 import ldap
 import ldapurl
 import ldap.modlist
@@ -73,9 +82,8 @@ class LumaConnection(object):
             accessing servers.
         """
         if not isinstance(serverObject, ServerObject):
-            e = 'Excpected ServerObject type. Passed object was %s' % \
-                unicode(type(serverObject))
-            raise LumaConnectionException, e
+            e = 'Expected ServerObject type. Passed object was {0}'
+            raise LumaConnectionException, e.format(unicode(type(serverObject)))
 
         self.serverObject = serverObject
 
@@ -241,9 +249,8 @@ class LumaConnection(object):
             self.ldapServerObject = workerThread.ldapServerObject
             return (True, None)
         else:
-            msg = 'LDAP bind operation not successfull. Reason\n%s' % \
-                  str(workerThread.exceptionObject)
-            self.__logger.error(msg)
+            msg = 'LDAP bind operation not successfull. Reason\n{0}'
+            self.__logger.error(msg.format(str(workerThread.exceptionObject)))
 
             if self.__overridePassword(self.serverObject) and self.__invalidPassword(workerThread):
                 LumaConnection.__passwordMap.pop(self.serverObject.name)
@@ -257,9 +264,8 @@ class LumaConnection(object):
             if not(self.serverObject.bindAnon):
                 self.ldapServerObject.unbind()
         except ldap.LDAPError, e:
-            msg = 'LDAP unbind operation not successful. Reason:\n%s' % \
-                  str(e)
-            self.__logger.error(msg)
+            msg = 'LDAP unbind operation not successful. Reason:\n{0}'
+            self.__logger.error(msg.format(str(e)))
 
     def search(self, base="", scope=ldap.SCOPE_BASE, filter="(objectClass=*)",
                attrList=None, attrsonly=0, sizelimit=0):
@@ -307,7 +313,7 @@ class LumaConnection(object):
             if rcount == 1:
                 msg = 'Received 1 item from LDAP search operation.'
             else:
-                msg = 'Received %d items from LDAP search operation.' % rcount
+                msg = 'Received {0} items from LDAP search operation.'.format(rcount)
 
             self.__logger.info(msg)
             return (True, resultList, None)
@@ -321,17 +327,16 @@ class LumaConnection(object):
                 if rcount == 1:
                     msg = 'Received 1 item from LDAP search operation.'
                 else:
-                    msg = 'Received %d items from LDAP search operation.' % rcount
+                    msg = 'Received {0} items from LDAP search operation.'.format(rcount)
 
-                msg = '%s But server side search limit has been reached.' % msg
-                self.__logger.info(msg)
+                msg = '{0} But server side search limit has been reached.'
+                self.__logger.info(msg.format(msg))
 
                 return (True, resultList, None)
 
             else:
-                msg = 'LDAP search operation failed. Reason:\n%s' % \
-                      str(workerThread.exceptionObject)
-                self.__logger.error(msg)
+                msg = 'LDAP search operation failed. Reason:\n{0}'
+                self.__logger.error(msg.format(str(workerThread.exceptionObject)))
 
                 return (False, None, workerThread.exceptionObject)
 
@@ -359,15 +364,14 @@ class LumaConnection(object):
         self.setBusy(False)
 
         if None == workerThread.exceptionObject:
-            msg = 'LDAP object %s successfully added.' % dn
+            msg = 'LDAP object {0} successfully added.'.format(dn)
             self.__logger.info(msg)
 
             return (True, None)
 
         else:
-            msg = 'LDAP object %s could not be added. Reason:\n%s' % \
-                  (dn , str(workerThread.exceptionObject))
-            self.__logger.error(msg)
+            msg = 'LDAP object {0} could not be added. Reason:\n{1}'
+            self.__logger.error(msg.format(dn , str(workerThread.exceptionObject)))
 
             return (False, workerThread.exceptionObject)
 
@@ -399,15 +403,14 @@ class LumaConnection(object):
         self.setBusy(False)
 
         if None == workerThread.exceptionObject:
-            msg = 'LDAP object %s successfully modified.' % dn
-            self.__logger.info(msg)
+            msg = 'LDAP object {0} successfully modified.'
+            self.__logger.info(msg.format(dn))
 
             return (True, None)
 
         else:
-            msg = 'LDAP object %s could not be modified. Reason:\n%s' % \
-                  (dn, str(workerThread.exceptionObject))
-            self.__logger.error(msg)
+            msg = 'LDAP object {0} could not be modified. Reason:\n{1}'
+            self.__logger.error(msg.format(dn, str(workerThread.exceptionObject)))
 
             return (False, workerThread.exceptionObject)
 
@@ -437,15 +440,14 @@ class LumaConnection(object):
         self.setBusy(False)
 
         if None == workerThread.exceptionObject:
-            msg = 'LDAP object %s successfully deleted.' % dnDelete
-            self.__logger.info(msg)
+            msg = 'LDAP object {0} successfully deleted.'
+            self.__logger.info(msg.format(dnDelete))
 
             return (True, None)
 
         else:
-            msg = 'LDAP object %s could not be deleted. Reason:\n%s' % \
-                  (dnDelete, str(workerThread.exceptionObject))
-            self.__logger.error(msg)
+            msg = 'LDAP object {0} could not be deleted. Reason:\n{1}'
+            self.__logger.error(msg.format(dnDelete, str(workerThread.exceptionObject)))
 
             return (False, workerThread.exceptionObject)
 
@@ -465,9 +467,10 @@ class LumaConnection(object):
             modlist = ldap.modlist.modifyModlist(oldObject.data, dataObject.data, [], 0)
             return self.modify(dataObject.getDN(), modlist)
         else:
-            message = "LDAP object " + dataObject.getDN() + " could not be updated. The entry values could not be retrieved from the server. Reason:\n"
-            message = message + str(exceptionObject)
-            self.__logger.error(message)
+            msg = 'LDAP object {0} could not be updated. '+ \
+                  'The entry values could not be retrieved from the server. ' \
+                  'Reason:\n{1}'
+            self.__logger.error(msg.format(dataObject.getDN(), str(exceptionObject)))
             return (False, exceptionObject)
 
     def addDataObject(self, dataObject):

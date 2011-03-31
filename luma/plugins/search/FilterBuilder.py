@@ -25,7 +25,7 @@ from PyQt4 import QtCore
 from PyQt4.QtGui import (QWidget, QTextCursor)
 
 from .gui.FilterBuilderDesign import Ui_FilterBuilder 
-from .Search import (encodeUTF8, iconFromTheme, PluginSettings)
+from .Search import (encodeUTF8, PluginSettings)
 
 class FilterBuilder(QWidget, Ui_FilterBuilder):
     """The Luma filter wizard widget

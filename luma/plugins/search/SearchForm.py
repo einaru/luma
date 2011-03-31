@@ -47,6 +47,7 @@ class SearchForm(QWidget, Ui_SearchForm):
         """
         self.filterBoxEdit.currentIndexChanged['QString'].connect(self.onSearchCriteriaChanged)
         self.filterBoxEdit.editTextChanged['QString'].connect(self.onSearchCriteriaChanged)
+        self.filterBoxEdit.lineEdit().returnPressed.connect(self.searchButton.animateClick)
     
     def __escape(self, text):
         """FIXME: Dummy escaping
@@ -72,8 +73,10 @@ class SearchForm(QWidget, Ui_SearchForm):
             A list containing base DN.
         """
         self.baseDNBox.clear()
-        for x in baseDNList:
-            self.baseDNBox.addItem(x)
+        # This should fix the no-network bug
+        if not baseDNList is None:
+            for x in baseDNList:
+                self.baseDNBox.addItem(x)
     
     def populateFilterBookmarks(self, filterBookmarks):
         """Populates the search edit combobox with saved search
