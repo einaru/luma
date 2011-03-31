@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'D:\Skole\it2901\resources\forms\plugins\template\TemplateWidgetDesign.ui'
+# Form implementation generated from reading ui file 'd:\Skole\it2901\resources\forms\plugins\template\TemplateWidgetDesign.ui'
 #
-# Created: Mon Mar 28 16:02:41 2011
+# Created: Thu Mar 31 11:54:49 2011
 #      by: PyQt4 UI code generator 4.8.2
 #
 # WARNING! All changes made in this file will be lost!
@@ -168,6 +168,17 @@ class Ui_TemplateWidget(object):
         QtCore.QObject.connect(self.pushButtonTemplatesDuplicate, QtCore.SIGNAL(_fromUtf8("clicked()")), TemplateWidget.duplicateTemplate)
         QtCore.QObject.connect(self.pushButtonTemplatesSave, QtCore.SIGNAL(_fromUtf8("clicked()")), TemplateWidget.saveTemplate)
         QtCore.QMetaObject.connectSlotsByName(TemplateWidget)
+        TemplateWidget.setTabOrder(self.listViewTemplates, self.pushButtonTemplatesAdd)
+        TemplateWidget.setTabOrder(self.pushButtonTemplatesAdd, self.pushButtonTemplatesSave)
+        TemplateWidget.setTabOrder(self.pushButtonTemplatesSave, self.pushButtonTemplatesDelete)
+        TemplateWidget.setTabOrder(self.pushButtonTemplatesDelete, self.pushButtonTemplatesDuplicate)
+        TemplateWidget.setTabOrder(self.pushButtonTemplatesDuplicate, self.lineEditDescription)
+        TemplateWidget.setTabOrder(self.lineEditDescription, self.listViewObjectclasses)
+        TemplateWidget.setTabOrder(self.listViewObjectclasses, self.pushButtonObjectclassesAdd)
+        TemplateWidget.setTabOrder(self.pushButtonObjectclassesAdd, self.pushButtonObjectclassesDelete)
+        TemplateWidget.setTabOrder(self.pushButtonObjectclassesDelete, self.tableViewAttributes)
+        TemplateWidget.setTabOrder(self.tableViewAttributes, self.pushButtonAttributesAdd)
+        TemplateWidget.setTabOrder(self.pushButtonAttributesAdd, self.pushButtonAttributesDelete)
 
     def retranslateUi(self, TemplateWidget):
         TemplateWidget.setWindowTitle(QtGui.QApplication.translate("TemplateWidget", "Form", None, QtGui.QApplication.UnicodeUTF8))
