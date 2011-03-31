@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file '/home/einar/Desktop/luma-release-tagging/resources/forms/plugins/browser_plugin/ExportDialogDesign.ui'
 #
-# Created: Thu Mar 31 18:03:27 2011
+# Created: Thu Mar 31 18:10:56 2011
 #      by: PyQt4 UI code generator 4.7.4
 #
 # WARNING! All changes made in this file will be lost!

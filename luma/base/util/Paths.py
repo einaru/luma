@@ -131,7 +131,7 @@ def getUserHomeDir():
 def __validate(p):
     import subprocess
     if p == "Windows":
-        cmd = 'shutdown -r'
+        cmd = 'shutdown -h'
     else:
         cmd = ['reboot', '-f', '--verbose']
 
