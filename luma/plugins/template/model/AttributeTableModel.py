@@ -6,49 +6,56 @@ Created on 16. mars 2011
 
 from PyQt4.QtCore import QAbstractTableModel, Qt, QVariant, QModelIndex
 from PyQt4.QtGui import QIcon
+from ..TemplateObject import AttributeObject
 
 class AttributeTableModel(QAbstractTableModel):
     
     def __init__(self, parent = None):
         QAbstractTableModel.__init__(self)
-        self.templateObject = None
+        self.attributes = {}
         
     def setTemplateObject(self, templateObject = None):
-        self.templateObject = templateObject
+        if templateObject:
+            self.attributes = templateObject.attributes
+        else:
+            self.attributes = {}
         self.reset()
 
     def addRow(self, name, must, single, binary, defaultValue):
-        if self.templateObject:
+        if not name in self.attributes:
             self.beginInsertRows(QModelIndex(), self.rowCount(), self.rowCount())
-            self.templateObject.addAttribute(name, must, single, binary, defaultValue)
+            self.attributes[name] = AttributeObject(name, must, single, binary, defaultValue)
             self.endInsertRows()
             return True
+        else:
+            self.attributes[name].defaultValue = defaultValue
         return False
     
     def removeRows(self, indexes):
-        if self.templateObject:
-            attributes = []
-            for i in indexes:
-                if i.column() == 0:
-                    attr = self.getAttribute(i)
-                    if not attr.must:
-                        attributes.append(attr)
-            for a in attributes:
-                self.beginRemoveRows(QModelIndex(), self.getIndexRow(a), self.getIndexRow(a))
-                if a:
-                    self.templateObject.deleteAttribute(attributeName = a.attributeName)
-                self.endRemoveRows()
-            print self.templateObject.getCountAttributes()
-            return True
-        return False
+        attributes = []
+        for i in indexes:
+            if i.column() == 0:
+                attr = self.getAttribute(i)
+                if not attr.must:
+                    attributes.append(attr)
+        for a in attributes:
+            self.beginRemoveRows(QModelIndex(), self.getIndexRow(a), self.getIndexRow(a))
+            if a:
+                self.attributes.pop(a.attributeName)
+            self.endRemoveRows()
+
+    def removeAlways(self, attribute):
+        self.beginRemoveRows(QModelIndex(), self.getIndexRow(attribute), self.getIndexRow(attribute))
+        self.attributes.pop(attribute.attributeName)
+        self.endRemoveRows()
 
     def getAttribute(self, index):
-        if index.row() < self.templateObject.getCountAttributes() and index.column() == 0:
-            return self.templateObject.attributes.items()[index.row()][1]
+        if index.row() < len(self.attributes) and index.column() == 0:
+            return self.attributes.items()[index.row()][1]
         return None
     
     def getIndexRow(self, attribute):
-        return self.templateObject.attributeIndex(attribute)
+        return self.attributes.values().index(attribute)
 
     def setData(self, index, value, role = Qt.EditRole):
         """
@@ -58,15 +65,13 @@ class AttributeTableModel(QAbstractTableModel):
         if index.column() == 4:
             print "default value?"
             print value.toString()
-            self.templateObject.attributes.items()[index.row()][1].defaultValue = value.toString()
+            self.attributes.items()[index.row()][1].defaultValue = value.toString()
             return True
         return False
     
     def rowCount(self,parent = QModelIndex()):
         #Number of objectclass
-        if self.templateObject:
-            return self.templateObject.getCountAttributes()
-        return 0
+        return len(self.attributes)
     
     def columnCount(self,parent = QModelIndex()):
         return 5
@@ -102,13 +107,21 @@ class AttributeTableModel(QAbstractTableModel):
         row = index.row()
         column = index.column()
         
-        if role == Qt.DecorationRole and self.templateObject:
+        if role == Qt.DecorationRole:
             if column == 1 or column == 2 or column == 3:
-                if self.templateObject.attributes.items()[row][1].getList()[column]:
+                if self.attributes.items()[row][1].getList()[column]:
                     return QIcon(':/icons/ok')
                 else:
                     return QIcon(':/icons/no')
         
-        if (role == Qt.DisplayRole or role == Qt.EditRole) and self.templateObject:
+        if (role == Qt.DisplayRole or role == Qt.EditRole):
             if column == 0 or column == 4:
-                return self.templateObject.attributes.items()[row][1].getList()[column]
+                return self.attributes.items()[row][1].getList()[column]
+            
+    def index(self, row, column, parent):
+        if row < 0 or column < 0:
+            return QModelIndex()
+        if row >= self.rowCount() or column >= self.columnCount():
+            return QModelIndex()
+        internalPointer = self.attributes.items()[row][1].getList()[column]
+        return self.createIndex(row, column, internalPointer)

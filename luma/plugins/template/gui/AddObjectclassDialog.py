@@ -10,12 +10,16 @@ from .AddObjectclassDialogDesign import Ui_AddObjectclassDialog
 
 class AddObjectclassDialog(QDialog, Ui_AddObjectclassDialog):
     
-    def __init__(self, ocai):
+    def __init__(self, ocai, templateObject):
         QDialog.__init__(self)
         self.setupUi(self)
         
         self.ocai = ocai
-        list = self.ocai.getObjectClasses()
+        objectclassesList = templateObject.objectclasses
+        list = []
+        for objectclasses in self.ocai.getObjectClasses():
+            if not objectclasses in objectclassesList:
+                list.append(objectclasses)
         list.sort(key = str.lower)
         self.listWidgetObjectclasses.addItems(list)
         

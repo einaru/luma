@@ -87,6 +87,7 @@ class TemplateWidget(QWidget, Ui_TemplateWidget):
             self.setObjectclasses()
             self.setAttributes()
             self.tableViewAttributes.resizeColumnsToContents()
+            self.tableViewAttributes.resizeRowsToContents()
 
     def setObjectclasses(self):
         templateObject = self.getSelectedTemplateObject()
@@ -100,7 +101,7 @@ class TemplateWidget(QWidget, Ui_TemplateWidget):
             self.attributeTM.setTemplateObject(templateObject)
             
     def loadServerMeta(self, serverName):
-        serverName = str(serverName)
+        serverName = unicode(serverName)
         if not (serverName in self.preloadedServerMeta.keys()):
             serverMeta = self._serverList.getServerObject(serverName)
             self.preloadedServerMeta[serverName] = ObjectClassAttributeInfo(serverMeta)
@@ -201,21 +202,56 @@ class TemplateWidget(QWidget, Ui_TemplateWidget):
 
     def addObjectclass(self):
         server = self.labelServerName.text()
-        dialog = AddObjectclassDialog(self.loadServerMeta(server))
+        dialog = AddObjectclassDialog(self.loadServerMeta(server), self.getSelectedTemplateObject())
         if dialog.exec_():
             for i in dialog.listWidgetObjectclasses.selectedIndexes():
                 item = dialog.listWidgetObjectclasses.itemFromIndex(i)
                 self.objectclassTM.insertRow(str(item.text()))
+                
+        self.refreshMustAttributes()
 
     def deleteObjectclass(self):
         self.objectclassTM.removeRows(self.listViewObjectclasses.selectedIndexes())
+        self.refreshMayAttributes()
+        self.refreshMustAttributes()
+        
+    
+    def refreshMustAttributes(self):
+        tO = self.getSelectedTemplateObject()
+        for attr in tO.attributes.values():
+            if attr.must:
+                self.attributeTM.removeAlways(attr)
+                
+        
+        server = self.labelServerName.text()
+        ocai = self.loadServerMeta(server)
+        attributeNameList = ocai.getAllMusts(tO.objectclasses)
+        for name in attributeNameList:
+            single = ocai.isSingle(name)
+            binary = ocai.isBinary(name)
+            self.attributeTM.addRow(name, True, single, binary, "")
+            
+    def refreshMayAttributes(self):
+        tO = self.getSelectedTemplateObject()
+        server = self.labelServerName.text()
+        ocai = self.loadServerMeta(server)
+        attributeNameList = ocai.getAllMays(tO.objectclasses)
+        for attr in tO.attributes.items():
+            if (not attr[1].must) and (not attr[0] in attributeNameList):
+                self.attributeTM.removeAlways(attr[1])
 
     def addAttribute(self):
         server = self.labelServerName.text()
         dialog = AddAttributeDialog(self.loadServerMeta(server), self.getSelectedTemplateObject())
         if dialog.exec_():
-            #for i in dialog.listView
-            pass
+            for i in dialog.tableView.selectedIndexes():
+                if(i.column() == 0):
+                    a = dialog.attributeTM.getAttribute(i)
+                    self.attributeTM.addRow(a.attributeName, a.must, a.single, a.binary, a.defaultValue)
+                    
+        self.tableViewAttributes.resizeRowsToContents()
+                    
+            
 
     def deleteAttributes(self):
         self.attributeTM.removeRows(self.tableViewAttributes.selectedIndexes())
