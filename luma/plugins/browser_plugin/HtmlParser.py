@@ -118,7 +118,6 @@ class HtmlParser:
                         if rdnClass in self.smartObject.getAttributeListForObjectClass(y):
                             allowDelete = True
                             break
-            
             if allowDelete and (not (x == 'top')):
                 deleteName = x + "__delete\""
                 tmpList.append(""" <a href=\"""" + deleteName + """><img source=":/icons/deleteEntry"></a>""")
