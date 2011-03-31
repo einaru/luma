@@ -158,7 +158,7 @@ class SearchPlugin(QWidget, Ui_SearchPlugin):
         self.right.tabCloseRequested[int].connect(self.onTabClose)
         # Filter Builder signals and slots
         self.filterBuilder.filterSaved.connect(self.loadFilterBookmarks)
-        self.filterBuilder.useFilterRequest.connect(self.searchForm.setAndUseFilter)
+        self.filterBuilder.useFilterRequest.connect(self.onUseFilterRequested)
         # Search Form signals and slots
         self.searchForm.searchButton.clicked.connect(self.onSearchButtonClicked)
         self.searchForm.filterBuilderToolButton.clicked.connect(self.onFilterBuilderButtonClicked)
@@ -267,11 +267,25 @@ class SearchPlugin(QWidget, Ui_SearchPlugin):
         if self.autocompleteIsEnabled:
             self.searchForm.initAutoComplete(attributes)
 
+    def onUseFilterRequested(self, filter):
+        """Slot for the useFilterRequested signal in the filter builder.
+        """
+        # We want to set the filter as the selected filter in the
+        # search form, and switch to the search form, but _not_ do the
+        # search automatically. We might want to give the search button
+        # focus though.
+        self.searchForm.filterBoxEdit.insertItem(0, filter)
+        self.searchForm.filterBoxEdit.setCurrentIndex(0)
+        self.left.setCurrentIndex(0)
+        self.searchForm.searchButton.setFocus()
+
     def onFilterBuilderButtonClicked(self):
         """Slot for the filter builder tool button.
         
-        Display the filter builder.
+        Display the filter builder with the current filter.
         """
+        current = encodeUTF8(self.searchForm.filterBoxEdit.currentText())
+        self.filterBuilder.filterEdit.setPlainText(current)
         self.left.setCurrentIndex(1)
 
     def onSearchButtonClicked(self):
@@ -369,11 +383,12 @@ class SearchPlugin(QWidget, Ui_SearchPlugin):
         """
         self.left.setTabToolTip(self.indexSF, qApp.translate("SearchPlugin", "Search Form"))
         self.left.setTabToolTip(self.indexFB, qApp.translate("SearchPlugin", "Filter Builder"))
+        
         if all:
             self.retranslateUi(self)
             for tab in self.right.children():
                 try:
-                    tab.retransalte()
+                    tab.retranslate()
                 except AttributeError:
                     pass
 

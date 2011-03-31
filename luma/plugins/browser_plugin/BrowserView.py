@@ -524,7 +524,7 @@ class BrowserView(QWidget):
         
         @param scope:
             The scope selection.
-            0 = SCOPE_BASE -> Item(s); 
+            0 = SCOPE_BASE -> Item(s);
             1 = SCOPE_ONELEVEL -> Subtree(s); 
             2 = SCOPE_SUBTREE -> Subtree(s) with parent 
         """

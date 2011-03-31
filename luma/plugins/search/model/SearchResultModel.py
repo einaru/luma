@@ -26,7 +26,51 @@
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 """
 from PyQt4 import QtCore
+from PyQt4.QtCore import (QAbstractTableModel)
 from PyQt4.QtGui import (QStandardItemModel)
+
+class ResultViewModel(QAbstractTableModel):
+    """
+    """
+    
+    def __init__(self, parent=None):
+        """
+        """
+        super(ResultViewModel, self).__init__(parent)
+        self.resultdata = {}
+
+    def removeRow(self):
+        """
+        """
+        pass
+    
+    def rowCount(self, parent=QtCore.QModelIndex()):
+        pass
+    
+    def columnCount(self, parent=QtCore.QModelIndex()):
+        pass
+    
+    def headerData(self, section, orientation, role):
+        """
+        """
+        pass
+
+    def flags(self, index):
+        if not index.isValid():
+            return QtCore.QVariant()
+        else:
+            return QtCore.Qt.ItemIsSelectable | QtCore.Qt.ItemIsEnabled
+    
+    def data(self, index, role=QtCore.Qt.DisplayRole):
+        """
+        """
+        pass
+    
+    def index(self, row, column, parnet):
+        """
+        """
+        pass
+
 
 class ResultItemModel(QStandardItemModel):
     """The model for the Search plugin Result View

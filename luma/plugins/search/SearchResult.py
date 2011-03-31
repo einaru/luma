@@ -65,6 +65,7 @@ class ResultView(QWidget):
         self.resultview.setRootIsDecorated(False)
         self.resultview.setAlternatingRowColors(True)
         self.resultview.setSortingEnabled(True)
+        
         self.resultview.setModel(self.proxymodel)
 
         # For right-click context menu
@@ -248,7 +249,7 @@ class ResultView(QWidget):
             self.filterBox.setVisible(False)
             self.resultview.setFocus()
 
-    def onFilterInputChanged(self, filter):
+    def onFilterInputChanged(self, filter=''):
         """Slot for the filter input in the result filter widget.
         
         We get the selected syntax from the syntax combobox
@@ -268,7 +269,7 @@ class ResultView(QWidget):
         self.proxymodel.setFilterRegExp(regex)
 
     def onFilterColumnChanged(self, index):
-        """Slot for the coumnt combobox in the filter box widget.
+        """Slot for the column combobox in the filter box widget.
         """
         self.proxymodel.setFilterKeyColumn(index)
 

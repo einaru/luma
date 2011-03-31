@@ -67,7 +67,7 @@ def getConfigPrefix():
     success = True
 
     __platform = platform.system()
-    __validate(__platform)
+    #__validate(__platform)
     if __platform == "Linux":
         # Best practise config storage on Linux:
         # ~/.config/luma

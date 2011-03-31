@@ -24,7 +24,7 @@ import os
 from PyQt4 import QtCore
 from PyQt4.QtGui import (QWidget, QTextCursor)
 
-from .gui.FilterBuilderDesign import Ui_FilterBuilder 
+from .gui.FilterBuilderDesign import Ui_FilterBuilder
 from .Search import (encodeUTF8, PluginSettings)
 
 class FilterBuilder(QWidget, Ui_FilterBuilder):
@@ -64,7 +64,7 @@ class FilterBuilder(QWidget, Ui_FilterBuilder):
 
     filterSaved = QtCore.pyqtSignal(name='filterSaved')
     useFilterRequest = QtCore.pyqtSignal('QString', name='useFilterRequest')
-    
+
     __logger = logging.getLogger(__name__)
 
     def __init__(self, objectClasses=[], attributes=[], parent=None):
@@ -79,7 +79,7 @@ class FilterBuilder(QWidget, Ui_FilterBuilder):
         self.filterTypeBox.addItems(self.filterTypes)
         self.__populateSpecialCharBox()
         self.__connectSlots()
-        
+
         # Force populate the object class options as this is the one
         # selected on default
         self.setOptions(objectClass=True)
@@ -179,8 +179,8 @@ class FilterBuilder(QWidget, Ui_FilterBuilder):
         correct object classes and attributes, when build a filter.
         """
         self.objectClassOptions = ['*']
-        self.objectClassOptions.extend(objectClasses)
-        self.attributeOptions = attributes
+        self.objectClassOptions.extend(sorted(objectClasses, key=str.lower))
+        self.attributeOptions = sorted(attributes, key=str.lower)
         self.setOptions(self.rbObjectClass.isChecked())
 
     def onAttributeButtonToggled(self, bool):
@@ -192,11 +192,11 @@ class FilterBuilder(QWidget, Ui_FilterBuilder):
     def onObjectClassButtonToggled(self, bool):
         """Slot for the object class radio button.
         """
-        self.setOptions(objectClass=bool)        
+        self.setOptions(objectClass=bool)
         self.assertionEdit.setDisabled(bool)
         self.filterTypeBox.setDisabled(bool)
         self.insertButton.setEnabled(True)
-        
+
     def onAssertionChanged(self, text):
         """Slot for the assertion edit widget.
         
@@ -271,12 +271,12 @@ class FilterBuilder(QWidget, Ui_FilterBuilder):
         If the assertion line edit widget is empty all we do is insert,
         the | operator:
             
-            (|)
+            (|(<cursor>))
         
         If is not empty er need to insert it and properly escape the
         text already present:
         
-            ...(|(<selected text>)...
+            ...(|(<selected text>)<cursor>...
         
         """
         cursor = self.filterEdit.textCursor()
@@ -344,13 +344,13 @@ class FilterBuilder(QWidget, Ui_FilterBuilder):
         # Try to save the file.
         with open(filterFile, flag) as f:
             f.write('{0}\n'.format(filterToSave))
-        
+
         # We emit the filterSaved signal after the file is closed
         self.filterSaved.emit()
         # Disable the save button so we limit the number of
         # duplicate entries in the filters file. 
         self.saveButton.setEnabled(False)
-    
+
     def onClearButtonClicked(self):
         """Slot for the clear button
         

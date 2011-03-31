@@ -35,20 +35,20 @@ class SearchForm(QWidget, Ui_SearchForm):
         'SCOPE_ONELEVEL',
         'SCOPE_SUBTREE'
     ]
-    
+
     def __init__(self, parent=None):
         super(SearchForm, self).__init__(parent)
         self.setupUi(self)
         self.scopeBox.addItems(self.availableScopes)
         self.__connectSlots()
-    
+
     def __connectSlots(self):
         """Connect signals and slots.
         """
         self.filterBoxEdit.currentIndexChanged['QString'].connect(self.onSearchCriteriaChanged)
         self.filterBoxEdit.editTextChanged['QString'].connect(self.onSearchCriteriaChanged)
         self.filterBoxEdit.lineEdit().returnPressed.connect(self.searchButton.animateClick)
-    
+
     def __escape(self, text):
         """FIXME: Dummy escaping
         """
@@ -57,7 +57,7 @@ class SearchForm(QWidget, Ui_SearchForm):
         if not text.endswith(')'):
             text = '{0})'.format(text)
         return text
-    
+
     def onSearchCriteriaChanged(self, text):
         """Slot for the search edit widget
         
@@ -65,7 +65,7 @@ class SearchForm(QWidget, Ui_SearchForm):
         search button is disabled. If not it is enabled.
         """
         self.searchButton.setDisabled(text == '')
-    
+
     def populateBaseDNBox(self, baseDNList=[]):
         """Populate the base DN combo box with a available base DNs.
         
@@ -77,7 +77,7 @@ class SearchForm(QWidget, Ui_SearchForm):
         if not baseDNList is None:
             for x in baseDNList:
                 self.baseDNBox.addItem(x)
-    
+
     def populateFilterBookmarks(self, filterBookmarks):
         """Populates the search edit combobox with saved search
         filters.
@@ -113,19 +113,19 @@ class SearchForm(QWidget, Ui_SearchForm):
     @property
     def server(self):
         return encodeUTF8(self.serverBox.currentText())
-    
+
     @property
     def baseDN(self):
         return encodeUTF8(self.baseDNBox.currentText())
-    
+
     @property
     def scope(self):
         return self.scopeBox.currentIndex()
-    
+
     @scope.setter
     def scope(self, index):
         self.scopeBox.setCurrentIndex(index)
-    
+
     @property
     def sizeLimit(self):
         return self.sizeLimitSpinBox.value()

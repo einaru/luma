@@ -161,7 +161,7 @@
         <bool>true</bool>
        </property>
        <property name="toolTip">
-        <string>Open the Filter Builder</string>
+        <string>Edit with the Filter Builder</string>
        </property>
        <property name="text">
         <string>...</string>

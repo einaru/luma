@@ -42,7 +42,7 @@ class AbstractLumaPlugin(QWidget):
     """Abstract Luma plugin.
     """
     
-    def __init__(self, parent=None, *args, **kwargs, ):
+    def __init__(self, parent=None, *args, **kwargs):
         super(AbstractLumaPluginSettings, self).__init__(parent, args, kwargs)
 
     def retranslate(self):
