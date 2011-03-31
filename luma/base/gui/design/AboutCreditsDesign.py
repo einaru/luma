@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file '/mnt/debris/devel/git/luma/resources/forms/AboutCreditsDesign.ui'
+# Form implementation generated from reading ui file '/home/einar/Desktop/luma-release-tagging/resources/forms/AboutCreditsDesign.ui'
 #
-# Created: Tue Mar 22 03:31:18 2011
+# Created: Thu Mar 31 18:03:26 2011
 #      by: PyQt4 UI code generator 4.7.4
 #
 # WARNING! All changes made in this file will be lost!

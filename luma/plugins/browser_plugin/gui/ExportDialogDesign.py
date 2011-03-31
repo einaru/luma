@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file '/mnt/debris/devel/git/luma/resources/forms/plugins/browser_plugin/ExportDialogDesign.ui'
+# Form implementation generated from reading ui file '/home/einar/Desktop/luma-release-tagging/resources/forms/plugins/browser_plugin/ExportDialogDesign.ui'
 #
-# Created: Thu Mar 24 08:50:46 2011
+# Created: Thu Mar 31 18:03:27 2011
 #      by: PyQt4 UI code generator 4.7.4
 #
 # WARNING! All changes made in this file will be lost!
@@ -99,17 +99,26 @@ class Ui_ExportDialog(object):
         self.line.setFrameShadow(QtGui.QFrame.Sunken)
         self.line.setObjectName("line")
         self.gridLayout_2.addWidget(self.line, 3, 0, 1, 1)
+        self.formatLabel.setBuddy(self.formatBox)
+        self.outputLabel.setBuddy(self.outputEdit)
 
         self.retranslateUi(ExportDialog)
         QtCore.QObject.connect(self.exportButton, QtCore.SIGNAL("clicked()"), ExportDialog.export)
         QtCore.QObject.connect(self.cancelButton, QtCore.SIGNAL("clicked()"), ExportDialog.cancel)
         QtCore.QObject.connect(self.fileButton, QtCore.SIGNAL("clicked()"), ExportDialog.openFileDialog)
         QtCore.QObject.connect(self.formatBox, QtCore.SIGNAL("currentIndexChanged(QString)"), ExportDialog.onFormatChanged)
+        QtCore.QObject.connect(self.outputEdit, QtCore.SIGNAL("returnPressed()"), self.exportButton.click)
         QtCore.QMetaObject.connectSlotsByName(ExportDialog)
+        ExportDialog.setTabOrder(self.formatBox, self.outputEdit)
+        ExportDialog.setTabOrder(self.outputEdit, self.fileButton)
+        ExportDialog.setTabOrder(self.fileButton, self.scrollArea)
+        ExportDialog.setTabOrder(self.scrollArea, self.exportItemView)
+        ExportDialog.setTabOrder(self.exportItemView, self.cancelButton)
+        ExportDialog.setTabOrder(self.cancelButton, self.exportButton)
 
     def retranslateUi(self, ExportDialog):
         ExportDialog.setWindowTitle(QtGui.QApplication.translate("ExportDialog", "Export items", None, QtGui.QApplication.UnicodeUTF8))
-        self.infoLabel.setText(QtGui.QApplication.translate("ExportDialog", "<p>All checked items will be exported to the format of your choice. You can uncheck items from the list if you don\'t want them to be exported. Press <span style=\" font-weight:600;\">Export</span> to start exporting.</p>", None, QtGui.QApplication.UnicodeUTF8))
+        self.infoLabel.setText(QtGui.QApplication.translate("ExportDialog", "<p>All checked items will be exported to the format of your choice. You can uncheck items from the list if you don\'t want them to be exported. Click <span style=\" font-weight:600;\">Export</span> to start exporting.</p>", None, QtGui.QApplication.UnicodeUTF8))
         self.formatLabel.setText(QtGui.QApplication.translate("ExportDialog", "Export format:", None, QtGui.QApplication.UnicodeUTF8))
         self.formatBox.setItemText(0, QtGui.QApplication.translate("ExportDialog", "LDIF", None, QtGui.QApplication.UnicodeUTF8))
         self.formatBox.setItemText(1, QtGui.QApplication.translate("ExportDialog", "DSML", None, QtGui.QApplication.UnicodeUTF8))
