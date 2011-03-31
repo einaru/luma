@@ -12,8 +12,8 @@ import ldap
 import ldapurl
 import ldap.modlist
         
-from PyQt4.QtGui import qApp
-from PyQt4.QtGui import QCursor
+from PyQt4.QtGui import qApp, QInputDialog, QLineEdit, QApplication
+from PyQt4.QtGui import QMessageBox
 from PyQt4.QtCore import Qt
         
 try:
@@ -26,13 +26,13 @@ import threading
 import time
 import logging
 
-from base.backend.ServerObject import ServerObject, ServerCheckCertificate, ServerEncryptionMethod, ServerAuthMethod
-from base.backend.SmartDataObject import SmartDataObject
-from PyQt4.QtGui import QMessageBox
+from ..backend.ServerObject import (ServerObject, ServerCheckCertificate,
+                                    ServerEncryptionMethod, ServerAuthMethod)
+from ..backend.SmartDataObject import SmartDataObject
 
-# TODO
 #from base.backend.LumaSSLConnection import hasSSLlibrary
-#from base.utils.gui.PromptPasswordDialog import PromptPasswordDialog
+hasSSLlibrary = False
+
 #from base.gui.UnknownCertDialog import UnknownCertDialog
 
 
@@ -55,8 +55,8 @@ class LumaConnection(object):
     """
 
     # For storing prompted passwords
-    _passwordMap = {}
-    _certMap = {}
+    __passwordMap = {}
+    __certMap = {}
     
     def __init__(self, serverObject=None):
         # Throw exception if no ServerObject is passed.
@@ -115,7 +115,7 @@ class LumaConnection(object):
                     #x = copy.deepcopy(x)
                     #SmartDataObject(x, self.serverObject)
                     #resultList.append(SmartDataObject(x, self.serverObject))
-                resultList = [SmartDataObject(x, self.serverObject) for x in resultList]
+                resultList = [SmartDataObject(x, self.serverObject) for x in workerThread.result]
                 
                 #environment.setBusy(False)
                 #environment.displaySizeLimitWarning()
@@ -146,10 +146,10 @@ class LumaConnection(object):
         workerThread.start()
         
         #Should probably be done by the calling method instead
-        self.setBusy(True)
+        #self.setBusy(True)
         while not workerThread.FINISHED:
             self.whileWaiting()
-        self.setBusy(False)
+        #self.setBusy(False)
         
         if None == workerThread.exceptionObject:
             message = "LDAP object " + dnDelete + " successfully deleted."
@@ -178,10 +178,10 @@ class LumaConnection(object):
         workerThread.start()
         
         #Should probably be done by the calling method instead
-        self.setBusy(True)
+        #self.setBusy(True)
         while not workerThread.FINISHED:
             self.whileWaiting()
-        self.setBusy(False)
+        #self.setBusy(False)
         
         if None == workerThread.exceptionObject:
             message = "LDAP object " + dn + " successfully modified."
@@ -208,10 +208,10 @@ class LumaConnection(object):
         workerThread.start()
         
         #Should probably be done by the calling method instead
-        self.setBusy(True)
+        #self.setBusy(True)
         while not workerThread.FINISHED:
             self.whileWaiting()
-        self.setBusy(False)
+        #self.setBusy(False)
         
         if None == workerThread.exceptionObject:
             message = "LDAP object " + dn + " successfully added."
@@ -260,34 +260,32 @@ class LumaConnection(object):
         # Prompt user to continue if we suspect that the certificate could not
         # be verified
         if self._cert_error(workerThread):
+            svar = QMessageBox.No
             if hasSSLlibrary:
-                dialog = UnknownCertDialog(self.serverObject)
-                accepted = UnknownCertDialog.Accepted
+                pass
+                # TODO
+                #dialog = UnknownCertDialog(self.serverObject)
+                #accepted = UnknownCertDialog.Accepted
             else:
-                dialog = QMessageBox("Certificate error",
-                        "Do you want to continue anyway?",
-                        QMessageBox.Question,
-                        QMessageBox.Yes,
-                        QMessageBox.No,
-                        QMessageBox.NoButton,
-                        None)
-                accepted = 3
-
-            #environment.setBusy(False)
-            dialog.exec_loop()
-            if dialog.result() == accepted:
-                self.serverObject.checkServerCertificate = u"never"
-                LumaConnection._certMap[self.serverObject.name] = u"never"
+                # If checkServerCertificate isn't "never" ask to set it
+                if not self.serverObject.checkServerCertificate == ServerCheckCertificate.Never:
+                    svar = QMessageBox.question(None, QApplication.translate("LumaConnection","Certificate error"), 
+                                     QApplication.translate("LumaConnection","Do you want to continue anyway?"), 
+                                     QMessageBox.Yes|QMessageBox.No, QMessageBox.No)
+                    
+            if svar == QMessageBox.Yes:
+                self.serverObject.checkServerCertificate = ServerCheckCertificate.Never
+                LumaConnection.__certMap[self.serverObject.name] = ServerCheckCertificate.Never
                 workerThread = self.__bind()
 
         # Prompt for password on _invalid_pwd or _blank_pwd
         if self._invalid_pwd(workerThread) or self._blank_pwd(workerThread):
-            dialog = PromptPasswordDialog()
-            #environment.setBusy(False)
-            dialog.exec_loop()
-            if dialog.result() == 1:
-                self.serverObject.bindPassword = unicode(dialog.passwordEdit.text())
-                LumaConnection._passwordMap[self.serverObject.name] = self.serverObject.bindPassword
+            qApp.setOverrideCursor(Qt.ArrowCursor) #Put the mouse back to normal for the dialog (if needed)
+            pw, ret = QInputDialog.getText(None, QApplication.translate("LumaConnection","Password"), QApplication.translate("LumaConnection","Invalid passord. Enter new:"), mode=QLineEdit.Password)
+            qApp.restoreOverrideCursor()
+            if ret:
+                self.serverObject.bindPassword = unicode(pw)
+                LumaConnection.__passwordMap[self.serverObject.name] = self.serverObject.bindPassword
                 workerThread = self.__bind()
 
         if workerThread.exceptionObject == None:
@@ -301,12 +299,12 @@ class LumaConnection(object):
             self.logger.error(message)
             # If credentials are still wrong after prompting, remove from passwordmap
             if self._override_pwd(self.serverObject) and self._invalid_pwd(workerThread):
-                LumaConnection._passwordMap.pop(self.serverObject.name)
+                LumaConnection.__passwordMap.pop(self.serverObject.name)
             return (False, workerThread.exceptionObject)
 
     def __bind(self):
         if self._override_pwd(self.serverObject):
-            self.serverObject.bindPassword = LumaConnection._passwordMap[self.serverObject.name]
+            self.serverObject.bindPassword = LumaConnection.__passwordMap[self.serverObject.name]
         if self._ignore_cert(self.serverObject):
             self.serverObject.checkServerCertificate = u"never"
 
@@ -314,18 +312,18 @@ class LumaConnection(object):
         workerThread.start()
         
         #Should probably be done by the calling method instead
-        self.setBusy(True)
+        #self.setBusy(True)
         while not workerThread.FINISHED:
             self.whileWaiting()
-        self.setBusy(False)
+        #self.setBusy(False)
         
         return workerThread
         
     # Internal helper functions with semi self explaining names
     def _ignore_cert(self, serverObject):
-        return LumaConnection._certMap.has_key(serverObject.name)
+        return LumaConnection.__certMap.has_key(serverObject.name)
     def _override_pwd(self, serverObject):
-        return LumaConnection._passwordMap.has_key(serverObject.name)
+        return LumaConnection.__passwordMap.has_key(serverObject.name)
     def _cert_error(self, workerThread):
         # With SSL enabled, we get a SERVER_DOWN on wrong certificate
         # With TLS enabled, we get a CONNECT_ERROR on wrong certificate
@@ -422,7 +420,7 @@ class LumaConnection(object):
         if None == dnList:
             message = "Could not retrieve Base DNs from server. Unknown server type."
             self.logger.error(message)
-            return (False, None, "Unknown server type")
+            return (False, None, [{"desc":"Unknown server type"}])
         else:
             message = "Base DNs successfully retrieved from server."
             self.logger.info(message)
@@ -449,11 +447,13 @@ class LumaConnection(object):
         time.sleep(0.05)
         
     def setBusy(self, bool):
+        # Do nothing -- should be done by the caller if needed
+        """
         if bool:
             qApp.setOverrideCursor(Qt.WaitCursor)
         else:
             qApp.restoreOverrideCursor()
-
+        """
 class WorkerThreadSearch(threading.Thread):
         
     def __init__(self, serverObject):
@@ -637,7 +637,7 @@ class WorkerThreadBind(threading.Thread):
                 self.ldapServerObject.simple_bind_s(whoVal, credVal)
             elif not self.serverObject.authMethod == ServerAuthMethod.Simple:
                 sasl_cb_value_dict = {}
-                if not ServerAuthMethod.SASL_GSSLAPI == self.serverObject.authMethod:
+                if not ServerAuthMethod.SASL_GSSAPI == self.serverObject.authMethod:
                     sasl_cb_value_dict[ldap.sasl.CB_AUTHNAME] = whoVal
                     sasl_cb_value_dict[ldap.sasl.CB_PASS] = credVal
                     
@@ -650,7 +650,7 @@ class WorkerThreadBind(threading.Thread):
                     sasl_mech = "DIGEST-MD5"
                 elif self.serverObject.authMethod == ServerAuthMethod.SASL_LOGIN:
                     sasl_mech = "LOGIN"
-                elif self.serverObject.authMethod == ServerAuthMethod.SASL_GSSLAPI:
+                elif self.serverObject.authMethod == ServerAuthMethod.SASL_GSSAPI:
                     sasl_mech = "GSSAPI"
                 elif self.serverObject.authMethod == ServerAuthMethod.SASL_EXTERNAL:
                     sasl_mech = "EXTERNAL"

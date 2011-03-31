@@ -12,15 +12,15 @@ import ldap
 import ldif
 import dsml
 import copy
-import base64
+import logging
 from cStringIO import StringIO
 from sets import Set
 
-from base.backend.ObjectClassAttributeInfo import ObjectClassAttributeInfo
-from base.util import stripSpecialChars
-from base.util import escapeSpecialChars
-from base.util import isBinaryAttribute
-from base.util import explodeDN
+from ..backend.ObjectClassAttributeInfo import ObjectClassAttributeInfo
+from ..util import stripSpecialChars
+from ..util import escapeSpecialChars
+from ..util import isBinaryAttribute
+from ..util import explodeDN
 
 class SmartDataObject (object):
 
@@ -30,12 +30,16 @@ class SmartDataObject (object):
                     "solarisbindpassword"]
 
     def __init__(self, data, serverMeta):
+        
         self.doSchemaChecks = True
         self.isValid = False
         self.checkErrorMessageList = ["No error checking done yet."]
         
         self.dn = data[0]
         self.data = data[1]
+        
+        self.logger = logging.getLogger(__name__)
+
         
         # This is the string representing our key for the objectclasses.
         # Important for lower- and uppercase variants
@@ -51,7 +55,17 @@ class SmartDataObject (object):
         # Set schema for current server
         self.serverSchema = ObjectClassAttributeInfo(serverMeta)
         
-        #self.checkIntegrity()
+        self.checkIntegrity()
+        
+        
+    def updateOnServer(self):
+        from base.backend.LumaConnection import LumaConnection
+        self.logger.debug("Updating smartobject on server")
+        l = LumaConnection(self.serverMeta)
+        l.bind()
+        l.updateDataObject(self)
+        l.unbind()
+        self.logger.debug("Done")
         
 ###############################################################################
 

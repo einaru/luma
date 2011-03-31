@@ -22,11 +22,11 @@ class BaseSelector(QDialog, Ui_BaseSelectorDesign):
         self.connection = None
         
     def addBase(self):
-        tmpBase = unicode(self.baseEdit.text()).strip()
+        tmpBase = unicode(self.baseDNEdit.text()).strip()
         if tmpBase == u"":
             return      
         self.baseView.addItem(QtGui.QListWidgetItem(tmpBase))
-        self.baseEdit.clear()
+        self.baseDNEdit.clear()
         
 
     def deleteBase(self):

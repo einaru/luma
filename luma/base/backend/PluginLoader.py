@@ -5,7 +5,6 @@ import imp
 from os import path
 import logging
 import sys
-
 from PyQt4 import QtGui
 
 class PluginLoader(object):
@@ -20,32 +19,26 @@ class PluginLoader(object):
     
     _logger = logging.getLogger(__name__)
     
-    def __init__(self, lumaInstallationPrefix = ".", pluginsToLoad = []):
-        
+    def __init__(self, pluginsToLoad = []):
         self._pluginsToLoad = pluginsToLoad
         self._plugins = [] #PluginObjects
-        self._lumaInstallationPrefix = lumaInstallationPrefix
-        self._pluginsBaseDir = path.join(lumaInstallationPrefix, "plugins")
-        """self._pluginsBaseDir = path.join(lumaInstallationPrefix,
-            "lib", "luma", "plugins")"""
         self._changed = True
-    
-            
-###############################################################################
+        
+        #os.path.split - array of two elements, path + file
+        #os.path.join - joins the path and "../.."
+        #os.path.abspath - makes a "abspath" out of the entire path
+        self._pluginsBaseDir = path.abspath(path.join(path.split(__file__)[0],
+                                                      "../../plugins"))
 
     @property
     def pluginsToLoad(self):
         return self._pluginsToLoad
-
-###############################################################################
 
     @pluginsToLoad.setter
     def pluginsToLoad(self, value):
         self._changed = True
         self._pluginsToLoad = value
 
-###############################################################################
-    
     @property   
     def plugins(self):
         """
@@ -56,11 +49,8 @@ class PluginLoader(object):
             self.__loadPlugins()
             self._changed = False
         
-       
         return self._plugins
     
-###############################################################################
-
     def __loadPlugins(self):
         """
         Will load all plugins that was found from the "__findPluginDirectories()".
@@ -68,7 +58,11 @@ class PluginLoader(object):
         
         self._plugins = []
         
-        for x in self.__findPluginDirectories():
+        pluginDirs = self.__findPluginDirectories()
+        if not pluginDirs:
+            return
+
+        for x in pluginDirs:
             if x == "CVS" or x == ".svn" or x == ".git":
                 continue
         
@@ -79,8 +73,6 @@ class PluginLoader(object):
                 errorString = "Plugin \"" + str(x) + "\" gave an exception: \n"
                 errorString += str(y)
                 self._logger.error(errorString)
-                
-###############################################################################
 
     def __findPluginDirectories(self):
         """
@@ -104,8 +96,6 @@ class PluginLoader(object):
             errorString += str(errorData)
             self._logger.error(errorString)
 
-############################################################################### 
-    
     def __readMetaInfo(self, pluginName):
         """
         Reads meta information for a plugin by its directory.
@@ -147,12 +137,7 @@ class PluginLoader(object):
                 missingAttributes.append(x)
         
         if len(missingAttributes) > 0:
-            errorString = "Loaded module \"" + pluginName + "\" is not a Luma plugin. \n"
-            errorString += "The following attributes are missing: \n"
-            for x in missingAttributes:
-                errorString += "\t" + x + "\n"
-                errorString = errorString + x + " "
-            errorString = errorString + "\n"
+            errorString = "Loaded module \"" + pluginName + "\" is not a Luma plugin. Attributes are missing! \n"
             raise PluginMetaError, errorString
             
         plugin.pluginName = importedModule.pluginName
@@ -161,12 +146,10 @@ class PluginLoader(object):
         plugin.version = importedModule.version
         plugin.getPluginWidget = importedModule.getPluginWidget
         plugin.getPluginSettingsWidget = importedModule.getPluginSettingsWidget
-            
-        iconPath = path.join(self._lumaInstallationPrefix, "share", 
-                 "luma", "icons", "plugins", pluginName)
-                                
-        icon = importedModule.getIcon(iconPath)
-        plugin.icon = icon
+        try:
+            plugin.icon = importedModule.getIcon()
+        except Exception, e:
+            self._logger.error("Plugin \""+plugin.pluginName+"\" gave error: "+str(e))
         
         if self._pluginsToLoad == 'ALL':
             plugin.load = True
@@ -175,10 +158,7 @@ class PluginLoader(object):
                 if plugin.pluginName == ptl:
                     plugin.load = True
                     break
-           
         return plugin
-            
-###############################################################################
 
 class PluginMetaError(Exception):
     """

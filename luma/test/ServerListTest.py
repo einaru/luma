@@ -9,8 +9,7 @@ as well as to add, get and delete objects from it.
 import unittest
 from base.backend.ServerList import ServerList
 from base.backend.ServerObject import ServerObject
-import test
-import os
+import tempfile
 import logging
 
 class SLTest(unittest.TestCase):
@@ -20,8 +19,8 @@ class SLTest(unittest.TestCase):
     """
     def setUp(self):
         #print "setUp"
-        self.sl = ServerList(os.curdir)
-        #self.sl._configFile = os.path.join(self.sl._configPrefix, "serverlist.xml")
+        self.sl = ServerList(tempfile.gettempdir(), "serverlisttest.xml")
+        #self.sl.__configFile = os.path.join(self.sl._configPrefix, "serverlist.xml")
 
     def tearDown(self):
         pass
@@ -33,7 +32,7 @@ class SLTest(unittest.TestCase):
     def writeList(self):
         #print "writeList"
         try:
-            f = open(self.sl._configFile, "w")
+            f = open(self.sl.getConfigFilePath(), "w")
             f.write("""
 <!DOCTYPE LumaServerFile>
 <LumaServerList version="1.2">
@@ -59,7 +58,7 @@ class SLTest(unittest.TestCase):
             f.close()
         except IOError:
             print "----------------------"
-            print "WRITE DO DISK FAILED!"
+            print "WRITE TO DISK FAILED!"
             print "----------------------"
             raise
        
@@ -117,7 +116,8 @@ class SLTest(unittest.TestCase):
         self.sl.setTable([self.getEmptyServerObject()])
         self.sl.writeServerList()
         
-        f = open(self.sl._configFile, "r")
+
+        f = open(self.sl.getConfigFilePath(), "r")
         s = """
 <!DOCTYPE LumaServerFile>
 <LumaServerList version="1.2">

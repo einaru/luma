@@ -16,26 +16,26 @@ class ServerTreeItem(AbstractLDAPTreeItem):
     
     logger = logging.getLogger(__name__)
 
-    def __init__(self, data, serverMeta=None, parent=None):
+    def __init__(self, data, serverMeta, parent):
         AbstractLDAPTreeItem.__init__(self, parent)
+        
         self.itemData = data
         self.serverMeta = serverMeta
-        self.rootItem = parent
 
     def columnCount(self):
         return len(self.itemData)
 
     def data(self, column, role):
         if role != QtCore.Qt.DisplayRole and role != QtCore.Qt.DecorationRole:
-            return QtCore.QVariant()
+            return None
         
         if role == QtCore.Qt.DecorationRole:
-            return QIcon(QPixmap(":/images/server.png"))
+            return QIcon(QPixmap(":/icons/network-server"))
         else:
             return self.itemData[column]
 
     def smartObject(self):
-        return self.itemData[1]
+        return None
     
     def fetchChildList(self):
         """
@@ -53,8 +53,9 @@ class ServerTreeItem(AbstractLDAPTreeItem):
             bindSuccess, exceptionObject = connection.bind()
             if not bindSuccess:
                 self.logger.debug("Bind failed.")
-                self.displayError(exceptionObject)
-                return
+                tmp = LDAPErrorItem(str("["+exceptionObject["desc"]+"]"), self, self)
+                # We're adding the error as LDAPErrorItem-child, so return True
+                return (True, [tmp], exceptionObject)
             
         # Else get them from the server
         else:
@@ -63,9 +64,9 @@ class ServerTreeItem(AbstractLDAPTreeItem):
             success, tmpList, exceptionObject = connection.getBaseDNList()
         
             if not success:
-                self.logger.debug("getBaseDNList failed")
-                self.displayError(exceptionObject)
-                return
+                self.logger.debug("getBaseDNList failed:"+str(exceptionObject))
+                tmp = LDAPErrorItem(str("["+exceptionObject[0]["desc"]+"]"), self, self)
+                return (True, [tmp], exceptionObject) #See above
             
             #getBaseDNList calles unbind(), so let's rebind
             connection.bind()
@@ -78,10 +79,8 @@ class ServerTreeItem(AbstractLDAPTreeItem):
             success, resultList, exceptionObject = connection.search(base, \
                     scope=ldap.SCOPE_BASE,filter='(objectclass=*)', sizelimit=1)
             if not success:
-                self.logger.debug("Couldn't search item")
-                #self.displayError(str(base)+": "+str(exceptionObject))
-                #tmp = LDAPTreeItem(resultList[0], self, self)    
-                tmp = LDAPErrorItem(str(base+" [Error]"), self, self)
+                self.logger.debug("Couldn't search item:"+str(exceptionObject))
+                tmp = LDAPErrorItem(str(base+" ["+exceptionObject[0]["desc"]+"]"), self, self)
                 newChildList.append(tmp)
                 continue
             
@@ -91,7 +90,7 @@ class ServerTreeItem(AbstractLDAPTreeItem):
             
         self.logger.debug("End populatItem")
         
-        return newChildList
+        return (True, newChildList, exceptionObject)
         
     def getSupportedOperations(self):
         return AbstractLDAPTreeItem.SUPPORT_CLEAR|AbstractLDAPTreeItem.SUPPORT_RELOAD

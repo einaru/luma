@@ -12,8 +12,8 @@
 TODO: Proper busy-indicator-handling (?)
 """
 
-from PyQt4.QtGui import qApp
-from PyQt4.QtCore import Qt
+#from PyQt4.QtGui import qApp
+#from PyQt4.QtCore import Qt
 
 import ldap
 import ldap.schema
@@ -26,7 +26,9 @@ from copy import copy
 import threading
 import time
 
-from base.backend.ServerList import ServerList
+from ..backend.ServerList import ServerList
+from ..backend.ServerObject import (ServerObject, ServerEncryptionMethod,
+                                    ServerCheckCertificate, ServerAuthMethod)
 #import environment
 #from base.utils.backend.LogObject import LogObject
 
@@ -74,7 +76,6 @@ class ObjectClassAttributeInfo(object):
         """ Retrieve all information of objectClassesDict and attributes from the
         server.
         """
-        
         #environment.setBusy(True)
         
         # Try to get server schema information from the cache
@@ -84,19 +85,17 @@ class ObjectClassAttributeInfo(object):
             self.syntaxDict = self.serverMetaCache[self.serverMeta.name]["syntaxDict"]
             self.matchingDict = self.serverMetaCache[self.serverMeta.name]["matchingDict"]
         else:
-            tmpObject = ServerList()
-            tmpObject.readServerList()
             serverMeta = self.serverMeta
             
             workerThread = WorkerThreadFetch(serverMeta)
             workerThread.start()
             
-            qApp.setOverrideCursor(Qt.WaitCursor)
+            #qApp.setOverrideCursor(Qt.WaitCursor)
             while not workerThread.FINISHED:
-                qApp.processEvents()
+                #qApp.processEvents()
                 #environment.updateUI()
                 time.sleep(0.05)
-            qApp.restoreOverrideCursor()
+            #qApp.restoreOverrideCursor()
 
             if None == workerThread.exceptionObject:
                 self.objectClassesDict = workerThread.objectClassesDict
@@ -114,6 +113,7 @@ class ObjectClassAttributeInfo(object):
                 tmpString = "Schema information for server " + self.serverMeta.name + " retrieved."
                 self.logging.info(tmpString)
             else:
+                print "*" * 30
                 self.failure = True
                 self.failureException = workerThread.exceptionObject
                 tmpString = "Could not fetch LDAP schema from server. Reason:\n"
@@ -549,7 +549,7 @@ class WorkerThreadFetch(threading.Thread):
     def run(self):
         try:
             urlschemeVal = "ldap"
-            if self.serverMeta.encryptionMethod == "SSL":
+            if self.serverMeta.encryptionMethod == ServerEncryptionMethod.SSL:
                 urlschemeVal = "ldaps"
               
             whoVal = None
@@ -568,19 +568,19 @@ class WorkerThreadFetch(threading.Thread):
             
             # Check whether we want to validate the server certificate.
             validateMethod = ldap.OPT_X_TLS_DEMAND
-            if self.serverMeta.checkServerCertificate == u"demand":
+            if self.serverMeta.checkServerCertificate == ServerCheckCertificate.Demand:
                 validateMethod = ldap.OPT_X_TLS_DEMAND
-            elif self.serverMeta.checkServerCertificate == u"never":
+            elif self.serverMeta.checkServerCertificate == ServerCheckCertificate.Never:
                 validateMethod = ldap.OPT_X_TLS_NEVER
-            elif self.serverMeta.checkServerCertificate == u"try":
+            elif self.serverMeta.checkServerCertificate == ServerCheckCertificate.Try:
                 validateMethod = ldap.OPT_X_TLS_TRY
-            elif self.serverMeta.checkServerCertificate == u"allow":
+            elif self.serverMeta.checkServerCertificate == ServerCheckCertificate.Allow:
                 validateMethod = ldap.OPT_X_TLS_ALLOW
             
             encryption = False
-            if self.serverMeta.encryptionMethod == "SSL":
+            if self.serverMeta.encryptionMethod == ServerEncryptionMethod.SSL:
                 encryption = True
-            elif self.serverMeta.encryptionMethod == "TLS":
+            elif self.serverMeta.encryptionMethod == ServerEncryptionMethod.TLS:
                 encryption = True
             
             if encryption:
@@ -604,7 +604,7 @@ class WorkerThreadFetch(threading.Thread):
                     #environment.logMessage(LogObject("Error,",message))
                     
             
-            if self.serverMeta.encryptionMethod == "TLS":
+            if self.serverMeta.encryptionMethod == ServerEncryptionMethod.TLS:
                 self.ldapServerObject.start_tls_s()
             
             # Enable Alias support
@@ -613,26 +613,26 @@ class WorkerThreadFetch(threading.Thread):
             
             if self.serverMeta.bindAnon:
                 self.ldapServerObject.simple_bind()
-            elif self.serverMeta.authMethod == u"Simple":
+            elif self.serverMeta.authMethod == ServerAuthMethod.Simple:
                 self.ldapServerObject.simple_bind_s(whoVal, credVal)
-            elif u"SASL" in self.serverMeta.authMethod:
+            elif not self.serverMeta == ServerAuthMethod.Simple:
                 sasl_cb_value_dict = {}
-                if not u"GSSAPI" in self.serverMeta.authMethod:
+                if not self.serverMeta.authMethod == ServerAuthMethod.SASL_GSSAPI:
                     sasl_cb_value_dict[ldap.sasl.CB_AUTHNAME] = whoVal
                     sasl_cb_value_dict[ldap.sasl.CB_PASS] = credVal
                     
                 sasl_mech = None
-                if self.serverMeta.authMethod == u"SASL Plain":
+                if self.serverMeta.authMethod == ServerAuthMethod.SASL_PLAIN:
                     sasl_mech = "PLAIN"
-                elif self.serverMeta.authMethod == u"SASL CRAM-MD5":
+                elif self.serverMeta.authMethod == ServerAuthMethod.SASL_CRAM_MD5:
                     sasl_mech = "CRAM-MD5"
-                elif self.serverMeta.authMethod == u"SASL DIGEST-MD5":
+                elif self.serverMeta.authMethod == ServerAuthMethod.SASL_DIGEST_MD5:
                     sasl_mech = "DIGEST-MD5"
-                elif self.serverMeta.authMethod == u"SASL Login":
+                elif self.serverMeta.authMethod == ServerAuthMethod.SASL_LOGIN:
                     sasl_mech = "LOGIN"
-                elif self.serverMeta.authMethod == u"SASL GSSAPI":
+                elif self.serverMeta.authMethod == ServerAuthMethod.SASL_GSSAPI:
                     sasl_mech = "GSSAPI"
-                elif self.serverMeta.authMethod == u"SASL EXTERNAL":
+                elif self.serverMeta.authMethod == ServerAuthMethod.SASL_EXTERNAL:
                     sasl_mech = "EXTERNAL"
                     
                 sasl_auth = ldap.sasl.sasl(sasl_cb_value_dict,sasl_mech)

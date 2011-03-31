@@ -2,10 +2,10 @@
 
 import ldap
 from AbstractLDAPTreeItem import AbstractLDAPTreeItem
-from LDAPErrorItem import LDAPErrorItem
-from PyQt4.QtGui import QMessageBox, QInputDialog, QIcon, QPixmap
+from PyQt4.QtGui import QInputDialog, QIcon, QPixmap
 from PyQt4 import QtCore
 from base.backend.LumaConnection import LumaConnection
+from plugins.browser_plugin.item.AbstractLDAPTreeItem import AbstractLDAPTreeItem
 
 class LDAPTreeItem(AbstractLDAPTreeItem):
     """
@@ -20,7 +20,7 @@ class LDAPTreeItem(AbstractLDAPTreeItem):
     # pops up asking if the user want to load them all?
     ASK_TO_DISPLAY = 1000
 
-    def __init__(self, data, serverParent, parent=None):
+    def __init__(self, data, serverParent, parent):
         AbstractLDAPTreeItem.__init__(self, parent)
         
         self.serverParent = serverParent
@@ -28,6 +28,8 @@ class LDAPTreeItem(AbstractLDAPTreeItem):
         
         self.limit = LDAPTreeItem.LIMIT_DEFAULT
         self.filter = LDAPTreeItem.FILTER_DEFAULT
+        
+        self.error = False
 
     def columnCount(self):
         """
@@ -39,20 +41,32 @@ class LDAPTreeItem(AbstractLDAPTreeItem):
         """
         Returns the name and possibly an icon for the item.
         """
-        # Probably unessecary
-        if role != QtCore.Qt.DisplayRole and role != QtCore.Qt.DecorationRole:
-            return QtCore.QVariant()
         
         # Return an icon if the item has been configured
         if role == QtCore.Qt.DecorationRole:
+            if self.error:
+                return QIcon(QPixmap(":/icons/no"))
             if self.filter != LDAPTreeItem.FILTER_DEFAULT or self.limit != LDAPTreeItem.LIMIT_DEFAULT:
-                return QIcon(QPixmap(":/images/config.png"))
+                return QIcon(QPixmap(":/icons/filter"))
             else:
-                return QtCore.QVariant()
-        # If DisplayRole
-        else:
+                return None
+        # Return applicable status-tip-role
+        elif role == QtCore.Qt.StatusTipRole:
+            if self.error:
+                return QtCore.QCoreApplication.translate("LDAPTreeItem","Couldn't fetch list of children.")
+            if self.limit != LDAPTreeItem.LIMIT_DEFAULT and self.filter != LDAPTreeItem.FILTER_DEFAULT:
+                return QtCore.QCoreApplication.translate("LDAPTreeItem","This item has both a filter and limit applied.")
+            if self.filter != LDAPTreeItem.FILTER_DEFAULT:
+                return QtCore.QCoreApplication.translate("LDAPTreeItem","This item have a filter applied.")
+            if self.limit != LDAPTreeItem.LIMIT_DEFAULT:
+                return QtCore.QCoreApplication.translate("LDAPTreeItem","This item have a limit applied.")
+            return None
+        # If DisplayRole (most common case)
+        elif role == QtCore.Qt.DisplayRole:
             #return self.itemData.getPrettyDN() # The whole name
             return self.itemData.getPrettyRDN()
+        else:
+            return None
 
     def smartObject(self):
         return self.itemData
@@ -67,27 +81,30 @@ class LDAPTreeItem(AbstractLDAPTreeItem):
         bindSuccess, exceptionObject = l.bind()
         
         if not bindSuccess:
-            self.displayError(exceptionObject)
-            return None
+            self.error = True
+            return (False, None, exceptionObject)
         
         
         # Search for items at the level under this one
         success, resultList, exceptionObject = l.search(self.itemData.getDN(), \
-                scope=ldap.SCOPE_ONELEVEL, filter=self.filter)
+                scope=ldap.SCOPE_ONELEVEL, filter=self.filter, sizelimit=self.limit)
         l.unbind()
         
         if not success:
-            self.displayError(exceptionObject)
-            return None
-
+            self.error = True
+            return (False, None, exceptionObject)
         
-        # If a limit is specified, only display the chosen amount        
+        self.error = False
+        
+        # If a limit is specified, only display the chosen amount     
+        """
+        SIzelimit is used instead
         if self.limit > 0 and len(resultList) > self.limit:
             returnList = []
             for i in xrange(self.limit):
                 returnList.append(LDAPTreeItem(resultList[i], self.serverParent, self))
-            return returnList
-        
+            return (True, returnList, exceptionObject)
+        """
         """
         # If there are ALOT of returned entries, confirm displaying them all
         if len(resultList) > self.ASK_TO_DISPLAY:
@@ -105,28 +122,54 @@ class LDAPTreeItem(AbstractLDAPTreeItem):
         """
         
         # Default behavior: return all
-        return [LDAPTreeItem(x, self.serverParent, self) for x in resultList]
+        return (True, [LDAPTreeItem(x, self.serverParent, self) for x in resultList], exceptionObject)
     
     def setLimit(self):
         """
         Asks for the users limit.
         """
-        r = QInputDialog.getInt(None, "Limit","Enter the limit (0 = none):", self.limit)
-        if r[1] == True:
-            self.limit = r[0]
+        (value, ok) = QInputDialog.getInt(None, QtCore.QCoreApplication.translate("LDAPTreeItem","Limit"),QtCore.QCoreApplication.translate("LDAPTreeItem","Enter the limit (0 = none):"), self.limit)
+        if ok == True:
+            self.limit = value
+        return ok
     
     def setFilter(self):
         """
         Asks the user for the filter.
         """
-        r = QInputDialog.getText(None, "Filter", "Enter the filter (with parentheses -- none for default):", text=self.filter)
-        if r[1] == True:
-            if len(str(r[0])) > 0:
-                self.filter = str(r[0])
+        (value, ok) = QInputDialog.getText(None, QtCore.QCoreApplication.translate("LDAPTreeItem","Filter"), QtCore.QCoreApplication.translate("LDAPTreeItem","Enter the filter (with parentheses -- none for default):"), text=self.filter)
+        if ok == True:
+            if len(str(value)) > 0:
+                self.filter = str(value)
             else:
                 self.filter = LDAPTreeItem.FILTER_DEFAULT
-
+        return ok
+                
+    def delete(self):
+        lumaConnection = LumaConnection(self.serverParent.serverMeta)
+        bindSuccess, exceptionObject = lumaConnection.bind()
+        
+        if not bindSuccess:
+            message = QtCore.QCoreApplication.translate("LDAPTreeItem","Could not bind to server.")
+            return (False, message, exceptionObject)
+        
+        success, exceptionObject = lumaConnection.delete(self.smartObject().getDN())
+        lumaConnection.unbind()
+        
+        if success:
+            self.childItems = []
+            self.populated = True
+            return (True, None, None)
+        else:
+            message = QtCore.QCoreApplication.translate("LDAPTreeItem","Could not delete entry: "+exceptionObject[0]["desc"])
+            return (False, message, exceptionObject)
         
     def getSupportedOperations(self):
-        return AbstractLDAPTreeItem.SUPPORT_CLEAR|AbstractLDAPTreeItem.SUPPORT_RELOAD|AbstractLDAPTreeItem.SUPPORT_FILTER|AbstractLDAPTreeItem.SUPPORT_LIMIT
-        
+        return AbstractLDAPTreeItem.SUPPORT_CLEAR | \
+               AbstractLDAPTreeItem.SUPPORT_RELOAD | \
+               AbstractLDAPTreeItem.SUPPORT_FILTER | \
+               AbstractLDAPTreeItem.SUPPORT_LIMIT | \
+               AbstractLDAPTreeItem.SUPPORT_ADD | \
+               AbstractLDAPTreeItem.SUPPORT_EXPORT | \
+               AbstractLDAPTreeItem.SUPPORT_DELETE | \
+               AbstractLDAPTreeItem.SUPPORT_OPEN

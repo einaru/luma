@@ -2,8 +2,27 @@ This changelog will mainly contain changes made between different tags in the
 master branch. Changes made in the devlopment branch is documented in the git
 log.
 
+2011-03-25  Einar Uvsløkk <einar.uvslokk@linux.com>
+	This marks the end of sprint 4. (Luma v3.0.4-sprint4)
+	
+	Features:
+	* Main-application:
+	Support for commandline arguments added. As of now this includes mostly
+	clear flags, to wipe clean malicious config settings.
+	* Plugin-support:
+	* Browser-plugin:
+	Added multiselection item export and delete.
+	Lots of improvments in the Browsers entry view. Basic support for
+	different html layouts for the view.
+	* Template-plugin:
+	Gui finished, logic on its way.
+	* Search-plugin:
+	Skeleton gui, and basic functionality implemented.
+	
+	Bugs:
+
 2011-03-14	Einar Uvsløkk <einar.uvslokk@linux.com>
-	This branch marks the end of sprint 3. (Luma v3.0.3-sprint3)
+	This marks the end of sprint 3. (Luma v3.0.3-sprint3)
 	
 	Features:
 	* Browser-plugin:
@@ -15,7 +34,7 @@ log.
 	distutils module.
 
 2011-03-01  Einar Uvsløkk  <einar.uvslokk@linux.com>
-	This branch marks the end of sprint 2. (Luma v3.0.2-sprint2)
+	This marks the end of sprint 2. (Luma v3.0.2-sprint2)
 	
 	Features:
 	* Browser-plugin:
@@ -36,7 +55,7 @@ log.
 
 
 2011-02-28  Einar Uvsløkk  <einar.uvslokk@linux.com>
-	This branch marks the end of sprint 1. (Luma v3.0.1-sprint1)
+	This marks the end of sprint 1. (Luma v3.0.1-sprint1)
 	NB! This relase branch was tagged and created at the end of sprint 2, but
 		still reflects the work done up until the end of sprint 1. It was
 		created to document the development progression.

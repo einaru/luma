@@ -15,7 +15,7 @@ except AttributeError:
     _fromUtf8 = lambda s: s
 
 class Ui_BaseSelectorDesign(object):
-    def setupUi(self, BaseSelectorDesign):
+    def baseDNEditself, BaseSelectorDesign):
         BaseSelectorDesign.setObjectName(_fromUtf8("BaseSelectorDesign"))
         BaseSelectorDesign.resize(551, 456)
         self.vboxlayout = QtGui.QVBoxLayout(BaseSelectorDesign)
@@ -59,9 +59,9 @@ class Ui_BaseSelectorDesign(object):
         self.baseView.setSelectionMode(QtGui.QAbstractItemView.ExtendedSelection)
         self.baseView.setObjectName(_fromUtf8("baseView"))
         self.gridlayout1.addWidget(self.baseView, 1, 0, 3, 2)
-        self.baseEdit = QtGui.QLineEdit(BaseSelectorDesign)
-        self.baseEdit.setObjectName(_fromUtf8("baseEdit"))
-        self.gridlayout1.addWidget(self.baseEdit, 0, 1, 1, 1)
+        self.baseDNEdit = QtGui.QLineEdit(BaseSelectorDesign)
+        self.baseDNEdit.setObjectName(_fromUtf8("baseDNEdit"))
+        self.gridlayout1.addWidget(self.baseDNEdit, 0, 1, 1, 1)
         self.addButton = QtGui.QPushButton(BaseSelectorDesign)
         self.addButton.setAutoDefault(False)
         self.addButton.setDefault(False)
@@ -99,9 +99,9 @@ class Ui_BaseSelectorDesign(object):
         QtCore.QObject.connect(self.addButton, QtCore.SIGNAL(_fromUtf8("clicked()")), BaseSelectorDesign.addBase)
         QtCore.QObject.connect(self.deleteButton, QtCore.SIGNAL(_fromUtf8("clicked()")), BaseSelectorDesign.deleteBase)
         QtCore.QObject.connect(self.updateButton, QtCore.SIGNAL(_fromUtf8("clicked()")), BaseSelectorDesign.addServerBase)
-        QtCore.QObject.connect(self.baseEdit, QtCore.SIGNAL(_fromUtf8("returnPressed()")), BaseSelectorDesign.addBase)
+        QtCore.QObject.connect(self.baseDNEdit, QtCore.SIGNAL(_fromUtf8("returnPressed()")), BaseSelectorDesign.addBase)
         QtCore.QMetaObject.connectSlotsByName(BaseSelectorDesign)
-        BaseSelectorDesign.setTabOrder(self.baseEdit, self.addButton)
+        BaseSelectorDesign.setTabOrder(self.baseDNEdit, self.addButton)
         BaseSelectorDesign.setTabOrder(self.addButton, self.baseView)
         BaseSelectorDesign.setTabOrder(self.baseView, self.deleteButton)
         BaseSelectorDesign.setTabOrder(self.deleteButton, self.updateButton)

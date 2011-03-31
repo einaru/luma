@@ -20,6 +20,10 @@ class AbstractLDAPTreeItem(object):
     SUPPORT_FILTER = 2 # Indicates the item has implement setFilter
     SUPPORT_LIMIT = 4 # Indicates the item has implement setLimit
     SUPPORT_CLEAR = 8 # Probably works on all items
+    SUPPORT_ADD = 16 # Can add child-items
+    SUPPORT_DELETE = 32 # Can remove this item
+    SUPPORT_EXPORT = 64 # Can be exported
+    SUPPORT_OPEN = 128 # Can be opened (has smartdataobject)
     
     def __init__(self, parent):
         """
@@ -42,6 +46,9 @@ class AbstractLDAPTreeItem(object):
         """
         self.childItems.append(item)
         self.populated = 1
+        
+    def removeChild(self, item):
+        self.childItems.remove(item)
         
     def emptyChildren(self):
         """

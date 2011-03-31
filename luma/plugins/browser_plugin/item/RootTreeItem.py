@@ -1,6 +1,4 @@
 from AbstractLDAPTreeItem import AbstractLDAPTreeItem
-from PyQt4.QtGui import qApp, QCursor
-from PyQt4.QtCore import Qt
 import logging
 
 class RootTreeItem(AbstractLDAPTreeItem):
@@ -10,6 +8,7 @@ class RootTreeItem(AbstractLDAPTreeItem):
     
     def __init__(self, title, parent = None):
         AbstractLDAPTreeItem.__init__(self, parent)
+        
         self.title = title
         self.logger = logging.getLogger(__name__)
         
@@ -18,3 +17,9 @@ class RootTreeItem(AbstractLDAPTreeItem):
     
     def columnCount(self):
         return 1
+    
+    def fetchChildList(self):
+        return (None, None, None)
+    
+    def smartObject(self):
+        return None

@@ -1,44 +1,24 @@
 # -*- coding: utf-8 -*-
 
-###########################################################################
-#    Copyright (C) 2005 by Vegar Westerlund
-#    <vegarwe@users.sourceforge.net>
-#
-# Copyright: See COPYING file that comes with this distribution
-#
-###########################################################################
-
-from PyQt4.QtGui import *
-import os.path
-
+from PyQt4.QtGui import QIcon, QPixmap
+from base.util.IconTheme import pixmapFromThemeIcon
 lumaPlugin = True
 pluginName = "browser"
 pluginUserString = "Browser"
-version = ""
-author = "Vegar Westerlund <vegarwe@users.sourceforge.net>"
+version = "0.1"
+author = "Christian Forfang, Simen Natvig, Per Ove Ringdal"
 
-def getIcon(iconPath):
-    try:
-        iconPixmap = QIcon (os.path.join (iconPath, "plugin.png"))
-    except:
-        print "Debug: Icon for plugin " + pluginName + " could not be opened."
-        return None
+def getIcon():
+    return QIcon(pixmapFromThemeIcon("applications-internet", ":/icons/browser_plugin-plugin"))
 
-    return iconPixmap
-    
-###############################################################################
-
-def getPluginWidget(parent):
+def getPluginWidget(parent, mainwin):
+    # parent is not used, but the widget is reparented by the QTabWidget
     from plugins.browser_plugin.BrowserView import BrowserView
-    pluginWidget = BrowserView(None, "/tmp")
+    pluginWidget = BrowserView()
     return pluginWidget
-    
-###############################################################################
 
 def getPluginSettingsWidget(parent):
     return None
-    
-###############################################################################
 
 def postprocess():
     return
