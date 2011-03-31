@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file '/home/johannes/Programmering/Luma/git/resources/forms/WelcomeTabDesign.ui'
+# Form implementation generated from reading ui file 'd:\Dropbox\Git\it2901\resources\forms\WelcomeTabDesign.ui'
 #
-# Created: Tue Mar 22 17:44:53 2011
-#      by: PyQt4 UI code generator 4.8.2
+# Created: Fri Apr 01 18:24:07 2011
+#      by: PyQt4 UI code generator 4.8.3
 #
 # WARNING! All changes made in this file will be lost!
 

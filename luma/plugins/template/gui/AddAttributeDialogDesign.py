@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'D:\Skole\it2901\resources\forms\plugins\template\AddAttributeDialogDesign.ui'
+# Form implementation generated from reading ui file 'd:\Dropbox\Git\it2901\resources\forms\plugins\template\AddAttributeDialogDesign.ui'
 #
-# Created: Mon Mar 28 16:04:22 2011
-#      by: PyQt4 UI code generator 4.8.2
+# Created: Fri Apr 01 18:24:08 2011
+#      by: PyQt4 UI code generator 4.8.3
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -67,6 +67,8 @@ class Ui_AddAttributeDialog(object):
         QtCore.QObject.connect(self.pushButtonCancel, QtCore.SIGNAL(_fromUtf8("clicked()")), AddAttributeDialog.reject)
         QtCore.QObject.connect(self.pushButtonOk, QtCore.SIGNAL(_fromUtf8("clicked()")), AddAttributeDialog.accept)
         QtCore.QMetaObject.connectSlotsByName(AddAttributeDialog)
+        AddAttributeDialog.setTabOrder(self.pushButtonOk, self.pushButtonCancel)
+        AddAttributeDialog.setTabOrder(self.pushButtonCancel, self.tableView)
 
     def retranslateUi(self, AddAttributeDialog):
         AddAttributeDialog.setWindowTitle(QtGui.QApplication.translate("AddAttributeDialog", "Dialog", None, QtGui.QApplication.UnicodeUTF8))

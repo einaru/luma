@@ -54,24 +54,25 @@ class ServerObject(object):
         # Used for easy mapping to model-columns
 
         self._dataHolder = [
-                #Index - Description (Options)
-        u"",    # 0 Servername
-        u"",    # 1 Hostname
-        389,    # 2 Port
-        True,   # 3 BindAnon
-        True,   # 4 AutoBase
-        [],     # 5 BaseDN
-        u"",    # 6 BindDN ("username")
-        u"",    # 7 BindPassword
-        0,      # 8 encryptionMethod 8 (0=Unencrypted, 1=TLS, 2=SSL)
-        0,      # 9 authMetod (0=simple, 1=SASL CRAM-MD5, 2=SASL DIGEST-MD5, 
-                    #3=SASL EXTERNAL, 4=SASL GSSLAPI, 5=SASL LOGIN,6=SASL Plain)
-        False,  # 10 followAliases 
-        False,  # 11 useCertificate 
-        u"",    # 12 clientCertFile
-        u"",    # 13 clientCertKeyfile
-        0,      #14 checkServerCertificate (0=never, 1=allow, 2=try, 3=demand)
-        u""     #15 currentBase
+            #Index - Description (Options)
+            u"",    # 0 Servername
+            u"",    # 1 Hostname
+            389,    # 2 Port
+            True,   # 3 BindAnon
+            True,   # 4 AutoBase
+            [],     # 5 BaseDN
+            u"",    # 6 BindDN ("username")
+            u"",    # 7 BindPassword
+            0,      # 8 encryptionMethod 8 (0=Unencrypted, 1=TLS, 2=SSL)
+            0,      # 9 authMetod (0=simple, 1=SASL CRAM-MD5,
+                    #              2=SASL DIGEST-MD5, 3=SASL EXTERNAL, 
+                    #              4=SASL GSSLAPI, 5=SASL LOGIN,6=SASL Plain)
+            False,  # 10 followAliases 
+            False,  # 11 useCertificate 
+            u"",    # 12 clientCertFile
+            u"",    # 13 clientCertKeyfile
+            0,      # 14 checkServerCertificate (0=never, 1=allow, 2=try, 3=demand)
+            u""     # 15 currentBase
         ]
         
     

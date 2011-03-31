@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file '/Users/johannes/Programmering/Luma/git/resources/forms/SettingsDialogDesign.ui'
+# Form implementation generated from reading ui file 'd:\Dropbox\Git\it2901\resources\forms\SettingsDialogDesign.ui'
 #
-# Created: Wed Mar 23 14:02:45 2011
-#      by: PyQt4 UI code generator 4.8.2
+# Created: Fri Apr 01 18:24:06 2011
+#      by: PyQt4 UI code generator 4.8.3
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -39,17 +39,6 @@ class Ui_SettingsDialog(object):
         self.tabGeneral.setObjectName(_fromUtf8("tabGeneral"))
         self.verticalLayout_3 = QtGui.QVBoxLayout(self.tabGeneral)
         self.verticalLayout_3.setObjectName(_fromUtf8("verticalLayout_3"))
-        self.groupBox_2 = QtGui.QGroupBox(self.tabGeneral)
-        self.groupBox_2.setObjectName(_fromUtf8("groupBox_2"))
-        self.gridLayout_2 = QtGui.QGridLayout(self.groupBox_2)
-        self.gridLayout_2.setObjectName(_fromUtf8("gridLayout_2"))
-        self.checkBox = QtGui.QCheckBox(self.groupBox_2)
-        self.checkBox.setObjectName(_fromUtf8("checkBox"))
-        self.gridLayout_2.addWidget(self.checkBox, 0, 0, 1, 1)
-        self.checkBox_2 = QtGui.QCheckBox(self.groupBox_2)
-        self.checkBox_2.setObjectName(_fromUtf8("checkBox_2"))
-        self.gridLayout_2.addWidget(self.checkBox_2, 1, 0, 1, 1)
-        self.verticalLayout_3.addWidget(self.groupBox_2)
         self.i18nGroup = QtGui.QGroupBox(self.tabGeneral)
         self.i18nGroup.setObjectName(_fromUtf8("i18nGroup"))
         self.verticalLayout_4 = QtGui.QVBoxLayout(self.i18nGroup)
@@ -143,9 +132,6 @@ class Ui_SettingsDialog(object):
         SettingsDialog.setWindowTitle(QtGui.QApplication.translate("SettingsDialog", "Settings", None, QtGui.QApplication.UnicodeUTF8))
         self.actionSave.setText(QtGui.QApplication.translate("SettingsDialog", "Ok", None, QtGui.QApplication.UnicodeUTF8))
         self.actionCancel.setText(QtGui.QApplication.translate("SettingsDialog", "Cancel", None, QtGui.QApplication.UnicodeUTF8))
-        self.groupBox_2.setTitle(QtGui.QApplication.translate("SettingsDialog", "View options", None, QtGui.QApplication.UnicodeUTF8))
-        self.checkBox.setText(QtGui.QApplication.translate("SettingsDialog", "Show toolbar on start", None, QtGui.QApplication.UnicodeUTF8))
-        self.checkBox_2.setText(QtGui.QApplication.translate("SettingsDialog", "Show statusbar on start", None, QtGui.QApplication.UnicodeUTF8))
         self.i18nGroup.setTitle(QtGui.QApplication.translate("SettingsDialog", "i18n", None, QtGui.QApplication.UnicodeUTF8))
         self.label.setText(QtGui.QApplication.translate("SettingsDialog", "Application language", None, QtGui.QApplication.UnicodeUTF8))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tabGeneral), QtGui.QApplication.translate("SettingsDialog", "General", None, QtGui.QApplication.UnicodeUTF8))

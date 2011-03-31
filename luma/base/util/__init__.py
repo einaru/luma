@@ -50,6 +50,19 @@ def isBinaryAttribute(tmpString):
 def encodeBase64(tmpString):
     return base64.encodestring(tmpString)
 
+def encodeUTF8(text, strip=False):
+    """Helper method to get text objects in unicode utf-8 encoding.
+    
+    @param text: 
+        the text object to encode.
+    @return: 
+        the encoded textobject.
+    """
+    text = unicode(text).encode('utf-8')
+    if strip:
+        text = text.strip()
+    return text
+
 
 def stripSpecialChars(tmpString):
     tmpString = tmpString.replace(r'\5C', '\\')
@@ -84,6 +97,29 @@ def escapeSpecialChars(tmpString):
         tmpString = attribute + '=' + value
 
     return tmpString
+
+specialCharDict = {
+    'NUL' : r'\00',
+    '"' : r'\22',
+    '(' : r'\28',
+    ')' : r'\29',
+    '*' : r'\2A',
+    '+' : r'\2B',
+    ',' : r'\2C',
+    '/' : r'\2F',
+    ';' : r'\3B',
+    '<' : r'\3C',
+    '=' : r'\3D',
+    '>' : r'\3E',
+    '\\' : r'\5C',
+}
+
+def escapeSpecialChar(char):
+    """
+    @return: 
+        the escaped char
+    """
+    return specialCharDict[char]
 
 
 def testEscaping():
