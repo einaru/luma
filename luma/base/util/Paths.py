@@ -75,9 +75,7 @@ def getConfigPrefix():
         try:
             from xdg import BaseDirectory
             prefix = os.path.join(BaseDirectory.xdg_config_home, 'luma')
-        except:
-            pass
-        finally:
+        except ImportError:
             prefix = os.path.join(os.environ['HOME'], '.config', 'luma')
 
     elif __platform == "Darwin":
