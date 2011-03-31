@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file '/mnt/debris/devel/git/luma/resources/forms/ServerDialogDesign.ui'
 #
-# Created: Tue Mar 22 13:55:41 2011
+# Created: Thu Mar 31 03:41:01 2011
 #      by: PyQt4 UI code generator 4.7.4
 #
 # WARNING! All changes made in this file will be lost!
@@ -40,9 +40,12 @@ class Ui_ServerDialogDesign(object):
         self.serverListView.setObjectName("serverListView")
         self.serverListGrid.addWidget(self.serverListView, 0, 0, 1, 3)
         self.addButton = QtGui.QPushButton(self.layout3)
+        self.addButton.setAutoDefault(False)
+        self.addButton.setDefault(False)
         self.addButton.setObjectName("addButton")
         self.serverListGrid.addWidget(self.addButton, 1, 0, 1, 1)
         self.deleteButton = QtGui.QPushButton(self.layout3)
+        self.deleteButton.setAutoDefault(False)
         self.deleteButton.setObjectName("deleteButton")
         self.serverListGrid.addWidget(self.deleteButton, 1, 1, 1, 1)
         spacerItem = QtGui.QSpacerItem(40, 20, QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Minimum)
@@ -125,9 +128,11 @@ class Ui_ServerDialogDesign(object):
         self.hLayout = QtGui.QHBoxLayout()
         self.hLayout.setObjectName("hLayout")
         self.addBaseDNButton = QtGui.QPushButton(self.LDAPGroup)
+        self.addBaseDNButton.setAutoDefault(False)
         self.addBaseDNButton.setObjectName("addBaseDNButton")
         self.hLayout.addWidget(self.addBaseDNButton)
         self.deleteBaseDNButton = QtGui.QPushButton(self.LDAPGroup)
+        self.deleteBaseDNButton.setAutoDefault(False)
         self.deleteBaseDNButton.setObjectName("deleteBaseDNButton")
         self.hLayout.addWidget(self.deleteBaseDNButton)
         self.LDAPGrid.addLayout(self.hLayout, 3, 1, 1, 1)
@@ -202,6 +207,7 @@ class Ui_ServerDialogDesign(object):
         self.bindOptGrid.addWidget(self.passwordLabel, 3, 0, 1, 1)
         self.passwordEdit = QtGui.QLineEdit(self.bindOptGroup)
         self.passwordEdit.setEnabled(False)
+        self.passwordEdit.setEchoMode(QtGui.QLineEdit.Password)
         self.passwordEdit.setObjectName("passwordEdit")
         self.bindOptGrid.addWidget(self.passwordEdit, 3, 1, 1, 1)
         self.gridLayout_8.addLayout(self.bindOptGrid, 0, 0, 1, 1)
@@ -363,7 +369,10 @@ class Ui_ServerDialogDesign(object):
         spacerItem6 = QtGui.QSpacerItem(0, 0, QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Minimum)
         self.bottomHBoxLayout.addItem(spacerItem6)
         self.okButton = QtGui.QPushButton(ServerDialogDesign)
+        self.okButton.setFocusPolicy(QtCore.Qt.TabFocus)
         self.okButton.setAutoDefault(False)
+        self.okButton.setDefault(True)
+        self.okButton.setFlat(False)
         self.okButton.setObjectName("okButton")
         self.bottomHBoxLayout.addWidget(self.okButton)
         self.applyButton = QtGui.QPushButton(ServerDialogDesign)

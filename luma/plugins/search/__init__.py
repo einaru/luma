@@ -18,14 +18,15 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see http://www.gnu.org/licenses/
 
+from PyQt4 import QtCore, QtGui
 from PyQt4.QtGui import QIcon, QPixmap
 from base.util.IconTheme import pixmapFromThemeIcon
-from .Search import (SearchPlugin, SearchPluginSettings)
+from .Search import (SearchPlugin, SearchPluginSettingsWidget)
 
 lumaPlugin = True
 pluginName = u'search'
 pluginUserString = u'Search'
-version = u'0.1'
+version = u'0.3'
 author = u'Einar Uvsløkk'
 description = u"""Do simple and advanced LDAP search,
 create filters to speed up efficiency.
@@ -40,7 +41,7 @@ def getPluginWidget(parent, mainwin):
 
 
 def getPluginSettingsWidget(parent):
-    return SearchPluginSettings()
+    return SearchPluginSettingsWidget()
 
 
 def postprocess():
