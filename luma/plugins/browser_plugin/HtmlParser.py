@@ -18,7 +18,7 @@ class HtmlParser:
         tmpList = []
         while not reader.atEnd():
             reader.readNext()
-            name = str(reader.name().toString())
+            name = unicode(reader.name().toString())
             if reader.isStartElement():
                 attributes = reader.attributes()
                 if name == "ldapobject":
@@ -29,8 +29,8 @@ class HtmlParser:
                         list = []
                         for i in range(0, size):
                             attribute = attributes.at(i)
-                            attributeName = str(attribute.name().toString())
-                            attributeValue = str(attribute.value().toString())
+                            attributeName = unicode(attribute.name().toString())
+                            attributeValue = unicode(attribute.value().toString())
                             attributeString = '%s="%s"' % (attributeName, attributeValue)
                             list.append(attributeString)
                         attributesString = ' '.join(list)
@@ -44,17 +44,17 @@ class HtmlParser:
                     tag = "</%s>" % name
                     tmpList.append(tag)
             elif reader.isCharacters():
-                if not (str(reader.name()) == "ldapobject"):
-                    tmpList.append(str(reader.text().toString()))
+                if not (unicode(reader.name()) == "ldapobject"):
+                    tmpList.append(unicode(reader.text().toString()))
             
         if reader.hasError():
             return reader.errorString()
         return ''.join(tmpList)
 
     def createStringFromTemplate(self, attributes):
-        type = str(attributes.value(QString("type")).toString())
-        id = str(attributes.value(QString("id")).toString())
-        style = str(attributes.value(QString("style")).toString())
+        type = unicode(attributes.value(QString("type")).toString())
+        id = unicode(attributes.value(QString("id")).toString())
+        style = unicode(attributes.value(QString("style")).toString())
 
         if not type == "":
             if type == "getPrettyDN":
@@ -68,7 +68,7 @@ class HtmlParser:
             elif type == "attribute":
                 return self.createAttributeValueString(id)
                 #if attributes.hasAttribute(QString("id")):
-                #    attribute = str(attributes.value(QString("type")).toString())
+                #    attribute = unicode(attributes.value(QString("type")).toString())
                 #    if attributes.hasAttribute(QString("style")):
                 #        style = attributes.value(QString("style"))
                 #        if style == "table":

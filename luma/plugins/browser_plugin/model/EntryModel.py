@@ -175,7 +175,7 @@ class EntryModel(QObject):
             lumaConnection.unbind()
             
             if success:
-                self.CREATE = False
+                #self.CREATE = False
                 self.EDITED = False
                 self.modelChangedSignal.emit()
                 return (True, None, None)

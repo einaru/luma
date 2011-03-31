@@ -66,7 +66,7 @@ class AdvancedObjectWidget(QWidget):
         #        Probably needs some validation testing on platforms
         #        other than Linux
         #self.templateFactory = TemplateFactory(os.path.join("plugins", "browser_plugin", "templates"))
-        self.templateFactory = TemplateFactory(os.path.join(getLumaRoot(), 'plugins', 'browser_plugin', 'templates'))
+        self.templateFactory = TemplateFactory(unicode(os.path.join(getLumaRoot(), 'plugins', 'browser_plugin', 'templates')))
 
         self.htmlParser = HtmlParser(self.entryModel)
         
@@ -424,7 +424,7 @@ class AdvancedObjectWidget(QWidget):
                             QLineEdit.Normal, 
                             oldValue)
         if ok:
-            newValue = str(newValue)
+            newValue = unicode(newValue)
             if not newValue == None:
                 if attributeName == 'RDN':
                     self.entryModel.editRDN(newValue)
