@@ -442,7 +442,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         # In case the widget contained circular references -- force GC to take care of the objects
         # since there can be quite many if it was BrowserWidget that was closed
         # Can't call it directly since that'll be too soon
-        QTimer.singleShot(0, self.gc)
+        QTimer.singleShot(1000, self.gc)
 
         # Let's do some styling of the tab widget when no tabs are opened
         if self.mainTabs.currentIndex() == -1:
