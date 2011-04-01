@@ -38,6 +38,9 @@
               <verstretch>0</verstretch>
              </sizepolicy>
             </property>
+            <property name="toolTip">
+             <string>Save template</string>
+            </property>
             <property name="text">
              <string>Save</string>
             </property>
@@ -51,6 +54,9 @@
               <verstretch>0</verstretch>
              </sizepolicy>
             </property>
+            <property name="toolTip">
+             <string>Add template</string>
+            </property>
             <property name="text">
              <string>Add</string>
             </property>
@@ -63,6 +69,9 @@
               <horstretch>0</horstretch>
               <verstretch>0</verstretch>
              </sizepolicy>
+            </property>
+            <property name="toolTip">
+             <string>Existing templates</string>
             </property>
            </widget>
           </item>
@@ -87,6 +96,9 @@
               <verstretch>0</verstretch>
              </sizepolicy>
             </property>
+            <property name="toolTip">
+             <string>Delete template</string>
+            </property>
             <property name="text">
              <string>Delete</string>
             </property>
@@ -99,6 +111,9 @@
               <horstretch>0</horstretch>
               <verstretch>0</verstretch>
              </sizepolicy>
+            </property>
+            <property name="toolTip">
+             <string>Duplicate template</string>
             </property>
             <property name="text">
              <string>Duplicate</string>
@@ -156,6 +171,9 @@
                <verstretch>0</verstretch>
               </sizepolicy>
              </property>
+             <property name="toolTip">
+              <string>Add objectclasses</string>
+             </property>
              <property name="text">
               <string>Add</string>
              </property>
@@ -163,6 +181,9 @@
            </item>
            <item row="0" column="0" rowspan="3">
             <widget class="QListView" name="listViewObjectclasses">
+             <property name="toolTip">
+              <string>Added objectclasses</string>
+             </property>
              <property name="selectionMode">
               <enum>QAbstractItemView::ExtendedSelection</enum>
              </property>
@@ -175,6 +196,9 @@
                <horstretch>0</horstretch>
                <verstretch>0</verstretch>
               </sizepolicy>
+             </property>
+             <property name="toolTip">
+              <string>Delete objectclasses</string>
              </property>
              <property name="text">
               <string>Delete</string>
@@ -190,6 +214,9 @@
           <layout class="QGridLayout" name="gridLayout_4">
            <item row="0" column="0" rowspan="3" colspan="2">
             <widget class="QTableView" name="tableViewAttributes">
+             <property name="toolTip">
+              <string>Added attributes</string>
+             </property>
              <property name="selectionBehavior">
               <enum>QAbstractItemView::SelectRows</enum>
              </property>
@@ -209,6 +236,9 @@
                <verstretch>0</verstretch>
               </sizepolicy>
              </property>
+             <property name="toolTip">
+              <string>Add attributes</string>
+             </property>
              <property name="text">
               <string>Add</string>
              </property>
@@ -221,6 +251,9 @@
                <horstretch>0</horstretch>
                <verstretch>0</verstretch>
               </sizepolicy>
+             </property>
+             <property name="toolTip">
+              <string>Delete attributes</string>
              </property>
              <property name="text">
               <string>Delete</string>
