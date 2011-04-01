@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'd:\Dropbox\Git\it2901\resources\forms\plugins\template\AddObjectclassDialogDesign.ui'
+# Form implementation generated from reading ui file 'd:\Skole\it2901\resources\forms\plugins\template\AddObjectclassDialogDesign.ui'
 #
-# Created: Fri Apr 01 18:24:08 2011
-#      by: PyQt4 UI code generator 4.8.3
+# Created: Fri Apr 01 15:18:54 2011
+#      by: PyQt4 UI code generator 4.8.2
 #
 # WARNING! All changes made in this file will be lost!
 

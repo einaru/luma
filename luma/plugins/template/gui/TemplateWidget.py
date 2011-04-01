@@ -74,6 +74,7 @@ class TemplateWidget(QWidget, Ui_TemplateWidget):
 
         # Select the first servers (as the serverlistview does)
         self.selectedTemplate()
+        
 
     def selectedTemplate(self):
         index = self.listViewTemplates.selectionModel().currentIndex().row()
