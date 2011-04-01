@@ -31,7 +31,7 @@ class LDAPTreeItem(AbstractLDAPTreeItem):
         self.filter = LDAPTreeItem.FILTER_DEFAULT
         
         self.error = False
-	self.loading = False
+        self.loading = False
 
     def columnCount(self):
         """
@@ -46,9 +46,9 @@ class LDAPTreeItem(AbstractLDAPTreeItem):
         
         # Return an icon if the item has been configured
         if role == QtCore.Qt.DecorationRole:
-	    if self.loading:
-		#return QIcon(QPixmap(":/icons/loading"))
-		return QIcon(QPixmap(":/icons/luma-16"))
+            if self.loading:
+                #return QIcon(QPixmap(":/icons/loading"))
+                return QIcon(QPixmap(":/icons/luma-spinner-16"))
             if self.error:
                 return QIcon(QPixmap(":/icons/no"))
             if self.filter != LDAPTreeItem.FILTER_DEFAULT or self.limit != LDAPTreeItem.LIMIT_DEFAULT:
@@ -57,8 +57,8 @@ class LDAPTreeItem(AbstractLDAPTreeItem):
                 return None
         # Return applicable status-tip-role
         elif role == QtCore.Qt.StatusTipRole:
-	    if self.loading:
-		return QtCore.QCoreApplication.translate("LDAPTreeItem","Fetching items...")
+            if self.loading:
+                return QtCore.QCoreApplication.translate("LDAPTreeItem","Fetching items...")
             if self.error:
                 return QtCore.QCoreApplication.translate("LDAPTreeItem","Couldn't fetch list of children.")
             if self.limit != LDAPTreeItem.LIMIT_DEFAULT and self.filter != LDAPTreeItem.FILTER_DEFAULT:
