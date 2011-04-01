@@ -250,14 +250,21 @@ class HtmlParser:
         # Create the value part
         if attributeIsBinary:
             if attributeIsImage:
-                tmpImage = QImage()
-                tmpImage.loadFromData(value)
-                self.mimeFactory.setImage(univAttributeName, tmpImage)
-                tmpList.append("""<td width="55%"><img source=""" + univAttributeName + """></td>""")
+                #tmpImage = QImage()
+                #tmpImage.loadFromData(value)
+                #self.mimeFactory.setImage(univAttributeName, tmpImage)
+                from PyQt4.QtGui import QImage
+                from PyQt4.QtCore import QResource
+                resourceName = ":/jpegs/" + univAttributeName
+                print value
+                print QResource.registerResource(value, resourceName)
+                print resourceName
+
+                tmpList.append("""<td width="55%"><img source=""" + value + """></td>""")
             elif attributeIsPassword:
                 tmpList.append("""<td bgcolor="#E5E5E5" width="55%">""" + value + """</td>""")
             else:
-                self.mimeFactory.setImage(univAttributeName, self.binaryImage)
+                #self.mimeFactory.setImage(univAttributeName, self.binaryImage)
                 tmpList.append("""<td width="55%"><img source=""" + univAttributeName + """></td>""")
         else:
             tmpList.append("""<td bgcolor="#E5E5E5" width="55%">""" + value + """</td>""")

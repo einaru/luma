@@ -425,7 +425,11 @@ class AdvancedObjectWidget(QWidget):
                             QLineEdit.Normal, 
                             oldValue)
         if ok:
-            newValue = unicode(newValue)
+            # TODO check attribute types
+            if attributeName.lower() == "jpegphoto":
+                newValue = str(newValue)
+            else:
+                newValue = unicode(newValue)
             if not newValue == None:
                 if attributeName == 'RDN':
                     self.entryModel.editRDN(newValue)
