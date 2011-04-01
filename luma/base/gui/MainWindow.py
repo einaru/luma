@@ -33,21 +33,21 @@ PluginToolBar:
 import logging
 import gc
 
-from PyQt4.QtCore import Qt, pyqtSlot, pyqtSignal
-from PyQt4.QtCore import QEvent, QString, QTimer
-from PyQt4.QtCore import QTranslator
+from PyQt4.QtCore import (Qt, pyqtSlot, pyqtSignal)
+from PyQt4.QtCore import (QObject)
+from PyQt4.QtCore import (QEvent, QString, QTimer)
+from PyQt4.QtCore import (QTranslator)
 
-from PyQt4.QtGui import QAction, QActionGroup, QApplication, qApp
-from PyQt4.QtGui import QDockWidget, QMenu
-from PyQt4.QtGui import QFont
-from PyQt4.QtGui import QIcon
-from PyQt4.QtGui import QLabel
-from PyQt4.QtGui import QMainWindow
-from PyQt4.QtGui import QPushButton
-from PyQt4.QtGui import QToolBar
-from PyQt4.QtGui import QWidget
+from PyQt4.QtGui import (QAction, QActionGroup, QApplication, qApp)
+from PyQt4.QtGui import (QDockWidget, QMenu)
+from PyQt4.QtGui import (QFont)
+from PyQt4.QtGui import (QKeySequence)
+from PyQt4.QtGui import (QLabel)
+from PyQt4.QtGui import (QMainWindow)
+from PyQt4.QtGui import (QPushButton)
+from PyQt4.QtGui import (QToolBar)
+from PyQt4.QtGui import (QWidget)
 
-from ..backend.ServerList import ServerList
 from ..gui.AboutDialog import AboutDialog
 from ..gui.ServerDialog import ServerDialog
 from ..gui.Settings import Settings
@@ -63,8 +63,6 @@ class MainWindow(QMainWindow, Ui_MainWindow):
     """ The Main window of Luma.
     """
 
-    DEVEL = True
-
     logger = logging.getLogger(__name__)
     languages = {}
     translator = None
@@ -76,36 +74,41 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         and connects all necessary signals and slots
         """
         super(MainWindow, self).__init__(parent)
-
+        self.setupUi(self)
+        # We store the window size to make sure the previous window size
+        # is restored when leaving fullscreen mode. This varible is used
+        # in the toggleFullscreen slot.
+        self.__tmpWinSize = self.size()
+        self.eventFilter = LumaEventFilter(self)
+        
+        self.mainTabs.installEventFilter(self.eventFilter)
+        
         self.translator = QTranslator()
         self.languageHandler = LanguageHandler()
         self.languages = self.languageHandler.availableLanguages
-        self.setupUi(self)
 
-        self.setWindowIcon(QIcon(':/icons/luma-16'))
-
-        self.__createPluginToolBar()
+        #self.__createPluginToolBar()
         self.__createLoggerWidget()
         self.__loadSettings()
         self.__createLanguageOptions()
 
         self.setStatusBar(self.statusBar)
-        
+
         self.mainTabs.setTabsClosable(True)
         self.mainTabs.setContextMenuPolicy(Qt.CustomContextMenu)
         self.mainTabs.customContextMenuRequested.connect(self.__mainTabsContextMenu)
-        
+
         self.defaultTabStyle = ''
         self.lumaHeadStyle = 'background: url(:/icons/luma-gray);\n' + \
                      'background-position: bottom right;\n' + \
                      'background-attachment: fixed;\n' + \
                      'background-repeat:  no-repeat;'
-                     
+
         #Sets up pluginWidget
         #self in parameter is used to call pluginSelected here...
         self.pluginWidget = PluginListWidget(self)
         self.showPlugins()
-        
+
         self.welcomeTab = WelcomeTab()
         self.welcomeTab.textBrowser.setStyleSheet(self.lumaHeadStyle)
 
@@ -119,7 +122,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 self.__setTabWidgetStyle(self.lumaHeadStyle)
 
             self.actionShowWelcomeTab.setEnabled(True)
-            
+
     def __mainTabsContextMenu(self, pos):
         menu = QMenu()
         if self.mainTabs.count() > 0:
@@ -130,7 +133,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             # If there's no tabs, offer to display the pluginlist
             menu.addAction(self.actionShowPluginList)
         menu.exec_(self.mainTabs.mapToGlobal(pos))
-        
+
     def __createPluginToolBar(self):
         """ Creates the pluign toolbar.
         """
@@ -227,17 +230,15 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         #    settings.size = self.size()
         #    settings.position = self.pos()
 
+        # The global logger settings is managed from the settings dialog.
         # Logger
-        settings.showLoggerOnStart = self.actionShowLogger.isChecked()
+#        settings.showLoggerOnStart = self.actionShowLogger.isChecked()
         settings.showErrors = self.loggerWidget.errorBox.isChecked()
         settings.showDebug = self.loggerWidget.debugBox.isChecked()
         settings.showInfo = self.loggerWidget.infoBox.isChecked()
 
         # Language
         settings.language = self.currentLanguage
-
-        # Plugins """
-        self.TODO(u'write settings%s' % self.__class__)
 
     def __switchTranslator(self, translator, qmFile):
         """ Called when a new language is loaded.
@@ -299,7 +300,6 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             type = event.type()
             if QEvent.LanguageChange == type:
                 self.retranslateUi(self)
-                self.pluginToolBar.retranslateUi(self.pluginToolBar)
                 self.loggerWidget.retranslateUi(self.loggerWidget)
             elif QEvent.LocaleChange == type:
                 print u'System Locale changed'
@@ -321,19 +321,6 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             self.loggerDockWindow.show()
         else:
             self.loggerDockWindow.hide()
-
-    @pyqtSlot(bool)
-    def toggleToolbar(self, show):
-        """ Slot for toggling the plugin toolbar.
-        
-        @param show: boolean value;
-            If True the plugin toolbar will be shown,
-            If False it will be hidden.
-        """
-        if show:
-            self.pluginToolBar.show()
-        else:
-            self.pluginToolBar.hide()
 
     @pyqtSlot(bool)
     def toggleStatusbar(self, show):
@@ -358,9 +345,11 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             if False it will enter normal mode.
         """
         if fullscreen:
+            self.__tmpWinSize = self.size()
             self.showFullScreen()
         else:
             self.showNormal()
+            self.resize(self.__tmpWinSize)
 
     def showServerEditor(self):
         """
@@ -378,34 +367,33 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         @param tab:
             The index of the tab to display in the settings dialog. 
         """
-        settingsDialog = SettingsDialog(self.currentLanguage, self.languages)
+        #settingsDialog = SettingsDialog(self.currentLanguage, self.languages)
+        settingsDialog = SettingsDialog()
+        if tab < 0:
+            tab = 0
         settingsDialog.tabWidget.setCurrentIndex(tab)
         if settingsDialog.exec_():
-            # We assume that some settings is changed 
-            # if the user clicked the ok button, and
-            # reloads the application settings
-            self.__loadSettings(mainWin=False)
-            self.reloadPlugins()
-            # A Hack but it'll do for now
-            for a in self.langGroup.actions():
-                if a.data().toString() == self.currentLanguage:
-                    a.setChecked(True)
+            pass
+#            # We assume that some settings is changed 
+#            # if the user clicked the ok button, and
+#            # reloads the application settings
+#            self.__loadSettings(mainWin=False)
+#            self.reloadPlugins()
+#            # A Hack but it'll do for now
+#            for a in self.langGroup.actions():
+#                if a.data().toString() == self.currentLanguage:
+#                    a.setChecked(True)
 
     def configurePlugins(self):
         """ Slot to display the plugins configuration. This currently
         calls showSettingsDialog with tab index set to 2.
         """
-        self.showSettingsDialog(2)
+        self.showSettingsDialog(1)
 
     def reloadPlugins(self):
         """ Slot to reload plugins.
         """
         self.pluginWidget.updatePlugins()
-
-    def loadPlugins(self):
-        """ Hmmm...
-        """
-        self.showPlugins()
 
     def pluginSelected(self, item):
         """ 
@@ -415,7 +403,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.__setTabWidgetStyle(self.defaultTabStyle)
 
         widget = item.plugin.getPluginWidget(None, self)
-        
+
         index = self.mainTabs.addTab(widget, item.icon(), item.plugin.pluginUserString)
         self.mainTabs.setCurrentIndex(index)
 
@@ -425,7 +413,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         """
 
         widget = self.mainTabs.widget(index)
-        
+
         # If the tab closed is one of these, enable the toggle-action
         if widget == self.pluginWidget:
             self.actionShowPluginList.setEnabled(True)
@@ -434,11 +422,13 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
         self.mainTabs.removeTab(index)
 
-        #Unparent the widget since it was reparented by the QTabWidget so it's garbage collected
+        # Unparent the widget since it was reparented by the QTabWidget
+        # so it's garbage collected
         widget.setParent(None)
 
-        # In case the widget contained circular references -- force GC to take care of the objects
-        # since there can be quite many if it was BrowserWidget that was closed
+        # In case the widget contained circular references
+        # -- force GC to take care of the objects since there can be
+        #    quite many if it was BrowserWidget that was closed.
         # Can't call it directly since that'll be too soon
         QTimer.singleShot(0, self.gc)
 
@@ -461,7 +451,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
         self.mainTabs.setCurrentIndex(index)
         self.actionShowWelcomeTab.setEnabled(False)
-        
+
     def showPlugins(self):
         """ Will show the pluginlistwidget-tab
         """
@@ -470,10 +460,6 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             index = self.mainTabs.addTab(self.pluginWidget, QApplication.translate("MainWindow", "Plugins"))
             self.mainTabs.setCurrentIndex(index)
             self.actionShowPluginList.setEnabled(False)
-
-        else:
-            """TODO: REMOVE THIS """
-            self.logger.debug("Johannes fix: linje 438")
 
     def closeEvent(self, e):
         """ Overrides the QMainWindow closeEvent slot to save settings
@@ -490,7 +476,42 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         @param todo:
             The todo message to display in the logger window.
         """
-        self.logger.debug(u'[TODO] %s%s' % (todo, str(self.__class__)))
+        self.logger.debug(u'[TODO] {0}{1}'.format(todo, str(self.__class__)))
+
+
+class LumaEventFilter(QObject):
+    """An Event handler for the Luma Main application.
+    
+    To act upon widget events, install an instance of this class with
+    the target widget, and add the capture logic in the eventFilter
+    method.
+    """
+
+    def eventFilter(self, target, event):
+        """
+        @param target: QObject;
+            This will contain the target widget, i.e the widget that
+            got the handler installed.
+        @param event: QEvent;
+            This is the event object to act upon.
+        """
+        if event.type() == QEvent.KeyPress:
+            # If we have a match on the QKeySequence we're looking for
+            # we keep things safe by explicitly checking if the target
+            # is the correct for our purpose.
+            # In the case of the Search plugin, only the tab widget for
+            # the search results ('right') is expected to act upon the
+            # close event.
+            if target.objectName() == 'mainTabs':
+                index = target.currentIndex()
+                if event.matches(QKeySequence.Close):
+                    target.tabCloseRequested.emit(index)
+                    # When we actually catches and acts upon an event,
+                    # we need to inform the eventHandler about this.
+                    return True
+
+        # All events we didn't act upon must be forwarded        
+        return QObject.eventFilter(self, target, event)
 
 
 class LoggerWidget(QWidget, Ui_LoggerWidget):

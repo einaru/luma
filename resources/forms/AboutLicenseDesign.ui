@@ -58,7 +58,7 @@ p, li { white-space: pre-wrap; }
      <item>
       <widget class="QPushButton" name="actionCloseLicense">
        <property name="text">
-        <string>Close</string>
+        <string>&amp;Close</string>
        </property>
       </widget>
      </item>

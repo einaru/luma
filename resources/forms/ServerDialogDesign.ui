@@ -64,10 +64,10 @@
        <item row="1" column="0">
         <widget class="QPushButton" name="addButton">
          <property name="text">
-          <string>Add</string>
+          <string>&amp;Add</string>
          </property>
          <property name="autoDefault">
-          <bool>false</bool>
+          <bool>true</bool>
          </property>
          <property name="default">
           <bool>false</bool>
@@ -77,10 +77,10 @@
        <item row="1" column="1">
         <widget class="QPushButton" name="deleteButton">
          <property name="text">
-          <string>Delete</string>
+          <string>&amp;Delete</string>
          </property>
          <property name="autoDefault">
-          <bool>false</bool>
+          <bool>true</bool>
          </property>
         </widget>
        </item>
@@ -157,6 +157,9 @@
                  <property name="text">
                   <string>Host:</string>
                  </property>
+                 <property name="buddy">
+                  <cstring>hostEdit</cstring>
+                 </property>
                 </widget>
                </item>
                <item row="0" column="1">
@@ -166,6 +169,9 @@
                 <widget class="QLabel" name="portLabel">
                  <property name="text">
                   <string>Port:</string>
+                 </property>
+                 <property name="buddy">
+                  <cstring>portSpinBox</cstring>
                  </property>
                 </widget>
                </item>
@@ -313,6 +319,9 @@
                  <property name="text">
                   <string>Mechanism:</string>
                  </property>
+                 <property name="buddy">
+                  <cstring>mechanismBox</cstring>
+                 </property>
                 </widget>
                </item>
                <item row="1" column="1">
@@ -374,6 +383,9 @@
                  <property name="text">
                   <string>Bind as:</string>
                  </property>
+                 <property name="buddy">
+                  <cstring>bindAsEdit</cstring>
+                 </property>
                 </widget>
                </item>
                <item row="2" column="1">
@@ -393,6 +405,9 @@
                  </property>
                  <property name="text">
                   <string>Password:</string>
+                 </property>
+                 <property name="buddy">
+                  <cstring>passwordEdit</cstring>
                  </property>
                 </widget>
                </item>
@@ -639,6 +654,9 @@
                  <property name="wordWrap">
                   <bool>false</bool>
                  </property>
+                 <property name="buddy">
+                  <cstring>certFileEdit</cstring>
+                 </property>
                 </widget>
                </item>
                <item row="1" column="1">
@@ -719,6 +737,9 @@
                  <property name="wordWrap">
                   <bool>false</bool>
                  </property>
+                 <property name="buddy">
+                  <cstring>certKeyfileEdit</cstring>
+                 </property>
                 </widget>
                </item>
               </layout>
@@ -795,11 +816,8 @@
        <property name="text">
         <string>&amp;OK</string>
        </property>
-       <property name="shortcut">
-        <string>Alt+O</string>
-       </property>
        <property name="autoDefault">
-        <bool>false</bool>
+        <bool>true</bool>
        </property>
        <property name="default">
         <bool>true</bool>
@@ -818,10 +836,7 @@
         </sizepolicy>
        </property>
        <property name="text">
-        <string>&amp;Apply</string>
-       </property>
-       <property name="shortcut">
-        <string>Alt+A</string>
+        <string>Apply</string>
        </property>
        <property name="autoDefault">
         <bool>false</bool>

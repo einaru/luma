@@ -30,7 +30,7 @@
      <x>0</x>
      <y>0</y>
      <width>700</width>
-     <height>25</height>
+     <height>23</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
@@ -71,7 +71,6 @@
     <addaction name="actionShowPluginList"/>
     <addaction name="actionShowWelcomeTab"/>
     <addaction name="separator"/>
-    <addaction name="actionShowToolbar"/>
     <addaction name="actionShowStatusbar"/>
     <addaction name="actionShowLogger"/>
     <addaction name="separator"/>
@@ -359,22 +358,6 @@
    <signal>toggled(bool)</signal>
    <receiver>MainWindow</receiver>
    <slot>toggleStatusbar(bool)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>-1</x>
-     <y>-1</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>349</x>
-     <y>249</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>actionShowToolbar</sender>
-   <signal>toggled(bool)</signal>
-   <receiver>MainWindow</receiver>
-   <slot>toggleToolbar(bool)</slot>
    <hints>
     <hint type="sourcelabel">
      <x>-1</x>

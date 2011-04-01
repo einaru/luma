@@ -30,7 +30,7 @@ import sys
 import traceback
 
 from PyQt4.QtCore import (QEvent, Qt)
-from PyQt4.QtGui import QApplication
+from PyQt4.QtGui import (QApplication, QIcon)
 
 import __init__ as appinfo
 from base.backend.Log import LumaLogHandler
@@ -39,6 +39,8 @@ from base.gui.SplashScreen import SplashScreen
 from base.gui.Settings import Settings
 from base.util.Paths import getConfigPrefix
 
+# This import ensures that all compiled resources are available for the
+# running application. It contains all icons and translation files
 import resources
 
 
@@ -97,14 +99,15 @@ def startApplication(argv, verbose=False, clear=[], dirs={}):
     import platform
     if platform.system() == "Windows":
         # Avoids ugly white background
-        from PyQt4 import QtGui
-        QtGui.QApplication.setStyle(QtGui.QStyleFactory.create("plastique"))
-        QtGui.QApplication.setPalette(QtGui.QApplication.style().standardPalette())
+        from PyQt4.QtGui import QStyleFactory
+        QApplication.setStyle(QStyleFactory.create("plastique"))
+        QApplication.setPalette(QApplication.style().standardPalette())
 
 
     app.setOrganizationName(appinfo.ORGNAME)
     app.setApplicationName(appinfo.APPNAME)
     app.setApplicationVersion(appinfo.VERSION)
+    app.setWindowIcon(QIcon(':/icons/luma-16'))
 
     # Setup the logging mechanism
     l = logging.getLogger()

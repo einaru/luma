@@ -39,7 +39,10 @@ class SearchForm(QWidget, Ui_SearchForm):
     def __init__(self, parent=None):
         super(SearchForm, self).__init__(parent)
         self.setupUi(self)
+        self.serverBox.addItem('')
         self.scopeBox.addItems(self.availableScopes)
+        self.errorIcon.setVisible(False)
+        self.errorLabel.setVisible(False)
         self.__connectSlots()
 
     def __connectSlots(self):
@@ -109,6 +112,20 @@ class SearchForm(QWidget, Ui_SearchForm):
         self.filterBoxEdit.insertItem(0, filter)
         self.filterBoxEdit.setCurrentIndex(0)
         self.searchButton.clicked.emit(True)
+    
+    def onSearchError(self, isError, msg=''):
+        """
+        @param isError: boolean value;
+            Indicates if it is an error or not. That is, we use this
+            method to hide any previous error messages on new a search.
+        @param e: exception object;
+            The exception object returned from the search operation.
+            Cointains information about the error. 
+        """
+        self.errorLabel.setText(msg)
+        self.errorIcon.setVisible(isError)
+        self.errorLabel.setVisible(isError)
+        
 
     @property
     def server(self):

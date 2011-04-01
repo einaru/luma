@@ -26,6 +26,7 @@ from PyQt4.QtGui import (QWidget, QTextCursor)
 
 from .gui.FilterBuilderDesign import Ui_FilterBuilder
 from .Search import (encodeUTF8, PluginSettings)
+from .FilterHighlighter import LumaFilterHighlighter
 
 class FilterBuilder(QWidget, Ui_FilterBuilder):
     """The Luma filter wizard widget
@@ -172,6 +173,12 @@ class FilterBuilder(QWidget, Ui_FilterBuilder):
             self.optionBox.addItems(self.objectClassOptions)
         else:
             self.optionBox.addItems(self.attributeOptions)
+
+    def setFilterHighlighter(self, bool):
+        """Registers the filter highligher if bool is True.
+        """
+        if bool:
+            LumaFilterHighlighter(self.filterEdit.document(), self.attributeOptions)
 
     def onServerChanged(self, objectClasses, attributes):
         """This method is called when the server in the main search

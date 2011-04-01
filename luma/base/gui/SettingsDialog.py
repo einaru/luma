@@ -26,7 +26,7 @@ from PyQt4.QtGui import QDialog
 from ..gui.Settings import Settings
 from ..gui.design.SettingsDialogDesign import Ui_SettingsDialog
 from ..model.PluginSettingsListModel import PluginSettingsListModel
-from ..util.i18n import LanguageHandler
+#from ..util.i18n import LanguageHandler
 from ..gui.AboutPlugin import AboutPlugin
 
 
@@ -34,6 +34,14 @@ class SettingsDialog(QDialog, Ui_SettingsDialog):
     """ The application settings dialog
     
     Contains all the application settings.
+    
+    NOTE! Only settings that are irrelevant to the running main
+    application while be available in this settings Dialog.
+    This way we need not worry about keeping things synchronized
+    with each other.
+    
+    TODO: We might want to add some options to let the user control the
+          level of warnings and messages shown through message boxes.
     """
     
     # This signal is used to tell plugin settings widgets to save its
@@ -42,28 +50,32 @@ class SettingsDialog(QDialog, Ui_SettingsDialog):
 
     __logger = logging.getLogger(__name__)
 
-    def __init__(self, currentLanguage, languages={}, parent=None):
-        """ The constructor must be given the currentLanguage from the
-        Main window to keep things synchronized.
-        
-        @param currentLanguage: string;
-            the iso code for the current selected application language
-        
-        @param languages: dictionary;
-            This should be a dictionary with iso codes and language
-            names for available languages. NOTE: Might want to provide
-            this from the main window as it's already loaded.
-        """
-        super(SettingsDialog, self).__init__(parent)
+#    def __init__(self, currentLanguage, languages={}, parent=None):
+#        """ The constructor must be given the currentLanguage from the
+#        Main window to keep things synchronized.
+#        
+#        @param currentLanguage: string;
+#            the iso code for the current selected application language
+#        
+#        @param languages: dictionary;
+#            This should be a dictionary with iso codes and language
+#            names for available languages. NOTE: Might want to provide
+#            this from the main window as it's already loaded.
+#        """
+#        super(SettingsDialog, self).__init__(parent)
+#        self.setupUi(self)
+#        self.languages = languages
+#        self.currentLanguage = currentLanguage
+#        if self.currentLanguage == {}:
+#            """ If the list of languages is empty we fetch the list
+#            with the LanguageHelper. """
+#            lh = LanguageHandler()
+#            self.currentLanguage = lh.availableLanguages
+#        self.loadSettings()
 
+    def __init__(self, parent=None):
+        super(SettingsDialog, self).__init__(parent)
         self.setupUi(self)
-        self.languages = languages
-        self.currentLanguage = currentLanguage
-        if self.currentLanguage == {}:
-            """ If the list of languages is empty we fetch the list
-            with the LanguageHelper. """
-            lh = LanguageHandler()
-            self.currentLanguage = lh.availableLanguages
         self.loadSettings()
 
     def loadSettings(self):
@@ -73,18 +85,18 @@ class SettingsDialog(QDialog, Ui_SettingsDialog):
 
         # Logging
         self.showLoggerOnStart.setChecked(settings.showLoggerOnStart)
-        self.showErrors.setChecked(settings.showErrors)
-        self.showDebug.setChecked(settings.showDebug)
-        self.showInfo.setChecked(settings.showInfo)
+#        self.showErrors.setChecked(settings.showErrors)
+#        self.showDebug.setChecked(settings.showDebug)
+#        self.showInfo.setChecked(settings.showInfo)
 
         # Language
-        self.languageSelector
-        i = 0
-        for key, name in self.languages.iteritems():
-            self.languageSelector.addItem('%s [%s]' % (name[0], key), key)
-            if key == self.currentLanguage:
-                self.languageSelector.setCurrentIndex(i)
-            i = i + 1
+#        self.languageSelector
+#        i = 0
+#        for key, name in self.languages.iteritems():
+#            self.languageSelector.addItem('%s [%s]' % (name[0], key), key)
+#            if key == self.currentLanguage:
+#                self.languageSelector.setCurrentIndex(i)
+#            i = i + 1
 
         # Plugins
         self.pluginListView.setModel(PluginSettingsListModel())
@@ -93,7 +105,6 @@ class SettingsDialog(QDialog, Ui_SettingsDialog):
         """ If a plugin has a pluginsettingswidget, it will be put into
         the tabWidget, if not, only a tab with "about" will show.
         """
-
         plugin = self.pluginListView.model().itemFromIndex(index).plugin
 
         aboutwidget = AboutPlugin(plugin)
@@ -126,13 +137,13 @@ class SettingsDialog(QDialog, Ui_SettingsDialog):
 
         # Logging
         settings.showLoggerOnStart = self.showLoggerOnStart.isChecked()
-        settings.showErrors = self.showErrors.isChecked()
-        settings.showDebug = self.showDebug.isChecked()
-        settings.showInfo = self.showInfo.isChecked()
+#        settings.showErrors = self.showErrors.isChecked()
+#        settings.showDebug = self.showDebug.isChecked()
+#        settings.showInfo = self.showInfo.isChecked()
 
         # Language
-        i = self.languageSelector.currentIndex()
-        settings.language = self.languageSelector.itemData(i).toString()
+#        i = self.languageSelector.currentIndex()
+#        settings.language = self.languageSelector.itemData(i).toString()
 
         # Plugins
         self.pluginListView.model().saveSettings()

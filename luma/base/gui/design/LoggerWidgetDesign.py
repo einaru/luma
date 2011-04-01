@@ -1,62 +1,57 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'd:\Dropbox\Git\it2901\resources\forms\LoggerWidgetDesign.ui'
+# Form implementation generated from reading ui file '/mnt/debris/devel/git/luma/resources/forms/LoggerWidgetDesign.ui'
 #
-# Created: Fri Apr 01 18:24:06 2011
-#      by: PyQt4 UI code generator 4.8.3
+# Created: Fri Apr  1 20:41:51 2011
+#      by: PyQt4 UI code generator 4.7.4
 #
 # WARNING! All changes made in this file will be lost!
 
 from PyQt4 import QtCore, QtGui
 
-try:
-    _fromUtf8 = QtCore.QString.fromUtf8
-except AttributeError:
-    _fromUtf8 = lambda s: s
-
 class Ui_LoggerWidget(object):
     def setupUi(self, LoggerWidget):
-        LoggerWidget.setObjectName(_fromUtf8("LoggerWidget"))
+        LoggerWidget.setObjectName("LoggerWidget")
         LoggerWidget.resize(516, 217)
-        LoggerWidget.setWindowTitle(_fromUtf8(""))
+        LoggerWidget.setWindowTitle("")
         self.vboxlayout = QtGui.QVBoxLayout(LoggerWidget)
-        self.vboxlayout.setObjectName(_fromUtf8("vboxlayout"))
+        self.vboxlayout.setObjectName("vboxlayout")
         self.messageEdit = QtGui.QTextEdit(LoggerWidget)
         self.messageEdit.setReadOnly(True)
         self.messageEdit.setTextInteractionFlags(QtCore.Qt.LinksAccessibleByMouse|QtCore.Qt.TextSelectableByMouse)
-        self.messageEdit.setObjectName(_fromUtf8("messageEdit"))
+        self.messageEdit.setObjectName("messageEdit")
         self.vboxlayout.addWidget(self.messageEdit)
         self.hboxlayout = QtGui.QHBoxLayout()
-        self.hboxlayout.setObjectName(_fromUtf8("hboxlayout"))
+        self.hboxlayout.setObjectName("hboxlayout")
         self.textLabel1 = QtGui.QLabel(LoggerWidget)
         self.textLabel1.setWordWrap(False)
-        self.textLabel1.setObjectName(_fromUtf8("textLabel1"))
+        self.textLabel1.setObjectName("textLabel1")
         self.hboxlayout.addWidget(self.textLabel1)
         self.errorBox = QtGui.QCheckBox(LoggerWidget)
         self.errorBox.setChecked(True)
-        self.errorBox.setObjectName(_fromUtf8("errorBox"))
+        self.errorBox.setObjectName("errorBox")
         self.hboxlayout.addWidget(self.errorBox)
         self.debugBox = QtGui.QCheckBox(LoggerWidget)
         self.debugBox.setChecked(True)
-        self.debugBox.setObjectName(_fromUtf8("debugBox"))
+        self.debugBox.setObjectName("debugBox")
         self.hboxlayout.addWidget(self.debugBox)
         self.infoBox = QtGui.QCheckBox(LoggerWidget)
         self.infoBox.setChecked(True)
-        self.infoBox.setObjectName(_fromUtf8("infoBox"))
+        self.infoBox.setObjectName("infoBox")
         self.hboxlayout.addWidget(self.infoBox)
         spacerItem = QtGui.QSpacerItem(141, 21, QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Minimum)
         self.hboxlayout.addItem(spacerItem)
         self.clearButton = QtGui.QToolButton(LoggerWidget)
         self.clearButton.setAutoRaise(True)
-        self.clearButton.setObjectName(_fromUtf8("clearButton"))
+        self.clearButton.setObjectName("clearButton")
         self.hboxlayout.addWidget(self.clearButton)
         self.vboxlayout.addLayout(self.hboxlayout)
 
         self.retranslateUi(LoggerWidget)
-        QtCore.QObject.connect(self.clearButton, QtCore.SIGNAL(_fromUtf8("clicked()")), LoggerWidget.clearLogger)
-        QtCore.QObject.connect(self.debugBox, QtCore.SIGNAL(_fromUtf8("stateChanged(int)")), LoggerWidget.rebuildLog)
-        QtCore.QObject.connect(self.errorBox, QtCore.SIGNAL(_fromUtf8("stateChanged(int)")), LoggerWidget.rebuildLog)
-        QtCore.QObject.connect(self.infoBox, QtCore.SIGNAL(_fromUtf8("stateChanged(int)")), LoggerWidget.rebuildLog)
+        QtCore.QObject.connect(self.clearButton, QtCore.SIGNAL("clicked()"), LoggerWidget.clearLogger)
+        QtCore.QObject.connect(self.debugBox, QtCore.SIGNAL("stateChanged(int)"), LoggerWidget.rebuildLog)
+        QtCore.QObject.connect(self.errorBox, QtCore.SIGNAL("stateChanged(int)"), LoggerWidget.rebuildLog)
+        QtCore.QObject.connect(self.infoBox, QtCore.SIGNAL("stateChanged(int)"), LoggerWidget.rebuildLog)
         QtCore.QMetaObject.connectSlotsByName(LoggerWidget)
 
     def retranslateUi(self, LoggerWidget):

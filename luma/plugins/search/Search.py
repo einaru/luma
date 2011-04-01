@@ -33,7 +33,7 @@ from base.backend.Exception import (ServerCertificateException,
 from base.backend.ObjectClassAttributeInfo import ObjectClassAttributeInfo
 from base.gui.Settings import PluginSettings
 from base.util import encodeUTF8
-from base.util.IconTheme import iconFromTheme
+from base.util.IconTheme import iconFromTheme, pixmapFromThemeIcon
 
 from .gui.SearchPluginDesign import Ui_SearchPlugin
 from .gui.SearchPluginSettingsDesign import Ui_SearchPluginSettings
@@ -65,7 +65,7 @@ class SearchPluginEventFilter(QObject):
                 index = target.currentIndex()
                 if event.matches(QKeySequence.Close):
                     target.tabCloseRequested.emit(index)
-                    # When we actually catches and acts upona an event,
+                    # When we actually catches and acts upon an event,
                     # we need to inform the eventHandler about this.
                     return True
                 elif event.matches(QKeySequence.Find):
@@ -112,9 +112,11 @@ class SearchPlugin(QWidget, Ui_SearchPlugin):
         self.filterBuilder = FilterBuilder(parent=self)
 
         # Icons
-        searchIcon = iconFromTheme('system-search', ':/icons/search_plugin-plugin')
-        filterIcon = iconFromTheme('filter', ':/icons/filter')
+        searchIcon = iconFromTheme('edit-find', ':/icons/search_plugin-plugin')
+        filterIcon = iconFromTheme('edit-find-replace', ':/icons/filter')
         secureIcon = iconFromTheme('changes-prevent', ':/icons/secure')
+        errorIcon = pixmapFromThemeIcon('dialog-error', ':/icons/error', 24, 24)
+        editIcon = iconFromTheme('accessories-text-editor', ':/icons/edit')
         undoIcon = iconFromTheme('edit-undo', ':/icons/undo')
         redoIcon = iconFromTheme('edit-redo', ':/icons/redo')
         addIcon = iconFromTheme('list-add', ':/icons/single')
@@ -122,8 +124,8 @@ class SearchPlugin(QWidget, Ui_SearchPlugin):
         self.indexSF = self.left.addTab(self.searchForm, searchIcon, '')
         self.indexFB = self.left.addTab(self.filterBuilder, filterIcon, '')
         
-        self.searchForm.filterBuilderToolButton.setIcon(filterIcon)
-        
+        self.searchForm.filterBuilderToolButton.setIcon(editIcon)
+        self.searchForm.errorIcon.setPixmap(errorIcon)
         self.filterBuilder.undoButton.setIcon(undoIcon)
         self.filterBuilder.redoButton.setIcon(redoIcon)
         self.filterBuilder.addSpecialCharButton.setIcon(addIcon)
@@ -168,9 +170,10 @@ class SearchPlugin(QWidget, Ui_SearchPlugin):
         """Loads the plugin settings if available.
         """
         settings = PluginSettings('search')
-        self.autocompleteIsEnabled = settings.pluginValue('autocomplete', True).toBool()
+        self.autocompleteIsEnabled = settings.pluginValue('autocomplete', False).toBool()
         self.searchForm.scope = settings.pluginValue('scope', 2).toInt()[0]
         self.searchForm.sizeLimit = settings.pluginValue('limit', 0).toInt()[0]
+        self.filterBuilder.setFilterHighlighter(settings.pluginValue('highlighting', False).toBool())
 
         # Try to fetch the luma config prefix from the settings file,
         # and call the loadFilterBookmarks to populate search box
@@ -297,6 +300,7 @@ class SearchPlugin(QWidget, Ui_SearchPlugin):
         FIXME: Switch to the methods in the Filter module when it's
                finished and ready for use.
         """
+        self.searchForm.onSearchError(False)        
         filter = self.searchForm.filter
         filterPattern = re.compile("\(\w*=")
         tmpList = filterPattern.findall(filter)
@@ -310,6 +314,7 @@ class SearchPlugin(QWidget, Ui_SearchPlugin):
     def search(self, filter, attributelist):
         """Starts the search for the given server and search filter.
         
+        NOTE! _We_don't_use_the_signal_as_of_now_
         Emits the signal "ldap_result". Given arguments are the
         servername, the search result and the criterias used for the filter.
         """
@@ -375,8 +380,8 @@ class SearchPlugin(QWidget, Ui_SearchPlugin):
             index = self.right.addTab(resultTab, 'Search result')
             self.right.setCurrentIndex(index)
         else:
-            msg = 'Error during search operation. Reason:\n{0}'
-            self.__logger.error(msg.format(str(e)))
+            msg = 'Error during search operation.\n{0}'.format(unicode(e))
+            self.searchForm.onSearchError(True, msg)
 
     def retranslate(self, all=True):
         """For dynamic retranslation of the plugin text strings
@@ -409,9 +414,10 @@ class SearchPluginSettingsWidget(QWidget, Ui_SearchPluginSettings):
         """Load the possibly saved search plugin settings from diks.
         """
         settings = PluginSettings('search')
-        autocomplete = settings.pluginValue('autocomplete', True).toBool()
+        autocomplete = settings.pluginValue('autocomplete', False).toBool()
+        highlight = settings.pluginValue('highlighting', False).toBool()
         self.enableCompletionOpt.setChecked(autocomplete)
-        self.disableCompletionOpt.setChecked(not autocomplete)
+        self.enableHighlightingOpt.setChecked(highlight)
         self.scopeBox.setCurrentIndex(settings.pluginValue('scope', 2).toInt()[0])
         self.sizeLimitBox.setValue(settings.pluginValue('limit', 0).toInt()[0])
         del settings
@@ -423,6 +429,7 @@ class SearchPluginSettingsWidget(QWidget, Ui_SearchPluginSettings):
         """
         settings = PluginSettings('search')
         settings.setPluginValue('autocomplete', self.enableCompletionOpt.isChecked())
+        settings.setPluginValue('highlighting', self.enableHighlightingOpt.isChecked())
         settings.setPluginValue('scope', self.scopeBox.currentIndex())
         settings.setPluginValue('limit', self.sizeLimitBox.value())
         del settings

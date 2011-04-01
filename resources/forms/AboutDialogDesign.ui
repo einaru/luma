@@ -44,7 +44,7 @@
      <item>
       <widget class="QPushButton" name="creditsButton">
        <property name="text">
-        <string>Credits</string>
+        <string>&amp;Credits</string>
        </property>
        <property name="autoDefault">
         <bool>true</bool>
@@ -54,7 +54,7 @@
      <item>
       <widget class="QPushButton" name="licenseButton">
        <property name="text">
-        <string>License</string>
+        <string>&amp;License</string>
        </property>
        <property name="autoDefault">
         <bool>true</bool>
