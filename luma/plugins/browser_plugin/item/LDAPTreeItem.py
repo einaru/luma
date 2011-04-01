@@ -48,11 +48,6 @@ class LDAPTreeItem(AbstractLDAPTreeItem):
         
         # Return an icon if the item has been configured
         if role == QtCore.Qt.DecorationRole:
-            if self.loading:
-		if self.lol == None:
-		    self.lol = QtGui.QMovie(":/icons/luma-spinner-16")
-		    self.lol.start()
-		return self.lol
             if self.error:
                 return QIcon(QPixmap(":/icons/no"))
             if self.filter != LDAPTreeItem.FILTER_DEFAULT or self.limit != LDAPTreeItem.LIMIT_DEFAULT:

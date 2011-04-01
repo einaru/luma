@@ -961,24 +961,18 @@ class MovieDelegate(QtGui.QStyledItemDelegate):
     def __init__(self, view):
 	super(MovieDelegate, self).__init__()
 	self.view = view
+	self.movie = QtGui.QMovie(":/icons/luma-spinner-16")
+	self.movie.start()
 
     def paint(self, painter, option, index):
-
 	QtGui.QStyledItemDelegate.paint(self, painter, option, index)
-	item = index.internalPointer()
-	movie = item.data(0, QtCore.Qt.DecorationRole)
 
-	if not isinstance(movie, QtGui.QMovie):
-	    self.view.setIndexWidget(index, None)
-	    return
-	else:
-	    indexWidget = self.view.indexWidget(index)
-	    #if isinstance(indexWidget, QtGui.QLabel):
-		#if indexWidget.movie() != movie:
-		    #print "setmovie"
-		    #indexWidget.setMovie(movie)
-	    #else:
+	item = index.internalPointer()
+
+	if item.loading == True:	
 	    label = QtGui.QLabel()
-	    label.setMovie(movie)
+	    label.setMovie(self.movie)
 	    self.view.setIndexWidget(index, label)
+	else:
+	    self.view.setIndexWidget(index, None)
 

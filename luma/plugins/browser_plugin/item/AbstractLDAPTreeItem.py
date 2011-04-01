@@ -50,6 +50,7 @@ class AbstractLDAPTreeItem(object):
         # (i.e. one can use rowCount() without the additional penalty
         # of aquiring the items.
         self.populated = 0
+	self.loading = False
         
     def appendChild(self, item):
         """
