@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'd:\Skole\it2901\resources\forms\plugins\template\AddTemplateDialogDesign.ui'
 #
-# Created: Thu Mar 31 11:54:46 2011
+# Created: Fri Apr 01 15:18:52 2011
 #      by: PyQt4 UI code generator 4.8.2
 #
 # WARNING! All changes made in this file will be lost!
@@ -90,8 +90,10 @@ class Ui_AddTemplateDialog(object):
         AddTemplateDialog.setWindowTitle(QtGui.QApplication.translate("AddTemplateDialog", "Dialog", None, QtGui.QApplication.UnicodeUTF8))
         self.pushButtonOk.setText(QtGui.QApplication.translate("AddTemplateDialog", "OK", None, QtGui.QApplication.UnicodeUTF8))
         self.pushButtonCancel.setText(QtGui.QApplication.translate("AddTemplateDialog", "Cancel", None, QtGui.QApplication.UnicodeUTF8))
+        self.lineEditTemplateName.setToolTip(QtGui.QApplication.translate("AddTemplateDialog", "Name for template", None, QtGui.QApplication.UnicodeUTF8))
         self.labelMain.setText(QtGui.QApplication.translate("AddTemplateDialog", "Please choose a template name, a description and a server with which the template is associated.", None, QtGui.QApplication.UnicodeUTF8))
         self.labelTemplateName.setText(QtGui.QApplication.translate("AddTemplateDialog", "Template name:", None, QtGui.QApplication.UnicodeUTF8))
         self.labelServer.setText(QtGui.QApplication.translate("AddTemplateDialog", "Server:", None, QtGui.QApplication.UnicodeUTF8))
         self.labelDescription.setText(QtGui.QApplication.translate("AddTemplateDialog", "Description", None, QtGui.QApplication.UnicodeUTF8))
+        self.comboBoxServer.setToolTip(QtGui.QApplication.translate("AddTemplateDialog", "Choose a server", None, QtGui.QApplication.UnicodeUTF8))
 

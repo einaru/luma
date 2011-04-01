@@ -1,38 +1,43 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file '/mnt/debris/devel/git/luma/resources/forms/AboutLicenseDesign.ui'
+# Form implementation generated from reading ui file 'd:\Dropbox\Git\it2901\resources\forms\AboutLicenseDesign.ui'
 #
-# Created: Tue Mar 22 03:31:18 2011
-#      by: PyQt4 UI code generator 4.7.4
+# Created: Fri Apr 01 18:24:05 2011
+#      by: PyQt4 UI code generator 4.8.3
 #
 # WARNING! All changes made in this file will be lost!
 
 from PyQt4 import QtCore, QtGui
 
+try:
+    _fromUtf8 = QtCore.QString.fromUtf8
+except AttributeError:
+    _fromUtf8 = lambda s: s
+
 class Ui_AboutLicense(object):
     def setupUi(self, AboutLicense):
-        AboutLicense.setObjectName("AboutLicense")
+        AboutLicense.setObjectName(_fromUtf8("AboutLicense"))
         AboutLicense.setWindowModality(QtCore.Qt.WindowModal)
         AboutLicense.resize(407, 276)
         self.gridLayout = QtGui.QGridLayout(AboutLicense)
         self.gridLayout.setSizeConstraint(QtGui.QLayout.SetDefaultConstraint)
-        self.gridLayout.setObjectName("gridLayout")
+        self.gridLayout.setObjectName(_fromUtf8("gridLayout"))
         self.textBrowser = QtGui.QTextBrowser(AboutLicense)
         self.textBrowser.setOpenExternalLinks(True)
         self.textBrowser.setOpenLinks(True)
-        self.textBrowser.setObjectName("textBrowser")
+        self.textBrowser.setObjectName(_fromUtf8("textBrowser"))
         self.gridLayout.addWidget(self.textBrowser, 0, 0, 1, 1)
         self.horizontalLayout = QtGui.QHBoxLayout()
-        self.horizontalLayout.setObjectName("horizontalLayout")
+        self.horizontalLayout.setObjectName(_fromUtf8("horizontalLayout"))
         spacerItem = QtGui.QSpacerItem(40, 20, QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Minimum)
         self.horizontalLayout.addItem(spacerItem)
         self.actionCloseLicense = QtGui.QPushButton(AboutLicense)
-        self.actionCloseLicense.setObjectName("actionCloseLicense")
+        self.actionCloseLicense.setObjectName(_fromUtf8("actionCloseLicense"))
         self.horizontalLayout.addWidget(self.actionCloseLicense)
         self.gridLayout.addLayout(self.horizontalLayout, 1, 0, 1, 1)
 
         self.retranslateUi(AboutLicense)
-        QtCore.QObject.connect(self.actionCloseLicense, QtCore.SIGNAL("clicked()"), AboutLicense.close)
+        QtCore.QObject.connect(self.actionCloseLicense, QtCore.SIGNAL(_fromUtf8("clicked()")), AboutLicense.close)
         QtCore.QMetaObject.connectSlotsByName(AboutLicense)
 
     def retranslateUi(self, AboutLicense):

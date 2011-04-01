@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'd:\Skole\it2901\resources\forms\plugins\template\TemplateWidgetDesign.ui'
 #
-# Created: Thu Mar 31 15:17:43 2011
+# Created: Fri Apr 01 15:18:48 2011
 #      by: PyQt4 UI code generator 4.8.2
 #
 # WARNING! All changes made in this file will be lost!

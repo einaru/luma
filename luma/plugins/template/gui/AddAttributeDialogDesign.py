@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'd:\Skole\it2901\resources\forms\plugins\template\AddAttributeDialogDesign.ui'
 #
-# Created: Thu Mar 31 11:54:33 2011
+# Created: Fri Apr 01 15:18:58 2011
 #      by: PyQt4 UI code generator 4.8.2
 #
 # WARNING! All changes made in this file will be lost!

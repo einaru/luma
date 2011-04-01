@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file '/home/johannes/Programmering/Luma/git/resources/forms/MainWindowDesign.ui'
+# Form implementation generated from reading ui file 'd:\Dropbox\Git\it2901\resources\forms\MainWindowDesign.ui'
 #
-# Created: Tue Mar 22 18:48:36 2011
-#      by: PyQt4 UI code generator 4.8.2
+# Created: Fri Apr 01 18:24:06 2011
+#      by: PyQt4 UI code generator 4.8.3
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -76,7 +76,6 @@ class Ui_MainWindow(object):
         self.actionFullscreen = QtGui.QAction(MainWindow)
         self.actionFullscreen.setCheckable(True)
         self.actionFullscreen.setObjectName(_fromUtf8("actionFullscreen"))
-        self.menuFile.addSeparator()
         self.menuFile.addSeparator()
         self.menuFile.addAction(self.actionQuit)
         self.menuEdit.addAction(self.actionEditServerList)
