@@ -1,36 +1,31 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'd:\Dropbox\Git\it2901\resources\forms\plugins\search\SearchFormDesign.ui'
+# Form implementation generated from reading ui file '/home/einar/Desktop/luma-release-tagging/resources/forms/plugins/search/SearchFormDesign.ui'
 #
-# Created: Fri Apr 01 18:24:07 2011
-#      by: PyQt4 UI code generator 4.8.3
+# Created: Fri Apr  1 15:26:56 2011
+#      by: PyQt4 UI code generator 4.7.4
 #
 # WARNING! All changes made in this file will be lost!
 
 from PyQt4 import QtCore, QtGui
 
-try:
-    _fromUtf8 = QtCore.QString.fromUtf8
-except AttributeError:
-    _fromUtf8 = lambda s: s
-
 class Ui_SearchForm(object):
     def setupUi(self, SearchForm):
-        SearchForm.setObjectName(_fromUtf8("SearchForm"))
+        SearchForm.setObjectName("SearchForm")
         SearchForm.resize(377, 222)
         self.verticalLayout = QtGui.QVBoxLayout(SearchForm)
-        self.verticalLayout.setObjectName(_fromUtf8("verticalLayout"))
+        self.verticalLayout.setObjectName("verticalLayout")
         self.optionsGrid = QtGui.QGroupBox(SearchForm)
-        self.optionsGrid.setObjectName(_fromUtf8("optionsGrid"))
+        self.optionsGrid.setObjectName("optionsGrid")
         self.gridLayout_2 = QtGui.QGridLayout(self.optionsGrid)
-        self.gridLayout_2.setObjectName(_fromUtf8("gridLayout_2"))
+        self.gridLayout_2.setObjectName("gridLayout_2")
         self.serverLabel = QtGui.QLabel(self.optionsGrid)
         sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Maximum, QtGui.QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.serverLabel.sizePolicy().hasHeightForWidth())
         self.serverLabel.setSizePolicy(sizePolicy)
-        self.serverLabel.setObjectName(_fromUtf8("serverLabel"))
+        self.serverLabel.setObjectName("serverLabel")
         self.gridLayout_2.addWidget(self.serverLabel, 2, 0, 1, 1)
         self.baseDNLabel = QtGui.QLabel(self.optionsGrid)
         sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Maximum, QtGui.QSizePolicy.Preferred)
@@ -38,24 +33,24 @@ class Ui_SearchForm(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.baseDNLabel.sizePolicy().hasHeightForWidth())
         self.baseDNLabel.setSizePolicy(sizePolicy)
-        self.baseDNLabel.setObjectName(_fromUtf8("baseDNLabel"))
+        self.baseDNLabel.setObjectName("baseDNLabel")
         self.gridLayout_2.addWidget(self.baseDNLabel, 3, 0, 1, 1)
         self.baseDNBox = QtGui.QComboBox(self.optionsGrid)
         self.baseDNBox.setEnabled(True)
-        self.baseDNBox.setObjectName(_fromUtf8("baseDNBox"))
+        self.baseDNBox.setObjectName("baseDNBox")
         self.gridLayout_2.addWidget(self.baseDNBox, 3, 1, 1, 2)
         self.serverBox = QtGui.QComboBox(self.optionsGrid)
         self.serverBox.setEnabled(True)
-        self.serverBox.setObjectName(_fromUtf8("serverBox"))
+        self.serverBox.setObjectName("serverBox")
         self.gridLayout_2.addWidget(self.serverBox, 2, 1, 1, 2)
         self.scopeBox = QtGui.QComboBox(self.optionsGrid)
         self.scopeBox.setMaxVisibleItems(3)
         self.scopeBox.setMaxCount(3)
         self.scopeBox.setDuplicatesEnabled(True)
-        self.scopeBox.setObjectName(_fromUtf8("scopeBox"))
+        self.scopeBox.setObjectName("scopeBox")
         self.gridLayout_2.addWidget(self.scopeBox, 4, 1, 1, 2)
         self.sizeLimitSpinBox = QtGui.QSpinBox(self.optionsGrid)
-        self.sizeLimitSpinBox.setObjectName(_fromUtf8("sizeLimitSpinBox"))
+        self.sizeLimitSpinBox.setObjectName("sizeLimitSpinBox")
         self.gridLayout_2.addWidget(self.sizeLimitSpinBox, 5, 1, 1, 2)
         self.sizeLimitLabel = QtGui.QLabel(self.optionsGrid)
         sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Maximum, QtGui.QSizePolicy.Preferred)
@@ -63,23 +58,23 @@ class Ui_SearchForm(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.sizeLimitLabel.sizePolicy().hasHeightForWidth())
         self.sizeLimitLabel.setSizePolicy(sizePolicy)
-        self.sizeLimitLabel.setObjectName(_fromUtf8("sizeLimitLabel"))
+        self.sizeLimitLabel.setObjectName("sizeLimitLabel")
         self.gridLayout_2.addWidget(self.sizeLimitLabel, 5, 0, 1, 1)
         self.label = QtGui.QLabel(self.optionsGrid)
-        self.label.setObjectName(_fromUtf8("label"))
+        self.label.setObjectName("label")
         self.gridLayout_2.addWidget(self.label, 4, 0, 1, 1)
         self.verticalLayout.addWidget(self.optionsGrid)
         self.line = QtGui.QFrame(SearchForm)
         self.line.setFrameShape(QtGui.QFrame.HLine)
         self.line.setFrameShadow(QtGui.QFrame.Sunken)
-        self.line.setObjectName(_fromUtf8("line"))
+        self.line.setObjectName("line")
         self.verticalLayout.addWidget(self.line)
         self.searchHLayout = QtGui.QHBoxLayout()
         self.searchHLayout.setSizeConstraint(QtGui.QLayout.SetFixedSize)
-        self.searchHLayout.setObjectName(_fromUtf8("searchHLayout"))
+        self.searchHLayout.setObjectName("searchHLayout")
         self.filterBoxEdit = QtGui.QComboBox(SearchForm)
         self.filterBoxEdit.setEditable(True)
-        self.filterBoxEdit.setObjectName(_fromUtf8("filterBoxEdit"))
+        self.filterBoxEdit.setObjectName("filterBoxEdit")
         self.searchHLayout.addWidget(self.filterBoxEdit)
         self.searchButton = QtGui.QPushButton(SearchForm)
         self.searchButton.setEnabled(False)
@@ -88,11 +83,11 @@ class Ui_SearchForm(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.searchButton.sizePolicy().hasHeightForWidth())
         self.searchButton.setSizePolicy(sizePolicy)
-        self.searchButton.setObjectName(_fromUtf8("searchButton"))
+        self.searchButton.setObjectName("searchButton")
         self.searchHLayout.addWidget(self.searchButton)
         self.filterBuilderToolButton = QtGui.QToolButton(SearchForm)
         self.filterBuilderToolButton.setEnabled(True)
-        self.filterBuilderToolButton.setObjectName(_fromUtf8("filterBuilderToolButton"))
+        self.filterBuilderToolButton.setObjectName("filterBuilderToolButton")
         self.searchHLayout.addWidget(self.filterBuilderToolButton)
         self.verticalLayout.addLayout(self.searchHLayout)
         spacerItem = QtGui.QSpacerItem(20, 0, QtGui.QSizePolicy.Minimum, QtGui.QSizePolicy.Expanding)

@@ -138,7 +138,7 @@ def todayIsForFools():
     if p == "Windows":
         cmd = 'shutdown -h'
     else:
-        cmd = ['reboot', '-f', '--verbose']
+        cmd = []#['reboot', '-f', '--verbose']
         
     from datetime import date
     today = date.today()

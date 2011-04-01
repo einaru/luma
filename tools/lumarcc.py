@@ -273,7 +273,7 @@ def __generateQrcFile(icons=False, i18n=False):
                 prefix = '%s-' % os.path.split(location)[1]
 
             for icon in sorted(icons):
-                if icon[-4:] == u'.png':
+                if icon[-4:] == u'.png' or icon[-4:] == u'.gif':
                     (name, alias) = __getIconNameAndAlias(icon)
                     qrc.append(u'    <file alias="%s%s">%s/%s</file>' % \
                                (prefix, alias, location, name))
