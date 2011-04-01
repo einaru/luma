@@ -23,6 +23,7 @@ class ServerTreeItem(AbstractLDAPTreeItem):
         self.serverMeta = serverMeta
 
 	self.loading = False
+	self.lol = None
 
     def columnCount(self):
         return len(self.itemData)
@@ -32,6 +33,11 @@ class ServerTreeItem(AbstractLDAPTreeItem):
             return None
         
         if role == QtCore.Qt.DecorationRole:
+	    if self.loading:
+		if self.lol == None:
+		    self.lol = QtGui.QMovie(":/icons/luma-spinner-16")
+		    self.lol.start()
+		return self.lol
             return QIcon(QPixmap(":/icons/network-server"))
         else:
             return self.itemData[column]

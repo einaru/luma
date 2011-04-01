@@ -95,6 +95,8 @@ class BrowserView(QWidget):
         self.entryList.customContextMenuRequested.connect(self.rightClick)
         # When something is activated (doubleclick, <enter> etc.)
         self.entryList.activated.connect(self.viewItem)
+	self.delegate = MovieDelegate(self.entryList)
+	self.entryList.setItemDelegate(self.delegate)
 
         self.entryList.setSelectionMode(QtGui.QAbstractItemView.ExtendedSelection)
 
@@ -953,3 +955,30 @@ class ExportDialog(QtGui.QDialog, Ui_ExportDialog):
         del self.exportDict
         self.reject()
         
+
+class MovieDelegate(QtGui.QStyledItemDelegate):
+
+    def __init__(self, view):
+	super(MovieDelegate, self).__init__()
+	self.view = view
+
+    def paint(self, painter, option, index):
+
+	QtGui.QStyledItemDelegate.paint(self, painter, option, index)
+	item = index.internalPointer()
+	movie = item.data(0, QtCore.Qt.DecorationRole)
+
+	if not isinstance(movie, QtGui.QMovie):
+	    self.view.setIndexWidget(index, None)
+	    return
+	else:
+	    indexWidget = self.view.indexWidget(index)
+	    #if isinstance(indexWidget, QtGui.QLabel):
+		#if indexWidget.movie() != movie:
+		    #print "setmovie"
+		    #indexWidget.setMovie(movie)
+	    #else:
+	    label = QtGui.QLabel()
+	    label.setMovie(movie)
+	    self.view.setIndexWidget(index, label)
+

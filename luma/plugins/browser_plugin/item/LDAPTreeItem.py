@@ -2,7 +2,7 @@
 import ldap
 from AbstractLDAPTreeItem import AbstractLDAPTreeItem
 from PyQt4.QtGui import QInputDialog, QIcon, QPixmap
-from PyQt4 import QtCore
+from PyQt4 import QtCore, QtGui
 from base.backend.LumaConnection import LumaConnection
 from plugins.browser_plugin.item.AbstractLDAPTreeItem import AbstractLDAPTreeItem
 
@@ -33,6 +33,8 @@ class LDAPTreeItem(AbstractLDAPTreeItem):
         self.error = False
         self.loading = False
 
+	self.lol = None
+
     def columnCount(self):
         """
         Has only one column = the name of the item.
@@ -47,16 +49,18 @@ class LDAPTreeItem(AbstractLDAPTreeItem):
         # Return an icon if the item has been configured
         if role == QtCore.Qt.DecorationRole:
             if self.loading:
-                #return QIcon(QPixmap(":/icons/loading"))
-                return QIcon(QPixmap(":/icons/luma-spinner-16"))
+		if self.lol == None:
+		    self.lol = QtGui.QMovie(":/icons/luma-spinner-16")
+		    self.lol.start()
+		return self.lol
             if self.error:
                 return QIcon(QPixmap(":/icons/no"))
             if self.filter != LDAPTreeItem.FILTER_DEFAULT or self.limit != LDAPTreeItem.LIMIT_DEFAULT:
                 return QIcon(QPixmap(":/icons/filter"))
             else:
                 return None
-        # Return applicable status-tip-role
-        elif role == QtCore.Qt.StatusTipRole:
+        # Return applicable status-tip-role and tooltip
+        elif role == QtCore.Qt.StatusTipRole or role == QtCore.Qt.ToolTipRole:
             if self.loading:
                 return QtCore.QCoreApplication.translate("LDAPTreeItem","Fetching items...")
             if self.error:

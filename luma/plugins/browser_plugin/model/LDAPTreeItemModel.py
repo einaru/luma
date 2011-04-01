@@ -344,7 +344,3 @@ class Worker(QtCore.QRunnable):
     def run(self):
         tupel = self.parentItem.fetchChildList()
 	self.target.listFetched.emit(self.parentIndex, tupel)
-	#self.o.listFetched.emit(self.parentIndex, tupel)
-
-    def __del__(self):
-	print "Del :("
