@@ -1,29 +1,34 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file '/home/einar/Desktop/luma-release-tagging/resources/forms/plugins/search/SearchPluginSettingsDesign.ui'
+# Form implementation generated from reading ui file 'd:\Dropbox\Git\it2901\resources\forms\plugins\search\SearchPluginSettingsDesign.ui'
 #
-# Created: Thu Mar 31 18:10:56 2011
-#      by: PyQt4 UI code generator 4.7.4
+# Created: Fri Apr 01 18:22:57 2011
+#      by: PyQt4 UI code generator 4.8.3
 #
 # WARNING! All changes made in this file will be lost!
 
 from PyQt4 import QtCore, QtGui
 
+try:
+    _fromUtf8 = QtCore.QString.fromUtf8
+except AttributeError:
+    _fromUtf8 = lambda s: s
+
 class Ui_SearchPluginSettings(object):
     def setupUi(self, SearchPluginSettings):
-        SearchPluginSettings.setObjectName("SearchPluginSettings")
+        SearchPluginSettings.setObjectName(_fromUtf8("SearchPluginSettings"))
         SearchPluginSettings.resize(271, 168)
         self.gridLayout_2 = QtGui.QGridLayout(SearchPluginSettings)
-        self.gridLayout_2.setObjectName("gridLayout_2")
+        self.gridLayout_2.setObjectName(_fromUtf8("gridLayout_2"))
         spacerItem = QtGui.QSpacerItem(20, 40, QtGui.QSizePolicy.Minimum, QtGui.QSizePolicy.Expanding)
         self.gridLayout_2.addItem(spacerItem, 1, 0, 1, 1)
         self.defaultsGroup = QtGui.QGroupBox(SearchPluginSettings)
-        self.defaultsGroup.setObjectName("defaultsGroup")
+        self.defaultsGroup.setObjectName(_fromUtf8("defaultsGroup"))
         self.gridLayout = QtGui.QGridLayout(self.defaultsGroup)
-        self.gridLayout.setObjectName("gridLayout")
+        self.gridLayout.setObjectName(_fromUtf8("gridLayout"))
         self.enableCompletionOpt = QtGui.QRadioButton(self.defaultsGroup)
         self.enableCompletionOpt.setChecked(True)
-        self.enableCompletionOpt.setObjectName("enableCompletionOpt")
+        self.enableCompletionOpt.setObjectName(_fromUtf8("enableCompletionOpt"))
         self.gridLayout.addWidget(self.enableCompletionOpt, 0, 0, 1, 2)
         self.scopeLabel = QtGui.QLabel(self.defaultsGroup)
         sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Maximum, QtGui.QSizePolicy.Preferred)
@@ -31,13 +36,13 @@ class Ui_SearchPluginSettings(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.scopeLabel.sizePolicy().hasHeightForWidth())
         self.scopeLabel.setSizePolicy(sizePolicy)
-        self.scopeLabel.setObjectName("scopeLabel")
+        self.scopeLabel.setObjectName(_fromUtf8("scopeLabel"))
         self.gridLayout.addWidget(self.scopeLabel, 2, 0, 1, 1)
         self.scopeBox = QtGui.QComboBox(self.defaultsGroup)
-        self.scopeBox.setObjectName("scopeBox")
-        self.scopeBox.addItem("")
-        self.scopeBox.addItem("")
-        self.scopeBox.addItem("")
+        self.scopeBox.setObjectName(_fromUtf8("scopeBox"))
+        self.scopeBox.addItem(_fromUtf8(""))
+        self.scopeBox.addItem(_fromUtf8(""))
+        self.scopeBox.addItem(_fromUtf8(""))
         self.gridLayout.addWidget(self.scopeBox, 2, 1, 1, 1)
         self.sizeLimitLabel = QtGui.QLabel(self.defaultsGroup)
         sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Maximum, QtGui.QSizePolicy.Preferred)
@@ -45,14 +50,14 @@ class Ui_SearchPluginSettings(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.sizeLimitLabel.sizePolicy().hasHeightForWidth())
         self.sizeLimitLabel.setSizePolicy(sizePolicy)
-        self.sizeLimitLabel.setObjectName("sizeLimitLabel")
+        self.sizeLimitLabel.setObjectName(_fromUtf8("sizeLimitLabel"))
         self.gridLayout.addWidget(self.sizeLimitLabel, 3, 0, 1, 1)
         self.sizeLimitBox = QtGui.QSpinBox(self.defaultsGroup)
         self.sizeLimitBox.setMaximum(999999)
-        self.sizeLimitBox.setObjectName("sizeLimitBox")
+        self.sizeLimitBox.setObjectName(_fromUtf8("sizeLimitBox"))
         self.gridLayout.addWidget(self.sizeLimitBox, 3, 1, 1, 1)
         self.disableCompletionOpt = QtGui.QRadioButton(self.defaultsGroup)
-        self.disableCompletionOpt.setObjectName("disableCompletionOpt")
+        self.disableCompletionOpt.setObjectName(_fromUtf8("disableCompletionOpt"))
         self.gridLayout.addWidget(self.disableCompletionOpt, 1, 0, 1, 2)
         self.gridLayout_2.addWidget(self.defaultsGroup, 0, 0, 1, 1)
 

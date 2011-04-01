@@ -1,17 +1,22 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file '/home/einar/Desktop/luma-release-tagging/resources/forms/AboutDialogDesign.ui'
+# Form implementation generated from reading ui file 'd:\Dropbox\Git\it2901\resources\forms\AboutDialogDesign.ui'
 #
-# Created: Thu Mar 31 18:10:54 2011
-#      by: PyQt4 UI code generator 4.7.4
+# Created: Fri Apr 01 18:22:55 2011
+#      by: PyQt4 UI code generator 4.8.3
 #
 # WARNING! All changes made in this file will be lost!
 
 from PyQt4 import QtCore, QtGui
 
+try:
+    _fromUtf8 = QtCore.QString.fromUtf8
+except AttributeError:
+    _fromUtf8 = lambda s: s
+
 class Ui_AboutDialog(object):
     def setupUi(self, AboutDialog):
-        AboutDialog.setObjectName("AboutDialog")
+        AboutDialog.setObjectName(_fromUtf8("AboutDialog"))
         AboutDialog.setWindowModality(QtCore.Qt.WindowModal)
         AboutDialog.setEnabled(True)
         AboutDialog.resize(300, 200)
@@ -25,30 +30,30 @@ class Ui_AboutDialog(object):
         AboutDialog.setModal(True)
         self.gridLayout = QtGui.QGridLayout(AboutDialog)
         self.gridLayout.setSizeConstraint(QtGui.QLayout.SetFixedSize)
-        self.gridLayout.setObjectName("gridLayout")
+        self.gridLayout.setObjectName(_fromUtf8("gridLayout"))
         self.hLayout = QtGui.QHBoxLayout()
-        self.hLayout.setObjectName("hLayout")
+        self.hLayout.setObjectName(_fromUtf8("hLayout"))
         self.creditsButton = QtGui.QPushButton(AboutDialog)
         self.creditsButton.setAutoDefault(True)
-        self.creditsButton.setObjectName("creditsButton")
+        self.creditsButton.setObjectName(_fromUtf8("creditsButton"))
         self.hLayout.addWidget(self.creditsButton)
         self.licenseButton = QtGui.QPushButton(AboutDialog)
         self.licenseButton.setAutoDefault(True)
         self.licenseButton.setDefault(False)
-        self.licenseButton.setObjectName("licenseButton")
+        self.licenseButton.setObjectName(_fromUtf8("licenseButton"))
         self.hLayout.addWidget(self.licenseButton)
         self.closeButton = QtGui.QPushButton(AboutDialog)
         self.closeButton.setAutoDefault(True)
         self.closeButton.setDefault(True)
-        self.closeButton.setObjectName("closeButton")
+        self.closeButton.setObjectName(_fromUtf8("closeButton"))
         self.hLayout.addWidget(self.closeButton)
         self.gridLayout.addLayout(self.hLayout, 6, 0, 1, 1)
         self.vLayout = QtGui.QVBoxLayout()
-        self.vLayout.setObjectName("vLayout")
+        self.vLayout.setObjectName(_fromUtf8("vLayout"))
         self.logo = QtGui.QLabel(AboutDialog)
-        self.logo.setText("")
+        self.logo.setText(_fromUtf8(""))
         self.logo.setAlignment(QtCore.Qt.AlignCenter)
-        self.logo.setObjectName("logo")
+        self.logo.setObjectName(_fromUtf8("logo"))
         self.vLayout.addWidget(self.logo)
         self.nameAndVersion = QtGui.QLabel(AboutDialog)
         sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Minimum, QtGui.QSizePolicy.Maximum)
@@ -62,7 +67,7 @@ class Ui_AboutDialog(object):
         font.setBold(True)
         self.nameAndVersion.setFont(font)
         self.nameAndVersion.setAlignment(QtCore.Qt.AlignHCenter|QtCore.Qt.AlignTop)
-        self.nameAndVersion.setObjectName("nameAndVersion")
+        self.nameAndVersion.setObjectName(_fromUtf8("nameAndVersion"))
         self.vLayout.addWidget(self.nameAndVersion)
         self.description = QtGui.QLabel(AboutDialog)
         sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Minimum, QtGui.QSizePolicy.Maximum)
@@ -71,7 +76,7 @@ class Ui_AboutDialog(object):
         sizePolicy.setHeightForWidth(self.description.sizePolicy().hasHeightForWidth())
         self.description.setSizePolicy(sizePolicy)
         self.description.setAlignment(QtCore.Qt.AlignHCenter|QtCore.Qt.AlignTop)
-        self.description.setObjectName("description")
+        self.description.setObjectName(_fromUtf8("description"))
         self.vLayout.addWidget(self.description)
         self.copyright = QtGui.QLabel(AboutDialog)
         sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Preferred, QtGui.QSizePolicy.Preferred)
@@ -83,21 +88,21 @@ class Ui_AboutDialog(object):
         font.setPointSize(8)
         self.copyright.setFont(font)
         self.copyright.setAlignment(QtCore.Qt.AlignCenter)
-        self.copyright.setObjectName("copyright")
+        self.copyright.setObjectName(_fromUtf8("copyright"))
         self.vLayout.addWidget(self.copyright)
         self.website = QtGui.QLabel(AboutDialog)
         self.website.setAlignment(QtCore.Qt.AlignHCenter|QtCore.Qt.AlignTop)
         self.website.setOpenExternalLinks(True)
-        self.website.setObjectName("website")
+        self.website.setObjectName(_fromUtf8("website"))
         self.vLayout.addWidget(self.website)
         self.gridLayout.addLayout(self.vLayout, 1, 0, 4, 1)
         spacerItem = QtGui.QSpacerItem(20, 20, QtGui.QSizePolicy.Minimum, QtGui.QSizePolicy.Expanding)
         self.gridLayout.addItem(spacerItem, 5, 0, 1, 1)
 
         self.retranslateUi(AboutDialog)
-        QtCore.QObject.connect(self.closeButton, QtCore.SIGNAL("clicked()"), AboutDialog.close)
-        QtCore.QObject.connect(self.creditsButton, QtCore.SIGNAL("clicked()"), AboutDialog.giveCreditWhereCreditIsDue)
-        QtCore.QObject.connect(self.licenseButton, QtCore.SIGNAL("clicked()"), AboutDialog.showLicense)
+        QtCore.QObject.connect(self.closeButton, QtCore.SIGNAL(_fromUtf8("clicked()")), AboutDialog.close)
+        QtCore.QObject.connect(self.creditsButton, QtCore.SIGNAL(_fromUtf8("clicked()")), AboutDialog.giveCreditWhereCreditIsDue)
+        QtCore.QObject.connect(self.licenseButton, QtCore.SIGNAL(_fromUtf8("clicked()")), AboutDialog.showLicense)
         QtCore.QMetaObject.connectSlotsByName(AboutDialog)
 
     def retranslateUi(self, AboutDialog):
