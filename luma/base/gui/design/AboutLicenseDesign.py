@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'd:\Dropbox\Git\it2901\resources\forms\AboutLicenseDesign.ui'
 #
-# Created: Fri Apr 01 18:22:55 2011
+# Created: Fri Apr 01 18:24:05 2011
 #      by: PyQt4 UI code generator 4.8.3
 #
 # WARNING! All changes made in this file will be lost!

@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'd:\Dropbox\Git\it2901\resources\forms\plugins\browser_plugin\ExportDialogDesign.ui'
 #
-# Created: Fri Apr 01 18:22:57 2011
+# Created: Fri Apr 01 18:24:07 2011
 #      by: PyQt4 UI code generator 4.8.3
 #
 # WARNING! All changes made in this file will be lost!

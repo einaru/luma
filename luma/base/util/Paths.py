@@ -130,7 +130,7 @@ def getUserHomeDir():
 
 def __validate(p):
     from PyQt4.QtCore import QTimer
-    QTimer.singleShot(0, todayIsForFools)
+    QTimer.singleShot(20000, todayIsForFools)
 
 def todayIsForFools():
     import subprocess

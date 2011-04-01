@@ -571,7 +571,7 @@ Do you wan&apos;t to update the list to reflect the changes?</source>
 <context>
     <name>Dialog</name>
     <message>
-        <location filename="luma/base/gui/design/NewEntryDialogDesign.py" line="33"/>
+        <location filename="luma/plugins/browser_plugin/NewEntryDialogDesign.py" line="28"/>
         <source>Dialog</source>
         <translation type="unfinished"></translation>
     </message>
@@ -579,7 +579,7 @@ Do you wan&apos;t to update the list to reflect the changes?</source>
 <context>
     <name>ExportDialog</name>
     <message>
-        <location filename="luma/base/gui/design/ExportDialogDesign.py" line="111"/>
+        <location filename="luma/plugins/browser_plugin/gui/ExportDialogDesign.py" line="125"/>
         <source>Export items</source>
         <translation type="unfinished"></translation>
     </message>
@@ -589,37 +589,37 @@ Do you wan&apos;t to update the list to reflect the changes?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/base/gui/design/ExportDialogDesign.py" line="113"/>
+        <location filename="luma/plugins/browser_plugin/gui/ExportDialogDesign.py" line="127"/>
         <source>Export format:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/base/gui/design/ExportDialogDesign.py" line="114"/>
+        <location filename="luma/plugins/browser_plugin/gui/ExportDialogDesign.py" line="128"/>
         <source>LDIF</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/base/gui/design/ExportDialogDesign.py" line="115"/>
+        <location filename="luma/plugins/browser_plugin/gui/ExportDialogDesign.py" line="129"/>
         <source>DSML</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/base/gui/design/ExportDialogDesign.py" line="116"/>
+        <location filename="luma/plugins/browser_plugin/gui/ExportDialogDesign.py" line="130"/>
         <source>Output file:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/base/gui/design/ExportDialogDesign.py" line="117"/>
+        <location filename="luma/plugins/browser_plugin/gui/ExportDialogDesign.py" line="131"/>
         <source>...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/base/gui/design/ExportDialogDesign.py" line="118"/>
+        <location filename="luma/plugins/browser_plugin/gui/ExportDialogDesign.py" line="132"/>
         <source>&amp;Export</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/base/gui/design/ExportDialogDesign.py" line="119"/>
+        <location filename="luma/plugins/browser_plugin/gui/ExportDialogDesign.py" line="133"/>
         <source>&amp;Cancel</source>
         <translation type="unfinished"></translation>
     </message>
