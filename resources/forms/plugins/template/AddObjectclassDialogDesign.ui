@@ -93,6 +93,11 @@
    </item>
   </layout>
  </widget>
+ <tabstops>
+  <tabstop>pushButtonOk</tabstop>
+  <tabstop>pushButtonCancel</tabstop>
+  <tabstop>listWidgetObjectclasses</tabstop>
+ </tabstops>
  <resources/>
  <connections>
   <connection>

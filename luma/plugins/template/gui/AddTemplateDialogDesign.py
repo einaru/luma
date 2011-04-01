@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'd:\Skole\it2901\resources\forms\plugins\template\AddTemplateDialogDesign.ui'
+# Form implementation generated from reading ui file 'd:\Dropbox\Git\it2901\resources\forms\plugins\template\AddTemplateDialogDesign.ui'
 #
-# Created: Fri Mar 18 16:56:52 2011
-#      by: PyQt4 UI code generator 4.8.2
+# Created: Fri Apr 01 18:24:08 2011
+#      by: PyQt4 UI code generator 4.8.3
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -81,6 +81,10 @@ class Ui_AddTemplateDialog(object):
         QtCore.QObject.connect(self.pushButtonCancel, QtCore.SIGNAL(_fromUtf8("clicked()")), AddTemplateDialog.reject)
         QtCore.QObject.connect(self.pushButtonOk, QtCore.SIGNAL(_fromUtf8("clicked()")), AddTemplateDialog.accept)
         QtCore.QMetaObject.connectSlotsByName(AddTemplateDialog)
+        AddTemplateDialog.setTabOrder(self.lineEditTemplateName, self.comboBoxServer)
+        AddTemplateDialog.setTabOrder(self.comboBoxServer, self.lineEditDescription)
+        AddTemplateDialog.setTabOrder(self.lineEditDescription, self.pushButtonOk)
+        AddTemplateDialog.setTabOrder(self.pushButtonOk, self.pushButtonCancel)
 
     def retranslateUi(self, AddTemplateDialog):
         AddTemplateDialog.setWindowTitle(QtGui.QApplication.translate("AddTemplateDialog", "Dialog", None, QtGui.QApplication.UnicodeUTF8))

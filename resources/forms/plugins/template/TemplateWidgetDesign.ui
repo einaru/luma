@@ -256,6 +256,20 @@
    </item>
   </layout>
  </widget>
+ <tabstops>
+  <tabstop>listViewTemplates</tabstop>
+  <tabstop>pushButtonTemplatesAdd</tabstop>
+  <tabstop>pushButtonTemplatesSave</tabstop>
+  <tabstop>pushButtonTemplatesDelete</tabstop>
+  <tabstop>pushButtonTemplatesDuplicate</tabstop>
+  <tabstop>lineEditDescription</tabstop>
+  <tabstop>listViewObjectclasses</tabstop>
+  <tabstop>pushButtonObjectclassesAdd</tabstop>
+  <tabstop>pushButtonObjectclassesDelete</tabstop>
+  <tabstop>tableViewAttributes</tabstop>
+  <tabstop>pushButtonAttributesAdd</tabstop>
+  <tabstop>pushButtonAttributesDelete</tabstop>
+ </tabstops>
  <resources/>
  <connections>
   <connection>
@@ -265,8 +279,8 @@
    <slot>addAttribute()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>642</x>
-     <y>350</y>
+     <x>679</x>
+     <y>349</y>
     </hint>
     <hint type="destinationlabel">
      <x>393</x>
@@ -281,8 +295,8 @@
    <slot>addObjectclass()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>642</x>
-     <y>122</y>
+     <x>679</x>
+     <y>107</y>
     </hint>
     <hint type="destinationlabel">
      <x>393</x>
@@ -313,8 +327,8 @@
    <slot>deleteAttributes()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>642</x>
-     <y>379</y>
+     <x>679</x>
+     <y>378</y>
     </hint>
     <hint type="destinationlabel">
      <x>393</x>
@@ -329,8 +343,8 @@
    <slot>deleteObjectclass()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>642</x>
-     <y>151</y>
+     <x>679</x>
+     <y>136</y>
     </hint>
     <hint type="destinationlabel">
      <x>393</x>
