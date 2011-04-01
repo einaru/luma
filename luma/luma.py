@@ -97,9 +97,9 @@ def startApplication(argv, verbose=False, clear=[], dirs={}):
     import platform
     if platform.system() == "Windows":
         # Avoids ugly white background
-        from PyQt4 import QtGui
-        QtGui.QApplication.setStyle(QtGui.QStyleFactory.create("plastique"))
-        QtGui.QApplication.setPalette(QtGui.QApplication.style().standardPalette())
+	from PyQt4 import QtGui
+	QtGui.QApplication.setStyle(QtGui.QStyleFactory.create("plastique"))
+	QtGui.QApplication.setPalette(QtGui.QApplication.style().standardPalette())
 
 
     app.setOrganizationName(appinfo.ORGNAME)

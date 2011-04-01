@@ -38,7 +38,7 @@ from PyQt4.QtCore import QEvent, QString, QTimer
 from PyQt4.QtCore import QTranslator
 
 from PyQt4.QtGui import QAction, QActionGroup, QApplication, qApp
-from PyQt4.QtGui import QDockWidget, QMenu
+from PyQt4.QtGui import QDockWidget, QMenu, QScrollArea
 from PyQt4.QtGui import QFont
 from PyQt4.QtGui import QIcon
 from PyQt4.QtGui import QLabel
@@ -415,8 +415,10 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.__setTabWidgetStyle(self.defaultTabStyle)
 
         widget = item.plugin.getPluginWidget(None, self)
-        
-        index = self.mainTabs.addTab(widget, item.icon(), item.plugin.pluginUserString)
+        scroll = QScrollArea() 
+	scroll.setWidget(widget)
+	scroll.setWidgetResizable(True)
+        index = self.mainTabs.addTab(scroll, item.icon(), item.plugin.pluginUserString)
         self.mainTabs.setCurrentIndex(index)
 
     def tabClose(self, index):

@@ -965,14 +965,17 @@ class MovieDelegate(QtGui.QStyledItemDelegate):
 	self.movie.start()
 
     def paint(self, painter, option, index):
-	QtGui.QStyledItemDelegate.paint(self, painter, option, index)
-
 	item = index.internalPointer()
-
 	if item.loading == True:	
-	    label = QtGui.QLabel()
-	    label.setMovie(self.movie)
-	    self.view.setIndexWidget(index, label)
+	    self.initStyleOption(option, index)
+	    label = QtGui.QLabel("LOL")
+	    style = label.style()
+	    #label.setMovie(self.movie)
+	    #label.setAutoFillBackground(True)
+	    #self.view.setIndexWidget(index, label)
+	    QtGui.QStyledItemDelegate.paint(self, painter, option, index)
+	    painter.drawText(option.rect, QtCore.Qt.AlignRight, "Loading...  ")
 	else:
-	    self.view.setIndexWidget(index, None)
+	    QtGui.QStyledItemDelegate.paint(self, painter, option, index)
+	    #self.view.setIndexWidget(index, None)
 

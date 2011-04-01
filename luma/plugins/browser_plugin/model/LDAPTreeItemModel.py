@@ -230,27 +230,29 @@ class LDAPTreeItemModel(QAbstractItemModel):
         Re-populates an already populated item, e.g. when a filter or limit it set.
         """
         
-        self.isWorking()
+        #self.isWorking()
 
         parentItem = parentIndex.internalPointer()
-        (success, newList, exception) = parentItem.fetchChildList()
+	parentItem.populated = True
+	self.fetchInThread(parentIndex, parentItem)
+        #(success, newList, exception) = parentItem.fetchChildList()
 
-        if not success:
+        #if not success:
             # Basically, do nothing (can maybe use the existing list)
-            self.displayError(exception) #Let the user know we failed though
-            self.doneWorking()
-            return
+            #self.displayError(exception) #Let the user know we failed though
+            #self.doneWorking()
+            #return
 
         # Clear old list and insert new
-        self.clearItem(parentIndex)
+        #self.clearItem(parentIndex)
 
-        self.beginInsertRows(parentIndex, 0, len(newList) - 1)
-        for x in newList:
-            parentItem.appendChild(x)
-        parentItem.populated = 1 #If the list is empty, this isn't set (appendChild isn't called)
-        self.endInsertRows()     
+        #self.beginInsertRows(parentIndex, 0, len(newList) - 1)
+        #for x in newList:
+            #parentItem.appendChild(x)
+        #parentItem.populated = 1 #If the list is empty, this isn't set (appendChild isn't called)
+        #self.endInsertRows()     
         
-        self.doneWorking()
+        #self.doneWorking()
 
     @pyqtSlot(QtCore.QModelIndex)
     def clearItem(self, parentIndex):
@@ -340,6 +342,8 @@ class Worker(QtCore.QRunnable):
 	self.target = target
 	self.parentIndex = parentIndex
 	self.parentItem = parentItem
+
+	self.parentItem.loading = True
 
     def run(self):
         tupel = self.parentItem.fetchChildList()
