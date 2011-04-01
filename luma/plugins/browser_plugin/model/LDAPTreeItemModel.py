@@ -20,9 +20,12 @@ class LDAPTreeItemModel(QAbstractItemModel):
     
     # Callers can listed to this signal and display busy-messages as they see fit
     workingSignal = QtCore.pyqtSignal(bool)
+    # Emitted by the workerThread when finished
+    listFetched = QtCore.pyqtSignal(QtCore.QModelIndex, tuple)
 
     def __init__(self, parent=None):
         QtCore.QAbstractItemModel.__init__(self, parent)
+	self.listFetched.connect(self.workerFinished)
 
     """ These are called internally in order to signal when busy
     """
@@ -133,7 +136,11 @@ class LDAPTreeItemModel(QAbstractItemModel):
             parentItem = parent.internalPointer()
 
         if not parentItem.populated:
-            self.populateItem(parentItem)
+	    parentItem.loading = True
+	    parentItem.populated = True
+	    #parentItem.appendChild(LDAPErrorItem("Loading",None,parentItem))
+	    self.fetchInThread(parent, parentItem)
+            #self.populateItem(parentItem)
             # Updates the |>-icon to show if the item has children
             self.layoutChanged.emit()
 
@@ -252,12 +259,12 @@ class LDAPTreeItemModel(QAbstractItemModel):
         Used by reloadItem()
         """
 
-        self.isWorking()
+        #self.isWorking()
         parentItem = parentIndex.internalPointer()
         self.beginRemoveRows(parentIndex, 0, parentItem.childCount() - 1)
         parentItem.emptyChildren()
         self.endRemoveRows()
-        self.doneWorking()
+        #self.doneWorking()
     
     def deleteItem(self, index):
         """ Tries to delete the item referenced by the passed index on the server
@@ -293,3 +300,51 @@ class LDAPTreeItemModel(QAbstractItemModel):
             return True
         else:
             return False
+
+    def fetchInThread(self, parentIndex, parentItem):
+	thread = Worker(self, parentIndex, parentItem)
+	QtCore.QThreadPool.globalInstance().start(thread)
+	parentItem.loading = True
+
+    @pyqtSlot(QtCore.QModelIndex, tuple)
+    def workerFinished(self, parentIndex, tupel):
+	if parentIndex.isValid():
+
+	    parentItem = parentIndex.internalPointer()
+	    parentItem.loading = False
+
+	    (success, newList, exception) = tupel
+	    if not success:
+		# Basically, do nothing (can maybe use the existing list)
+		self.displayError(exception) #Let the user know we failed though
+		parentItem.error = True
+		return
+
+	    # Clear old list and insert new
+	    self.clearItem(parentIndex)
+
+	    self.beginInsertRows(parentIndex, 0, len(newList) - 1)
+	    for x in newList:
+		parentItem.appendChild(x)
+	    parentItem.populated = 1 #If the list is empty, this isn't set (appendChild isn't called)
+	    self.endInsertRows()     
+
+	    self.layoutChanged.emit()
+	
+class Worker(QtCore.QRunnable):
+
+    #listFetched = QtCore.pyqtSignal(QtCore.QModelIndex, tuple)
+
+    def __init__(self, target, parentIndex, parentItem):
+	super(Worker, self).__init__()
+	self.target = target
+	self.parentIndex = parentIndex
+	self.parentItem = parentItem
+
+    def run(self):
+        tupel = self.parentItem.fetchChildList()
+	self.target.listFetched.emit(self.parentIndex, tupel)
+	#self.o.listFetched.emit(self.parentIndex, tupel)
+
+    def __del__(self):
+	print "Del :("
