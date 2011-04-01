@@ -2,7 +2,7 @@
 import ldap
 from AbstractLDAPTreeItem import AbstractLDAPTreeItem
 from PyQt4.QtGui import QInputDialog, QIcon, QPixmap
-from PyQt4 import QtCore
+from PyQt4 import QtCore, QtGui
 from base.backend.LumaConnection import LumaConnection
 from plugins.browser_plugin.item.AbstractLDAPTreeItem import AbstractLDAPTreeItem
 
@@ -31,6 +31,9 @@ class LDAPTreeItem(AbstractLDAPTreeItem):
         self.filter = LDAPTreeItem.FILTER_DEFAULT
         
         self.error = False
+        self.loading = False
+
+	self.lol = None
 
     def columnCount(self):
         """
@@ -51,8 +54,10 @@ class LDAPTreeItem(AbstractLDAPTreeItem):
                 return QIcon(QPixmap(":/icons/filter"))
             else:
                 return None
-        # Return applicable status-tip-role
-        elif role == QtCore.Qt.StatusTipRole:
+        # Return applicable status-tip-role and tooltip
+        elif role == QtCore.Qt.StatusTipRole or role == QtCore.Qt.ToolTipRole:
+            if self.loading:
+                return QtCore.QCoreApplication.translate("LDAPTreeItem","Fetching items...")
             if self.error:
                 return QtCore.QCoreApplication.translate("LDAPTreeItem","Couldn't fetch list of children.")
             if self.limit != LDAPTreeItem.LIMIT_DEFAULT and self.filter != LDAPTreeItem.FILTER_DEFAULT:

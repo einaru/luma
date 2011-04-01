@@ -47,6 +47,12 @@
     <file alias="luma-48">resources/icons/luma-48.png</file>
     <file alias="luma-64">resources/icons/luma-64.png</file>
     <file alias="luma-gray">resources/icons/luma-gray.png</file>
+    <file alias="luma-spinner-16-gray">resources/icons/luma-spinner-16-gray.gif</file>
+    <file alias="luma-spinner-16">resources/icons/luma-spinner-16.gif</file>
+    <file alias="luma-spinner-24-gray">resources/icons/luma-spinner-24-gray.gif</file>
+    <file alias="luma-spinner-24">resources/icons/luma-spinner-24.gif</file>
+    <file alias="luma-spinner-330-gray">resources/icons/luma-spinner-330-gray.gif</file>
+    <file alias="luma-spinner-330">resources/icons/luma-spinner-330.gif</file>
     <file alias="mail">resources/icons/mail.png</file>
     <file alias="manage">resources/icons/manage.png</file>
     <file alias="network-server">resources/icons/network-server.png</file>

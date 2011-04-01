@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file '/mnt/debris/devel/git/luma/resources/forms/plugins/template/TemplateWidgetDesign.ui'
 #
-# Created: Fri Apr  1 20:41:52 2011
+# Created: Fri Apr  1 20:53:02 2011
 #      by: PyQt4 UI code generator 4.7.4
 #
 # WARNING! All changes made in this file will be lost!
@@ -176,16 +176,27 @@ class Ui_TemplateWidget(object):
     def retranslateUi(self, TemplateWidget):
         TemplateWidget.setWindowTitle(QtGui.QApplication.translate("TemplateWidget", "Form", None, QtGui.QApplication.UnicodeUTF8))
         self.groupBoxTemplates.setTitle(QtGui.QApplication.translate("TemplateWidget", "Templates", None, QtGui.QApplication.UnicodeUTF8))
+        self.pushButtonTemplatesSave.setToolTip(QtGui.QApplication.translate("TemplateWidget", "Save template", None, QtGui.QApplication.UnicodeUTF8))
         self.pushButtonTemplatesSave.setText(QtGui.QApplication.translate("TemplateWidget", "Save", None, QtGui.QApplication.UnicodeUTF8))
+        self.pushButtonTemplatesAdd.setToolTip(QtGui.QApplication.translate("TemplateWidget", "Add template", None, QtGui.QApplication.UnicodeUTF8))
         self.pushButtonTemplatesAdd.setText(QtGui.QApplication.translate("TemplateWidget", "Add", None, QtGui.QApplication.UnicodeUTF8))
+        self.listViewTemplates.setToolTip(QtGui.QApplication.translate("TemplateWidget", "Existing templates", None, QtGui.QApplication.UnicodeUTF8))
+        self.pushButtonTemplatesDelete.setToolTip(QtGui.QApplication.translate("TemplateWidget", "Delete template", None, QtGui.QApplication.UnicodeUTF8))
         self.pushButtonTemplatesDelete.setText(QtGui.QApplication.translate("TemplateWidget", "Delete", None, QtGui.QApplication.UnicodeUTF8))
+        self.pushButtonTemplatesDuplicate.setToolTip(QtGui.QApplication.translate("TemplateWidget", "Duplicate template", None, QtGui.QApplication.UnicodeUTF8))
         self.pushButtonTemplatesDuplicate.setText(QtGui.QApplication.translate("TemplateWidget", "Duplicate", None, QtGui.QApplication.UnicodeUTF8))
         self.labelServer.setText(QtGui.QApplication.translate("TemplateWidget", "Server:", None, QtGui.QApplication.UnicodeUTF8))
         self.labelDescription.setText(QtGui.QApplication.translate("TemplateWidget", "Description:", None, QtGui.QApplication.UnicodeUTF8))
         self.groupBoxObjectclasses.setTitle(QtGui.QApplication.translate("TemplateWidget", "Objectclasses", None, QtGui.QApplication.UnicodeUTF8))
+        self.pushButtonObjectclassesAdd.setToolTip(QtGui.QApplication.translate("TemplateWidget", "Add objectclasses", None, QtGui.QApplication.UnicodeUTF8))
         self.pushButtonObjectclassesAdd.setText(QtGui.QApplication.translate("TemplateWidget", "Add", None, QtGui.QApplication.UnicodeUTF8))
+        self.listViewObjectclasses.setToolTip(QtGui.QApplication.translate("TemplateWidget", "Added objectclasses", None, QtGui.QApplication.UnicodeUTF8))
+        self.pushButtonObjectclassesDelete.setToolTip(QtGui.QApplication.translate("TemplateWidget", "Delete objectclasses", None, QtGui.QApplication.UnicodeUTF8))
         self.pushButtonObjectclassesDelete.setText(QtGui.QApplication.translate("TemplateWidget", "Delete", None, QtGui.QApplication.UnicodeUTF8))
         self.groupBoxAttributes.setTitle(QtGui.QApplication.translate("TemplateWidget", "Attributes", None, QtGui.QApplication.UnicodeUTF8))
+        self.tableViewAttributes.setToolTip(QtGui.QApplication.translate("TemplateWidget", "Added attributes", None, QtGui.QApplication.UnicodeUTF8))
+        self.pushButtonAttributesAdd.setToolTip(QtGui.QApplication.translate("TemplateWidget", "Add attributes", None, QtGui.QApplication.UnicodeUTF8))
         self.pushButtonAttributesAdd.setText(QtGui.QApplication.translate("TemplateWidget", "Add", None, QtGui.QApplication.UnicodeUTF8))
+        self.pushButtonAttributesDelete.setToolTip(QtGui.QApplication.translate("TemplateWidget", "Delete attributes", None, QtGui.QApplication.UnicodeUTF8))
         self.pushButtonAttributesDelete.setText(QtGui.QApplication.translate("TemplateWidget", "Delete", None, QtGui.QApplication.UnicodeUTF8))
 

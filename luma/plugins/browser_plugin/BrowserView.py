@@ -95,6 +95,8 @@ class BrowserView(QWidget):
         self.entryList.customContextMenuRequested.connect(self.rightClick)
         # When something is activated (doubleclick, <enter> etc.)
         self.entryList.activated.connect(self.viewItem)
+	self.delegate = MovieDelegate(self.entryList)
+	self.entryList.setItemDelegate(self.delegate)
 
         self.entryList.setSelectionMode(QtGui.QAbstractItemView.ExtendedSelection)
 
@@ -953,3 +955,27 @@ class ExportDialog(QtGui.QDialog, Ui_ExportDialog):
         del self.exportDict
         self.reject()
         
+
+class MovieDelegate(QtGui.QStyledItemDelegate):
+
+    def __init__(self, view):
+	super(MovieDelegate, self).__init__()
+	self.view = view
+	self.movie = QtGui.QMovie(":/icons/luma-spinner-16")
+	self.movie.start()
+
+    def paint(self, painter, option, index):
+	item = index.internalPointer()
+	if item.loading == True:	
+	    self.initStyleOption(option, index)
+	    label = QtGui.QLabel("LOL")
+	    style = label.style()
+	    #label.setMovie(self.movie)
+	    #label.setAutoFillBackground(True)
+	    #self.view.setIndexWidget(index, label)
+	    QtGui.QStyledItemDelegate.paint(self, painter, option, index)
+	    painter.drawText(option.rect, QtCore.Qt.AlignRight, "Loading...  ")
+	else:
+	    QtGui.QStyledItemDelegate.paint(self, painter, option, index)
+	    #self.view.setIndexWidget(index, None)
+

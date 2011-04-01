@@ -32,6 +32,7 @@ PluginToolBar:
 """
 import logging
 import gc
+import platform
 
 from PyQt4.QtCore import (Qt, pyqtSlot, pyqtSignal)
 from PyQt4.QtCore import (QObject)
@@ -45,6 +46,7 @@ from PyQt4.QtGui import (QKeySequence)
 from PyQt4.QtGui import (QLabel)
 from PyQt4.QtGui import (QMainWindow)
 from PyQt4.QtGui import (QPushButton)
+from PyQt4.QtGui import (QScrollArea)
 from PyQt4.QtGui import (QToolBar)
 from PyQt4.QtGui import (QWidget)
 
@@ -126,8 +128,10 @@ class MainWindow(QMainWindow, Ui_MainWindow):
     def __mainTabsContextMenu(self, pos):
         menu = QMenu()
         if self.mainTabs.count() > 0:
-            return # The menu is displayed even when the rightclick is not done over the actual tabs
-            # so to avoid confusion the function is disabled entirey
+            return
+            # The menu is displayed even when the rightclick is not
+            # done over the actual tabs so to avoid confusion the 
+            # function is disabled entirey
             #menu.addAction(QApplication.translate("MainWindow", "Close all plugin-tabs"), self.tabCloseAll)
         else:
             # If there's no tabs, offer to display the pluginlist
@@ -404,7 +408,14 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
         widget = item.plugin.getPluginWidget(None, self)
 
-        index = self.mainTabs.addTab(widget, item.icon(), item.plugin.pluginUserString)
+        if platform.system() == "Windows":
+            scroll = QScrollArea() 
+            scroll.setWidget(widget)
+            scroll.setWidgetResizable(True)
+            index = self.mainTabs.addTab(scroll, item.icon(), item.plugin.pluginUserString)
+        else:
+            index = self.mainTabs.addTab(widget, item.icon(), item.plugin.pluginUserString)
+
         self.mainTabs.setCurrentIndex(index)
 
     def tabClose(self, index):
@@ -430,7 +441,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         # -- force GC to take care of the objects since there can be
         #    quite many if it was BrowserWidget that was closed.
         # Can't call it directly since that'll be too soon
-        QTimer.singleShot(0, self.gc)
+        QTimer.singleShot(1000, self.gc)
 
         # Let's do some styling of the tab widget when no tabs are opened
         if self.mainTabs.currentIndex() == -1:

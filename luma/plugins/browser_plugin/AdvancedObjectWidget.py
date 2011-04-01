@@ -49,6 +49,7 @@ class AdvancedObjectWidget(QWidget):
         # create the widget containing the data
         self.objectWidget = QTextBrowser()
         self.objectWidget.setOpenLinks(False)
+        self.objectWidget.setWordWrapMode(QTextOption.WrapAnywhere)
         self.layout().addWidget(self.objectWidget)
         self.connect(self.objectWidget, SIGNAL("anchorClicked(const QUrl&)"), self.anchorClicked)
 
@@ -308,7 +309,7 @@ class AdvancedObjectWidget(QWidget):
                             QLineEdit.Normal, 
                             '')
         if ok:
-            attribute = str(attribute)
+            attribute = unicode(attribute)
             self.entryModel.addAttributeValue(attribute, None)
         
         #QMessageBox.critical(self, "?", "I dont exist, yet")
@@ -424,7 +425,11 @@ class AdvancedObjectWidget(QWidget):
                             QLineEdit.Normal, 
                             oldValue)
         if ok:
-            newValue = unicode(newValue)
+            # TODO check attribute types
+            if attributeName.lower() == "jpegphoto":
+                newValue = str(newValue)
+            else:
+                newValue = unicode(newValue)
             if not newValue == None:
                 if attributeName == 'RDN':
                     self.entryModel.editRDN(newValue)
