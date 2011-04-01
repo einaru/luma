@@ -106,7 +106,6 @@ class ObjectClassAttributeInfo(object):
                 tmpString = "Schema information for server " + self.serverMeta.name + " retrieved."
                 self.logging.info(tmpString)
             else:
-                print "*" * 30
                 self.failure = True
                 self.failureException = workerThread.exceptionObject
                 tmpString = "Could not fetch LDAP schema from server. Reason:\n"

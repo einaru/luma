@@ -357,8 +357,6 @@ class LumaConnection(object):
             
 ###############################################################################
 
-    # FIXME: implement better error handling for function which call 
-    # getBaseDNList. Error handling inside is okay.
     def getBaseDNList(self):
         #environment.setBusy(True)
 
@@ -366,7 +364,6 @@ class LumaConnection(object):
             
         if not bindSuccess:
             #environment.setBusy(False)
-            print "Bind failed"
             return (False, None, exceptionObject)
             
         dnList = None
@@ -473,17 +470,18 @@ class WorkerThreadSearch(threading.Thread):
         try:
             resultId = self.ldapServerObject.search_ext(self.base, self.scope, self.filter, self.attrList, self.attrsonly, sizelimit=self.sizelimit)
         
-            while 1:
-                # search with a 60 second timeout
-                result_type, result_data = self.ldapServerObject.result(resultId, 0, 60)
+	    while 1:
+		#search with a 60 second timeout
+		result_type, result_data = self.ldapServerObject.result(resultId, 0, 60)
                 
-                if (result_data == []):
-                    break
-                else:
-                    if result_type == ldap.RES_SEARCH_ENTRY:
-                        for x in result_data:
-                            self.result.append(x)
-            #self.result = self.ldapServerObject.search_ext_s(self.base, self.scope, self.filter, self.attrList, self.attrsonly, sizelimit=self.sizelimit)
+		if (result_data == []):
+		    break
+		else:
+		    if result_type == ldap.RES_SEARCH_ENTRY:
+			for x in result_data:
+			    self.result.append(x)
+	    # Can't use sizelimit with non-async-search
+	    #self.result = self.ldapServerObject.search_ext_s(self.base, self.scope, self.filter, self.attrList, self.attrsonly, sizelimit=self.sizelimit)
         except ldap.LDAPError, e:
             self.exceptionObject = e
             
