@@ -1,7 +1,7 @@
 
 import unittest
 import logging
-from test import LumaConnectionTest, ServerListTest, ServerObjectTest
+from test import LumaConnectionTest, ServerListTest, ServerObjectTest, LumaLogHandlerTest
 
 if __name__ == "__main__":
 
@@ -15,12 +15,14 @@ if __name__ == "__main__":
     suite1 = ServerListTest.suite()
     suite2 = ServerObjectTest.suite()
     suite3 = LumaConnectionTest.suite()
+    suite4 = LumaLogHandlerTest.suite()
 
     # Add em'
     suite = unittest.TestSuite()
     suite.addTest(suite1)
     suite.addTest(suite2)
     suite.addTest(suite3)
+    suite.addTest(suite4)
     
     # Run
     unittest.TextTestRunner(verbosity=2).run(suite)
