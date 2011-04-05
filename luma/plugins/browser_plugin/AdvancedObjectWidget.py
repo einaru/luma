@@ -69,7 +69,7 @@ class AdvancedObjectWidget(QWidget):
         #self.templateFactory = TemplateFactory(os.path.join("plugins", "browser_plugin", "templates"))
         self.templateFactory = TemplateFactory(unicode(os.path.join(getLumaRoot(), 'plugins', 'browser_plugin', 'templates')))
 
-        self.htmlParser = HtmlParser(self.entryModel)
+        self.htmlParser = HtmlParser(self.entryModel, self.objectWidget)
         
         self.buildToolBar()
         self.displayValues()

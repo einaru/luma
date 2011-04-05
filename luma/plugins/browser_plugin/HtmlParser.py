@@ -2,13 +2,15 @@
 import os
 import copy
 import PyQt4
-from PyQt4.QtCore import QXmlStreamReader, QString
+from PyQt4.QtCore import QXmlStreamReader, QString, QResource, QUrl
+from PyQt4.QtGui import QImage, QTextDocument
 
 class HtmlParser:
 
-    def __init__(self, entryModel):
+    def __init__(self, entryModel, objectWidget):
         self.entryModel = entryModel
         self.smartObject = None
+        self.objectWidget = objectWidget
 
     def parseHtml(self, htmlTemplate):
         # reload smartObject each time
@@ -250,17 +252,18 @@ class HtmlParser:
         # Create the value part
         if attributeIsBinary:
             if attributeIsImage:
-                #tmpImage = QImage()
-                #tmpImage.loadFromData(value)
-                #self.mimeFactory.setImage(univAttributeName, tmpImage)
-                from PyQt4.QtGui import QImage
-                from PyQt4.QtCore import QResource
-                resourceName = ":/jpegs/" + univAttributeName
-                print value
-                print QResource.registerResource(value, resourceName)
-                print resourceName
+                tmpImage = QImage()
+                tmpImage.loadFromData(value)
+                self.objectWidget.document().addResource(QTextDocument.ImageResource, QUrl(univAttributeName), tmpImage)
 
-                tmpList.append("""<td width="55%"><img source=""" + value + """></td>""")
+                #QResource.registerResource(value, univAttributeName)
+                #self.mimeFactory.setImage(univAttributeName, tmpImage)
+                #resourceName = ":/jpegs/" + univAttributeName
+                #print value
+                #print QResource.registerResource(value, resourceName)
+                #print resourceName
+
+                tmpList.append("""<td width="55%"><img source=""" + univAttributeName + """></td>""")
             elif attributeIsPassword:
                 tmpList.append("""<td bgcolor="#E5E5E5" width="55%">""" + value + """</td>""")
             else:
