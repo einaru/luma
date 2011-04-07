@@ -17,6 +17,7 @@ from .TemplateWidgetDesign import Ui_TemplateWidget
 from .AddAttributeDialog import AddAttributeDialog
 from .AddObjectclassDialog import AddObjectclassDialog
 from .AddTemplateDialog import AddTemplateDialog
+from .DeleteObjectclassDialog import DeleteObjectclassDialog
 from ..TemplateList import TemplateList
 from ..TemplateObject import TemplateObject
 from ..model.TemplateTableModel import TemplateTableModel
@@ -212,9 +213,16 @@ class TemplateWidget(QWidget, Ui_TemplateWidget):
         self.refreshMustAttributes()
 
     def deleteObjectclass(self):
-        self.objectclassTM.removeRows(self.listViewObjectclasses.selectedIndexes())
-        self.refreshMayAttributes()
-        self.refreshMustAttributes()
+        dOc = self.listViewObjectclasses.selectedIndexes()
+        if dOc:
+            server = self.labelServerName.text()
+            tO = self.getSelectedTemplateObject()
+            attributes = self.attributeTM.attributes
+            print "dOc",dOc
+            dialog = DeleteObjectclassDialog(self.loadServerMeta(server), tO, dOc, attributes)
+            if dialog.exec_():
+                self.objectclassTM.removeRows(dOc)
+                self.refreshAllAttributes()
         
     
     def refreshMustAttributes(self):
@@ -232,14 +240,16 @@ class TemplateWidget(QWidget, Ui_TemplateWidget):
             binary = ocai.isBinary(name)
             self.attributeTM.addRow(name, True, single, binary, "")
             
-    def refreshMayAttributes(self):
+    def refreshAllAttributes(self):
         tO = self.getSelectedTemplateObject()
         server = self.labelServerName.text()
         ocai = self.loadServerMeta(server)
-        attributeNameList = ocai.getAllMays(tO.objectclasses)
+        must, may = ocai.getAllAttributes(tO.objectclasses)
         for attr in tO.attributes.items():
-            if (not attr[1].must) and (not attr[0] in attributeNameList):
+            if (not attr[0] in must) and (not attr[0] in may):
                 self.attributeTM.removeAlways(attr[1])
+            elif not attr[0] in must:
+                attr[1].must = False
 
     def addAttribute(self):
         server = self.labelServerName.text()
@@ -255,4 +265,8 @@ class TemplateWidget(QWidget, Ui_TemplateWidget):
             
 
     def deleteAttributes(self):
-        self.attributeTM.removeRows(self.tableViewAttributes.selectedIndexes())
+        if len(self.tableViewAttributes.selectedIndexes()):
+            re = QMessageBox.question(self, self.tr('Delete'),
+                                      self.tr("Are you sure you want to delete the selected attributes?"), QMessageBox.Yes, QMessageBox.No)
+            if re == QMessageBox.Yes:
+                self.attributeTM.removeRows(self.tableViewAttributes.selectedIndexes())
