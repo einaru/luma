@@ -22,7 +22,7 @@ class AttributeTableModel(QAbstractTableModel):
         self.reset()
 
     def addRow(self, name, must, single, binary, defaultValue):
-        if not name in self.attributes:
+        if not name in self.attributes or not self.attributes[name].must:
             self.beginInsertRows(QModelIndex(), self.rowCount(), self.rowCount())
             self.attributes[name] = AttributeObject(name, must, single, binary, defaultValue)
             self.endInsertRows()
@@ -30,7 +30,8 @@ class AttributeTableModel(QAbstractTableModel):
         else:
             self.attributes[name].defaultValue = defaultValue
         return False
-    
+
+
     def removeRows(self, indexes):
         attributes = []
         for i in indexes:

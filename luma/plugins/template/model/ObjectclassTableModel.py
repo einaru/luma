@@ -78,3 +78,12 @@ class ObjectclassTableModel(QAbstractTableModel):
             # correct painting/displaying of it is done by a delegate if needed
 
 
+    def index(self, row, column, parent):
+        if row < 0 or column < 0:
+            return QModelIndex()
+        if row >= self.rowCount() or column >= self.columnCount():
+            return QModelIndex()
+        internalPointer = self.templateObject.objectclasses[row]
+        return self.createIndex(row, column, internalPointer)
+    
+    
