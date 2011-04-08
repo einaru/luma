@@ -11,7 +11,7 @@ from ..TemplateObject import AttributeObject
 class AttributeTableModel(QAbstractTableModel):
     
     def __init__(self, parent = None):
-        QAbstractTableModel.__init__(self)
+        QAbstractTableModel.__init__(self, parent)
         self.attributes = {}
         
     def setTemplateObject(self, templateObject = None):

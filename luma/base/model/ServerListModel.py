@@ -10,7 +10,7 @@ class ServerListModel(QAbstractTableModel):
     """
     
     def __init__(self, serverList, parent = None):
-        QAbstractTableModel.__init__(self)
+        QAbstractTableModel.__init__(self, parent)
         self._serverList = serverList
         
     def removeRows(self, row, count):

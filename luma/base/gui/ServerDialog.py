@@ -62,7 +62,7 @@ class ServerDialog(QDialog, Ui_ServerDialogDesign):
         self.__returnList = None 
 
         # Create the model used by the views and connect signals
-        self.slm = ServerListModel(self.__serverList)
+        self.slm = ServerListModel(self.__serverList, self)
         self.slm.dataChanged.connect(self.wasChanged)
         self.slm.rowsInserted.connect(self.wasChanged)
         self.slm.rowsRemoved.connect(self.wasChanged)

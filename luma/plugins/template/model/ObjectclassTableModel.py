@@ -9,7 +9,7 @@ from PyQt4.QtCore import QAbstractTableModel, Qt, QVariant, QModelIndex
 class ObjectclassTableModel(QAbstractTableModel):
     
     def __init__(self, parent = None):
-        QAbstractTableModel.__init__(self)
+        QAbstractTableModel.__init__(self, parent)
         self.templateObject = None
         
     def setTemplateObject(self, templateObject = None):

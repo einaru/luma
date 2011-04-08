@@ -11,7 +11,7 @@ from ..TemplateObject import TemplateObject
 class TemplateTableModel(QAbstractTableModel):
     
     def __init__(self, templateList, parent = None):
-        QAbstractTableModel.__init__(self)
+        QAbstractTableModel.__init__(self, parent)
         self._templateList = templateList
         
     def insertRow(self, tO):

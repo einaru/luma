@@ -43,13 +43,13 @@ class TemplateWidget(QWidget, Ui_TemplateWidget):
         #ObjectclassAttributeInfo
         self.preloadedServerMeta = {}
         
-        self.templateTM = TemplateTableModel(self._templateList)
+        self.templateTM = TemplateTableModel(self._templateList, self)
         self.listViewTemplates.setModel(self.templateTM)
         
-        self.objectclassTM = ObjectclassTableModel(self._templateList) 
+        self.objectclassTM = ObjectclassTableModel(self) 
         self.listViewObjectclasses.setModel(self.objectclassTM)
         
-        self.attributeTM = AttributeTableModel(self._templateList)
+        self.attributeTM = AttributeTableModel(self)
         self.tableViewAttributes.setModel(self.attributeTM)
 
         # Enable/disable editing depending on if we have a server to edit
