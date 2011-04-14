@@ -47,7 +47,8 @@ class TemplateObject(object):
             self.objectclasses.pop(index)
             
     def objectclassIndex(self, objectclass):
-        return self.objectclasses.index(objectclass)
+        if objectclass in self.objectclasses:
+            return self.objectclasses.index(objectclass)
 
     def getCountObjectclasses(self):
         return len(self.objectclasses)
@@ -71,7 +72,7 @@ class TemplateObject(object):
         return self.attributes.values().index(attribute)
 
     def getCountAttributes(self):
-        return len(self.attributes.keys())
+        return len(self.attributes)
 
     def getDataObject(self, serverMeta, baseDN):
         """
