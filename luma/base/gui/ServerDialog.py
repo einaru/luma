@@ -234,8 +234,16 @@ class ServerDialog(QDialog, Ui_ServerDialogDesign):
         """Called when the Save-button is clicked
         """
         self.mapper.submit()
+
+	if not self.baseDNsOK():
+	    if not self.isBaseDNsOkMessage():
+		# If we got here, we DO NOT WANT TO SAVE/QUIT
+		return False
+
         self.__serverList.writeServerList()
         self.__serverListCopy = copy.deepcopy(self.__serverList)
+
+	return True
 
     def reject(self):
         """Called when the users clicks cancel or presses escape
@@ -244,6 +252,7 @@ class ServerDialog(QDialog, Ui_ServerDialogDesign):
         if not self.isChanged:
             QDialog.reject(self)
             return
+
 
         # Really quit?
         r = QMessageBox.question(self, self.tr("Exit?"), self.tr("Are you sure you want to exit the server editor?\n Any unsaved changes will be lost!"), QMessageBox.Ok | QMessageBox.Cancel)
@@ -261,10 +270,29 @@ class ServerDialog(QDialog, Ui_ServerDialogDesign):
     def accept(self):
         """Called when OK-button is clicked
         """
-        self.mapper.submit()
-        self.__serverList.writeServerList()
+	if not self.saveServerlist():
+	    # DO NOT QUIT
+	    return
         self.__returnList = self.__serverList
         QDialog.accept(self)
+
+    def isBaseDNsOkMessage(self):
+	r = QMessageBox.question(self,
+		self.tr("BaseDNs not defined"),
+		self.tr("One or more server(s) are setup to use custom base DNs without specifying any.\nDo you still want to save?"),
+		QMessageBox.Yes | QMessageBox.No)
+	if r == QMessageBox.No:
+	    return False
+	else:
+	    return True
+
+    def baseDNsOK(self):
+	print self.__serverList.getTable()
+	for server in self.__serverList.getTable():
+	    print server
+	    if server.autoBase == False and len(server.baseDN) < 1:
+		return False
+	return True
 
     def getResult(self):
         return self.__returnList
