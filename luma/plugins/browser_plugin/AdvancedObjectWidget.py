@@ -4,17 +4,19 @@ import ldap
 import copy
 import logging
 import os
+from sets import Set
 
 from PyQt4 import QtCore, QtGui, Qt
-from PyQt4.QtCore import QSize, SIGNAL
+from PyQt4.QtCore import QSize, SIGNAL, QString
 from PyQt4.QtGui import (QTextBrowser, QTextOption, QPixmap, QSizePolicy,
                          QTextOption, QLineEdit, QToolBar, QImage, 
                          QMessageBox, QVBoxLayout, QWidget, QToolButton, 
-                         QIcon, QComboBox, QInputDialog, QDialog)
+                         QIcon, QComboBox, QInputDialog, QDialog, QFileDialog)
 
 from base.backend.LumaConnection import LumaConnection
 from base.backend.ServerList import ServerList
 from base.backend.SmartDataObject import SmartDataObject
+from base.backend.ObjectClassAttributeInfo import ObjectClassAttributeInfo
 from base.util.IconTheme import pixmapFromThemeIcon
 from base.util.Paths import getLumaRoot
 
@@ -22,7 +24,7 @@ from .model.EntryModel import EntryModel
 from .HtmlParser import HtmlParser
 from .TemplateFactory import TemplateFactory
 from .editors.EditorFactory import getEditorWidget
-
+from .AddAttributeWizard import AddAttributeWizard
 
 class AdvancedObjectWidget(QWidget):
 
@@ -304,6 +306,7 @@ class AdvancedObjectWidget(QWidget):
     def addAttribute(self):
         """ Add attributes to the current object.
         """
+        """
         attribute, ok = QInputDialog.getText(self.objectWidget, 
                             self.trUtf8('Input dialog'), 
                             self.trUtf8('Attribute name:'), 
@@ -312,38 +315,41 @@ class AdvancedObjectWidget(QWidget):
         if ok:
             attribute = unicode(attribute)
             self.entryModel.addAttributeValue(attribute, None)
-        
+        """ 
         #QMessageBox.critical(self, "?", "I dont exist, yet")
-        """
-        dialog = AddAttributeWizard(self)
-        dialog.setData(copy.deepcopy(self.ldapDataObject))
         
-        dialog.exec_loop()
+        dialog = AddAttributeWizard(self)
+        #TODO model
+        dialog.setData(self.smartObjectCopy(self.entryModel.smartObject))
+        
+        dialog.exec_()
         
         if dialog.result() == QDialog.Rejected:
             return
         
         attribute = str(dialog.attributeBox.currentText())
         showAll = dialog.enableAllBox.isChecked()
-        if dialog.binaryBox.isOn():
+        if dialog.binaryBox.isChecked():
             attributeList = Set([attribute + ";binary"])
         else:
             attributeList = Set([attribute])
         
         if showAll and not(attribute in dialog.possibleAttributes):
             objectClass = str(dialog.classBox.currentText())
-            self.ldapDataObject.addObjectClass(objectClass)
+            #TODO model
+            self.entryModel.smartObject.addObjectClass(objectClass)
             
-            serverSchema = ObjectClassAttributeInfo(self.ldapDataObject.getServerMeta())
+            serverSchema = ObjectClassAttributeInfo(self.entryModel.smartObject.getServerMeta())
             mustAttributes = serverSchema.getAllMusts([objectClass])
             mustAttributes = mustAttributes.difference(Set(self.ldapDataObject.getAttributeList()))
             attributeList = mustAttributes.union(Set([attribute]))
             
         for x in attributeList:
-            self.ldapDataObject.addAttributeValue(x, None)
+            #TODO model
+            self.entryModel.smartObject.addAttributeValue(x, None)
         
         self.displayValues()
-        """
+        
 
 ###############################################################################
 
@@ -423,11 +429,6 @@ class AdvancedObjectWidget(QWidget):
         dialog = getEditorWidget(self, smartObject, attributeName, index)
         dialog.exec_()
 
-        #newValue, ok = QInputDialog.getText(self.objectWidget, 
-        #                    self.trUtf8('Input dialog'), 
-        #                    self.trUtf8('Attribute value:'), 
-        #                    QLineEdit.Normal, 
-        #                    oldValue)
         if dialog.result() == QDialog.Accepted:
             # TODO check attribute types
             newValue = dialog.getValue()
@@ -451,23 +452,18 @@ class AdvancedObjectWidget(QWidget):
 
 ###############################################################################
 
-    # TODO: not used yet
     def exportAttribute(self, attributeName, index):
-        return
         """ Show the dialog for exporting binary attribute data.
         """
-        '''
-        value = self.ldapDataObject.getAttributeValue(attributeName, index)
+        value = self.getSmartObject().getAttributeValue(attributeName, index)
 
 
-        #filename = unicode(QFileDialog.getSaveFileName(
-        #                    self,
-        #fileName = unicode(QFileDialog.getSaveFileName(\
-        #                    QString.null,
-        #                    "All files (*)",
-        #                    self, None,
-        #                    self.trUtf8("Export binary attribute to file"),
-        #                    None, 1))
+        fileName = unicode(QFileDialog.getSaveFileName(\
+                            self,
+                            self.trUtf8("Export binary attribute to file"),
+                            QString(""),
+                            "All files (*)",
+                            None))
 
         if unicode(fileName) == "":
             return
@@ -478,12 +474,11 @@ class AdvancedObjectWidget(QWidget):
             fileHandler.close()
             SAVED = True
         except IOError, e:
-            result = QMessageBox.warning(None,
-                self.trUtf8("Export binary attribute"),
-                self.trUtf8("""Could not export binary data to file. Reason:
-""" + str(e) + """\n\nPlease select another filename."""),
-                self.trUtf8("&Cancel"),
-                self.trUtf8("&OK"),
-                None,
-                1, -1)
-        '''
+            result = QMessageBox.warning(\
+                    self,
+                    self.trUtf8("Export binary attribute"),
+                    self.trUtf8("""Could not export binary data to file. Reason:\n"""
+                        + str(e) + """\n\nPlease select another filename."""),
+                    QMessageBox.Cancel | QMessageBox.Ok,
+                    QMessageBox.Cancel)
+

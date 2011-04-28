@@ -9,13 +9,15 @@
 ###########################################################################
 
 
+from sets import Set
 import PyQt4
 from PyQt4.QtCore import QString
 from PyQt4.QtGui import QDialog, QPalette
 from ..gui.PasswordEditorDesign import Ui_PasswordEditorDesign
-#from base.utils.backend.mkpasswd import mkpasswd
-#from base.utils.backend.mkpasswd import check_strength
+from ..utils.mkpasswd import mkpasswd
+from ..utils.mkpasswd import check_strength
 from base.util.IconTheme import pixmapFromThemeIcon
+
 
 class PasswordEditor(QDialog, Ui_PasswordEditorDesign):
 
@@ -26,10 +28,11 @@ class PasswordEditor(QDialog, Ui_PasswordEditorDesign):
         editorPixmap = pixmapFromThemeIcon("password_big", ":/icons/password_big", 64, 64)
         self.iconLabel.setPixmap(editorPixmap)
         
-        #self.supportedAlgorithms = environment.getAvailableHashMethods()
-        #map(self.methodBox.insertItem, self.supportedAlgorithms)
+        self.supportedAlgorithms = getAvailableHashMethods()
+        map(lambda x: self.methodBox.insertItem(1024, x), self.supportedAlgorithms)
         
         self.okButton.setEnabled(False)
+        self.strengthBar.setValue(0)
         
         # The new password in cleartext
         self.password = None
@@ -47,14 +50,12 @@ class PasswordEditor(QDialog, Ui_PasswordEditorDesign):
         else:
             self.passwordLabel.setText(self.trUtf8("Passwords do not match"))
             
-        #self.strengthBar.setProgress(check_strength(firstPW))
-        #TODO add password strength
-        self.strengthBar.setValue( len(firstPW) * 10)
+        self.strengthBar.setValue(check_strength(firstPW))
         
         self.password = unicode(self.passwordEdit.text())
         
         if enable:
-            self.passwordSaveEdit.setStyleSheet(QString(""))
+            self.passwordSaveEdit.setStyleSheet(QString("QLineEdit { background: green }"))
         else:
             self.passwordSaveEdit.setStyleSheet(QString("QLineEdit { background: red }"))
         
@@ -70,8 +71,32 @@ class PasswordEditor(QDialog, Ui_PasswordEditorDesign):
     def getValue(self):
         method = str(self.methodBox.currentText())
         
-        return self.password.encode("utf-8")
         if method == 'cleartext':
             return self.password.encode("utf-8")
         else:
             return mkpasswd(self.password, 3, method).encode("utf-8")
+
+
+def getAvailableHashMethods():
+    """ copied from luma24's environment
+    """
+    # basic algorithms which are supported by mkpasswd-module
+    #FIXME! Fetch this list from the mkpasswd-module instead of having to 
+    # Update this list both in mkpasswd.py and here..
+    supportedAlgorithms = Set(['crypt', 'md5','smd5', 'sha', 'ssha', 'cleartext'])
+        
+    # add lmhash and nthash algorithms if smbpasswd module is present
+    try:
+        import smbpasswd
+        supportedAlgorithms.union_update(Set(['lmhash', 'nthash']))
+    except ImportError, e:
+        pass
+        
+    
+    # create a sorted list
+    tmpList = []
+    while len(supportedAlgorithms) > 0:
+        tmpList.append(supportedAlgorithms.pop())
+    tmpList.sort()
+    
+    return tmpList
