@@ -484,8 +484,8 @@ class WorkerThreadSearch(threading.Thread):
                     if result_type == ldap.RES_SEARCH_ENTRY:
                         for x in result_data:
                             self.result.append(x)
-                # Can't use sizelimit with non-async-search
-                #self.result = self.ldapServerObject.search_ext_s(self.base, self.scope, self.filter, self.attrList, self.attrsonly, sizelimit=self.sizelimit)
+            # Can't use sizelimit with non-async-search
+            #self.result = self.ldapServerObject.search_ext_s(self.base, self.scope, self.filter, self.attrList, self.attrsonly, sizelimit=self.sizelimit)
         except ldap.LDAPError, e:
             self.exceptionObject = e
             
