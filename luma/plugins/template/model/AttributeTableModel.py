@@ -21,7 +21,6 @@ class AttributeTableModel(QAbstractTableModel):
         else:
             self.attributes = {}
         self.endResetModel()
-        self.reset()
 
     def addRow(self, name, must, single, binary, defaultValue):
         if not name in self.attributes or not self.attributes[name].must:
