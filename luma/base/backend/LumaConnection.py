@@ -279,14 +279,14 @@ class LumaConnection(object):
                 workerThread = self.__bind()
 
         # Prompt for password on _invalid_pwd or _blank_pwd
-#        if self._invalid_pwd(workerThread) or self._blank_pwd(workerThread):
-#            qApp.setOverrideCursor(Qt.ArrowCursor) #Put the mouse back to normal for the dialog (if needed)
-#            pw, ret = QInputDialog.getText(None, QApplication.translate("LumaConnection","Password"), QApplication.translate("LumaConnection","Invalid passord. Enter new:"), mode=QLineEdit.Password)
-#            qApp.restoreOverrideCursor()
-#            if ret:
-#                self.serverObject.bindPassword = unicode(pw)
-#                LumaConnection.__passwordMap[self.serverObject.name] = self.serverObject.bindPassword
-#                workerThread = self.__bind()
+        if self._invalid_pwd(workerThread) or self._blank_pwd(workerThread):
+            qApp.setOverrideCursor(Qt.ArrowCursor) #Put the mouse back to normal for the dialog (if needed)
+            pw, ret = QInputDialog.getText(None, QApplication.translate("LumaConnection","Password"), QApplication.translate("LumaConnection","Invalid passord. Enter new:"), mode=QLineEdit.Password)
+            qApp.restoreOverrideCursor()
+            if ret:
+                self.serverObject.bindPassword = unicode(pw)
+                LumaConnection.__passwordMap[self.serverObject.name] = self.serverObject.bindPassword
+                workerThread = self.__bind()
 
         if workerThread.exceptionObject == None:
             message = "LDAP bind operation successful."
