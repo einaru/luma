@@ -49,6 +49,7 @@ from PyQt4.QtGui import (QPushButton)
 from PyQt4.QtGui import (QScrollArea)
 from PyQt4.QtGui import (QToolBar)
 from PyQt4.QtGui import (QWidget)
+from PyQt4.QtGui import (QErrorMessage)
 
 from ..gui.AboutDialog import AboutDialog
 from ..gui.ServerDialog import ServerDialog
@@ -124,6 +125,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 self.__setTabWidgetStyle(self.lumaHeadStyle)
 
             self.actionShowWelcomeTab.setEnabled(True)
+
+	self.serversChangedMessage = QErrorMessage(self)
 
     def __mainTabsContextMenu(self, pos):
         menu = QMenu()
@@ -360,7 +363,10 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         Slot to display the server editor dialog.
         """
         serverEditor = ServerDialog()
-        serverEditor.exec_()
+        r = serverEditor.exec_()
+	if r:
+	    #if plugins open
+	    self.serversChangedMessage.showMessage("The serverlist was changed, but the changes have (probably) not been propagated to already open plugins. To have them use the new settings please reopen them.")
 
     def showSettingsDialog(self, tab=0):
         """ Slot to display the settings dialog. If the settings dialog
@@ -476,6 +482,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         before we tear down the application.
         """
         self.__writeSettings()
+	print QApplication.translate("MainWindow", "Closing Luma... If there are operations in progress it might not exit immediatly.")
         QMainWindow.closeEvent(self, e)
 
     def TODO(self, todo):
