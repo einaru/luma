@@ -68,8 +68,8 @@ class ServerDelegate(QStyledItemDelegate):
         """ Specifies how the model should be filled out with data from
         the editor
         """
-    
-        # if the baseDNs
+        
+	# if the baseDNs
         if index.column() == 5:
                     
             returnList = []

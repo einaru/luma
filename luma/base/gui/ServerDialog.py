@@ -287,9 +287,7 @@ class ServerDialog(QDialog, Ui_ServerDialogDesign):
 	    return True
 
     def baseDNsOK(self):
-	print self.__serverList.getTable()
 	for server in self.__serverList.getTable():
-	    print server
 	    if server.autoBase == False and len(server.baseDN) < 1:
 		return False
 	return True

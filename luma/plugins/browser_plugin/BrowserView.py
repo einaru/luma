@@ -581,9 +581,9 @@ class BrowserView(QWidget):
         pass
 
     def tabCloseClicked(self, index):
-        #TODO Check if should save etc etc
+
         clicked = self.tabWidget.widget(index).aboutToChange()
-        if clicked == QMessageBox.Cancel:
+        if clicked == False:
             return
         sO = self.tabWidget.widget(index).getSmartObject()
 
