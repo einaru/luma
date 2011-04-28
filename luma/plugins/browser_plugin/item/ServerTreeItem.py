@@ -56,7 +56,7 @@ class ServerTreeItem(AbstractLDAPTreeItem):
             bindSuccess, exceptionObject = connection.bind()
             if not bindSuccess:
                 self.logger.debug("Bind failed.")
-                tmp = LDAPErrorItem(str("["+exceptionObject["desc"]+"]"), self, self)
+                tmp = LDAPErrorItem(str("["+exceptionObject[0]["desc"]+"]"), self, self)
                 # We're adding the error as LDAPErrorItem-child, so return True
                 return (True, [tmp], exceptionObject)
             

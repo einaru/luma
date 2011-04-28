@@ -257,36 +257,40 @@ class LumaConnection(object):
         """
         workerThread = self.__bind()
         
-        # Prompt user to continue if we suspect that the certificate could not
-        # be verified
-        if self._cert_error(workerThread):
-            svar = QMessageBox.No
-            if hasSSLlibrary:
-                pass
-                # TODO
-                #dialog = UnknownCertDialog(self.serverObject)
-                #accepted = UnknownCertDialog.Accepted
-            else:
-                # If checkServerCertificate isn't "never" ask to set it
-                if not self.serverObject.checkServerCertificate == ServerCheckCertificate.Never:
-                    svar = QMessageBox.question(None, QApplication.translate("LumaConnection","Certificate error"), 
-                                     QApplication.translate("LumaConnection","Do you want to continue anyway?"), 
-                                     QMessageBox.Yes|QMessageBox.No, QMessageBox.No)
+        ## Prompt user to continue if we suspect that the certificate could not
+        ## be verified
+        #if self._cert_error(workerThread):
+            #svar = QMessageBox.No
+            #if hasSSLlibrary:
+                #pass
+                ## TODO
+                ##dialog = UnknownCertDialog(self.serverObject)
+                ##accepted = UnknownCertDialog.Accepted
+            #else:
+                ## If checkServerCertificate isn't "never" ask to set it
+                #if not self.serverObject.checkServerCertificate == ServerCheckCertificate.Never:
+                    #svar = QMessageBox.question(None, QApplication.translate("LumaConnection","Certificate error"), 
+                                     #QApplication.translate("LumaConnection","Do you want to continue anyway?"), 
+                                     #QMessageBox.Yes|QMessageBox.No, QMessageBox.No)
                     
-            if svar == QMessageBox.Yes:
-                self.serverObject.checkServerCertificate = ServerCheckCertificate.Never
-                LumaConnection.__certMap[self.serverObject.name] = ServerCheckCertificate.Never
-                workerThread = self.__bind()
+            #if svar == QMessageBox.Yes:
+                #self.serverObject.checkServerCertificate = ServerCheckCertificate.Never
+                #LumaConnection.__certMap[self.serverObject.name] = ServerCheckCertificate.Never
+                #workerThread = self.__bind()
+	
+	#####
+	# Commented out as we use GUI-code in QThreads.
+	#####
 
-        # Prompt for password on _invalid_pwd or _blank_pwd
-        if self._invalid_pwd(workerThread) or self._blank_pwd(workerThread):
-            qApp.setOverrideCursor(Qt.ArrowCursor) #Put the mouse back to normal for the dialog (if needed)
-            pw, ret = QInputDialog.getText(None, QApplication.translate("LumaConnection","Password"), QApplication.translate("LumaConnection","Invalid passord. Enter new:"), mode=QLineEdit.Password)
-            qApp.restoreOverrideCursor()
-            if ret:
-                self.serverObject.bindPassword = unicode(pw)
-                LumaConnection.__passwordMap[self.serverObject.name] = self.serverObject.bindPassword
-                workerThread = self.__bind()
+        ## Prompt for password on _invalid_pwd or _blank_pwd
+        #if self._invalid_pwd(workerThread) or self._blank_pwd(workerThread):
+            #qApp.setOverrideCursor(Qt.ArrowCursor) #Put the mouse back to normal for the dialog (if needed)
+            #pw, ret = QInputDialog.getText(None, QApplication.translate("LumaConnection","Password"), QApplication.translate("LumaConnection","Invalid passord. Enter new:"), mode=QLineEdit.Password)
+            #qApp.restoreOverrideCursor()
+            #if ret:
+                #self.serverObject.bindPassword = unicode(pw)
+                #LumaConnection.__passwordMap[self.serverObject.name] = self.serverObject.bindPassword
+                #workerThread = self.__bind()
 
         if workerThread.exceptionObject == None:
             message = "LDAP bind operation successful."
@@ -606,9 +610,16 @@ class WorkerThreadBind(threading.Thread):
                 cred = credVal)
             
             self.logger.debug("ldap.initialize() with url: "+url.initializeUrl())
-            
-            self.ldapServerObject = ldap.initialize(url.initializeUrl())
-            self.ldapServerObject.protocol_version = 3
+           
+	    try:
+		self.ldapServerObject = ldap.initialize(url.initializeUrl())
+	    except ldap.LDAPError, e:
+		self.result = False
+		self.exceptionObject = [{"desc": "Invalid hostname/URL"}]
+		self.FINISHED = True
+		return
+
+	    self.ldapServerObject.protocol_version = 3
             
             # If we're going to present client certificates, this must be set as an option
             if self.serverObject.useCertificate and encryption:
