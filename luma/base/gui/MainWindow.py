@@ -392,7 +392,6 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         calls showSettingsDialog with tab index set to 2.
         """
         self.showSettingsDialog(1)
-        self.reloadPlugins()
 
     def reloadPlugins(self):
         """ Slot to reload plugins.
