@@ -236,7 +236,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
         # The global logger settings is managed from the settings dialog.
         # Logger
-#        settings.showLoggerOnStart = self.actionShowLogger.isChecked()
+        settings.showLoggerOnStart = self.actionShowLogger.isChecked()
         settings.showErrors = self.loggerWidget.errorBox.isChecked()
         settings.showDebug = self.loggerWidget.debugBox.isChecked()
         settings.showInfo = self.loggerWidget.infoBox.isChecked()
