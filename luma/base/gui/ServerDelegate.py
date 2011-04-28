@@ -69,7 +69,7 @@ class ServerDelegate(QStyledItemDelegate):
         the editor
         """
         
-	# if the baseDNs
+        # if the baseDNs
         if index.column() == 5:
                     
             returnList = []

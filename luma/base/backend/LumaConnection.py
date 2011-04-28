@@ -474,18 +474,18 @@ class WorkerThreadSearch(threading.Thread):
         try:
             resultId = self.ldapServerObject.search_ext(self.base, self.scope, self.filter, self.attrList, self.attrsonly, sizelimit=self.sizelimit)
         
-	    while 1:
-		#search with a 60 second timeout
-		result_type, result_data = self.ldapServerObject.result(resultId, 0, 60)
-                
-		if (result_data == []):
-		    break
-		else:
-		    if result_type == ldap.RES_SEARCH_ENTRY:
-			for x in result_data:
-			    self.result.append(x)
-	    # Can't use sizelimit with non-async-search
-	    #self.result = self.ldapServerObject.search_ext_s(self.base, self.scope, self.filter, self.attrList, self.attrsonly, sizelimit=self.sizelimit)
+            while 1:
+                #search with a 60 second timeout
+                result_type, result_data = self.ldapServerObject.result(resultId, 0, 60)
+
+                if (result_data == []):
+                    break
+                else:
+                    if result_type == ldap.RES_SEARCH_ENTRY:
+                        for x in result_data:
+                            self.result.append(x)
+                # Can't use sizelimit with non-async-search
+                #self.result = self.ldapServerObject.search_ext_s(self.base, self.scope, self.filter, self.attrList, self.attrsonly, sizelimit=self.sizelimit)
         except ldap.LDAPError, e:
             self.exceptionObject = e
             
@@ -611,15 +611,15 @@ class WorkerThreadBind(threading.Thread):
             
             self.logger.debug("ldap.initialize() with url: "+url.initializeUrl())
            
-	    try:
-		self.ldapServerObject = ldap.initialize(url.initializeUrl())
-	    except ldap.LDAPError, e:
-		self.result = False
-		self.exceptionObject = [{"desc": "Invalid hostname/URL"}]
-		self.FINISHED = True
-		return
+            try:
+                self.ldapServerObject = ldap.initialize(url.initializeUrl())
+            except ldap.LDAPError, e:
+                self.result = False
+                self.exceptionObject = [{"desc": "Invalid hostname/URL"}]
+                self.FINISHED = True
+                return
 
-	    self.ldapServerObject.protocol_version = 3
+            self.ldapServerObject.protocol_version = 3
             
             # If we're going to present client certificates, this must be set as an option
             if self.serverObject.useCertificate and encryption:
@@ -631,7 +631,6 @@ class WorkerThreadBind(threading.Thread):
                     message += "Could not set client certificate and certificate keyfile. "
                     message += str(e)
                     self.logger.error(message)
-                    
             
             if self.serverObject.encryptionMethod == ServerEncryptionMethod.TLS:
                 self.ldapServerObject.start_tls_s()
