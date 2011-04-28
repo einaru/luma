@@ -1,0 +1,230 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>INSTALL &mdash; Luma v3.0.5 documentation</title>
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '3.0.5',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/sidebar.js"></script>
+    <link rel="top" title="Luma v3.0.5 documentation" href="index.html" />
+    <link rel="next" title="Userguide" href="userguide.html" />
+    <link rel="prev" title="README" href="README.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="userguide.html" title="Userguide"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="README.html" title="README"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">Luma v3.0.5 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="install">
+<h1>INSTALL<a class="headerlink" href="#install" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="installing-from-the-git-repository">
+<h2>Installing from the git repository<a class="headerlink" href="#installing-from-the-git-repository" title="Permalink to this headline">¶</a></h2>
+<p>The Luma <a class="reference external" href="http://git-scm.org/">git</a> repository is hosted on <a class="reference external" href="http://sourceforge.net/">sourceforge</a>. To browse the repository
+go to <a class="reference external" href="http://luma.sf.net/">http://luma.sf.net/</a>. You can install Luma from the repository if you
+don&#8217;t have an up to date packaged version or want to get the latest version
+from the trunk.</p>
+<ul>
+<li><p class="first">Make sure you have <a class="reference external" href="http://git-scm.org/">git</a> installed, you can check with:</p>
+<div class="highlight-python"><pre>$ git --version</pre>
+</div>
+</li>
+<li><p class="first">Go to the directory you want to install Luma into and clone the repository:</p>
+<div class="highlight-python"><pre>$ cd ~/bin
+$ git clone http://luma.sf.net/git/luma</pre>
+</div>
+</li>
+</ul>
+<p>After cloning the <em>Luma</em> repository you can now either <a class="reference internal" href="#run-luma-from-your-local-copy">Run Luma from your local
+copy</a>, or do a <a class="reference internal" href="#systemwide-install-from-your-local-copy">Systemwide install from your local copy</a>.</p>
+<div class="section" id="run-luma-from-your-local-copy">
+<h3>Run Luma from your local copy<a class="headerlink" href="#run-luma-from-your-local-copy" title="Permalink to this headline">¶</a></h3>
+<p>Create a symlink to the Luma startup script in a search <tt class="docutils literal"><span class="pre">PATH</span></tt> directory, for
+example:</p>
+<div class="highlight-python"><pre>$ ln -s ~/bin/luma-3.0.6/luma/luma.py ~/bin/luma</pre>
+</div>
+</div>
+<div class="section" id="systemwide-install-from-your-local-copy">
+<h3>Systemwide install from your local copy<a class="headerlink" href="#systemwide-install-from-your-local-copy" title="Permalink to this headline">¶</a></h3>
+<p>Use the <tt class="docutils literal"><span class="pre">setup.py</span></tt> file to install Luma using the python <tt class="docutils literal"><span class="pre">distutils</span></tt>
+module:</p>
+<div class="highlight-python"><pre>$ sudo python setup.py install</pre>
+</div>
+<p>NOTE: To uninstall you must manually delete all installed files. These are
+typically located in <tt class="docutils literal"><span class="pre">/usr/lib/python-xxx/site-packages/luma</span></tt></p>
+</div>
+</div>
+<div class="section" id="source-distribution-installation">
+<h2>Source distribution installation<a class="headerlink" href="#source-distribution-installation" title="Permalink to this headline">¶</a></h2>
+<p>Standard <em>python</em> source distribution is available for installation. If you
+are running <em>Linux</em> or another <em>UNIX-like system</em>, you can grab the latest
+source tarball, and <a class="reference internal" href="#install-from-tarball">Install from tarball</a>. If you are running <em>Microsoft
+Windows</em>, you can grab the latest zip-archive, and <a class="reference internal" href="#install-from-zip-archive">Install from zip-archive</a>.</p>
+<div class="section" id="install-from-tarball">
+<h3>Install from tarball<a class="headerlink" href="#install-from-tarball" title="Permalink to this headline">¶</a></h3>
+<p>If your <em>Linux</em> distribution does not have a <a class="reference internal" href="#prepackaged-luma-distribution">Prepackaged Luma distribution</a>,
+or if you prefer to install the latest Luma from source, download the latest
+tarball and install using the included <tt class="docutils literal"><span class="pre">setup.py</span></tt> script.:</p>
+<div class="highlight-python"><pre>$ wget http://luma.sf.net/get/latest-tar
+$ tar xvzf luma-3.0.6.tar.gz
+$ cd luma-3.0.6
+$ sudo python setup.py install</pre>
+</div>
+</div>
+<div class="section" id="install-from-zip-archive">
+<h3>Install from zip-archive<a class="headerlink" href="#install-from-zip-archive" title="Permalink to this headline">¶</a></h3>
+<p>If your installing on <em>Microsft Windows</em> you should download the zip-archive
+from: <a class="reference external" href="http://luma.sf.net/get/latest-zip">http://luma.sf.net/get/latest-zip</a>.:</p>
+<div class="highlight-python"><pre>$ unzip luma-3.0.6.zip
+$ cd luma-3.0.6
+$ python.exe setup.py install</pre>
+</div>
+</div>
+</div>
+<div class="section" id="prepackaged-luma-distribution">
+<h2>Prepackaged Luma distribution<a class="headerlink" href="#prepackaged-luma-distribution" title="Permalink to this headline">¶</a></h2>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">This section just illustrated a proposed layout for <em>future</em> prepackaged
+Luma distributions.</p>
+</div>
+<p>The following platform spesific Luma packages are available:</p>
+<div class="section" id="linux">
+<h3>Linux<a class="headerlink" href="#linux" title="Permalink to this headline">¶</a></h3>
+<p><strong>Fedora</strong>:</p>
+<div class="highlight-python"><pre>$ yum install luma</pre>
+</div>
+<p><strong>Debian/Ubuntu</strong>:</p>
+<div class="highlight-python"><pre>$ apt-get install luma</pre>
+</div>
+<p><strong>Arch</strong>:</p>
+<div class="highlight-python"><pre>$ pacman -S luma</pre>
+</div>
+</div>
+<div class="section" id="microsoft-windows">
+<h3>Microsoft Windows<a class="headerlink" href="#microsoft-windows" title="Permalink to this headline">¶</a></h3>
+<p>An application bundle for <em>Microsoft Windows</em>, including all runtime
+dependencies can be downloaded from <a class="reference external" href="http://luma.sf.net/get/latest-win">http://luma.sf.net/get/latest-win</a>.</p>
+</div>
+<div class="section" id="mac-os-x">
+<h3>Mac OS X<a class="headerlink" href="#mac-os-x" title="Permalink to this headline">¶</a></h3>
+<p>An application bundle for <em>Mac OS X</em>, including all runtime dependencies can
+be downloaded from <a class="reference external" href="http://luma.sf.net/get/latest-mac">http://luma.sf.net/get/latest-mac</a>.</p>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="index.html">
+              <img class="logo" src="_static/luma.png" alt="Logo"/>
+            </a></p>
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">INSTALL</a><ul>
+<li><a class="reference internal" href="#installing-from-the-git-repository">Installing from the git repository</a><ul>
+<li><a class="reference internal" href="#run-luma-from-your-local-copy">Run Luma from your local copy</a></li>
+<li><a class="reference internal" href="#systemwide-install-from-your-local-copy">Systemwide install from your local copy</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#source-distribution-installation">Source distribution installation</a><ul>
+<li><a class="reference internal" href="#install-from-tarball">Install from tarball</a></li>
+<li><a class="reference internal" href="#install-from-zip-archive">Install from zip-archive</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#prepackaged-luma-distribution">Prepackaged Luma distribution</a><ul>
+<li><a class="reference internal" href="#linux">Linux</a></li>
+<li><a class="reference internal" href="#microsoft-windows">Microsoft Windows</a></li>
+<li><a class="reference internal" href="#mac-os-x">Mac OS X</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="README.html"
+                        title="previous chapter">README</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="userguide.html"
+                        title="next chapter">Userguide</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/INSTALL.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" size="18" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="userguide.html" title="Userguide"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="README.html" title="README"
+             >previous</a> |</li>
+        <li><a href="index.html">Luma v3.0.5 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2011, Christian Forfang, Einar Uvsløkk, Johannes Harestad, Per Ove Ringstad, Simen Natvig, Sondre Frisvold.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.0.7.
+    </div>
+  </body>
+</html>

@@ -1,0 +1,238 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Luma Plugin Development &mdash; Luma v3.0.5 documentation</title>
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '3.0.5',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/sidebar.js"></script>
+    <link rel="top" title="Luma v3.0.5 documentation" href="index.html" />
+    <link rel="next" title="README" href="README.html" />
+    <link rel="prev" title="Luma Development" href="development.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="README.html" title="README"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="development.html" title="Luma Development"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">Luma v3.0.5 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="luma-plugin-development">
+<h1>Luma Plugin Development<a class="headerlink" href="#luma-plugin-development" title="Permalink to this headline">¶</a></h1>
+<p>Luma is written in the <strong>Python</strong> programming language, and uses the <strong>PyQt4</strong>
+language bindings for the graphical user interface. Luma supports plugins
+written in <strong>Python</strong> and <strong>PyQt4</strong>.</p>
+<p>Luma is developed with <em>python 2.7.x</em>, but should be compatible with the
+<em>pyhton 2.6.x</em> release aswell.</p>
+<p>A Luma plugin must meet the following criterias to be included in the core
+applications:</p>
+<ul class="simple">
+<li>It <em>must</em> be <strong>cross-platform</strong>: The plugin must provide the same
+functionality on all supported platforms (Linux/Windows/Mac OSX).</li>
+<li>...</li>
+<li>...</li>
+</ul>
+<div class="section" id="skeleton-plugin">
+<h2>Skeleton plugin<a class="headerlink" href="#skeleton-plugin" title="Permalink to this headline">¶</a></h2>
+<p>The Luma <tt class="docutils literal"><span class="pre">PluginLoader</span></tt> expects to find some attributes and methods in the
+rootlevel <tt class="docutils literal"><span class="pre">__init__.py</span></tt> file in the plugin location. As a minimum, this file
+should include the following:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">lumaPlugin</span> <span class="o">=</span> <span class="bp">True</span>
+<span class="n">pluginName</span> <span class="o">=</span> <span class="s">u&#39;plugin-name&#39;</span>
+<span class="n">pluginUserString</span> <span class="o">=</span> <span class="s">u&#39;Plugin name&#39;</span>
+<span class="n">version</span> <span class="o">=</span> <span class="s">u&#39;0.1&#39;</span>
+<span class="n">author</span> <span class="o">=</span> <span class="s">u&#39;Your Name&#39;</span>
+<span class="n">description</span> <span class="o">=</span> <span class="s">u&quot;&quot;&quot;A short and consize description of the plugin.&quot;&quot;&quot;</span>
+
+<span class="k">def</span> <span class="nf">getIcon</span><span class="p">(</span><span class="n">iconPath</span> <span class="o">=</span> <span class="bp">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Returns the plugin icon, which should be a PyQt4.QtGui.QIcon.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">QtGui</span><span class="o">.</span><span class="n">QIcon</span><span class="p">(</span><span class="s">&#39;my-plugin-icon&#39;</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">getPluginWidget</span><span class="p">(</span><span class="n">parent</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Returns the main plugin widget.Typically a</span>
+<span class="sd">    PyQt4.QtGui.QWidget instance.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">MyPluginWidget</span><span class="p">(</span><span class="n">parent</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">getPluginSettingsWidget</span><span class="p">(</span><span class="n">parent</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Returns the settings widget for the plugin. Typically a</span>
+<span class="sd">    PyQt4.QtGui.QWidget instance.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">MyPluginSetingsWidget</span><span class="p">(</span><span class="n">parent</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">postprocess</span><span class="p">():</span>
+    <span class="k">return</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="writing-and-loading-plugin-settings">
+<h2>Writing and loading plugin-settings<a class="headerlink" href="#writing-and-loading-plugin-settings" title="Permalink to this headline">¶</a></h2>
+<p>In the <tt class="docutils literal"><span class="pre">base.backend</span></tt> package of the Luma distribution, there is a settings
+wrapper for plugins. This class give plugins aksess to the main application
+configuration file. If you need to save some settings for your plugins you
+<em>must</em> implement a <tt class="docutils literal"><span class="pre">writeSettings</span></tt> method in the plugin settings widget.:</p>
+<div class="highlight-python"><pre>class MyPluginSettingsWidget(QWidget):
+
+    ...
+
+    def loadSettings(self):
+    """Loads the plugin settings using the PluginSettings class.
+    """
+        settings = PluginSettings('plugin-name')
+        someValue = settings.pluginValue('some-key')
+
+    def writeSettings(self):
+        """Slot for the onSettingsChanged signal (emitted from the
+        SettingsDialog). Writes the plugin settings to disk.
+        """
+        settings = PluginSettings('plugin-name')
+        settings.setPluginValue('some-key', 'some-value')
+        del settings
+
+    ...</pre>
+</div>
+</div>
+<div class="section" id="internationalization-support-for-plugins">
+<h2>Internationalization Support for plugins<a class="headerlink" href="#internationalization-support-for-plugins" title="Permalink to this headline">¶</a></h2>
+<p>The Qt framework offers a good system for internationalization support. Luma
+makes good use of this system in the core application. In order to provide
+runtime retransalations of the plugin a few additional implementations must be
+included for the plugin.</p>
+<ul class="simple">
+<li>The plugin must catch the <tt class="docutils literal"><span class="pre">QEvent.LanguageChange</span></tt> <a class="footnote-reference" href="#qevent" id="id1">[1]</a> event and act
+upon it. It is recommended to create a dedicated method that can be called in
+order to offer the transalation of the String values.</li>
+</ul>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">changeEvent</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;This event is generated when a new translator is loaded or the</span>
+<span class="sd">    system language (locale) is changed.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">QEvent</span><span class="o">.</span><span class="n">LanguageChange</span> <span class="o">==</span> <span class="n">event</span><span class="o">.</span><span class="n">type</span><span class="p">():</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">retranslateUi</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+        <span class="o">...</span>
+
+<span class="k">def</span> <span class="nf">retranslateUi</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Explicitly translate the gui strings.&quot;&quot;&quot;</span>
+    <span class="o">...</span>
+</pre></div>
+</div>
+<p>It is also possible to catch the <tt class="docutils literal"><span class="pre">QEvent.LanguageChange</span></tt> event through a
+event handler implementation.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">If you use <tt class="docutils literal"><span class="pre">QtDesigner</span></tt> to create the GUI files, the <tt class="docutils literal"><span class="pre">retranslateUi</span></tt>
+method will be generated when running the <tt class="docutils literal"><span class="pre">pyuic4</span></tt> tool.</p>
+</div>
+<table class="docutils footnote" frame="void" id="qevent" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td><a class="reference external" href="http://www.riverbankcomputing.co.uk/static/Docs/PyQt4/html/qevent.html#Type-enum">http://www.riverbankcomputing.co.uk/static/Docs/PyQt4/html/qevent.html#Type-enum</a></td></tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="index.html">
+              <img class="logo" src="_static/luma.png" alt="Logo"/>
+            </a></p>
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Luma Plugin Development</a><ul>
+<li><a class="reference internal" href="#skeleton-plugin">Skeleton plugin</a></li>
+<li><a class="reference internal" href="#writing-and-loading-plugin-settings">Writing and loading plugin-settings</a></li>
+<li><a class="reference internal" href="#internationalization-support-for-plugins">Internationalization Support for plugins</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="development.html"
+                        title="previous chapter">Luma Development</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="README.html"
+                        title="next chapter">README</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/plugin-development.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" size="18" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="README.html" title="README"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="development.html" title="Luma Development"
+             >previous</a> |</li>
+        <li><a href="index.html">Luma v3.0.5 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2011, Christian Forfang, Einar Uvsløkk, Johannes Harestad, Per Ove Ringstad, Simen Natvig, Sondre Frisvold.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.0.7.
+    </div>
+  </body>
+</html>
