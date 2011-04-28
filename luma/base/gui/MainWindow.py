@@ -236,7 +236,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
         # The global logger settings is managed from the settings dialog.
         # Logger
-#        settings.showLoggerOnStart = self.actionShowLogger.isChecked()
+        settings.showLoggerOnStart = self.actionShowLogger.isChecked()
         settings.showErrors = self.loggerWidget.errorBox.isChecked()
         settings.showDebug = self.loggerWidget.debugBox.isChecked()
         settings.showInfo = self.loggerWidget.infoBox.isChecked()
@@ -393,6 +393,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         calls showSettingsDialog with tab index set to 2.
         """
         self.showSettingsDialog(1)
+        self.reloadPlugins()
 
     def reloadPlugins(self):
         """ Slot to reload plugins.
