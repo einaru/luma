@@ -10,7 +10,7 @@ from PyQt4.QtCore import QSize, SIGNAL
 from PyQt4.QtGui import (QTextBrowser, QTextOption, QPixmap, QSizePolicy,
                          QTextOption, QLineEdit, QToolBar, QImage, 
                          QMessageBox, QVBoxLayout, QWidget, QToolButton, 
-                         QIcon, QComboBox, QInputDialog)
+                         QIcon, QComboBox, QInputDialog, QDialog)
 
 from base.backend.LumaConnection import LumaConnection
 from base.backend.ServerList import ServerList
@@ -21,6 +21,7 @@ from base.util.Paths import getLumaRoot
 from .model.EntryModel import EntryModel
 from .HtmlParser import HtmlParser
 from .TemplateFactory import TemplateFactory
+from .editors.EditorFactory import getEditorWidget
 
 
 class AdvancedObjectWidget(QWidget):
@@ -419,18 +420,18 @@ class AdvancedObjectWidget(QWidget):
             else:
                 addValue = True
                 oldValue = ''
-        newValue, ok = QInputDialog.getText(self.objectWidget, 
-                            self.trUtf8('Input dialog'), 
-                            self.trUtf8('Attribute value:'), 
-                            QLineEdit.Normal, 
-                            oldValue)
-        if ok:
+        dialog = getEditorWidget(self, smartObject, attributeName, index)
+        dialog.exec_()
+
+        #newValue, ok = QInputDialog.getText(self.objectWidget, 
+        #                    self.trUtf8('Input dialog'), 
+        #                    self.trUtf8('Attribute value:'), 
+        #                    QLineEdit.Normal, 
+        #                    oldValue)
+        if dialog.result() == QDialog.Accepted:
             # TODO check attribute types
-            if attributeName.lower() == "jpegphoto":
-                newValue = str(newValue)
-            else:
-                newValue = unicode(newValue)
-            if not newValue == None:
+            newValue = dialog.getValue()
+            if not (newValue == None):
                 if attributeName == 'RDN':
                     self.entryModel.editRDN(newValue)
                 else:
