@@ -1,0 +1,340 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Luma Development &mdash; Luma v3.0.5 documentation</title>
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '3.0.5',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/sidebar.js"></script>
+    <link rel="top" title="Luma v3.0.5 documentation" href="index.html" />
+    <link rel="next" title="Luma Plugin Development" href="plugin-development.html" />
+    <link rel="prev" title="Userguide" href="userguide.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="plugin-development.html" title="Luma Plugin Development"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="userguide.html" title="Userguide"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">Luma v3.0.5 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="luma-development">
+<h1>Luma Development<a class="headerlink" href="#luma-development" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="getting-started">
+<h2>Getting started<a class="headerlink" href="#getting-started" title="Permalink to this headline">¶</a></h2>
+<p>Luma uses <a class="reference external" href="http://git-scm.com/">git</a> for revision control. To get started developing for Luma you
+need to install some required development tools. These include:</p>
+<ul class="simple">
+<li><a class="reference external" href="http://git-scm.com/">git</a></li>
+<li><a class="reference external" href="http://www.python.org/">python</a> &gt;= <em>2.7</em> &lt; <em>3</em></li>
+<li><a class="reference external" href="http://python-ldap.org/">python-ldap</a> &gt;= <em>2.3.10</em></li>
+<li><a class="reference external" href="http://www.riverbankcomputing.com/software/pyqt/download">PyQt4</a> &gt;= <em>4.8.3</em></li>
+</ul>
+<p>To checkout the Luma source code you run:</p>
+<div class="highlight-python"><pre>$ git clone protocol://path.to.luma/repository/luma.git luma</pre>
+</div>
+<p>Then you should create your own branch from the <tt class="docutils literal"><span class="pre">develop</span></tt> branch:</p>
+<div class="highlight-python"><pre>$ git fetch
+$ git checkout develop
+$ git chekcout -b my-luma-feature develop</pre>
+</div>
+</div>
+<div class="section" id="repository-structure">
+<h2>Repository structure<a class="headerlink" href="#repository-structure" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python"><pre>.
+|-- bin
+|-- contrib
+|-- data
+|-- doc (1)
+|-- luma (2)
+|   |-- base
+|   |   |-- backend
+|   |   |-- gui
+|   |   |-- model
+|   |   `-- util
+|   |-- plugins
+|   `-- test
+|-- resources (3)
+|   |-- forms
+|   |-- i18n
+|   `-- icons
+|-- setup (4)
+|-- tools (5)
+|-- luma.pro (6)
+`-- luma.qrc (7)</pre>
+</div>
+<ol class="arabic">
+<li><p class="first"><em>Luma documentation files</em>. All Luma documentation files should be placed
+here.</p>
+</li>
+<li><p class="first"><em>Luma source code files</em>. All Luma python modules should be placed in an
+appropriate python package in this location.</p>
+<blockquote>
+<div><ul class="simple">
+<li><tt class="docutils literal"><span class="pre">base.backend</span></tt>: Contains modules for the core functionality, including
+ldap connection and operation wrappers.</li>
+<li><tt class="docutils literal"><span class="pre">base.gui</span></tt>: Contains all gui modules.</li>
+<li><tt class="docutils literal"><span class="pre">base.util</span></tt>: Conatins all utility modules that can be used for both the
+base modules aswell as the plugins.</li>
+<li><tt class="docutils literal"><span class="pre">plugins</span></tt>: Contains all plugins included in the core application.</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first"><em>Luma resource files</em>. All resource files should be placed here. This
+include all icons (<tt class="docutils literal"><span class="pre">icons</span></tt>), all Qt4 Linguist files (<tt class="docutils literal"><span class="pre">i18n</span></tt>) and all Qt4
+Designer files (<tt class="docutils literal"><span class="pre">forms</span></tt>). All files in the resource folder will be
+included as input for the <tt class="docutils literal"><span class="pre">lumarcc.py</span></tt> script when generating runtime
+resources for the Luma application.</p>
+</li>
+<li><p class="first">Platform spesific setup files.</p>
+</li>
+<li><p class="first">Luma spesific development and deployment tools.</p>
+</li>
+<li><p class="first">The Luma project file. This file is generated by <tt class="docutils literal"><span class="pre">lumarcc.py</span></tt>.</p>
+</li>
+<li><p class="first">The Luma resource file. This file is generated by <tt class="docutils literal"><span class="pre">lumarcc.py</span></tt> in and is
+used for creating the <tt class="docutils literal"><span class="pre">resources.py</span></tt> file, which contains compiled icons
+and translation files.</p>
+</li>
+</ol>
+</div>
+<div class="section" id="coding-style">
+<h2>Coding Style<a class="headerlink" href="#coding-style" title="Permalink to this headline">¶</a></h2>
+<p>You should follow <a class="reference external" href="http://www.python.org/dev/peps/pep-0008/">PEP8</a> when writing Python source code for Luma.
+Especially you should use</p>
+<ul class="simple">
+<li>4 spaces for indentation</li>
+<li>CamelCase for methods name</li>
+<li>a maximum of 79 characters per line for code</li>
+<li>a miximum of 72 characters per line for docstrings</li>
+<li>one newline between class methods.</li>
+<li>two newlines between module methods.</li>
+<li>double underscore for <em>private</em> attributes and methods.</li>
+<li>python properties for getters and setter</li>
+<li>import statements as described in <a class="reference external" href="http://www.python.org/dev/peps/pep-0328/">PEP328</a></li>
+</ul>
+<div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<p class="last">These coding style guidelines is <strong>only guidelines</strong>. The first priority is
+allways to write well documented and readable code. If the mentioned
+guidelines renders your implementation less readable or understandable, you
+are free to (and should) bypass the affected guideline, and perhaps
+consider proposing modifications to the <strong>Luma coding style guidelines</strong>.</p>
+</div>
+<div class="section" id="source-code-headers">
+<h3>Source code headers<a class="headerlink" href="#source-code-headers" title="Permalink to this headline">¶</a></h3>
+<p>If you contribute new modules to the Luma base application, you should provide
+sufficient information about the source code. This include at least your name
+and a license notice.</p>
+<div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<p class="last">The base Luma application is released under the <em>GNU General Public License
+version 2</em>, and so should yours, if it is to be included in the base
+distribution. Either way, if you have some external demands, the pick of
+license _must_ be compatible with the GPL <a class="footnote-reference" href="#id2" id="id1">[3]</a></p>
+</div>
+<p><strong>Default Luma source code header</strong>:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="c"># -*- coding: utf-8 -*-</span>
+<span class="c">#</span>
+<span class="c"># package.module</span>
+<span class="c">#</span>
+<span class="c"># Copyright (c) &lt;year&gt;</span>
+<span class="c">#      Your Name, &lt;your@email.address&gt;</span>
+<span class="c">#</span>
+<span class="c"># This program is free software: you can redistribute it and/or modify</span>
+<span class="c"># it under the terms of the GNU General Public License as published by</span>
+<span class="c"># the Free Software Foundation, either version 3 of the License, or</span>
+<span class="c"># (at your option) any later version.</span>
+<span class="c">#</span>
+<span class="c"># This program is distributed in the hope that it will be useful,</span>
+<span class="c"># but WITHOUT ANY WARRANTY; without even the implied warranty of</span>
+<span class="c"># MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span>
+<span class="c"># GNU General Public License for more details.</span>
+<span class="c">#</span>
+<span class="c"># You should have received a copy of the GNU General Public License</span>
+<span class="c"># along with this program.  If not, see http://www.gnu.org/licenses/</span>
+<span class="c">#</span>
+<span class="c"># vim: tabstop=4 expandtab shiftwidth=4 softtabstop=4</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="source-code-documentation">
+<h3>Source code documentation<a class="headerlink" href="#source-code-documentation" title="Permalink to this headline">¶</a></h3>
+<p>Python source code should allways be documented. First of all methods should
+include a standard python docstring, describing the purpose of the method.
+Further more we belive that code code can be written without the need for
+inline comments. In some cases this is of course necessary.</p>
+<p>If you modify large blocks of code in a file, you might consider keeping the
+old codeblock in the file by commenting it out with the <tt class="docutils literal"><span class="pre">#</span></tt> character. You
+should also add some information in relation to your new code, summarizing
+the changes you have made.</p>
+<p><strong>Example</strong>:</p>
+<div class="highlight-python"><pre>class Cosmik(object):
+    """This class mimics the essence of the legend of Frank Zappa
+    """
+
+    ...
+
+    def debris(self, *args, **kwargs):
+        """Generates debris of the Cosmik kind.
+
+        @return:
+            A list of cosmik debris is returned if some conditions is
+            met, the empty list [] if not.
+        """
+        cosmikDebris = []
+        for x in self.__someInternalStuff():
+            if someCondition is met for x:
+                cosmikDebris.append(x)
+        return cosmikDebris
+
+    ...</pre>
+</div>
+</div>
+</div>
+<div class="section" id="development-tools">
+<h2>Development tools<a class="headerlink" href="#development-tools" title="Permalink to this headline">¶</a></h2>
+<p>There exists a number of tools that can be helpful when developing python and
+PyQt4 code. We also have produced some tools spesific for the Luma development
+and deployment process.</p>
+<div class="section" id="python-and-pyqt4-development-tools">
+<h3>Python and PyQt4 development tools<a class="headerlink" href="#python-and-pyqt4-development-tools" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><strong>Qt4 Designer</strong>:
+This application is part of the Qt framework, which is
+helpful for creating Qt graphical interfaces. You can create the GUI design
+and use the PyQt4 tool <tt class="docutils literal"><span class="pre">pyuic4</span></tt> to generate python source code from it.</li>
+<li><strong>Qt4 Linguist</strong>:
+This application is part of the Qt framework, and is used
+for the internationalization process for the application.</li>
+</ul>
+</div>
+<div class="section" id="luma-spesific-development-tools">
+<h3>Luma spesific development tools<a class="headerlink" href="#luma-spesific-development-tools" title="Permalink to this headline">¶</a></h3>
+<p>Luma spesific tools is located in the <cite>tools</cite> directory in the repository.</p>
+<ul class="simple">
+<li><strong>lumarcc.py</strong>: This script automates the process of generating application
+resources. It currently supports dynamically building the project file
+(<tt class="docutils literal"><span class="pre">luma.pro</span></tt>) and the resource file (<tt class="docutils literal"><span class="pre">luma.qrc</span></tt>), compiling Qt4 Designer
+files to python code.</li>
+<li><strong>lumadoc.py</strong>: This script automates the process of generating the
+documentation.</li>
+</ul>
+<table class="docutils footnote" frame="void" id="id2" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id1">[3]</a></td><td><a class="reference external" href="http://www.gnu.org/licenses/license-list.html#GPLCompatibleLicenses">http://www.gnu.org/licenses/license-list.html#GPLCompatibleLicenses</a></td></tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="index.html">
+              <img class="logo" src="_static/luma.png" alt="Logo"/>
+            </a></p>
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Luma Development</a><ul>
+<li><a class="reference internal" href="#getting-started">Getting started</a></li>
+<li><a class="reference internal" href="#repository-structure">Repository structure</a></li>
+<li><a class="reference internal" href="#coding-style">Coding Style</a><ul>
+<li><a class="reference internal" href="#source-code-headers">Source code headers</a></li>
+<li><a class="reference internal" href="#source-code-documentation">Source code documentation</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#development-tools">Development tools</a><ul>
+<li><a class="reference internal" href="#python-and-pyqt4-development-tools">Python and PyQt4 development tools</a></li>
+<li><a class="reference internal" href="#luma-spesific-development-tools">Luma spesific development tools</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="userguide.html"
+                        title="previous chapter">Userguide</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="plugin-development.html"
+                        title="next chapter">Luma Plugin Development</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/development.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" size="18" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="plugin-development.html" title="Luma Plugin Development"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="userguide.html" title="Userguide"
+             >previous</a> |</li>
+        <li><a href="index.html">Luma v3.0.5 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2011, Christian Forfang, Einar Uvsløkk, Johannes Harestad, Per Ove Ringstad, Simen Natvig, Sondre Frisvold.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.0.7.
+    </div>
+  </body>
+</html>

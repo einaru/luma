@@ -377,12 +377,11 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             tab = 0
         settingsDialog.tabWidget.setCurrentIndex(tab)
         if settingsDialog.exec_():
-            pass
+            self.reloadPlugins()
 #            # We assume that some settings is changed 
 #            # if the user clicked the ok button, and
 #            # reloads the application settings
 #            self.__loadSettings(mainWin=False)
-#            self.reloadPlugins()
 #            # A Hack but it'll do for now
 #            for a in self.langGroup.actions():
 #                if a.data().toString() == self.currentLanguage:
