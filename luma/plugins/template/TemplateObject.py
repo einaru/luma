@@ -166,3 +166,19 @@ class AttributeObject(object):
         
     def getList(self):
         return [self.attributeName, self.must, self.single, self.binary, self.defaultValue]
+    
+    def getDataObject(self, serverMeta, baseDN):
+        dataObject = {}
+        dataObject['objectClass'] = deepcopy(self.objectClasses)
+        
+        for x in self.attributes.keys():
+            attributeObject = self.attributes[x]
+            if attributeObject.defaultValue == None:
+                dataObject[attributeObject.attributeName] = [None]
+            else:
+                dataObject[attributeObject.attributeName] = [attributeObject.defaultValue.encode("utf-8")]
+        
+        smartObject = SmartDataObject((baseDN, dataObject), serverMeta)
+        
+        return smartObject
+    
