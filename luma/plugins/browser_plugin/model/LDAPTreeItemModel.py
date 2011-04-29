@@ -315,23 +315,15 @@ class LDAPTreeItemModel(QAbstractItemModel):
             item = item.parent()
 
         if self.unverified(item):
-            # Verifies the connection to the server, and asks for password if it's invalid -rify
+            # Verifies the connection to the server, and asks for password if it's invalid
             # (Needs to be done in the GUI-thread, which this should be)
             conn = LumaConnection(item.serverMeta)
-            success, exception = conn.bind(askForPw = True)
-        else:
-            # Verifies -- can go ahead with the search
-            success = True
-        
-        if success:
-            # Do the search (in another thread)
-            thread = Worker(self, parentIndex, parentItem)
-            QtCore.QThreadPool.globalInstance().start(thread)
-            parentItem.loading = True
-        else:
-            # Show error
-            parentItem.loading = False
-            parentItem.appendChild(LDAPErrorItem(exception[0]["desc"], None, parentItem))
+            conn.bind(askForPw = True)
+
+        # Do the search (in another thread)
+        thread = Worker(self, parentIndex, parentItem)
+        QtCore.QThreadPool.globalInstance().start(thread)
+        parentItem.loading = True
 
     def unverified(self, serverItem):
         if serverItem in self.verified:

@@ -258,6 +258,7 @@ class LumaConnection(object):
         workerThread = self.__bind()
 
         if askForPw:
+            self.logger.debug("Verifying connection to server and asking for password if it's invalid.")
             # Prompt user to continue if we suspect that the certificate could not
             # be verified
             if self._cert_error(workerThread):

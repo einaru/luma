@@ -5,6 +5,7 @@ from PyQt4.QtGui import QInputDialog, QIcon, QPixmap
 from PyQt4 import QtCore, QtGui
 from base.backend.LumaConnection import LumaConnection
 from plugins.browser_plugin.item.AbstractLDAPTreeItem import AbstractLDAPTreeItem
+from plugins.browser_plugin.item.LDAPErrorItem import LDAPErrorItem
 
 class LDAPTreeItem(AbstractLDAPTreeItem):
     """
@@ -87,9 +88,9 @@ class LDAPTreeItem(AbstractLDAPTreeItem):
         bindSuccess, exceptionObject = l.bind()
         
         if not bindSuccess:
-            self.error = True
-            return (False, None, exceptionObject)
-        
+            tmp = LDAPErrorItem(str("["+exceptionObject[0]["desc"]+"]"), self, self)
+            # We're adding the error as LDAPErrorItem-child, so return True
+            return (True, [tmp], exceptionObject)
         
         # Search for items at the level under this one
         success, resultList, exceptionObject = l.search(self.itemData.getDN(), \
@@ -97,8 +98,9 @@ class LDAPTreeItem(AbstractLDAPTreeItem):
         l.unbind()
         
         if not success:
-            self.error = True
-            return (False, None, exceptionObject)
+            tmp = LDAPErrorItem(str("["+exceptionObject[0]["desc"]+"]"), self, self)
+            # We're adding the error as LDAPErrorItem-child, so return True
+            return (True, [tmp], exceptionObject)
         
         self.error = False
         
