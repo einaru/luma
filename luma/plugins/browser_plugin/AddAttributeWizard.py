@@ -91,7 +91,6 @@ class AddAttributeWizard(QWizard, Ui_AddAttributeWizardDesign):
 ###############################################################################
 
     def initAttributeBox(self):
-        print "init attr"
         self.attributeBox.clear()
         
         currentPageWidget = self.currentPage()
@@ -135,7 +134,6 @@ class AddAttributeWizard(QWizard, Ui_AddAttributeWizardDesign):
 ###############################################################################
 
     def newSelection(self, attribute):
-        print "new selection"
         attribute = str(attribute).lower()
         
         currentPageWidget = self.currentPage()

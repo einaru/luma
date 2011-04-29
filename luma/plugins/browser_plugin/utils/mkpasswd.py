@@ -41,15 +41,21 @@
 import string,base64
 import random,sys
 import exceptions
-import md5,sha,crypt
-smb = 0 # Where 1 is true, and 0 is false
+import md5,sha
+smb_module = 0 # Where 1 is true, and 0 is false
+crypt_module = 0
 debug = False
 
 try:
-    import smbpasswd
-    smb = 1 
+    import crypt
+    crypt_module = 1
 except:
-    smb = 0
+    crypt_module = 0
+try:
+    import smbpasswd
+    smb_module = 1 
+except:
+    smb_module = 0
     if debug:
         print '''
         module <smbpasswd> not found or not installed. Windows-passwords are therefor
@@ -85,12 +91,13 @@ def mkpasswd(pwd,sambaver=3,default='ssha'):
     '''
     alg = {
 	    'sha':'Secure Hash Algorithm',
-        'ssha':'Seeded SHA',
+            'ssha':'Seeded SHA',
 	    'md5':'MD5',
 	    'smd5':'Seeded MD5',
-	    'crypt':'standard unix crypt'
     }
-    if smb:
+    if crypt_module:
+        alg['crypt'] = 'standard unix crypt'
+    if smb_module:
         alg['lmhash'] = 'lan man hash'
         alg['nthash'] = 'nt hash'
     if default not in alg.keys():
@@ -210,3 +217,21 @@ def check_strength_function():
         print x, check_strength(x)
         
     
+def get_available_hash_methods():
+    # basic algorithms which are supported by mkpasswd-module
+    supportedAlgorithms = ['md5','smd5', 'sha', 'ssha', 'cleartext']
+        
+    # add lmhash and nthash algorithms if smbpasswd module is present
+    try:
+        import smbpasswd
+        supportedAlgorithms.extend(['lmhash', 'nthash'])
+    except ImportError, e:
+        pass
+    try:
+        import crypt
+        supportedAlgorithms.extend(['crypt'])
+    except ImportError, e:
+        pass
+        
+    supportedAlgorithms.sort()
+    return supportedAlgorithms
