@@ -9,6 +9,8 @@
 from plugins.browser_plugin.item.ServerTreeItem import ServerTreeItem
 from plugins.browser_plugin.item.RootTreeItem import RootTreeItem
 from plugins.browser_plugin.item.LDAPErrorItem import LDAPErrorItem
+from base.backend.LumaConnection import LumaConnection
+
 from PyQt4 import QtCore
 from PyQt4.QtCore import QAbstractItemModel, pyqtSlot, Qt
 from PyQt4.QtGui import qApp, QMessageBox, QProgressDialog
@@ -26,6 +28,7 @@ class LDAPTreeItemModel(QAbstractItemModel):
     def __init__(self, parent=None):
         QtCore.QAbstractItemModel.__init__(self, parent)
 	self.listFetched.connect(self.workerFinished)
+        self.verified = []
 
     """ These are called internally in order to signal when busy
     """
@@ -136,13 +139,14 @@ class LDAPTreeItemModel(QAbstractItemModel):
             parentItem = parent.internalPointer()
 
         if not parentItem.populated:
-	    parentItem.loading = True
-	    parentItem.populated = True
-	    #parentItem.appendChild(LDAPErrorItem("Loading",None,parentItem))
-	    self.fetchInThread(parent, parentItem)
+            parentItem.loading = True
+            parentItem.populated = True
+            # -- New solution --
+            self.fetchInThread(parent, parentItem)
+            # -- Old solution --
             #self.populateItem(parentItem)
             # Updates the |>-icon to show if the item has children
-            self.layoutChanged.emit()
+            #self.layoutChanged.emit()
 
         return parentItem.childCount()
 
@@ -304,9 +308,35 @@ class LDAPTreeItemModel(QAbstractItemModel):
             return False
 
     def fetchInThread(self, parentIndex, parentItem):
-	thread = Worker(self, parentIndex, parentItem)
-	QtCore.QThreadPool.globalInstance().start(thread)
-	parentItem.loading = True
+       
+        # Find associated ServerItem
+        item = parentItem
+        while item.parent() != self.rootItem:
+            item = item.parent()
+
+        if self.unverified(item):
+            # Verifies the connection to the server, and asks for password if it's invalid -rify
+            # (Needs to be done in the GUI-thread, which this should be)
+            conn = LumaConnection(item.serverMeta)
+            success, exception = conn.bind(askForPw = True)
+        else:
+            # Verifies -- can go ahead with the search
+            success = True
+        
+        if success:
+            # Do the search (in another thread)
+            thread = Worker(self, parentIndex, parentItem)
+            QtCore.QThreadPool.globalInstance().start(thread)
+            parentItem.loading = True
+        else:
+            # Show error
+            parentItem.loading = False
+            parentItem.appendChild(LDAPErrorItem(exception[0]["desc"], None, parentItem))
+
+    def unverified(self, serverItem):
+        if serverItem in self.verified:
+            return True
+        return True
 
     @pyqtSlot(QtCore.QModelIndex, tuple)
     def workerFinished(self, parentIndex, tupel):
