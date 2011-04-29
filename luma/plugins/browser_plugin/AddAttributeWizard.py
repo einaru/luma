@@ -33,6 +33,8 @@ class AddAttributeWizard(QWizard, Ui_AddAttributeWizardDesign):
         self.imageLabel.setPixmap(attributePixmap)
         self.objectclassLabel.setPixmap(objectclassPixmap)
         
+        self.enableAllBox.toggled.connect(self.initAttributeBox)
+        self.attributeBox.activated.connect(self.newSelection)
         
         # attribute values of the current ldap object
         self.OBJECTVALUES = None
@@ -60,11 +62,8 @@ class AddAttributeWizard(QWizard, Ui_AddAttributeWizardDesign):
         self.initAttributeBox()
         
         currentPageWidget = self.page(0)
-        currentPageWidget.setFinalPage(True)
-        currentPageWidget.setCommitPage(False)
-        #self.setFinishEnabled(currentPageWidget, True)
-        #self.setHelpEnabled(currentPageWidget, False)
-        #self.setNextEnabled(currentPageWidget, False)
+        self.button(QWizard.FinishButton).setDisabled(False)
+        self.button(QWizard.NextButton).setDisabled(True)
 
 ###############################################################################
 
@@ -92,14 +91,14 @@ class AddAttributeWizard(QWizard, Ui_AddAttributeWizardDesign):
 ###############################################################################
 
     def initAttributeBox(self):
+        print "init attr"
         self.attributeBox.clear()
         
         currentPageWidget = self.currentPage()
         
         showAll = self.enableAllBox.isChecked()
         currentPageWidget.setFinalPage(True)
-        #self.setFinishEnabled(currentPageWidget, True)
-        #self.setHelpEnabled(currentPageWidget, False)
+        self.button(QWizard.FinishButton).setDisabled(False)
         
         tmpList = None
         if showAll:
@@ -136,6 +135,7 @@ class AddAttributeWizard(QWizard, Ui_AddAttributeWizardDesign):
 ###############################################################################
 
     def newSelection(self, attribute):
+        print "new selection"
         attribute = str(attribute).lower()
         
         currentPageWidget = self.currentPage()
@@ -144,13 +144,11 @@ class AddAttributeWizard(QWizard, Ui_AddAttributeWizardDesign):
         tmpSet = mustSet.union(maySet)
         
         if (attribute in self.possibleAttributes) or (len(tmpSet) == 0):
-            currentPageWidget.setFinalPage(True)
-            currentPageWidget.setCommitPage(False)
+            self.button(QWizard.FinishButton).setDisabled(False)
+            self.button(QWizard.NextButton).setDisabled(True)
         else:
-            currentPageWidget.setFinalPage(False)
-            currentPageWidget.setCommitPage(True)
-            #self.setFinishEnabled(currentPageWidget, False)
-            #self.setNextEnabled(currentPageWidget, True)
+            self.button(QWizard.FinishButton).setDisabled(True)
+            self.button(QWizard.NextButton).setDisabled(False)
             
 ###############################################################################
 
@@ -163,9 +161,7 @@ class AddAttributeWizard(QWizard, Ui_AddAttributeWizardDesign):
 
     def initClassPage(self):
         currentPageWidget = self.currentPage()
-        currentPageWidget.setFinalPage(False)
-        #self.setFinishEnabled(currentPageWidget, False)
-        #self.setHelpEnabled(currentPageWidget, False)
+        self.button(QWizard.FinishButton).setDisabled(True)
     
         self.classBox.clear()
         self.mustAttributeBox.clear()
@@ -201,9 +197,6 @@ class AddAttributeWizard(QWizard, Ui_AddAttributeWizardDesign):
         map(self.mustAttributeBox.insertItem, mustAttributes.difference(attribute))
         
         currentPageWidget = self.currentPage()
-        currentPageWidget.setFinalPage(True)
-        #self.setFinishEnabled(currentPageWidget, True)
-        
-        
+        self.button(QWizard.FinishButton).setDisabled(False)
         
     

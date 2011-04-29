@@ -306,17 +306,6 @@ class AdvancedObjectWidget(QWidget):
     def addAttribute(self):
         """ Add attributes to the current object.
         """
-        """
-        attribute, ok = QInputDialog.getText(self.objectWidget, 
-                            self.trUtf8('Input dialog'), 
-                            self.trUtf8('Attribute name:'), 
-                            QLineEdit.Normal, 
-                            '')
-        if ok:
-            attribute = unicode(attribute)
-            self.entryModel.addAttributeValue(attribute, None)
-        """ 
-        #QMessageBox.critical(self, "?", "I dont exist, yet")
         
         dialog = AddAttributeWizard(self)
         #TODO model
