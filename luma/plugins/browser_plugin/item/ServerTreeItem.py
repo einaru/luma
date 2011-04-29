@@ -87,9 +87,10 @@ class ServerTreeItem(AbstractLDAPTreeItem):
                 newChildList.append(tmp)
                 continue
             
-            self.logger.debug("Found item")
-            tmp = LDAPTreeItem(resultList[0], self, self)    
-            newChildList.append(tmp)
+            if resultList:
+                self.logger.debug("Found item")
+                tmp = LDAPTreeItem(resultList[0], self, self)    
+                newChildList.append(tmp)
             
         self.logger.debug("End populatItem")
         

@@ -23,7 +23,7 @@ class AddAttributeDialog(QDialog, Ui_AddAttributeDialog):
             if not name in templateObject.attributes.keys():
                 single = self.ocai.isSingle(name)
                 binary = self.ocai.isBinary(name)
-                self.attributeTM.addRow(name, False, single, binary, "")
+                self.attributeTM.addRow(name, False, single, binary, "", False)
             
         self.tableView.resizeColumnsToContents()
         self.tableView.resizeRowsToContents()

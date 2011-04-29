@@ -238,7 +238,7 @@ class TemplateWidget(QWidget, Ui_TemplateWidget):
         for name in attributeNameList:
             single = ocai.isSingle(name)
             binary = ocai.isBinary(name)
-            self.attributeTM.addRow(name, True, single, binary, "")
+            self.attributeTM.addRow(name, True, single, binary, "", False)
             
     def refreshAllAttributes(self):
         tO = self.getSelectedTemplateObject()
@@ -258,7 +258,7 @@ class TemplateWidget(QWidget, Ui_TemplateWidget):
             for i in dialog.tableView.selectedIndexes():
                 if(i.column() == 0):
                     a = dialog.attributeTM.getAttribute(i)
-                    self.attributeTM.addRow(a.attributeName, a.must, a.single, a.binary, a.defaultValue)
+                    self.attributeTM.addRow(a.attributeName, a.must, a.single, a.binary, a.defaultValue, a.customMust)
                     
         self.tableViewAttributes.resizeRowsToContents()
                     

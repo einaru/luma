@@ -23,9 +23,9 @@ class DeleteObjectclassDialog(QDialog, Ui_AddAttributeDialog):
         for name in must:
             if name in oldAttributes:
                 a = oldAttributes[name]
-                attributeTM.addRow(a.attributeName, a.must, a.single, a.binary, a.defaultValue)
+                attributeTM.addRow(a.attributeName, a.must, a.single, a.binary, a.defaultValue, a.customMust)
             
         for name in may:
             if name in oldAttributes:
                 a = oldAttributes[name]
-                attributeTM.addRow(a.attributeName, a.must, a.single, a.binary, a.defaultValue)
+                attributeTM.addRow(a.attributeName, a.must, a.single, a.binary, a.defaultValue, a.customMust)
