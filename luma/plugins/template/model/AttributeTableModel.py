@@ -21,10 +21,10 @@ class AttributeTableModel(QAbstractTableModel):
             self.attributes = {}
         self.reset()
 
-    def addRow(self, name, must, single, binary, defaultValue):
+    def addRow(self, name, must, single, binary, defaultValue, customMust):
         if not name in self.attributes or not self.attributes[name].must:
             self.beginInsertRows(QModelIndex(), self.rowCount(), self.rowCount())
-            self.attributes[name] = AttributeObject(name, must, single, binary, defaultValue)
+            self.attributes[name] = AttributeObject(name, must, single, binary, defaultValue, customMust)
             self.endInsertRows()
             return True
         else:
@@ -63,9 +63,10 @@ class AttributeTableModel(QAbstractTableModel):
         Handles updating data in the TemplateObjects
         """
         print "AttributeTableModel: setData()"
+        if index.column() == 1:
+            if not self.attributes.items()[index.row()][1].must:
+                self.attributes.items()[index.row()][1].customMust = not self.attributes.items()[index.row()][1].customMust  
         if index.column() == 4:
-            print "default value?"
-            print value.toString()
             self.attributes.items()[index.row()][1].defaultValue = value.toString()
             return True
         return False
@@ -94,6 +95,8 @@ class AttributeTableModel(QAbstractTableModel):
     def flags(self, index):
         if not index.isValid():
             return QVariant()
+        if index.column() == 1:
+            return Qt.ItemIsSelectable | Qt.ItemIsEnabled | Qt.ItemIsEditable
         if index.column() == 4:
             return Qt.ItemIsSelectable | Qt.ItemIsEnabled | Qt.ItemIsEditable
         return Qt.ItemIsSelectable | Qt.ItemIsEnabled
@@ -111,6 +114,8 @@ class AttributeTableModel(QAbstractTableModel):
         if role == Qt.DecorationRole:
             if column == 1 or column == 2 or column == 3:
                 if self.attributes.items()[row][1].getList()[column]:
+                    return QIcon(':/icons/ok')
+                elif column == 1 and self.attributes.items()[row][1].getList()[5]:
                     return QIcon(':/icons/ok')
                 else:
                     return QIcon(':/icons/no')

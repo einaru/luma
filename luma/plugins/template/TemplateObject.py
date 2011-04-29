@@ -157,15 +157,16 @@ class TemplateObject(object):
     
     
 class AttributeObject(object):
-    def __init__(self, name="", must=False, single=False, binary=False, defaultValue=None):
+    def __init__(self, name="", must=False, single=False, binary=False, defaultValue=None, customMust=False):
         self.attributeName = name
         self.must = must
         self.single = single
         self.binary = binary
         self.defaultValue = defaultValue
+        self.customMust = customMust
         
     def getList(self):
-        return [self.attributeName, self.must, self.single, self.binary, self.defaultValue]
+        return [self.attributeName, self.must, self.single, self.binary, self.defaultValue, self.customMust]
     
     def getDataObject(self, serverMeta, baseDN):
         dataObject = {}
