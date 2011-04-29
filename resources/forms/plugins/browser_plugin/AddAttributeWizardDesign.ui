@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>925</width>
+    <width>617</width>
     <height>464</height>
    </rect>
   </property>
@@ -25,9 +25,6 @@
   <property name="windowTitle">
    <string>Add Attribute</string>
   </property>
-  <property name="accessibleName">
-   <string/>
-  </property>
   <property name="autoFillBackground">
    <bool>false</bool>
   </property>
@@ -42,6 +39,9 @@
   </property>
   <property name="subTitleFormat">
    <enum>Qt::AutoText</enum>
+  </property>
+  <property name="accessibleName" stdset="0">
+   <string/>
   </property>
   <widget class="QWizardPage" name="wizardPage">
    <property name="sizePolicy">

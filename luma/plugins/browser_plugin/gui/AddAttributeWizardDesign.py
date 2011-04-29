@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file '/Users/perove_r/Documents/it2901/git/resources/forms/plugins/browser_plugin/AddAttributeWizardDesign.ui'
+# Form implementation generated from reading ui file 'd:\Skole\it2901\resources\forms\plugins\browser_plugin\AddAttributeWizardDesign.ui'
 #
-# Created: Fri Apr 29 00:35:48 2011
-#      by: PyQt4 UI code generator 4.8.3
+# Created: Fri Apr 29 15:53:40 2011
+#      by: PyQt4 UI code generator 4.8.2
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -17,19 +17,19 @@ except AttributeError:
 class Ui_AddAttributeWizardDesign(object):
     def setupUi(self, AddAttributeWizardDesign):
         AddAttributeWizardDesign.setObjectName(_fromUtf8("AddAttributeWizardDesign"))
-        AddAttributeWizardDesign.resize(925, 464)
+        AddAttributeWizardDesign.resize(617, 464)
         sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Preferred, QtGui.QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(AddAttributeWizardDesign.sizePolicy().hasHeightForWidth())
         AddAttributeWizardDesign.setSizePolicy(sizePolicy)
         AddAttributeWizardDesign.setMinimumSize(QtCore.QSize(150, 436))
-        AddAttributeWizardDesign.setAccessibleName(_fromUtf8(""))
         AddAttributeWizardDesign.setAutoFillBackground(False)
         AddAttributeWizardDesign.setSizeGripEnabled(False)
         AddAttributeWizardDesign.setWizardStyle(QtGui.QWizard.ClassicStyle)
         AddAttributeWizardDesign.setOptions(QtGui.QWizard.NoDefaultButton)
         AddAttributeWizardDesign.setSubTitleFormat(QtCore.Qt.AutoText)
+        AddAttributeWizardDesign.setProperty(_fromUtf8("accessibleName"), _fromUtf8(""))
         self.wizardPage = QtGui.QWizardPage()
         sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.MinimumExpanding, QtGui.QSizePolicy.MinimumExpanding)
         sizePolicy.setHorizontalStretch(0)
@@ -172,7 +172,7 @@ class Ui_AddAttributeWizardDesign(object):
     def retranslateUi(self, AddAttributeWizardDesign):
         AddAttributeWizardDesign.setWindowTitle(QtGui.QApplication.translate("AddAttributeWizardDesign", "Add Attribute", None, QtGui.QApplication.UnicodeUTF8))
         self.wizardPage.setSubTitle(QtGui.QApplication.translate("AddAttributeWizardDesign", "Select Attribute", None, QtGui.QApplication.UnicodeUTF8))
-        self.imageLabel.setText(QtGui.QApplication.translate("AddAttributeWizardDesign", "PI", "DO NOT TRANSLATE", QtGui.QApplication.UnicodeUTF8))
+        self.imageLabel.setText(QtGui.QApplication.translate("AddAttributeWizardDesign", "PI", None, QtGui.QApplication.UnicodeUTF8))
         self.textLabel2.setText(QtGui.QApplication.translate("AddAttributeWizardDesign", "<p>Please select an attribute you want to add to the current entry.</p>\n"
 "<p>By default only attributes which are supported by the current \n"
 "objectclasses are displayed. If you want to add an attribute which is \n"
