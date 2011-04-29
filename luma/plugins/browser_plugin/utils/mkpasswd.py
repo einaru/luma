@@ -41,7 +41,7 @@
 import string,base64
 import random,sys
 import exceptions
-import md5,sha
+import hashlib
 smb_module = 0 # Where 1 is true, and 0 is false
 crypt_module = 0
 debug = False
@@ -84,14 +84,14 @@ def check_password(s):
     '''
     return True
 
-def mkpasswd(pwd,sambaver=3,default='ssha'):
+def mkpasswd(pwd,sambaver=3,default='ssha1'):
     ''' Make a given password cryptated, possibly with different 
         crypt-algorihtms. This module was written for use with 
-	    LDAP - so default is seeded sha
+	    LDAP - so default is seeded sha1
     '''
     alg = {
-	    'sha':'Secure Hash Algorithm',
-            'ssha':'Seeded SHA',
+	    'sha1':'Secure Hash Algorithm',
+            'ssha1':'Seeded SHA',
 	    'md5':'MD5',
 	    'smd5':'Seeded MD5',
     }
@@ -104,18 +104,26 @@ def mkpasswd(pwd,sambaver=3,default='ssha'):
         return 'algorithm <%s> not supported in this version.' % default
     else:
         salt = getsalt()
-        if default == 'ssha':
-            pwString = "{SSHA}" + base64.encodestring(sha.new(str(pwd) + salt).digest() + salt)
+        if default == 'ssha1':
+            sha1 = hashlib.sha1()
+            sha1.update(str(pwd) + salt)
+            pwString = "{SSHA}" + base64.encodestring(sha1.digest() + salt)
             return pwString[:-1]
-        elif default =='sha':
-            pwString = "{SHA}" + base64.encodestring(sha.new(str(pwd)).digest())
+        elif default =='sha1':
+            sha1 = hashlib.sha1()
+            sha1.update(str(pwd))
+            pwString = "{SHA}" + base64.encodestring(sha1.digest())
             return pwString[:-1]
         elif default =='md5':
-            pwString = "{MD5}" + base64.encodestring(md5.new(str(pwd)).digest())
+            md5 = hashlib.md5()
+            md5.update(str(pwd))
+            pwString = "{MD5}" + base64.encodestring(md5.digest())
             return pwString[:-1]
         elif default =='smd5':
             salt = getsalt(length=4) # Newer versions of OpenLDAP should support the default length 16
-            pwString = "{SMD5}" + base64.encodestring(md5.new(str(pwd) + salt).digest() + salt)
+            md5 = hashlib.md5()
+            md5.update(str(pwd) + salt)
+            pwString = "{SMD5}" + base64.encodestring(md5.digest() + salt)
             return pwString[:-1]
         elif default =='crypt':
             return "{CRYPT}" + crypt.crypt(str(pwd),getsalt(length=2)) # crypt only uses a salt of length 2
@@ -219,7 +227,7 @@ def check_strength_function():
     
 def get_available_hash_methods():
     # basic algorithms which are supported by mkpasswd-module
-    supportedAlgorithms = ['md5','smd5', 'sha', 'ssha', 'cleartext']
+    supportedAlgorithms = ['md5','smd5', 'sha1', 'ssha1', 'cleartext']
         
     # add lmhash and nthash algorithms if smbpasswd module is present
     try:

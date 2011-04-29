@@ -14,7 +14,6 @@ import dsml
 import copy
 import logging
 from cStringIO import StringIO
-from sets import Set
 
 from ..backend.ObjectClassAttributeInfo import ObjectClassAttributeInfo
 from ..util import stripSpecialChars
@@ -776,7 +775,7 @@ class SmartDataObject (object):
         self.data[self.objectClassName].remove(className)
 
         must, may = self.getPossibleAttributes()
-        all = Set(self.getAttributeList())
+        all = set(self.getAttributeList())
         rest = all - must.union(may)
         for x in rest:
             self.deleteAttribute(x)

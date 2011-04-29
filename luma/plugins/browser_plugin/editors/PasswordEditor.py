@@ -9,7 +9,6 @@
 ###########################################################################
 
 
-from sets import Set
 import PyQt4
 from PyQt4.QtCore import QString
 from PyQt4.QtGui import QDialog, QPalette

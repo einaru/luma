@@ -4,7 +4,6 @@ import ldap
 import copy
 import logging
 import os
-from sets import Set
 
 from PyQt4 import QtCore, QtGui, Qt
 from PyQt4.QtCore import QSize, SIGNAL, QString
@@ -319,9 +318,9 @@ class AdvancedObjectWidget(QWidget):
         attribute = str(dialog.attributeBox.currentText())
         showAll = dialog.enableAllBox.isChecked()
         if dialog.binaryBox.isChecked():
-            attributeList = Set([attribute + ";binary"])
+            attributeList = set([attribute + ";binary"])
         else:
-            attributeList = Set([attribute])
+            attributeList = set([attribute])
         
         if showAll and not(attribute in dialog.possibleAttributes):
             objectClass = str(dialog.classBox.currentText())
@@ -330,8 +329,8 @@ class AdvancedObjectWidget(QWidget):
             
             serverSchema = ObjectClassAttributeInfo(self.entryModel.smartObject.getServerMeta())
             mustAttributes = serverSchema.getAllMusts([objectClass])
-            mustAttributes = mustAttributes.difference(Set(self.ldapDataObject.getAttributeList()))
-            attributeList = mustAttributes.union(Set([attribute]))
+            mustAttributes = mustAttributes.difference(set(self.ldapDataObject.getAttributeList()))
+            attributeList = mustAttributes.union(set([attribute]))
             
         for x in attributeList:
             #TODO model

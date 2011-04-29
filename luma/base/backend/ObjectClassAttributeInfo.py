@@ -14,7 +14,6 @@ import ldapurl
 import logging
 
 import re
-from sets import Set
 from copy import copy
 import threading
 import time
@@ -127,8 +126,8 @@ class ObjectClassAttributeInfo(object):
         given classList.
         """
         
-        must = Set()
-        may = Set()
+        must = set()
+        may = set()
         
         classList = self.getClassesWithParents(classList)
         
@@ -136,8 +135,8 @@ class ObjectClassAttributeInfo(object):
             x = x.lower()
             if not x in self.objectClassesDict:
                 continue
-            must |= Set(self.objectClassesDict[x]["MUST"])
-            may |= Set(self.objectClassesDict[x]["MAY"])
+            must |= set(self.objectClassesDict[x]["MUST"])
+            may |= set(self.objectClassesDict[x]["MAY"])
            
         return must, may
 
@@ -148,12 +147,12 @@ class ObjectClassAttributeInfo(object):
         objectClassesDict given by classList.
         """
         
-        must = Set()
+        must = set()
         
         classList = self.getClassesWithParents(classList)
         
         for x in classList:
-            must |= Set(self.objectClassesDict[x.lower()]["MUST"])
+            must |= set(self.objectClassesDict[x.lower()]["MUST"])
             
         return must
 
@@ -164,12 +163,12 @@ class ObjectClassAttributeInfo(object):
         objectClassesDict given by classList.
         """
         
-        may = Set()
+        may = set()
         
         classList = self.getClassesWithParents(classList)
         
         for x in classList:
-            may |= Set(self.objectClassesDict[x.lower()]["MAY"])
+            may |= set(self.objectClassesDict[x.lower()]["MAY"])
             
         return may
 
@@ -179,8 +178,8 @@ class ObjectClassAttributeInfo(object):
             or MAY use the given attribute
         """
                 
-        must = Set()
-        may = Set()
+        must = set()
+        may = set()
         
         attribute = attribute.lower()
         
@@ -395,7 +394,7 @@ class ObjectClassAttributeInfo(object):
         """ Returns the given classes together with their parents in a set.
         """
         
-        classSet = Set()
+        classSet = set()
         for x in classList:
             tmpList = self.getParents(x)
             classSet.add(x)

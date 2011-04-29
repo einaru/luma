@@ -10,7 +10,6 @@
 
 #from qt import *
 import os.path
-from sets import Set
 import copy
 
 #import environment
@@ -75,18 +74,18 @@ class AddAttributeWizard(QWizard, Ui_AddAttributeWizardDesign):
         possibleMust, possibleMay = self.smartObject.getPossibleAttributes()
         
         # attributes used by the current objectClass
-        #usedAttributes = Set(objectAttributes).difference(Set(['objectClass']))
+        #usedAttributes = set(objectAttributes).difference(set(['objectClass']))
         usedAttributes = self.smartObject.getAttributeList()
         
         # set of attribute which are used and have to be single
-        singleAttributes = Set(filter(self.SCHEMAINFO.isSingle, usedAttributes))
+        singleAttributes = set(filter(self.SCHEMAINFO.isSingle, usedAttributes))
         
         # create a set of attributes which may be added
         self.possibleAttributes = (possibleMust.union(possibleMay)).difference(singleAttributes)
         self.possibleAttributes = map(lambda x: x.lower(), self.possibleAttributes)
         
         # create a set of attributes which are supported by the server
-        self.allPossibleAttributes = Set(self.SCHEMAINFO.attributeDict.keys()).difference(singleAttributes)
+        self.allPossibleAttributes = set(self.SCHEMAINFO.attributeDict.keys()).difference(singleAttributes)
 
 ###############################################################################
 
@@ -190,7 +189,7 @@ class AddAttributeWizard(QWizard, Ui_AddAttributeWizardDesign):
         
         mustAttributes = self.SCHEMAINFO.getAllMusts([objectclass])
         
-        attribute = Set([str(self.attributeBox.currentText())])
+        attribute = set([str(self.attributeBox.currentText())])
         
         map(self.mustAttributeBox.insertItem, mustAttributes.difference(attribute))
         
