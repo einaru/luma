@@ -23,9 +23,8 @@ class LDAPTreeItem(AbstractLDAPTreeItem):
     #ASK_TO_DISPLAY = 1000
 
     def __init__(self, data, serverParent, parent):
-        AbstractLDAPTreeItem.__init__(self, parent)
+        AbstractLDAPTreeItem.__init__(self, serverParent, parent)
         
-        self.serverParent = serverParent
         self.itemData = data
         
         self.limit = LDAPTreeItem.LIMIT_DEFAULT
@@ -33,8 +32,6 @@ class LDAPTreeItem(AbstractLDAPTreeItem):
         
         self.error = False
         self.loading = False
-
-	self.lol = None
 
     def columnCount(self):
         """
@@ -88,7 +85,7 @@ class LDAPTreeItem(AbstractLDAPTreeItem):
         bindSuccess, exceptionObject = l.bind()
         
         if not bindSuccess:
-            tmp = LDAPErrorItem(str("["+exceptionObject[0]["desc"]+"]"), self, self)
+            tmp = LDAPErrorItem(str("["+exceptionObject[0]["desc"]+"]"), self.serverParent, self)
             # We're adding the error as LDAPErrorItem-child, so return True
             return (True, [tmp], exceptionObject)
         
@@ -98,7 +95,7 @@ class LDAPTreeItem(AbstractLDAPTreeItem):
         l.unbind()
         
         if not success:
-            tmp = LDAPErrorItem(str("["+exceptionObject[0]["desc"]+"]"), self, self)
+            tmp = LDAPErrorItem(str("["+exceptionObject[0]["desc"]+"]"), self.serverParent, self)
             # We're adding the error as LDAPErrorItem-child, so return True
             return (True, [tmp], exceptionObject)
         

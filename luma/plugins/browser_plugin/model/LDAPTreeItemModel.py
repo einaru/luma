@@ -310,14 +310,12 @@ class LDAPTreeItemModel(QAbstractItemModel):
     def fetchInThread(self, parentIndex, parentItem):
        
         # Find associated ServerItem
-        item = parentItem
-        while item.parent() != self.rootItem:
-            item = item.parent()
+	serverItem = parentItem.getParentServerItem()
 
-        if self.unverified(item):
+        if serverItem != None and self.unverified(serverItem.serverMeta):
             # Verifies the connection to the server, and asks for password if it's invalid
             # (Needs to be done in the GUI-thread, which this should be)
-            conn = LumaConnection(item.serverMeta)
+            conn = LumaConnection(serverItem.serverMeta)
             conn.bind(askForPw = True)
 
         # Do the search (in another thread)
@@ -325,8 +323,8 @@ class LDAPTreeItemModel(QAbstractItemModel):
         QtCore.QThreadPool.globalInstance().start(thread)
         parentItem.loading = True
 
-    def unverified(self, serverItem):
-        if serverItem in self.verified:
+    def unverified(self, serverObject):
+        if serverObject.name in self.verified:
             return True
         return True
 

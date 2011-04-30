@@ -32,6 +32,7 @@ from PyQt4.QtCore import Qt, QPersistentModelIndex, QModelIndex
 
 from base.backend.LumaConnection import LumaConnection
 from base.backend.ServerList import ServerList
+from base.gui.ServerDialog import ServerDialog
 from model.LDAPTreeItemModel import LDAPTreeItemModel
 from item.AbstractLDAPTreeItem import AbstractLDAPTreeItem
 from plugins.browser_plugin.NewEntryDialog import NewEntryDialog
@@ -195,6 +196,7 @@ class BrowserView(QWidget):
         addSupport = True
         deleteSupport = True
         exportSupport = True
+	editServerSupport = True
 
         # The number of selected items is used for naming of the actions
         # added to the submenues
@@ -231,6 +233,9 @@ class BrowserView(QWidget):
                 deleteSupport = False
             if not AbstractLDAPTreeItem.SUPPORT_EXPORT & operations:
                 exportSupport = False
+	    if index.internalPointer().getParentServerItem() == None:
+		editServerSupport = False
+
         
         # Now we just use the *Support variables to enable|disable
         # the context menu actions.
@@ -239,6 +244,7 @@ class BrowserView(QWidget):
         self.contextMenuClear.setEnabled(clearSupport)
         self.contextMenuFilter.setEnabled(filterSupport)
         self.contextMenuLimit.setEnabled(limitSupport)
+	self.contextMenuServerSettings.setEnabled(editServerSupport)
 
         # For the submenues in the context menu, we add appropriate
         # actions, based on single|multi selection, or disable the menu
@@ -253,6 +259,9 @@ class BrowserView(QWidget):
             self.contextMenuAdd.addAction(self.str_TEMPLATE, self.addTemplateChoosen)
         else:
             self.contextMenuAdd.setEnabled(False)
+
+	if numselected != 1:
+	    self.contextMenuServerSettings.setEnabled(False)
 
         if deleteSupport:
             self.contextMenuDelete.setEnabled(True)
@@ -578,7 +587,15 @@ class BrowserView(QWidget):
         
         Opens the ServerDialog with the selected server.
         """
-        pass
+	try:
+	    items = self.selection
+	    serverItem = items[0].internalPointer().getParentServerItem()
+	    serverName = serverItem.serverMeta.name
+	    serverDialog = ServerDialog(serverName)
+	    serverDialog.exec_()
+	except Exception, e:
+	    self.__logger.error(str(e))
+	    QMessageBox.information(self, "Error","See log for details")
 
     def tabCloseClicked(self, index):
 

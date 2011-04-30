@@ -17,13 +17,12 @@ class ServerTreeItem(AbstractLDAPTreeItem):
     logger = logging.getLogger(__name__)
 
     def __init__(self, data, serverMeta, parent):
-        AbstractLDAPTreeItem.__init__(self, parent)
+        AbstractLDAPTreeItem.__init__(self, self, parent)
         
         self.itemData = data
         self.serverMeta = serverMeta
 
         self.loading = False
-        self.lol = None
 
     def columnCount(self):
         return len(self.itemData)

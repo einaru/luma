@@ -85,7 +85,10 @@ class ServerDialog(QDialog, Ui_ServerDialogDesign):
         # And make it selected, else we select the first server
         # in the model)
         if not server is None:
-            index = self.__serverList.getIndexByName(server)
+            serverIndex = self.__serverList.getIndexByName(server)
+	    if serverIndex == -1:
+		serverIndex = 0
+            index = self.serverListView.model().index(serverIndex, 0)
         else:
             index = self.serverListView.model().index(0, 0)
         # Select it in the view
