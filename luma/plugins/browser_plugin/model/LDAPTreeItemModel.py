@@ -142,10 +142,11 @@ class LDAPTreeItemModel(QAbstractItemModel):
             parentItem.loading = True
             parentItem.populated = True
             # -- New solution --
+            self.layoutChanged.emit()
             self.fetchInThread(parent, parentItem)
             # -- Old solution --
             #self.populateItem(parentItem)
-            # Updates the |>-icon to show if the item has children
+	    # Updates the |>-icon to show if the item has children
             #self.layoutChanged.emit()
 
         return parentItem.childCount()
@@ -186,42 +187,43 @@ class LDAPTreeItemModel(QAbstractItemModel):
             tmp = ServerTreeItem([server.name], server, self.rootItem)
             self.rootItem.appendChild(tmp)
 
-    def populateItem(self, parentItem):
-        """
-        Populates the list of children for the current parent-item.
-        This is called from rowCount() when the list is actually 
-        needed (lazy loading).
-        """
+# Not currently used -- see rowCount()
+#    def populateItem(self, parentItem):
+#        """
+#        Populates the list of children for the current parent-item.
+#        This is called from rowCount() when the list is actually 
+#        needed (lazy loading).
+#        """
+#
+#        self.isWorking()
+#        
+#        # Don't try to fetch again
+#        parentItem.populated = 1
+#
+#        # Ask the item to fetch the list for us
+#        (success, list, exception) = parentItem.fetchChildList()
+#        
+#        if not success:
+#            self.displayError(exception)
+#            self.doneWorking()
+#            return
+#        
+#        # Workaround:
+#        # if someone opens a long list, the user could
+#        # set a limit and have the childList be populated by that function
+#        # before this method runs.
+#        # To make sure the list aquired here isn't appended to that list
+#        # we clear the list of children even though in most cases
+#        # it won't be populated.
+#        
+#        # Normally (and prefferably)
+#        # this method should be called and return before anything else is done to the model.
+#        parentItem.emptyChildren()
+#        for x in list:
+#            parentItem.appendChild(x)
+#
+#        self.doneWorking()
 
-        self.isWorking()
-        
-        # Don't try to fetch again
-        parentItem.populated = 1
-
-        # Ask the item to fetch the list for us
-        (success, list, exception) = parentItem.fetchChildList()
-        
-        if not success:
-            self.displayError(exception)
-            self.doneWorking()
-            return
-        
-        # Workaround:
-        # if someone opens a long list, the user could
-        # set a limit and have the childList be populated by that function
-        # before this method runs.
-        # To make sure the list aquired here isn't appended to that list
-        # we clear the list of children even though in most cases
-        # it won't be populated.
-        
-        # Normally (and prefferably)
-        # this method should be called and return before anything else is done to the model.
-        parentItem.emptyChildren()
-        for x in list:
-            parentItem.appendChild(x)
-
-        self.doneWorking()
-        
     def displayError(self, exceptionObject):
         """
         Displays an error-message if populateItem fails.
@@ -314,7 +316,7 @@ class LDAPTreeItemModel(QAbstractItemModel):
 
         if serverItem != None and self.unverified(serverItem.serverMeta):
             # Verifies the connection to the server, and asks for password if it's invalid
-            # (Needs to be done in the GUI-thread, which this should be)
+            # (Needs to be done in the GUI-thread (bacause of the password-dialog), which this should be)
             conn = LumaConnection(serverItem.serverMeta)
             conn.bind(askForPw = True)
 

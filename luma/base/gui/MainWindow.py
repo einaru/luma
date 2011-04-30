@@ -482,7 +482,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         before we tear down the application.
         """
         self.__writeSettings()
-        print QApplication.translate("MainWindow", "Closing Luma... If there are operations in progress it might not exit immediatly.")
+        print QApplication.translate("MainWindow", "Closing Luma...\nIf there are operations in progress it might not exit immediatly.")
         QMainWindow.closeEvent(self, e)
 
     def TODO(self, todo):
