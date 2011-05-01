@@ -149,7 +149,7 @@ class AdvancedObjectWidget(QWidget):
 ###############################################################################
 
     def enableToolButtons(self, enable):
-        if self.entryModel.EDITED:
+        if self.entryModel.EDITED and not self.entryModel.CREATE:
             self.saveButton.setEnabled(enable)
         else:
             self.saveButton.setEnabled(False)
