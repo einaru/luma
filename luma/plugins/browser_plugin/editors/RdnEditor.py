@@ -50,7 +50,7 @@ class RdnEditor(QDialog, Ui_RdnEditorDesign):
         tmpSet = mustSet.union(maySet)
         possibleAttributes = filter(lambda x: not smartObject.isAttributeBinary(x), tmpSet)
         possibleAttributes.sort()
-        map(lambda x: self.attributeBox.insertItem(1e10, x) , possibleAttributes)
+        map(self.attributeBox.addItem, possibleAttributes)
             
         
         
