@@ -14,6 +14,7 @@ import copy
 
 #import environment
 import PyQt4
+from PyQt4.QtCore import QString, pyqtSlot
 from PyQt4.QtGui import QWizard
 from .gui.AddAttributeWizardDesign import Ui_AddAttributeWizardDesign
 from base.backend.ObjectClassAttributeInfo import ObjectClassAttributeInfo
@@ -25,6 +26,7 @@ class AddAttributeWizard(QWizard, Ui_AddAttributeWizardDesign):
     def __init__(self, parent = None, flags = PyQt4.QtCore.Qt.Widget):
         QWizard.__init__(self, parent, flags)
         self.setupUi(self)
+        # need to initialize the pages before connecting signals
         self.restart()
 
         attributePixmap = pixmapFromThemeIcon("addattribute", ":/icons/addattribute", 64, 64)
@@ -33,7 +35,8 @@ class AddAttributeWizard(QWizard, Ui_AddAttributeWizardDesign):
         self.objectclassLabel.setPixmap(objectclassPixmap)
         
         self.enableAllBox.toggled.connect(self.initAttributeBox)
-        self.attributeBox.activated.connect(self.newSelection)
+        self.attributeBox.activated[str].connect(self.newSelection)
+        self.classBox.itemSelectionChanged.connect(self.classSelection)
         
         # attribute values of the current ldap object
         self.OBJECTVALUES = None
@@ -61,8 +64,8 @@ class AddAttributeWizard(QWizard, Ui_AddAttributeWizardDesign):
         self.initAttributeBox()
         
         currentPageWidget = self.page(0)
-        self.button(QWizard.FinishButton).setDisabled(False)
-        self.button(QWizard.NextButton).setDisabled(True)
+        #self.button(QWizard.FinishButton).setDisabled(False)
+        #self.button(QWizard.NextButton).setDisabled(True)
 
 ###############################################################################
 
@@ -96,7 +99,8 @@ class AddAttributeWizard(QWizard, Ui_AddAttributeWizardDesign):
         
         showAll = self.enableAllBox.isChecked()
         currentPageWidget.setFinalPage(True)
-        self.button(QWizard.FinishButton).setDisabled(False)
+        currentPageWidget.setCommitPage(False)
+        #self.button(QWizard.FinishButton).setDisabled(False)
         
         tmpList = None
         if showAll:
@@ -125,13 +129,18 @@ class AddAttributeWizard(QWizard, Ui_AddAttributeWizardDesign):
 
         tmpList.sort()
         tmpList = filter(lambda x: not (x.lower() == "objectclass"), tmpList)
-        map(lambda x: self.attributeBox.insertItem(4096, x), tmpList)
+        map(self.attributeBox.addItem, tmpList)
             
         self.newSelection(self.attributeBox.currentText())
             
         
 ###############################################################################
 
+    @pyqtSlot(int)
+    def newSelection(self, attribute):
+        pass
+
+    @pyqtSlot("QString")
     def newSelection(self, attribute):
         attribute = str(attribute).lower()
         
@@ -141,24 +150,19 @@ class AddAttributeWizard(QWizard, Ui_AddAttributeWizardDesign):
         tmpSet = mustSet.union(maySet)
         
         if (attribute in self.possibleAttributes) or (len(tmpSet) == 0):
-            self.button(QWizard.FinishButton).setDisabled(False)
+            currentPageWidget.setFinalPage(True)
+            #self.button(QWizard.FinishButton).setDisabled(False)
             self.button(QWizard.NextButton).setDisabled(True)
         else:
-            self.button(QWizard.FinishButton).setDisabled(True)
+            currentPageWidget.setFinalPage(False)
+            #self.button(QWizard.FinishButton).setDisabled(True)
             self.button(QWizard.NextButton).setDisabled(False)
             
 ###############################################################################
 
-    def next(self):
-        page = self.page(1)
-        self.initClassPage()
-        self.showPage(page)
-        
-###############################################################################
-
     def initClassPage(self):
         currentPageWidget = self.currentPage()
-        self.button(QWizard.FinishButton).setDisabled(True)
+        #self.button(QWizard.FinishButton).setDisabled(True)
     
         self.classBox.clear()
         self.mustAttributeBox.clear()
@@ -178,22 +182,26 @@ class AddAttributeWizard(QWizard, Ui_AddAttributeWizardDesign):
                         
         classList.sort()
                 
-        map(self.classBox.insertItem, classList)
+        map(self.classBox.addItem, classList)
         
 ###############################################################################
 
     def classSelection(self):
         self.mustAttributeBox.clear()
         
-        objectclass = str(self.classBox.currentText())
+        objectclass = str(self.classBox.currentItem().text())
         
         mustAttributes = self.SCHEMAINFO.getAllMusts([objectclass])
         
         attribute = set([str(self.attributeBox.currentText())])
         
-        map(self.mustAttributeBox.insertItem, mustAttributes.difference(attribute))
+        map(self.mustAttributeBox.addItem, mustAttributes.difference(attribute))
         
         currentPageWidget = self.currentPage()
-        self.button(QWizard.FinishButton).setDisabled(False)
+        #self.button(QWizard.FinishButton).setDisabled(False)
         
+###############################################################################
     
+    def initializePage(self, id):
+        if id == 1:
+            self.initClassPage()

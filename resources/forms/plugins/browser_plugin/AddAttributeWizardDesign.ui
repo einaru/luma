@@ -296,7 +296,7 @@ the selected objectclass.&lt;/p&gt;</string>
            </widget>
           </item>
           <item>
-           <widget class="QListWidget" name="classBox_3"/>
+           <widget class="QListWidget" name="classBox"/>
           </item>
          </layout>
         </widget>
@@ -313,7 +313,7 @@ the selected objectclass.&lt;/p&gt;</string>
            </widget>
           </item>
           <item>
-           <widget class="QListWidget" name="mustAttributeBox_3"/>
+           <widget class="QListWidget" name="mustAttributeBox"/>
           </item>
          </layout>
         </widget>
