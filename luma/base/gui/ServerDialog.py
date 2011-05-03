@@ -26,16 +26,17 @@ from PyQt4.QtGui import QDialog, QDataWidgetMapper
 from PyQt4.QtGui import QFileDialog
 from PyQt4.QtGui import QInputDialog, QItemSelectionModel
 from PyQt4.QtGui import QListWidgetItem
-from PyQt4.QtGui import QMessageBox
-from PyQt4.QtCore import QCoreApplication
+from PyQt4.QtGui import QMessageBox, QProgressDialog
+from PyQt4.QtCore import QCoreApplication, Qt
 
+from ..backend.LumaConnection import LumaConnection
 from ..backend.ServerList import ServerList
-from .ServerDelegate import ServerDelegate
+from ..backend.ServerObject import ServerEncryptionMethod
 from ..backend.ServerObject import ServerObject
 from ..gui.design.ServerDialogDesign import Ui_ServerDialogDesign
 from ..model.ServerListModel import ServerListModel
 from ..util.IconTheme import pixmapFromThemeIcon
-from base.backend.ServerObject import ServerEncryptionMethod
+from .ServerDelegate import ServerDelegate
 
 class ServerDialog(QDialog, Ui_ServerDialogDesign):
 
@@ -315,3 +316,36 @@ class ServerDialog(QDialog, Ui_ServerDialogDesign):
         if not certKeyfile is None:
             self.certKeyfileEdit.setText(certKeyfile)
             self.mapper.submit()
+
+    def testConnection(self):
+	"""
+	Tries to bind to the currently selected server.
+	"""
+	currentServerId = self.serverListView.currentIndex().row()
+	sO = self.__serverList.getServerObjectByIndex(currentServerId)
+
+	# Busy-dialog
+	tmp = QProgressDialog("Trying to connect to server.",
+		"Abort",
+		0, 0,
+		self)
+	tmp.setWindowModality(Qt.WindowModal)
+	tmp.show()
+
+	# Try bind
+	conn = LumaConnection(sO)
+	success, exception = conn.bind()
+	tmp.hide()
+	
+	# No message on cancel
+	if tmp.wasCanceled():
+	    return
+
+	if success:
+	    # Success-message
+	    QMessageBox.information(self, "Status", "Connection successful!")
+	else:
+	    # Error-message
+	    QMessageBox.warning(self, "Status", "Connection failed:\n"+str(exception[0]["desc"]))
+
+
