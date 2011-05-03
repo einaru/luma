@@ -458,6 +458,10 @@ class BrowserView(QWidget):
         
         # Only one item
         if len(self.selection) == 1:
+            # Confirmation-message
+            ok = QMessageBox.question(self, QtCore.QCoreApplication.translate("BrowserView","Delete"), QtCore.QCoreApplication.translate("BrowserView", "Really delete?"), QMessageBox.Yes|QMessageBox.No)
+            if ok == QMessageBox.No:
+                return
             (status, message) = self.deleteIndex(self.selection[0])
             if not status:
                 QMessageBox.critical(self, QtCore.QCoreApplication.translate("BrowserView","Error"), "On "+self.selection[0].data().toPyObject()+":\n"+message)

@@ -484,7 +484,7 @@ class WorkerThreadSearch(threading.Thread):
                     if result_type == ldap.RES_SEARCH_ENTRY:
                         for x in result_data:
                             self.result.append(x)
-            # Can't use sizelimit with non-async-search
+            # Can't use sizelimit with non-async-search as it returns nothing if over limit
             #self.result = self.ldapServerObject.search_ext_s(self.base, self.scope, self.filter, self.attrList, self.attrsonly, sizelimit=self.sizelimit)
         except ldap.LDAPError, e:
             self.exceptionObject = e
@@ -603,7 +603,6 @@ class WorkerThreadBind(threading.Thread):
             if not (self.serverObject.bindAnon):
                 whoVal = self.serverObject.bindDN
                 credVal = self.serverObject.bindPassword
-		print whoVal, credVal
                 
             url = ldapurl.LDAPUrl(urlscheme=urlschemeVal, 
                 hostport = self.serverObject.hostname + ":" + str(self.serverObject.port),
