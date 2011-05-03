@@ -24,27 +24,23 @@
 # along with this program.  If not, see http://www.gnu.org/licenses/
 
 import logging
-from string import replace
 
 from PyQt4 import (QtCore, QtGui)
 from PyQt4.QtGui import (QWidget, QMessageBox, QMenu, QAction, qApp)
 from PyQt4.QtCore import Qt, QPersistentModelIndex, QModelIndex
 
+from .AdvancedObjectWidget import AdvancedObjectWidget
+from .gui.BrowserDialogs import ExportDialog, DeleteDialog
+from .NewEntryDialog import NewEntryDialog
+from .item.AbstractLDAPTreeItem import AbstractLDAPTreeItem
+from .model.LDAPTreeItemModel import LDAPTreeItemModel
 from base.backend.LumaConnection import LumaConnection
 from base.backend.ServerList import ServerList
 from base.gui.ServerDialog import ServerDialog
-from model.LDAPTreeItemModel import LDAPTreeItemModel
 from item.AbstractLDAPTreeItem import AbstractLDAPTreeItem
-from plugins.browser_plugin.NewEntryDialog import NewEntryDialog
+from model.LDAPTreeItemModel import LDAPTreeItemModel
 from plugins.browser_plugin.AdvancedObjectWidget import AdvancedObjectWidget
-from base.util.IconTheme import (pixmapFromThemeIcon, iconFromTheme)
-from base.util.Paths import getUserHomeDir
-
-from .gui.ExportDialogDesign import Ui_ExportDialog
-from .item.AbstractLDAPTreeItem import AbstractLDAPTreeItem
-from .model.LDAPTreeItemModel import LDAPTreeItemModel
-from .NewEntryDialog import NewEntryDialog
-from .AdvancedObjectWidget import AdvancedObjectWidget
+from plugins.browser_plugin.NewEntryDialog import NewEntryDialog
 
 
 class BrowserView(QWidget):
@@ -77,8 +73,7 @@ class BrowserView(QWidget):
         # The model for server-content
         self.ldaptreemodel = LDAPTreeItemModel(self)
         self.ldaptreemodel.populateModel(self.serverList)
-        self.ldaptreemodel.workingSignal.connect(self.isBusy)
-
+        self.ldaptreemodel.workingSignal.connect(self.setBusy)
 
         # The view for server-content
         self.entryList = QtGui.QTreeView(self)
@@ -86,7 +81,7 @@ class BrowserView(QWidget):
         self.entryList.setMaximumWidth(400)
         #self.entryList.setAlternatingRowColors(True)
         self.entryList.setAnimated(True) # Somewhat cool, but should be removed if deemed too taxing
-        self.entryList.setUniformRowHeights(True) #Major optimalization for big lists
+        self.entryList.setUniformRowHeights(True) #MAJOR optimalization for big lists
         self.entryList.setModel(self.ldaptreemodel)
         self.entryList.setMouseTracking(True)
         self.entryList.viewport().setMouseTracking(True)
@@ -97,7 +92,6 @@ class BrowserView(QWidget):
         self.entryList.activated.connect(self.viewItem)
         self.delegate = LoadingDelegate(self.entryList)
         self.entryList.setItemDelegate(self.delegate)
-
         self.entryList.setSelectionMode(QtGui.QAbstractItemView.ExtendedSelection)
 
         # The editor for entries
@@ -134,7 +128,10 @@ class BrowserView(QWidget):
         #import modeltest
         #self.modeltest = modeltest.ModelTest(self.ldaptreemodel, self);
 
-    def isBusy(self, status):
+    def setBusy(self, status):
+        """
+        Helper-method.
+        """
         if status == True:
             self.progress.show()
             qApp.setOverrideCursor(Qt.WaitCursor)
@@ -348,6 +345,7 @@ class BrowserView(QWidget):
         dn = smartObject.getDN()
         return (serverName,dn)
         
+
     def viewItem(self, index):
         """
         Opens items for viewing.
@@ -499,7 +497,7 @@ class BrowserView(QWidget):
         exportObjects = []
         msg = ''
         
-        self.isBusy(True)
+        self.setBusy(True)
         for index in self.selection:
             smartObject = index.internalPointer().smartObject()
             
@@ -536,7 +534,7 @@ class BrowserView(QWidget):
         # and give it the items for export
         dialog = ExportDialog(msg)
         dialog.setExportItems(exportObjects)
-        self.isBusy(False)
+        self.setBusy(False)
         dialog.exec_()
 
     def editServerSettings(self):
@@ -609,326 +607,6 @@ class BrowserView(QWidget):
             self.retranslateUi()
         else:
             QWidget.changeEvent(self, e)
-
-from .gui.DeleteDialogDesign import Ui_DeleteDialog
-            
-class DeleteDialog(QtGui.QDialog, Ui_DeleteDialog):
-    
-    __logger = logging.getLogger(__name__)
-    
-    def __init__(self, sOList, subTree = 0, parent=None):
-        """
-        subTree:
-            0 = nodes only
-            1 = subtree
-            2 = nodes+subtree
-        """
-        super(DeleteDialog, self).__init__(parent)
-        self.setupUi(self)
-        
-        self.model = QtGui.QStandardItemModel()
-        self.items = sOList
-        self.deleteDict = {}
-        
-        self.subTree = subTree        
-        self.serverConnections = {}
-        
-        if self.subTree == 0: # Nodes only
-            
-            for sO in self.items:
-                
-                # Find a textual representation for the smartobjects
-                rep = self.getRep(sO)
-            
-                # Make and item with text rep
-                modelItem = QtGui.QStandardItem(rep)
-                modelItem.setEditable(False)
-                modelItem.setCheckable(True)
-                
-                # Represents the status of the deletion
-                statusItem = QtGui.QStandardItem("")
-                statusItem.setEditable(False)
-                
-                # Dict where one can lookup reps to get smartObjects and modelitems
-                self.deleteDict[rep] = [sO, modelItem, statusItem]
-                modelItem.setCheckState(QtCore.Qt.Checked)
-                self.model.appendRow([modelItem,statusItem])
-                
-        else:
-            QMessageBox.critical(None, "Not implemented yet", "Ikke impl.")
-            
-        self.deleteItemView.setModel(self.model)
-        self.deleteItemView.setAlternatingRowColors(True)
-        self.deleteItemView.setUniformRowHeights(True)
-        
-        self.hasTriedToDelete = False
-        self.passedItemsWasDeleted = False
-    
-    def getRep(self, sO):
-        serverName = sO.getServerAlias()
-        dn = sO.getPrettyDN()
-        return str(dn+" ["+serverName+"]")
-            
-    def delete(self):
-        
-        self.deleteButton.setEnabled(False)
-        if self.hasTriedToDelete:
-            # Should not be called twice
-            return
-        
-        # At his point, we don't "cancel" but say we're done
-        self.cancelButton.setText("Done")
-        self.hasTriedToDelete = True
-        allDeleted = True
-        
-        # True for now
-        self.passedItemsWasDeleted = True
-        
-        # Iterate through the modelitems and remove unchekced items
-        # from the dictionary, which will be used later.
-        for i in xrange(self.model.rowCount()):
-            item = self.model.itemFromIndex(self.model.index(i, 0))
-            if item.checkState() != QtCore.Qt.Checked:
-                self.deleteDict.pop(self.__utf8(item.text()))
-                # If we unchecked something, can't be sure the passed items was deleted
-                self.passedItemsWasDeleted = False
-        
-        # Map the dictionary keys
-        deleteSOList = map(lambda x: self.deleteDict[x][0], self.deleteDict.keys())
-        deleteSOList.sort()
-        
-        #BUSY
-        
-        # We now have a list with smartObjects to be deleted, so let's do so
-        for sO in deleteSOList:
-            # Create a LumaConnection if necessary
-            if not self.serverConnections.has_key(sO.serverMeta):
-                self.serverConnections[sO.serverMeta] = LumaConnection(sO.serverMeta)
-                self.serverConnections[sO.serverMeta].bind()
-            
-            # Use it to delete the object on the server
-            conn = self.serverConnections[sO.serverMeta]
-            status, e = conn.delete(sO.getDN())
-            
-            # Update the status in the dialog
-            if not status:
-                self.passedItemsWasDeleted = False
-                allDeleted = False
-                self.deleteDict[self.getRep(sO)][2].setText(str(e))
-            else:
-                self.deleteDict[self.getRep(sO)][2].setText("OK!")
-        
-        # Remember to unbind all the servers
-        for conn in self.serverConnections.values():
-            conn.unbind()
-            
-        #NOTBUSY
-        
-        # If everything we wanted to delete was deleted -- close
-        if allDeleted:
-            self.accept()
-            
-    def cancel(self):
-        if self.hasTriedToDelete:
-            self.accept() #Let the caller know delete() was run
-        else:
-            self.reject() #No changes done on the server
-        
-    def __utf8(self, text):
-        return unicode(text).encode('utf-8').strip()
-        
-import dsml
-import StringIO
-
-class ExportDialog(QtGui.QDialog, Ui_ExportDialog):
-    """The dialog for exporting ldap entries to disk.
-    
-    TODO: enable|disable export button when filename|nofilename is defined
-    TODO: better feedback if something goes wrong, perhaps not accept(), if
-          not all checked items get exported ?
-    """
-    
-    __logger = logging.getLogger(__name__)
-    
-    def __init__(self, msg='', parent=None):
-        """
-        @param items:
-            The list of items to export.
-        @param msg:
-            A message to display in the dialog. Might be information
-            about problems with fetching all the LDAP entries, etc.
-        """
-        super(ExportDialog, self).__init__(parent)
-        self.setupUi(self)
-        
-        self.iconLabel.setPixmap(pixmapFromThemeIcon('document-save', ':/icons/export_big'))
-        self.fileButton.setIcon(iconFromTheme('document-open', ':/icons/folder'))
-        self.messageLabel.setText(msg)
-        
-        self.model = QtGui.QStandardItemModel()
-        self.exportItemView.setModel(self.model)
-        self.exportItemView.setAlternatingRowColors(True)
-        self.exportItemView.setUniformItemSizes(True)
-        self.exportDict = {}
-        
-        # Disabled until path set
-        self.exportButton.setEnabled(False)
-        # If the users manually edits the path, we'll trust him
-        #self.outputEdit.textEdited.connect(self.enableExport)
-        # The signal textEdit is not emitted if the text is changed
-        # programmatically, we therefore use textChanged instead.
-        self.outputEdit.textChanged['QString'].connect(self.onFilenameChanged)
-
-    
-    def enableExport(self):
-        """ Enable the export-button
-        """
-        self.exportButton.setEnabled(True)
-    
-    def __utf8(self, text):
-        """Helper method for encoding in unicode utf-8.
-        
-        This is helpful in particular when working with QStrings.
-        
-        @param text: 
-            the text object to encode.
-        @return: 
-            the text in unicode utf-8 encoding.
-        """
-        return unicode(text).encode('utf-8').strip()
-    
-    def setExportItems(self, data):
-        """Sets the items to be exported.
-        
-        Populates the model.
-        """
-        self.data = data
-        for item in self.data:
-            prettyDN = item.getPrettyDN()
-            modelItem = QtGui.QStandardItem(prettyDN)
-            modelItem.setEditable(False)
-            modelItem.setCheckable(True)
-            
-            self.exportDict[prettyDN] = [item, modelItem]
-            modelItem.setCheckState(QtCore.Qt.Checked)
-            self.model.appendRow(modelItem)
-    
-    def openFileDialog(self):
-        """Slot for the file button.
-        
-        Opens a File Dialog to let the user choose where to export.
-        """
-        userdir = getUserHomeDir()
-        filter = "LDIF files (*.ldif);;DSML files (*dsml)"
-        filename = QtGui.QFileDialog.getSaveFileName(self,
-                                                     caption='Select export file',
-                                                     directory=userdir,
-                                                     filter=filter)
-        # Return if the user canceled the dialog
-        if filename == "":
-            return
-        
-        filename = self.__utf8(filename)
-        filter = self.__utf8(self.formatBox.currentText())
-        if filter.startswith('LDIF') and not filename.endswith('.ldif'):
-            filename = '%s.ldif' % filename
-        elif filter.startswith('DSML') and not filename.endswith('.dsml'):
-            filename = '%s.dsml' % filename
- 
-        self.outputEdit.setText(filename)
-        #self.exportButton.setEnabled(True)
-    
-    def onFormatChanged(self, format):
-        """Slot for the format combobox.
-        
-        Checks if the output file is defined and wether its filending
-        matches the choosen export format. If not defined the method
-        returns. If the filening doesn't match, it is switched.
-        """
-        if self.outputEdit.text() == '':
-            #self.exportButton.setEnabled(False) #Re-disable if there's nothing there
-            return
-        format = self.__utf8(format)
-        oldname = self.outputEdit.text()
-        if format == 'LDIF':
-            newname = replace(oldname, '.dsml', '.ldif')
-        elif format == 'DSML':
-            newname = replace(oldname, '.ldif', '.dsml')
-        self.outputEdit.setText(newname)
-
-    def onFilenameChanged(self, filename):
-        """Slot for the filename edit.
-
-        Enabels|disables the export button.
-        """
-        if self.__utf8(filename) ==  '':
-            self.exportButton.setEnabled(False)
-        else:
-            self.exportButton.setEnabled(True)
-
-    def export(self):
-        """Slot for the export button.
-        
-        Exports all checked items to the file defined in the outputEdit
-        widget.
-        """
-        # Iterate through the modelitems and remove unchekced items
-        # from the export dictionary, which will be used later.
-        for i in xrange(self.model.rowCount()):
-            item = self.model.itemFromIndex(self.model.index(i, 0))
-            if item.checkState() != QtCore.Qt.Checked:
-                del self.exportDict[self.__utf8(item.text())]
-        
-        # Map the dictionary keys
-        #
-        itemList = map(lambda x: self.exportDict[x][0], self.exportDict.keys())
-        itemList.sort()
-        try:
-            filename = self.outputEdit.text()
-            fileHandler = open(filename, 'w')
-            format = self.__utf8(self.formatBox.currentText())
-            
-            
-            # DSML need some header info.
-            if format == 'DSML':
-                tmp = StringIO.StringIO()
-                dsmlWriter = dsml.DSMLWriter(tmp)
-                dsmlWriter.writeHeader()
-                fileHandler.write(tmp.getvalue())
-            
-            # Write the LDAP entries to file
-            for x in itemList:
-                try:
-                    if format == 'LDIF':
-                        fileHandler.write(x.convertToLdif())
-                    
-                    elif format == 'DSML':
-                        fileHandler.write(x.convertToDsml())
-                except IOError, e:
-                    msg = 'Could not export %s. Reason\n%s' % (str(x), str(e))
-                    self.__logger.error(msg)
-            
-            # DSML need additional footer info, to close the format
-            if format == 'DSML':
-                print 'footer'
-                tmp = StringIO.StringIO()
-                dsmlWriter = dsml.DSMLWriter(tmp)
-                dsmlWriter.writeFooter()
-                fileHandler.write(tmp.getvalue())
-            
-            fileHandler.close()
-        except IOError, e:
-            msg = 'Problems writing to %s. Reason:\n%s' % (filename, str(e))
-            self.__logger.error(msg)
-        
-        self.accept()
-    
-    def cancel(self):
-        """Slot for the cancel button.
-        """
-        del self.exportDict
-        self.reject()
-        
 
 class LoadingDelegate(QtGui.QStyledItemDelegate):
     """
