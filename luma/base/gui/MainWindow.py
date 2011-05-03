@@ -365,7 +365,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         serverEditor = ServerDialog()
         r = serverEditor.exec_()
         if r:
-            #todo -- if plugins open:
+            #TODO -- only display if plugins open:
             self.serversChangedMessage.showMessage(QApplication.translate("MainWindow","You may need to restart plugins for changes to take effect."))
 
     def showSettingsDialog(self, tab=0):

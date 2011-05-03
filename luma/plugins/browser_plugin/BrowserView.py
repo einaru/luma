@@ -66,6 +66,7 @@ class BrowserView(QWidget):
 
         # The serverlist used
         self.serverList = ServerList(configPrefix)
+        self.serversChangedMessage = QtGui.QErrorMessage()
         self.mainLayout = QtGui.QHBoxLayout(self)
 
         self.splitter = QtGui.QSplitter(self)
@@ -547,7 +548,9 @@ class BrowserView(QWidget):
             serverItem = items[0].internalPointer().getParentServerItem()
             serverName = serverItem.serverMeta.name
             serverDialog = ServerDialog(serverName)
-            serverDialog.exec_()
+            r = serverDialog.exec_()
+            if r:
+                self.serversChangedMessage.showMessage(QtCore.QCoreApplication.translate("BrowserView","You need to restart the plugin for changes to take effect."))
         except Exception, e:
             self.__logger.error(str(e))
             QMessageBox.information(self, "Error","See log for details")
