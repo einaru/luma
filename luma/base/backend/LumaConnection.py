@@ -254,45 +254,48 @@ class LumaConnection(object):
 
     def bind(self, askForPw = False, noOverride = False):
         """Bind to server.
-	@param askForPw bool:
-	    Displays a QInputDialog on invalid password. MUST BE RUN IN QUI-THREAD!
-	@param noOverride bool:
-	    If true -- do not remember or use remembered (correct) passwords or certs.
+        @param askForPw bool:
+            Displays a QInputDialog on invalid password. MUST BE RUN IN QUI-THREAD!
+        @param noOverride bool:
+            If true -- do not remember or use remembered (correct) passwords or certs.
         """
         workerThread = self.__bind(noOverride)
 
         if askForPw and not noOverride:
-		self.logger.debug("Verifying connection to server and asking for password if it's invalid.")
-		# Prompt user to continue if we suspect that the certificate could not
-		# be verified
-		if self._cert_error(workerThread):
-		    #svar = QMessageBox.No
-		    if hasSSLlibrary:
-			pass
-			# TODO
-			#dialog = UnknownCertDialog(self.serverObject)
-			#accepted = UnknownCertDialog.Accepted
-		    else:
-			# If checkServerCertificate isn't "never" ask to set it
-			if not self.serverObject.checkServerCertificate == ServerCheckCertificate.Never:
-			    svar = QMessageBox.question(None, QApplication.translate("LumaConnection","Certificate error"), 
-					     QApplication.translate("LumaConnection","Do you want to continue anyway?"), 
-					     QMessageBox.Yes|QMessageBox.No, QMessageBox.No)
-			    
-		    if svar == QMessageBox.Yes:
-			self.serverObject.checkServerCertificate = ServerCheckCertificate.Never
-			LumaConnection.__certMap[self.serverObject.name] = ServerCheckCertificate.Never
-			workerThread = self.__bind(noOverride)
-		
-		# Prompt for password on _invalid_pwd or _blank_pwd
-		if self._invalid_pwd(workerThread) or self._blank_pwd(workerThread):
-		    qApp.setOverrideCursor(Qt.ArrowCursor) #Put the mouse back to normal for the dialog (if needed)
-		    pw, ret = QInputDialog.getText(None, QApplication.translate("LumaConnection","Password"), QApplication.translate("LumaConnection","Invalid passord. Enter new:"), mode=QLineEdit.Password)
-		    qApp.restoreOverrideCursor()
-		    if ret:
-			self.serverObject.bindPassword = unicode(pw)
-			if not noOverride:
-			    LumaConnection.__passwordMap[self.serverObject.name] = self.serverObject.bindPassword
+                self.logger.debug("Verifying connection to server and asking for password if it's invalid.")
+                # Prompt user to continue if we suspect that the certificate could not
+                # be verified
+                if self._cert_error(workerThread):
+                    #svar = QMessageBox.No
+                    if hasSSLlibrary:
+                        pass
+                        # TODO
+                        #dialog = UnknownCertDialog(self.serverObject)
+                        #accepted = UnknownCertDialog.Accepted
+                    else:
+                        # If checkServerCertificate isn't "never" ask to set it
+                        if not self.serverObject.checkServerCertificate == ServerCheckCertificate.Never:
+                            svar = QMessageBox.question(None, QApplication.translate("LumaConnection","Certificate error"), 
+                                QApplication.translate("LumaConnection","Do you want to continue anyway?"), 
+                                QMessageBox.Yes|QMessageBox.No, QMessageBox.No)
+                            
+                    if svar == QMessageBox.Yes:
+                        self.serverObject.checkServerCertificate = ServerCheckCertificate.Never
+                        LumaConnection.__certMap[self.serverObject.name] = ServerCheckCertificate.Never
+                        workerThread = self.__bind(noOverride)
+                
+                # Prompt for password on _invalid_pwd or _blank_pwd
+                if self._invalid_pwd(workerThread) or self._blank_pwd(workerThread):
+                    qApp.setOverrideCursor(Qt.ArrowCursor) #Put the mouse back to normal for the dialog (if needed)
+                    pw, ret = QInputDialog.getText(None, 
+                            QApplication.translate("LumaConnection","Password"), 
+                            QApplication.translate("LumaConnection","Invalid passord. Enter new:"),
+                            mode=QLineEdit.Password)
+                    qApp.restoreOverrideCursor()
+                    if ret:
+                        self.serverObject.bindPassword = unicode(pw)
+                        if not noOverride:
+                            LumaConnection.__passwordMap[self.serverObject.name] = self.serverObject.bindPassword
                     workerThread = self.__bind(noOverride)
         # end if askForPw
 
@@ -691,7 +694,7 @@ class WorkerThreadBind(threading.Thread):
                     return
                     
             self.result = True
-	    self.exceptionObject = None
+            self.exceptionObject = None
             self.FINISHED = True
                 
         except ldap.LDAPError, e:

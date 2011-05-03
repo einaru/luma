@@ -66,7 +66,6 @@ class BrowserView(QWidget):
         
         self.__logger = logging.getLogger(__name__)
 
-
         self.setObjectName("PLUGIN_BROWSER")
 
         # The serverlist used
@@ -96,8 +95,8 @@ class BrowserView(QWidget):
         self.entryList.customContextMenuRequested.connect(self.rightClick)
         # When something is activated (doubleclick, <enter> etc.)
         self.entryList.activated.connect(self.viewItem)
-	self.delegate = MovieDelegate(self.entryList)
-	self.entryList.setItemDelegate(self.delegate)
+        self.delegate = LoadingDelegate(self.entryList)
+        self.entryList.setItemDelegate(self.delegate)
 
         self.entryList.setSelectionMode(QtGui.QAbstractItemView.ExtendedSelection)
 
@@ -134,7 +133,7 @@ class BrowserView(QWidget):
         # AND ONLY ON SMALL LDAP-SERVERS SINCE IT LOADS BASICALLY ALL ENTIRES
         #import modeltest
         #self.modeltest = modeltest.ModelTest(self.ldaptreemodel, self);
-        
+
     def isBusy(self, status):
         if status == True:
             self.progress.show()
@@ -196,7 +195,7 @@ class BrowserView(QWidget):
         addSupport = True
         deleteSupport = True
         exportSupport = True
-	editServerSupport = True
+        editServerSupport = True
 
         # The number of selected items is used for naming of the actions
         # added to the submenues
@@ -233,8 +232,8 @@ class BrowserView(QWidget):
                 deleteSupport = False
             if not AbstractLDAPTreeItem.SUPPORT_EXPORT & operations:
                 exportSupport = False
-	    if index.internalPointer().getParentServerItem() == None:
-		editServerSupport = False
+            if index.internalPointer().getParentServerItem() == None:
+                editServerSupport = False
 
         
         # Now we just use the *Support variables to enable|disable
@@ -244,7 +243,7 @@ class BrowserView(QWidget):
         self.contextMenuClear.setEnabled(clearSupport)
         self.contextMenuFilter.setEnabled(filterSupport)
         self.contextMenuLimit.setEnabled(limitSupport)
-	self.contextMenuServerSettings.setEnabled(editServerSupport)
+        self.contextMenuServerSettings.setEnabled(editServerSupport)
 
         # For the submenues in the context menu, we add appropriate
         # actions, based on single|multi selection, or disable the menu
@@ -260,8 +259,8 @@ class BrowserView(QWidget):
         else:
             self.contextMenuAdd.setEnabled(False)
 
-	if numselected != 1:
-	    self.contextMenuServerSettings.setEnabled(False)
+        if numselected != 1:
+            self.contextMenuServerSettings.setEnabled(False)
 
         if deleteSupport:
             self.contextMenuDelete.setEnabled(True)
@@ -289,50 +288,6 @@ class BrowserView(QWidget):
         else:
             self.contextMenuExport.setEnabled(False)
 
-#        else:
-#            # Remember the index so it can be used from the method
-#            # selected from the pop-up-menu
-#            self.clickedIndex = self.selection[0]
-#            clickedItem = self.clickedIndex.internalPointer()
-#
-#            if clickedItem == None:
-#                return
-#            else:
-#                # Find out what the item supports
-#                supports = clickedItem.getSupportedOperations()
-#
-#                if supports == 0:
-#                    pass#menu.addAction("No actions available")
-#
-#                else:
-#                    if clickedItem.smartObject() != None:
-#                        pass#menu.addAction("Open", self.openChoosen)
-#
-#                    # Add avaiable methods
-#                    if supports & AbstractLDAPTreeItem.SUPPORT_RELOAD:
-#                        menu.addAction(self.tr("Reload children"), self.reloadChoosen)
-#                    if supports & AbstractLDAPTreeItem.SUPPORT_FILTER:
-#                        menu.addAction(self.tr("Filter"), self.filterChoosen)
-#                    if supports & AbstractLDAPTreeItem.SUPPORT_LIMIT:
-#                        menu.addAction(self.tr("Limit"), self.limitChoosen)
-#                    if supports & AbstractLDAPTreeItem.SUPPORT_CLEAR:
-#                        menu.addAction(self.tr("Clear"), self.clearChoosen)
-#                    if supports & AbstractLDAPTreeItem.SUPPORT_ADD:
-#                        m = QMenu("Add", menu)
-#                        m.addAction(self.tr("Entry"), self.entryChoosen)
-#                        m.addAction(self.tr("Template"), self.addTemplateChoosen)
-#                        menu.addMenu(m)
-#                    if supports & AbstractLDAPTreeItem.SUPPORT_DELETE:
-#                        m = QMenu("Delete", menu)
-#                        m.addAction(self.tr("Entry"), self.entryChosen)
-#                        m.addAction(self.tr("Template"), self.addTemplateChoosen)
-#                    if supports & AbstractLDAPTreeItem.SUPPORT_EXPORT:
-#                        m = QMenu("Export", menu)
-#                        m.addAction(self.tr("Item"), self.exportSelection)
-#                        m.addAction(self.tr("Subtree"), self.exportSelection)
-#                        m.addAction(self.tr("Subtree with parent"), self.exportSelection)
-#                        menu.addMenu(m)
-                        
         # Finally we execute the context menu
         self.contextMenu.exec_(self.entryList.mapToGlobal(point))
         
@@ -350,55 +305,53 @@ class BrowserView(QWidget):
     def openChoosen(self):
         if len(self.selection) == 1:
             self.viewItem(self.selection[0])
-
     def reloadChoosen(self):
         for index in self.selection:
             self.reloadSignal.emit(index)
-
     def clearChoosen(self):
         for index in self.selection:
             self.clearSignal.emit(index)
-
     def limitChoosen(self):
         # Have the item set the limit for us, the reload
         for index in self.selection:
             ok = index.internalPointer().setLimit()
             if ok:
                 self.reloadSignal.emit(index)
-
     def filterChoosen(self):
         # Have the item set the filter, then reload
         for index in self.selection:
             ok = index.internalPointer().setFilter()
             if ok:
                 self.reloadSignal.emit(index)
-
     def addEntryChoosen(self):
         for index in self.selection:
             self.addNewEntry(index)
-
     def addTemplateChoosen(self):
         pass
-
     def addNewEntry(self, parentIndex, defaultSmartObject=None):
         tmp = NewEntryDialog(parentIndex, defaultSmartObject)
         if tmp.exec_():
             print "La til ny entry"
             # TODO Do something. (Reload?)
             
+    """
+    Utility-methods
+    """
     def isOpen(self, smartObject):
         rep = self.getRepForSmartObject(smartObject)
         if self.openTabs.has_key(str(rep)):
             return True
         else:
             return False
-        
     def getRepForSmartObject(self, smartObject):
         serverName = smartObject.getServerAlias()
         dn = smartObject.getDN()
         return (serverName,dn)
         
     def viewItem(self, index):
+        """
+        Opens items for viewing.
+        """
         item = index.internalPointer()
         supports = item.getSupportedOperations()
         
@@ -545,7 +498,6 @@ class BrowserView(QWidget):
         """
         exportObjects = []
         msg = ''
-        serverListObject = self.serverList
         
         self.isBusy(True)
         for index in self.selection:
@@ -553,7 +505,8 @@ class BrowserView(QWidget):
             
             serverName = smartObject.getServerAlias()
             dn = smartObject.getDN()
-            con = LumaConnection(serverListObject.getServerObject(serverName))
+            serverObject = self.serverList.getServerObject(serverName)
+            con = LumaConnection(serverObject)
             
             if scope == 1:
                 pass
@@ -591,15 +544,15 @@ class BrowserView(QWidget):
         
         Opens the ServerDialog with the selected server.
         """
-	try:
-	    items = self.selection
-	    serverItem = items[0].internalPointer().getParentServerItem()
-	    serverName = serverItem.serverMeta.name
-	    serverDialog = ServerDialog(serverName)
-	    serverDialog.exec_()
-	except Exception, e:
-	    self.__logger.error(str(e))
-	    QMessageBox.information(self, "Error","See log for details")
+        try:
+            items = self.selection
+            serverItem = items[0].internalPointer().getParentServerItem()
+            serverName = serverItem.serverMeta.name
+            serverDialog = ServerDialog(serverName)
+            serverDialog.exec_()
+        except Exception, e:
+            self.__logger.error(str(e))
+            QMessageBox.information(self, "Error","See log for details")
 
     def tabCloseClicked(self, index):
 
@@ -977,26 +930,22 @@ class ExportDialog(QtGui.QDialog, Ui_ExportDialog):
         self.reject()
         
 
-class MovieDelegate(QtGui.QStyledItemDelegate):
+class LoadingDelegate(QtGui.QStyledItemDelegate):
+    """
+    Draws "Loading..." on items currently loading data.
+    """
 
     def __init__(self, view):
-	super(MovieDelegate, self).__init__()
-	self.view = view
-	self.movie = QtGui.QMovie(":/icons/luma-spinner-16")
-	self.movie.start()
+        super(LoadingDelegate, self).__init__()
 
     def paint(self, painter, option, index):
-	item = index.internalPointer()
-	if item.loading == True:	
-	    self.initStyleOption(option, index)
-	    label = QtGui.QLabel("LOL")
-	    style = label.style()
-	    #label.setMovie(self.movie)
-	    #label.setAutoFillBackground(True)
-	    #self.view.setIndexWidget(index, label)
-	    QtGui.QStyledItemDelegate.paint(self, painter, option, index)
-	    painter.drawText(option.rect, QtCore.Qt.AlignRight, "Loading...  ")
-	else:
-	    QtGui.QStyledItemDelegate.paint(self, painter, option, index)
-	    #self.view.setIndexWidget(index, None)
+        item = index.internalPointer()
+        if item.loading == True:
+            # When loading
+            self.initStyleOption(option, index)
+            QtGui.QStyledItemDelegate.paint(self, painter, option, index)
+            painter.drawText(option.rect, QtCore.Qt.AlignRight, "Loading...  ")
+        else:
+            # Default
+            QtGui.QStyledItemDelegate.paint(self, painter, option, index)
 

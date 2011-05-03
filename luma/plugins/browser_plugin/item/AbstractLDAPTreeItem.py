@@ -41,7 +41,7 @@ class AbstractLDAPTreeItem(object):
         """
         parent = the item above this
         """
-	self.serverParent = serverParent
+        self.serverParent = serverParent
         self.parentItem = parent
         
         # The list of childs to this item
@@ -51,7 +51,7 @@ class AbstractLDAPTreeItem(object):
         # (i.e. one can use rowCount() without the additional penalty
         # of aquiring the items.
         self.populated = 0
-	self.loading = False
+        self.loading = False
         
     def appendChild(self, item):
         """
@@ -134,4 +134,4 @@ class AbstractLDAPTreeItem(object):
         raise NotImplementedError("Should be implemented")
 
     def getParentServerItem(self):
-	return self.serverParent
+        return self.serverParent

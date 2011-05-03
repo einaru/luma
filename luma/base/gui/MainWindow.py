@@ -126,7 +126,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
             self.actionShowWelcomeTab.setEnabled(True)
 
-	self.serversChangedMessage = QErrorMessage(self)
+        self.serversChangedMessage = QErrorMessage(self)
 
     def __mainTabsContextMenu(self, pos):
         menu = QMenu()
