@@ -27,7 +27,7 @@ from PyQt4.QtGui import QFileDialog
 from PyQt4.QtGui import QInputDialog, QItemSelectionModel
 from PyQt4.QtGui import QListWidgetItem
 from PyQt4.QtGui import QMessageBox, QProgressDialog
-from PyQt4.QtCore import QCoreApplication, Qt
+from PyQt4.QtCore import QCoreApplication, Qt, pyqtSignal, pyqtSlot, QThread
 
 from ..backend.LumaConnection import LumaConnection
 from ..backend.ServerList import ServerList
@@ -325,20 +325,23 @@ class ServerDialog(QDialog, Ui_ServerDialogDesign):
 	sO = self.__serverList.getServerObjectByIndex(currentServerId)
 
 	# Busy-dialog
-	tmp = QProgressDialog("Trying to connect to server.",
+	self.testProgress = QProgressDialog("Trying to connect to server.",
 		"Abort",
 		0, 0,
 		self)
-	tmp.setWindowModality(Qt.WindowModal)
-	tmp.show()
+	self.testProgress.setWindowModality(Qt.WindowModal)
+	self.testProgress.show()
 
-	# Try bind
-	conn = LumaConnection(sO)
-	success, exception = conn.bind()
-	tmp.hide()
+	self.thread = TestConnection(sO)
+	self.thread.returnSignal.connect(self.testFinished)
+	self.thread.start()
 	
+
+    @pyqtSlot(bool, str)
+    def testFinished(self, success, exceptionStr):
+	self.testProgress.hide()
 	# No message on cancel
-	if tmp.wasCanceled():
+	if self.testProgress.wasCanceled():
 	    return
 
 	if success:
@@ -346,6 +349,25 @@ class ServerDialog(QDialog, Ui_ServerDialogDesign):
 	    QMessageBox.information(self, "Status", "Connection successful!")
 	else:
 	    # Error-message
-	    QMessageBox.warning(self, "Status", "Connection failed:\n"+str(exception[0]["desc"]))
+	    if exceptionStr == "Invalid credentials":
+		QMessageBox.warning(self, "Status", "Connection failed:\n"+exceptionStr+"\n\n(You do not have to spesify passwords here -- you will be asked when needed.)")
+		return
+	    QMessageBox.warning(self, "Status", "Connection failed:\n"+exceptionStr)
+
+class TestConnection(QThread):
+    returnSignal = pyqtSignal(bool, str)
+    def __init__(self, serverObject):
+	super(TestConnection, self).__init__()
+	self.serverObject = serverObject
+    def run(self):
+	# Try bind -- do not display pw-input and do not use remembered passwords
+	conn = LumaConnection(self.serverObject)
+	success, exception = conn.bind(askForPw = False, noOverride = True)
+	# Return status
+	if success:
+	    self.returnSignal.emit(True, "")
+	else:
+	    self.returnSignal.emit(False,str(exception[0]["desc"]))
+
 
 
