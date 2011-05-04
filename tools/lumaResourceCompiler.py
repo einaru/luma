@@ -653,6 +653,7 @@ def main():
 
     if opt.qrc_file:
         updateResourceFile()
+        compileResources()
 
     if opt.ui_files:
         compileUiFiles(all=False)

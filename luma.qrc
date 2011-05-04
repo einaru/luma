@@ -56,6 +56,7 @@
   <qresource prefix="icons">
     <file alias="add-attribute">resources/icons/add-attribute.png</file>
     <file alias="alias">resources/icons/alias.png</file>
+    <file alias="luma-gray">resources/icons/luma-gray.png</file>
     <file alias="objectclass">resources/icons/objectclass.png</file>
   </qresource>
   <qresource prefix="i18n">
@@ -64,6 +65,7 @@
     <file alias="no">resources/i18n/luma_no.qm</file>
   </qresource>
   <qresource prefix="icons/64">
+    <file alias="luma">resources/icons/64x64/apps/luma.png</file>
     <file alias="binary">resources/icons/64x64/mimetypes/binary.png</file>
   </qresource>
   <qresource prefix="icons/48">
