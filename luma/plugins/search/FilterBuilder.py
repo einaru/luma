@@ -33,10 +33,11 @@ class FilterBuilder(QWidget, Ui_FilterBuilder):
     
     Widget for building simple and complex LDAP search filters.
     
-    TODO: *implement better solution for the filters file. Maybe use
+    .. todo::
+        - implement better solution for the filters file. Maybe use
           some sort of syntax (i.e. xml, json, ect.), so that we easily
           can map filters to servers and so on.
-          *implement the server selection so that it is shared between
+        - implement the server selection so that it is shared between
           the search form _and_ the filter builder.
     """
 

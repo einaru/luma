@@ -307,7 +307,7 @@ class SearchPlugin(QWidget, Ui_SearchPlugin):
         
         Display the filter builder with the current filter.
         """
-        current = encodeUTF8(self.searchForm.filterBoxEdit.currentText())
+        current = self.searchForm.filterBoxEdit.currentText()
         self.filterBuilder.filterEdit.setPlainText(current)
         self.left.setCurrentIndex(1)
 
@@ -316,10 +316,9 @@ class SearchPlugin(QWidget, Ui_SearchPlugin):
         
         The text string in the search line is validated and prepared
         for the actual search.
-        
-        FIXME: Switch to the methods in the Filter module when it's
-               finished and ready for use.
         """
+        # FIXME: Switch to the methods in the Filter module when it's
+        #        finished and ready for use.
         self.searchForm.onSearchError(False)
         filter = self.searchForm.filter
         filterPattern = re.compile("\(\w*=")
@@ -408,6 +407,8 @@ class SearchPlugin(QWidget, Ui_SearchPlugin):
         """
         self.left.setTabToolTip(self.indexSF, qApp.translate("SearchPlugin", "Search Form"))
         self.left.setTabToolTip(self.indexFB, qApp.translate("SearchPlugin", "Filter Builder"))
+        self.searchForm.retranslateUi(self.searchForm)
+        self.filterBuilder.retranslateUi(self.searchForm)
 
         if all:
             self.retranslateUi(self)
