@@ -95,7 +95,13 @@ class ServerList(object):
         """
         self.__serverList = serverList
 
-    def getServerObject(self, serverName):
+    def getServerObject(self, arg):
+        """
+        Wrapper-method for compatibility.
+        """
+        return self.getServerObjectByName(arg)
+
+    def getServerObjectByName(self, serverName):
         """ 
         Get a server object by its name.
         
@@ -110,6 +116,20 @@ class ServerList(object):
                 if x.name == serverName:
                     return  x
         return None
+
+    def getServerObjectByIndex(self, index):
+        """
+        Gets a server object from the list
+        through it's index.
+        
+        @param index: int;
+            id in the list
+        @return: the server object at the given index or None
+        """
+        try:
+            return self.__serverList[index]
+        except IndexError:
+            return None
 
     def addServer(self, serverObject):
         """ 

@@ -39,7 +39,7 @@ class ServerListModel(QAbstractTableModel):
             No change so do nothing.
             """
             return True
-        
+
         # Update the correct field in it (given by the column) with the given data
         serverObject.setIndexToValue(column, value)   
         
@@ -59,6 +59,11 @@ class ServerListModel(QAbstractTableModel):
     def flags(self, index):
         if not index.isValid(): 
             return QVariant()
+
+        # Name not editable
+        if index.column() == 0:
+            return Qt.ItemIsSelectable | Qt.ItemIsEnabled
+        # For other items
         return Qt.ItemIsSelectable | Qt.ItemIsEditable | Qt.ItemIsEnabled
     
     def data(self,index,role = Qt.DisplayRole):

@@ -126,7 +126,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
             self.actionShowWelcomeTab.setEnabled(True)
 
-	self.serversChangedMessage = QErrorMessage(self)
+        self.serversChangedMessage = QErrorMessage(self)
 
     def __mainTabsContextMenu(self, pos):
         menu = QMenu()
@@ -365,8 +365,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         serverEditor = ServerDialog()
         r = serverEditor.exec_()
         if r:
-            #todo -- if plugins open:
-            self.serversChangedMessage.showMessage("The serverlist was changed, but the changes have (probably) not been propagated to already open plugins. To have them use the new settings please reopen them.")
+            #TODO -- only display if plugins open:
+            self.serversChangedMessage.showMessage(QApplication.translate("MainWindow","You may need to restart plugins for changes to take effect."))
 
     def showSettingsDialog(self, tab=0):
         """ Slot to display the settings dialog. If the settings dialog
