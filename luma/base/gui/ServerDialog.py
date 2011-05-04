@@ -124,6 +124,12 @@ class ServerDialog(QDialog, Ui_ServerDialogDesign):
         self.mapper.addMapping(self.certKeyfileEdit, 13)
         self.mapper.addMapping(self.validateBox, 14)
 
+        # workaround to ensure model being updated (Mac OS X bug)
+        self.aliasBox.clicked.connect(self.aliasBox.setFocus)
+        self.baseDNBox.clicked.connect(self.baseDNBox.setFocus)
+        self.bindAnonBox.clicked.connect(self.bindAnonBox.setFocus)
+        self.useClientCertBox.clicked.connect(self.useClientCertBox.setFocus)
+
         # Select the first servers (as the serverlistview does)
         self.mapper.setCurrentIndex(0)
         self.setBaseDN()
