@@ -99,6 +99,7 @@
     <file alias="schemabrowser">resources/icons/plugins/schemabrowser.png</file>
     <file alias="search">resources/icons/plugins/search.png</file>
     <file alias="template">resources/icons/plugins/template.png</file>
+    <file alias="tetris">resources/icons/plugins/tetris.png</file>
     <file alias="user-management">resources/icons/plugins/user-management.png</file>
   </qresource>
 </RCC>
