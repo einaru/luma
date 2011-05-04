@@ -123,12 +123,14 @@ elif sys.platform.lower().startswith('linux'):
         _data_files.append((dst, src))
 
     # Include the scalable application icon aswell
-    _data_files.append('share/icons/hicolor/scalable/apps',
-                       glob('data/icons/scalable/luma.svg'))
+    _data_files.append(('share/icons/hicolor/scalable/apps',
+                       glob('data/icons/scalable/luma.svg')))
+    _data_files.append(('share/pixmaps',
+                        glob('data/icons/scalable/luma.svg')))
 
     # Include the desktop and manpage files
-    _data_files.append('share/applications', glob('data/luma.desktop'))
-    _data_files.append('share/man/man1', glob('data/man/luma.1.gz'))
+    _data_files.append(('share/applications', glob('data/luma.desktop')))
+    _data_files.append(('share/man/man1', glob('data/man/luma.1.gz')))
     
     _extras = dict(
         data_files=_data_files,
@@ -148,8 +150,6 @@ setup(
     package_dir={
         app_dir : src_dir
     },
-    #data_files=_data_files,
-    #scripts=['bin/luma'],
     classifiers=_classifiers,
     **_extras
 )
