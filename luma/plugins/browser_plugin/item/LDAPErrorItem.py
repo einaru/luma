@@ -8,7 +8,7 @@ class LDAPErrorItem(AbstractLDAPTreeItem):
     """
     
     def __init__(self, data, serverParent, parent):
-        AbstractLDAPTreeItem.__init__(self, parent)
+        AbstractLDAPTreeItem.__init__(self, serverParent, parent)
                 
         if data != None:
             self.error = data

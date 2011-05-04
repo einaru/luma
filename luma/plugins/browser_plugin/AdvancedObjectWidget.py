@@ -149,7 +149,7 @@ class AdvancedObjectWidget(QWidget):
 ###############################################################################
 
     def enableToolButtons(self, enable):
-        if self.entryModel.EDITED:
+        if self.entryModel.EDITED and not self.entryModel.CREATE:
             self.saveButton.setEnabled(enable)
         else:
             self.saveButton.setEnabled(False)
@@ -322,14 +322,14 @@ class AdvancedObjectWidget(QWidget):
         else:
             attributeList = set([attribute])
         
-        if showAll and not(attribute in dialog.possibleAttributes):
-            objectClass = str(dialog.classBox.currentText())
+        if showAll and not(attribute.lower() in dialog.possibleAttributes):
+            objectClass = str(dialog.classBox.currentItem().text())
             #TODO model
             self.entryModel.smartObject.addObjectClass(objectClass)
             
             serverSchema = ObjectClassAttributeInfo(self.entryModel.smartObject.getServerMeta())
             mustAttributes = serverSchema.getAllMusts([objectClass])
-            mustAttributes = mustAttributes.difference(set(self.ldapDataObject.getAttributeList()))
+            mustAttributes = mustAttributes.difference(set(self.entryModel.smartObject.getAttributeList()))
             attributeList = mustAttributes.union(set([attribute]))
             
         for x in attributeList:

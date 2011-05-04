@@ -89,11 +89,11 @@ class ServerObject(object):
     """
     @property
     def name(self):
-        return self._dataHolder[0]
+        return unicode(self._dataHolder[0])
     
     @property
     def hostname(self):
-        return self._dataHolder[1]
+        return unicode(self._dataHolder[1])
     
     @property
     def port(self):
@@ -113,11 +113,11 @@ class ServerObject(object):
     
     @property
     def bindDN(self):
-        return self._dataHolder[6]
+        return unicode(self._dataHolder[6])
     
     @property
     def bindPassword(self):
-        return self._dataHolder[7]
+        return unicode(self._dataHolder[7])
     
     @property
     def encryptionMethod(self):
@@ -137,11 +137,11 @@ class ServerObject(object):
     
     @property
     def clientCertFile(self):
-        return self._dataHolder[12]
+        return unicode(self._dataHolder[12])
     
     @property
     def clientCertKeyFile(self):
-        return self._dataHolder[13]
+        return unicode(self._dataHolder[13])
     
     @property
     def checkServerCertificate(self):

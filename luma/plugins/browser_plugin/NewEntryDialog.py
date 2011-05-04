@@ -8,5 +8,9 @@ class NewEntryDialog(QDialog, Ui_Dialog):
         QDialog.__init__(self)
         self.setupUi(self)
         smartObject = AdvancedObjectWidget.smartObjectCopy(parentIndex.internalPointer().smartObject())
-        x = AdvancedObjectWidget(smartObject, None, create=True)
-        self.gridLayout.addWidget(x)
+        self.objectWidget = AdvancedObjectWidget(smartObject, None, create=True)
+        self.gridLayout.addWidget(self.objectWidget)
+
+    def accept(self):
+        if self.objectWidget.saveObject():
+            super(NewEntryDialog, self).accept()

@@ -52,7 +52,6 @@ class ServerListModel(QAbstractTableModel):
                         
             templateList.save()
             
-        
         # Update the correct field in it (given by the column) with the given data
         serverObject.setIndexToValue(column, value)   
         

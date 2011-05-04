@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'd:\Skole\it2901\resources\forms\plugins\browser_plugin\AddAttributeWizardDesign.ui'
+# Form implementation generated from reading ui file 'c:\Users\perove\luma\git\resources\forms\plugins\browser_plugin\AddAttributeWizardDesign.ui'
 #
-# Created: Fri Apr 29 15:53:40 2011
-#      by: PyQt4 UI code generator 4.8.2
+# Created: Sun May 01 13:43:21 2011
+#      by: PyQt4 UI code generator 4.8.3
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -142,9 +142,9 @@ class Ui_AddAttributeWizardDesign(object):
         self.textLabel3_4.setWordWrap(False)
         self.textLabel3_4.setObjectName(_fromUtf8("textLabel3_4"))
         self._3.addWidget(self.textLabel3_4)
-        self.classBox_3 = QtGui.QListWidget(self.layout1_2)
-        self.classBox_3.setObjectName(_fromUtf8("classBox_3"))
-        self._3.addWidget(self.classBox_3)
+        self.classBox = QtGui.QListWidget(self.layout1_2)
+        self.classBox.setObjectName(_fromUtf8("classBox"))
+        self._3.addWidget(self.classBox)
         self.layout2_2 = QtGui.QWidget(self.splitter1)
         self.layout2_2.setObjectName(_fromUtf8("layout2_2"))
         self._4 = QtGui.QVBoxLayout(self.layout2_2)
@@ -154,9 +154,9 @@ class Ui_AddAttributeWizardDesign(object):
         self.textLabel4_4.setWordWrap(False)
         self.textLabel4_4.setObjectName(_fromUtf8("textLabel4_4"))
         self._4.addWidget(self.textLabel4_4)
-        self.mustAttributeBox_3 = QtGui.QListWidget(self.layout2_2)
-        self.mustAttributeBox_3.setObjectName(_fromUtf8("mustAttributeBox_3"))
-        self._4.addWidget(self.mustAttributeBox_3)
+        self.mustAttributeBox = QtGui.QListWidget(self.layout2_2)
+        self.mustAttributeBox.setObjectName(_fromUtf8("mustAttributeBox"))
+        self._4.addWidget(self.mustAttributeBox)
         self.verticalLayout_3.addWidget(self.splitter1)
         self.line4 = QtGui.QFrame(self.wizardPage_2)
         self.line4.setFrameShape(QtGui.QFrame.HLine)
@@ -172,7 +172,7 @@ class Ui_AddAttributeWizardDesign(object):
     def retranslateUi(self, AddAttributeWizardDesign):
         AddAttributeWizardDesign.setWindowTitle(QtGui.QApplication.translate("AddAttributeWizardDesign", "Add Attribute", None, QtGui.QApplication.UnicodeUTF8))
         self.wizardPage.setSubTitle(QtGui.QApplication.translate("AddAttributeWizardDesign", "Select Attribute", None, QtGui.QApplication.UnicodeUTF8))
-        self.imageLabel.setText(QtGui.QApplication.translate("AddAttributeWizardDesign", "PI", None, QtGui.QApplication.UnicodeUTF8))
+        self.imageLabel.setText(QtGui.QApplication.translate("AddAttributeWizardDesign", "PI", "DO NOT TRANSLATE", QtGui.QApplication.UnicodeUTF8))
         self.textLabel2.setText(QtGui.QApplication.translate("AddAttributeWizardDesign", "<p>Please select an attribute you want to add to the current entry.</p>\n"
 "<p>By default only attributes which are supported by the current \n"
 "objectclasses are displayed. If you want to add an attribute which is \n"

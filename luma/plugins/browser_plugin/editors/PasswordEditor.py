@@ -28,7 +28,7 @@ class PasswordEditor(QDialog, Ui_PasswordEditorDesign):
         self.iconLabel.setPixmap(editorPixmap)
         
         self.supportedAlgorithms = get_available_hash_methods()
-        map(lambda x: self.methodBox.insertItem(1024, x), self.supportedAlgorithms)
+        map(self.methodBox.addItem, self.supportedAlgorithms)
         
         self.okButton.setEnabled(False)
         self.strengthBar.setValue(0)

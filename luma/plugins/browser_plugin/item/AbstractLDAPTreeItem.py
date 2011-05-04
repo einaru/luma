@@ -37,10 +37,11 @@ class AbstractLDAPTreeItem(object):
     SUPPORT_EXPORT = 64 # Can be exported
     SUPPORT_OPEN = 128 # Can be opened (has smartdataobject)
     
-    def __init__(self, parent):
+    def __init__(self, serverParent, parent):
         """
         parent = the item above this
         """
+        self.serverParent = serverParent
         self.parentItem = parent
         
         # The list of childs to this item
@@ -50,7 +51,7 @@ class AbstractLDAPTreeItem(object):
         # (i.e. one can use rowCount() without the additional penalty
         # of aquiring the items.
         self.populated = 0
-	self.loading = False
+        self.loading = False
         
     def appendChild(self, item):
         """
@@ -131,3 +132,6 @@ class AbstractLDAPTreeItem(object):
         Returns the result of or-ing (|) the supported operations (AbstractLDAPTreeItem.SUPPORT_X) for this item
         """
         raise NotImplementedError("Should be implemented")
+
+    def getParentServerItem(self):
+        return self.serverParent

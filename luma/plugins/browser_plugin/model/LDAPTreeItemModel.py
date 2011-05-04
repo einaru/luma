@@ -25,10 +25,11 @@ class LDAPTreeItemModel(QAbstractItemModel):
     # Emitted by the workerThread when finished
     listFetched = QtCore.pyqtSignal(QtCore.QModelIndex, tuple)
 
-    def __init__(self, parent=None):
+    def __init__(self, serverList, parent=None):
         QtCore.QAbstractItemModel.__init__(self, parent)
-	self.listFetched.connect(self.workerFinished)
+        self.listFetched.connect(self.workerFinished)
         self.verified = []
+        self.populateModel(serverList)
 
     """ These are called internally in order to signal when busy
     """
@@ -142,6 +143,7 @@ class LDAPTreeItemModel(QAbstractItemModel):
             parentItem.loading = True
             parentItem.populated = True
             # -- New solution --
+            self.layoutChanged.emit()
             self.fetchInThread(parent, parentItem)
             # -- Old solution --
             #self.populateItem(parentItem)
@@ -186,42 +188,43 @@ class LDAPTreeItemModel(QAbstractItemModel):
             tmp = ServerTreeItem([server.name], server, self.rootItem)
             self.rootItem.appendChild(tmp)
 
-    def populateItem(self, parentItem):
-        """
-        Populates the list of children for the current parent-item.
-        This is called from rowCount() when the list is actually 
-        needed (lazy loading).
-        """
+# Not currently used -- see rowCount()
+#    def populateItem(self, parentItem):
+#        """
+#        Populates the list of children for the current parent-item.
+#        This is called from rowCount() when the list is actually 
+#        needed (lazy loading).
+#        """
+#
+#        self.isWorking()
+#        
+#        # Don't try to fetch again
+#        parentItem.populated = 1
+#
+#        # Ask the item to fetch the list for us
+#        (success, list, exception) = parentItem.fetchChildList()
+#        
+#        if not success:
+#            self.displayError(exception)
+#            self.doneWorking()
+#            return
+#        
+#        # Workaround:
+#        # if someone opens a long list, the user could
+#        # set a limit and have the childList be populated by that function
+#        # before this method runs.
+#        # To make sure the list aquired here isn't appended to that list
+#        # we clear the list of children even though in most cases
+#        # it won't be populated.
+#        
+#        # Normally (and prefferably)
+#        # this method should be called and return before anything else is done to the model.
+#        parentItem.emptyChildren()
+#        for x in list:
+#            parentItem.appendChild(x)
+#
+#        self.doneWorking()
 
-        self.isWorking()
-        
-        # Don't try to fetch again
-        parentItem.populated = 1
-
-        # Ask the item to fetch the list for us
-        (success, list, exception) = parentItem.fetchChildList()
-        
-        if not success:
-            self.displayError(exception)
-            self.doneWorking()
-            return
-        
-        # Workaround:
-        # if someone opens a long list, the user could
-        # set a limit and have the childList be populated by that function
-        # before this method runs.
-        # To make sure the list aquired here isn't appended to that list
-        # we clear the list of children even though in most cases
-        # it won't be populated.
-        
-        # Normally (and prefferably)
-        # this method should be called and return before anything else is done to the model.
-        parentItem.emptyChildren()
-        for x in list:
-            parentItem.appendChild(x)
-
-        self.doneWorking()
-        
     def displayError(self, exceptionObject):
         """
         Displays an error-message if populateItem fails.
@@ -237,8 +240,8 @@ class LDAPTreeItemModel(QAbstractItemModel):
         #self.isWorking()
 
         parentItem = parentIndex.internalPointer()
-	parentItem.populated = True
-	self.fetchInThread(parentIndex, parentItem)
+        parentItem.populated = True
+        self.fetchInThread(parentIndex, parentItem)
         #(success, newList, exception) = parentItem.fetchChildList()
 
         #if not success:
@@ -310,14 +313,12 @@ class LDAPTreeItemModel(QAbstractItemModel):
     def fetchInThread(self, parentIndex, parentItem):
        
         # Find associated ServerItem
-        item = parentItem
-        while item.parent() != self.rootItem:
-            item = item.parent()
+        serverItem = parentItem.getParentServerItem()
 
-        if self.unverified(item):
+        if serverItem != None and self.unverified(serverItem.serverMeta):
             # Verifies the connection to the server, and asks for password if it's invalid
-            # (Needs to be done in the GUI-thread, which this should be)
-            conn = LumaConnection(item.serverMeta)
+            # (Needs to be done in the GUI-thread (bacause of the password-dialog), which this should be)
+            conn = LumaConnection(serverItem.serverMeta)
             conn.bind(askForPw = True)
 
         # Do the search (in another thread)
@@ -325,48 +326,48 @@ class LDAPTreeItemModel(QAbstractItemModel):
         QtCore.QThreadPool.globalInstance().start(thread)
         parentItem.loading = True
 
-    def unverified(self, serverItem):
-        if serverItem in self.verified:
+    def unverified(self, serverObject):
+        if serverObject.name in self.verified:
             return True
         return True
 
     @pyqtSlot(QtCore.QModelIndex, tuple)
     def workerFinished(self, parentIndex, tupel):
-	if parentIndex.isValid():
+        if parentIndex.isValid():
 
-	    parentItem = parentIndex.internalPointer()
-	    parentItem.loading = False
+            parentItem = parentIndex.internalPointer()
+            parentItem.loading = False
 
-	    (success, newList, exception) = tupel
-	    if not success:
-		# Basically, do nothing (can maybe use the existing list)
-		self.displayError(exception) #Let the user know we failed though
-		parentItem.error = True
-		return
+            (success, newList, exception) = tupel
+            if not success:
+                # Basically, do nothing (can maybe use the existing list)
+                self.displayError(exception) #Let the user know we failed though
+                parentItem.error = True
+                return
 
-	    # Clear old list and insert new
-	    self.clearItem(parentIndex)
+            # Clear old list and insert new
+            self.clearItem(parentIndex)
 
-	    self.beginInsertRows(parentIndex, 0, len(newList) - 1)
-	    for x in newList:
-		parentItem.appendChild(x)
-	    parentItem.populated = 1 #If the list is empty, this isn't set (appendChild isn't called)
-	    self.endInsertRows()     
+            self.beginInsertRows(parentIndex, 0, len(newList) - 1)
+            for x in newList:
+                parentItem.appendChild(x)
+            parentItem.populated = 1 #If the list is empty, this isn't set (appendChild isn't called)
+            self.endInsertRows()     
 
-	    self.layoutChanged.emit()
-	
+            self.layoutChanged.emit()
+        
 class Worker(QtCore.QRunnable):
 
     #listFetched = QtCore.pyqtSignal(QtCore.QModelIndex, tuple)
 
     def __init__(self, target, parentIndex, parentItem):
-	super(Worker, self).__init__()
-	self.target = target
-	self.parentIndex = parentIndex
-	self.parentItem = parentItem
+        super(Worker, self).__init__()
+        self.target = target
+        self.parentIndex = parentIndex
+        self.parentItem = parentItem
 
-	self.parentItem.loading = True
+        self.parentItem.loading = True
 
     def run(self):
         tupel = self.parentItem.fetchChildList()
-	self.target.listFetched.emit(self.parentIndex, tupel)
+        self.target.listFetched.emit(self.parentIndex, tupel)

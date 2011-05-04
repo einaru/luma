@@ -26,18 +26,23 @@ from PyQt4.QtGui import QDialog, QDataWidgetMapper
 from PyQt4.QtGui import QFileDialog
 from PyQt4.QtGui import QInputDialog, QItemSelectionModel
 from PyQt4.QtGui import QListWidgetItem
-from PyQt4.QtGui import QMessageBox
-from PyQt4.QtCore import QCoreApplication
+from PyQt4.QtGui import QMessageBox, QProgressDialog
+from PyQt4.QtCore import QCoreApplication, Qt, pyqtSignal
+from PyQt4.QtCore import pyqtSlot, QThread, QThreadPool, QRunnable
 
+from ..backend.LumaConnection import LumaConnection
 from ..backend.ServerList import ServerList
-from .ServerDelegate import ServerDelegate
+from ..backend.ServerObject import ServerEncryptionMethod
 from ..backend.ServerObject import ServerObject
 from ..gui.design.ServerDialogDesign import Ui_ServerDialogDesign
 from ..model.ServerListModel import ServerListModel
 from ..util.IconTheme import pixmapFromThemeIcon
-from base.backend.ServerObject import ServerEncryptionMethod
+from .ServerDelegate import ServerDelegate
 
 class ServerDialog(QDialog, Ui_ServerDialogDesign):
+    
+    # Used by TestConnection
+    testReturnSignal = pyqtSignal(bool, str)
 
     def __init__(self, server=None, parent=None):
         """
@@ -85,7 +90,10 @@ class ServerDialog(QDialog, Ui_ServerDialogDesign):
         # And make it selected, else we select the first server
         # in the model)
         if not server is None:
-            index = self.__serverList.getIndexByName(server)
+            serverIndex = self.__serverList.getIndexByName(server)
+            if serverIndex == -1:
+                serverIndex = 0
+            index = self.serverListView.model().index(serverIndex, 0)
         else:
             index = self.serverListView.model().index(0, 0)
         # Select it in the view
@@ -93,7 +101,6 @@ class ServerDialog(QDialog, Ui_ServerDialogDesign):
         self.serverListView.selectionModel().setCurrentIndex(index, QItemSelectionModel.ClearAndSelect)
 
         self.serverListView.selectionModel().selectionChanged.connect(self.setBaseDN) #Same as below
-        #self.connect(self.serverListView.selectionModel(),  QtCore.SIGNAL('selectionChanged(QItemSelection, QItemSelection)'), self.setBaseDN)
 
         # Map columns of the model to fields in the gui
         self.mapper = QDataWidgetMapper()
@@ -117,6 +124,12 @@ class ServerDialog(QDialog, Ui_ServerDialogDesign):
         self.mapper.addMapping(self.certKeyfileEdit, 13)
         self.mapper.addMapping(self.validateBox, 14)
 
+        # workaround to ensure model being updated (Mac OS X bug)
+        self.aliasBox.clicked.connect(self.aliasBox.setFocus)
+        self.baseDNBox.clicked.connect(self.baseDNBox.setFocus)
+        self.bindAnonBox.clicked.connect(self.bindAnonBox.setFocus)
+        self.useClientCertBox.clicked.connect(self.useClientCertBox.setFocus)
+
         # Select the first servers (as the serverlistview does)
         self.mapper.setCurrentIndex(0)
         self.setBaseDN()
@@ -126,6 +139,9 @@ class ServerDialog(QDialog, Ui_ServerDialogDesign):
         
         # Checks for SSL enabled but with a non-standard port.
         self.encryptionBox.currentIndexChanged[int].connect(self.checkSSLport)
+
+        # Used by TestConnection
+        self.testReturnSignal.connect(self.testFinished)
         
     def checkSSLport(self, index):
         """ If SSL is choosen with a port other than 636, confirm this with the user
@@ -312,3 +328,56 @@ class ServerDialog(QDialog, Ui_ServerDialogDesign):
         if not certKeyfile is None:
             self.certKeyfileEdit.setText(certKeyfile)
             self.mapper.submit()
+
+    def testConnection(self):
+        """
+        Tries to bind to the currently selected server.
+        """
+        currentServerId = self.serverListView.currentIndex().row()
+        sO = self.__serverList.getServerObjectByIndex(currentServerId)
+
+        # Busy-dialog
+        self.testProgress = QProgressDialog("Trying to connect to server.",
+                "Abort",
+                0, 0,
+                self)
+        self.testProgress.setWindowModality(Qt.WindowModal)
+        self.testProgress.show()
+
+        self.thread = TestConnection(sO, self)
+        QThreadPool.globalInstance().start(self.thread)
+
+    @pyqtSlot(bool, str)
+    def testFinished(self, success, exceptionStr):
+        self.testProgress.hide()
+        # No message on cancel
+        if self.testProgress.wasCanceled():
+            return
+
+        if success:
+            # Success-message
+            QMessageBox.information(self, "Status", "Connection successful!")
+        else:
+            # Error-message
+            if exceptionStr == "Invalid credentials":
+                QMessageBox.warning(self, "Status", "Connection failed:\n"+exceptionStr+"\n\n(You do not have to spesify passwords here -- you will be asked when needed.)")
+                return
+            QMessageBox.warning(self, "Status", "Connection failed:\n"+exceptionStr)
+
+class TestConnection(QRunnable):
+    def __init__(self, serverObject, target):
+        super(TestConnection, self).__init__()
+        self.target = target
+        self.serverObject = serverObject
+    def run(self):
+        # Try bind -- do not display pw-input and do not use remembered passwords
+        conn = LumaConnection(self.serverObject)
+        success, exception = conn.bind(askForPw = False, noOverride = True)
+        # Return status
+        if success:
+            self.target.testReturnSignal.emit(True, "")
+        else:
+            self.target.testReturnSignal.emit(False,str(exception[0]["desc"]))
+
+
+
