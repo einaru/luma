@@ -81,9 +81,10 @@ class LDAPTreeItem(AbstractLDAPTreeItem):
         (Re)aquire the list of childs for this item (if any).
         """       
         self.cancelSearch()
-        self.lumaConnection = LumaConnection(self.serverParent.serverMeta)
+        lumaConnection = LumaConnection(self.serverParent.serverMeta)
+        self.lumaConnection = lumaConnection
 
-        bindSuccess, exceptionObject = self.lumaConnection.bind()
+        bindSuccess, exceptionObject = lumaConnection.bind()
         
         if not bindSuccess:
             tmp = LDAPErrorItem(str("["+exceptionObject[0]["desc"]+"]"), self.serverParent, self)
@@ -92,9 +93,9 @@ class LDAPTreeItem(AbstractLDAPTreeItem):
             return (True, [tmp], exceptionObject)
         
         # Search for items at the level under this one
-        success, resultList, exceptionObject = self.lumaConnection.search(self.itemData.getDN(), \
+        success, resultList, exceptionObject = lumaConnection.search(self.itemData.getDN(), \
                 scope=ldap.SCOPE_ONELEVEL, filter=self.filter, sizelimit=self.limit)
-        self.lumaConnection.unbind()
+        lumaConnection.unbind()
         
         if not success:
             tmp = LDAPErrorItem(str("["+exceptionObject[0]["desc"]+"]"), self.serverParent, self)
