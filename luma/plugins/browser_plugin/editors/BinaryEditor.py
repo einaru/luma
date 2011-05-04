@@ -14,7 +14,7 @@ import PyQt4
 from PyQt4.QtCore import QString
 from PyQt4.QtGui import QDialog, QFileDialog, QIcon
 from ..gui.BinaryEditorDesign import Ui_BinaryEditorDesign
-from base.util.IconTheme import pixmapFromThemeIcon
+from base.util.IconTheme import pixmapFromTheme
 
 class BinaryEditor(QDialog, Ui_BinaryEditorDesign):
 
@@ -26,10 +26,10 @@ class BinaryEditor(QDialog, Ui_BinaryEditorDesign):
         self.okButton.setEnabled(False)
         
         # Set icon for label and button
-        editorPixmap = pixmapFromThemeIcon("binary_big", ":/icons/binary_big", 64, 64)
+        editorPixmap = pixmapFromTheme("document-encrypted", ":/icons/64/document-encrypted", 64, 64)
         self.iconLabel.setPixmap(editorPixmap)
         
-        folderPixmap = pixmapFromThemeIcon("folder", ":/icons/folder", 16, 16)
+        folderPixmap = pixmapFromTheme("folder", ":/icons/16/folder", 16, 16)
         self.fileButton.setIcon(QIcon(folderPixmap))
         
         self.value = None

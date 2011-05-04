@@ -18,7 +18,6 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see http://www.gnu.org/licenses/
-
 import os
 import platform
 import tempfile
@@ -30,12 +29,12 @@ def getLumaRoot():
     the location of this module, and joining it with the required
     number of levels up to the root.
     
-    NOTE: The use of __file__ most  likely will cause some issues if 
-          Luma is packaged with 
+    .. note::
+        The use of __file__ most  likely will cause some issues if 
+        Luma is packaged with 
     
-    @return:
-        The absolute file path to the luma root directory, without the
-        trailing separator -> /full/path/to/luma
+    Returnes the absolute file path to the luma root directory, without
+    the trailing separator -> ``/full/path/to/luma``
     """
     levelsUp = '..' + os.path.sep + '..'
     return os.path.abspath(os.path.join(os.path.split(__file__)[0], levelsUp))
@@ -46,7 +45,7 @@ def getConfigPrefix():
     we follow the platform convention for configuration files and
     directories,
 
-    The platform validation, can be done through a number of modules: 
+    The platform validation, can be done through a number of modules::
     
         os.name           -> posix, nt
         sys.platform      -> linux2, windows, darwin
@@ -56,12 +55,11 @@ def getConfigPrefix():
     platform. If it is not found it will be created. Either way the
     path will be returned.
     
-    @return: a tuple (success, prefix);
-        the boolean value, success, indicates wheter the config prefix
-        path exists. It will be true if the path existed or was
-        successfully created. If it doesn't exists, and we don't have
-        write permissions, it will be False. In this case we will
-        return the system temp directory.
+    Returns a tuple (success, prefix), where ``success`` is a boolean
+    value indicating wheter the config prefix path exists. It will be
+    ``True`` if the path existed or was successfully created. If it 
+    doesn't exists, and we don't have write permissions, it will be 
+    ``False``. In this case we will return the system temp directory.
     """
     prefix = ''
     success = True
@@ -109,19 +107,21 @@ def getConfigPrefix():
 def getUserHomeDir():
     """Helper method for finding the user home directory.
     
-    On UNIX systems this is achieved by using the python os.getenv
+    On UNIX systems this is achieved by using the python `os.getenv`
     module. On Windows NT systems users is able to have roaming or
     local profiles. For example:
-    CSIDL_APPDATA gets for the roaming 'Application Data' directory,
-    and CSIDL_LOCAL_APPDATA gets the local one.
+
+    - ``CSIDL_APPDATA`` returns the roaming ``Application Data`` dir,
+    - ``CSIDL_LOCAL_APPDATA`` returns the local home dir.
     
-    @return:
-        The path to the user home directory.
+    Returns the path to the user home directory.
     """
     try:
         from win32com.shell import shellcon, shell         
         homedir = shell.SHGetFolderPath(0, shellcon.CSIDL_APPDATA, 0, 0)
     except ImportError:
-        homedir = os.path.expanduser("~")
+        homedir = os.path.expanduser('~')
     return homedir
 
+
+# vim: tabstop=4 expandtab shiftwidth=4 softtabstop=4

@@ -25,18 +25,21 @@ LDAP-functionality.
 
 Plugins included in the base application:
 
-* *Browser*: Provides a familiar interface to browse the entry tree on connected
+- *Browser*: Provides a familiar interface to browse the entry tree on connected
   LDAP enabled servers. Entry attributes can be edited and deleted. Supports
   adding filters to limit expansions on large subtrees.
-* *Template*:
-* *Search*: A specialized search plugin to do advanced and complex search on a 
+- *Template*:
+- *Search*: A specialized search plugin to do advanced and complex search on a 
   LDAP server. Supports filter creation that can be applied in the Browser 
   plugin.
-* *Schema browser*:
-* *Addressbook*: Supports building addressbooks from LDAP entries on different 
+
+Plugins not ported from PyQt3 yet:
+
+- *Schema browser*:
+- *Addressbook*: Supports building addressbooks from LDAP entries on different 
   servers.
-* *Massive user creation*:
-* *Admin utilities*:
+- *Massive user creation*:
+- *Admin utilities*:
 
 OPTIONS
 =======
@@ -88,21 +91,21 @@ Bug tracker: http://sourceforge.net/tracker/?group_id=89105
 
 RESOURCES
 =========
-Main web site: http://luma.sf.net
+Website: http://luma.sf.net
 
 AUTHORS
 =======
 
 Originally written and developed by Wido Depping wido@users.sourceforge.net 
-from 2003, with help from Bjørn Over Grøtan bgrotan@email.com and xxx 
-xxx@xxx.xom .
+from 2003, with help from Bjørn Over Grøtan bgrotan@grotan.com and Vegar 
+Westerlund vegarwe@users.sourceforge.net.
 
 Rewritten for PyQt4 and ported to multiple platforms in 2011 by
 
-- Christian Forfang abd@def.com
-- Einar Uvsløkk abd@def.com
-- Johannes Harestad abd@def.com
-- Per Ove Ringstad abd@def.com
-- Simen Natvig abd@def.com
-- Sondre Frisvold  abd@def.com
+- Christian Forfang cforfang@gmail.com
+- Einar Uvsløkk einar.uvslokk@gmail.com
+- Johannes Harestad johannesharestad@gmail.com
+- Per Ove Ringstad peroveri@stud.ntnu.no
+- Simen Natvig simen.natvig@gmail.com
+- Sondre Frisvold sondre.frisvold@c2i.net
 

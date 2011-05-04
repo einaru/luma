@@ -69,7 +69,14 @@ class FilterBuilder(QWidget, Ui_FilterBuilder):
     __logger = logging.getLogger(__name__)
 
     def __init__(self, objectClasses=[], attributes=[], parent=None):
-        """
+        """Initializes the `FilterBuilder`.
+        
+        Parameters:
+        
+        - `objectClasses`: a list of available object classes for the
+          selected LDAP server.
+        - `attributes`: a list of available attributes for the selected
+          LDAP server.
         """
         super(FilterBuilder, self).__init__(parent)
         self.setupUi(self)
@@ -120,8 +127,11 @@ class FilterBuilder(QWidget, Ui_FilterBuilder):
         returns the pased parameter if it is.
         If not we append ( at the start and ) at the end.
         
-        @return:
-            The escaped filter item
+        Returns the escaped filter `item`.
+        
+        Parameters:
+        
+        - `item`: the filter item to be excaped.
         """
         item = encodeUTF8(item)
         if not item.startswith('('):
@@ -141,8 +151,7 @@ class FilterBuilder(QWidget, Ui_FilterBuilder):
         
         The returned type is based on the items in the filter type box.
         
-        @return:
-            the corrosponding filter type
+        Returns the corrosponding filter type
         """
         return encodeUTF8(self.filterTypeBox.itemText(index)).split(' ')[0]
 
@@ -150,10 +159,12 @@ class FilterBuilder(QWidget, Ui_FilterBuilder):
         """Elegant way of moving the position of the text edit cursor
         multiple chars in the direction defined by operation.
         
-        @param operation: QTextCursor.MoveOperation;
-            the move operation to apply on the text cursor
-        @param n; integer;
-            the number of times the operation should be applied
+        Parameters:
+        
+        - `operation`: a ``QTextCursor.MoveOperation``, which is the
+          direction of the move operation to apply on the text cursor.
+        - `n`: an integer indicating how many times the `operation` 
+          should be applied
         """
         for _ in xrange(0, n):
             self.filterEdit.moveCursor(operation)
@@ -162,11 +173,10 @@ class FilterBuilder(QWidget, Ui_FilterBuilder):
         """Slot for the objectClass radio button.
         
         Populates the option combo box with available object classes, 
-        or attributes, depending on the objectClass parameter.
+        or attributes, depending on the `objectClass` parameter.
         
-        @param objectClass: boolean value;
-            This value indicates wheter the object class radio button
-            is selected or not.
+        - `objectClass`: a boolean value indicating wheter the object
+          class radio button is selected or not.
         """
         self.optionBox.clear()
         if objectClass:
@@ -184,6 +194,13 @@ class FilterBuilder(QWidget, Ui_FilterBuilder):
         """This method is called when the server in the main search
         plugin form is changed. This ensures we are working with the
         correct object classes and attributes, when build a filter.
+        
+        Parameters:
+        
+        - `objectClasses`: a list of available object classes for the
+          selected server.
+        - `attributes`: a list of available attributes for the selected
+          server.
         """
         self.objectClassOptions = ['*']
         self.objectClassOptions.extend(sorted(objectClasses, key=str.lower))
@@ -229,12 +246,12 @@ class FilterBuilder(QWidget, Ui_FilterBuilder):
         """Slot for the not button.
         
         If the assertion line edit widget is empty, all we do is insert,
-        the ! operator:
+        the ! operator::
         
             (!)
         
         If it is not empty we need to insert it and properly escape the
-        text already present.
+        text already present::
             
            ...(!(<selected text>))...
         
@@ -253,12 +270,12 @@ class FilterBuilder(QWidget, Ui_FilterBuilder):
         """Slot for the and button.
         
         If the assertion line edit widget is empty all we do is insert,
-        the & operator:
+        the & operator::
             
             (&)
         
         If is not empty er need to insert it and properly escape the
-        text already present:
+        text already present::
         
             ...(&(<selected text>)...
         
@@ -276,12 +293,12 @@ class FilterBuilder(QWidget, Ui_FilterBuilder):
         """Slot for the or button.
         
         If the assertion line edit widget is empty all we do is insert,
-        the | operator:
+        the | operator::
             
             (|(<cursor>))
         
         If is not empty er need to insert it and properly escape the
-        text already present:
+        text already present::
         
             ...(|(<selected text>)<cursor>...
         
@@ -367,3 +384,5 @@ class FilterBuilder(QWidget, Ui_FilterBuilder):
         """
         self.filterEdit.clear()
         self.clearButton.setEnabled(False)
+
+# vim: tabstop=4 expandtab shiftwidth=4 softtabstop=4

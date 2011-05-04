@@ -17,14 +17,12 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see http://www.gnu.org/licenses/
-
 from PyQt4.QtCore import QSettings, QPoint, QSize
 from PyQt4.QtGui import QDesktopWidget
 
-from ..util import encodeUTF8
 
 class Settings(QSettings):
-    """ The Settings class extends the QSettings class, to provide an
+    """The Settings class extends the QSettings class, to provide an
     easy and persistent way to set and retrive settings from different
     parts of the application.
     
@@ -35,7 +33,7 @@ class Settings(QSettings):
     The class provides setters and getters for all settings values
     through the python property mechanism.
     
-    The following settings is available:
+    The following settings is available::
     
         [general]
         save_window_size=<bool>
@@ -58,9 +56,9 @@ class Settings(QSettings):
     def __init__(self):
         """ The Settings constructor initializes the default settings
         values, which is provided as a fallback, should the config file
-        somehow go missing. We use the qApp instance of The running
-        QApplication to register organization and application name, as
-        well as the application version.
+        somehow go missing. We use the ``qApp`` instance of The running
+        ``QApplication`` to register organization and application name,
+        as well as the application version.
         """
         QSettings.__init__(self)
         
@@ -77,117 +75,151 @@ class Settings(QSettings):
         # Defaults for section: i18n
         self.__language = u'en'
         # Defaults for section: logger
-        self.__showOnStart = False
+        self.__showLoggerOnStart = False
+        self.__showLogger = False
         self.__showErrors = True
         self.__showDebug = True
         self.__showInfo = True
 
     @property
     def state(self):
-        return self.value('application/state').toByteArray()
+        key = 'application/state'
+        return self.value(key).toByteArray()
 
     @state.setter
-    def state(self, state):
-        self.setValue('application/state', state)
+    def state(self, value):
+        key = 'application/state'
+        self.setValue(key, value)
 
     @property
     def geometry(self):
-        return self.value('application/geometry').toByteArray()
+        key = 'application/geometry'
+        return self.value(key).toByteArray()
 
     @geometry.setter
-    def geometry(self, geometry):
-        self.setValue('application/geometry', geometry)
+    def geometry(self, value):
+        key = 'application/geometry'
+        self.setValue(key, value)
         
     @property
     def configPrefix(self):
-        return self.value('application/config_prefix', self.__configPrefix).toString()
+        key = 'application/config_prefix'
+        return self.value(key, self.__configPrefix).toString()
     
     @configPrefix.setter
-    def configPrefix(self, path):
-        self.setValue('application/config_prefix', path)
+    def configPrefix(self, value):
+        key = 'application/config_prefix'
+        self.setValue(key, value)
 
     @property
     def maximize(self):
-        return self.value('mainwin/maximize', self.__maximize).toBool()
+        key = 'mainwin/maximize'
+        return self.value(key, self.__maximize).toBool()
 
     @maximize.setter
-    def maximize(self, maximize):
-        self.setValue('mainwin/maximize', maximize)
+    def maximize(self, value):
+        key = 'mainwin/maximize'
+        self.setValue(key, value)
 
     @property
     def size(self):
-        return self.value('mainwin/size', self.__size).toSize()
+        key = 'mainwin/size'
+        return self.value(key, self.__size).toSize()
 
     @size.setter
-    def size(self, size):
-        self.setValue('mainwin/size', size)
+    def size(self, value):
+        key = 'mainwin/size'
+        self.setValue(key, value)
 
     @property
     def position(self):
-        return self.value('mainwin/position', self.__position).toPoint()
+        key = 'mainwin/position'
+        return self.value(key, self.__position).toPoint()
 
     @position.setter
-    def position(self, position):
-        self.setValue('mainwin/position', position)
+    def position(self, value):
+        key = 'mainwin/position'
+        self.setValue(key, value)
 
     @property
     def language(self):
-        return self.value('i18n/language', self.__language).toString()
+        key = 'i18n/language'
+        return self.value(key, self.__language).toString()
 
     @language.setter
-    def language(self, language):
-        self.setValue('i18n/language', language)
+    def language(self, value):
+        key = 'i18n/language'
+        self.setValue(key, value)
 
     @property
     def showLoggerOnStart(self):
-        return self.value('logger/show_on_start', self.__showOnStart).toBool()
+        key = 'logger/show_logger_on_start'
+        return self.value(key, self.__showLoggerOnStart).toBool()
 
     @showLoggerOnStart.setter
-    def showLoggerOnStart(self, show):
-        self.setValue('logger/show_on_start', show)
+    def showLoggerOnStart(self, value):
+        key = 'logger/show_logger_on_start'
+        self.setValue(key, value)
+
+    @property
+    def showLogger(self):
+        key = 'logger/show_logger'
+        return self.value(key, self.__showLogger).toBool()
+
+    @showLogger.setter
+    def showLogger(self, value):
+        key = 'logger/show_logger'
+        self.setValue(key, value)
 
     @property
     def showErrors(self):
-        return self.value('logger/show_errors', self.__showErrors).toBool()
+        key = 'logger/show_errors'
+        return self.value(key, self.__showErrors).toBool()
 
     @showErrors.setter
-    def showErrors(self, show):
-        self.setValue('logger/show_errors', show)
+    def showErrors(self, value):
+        key = 'logger/show_errors'
+        self.setValue(key, value)
 
     @property
     def showDebug(self):
-        return self.value('logger/show_debug', self.__showDebug).toBool()
+        key = 'logger/show_debug'
+        return self.value(key, self.__showDebug).toBool()
 
     @showDebug.setter
-    def showDebug(self, show):
-        self.setValue('logger/show_debug', show)
+    def showDebug(self, value):
+        key = 'logger/show_debug'
+        self.setValue(key, value)
 
     @property
     def showInfo(self):
-        return self.value('logger/show_info', self.__showInfo).toBool()
+        key = 'logger/show_info'
+        return self.value(key, self.__showInfo).toBool()
 
     @showInfo.setter
-    def showInfo(self, show):
-        self.setValue('logger/show_info', show)
+    def showInfo(self, value):
+        key = 'logger/show_info'
+        self.setValue(key, value)
 
     def genericValue(self, key, default):
-        """Utility method for getting an arbitrary setting value.
+        """Returns an arbitrary settings value, corrosponding to `key`.
+        The `default` value is used should the `key` contain no value.
         
-        @param key: string;
-            The key to get the value of
-        @default:
-            The default fallback value, if no value is found for the
-            key.
+        Parameters:
+
+        - `key`: the name of the key to get the value from.
+        - `default`: the value to be used as fallback if `key` contains
+          no value.
         """
         return self.value(key, default)
 
     def setGenericValue(self, key, value):
         """Utility method for setting an arbitrary setting value.
         
-        @param key: string;
-            The key to store the value in.
-        @param value:
-            The value to store.
+        Parameters:
+
+        - `key`: the key for the value.
+        - `value`: the value to be saved.
         """
         self.setValue(key, value)
 
@@ -196,30 +228,51 @@ class PluginSettings(object):
     """Wrapper Settings class for plugins.
     
     This is a generic settings class, which provide consistent loading
-    and saving of settings for plugins.
-    It works by providing the plugin name to the constructor, and using
-    this value to retrive and save settings in the main luma settings
-    file.
+    and saving of settings for plugins. It works by providing the
+    plugin name to the constructor, and using this value to retrive and
+    save settings in the main luma settings file.
     """
     
     def __init__(self, pluginName):
-        """
-        @param pluginName: string;
-            The name of the plugin, usually the plugin.name value found
-            in the plugins __init__.py file.
-            NOTE: The plugin name must be distinct from other plugins,
-                  as it will be the main key to retrive values from the
-                  settings file.
+        """The `PluginSettings` contructor.
+
+        Parameters:
+
+        - `pluginName`: the name of the plugin. In most cases this will
+          be the same as the ``plugin.name`` value in the top level
+          plugin``__init__.py`` file. The plugin name must be distinct
+          from other plugins (and keys in the settings file), as it will
+          be the main key to retrive values from the settings file.
         """
         self.s = QSettings()
         self.name = pluginName
     
     def pluginValue(self, key, default):
+        """Returns the plugin settings value for the `key`, if such a
+        value exists. If not the `default` value is returned.
+
+        Parameters:
+
+        - `key`: the name of the key to get the value from.
+        - `default`: the value to be used as fallback if `key` contains
+          no value.
+        """
         return self.s.value('plugins/{0}/{1}'.format(self.name, key), default)
     
     def setPluginValue(self, key, value):
+        """Saves a `value` associated with a `key` to the settings file.
+
+        Parameters:
+
+        - `key`: the key for the value.
+        - `value`: the value to be saved.
+        """
         self.s.setValue('plugins/{0}/{1}'.format(self.name, key), value)
     
     @property
     def configPrefix(self):
-        return encodeUTF8(self.s.value('application/config_prefix').toString())
+        prefix = self.s.value('application/config_prefix').toString()
+        return unicode(prefix).encode('utf-8')
+
+
+# vim: tabstop=4 expandtab shiftwidth=4 softtabstop=4

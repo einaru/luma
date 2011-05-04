@@ -4,7 +4,7 @@ from string import replace
 from PyQt4 import QtGui, QtCore
 from .DeleteDialogDesign import Ui_DeleteDialog
 from .ExportDialogDesign import Ui_ExportDialog
-from base.util.IconTheme import (pixmapFromThemeIcon, iconFromTheme)
+from base.util.IconTheme import (pixmapFromTheme, iconFromTheme)
 from base.util.Paths import getUserHomeDir
 
 class DeleteDialog(QtGui.QDialog, Ui_DeleteDialog):
@@ -156,8 +156,10 @@ class ExportDialog(QtGui.QDialog, Ui_ExportDialog):
         super(ExportDialog, self).__init__(parent)
         self.setupUi(self)
         
-        self.iconLabel.setPixmap(pixmapFromThemeIcon('document-save', ':/icons/export_big'))
-        self.fileButton.setIcon(iconFromTheme('document-open', ':/icons/folder'))
+        self.iconLabel.setPixmap(pixmapFromTheme(
+            'document-save', ':/icons/48/document-save'))
+        self.fileButton.setIcon(iconFromTheme(
+            'document-open', ':/icons/48/document-open'))
         self.messageLabel.setText(msg)
         
         self.model = QtGui.QStandardItemModel()

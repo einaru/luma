@@ -77,3 +77,6 @@ class AbstractLumaPluginSettings(QWidget):
         the plugin has provided a settings widget.
         """
         pass
+
+
+# vim: tabstop=4 expandtab shiftwidth=4 softtabstop=4

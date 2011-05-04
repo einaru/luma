@@ -87,27 +87,27 @@ class TempLogHandler(logging.Handler):
 def startApplication(argv, verbose=False, clear=[], dirs={}):
     """Preparing Luma for take-off
     
-    @param verbose: boolean value;
-        Whether or not to print more than error messages to console.
-    @param clear: a list;
-        containing what should be cleared before start.
-    @param dirs: a dict;
-        containing possible dirs to consider on start-up.
+    Parameters:
+
+    - `verbose`: boolean value indicating whether or not to print more
+      than error messages to console.
+    - `clear`: a list containing what should be cleared before start.
+    - `dirs`: a dictionary containing containing possible dirs to 
+      consider on start-up.
     """
     app = Luma(argv)
     
     import platform
-    if platform.system() == "Windows":
+    if sys.platform.lower().startswith('win'):
         # Avoids ugly white background
         from PyQt4.QtGui import QStyleFactory
         QApplication.setStyle(QStyleFactory.create("plastique"))
         QApplication.setPalette(QApplication.style().standardPalette())
 
-
     app.setOrganizationName(appinfo.ORGNAME)
     app.setApplicationName(appinfo.APPNAME)
     app.setApplicationVersion(appinfo.VERSION)
-    app.setWindowIcon(QIcon(':/icons/luma-16'))
+    app.setWindowIcon(QIcon(':/icons/16/luma'))
 
     # Setup the logging mechanism
     l = logging.getLogger()
@@ -116,7 +116,8 @@ def startApplication(argv, verbose=False, clear=[], dirs={}):
         "[%(threadName)s] - %(name)s - %(levelname)s - %(message)s"
     )
 
-    # Keep all logs from now until the GUI-LoggerWidget is up and can be populated
+    # Keep all logs from now until the GUI-LoggerWidget is up and can
+    # be populated
     tmpLH = TempLogHandler()
     l.addHandler(tmpLH)
 
@@ -127,7 +128,7 @@ def startApplication(argv, verbose=False, clear=[], dirs={}):
         clear.remove('config')
         settings.clear()
 
-    if settings.configPrefix == u'':
+    if settings.configPrefix == '':
         # This will be the case on the first run, or if the user
         # have startet the application with the --clear-config option
         # We therefore need to retrive the config prefix in a best
@@ -309,3 +310,5 @@ with the following text and a short description of what you were doing:
 
 if __name__ == '__main__':
     main(sys.argv)
+
+

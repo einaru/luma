@@ -18,7 +18,7 @@ from PyQt4.QtCore import QString, pyqtSlot
 from PyQt4.QtGui import QWizard
 from .gui.AddAttributeWizardDesign import Ui_AddAttributeWizardDesign
 from base.backend.ObjectClassAttributeInfo import ObjectClassAttributeInfo
-from base.util.IconTheme import pixmapFromThemeIcon
+from base.util.IconTheme import pixmapFromTheme
 
 
 class AddAttributeWizard(QWizard, Ui_AddAttributeWizardDesign):
@@ -29,8 +29,10 @@ class AddAttributeWizard(QWizard, Ui_AddAttributeWizardDesign):
         # need to initialize the pages before connecting signals
         self.restart()
 
-        attributePixmap = pixmapFromThemeIcon("addattribute", ":/icons/addattribute", 64, 64)
-        objectclassPixmap = pixmapFromThemeIcon("objectclass", ":/icons/objectclass", 64, 64)
+        attributePixmap = pixmapFromTheme(
+            "addattribute", ":/icons/addattribute")
+        objectclassPixmap = pixmapFromTheme(
+            "objectclass", ":/icons/objectclass")
         self.imageLabel.setPixmap(attributePixmap)
         self.objectclassLabel.setPixmap(objectclassPixmap)
         

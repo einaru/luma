@@ -208,7 +208,15 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             self.actionFullscreen.setChecked(True)
 
         # Logger
-        self.actionShowLogger.setChecked(settings.showLoggerOnStart)
+
+        # Logger
+        # The `allwaysShowLoggerOnStart` a precedence on the
+        # `showLogger` value.
+        if settings.showLoggerOnStart:
+            self.actionShowLogger.setChecked(True)
+        else:
+            self.actionShowLogger.setChecked(settings.showLogger)
+
         self.loggerWidget.errorBox.setChecked(settings.showErrors)
         self.loggerWidget.debugBox.setChecked(settings.showDebug)
         self.loggerWidget.infoBox.setChecked(settings.showInfo)
@@ -239,7 +247,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
         # The global logger settings is managed from the settings dialog.
         # Logger
-        settings.showLoggerOnStart = self.actionShowLogger.isChecked()
+        settings.showLogger = self.actionShowLogger.isChecked()
         settings.showErrors = self.loggerWidget.errorBox.isChecked()
         settings.showDebug = self.loggerWidget.debugBox.isChecked()
         settings.showInfo = self.loggerWidget.infoBox.isChecked()

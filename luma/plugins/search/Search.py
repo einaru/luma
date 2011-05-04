@@ -33,7 +33,7 @@ from base.backend.Exception import (ServerCertificateException,
 from base.backend.ObjectClassAttributeInfo import ObjectClassAttributeInfo
 from base.gui.Settings import PluginSettings
 from base.util import encodeUTF8
-from base.util.IconTheme import iconFromTheme, pixmapFromThemeIcon
+from base.util.IconTheme import iconFromTheme, pixmapFromTheme
 
 from .gui.SearchPluginDesign import Ui_SearchPlugin
 from .gui.SearchPluginSettingsDesign import Ui_SearchPluginSettings
@@ -48,11 +48,15 @@ class SearchPluginEventFilter(QObject):
     the target widget, and add the capture logic in the eventFilter
     method.
     """
-    
+
     def eventFilter(self, target, event):
-        """
-        @param target: QObject;
-        @param event: QEvent;
+        """Overrided method to catch and act upon various ``QEvent`s.
+        
+        Parameters:
+        
+        - `target`: The target ``QWidget`` where the event was 
+          generated from.
+        - `event`: The ``QEvent`` that was generated.
         """
         if event.type() == QEvent.KeyPress:
             # If we have a match on the QKeySequence we're looking for
@@ -87,11 +91,11 @@ class SearchPluginEventFilter(QObject):
 class SearchPlugin(QWidget, Ui_SearchPlugin):
     """The Luma Search plugin.
     
-    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-    !! NOTE: This plugin implementation still uses the experimental  !!
-    !!       Connection module. On deployment we might consider      !!
-    !!       switching back to the more safer LumaConnection module. !!      
-    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    .. note::
+       This plugin implementation still uses the experimental
+       `base.backend.Connection` module. On deployment we might
+       consider switching back to the more safer 
+       `base.bakend.LumaConnection` module.
     """
 
     __logger = logging.getLogger(__name__)
@@ -112,37 +116,43 @@ class SearchPlugin(QWidget, Ui_SearchPlugin):
         self.filterBuilder = FilterBuilder(parent=self)
 
         # Icons
-        searchIcon = iconFromTheme('edit-find', ':/icons/search_plugin-plugin')
-        filterIcon = iconFromTheme('edit-find-replace', ':/icons/filter')
-        secureIcon = iconFromTheme('changes-prevent', ':/icons/secure')
-        errorIcon = pixmapFromThemeIcon('dialog-error', ':/icons/error', 24, 24)
-        editIcon = iconFromTheme('accessories-text-editor', ':/icons/edit')
-        undoIcon = iconFromTheme('edit-undo', ':/icons/undo')
-        redoIcon = iconFromTheme('edit-redo', ':/icons/redo')
-        addIcon = iconFromTheme('list-add', ':/icons/single')
+        searchIcon = iconFromTheme(
+            'edit-find', ':/icons/32/edit-find')
+        filterIcon = iconFromTheme(
+            'edit-find-replace', ':/icons/32/edit-find-replace')
+        secureIcon = iconFromTheme(
+            'object-locked', ':/icons/16/object-locked')
+        errorIcon = pixmapFromTheme(
+            'dialog-error', ':/icons/48/dialog-error', 24, 24)
+        undoIcon = iconFromTheme(
+            'edit-undo', ':/icons/32/edit-undo')
+        redoIcon = iconFromTheme(
+            'edit-redo', ':/icons/32/edit-redo')
+        addIcon = iconFromTheme(
+            'list-add', ':/icons/32/list-add')
 
         self.indexSF = self.left.addTab(self.searchForm, searchIcon, '')
         self.indexFB = self.left.addTab(self.filterBuilder, filterIcon, '')
-        
-        self.searchForm.filterBuilderToolButton.setIcon(editIcon)
+
+        self.searchForm.filterBuilderToolButton.setIcon(filterIcon)
         self.searchForm.errorIcon.setPixmap(errorIcon)
         self.filterBuilder.undoButton.setIcon(undoIcon)
         self.filterBuilder.redoButton.setIcon(redoIcon)
         self.filterBuilder.addSpecialCharButton.setIcon(addIcon)
-        
+
         # The search plugin event filter we 
         # use for acting upon various events
         eventFilter = SearchPluginEventFilter(self)
         # Install the eventFilter on desired widgets
         self.installEventFilter(eventFilter)
         self.right.installEventFilter(eventFilter)
-        
+
         self.__loadSettings()
         self.__connectSlots()
-        
+
         # Only add text to these class and its children at this time
         self.retranslate(all=False)
-        
+
         # TODO: maybe we allways want to return a list from ServerList,
         #       eliminating the 'NoneType is not iterable' exceptions.
         if not self.serverList is None:
@@ -204,12 +214,17 @@ class SearchPlugin(QWidget, Ui_SearchPlugin):
 
     def onTabClose(self, index):
         """Slot for the tabCloseRequested signal.
+        
+        Parameters:
+        
+        - `index`: the integer index value of the currently focused
+          tab widget.
         """
         # Might happen if QKeySequence.Close is captured when no tabs
         # is open.
         if index < 0:
             return
-        
+
         widget = self.right.widget(index)
         self.right.removeTab(index)
 
@@ -225,8 +240,9 @@ class SearchPlugin(QWidget, Ui_SearchPlugin):
         list off of the selected server, and populate the baseDN combo
         box.
         
-        @param index:
-            The index of the server entry in the combobox.
+        Parameters:
+        
+        - `index`: the index of the server entry in the combobox.
         """
         serverString = self.searchForm.server
 
@@ -272,6 +288,10 @@ class SearchPlugin(QWidget, Ui_SearchPlugin):
 
     def onUseFilterRequested(self, filter):
         """Slot for the useFilterRequested signal in the filter builder.
+        
+        Parameters: 
+        
+        - `filter`: the filter to use in the searchform.
         """
         # We want to set the filter as the selected filter in the
         # search form, and switch to the search form, but _not_ do the
@@ -300,7 +320,7 @@ class SearchPlugin(QWidget, Ui_SearchPlugin):
         FIXME: Switch to the methods in the Filter module when it's
                finished and ready for use.
         """
-        self.searchForm.onSearchError(False)        
+        self.searchForm.onSearchError(False)
         filter = self.searchForm.filter
         filterPattern = re.compile("\(\w*=")
         tmpList = filterPattern.findall(filter)
@@ -380,7 +400,7 @@ class SearchPlugin(QWidget, Ui_SearchPlugin):
             index = self.right.addTab(resultTab, 'Search result')
             self.right.setCurrentIndex(index)
         else:
-            msg = 'Error during search operation.\n{0}'.format(unicode(e))
+            msg = 'Error during search operation.\n{0}'.format(e)
             self.searchForm.onSearchError(True, msg)
 
     def retranslate(self, all=True):
@@ -388,7 +408,7 @@ class SearchPlugin(QWidget, Ui_SearchPlugin):
         """
         self.left.setTabToolTip(self.indexSF, qApp.translate("SearchPlugin", "Search Form"))
         self.left.setTabToolTip(self.indexFB, qApp.translate("SearchPlugin", "Filter Builder"))
-        
+
         if all:
             self.retranslateUi(self)
             for tab in self.right.children():
@@ -401,8 +421,9 @@ class SearchPlugin(QWidget, Ui_SearchPlugin):
 class SearchPluginSettingsWidget(QWidget, Ui_SearchPluginSettings):
     """The settings widget for the search plugin.
     
-    Note: The writeSettings method is registered as a slot for the
-          settings changed signal in the settings dialog.
+    .. note::
+       The writeSettings method is registered as a slot for the
+       settings changed signal in the settings dialog.
     """
 
     def __init__(self, parent=None):
@@ -433,3 +454,6 @@ class SearchPluginSettingsWidget(QWidget, Ui_SearchPluginSettings):
         settings.setPluginValue('scope', self.scopeBox.currentIndex())
         settings.setPluginValue('limit', self.sizeLimitBox.value())
         del settings
+
+
+# vim: tabstop=4 expandtab shiftwidth=4 softtabstop=4

@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-# base.gui.Dialog
+# base.gui.ServerDialog
 #
 # Copyright (c) 2011
 #     Christian Forfang, <cforfang@gmail.com>
@@ -36,7 +36,7 @@ from ..backend.ServerObject import ServerEncryptionMethod
 from ..backend.ServerObject import ServerObject
 from ..gui.design.ServerDialogDesign import Ui_ServerDialogDesign
 from ..model.ServerListModel import ServerListModel
-from ..util.IconTheme import pixmapFromThemeIcon
+from ..util.IconTheme import pixmapFromTheme
 from .ServerDelegate import ServerDelegate
 
 class ServerDialog(QDialog, Ui_ServerDialogDesign):
@@ -45,20 +45,30 @@ class ServerDialog(QDialog, Ui_ServerDialogDesign):
     testReturnSignal = pyqtSignal(bool, str)
 
     def __init__(self, server=None, parent=None):
-        """
-        @param serverList:
-            The ServerList object containing the list of available
-            servers.
-        @param server:
-            If provided, this server will be selected in the serverList
-            view.
+        """The `ServerDialog` constructor.
+
+        Parameters:
+
+        - `serverList`: a `ServerList` instance containing the list of
+          available servers.
+        - `server`: the name of a server. If provided, this server will
+          be selected in the serverList view.
         """
         super(ServerDialog, self).__init__(parent)
         self.setupUi(self)
 
-        self.networkIcon.setPixmap(pixmapFromThemeIcon('network-server', ':/icons/network-server'))
-        self.authIcon.setPixmap(pixmapFromThemeIcon('dialog-password', ':/icons/passwordmedium'))
-        self.securityIcon.setPixmap(pixmapFromThemeIcon('preferences-system', ':/icons/config'))
+        self.networkIcon.setPixmap(pixmapFromTheme(
+            'preferences-system-network',
+            ':/icons/48/preferences-system-network')
+        )
+        self.authIcon.setPixmap(pixmapFromTheme(
+            'preferences-other',
+            ':/icons/48/preferences-other')
+        )
+        self.securityIcon.setPixmap(pixmapFromTheme(
+            'preferences-system',
+            ':/icons/48/preferences-system')
+        )
         
         self.__serverList = ServerList() #Load the serverlist from disk.
         self.__serverListCopy = None # When we click "Save", the current list is saved here
@@ -380,4 +390,4 @@ class TestConnection(QRunnable):
             self.target.testReturnSignal.emit(False,str(exception[0]["desc"]))
 
 
-
+# vim: tabstop=4 expandtab shiftwidth=4 softtabstop=4

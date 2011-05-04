@@ -41,22 +41,25 @@ class AboutDialog(QDialog, Ui_AboutDialog):
         super(AboutDialog, self).__init__(parent)
         self.setupUi(self)
         
-        self.setWindowIcon(iconFromTheme('help-about', ':/icons/about'))
-        self.logo.setPixmap(QPixmap(':/icons/luma-64'))
-
-        self.nameAndVersion.setText(u'Luma %s' % qApp.applicationVersion())
+        self.setWindowIcon(iconFromTheme('help-about', ':/icons/16/help-about'))
+        self.logo.setPixmap(QPixmap(':/icons/64/luma'))
+        version = qApp.applicationVersion()
+        self.nameAndVersion.setText('Luma {0}'.format(version))
 
     def showLicense(self):
-        """ Displays a simple dialog containing the application license
+        """Displays a simple dialog containing the application license
         """
         license = QDialog()
         Ui_AboutLicense().setupUi(license)
         license.exec_()
 
     def giveCreditWhereCreditIsDue(self):
-        """ Displays a simple dialog containing developer information,
+        """Displays a simple dialog containing developer information,
         and credit is given where credit is due
         """
         credits = QDialog()
         Ui_AboutCredits().setupUi(credits)
         credits.exec_ ()
+
+
+# vim: tabstop=4 expandtab shiftwidth=4 softtabstop=4
