@@ -1,0 +1,60 @@
+about                 , actions/help-about
+addattribute          
+alias                 
+auth32                , status/dialog-password
+binary_big            , actions/document-encrypted
+binary                , actions/document-encrypted
+bomb                  , actions/edit-bomb
+certificate32         , actions/view-certificate
+clear                 , actions/edit-clear
+config32              , actions/configure
+config                , actions/configure
+deleteEntry           , actions/edit-delete
+delete                , actions/edit-delete
+delete_small          , actions/edit-delete
+dialog-information    , status/dialog-information
+dialog-warning        , status/dialog-warning
+displayall            #
+edit-delete           , actions/edit-delete
+editor                , accessories-text-editor
+edit                  , actions/document-edit
+eraser                , actions/edit-clear
+error                 , status/dialog-error
+export_big            , actions/document-export
+exportBinary          , actions/document-encrypted
+exportLdif            , actions/document-export-table, text-x-ldif
+filter                , actions/view-filter
+final                 #
+folder                , places/folder
+go-first              , actions/go-first
+go-last               , actions/go-last
+go-next               , actions/go-next
+go-previous           , actions/go-previous
+help                  , actions/help-contents
+language              , application-education-language
+mail                  , actions/mail-mark-unread
+manage
+network32             , places/network-workgroup
+network48             , places/network-workgroup
+network-server        , places/network-server
+newEntry              , actions/document-new
+new                   , actions/list-add
+no                    , status/dialog-error
+objectclass
+ok                    , actions/dialog-apply-ok
+password_big          , status/dialog-password
+passwordmedium        , status/dialog-password
+reload                , actions/view-refresh
+save                  , actions/document-save
+secure-alias
+secure                , object-locked
+security32            , object-locked
+security4             , object-locked8
+single
+today                 , actions/go-jump-today
+trashcan              , places/user-trash
+view_icon             , actions/view-list-icons
+view_tree             , actions/view-list-tree
+warning_big
+worldmedium
+world

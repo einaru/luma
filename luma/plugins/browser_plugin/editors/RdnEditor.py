@@ -17,7 +17,7 @@
 import PyQt4
 from PyQt4.QtGui import QDialog
 from ..gui.RdnEditorDesign import Ui_RdnEditorDesign
-from base.util.IconTheme import pixmapFromThemeIcon
+from base.util.IconTheme import pixmapFromTheme
 
 class RdnEditor(QDialog, Ui_RdnEditorDesign):
 
@@ -26,7 +26,8 @@ class RdnEditor(QDialog, Ui_RdnEditorDesign):
         self.setupUi(self)
 
         # Set icon for label
-        editorPixmap = pixmapFromThemeIcon("editor", ":/icons/editor", 64, 64)
+        editorPixmap = pixmapFromTheme(
+            "accessories-text-editor", ":/icons/48/accessories-text-editor")
         self.iconLabel.setPixmap(editorPixmap)
         
         # The complete DN of the object

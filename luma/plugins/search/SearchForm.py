@@ -64,7 +64,7 @@ class SearchForm(QWidget, Ui_SearchForm):
     def onSearchCriteriaChanged(self, text):
         """Slot for the search edit widget
         
-        Enable or disable the search button. If text is empty the
+        Enable or disable the search button. If `text` is empty the
         search button is disabled. If not it is enabled.
         """
         self.searchButton.setDisabled(text == '')
@@ -72,8 +72,9 @@ class SearchForm(QWidget, Ui_SearchForm):
     def populateBaseDNBox(self, baseDNList=[]):
         """Populate the base DN combo box with a available base DNs.
         
-        @param baseDNList: list;
-            A list containing base DN.
+        Parameters:
+        
+        - `baseDNList`: a list containing base DN.
         """
         self.baseDNBox.clear()
         # This should fix the no-network bug
@@ -93,9 +94,9 @@ class SearchForm(QWidget, Ui_SearchForm):
     def initAutoComplete(self, attributes):
         """Initialize the filter input auto completion.
         
-        Try to fetches the list of available attributes from the server
-        selected in the server combo box. This list will be used to
-        give the user auto complete options while building search
+        Try to fetches the list of available `attributes` from the 
+        server selected in the server combo box. This list will be used
+        to give the user auto complete options while building search
         filters.
         """
         # If we get an attribute list off the server we set up the
@@ -114,13 +115,15 @@ class SearchForm(QWidget, Ui_SearchForm):
         self.searchButton.clicked.emit(True)
     
     def onSearchError(self, isError, msg=''):
-        """
-        @param isError: boolean value;
-            Indicates if it is an error or not. That is, we use this
-            method to hide any previous error messages on new a search.
-        @param e: exception object;
-            The exception object returned from the search operation.
-            Cointains information about the error. 
+        """Displays a error message if the search operation fails.
+        
+        Parameters:
+        
+        - `isError`: a boolean value indicating if it is an error or
+          not. That is, we also use this method to hide any previous
+          error messages on new a search.
+        - `e`: the exception object returned from the search operation,
+          cointaining information about the error. 
         """
         self.errorLabel.setText(msg)
         self.errorIcon.setVisible(isError)
@@ -166,6 +169,16 @@ class AttributeCompleter(QCompleter):
     """
 
     def __init__(self, attributeList=[], parent=None):
+        """Initializes the `AttributeCompleter`.
+        
+        Parameters:
+        
+        - `attributeList`: a list of available attributes on the
+          selected LDAP server. This should be fetched from the server
+          schema.
+        """
         super(AttributeCompleter, self).__init__(parent)
         self.setCaseSensitivity(Qt.CaseSensitive)
         self.__attributeList = set(attributeList)
+
+# vim: tabstop=4 expandtab shiftwidth=4 softtabstop=4

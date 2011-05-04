@@ -2,6 +2,8 @@ from AbstractLDAPTreeItem import AbstractLDAPTreeItem
 from PyQt4.QtGui import QIcon, QPixmap
 from PyQt4 import QtCore
 
+from base.util.IconTheme import iconFromTheme
+
 class LDAPErrorItem(AbstractLDAPTreeItem):
     """
     Used to indicate an error.
@@ -21,7 +23,8 @@ class LDAPErrorItem(AbstractLDAPTreeItem):
         if role == QtCore.Qt.StatusTipRole:
             return QtCore.QCoreApplication.translate("LDAPErrorItem","There was an error receiving this item or it's parent. See the attached error-message and/or the log for details.")
         if role == QtCore.Qt.DecorationRole:
-            return QIcon(QPixmap(":/icons/no"))
+            #return QIcon(QPixmap(":/icons/no"))
+            return iconFromTheme('dialog-error', ':/icons/48/dialog-error')
         if not role == QtCore.Qt.DisplayRole:
             return None
         return self.error

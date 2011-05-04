@@ -19,24 +19,28 @@
 # along with this program.  If not, see http://www.gnu.org/licenses/
 
 from PyQt4 import QtGui, QtCore
-from PyQt4.QtGui import (QSortFilterProxyModel, QStandardItemModel, QTreeView,
-                        QWidget)
+from PyQt4.QtGui import (QSizePolicy, QSortFilterProxyModel, QSpacerItem,
+                         QStandardItemModel, QTreeView, QWidget)
 
-from base.gui.Dialog import ExportDialog
-from base.util.IconTheme import pixmapFromThemeIcon
+from base.gui.Dialog import ExportDialog, DeleteDialog
+from base.util.IconTheme import pixmapFromTheme
+
+#from .model.SearchResultModel import ResultItemModel
 
 class ResultView(QWidget):
-    """This class respresent a search result view.
+    """This class represent a search result view.
     """
 
     def __init__(self, filter='', attributelist=[], resultlist=[], parent=None):
-        """
-        @param filter: string;
-            The search filter used for the preceeding search.
-        @param attributelist: list;
-            The attributes used in the search. Extracted from the filter.
-        @param resultlist: list;
-            The result from the preceeding search operation.
+        """Initialize a result view for the `SearchPlugin`.
+        
+        Parameters:
+        
+        - `filter`: the search filter applied on the search operation.
+        - `attributelist`: a list containing the attributes used in the
+          search operation. Usually extracted from the `filter`.
+        - `resultlist`: a list of `SmartDataObject` from the search 
+          operation.
         """
         super(ResultView, self).__init__(parent)
         self.setObjectName('ResultView')
@@ -58,6 +62,8 @@ class ResultView(QWidget):
 
         # FIXME: should we create a custom item model ?
         self.model = QStandardItemModel(0, len(self.headerdata), parent=self)
+        #self.model = ResultItemModel(self)
+        #self.model = ResultItemModel(self.headerdata, self.resultdata, self)
         self.proxymodel.setSourceModel(self.model)
 
         self.resultview = QTreeView(self)
@@ -65,7 +71,7 @@ class ResultView(QWidget):
         self.resultview.setRootIsDecorated(False)
         self.resultview.setAlternatingRowColors(True)
         self.resultview.setSortingEnabled(True)
-        
+
         self.resultview.setModel(self.proxymodel)
 
         # For right-click context menu
@@ -83,6 +89,8 @@ class ResultView(QWidget):
         # We need to call the retranslate method before populating
         # the result data
         self.retranslate()
+        #self.model.populateHeader(self.headerdata)
+        #self.model.populateModel(self.resultdata)
         self.setHeaderData(self.headerdata)
         self.setResultData(self.resultdata)
         self.resultview.resizeColumnToContents(0)
@@ -100,7 +108,7 @@ class ResultView(QWidget):
         return QtGui.QSpacerItem(40, 20, QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Minimum)
 
     def __createContextMenu(self):
-        """Display the context menu
+        """Display the context menu.
         """
         self.contextMenu = QtGui.QMenu()
         self.contextMenuView = QtGui.QAction(self)
@@ -115,12 +123,31 @@ class ResultView(QWidget):
         self.contextMenuDelete.triggered.connect(self.onDeleteItemsSelected)
         self.contextMenuExport.triggered.connect(self.onExportItemsSelected)
 
+    def onNoResult(self):
+        """Adds a styled *no result* message to the main layout.
+        """
+        font = QtGui.QFont()
+        font.setBold(True)
+        sadface = QtGui.QLabel(self)
+        sadface.setPixmap(pixmapFromTheme('face-sad', ':/icons/48/face-sad'))
+        noresult = QtGui.QLabel(self)
+        noresult.setText(self.str_NO_RESULT)
+        noresult.setFont(font)
+        hlayout = QtGui.QHBoxLayout()
+        hlayout.addItem(QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum))
+        hlayout.addWidget(sadface)
+        hlayout.addWidget(noresult)
+        hlayout.addItem(QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum))
+
+        self.layout.addLayout(hlayout)
 
     def setHeaderData(self, data=[]):
-        """Populates the result view model with header data.
-        @param data: list;
-            A list with header items. Usually this is the attributelist
-            from the LDAP search.
+        """Populates the ``resultview`` model with header data.
+        
+        Parameters:
+        
+        - `data`: a list with header items. Usually this is the 
+          attributelist from the LDAP search.
         """
         i = 0
         for header in data:
@@ -128,11 +155,12 @@ class ResultView(QWidget):
             i += 1
 
     def setResultData(self, data=[]):
-        """Populates the result view model with result data.
+        """Populates the ``resultview`` model with result data.
         
-        @param data: list;
-            A list containing the SmartDataObjects representing items
-            in the LDAP search result.
+        Parameters:
+        
+        - `data`: a list containing the SmartDataObjects representing
+          items in the LDAP search result.
         """
         row = 0
         for object in data:
@@ -155,16 +183,22 @@ class ResultView(QWidget):
             row += 1
 
     def isDistinguishedName(self, attr):
-        """
-        @return: boolean value;
-            True if attr is dn, False otherwise.
+        """Returns ``True`` if `attr` is a distinguished name, 
+        ``False`` otherwise.
+        
+        Parameters:
+        
+        - `attr`: the LDAP string attribute value to check.
         """
         return attr.lower() == 'dn'
 
     def isObjectClass(self, attr):
-        """
-        @return: boolean value;
-            True if attr is objectClass, False otherwise.
+        """Returns ``True`` if `attr` is an object class, ``False`` 
+        otherwise.
+        
+        Parameters:
+        
+        - `attr`: the LDAP string attribute value to check.
         """
         return attr.lower() == 'objectclass'
 
@@ -176,35 +210,34 @@ class ResultView(QWidget):
         deleteSupport = True
         exportSupport = True
 
-        numselected = len(self.selection) / len(self.headerdata)
-        self.contextMenu.setEnabled(False)
+        rowsselected = len(self.selection) / len(self.headerdata)
 
-        self.contextMenu.setEnabled(True)
-        if not numselected > 0:
+        if not rowsselected > 0:
             self.contextMenu.setEnabled(False)
             self.contextMenu.exec_(self.resultview.mapToGlobal(point))
             return
-
+        
+        self.contextMenu.setEnabled(True)
         # Look over at Browser plugin for implementation of
         # multiselect and operation support validation
-        print numselected
+        print rowsselected
 
         self.contextMenuView.setEnabled(True)
-        if numselected == 1:
+        if rowsselected == 1:
             self.contextMenuView.setText(self.str_VIEW_ITEM)
         else:
             self.contextMenuView.setText(self.str_VIEW_ITEMS)
 
         if deleteSupport:
             self.contextMenuDelete.setEnabled(True)
-            if numselected == 1:
+            if rowsselected == 1:
                 self.contextMenuDelete.setText(self.str_DELETE_ITEM)
             else:
                 self.contextMenuDelete.setText(self.str_DELETE_ITEMS)
 
         if exportSupport:
             self.contextMenuExport.setEnabled(True)
-            if numselected == 1:
+            if rowsselected == 1:
                 self.contextMenuExport.setText(self.str_EXPORT_ITEM)
             else:
                 self.contextMenuExport.setText(self.str_EXPORT_ITEMS)
@@ -213,14 +246,17 @@ class ResultView(QWidget):
         self.contextMenu.exec_(self.resultview.mapToGlobal(point))
 
     def onViewItemsSelected(self):
-        """Slot for the 'view' context menu action.
+        """Slot for the *view* context menu action.
         """
         raise NotImplementedError('Need to implement a proper model for this to be supported')
 
     def onDeleteItemsSelected(self):
-        """Slot for the 'delete' context menu action.
+        """Slot for the *delete* context menu action.
         """
-        raise NotImplementedError('Need to implement a proper model for this to be supported')
+        msg = 'Delete from the Search Plugin is not implemented jet.'
+        dialog = DeleteDialog(self, msg)
+        dialog.setDeleteItems([])
+        dialog.exec_()
 
     def onExportItemsSelected(self):
         """Slot for the 'export' context menu action.
@@ -228,15 +264,14 @@ class ResultView(QWidget):
         msg = 'Export from the Search Plugin is not implemented jet.'
         dialog = ExportDialog(self, msg)
         # Only for proof of concept
-        dialog.setExportItems([])
+        dialog.setExportData([])
         dialog.exec_()
 
     def onFilterBoxVisibilityChanged(self, visible):
         """Slot for the QKeySequence.Find.
-        @param visible: boolean value;
-            If True the filer box widget visibility will be set to True
-            and the input widget will gain focus. If False the widget 
-            visibility will be set to False.
+        
+        - `visible`: a boolean value indicating wether or not to toggle 
+          the filter box widget visibility on or off.
         """
         if visible:
             self.filterBox.setVisible(True)
@@ -257,7 +292,7 @@ class ResultView(QWidget):
         # The PyQt4 QVariant is causing some problems here, when we try
         # to use the <combobox>.itemData directly, even though the data
         # holds valid QRexExp.PatternSyntax values.
-        # We therefore need to explicitly make the QVariant and integeer.
+        # We therefore need to explicitly make the QVariant and integer.
         i = self.filterBox.syntaxBox.currentIndex()
         syntaxIndex = self.filterBox.syntaxBox.itemData(i).toInt()[0]
         syntax = QtCore.QRegExp.PatternSyntax(syntaxIndex)
@@ -272,24 +307,6 @@ class ResultView(QWidget):
         """Slot for the column combobox in the filter box widget.
         """
         self.proxymodel.setFilterKeyColumn(index)
-
-    def onNoResult(self):
-        """Adds a styled 'no result' message to the main layout.
-        """
-        font = QtGui.QFont()
-        font.setBold(True)
-        sadface = QtGui.QLabel(self)
-        sadface.setPixmap(pixmapFromThemeIcon('face-sad', ':/icons/luma-48'))
-        noresult = QtGui.QLabel(self)
-        noresult.setText(self.str_NO_RESULT)
-        noresult.setFont(font)
-        hlayout = QtGui.QHBoxLayout()
-        hlayout.addItem(self.__getVSpacer())
-        hlayout.addWidget(sadface)
-        hlayout.addWidget(noresult)
-        hlayout.addItem(self.__getVSpacer())
-
-        self.layout.addLayout(hlayout)
 
     def retranslate(self, all=True):
         """For dynamic translation support.
@@ -324,9 +341,10 @@ class ResultFilterWidget(QWidget):
 
     def __init__(self, columns=[], parent=None):
         """
-        @param columns: list;
-            The columns to populate the column selector. Usually the
-            main model headerdata -> search attributelist.
+        Parameters:
+        - `columns`: a list containing the columns to populate the 
+          column selector. Usually the main model headerdata (search
+          attributelist).
         """
         super(ResultFilterWidget, self).__init__(parent)
 
@@ -354,3 +372,5 @@ class ResultFilterWidget(QWidget):
         """
         self.syntaxBox.setToolTip(QtGui.QApplication.translate("ResultFilterWidget", "Choose filter syntax."))
         self.columnBox.setToolTip(QtGui.QApplication.translate("ResultFilterWidget", "Choose filter column."))
+
+# vim: tabstop=4 expandtab shiftwidth=4 softtabstop=4

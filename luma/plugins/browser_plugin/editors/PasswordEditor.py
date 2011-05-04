@@ -15,7 +15,7 @@ from PyQt4.QtGui import QDialog, QPalette
 from ..gui.PasswordEditorDesign import Ui_PasswordEditorDesign
 from ..utils.mkpasswd import mkpasswd, check_strength, get_available_hash_methods
 from ..utils.mkpasswd import check_strength
-from base.util.IconTheme import pixmapFromThemeIcon
+from base.util.IconTheme import pixmapFromTheme
 
 
 class PasswordEditor(QDialog, Ui_PasswordEditorDesign):
@@ -24,7 +24,8 @@ class PasswordEditor(QDialog, Ui_PasswordEditorDesign):
         QDialog.__init__(self, parent, flags)
         self.setupUi(self)
         
-        editorPixmap = pixmapFromThemeIcon("password_big", ":/icons/password_big", 64, 64)
+        editorPixmap = pixmapFromTheme(
+            "dialog-password", ":/icons/48/dialog-password")
         self.iconLabel.setPixmap(editorPixmap)
         
         self.supportedAlgorithms = get_available_hash_methods()

@@ -31,7 +31,7 @@ from PyQt4 import QtCore, QtGui
 
 from .design.ExportDialogDesign import Ui_ExportDialog
 from ..util import encodeUTF8
-from ..util.IconTheme import pixmapFromThemeIcon, iconFromTheme
+from ..util.IconTheme import pixmapFromTheme, iconFromTheme
 from ..util.Paths import getUserHomeDir
 
 class ExportDialog(QtGui.QDialog, Ui_ExportDialog):
@@ -54,8 +54,10 @@ class ExportDialog(QtGui.QDialog, Ui_ExportDialog):
         super(ExportDialog, self).__init__(parent)
         self.setupUi(self)
 
-        self.iconLabel.setPixmap(pixmapFromThemeIcon('document-save', ':/icons/export_big'))
-        self.fileButton.setIcon(iconFromTheme('document-open', ':/icons/folder'))
+        self.iconLabel.setPixmap(pixmapFromTheme(
+            'document-save', ':/icons/32/document-save'))
+        self.fileButton.setIcon(iconFromTheme(
+            'document-open', ':/icons/32/document-save'))
         self.messageLabel.setText(msg)
 
         self.model = QtGui.QStandardItemModel()
@@ -251,3 +253,6 @@ class BrowseDialog(QtGui.QDialog):
     """
     def __init__(self, parnet=None):
         raise NotImplementedError('Implemnt this dialog (steal from Browser plugin)')
+
+
+# vim: tabstop=4 expandtab shiftwidth=4 softtabstop=4

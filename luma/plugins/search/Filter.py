@@ -22,7 +22,7 @@ This module contains methods for validating and parsing LDAP search
 filters, and follows the 'LDAP String Representation of Search Filters'
 specifications defined in RFC4514 [1].
 
-Short form definition summary in EBNF:
+Short form definition summary in EBNF::
 
     <filter>         := `(` <filterComp> `)`
     <filerComp>      :=  <boolComp> | <item>
@@ -249,3 +249,5 @@ for tok in tokenize(filter):
 
 #test(filter)
 #test('(test)(test)')
+
+# vim: tabstop=4 expandtab shiftwidth=4 softtabstop=4
