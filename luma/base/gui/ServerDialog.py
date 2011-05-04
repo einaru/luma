@@ -27,7 +27,8 @@ from PyQt4.QtGui import QFileDialog
 from PyQt4.QtGui import QInputDialog, QItemSelectionModel
 from PyQt4.QtGui import QListWidgetItem
 from PyQt4.QtGui import QMessageBox, QProgressDialog
-from PyQt4.QtCore import QCoreApplication, Qt, pyqtSignal, pyqtSlot, QThread
+from PyQt4.QtCore import QCoreApplication, Qt, pyqtSignal
+from PyQt4.QtCore import pyqtSlot, QThread, QThreadPool, QRunnable
 
 from ..backend.LumaConnection import LumaConnection
 from ..backend.ServerList import ServerList
@@ -39,6 +40,9 @@ from ..util.IconTheme import pixmapFromThemeIcon
 from .ServerDelegate import ServerDelegate
 
 class ServerDialog(QDialog, Ui_ServerDialogDesign):
+    
+    # Used by TestConnection
+    testReturnSignal = pyqtSignal(bool, str)
 
     def __init__(self, server=None, parent=None):
         """
@@ -97,7 +101,6 @@ class ServerDialog(QDialog, Ui_ServerDialogDesign):
         self.serverListView.selectionModel().setCurrentIndex(index, QItemSelectionModel.ClearAndSelect)
 
         self.serverListView.selectionModel().selectionChanged.connect(self.setBaseDN) #Same as below
-        #self.connect(self.serverListView.selectionModel(),  QtCore.SIGNAL('selectionChanged(QItemSelection, QItemSelection)'), self.setBaseDN)
 
         # Map columns of the model to fields in the gui
         self.mapper = QDataWidgetMapper()
@@ -130,6 +133,9 @@ class ServerDialog(QDialog, Ui_ServerDialogDesign):
         
         # Checks for SSL enabled but with a non-standard port.
         self.encryptionBox.currentIndexChanged[int].connect(self.checkSSLport)
+
+        # Used by TestConnection
+        self.testReturnSignal.connect(self.testFinished)
         
     def checkSSLport(self, index):
         """ If SSL is choosen with a port other than 636, confirm this with the user
@@ -332,10 +338,8 @@ class ServerDialog(QDialog, Ui_ServerDialogDesign):
         self.testProgress.setWindowModality(Qt.WindowModal)
         self.testProgress.show()
 
-        self.thread = TestConnection(sO)
-        self.thread.returnSignal.connect(self.testFinished)
-        self.thread.start()
-        
+        self.thread = TestConnection(sO, self)
+        QThreadPool.globalInstance().start(self.thread)
 
     @pyqtSlot(bool, str)
     def testFinished(self, success, exceptionStr):
@@ -354,10 +358,10 @@ class ServerDialog(QDialog, Ui_ServerDialogDesign):
                 return
             QMessageBox.warning(self, "Status", "Connection failed:\n"+exceptionStr)
 
-class TestConnection(QThread):
-    returnSignal = pyqtSignal(bool, str)
-    def __init__(self, serverObject):
+class TestConnection(QRunnable):
+    def __init__(self, serverObject, target):
         super(TestConnection, self).__init__()
+        self.target = target
         self.serverObject = serverObject
     def run(self):
         # Try bind -- do not display pw-input and do not use remembered passwords
@@ -365,9 +369,9 @@ class TestConnection(QThread):
         success, exception = conn.bind(askForPw = False, noOverride = True)
         # Return status
         if success:
-            self.returnSignal.emit(True, "")
+            self.target.testReturnSignal.emit(True, "")
         else:
-            self.returnSignal.emit(False,str(exception[0]["desc"]))
+            self.target.testReturnSignal.emit(False,str(exception[0]["desc"]))
 
 
 

@@ -25,10 +25,11 @@ class LDAPTreeItemModel(QAbstractItemModel):
     # Emitted by the workerThread when finished
     listFetched = QtCore.pyqtSignal(QtCore.QModelIndex, tuple)
 
-    def __init__(self, parent=None):
+    def __init__(self, serverList, parent=None):
         QtCore.QAbstractItemModel.__init__(self, parent)
         self.listFetched.connect(self.workerFinished)
         self.verified = []
+        self.populateModel(serverList)
 
     """ These are called internally in order to signal when busy
     """

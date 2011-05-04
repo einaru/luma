@@ -71,29 +71,12 @@ class BrowserView(QWidget):
 
         self.splitter = QtGui.QSplitter(self)
 
-        # The model for server-content
-        self.ldaptreemodel = LDAPTreeItemModel(self)
-        self.ldaptreemodel.populateModel(self.serverList)
+        # Create the model
+        self.ldaptreemodel = LDAPTreeItemModel(self.serverList, self)
         self.ldaptreemodel.workingSignal.connect(self.setBusy)
-
-        # The view for server-content
-        self.entryList = QtGui.QTreeView(self)
-        self.entryList.setMinimumWidth(200)
-        self.entryList.setMaximumWidth(400)
-        #self.entryList.setAlternatingRowColors(True)
-        self.entryList.setAnimated(True) # Somewhat cool, but should be removed if deemed too taxing
-        self.entryList.setUniformRowHeights(True) #MAJOR optimalization for big lists
-        self.entryList.setModel(self.ldaptreemodel)
-        self.entryList.setMouseTracking(True)
-        self.entryList.viewport().setMouseTracking(True)
-        # For right-clicking in the tree
-        self.entryList.setContextMenuPolicy(QtCore.Qt.CustomContextMenu)
-        self.entryList.customContextMenuRequested.connect(self.rightClick)
-        # When something is activated (doubleclick, <enter> etc.)
-        self.entryList.activated.connect(self.viewItem)
-        self.delegate = LoadingDelegate(self.entryList)
-        self.entryList.setItemDelegate(self.delegate)
-        self.entryList.setSelectionMode(QtGui.QAbstractItemView.ExtendedSelection)
+    
+        # Set up the entrylist (uses the model)
+        self.__setupEntryList()
 
         # The editor for entries
         self.tabWidget = QtGui.QTabWidget(self)
@@ -128,7 +111,7 @@ class BrowserView(QWidget):
         # AND ONLY ON SMALL LDAP-SERVERS SINCE IT LOADS BASICALLY ALL ENTIRES
         #import modeltest
         #self.modeltest = modeltest.ModelTest(self.ldaptreemodel, self);
-
+        
     def setBusy(self, status):
         """
         Helper-method.
@@ -140,6 +123,26 @@ class BrowserView(QWidget):
             if not self.progress.isHidden():
                 self.progress.hide()
             qApp.restoreOverrideCursor()
+
+    def __setupEntryList(self):
+        # The view for server-content
+        self.entryList = QtGui.QTreeView(self)
+        self.entryList.setMinimumWidth(200)
+        self.entryList.setMaximumWidth(400)
+        #self.entryList.setAlternatingRowColors(True)
+        self.entryList.setAnimated(True) # Somewhat cool, but should be removed if deemed too taxing
+        self.entryList.setUniformRowHeights(True) #MAJOR optimalization for big lists
+        self.entryList.setModel(self.ldaptreemodel)
+        self.entryList.setMouseTracking(True)
+        self.entryList.viewport().setMouseTracking(True)
+        # For right-clicking in the tree
+        self.entryList.setContextMenuPolicy(QtCore.Qt.CustomContextMenu)
+        self.entryList.customContextMenuRequested.connect(self.rightClick)
+        # When something is activated (doubleclick, <enter> etc.)
+        self.entryList.activated.connect(self.viewItem)
+        self.delegate = LoadingDelegate(self.entryList)
+        self.entryList.setItemDelegate(self.delegate)
+        self.entryList.setSelectionMode(QtGui.QAbstractItemView.ExtendedSelection)
         
     def __createContextMenu(self):
         """Creates the context menu for the tree view.
@@ -540,7 +543,6 @@ class BrowserView(QWidget):
 
     def editServerSettings(self):
         """Slot for the context menu.
-        
         Opens the ServerDialog with the selected server.
         """
         try:
