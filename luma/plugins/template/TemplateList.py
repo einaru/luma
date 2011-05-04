@@ -142,6 +142,7 @@ class TemplateList(object):
                             attributeName = str(attributeElement.tagName())
                             binaryString = attributeElement.attribute("binary")
                             mustString = attributeElement.attribute("must")
+                            customMustString = attributeElement.attribute("customMust")
                             singleString = attributeElement.attribute("single")
                             
                             binary = False
@@ -152,6 +153,10 @@ class TemplateList(object):
                             if mustString == "True":
                                 must = True
                                 
+                            customMust = False
+                            if customMustString == "True":
+                                customMust = True
+                                
                             single = False
                             if singleString == "True":
                                 single = True
@@ -160,7 +165,7 @@ class TemplateList(object):
                             if attributeElement.hasAttribute("defaultValue"):
                                 defaultValue = unicode(attributeElement.attribute("defaultValue"))
                                 
-                            attribute = AttributeObject(attributeName, must, single, binary, defaultValue)
+                            attribute = AttributeObject(attributeName, must, single, binary, defaultValue, customMust)
                             template.attributes[attributeName] = attribute
                             attributeNode = attributeNode.nextSibling()
                         
@@ -199,6 +204,7 @@ class TemplateList(object):
                 attribute = x.attributes[y]
                 attributeNode = document.createElement(attribute.attributeName)
                 attributeNode.setAttribute("must", str(attribute.must))
+                attributeNode.setAttribute("customMust", str(attribute.customMust))
                 attributeNode.setAttribute("single", str(attribute.single))
                 attributeNode.setAttribute("binary", str(attribute.binary))
                 if not attribute.defaultValue == None and len(attribute.defaultValue):

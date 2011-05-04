@@ -218,7 +218,6 @@ class TemplateWidget(QWidget, Ui_TemplateWidget):
             server = self.labelServerName.text()
             tO = self.getSelectedTemplateObject()
             attributes = self.attributeTM.attributes
-            print "dOc",dOc
             dialog = DeleteObjectclassDialog(self.loadServerMeta(server), tO, dOc, attributes)
             if dialog.exec_():
                 self.objectclassTM.removeRows(dOc)

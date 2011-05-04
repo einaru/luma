@@ -77,7 +77,7 @@
    <item row="0" column="1" colspan="3">
     <widget class="QLabel" name="labelMain">
      <property name="text">
-      <string>Warning: The following attributes may be removed when deleting all selected objectclasses. Do you want to continue?</string>
+      <string>Warning: The following attributes will be removed when deleting all selected objectclasses. Do you want to continue?</string>
      </property>
      <property name="wordWrap">
       <bool>true</bool>

@@ -3,6 +3,7 @@
 from PyQt4.QtCore import QAbstractTableModel
 from PyQt4.QtCore import Qt, QVariant
 from ..backend.ServerObject import ServerObject
+from plugins.template.TemplateList import TemplateList
 
 class ServerListModel(QAbstractTableModel):
     """
@@ -39,6 +40,18 @@ class ServerListModel(QAbstractTableModel):
             No change so do nothing.
             """
             return True
+        
+        #name or hostname changed check the list of templates if it should be updated.
+        if index.column() == 0:
+            templateList = TemplateList()
+            server = self._serverList.getTable()[index.row()]
+            for template in templateList.getTable():
+                if server.name == template.server:
+                    if index.column() == 0:
+                        template.server = value
+                        
+            templateList.save()
+            
         
         # Update the correct field in it (given by the column) with the given data
         serverObject.setIndexToValue(column, value)   
