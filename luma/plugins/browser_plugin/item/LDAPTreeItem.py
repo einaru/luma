@@ -32,6 +32,7 @@ class LDAPTreeItem(AbstractLDAPTreeItem):
         
         self.error = False
         self.loading = False
+        self.lumaConnection = None
 
     def columnCount(self):
         """
@@ -79,24 +80,26 @@ class LDAPTreeItem(AbstractLDAPTreeItem):
         """
         (Re)aquire the list of childs for this item (if any).
         """       
-        
-        l = LumaConnection(self.serverParent.serverMeta)
-        
-        bindSuccess, exceptionObject = l.bind()
+        self.cancelSearch()
+        self.lumaConnection = LumaConnection(self.serverParent.serverMeta)
+
+        bindSuccess, exceptionObject = self.lumaConnection.bind()
         
         if not bindSuccess:
             tmp = LDAPErrorItem(str("["+exceptionObject[0]["desc"]+"]"), self.serverParent, self)
             # We're adding the error as LDAPErrorItem-child, so return True
+            self.lumaConnection = None
             return (True, [tmp], exceptionObject)
         
         # Search for items at the level under this one
-        success, resultList, exceptionObject = l.search(self.itemData.getDN(), \
+        success, resultList, exceptionObject = self.lumaConnection.search(self.itemData.getDN(), \
                 scope=ldap.SCOPE_ONELEVEL, filter=self.filter, sizelimit=self.limit)
-        l.unbind()
+        self.lumaConnection.unbind()
         
         if not success:
             tmp = LDAPErrorItem(str("["+exceptionObject[0]["desc"]+"]"), self.serverParent, self)
             # We're adding the error as LDAPErrorItem-child, so return True
+            self.lumaConnection = None
             return (True, [tmp], exceptionObject)
         
         self.error = False
@@ -127,7 +130,16 @@ class LDAPTreeItem(AbstractLDAPTreeItem):
         """
         
         # Default behavior: return all
+        self.lumaConnection = None
         return (True, [LDAPTreeItem(x, self.serverParent, self) for x in resultList], exceptionObject)
+
+    def canCancelSearch(self):
+        return not(self.lumaConnection == None)
+
+    def cancelSearch(self):
+        connection = self.lumaConnection
+        if not(connection == None):
+            connection.cancelSearch()
     
     def setLimit(self):
         """
@@ -180,4 +192,5 @@ class LDAPTreeItem(AbstractLDAPTreeItem):
                AbstractLDAPTreeItem.SUPPORT_ADD | \
                AbstractLDAPTreeItem.SUPPORT_EXPORT | \
                AbstractLDAPTreeItem.SUPPORT_DELETE | \
-               AbstractLDAPTreeItem.SUPPORT_OPEN
+               AbstractLDAPTreeItem.SUPPORT_OPEN | \
+               AbstractLDAPTreeItem.SUPPORT_CANCEL

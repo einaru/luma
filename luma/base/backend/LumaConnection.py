@@ -69,6 +69,8 @@ class LumaConnection(object):
         # This ldap object will be assigned in the methods.
         # This way we have better control over bind, unbind and open sockets.
         self.ldapServerObject = None
+        self.resultId = None
+        self.resultCount = 0
         
         self.logger = logging.getLogger(__name__)
 
@@ -81,7 +83,7 @@ class LumaConnection(object):
         # Done by the objects calling the method
         #environment.setBusy(True)
         
-        workerThread = WorkerThreadSearch(self.ldapServerObject)
+        workerThread = WorkerThreadSearch(self.ldapServerObject, self)
         workerThread.base = base
         workerThread.scope = scope
         workerThread.filter = filter
@@ -454,11 +456,17 @@ class LumaConnection(object):
         else:
             qApp.restoreOverrideCursor()
         """
+    def cancelSearch(self):
+        resultId = self.resultId
+        if not(resultId == None):
+            self.ldapServerObject.cancel(resultId)
+
 class WorkerThreadSearch(threading.Thread):
         
-    def __init__(self, serverObject):
+    def __init__(self, serverObject, lumaConnection=None):
         threading.Thread.__init__(self)
         self.ldapServerObject = serverObject
+        self.lumaConnection = lumaConnection
 
         self.sizelimit = 0
             
@@ -472,7 +480,8 @@ class WorkerThreadSearch(threading.Thread):
         self.logger.debug("Started LDAP-search.")
         try:
             resultId = self.ldapServerObject.search_ext(self.base, self.scope, self.filter, self.attrList, self.attrsonly, sizelimit=self.sizelimit)
-        
+            if not(self.lumaConnection == None):
+                self.lumaConnection.resultId = resultId
             while 1:
                 #search with a 60 second timeout
                 result_type, result_data = self.ldapServerObject.result(resultId, 0, 60)
@@ -483,10 +492,15 @@ class WorkerThreadSearch(threading.Thread):
                     if result_type == ldap.RES_SEARCH_ENTRY:
                         for x in result_data:
                             self.result.append(x)
+                            if not(self.lumaConnection == None):
+                                self.lumaConnection.resultCount = self.lumaConnection.resultCount + 1
             # Can't use sizelimit with non-async-search
             #self.result = self.ldapServerObject.search_ext_s(self.base, self.scope, self.filter, self.attrList, self.attrsonly, sizelimit=self.sizelimit)
         except ldap.LDAPError, e:
             self.exceptionObject = e
+        if not(self.lumaConnection == None):
+            self.lumaConnection.resultId = None
+            self.lumaConnection = None
             
         self.FINISHED = True
         self.logger.debug("Search finished.")
