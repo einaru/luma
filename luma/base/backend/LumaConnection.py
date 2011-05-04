@@ -496,6 +496,8 @@ class WorkerThreadSearch(threading.Thread):
                                 self.lumaConnection.resultCount = self.lumaConnection.resultCount + 1
             # Can't use sizelimit with non-async-search
             #self.result = self.ldapServerObject.search_ext_s(self.base, self.scope, self.filter, self.attrList, self.attrsonly, sizelimit=self.sizelimit)
+        except ldap.TIMEOUT, e:
+            self.exceptionObject = [{"desc":"Search timed out"}]
         except ldap.LDAPError, e:
             self.exceptionObject = e
         if not(self.lumaConnection == None):
