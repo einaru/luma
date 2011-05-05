@@ -338,15 +338,18 @@ class LDAPTreeItemModel(QAbstractItemModel):
         """ QThreadWorker """
         ## Read below before uncommenting, and also remember
         ## to uncomment the __del__-method if you don't like crashes.
-        #thread = QThreadWorker(parentIndex, parentItem)
-        #thread.listFetched.connect(self.workerFinished)
-        #thread.finished.connect(self.removeThreadFromPool)
-        #self.threads.append(thread)
-        #thread.start()
+        thread = QThreadWorker(parentIndex, parentItem)
+        thread.listFetched.connect(self.workerFinished)
+        thread.finished.connect(self.removeThreadFromPool)
+        self.threads.append(thread)
+        thread.start()
+        print "f0r gogo"
+        thread.gogogo.emit()
+        print "etter gogo"
 
         """ QThreadPool + QRunnable """
-        thread = QRunnableWorker(self, parentIndex, parentItem)
-        QThreadPool.globalInstance().start(thread)
+        #thread = QRunnableWorker(self, parentIndex, parentItem)
+        #QThreadPool.globalInstance().start(thread)
 
         parentItem.loading = True
 
@@ -416,16 +419,25 @@ class QThreadWorker(QThread):
     
     # Emitted by the workerThread when finished
     listFetched = pyqtSignal(QModelIndex, tuple)
+    gogogo = pyqtSignal()
 
     def __init__(self, parentIndex, parentItem, parent = None):
         super(QThreadWorker, self).__init__(parent)
+        self.moveToThread(self)
         self.parentIndex = parentIndex
         self.persistent = QPersistentModelIndex(parentIndex)
+        self.gogogo.connect(self.gogo)
 
         self.parentItem = parentItem
         self.parentItem.loading = True
 
     def run(self):
+        print "run"
+        self.exec_()
+
+    @pyqtSlot()
+    def gogo(self):
+        print "gogo"
         tupel = self.parentItem.fetchChildList()
 
         if self.persistent.isValid():
