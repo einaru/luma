@@ -376,12 +376,12 @@ class Worker(QRunnable):
         from PyQt4.QtGui import qApp
         if qApp.closingDown():
             return
-        if self.parentIndex.isValid():
+        if self.persistent.isValid():
             # QPersistenModelIndex -> QModelIndex
             # Should prefferably not be done here (changes can happend until the receiver-thread process the event)
             # but Qt can't send QPersistentModelIndexes (yet?)
             # Also, using QModelIndex through the whole process also works for some reason.
             # The new items are placed right even though QModelIndex.row() is wrong (e.g. because
             # an item was deleted above it). 
-            self.parentIndex = self.persistent.sibling(self.persistent.row(), self.persistent.column())
-            self.target.listFetched.emit(self.parentIndex, tupel)
+            index = self.persistent.sibling(self.persistent.row(), self.persistent.column())
+            self.target.listFetched.emit(index, tupel)
