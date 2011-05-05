@@ -4,7 +4,7 @@ Created on 15. mars 2011
 @author: Simen
 '''
 
-from PyQt4.QtGui import QDialog
+from PyQt4.QtGui import QDialog, QPixmap
 from .AddAttributeDialogDesign import Ui_AddAttributeDialog
 from ..model.AttributeTableModel import AttributeTableModel 
 
@@ -18,7 +18,7 @@ class AddAttributeDialog(QDialog, Ui_AddAttributeDialog):
         self.ocai = ocai
         objectclassesList = templateObject.objectclasses
         attributeNameList = self.ocai.getAllMays(objectclassesList)
-        
+        self.labelMainIcon.setPixmap(QPixmap(':/icons/64/attribute'))
         for name in attributeNameList:
             if not name in templateObject.attributes.keys():
                 single = self.ocai.isSingle(name)

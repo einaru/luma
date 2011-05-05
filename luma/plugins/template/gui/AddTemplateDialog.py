@@ -16,3 +16,4 @@ class AddTemplateDialog(QDialog, Ui_AddTemplateDialog):
         for server in serverList.getTable():
             self.comboBoxServer.insertItem(i, server.name)
         self.comboBoxServer.setCurrentIndex(0)
+        self.labelMainIcon.setPixmap(QPixmap(':/icons/64/template'))

@@ -22,4 +22,4 @@ class AddObjectclassDialog(QDialog, Ui_AddObjectclassDialog):
                 list.append(objectclasses)
         list.sort(key = str.lower)
         self.listWidgetObjectclasses.addItems(list)
-        
+        self.labelMainIcon.setPixmap(QPixmap(':/icons/64/objectclass'))
