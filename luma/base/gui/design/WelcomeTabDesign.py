@@ -2,25 +2,30 @@
 
 # Form implementation generated from reading ui file '/mnt/debris/devel/git/luma/resources/forms/WelcomeTabDesign.ui'
 #
-# Created: Fri Apr  1 20:53:01 2011
-#      by: PyQt4 UI code generator 4.7.4
+# Created: Thu May  5 00:01:01 2011
+#      by: PyQt4 UI code generator 4.8.3
 #
 # WARNING! All changes made in this file will be lost!
 
 from PyQt4 import QtCore, QtGui
 
+try:
+    _fromUtf8 = QtCore.QString.fromUtf8
+except AttributeError:
+    _fromUtf8 = lambda s: s
+
 class Ui_WelcomeTab(object):
     def setupUi(self, WelcomeTab):
-        WelcomeTab.setObjectName("WelcomeTab")
+        WelcomeTab.setObjectName(_fromUtf8("WelcomeTab"))
         WelcomeTab.resize(530, 487)
         self.gridLayout = QtGui.QGridLayout(WelcomeTab)
-        self.gridLayout.setObjectName("gridLayout")
+        self.gridLayout.setObjectName(_fromUtf8("gridLayout"))
         self.gridLayout_2 = QtGui.QGridLayout()
-        self.gridLayout_2.setObjectName("gridLayout_2")
+        self.gridLayout_2.setObjectName(_fromUtf8("gridLayout_2"))
         spacerItem = QtGui.QSpacerItem(40, 20, QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Minimum)
         self.gridLayout_2.addItem(spacerItem, 0, 0, 1, 1)
         self.checkBox = QtGui.QCheckBox(WelcomeTab)
-        self.checkBox.setObjectName("checkBox")
+        self.checkBox.setObjectName(_fromUtf8("checkBox"))
         self.gridLayout_2.addWidget(self.checkBox, 0, 1, 1, 1)
         self.gridLayout.addLayout(self.gridLayout_2, 1, 0, 1, 1)
         self.textBrowser = QtGui.QTextBrowser(WelcomeTab)
@@ -29,11 +34,11 @@ class Ui_WelcomeTab(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.textBrowser.sizePolicy().hasHeightForWidth())
         self.textBrowser.setSizePolicy(sizePolicy)
-        self.textBrowser.setObjectName("textBrowser")
+        self.textBrowser.setObjectName(_fromUtf8("textBrowser"))
         self.gridLayout.addWidget(self.textBrowser, 0, 0, 1, 1)
 
         self.retranslateUi(WelcomeTab)
-        QtCore.QObject.connect(self.checkBox, QtCore.SIGNAL("stateChanged(int)"), WelcomeTab.dontShow)
+        QtCore.QObject.connect(self.checkBox, QtCore.SIGNAL(_fromUtf8("stateChanged(int)")), WelcomeTab.dontShow)
         QtCore.QMetaObject.connectSlotsByName(WelcomeTab)
 
     def retranslateUi(self, WelcomeTab):

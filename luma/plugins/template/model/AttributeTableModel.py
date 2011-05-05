@@ -93,8 +93,6 @@ class AttributeTableModel(QAbstractTableModel):
                     return "Default value"
 
     def flags(self, index):
-        if not index.isValid():
-            return QVariant()
         if index.column() == 1:
             return Qt.ItemIsSelectable | Qt.ItemIsEnabled | Qt.ItemIsEditable
         if index.column() == 4:
@@ -116,13 +114,15 @@ class AttributeTableModel(QAbstractTableModel):
                 if self.attributes.items()[row][1].getList()[column]:
                     return QIcon(':/icons/ok')
                 elif column == 1 and self.attributes.items()[row][1].getList()[5]:
-                    return QIcon(':/icons/ok')
+                    return QIcon(':/icons/okpurple')
                 else:
                     return QIcon(':/icons/no')
         
-        if (role == Qt.DisplayRole or role == Qt.EditRole):
+        elif (role == Qt.DisplayRole or role == Qt.EditRole):
             if column == 0 or column == 4:
                 return self.attributes.items()[row][1].getList()[column]
+        else:
+            return QVariant()
             
     def index(self, row, column, parent):
         if row < 0 or column < 0:

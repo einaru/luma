@@ -14,7 +14,7 @@ version = "0.2"
 author = "Per Ove"
 
 def getIcon():
-    return QtGui.QIcon(':/icons/luma-256')
+    return QtGui.QIcon(':/icons/plugins/tetris')
     
 
 def getPluginWidget(parent, mainwin):

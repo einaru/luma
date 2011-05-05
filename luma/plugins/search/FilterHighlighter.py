@@ -31,11 +31,13 @@ def format(color, style=''):
     f.setForeground(c)
     return f
 
+
 STYLES = {
     'keyword' : format('magenta'),
     'brace' : format('blue'),
     'operator' : format('red'),
 }
+
 
 class LumaFilterHighlighter(QSyntaxHighlighter):
     """Enables highlighting of LDAP search filters.
@@ -43,7 +45,7 @@ class LumaFilterHighlighter(QSyntaxHighlighter):
     keywords = ['objectClass']
     braces = [ '\(', '\)']
     operators = [
-        '\&', '\|' '\!',
+        '\&', '\|','\!',
         '=', '\~=', '>=', '<=',
     ]
     
@@ -86,3 +88,5 @@ class LumaFilterHighlighter(QSyntaxHighlighter):
                 index = expression.indexIn(text, index + length)
 
         self.setCurrentBlockState(0)
+
+# vim: tabstop=4 expandtab shiftwidth=4 softtabstop=4

@@ -35,8 +35,11 @@ class SplashScreen(QSplashScreen):
         self.setObjectName(u'splash_screen')
         self.setWindowFlags(self.windowFlags() | Qt.WindowStaysOnTopHint)
         self.setContextMenuPolicy(Qt.PreventContextMenu)
-        splash_image = QPixmap(u':/icons/luma-128')
+        splash_image = QPixmap(u':/icons/128/luma')
         self.setPixmap(splash_image)
         self.setMask(splash_image.mask())
         self.resize(128, 128)
         QMetaObject.connectSlotsByName(self)
+
+
+# vim: tabstop=4 expandtab shiftwidth=4 softtabstop=4

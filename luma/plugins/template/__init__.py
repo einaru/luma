@@ -7,7 +7,7 @@
 ###########################################################################
 
 from PyQt4.QtGui import *
-from base.util.IconTheme import pixmapFromThemeIcon
+from base.util.IconTheme import pixmapFromTheme
 import os.path
 
 lumaPlugin = True
@@ -17,7 +17,7 @@ version = "0.1"
 author = "MEG!"
 
 def getIcon():
-    return QIcon(pixmapFromThemeIcon("text-x-generic-template", ":/icons/template_plugin-plugin"))
+    return QIcon(pixmapFromTheme("text-x-generic-template", ":/icons/plugins/template"))
     
 ###############################################################################
 
@@ -35,3 +35,6 @@ def getPluginSettingsWidget(parent):
 
 def postprocess():
     return
+
+# vim: tabstop=4 expandtab shiftwidth=4 softtabstop=4
+

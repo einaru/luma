@@ -11,7 +11,7 @@
 import PyQt4
 from PyQt4.QtGui import QDialog
 from ..gui.StandardEditorDesign import Ui_StandardEditorDesign
-from base.util.IconTheme import pixmapFromThemeIcon
+from base.util.IconTheme import pixmapFromTheme
 
 class StandardEditor(QDialog, Ui_StandardEditorDesign):
 
@@ -20,7 +20,8 @@ class StandardEditor(QDialog, Ui_StandardEditorDesign):
         self.setupUi(self)
         
         # Set icon for label
-        editorPixmap = pixmapFromThemeIcon("editor", ":/icons/editor", 64, 64)
+        editorPixmap = pixmapFromThemeIcon(
+            "accessories-text-editor", ":/icons/48/accessories-text-editor")
         self.iconLabel.setPixmap(editorPixmap)
         
         self.value = None

@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file '/Users/perove_r/Documents/it2901/git/resources/forms/plugins/browser_plugin/PasswordEditorDesign.ui'
+# Form implementation generated from reading ui file '/mnt/debris/devel/git/luma/resources/forms/plugins/browser_plugin/PasswordEditorDesign.ui'
 #
-# Created: Thu Apr 28 15:29:12 2011
+# Created: Thu May  5 00:01:02 2011
 #      by: PyQt4 UI code generator 4.8.3
 #
 # WARNING! All changes made in this file will be lost!
@@ -96,10 +96,10 @@ class Ui_PasswordEditorDesign(object):
         self.methodBox = QtGui.QComboBox(PasswordEditorDesign)
         self.methodBox.setObjectName(_fromUtf8("methodBox"))
         self.gridlayout1.addWidget(self.methodBox, 1, 1, 1, 1)
-        self.strengthBar = QtGui.QProgressBar(PasswordEditorDesign)
-        self.strengthBar.setProperty(_fromUtf8("value"), 24)
-        self.strengthBar.setObjectName(_fromUtf8("strengthBar"))
-        self.gridlayout1.addWidget(self.strengthBar, 4, 1, 1, 1)
+        self.progressBar = QtGui.QProgressBar(PasswordEditorDesign)
+        self.progressBar.setProperty(_fromUtf8("value"), 24)
+        self.progressBar.setObjectName(_fromUtf8("progressBar"))
+        self.gridlayout1.addWidget(self.progressBar, 4, 1, 1, 1)
         self.gridlayout.addLayout(self.gridlayout1, 0, 1, 2, 1)
 
         self.retranslateUi(PasswordEditorDesign)

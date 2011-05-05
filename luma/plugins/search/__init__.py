@@ -18,9 +18,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see http://www.gnu.org/licenses/
 
-from PyQt4 import QtCore, QtGui
-from PyQt4.QtGui import QIcon, QPixmap
-from base.util.IconTheme import pixmapFromThemeIcon
+from PyQt4.QtGui import QIcon
 from .Search import (SearchPlugin, SearchPluginSettingsWidget)
 
 lumaPlugin = True
@@ -33,7 +31,7 @@ create filters to speed up efficiency.
 """
 
 def getIcon(iconPath = None):
-    return QIcon(pixmapFromThemeIcon('system-search', ':/icons/search_plugin-plugin'))
+    return QIcon(':/icons/plugins/search')
 
 
 def getPluginWidget(parent, mainwin):
@@ -46,3 +44,5 @@ def getPluginSettingsWidget(parent):
 
 def postprocess():
     return
+
+# vim: tabstop=4 expandtab shiftwidth=4 softtabstop=4

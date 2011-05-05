@@ -126,9 +126,8 @@ class SettingsDialog(QDialog, Ui_SettingsDialog):
             self.__logger.error(msg)
 
     def saveSettings(self):
-        """
-        This slot is called when the ok button is clicked. It saves the
-        selected settigns to file.
+        """This slot is called when the ok button is clicked. It saves
+        the selected settigns to file.
         """
         # Emit the settings changed signal
         self.onSettingsChanged.emit()
@@ -153,3 +152,6 @@ class SettingsDialog(QDialog, Ui_SettingsDialog):
     def cancelSettings(self):
         self.loadSettings()
         QDialog.reject(self)
+
+
+# vim: tabstop=4 expandtab shiftwidth=4 softtabstop=4

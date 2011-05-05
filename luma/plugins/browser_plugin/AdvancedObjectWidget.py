@@ -16,7 +16,7 @@ from base.backend.LumaConnection import LumaConnection
 from base.backend.ServerList import ServerList
 from base.backend.SmartDataObject import SmartDataObject
 from base.backend.ObjectClassAttributeInfo import ObjectClassAttributeInfo
-from base.util.IconTheme import pixmapFromThemeIcon
+from base.util.IconTheme import pixmapFromTheme
 from base.util.Paths import getLumaRoot
 
 from .model.EntryModel import EntryModel
@@ -35,10 +35,14 @@ class AdvancedObjectWidget(QWidget):
         self.initModel(smartObject, create)
 
         # Standard pixmaps used by the widget
-        self.reloadPixmap = pixmapFromThemeIcon("view-refresh", ":/icons/reload", w, h)
-        self.savePixmap = pixmapFromThemeIcon("document-save", ":/icons/save",w, h)
-        self.addPixmap = pixmapFromThemeIcon("list-add", ":/icons/single", w, h)
-        self.deleteSmallPixmap = pixmapFromThemeIcon("list-remove", ":/icons/edit-delete", w, h)
+        self.reloadPixmap = pixmapFromTheme(
+            "view-refresh", ":/icons/32/view-refresh", w, h)
+        self.savePixmap = pixmapFromTheme(
+            "document-save", ":/icons/32/document-save",w, h)
+        self.addPixmap = pixmapFromTheme(
+            "list-add", ":/icons/32/list-add", w, h)
+        self.deleteSmallPixmap = pixmapFromTheme(
+            "list-remove", ":/icons/32/list-remove", w, h)
 
         self.index = index
 
@@ -470,3 +474,5 @@ class AdvancedObjectWidget(QWidget):
                     QMessageBox.Cancel | QMessageBox.Ok,
                     QMessageBox.Cancel)
 
+
+# vim: tabstop=4 expandtab shiftwidth=4 softtabstop=4

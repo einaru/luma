@@ -51,8 +51,6 @@ class ObjectclassTableModel(QAbstractTableModel):
         return 1
     
     def flags(self, index):
-        if not index.isValid():
-            return QVariant()
         return Qt.ItemIsSelectable | Qt.ItemIsEnabled
     
     def data(self,index,role = Qt.DisplayRole):

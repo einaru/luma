@@ -20,12 +20,13 @@
 from PyQt4.QtCore import (QDir, QString)
 
 class LanguageHandler(object):
-    """ Helper class providing useful functionality for handling
+    """Helper class providing useful functionality for handling
     available application translations.
 
     We use the ISO 638-1 standard for 2 char language codes:
     http://en.wikipedia.org/wiki/List_of_ISO_639-1_codes
     """
+
     __isolangCodes = {
         u'af' : [u'Afrikaans', u'Afrikaans'],
         u'ar' : [u'العربية', u'Arabic'],
@@ -92,10 +93,10 @@ class LanguageHandler(object):
         self.__buildLanguageDictionary()
 
     def __buildLanguageDictionary(self):
-        """ Scannes the resources for  available translation files, and
+        """Scannes the resources for  available translation files, and
         builds a dictionary with the language code as key and language
         name as value. This works as long as we are consitent in filname
-        conventions for these files.
+        conventions for these files::
         
             luma_<iso-code>.qm
         
@@ -108,37 +109,38 @@ class LanguageHandler(object):
 
     @property
     def availableLanguages(self):
-        """ The available application language translations are
-        returned in a dictionary on the form:
+        """The available application language translations are
+        returned in a dictionary on the form::
+        
             { ... ,
             <iso code> : [ <native name>, <english name> ],
             ... }
         
-        @return: A dictionary containing all available application 
-                 languages.
+        Returns a dictionary containing all available application 
+        languages.
         """
         return self.__availableLanguages
 
     @property
     def translationPath(self):
-        """
-        @return: The full path to the directory containing the 
-                 translation files.
+        """Returns the full path to the directory containing the 
+        translation files.
         """
         return self.__translationPath
 
     def getQmFile(self, isoCode=''):
-        """ Get the translation file for the provided iso code.
+        """Returns the full path to the .qm file corrosponding to the
+        provided `isoCode`. If `isoCode` is empty the full path to the
+        english .qm file is returned.
         
-        @param isoCode:
-            A legal 2 char language code as spesified by the
-            ISO 638-1 standard. If it is empty the code for the default
-            language will be used (normally 'en').
+        Paramters:
         
-        @return:
-            The full path to the associated .qm translation file.
+        - `isoCode`: a legal 2 char language code as spesified by the
+          ISO 638-1 standard. If it is empty (default) 'en' is used.
         """
         if isoCode == '' or isoCode == None:
             isoCode = u'en'
 
         return QString(':/i18n/%s' % isoCode)
+
+# vim: tabstop=4 expandtab shiftwidth=4 softtabstop=4

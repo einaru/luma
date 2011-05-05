@@ -91,3 +91,5 @@ class ServerDelegate(QStyledItemDelegate):
         # else - default
         QStyledItemDelegate.setModelData(self, editor, model, index)
         
+
+# vim: tabstop=4 expandtab shiftwidth=4 softtabstop=4
