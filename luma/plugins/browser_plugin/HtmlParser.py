@@ -85,7 +85,7 @@ class HtmlParser:
         tmpList.append("""<td bgcolor="#B2CAE7" width="40%"><font size="+1"><b>Distinguished Name:</b></font></td>""")
         tmpList.append("""<td bgcolor="#B2CAE7" width="60%"><font size="+1"><b>""" + dn + """</b></font></td>""")
         if self.entryModel.CREATE:
-                tmpList.append("""<td width=5%><a href="RDN__0__edit"><img source=":/icons/edit"></a></td>""")
+                tmpList.append("""<td width=5%><a href="RDN__0__edit"><img source=":/icons/16/document-edit"></a></td>""")
 
         return ''.join(tmpList)
 
@@ -122,7 +122,7 @@ class HtmlParser:
                             break
             if allowDelete and (not (x == 'top')):
                 deleteName = x + "__delete\""
-                tmpList.append(""" <a href=\"""" + deleteName + """><img source=":/icons/deleteEntry"></a>""")
+                tmpList.append(""" <a href=\"""" + deleteName + """><img source=":/icons/16/edit-delete"></a>""")
             
             tmpList.append("""</td></tr>""")
         
@@ -283,16 +283,16 @@ class HtmlParser:
         if attributeModify:
         #if True:
             editName = univAttributeName + "__edit\""
-            tmpList.append("""<a href=\"""" + editName + """><img source=":/icons/edit"></a>""")
+            tmpList.append("""<a href=\"""" + editName + """><img source=":/icons/16/document-edit"></a>""")
         
             if allowDelete:
             #if True:
                 deleteName = univAttributeName + "__delete\""
-                tmpList.append(""" <a href=\"""" + deleteName + """><img source=":/icons/deleteEntry"></a>""")
+                tmpList.append(""" <a href=\"""" + deleteName + """><img source=":/icons/16/edit-delete"></a>""")
             
             if attributeBinaryExport:
                 exportName = univAttributeName + "__export\""
-                tmpList.append(""" <a href=\"""" + exportName + """><img source=":/icons/exportPixmap"></a>""")
+                tmpList.append(""" <a href=\"""" + exportName + """><img source=":/icons/16/document-export"></a>""")
         
         tmpList.append("""</td>""")
         

@@ -30,7 +30,7 @@ class AddAttributeWizard(QWizard, Ui_AddAttributeWizardDesign):
         self.restart()
 
         attributePixmap = pixmapFromTheme(
-            "addattribute", ":/icons/addattribute")
+            "addattribute", ":/icons/add-attribute")
         objectclassPixmap = pixmapFromTheme(
             "objectclass", ":/icons/objectclass")
         self.imageLabel.setPixmap(attributePixmap)

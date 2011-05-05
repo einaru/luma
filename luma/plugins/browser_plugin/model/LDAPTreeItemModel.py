@@ -11,9 +11,11 @@ from plugins.browser_plugin.item.RootTreeItem import RootTreeItem
 from plugins.browser_plugin.item.LDAPErrorItem import LDAPErrorItem
 from base.backend.LumaConnection import LumaConnection
 
-from PyQt4 import QtCore
-from PyQt4.QtCore import QAbstractItemModel, pyqtSlot, Qt
-from PyQt4.QtGui import qApp, QMessageBox, QProgressDialog
+from PyQt4.QtCore import QAbstractItemModel, pyqtSlot, pyqtSignal, Qt
+from PyQt4.QtCore import QModelIndex, QVariant, QCoreApplication, QRunnable
+from PyQt4.QtCore import QThreadPool
+
+from PyQt4.QtGui import QMessageBox
 
 class LDAPTreeItemModel(QAbstractItemModel):
     """
@@ -21,12 +23,12 @@ class LDAPTreeItemModel(QAbstractItemModel):
     """
     
     # Callers can listed to this signal and display busy-messages as they see fit
-    workingSignal = QtCore.pyqtSignal(bool)
+    workingSignal = pyqtSignal(bool)
     # Emitted by the workerThread when finished
-    listFetched = QtCore.pyqtSignal(QtCore.QModelIndex, tuple)
+    listFetched = pyqtSignal(QModelIndex, tuple)
 
     def __init__(self, serverList, parent=None):
-        QtCore.QAbstractItemModel.__init__(self, parent)
+        QAbstractItemModel.__init__(self, parent)
         self.listFetched.connect(self.workerFinished)
         self.verified = []
         self.populateModel(serverList)
@@ -53,15 +55,15 @@ class LDAPTreeItemModel(QAbstractItemModel):
         """
 
         if not index.isValid():
-            return QtCore.QVariant()
+            return QVariant()
 
         #Is also (should also be) checked in the items themselves
-        #if role != QtCore.Qt.DisplayRole and role != QtCore.Qt.DecorationRole:
+        #if role != Qt.DisplayRole and role != Qt.DecorationRole:
         #    return QtCore.QVariant()
 
         item = index.internalPointer()
 
-        return QtCore.QVariant(item.data(index.column(), role))
+        return QVariant(item.data(index.column(), role))
 
     def flags(self, index):
         """
@@ -69,18 +71,18 @@ class LDAPTreeItemModel(QAbstractItemModel):
         """
 
         if not index.isValid():
-            return QtCore.Qt.ItemIsEnabled
+            return Qt.ItemIsEnabled
 
-        return QtCore.Qt.ItemIsEnabled | QtCore.Qt.ItemIsSelectable
+        return Qt.ItemIsEnabled | Qt.ItemIsSelectable
 
     def headerData(self, section, orientation, role):
         """
         The root defines the header.
         """
-        if orientation == QtCore.Qt.Horizontal and role == QtCore.Qt.DisplayRole:
+        if orientation == Qt.Horizontal and role == Qt.DisplayRole:
             return self.rootItem.data(section)
 
-        return QtCore.QVariant()
+        return QVariant()
 
     def index(self, row, column, parent):
         """
@@ -90,7 +92,7 @@ class LDAPTreeItemModel(QAbstractItemModel):
 
         # Really needed? Should avoid calls to rowCount() where possible
         if row < 0 or column < 0: #or row >= self.rowCount(parent) or column >= self.columnCount(parent):
-            return QtCore.QModelIndex()
+            return QModelIndex()
 
         if not parent.isValid():
             parentItem = self.rootItem
@@ -99,13 +101,13 @@ class LDAPTreeItemModel(QAbstractItemModel):
 
         # Probably not needed
         if parentItem.populated == 1 and row >= parentItem.childCount():
-            return QtCore.QModelIndex()
+            return QModelIndex()
 
         childItem = parentItem.child(row)
         if childItem:
             return self.createIndex(row, column, childItem)
         else:
-            return QtCore.QModelIndex()
+            return QModelIndex()
 
     def parent(self, index):
         """
@@ -113,14 +115,14 @@ class LDAPTreeItemModel(QAbstractItemModel):
         """
 
         if not index.isValid():
-            return QtCore.QModelIndex()
+            return QModelIndex()
 
         childItem = index.internalPointer()
         parentItem = childItem.parent()
 
         if parentItem == self.rootItem:
             # Invalid indexes reffer to the root
-            return QtCore.QModelIndex()
+            return QModelIndex()
 
         return self.createIndex(parentItem.row(), 0, parentItem)
 
@@ -181,7 +183,7 @@ class LDAPTreeItemModel(QAbstractItemModel):
 
         if not len(serverList.getTable()) > 0:
             # If there's no servers :(
-            self.rootItem.appendChild(LDAPErrorItem(QtCore.QCoreApplication.translate("LDAPTreeItemModel", "No servers defined"), None, self.rootItem))
+            self.rootItem.appendChild(LDAPErrorItem(QCoreApplication.translate("LDAPTreeItemModel", "No servers defined"), None, self.rootItem))
             return
 
         for server in serverList.getTable():
@@ -231,7 +233,7 @@ class LDAPTreeItemModel(QAbstractItemModel):
         """
         QMessageBox.critical(None,"Error","Couldn't (re)populate list.\nError was: "+str(exceptionObject))
 
-    @pyqtSlot(QtCore.QModelIndex)
+    @pyqtSlot(QModelIndex)
     def reloadItem(self, parentIndex):
         """
         Re-populates an already populated item, e.g. when a filter or limit it set.
@@ -261,7 +263,7 @@ class LDAPTreeItemModel(QAbstractItemModel):
         
         #self.doneWorking()
 
-    @pyqtSlot(QtCore.QModelIndex)
+    @pyqtSlot(QModelIndex)
     def clearItem(self, parentIndex):
         """
         Removes all children for this item.
@@ -296,7 +298,7 @@ class LDAPTreeItemModel(QAbstractItemModel):
     def deleteSubtree(self, index, withNode = 0):
         pass
     
-    def removeRows(self, row, count, parent = QtCore.QModelIndex()):
+    def removeRows(self, row, count, parent = QModelIndex()):
         """ Removew rows from the model
         """
         if parent.isValid():
@@ -323,7 +325,7 @@ class LDAPTreeItemModel(QAbstractItemModel):
 
         # Do the search (in another thread)
         thread = Worker(self, parentIndex, parentItem)
-        QtCore.QThreadPool.globalInstance().start(thread)
+        QThreadPool.globalInstance().start(thread)
         parentItem.loading = True
 
     def unverified(self, serverObject):
@@ -331,7 +333,7 @@ class LDAPTreeItemModel(QAbstractItemModel):
             return True
         return True
 
-    @pyqtSlot(QtCore.QModelIndex, tuple)
+    @pyqtSlot(QModelIndex, tuple)
     def workerFinished(self, parentIndex, tupel):
         if parentIndex.isValid():
 
@@ -356,9 +358,7 @@ class LDAPTreeItemModel(QAbstractItemModel):
 
             self.layoutChanged.emit()
         
-class Worker(QtCore.QRunnable):
-
-    #listFetched = QtCore.pyqtSignal(QtCore.QModelIndex, tuple)
+class Worker(QRunnable):
 
     def __init__(self, target, parentIndex, parentItem):
         super(Worker, self).__init__()
