@@ -31,7 +31,7 @@ from PyQt4.QtCore import Qt, QPersistentModelIndex, QModelIndex
 
 from .AdvancedObjectWidget import AdvancedObjectWidget
 from .NewEntryDialog import NewEntryDialog
-#from .gui.BrowserDialogs import ExportDialog, DeleteDialog
+from .gui.BrowserDialogs import ExportDialog, DeleteDialog
 from .item.AbstractLDAPTreeItem import AbstractLDAPTreeItem
 from .model.LDAPTreeItemModel import LDAPTreeItemModel
 from base.backend.LumaConnection import LumaConnection
