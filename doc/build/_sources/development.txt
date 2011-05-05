@@ -1,39 +1,94 @@
-****************
-Luma Development
-****************
+***********
+Development
+***********
 
-Getting started
-===============
-Luma uses git_ for revision control. To get started developing for Luma you
-need to install some required development tools. These include:
+.. Contents
+.. ========
+.. 1. Getting Started
+.. 1.1. Libraries and tools
+.. 1.2. Development tools
+.. 2. Repository Structure
+.. 2.1. The luma folder
+.. 2.2. The resources folder
+.. 2.3. The tools folder
+.. 2.4. The doc folder
+.. 3. Development
+.. 3.1. Coding Style
+.. 3.1.1. Source code header
+.. 3.1.2. Source code footer
+.. 3.2. Plugin development
+.. 3.2.1 Available Luma plugins
+.. 3.2.2 A skeleton plugin
+.. 3.2.3 Settings support for plugins
+.. 3.2.4 Internationalization support for plugins
+.. 3.3. Documentation
+.. 3.3.1. Source code documentation
+.. 4. Deployment
 
-- git_ 
-- python_ >= *2.7* < *3*
-- python-ldap_ >= *2.3.10*
-- PyQt4_ >= *4.8.3*
 
-.. _git: http://git-scm.com/
+1. Getting Started
+==================
+This document is intended for Luma developers. For install instructions see the
+user documentation, either on the Luma website (http://luma.sf.net/) or see the
+INSTALL file in the source distribution.
+
+
+1.1. Libraries and tools
+------------------------
+In order to start *hacking* on the Luma source, you will need to install a few
+libraries and tools that Luma depends upon. The following python libraries is
+required for Luma development:
+
+- python_ >= 2.6 < 3
+- python-ldap_ >= 2.3
+- PyQt4_ >= 4.8
+
+When you have these dependencies installed, you can proceed to get your hand on
+the Luma sourcecode. git_ is used to as the revision control system for Luma,
+and in order to get your hand on the source code, you will need to install it. 
+Git is available for both *Linux*, *Mac OSX* and *Windows*, and can be 
+downloaded from http://git-scm.com.
+
+The Luma git_ repository is hosted on sourceforge_. To clone and create your own
+branch you can run the following commands in your favorite shell::
+
+    $ git clone http://luma.sf.net/repo/luma.git luma-devel
+    $ cd luma-devel
+    $ git fetch
+    $ git checkout -b my-luma-feature develop
+
+
 .. _python: http://www.python.org/
 .. _python-ldap: http://python-ldap.org/
 .. _PyQt4: http://www.riverbankcomputing.com/software/pyqt/download
+.. _git: http://git-scm.com/
+.. _sourceforge: http://sourceforge.net/
 
-To checkout the Luma source code you run::
 
-    $ git clone protocol://path.to.luma/repository/luma.git luma
+1.2. Development tools
+----------------------
+There exists a number of tools that can be helpful when developing python and 
+PyQt4 code. We also have produced some tools spesific for the Luma development 
+and deployment process.
 
-Then you should create your own branch from the ``develop`` branch::
+- `Qt4 Designer`_:
+  This application is part of the Qt framework, which is helpful for creating
+  Qt graphical interfaces. You can create the GUI design and use the PyQt4 tool
+  ``pyuic4`` to generate python source code from it.
 
-    $ git fetch
-    $ git checkout develop
-    $ git chekcout -b my-luma-feature develop
+- `Qt4 Linguist`_: 
+  This application is part of the Qt framework, and is used for the 
+  internationalization process for the application.
 
-.. todo::
-   Python versions should be tested for compability. Development is done with
-   the python 2.7.x branch, but it should be tested againt other (earlier)
-   version aswell (at least the 2.6.x branch).
 
-Repository structure
-====================
+.. _Qt4 Designer: http://doc.trolltech.com/4.7/designer-manual.html
+.. _Qt4 Linguist: http://doc.trolltech.com/4.7/linguist-manual.html
+
+
+2. Repository structure
+=======================
+The first thing you should do after all libraries and tools are installed, is to
+get familiar with the structure of the repository:
 
 ::
 
@@ -41,8 +96,8 @@ Repository structure
     |-- bin
     |-- contrib
     |-- data
-    |-- doc (1)
-    |-- luma (2)
+    |-- doc
+    |-- luma
     |   |-- base
     |   |   |-- backend
     |   |   |-- gui
@@ -50,44 +105,116 @@ Repository structure
     |   |   `-- util
     |   |-- plugins
     |   `-- test
-    |-- resources (3)
+    |-- resources
     |   |-- forms
     |   |-- i18n
     |   `-- icons
-    |-- setup (4)
-    |-- tools (5)
-    |-- luma.pro (6)
-    `-- luma.qrc (7)
+    |-- setup
+    `-- tools
 
 
-1. *Luma documentation files*. All Luma documentation files should be placed 
-   here.
-2. *Luma source code files*. All Luma python modules should be placed in an 
-   appropriate python package in this location.
+2.1 The luma folder
+-------------------
+The *Luma source code files* is located in the ``luma`` folder. This is where
+you should put all your Luma python modules. In the ``luma`` folder you will
+find the following python packages:
 
-    - ``base.backend``: Contains modules for the core functionality, including
-      ldap connection and operation wrappers.
-    - ``base.gui``: Contains all gui modules.
-    - ``base.util``: Conatins all utility modules that can be used for both the
-      base modules aswell as the plugins.
-    - ``plugins``: Contains all plugins included in the core application.
+- ``base``:
+  Contains modules for the base application, and is divided into:
 
-3. *Luma resource files*. All resource files should be placed here. This
-   include all icons (``icons``), all Qt4 Linguist files (``i18n``) and all Qt4
-   Designer files (``forms``). All files in the resource folder will be 
-   included as input for the ``lumarcc.py`` script when generating runtime 
-   resources for the Luma application.
-4. Platform spesific setup files.
-5. Luma spesific development and deployment tools.
-6. The Luma project file. This file is generated by ``lumarcc.py``.
-7. The Luma resource file. This file is generated by ``lumarcc.py`` in and is 
-   used for creating the ``resources.py`` file, which contains compiled icons 
-   and translation files.
+   * ``base.backend``:
+     Contains all modules that handles the underlaying functionality is located
+     here. As a rule off thumb *you should not place any python code with gui
+     dependencies in this package*.
+   * ``base.gui``:
+     Contains all the GUI related modules, including the MainWindow and all the
+     Dialogs used by the main aplication.
+   * ``base.util``:
+     Contains all utility modules, that both the main application and plugins
+     can make use off.
 
-Coding Style
-============
-You should follow PEP8_ when writing Python source code for Luma. 
-Especially you should use
+- ``plugins``:
+  All the plugins that is shipped with the base Luma application is located in
+  their own subfolder here.
+
+- ``test``:
+  All test code is located here. If (when) you write your own unit-tests you 
+  should put them in this location. Python modules in this folder is not 
+  included when deploying Luma.
+
+
+2.2 The resources folder
+------------------------
+The *Luma resource files* is located in the ``resources`` folder. This folder is
+divided into several sub-folders:
+
+- ``forms``:
+  Contains all the *UI* files created with the *Qt Designer* tool. All UI files
+  should be placed here with a ``*Design.ui`` extension. Note that we mark these
+  files with the *Design* suffix in order to easily distinguish them when python
+  code is generated from them. Note also that *UI* files for plugins should be
+  placed in its own subfolder under the ``plugins`` subfolder.
+
+- ``i18n``:
+  Contains all the translation files. When new translation files is created,
+  they should be placed here, with a valid 2 char suffix, following the
+  *ISO 638-1 standard* [1]_ and a ``.ts`` extension. Luma makes use of the Qt
+  internazionallization system, and is translated with the Qt Linguist tool.
+  Note that both the translation source files ``.ts`` and the release files 
+  ``.qm`` should be placed in the same folder.
+
+- ``icons``:
+  Contains all the icons that is used by the application. The folder structure
+  and icon naming should follow the icon-theme_ and icon-naming_ recommendations
+  provided by the freedesktop.org_ project.
+
+
+.. _icon-theme: http://www.freedesktop.org/wiki/Specifications/icon-theme-spec
+.. _icon-naming: http://www.freedesktop.org/wiki/Specifications/icon-naming-spec
+.. _freedesktop.org: http://www.freedesktop.org/wiki/
+
+
+2.3 The tools folder
+--------------------
+All the resource files located in the ``resources`` folder described above, is
+processed in some way in order to make use of them in the running application.
+The ``tools`` folder contains all the Luma custom scripts, that help automating
+this process.
+
+The ``lumarcc.py`` script can be used to update both the resource file 
+(``luma.qrc``), the project file (``luma.pro``), and the translation files as
+well as generating python code from the *UI* files. Translation files and icons
+are compiled into the ``resources.py`` (located in the top-level source code 
+folder). Python code for the *UI* files is generated into locations based on the
+structure in the ``resources/forms`` folder.
+
+For more information on how to use the ``lumarcc.py`` script, you can run it
+with the ``-h`` or ``--help`` option::
+
+    $ cd tools
+    $ python lumarcc.py --help
+
+
+2.4 The doc folder
+------------------
+The *Luma documentation files* is located in the ``doc`` folder. We use reST_
+and Sphinx_ to write and generate the user documentation. All documentation
+source files written in reStructuredText (reST) should be placed in the 
+``source`` subfolder, with a ``.rst`` extension. ``Makefiles`` for both *UNIX*
+and *Windows* is also available in the ``doc`` folder.
+
+
+.. _reST: http://docutils.sourceforge.net/rst.html
+.. _Sphinx: http://sphinx.pocoo.org/
+
+
+3. Development
+==============
+
+3.1 Coding Style
+----------------
+You should follow PEP8_ when writing Python source code for Luma. You should
+especially try to use:
 
 - 4 spaces for indentation
 - CamelCase for methods name
@@ -99,30 +226,35 @@ Especially you should use
 - python properties for getters and setter
 - import statements as described in PEP328_
 
-.. tip::
-    These coding style guidelines is **only guidelines**. The first priority is 
-    allways to write well documented and readable code. If the mentioned 
-    guidelines renders your implementation less readable or understandable, you
-    are free to (and should) bypass the affected guideline, and perhaps 
-    consider proposing modifications to the **Luma coding style guidelines**.
+The *Coding Style* guidelines is **only guidelines**, meaning that the first
+(and main) priority is allways to write **well documented** and **readable
+code**. If these guidelines renders your implementation *less readable* or 
+*less understandable*, you are free to (and should) bypass the affected 
+guideline, and perhaps consider proposing modifications to the *Coding Style*
+guidelines.
+
 
 .. _PEP8: http://www.python.org/dev/peps/pep-0008/
 .. _PEP328: http://www.python.org/dev/peps/pep-0328/
 
-Source code headers
--------------------
-If you contribute new modules to the Luma base application, you should provide
-sufficient information about the source code. This include at least your name
-and a license notice.
 
-.. tip::
-    The base Luma application is released under the *GNU General Public License
-    version 2*, and so should yours, if it is to be included in the base 
-    distribution. Either way, if you have some external demands, the pick of 
-    license _must_ be compatible with the GPL [3]_
+3.1.1 Source code header
+........................
+When writing python modules for the Luma base application, you should include a
+header comment that describes the name of the contributors and the license for 
+the module. The contributors should be grouped by year. If you modify an 
+existing module you can add your name and email to the contributor list (if you
+feel you deserve it :) ).
 
+Remember that the base Luma application is released under the *GNU General
+Public License version 2* or newer. When you contribute new modules you should
+also make them available under the same license. If you have some issues, i.e.
+uses code that is made available under another license, you should consult the
+Luma development theme. A list of GPL compatible licenses is available at:
+http://www.gnu.org/licenses/license-list.html#GPLCompatibleLicenses.
 
-**Default Luma source code header**::
+Belov is the default source code header used for the python modules in the base
+Luma application::
 
     # -*- coding: utf-8 -*-
     #
@@ -143,74 +275,225 @@ and a license notice.
     #
     # You should have received a copy of the GNU General Public License
     # along with this program.  If not, see http://www.gnu.org/licenses/
-    # 
+
+
+3.1.2. Source Code Footer
+.........................
+Because a lot of the Luma developers is using the brilliant vim_ text editor,
+you should also include the following entry at the end of your python modules::
+
     # vim: tabstop=4 expandtab shiftwidth=4 softtabstop=4
 
+This way we can eliminate some possible issues regarding mixing of tabs and
+spaces.
 
-Source code documentation
--------------------------
+
+.. _vim: http://vim.org/
+
+
+3.2. Plugin development
+-----------------------
+Luma support plugins written in python and PyQt4, and most of the functionality
+that Luma provides, comes through independent plugins. Most notably is the
+*Browser* plugin that enables the user to browse an LDAP enabled server much
+like a regular file browser.
+
+Below are a selection of criterias that a Luma plugin *must* or *should* meet,
+in order to be included in the base application.
+
+- It *must* be written in python and PyQt4.
+- It *must* be *cross-platform*, i.e. The plugin must provide the same 
+  functionality on all supported platforms (*Linux*, *Windows* and *Mac OSX*).
+- It *must* be available under the *GNU General Public License version 2* or
+  newer, or another GPL compatible license [2]_.
+- It *should* provide usefull LDAP related functionality.
+
+
+3.2.1 Available Luma plugins
+----------------------------
+The currently available plugins that is included in Luma is:
+
+- *Browser*
+- *Template*
+- *Search*
+
+Plugins that aws included in Luma 2.4, but is not yet ported to PyQt4 is:
+
+- *Schemabrowser*
+- *Massive User Creation*
+- *User Management*
+- *Admin Utilities*
+
+
+3.2.2 A skeleton plugin
+-----------------------
+The Luma ``PluginLoader`` expects to find some attributes and methods in the
+rootlevel ``__init__.py`` file in the plugin location. As a minimum, this file
+should include the following::
+
+
+
+    from base.util.IconTheme import iconFromTheme    
+    from MyPlugin import (MyPluginWidget, MyPluginSettingsWidget)
+
+    lumaPlugin = True
+    pluginName = u'plugin-name'
+    pluginUserString = u'Plugin name'
+    version = u'0.1'
+    author = u'Your Name'
+    description = u"""A short and consize description of the plugin."""
+
+
+    def getIcon(iconPath = None):
+        """Returns the plugin icon, which should be a PyQt4.QtGui.QIcon.
+        """
+        return iconFromTheme('theme-icon', 'fallback-icon')
+
+
+    def getPluginWidget(parent):
+        """Returns the main plugin widget.Typically a
+        PyQt4.QtGui.QWidget instance.
+        """
+        return MyPluginWidget(parent)
+
+
+    def getPluginSettingsWidget(parent):
+        """Returns the settings widget for the plugin. Typically a
+        PyQt4.QtGui.QWidget instance.
+        """
+        return MyPluginSettingsWidget(parent)
+
+
+    def postprocess():
+        return
+
+
+3.2.3 Settings support for plugins
+----------------------------------
+In the ``base.backend`` package of the Luma distribution, there is a settings
+wrapper for plugins. This class give plugins aksess to the main application
+configuration file. If you need to save some settings for your plugins you 
+*must* implement a ``writeSettings`` method in the plugin settings widget::
+
+    class MyPluginSettingsWidget(QWidget):
+        """This class provides the GUI for editing the available settings
+        for the `MyPlugin` plugin.
+        """
+
+        def loadSettings(self):
+            """Loads the plugin settings using the PluginSettings class.
+            """
+            settings = PluginSettings('plugin-name')
+            someValue = settings.pluginValue('some-key')
+
+        def writeSettings(self):
+            """Slot for the onSettingsChanged signal (emitted from the 
+            SettingsDialog). Writes the plugin settings to disk.
+            """
+            settings = PluginSettings('plugin-name')
+            settings.setPluginValue('some-key', 'some-value')
+            del settings
+
+
+3.2.4 Internationalization support for plugins
+----------------------------------------------
+In order to provide runtime retransalations of a plugin, a few additional 
+implementations must be included in the plugin. The plugin must catch the 
+``QEvent.LanguageChange`` [3]_ event and act accordigly upon it. It is
+recommended to create a dedicated method that can be called in order to offer
+the transalation of the translatable string values::
+
+    def changeEvent(self, event):
+        """This event is generated when a new translator is loaded or the 
+        system language (locale) is changed.
+        """
+        if QEvent.LanguageChange == event.type():
+            self.retranslateUi(self)
+            ...
+
+    def retranslateUi(self):
+        """Explicitly translate the gui strings."""
+        ...
+
+It is also possible to catch the ``QEvent.LanguageChange`` event with a event
+handler implementation. You can look at the *Search* plugin for one possible
+implementation of a dedicated event handler class.
+
+
+3.3. Documentation
+==================
+Documentation is an essential part of open source projects, and you should
+prioritice this when contributing to Luma.
+
+
+3.3.1 Source code documentation
+-------------------------------
 Python source code should allways be documented. First of all methods should
-include a standard python docstring, describing the purpose of the method.
-Further more we belive that code code can be written without the need for
-inline comments. In some cases this is of course necessary.
+include a standard python docstring, describing the purpose of the method. 
+Further more we belive that code can be written without the need for inline
+comments. In some cases this is of course necessary and or desirable.
 
 If you modify large blocks of code in a file, you might consider keeping the 
 old codeblock in the file by commenting it out with the ``#`` character. You
 should also add some information in relation to your new code, summarizing
 the changes you have made.
 
-**Example**::
+When you document your source code, you should try to use reST_ style syntax,
+in addition to following the before mentioned `3.1 Coding Style`_ guidelines.
+
+Here is a mockup example of a class with reST_ style documentation::
 
     class Cosmik(object):
-        """This class mimics the essence of the legend of Frank Zappa
+        """The `Cosmik` class mimics the myth and legend Frank Zappa.
+
+        It includes some methods that does something and some methods that
+        does other things.
         """
 
-        ...
+        def debris(self, paramOne, paramTwo):
+            """Returns a list of cosmik debris given that some conditions
+            is met. the empty list [] is returned if not.
 
-        def debris(self, *args, **kwargs):
-            """Generates debris of the Cosmik kind.
+            Parameters:
 
-            @return:
-                A list of cosmik debris is returned if some conditions is
-                met, the empty list [] if not.
+            - `paramOne`: this is used for some condition.
+            - `paramTwo`: this is used to fetch debris.
             """
             cosmikDebris = []
             for x in self.__someInternalStuff():
-                if someCondition is met for x:
-                    cosmikDebris.append(x)
+                if not someCondition(paramOne) is None:
+                    cosmikDebris.append(self.someOtherStuff(paramTwo))
+            
             return cosmikDebris
 
-        ...
 
-Development tools
-=================
-There exists a number of tools that can be helpful when developing python and 
-PyQt4 code. We also have produced some tools spesific for the Luma development 
-and deployment process.
+4. Deployment
+=============
+Luma is currently deployed with `distutils_`, which is included in the python
+standard library. The ``setup.py`` script is capable of creating source
+distributions for *UNIX* and *Windows* systems, as well as binary distributions
+for *Windows* (``.exe`` and ``.msi``) as well as generic ``.rpm`` packages, used
+on a number of Linux systems.
 
+All external resources that is to be included in the deployed application (such
+as *icons*, *man pages*, *desktop entries*, etc) should be placed in the 
+``data`` folder in the repository.
 
-Python and PyQt4 development tools
-----------------------------------
-- **Qt4 Designer**:
-  This application is part of the Qt framework, which is
-  helpful for creating Qt graphical interfaces. You can create the GUI design
-  and use the PyQt4 tool ``pyuic4`` to generate python source code from it.
-- **Qt4 Linguist**: 
-  This application is part of the Qt framework, and is used
-  for the internationalization process for the application.
+Example commands known to produce valid Luma distributions includes::
 
-
-Luma spesific development tools
--------------------------------
-Luma spesific tools is located in the `tools` directory in the repository.
-
-- **lumarcc.py**: This script automates the process of generating application 
-  resources. It currently supports dynamically building the project file
-  (``luma.pro``) and the resource file (``luma.qrc``), compiling Qt4 Designer 
-  files to python code.
-- **lumadoc.py**: This script automates the process of generating the 
-  documentation.
+    $ python setup.py sdist        # -> tar.gz on UNIX, zip on Windows
+    $ python setup.py bdist        # -> creates a dummy binary distribution
+    $ python setup.py bdist_exe    # Windows
+    $ python setup.py bdist_msi    # Windows
+    $ python setup.py bdist_rpm    # Linux
 
 
-.. [3] http://www.gnu.org/licenses/license-list.html#GPLCompatibleLicenses
+.. _distutils: http://docs.python.org/distutils/
+
+
+Footnotes
+=========
+.. [1] http://en.wikipedia.org/wiki/List_of_ISO_639-1_codes
+.. [2] http://www.gnu.org/licenses/license-list.html#GPLCompatibleLicenses.
+.. [3] http://www.riverbankcomputing.co.uk/static/Docs/PyQt4/html/qevent.html#Type-enum
 
