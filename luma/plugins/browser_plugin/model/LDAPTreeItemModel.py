@@ -383,5 +383,5 @@ class Worker(QRunnable):
             # Also, using QModelIndex through the whole process also works for some reason.
             # The new items are placed right even though QModelIndex.row() is wrong (e.g. because
             # an item was deleted above it). 
-            index = self.persistent.sibling(self.persistent.row(), self.persistent.column())
+            index = QModelIndex(self.persistent)
             self.target.listFetched.emit(index, tupel)
