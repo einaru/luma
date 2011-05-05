@@ -13,6 +13,7 @@ from base.backend.LumaConnection import LumaConnection
 
 from PyQt4.QtCore import QAbstractItemModel, pyqtSlot, pyqtSignal, Qt
 from PyQt4.QtCore import QModelIndex, QVariant, QCoreApplication, QRunnable
+from PyQt4.QtCore import QPersistentModelIndex
 from PyQt4.QtCore import QThreadPool
 
 from PyQt4.QtGui import QMessageBox
@@ -335,7 +336,9 @@ class LDAPTreeItemModel(QAbstractItemModel):
 
     @pyqtSlot(QModelIndex, tuple)
     def workerFinished(self, parentIndex, tupel):
+        print "start workerFinished"
         if parentIndex.isValid():
+            print "index valid"
 
             parentItem = parentIndex.internalPointer()
             parentItem.loading = False
@@ -357,17 +360,24 @@ class LDAPTreeItemModel(QAbstractItemModel):
             self.endInsertRows()     
 
             self.layoutChanged.emit()
+        print "end workerfinished"
         
 class Worker(QRunnable):
 
     def __init__(self, target, parentIndex, parentItem):
         super(Worker, self).__init__()
         self.target = target
-        self.parentIndex = parentIndex
+        self.parentIndex = QPersistentModelIndex(parentIndex)
         self.parentItem = parentItem
 
         self.parentItem.loading = True
 
     def run(self):
         tupel = self.parentItem.fetchChildList()
-        self.target.listFetched.emit(self.parentIndex, tupel)
+        from PyQt4.QtGui import qApp
+        if qApp.closingDown():
+            return
+        if self.parentIndex.isValid():
+            self.parentIndex = self.parentIndex.sibling(self.parentIndex.row(), self.parentIndex.column())
+            #self.parentIndex = self.parentIndex.sibling(self.parentIndex.row()+1, self.parentIndex.column()) # for fun
+            self.target.listFetched.emit(self.parentIndex, tupel)

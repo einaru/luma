@@ -130,6 +130,7 @@ class BrowserView(QWidget):
         #self.entryList.setAlternatingRowColors(True)
         self.entryList.setAnimated(True) # Somewhat cool, but should be removed if deemed too taxing
         self.entryList.setUniformRowHeights(True) #MAJOR optimalization for big lists
+        #self.entryList.setExpandsOnDoubleClick(False)
         self.entryList.setModel(self.ldaptreemodel)
         self.entryList.setMouseTracking(True)
         self.entryList.viewport().setMouseTracking(True)
@@ -187,6 +188,8 @@ class BrowserView(QWidget):
         # This is a list of QModelIndex objects, which will be used by
         # the various context menu slots.
         # We therfore store it as a class member
+        self.entryList.expandAll()
+        return
         self.selection = self.entryList.selectedIndexes()
 
         openSupport = True
