@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file '/mnt/debris/devel/git/luma/resources/forms/AboutCreditsDesign.ui'
+# Form implementation generated from reading ui file 'd:\Skole\it2901\resources\forms\AboutCreditsDesign.ui'
 #
-# Created: Thu May  5 00:01:00 2011
-#      by: PyQt4 UI code generator 4.8.3
+# Created: Thu May 05 14:02:36 2011
+#      by: PyQt4 UI code generator 4.8.2
 #
 # WARNING! All changes made in this file will be lost!
 

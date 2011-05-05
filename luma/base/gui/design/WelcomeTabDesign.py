@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file '/mnt/debris/devel/git/luma/resources/forms/WelcomeTabDesign.ui'
+# Form implementation generated from reading ui file 'd:\Skole\it2901\resources\forms\WelcomeTabDesign.ui'
 #
-# Created: Thu May  5 00:01:01 2011
-#      by: PyQt4 UI code generator 4.8.3
+# Created: Thu May 05 14:02:38 2011
+#      by: PyQt4 UI code generator 4.8.2
 #
 # WARNING! All changes made in this file will be lost!
 

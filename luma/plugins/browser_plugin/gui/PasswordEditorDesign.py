@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file '/mnt/debris/devel/git/luma/resources/forms/plugins/browser_plugin/PasswordEditorDesign.ui'
+# Form implementation generated from reading ui file 'd:\Skole\it2901\resources\forms\plugins\browser_plugin\PasswordEditorDesign.ui'
 #
-# Created: Thu May  5 00:01:02 2011
-#      by: PyQt4 UI code generator 4.8.3
+# Created: Thu May 05 14:02:41 2011
+#      by: PyQt4 UI code generator 4.8.2
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -115,7 +115,7 @@ class Ui_PasswordEditorDesign(object):
 
     def retranslateUi(self, PasswordEditorDesign):
         PasswordEditorDesign.setWindowTitle(QtGui.QApplication.translate("PasswordEditorDesign", "New password", None, QtGui.QApplication.UnicodeUTF8))
-        self.iconLabel.setText(QtGui.QApplication.translate("PasswordEditorDesign", "PW", "DO NOT TRANSLATE", QtGui.QApplication.UnicodeUTF8))
+        self.iconLabel.setText(QtGui.QApplication.translate("PasswordEditorDesign", "PW", None, QtGui.QApplication.UnicodeUTF8))
         self.okButton.setText(QtGui.QApplication.translate("PasswordEditorDesign", "&OK", None, QtGui.QApplication.UnicodeUTF8))
         self.cancelButton.setText(QtGui.QApplication.translate("PasswordEditorDesign", "&Cancel", None, QtGui.QApplication.UnicodeUTF8))
         self.textLabel1.setText(QtGui.QApplication.translate("PasswordEditorDesign", "Strength:", None, QtGui.QApplication.UnicodeUTF8))
