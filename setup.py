@@ -84,6 +84,7 @@ textfiles = [
     'AUTHORS',
     'Changelog',
     'COPYING',
+    'HACKING',
     'INSTALL',
     'README',
     'TODO',

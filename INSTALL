@@ -1,9 +1,6 @@
 *******
 INSTALL
 *******
-.. :Author: Einar Uvsløkk
-   :Email:  einar.uvslokk@linux.com
-   :Date:   April 14, 2011
 
 Installing from the git repository
 ==================================
@@ -35,6 +32,7 @@ example::
 
 	$ ln -s ~/bin/luma-3.0.6/luma/luma.py ~/bin/luma
 
+
 Systemwide install from your local copy
 ---------------------------------------
 Use the ``setup.py`` file to install Luma using the python ``distutils``
@@ -45,12 +43,14 @@ module::
 NOTE: To uninstall you must manually delete all installed files. These are 
 typically located in ``/usr/lib/python-xxx/site-packages/luma``
 
+
 Source distribution installation
 ================================
 Standard *python* source distribution is available for installation. If you 
 are running *Linux* or another *UNIX-like system*, you can grab the latest 
 source tarball, and `Install from tarball`_. If you are running *Microsoft 
 Windows*, you can grab the latest zip-archive, and `Install from zip-archive`_.
+
 
 Install from tarball
 --------------------
@@ -63,6 +63,7 @@ tarball and install using the included ``setup.py`` script.::
 	$ cd luma-3.0.6
 	$ sudo python setup.py install
 
+
 Install from zip-archive
 ------------------------
 If your installing on *Microsft Windows* you should download the zip-archive
@@ -72,6 +73,7 @@ from: http://luma.sf.net/get/latest-zip.::
 	$ cd luma-3.0.6
 	$ python.exe setup.py install
 
+
 Prepackaged Luma distribution
 =============================
 
@@ -80,6 +82,7 @@ Prepackaged Luma distribution
     Luma distributions.
 
 The following platform spesific Luma packages are available:
+
 
 Linux
 -----
@@ -96,11 +99,13 @@ Linux
 
 	$ pacman -S luma
 
+
 Microsoft Windows
 -----------------
 
 An application bundle for *Microsoft Windows*, including all runtime 
 dependencies can be downloaded from http://luma.sf.net/get/latest-win.
+
 
 Mac OS X
 --------

@@ -21,6 +21,7 @@ Plugins included in the base application:
 - **Search**: A specialized search plugin to do advanced and complex search on a
   LDAP server. Supports filter creation that can be applied in the Browser 
   plugin.
+
 .. - **Schema browser**:
 .. - **Addressbook**: 
 .. - **Massive user creation**:
@@ -36,7 +37,6 @@ Contents
    INSTALL.rst
    userguide.rst
    development.rst
-   plugin-development.rst
    ChangeLog.rst
    BUGS.rst
    AUTHORS.rst
