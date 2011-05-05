@@ -31,7 +31,7 @@ class LDAPTreeItemModel(QAbstractItemModel):
     def __init__(self, serverList, parent=None):
         super(LDAPTreeItemModel, self).__init__(parent)
         self.verified = []
-        self.threads = []
+        self.threadPool = []
         self.listFetched.connect(self.workerFinished)
         self.populateModel(serverList)
 
@@ -338,20 +338,22 @@ class LDAPTreeItemModel(QAbstractItemModel):
         """ QThreadWorker """
         ## Read below before uncommenting, and also remember
         ## to uncomment the __del__-method if you don't like crashes.
-        workerThread = QThread()
-
-        worker = Worker(parentIndex, parentItem)
-        worker.moveToThread(workerThread)
-        worker.listFetched.connect(self.workerFinished)
         
-        workerThread.started.connect(worker.gogo)
-        workerThread.started.connect(self.lol)
+        # Create the thread
+        workerThread = WorkerThread()
+        # Set up threadpool
         workerThread.finished.connect(self.removeThreadFromPool)
+        self.threadPool.append(workerThread)
+        
+        # Create the worker
+        worker = Worker(parentIndex, parentItem)
+        worker.listFetched.connect(self.workerFinished)
         worker.listFetched.connect(workerThread.quit)
-
-        self.threads.append(workerThread)
+        # Move worker to thread
+        workerThread.setWorker(worker)
+    
+        # Start thread
         workerThread.start()
-        worker.gogo.emit()
 
         """ QThreadPool + QRunnable """
         #thread = QRunnableWorker(self, parentIndex, parentItem)
@@ -360,12 +362,9 @@ class LDAPTreeItemModel(QAbstractItemModel):
         parentItem.loading = True
 
     @pyqtSlot()
-    def lol(self):
-        print "LOL"
-    @pyqtSlot()
     def removeThreadFromPool(self):
-        print "remove"
-        self.threads.remove(self.sender())
+        self.threadPool.remove(self.sender())
+        print "Number of currently running threads: "+str(len(self.threadPool))
 
     @pyqtSlot(QModelIndex, tuple)
     def workerFinished(self, parentIndex, tupel):
@@ -392,74 +391,46 @@ class LDAPTreeItemModel(QAbstractItemModel):
 
             self.layoutChanged.emit()
 
-    """
-    def __del__(self):
-        for x in self.threads:
-            x.wait()
-    """
 
-class QThread44(QThread):
-	"""
-	This is to imitate QThread in Qt 4.4+ for when running on older version
-	See http://labs.trolltech.com/blogs/2010/06/17/youre-doing-it-wrong
-	(On Lucid I have Qt 4.7 and this is still an issue)
-	"""
+class WorkerThread(QThread):
+	
+    def __init__(self, parent = None):
+        QThread.__init__(self, parent)
+        self.worker = None
 
-	def __init__(self, parent = None):
-            QThread.__init__(self, parent)
+    def run(self):
+        self.exec_()
 
-	def run(self):
-            print "exec_"
-            self.exec_()
+    def setWorker(self, worker):
+        worker.moveToThread(self)
+        self.worker = worker
+        self.started.connect(worker.start)
+
 
 from PyQt4.QtCore import QObject
 class Worker(QObject):
-    """
-    Does the fetching of items from the ldap-server
-    and signals them to the model.
-
-    Problems/issues with this solution:
-        When the creator of this class (the model)
-        is garbage collected, this thread is deleted
-        immediatly -- even if it's executing.
-
-        This results in a "QThread: Destroyed while
-        thread is still running"-error.
-
-        The run()-methods needs to return normally
-        so that the ldap-data in the tuple is GCed,
-        so self.terminate() is right out (besides this
-        it does work -- no error).
-
-        One solution is to do thread.wait() in the
-        __del__-method of the creator. This works
-        (since the creator and by extension the thread
-        isn't destroyed until it's done), but it blocks
-        the GUI.
-
-    When trying possible solutions:
-        - Try to close the plugin while an operation is in progress.
-        - Close Luma itself when an operation is in progress.
-
+    """ 
+    Problems/issues:
+        - None major?
+        - Minor: reload when in progress aborts the currently running one
+                 resulting in a timeout in 60 sec. which overwrites the data.
+                 Fixed by removing self.cancelSearch() in LDAPTreeItem
+                 but should be properly fixed instead. (Removing cancel?)
     """
     
     # Emitted by the workerThread when finished
     listFetched = pyqtSignal(QModelIndex, tuple)
-    gogo =pyqtSignal()
 
     def __init__(self, parentIndex, parentItem):
         super(Worker, self).__init__()
         self.parentIndex = parentIndex
         self.persistent = QPersistentModelIndex(parentIndex)
 
-        self.gogo.connect(self.gogogo)
-
         self.parentItem = parentItem
         self.parentItem.loading = True
 
     @pyqtSlot()
-    def gogogo(self):
-        print "start"
+    def start(self):
         tupel = self.parentItem.fetchChildList()
 
         if self.persistent.isValid():
