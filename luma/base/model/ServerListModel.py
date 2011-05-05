@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from PyQt4.QtCore import QAbstractTableModel
-from PyQt4.QtCore import Qt, QVariant
+from PyQt4.QtCore import Qt, QVariant, QModelIndex
 from ..backend.ServerObject import ServerObject
 from plugins.template.TemplateList import TemplateList
 
@@ -13,9 +13,31 @@ class ServerListModel(QAbstractTableModel):
     def __init__(self, serverList, parent = None):
         QAbstractTableModel.__init__(self, parent)
         self._serverList = serverList
-        
-    def removeRows(self, row, count):
-        self._serverList.deleteServerByIndex(row)
+
+    def hasServers(self):
+        return (self.rowCount(QModelIndex()) > 0)
+
+    def addServer(self, serverObject):
+        """ Adds server to model.
+
+        @returns:
+            tuple with (bool, QModelIndex)
+            where bool = success/false on add
+            and the QModelIndex is the position of the added server
+        """
+        # Insert into the model
+        self.beginInsertRows(QModelIndex(), self.rowCount(QModelIndex()), self.rowCount(QModelIndex()) + 1) # Insert at end
+        self._serverList.addServer(serverObject)
+        self.endInsertRows()
+        return (True, self.index(self.rowCount(QModelIndex())-1,0))
+
+    def delServerAtIndex(self, index):
+        if not index.isValid():
+            return False
+
+        self.beginRemoveRows(QModelIndex(), index.row(), index.row())
+        self._serverList.deleteServerByIndex(index.row())
+        self.endRemoveRows()
         return True
         
     def setData(self, index, value, role = Qt.EditRole):
@@ -57,13 +79,12 @@ class ServerListModel(QAbstractTableModel):
         
         # Let other views know the underlying data is changed
         self.dataChanged.emit(index, index)
-        #self.emit(SIGNAL("dataChanged( const QModelIndex&, const QModelIndex& )"), index, index)
         return True
         
-    def rowCount(self,parent):
+    def rowCount(self, parent):
         #Number of servers
         return len(self._serverList.getTable())
-    
+
     def columnCount(self,parent):
         #Number of different settings for the servers
         return ServerObject.numFields

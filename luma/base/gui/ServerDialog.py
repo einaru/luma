@@ -21,7 +21,6 @@
 # along with this program.  If not, see http://www.gnu.org/licenses/
 import copy
 
-from PyQt4.QtCore import QModelIndex
 from PyQt4.QtGui import QDialog, QDataWidgetMapper
 from PyQt4.QtGui import QFileDialog
 from PyQt4.QtGui import QInputDialog, QItemSelectionModel
@@ -76,7 +75,8 @@ class ServerDialog(QDialog, Ui_ServerDialogDesign):
         # The list actually returned to the caller. Could be the copy or current active list
         self.__returnList = None 
 
-        # Create the model used by the views and connect signals
+        # Create the model used by the views and connect signals for registering
+        # changes (to define the "Cancel"-buttons behaviour).
         self.slm = ServerListModel(self.__serverList, self)
         self.slm.dataChanged.connect(self.wasChanged)
         self.slm.rowsInserted.connect(self.wasChanged)
@@ -89,7 +89,7 @@ class ServerDialog(QDialog, Ui_ServerDialogDesign):
         self.serverListView.setModel(self.slm)
 
         # Enable/disable editing depending on if we have a server to edit
-        if self.slm.rowCount(QModelIndex()) > 0:
+        if self.slm.hasServers():
             self.tabWidget.setEnabled(True)
         else:
             self.tabWidget.setEnabled(False)
@@ -110,6 +110,7 @@ class ServerDialog(QDialog, Ui_ServerDialogDesign):
         self.serverListView.selectionModel().select(index, QItemSelectionModel.ClearAndSelect)
         self.serverListView.selectionModel().setCurrentIndex(index, QItemSelectionModel.ClearAndSelect)
 
+        # Update list of baseDNs on serverchange
         self.serverListView.selectionModel().selectionChanged.connect(self.setBaseDN) #Same as below
 
         # Map columns of the model to fields in the gui
@@ -134,7 +135,7 @@ class ServerDialog(QDialog, Ui_ServerDialogDesign):
         self.mapper.addMapping(self.certKeyfileEdit, 13)
         self.mapper.addMapping(self.validateBox, 14)
 
-        # workaround to ensure model being updated (Mac OS X bug)
+        # Workaround to ensure model being updated (Mac OS X bug)
         self.aliasBox.clicked.connect(self.aliasBox.setFocus)
         self.baseDNBox.clicked.connect(self.baseDNBox.setFocus)
         self.bindAnonBox.clicked.connect(self.bindAnonBox.setFocus)
@@ -147,11 +148,16 @@ class ServerDialog(QDialog, Ui_ServerDialogDesign):
         # Let the mapper know when another server is selected in the list
         self.serverListView.selectionModel().currentRowChanged.connect(self.mapper.setCurrentModelIndex)
         
-        # Checks for SSL enabled but with a non-standard port.
+        # Enable checks for SSL enabled but with a non-standard port.
         self.encryptionBox.currentIndexChanged[int].connect(self.checkSSLport)
 
         # Used by TestConnection
         self.testReturnSignal.connect(self.testFinished)
+        self.testProgress = QProgressDialog("Trying to connect to server.",
+                "Abort",
+                0, 0,
+                self)
+        self.testProgress.setWindowModality(Qt.WindowModal)
         
     def checkSSLport(self, index):
         """ If SSL is choosen with a port other than 636, confirm this with the user
@@ -176,9 +182,10 @@ class ServerDialog(QDialog, Ui_ServerDialogDesign):
             return
         self.baseDNListWidget.addItem(QListWidgetItem(tmpBaseDN)) #Add to list
 
-        serverIndex = self.serverListView.selectedIndexes()
-        index = self.slm.createIndex(serverIndex[0].row(), 5)
-        self.serverDelegate.setModelData(self.baseDNListWidget, self.slm, index)
+        # Save the list of baseDNs
+        serverIndex = self.serverListView.selectedIndexes()[0]
+        index = self.slm.createIndex(serverIndex.row(), 5) # 5 = column for baseDNs
+        self.serverDelegate.setModelData(self.baseDNListWidget, self.slm, index) #save to model
         self.baseDNEdit.clear() #Clear textfield
         self.mapper.submit() #Force push to model
 
@@ -193,13 +200,14 @@ class ServerDialog(QDialog, Ui_ServerDialogDesign):
                 if d != 0:
                     del d # Per the QT-docs, someone needs to delete it
 
-        serverIndex = self.serverListView.selectedIndexes()
-        index = self.slm.createIndex(serverIndex[0].row(), 5)
+        # Save to model (see addBaseDN())
+        serverIndex = self.serverListView.selectedIndexes()[0]
+        index = self.slm.createIndex(serverIndex.row(), 5)
         self.serverDelegate.setModelData(self.baseDNListWidget, self.slm, index)
         self.mapper.submit() #Force push changes to model
 
     def setBaseDN(self):
-        """Slot for setting the base DN.
+        """Slot for setting the base DN-list.
         """
         serverIndex = self.serverListView.selectedIndexes()
         if len(serverIndex) > 0:
@@ -221,15 +229,13 @@ class ServerDialog(QDialog, Ui_ServerDialogDesign):
 
             # Insert into the model
             m = self.serverListView.model()
-            m.beginInsertRows(QModelIndex(), m.rowCount(QModelIndex()), m.rowCount(QModelIndex()) + 1)
-            self.__serverList.addServer(sO)
-            m.endInsertRows()
-
-            s = m.index(m.rowCount(QModelIndex) - 1, 0) #Index of the newly added server
-            self.serverListView.selectionModel().select(s, QItemSelectionModel.ClearAndSelect) #Select it
-            self.serverListView.selectionModel().setCurrentIndex(s, QItemSelectionModel.ClearAndSelect) #Mark it as current      
-            self.mapper.setCurrentIndex(s.row()) # Update the mapper
-            self.tabWidget.setEnabled(True) # Make sure editing is enabled
+            success, index = m.addServer(sO)
+            if success:
+                # Display the added server
+                self.serverListView.selectionModel().select(index, QItemSelectionModel.ClearAndSelect) #Select it
+                self.serverListView.selectionModel().setCurrentIndex(index, QItemSelectionModel.ClearAndSelect) #Mark it as current      
+                self.mapper.setCurrentIndex(index.row()) # Update the mapper
+                self.tabWidget.setEnabled(True) # Make sure editing is enabled
 
     def deleteServer(self):
         """Delete a server from the model/list
@@ -239,21 +245,21 @@ class ServerDialog(QDialog, Ui_ServerDialogDesign):
             return
 
         re = QMessageBox.question(self, self.tr('Delete'),
-                     self.tr("Are you sure?"), QMessageBox.Yes, QMessageBox.No)
+                     self.tr("Are you sure?"), 
+                     QMessageBox.Yes, 
+                     QMessageBox.No)
+
         if re == QMessageBox.Yes:
             index = self.serverListView.selectionModel().currentIndex() #Currently selected
 
             # Delete the server
-            self.serverListView.model().beginRemoveRows(QModelIndex(), index.row(), index.row())
-            self.serverListView.model().removeRows(index.row(), 1)
-            self.serverListView.model().endRemoveRows()
+            if self.serverListView.model().delServerAtIndex(index):
+                # When deleting, the view gets updated and selects a new current.
+                # Get it and give it to the mapper
+                newIndex = self.serverListView.selectionModel().currentIndex()
+                self.mapper.setCurrentIndex(newIndex.row())
 
-            # When deleting, the view gets updated and selects a new current.
-            # Get it and give it to the mapper
-            newIndex = self.serverListView.selectionModel().currentIndex()
-            self.mapper.setCurrentIndex(newIndex.row())
-
-        if self.slm.rowCount(QModelIndex()) == 0:
+        if not self.slm.hasServers():
             self.tabWidget.setEnabled(False) #Disable editing if no servers left
 
     def saveServerlist(self):
@@ -347,11 +353,6 @@ class ServerDialog(QDialog, Ui_ServerDialogDesign):
         sO = self.__serverList.getServerObjectByIndex(currentServerId)
 
         # Busy-dialog
-        self.testProgress = QProgressDialog("Trying to connect to server.",
-                "Abort",
-                0, 0,
-                self)
-        self.testProgress.setWindowModality(Qt.WindowModal)
         self.testProgress.show()
 
         self.thread = TestConnection(sO, self)
@@ -360,6 +361,7 @@ class ServerDialog(QDialog, Ui_ServerDialogDesign):
     @pyqtSlot(bool, str)
     def testFinished(self, success, exceptionStr):
         self.testProgress.hide()
+
         # No message on cancel
         if self.testProgress.wasCanceled():
             return
@@ -383,11 +385,11 @@ class TestConnection(QRunnable):
         # Try bind -- do not display pw-input and do not use remembered passwords
         conn = LumaConnection(self.serverObject)
         success, exception = conn.bind(askForPw = False, noOverride = True)
+        conn.unbind()
         # Return status
         if success:
             self.target.testReturnSignal.emit(True, "")
         else:
             self.target.testReturnSignal.emit(False,str(exception[0]["desc"]))
-
 
 # vim: tabstop=4 expandtab shiftwidth=4 softtabstop=4

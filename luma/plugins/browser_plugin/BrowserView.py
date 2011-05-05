@@ -26,7 +26,7 @@
 import logging
 
 from PyQt4 import (QtCore, QtGui)
-from PyQt4.QtGui import (QWidget, QMessageBox, QMenu, QAction, qApp)
+from PyQt4.QtGui import (QWidget, QMessageBox, QMenu, QAction, qApp, QTableWidget)
 from PyQt4.QtCore import Qt, QPersistentModelIndex, QModelIndex
 
 from .AdvancedObjectWidget import AdvancedObjectWidget
@@ -94,6 +94,8 @@ class BrowserView(QWidget):
         # which needs processing (reloading, clearing)
         self.reloadSignal.connect(self.ldaptreemodel.reloadItem)
         self.clearSignal.connect(self.ldaptreemodel.clearItem)
+
+        self.cancelList = []
 
         self.__createContextMenu()
         self.progress = QMessageBox(
@@ -164,6 +166,8 @@ class BrowserView(QWidget):
         self.contextMenu.addMenu(self.contextMenuDelete)
         self.contextMenuExport = QMenu()
         self.contextMenu.addMenu(self.contextMenuExport)
+        self.contextMenuCancel = QAction(self)
+        self.contextMenu.addAction(self.contextMenuCancel)
 
         # Connect the context menu actions to the correct slots
         self.contextMenuServerSettings.triggered.connect(self.editServerSettings)
@@ -172,6 +176,7 @@ class BrowserView(QWidget):
         self.contextMenuClear.triggered.connect(self.clearChoosen)
         self.contextMenuFilter.triggered.connect(self.filterChoosen)
         self.contextMenuLimit.triggered.connect(self.limitChoosen)
+        self.contextMenuCancel.triggered.connect(self.cancelChoosen)
 
     def rightClick(self, point):
         """ Called when the view is right-clicked.
@@ -210,6 +215,7 @@ class BrowserView(QWidget):
         # if one of the selected indexes do not support an
         # operation, we cannot allow to apply that operation
         # on the whole selection
+        self.cancelList = []
         for index in self.selection:
             item = index.internalPointer()
             operations = item.getSupportedOperations()
@@ -229,9 +235,11 @@ class BrowserView(QWidget):
                 deleteSupport = False
             if not AbstractLDAPTreeItem.SUPPORT_EXPORT & operations:
                 exportSupport = False
-            if index.internalPointer().getParentServerItem() == None:
-                editServerSupport = False
-
+	    if index.internalPointer().getParentServerItem() == None:
+		editServerSupport = False
+            if AbstractLDAPTreeItem.SUPPORT_CANCEL & operations:
+                if item.canCancelSearch():
+                    self.cancelList.append(item)
         
         # Now we just use the *Support variables to enable|disable
         # the context menu actions.
@@ -272,6 +280,11 @@ class BrowserView(QWidget):
         else:
             self.contextMenuDelete.setEnabled(False)
 
+        if len(self.cancelList) > 0:
+            self.contextMenuCancel.setEnabled(True)
+        else:
+            self.contextMenuCancel.setEnabled(False)
+
         if exportSupport:
             self.contextMenuExport.setEnabled(True)
             if numselected == 1:
@@ -296,6 +309,10 @@ class BrowserView(QWidget):
         self.contextMenuDelete.clear()
         self.contextMenuExport.clear()
 
+    def cancelChoosen(self):
+        for item in self.cancelList:
+            item.cancelSearch()
+        self.cancelList = []
     """
     Following methods are called from a context-menu.
     """
@@ -590,6 +607,7 @@ class BrowserView(QWidget):
         self.contextMenuAdd.setTitle(QtCore.QCoreApplication.translate("BrowserView", "Add"))
         self.contextMenuDelete.setTitle(QtCore.QCoreApplication.translate("BrowserView", "Delete"))
         self.contextMenuExport.setTitle(QtCore.QCoreApplication.translate("BrowserView", "Export"))
+        self.contextMenuCancel.setText(QtCore.QCoreApplication.translate("BrowserView", "Cancel"))
         
         self.str_ENTRY = QtCore.QCoreApplication.translate("BrowserView", "Entry")
         self.str_TEMPLATE = QtCore.QCoreApplication.translate("BrowserView", "Template")
@@ -623,8 +641,17 @@ class LoadingDelegate(QtGui.QStyledItemDelegate):
             # When loading
             self.initStyleOption(option, index)
             QtGui.QStyledItemDelegate.paint(self, painter, option, index)
-            painter.drawText(option.rect, QtCore.Qt.AlignRight, "Loading...  ")
+            #painter.drawText(option.rect, QtCore.Qt.AlignRight, "Loading...  ")
+            painted = False
+            if hasattr(item, "lumaConnection"):
+                connection = item.lumaConnection
+                if not(connection == None):
+                    resultCount = connection.resultCount
+                    if not(resultCount == None):
+                        painted = True
+                        painter.drawText(option.rect, QtCore.Qt.AlignRight, "Loading...  " + str(resultCount))
+            if not painted:
+                painter.drawText(option.rect, QtCore.Qt.AlignRight, "Loading...  ")
         else:
             # Default
             QtGui.QStyledItemDelegate.paint(self, painter, option, index)
-
