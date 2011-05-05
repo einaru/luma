@@ -490,7 +490,11 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         before we tear down the application.
         """
         self.__writeSettings()
-        print QApplication.translate("MainWindow", "Closing Luma...\nIf there are operations in progress it might not exit immediatly.")
+
+        from PyQt4.QtCore import QThreadPool
+        if QThreadPool.globalInstance().activeThreadCount() > 0:
+            print QApplication.translate("MainWindow", "There are operations in progress which needs to finish before Luma can close.")
+            print "Waiting for: " + str(QThreadPool.globalInstance().activeThreadCount()) + " operations."
         QMainWindow.closeEvent(self, e)
 
     def TODO(self, todo):

@@ -98,12 +98,13 @@ def startApplication(argv, verbose=False, clear=[], dirs={}):
     """
     app = Luma(argv)
     
-    import platform
-    if sys.platform.lower().startswith('win'):
+    """ Fixed but not removed in case we change our minds """
+    #import platform
+    #if sys.platform.lower().startswith('win'):
         # Avoids ugly white background
-        from PyQt4.QtGui import QStyleFactory
-        QApplication.setStyle(QStyleFactory.create("plastique"))
-        QApplication.setPalette(QApplication.style().standardPalette())
+        #from PyQt4.QtGui import QStyleFactory
+        #QApplication.setStyle(QStyleFactory.create("plastique"))
+        #QApplication.setPalette(QApplication.style().standardPalette())
 
     app.setOrganizationName(appinfo.ORGNAME)
     app.setApplicationName(appinfo.APPNAME)
