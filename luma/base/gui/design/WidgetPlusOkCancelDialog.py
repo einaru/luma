@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file '/mnt/debris/devel/git/luma/resources/forms/WidgetPlusOkCancelDialog.ui'
 #
-# Created: Thu May  5 00:01:00 2011
+# Created: Thu May  5 14:01:57 2011
 #      by: PyQt4 UI code generator 4.8.3
 #
 # WARNING! All changes made in this file will be lost!

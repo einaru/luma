@@ -32,7 +32,6 @@ RESOURCES += luma/resources.py
 
 SOURCES += luma/luma.py
 SOURCES += luma/version.py
-SOURCES += luma/lumaWithOptions.py
 SOURCES += luma/resources.py
 SOURCES += luma/runtests.py
 SOURCES += luma/base/backend/ServerObject.py
