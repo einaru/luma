@@ -29,7 +29,7 @@ class LDAPTreeItemModel(QAbstractItemModel):
     listFetched = pyqtSignal(QModelIndex, tuple)
 
     def __init__(self, serverList, parent=None):
-        QAbstractItemModel.__init__(self, parent)
+        super(LDAPTreeItemModel, self).__init__(parent)
         self.listFetched.connect(self.workerFinished)
         self.verified = []
         self.populateModel(serverList)
@@ -322,7 +322,9 @@ class LDAPTreeItemModel(QAbstractItemModel):
             # Verifies the connection to the server, and asks for password if it's invalid
             # (Needs to be done in the GUI-thread (bacause of the password-dialog), which this should be)
             conn = LumaConnection(serverItem.serverMeta)
-            conn.bind(askForPw = True)
+            success, exception = conn.bind(askForPw = True)
+            if success:
+                self.verified.append(serverItem.serverMeta.name)
 
         # Do the search (in another thread)
         thread = Worker(self, parentIndex, parentItem)
@@ -331,14 +333,12 @@ class LDAPTreeItemModel(QAbstractItemModel):
 
     def unverified(self, serverObject):
         if serverObject.name in self.verified:
-            return True
+            return False
         return True
 
     @pyqtSlot(QModelIndex, tuple)
     def workerFinished(self, parentIndex, tupel):
-        print "start workerFinished"
         if parentIndex.isValid():
-            print "index valid"
 
             parentItem = parentIndex.internalPointer()
             parentItem.loading = False
@@ -360,16 +360,15 @@ class LDAPTreeItemModel(QAbstractItemModel):
             self.endInsertRows()     
 
             self.layoutChanged.emit()
-        print "end workerfinished"
         
 class Worker(QRunnable):
 
     def __init__(self, target, parentIndex, parentItem):
         super(Worker, self).__init__()
         self.target = target
-        self.parentIndex = QPersistentModelIndex(parentIndex)
+        self.parentIndex = parentIndex
+        self.persistent = QPersistentModelIndex(parentIndex)
         self.parentItem = parentItem
-
         self.parentItem.loading = True
 
     def run(self):
@@ -378,6 +377,11 @@ class Worker(QRunnable):
         if qApp.closingDown():
             return
         if self.parentIndex.isValid():
-            self.parentIndex = self.parentIndex.sibling(self.parentIndex.row(), self.parentIndex.column())
-            #self.parentIndex = self.parentIndex.sibling(self.parentIndex.row()+1, self.parentIndex.column()) # for fun
+            # QPersistenModelIndex -> QModelIndex
+            # Should prefferably not be done here (changes can happend until the receiver-thread process the event)
+            # but Qt can't send QPersistentModelIndexes (yet?)
+            # Also, using QModelIndex through the whole process also works for some reason.
+            # The new items are placed right even though QModelIndex.row() is wrong (e.g. because
+            # an item was deleted above it). 
+            self.parentIndex = self.persistent.sibling(self.persistent.row(), self.persistent.column())
             self.target.listFetched.emit(self.parentIndex, tupel)

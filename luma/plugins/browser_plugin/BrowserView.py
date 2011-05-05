@@ -188,8 +188,8 @@ class BrowserView(QWidget):
         # This is a list of QModelIndex objects, which will be used by
         # the various context menu slots.
         # We therfore store it as a class member
-        self.entryList.expandAll()
-        return
+        #self.entryList.expandAll()
+        #return
         self.selection = self.entryList.selectedIndexes()
 
         openSupport = True
