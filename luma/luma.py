@@ -107,7 +107,10 @@ def startApplication(argv, verbose=False, clear=[], dirs={}):
     app.setOrganizationName(appinfo.ORGNAME)
     app.setApplicationName(appinfo.APPNAME)
     app.setApplicationVersion(appinfo.VERSION)
-    app.setWindowIcon(QIcon(':/icons/16/luma'))
+    if platform.system() == 'Darwin':
+        app.setWindowIcon(QIcon(':/icons/64/luma'))
+    else:
+        app.setWindowIcon(QIcon(':/icons/16/luma'))
 
     # Setup the logging mechanism
     l = logging.getLogger()

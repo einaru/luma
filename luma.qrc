@@ -14,6 +14,7 @@
     <file alias="help-about">resources\icons\16x16\actions/help-about.png</file>
     <file alias="view-filter">resources\icons\16x16\actions/view-filter.png</file>
     <file alias="luma">resources\icons\16x16\apps/luma.png</file>
+    <file alias="network-server">resources\icons\16x16\places/network-server.png</file>
     <file alias="object-locked">resources\icons\16x16\status/object-locked.png</file>
     <file alias="object-unlocked">resources\icons\16x16\status/object-unlocked.png</file>
   </qresource>
@@ -66,8 +67,16 @@
     <file alias="attribute">resources\icons\64x64/attribute.png</file>
     <file alias="objectclass">resources\icons\64x64/objectclass.png</file>
     <file alias="template">resources\icons\64x64/template.png</file>
+    <file alias="add-attribute">resources\icons\64x64\actions/add-attribute.png</file>
+    <file alias="add-objectclass">resources\icons\64x64\actions/add-objectclass.png</file>
+    <file alias="document-close">resources\icons\64x64\actions/document-close.png</file>
+    <file alias="document-export">resources\icons\64x64\actions/document-export.png</file>
+    <file alias="document-save-as">resources\icons\64x64\actions/document-save-as.png</file>
+    <file alias="document-save">resources\icons\64x64\actions/document-save.png</file>
+    <file alias="edit-delete">resources\icons\64x64\actions/edit-delete.png</file>
     <file alias="luma">resources\icons\64x64\apps/luma.png</file>
     <file alias="binary">resources\icons\64x64\mimetypes/binary.png</file>
+    <file alias="text-x-ldif">resources\icons\64x64\mimetypes/text-x-ldif.png</file>
   </qresource>
   <qresource prefix="icons/48">
     <file alias="accessories-text-editor">resources\icons\48x48\apps/accessories-text-editor.png</file>

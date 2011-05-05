@@ -7,6 +7,24 @@ from .ExportDialogDesign import Ui_ExportDialog
 from base.util.IconTheme import (pixmapFromTheme, iconFromTheme)
 from base.util.Paths import getUserHomeDir
 
+def getRep(serverObject):
+    """Returns a representation name for a `serverObject`. This way
+    we are able to distinguish between items with identical DNs on
+    different servers when exporting or deleting. The representation
+    is on the form::
+
+        [serverAlias] distinguishedName 
+
+    Parameters:
+
+    - `serverObject`: the `ServerObject` to get the representation for.
+    """
+    alias = serverObject.getServerAlias()
+    dn = serverObject.getPrettyDN()
+    return '[' + alias + '] ' + dn
+
+
+
 class DeleteDialog(QtGui.QDialog, Ui_DeleteDialog):
     
     __logger = logging.getLogger(__name__)
@@ -21,6 +39,9 @@ class DeleteDialog(QtGui.QDialog, Ui_DeleteDialog):
         super(DeleteDialog, self).__init__(parent)
         self.setupUi(self)
         
+        self.iconLabel.setPixmap(pixmapFromTheme(
+            'document-close', ':/icons/64/document-close'))
+
         self.model = QtGui.QStandardItemModel()
         self.items = sOList
         self.deleteDict = {}
@@ -33,7 +54,8 @@ class DeleteDialog(QtGui.QDialog, Ui_DeleteDialog):
             for sO in self.items:
                 
                 # Find a textual representation for the smartobjects
-                rep = self.getRep(sO)
+                #rep = self.getRep(sO)
+                rep = getRep(sO)
             
                 # Make and item with text rep
                 modelItem = QtGui.QStandardItem(rep)
@@ -59,10 +81,13 @@ class DeleteDialog(QtGui.QDialog, Ui_DeleteDialog):
         self.hasTriedToDelete = False
         self.passedItemsWasDeleted = False
     
-    def getRep(self, sO):
-        serverName = sO.getServerAlias()
-        dn = sO.getPrettyDN()
-        return str(dn+" ["+serverName+"]")
+    # Made this a module method in order to use it in the ExportDialog aswell
+    #
+    #def getRep(self, sO):
+    #    serverName = sO.getServerAlias()
+    #    dn = sO.getPrettyDN()
+    #    #return str(dn+" ["+serverName+"]") # This results in a decode error
+    #    return dn + ' [' + serverName + ']'
             
     def delete(self):
         
@@ -131,9 +156,11 @@ class DeleteDialog(QtGui.QDialog, Ui_DeleteDialog):
         
     def __utf8(self, text):
         return unicode(text).encode('utf-8').strip()
+
         
 import dsml
 import StringIO
+
 
 class ExportDialog(QtGui.QDialog, Ui_ExportDialog):
     """The dialog for exporting ldap entries to disk.
@@ -157,9 +184,9 @@ class ExportDialog(QtGui.QDialog, Ui_ExportDialog):
         self.setupUi(self)
         
         self.iconLabel.setPixmap(pixmapFromTheme(
-            'document-save', ':/icons/48/document-save'))
+            'document-save', ':/icons/64/document-export'))
         self.fileButton.setIcon(iconFromTheme(
-            'document-open', ':/icons/48/document-open'))
+            'document-open', ':/icons/32/document-open'))
         self.messageLabel.setText(msg)
         
         self.model = QtGui.QStandardItemModel()
@@ -178,19 +205,19 @@ class ExportDialog(QtGui.QDialog, Ui_ExportDialog):
 
     
     def enableExport(self):
-        """ Enable the export-button
+        """Enable the export-button
         """
         self.exportButton.setEnabled(True)
     
     def __utf8(self, text):
-        """Helper method for encoding in unicode utf-8.
+        """Helper method for encoding in unicode utf-8, which is
+        helpful in particular when working with QStrings.
+
+        Returns a (optionally strpped) unicode utf-8 encoded string.
         
-        This is helpful in particular when working with QStrings.
-        
-        @param text: 
-            the text object to encode.
-        @return: 
-            the text in unicode utf-8 encoding.
+        Parameters:
+
+        - `text`: the text object to encode.
         """
         return unicode(text).encode('utf-8').strip()
     
@@ -201,12 +228,12 @@ class ExportDialog(QtGui.QDialog, Ui_ExportDialog):
         """
         self.data = data
         for item in self.data:
-            prettyDN = item.getPrettyDN()
-            modelItem = QtGui.QStandardItem(prettyDN)
+            rep = getRep(item)
+            modelItem = QtGui.QStandardItem(rep)
             modelItem.setEditable(False)
             modelItem.setCheckable(True)
             
-            self.exportDict[prettyDN] = [item, modelItem]
+            self.exportDict[rep] = [item, modelItem]
             modelItem.setCheckState(QtCore.Qt.Checked)
             self.model.appendRow(modelItem)
     
@@ -326,3 +353,5 @@ class ExportDialog(QtGui.QDialog, Ui_ExportDialog):
         del self.exportDict
         self.reject()
         
+
+# vim: tabstop=4 expandtab shiftwidth=4 softtabstop=4

@@ -214,7 +214,7 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>AddAttributeDialog</name>
     <message>
-        <location filename="luma/plugins/template/gui/AddAttributeDialogDesign.py" line="80"/>
+        <location filename="luma/plugins/template/gui/DeleteObjectclassDialogDesign.py" line="74"/>
         <source>Dialog</source>
         <translation type="unfinished"></translation>
     </message>
@@ -262,7 +262,7 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/gui/AddAttributeWizardDesign.py" line="175"/>
+        <location filename="resources/forms/plugins/browser_plugin/AddAttributeWizardDesign.ui" line="81"/>
         <source>PI</source>
         <comment>DO NOT TRANSLATE</comment>
         <translation type="unfinished"></translation>
@@ -318,6 +318,11 @@ the selected objectclass.&lt;/p&gt;</source>
     <message>
         <location filename="luma/plugins/browser_plugin/gui/AddAttributeWizardDesign.py" line="192"/>
         <source>&lt;b&gt;Additional attributes&lt;/b&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="luma/plugins/browser_plugin/gui/AddAttributeWizardDesign.py" line="175"/>
+        <source>PI</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -497,7 +502,7 @@ the selected objectclass.&lt;/p&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/gui/BinaryEditorDesign.py" line="92"/>
+        <location filename="resources/forms/plugins/browser_plugin/BinaryEditorDesign.ui" line="32"/>
         <source>IT</source>
         <comment>DO NOT TRANSLATE</comment>
         <translation type="unfinished"></translation>
@@ -523,7 +528,7 @@ the selected objectclass.&lt;/p&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/gui/BinaryEditorDesign.py" line="97"/>
+        <location filename="resources/forms/plugins/browser_plugin/BinaryEditorDesign.ui" line="113"/>
         <source>F</source>
         <comment>DO NOT TRANSLATE</comment>
         <translation type="unfinished"></translation>
@@ -541,6 +546,16 @@ the selected objectclass.&lt;/p&gt;</source>
     <message>
         <location filename="luma/plugins/browser_plugin/gui/BinaryEditorDesign.py" line="100"/>
         <source>Location:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="luma/plugins/browser_plugin/gui/BinaryEditorDesign.py" line="92"/>
+        <source>IT</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="luma/plugins/browser_plugin/gui/BinaryEditorDesign.py" line="97"/>
+        <source>F</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1183,7 +1198,7 @@ If there are operations in progress it might not exit immediatly.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/gui/PasswordEditorDesign.py" line="118"/>
+        <location filename="resources/forms/plugins/browser_plugin/PasswordEditorDesign.ui" line="35"/>
         <source>PW</source>
         <comment>DO NOT TRANSLATE</comment>
         <translation type="unfinished"></translation>
@@ -1228,6 +1243,11 @@ If there are operations in progress it might not exit immediatly.</source>
         <source>&lt;b&gt;Please enter a new password.&lt;/b&gt;</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <location filename="luma/plugins/browser_plugin/gui/PasswordEditorDesign.py" line="118"/>
+        <source>PW</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>RdnEditorDesign</name>
@@ -1237,7 +1257,7 @@ If there are operations in progress it might not exit immediatly.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/gui/RdnEditorDesign.py" line="97"/>
+        <location filename="resources/forms/plugins/browser_plugin/RdnEditorDesign.ui" line="32"/>
         <source>IT</source>
         <comment>DO NOT TRANSLATE</comment>
         <translation type="unfinished"></translation>
@@ -1280,6 +1300,11 @@ If there are operations in progress it might not exit immediatly.</source>
     <message>
         <location filename="luma/plugins/browser_plugin/gui/RdnEditorDesign.py" line="105"/>
         <source>Attribute:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="luma/plugins/browser_plugin/gui/RdnEditorDesign.py" line="97"/>
+        <source>IT</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1818,7 +1843,7 @@ Do you still want to save?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/gui/StandardEditorDesign.py" line="85"/>
+        <location filename="resources/forms/plugins/browser_plugin/StandardEditorDesign.ui" line="32"/>
         <source>IT</source>
         <comment>DO NOT TRANSLATE</comment>
         <translation type="unfinished"></translation>
@@ -1851,6 +1876,11 @@ Do you still want to save?</source>
     <message>
         <location filename="luma/plugins/browser_plugin/gui/StandardEditorDesign.py" line="91"/>
         <source>Value:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="luma/plugins/browser_plugin/gui/StandardEditorDesign.py" line="85"/>
+        <source>IT</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
