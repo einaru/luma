@@ -1,19 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS><TS version="1.1" language="en_UM">
+<!DOCTYPE TS><TS version="1.1">
 <context>
     <name>AboutCredits</name>
     <message>
-        <location filename="luma/base/gui/design/AboutCreditsDesign.py" line="70"/>
+        <location filename="luma/base/gui/design/AboutCreditsDesign.py" line="75"/>
         <source>Credits</source>
         <translation type="unfinished"></translation>
     </message>
-    <message>
-        <location filename="luma/base/gui/design/AboutCreditsDesign.py" line="84"/>
-        <source>Developers</source>
-        <translation type="unfinished"></translation>
-    </message>
     <message encoding="UTF-8">
-        <location filename="luma/base/gui/design/AboutCreditsDesign.py" line="71"/>
+        <location filename="luma/base/gui/design/AboutCreditsDesign.py" line="76"/>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
@@ -30,12 +25,12 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/base/gui/design/AboutCreditsDesign.py" line="110"/>
-        <source>Translators</source>
+        <location filename="luma/base/gui/design/AboutCreditsDesign.py" line="89"/>
+        <source>Developers</source>
         <translation type="unfinished"></translation>
     </message>
     <message encoding="UTF-8">
-        <location filename="luma/base/gui/design/AboutCreditsDesign.py" line="85"/>
+        <location filename="luma/base/gui/design/AboutCreditsDesign.py" line="90"/>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
@@ -64,12 +59,12 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/base/gui/design/AboutCreditsDesign.py" line="139"/>
-        <source>Contributors</source>
+        <location filename="luma/base/gui/design/AboutCreditsDesign.py" line="115"/>
+        <source>Translators</source>
         <translation type="unfinished"></translation>
     </message>
     <message encoding="UTF-8">
-        <location filename="luma/base/gui/design/AboutCreditsDesign.py" line="111"/>
+        <location filename="luma/base/gui/design/AboutCreditsDesign.py" line="116"/>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
@@ -101,7 +96,12 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/base/gui/design/AboutCreditsDesign.py" line="140"/>
+        <location filename="luma/base/gui/design/AboutCreditsDesign.py" line="144"/>
+        <source>Contributors</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="luma/base/gui/design/AboutCreditsDesign.py" line="145"/>
         <source>&amp;Close</source>
         <translation type="unfinished"></translation>
     </message>
@@ -109,42 +109,42 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>AboutDialog</name>
     <message>
-        <location filename="luma/base/gui/design/AboutDialogDesign.py" line="109"/>
+        <location filename="luma/base/gui/design/AboutDialogDesign.py" line="114"/>
         <source>About Luma</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/base/gui/design/AboutDialogDesign.py" line="110"/>
+        <location filename="luma/base/gui/design/AboutDialogDesign.py" line="115"/>
         <source>&amp;Credits</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/base/gui/design/AboutDialogDesign.py" line="111"/>
+        <location filename="luma/base/gui/design/AboutDialogDesign.py" line="116"/>
         <source>&amp;License</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/base/gui/design/AboutDialogDesign.py" line="112"/>
+        <location filename="luma/base/gui/design/AboutDialogDesign.py" line="117"/>
         <source>Close</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/base/gui/design/AboutDialogDesign.py" line="113"/>
+        <location filename="luma/base/gui/design/AboutDialogDesign.py" line="118"/>
         <source>Luma</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/base/gui/design/AboutDialogDesign.py" line="114"/>
+        <location filename="luma/base/gui/design/AboutDialogDesign.py" line="119"/>
         <source>LDAP management made easy</source>
         <translation type="unfinished"></translation>
     </message>
     <message encoding="UTF-8">
-        <location filename="luma/base/gui/design/AboutDialogDesign.py" line="115"/>
+        <location filename="luma/base/gui/design/AboutDialogDesign.py" line="120"/>
         <source>Copyright © 2003–2005 Wido Depping</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/base/gui/design/AboutDialogDesign.py" line="116"/>
+        <location filename="luma/base/gui/design/AboutDialogDesign.py" line="121"/>
         <source>&lt;a href=&quot;http://luma.sf.net/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Luma Website&lt;/span&gt;&lt;/a&gt;</source>
         <translation type="unfinished"></translation>
     </message>
@@ -152,12 +152,12 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>AboutLicense</name>
     <message>
-        <location filename="luma/base/gui/design/AboutLicenseDesign.py" line="44"/>
+        <location filename="luma/base/gui/design/AboutLicenseDesign.py" line="49"/>
         <source>License</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/base/gui/design/AboutLicenseDesign.py" line="45"/>
+        <location filename="luma/base/gui/design/AboutLicenseDesign.py" line="50"/>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
@@ -168,7 +168,7 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/base/gui/design/AboutLicenseDesign.py" line="52"/>
+        <location filename="luma/base/gui/design/AboutLicenseDesign.py" line="57"/>
         <source>&amp;Close</source>
         <translation type="unfinished"></translation>
     </message>
@@ -176,37 +176,37 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>AboutPlugin</name>
     <message>
-        <location filename="luma/base/gui/design/AboutPluginDesign.py" line="62"/>
+        <location filename="luma/base/gui/design/AboutPluginDesign.py" line="67"/>
         <source>Form</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/base/gui/design/AboutPluginDesign.py" line="63"/>
+        <location filename="luma/base/gui/design/AboutPluginDesign.py" line="68"/>
         <source>Plugin name:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/base/gui/design/AboutPluginDesign.py" line="64"/>
+        <location filename="luma/base/gui/design/AboutPluginDesign.py" line="69"/>
         <source>&quot;name&quot;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/base/gui/design/AboutPluginDesign.py" line="65"/>
+        <location filename="luma/base/gui/design/AboutPluginDesign.py" line="70"/>
         <source>Version:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/base/gui/design/AboutPluginDesign.py" line="66"/>
+        <location filename="luma/base/gui/design/AboutPluginDesign.py" line="71"/>
         <source>&quot;version&quot;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/base/gui/design/AboutPluginDesign.py" line="67"/>
+        <location filename="luma/base/gui/design/AboutPluginDesign.py" line="72"/>
         <source>Author:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/base/gui/design/AboutPluginDesign.py" line="68"/>
+        <location filename="luma/base/gui/design/AboutPluginDesign.py" line="73"/>
         <source>&quot;author&quot;</source>
         <translation type="unfinished"></translation>
     </message>
@@ -214,37 +214,37 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>AddAttributeDialog</name>
     <message>
-        <location filename="luma/plugins/template/gui/AddAttributeDialogDesign.py" line="80"/>
+        <location filename="luma/plugins/template/gui/AddAttributeDialogDesign.py" line="85"/>
         <source>Dialog</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/plugins/template/gui/DeleteObjectclassDialogDesign.py" line="75"/>
+        <location filename="luma/plugins/template/gui/DeleteObjectclassDialogDesign.py" line="80"/>
         <source>No</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/plugins/template/gui/DeleteObjectclassDialogDesign.py" line="76"/>
+        <location filename="luma/plugins/template/gui/DeleteObjectclassDialogDesign.py" line="81"/>
         <source>Yes</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/plugins/template/gui/DeleteObjectclassDialogDesign.py" line="77"/>
+        <location filename="luma/plugins/template/gui/DeleteObjectclassDialogDesign.py" line="82"/>
         <source>Warning: The following attributes will be removed when deleting all selected objectclasses. Do you want to continue?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/plugins/template/gui/AddAttributeDialogDesign.py" line="81"/>
+        <location filename="luma/plugins/template/gui/AddAttributeDialogDesign.py" line="86"/>
         <source>Cancel</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/plugins/template/gui/AddAttributeDialogDesign.py" line="82"/>
+        <location filename="luma/plugins/template/gui/AddAttributeDialogDesign.py" line="87"/>
         <source>OK</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/plugins/template/gui/AddAttributeDialogDesign.py" line="83"/>
+        <location filename="luma/plugins/template/gui/AddAttributeDialogDesign.py" line="88"/>
         <source>Please select the attributes you want to add.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -252,23 +252,22 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>AddAttributeWizardDesign</name>
     <message>
-        <location filename="luma/plugins/browser_plugin/gui/AddAttributeWizardDesign.py" line="173"/>
+        <location filename="luma/plugins/browser_plugin/gui/AddAttributeWizardDesign.py" line="178"/>
         <source>Add Attribute</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/gui/AddAttributeWizardDesign.py" line="174"/>
+        <location filename="luma/plugins/browser_plugin/gui/AddAttributeWizardDesign.py" line="179"/>
         <source>Select Attribute</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/gui/AddAttributeWizardDesign.py" line="175"/>
+        <location filename="luma/plugins/browser_plugin/gui/AddAttributeWizardDesign.py" line="180"/>
         <source>PI</source>
-        <comment>DO NOT TRANSLATE</comment>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/gui/AddAttributeWizardDesign.py" line="176"/>
+        <location filename="luma/plugins/browser_plugin/gui/AddAttributeWizardDesign.py" line="181"/>
         <source>&lt;p&gt;Please select an attribute you want to add to the current entry.&lt;/p&gt;
 &lt;p&gt;By default only attributes which are supported by the current 
 objectclasses are displayed. If you want to add an attribute which is 
@@ -277,32 +276,32 @@ supported by other objectclasses, please enable this functionality below.
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/gui/AddAttributeWizardDesign.py" line="181"/>
+        <location filename="luma/plugins/browser_plugin/gui/AddAttributeWizardDesign.py" line="186"/>
         <source>Attribute:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/gui/AddAttributeWizardDesign.py" line="182"/>
+        <location filename="luma/plugins/browser_plugin/gui/AddAttributeWizardDesign.py" line="187"/>
         <source>Use binary extension</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/gui/AddAttributeWizardDesign.py" line="183"/>
+        <location filename="luma/plugins/browser_plugin/gui/AddAttributeWizardDesign.py" line="188"/>
         <source>Enable all attributes which are supported by the server.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/gui/AddAttributeWizardDesign.py" line="184"/>
+        <location filename="luma/plugins/browser_plugin/gui/AddAttributeWizardDesign.py" line="189"/>
         <source>Choose objectclass</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/gui/AddAttributeWizardDesign.py" line="185"/>
+        <location filename="luma/plugins/browser_plugin/gui/AddAttributeWizardDesign.py" line="190"/>
         <source>CL</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/gui/AddAttributeWizardDesign.py" line="186"/>
+        <location filename="luma/plugins/browser_plugin/gui/AddAttributeWizardDesign.py" line="191"/>
         <source>&lt;p&gt;You have chosen to add an attribute which is not supported by the 
 objectclasses for the current entry.&lt;/p&gt;
 &lt;p&gt;Please select an objectclass which supports the new attribute. The 
@@ -311,12 +310,12 @@ the selected objectclass.&lt;/p&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/gui/AddAttributeWizardDesign.py" line="191"/>
+        <location filename="luma/plugins/browser_plugin/gui/AddAttributeWizardDesign.py" line="196"/>
         <source>&lt;b&gt;Objectclass&lt;/b&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/gui/AddAttributeWizardDesign.py" line="192"/>
+        <location filename="luma/plugins/browser_plugin/gui/AddAttributeWizardDesign.py" line="197"/>
         <source>&lt;b&gt;Additional attributes&lt;/b&gt;</source>
         <translation type="unfinished"></translation>
     </message>
@@ -324,22 +323,22 @@ the selected objectclass.&lt;/p&gt;</source>
 <context>
     <name>AddObjectclassDialog</name>
     <message>
-        <location filename="luma/plugins/template/gui/AddObjectclassDialogDesign.py" line="78"/>
+        <location filename="luma/plugins/template/gui/AddObjectclassDialogDesign.py" line="83"/>
         <source>Dialog</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/plugins/template/gui/AddObjectclassDialogDesign.py" line="79"/>
+        <location filename="luma/plugins/template/gui/AddObjectclassDialogDesign.py" line="84"/>
         <source>Please choose the objectclass you want to add to the template.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/plugins/template/gui/AddObjectclassDialogDesign.py" line="80"/>
+        <location filename="luma/plugins/template/gui/AddObjectclassDialogDesign.py" line="85"/>
         <source>Cancel</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/plugins/template/gui/AddObjectclassDialogDesign.py" line="81"/>
+        <location filename="luma/plugins/template/gui/AddObjectclassDialogDesign.py" line="86"/>
         <source>OK</source>
         <translation type="unfinished"></translation>
     </message>
@@ -347,47 +346,47 @@ the selected objectclass.&lt;/p&gt;</source>
 <context>
     <name>AddTemplateDialog</name>
     <message>
-        <location filename="luma/plugins/template/gui/AddTemplateDialogDesign.py" line="96"/>
+        <location filename="luma/plugins/template/gui/AddTemplateDialogDesign.py" line="101"/>
         <source>Dialog</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/plugins/template/gui/AddTemplateDialogDesign.py" line="97"/>
+        <location filename="luma/plugins/template/gui/AddTemplateDialogDesign.py" line="102"/>
         <source>OK</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/plugins/template/gui/AddTemplateDialogDesign.py" line="98"/>
+        <location filename="luma/plugins/template/gui/AddTemplateDialogDesign.py" line="103"/>
         <source>Cancel</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/plugins/template/gui/AddTemplateDialogDesign.py" line="99"/>
+        <location filename="luma/plugins/template/gui/AddTemplateDialogDesign.py" line="104"/>
         <source>Name for template</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/plugins/template/gui/AddTemplateDialogDesign.py" line="100"/>
+        <location filename="luma/plugins/template/gui/AddTemplateDialogDesign.py" line="105"/>
         <source>Please choose a template name, a description and a server with which the template is associated.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/plugins/template/gui/AddTemplateDialogDesign.py" line="101"/>
+        <location filename="luma/plugins/template/gui/AddTemplateDialogDesign.py" line="106"/>
         <source>Template name:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/plugins/template/gui/AddTemplateDialogDesign.py" line="102"/>
+        <location filename="luma/plugins/template/gui/AddTemplateDialogDesign.py" line="107"/>
         <source>Server:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/plugins/template/gui/AddTemplateDialogDesign.py" line="103"/>
+        <location filename="luma/plugins/template/gui/AddTemplateDialogDesign.py" line="108"/>
         <source>Description</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/plugins/template/gui/AddTemplateDialogDesign.py" line="104"/>
+        <location filename="luma/plugins/template/gui/AddTemplateDialogDesign.py" line="109"/>
         <source>Choose a server</source>
         <translation type="unfinished"></translation>
     </message>
@@ -492,54 +491,52 @@ the selected objectclass.&lt;/p&gt;</source>
 <context>
     <name>BinaryEditorDesign</name>
     <message>
-        <location filename="luma/plugins/browser_plugin/gui/BinaryEditorDesign.py" line="91"/>
+        <location filename="luma/plugins/browser_plugin/gui/BinaryEditorDesign.py" line="96"/>
         <source>Edit attribute</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/gui/BinaryEditorDesign.py" line="92"/>
-        <source>IT</source>
-        <comment>DO NOT TRANSLATE</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/gui/BinaryEditorDesign.py" line="93"/>
-        <source>&amp;OK</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/gui/BinaryEditorDesign.py" line="94"/>
-        <source>Alt+O</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/gui/BinaryEditorDesign.py" line="95"/>
-        <source>&amp;Cancel</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/gui/BinaryEditorDesign.py" line="96"/>
-        <source>Alt+C</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="luma/plugins/browser_plugin/gui/BinaryEditorDesign.py" line="97"/>
-        <source>F</source>
-        <comment>DO NOT TRANSLATE</comment>
+        <source>IT</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="luma/plugins/browser_plugin/gui/BinaryEditorDesign.py" line="98"/>
-        <source>Please enter a file location from where to load binary data for the attribute &lt;b&gt;%1&lt;/b&gt;.</source>
+        <source>&amp;OK</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="luma/plugins/browser_plugin/gui/BinaryEditorDesign.py" line="99"/>
-        <source>IL</source>
+        <source>Alt+O</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="luma/plugins/browser_plugin/gui/BinaryEditorDesign.py" line="100"/>
+        <source>&amp;Cancel</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="luma/plugins/browser_plugin/gui/BinaryEditorDesign.py" line="101"/>
+        <source>Alt+C</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="luma/plugins/browser_plugin/gui/BinaryEditorDesign.py" line="102"/>
+        <source>F</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="luma/plugins/browser_plugin/gui/BinaryEditorDesign.py" line="103"/>
+        <source>Please enter a file location from where to load binary data for the attribute &lt;b&gt;%1&lt;/b&gt;.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="luma/plugins/browser_plugin/gui/BinaryEditorDesign.py" line="104"/>
+        <source>IL</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="luma/plugins/browser_plugin/gui/BinaryEditorDesign.py" line="105"/>
         <source>Location:</source>
         <translation type="unfinished"></translation>
     </message>
@@ -671,22 +668,22 @@ Do you wan&apos;t to update the list to reflect the changes?</source>
 <context>
     <name>DeleteDialog</name>
     <message>
-        <location filename="luma/plugins/browser_plugin/gui/DeleteDialogDesign.py" line="88"/>
+        <location filename="luma/plugins/browser_plugin/gui/DeleteDialogDesign.py" line="93"/>
         <source>Delete items</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/gui/DeleteDialogDesign.py" line="89"/>
+        <location filename="luma/plugins/browser_plugin/gui/DeleteDialogDesign.py" line="94"/>
         <source>The following entries will be deleted from the server. You can remove items from the list if you don&apos;t want them to be deleted. Press start to begin with deletion.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/gui/DeleteDialogDesign.py" line="90"/>
+        <location filename="luma/plugins/browser_plugin/gui/DeleteDialogDesign.py" line="95"/>
         <source>&amp;Delete</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/gui/DeleteDialogDesign.py" line="91"/>
+        <location filename="luma/plugins/browser_plugin/gui/DeleteDialogDesign.py" line="96"/>
         <source>&amp;Cancel</source>
         <translation type="unfinished"></translation>
     </message>
@@ -694,7 +691,7 @@ Do you wan&apos;t to update the list to reflect the changes?</source>
 <context>
     <name>Dialog</name>
     <message>
-        <location filename="luma/plugins/browser_plugin/gui/NewEntryDialogDesign.py" line="45"/>
+        <location filename="luma/plugins/browser_plugin/gui/NewEntryDialogDesign.py" line="50"/>
         <source>Dialog</source>
         <translation type="unfinished"></translation>
     </message>
@@ -702,48 +699,8 @@ Do you wan&apos;t to update the list to reflect the changes?</source>
 <context>
     <name>ExportDialog</name>
     <message>
-        <location filename="luma/plugins/browser_plugin/gui/ExportDialogDesign.py" line="125"/>
-        <source>Export items</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/gui/ExportDialogDesign.py" line="126"/>
-        <source>&lt;p&gt;All checked items will be exported to the format of your choice. You can uncheck items from the list if you don&apos;t want them to be exported. Click &lt;span style=&quot; font-weight:600;&quot;&gt;Export&lt;/span&gt; to start exporting.&lt;/p&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/gui/ExportDialogDesign.py" line="127"/>
-        <source>Export format:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/gui/ExportDialogDesign.py" line="128"/>
-        <source>LDIF</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/gui/ExportDialogDesign.py" line="129"/>
-        <source>DSML</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="luma/plugins/browser_plugin/gui/ExportDialogDesign.py" line="130"/>
-        <source>Output file:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/gui/ExportDialogDesign.py" line="131"/>
-        <source>...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/gui/ExportDialogDesign.py" line="132"/>
-        <source>&amp;Export</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/gui/ExportDialogDesign.py" line="133"/>
-        <source>&amp;Cancel</source>
+        <source>Export items</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -751,106 +708,146 @@ Do you wan&apos;t to update the list to reflect the changes?</source>
         <source>&lt;p&gt;All checked items will be exported to the format of your choice. You can uncheck items from the list if you don&apos;t want them to be exported. Press &lt;span style=&quot; font-weight:600;&quot;&gt;Export&lt;/span&gt; to start exporting.&lt;/p&gt;</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <location filename="luma/plugins/browser_plugin/gui/ExportDialogDesign.py" line="132"/>
+        <source>Export format:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="luma/plugins/browser_plugin/gui/ExportDialogDesign.py" line="133"/>
+        <source>LDIF</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="luma/plugins/browser_plugin/gui/ExportDialogDesign.py" line="134"/>
+        <source>DSML</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="luma/plugins/browser_plugin/gui/ExportDialogDesign.py" line="135"/>
+        <source>Output file:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="luma/plugins/browser_plugin/gui/ExportDialogDesign.py" line="136"/>
+        <source>...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="luma/plugins/browser_plugin/gui/ExportDialogDesign.py" line="137"/>
+        <source>&amp;Export</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="luma/plugins/browser_plugin/gui/ExportDialogDesign.py" line="138"/>
+        <source>&amp;Cancel</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="luma/plugins/browser_plugin/gui/ExportDialogDesign.py" line="131"/>
+        <source>&lt;p&gt;All checked items will be exported to the format of your choice. You can uncheck items from the list if you don&apos;t want them to be exported. Click &lt;span style=&quot; font-weight:600;&quot;&gt;Export&lt;/span&gt; to start exporting.&lt;/p&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>FilterBuilder</name>
     <message>
-        <location filename="luma/plugins/search/gui/FilterBuilderDesign.py" line="165"/>
+        <location filename="luma/plugins/search/gui/FilterBuilderDesign.py" line="170"/>
         <source>Form</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/plugins/search/gui/FilterBuilderDesign.py" line="166"/>
+        <location filename="luma/plugins/search/gui/FilterBuilderDesign.py" line="171"/>
         <source>Filter component</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/plugins/search/gui/FilterBuilderDesign.py" line="167"/>
+        <location filename="luma/plugins/search/gui/FilterBuilderDesign.py" line="172"/>
         <source>objectClass</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/plugins/search/gui/FilterBuilderDesign.py" line="168"/>
+        <location filename="luma/plugins/search/gui/FilterBuilderDesign.py" line="173"/>
         <source>Attribute</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/plugins/search/gui/FilterBuilderDesign.py" line="169"/>
+        <location filename="luma/plugins/search/gui/FilterBuilderDesign.py" line="174"/>
         <source>Click to insert the search criteria in the filter below.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/plugins/search/gui/FilterBuilderDesign.py" line="170"/>
+        <location filename="luma/plugins/search/gui/FilterBuilderDesign.py" line="175"/>
         <source>&amp;Insert</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/plugins/search/gui/FilterBuilderDesign.py" line="171"/>
+        <location filename="luma/plugins/search/gui/FilterBuilderDesign.py" line="176"/>
         <source>Undo</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/plugins/search/gui/FilterBuilderDesign.py" line="172"/>
+        <location filename="luma/plugins/search/gui/FilterBuilderDesign.py" line="177"/>
         <source>Redo</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/plugins/search/gui/FilterBuilderDesign.py" line="173"/>
+        <location filename="luma/plugins/search/gui/FilterBuilderDesign.py" line="178"/>
         <source>Click to negate selection</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/plugins/search/gui/FilterBuilderDesign.py" line="174"/>
+        <location filename="luma/plugins/search/gui/FilterBuilderDesign.py" line="179"/>
         <source>not</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/plugins/search/gui/FilterBuilderDesign.py" line="175"/>
+        <location filename="luma/plugins/search/gui/FilterBuilderDesign.py" line="180"/>
         <source>Click to &apos;and&apos; selection</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/plugins/search/gui/FilterBuilderDesign.py" line="176"/>
+        <location filename="luma/plugins/search/gui/FilterBuilderDesign.py" line="181"/>
         <source>and</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/plugins/search/gui/FilterBuilderDesign.py" line="177"/>
+        <location filename="luma/plugins/search/gui/FilterBuilderDesign.py" line="182"/>
         <source>Click to &apos;or&apos; selection</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/plugins/search/gui/FilterBuilderDesign.py" line="178"/>
+        <location filename="luma/plugins/search/gui/FilterBuilderDesign.py" line="183"/>
         <source>or</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/plugins/search/gui/FilterBuilderDesign.py" line="179"/>
+        <location filename="luma/plugins/search/gui/FilterBuilderDesign.py" line="184"/>
         <source>Select special character to add</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/plugins/search/gui/FilterBuilderDesign.py" line="180"/>
+        <location filename="luma/plugins/search/gui/FilterBuilderDesign.py" line="185"/>
         <source>Add escaped special character</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/plugins/search/gui/FilterBuilderDesign.py" line="181"/>
+        <location filename="luma/plugins/search/gui/FilterBuilderDesign.py" line="186"/>
         <source>Add</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/plugins/search/gui/FilterBuilderDesign.py" line="182"/>
+        <location filename="luma/plugins/search/gui/FilterBuilderDesign.py" line="187"/>
         <source>&amp;Use</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/plugins/search/gui/FilterBuilderDesign.py" line="183"/>
+        <location filename="luma/plugins/search/gui/FilterBuilderDesign.py" line="188"/>
         <source>&amp;Save</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/plugins/search/gui/FilterBuilderDesign.py" line="184"/>
+        <location filename="luma/plugins/search/gui/FilterBuilderDesign.py" line="189"/>
         <source>&amp;Clear</source>
         <translation type="unfinished"></translation>
     </message>
@@ -927,32 +924,32 @@ Do you wan&apos;t to update the list to reflect the changes?</source>
 <context>
     <name>LoggerWidget</name>
     <message>
-        <location filename="luma/base/gui/design/LoggerWidgetDesign.py" line="63"/>
+        <location filename="luma/base/gui/design/LoggerWidgetDesign.py" line="68"/>
         <source>Display message types:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/base/gui/design/LoggerWidgetDesign.py" line="64"/>
+        <location filename="luma/base/gui/design/LoggerWidgetDesign.py" line="69"/>
         <source>Errors</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/base/gui/design/LoggerWidgetDesign.py" line="65"/>
+        <location filename="luma/base/gui/design/LoggerWidgetDesign.py" line="70"/>
         <source>Debug</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/base/gui/design/LoggerWidgetDesign.py" line="66"/>
+        <location filename="luma/base/gui/design/LoggerWidgetDesign.py" line="71"/>
         <source>Info</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/base/gui/design/LoggerWidgetDesign.py" line="67"/>
+        <location filename="luma/base/gui/design/LoggerWidgetDesign.py" line="72"/>
         <source>Clear</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/base/gui/design/LoggerWidgetDesign.py" line="68"/>
+        <location filename="luma/base/gui/design/LoggerWidgetDesign.py" line="73"/>
         <source>Clear log</source>
         <translation type="unfinished"></translation>
     </message>
@@ -982,136 +979,6 @@ Do you wan&apos;t to update the list to reflect the changes?</source>
 </context>
 <context>
     <name>MainWindow</name>
-    <message>
-        <location filename="luma/base/gui/design/MainWindowDesign.py" line="118"/>
-        <source>Luma</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="luma/base/gui/design/MainWindowDesign.py" line="119"/>
-        <source>&amp;File</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="luma/base/gui/design/MainWindowDesign.py" line="120"/>
-        <source>&amp;Edit</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="luma/base/gui/design/MainWindowDesign.py" line="121"/>
-        <source>Language</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="luma/base/gui/design/MainWindowDesign.py" line="122"/>
-        <source>&amp;Help</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="luma/base/gui/design/MainWindowDesign.py" line="123"/>
-        <source>&amp;View</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="luma/base/gui/design/MainWindowDesign.py" line="124"/>
-        <source>Logger Window</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="luma/base/gui/design/MainWindowDesign.py" line="125"/>
-        <source>Ctrl+L</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="luma/base/gui/design/MainWindowDesign.py" line="126"/>
-        <source>Quit</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="luma/base/gui/design/MainWindowDesign.py" line="127"/>
-        <source>Ctrl+Q</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="luma/base/gui/design/MainWindowDesign.py" line="128"/>
-        <source>Server List</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="luma/base/gui/design/MainWindowDesign.py" line="129"/>
-        <source>Ctrl+Shift+S</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="luma/base/gui/design/MainWindowDesign.py" line="130"/>
-        <source>Reload Plugins</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="luma/base/gui/design/MainWindowDesign.py" line="131"/>
-        <source>F5</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="luma/base/gui/design/MainWindowDesign.py" line="132"/>
-        <source>Configure Plugins</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="luma/base/gui/design/MainWindowDesign.py" line="133"/>
-        <source>About Luma</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="luma/base/gui/design/MainWindowDesign.py" line="134"/>
-        <source>F12</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="luma/base/gui/design/MainWindowDesign.py" line="135"/>
-        <source>Settings</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="luma/base/gui/design/MainWindowDesign.py" line="136"/>
-        <source>Show Plugin List</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="luma/base/gui/design/MainWindowDesign.py" line="137"/>
-        <source>Ctrl+P</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="luma/base/gui/design/MainWindowDesign.py" line="138"/>
-        <source>Show Welcome Tab</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="luma/base/gui/design/MainWindowDesign.py" line="139"/>
-        <source>Ctrl+Shift+W</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="luma/base/gui/design/MainWindowDesign.py" line="140"/>
-        <source>Toolbar</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="luma/base/gui/design/MainWindowDesign.py" line="141"/>
-        <source>Statusbar</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="luma/base/gui/design/MainWindowDesign.py" line="142"/>
-        <source>Fullscreen</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="luma/base/gui/design/MainWindowDesign.py" line="143"/>
-        <source>F11</source>
-        <translation type="unfinished"></translation>
-    </message>
     <message>
         <location filename="luma/base/gui/MainWindow.py" line="148"/>
         <source>Plugintoolbar</source>
@@ -1153,11 +1020,141 @@ If there are operations in progress it might not exit immediatly.</source>
         <source>Choose plugin</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <location filename="luma/base/gui/design/MainWindowDesign.py" line="123"/>
+        <source>Luma</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="luma/base/gui/design/MainWindowDesign.py" line="124"/>
+        <source>&amp;File</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="luma/base/gui/design/MainWindowDesign.py" line="125"/>
+        <source>&amp;Edit</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="luma/base/gui/design/MainWindowDesign.py" line="126"/>
+        <source>Language</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="luma/base/gui/design/MainWindowDesign.py" line="127"/>
+        <source>&amp;Help</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="luma/base/gui/design/MainWindowDesign.py" line="128"/>
+        <source>&amp;View</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="luma/base/gui/design/MainWindowDesign.py" line="129"/>
+        <source>Logger Window</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="luma/base/gui/design/MainWindowDesign.py" line="130"/>
+        <source>Ctrl+L</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="luma/base/gui/design/MainWindowDesign.py" line="131"/>
+        <source>Quit</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="luma/base/gui/design/MainWindowDesign.py" line="132"/>
+        <source>Ctrl+Q</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="luma/base/gui/design/MainWindowDesign.py" line="133"/>
+        <source>Server List</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="luma/base/gui/design/MainWindowDesign.py" line="134"/>
+        <source>Ctrl+Shift+S</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="luma/base/gui/design/MainWindowDesign.py" line="135"/>
+        <source>Reload Plugins</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="luma/base/gui/design/MainWindowDesign.py" line="136"/>
+        <source>F5</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="luma/base/gui/design/MainWindowDesign.py" line="137"/>
+        <source>Configure Plugins</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="luma/base/gui/design/MainWindowDesign.py" line="138"/>
+        <source>About Luma</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="luma/base/gui/design/MainWindowDesign.py" line="139"/>
+        <source>F12</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="luma/base/gui/design/MainWindowDesign.py" line="140"/>
+        <source>Settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="luma/base/gui/design/MainWindowDesign.py" line="141"/>
+        <source>Show Plugin List</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="luma/base/gui/design/MainWindowDesign.py" line="142"/>
+        <source>Ctrl+P</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="luma/base/gui/design/MainWindowDesign.py" line="143"/>
+        <source>Show Welcome Tab</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="luma/base/gui/design/MainWindowDesign.py" line="144"/>
+        <source>Ctrl+Shift+W</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="luma/base/gui/design/MainWindowDesign.py" line="145"/>
+        <source>Toolbar</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="luma/base/gui/design/MainWindowDesign.py" line="146"/>
+        <source>Statusbar</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="luma/base/gui/design/MainWindowDesign.py" line="147"/>
+        <source>Fullscreen</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="luma/base/gui/design/MainWindowDesign.py" line="148"/>
+        <source>F11</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>NewEntryDialog</name>
     <message>
-        <location filename="luma/base/gui/design/WidgetPlusOkCancelDialog.py" line="41"/>
+        <location filename="luma/base/gui/design/WidgetPlusOkCancelDialog.py" line="46"/>
         <source>Add new entry</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1178,53 +1175,52 @@ If there are operations in progress it might not exit immediatly.</source>
 <context>
     <name>PasswordEditorDesign</name>
     <message>
-        <location filename="luma/plugins/browser_plugin/gui/PasswordEditorDesign.py" line="117"/>
+        <location filename="luma/plugins/browser_plugin/gui/PasswordEditorDesign.py" line="122"/>
         <source>New password</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/gui/PasswordEditorDesign.py" line="118"/>
-        <source>PW</source>
-        <comment>DO NOT TRANSLATE</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/gui/PasswordEditorDesign.py" line="119"/>
-        <source>&amp;OK</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/gui/PasswordEditorDesign.py" line="120"/>
-        <source>&amp;Cancel</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/gui/PasswordEditorDesign.py" line="121"/>
-        <source>Strength:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/gui/PasswordEditorDesign.py" line="122"/>
-        <source>Hash algorithm:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="luma/plugins/browser_plugin/gui/PasswordEditorDesign.py" line="123"/>
-        <source>Password:</source>
+        <source>PW</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="luma/plugins/browser_plugin/gui/PasswordEditorDesign.py" line="124"/>
-        <source>Verify:</source>
+        <source>&amp;OK</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="luma/plugins/browser_plugin/gui/PasswordEditorDesign.py" line="125"/>
-        <source>Passwords do not match</source>
+        <source>&amp;Cancel</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="luma/plugins/browser_plugin/gui/PasswordEditorDesign.py" line="126"/>
+        <source>Strength:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="luma/plugins/browser_plugin/gui/PasswordEditorDesign.py" line="127"/>
+        <source>Hash algorithm:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="luma/plugins/browser_plugin/gui/PasswordEditorDesign.py" line="128"/>
+        <source>Password:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="luma/plugins/browser_plugin/gui/PasswordEditorDesign.py" line="129"/>
+        <source>Verify:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="luma/plugins/browser_plugin/gui/PasswordEditorDesign.py" line="130"/>
+        <source>Passwords do not match</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="luma/plugins/browser_plugin/gui/PasswordEditorDesign.py" line="131"/>
         <source>&lt;b&gt;Please enter a new password.&lt;/b&gt;</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1232,53 +1228,52 @@ If there are operations in progress it might not exit immediatly.</source>
 <context>
     <name>RdnEditorDesign</name>
     <message>
-        <location filename="luma/plugins/browser_plugin/gui/RdnEditorDesign.py" line="96"/>
+        <location filename="luma/plugins/browser_plugin/gui/RdnEditorDesign.py" line="101"/>
         <source>Edit DN</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/gui/RdnEditorDesign.py" line="97"/>
-        <source>IT</source>
-        <comment>DO NOT TRANSLATE</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/gui/RdnEditorDesign.py" line="98"/>
-        <source>&amp;OK</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/gui/RdnEditorDesign.py" line="99"/>
-        <source>Alt+O</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/gui/RdnEditorDesign.py" line="100"/>
-        <source>&amp;Cancel</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/gui/RdnEditorDesign.py" line="101"/>
-        <source>Alt+C</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="luma/plugins/browser_plugin/gui/RdnEditorDesign.py" line="102"/>
-        <source>Value:</source>
+        <source>IT</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="luma/plugins/browser_plugin/gui/RdnEditorDesign.py" line="103"/>
-        <source>DN:</source>
+        <source>&amp;OK</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="luma/plugins/browser_plugin/gui/RdnEditorDesign.py" line="104"/>
-        <source>Please choose an attribute and enter a value for it. These values will be part of distinguished name for the new object.</source>
+        <source>Alt+O</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="luma/plugins/browser_plugin/gui/RdnEditorDesign.py" line="105"/>
+        <source>&amp;Cancel</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="luma/plugins/browser_plugin/gui/RdnEditorDesign.py" line="106"/>
+        <source>Alt+C</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="luma/plugins/browser_plugin/gui/RdnEditorDesign.py" line="107"/>
+        <source>Value:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="luma/plugins/browser_plugin/gui/RdnEditorDesign.py" line="108"/>
+        <source>DN:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="luma/plugins/browser_plugin/gui/RdnEditorDesign.py" line="109"/>
+        <source>Please choose an attribute and enter a value for it. These values will be part of distinguished name for the new object.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="luma/plugins/browser_plugin/gui/RdnEditorDesign.py" line="110"/>
         <source>Attribute:</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1342,68 +1337,63 @@ If there are operations in progress it might not exit immediatly.</source>
 <context>
     <name>SearchForm</name>
     <message>
-        <location filename="luma/plugins/search/gui/SearchFormDesign.py" line="141"/>
+        <location filename="luma/plugins/search/gui/SearchFormDesign.py" line="146"/>
         <source>Form</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/plugins/search/gui/SearchFormDesign.py" line="142"/>
+        <location filename="luma/plugins/search/gui/SearchFormDesign.py" line="147"/>
         <source>Search options</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/plugins/search/gui/SearchFormDesign.py" line="143"/>
+        <location filename="luma/plugins/search/gui/SearchFormDesign.py" line="148"/>
         <source>Server:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/plugins/search/gui/SearchFormDesign.py" line="144"/>
+        <location filename="luma/plugins/search/gui/SearchFormDesign.py" line="149"/>
         <source>Base DN:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/plugins/search/gui/SearchFormDesign.py" line="145"/>
+        <location filename="luma/plugins/search/gui/SearchFormDesign.py" line="150"/>
         <source>Set the limit for retrived entries. (0 = No limit)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/plugins/search/gui/SearchFormDesign.py" line="146"/>
+        <location filename="luma/plugins/search/gui/SearchFormDesign.py" line="151"/>
         <source>Size limit:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/plugins/search/gui/SearchFormDesign.py" line="147"/>
+        <location filename="luma/plugins/search/gui/SearchFormDesign.py" line="152"/>
         <source>Set the search level.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/plugins/search/gui/SearchFormDesign.py" line="148"/>
+        <location filename="luma/plugins/search/gui/SearchFormDesign.py" line="153"/>
         <source>Level:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/plugins/search/gui/SearchFormDesign.py" line="149"/>
+        <location filename="luma/plugins/search/gui/SearchFormDesign.py" line="154"/>
         <source>&amp;Search</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/plugins/search/gui/SearchFormDesign.py" line="150"/>
+        <location filename="luma/plugins/search/gui/SearchFormDesign.py" line="155"/>
         <source>Edit with the Filter Builder</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/plugins/search/gui/SearchFormDesign.py" line="151"/>
+        <location filename="luma/plugins/search/gui/SearchFormDesign.py" line="156"/>
         <source>...</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>SearchPlugin</name>
-    <message>
-        <location filename="luma/plugins/search/gui/SearchPluginDesign.py" line="54"/>
-        <source>Search</source>
-        <translation type="unfinished"></translation>
-    </message>
     <message>
         <location filename="luma/plugins/search/Search.py" line="408"/>
         <source>Search Form</source>
@@ -1414,51 +1404,56 @@ If there are operations in progress it might not exit immediatly.</source>
         <source>Filter Builder</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <location filename="luma/plugins/search/gui/SearchPluginDesign.py" line="59"/>
+        <source>Search</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>SearchPluginSettings</name>
     <message>
-        <location filename="luma/plugins/search/gui/SearchPluginSettingsDesign.py" line="75"/>
+        <location filename="luma/plugins/search/gui/SearchPluginSettingsDesign.py" line="80"/>
         <source>Settings</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/plugins/search/gui/SearchPluginSettingsDesign.py" line="76"/>
+        <location filename="luma/plugins/search/gui/SearchPluginSettingsDesign.py" line="81"/>
         <source>Defaults</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/plugins/search/gui/SearchPluginSettingsDesign.py" line="77"/>
+        <location filename="luma/plugins/search/gui/SearchPluginSettingsDesign.py" line="82"/>
         <source>Search level:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/plugins/search/gui/SearchPluginSettingsDesign.py" line="78"/>
+        <location filename="luma/plugins/search/gui/SearchPluginSettingsDesign.py" line="83"/>
         <source>SCOPE_BASE</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/plugins/search/gui/SearchPluginSettingsDesign.py" line="79"/>
+        <location filename="luma/plugins/search/gui/SearchPluginSettingsDesign.py" line="84"/>
         <source>SCOPE_ONELEVEL</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/plugins/search/gui/SearchPluginSettingsDesign.py" line="80"/>
+        <location filename="luma/plugins/search/gui/SearchPluginSettingsDesign.py" line="85"/>
         <source>SCOPE_SUBTREE</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/plugins/search/gui/SearchPluginSettingsDesign.py" line="81"/>
+        <location filename="luma/plugins/search/gui/SearchPluginSettingsDesign.py" line="86"/>
         <source>Size limit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/plugins/search/gui/SearchPluginSettingsDesign.py" line="82"/>
+        <location filename="luma/plugins/search/gui/SearchPluginSettingsDesign.py" line="87"/>
         <source>Enable attribute autocompletion.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/plugins/search/gui/SearchPluginSettingsDesign.py" line="83"/>
+        <location filename="luma/plugins/search/gui/SearchPluginSettingsDesign.py" line="88"/>
         <source>Enable filter syntax highlighting.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1542,232 +1537,232 @@ Do you still want to save?</source>
 <context>
     <name>ServerDialogDesign</name>
     <message>
-        <location filename="luma/base/gui/design/ServerDialogDesign.py" line="465"/>
+        <location filename="luma/base/gui/design/ServerDialogDesign.py" line="470"/>
         <source>Manage Server List</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/base/gui/design/ServerDialogDesign.py" line="466"/>
+        <location filename="luma/base/gui/design/ServerDialogDesign.py" line="471"/>
         <source>&amp;Add</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/base/gui/design/ServerDialogDesign.py" line="467"/>
+        <location filename="luma/base/gui/design/ServerDialogDesign.py" line="472"/>
         <source>&amp;Delete</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/base/gui/design/ServerDialogDesign.py" line="468"/>
+        <location filename="luma/base/gui/design/ServerDialogDesign.py" line="473"/>
         <source>Test connection</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/base/gui/design/ServerDialogDesign.py" line="478"/>
-        <source>Network</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="luma/base/gui/design/ServerDialogDesign.py" line="469"/>
+        <location filename="luma/base/gui/design/ServerDialogDesign.py" line="474"/>
         <source>Network options</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/base/gui/design/ServerDialogDesign.py" line="470"/>
+        <location filename="luma/base/gui/design/ServerDialogDesign.py" line="475"/>
         <source>Host:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/base/gui/design/ServerDialogDesign.py" line="471"/>
+        <location filename="luma/base/gui/design/ServerDialogDesign.py" line="476"/>
         <source>Port:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/base/gui/design/ServerDialogDesign.py" line="472"/>
+        <location filename="luma/base/gui/design/ServerDialogDesign.py" line="477"/>
         <source>LDAP options</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/base/gui/design/ServerDialogDesign.py" line="473"/>
+        <location filename="luma/base/gui/design/ServerDialogDesign.py" line="478"/>
         <source>Follow aliases</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/base/gui/design/ServerDialogDesign.py" line="474"/>
+        <location filename="luma/base/gui/design/ServerDialogDesign.py" line="479"/>
         <source>Use Base DN provided by server</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/base/gui/design/ServerDialogDesign.py" line="475"/>
+        <location filename="luma/base/gui/design/ServerDialogDesign.py" line="480"/>
         <source>Custom:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/base/gui/design/ServerDialogDesign.py" line="476"/>
+        <location filename="luma/base/gui/design/ServerDialogDesign.py" line="481"/>
         <source>Add</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/base/gui/design/ServerDialogDesign.py" line="477"/>
+        <location filename="luma/base/gui/design/ServerDialogDesign.py" line="482"/>
         <source>Delete</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/base/gui/design/ServerDialogDesign.py" line="491"/>
-        <source>Authentification</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="luma/base/gui/design/ServerDialogDesign.py" line="479"/>
-        <source>Bind options</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="luma/base/gui/design/ServerDialogDesign.py" line="480"/>
-        <source>Anonymous bind</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="luma/base/gui/design/ServerDialogDesign.py" line="481"/>
-        <source>Mechanism:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="luma/base/gui/design/ServerDialogDesign.py" line="482"/>
-        <source>SIMPLE</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="luma/base/gui/design/ServerDialogDesign.py" line="483"/>
-        <source>SASL CRAM-MD5</source>
+        <source>Network</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="luma/base/gui/design/ServerDialogDesign.py" line="484"/>
-        <source>SASL DIGEST-MD5</source>
+        <source>Bind options</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="luma/base/gui/design/ServerDialogDesign.py" line="485"/>
-        <source>SASL EXTERNAL</source>
+        <source>Anonymous bind</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="luma/base/gui/design/ServerDialogDesign.py" line="486"/>
-        <source>SASL GSSAPI</source>
+        <source>Mechanism:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="luma/base/gui/design/ServerDialogDesign.py" line="487"/>
-        <source>SASL Login</source>
+        <source>SIMPLE</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="luma/base/gui/design/ServerDialogDesign.py" line="488"/>
-        <source>SASL Plain</source>
+        <source>SASL CRAM-MD5</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="luma/base/gui/design/ServerDialogDesign.py" line="489"/>
-        <source>Bind as:</source>
+        <source>SASL DIGEST-MD5</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="luma/base/gui/design/ServerDialogDesign.py" line="490"/>
-        <source>Password:</source>
+        <source>SASL EXTERNAL</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/base/gui/design/ServerDialogDesign.py" line="507"/>
-        <source>Security</source>
+        <location filename="luma/base/gui/design/ServerDialogDesign.py" line="491"/>
+        <source>SASL GSSAPI</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="luma/base/gui/design/ServerDialogDesign.py" line="492"/>
-        <source>Security options</source>
+        <source>SASL Login</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="luma/base/gui/design/ServerDialogDesign.py" line="493"/>
-        <source>Unencrypted connection</source>
+        <source>SASL Plain</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="luma/base/gui/design/ServerDialogDesign.py" line="494"/>
-        <source>Transport Layer Security (TLS)</source>
+        <source>Bind as:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="luma/base/gui/design/ServerDialogDesign.py" line="495"/>
-        <source>Secure Socket Layer (SSL)</source>
+        <source>Password:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="luma/base/gui/design/ServerDialogDesign.py" line="496"/>
-        <source>Validate server certificate</source>
+        <source>Authentification</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="luma/base/gui/design/ServerDialogDesign.py" line="497"/>
-        <source>Never</source>
+        <source>Security options</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="luma/base/gui/design/ServerDialogDesign.py" line="498"/>
-        <source>Allow</source>
+        <source>Unencrypted connection</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="luma/base/gui/design/ServerDialogDesign.py" line="499"/>
-        <source>Try</source>
+        <source>Transport Layer Security (TLS)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="luma/base/gui/design/ServerDialogDesign.py" line="500"/>
-        <source>Demand</source>
+        <source>Secure Socket Layer (SSL)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="luma/base/gui/design/ServerDialogDesign.py" line="501"/>
-        <source>Client certificate options</source>
+        <source>Validate server certificate</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="luma/base/gui/design/ServerDialogDesign.py" line="502"/>
-        <source>Use client certificates</source>
+        <source>Never</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="luma/base/gui/design/ServerDialogDesign.py" line="503"/>
-        <source>Certificate file:</source>
+        <source>Allow</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="luma/base/gui/design/ServerDialogDesign.py" line="504"/>
+        <source>Try</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="luma/base/gui/design/ServerDialogDesign.py" line="505"/>
-        <source>...</source>
+        <source>Demand</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="luma/base/gui/design/ServerDialogDesign.py" line="506"/>
-        <source>Certificate keyfile:</source>
+        <source>Client certificate options</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="luma/base/gui/design/ServerDialogDesign.py" line="507"/>
+        <source>Use client certificates</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="luma/base/gui/design/ServerDialogDesign.py" line="508"/>
-        <source>&amp;OK</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="luma/base/gui/design/ServerDialogDesign.py" line="509"/>
-        <source>Apply</source>
+        <source>Certificate file:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="luma/base/gui/design/ServerDialogDesign.py" line="510"/>
-        <source>&amp;Cancel</source>
+        <source>...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="luma/base/gui/design/ServerDialogDesign.py" line="511"/>
+        <source>Certificate keyfile:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="luma/base/gui/design/ServerDialogDesign.py" line="512"/>
+        <source>Security</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="luma/base/gui/design/ServerDialogDesign.py" line="513"/>
+        <source>&amp;OK</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="luma/base/gui/design/ServerDialogDesign.py" line="514"/>
+        <source>Apply</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="luma/base/gui/design/ServerDialogDesign.py" line="515"/>
+        <source>&amp;Cancel</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="luma/base/gui/design/ServerDialogDesign.py" line="516"/>
         <source>Alt+C</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1775,37 +1770,37 @@ Do you still want to save?</source>
 <context>
     <name>SettingsDialog</name>
     <message>
-        <location filename="luma/base/gui/design/SettingsDialogDesign.py" line="85"/>
+        <location filename="luma/base/gui/design/SettingsDialogDesign.py" line="90"/>
         <source>Settings</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/base/gui/design/SettingsDialogDesign.py" line="86"/>
+        <location filename="luma/base/gui/design/SettingsDialogDesign.py" line="91"/>
         <source>&amp;Ok</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/base/gui/design/SettingsDialogDesign.py" line="87"/>
+        <location filename="luma/base/gui/design/SettingsDialogDesign.py" line="92"/>
         <source>&amp;Cancel</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/base/gui/design/SettingsDialogDesign.py" line="90"/>
-        <source>General</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="luma/base/gui/design/SettingsDialogDesign.py" line="88"/>
+        <location filename="luma/base/gui/design/SettingsDialogDesign.py" line="93"/>
         <source>Logging</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/base/gui/design/SettingsDialogDesign.py" line="89"/>
+        <location filename="luma/base/gui/design/SettingsDialogDesign.py" line="94"/>
         <source>Allways show the Logger on startup</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/base/gui/design/SettingsDialogDesign.py" line="91"/>
+        <location filename="luma/base/gui/design/SettingsDialogDesign.py" line="95"/>
+        <source>General</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="luma/base/gui/design/SettingsDialogDesign.py" line="96"/>
         <source>Plugins</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1813,43 +1808,42 @@ Do you still want to save?</source>
 <context>
     <name>StandardEditorDesign</name>
     <message>
-        <location filename="luma/plugins/browser_plugin/gui/StandardEditorDesign.py" line="84"/>
+        <location filename="luma/plugins/browser_plugin/gui/StandardEditorDesign.py" line="89"/>
         <source>Edit attribute</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/gui/StandardEditorDesign.py" line="85"/>
-        <source>IT</source>
-        <comment>DO NOT TRANSLATE</comment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/gui/StandardEditorDesign.py" line="86"/>
-        <source>Please enter a new value for the attribute &lt;b&gt;%1&lt;/b&gt;.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/gui/StandardEditorDesign.py" line="87"/>
-        <source>&amp;OK</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/gui/StandardEditorDesign.py" line="88"/>
-        <source>Alt+O</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/gui/StandardEditorDesign.py" line="89"/>
-        <source>&amp;Cancel</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="luma/plugins/browser_plugin/gui/StandardEditorDesign.py" line="90"/>
-        <source>Alt+C</source>
+        <source>IT</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="luma/plugins/browser_plugin/gui/StandardEditorDesign.py" line="91"/>
+        <source>Please enter a new value for the attribute &lt;b&gt;%1&lt;/b&gt;.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="luma/plugins/browser_plugin/gui/StandardEditorDesign.py" line="92"/>
+        <source>&amp;OK</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="luma/plugins/browser_plugin/gui/StandardEditorDesign.py" line="93"/>
+        <source>Alt+O</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="luma/plugins/browser_plugin/gui/StandardEditorDesign.py" line="94"/>
+        <source>&amp;Cancel</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="luma/plugins/browser_plugin/gui/StandardEditorDesign.py" line="95"/>
+        <source>Alt+C</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="luma/plugins/browser_plugin/gui/StandardEditorDesign.py" line="96"/>
         <source>Value:</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1857,108 +1851,8 @@ Do you still want to save?</source>
 <context>
     <name>TemplateWidget</name>
     <message>
-        <location filename="luma/plugins/template/gui/TemplateWidgetDesign.py" line="184"/>
-        <source>Form</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/template/gui/TemplateWidgetDesign.py" line="185"/>
-        <source>Templates</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/template/gui/TemplateWidgetDesign.py" line="186"/>
-        <source>Save template</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/template/gui/TemplateWidgetDesign.py" line="187"/>
-        <source>Save</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/template/gui/TemplateWidgetDesign.py" line="188"/>
-        <source>Add template</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/template/gui/TemplateWidgetDesign.py" line="206"/>
-        <source>Add</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/template/gui/TemplateWidgetDesign.py" line="190"/>
-        <source>Existing templates</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/template/gui/TemplateWidgetDesign.py" line="191"/>
-        <source>Delete template</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/template/gui/TemplateWidgetDesign.py" line="208"/>
+        <location filename="luma/plugins/template/gui/TemplateWidgetDesign.py" line="213"/>
         <source>Delete</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/template/gui/TemplateWidgetDesign.py" line="193"/>
-        <source>Duplicate template</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/template/gui/TemplateWidgetDesign.py" line="194"/>
-        <source>Duplicate</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/template/gui/TemplateWidgetDesign.py" line="195"/>
-        <source>Server:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/template/gui/TemplateWidgetDesign.py" line="196"/>
-        <source>Description:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/template/gui/TemplateWidgetDesign.py" line="197"/>
-        <source>Objectclasses</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/template/gui/TemplateWidgetDesign.py" line="198"/>
-        <source>Add objectclasses</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/template/gui/TemplateWidgetDesign.py" line="200"/>
-        <source>Added objectclasses</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/template/gui/TemplateWidgetDesign.py" line="201"/>
-        <source>Delete objectclasses</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/template/gui/TemplateWidgetDesign.py" line="203"/>
-        <source>Attributes</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/template/gui/TemplateWidgetDesign.py" line="204"/>
-        <source>Added attributes</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/template/gui/TemplateWidgetDesign.py" line="205"/>
-        <source>Add attributes</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/template/gui/TemplateWidgetDesign.py" line="207"/>
-        <source>Delete attributes</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1966,21 +1860,121 @@ Do you still want to save?</source>
         <source>Are you sure you want to delete the selected attributes?</source>
         <translation type="unfinished"></translation>
     </message>
-</context>
-<context>
-    <name>WelcomeTab</name>
     <message>
-        <location filename="luma/base/gui/design/WelcomeTabDesign.py" line="45"/>
+        <location filename="luma/plugins/template/gui/TemplateWidgetDesign.py" line="189"/>
         <source>Form</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/base/gui/design/WelcomeTabDesign.py" line="46"/>
+        <location filename="luma/plugins/template/gui/TemplateWidgetDesign.py" line="190"/>
+        <source>Templates</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="luma/plugins/template/gui/TemplateWidgetDesign.py" line="191"/>
+        <source>Save template</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="luma/plugins/template/gui/TemplateWidgetDesign.py" line="192"/>
+        <source>Save</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="luma/plugins/template/gui/TemplateWidgetDesign.py" line="193"/>
+        <source>Add template</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="luma/plugins/template/gui/TemplateWidgetDesign.py" line="211"/>
+        <source>Add</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="luma/plugins/template/gui/TemplateWidgetDesign.py" line="195"/>
+        <source>Existing templates</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="luma/plugins/template/gui/TemplateWidgetDesign.py" line="196"/>
+        <source>Delete template</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="luma/plugins/template/gui/TemplateWidgetDesign.py" line="198"/>
+        <source>Duplicate template</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="luma/plugins/template/gui/TemplateWidgetDesign.py" line="199"/>
+        <source>Duplicate</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="luma/plugins/template/gui/TemplateWidgetDesign.py" line="200"/>
+        <source>Server:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="luma/plugins/template/gui/TemplateWidgetDesign.py" line="201"/>
+        <source>Description:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="luma/plugins/template/gui/TemplateWidgetDesign.py" line="202"/>
+        <source>Objectclasses</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="luma/plugins/template/gui/TemplateWidgetDesign.py" line="203"/>
+        <source>Add objectclasses</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="luma/plugins/template/gui/TemplateWidgetDesign.py" line="205"/>
+        <source>Added objectclasses</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="luma/plugins/template/gui/TemplateWidgetDesign.py" line="206"/>
+        <source>Delete objectclasses</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="luma/plugins/template/gui/TemplateWidgetDesign.py" line="208"/>
+        <source>Attributes</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="luma/plugins/template/gui/TemplateWidgetDesign.py" line="209"/>
+        <source>Added attributes</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="luma/plugins/template/gui/TemplateWidgetDesign.py" line="210"/>
+        <source>Add attributes</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="luma/plugins/template/gui/TemplateWidgetDesign.py" line="212"/>
+        <source>Delete attributes</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>WelcomeTab</name>
+    <message>
+        <location filename="luma/base/gui/design/WelcomeTabDesign.py" line="50"/>
+        <source>Form</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="luma/base/gui/design/WelcomeTabDesign.py" line="51"/>
         <source>Show this page everytime Luma starts</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/base/gui/design/WelcomeTabDesign.py" line="47"/>
+        <location filename="luma/base/gui/design/WelcomeTabDesign.py" line="52"/>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }

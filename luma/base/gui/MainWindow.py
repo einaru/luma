@@ -323,7 +323,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         """ Slot for displaying the about dialog.
         """
         AboutDialog().exec_()
-
+    
     @pyqtSlot(bool)
     def toggleLoggerWindow(self, show):
         """ Slot for toggling the logger window.

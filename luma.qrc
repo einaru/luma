@@ -58,6 +58,9 @@
     <file alias="alias">resources/icons/alias.png</file>
     <file alias="luma-gray">resources/icons/luma-gray.png</file>
   </qresource>
+  <qresource prefix="icons/256">
+    <file alias="luma">resources/icons/256x256/apps/luma.png</file>
+  </qresource>
   <qresource prefix="i18n">
     <file alias="en">resources/i18n/luma_en.qm</file>
     <file alias="hx">resources/i18n/luma_hx.qm</file>
@@ -111,5 +114,8 @@
     <file alias="template">resources/icons/plugins/template.png</file>
     <file alias="tetris">resources/icons/plugins/tetris.png</file>
     <file alias="user-management">resources/icons/plugins/user-management.png</file>
+  </qresource>
+  <qresource prefix="icons/128">
+    <file alias="luma">resources/icons/128x128/apps/luma.png</file>
   </qresource>
 </RCC>

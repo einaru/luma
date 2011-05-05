@@ -219,21 +219,6 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/plugins/template/gui/AddAttributeDialogDesign.py" line="81"/>
-        <source>Cancel</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/template/gui/AddAttributeDialogDesign.py" line="82"/>
-        <source>OK</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/template/gui/AddAttributeDialogDesign.py" line="83"/>
-        <source>Please select the attributes you want to add.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="luma/plugins/template/gui/DeleteObjectclassDialogDesign.py" line="75"/>
         <source>No</source>
         <translation type="unfinished"></translation>
@@ -246,6 +231,21 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="luma/plugins/template/gui/DeleteObjectclassDialogDesign.py" line="77"/>
         <source>Warning: The following attributes will be removed when deleting all selected objectclasses. Do you want to continue?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="luma/plugins/template/gui/AddAttributeDialogDesign.py" line="81"/>
+        <source>Cancel</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="luma/plugins/template/gui/AddAttributeDialogDesign.py" line="82"/>
+        <source>OK</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="luma/plugins/template/gui/AddAttributeDialogDesign.py" line="83"/>
+        <source>Please select the attributes you want to add.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -547,6 +547,16 @@ the selected objectclass.&lt;/p&gt;</source>
 <context>
     <name>BrowserView</name>
     <message>
+        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="608"/>
+        <source>Delete</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="430"/>
+        <source>Really delete?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="luma/plugins/browser_plugin/BrowserView.py" line="435"/>
         <source>Error</source>
         <translation type="unfinished"></translation>
@@ -560,6 +570,11 @@ the selected objectclass.&lt;/p&gt;</source>
         <location filename="luma/plugins/browser_plugin/BrowserView.py" line="467"/>
         <source>It&apos;s possible some of the selected items might not have been deleted, while others were.
 Do you wan&apos;t to update the list to reflect the changes?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="568"/>
+        <source>You need to restart the plugin for changes to take effect.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -603,13 +618,13 @@ Do you wan&apos;t to update the list to reflect the changes?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="608"/>
-        <source>Delete</source>
+        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="609"/>
+        <source>Export</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="609"/>
-        <source>Export</source>
+        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="610"/>
+        <source>Cancel</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -650,21 +665,6 @@ Do you wan&apos;t to update the list to reflect the changes?</source>
     <message>
         <location filename="luma/plugins/browser_plugin/BrowserView.py" line="619"/>
         <source>Subtrees with parents</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="430"/>
-        <source>Really delete?</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="568"/>
-        <source>You need to restart the plugin for changes to take effect.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="610"/>
-        <source>Cancel</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1123,6 +1123,11 @@ Do you wan&apos;t to update the list to reflect the changes?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="luma/base/gui/MainWindow.py" line="377"/>
+        <source>You may need to restart plugins for changes to take effect.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="luma/base/gui/MainWindow.py" line="473"/>
         <source>Welcome</source>
         <translation type="unfinished"></translation>
@@ -1133,6 +1138,12 @@ Do you wan&apos;t to update the list to reflect the changes?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="luma/base/gui/MainWindow.py" line="493"/>
+        <source>Closing Luma...
+If there are operations in progress it might not exit immediatly.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="luma/base/gui/MainWindow.py" line="649"/>
         <source>Available plugins</source>
         <translation type="unfinished"></translation>
@@ -1140,17 +1151,6 @@ Do you wan&apos;t to update the list to reflect the changes?</source>
     <message>
         <location filename="luma/base/gui/MainWindow.py" line="650"/>
         <source>Choose plugin</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="luma/base/gui/MainWindow.py" line="377"/>
-        <source>You may need to restart plugins for changes to take effect.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="luma/base/gui/MainWindow.py" line="493"/>
-        <source>Closing Luma...
-If there are operations in progress it might not exit immediatly.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1518,16 +1518,6 @@ If there are operations in progress it might not exit immediatly.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/base/gui/ServerDialog.py" line="333"/>
-        <source>Select certificate file</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="luma/base/gui/ServerDialog.py" line="342"/>
-        <source>Select certificate keyfile</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="luma/base/gui/ServerDialog.py" line="312"/>
         <source>BaseDNs not defined</source>
         <translation type="unfinished"></translation>
@@ -1536,6 +1526,16 @@ If there are operations in progress it might not exit immediatly.</source>
         <location filename="luma/base/gui/ServerDialog.py" line="312"/>
         <source>One or more server(s) are setup to use custom base DNs without specifying any.
 Do you still want to save?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="luma/base/gui/ServerDialog.py" line="333"/>
+        <source>Select certificate file</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="luma/base/gui/ServerDialog.py" line="342"/>
+        <source>Select certificate keyfile</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1554,6 +1554,11 @@ Do you still want to save?</source>
     <message>
         <location filename="luma/base/gui/design/ServerDialogDesign.py" line="467"/>
         <source>&amp;Delete</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="luma/base/gui/design/ServerDialogDesign.py" line="468"/>
+        <source>Test connection</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1764,11 +1769,6 @@ Do you still want to save?</source>
     <message>
         <location filename="luma/base/gui/design/ServerDialogDesign.py" line="511"/>
         <source>Alt+C</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="luma/base/gui/design/ServerDialogDesign.py" line="468"/>
-        <source>Test connection</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
