@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file '/mnt/debris/devel/git/luma/resources/forms/plugins/template/AddAttributeDialogDesign.ui'
+# Form implementation generated from reading ui file 'd:\Skole\it2901\resources\forms\plugins\template\AddAttributeDialogDesign.ui'
 #
-# Created: Thu May  5 12:05:14 2011
-#      by: PyQt4 UI code generator 4.8.3
+# Created: Thu May 05 12:06:45 2011
+#      by: PyQt4 UI code generator 4.8.2
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -49,6 +49,12 @@ class Ui_AddAttributeDialog(object):
         self.line_2.setObjectName(_fromUtf8("line_2"))
         self.gridLayout_2.addWidget(self.line_2, 1, 0, 1, 4)
         self.labelMainIcon = QtGui.QLabel(AddAttributeDialog)
+        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Fixed, QtGui.QSizePolicy.Fixed)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.labelMainIcon.sizePolicy().hasHeightForWidth())
+        self.labelMainIcon.setSizePolicy(sizePolicy)
+        self.labelMainIcon.setMinimumSize(QtCore.QSize(64, 64))
         self.labelMainIcon.setText(_fromUtf8(""))
         self.labelMainIcon.setObjectName(_fromUtf8("labelMainIcon"))
         self.gridLayout_2.addWidget(self.labelMainIcon, 0, 0, 1, 1)

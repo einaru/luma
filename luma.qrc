@@ -66,6 +66,7 @@
   <qresource prefix="icons/64">
     <file alias="attribute">resources/icons/64x64/attribute.png</file>
     <file alias="objectclass">resources/icons/64x64/objectclass.png</file>
+    <file alias="template">resources/icons/64x64/template.png</file>
     <file alias="add-attribute">resources/icons/64x64/actions/add-attribute.png</file>
     <file alias="add-objectclass">resources/icons/64x64/actions/add-objectclass.png</file>
     <file alias="document-close">resources/icons/64x64/actions/document-close.png</file>
