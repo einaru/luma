@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'd:\Skole\it2901\resources\forms\plugins\browser_plugin\BinaryEditorDesign.ui'
+# Form implementation generated from reading ui file '/mnt/debris/devel/git/luma/resources/forms/plugins/browser_plugin/BinaryEditorDesign.ui'
 #
-# Created: Thu May 05 14:43:13 2011
-#      by: PyQt4 UI code generator 4.8.2
+# Created: Thu May  5 17:00:03 2011
+#      by: PyQt4 UI code generator 4.8.3
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -89,12 +89,12 @@ class Ui_BinaryEditorDesign(object):
 
     def retranslateUi(self, BinaryEditorDesign):
         BinaryEditorDesign.setWindowTitle(QtGui.QApplication.translate("BinaryEditorDesign", "Edit attribute", None, QtGui.QApplication.UnicodeUTF8))
-        self.iconLabel.setText(QtGui.QApplication.translate("BinaryEditorDesign", "IT", None, QtGui.QApplication.UnicodeUTF8))
+        self.iconLabel.setText(QtGui.QApplication.translate("BinaryEditorDesign", "IT", "DO NOT TRANSLATE", QtGui.QApplication.UnicodeUTF8))
         self.okButton.setText(QtGui.QApplication.translate("BinaryEditorDesign", "&OK", None, QtGui.QApplication.UnicodeUTF8))
         self.okButton.setShortcut(QtGui.QApplication.translate("BinaryEditorDesign", "Alt+O", None, QtGui.QApplication.UnicodeUTF8))
         self.cancelButton.setText(QtGui.QApplication.translate("BinaryEditorDesign", "&Cancel", None, QtGui.QApplication.UnicodeUTF8))
         self.cancelButton.setShortcut(QtGui.QApplication.translate("BinaryEditorDesign", "Alt+C", None, QtGui.QApplication.UnicodeUTF8))
-        self.fileButton.setText(QtGui.QApplication.translate("BinaryEditorDesign", "F", None, QtGui.QApplication.UnicodeUTF8))
+        self.fileButton.setText(QtGui.QApplication.translate("BinaryEditorDesign", "F", "DO NOT TRANSLATE", QtGui.QApplication.UnicodeUTF8))
         self.attributeLabel.setText(QtGui.QApplication.translate("BinaryEditorDesign", "Please enter a file location from where to load binary data for the attribute <b>%1</b>.", None, QtGui.QApplication.UnicodeUTF8))
         self.informationLabel.setText(QtGui.QApplication.translate("BinaryEditorDesign", "IL", None, QtGui.QApplication.UnicodeUTF8))
         self.textLabel3.setText(QtGui.QApplication.translate("BinaryEditorDesign", "Location:", None, QtGui.QApplication.UnicodeUTF8))

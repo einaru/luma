@@ -4,6 +4,8 @@ import os
 
 from PyQt4 import QtGui
 from PyQt4 import QtCore
+
+from base.util.IconTheme import iconFromTheme
 from .Tetris import Tetris
 
 
@@ -14,7 +16,7 @@ version = "0.2"
 author = "Per Ove"
 
 def getIcon():
-    return QtGui.QIcon(':/icons/plugins/tetris')
+    return iconFromTheme('luma-tetris-plugin', ':/icons/plugins/tetris')
     
 
 def getPluginWidget(parent, mainwin):

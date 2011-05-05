@@ -18,7 +18,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see http://www.gnu.org/licenses/
 
-from PyQt4.QtGui import QIcon
+from base.util.IconTheme import iconFromTheme
 from .Search import (SearchPlugin, SearchPluginSettingsWidget)
 
 lumaPlugin = True
@@ -31,7 +31,7 @@ create filters to speed up efficiency.
 """
 
 def getIcon(iconPath = None):
-    return QIcon(':/icons/plugins/search')
+    return iconFromTheme('luma-search-plugin', ':/icons/plugins/search')
 
 
 def getPluginWidget(parent, mainwin):

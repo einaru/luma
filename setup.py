@@ -48,12 +48,18 @@ def findPackages():
     """Custom method to suplement distutils with a setuptools-like way
     of finding all package files
     """
+    skipDirs = ['rejects', 'test']
     packages = []
     root_dir = os.path.dirname(__file__)
     if root_dir != '':
         os.chdir(root_dir)
     
     for path, names, files in os.walk(src_dir):
+        top = os.path.split(path)[1]
+        # Skip directories defined in `skipDirs`
+        if top in skipDirs:
+            continue
+
         for i, name in enumerate(names):
             if name.startswith('.'):
                 del names[i]
@@ -110,7 +116,7 @@ if sys.platform.lower().startswith('win'):
 elif sys.platform.lower().startswith('darwin'):
     # TODO: add Mac OS X spesifics. (py2app?)
     _extras = dict(
-        scripts=['luma/luma.py']
+        scripts=['bin/luma']
     )
 # Linux
 elif sys.platform.lower().startswith('linux'):

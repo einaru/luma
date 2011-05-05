@@ -31,7 +31,7 @@ def iconFromTheme(icon, fallback):
     - `icon`: the name of the icon from the icon theme.
     - `fallback`: the name of the fallback icon.
     """
-    return QIcon.fromTheme('icon', QIcon(fallback))
+    return QIcon.fromTheme(icon, QIcon(fallback))
 
 def pixmapFromTheme(icon, fallback, width=48, height=48, mode=QIcon.Normal,
                     state=QIcon.Off):
