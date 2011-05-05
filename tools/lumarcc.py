@@ -1,22 +1,23 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-# Copyright (c) 2011
-#      Einar Uvsløkk, <einaru@stud.ntnu.no>
+# tools.lumaResourceCompiler.py
 #
-# Luma is free software; you can redistribute it and/or modify 
-# it under the terms of the GNU General Public Licence as published by 
-# the Free Software Foundation; either version 2 of the Licence, or 
+# Copyright (c) 2011
+#      Einar Uvsløkk, <einar.uvslokk@linux.com>
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
 # (at your option) any later version.
 #
-# Luma is distributed in the hope that it will be useful, but 
-# WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY
-# or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public Licence 
-# for more details.
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public Licence along 
-# with Luma; if not, write to the Free Software Foundation, Inc., 
-# 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see http://www.gnu.org/licenses/
 """
 Assumed locations of files:
 .
@@ -57,29 +58,11 @@ from optparse import OptionParser, OptionGroup
 
 from PyQt4.QtCore import QProcess, QString
 
-# Filepaths
-SOURCE_ICONS = ['resources', 'icons']
-SOURCE_TRANS = ['resources', 'i18n']
-SOURCE_UI = ['resources', 'forms']
-DEST_TRANS = ['luma', 'i18n']
-DEST_UI = ['luma', 'base', 'gui', 'design']
-PLUGINS = ['luma', 'plugins']
-SOURCES_BASE = ['luma', 'base', 'gui']
-
-# Files w/filepaths
-LUMA_PRO = ['luma.pro']
-LUMA_QRC = ['luma.qrc']
-LUMA_RC = ['luma', 'resources.py']
-LUMA_RC_ICONS = ['luma', 'iconsrc.py']
-LUMA_RC_I18N = ['luma', 'i18nrc.py']
-
 short_description = """
    __  __  ______ ___  ____  ___  ____  ____  
-  / /\/ /\/ / __ `__ \/___ \/ __\/ ___\/ ___\  lumarcc.py v0.5
- / /_/ /_/ / /\/ /\/ / __  / /\_/ /\__/ /\___\ copyright (c) 2011
- \__/\____/_/ /_/ /_/\____/_/ / \____/\____/\  Einar Uvsløkk
-  \_\/\___\_\/\_\/\_\/\___\_\/   \___\/\___\/  <einar.uvslokk@linux.com>
-
+  / / / / / / __ `__ \/___ \/ __\/ ___\/ ___\  lumarcc.py v0.8
+ / /_/ /_/ / / / / / / __  / /  / /___/ /___   copyright (c) 2011
+ \__/\____/_/ /_/ /_/\____/_/   \____/\____/   <einar.uvslokk@linux.com>                                               
 Luma resource compiler"""
 
 long_description = """
@@ -93,12 +76,265 @@ pylupdate4  Used for updating the resources in the project file.
             This is a python wrapper for lupdate-qt4"""
 
 
-def __run(cmd, args=[]):
+class LumaPRO(object):
+    """Object respresenting the ``luma.pro`` project file.
+
+    The sections in the project file is represeneted as a python dict,
+    with a string as key, and a list of strings as value::
+
+        pro = {
+            section1 : [item, item, ...],
+            section2 : [item,  ...],
+            ...
+        }
+
+    where section can be SOURCES, FORMS, TRANSLATIONS, etc.
+    The ``luma.pro`` file will thus be transformed to::
+
+        ...
+
+        section1 += item
+        section1 += item
+        section1 += ...
+
+        section2 += item
+        section2 += ...
+
+        ...
     """
-    This method is pretty much pillage from openLP :).
-    It executes the provided command, provided it is available on the system.
     
-    @param cmd: The wicked command to be executed.
+    FILE = 'luma.pro'
+
+    def __init__(self):
+        self.proDict = {}
+        self.proDict['CONFIG'] = ['qt debug']
+        self.proDict['RESOURCES'] = ['luma/resources.py']
+    
+    def __str__(self):
+        """Retruns the string representation of the project file.
+        """
+        return '\n'.join([line for line in self.asList()])
+
+    def addItem(self, section, item):
+        """
+        """
+        if self.proDict.has_key(section):
+            self.proDict.get(section).append(item)
+        else:
+            self.proDict[section] = [item]
+
+    def update(self):
+        """
+        """
+        self.find('SOURCES', getPath(['luma']), '.py', ['__init__.py'])
+        self.find('FORMS', getPath(SRC_UI))
+        self.find('TRANSLATIONS', getPath(SRC_i18n), '.ts')
+        
+    def find(self, section, path, ending='', ignore=[]):
+        """
+        """
+        if verbose:
+            print '[{0}]'.format(section)
+        cwd = os.getcwd() + os.sep
+        for p, dirs, files in os.walk(path):
+            if p.endswith('rejects'):
+                continue
+
+            for file in files:
+                relpath = p.replace(cwd, '').replace('\\', '/')
+                if not file in ignore and file.endswith(ending):
+                    file = os.path.join(relpath, file)
+                    self.addItem(section, file)
+                    if verbose:
+                        print '  {0}'.format(file)
+
+    def save(self):
+        with open(self.FILE, 'w') as f:
+            f.write(str(self))
+            f.write('\n')
+
+    def asList(self):
+        """Returns the project file as a list of lines.
+        """
+        proFile = []
+        for section, items in sorted(self.proDict.iteritems()):
+            for item in items:
+                line = '{0} += {1}'
+                proFile.append(line.format(section, item))
+
+            proFile.append('')
+                
+        return proFile
+
+
+class LumaQRC(object):
+    """Object representing the Luma Resource file (``luma.qrc``).
+
+    The main part of the resource file is represented as a python dict,
+    with a string as key, and a tuple containg the accesiable alias and
+    the location of the resource::
+
+        qrc = {
+            prefix : (alias, location),
+            prefix : (alias, location),
+            ...,
+        }
+
+    which will then be transformed to::
+
+        <!DOCTYPE RCC><RCC version="1.0">
+          <qresource prefix="prefix">
+            <file alias="alias">location/name</file>
+          </qresource>
+          <qresource prefix="prefix">
+            <file alias="alias">location/name</file>
+          </qresource>
+          ...
+        </RCC>
+    """
+
+    FILE = 'luma.qrc'
+    header = '<!DOCTYPE RCC><RCC version="1.0">'
+    footer = '</RCC>'
+
+    def __init__(self, resourceRoot='resources'):
+        """Initializes a `LumaQrc` object.
+
+        Parameters:
+
+        - `resourceRoot`: the resource root location (relative to the
+          repository root)
+        """
+        self.root = resourceRoot
+        self.qrcDict = {}
+        self.qrcFile = []
+
+    def __str__(self):
+        """Returns the .qrc file as a string. The ``newline`` character
+        is added after each line.
+        """
+        return '\n'.join([line for line in self.asList()])
+
+    def getIconPrefix(self, path):
+        """All we need to do for the icontheme paths is to look for the
+        size folder. This is done by splitting the folder items on 'x' 
+        and see if the first item ``isdigit``.
+        
+        Returns a prefix containing the path folders preceeding the
+        size folder, including the size folder (without 'xSize').
+        
+        Parameters:
+        
+        - `path`: the path to get the 'prefix' from.
+        """
+        list = path.split(os.sep)
+        i = 0
+        for item in list:
+            tmp = item.split('x')
+            if tmp[0].isdigit():
+                return 'icons/{0}'.format(tmp[0])
+
+            # A special case for the ``scalable`` directory
+            if item == 'scalable':
+                return 'icons/svg/'
+
+            if item == 'plugins':
+                return 'icons/plugins'
+
+        # If we end up here we simple return ``icons`` as the prefix
+        return 'icons'
+
+    def addResource(self, prefix, path, file):
+        """Adds or appends a `resource` to the value for key `prefix`.
+        The alias for the resource will be the
+        resource filename without hte filending, i.e. *luma.png*
+        get the alias *luma*
+
+        Parameters:
+
+        - `resource`: a string containing the path to the resource
+          (relative to the repository root).
+        """
+        if prefix == 'icons':
+            prefix = self.getIconPrefix(path)
+            alias = file[:-4]
+        else:
+            alias = file[:-3].replace('luma_', '')
+
+        if self.qrcDict.has_key(prefix):
+            self.qrcDict.get(prefix).extend([(alias, path, file)])
+        else:
+            self.qrcDict[prefix] = [(alias, path, file)]
+
+    def update(self):
+        """Scannes the ``resources`` directory for resources to include
+        in the ``luma.qrc`` resource file.
+
+        We look for translation files and icons.
+        """
+        for path, dirs, files in os.walk(self.root):
+            for file in sorted(files):
+                if path.endswith('i18n') and file[-3:] == '.qm':
+                    self.addResource('i18n', path, file)
+                elif file[-4:] in ['.png', '.gif']: #, '.svg']:
+                    self.addResource('icons', path, file)
+
+    def save(self):
+        with open(self.FILE, 'w') as f:
+            f.write(str(self))
+            f.write('\n')
+
+
+    def asList(self, indentation=2):
+        """Returns the .qrc file as a list of lines. By default the
+        lines in the list is indented with 2 spaces.
+
+        Parameters:
+        
+        - `indentation`: an integer defining how many spaces to use for
+          indentation. Use 0 for no indentation (default is 2).
+        """
+        indent = ''
+        for i in xrange(indentation):
+            indent = ' {0}'.format(indent)
+
+        self.qrcFile.append(LumaQRC.header)
+        for prefix, values in self.qrcDict.iteritems():
+            line = '{0}<qresource prefix="{1}">'
+            self.qrcFile.append(line.format(indent, prefix))
+            for v in values:
+                line = '{0}{0}<file alias="{1}">{2}/{3}</file>'
+                self.qrcFile.append(line.format(indent, v[0], v[1], v[2]))
+
+            self.qrcFile.append('{0}</qresource>'.format(indent))
+
+        self.qrcFile.append(LumaQRC.footer)
+        return self.qrcFile
+
+
+# ---------------------------------------------------------------------------- #
+# Filepaths
+SRC_ICONS = ['resources', 'icons']
+SRC_i18n = ['resources', 'i18n']
+SRC_UI = ['resources', 'forms']
+DST_i18n = ['luma', 'i18n']
+DST_UI = ['luma', 'base', 'gui', 'design']
+PLUGINS = ['luma', 'plugins']
+
+# Files w/filepaths
+LUMA_PRO = ['luma.pro']
+LUMA_QRC = ['luma.qrc']
+LUMA_RC = ['luma', 'resources.py']
+
+
+def run(cmd, args=[]):
+    """Executes the command `cmd` with optional arguments `args`,
+    provided it is available on the system.
+    
+    Parameters:
+    
+    - `cmd`: The program command.
+    - `args`: a list of arguments to pass to `cmd` (default is []).
     """
     if not dryrun:
 
@@ -106,353 +342,231 @@ def __run(cmd, args=[]):
         proc.start(cmd, args)
         while proc.waitForReadyRead():
             if verbose:
-                print u'  ReadyRead: %s' % proc.readAll()
+                print '>>>'
+                print 'ReadyRead:\n{0}'.format(proc.readAll())
+                print '<<<'
+                
         if verbose:
             stderr = proc.readAllStandardError()
             if stderr != '':
-                print u'  Errors: %s' % stderr
+                print '>>>'
+                print 'Errors:\n{0}'.format(stderr)
+                print '<<<'
             stdout = proc.readAllStandardOutput()
             if stdout != '':
-                print u'  Output: %s' % proc.readAllStandardOutput()
+                print '>>>'
+                print 'Output:{0}\n'.format(proc.readAllStandardOutput())
+                print '<<<'
 
-def __writeToDisk(list, where):
-    """
-    Writes a list, item for item, to disk at location where.
+
+def writeToDisk(list, where):
+    """Writes the `list` to disk, item for item.
     
-    @param list: the content to write to disk, should be a list.
-    @param where: the path to file we're writing to
+    Parameters:
+    
+    - `list`: the content to write to disk, should be a list.
+    - `where`: the path to file we're writing to.
     """
     if verbose:
-        print u'Writing content to: %s' % where
+        print 'Writing content to {0}'.format(where)
+
     if not dryrun:
-        file = open(where, 'w')
-
-        for line in list:
-            file.write(u'%s\n' % line)
-
-        file.close()
+        with open(where, 'w') as f:
+            f.write('\n'.join([line for line in list]))
 
 
-def __getIconNameAndAlias(path):
-    name = os.path.split(path)[1]
-    alias = name[:-4]
-    return (name, alias)
-
-
-def __validateNum(num):
-    """ Validates if a variable is numeric. NB! if num == * this will
-    be returned as is.
-    
-    @param num:
-        the variable to validate
-    
-    @return:
-        * indicates the wildcard to apply, else a number is returned.
-        The parameter if it was a number, -1 if not.
-    """
-    if num == u'*':
-        return num
-    if num.isdigit():
-        return int(num)
-    else:
-        return - 1
-
-
-def __getPath(pathList):
-    """ Ensures that we get correct paths. That is we change our
+def getPath(dirList):
+    """Ensures that we get correct paths. That is we change our
     working directory to the top-level (one step up from tools).
     
-    @param pathList:
-        a list of directories to join from cwd
+    Returns a cross-platform filepath from file system root including
+    the last directory in the path list.
     
-    @return:
-        A cross-platform filepath from file system root including the
-        last directory in the path list.
+    Parameters:
+    
+    - `dirList`: a list of directories to join from cwd.
     """
     cwd = os.path.abspath(os.path.dirname(__file__))
 
-    if os.path.split(cwd)[1] == u'tools':
+    if os.path.split(cwd)[1] == 'tools':
         os.chdir(os.path.split(cwd)[0])
 
     path = os.getcwd()
 
-    for dir in pathList:
+    for dir in dirList:
         path = os.path.join(path, dir)
 
     return path
 
 
-def __listUiFiles(noprint=False):
-    """ List all available .ui files
-    """
-    uipath = __getPath(SOURCE_UI)
-
-    uifiles = {}
-    index = 1
-    if not noprint:
-        print 'Available .ui files:\n'
-
-    for path, dir, files in os.walk(uipath):
-        if files != []:
-            basename = os.path.basename(path)
-            if not noprint and basename != 'forms':
-                print '\n[%s plugin]:' % basename
-        for file in files:
-            uifiles[index] = os.path.join(path, file)
-            if not noprint:
-                print '%2d  %s' % (index, file)
-            index = index + 1
-
-    return uifiles
-
-
-def __prepareUiFiles(all=False):
-    """ Prepares the .ui files for compiling. A list of available .ui
-    files will be printed, and the user will be prompted for the index
-    of the file to be compiled. The index must be an valid integer, or
-    * to compile all files.
-    
-    @param all: boolean value;
-        whether or not to prepare all files
-    """
-
-    if all:
-        return __listUiFiles(noprint=True).values()
-
-    uifiles = __listUiFiles()
-    files = []
-
-    input = raw_input('\nEnter the number of the file(s) to compile\n' +
-                     '(use * to compile all files listed):')
-
-    nums = input.split(' ')
-    for num in nums:
-        num = __validateNum(num)
-        if num == '*':
-            return uifiles.values()
-        elif num > 0:
-            files.append(uifiles[num])
-
-    return files
-
-
-def __generateQrcFile(icons=False, i18n=False):
-    """ Scannes the defined icons and/or i18n folders for content to
-    include in the luma resource file -> resources.py
-    
-    @param icons:
-        Wheter or not to include icons
-    @param i18n:
-        Wheter or not to include translation files
-    """
-    qrc = []
-    QRC_HEADER_OPEN = u'<!DOCTYPE RCC><RCC version="1.0">'
-    QRC_HEADER_CLOSE = u'</RCC>'
-
-    qrc.append(QRC_HEADER_OPEN)
-
-    if i18n:
-        i18nPath = __getPath(SOURCE_TRANS)
-        qrc.append(u'  <qresource prefix="%s">' % os.path.split(i18nPath)[1])
-        for file in os.listdir(i18nPath):
-            if file[-3:] == u'.qm':
-                name = os.path.split(file)[1]
-                alias = name[5:-3]
-                qrc.append(u'    <file alias="%s">resources/i18n/%s</file>' % \
-                           (alias, name))
-        qrc.append(u'  </qresource>')
-
-    if icons:
-        iconsPath = __getPath(SOURCE_ICONS)
-        qrc.append(u'  <qresource prefix="%s">' % os.path.split(iconsPath)[1])
-        prefix = ''
-        for path, dirs, icons in os.walk(iconsPath):
-            location = replace(path, iconsPath, u'resources/icons')
-
-            if location[-5:] != u'icons':
-                prefix = '%s-' % os.path.split(location)[1]
-
-            for icon in sorted(icons):
-                if icon[-4:] == u'.png' or icon[-4:] == u'.gif':
-                    (name, alias) = __getIconNameAndAlias(icon)
-                    qrc.append(u'    <file alias="%s%s">%s/%s</file>' % \
-                               (prefix, alias, location, name))
-
-        qrc.append(u'  </qresource>')
-
-    qrc.append(QRC_HEADER_CLOSE)
-
-    if verbose:
-        print '\nGenerated .qrc file:'
-        for line in qrc:
-            print line
-
-    return qrc
-
-
-def compileUiFiles(compileAll=False):
-    """ Find and list all available .ui files, and prepare the selected
-    files for compiling.
-    
-    @param compileAll: boolean value;
-        wheter or not to compile all files
-    """
-
-    uifiles = __prepareUiFiles(compileAll)
-    pypath = __getPath(DEST_UI)
-
-    cmd = 'pyuic4'
-    if sys.platform == 'win32':
-        cmd = '%s.bat' % cmd
-
-    for uifile in uifiles:
-
-        pyfile = '%s.py' % uifile[:-3]
-        basename = os.path.basename(pyfile)
-        dirname = os.path.split(os.path.dirname(uifile))[1]
-
-        if dirname != 'forms':
-            # We are dealing with plugin forms
-            # and need to use a different destination path
-            pluginpath = os.path.join(__getPath(PLUGINS), dirname, 'gui')
-            pyfile = os.path.join(pluginpath, basename)
-        else:
-            # We are dealing with regular .ui forms,
-            # and can use the default location 
-            pyfile = os.path.join(pypath, basename)
-
-        args = [uifile, '-o', pyfile]
-        if verbose:
-            print 'Executing: ', cmd, uifile, '-o', pyfile
-        __run(cmd, args)
-
-
-def updateQrcFile(icons=False, i18n=False):
-    """ Create the luma.qrc file based on the content in the resource
-    folder
-    
-    @param icons:
-        Wheter or not to include icons
-    @param i18n:
-        Wheter or not to include translation files
-    """
-    qrc = __generateQrcFile(icons, i18n)
-    __writeToDisk(qrc, __getPath(LUMA_QRC))
-
-
 def compileResources():
-    """ Compile resources defined in the project resource file.
+    """Compiles the resources defined in the *luma.qrc* file into the
+    ``resources.py`` file.
     """
-    lumaqrc = __getPath(LUMA_QRC)
-    lumarc = __getPath(LUMA_RC)
+    lumaqrc = getPath(LUMA_QRC)
+    lumarc = getPath(LUMA_RC)
 
     cmd = 'pyrcc4'
-    if sys.platform == 'win32':
-        cmd = '%s.exe' % cmd
+    if sys.platform.lower().startswith('win'):
+        cmd = '{0}.exe'.format(cmd)
 
-    args = [lumaqrc, '-py2', '-o', lumarc]
+    args = ['luma.qrc', '-py2', '-o', 'luma/resources.py']
 
     if verbose:
-        print '\nBuilding command to compile resources:'
-        print '  resource file: %s' % lumaqrc
-        print '  python resource file: %s' % lumarc
-        print 'Executing: ', cmd, lumaqrc, '-py2', '-o', lumarc
+        print 'Compiling resources:'
+        print '  source file: {0}'.format(lumaqrc)
+        print '  target file: {0}'.format(lumarc)
+        print 'Executing:'
+        print '  {0} {1}'.format(cmd, ' '.join([arg for arg in args]))
 
-    __run(cmd, args)
+    run(cmd, args)
+
+
+def compileUiFiles(all=False):
+    """Displayes a list of all *.ui files, and prompts for a index
+    based selection. The selected file(s) is then compiled to python
+    code.
+
+    Parameters:
+
+    - `all`: a boolean value indicating wether or not we are to compile
+      all *.ui files we find or compile a selection. If the script is
+      run with the ``-f`` option `all` should be ``True``. We also use
+      this value to determine if we print the slection list. (default
+      is ``False``)
+    """
+    selection = {}
+    uifiles = []
+
+    # If `all`is True we do not print anything related to the selection
+    # list.
+    if not all:
+        print 'Available *.ui files:'
+        print
+
+    index = 1
+    for path, dirs, files in os.walk(getPath(SRC_UI)):
+        if files != []:
+            basename = os.path.basename(path)
+            if not all and basename != 'forms':
+                print
+                print '[{0} plugin]:'.format(basename)
+
+        for file in files:
+            selection[index] = os.path.join(path, file)
+            if not all:
+                print '  {0:2d} {1}'.format(index, file)
+
+            index += 1
+
+    # If all is False we prompt for the index of the file(s) to compile
+    compile = []
+    if all:
+        compile = selection.values()
+    else:
+        input = raw_input('\nEnter the index of the file(s) to compile\n' +
+                          '(use * to compile all files listed):')
+
+        nums = input.split(' ')
+        if '*' in nums:
+            compile = selection.values()
+        else:
+            for n in nums:
+                if n.isdigit():
+                    compile.append(selection[int(n)])
+    
+    # Iterate through the file(s) marked for compiling, and run 
+    # the *pyuic4* command.
+    cmd = 'pyuic4'
+    if sys.platform.lower().startswith('win'):
+        cmd = '{0}.bat'.format(cmd)
+
+    if verbose:
+        print 'Compiling ui files:'
+    
+    for file in compile:
+        basename = os.path.basename('{0}.py'.format(file[:-3]))
+        dirname = os.path.split(os.path.dirname(file))[1]
+        
+        # If `dirname` is not `forms` we are dealing with plugins
+        # files, and need a different target destination.
+        if dirname != 'forms':
+            path = os.path.join(getPath(PLUGINS), dirname, 'gui')
+        else:
+            path = getPath(DST_UI)
+
+        target = os.path.join(path, basename)
+        args = [file, '-o', target]
+
+        if verbose:
+            print '  Ui file: {0}'.format(file)
+            print '  Target file: {0}'.format(target)
+            print
+
+        if not dryrun:
+            run(cmd, args)
 
 
 def updateTranslationFiles():
-    """ Just executes the pylupdate4 command on the project file.
+    """Just executes the ``pylupdate4`` command on the ``luma.pro``
+    file.
     """
-    lumapro = __getPath(LUMA_PRO)
-
+    # FIXME: Might want to extend this utility some more, with options
+    #        for generating new translation files (skeletons that is).
+    lumapro = 'luma.pro'
     cmd = 'pylupdate4'
-    if sys.platform == 'win32':
-        cmd = '%s.exe' % cmd
+    if sys.platform.lower().startswith('win'):
+        cmd = '{0}.exe'.format(cmd)
 
     args = ['-noobsolete']
-
+    
     if verbose:
-        args.append('-verbose')
-        print '\nBuilding command to update translation files:'
-        print '  project file: %s' % lumapro
-        print 'Executing: ', cmd, '-noobsolete -verbose', lumapro
+        args.extend(['-verbose', lumapro])
+        print 'Updating translation files...'
+        print '  Project file: {0}'.format(lumapro)
+        print cmd, ' '.join([a for a in args])
+    else:
+        args.append(lumapro)
 
-    args.append(lumapro)
-    __run(cmd, [lumapro])
+    if not dryrun:
+        run(cmd, args)
+
+
+def updateResourceFile():
+    """Updates the resource file and writes the content to disk.
+    """
+    qrc = LumaQRC()
+    if verbose:
+        print 'Updating resource file...'
+        print '  Target file: {0}'.format(qrc.FILE)
+        print '  Scanning for resources...'
+    qrc.update()
+    if verbose:
+        print '  Saving resource file...'
+        print
+    if not dryrun:
+        qrc.save()
 
 
 def updateProjectFile():
-    """ Walks through all defined folders and looks for related files
-    to include in the luma project file.
-    
-    As of all files meeting the followin criteria is included:
-        *.py files located in luma/base/gui
-        *.ui files located in resources/forms
-        *.ts files located in resources/i18n
+    """Updates the project file and writes the content to disk.
     """
-    luma_pro = __getPath(LUMA_PRO)
-
-    projectfile = []
-    projectfile.append('CONFIG += qt debug\n')
-    projectfile.append('RESOURCES = luma/resources.py\n')
-
-    # Predefined prefixes
-    PREFIX_SOURCES = 'SOURCES +='
-    PREFIX_FORMS = 'FORMS +='
-    PREFIX_TRANS = 'TRANSLATIONS +='
-
-    # Predefined ignores
-    IGNORE_SOURCES = ['__init__.py']
-    IGNORE_SOURCES_PATHS = ['test']
-    IGNORE_FORMS = []
-    IGNORE_TRANS = ['.qm']
-
-    # We use the current working directory to clip the full path
-    # when we write the project file
-    cwd = os.getcwd() + os.sep
-
-    for path, dirs, files in os.walk(__getPath(['luma'])):
-        for file in files:
-            relpath = path.replace(cwd, '').replace('\\', '/')
-            if not file in IGNORE_SOURCES and file.endswith('.py'):
-                # Might want to do some additional filtering to exclude
-                # some of the directories (i.e. test, etc)
-                file = os.path.join(relpath, file)
-                line = '%s %s' % (PREFIX_SOURCES, file)
-                projectfile.append(line)
-                if verbose:
-                    print line
-
-    # Seperate the sections in the file
-    projectfile.append('')
-
-    for _, file in __listUiFiles(noprint=True).iteritems():
-        if not file in IGNORE_FORMS:
-            path = file.replace(cwd, '').replace('\\', '/')
-            line = '%s %s' % (PREFIX_FORMS, path)
-            projectfile.append(line)
-            if verbose:
-                print line
-
-    # Seperate the sections in the file
-    projectfile.append('')
-
-    for path, dirs, files in os.walk(__getPath(SOURCE_TRANS)):
-        for file in files:
-            relpath = path.replace(cwd, '').replace('\\', '/')
-            if not file in IGNORE_TRANS and file.endswith('.ts'):
-                file = os.path.join(relpath, file)
-                line = '%s %s' % (PREFIX_TRANS, file)
-                projectfile.append(line)
-                if verbose:
-                    print line
-
-    __writeToDisk(projectfile, luma_pro)
+    pro = LumaPRO()
+    if verbose:
+        print 'Updating project file:'.format(pro.FILE)
+        print '  Looking for files to include...'
+    pro.update()
+    if verbose:
+        print '  Saving project file...'
+        print
+    if not dryrun:
+        pro.save()
 
 
 def main():
-
+    """Sets up the option parser, parsers the commandline for opations
+    and arguments, and runs the appropriate methods.
+    """
     global verbose, dryrun
 
     usage = '%prog [options]'
@@ -530,18 +644,19 @@ def main():
         parser.print_help()
 
     if opt.full_run:
-        compileUiFiles(compileAll=True)
-        updateQrcFile(icons=True, i18n=True)
-        compileResources()
+        updateResourceFile()
         updateTranslationFiles()
         updateProjectFile()
+        compileResources()
+        compileUiFiles(all=True)
         sys.exit()
 
     if opt.qrc_file:
-        updateQrcFile(icons=True, i18n=True)
+        updateResourceFile()
+        compileResources()
 
     if opt.ui_files:
-        compileUiFiles(compileAll=False)
+        compileUiFiles(all=False)
 
     if opt.ts_files:
         updateTranslationFiles()
@@ -551,4 +666,19 @@ def main():
 
 
 if __name__ == '__main__':
+    """We first ensures that we change our working directory to the
+    repository root. That is, if the script is beeing invoked from the
+    ``tools`` folder, we change directory one level up.
+
+    .. warning::
+       The script will fail if beeing invoked from a directory deeper
+       than the tools folder, i.e. python ../../lumarcc.py
+    """
+    cwd = os.path.abspath(os.path.dirname(__file__))
+
+    if os.path.split(cwd)[1] == u'tools':
+        os.chdir(os.path.split(cwd)[0])
+
     sys.exit(main())
+
+# vim: tabstop=4 expandtab shiftwidth=4 softtabstop=4
