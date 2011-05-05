@@ -338,14 +338,16 @@ class LDAPTreeItemModel(QAbstractItemModel):
         """ QThreadWorker """
         ## Read below before uncommenting, and also remember
         ## to uncomment the __del__-method if you don't like crashes.
-        thread = QThreadWorker(parentIndex, parentItem)
-        thread.listFetched.connect(self.workerFinished)
-        thread.finished.connect(self.removeThreadFromPool)
+        workerThread = QThread()
+        worker = Worker()
+        worker.moveToThread(workerThread)
+        workerThread.started.connect(worker.start)
+
+        worker.listFetched.connect(self.workerFinished)
+        #worker.finished.connect(self.removeThreadFromPool)
         self.threads.append(thread)
-        thread.start()
-        print "f0r gogo"
-        thread.gogogo.emit()
-        print "etter gogo"
+
+        producerThread.start()
 
         """ QThreadPool + QRunnable """
         #thread = QRunnableWorker(self, parentIndex, parentItem)
@@ -387,7 +389,7 @@ class LDAPTreeItemModel(QAbstractItemModel):
             x.wait()
     """
 
-class QThreadWorker(QThread):
+class Worker(QObject):
     """
     Does the fetching of items from the ldap-server
     and signals them to the model.
@@ -419,11 +421,9 @@ class QThreadWorker(QThread):
     
     # Emitted by the workerThread when finished
     listFetched = pyqtSignal(QModelIndex, tuple)
-    gogogo = pyqtSignal()
 
     def __init__(self, parentIndex, parentItem, parent = None):
         super(QThreadWorker, self).__init__(parent)
-        self.moveToThread(self)
         self.parentIndex = parentIndex
         self.persistent = QPersistentModelIndex(parentIndex)
         self.gogogo.connect(self.gogo)
@@ -431,13 +431,9 @@ class QThreadWorker(QThread):
         self.parentItem = parentItem
         self.parentItem.loading = True
 
-    def run(self):
-        print "run"
-        self.exec_()
-
     @pyqtSlot()
-    def gogo(self):
-        print "gogo"
+    def start(self):
+        print "start"
         tupel = self.parentItem.fetchChildList()
 
         if self.persistent.isValid():
