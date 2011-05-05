@@ -146,9 +146,11 @@ class LDAPTreeItemModel(QAbstractItemModel):
         if not parentItem.populated:
             parentItem.loading = True
             parentItem.populated = True
+
             # -- New solution --
             self.layoutChanged.emit()
             self.fetchInThread(parent, parentItem)
+
             # -- Old solution --
             #self.populateItem(parentItem)
             # Updates the |>-icon to show if the item has children
@@ -240,7 +242,6 @@ class LDAPTreeItemModel(QAbstractItemModel):
         """
         Re-populates an already populated item, e.g. when a filter or limit it set.
         """
-        
         #self.isWorking()
 
         parentItem = parentIndex.internalPointer()
@@ -271,12 +272,12 @@ class LDAPTreeItemModel(QAbstractItemModel):
         Removes all children for this item.
         Used by reloadItem()
         """
-
         #self.isWorking()
         parentItem = parentIndex.internalPointer()
-        self.beginRemoveRows(parentIndex, 0, parentItem.childCount() - 1)
-        parentItem.emptyChildren()
-        self.endRemoveRows()
+        if parentItem.childCount() > 0:
+            self.beginRemoveRows(parentIndex, 0, parentItem.childCount() - 1)
+            parentItem.emptyChildren()
+            self.endRemoveRows()
         #self.doneWorking()
     
     def deleteItem(self, index):
@@ -379,10 +380,9 @@ class LDAPTreeItemModel(QAbstractItemModel):
                 self.displayError(exception) #Let the user know we failed though
                 parentItem.error = True
                 return
-
             # Clear old list and insert new
             self.clearItem(parentIndex)
-
+            
             self.beginInsertRows(parentIndex, 0, len(newList) - 1)
             for x in newList:
                 parentItem.appendChild(x)
