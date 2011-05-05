@@ -5,6 +5,8 @@ import os
 from PyQt4 import QtGui
 from PyQt4 import QtCore
 
+from base.util.IconTheme import iconFromTheme
+
 
 lumaPlugin = True
 pluginName = "qt4plugin"
@@ -13,7 +15,7 @@ version = "1.1"
 author = "Johannes"
 
 def getIcon():
-    return QtGui.QIcon(':/icons/usermanagement-shell')
+    return iconFromTheme('luma-plugin', ':/icons/plugins/plugin')
     
 
 def getPluginWidget(parent, mainwin):

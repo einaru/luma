@@ -109,6 +109,7 @@
     <file alias="admin-utils">resources/icons/plugins/admin-utils.png</file>
     <file alias="browser">resources/icons/plugins/browser.png</file>
     <file alias="mass-creation">resources/icons/plugins/mass-creation.png</file>
+    <file alias="plugin">resources/icons/plugins/plugin.png</file>
     <file alias="schemabrowser">resources/icons/plugins/schemabrowser.png</file>
     <file alias="search">resources/icons/plugins/search.png</file>
     <file alias="template">resources/icons/plugins/template.png</file>
