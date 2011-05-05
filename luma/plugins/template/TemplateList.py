@@ -6,6 +6,7 @@ Created on 16. mars 2011
 import os.path
 import logging
 import copy
+from base.gui.Settings import PluginSettings
 
 from PyQt4.QtXml import QDomDocument
 
@@ -27,7 +28,8 @@ class TemplateList(object):
     def __init__(self, configPrefix = None, templateFileName = "templatelist.xml"):
         if configPrefix == None:
             #TODO Should get default
-            configPrefix = "/tmp"
+            settings = PluginSettings('template')
+            configPrefix = settings.configPrefix
         self._templateList = []
         self._configPrefix = configPrefix
         self._configFile = os.path.join(self._configPrefix, templateFileName)
