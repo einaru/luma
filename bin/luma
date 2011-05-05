@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
 # luma
@@ -23,9 +23,10 @@ import sys
 try:
     from luma import luma
     luma.main(sys.argv)
-except:
+except ImportError:
     print "Luma seems to missing from PYHTONPATH."
     print "Unable to launch application..."
-    sys.exit()
+    print "Please consult the Luma install documentation"
+    sys.exit(1)
 
 # vim: tabstop=4 expandtab shiftwidth=4 softtabstop=4

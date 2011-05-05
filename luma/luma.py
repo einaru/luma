@@ -1,6 +1,7 @@
+#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-# lumaWithOptions
+# luma
 #
 # Copyright (c) 2011
 #     Einar Uvsløkk, <einar.uvslokk@linux.com>
@@ -107,7 +108,7 @@ def startApplication(argv, verbose=False, clear=[], dirs={}):
     app.setOrganizationName(appinfo.ORGNAME)
     app.setApplicationName(appinfo.APPNAME)
     app.setApplicationVersion(appinfo.VERSION)
-    app.setWindowIcon(QIcon(':/icons/16/luma'))
+    app.setWindowIcon(QIcon(':/icons/64/luma'))
 
     # Setup the logging mechanism
     l = logging.getLogger()
@@ -307,8 +308,48 @@ with the following text and a short description of what you were doing:
     # Make sure the cursor is normal
     QApplication.restoreOverrideCursor()
 
+def checkDependencies():
+    """Here we check if the modules luma depends upon is installed.
+    If at least one of these fail, we exit with an informative
+    message to the user. If not we carry on with the application 
+    launch.
+    """
+    failed = 0
+    try:
+        import PyQt4
+    except ImportError:
+        failed = 1
+        print "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
+        print "!! ImportError: Unable to import module: PyQt4            !!"
+        print "!!                                                        !!"
+        print "!! PyQt4 is needed for the Graphical User Interface, and  !!"
+        print "!! must be installed in order to successfully run Luma.   !!"
+        print "!! PyQt4 can be obtained from:                            !!"
+        print "!!                                                        !!"
+        print "!! http://www.riverbankcomputing.com/software/pyqt/intro  !!"
+        print "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n"
+
+    try:
+        import ldap
+    except ImportError:
+        failed = 1
+        print "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
+        print "!! ImportError: Unable to import module: ldap             !!"
+        print "!!                                                        !!"
+        print "!! python-ldap is needed to successfully run Luma.        !!"
+        print "!! python-ldap can be obtained from:                      !!"
+        print "!!                                                        !!"
+        print "!! http://python-ldap.org/                                !!"
+        print "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n"
+
+    if failed:
+        print "Exiting ..."
+        sys.exit(1)
+
 
 if __name__ == '__main__':
+    checkDependencies()
     main(sys.argv)
 
 
+# vim: tabstop=4 expandtab shiftwidth=4 softtabstop=4
