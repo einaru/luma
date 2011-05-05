@@ -355,8 +355,8 @@ class ServerDialog(QDialog, Ui_ServerDialogDesign):
         # Busy-dialog
         self.testProgress.show()
 
-        self.thread = TestConnection(sO, self)
-        QThreadPool.globalInstance().start(self.thread)
+        thread = TestConnection(sO, self)
+        QThreadPool.globalInstance().start(thread)
 
     @pyqtSlot(bool, str)
     def testFinished(self, success, exceptionStr):
