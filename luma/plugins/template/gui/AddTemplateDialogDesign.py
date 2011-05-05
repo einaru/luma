@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file '/mnt/debris/devel/git/luma/resources/forms/plugins/template/AddTemplateDialogDesign.ui'
+# Form implementation generated from reading ui file 'd:\Skole\it2901\resources\forms\plugins\template\AddTemplateDialogDesign.ui'
 #
-# Created: Thu May  5 00:01:03 2011
-#      by: PyQt4 UI code generator 4.8.3
+# Created: Thu May 05 14:43:18 2011
+#      by: PyQt4 UI code generator 4.8.2
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -59,6 +59,12 @@ class Ui_AddTemplateDialog(object):
         self.line_2.setObjectName(_fromUtf8("line_2"))
         self.gridLayout.addWidget(self.line_2, 7, 1, 1, 4)
         self.labelMainIcon = QtGui.QLabel(AddTemplateDialog)
+        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Fixed, QtGui.QSizePolicy.Fixed)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.labelMainIcon.sizePolicy().hasHeightForWidth())
+        self.labelMainIcon.setSizePolicy(sizePolicy)
+        self.labelMainIcon.setMinimumSize(QtCore.QSize(64, 64))
         self.labelMainIcon.setText(_fromUtf8(""))
         self.labelMainIcon.setObjectName(_fromUtf8("labelMainIcon"))
         self.gridLayout.addWidget(self.labelMainIcon, 0, 1, 1, 1)

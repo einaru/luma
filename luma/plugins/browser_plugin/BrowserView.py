@@ -30,17 +30,13 @@ from PyQt4.QtGui import (QWidget, QMessageBox, QMenu, QAction, qApp, QTableWidge
 from PyQt4.QtCore import Qt, QPersistentModelIndex, QModelIndex
 
 from .AdvancedObjectWidget import AdvancedObjectWidget
-from .gui.BrowserDialogs import ExportDialog, DeleteDialog
 from .NewEntryDialog import NewEntryDialog
+from .gui.BrowserDialogs import ExportDialog, DeleteDialog
 from .item.AbstractLDAPTreeItem import AbstractLDAPTreeItem
 from .model.LDAPTreeItemModel import LDAPTreeItemModel
 from base.backend.LumaConnection import LumaConnection
 from base.backend.ServerList import ServerList
 from base.gui.ServerDialog import ServerDialog
-from item.AbstractLDAPTreeItem import AbstractLDAPTreeItem
-from model.LDAPTreeItemModel import LDAPTreeItemModel
-from plugins.browser_plugin.AdvancedObjectWidget import AdvancedObjectWidget
-from plugins.browser_plugin.NewEntryDialog import NewEntryDialog
 
 
 class BrowserView(QWidget):

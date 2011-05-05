@@ -473,7 +473,7 @@ def compileUiFiles(all=False):
         else:
             for n in nums:
                 if n.isdigit():
-                    compile.append(selection[n])
+                    compile.append(selection[int(n)])
     
     # Iterate through the file(s) marked for compiling, and run 
     # the *pyuic4* command.
