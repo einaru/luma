@@ -3,7 +3,7 @@ Created on 18. mars 2011
 
 @author: Simen
 '''
-from PyQt4.QtGui import QDialog
+from PyQt4.QtGui import QDialog, QPixmap
 from .AddTemplateDialogDesign import Ui_AddTemplateDialog
 
 class AddTemplateDialog(QDialog, Ui_AddTemplateDialog):

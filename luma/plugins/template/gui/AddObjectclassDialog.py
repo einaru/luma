@@ -4,7 +4,7 @@ Created on 15. mars 2011
 @author: Simen
 '''
 
-from PyQt4.QtGui import QDialog
+from PyQt4.QtGui import QDialog, QPixmap
 from base.backend.ObjectClassAttributeInfo import ObjectClassAttributeInfo
 from .AddObjectclassDialogDesign import Ui_AddObjectclassDialog 
 
