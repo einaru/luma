@@ -339,15 +339,19 @@ class LDAPTreeItemModel(QAbstractItemModel):
         ## Read below before uncommenting, and also remember
         ## to uncomment the __del__-method if you don't like crashes.
         workerThread = QThread()
-        worker = Worker()
+
+        worker = Worker(parentIndex, parentItem)
         worker.moveToThread(workerThread)
-        workerThread.started.connect(worker.start)
-
         worker.listFetched.connect(self.workerFinished)
-        #worker.finished.connect(self.removeThreadFromPool)
-        self.threads.append(thread)
+        
+        workerThread.started.connect(worker.gogo)
+        workerThread.started.connect(self.lol)
+        workerThread.finished.connect(self.removeThreadFromPool)
+        worker.listFetched.connect(workerThread.quit)
 
-        producerThread.start()
+        self.threads.append(workerThread)
+        workerThread.start()
+        worker.gogo.emit()
 
         """ QThreadPool + QRunnable """
         #thread = QRunnableWorker(self, parentIndex, parentItem)
@@ -355,7 +359,12 @@ class LDAPTreeItemModel(QAbstractItemModel):
 
         parentItem.loading = True
 
+    @pyqtSlot()
+    def lol(self):
+        print "LOL"
+    @pyqtSlot()
     def removeThreadFromPool(self):
+        print "remove"
         self.threads.remove(self.sender())
 
     @pyqtSlot(QModelIndex, tuple)
@@ -389,6 +398,21 @@ class LDAPTreeItemModel(QAbstractItemModel):
             x.wait()
     """
 
+class QThread44(QThread):
+	"""
+	This is to imitate QThread in Qt 4.4+ for when running on older version
+	See http://labs.trolltech.com/blogs/2010/06/17/youre-doing-it-wrong
+	(On Lucid I have Qt 4.7 and this is still an issue)
+	"""
+
+	def __init__(self, parent = None):
+            QThread.__init__(self, parent)
+
+	def run(self):
+            print "exec_"
+            self.exec_()
+
+from PyQt4.QtCore import QObject
 class Worker(QObject):
     """
     Does the fetching of items from the ldap-server
@@ -421,18 +445,20 @@ class Worker(QObject):
     
     # Emitted by the workerThread when finished
     listFetched = pyqtSignal(QModelIndex, tuple)
+    gogo =pyqtSignal()
 
-    def __init__(self, parentIndex, parentItem, parent = None):
-        super(QThreadWorker, self).__init__(parent)
+    def __init__(self, parentIndex, parentItem):
+        super(Worker, self).__init__()
         self.parentIndex = parentIndex
         self.persistent = QPersistentModelIndex(parentIndex)
-        self.gogogo.connect(self.gogo)
+
+        self.gogo.connect(self.gogogo)
 
         self.parentItem = parentItem
         self.parentItem.loading = True
 
     @pyqtSlot()
-    def start(self):
+    def gogogo(self):
         print "start"
         tupel = self.parentItem.fetchChildList()
 
