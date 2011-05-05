@@ -58,6 +58,7 @@ from ..gui.SettingsDialog import SettingsDialog
 from ..gui.design.LoggerWidgetDesign import Ui_LoggerWidget
 from ..gui.design.MainWindowDesign import Ui_MainWindow
 from ..util.i18n import LanguageHandler
+from ..util.IconTheme import iconFromTheme
 from ..util.gui.PluginListWidget import PluginListWidget
 from ..gui.WelcomeTab import WelcomeTab
 
@@ -556,6 +557,9 @@ class LoggerWidget(QWidget, Ui_LoggerWidget):
     def __init__(self, parent=None):
         QWidget.__init__(self, parent)
         self.setupUi(self)
+        self.clearButton.setIcon(iconFromTheme(
+            'edit-clear', ':icons/32/edit-clear'))
+
         self.logList = []
 
         # log() can be called by any thread, so to append the message
