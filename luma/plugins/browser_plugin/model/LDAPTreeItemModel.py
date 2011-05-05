@@ -32,6 +32,7 @@ class LDAPTreeItemModel(QAbstractItemModel):
         super(LDAPTreeItemModel, self).__init__(parent)
         self.verified = []
         self.threads = []
+        self.listFetched.connect(self.workerFinished)
         self.populateModel(serverList)
 
     """ These are called internally in order to signal when busy
@@ -335,6 +336,8 @@ class LDAPTreeItemModel(QAbstractItemModel):
         # Two different solutions, each with it's own problems
 
         """ QThreadWorker """
+        ## Read below before uncommenting, and also remember
+        ## to uncomment the __del__-method if you don't like crashes.
         #thread = QThreadWorker(parentIndex, parentItem)
         #thread.listFetched.connect(self.workerFinished)
         #thread.finished.connect(self.removeThreadFromPool)
@@ -342,7 +345,7 @@ class LDAPTreeItemModel(QAbstractItemModel):
         #thread.start()
 
         """ QThreadPool + QRunnable """
-        thread = QRunnableWorker(target, parentIndex, parentItem)
+        thread = QRunnableWorker(self, parentIndex, parentItem)
         QThreadPool.globalInstance().start(thread)
 
         parentItem.loading = True
@@ -431,12 +434,17 @@ class QThreadWorker(QThread):
             # but Qt can't send QPersistentModelIndexes (yet?)
             # Also, using QModelIndex through the whole process also works for some reason.
             # The new items are placed right even though QModelIndex.row() is wrong (e.g. because
-            print "før ind"
             index = QModelIndex(self.persistent)
             self.listFetched.emit(index, tupel)
             #self.model.threads.remove(self)
 
 class QRunnableWorker(QRunnable):
+    """
+    Problems/issues:
+        - If Luma is closed while this is running
+          the Luma-process will not close before this
+          finishes.
+    """
 
     def __init__(self, target, parentIndex, parentItem):
         super(QRunnableWorker, self).__init__()
