@@ -25,12 +25,9 @@ class LDAPTreeItemModel(QAbstractItemModel):
     
     # Callers can listed to this signal and display busy-messages as they see fit
     workingSignal = pyqtSignal(bool)
-    # Emitted by the workerThread when finished
-    listFetched = pyqtSignal(QModelIndex, tuple)
 
     def __init__(self, serverList, parent=None):
         super(LDAPTreeItemModel, self).__init__(parent)
-        self.listFetched.connect(self.workerFinished)
         self.verified = []
         self.threads = []
         self.populateModel(serverList)
@@ -313,6 +310,11 @@ class LDAPTreeItemModel(QAbstractItemModel):
             return True
         else:
             return False
+    
+    def unverified(self, serverObject):
+        if serverObject.name in self.verified:
+            return False
+        return True
 
     def fetchInThread(self, parentIndex, parentItem):
        
@@ -328,22 +330,23 @@ class LDAPTreeItemModel(QAbstractItemModel):
                 self.verified.append(serverItem.serverMeta.name)
 
         # Do the search (in another thread)
-        thread = Worker(self, parentIndex, parentItem)
-        thread.finished.connect(self.rm)
-        self.threads.append(thread)
-        print "-------"
-        print self.threads
-        thread.start()
-        #QThreadPool.globalInstance().start(thread)
+        # Two different solutions, each with it's own problems
+
+        """ QThreadWorker """
+        #thread = QThreadWorker(parentIndex, parentItem)
+        #thread.listFetched.connect(self.workerFinished)
+        #thread.finished.connect(self.removeThreadFromPool)
+        #self.threads.append(thread)
+        #thread.start()
+
+        """ QThreadPool + QRunnable """
+        thread = QRunnableWorker(target, parentIndex, parentItem)
+        QThreadPool.globalInstance().start(thread)
+
         parentItem.loading = True
 
-    def rm(self):
+    def removeThreadFromPool(self):
         self.threads.remove(self.sender())
-
-    def unverified(self, serverObject):
-        if serverObject.name in self.verified:
-            return False
-        return True
 
     @pyqtSlot(QModelIndex, tuple)
     def workerFinished(self, parentIndex, tupel):
@@ -369,29 +372,64 @@ class LDAPTreeItemModel(QAbstractItemModel):
             self.endInsertRows()     
 
             self.layoutChanged.emit()
-        
-class Worker(QThread):
 
-    def __init__(self, target, parentIndex, parentItem):
-        super(Worker, self).__init__()
-        self.target = target
+    """
+    def __del__(self):
+        for x in self.threads:
+            x.wait()
+    """
+
+class QThreadWorker(QThread):
+    """
+    Does the fetching of items from the ldap-server
+    and signals them to the model.
+
+    Problems/issues with this solution:
+        When the creator of this class (the model)
+        is garbage collected, this thread is deleted
+        immediatly -- even if it's executing.
+
+        This results in a "QThread: Destroyed while
+        thread is still running"-error.
+
+        The run()-methods needs to return normally
+        so that the ldap-data in the tuple is GCed,
+        so self.terminate() is right out (besides this
+        it does work -- no error).
+
+        One solution is to do thread.wait() in the
+        __del__-method of the creator. This works
+        (since the creator and by extension the thread
+        isn't destroyed until it's done), but it blocks
+        the GUI.
+
+    When trying possible solutions:
+        - Try to close the plugin while an operation is in progress.
+        - Close Luma itself when an operation is in progress.
+
+    """
+    
+    # Emitted by the workerThread when finished
+    listFetched = pyqtSignal(QModelIndex, tuple)
+
+    def __init__(self, parentIndex, parentItem, parent = None):
+        super(QThreadWorker, self).__init__(parent)
         self.parentIndex = parentIndex
         self.persistent = QPersistentModelIndex(parentIndex)
+
         self.parentItem = parentItem
         self.parentItem.loading = True
 
     def run(self):
         tupel = self.parentItem.fetchChildList()
-        from PyQt4.QtGui import qApp
-        if qApp.closingDown():
-            return
+
         if self.persistent.isValid():
             # QPersistenModelIndex -> QModelIndex
             # Should prefferably not be done here (changes can happend until the receiver-thread process the event)
             # but Qt can't send QPersistentModelIndexes (yet?)
             # Also, using QModelIndex through the whole process also works for some reason.
             # The new items are placed right even though QModelIndex.row() is wrong (e.g. because
-            # an item was deleted above it). 
+            print "før ind"
             index = QModelIndex(self.persistent)
-            self.target.listFetched.emit(index, tupel)
-            #self.target.threads.remove(self)
+            self.listFetched.emit(index, tupel)
+            #self.model.threads.remove(self)
