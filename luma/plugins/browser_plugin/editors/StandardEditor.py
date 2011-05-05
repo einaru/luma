@@ -20,7 +20,7 @@ class StandardEditor(QDialog, Ui_StandardEditorDesign):
         self.setupUi(self)
         
         # Set icon for label
-        editorPixmap = pixmapFromThemeIcon(
+        editorPixmap = pixmapFromTheme(
             "accessories-text-editor", ":/icons/48/accessories-text-editor")
         self.iconLabel.setPixmap(editorPixmap)
         
