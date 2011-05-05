@@ -32,7 +32,7 @@ class PasswordEditor(QDialog, Ui_PasswordEditorDesign):
         map(self.methodBox.addItem, self.supportedAlgorithms)
         
         self.okButton.setEnabled(False)
-        self.strengthBar.setValue(0)
+        self.progressBar.setValue(0)
         
         # The new password in cleartext
         self.password = None
@@ -50,7 +50,7 @@ class PasswordEditor(QDialog, Ui_PasswordEditorDesign):
         else:
             self.passwordLabel.setText(self.trUtf8("Passwords do not match"))
             
-        self.strengthBar.setValue(check_strength(firstPW))
+        self.progressBar.setValue(check_strength(firstPW))
         
         self.password = unicode(self.passwordEdit.text())
         
