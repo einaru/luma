@@ -14,7 +14,7 @@ from base.backend.LumaConnection import LumaConnection
 from PyQt4.QtCore import QAbstractItemModel, pyqtSlot, pyqtSignal, Qt
 from PyQt4.QtCore import QModelIndex, QVariant, QCoreApplication, QRunnable
 from PyQt4.QtCore import QPersistentModelIndex
-from PyQt4.QtCore import QThreadPool
+from PyQt4.QtCore import QThreadPool, QThread
 
 from PyQt4.QtGui import QMessageBox
 
@@ -32,6 +32,7 @@ class LDAPTreeItemModel(QAbstractItemModel):
         super(LDAPTreeItemModel, self).__init__(parent)
         self.listFetched.connect(self.workerFinished)
         self.verified = []
+        self.threads = []
         self.populateModel(serverList)
 
     """ These are called internally in order to signal when busy
@@ -328,8 +329,16 @@ class LDAPTreeItemModel(QAbstractItemModel):
 
         # Do the search (in another thread)
         thread = Worker(self, parentIndex, parentItem)
-        QThreadPool.globalInstance().start(thread)
+        thread.finished.connect(self.rm)
+        self.threads.append(thread)
+        print "-------"
+        print self.threads
+        thread.start()
+        #QThreadPool.globalInstance().start(thread)
         parentItem.loading = True
+
+    def rm(self):
+        self.threads.remove(self.sender())
 
     def unverified(self, serverObject):
         if serverObject.name in self.verified:
@@ -361,7 +370,7 @@ class LDAPTreeItemModel(QAbstractItemModel):
 
             self.layoutChanged.emit()
         
-class Worker(QRunnable):
+class Worker(QThread):
 
     def __init__(self, target, parentIndex, parentItem):
         super(Worker, self).__init__()
@@ -385,3 +394,4 @@ class Worker(QRunnable):
             # an item was deleted above it). 
             index = QModelIndex(self.persistent)
             self.target.listFetched.emit(index, tupel)
+            #self.target.threads.remove(self)
