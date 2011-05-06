@@ -52,3 +52,5 @@ class StandardEditor(QDialog, Ui_StandardEditorDesign):
 
     def updateValue(self, newText):
         self.value = unicode(newText)
+
+# vim: tabstop=4 expandtab shiftwidth=4 softtabstop=4

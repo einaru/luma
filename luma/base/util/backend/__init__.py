@@ -139,3 +139,5 @@ def __dnCompare(firstDN, secondDN):
 
 if __name__ == "__main__":
     testEscaping()
+
+# vim: tabstop=4 expandtab shiftwidth=4 softtabstop=4

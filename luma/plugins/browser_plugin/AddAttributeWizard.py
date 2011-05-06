@@ -207,3 +207,5 @@ class AddAttributeWizard(QWizard, Ui_AddAttributeWizardDesign):
     def initializePage(self, id):
         if id == 1:
             self.initClassPage()
+
+# vim: tabstop=4 expandtab shiftwidth=4 softtabstop=4

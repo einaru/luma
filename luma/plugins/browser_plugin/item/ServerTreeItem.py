@@ -98,3 +98,5 @@ class ServerTreeItem(AbstractLDAPTreeItem):
     def getSupportedOperations(self):
         return AbstractLDAPTreeItem.SUPPORT_CLEAR|AbstractLDAPTreeItem.SUPPORT_RELOAD
         
+
+# vim: tabstop=4 expandtab shiftwidth=4 softtabstop=4

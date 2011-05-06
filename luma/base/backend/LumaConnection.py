@@ -717,3 +717,5 @@ class WorkerThreadBind(threading.Thread):
             self.result = False
             self.exceptionObject = e
             self.FINISHED = True
+
+# vim: tabstop=4 expandtab shiftwidth=4 softtabstop=4

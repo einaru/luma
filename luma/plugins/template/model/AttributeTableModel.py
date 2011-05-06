@@ -131,3 +131,5 @@ class AttributeTableModel(QAbstractTableModel):
             return QModelIndex()
         internalPointer = self.attributes.items()[row][1].getList()[column]
         return self.createIndex(row, column, internalPointer)
+
+# vim: tabstop=4 expandtab shiftwidth=4 softtabstop=4

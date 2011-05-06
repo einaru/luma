@@ -77,3 +77,5 @@ class PasswordEditor(QDialog, Ui_PasswordEditorDesign):
             return mkpasswd(self.password, 3, method).encode("utf-8")
 
 
+
+# vim: tabstop=4 expandtab shiftwidth=4 softtabstop=4

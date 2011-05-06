@@ -38,3 +38,5 @@ class PluginSettingsListModel(QStandardItemModel):
                 self._settings.setValue(valueString, "True")
             else:
                 self._settings.setValue(valueString, "False")
+
+# vim: tabstop=4 expandtab shiftwidth=4 softtabstop=4

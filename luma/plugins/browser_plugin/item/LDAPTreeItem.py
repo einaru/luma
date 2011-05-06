@@ -195,3 +195,5 @@ class LDAPTreeItem(AbstractLDAPTreeItem):
                AbstractLDAPTreeItem.SUPPORT_DELETE | \
                AbstractLDAPTreeItem.SUPPORT_OPEN | \
                AbstractLDAPTreeItem.SUPPORT_CANCEL
+
+# vim: tabstop=4 expandtab shiftwidth=4 softtabstop=4

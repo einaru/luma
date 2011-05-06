@@ -84,3 +84,5 @@ class TemplateTableModel(QAbstractTableModel):
             # correct painting/displaying of it is done by a delegate if needed
             return templateObject.getList()[column]
 
+
+# vim: tabstop=4 expandtab shiftwidth=4 softtabstop=4

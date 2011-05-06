@@ -662,3 +662,5 @@ class LoadingDelegate(QtGui.QStyledItemDelegate):
         else:
             # Default
             QtGui.QStyledItemDelegate.paint(self, painter, option, index)
+
+# vim: tabstop=4 expandtab shiftwidth=4 softtabstop=4

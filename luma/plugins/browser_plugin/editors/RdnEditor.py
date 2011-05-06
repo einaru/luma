@@ -70,3 +70,5 @@ class RdnEditor(QDialog, Ui_RdnEditorDesign):
         self.value = attributeName + u"=" + tmpValue + u"," + unicode(self.baseDN)
         
         self.dnLabel.setText(self.value)
+
+# vim: tabstop=4 expandtab shiftwidth=4 softtabstop=4

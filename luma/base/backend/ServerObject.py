@@ -253,3 +253,5 @@ class ServerObject(object):
         finalString.append(unicode(self.checkServerCertificate))
         finalString.append(unicode("\n"))
         return "".join(finalString)
+
+# vim: tabstop=4 expandtab shiftwidth=4 softtabstop=4

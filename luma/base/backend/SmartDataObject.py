@@ -958,3 +958,5 @@ class FunctionArgumentException(Exception):
         
     def __str__(self):
         return repr(self.value)
+
+# vim: tabstop=4 expandtab shiftwidth=4 softtabstop=4

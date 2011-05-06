@@ -40,3 +40,5 @@ class Ui_NewEntryDialog(object):
     def retranslateUi(self, NewEntryDialog):
         NewEntryDialog.setWindowTitle(QtGui.QApplication.translate("NewEntryDialog", "Add new entry", None, QtGui.QApplication.UnicodeUTF8))
 
+
+# vim: tabstop=4 expandtab shiftwidth=4 softtabstop=4

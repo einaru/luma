@@ -46,3 +46,5 @@ def suite():
     suite.addTest(unittest.makeSuite(LLHTest))
     return suite
 
+
+# vim: tabstop=4 expandtab shiftwidth=4 softtabstop=4

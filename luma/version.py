@@ -19,3 +19,4 @@
 # along with this program.  If not, see http://www.gnu.org/licenses/
 
 VERSION=''
+# vim: tabstop=4 expandtab shiftwidth=4 softtabstop=4

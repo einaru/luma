@@ -661,3 +661,5 @@ class PluginToolBar(QToolBar):
         if hasattr(self.parent, "showPlugins"):
             self.parent.showPlugins()
 
+
+# vim: tabstop=4 expandtab shiftwidth=4 softtabstop=4

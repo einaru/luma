@@ -69,3 +69,4 @@ def suite():
 if __name__ == "__main__":
     #import sys;sys.argv = ['', 'Test.testGettersSetters']
     unittest.main()
+# vim: tabstop=4 expandtab shiftwidth=4 softtabstop=4

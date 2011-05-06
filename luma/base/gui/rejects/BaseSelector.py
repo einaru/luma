@@ -70,3 +70,4 @@ if __name__ == "__main__":
     s = BaseSelector()
     s.show()
     sys.exit(app.exec_())
+# vim: tabstop=4 expandtab shiftwidth=4 softtabstop=4

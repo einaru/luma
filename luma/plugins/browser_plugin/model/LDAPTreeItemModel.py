@@ -472,3 +472,5 @@ class QRunnableWorker(QRunnable):
             # an item was deleted above it). 
             index = QModelIndex(self.persistent)
             self.target.listFetched.emit(index, tupel)
+
+# vim: tabstop=4 expandtab shiftwidth=4 softtabstop=4

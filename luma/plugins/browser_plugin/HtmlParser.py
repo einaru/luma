@@ -306,3 +306,5 @@ class HtmlParser:
             tmpList.append("""<td>""" + x + """</td>""")
             tmpList.append("""</tr>""")
         return ''.join(tmpList)
+
+# vim: tabstop=4 expandtab shiftwidth=4 softtabstop=4

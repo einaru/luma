@@ -33,3 +33,5 @@ ORGNAME = APPNAME = 'luma'
 VERSION = '3.0.6b'
 DESCRIPTION = 'LDAP browser and administration utility'
 
+
+# vim: tabstop=4 expandtab shiftwidth=4 softtabstop=4

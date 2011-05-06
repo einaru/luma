@@ -40,3 +40,5 @@ class PluginListWidget(QWidget, Ui_pluginListWidget):
         """
         self.listView.reset()
         self.listView.setModel(PluginListWidgetModel(self.parent))
+
+# vim: tabstop=4 expandtab shiftwidth=4 softtabstop=4

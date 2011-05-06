@@ -243,3 +243,5 @@ def get_available_hash_methods():
         
     supportedAlgorithms.sort()
     return supportedAlgorithms
+
+# vim: tabstop=4 expandtab shiftwidth=4 softtabstop=4

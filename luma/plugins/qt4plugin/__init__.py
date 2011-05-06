@@ -63,3 +63,5 @@ class Example(QtGui.QWidget):
     def onChanged(self, text):
         self.label.setText(text)
         self.label.adjustSize()
+
+# vim: tabstop=4 expandtab shiftwidth=4 softtabstop=4

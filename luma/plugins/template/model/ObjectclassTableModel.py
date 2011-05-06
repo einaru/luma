@@ -85,3 +85,4 @@ class ObjectclassTableModel(QAbstractTableModel):
         return self.createIndex(row, column, internalPointer)
     
     
+# vim: tabstop=4 expandtab shiftwidth=4 softtabstop=4

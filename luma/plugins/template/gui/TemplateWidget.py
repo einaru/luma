@@ -269,3 +269,5 @@ class TemplateWidget(QWidget, Ui_TemplateWidget):
                                       self.tr("Are you sure you want to delete the selected attributes?"), QMessageBox.Yes, QMessageBox.No)
             if re == QMessageBox.Yes:
                 self.attributeTM.removeRows(self.tableViewAttributes.selectedIndexes())
+
+# vim: tabstop=4 expandtab shiftwidth=4 softtabstop=4
