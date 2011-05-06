@@ -40,6 +40,7 @@ class AbstractLDAPTreeItem(object):
     
     def __init__(self, serverParent, parent):
         """
+        serverParent = the LDAPServerItem this item is under
         parent = the item above this
         """
         self.serverParent = serverParent
