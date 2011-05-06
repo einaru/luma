@@ -32,18 +32,16 @@ selection of plugins, providing useful LDAP-functionality, is includeed in the
 base application.
 
 %prep
-%setup -q -n %{name}-%{version}
+%setup -n %{name}-%{version}
 
 %build
 python setup.py build
 
 %install
-python setup.py install -O1 --root=${buildroot} --record=INSTALLED_FILES
-rm -rf %{buildroot}
-make install DESTDIR=%{buildroot}
+python setup.py install -O1 --root=$RPM_BUILD_ROOT --record=INSTALLED_FILES
 
 %clean
-rm -rf %{buildroot}
+rm -rf $RPM_BUILD_ROOT
 
 %files -f INSTALLED_FILES
 %defattr(-,root,root)
