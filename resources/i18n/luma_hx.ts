@@ -547,123 +547,123 @@ the selected objectclass.&lt;/p&gt;</source>
 <context>
     <name>BrowserView</name>
     <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="608"/>
+        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="609"/>
         <source>Delete</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="430"/>
+        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="431"/>
         <source>Really delete?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="435"/>
+        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="436"/>
         <source>Error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="467"/>
+        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="468"/>
         <source>Deletion</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="467"/>
+        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="468"/>
         <source>It&apos;s possible some of the selected items might not have been deleted, while others were.
 Do you wan&apos;t to update the list to reflect the changes?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="568"/>
+        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="569"/>
         <source>You need to restart the plugin for changes to take effect.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="600"/>
+        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="601"/>
         <source>This is where entries are displayed when opened.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="601"/>
+        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="602"/>
         <source>Edit Server Settings</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="602"/>
+        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="603"/>
         <source>Open</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="603"/>
+        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="604"/>
         <source>Reload</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="604"/>
+        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="605"/>
         <source>Clear</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="605"/>
+        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="606"/>
         <source>Set Filter</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="606"/>
+        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="607"/>
         <source>Set Limit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="607"/>
+        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="608"/>
         <source>Add</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="609"/>
+        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="610"/>
         <source>Export</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="610"/>
+        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="611"/>
         <source>Cancel</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="612"/>
+        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="613"/>
         <source>Entry</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="613"/>
+        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="614"/>
         <source>Template</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="614"/>
+        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="615"/>
         <source>Item</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="615"/>
+        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="616"/>
         <source>Subtree</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="616"/>
+        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="617"/>
         <source>Subtree with parents</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="617"/>
+        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="618"/>
         <source>Items</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="618"/>
+        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="619"/>
         <source>Subtrees</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="619"/>
+        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="620"/>
         <source>Subtrees with parents</source>
         <translation type="unfinished"></translation>
     </message>
@@ -919,7 +919,7 @@ Do you wan&apos;t to update the list to reflect the changes?</source>
 <context>
     <name>LDAPTreeItemModel</name>
     <message>
-        <location filename="luma/plugins/browser_plugin/model/LDAPTreeItemModel.py" line="186"/>
+        <location filename="luma/plugins/browser_plugin/model/LDAPTreeItemModel.py" line="190"/>
         <source>No servers defined</source>
         <translation type="unfinished"></translation>
     </message>
@@ -983,43 +983,37 @@ Do you wan&apos;t to update the list to reflect the changes?</source>
 <context>
     <name>MainWindow</name>
     <message>
-        <location filename="luma/base/gui/MainWindow.py" line="148"/>
+        <location filename="luma/base/gui/MainWindow.py" line="149"/>
         <source>Plugintoolbar</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/base/gui/MainWindow.py" line="159"/>
+        <location filename="luma/base/gui/MainWindow.py" line="160"/>
         <source>Logger</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/base/gui/MainWindow.py" line="377"/>
+        <location filename="luma/base/gui/MainWindow.py" line="378"/>
         <source>You may need to restart plugins for changes to take effect.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/base/gui/MainWindow.py" line="473"/>
+        <location filename="luma/base/gui/MainWindow.py" line="474"/>
         <source>Welcome</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/base/gui/MainWindow.py" line="484"/>
+        <location filename="luma/base/gui/MainWindow.py" line="485"/>
         <source>Plugins</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/base/gui/MainWindow.py" line="493"/>
-        <source>Closing Luma...
-If there are operations in progress it might not exit immediatly.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="luma/base/gui/MainWindow.py" line="649"/>
+        <location filename="luma/base/gui/MainWindow.py" line="657"/>
         <source>Available plugins</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/base/gui/MainWindow.py" line="650"/>
+        <location filename="luma/base/gui/MainWindow.py" line="658"/>
         <source>Choose plugin</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1151,6 +1145,11 @@ If there are operations in progress it might not exit immediatly.</source>
     <message>
         <location filename="luma/base/gui/design/MainWindowDesign.py" line="143"/>
         <source>F11</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="luma/base/gui/MainWindow.py" line="497"/>
+        <source>There are operations in progress which needs to finish before Luma can close.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

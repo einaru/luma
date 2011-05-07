@@ -20,10 +20,13 @@ Development
 .. 3.2.1 Available Luma plugins
 .. 3.2.2 A skeleton plugin
 .. 3.2.3 Settings support for plugins
-.. 3.2.4 Internationalization support for plugins
-.. 3.3. Documentation
-.. 3.3.1. Source code documentation
-.. 4. Deployment
+.. 4. Internationalization
+.. 4.1. Translating the application
+.. 4.2. Dynamic Translation of the application
+.. 5. Documentation
+.. 5.1. Source code documentation
+.. 5.2. User documentation
+.. 6. Deployment
 
 
 1. Getting Started
@@ -197,15 +200,9 @@ with the ``-h`` or ``--help`` option::
 
 2.4 The doc folder
 ------------------
-The *Luma documentation files* is located in the ``doc`` folder. We use reST_
-and Sphinx_ to write and generate the user documentation. All documentation
-source files written in reStructuredText (reST) should be placed in the 
-``source`` subfolder, with a ``.rst`` extension. ``Makefiles`` for both *UNIX*
-and *Windows* is also available in the ``doc`` folder.
-
-
-.. _reST: http://docutils.sourceforge.net/rst.html
-.. _Sphinx: http://sphinx.pocoo.org/
+The Luma *User documentation files* is located in the ``doc`` folder. For 
+information on how to contribute user documentation for Luma, please refer to
+the `5.2. User documentation`_ section in this document.
 
 
 3. Development
@@ -395,13 +392,42 @@ configuration file. If you need to save some settings for your plugins you
             del settings
 
 
-3.2.4 Internationalization support for plugins
-----------------------------------------------
-In order to provide runtime retransalations of a plugin, a few additional 
-implementations must be included in the plugin. The plugin must catch the 
-``QEvent.LanguageChange`` [3]_ event and act accordigly upon it. It is
-recommended to create a dedicated method that can be called in order to offer
-the transalation of the translatable string values::
+4. Internationalization
+=======================
+One of the goals for Luma, in addition to create a supperior cross-platform LDAP
+utility, is to provide the user with the ability to use Luma with the language
+of his or her choosing. In order for this to be achieved we sorely depend on
+translators from as amany countries as possible. In the following section we
+describe a few conventions to follow when contributing translations to Luma.
+
+
+4.1. Translating the application
+--------------------------------
+All translation files (both source files (``.ts``) and compiled files (``.qm``)) 
+is located in the ``resources/i18n`` folder. You should make use of the Qt4
+Linguist application (part of the Qt4 framwork) when you write translation
+files. 
+
+Luma translation files (both source files (``.ts``) and compiled files (``.qm``))
+is located in the ``resources/i18n`` folder. When you translate Luma to a new
+language you must first create your 
+
+
+
+http://doc.trolltech.com/4.7/qlocale.html#name
+
+‘ll_CC’. Here ‘ll’ is an ISO 639 two-letter language code, and ‘CC’ is an ISO 3166 two-letter country code.
+
+
+
+4.2. Dynamic Translation of the application
+-------------------------------------------
+In order to provide dynamic retransalation of the application at runtime a few
+additional implementations must be added. This will be the same for all parts of
+the application (both ``base`` and ``plugins``). The main concern is to make
+sure the ``QEvent.LanguageChange`` [5]_ event is catched, and act accordigly 
+upon it. It is recommended to create a dedicated method that can be called in 
+order to offer the transalation of all the strings that should be translated::
 
     def changeEvent(self, event):
         """This event is generated when a new translator is loaded or the 
@@ -413,21 +439,26 @@ the transalation of the translatable string values::
 
     def retranslateUi(self):
         """Explicitly translate the gui strings."""
+        self.someWidget.setText(QApplication.translate('some text')
         ...
 
 It is also possible to catch the ``QEvent.LanguageChange`` event with a event
 handler implementation. You can look at the *Search* plugin for one possible
 implementation of a dedicated event handler class.
 
+Some aditional information on the internationalization support in the Qt4
+framework and dynamic translation, can be found at
+http://doc.trolltech.com/4.7/internationalization.html#dynamic-translation.
 
-3.3. Documentation
-==================
+
+5. Documentation
+================
 Documentation is an essential part of open source projects, and you should
 prioritice this when contributing to Luma.
 
 
-3.3.1 Source code documentation
--------------------------------
+5.1. Source code documentation
+------------------------------
 Python source code should allways be documented. First of all methods should
 include a standard python docstring, describing the purpose of the method. 
 Further more we belive that code can be written without the need for inline
@@ -467,7 +498,33 @@ Here is a mockup example of a class with reST_ style documentation::
             return cosmikDebris
 
 
-4. Deployment
+5.2. User documentation
+-----------------------
+The Luma *User documentation* files is located in the ``doc`` folder. We use 
+reStructuredText (reSt_) and Sphinx_ to write and generate the documentation for
+Luma. When you contribute new documentation files for Luma you should place the
+documentation source files in the ``doc/source`` folder, and make sure the files
+have a ``.rst`` extension. If you are unfamiliar with the reST_ syntax, please
+refer to the `reStructuredText Primer`_ for a quickstart.
+
+``Makefiles`` for both *UNIX* and *Windows* is available in the ``doc`` folder,
+and in order to generate the html documentation you simple issue the following
+commands from within the ``doc`` folder::
+
+    $ cd doc
+    $ sphinx-build source build
+
+This will generate ``.html`` files from all the ``.rst`` files defined in the 
+``index.rst``, located in the ``source`` folder, and put them in the ``build``
+folder.
+
+
+.. _reST: http://docutils.sourceforge.net/rst.html
+.. _reStructuredText Primer: http://docutils.sourceforge.net/docs/user/rst/quickstart.html
+.. _Sphinx: http://sphinx.pocoo.org/
+
+
+6. Deployment
 =============
 Luma is currently deployed with `distutils_`, which is included in the python
 standard library. The ``setup.py`` script is capable of creating source
@@ -495,5 +552,7 @@ Footnotes
 =========
 .. [1] http://en.wikipedia.org/wiki/List_of_ISO_639-1_codes
 .. [2] http://www.gnu.org/licenses/license-list.html#GPLCompatibleLicenses.
-.. [3] http://www.riverbankcomputing.co.uk/static/Docs/PyQt4/html/qevent.html#Type-enum
+.. [3] http://www.gnu.org/software/gettext/manual/gettext.html#Language-Codes
+.. [4] http://www.gnu.org/software/gettext/manual/gettext.html#Country-Codes
+.. [5] http://www.riverbankcomputing.co.uk/static/Docs/PyQt4/html/qevent.html#Type-enum
 

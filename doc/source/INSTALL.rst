@@ -1,110 +1,129 @@
 *******
 INSTALL
 *******
-.. :Author: Einar Uvsløkk
-   :Email:  einar.uvslokk@linux.com
-   :Date:   April 14, 2011
 
-Installing from the git repository
-==================================
-The Luma git_ repository is hosted on sourceforge_. To browse the repository
-go to http://luma.sf.net/. You can install Luma from the repository if you
-don't have an up to date packaged version or want to get the latest version 
-from the trunk.
+Platforms and dependencies
+==========================
+Luma is a crossplatform application written in the Python programming language.
+It is developed and continiously tested on a number of platforms and operating
+systems. The development platforms include:
 
-- Make sure you have git_ installed, you can check with::
+- Fedora: 14 (GNOME)
+- Ubuntu: 10.04, 10.10
+- Microsoft Windows: Vista, 7
+- Mac OS X
+
+In addition Luma is tested succesfully on the following platforms:
+
+- Fedora: 14 (KDE)
+- Chakra GNU/Linux: 2011.02 (Cyrus)
+- Microsoft Windows: XP
+
+In order to succesfully install and run Luma, you will need the to install the
+following libraries on your syste on your systemm:
+
+- Python >= 2.6 < 3
+- python-ldap >= 2.3
+- PyQt4 >= 4.8
+
+You can install and/or run Luma in a number of ways. This includes:
+
+- `1. Installing Luma from the git repository`_
+- `2. Installing Luma from a source distribution`_
+- `3. Installing a prepackaged distribution of Luma`_
+
+
+1. Installing Luma from the git repository
+==========================================
+The Luma git_ reposotory is hosted on `SourceForge`_. To browse the repository
+go to http://luma.cvs.sourceforge.net/viewvc/luma/. You can install or run Luma
+from the repository if you don't have an up-to-date packaged version or want to
+try the latest version.
+
+First you need to make sure you have git_ installed, you can check with::
 
 	$ git --version
 
-- Go to the directory you want to install Luma into and clone the repository::
+Go to the directory you want to install Luma into and clone the repository::
 
-	$ cd ~/bin
-	$ git clone http://luma.sf.net/git/luma
+    $ cd ~/bin 
+    $ git clone http://luma.sf.net/repo/luma.git luma
 
-After cloning the *Luma* repository you can now either `Run Luma from your local
-copy`_, or do a `Systemwide install from your local copy`_.
+
+After cloning the Luma repository you are now able to run the application with
+the following commands::
+
+    $ cd luma
+    $ python luma.py
+ 
+If you want to install Luma on your system, you can use the ``setup.py`` script
+located in the repository root. This is a standard distutils style script, that
+is invoked like this::
+
+    $ sudo python setup.py install
+
 
 .. _git: http://git-scm.org/
-.. _sourceforge: http://sourceforge.net/
+.. _SourceForge: http://sourceforge.net/
 
 
-Run Luma from your local copy
------------------------------
-Create a symlink to the Luma startup script in a search ``PATH`` directory, for
-example::
+2. Installing Luma from a source distribution
+=============================================
+Source distribution for Luma is avaliable for installation using the distutils
+modules in the standard python library. Source distributions can be downloaded
+as tarballs ``.tar.gz`` (UNIX and UNIX-like) or as zipped archives (Windows) 
+``.zip``. If you are running on Linux you could see if your distribution provide
+prepackaged distributions of Luma (`3. Installing a prepackaged distribution of
+Luma`_)
 
-	$ ln -s ~/bin/luma-3.0.6/luma/luma.py ~/bin/luma
 
-Systemwide install from your local copy
----------------------------------------
-Use the ``setup.py`` file to install Luma using the python ``distutils``
-module::
-
-	$ sudo python setup.py install
-
-NOTE: To uninstall you must manually delete all installed files. These are 
-typically located in ``/usr/lib/python-xxx/site-packages/luma``
-
-Source distribution installation
-================================
-Standard *python* source distribution is available for installation. If you 
-are running *Linux* or another *UNIX-like system*, you can grab the latest 
-source tarball, and `Install from tarball`_. If you are running *Microsoft 
-Windows*, you can grab the latest zip-archive, and `Install from zip-archive`_.
-
-Install from tarball
---------------------
-If your *Linux* distribution does not have a `Prepackaged Luma distribution`_,
-or if you prefer to install the latest Luma from source, download the latest 
-tarball and install using the included ``setup.py`` script.::
+Installing the lateset tarball
+------------------------------
+If you are installing on UNIX and UNIX-like systems, you should use the latest 
+tarball (http://luma.sf.net/get/lateset-tar). The tarballs is known to install
+without any problem on both Linux and Mac OS X. Luma is easily installed with 
+the following commands::
 
 	$ wget http://luma.sf.net/get/latest-tar
 	$ tar xvzf luma-3.0.6.tar.gz
 	$ cd luma-3.0.6
 	$ sudo python setup.py install
 
-Install from zip-archive
-------------------------
-If your installing on *Microsft Windows* you should download the zip-archive
-from: http://luma.sf.net/get/latest-zip.::
+
+Install the latest zipped archive
+---------------------------------
+If you are installing on Microsft Windows you should download the latest zipped 
+archive from http://luma.sf.net/get/latest-zip, and open your ``cmd.exe``::
 
 	$ unzip luma-3.0.6.zip
 	$ cd luma-3.0.6
 	$ python.exe setup.py install
 
-Prepackaged Luma distribution
-=============================
 
-.. note::
-    This section just illustrated a proposed layout for *future* prepackaged 
-    Luma distributions.
-
+3. Installing a prepackaged distribution of Luma
+================================================
 The following platform spesific Luma packages are available:
+
 
 Linux
 -----
+**Fedora 14**::
 
-**Fedora**::
+    $ wget http://folk.ntnu.no/einaru/luma/dist/luma-3.0.6b-1.fc14.noarch.rpm
+    $ yum localinstall luma-3.0.6b-1.fc14.noarch.rpm --nogpgcheck
 
-	$ yum install luma
-
-**Debian/Ubuntu**::
-
-	$ apt-get install luma
-
-**Arch**::
-
-	$ pacman -S luma
 
 Microsoft Windows
 -----------------
+For Microsoft Windows there exists both ``.exe`` and  ``.msi`` installers 
+without the dependencies, as well as an application bundle that includs all 
+necessary dependencies. These can be downloaded from the website
+http://luma.sf.net/get/latest-win.
 
-An application bundle for *Microsoft Windows*, including all runtime 
-dependencies can be downloaded from http://luma.sf.net/get/latest-win.
 
 Mac OS X
 --------
-
 An application bundle for *Mac OS X*, including all runtime dependencies can
 be downloaded from http://luma.sf.net/get/latest-mac.
+
 

@@ -58,22 +58,23 @@ from optparse import OptionParser, OptionGroup
 
 from PyQt4.QtCore import QProcess, QString
 
-short_description = """
-   __  __  ______ ___  ____  ___  ____  ____  
-  / / / / / / __ `__ \/___ \/ __\/ ___\/ ___\  lumarcc.py v0.8
- / /_/ /_/ / / / / / / __  / /  / /___/ /___   copyright (c) 2011
- \__/\____/_/ /_/ /_/\____/_/   \____/\____/   <einar.uvslokk@linux.com>                                               
-Luma resource compiler"""
+short_description = """lumarcc.py - Luma Resource compiler - v0.8
+copyright (c) Einar Uvsløkk 2011 einar.uvslokk@linux.com
+"""
+long_description = """lumarcc.py is part of the Luma tool chain.
 
-long_description = """
-This utility script makes use of the following PyQt commands:
+It automates the process of compiling and updating the various
+resources used by the running Luma application.
+The script makes use of following PyQt4 and Qt4 commands:
 
-pyrcc4      Used for compiling resources into a python resource file.
-            This is a python wrapper for rcc
-pyuic4      Used for compiling .ui files and generating py source files.
-            This is a python wrapper for uic-qt4
-pylupdate4  Used for updating the resources in the project file.
-            This is a python wrapper for lupdate-qt4"""
+- pyrcc4        Used for compiling resources into a python resource file.
+                This is a python wrapper for rcc
+- pyuic4        Used for compiling .ui files and generate python source files.
+                This is a python wrapper for uic-qt4
+- pylupdate4    Used for updating the resources in the project file.
+                This is a python wrapper for lupdate-qt4
+- lrelease-qt4  Used to convert xml-based translations ``.ts`` files into
+                compiled ``.qm`` files for use in the Luma application."""
 
 
 class LumaPRO(object):
@@ -326,6 +327,7 @@ LUMA_PRO = ['luma.pro']
 LUMA_QRC = ['luma.qrc']
 LUMA_RC = ['luma', 'resources.py']
 
+global verbose, dryrun
 
 def run(cmd, args=[]):
     """Executes the command `cmd` with optional arguments `args`,
@@ -567,7 +569,6 @@ def main():
     """Sets up the option parser, parsers the commandline for opations
     and arguments, and runs the appropriate methods.
     """
-    global verbose, dryrun
 
     usage = '%prog [options]'
     # Main Options:
