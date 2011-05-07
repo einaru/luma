@@ -148,7 +148,6 @@ class LDAPTreeItemModel(QAbstractItemModel):
             parentItem.populated = True
 
             # -- New solution --
-            self.layoutChanged.emit()
             self.fetchInThread(parent, parentItem)
 
             # -- Old solution --
@@ -171,6 +170,9 @@ class LDAPTreeItemModel(QAbstractItemModel):
             parentItem = self.rootItem
         else:
             parentItem = parent.internalPointer()
+
+        if parentItem.loading:
+            return 1
 
         if parentItem.populated:
             return parentItem.childCount() > 0
