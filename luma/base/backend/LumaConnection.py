@@ -357,7 +357,7 @@ class LumaConnection(object):
         """
         
         try:
-            if not(self.serverObject.bindAnon):
+            if not(self.serverObject.bindAnon) and self.ldapServerObject != None:
                 self.ldapServerObject.unbind()
         except ldap.LDAPError, e:
             message = "LDAP unbind operation not successful. Reason:\n"

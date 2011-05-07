@@ -171,9 +171,6 @@ class LDAPTreeItemModel(QAbstractItemModel):
         else:
             parentItem = parent.internalPointer()
 
-        if parentItem.loading:
-            return 1
-
         if parentItem.populated:
             return parentItem.childCount() > 0
 
@@ -434,7 +431,6 @@ class Worker(QObject):
     @pyqtSlot()
     def start(self):
         tupel = self.parentItem.fetchChildList()
-
         if self.persistent.isValid():
             # QPersistenModelIndex -> QModelIndex
             # Should prefferably not be done here (changes can happend until the receiver-thread process the event)
