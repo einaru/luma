@@ -434,7 +434,7 @@ class Worker(QObject):
     @pyqtSlot()
     def start(self):
         tupel = self.parentItem.fetchChildList()
-        if self.persistent.isValid() or True: #TODO FIX
+        if self.persistent.isValid():
             # QPersistenModelIndex -> QModelIndex
             # Should prefferably not be done here (changes can happend until the receiver-thread process the event)
             # but Qt can't send QPersistentModelIndexes (yet?)
