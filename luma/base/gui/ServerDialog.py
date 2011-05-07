@@ -19,6 +19,8 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see http://www.gnu.org/licenses/
+from __future__ import with_statement
+from threading import RLock
 import copy
 
 from PyQt4.QtGui import QDialog, QDataWidgetMapper
@@ -39,6 +41,11 @@ from ..util.IconTheme import pixmapFromTheme
 from .ServerDelegate import ServerDelegate
 
 class ServerDialog(QDialog, Ui_ServerDialogDesign):
+
+    # The threadpool for the workers
+    _threadPool = []
+    # And it's lock
+    _threadLock = RLock()
 
     def __init__(self, server=None, parent=None):
         """The `ServerDialog` constructor.
@@ -149,7 +156,6 @@ class ServerDialog(QDialog, Ui_ServerDialogDesign):
         self.encryptionBox.currentIndexChanged[int].connect(self.checkSSLport)
 
         # Used by the connection-test
-        self.threadPool = []
         self.testProgress = QProgressDialog("Trying to connect to server.",
                 "Abort",
                 0, 0,
@@ -355,17 +361,13 @@ class ServerDialog(QDialog, Ui_ServerDialogDesign):
 
         # Run test in new thread
         thread = WorkerThread()
-        self.threadPool.append(thread)
-        thread.finished.connect(self.removeThread)
+        with ServerDialog._threadLock:
+            ServerDialog._threadPool.append(thread)
         worker = TestWorker(sO)
         worker.testFinished.connect(self.testFinished)
         worker.testFinished.connect(thread.quit)
         thread.setWorker(worker)
         thread.start()
-    
-    @pyqtSlot()
-    def removeThread(self):
-        self.threadPool.remove(self.sender())
 
     @pyqtSlot(bool, str, unicode)
     def testFinished(self, success, exceptionStr, serverName):
@@ -389,9 +391,17 @@ class ServerDialog(QDialog, Ui_ServerDialogDesign):
 class WorkerThread(QThread):
     def __init__(self, parent = None):
         QThread.__init__(self, parent)
+        self.finished.connect(self.cleanup)
         self.worker = None
+
     def run(self):
         self.exec_()
+
+    def cleanup(self):
+        # Remove from threadpool
+        with ServerDialog._threadLock:
+            ServerDialog._threadPool.remove(self)
+
     def setWorker(self, worker):
         worker.moveToThread(self)
         self.worker = worker
