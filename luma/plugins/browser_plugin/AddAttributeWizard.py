@@ -185,6 +185,7 @@ class AddAttributeWizard(QWizard, Ui_AddAttributeWizardDesign):
         classList.sort()
                 
         map(self.classBox.addItem, classList)
+        self.classBox.setCurrentRow(0)
         
 ###############################################################################
 
