@@ -80,7 +80,7 @@ branch you can run the following commands in your favorite shell::
 ----------------------
 There exists a number of tools that can be helpful when developing python and 
 PyQt4 code. We also have produced some tools spesific for the Luma development 
-and deployment process.
+and deployment process `7. The Luma Tool Chain`_.
 
 - `Qt4 Designer`_:
   This application is part of the Qt framework, which is helpful for creating
@@ -91,9 +91,24 @@ and deployment process.
   This application is part of the Qt framework, and is used for the 
   internationalization process for the application.
 
+If you plan on contributing documentation to the application you will need the
+following tools:
+
+- reStructuredText_:
+  This is the markup language we use to write the user doumentation. You should
+  also write your source code doc strings in this syntax. A number of programs
+  is included in this tool, that enable us to generate teh documentation in
+  various formats. One of these are the ``rst2man`` program, by which the
+  *nroff* manual page is generated.
+- Sphinx_:
+  *Sphinx*, the Python documentation generator, is used to produce the html
+  documentation for the application. It is used together with reStructuredText.
+
 
 .. _Qt4 Designer: http://doc.trolltech.com/4.7/designer-manual.html
 .. _Qt4 Linguist: http://doc.trolltech.com/4.7/linguist-manual.html
+.. _reStructuredText: http://docutils.sourceforge.net/rst.html
+.. _Sphinx: http://sphinx.pocoo.org/
 
 
 2. Repository structure

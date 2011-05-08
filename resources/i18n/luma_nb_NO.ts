@@ -1031,7 +1031,7 @@ Do you wan&apos;t to update the list to reflect the changes?</source>
     <message>
         <location filename="luma/base/gui/design/MainWindowDesign.py" line="119"/>
         <source>&amp;File</source>
-        <translation>&amp;fil</translation>
+        <translation>&amp;Fil</translation>
     </message>
     <message>
         <location filename="luma/base/gui/design/MainWindowDesign.py" line="120"/>

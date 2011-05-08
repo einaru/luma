@@ -9,7 +9,7 @@ Luma Userguide
 .. 3. Managing plugins
 .. 3.1. Activating a plugin
 .. 3.2. Selecting and using a plugin
-.. 4. Keyboard shortcuts
+.. 4. Luma keyboard shortcuts
 .. 5. Problems and bugs
 .. 5.1. The Luma Logger Window
 .. 5.2. Reporting bugs
@@ -82,33 +82,33 @@ plugins open at the same time.
 
 
 3.1. Available plugins
-======================
+----------------------
 The base Luma application includes a number of plugins which brings and extends
 functionality to the application. 
 configure the plugin settings (if the plugin supports this).
 
 
 3.1.1. Browser
---------------
+..............
 - Description
 - Figur
 
 
 3.1.2 Templates
----------------
+...............
 - Description
 - Figur
 
 
 3.1.3. Search
--------------
+.............
 The search plugin supports arbritrary LDAP search operations on a selected 
-server. The plugin also includes a convinient `Filter builder`_, which can be
-used to build complex LDAP search filters.
+server. The plugin also includes a convinient Filter builder, which can be used
+to build complex LDAP search filters.
 
 
-Search form
-............
+**Search form**
+
 In the *Search form* you select the server you wish to do a search operation on,
 the Base DN you wish to connect with, the search level, and a possible size
 limit for the search. The search level options is:
@@ -132,8 +132,8 @@ Search button.
     Add relevant screenshots of the Search plugin search form.
 
 
-Filter builder
-..............
+**Filter builder**
+
 The *Filter builder* is intended to help the you construct complex LDAP search
 filters. Based on the currently selected server you are presented with a
 complete list of object classes and attributes that is supported on the server.
@@ -153,8 +153,8 @@ of Search Filters* spesifications defined in ``RFC4514`` [1]_.
     Add relevant screenshots of the Search plugin filter builder.
 
 
-Result view
-...........
+**Result view**
+
 When a search operation successfully returns. The matching LDAP entries are
 displayed in a new tab. The search result is displayed in a table view. The
 collumns in this table represents the DN plus one column for every attribute
@@ -178,8 +178,8 @@ The available filter syntaxes is:
     Add relevant screenshots of the Search plugin result view.
 
 
-5. Available keyboard shortcuts
-===============================
+4. Luma keyboard shortcuts
+==========================
 
 +-----------------------+-----------------------------------------------------+
 | **Keyboard shortcut** | **Action**                                          |

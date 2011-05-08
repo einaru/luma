@@ -17,23 +17,22 @@ luma [OPTIONS]
 
 DESCRIPTION
 ===========
-Luma is an cross-platform and open soruce graphical utility for accessing and 
-managing data stored on LDAP enabled servers. It is written in Python, using 
-PyQt4 and python-ldap. Luma supports plugins through its own plugin system. A
-selection of plugins is includeed in the base application, providing useful 
-LDAP-functionality.
+Luma is a cross-platform, open source LDAP browser and administration utility,
+capable of managing data stored on LDAP enabled server. It is written in Python,
+with PyQt4 (*GUI*) and python-ldap (*LDAP connections*). Luma supports plugins 
+through its own plugin system. A selection of plugins, providing useful LDAP 
+functionality, is includeed with the base application:
 
-Plugins included in the base application:
-
-- *Browser*: Provides a familiar interface to browse the entry tree on connected
-  LDAP enabled servers. Entry attributes can be edited and deleted. Supports
-  adding filters to limit expansions on large subtrees.
+- *Browser*:
+  Provides a familiar interface to browse the entry tree on connected LDAP 
+  enabled servers. Entry attributes can be edited and deleted. Supports adding
+  filters to limit expansions on large subtrees.
 - *Template*:
-- *Search*: A specialized search plugin to do advanced and complex search on a 
-  LDAP server. Supports filter creation that can be applied in the Browser 
-  plugin.
+- *Search*:
+  A specialized search plugin to do advanced and complex search on a LDAP
+  server. Supports filter creation that can be applied in the Browser plugin.
 
-Plugins not ported from PyQt3 yet:
+Plugins included in *Luma 2.4*, but not ported from PyQt3 yet:
 
 - *Schema browser*:
 - *Addressbook*: Supports building addressbooks from LDAP entries on different 
@@ -64,12 +63,12 @@ A summary of the options supported by *luma* is included below.
 	clear everything before launching Luma. This will result in the same as 
 	providing all the before mentioned clear options.
 
---config-dir=DIR
-	run Luma with another configuration directory.
+.. --config-dir=DIR
+.. 	run Luma with another configuration directory.
 
---plugin-dir=DIR
-	define another directory to look for plugins. DIR will be appended to the 
-	list of default plugin directories.
+.. --plugin-dir=DIR
+..  define another directory to look for plugins. DIR will be appended to the 
+.. 	list of default plugin directories.
 
 FILES
 =====
@@ -80,10 +79,10 @@ FILES
 	Application settings.
 
 ``~/.config/luma/serverlist.xml``
-	The server list.
+	The serverlist.
 
-``~/.config/luma/templates``
-	The templates file.
+``~/.config/luma/templatelist.xml``
+	The templatelist created by the Template plugin.
 
 BUGS
 ====
@@ -95,17 +94,12 @@ Website: http://luma.sf.net
 
 AUTHORS
 =======
-
 Originally written and developed by Wido Depping wido@users.sourceforge.net 
 from 2003, with help from Bjørn Over Grøtan bgrotan@grotan.com and Vegar 
 Westerlund vegarwe@users.sourceforge.net.
 
-Rewritten for PyQt4 and ported to multiple platforms in 2011 by
-
-- Christian Forfang cforfang@gmail.com
-- Einar Uvsløkk einar.uvslokk@gmail.com
-- Johannes Harestad johannesharestad@gmail.com
-- Per Ove Ringstad peroveri@stud.ntnu.no
-- Simen Natvig simen.natvig@gmail.com
-- Sondre Frisvold sondre.frisvold@c2i.net
+Rewritten for PyQt4 and ported to multiple platforms in 2011 by Christian 
+Forfang cforfang@gmail.com, Einar Uvsløkk einar.uvslokk@gmail.com, Johannes 
+Harestad johannesharestad@gmail.com, Per Ove Ringstad peroveri@stud.ntnu.no,
+Simen Natvig simen.natvig@gmail.com, Sondre Frisvold sondre.frisvold@c2i.net
 

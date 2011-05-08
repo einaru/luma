@@ -65,22 +65,22 @@
 </div>
 <div class="section" id="description">
 <h3>DESCRIPTION<a class="headerlink" href="#description" title="Permalink to this headline">¶</a></h3>
-<p>Luma is an cross-platform and open soruce graphical utility for accessing and
-managing data stored on LDAP enabled servers. It is written in Python, using
-PyQt4 and python-ldap. Luma supports plugins through its own plugin system. A
-selection of plugins is includeed in the base application, providing useful
-LDAP-functionality.</p>
-<p>Plugins included in the base application:</p>
+<p>Luma is a cross-platform, open source LDAP browser and administration utility,
+capable of managing data stored on LDAP enabled server. It is written in Python,
+with PyQt4 (<em>GUI</em>) and python-ldap (<em>LDAP connections</em>). Luma supports plugins
+through its own plugin system. A selection of plugins, providing useful LDAP
+functionality, is includeed with the base application:</p>
 <ul class="simple">
-<li><em>Browser</em>: Provides a familiar interface to browse the entry tree on connected
-LDAP enabled servers. Entry attributes can be edited and deleted. Supports
-adding filters to limit expansions on large subtrees.</li>
+<li><em>Browser</em>:
+Provides a familiar interface to browse the entry tree on connected LDAP
+enabled servers. Entry attributes can be edited and deleted. Supports adding
+filters to limit expansions on large subtrees.</li>
 <li><em>Template</em>:</li>
-<li><em>Search</em>: A specialized search plugin to do advanced and complex search on a
-LDAP server. Supports filter creation that can be applied in the Browser
-plugin.</li>
+<li><em>Search</em>:
+A specialized search plugin to do advanced and complex search on a LDAP
+server. Supports filter creation that can be applied in the Browser plugin.</li>
 </ul>
-<p>Plugins not ported from PyQt3 yet:</p>
+<p>Plugins included in <em>Luma 2.4</em>, but not ported from PyQt3 yet:</p>
 <ul class="simple">
 <li><em>Schema browser</em>:</li>
 <li><em>Addressbook</em>: Supports building addressbooks from LDAP entries on different
@@ -117,15 +117,6 @@ servers.</li>
 <kbd><span class="option">--clear-all</span></kbd></td>
 <td>clear everything before launching Luma. This will result in the same as
 providing all the before mentioned clear options.</td></tr>
-<tr><td class="option-group" colspan="2">
-<kbd><span class="option">--config-dir=<var>DIR</var></span></kbd></td>
-</tr>
-<tr><td>&nbsp;</td><td>run Luma with another configuration directory.</td></tr>
-<tr><td class="option-group" colspan="2">
-<kbd><span class="option">--plugin-dir=<var>DIR</var></span></kbd></td>
-</tr>
-<tr><td>&nbsp;</td><td>define another directory to look for plugins. DIR will be appended to the
-list of default plugin directories.</td></tr>
 </tbody>
 </table>
 </div>
@@ -137,9 +128,9 @@ list of default plugin directories.</td></tr>
 <dt><tt class="docutils literal"><span class="pre">~/.config/luma/luma.conf</span></tt></dt>
 <dd>Application settings.</dd>
 <dt><tt class="docutils literal"><span class="pre">~/.config/luma/serverlist.xml</span></tt></dt>
-<dd>The server list.</dd>
-<dt><tt class="docutils literal"><span class="pre">~/.config/luma/templates</span></tt></dt>
-<dd>The templates file.</dd>
+<dd>The serverlist.</dd>
+<dt><tt class="docutils literal"><span class="pre">~/.config/luma/templatelist.xml</span></tt></dt>
+<dd>The templatelist created by the Template plugin.</dd>
 </dl>
 </div>
 <div class="section" id="bugs">
@@ -155,15 +146,10 @@ list of default plugin directories.</td></tr>
 <p>Originally written and developed by Wido Depping <a class="reference external" href="mailto:wido&#37;&#52;&#48;users&#46;sourceforge&#46;net">wido<span>&#64;</span>users<span>&#46;</span>sourceforge<span>&#46;</span>net</a>
 from 2003, with help from Bjørn Over Grøtan <a class="reference external" href="mailto:bgrotan&#37;&#52;&#48;grotan&#46;com">bgrotan<span>&#64;</span>grotan<span>&#46;</span>com</a> and Vegar
 Westerlund <a class="reference external" href="mailto:vegarwe&#37;&#52;&#48;users&#46;sourceforge&#46;net">vegarwe<span>&#64;</span>users<span>&#46;</span>sourceforge<span>&#46;</span>net</a>.</p>
-<p>Rewritten for PyQt4 and ported to multiple platforms in 2011 by</p>
-<ul class="simple">
-<li>Christian Forfang <a class="reference external" href="mailto:cforfang&#37;&#52;&#48;gmail&#46;com">cforfang<span>&#64;</span>gmail<span>&#46;</span>com</a></li>
-<li>Einar Uvsløkk <a class="reference external" href="mailto:einar&#46;uvslokk&#37;&#52;&#48;gmail&#46;com">einar<span>&#46;</span>uvslokk<span>&#64;</span>gmail<span>&#46;</span>com</a></li>
-<li>Johannes Harestad <a class="reference external" href="mailto:johannesharestad&#37;&#52;&#48;gmail&#46;com">johannesharestad<span>&#64;</span>gmail<span>&#46;</span>com</a></li>
-<li>Per Ove Ringstad <a class="reference external" href="mailto:peroveri&#37;&#52;&#48;stud&#46;ntnu&#46;no">peroveri<span>&#64;</span>stud<span>&#46;</span>ntnu<span>&#46;</span>no</a></li>
-<li>Simen Natvig <a class="reference external" href="mailto:simen&#46;natvig&#37;&#52;&#48;gmail&#46;com">simen<span>&#46;</span>natvig<span>&#64;</span>gmail<span>&#46;</span>com</a></li>
-<li>Sondre Frisvold <a class="reference external" href="mailto:sondre&#46;frisvold&#37;&#52;&#48;c2i&#46;net">sondre<span>&#46;</span>frisvold<span>&#64;</span>c2i<span>&#46;</span>net</a></li>
-</ul>
+<p>Rewritten for PyQt4 and ported to multiple platforms in 2011 by Christian
+Forfang <a class="reference external" href="mailto:cforfang&#37;&#52;&#48;gmail&#46;com">cforfang<span>&#64;</span>gmail<span>&#46;</span>com</a>, Einar Uvsløkk <a class="reference external" href="mailto:einar&#46;uvslokk&#37;&#52;&#48;gmail&#46;com">einar<span>&#46;</span>uvslokk<span>&#64;</span>gmail<span>&#46;</span>com</a>, Johannes
+Harestad <a class="reference external" href="mailto:johannesharestad&#37;&#52;&#48;gmail&#46;com">johannesharestad<span>&#64;</span>gmail<span>&#46;</span>com</a>, Per Ove Ringstad <a class="reference external" href="mailto:peroveri&#37;&#52;&#48;stud&#46;ntnu&#46;no">peroveri<span>&#64;</span>stud<span>&#46;</span>ntnu<span>&#46;</span>no</a>,
+Simen Natvig <a class="reference external" href="mailto:simen&#46;natvig&#37;&#52;&#48;gmail&#46;com">simen<span>&#46;</span>natvig<span>&#64;</span>gmail<span>&#46;</span>com</a>, Sondre Frisvold <a class="reference external" href="mailto:sondre&#46;frisvold&#37;&#52;&#48;c2i&#46;net">sondre<span>&#46;</span>frisvold<span>&#64;</span>c2i<span>&#46;</span>net</a></p>
 </div>
 </div>
 </div>

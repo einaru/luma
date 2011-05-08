@@ -83,7 +83,7 @@ $ git checkout -b my-luma-feature develop</pre>
 <h3>1.2. Development tools<a class="headerlink" href="#development-tools" title="Permalink to this headline">¶</a></h3>
 <p>There exists a number of tools that can be helpful when developing python and
 PyQt4 code. We also have produced some tools spesific for the Luma development
-and deployment process.</p>
+and deployment process <a class="reference internal" href="#the-luma-tool-chain">7. The Luma Tool Chain</a>.</p>
 <ul class="simple">
 <li><a class="reference external" href="http://doc.trolltech.com/4.7/designer-manual.html">Qt4 Designer</a>:
 This application is part of the Qt framework, which is helpful for creating
@@ -92,6 +92,19 @@ Qt graphical interfaces. You can create the GUI design and use the PyQt4 tool
 <li><a class="reference external" href="http://doc.trolltech.com/4.7/linguist-manual.html">Qt4 Linguist</a>:
 This application is part of the Qt framework, and is used for the
 internationalization process for the application.</li>
+</ul>
+<p>If you plan on contributing documentation to the application you will need the
+following tools:</p>
+<ul class="simple">
+<li><a class="reference external" href="http://docutils.sourceforge.net/rst.html">reStructuredText</a>:
+This is the markup language we use to write the user doumentation. You should
+also write your source code doc strings in this syntax. A number of programs
+is included in this tool, that enable us to generate teh documentation in
+various formats. One of these are the <tt class="docutils literal"><span class="pre">rst2man</span></tt> program, by which the
+<em>nroff</em> manual page is generated.</li>
+<li><a class="reference external" href="http://sphinx.pocoo.org/">Sphinx</a>:
+<em>Sphinx</em>, the Python documentation generator, is used to produce the html
+documentation for the application. It is used together with reStructuredText.</li>
 </ul>
 </div>
 </div>
@@ -167,7 +180,7 @@ placed in its own subfolder under the <tt class="docutils literal"><span class="
 <li><tt class="docutils literal"><span class="pre">i18n</span></tt>:
 Contains all the translation files. When new translation files is created,
 they should be placed here, with a valid 2 char suffix, following the
-<em>ISO 638-1 standard</em> <a class="footnote-reference" href="#id6" id="id1">[1]</a> and a <tt class="docutils literal"><span class="pre">.ts</span></tt> extension. Luma makes use of the Qt
+<em>ISO 638-1 standard</em> <a class="footnote-reference" href="#id7" id="id1">[1]</a> and a <tt class="docutils literal"><span class="pre">.ts</span></tt> extension. Luma makes use of the Qt
 internazionallization system, and is translated with the Qt Linguist tool.
 Note that both the translation source files <tt class="docutils literal"><span class="pre">.ts</span></tt> and the release files
 <tt class="docutils literal"><span class="pre">.qm</span></tt> should be placed in the same folder.</li>
@@ -275,7 +288,7 @@ in order to be included in the base application.</p>
 <li>It <em>must</em> be <em>cross-platform</em>, i.e. The plugin must provide the same
 functionality on all supported platforms (<em>Linux</em>, <em>Windows</em> and <em>Mac OSX</em>).</li>
 <li>It <em>must</em> be available under the <em>GNU General Public License version 2</em> or
-newer, or another GPL compatible license <a class="footnote-reference" href="#id7" id="id2">[2]</a>.</li>
+newer, or another GPL compatible license <a class="footnote-reference" href="#id8" id="id2">[2]</a>.</li>
 <li>It <em>should</em> provide usefull LDAP related functionality.</li>
 </ul>
 </div>
@@ -379,8 +392,8 @@ Luma to a new language you must create a suitable named <tt class="docutils lite
 for Luma to be able to correctly load the translation file you must choose a
 filename that conform to the Luma internationalization nameing convention.
 Both <tt class="docutils literal"><span class="pre">luma_ll.ts</span></tt> and <tt class="docutils literal"><span class="pre">luma_ll_CC.ts</span></tt> is valid names, where <tt class="docutils literal"><span class="pre">ll</span></tt> is a two
-letter lowercase ISO 639 language code <a class="footnote-reference" href="#id8" id="id3">[3]</a>, and <tt class="docutils literal"><span class="pre">CC</span></tt> is a two letter
-uppercase ISO 3266 country code <a class="footnote-reference" href="#id9" id="id4">[4]</a>. Note that the country code is not
+letter lowercase ISO 639 language code <a class="footnote-reference" href="#id9" id="id3">[3]</a>, and <tt class="docutils literal"><span class="pre">CC</span></tt> is a two letter
+uppercase ISO 3266 country code <a class="footnote-reference" href="#id10" id="id4">[4]</a>. Note that the country code is not
 required. See section <a class="reference internal" href="#the-luma-internationalization-tool">7.2. The Luma internationalization tool</a> for a uility
 script that helps you pick the correct name for the translation target language.</p>
 <p>You must use <a class="reference external" href="http://doc.trolltech.com/4.7/linguist-manual.html">Qt4 Linguist</a> to write the actuall translation.</p>
@@ -392,7 +405,7 @@ file. Both files should be placed in the <tt class="docutils literal"><span clas
 <p>In order to provide dynamic retransalation of the application at runtime a few
 additional implementations must be added. This will be the same for all parts of
 the application (both <tt class="docutils literal"><span class="pre">base</span></tt> and <tt class="docutils literal"><span class="pre">plugins</span></tt>). The main concern is to make
-sure the <tt class="docutils literal"><span class="pre">QEvent.LanguageChange</span></tt> <a class="footnote-reference" href="#id10" id="id5">[5]</a> event is catched, and act accordigly
+sure the <tt class="docutils literal"><span class="pre">QEvent.LanguageChange</span></tt> <a class="footnote-reference" href="#id11" id="id5">[5]</a> event is catched, and act accordigly
 upon it. It is recommended to create a dedicated method that can be called in
 order to offer the transalation of all the strings that should be translated:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">changeEvent</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">event</span><span class="p">):</span>
@@ -548,31 +561,31 @@ The class reference can be viewed here
 </div>
 <div class="section" id="footnotes">
 <h2>Footnotes<a class="headerlink" href="#footnotes" title="Permalink to this headline">¶</a></h2>
-<table class="docutils footnote" frame="void" id="id6" rules="none">
+<table class="docutils footnote" frame="void" id="id7" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
 <tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td><a class="reference external" href="http://en.wikipedia.org/wiki/List_of_ISO_639-1_codes">http://en.wikipedia.org/wiki/List_of_ISO_639-1_codes</a></td></tr>
 </tbody>
 </table>
-<table class="docutils footnote" frame="void" id="id7" rules="none">
+<table class="docutils footnote" frame="void" id="id8" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
 <tr><td class="label"><a class="fn-backref" href="#id2">[2]</a></td><td><a class="reference external" href="http://www.gnu.org/licenses/license-list.html#GPLCompatibleLicenses">http://www.gnu.org/licenses/license-list.html#GPLCompatibleLicenses</a>.</td></tr>
 </tbody>
 </table>
-<table class="docutils footnote" frame="void" id="id8" rules="none">
+<table class="docutils footnote" frame="void" id="id9" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
 <tr><td class="label"><a class="fn-backref" href="#id3">[3]</a></td><td><a class="reference external" href="http://www.gnu.org/software/gettext/manual/gettext.html#Language-Codes">http://www.gnu.org/software/gettext/manual/gettext.html#Language-Codes</a></td></tr>
 </tbody>
 </table>
-<table class="docutils footnote" frame="void" id="id9" rules="none">
+<table class="docutils footnote" frame="void" id="id10" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
 <tr><td class="label"><a class="fn-backref" href="#id4">[4]</a></td><td><a class="reference external" href="http://www.gnu.org/software/gettext/manual/gettext.html#Country-Codes">http://www.gnu.org/software/gettext/manual/gettext.html#Country-Codes</a></td></tr>
 </tbody>
 </table>
-<table class="docutils footnote" frame="void" id="id10" rules="none">
+<table class="docutils footnote" frame="void" id="id11" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
 <tr><td class="label"><a class="fn-backref" href="#id5">[5]</a></td><td><a class="reference external" href="http://www.riverbankcomputing.co.uk/static/Docs/PyQt4/html/qevent.html#Type-enum">http://www.riverbankcomputing.co.uk/static/Docs/PyQt4/html/qevent.html#Type-enum</a></td></tr>
