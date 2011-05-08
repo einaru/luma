@@ -109,7 +109,7 @@ def startApplication(argv, verbose=False, clear=[], dirs={}):
     app.setOrganizationName(appinfo.ORGNAME)
     app.setApplicationName(appinfo.APPNAME)
     app.setApplicationVersion(appinfo.VERSION)
-    app.setWindowIcon(QIcon(':/icons/64/luma'))
+    app.setWindowIcon(QIcon(':/icons/128/luma'))
 
     # Setup the logging mechanism
     l = logging.getLogger()
