@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file '/mnt/debris/devel/git/luma/resources/forms/MainWindowDesign.ui'
+# Form implementation generated from reading ui file 'h:\Dropbox\Git\it2901\resources\forms\MainWindowDesign.ui'
 #
-# Created: Sat May  7 03:12:31 2011
+# Created: Mon May 09 00:51:20 2011
 #      by: PyQt4 UI code generator 4.8.3
 #
 # WARNING! All changes made in this file will be lost!
@@ -28,7 +28,7 @@ class Ui_MainWindow(object):
         self.gridLayout.addWidget(self.mainTabs, 0, 0, 1, 1)
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtGui.QMenuBar(MainWindow)
-        self.menubar.setGeometry(QtCore.QRect(0, 0, 700, 23))
+        self.menubar.setGeometry(QtCore.QRect(0, 0, 700, 21))
         self.menubar.setObjectName(_fromUtf8("menubar"))
         self.menuFile = QtGui.QMenu(self.menubar)
         self.menuFile.setObjectName(_fromUtf8("menuFile"))
@@ -76,9 +76,12 @@ class Ui_MainWindow(object):
         self.actionFullscreen = QtGui.QAction(MainWindow)
         self.actionFullscreen.setCheckable(True)
         self.actionFullscreen.setObjectName(_fromUtf8("actionFullscreen"))
+        self.actionSet_Temporary_Password = QtGui.QAction(MainWindow)
+        self.actionSet_Temporary_Password.setObjectName(_fromUtf8("actionSet_Temporary_Password"))
         self.menuFile.addSeparator()
         self.menuFile.addAction(self.actionQuit)
         self.menuEdit.addAction(self.actionEditServerList)
+        self.menuEdit.addAction(self.actionSet_Temporary_Password)
         self.menuEdit.addSeparator()
         self.menuEdit.addAction(self.actionReloadPlugins)
         self.menuEdit.addAction(self.actionConfigurePlugins)
@@ -112,6 +115,7 @@ class Ui_MainWindow(object):
         QtCore.QObject.connect(self.actionShowWelcomeTab, QtCore.SIGNAL(_fromUtf8("triggered()")), MainWindow.showWelcome)
         QtCore.QObject.connect(self.actionShowStatusbar, QtCore.SIGNAL(_fromUtf8("toggled(bool)")), MainWindow.toggleStatusbar)
         QtCore.QObject.connect(self.actionFullscreen, QtCore.SIGNAL(_fromUtf8("toggled(bool)")), MainWindow.toggleFullscreen)
+        QtCore.QObject.connect(self.actionSet_Temporary_Password, QtCore.SIGNAL(_fromUtf8("triggered()")), MainWindow.showTempPasswordDialog)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def retranslateUi(self, MainWindow):
@@ -141,4 +145,5 @@ class Ui_MainWindow(object):
         self.actionShowStatusbar.setText(QtGui.QApplication.translate("MainWindow", "Statusbar", None, QtGui.QApplication.UnicodeUTF8))
         self.actionFullscreen.setText(QtGui.QApplication.translate("MainWindow", "Fullscreen", None, QtGui.QApplication.UnicodeUTF8))
         self.actionFullscreen.setShortcut(QtGui.QApplication.translate("MainWindow", "F11", None, QtGui.QApplication.UnicodeUTF8))
+        self.actionSet_Temporary_Password.setText(QtGui.QApplication.translate("MainWindow", "Use temporary password", None, QtGui.QApplication.UnicodeUTF8))
 

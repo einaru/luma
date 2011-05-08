@@ -50,6 +50,10 @@ from PyQt4.QtGui import (QScrollArea)
 from PyQt4.QtGui import (QToolBar)
 from PyQt4.QtGui import (QWidget)
 from PyQt4.QtGui import (QErrorMessage)
+from PyQt4.QtGui import (QInputDialog, QLineEdit)
+
+from base.backend.LumaConnection import LumaConnection
+from base.backend.ServerList import ServerList
 
 from ..gui.AboutDialog import AboutDialog
 from ..gui.ServerDialog import ServerDialog
@@ -379,6 +383,30 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         if r:
             #TODO -- only display if plugins open:
             self.serversChangedMessage.showMessage(QApplication.translate("MainWindow","You may need to restart plugins for changes to take effect."))
+
+    def showTempPasswordDialog(self):
+        """ Sets overridePassword for a server.
+        Using this one doesn't actually have to enter the password
+        in the ServerDialog (and by extension save to disk).
+        """
+        
+        serverList = ServerList()
+        
+        # Create a stringlist to be used by the qinputdialog
+        stringList = []
+        for server in serverList.getTable():
+            stringList.append(server.name)
+
+        # Display list of servers
+        (serverString, ok) =  QInputDialog.getItem(self, "Select server", "Server:", stringList, editable = False)
+        if ok:
+            server = serverList.getServerObjectByName(serverString)
+            if server != None:
+                # Ask for password
+                (value, ok) = QInputDialog.getText(self, "Temporary password", "Enter password:", QLineEdit.Password)
+                if ok:
+                    # Use value as the overridePassword for the server.
+                    LumaConnection(server).overridePassword(value)
 
     def showSettingsDialog(self, tab=0):
         """Slot to display the settings dialog. If the settings dialog

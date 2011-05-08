@@ -178,6 +178,7 @@ def startApplication(argv, verbose=False, clear=[], dirs={}):
 
     # Add a exception hook to handle all 
     # exceptions missed in the main application
+    sys.excepthook = unhandledException
 
     # Need to activate the mainwindow in order to have focus,
     # if the application is started in fullscreen mode

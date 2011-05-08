@@ -30,7 +30,7 @@
      <x>0</x>
      <y>0</y>
      <width>700</width>
-     <height>23</height>
+     <height>21</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
@@ -50,6 +50,7 @@
      </property>
     </widget>
     <addaction name="actionEditServerList"/>
+    <addaction name="actionSet_Temporary_Password"/>
     <addaction name="separator"/>
     <addaction name="actionReloadPlugins"/>
     <addaction name="actionConfigurePlugins"/>
@@ -188,6 +189,11 @@
    </property>
    <property name="shortcut">
     <string>F11</string>
+   </property>
+  </action>
+  <action name="actionSet_Temporary_Password">
+   <property name="text">
+    <string>Use temporary password</string>
    </property>
   </action>
  </widget>
@@ -385,6 +391,22 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>actionSet_Temporary_Password</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>showTempPasswordDialog()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>349</x>
+     <y>249</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>quitApplication()</slot>
@@ -400,5 +422,6 @@
   <slot>toggleStatusbar(bool)</slot>
   <slot>toggleToolbar(bool)</slot>
   <slot>toggleFullscreen(bool)</slot>
+  <slot>showTempPasswordDialog()</slot>
  </slots>
 </ui>
