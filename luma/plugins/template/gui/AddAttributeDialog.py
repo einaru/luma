@@ -27,3 +27,4 @@ class AddAttributeDialog(QDialog, Ui_AddAttributeDialog):
             
         self.tableView.resizeColumnsToContents()
         self.tableView.resizeRowsToContents()
+# vim: tabstop=4 expandtab shiftwidth=4 softtabstop=4

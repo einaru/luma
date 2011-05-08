@@ -23,3 +23,4 @@ class AddObjectclassDialog(QDialog, Ui_AddObjectclassDialog):
         list.sort(key = str.lower)
         self.listWidgetObjectclasses.addItems(list)
         self.labelMainIcon.setPixmap(QPixmap(':/icons/64/objectclass'))
+# vim: tabstop=4 expandtab shiftwidth=4 softtabstop=4

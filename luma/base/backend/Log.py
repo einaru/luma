@@ -38,3 +38,4 @@ class LumaLogHandler(logging.Handler):
         """
         m = (record.levelname, record.msg)
         self.logTo.log(m)
+# vim: tabstop=4 expandtab shiftwidth=4 softtabstop=4

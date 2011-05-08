@@ -85,7 +85,7 @@ def check_password(s):
     return True
 
 def mkpasswd(pwd,sambaver=3,default='ssha1'):
-    ''' Make a given password cryptated, possibly with different 
+    ''' Make a given password encrypted, possibly with different 
         crypt-algorihtms. This module was written for use with 
 	    LDAP - so default is seeded sha1
     '''
@@ -243,3 +243,5 @@ def get_available_hash_methods():
         
     supportedAlgorithms.sort()
     return supportedAlgorithms
+
+# vim: tabstop=4 expandtab shiftwidth=4 softtabstop=4

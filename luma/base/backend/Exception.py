@@ -38,3 +38,5 @@ class InvalidPasswordException(Exception):
     given password is either invalid or blank.
     """
     pass
+
+# vim: tabstop=4 expandtab shiftwidth=4 softtabstop=4

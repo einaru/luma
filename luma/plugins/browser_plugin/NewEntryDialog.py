@@ -14,3 +14,5 @@ class NewEntryDialog(QDialog, Ui_Dialog):
     def accept(self):
         if self.objectWidget.saveObject():
             super(NewEntryDialog, self).accept()
+
+# vim: tabstop=4 expandtab shiftwidth=4 softtabstop=4

@@ -1,42 +1,35 @@
-******
-README
-******
+****************
+Luma README file
+****************
 
 Prerequisites
 =============
-Luma is written in *Python* so a Python interpretter is needed to run the 
-application. Python is installed by default in most *Linux* distributions, if
-not it can be downloaded from the official Python website http://python.org/.
+Luma is a cross-platform, open source LDAP browser and administration utility,
+capable of managing data stored on LDAP enabled server. It is written in Python,
+with PyQt4 (*GUI*) and python-ldap (*LDAP connections*).
+
+In order to run Luma, a Python interpretter is needed. Python is installed by 
+default on most Linux distributions, and can be downloaded from the offical
+Python website http://python.org/.
+
 
 Obtaining Luma
 ==============
-Documentation, usermanual and installation instructions can be found in the
-``doc`` folder in the source distribution (``.tar`` or ``.zip``), or on the 
-Luma website http://luma.sf.net/.
+Documentation, usermanual and installation instructions can be found on the Luma
+website http://luma.sf.net/. If you downloaded a source distribution of Luma, 
+you can read the installation instruction in the `INSTALL`_ file.
 
-Tested platforms
-----------------
-Luma is developed and continuously tested on a number of platforms and 
-operating system.
+.. _INSTALL: ./INSTALL.html
 
-Development platforms
-.....................
-- Fedora: *14 (GNOME)*
-- Ubuntu: *10.04*, *10.10*
-- Microsoft Windows: *7*
-- Mac OS X
+COPYING
+=======
+Copyright (c) 2003-2011 Wido Depping, Bjørn Ove Grøtan, Vegard Westerlund
+Copyright (c) 2011 Christian Forfang, Einar Uvsløkk, Johannes Harestad, Per Ove
+Ringstad, Simen Natvig, Sondre Frisvold.
 
-Only tested on
-..............
-- Fedora: *14 (KDE)*
-- Chakra GNU/Linux: *2011.02 (Cyrus)*
-- Microsoft Windows: *XP*
+Free use of this software is granted under the terms of the GNU General Public 
+License (GPL) version 2 or newer. You should have received a copy of the GNU 
+General Public License along with this program. If not, see 
+http://www.gnu.org/licenses/.
 
-Libraries and tools
--------------------
-Luma is developed using the following open source libraries and tools.
-
-- Python >= *2.7*
-- python-ldap >= *2.3.10*
-- PyQt4 >= *4.8.3*
 

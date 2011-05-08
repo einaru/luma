@@ -299,3 +299,5 @@ class EntryModel(QObject):
         self.smartObject.addAttributeValue(attributeName, attributeValueList)
         self.EDITED = True
         self.modelChangedSignal.emit()
+
+# vim: tabstop=4 expandtab shiftwidth=4 softtabstop=4

@@ -205,6 +205,14 @@ class ResultView(QWidget):
     def onContextMenuRequested(self, point):
         """Display the context menu
         """
+
+        # FIXME: In order to be able to export, delete and view search
+        # result entries. We should make use of the various dialogs in
+        # the Browser plugin. Unitl we have refactored the design in a
+        # way that allow us to use these without accessing the browser
+        # modules, we simple don't provide these options yet.
+        return
+
         self.selection = self.resultview.selectedIndexes()
 
         deleteSupport = True

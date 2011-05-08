@@ -26,3 +26,5 @@ if __name__ == "__main__":
     
     # Run
     unittest.TextTestRunner(verbosity=2).run(suite)
+
+# vim: tabstop=4 expandtab shiftwidth=4 softtabstop=4

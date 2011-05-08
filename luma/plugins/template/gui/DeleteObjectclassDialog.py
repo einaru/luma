@@ -33,3 +33,4 @@ class DeleteObjectclassDialog(QDialog, Ui_AddAttributeDialog):
             if name in oldAttributes and not name in rest:
                 a = oldAttributes[name]
                 attributeTM.addRow(a.attributeName, a.must, a.single, a.binary, a.defaultValue, a.customMust)
+# vim: tabstop=4 expandtab shiftwidth=4 softtabstop=4

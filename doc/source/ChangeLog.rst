@@ -16,16 +16,14 @@ Features
 - **Main-application**:
   Support for commandline arguments added. As of now this includes mostly clear
   flags, to wipe clean malicious config settings.
-- **Plugin-support**:
-
-  * **Browser-plugin**:
-	Added multiselection item export and delete.
-	Lots of improvments in the Browsers entry view. Basic support for different
-    html layouts for the view.
-  * **Template-plugin**:
-	Gui finished, logic on its way.
-  * **Search-plugin**:
-	Skeleton gui, and basic functionality implemented.
+- **Browser-plugin**:
+  Added multiselection item export and delete.
+  Lots of improvments in the Browsers entry view, including basic support for
+  different html layouts for the view.
+- **Template-plugin**:
+  Gui finished, logic on its way.
+- **Search-plugin**:
+  Skeleton gui, and basic functionality implemented.
 
 
 Luma v3.0.3-sprint3 (2011-03-14)
@@ -75,9 +73,9 @@ Luma v3.0.1-sprint1 (2011-02-28)
    This marks the end of sprint 1. *Einar Uvsløkk* <einar.uvslokk@linux.com>
 
 .. note::
-    **NB!** This relase branch was tagged and created at the end of sprint 2,
-    but still reflects the work done up until the end of sprint 1. It was
-    created to document the development progression.
+    This relase branch was tagged and created at the end of sprint 2, but still
+    reflects the work done up until the end of sprint 1. It was created to 
+    document the development progression.
 
 Features
 --------

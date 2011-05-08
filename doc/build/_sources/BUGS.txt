@@ -1,5 +1,5 @@
 ****
-BUGS
+Bugs
 ****
 
 Known bugs Luma 3.x

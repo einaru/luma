@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file '/mnt/debris/devel/git/luma/resources/forms/plugins/browser_plugin/PasswordEditorDesign.ui'
+# Form implementation generated from reading ui file '/Users/perove_r/Documents/it2901/git/resources/forms/plugins/browser_plugin/PasswordEditorDesign.ui'
 #
-# Created: Thu May  5 17:00:03 2011
+# Created: Sun May  8 15:52:09 2011
 #      by: PyQt4 UI code generator 4.8.3
 #
 # WARNING! All changes made in this file will be lost!
@@ -21,22 +21,19 @@ class Ui_PasswordEditorDesign(object):
         PasswordEditorDesign.setSizeGripEnabled(True)
         self.gridlayout = QtGui.QGridLayout(PasswordEditorDesign)
         self.gridlayout.setObjectName(_fromUtf8("gridlayout"))
-        self.iconLabel = QtGui.QLabel(PasswordEditorDesign)
-        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Fixed, QtGui.QSizePolicy.Fixed)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.iconLabel.sizePolicy().hasHeightForWidth())
-        self.iconLabel.setSizePolicy(sizePolicy)
-        self.iconLabel.setMinimumSize(QtCore.QSize(64, 64))
-        self.iconLabel.setWordWrap(False)
-        self.iconLabel.setObjectName(_fromUtf8("iconLabel"))
-        self.gridlayout.addWidget(self.iconLabel, 0, 0, 1, 1)
         spacerItem = QtGui.QSpacerItem(20, 70, QtGui.QSizePolicy.Minimum, QtGui.QSizePolicy.Expanding)
-        self.gridlayout.addItem(spacerItem, 1, 0, 1, 1)
+        self.gridlayout.addItem(spacerItem, 2, 0, 1, 1)
         self.hboxlayout = QtGui.QHBoxLayout()
         self.hboxlayout.setObjectName(_fromUtf8("hboxlayout"))
         spacerItem1 = QtGui.QSpacerItem(20, 20, QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Minimum)
         self.hboxlayout.addItem(spacerItem1)
+        self.asciiBox = QtGui.QCheckBox(PasswordEditorDesign)
+        self.asciiBox.setChecked(True)
+        self.asciiBox.setObjectName(_fromUtf8("asciiBox"))
+        self.hboxlayout.addWidget(self.asciiBox)
+        self.hiddenBox = QtGui.QCheckBox(PasswordEditorDesign)
+        self.hiddenBox.setObjectName(_fromUtf8("hiddenBox"))
+        self.hboxlayout.addWidget(self.hiddenBox)
         self.okButton = QtGui.QPushButton(PasswordEditorDesign)
         self.okButton.setShortcut(_fromUtf8(""))
         self.okButton.setDefault(True)
@@ -48,14 +45,14 @@ class Ui_PasswordEditorDesign(object):
         self.cancelButton.setDefault(False)
         self.cancelButton.setObjectName(_fromUtf8("cancelButton"))
         self.hboxlayout.addWidget(self.cancelButton)
-        self.gridlayout.addLayout(self.hboxlayout, 4, 0, 1, 2)
+        self.gridlayout.addLayout(self.hboxlayout, 5, 0, 1, 2)
         self.line1 = QtGui.QFrame(PasswordEditorDesign)
         self.line1.setFrameShape(QtGui.QFrame.HLine)
         self.line1.setFrameShadow(QtGui.QFrame.Sunken)
         self.line1.setObjectName(_fromUtf8("line1"))
-        self.gridlayout.addWidget(self.line1, 3, 0, 1, 2)
+        self.gridlayout.addWidget(self.line1, 4, 0, 1, 2)
         spacerItem2 = QtGui.QSpacerItem(41, 16, QtGui.QSizePolicy.Minimum, QtGui.QSizePolicy.Expanding)
-        self.gridlayout.addItem(spacerItem2, 2, 1, 1, 1)
+        self.gridlayout.addItem(spacerItem2, 3, 1, 1, 1)
         self.gridlayout1 = QtGui.QGridLayout()
         self.gridlayout1.setObjectName(_fromUtf8("gridlayout1"))
         self.textLabel1 = QtGui.QLabel(PasswordEditorDesign)
@@ -100,7 +97,17 @@ class Ui_PasswordEditorDesign(object):
         self.progressBar.setProperty(_fromUtf8("value"), 24)
         self.progressBar.setObjectName(_fromUtf8("progressBar"))
         self.gridlayout1.addWidget(self.progressBar, 4, 1, 1, 1)
-        self.gridlayout.addLayout(self.gridlayout1, 0, 1, 2, 1)
+        self.gridlayout.addLayout(self.gridlayout1, 0, 1, 3, 1)
+        self.iconLabel = QtGui.QLabel(PasswordEditorDesign)
+        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Fixed, QtGui.QSizePolicy.Fixed)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.iconLabel.sizePolicy().hasHeightForWidth())
+        self.iconLabel.setSizePolicy(sizePolicy)
+        self.iconLabel.setMinimumSize(QtCore.QSize(64, 64))
+        self.iconLabel.setWordWrap(False)
+        self.iconLabel.setObjectName(_fromUtf8("iconLabel"))
+        self.gridlayout.addWidget(self.iconLabel, 1, 0, 1, 1)
 
         self.retranslateUi(PasswordEditorDesign)
         QtCore.QObject.connect(self.okButton, QtCore.SIGNAL(_fromUtf8("clicked()")), PasswordEditorDesign.accept)
@@ -115,7 +122,8 @@ class Ui_PasswordEditorDesign(object):
 
     def retranslateUi(self, PasswordEditorDesign):
         PasswordEditorDesign.setWindowTitle(QtGui.QApplication.translate("PasswordEditorDesign", "New password", None, QtGui.QApplication.UnicodeUTF8))
-        self.iconLabel.setText(QtGui.QApplication.translate("PasswordEditorDesign", "PW", "DO NOT TRANSLATE", QtGui.QApplication.UnicodeUTF8))
+        self.asciiBox.setText(QtGui.QApplication.translate("PasswordEditorDesign", "Ascii characters", None, QtGui.QApplication.UnicodeUTF8))
+        self.hiddenBox.setText(QtGui.QApplication.translate("PasswordEditorDesign", "Hidden string", None, QtGui.QApplication.UnicodeUTF8))
         self.okButton.setText(QtGui.QApplication.translate("PasswordEditorDesign", "&OK", None, QtGui.QApplication.UnicodeUTF8))
         self.cancelButton.setText(QtGui.QApplication.translate("PasswordEditorDesign", "&Cancel", None, QtGui.QApplication.UnicodeUTF8))
         self.textLabel1.setText(QtGui.QApplication.translate("PasswordEditorDesign", "Strength:", None, QtGui.QApplication.UnicodeUTF8))
@@ -124,4 +132,5 @@ class Ui_PasswordEditorDesign(object):
         self.textLabel5.setText(QtGui.QApplication.translate("PasswordEditorDesign", "Verify:", None, QtGui.QApplication.UnicodeUTF8))
         self.passwordLabel.setText(QtGui.QApplication.translate("PasswordEditorDesign", "Passwords do not match", None, QtGui.QApplication.UnicodeUTF8))
         self.textLabel2.setText(QtGui.QApplication.translate("PasswordEditorDesign", "<b>Please enter a new password.</b>", None, QtGui.QApplication.UnicodeUTF8))
+        self.iconLabel.setText(QtGui.QApplication.translate("PasswordEditorDesign", "PW", "DO NOT TRANSLATE", QtGui.QApplication.UnicodeUTF8))
 

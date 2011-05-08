@@ -1,5 +1,5 @@
 *******
-AUTHORS
+Authors
 *******
 
 Luma 3.x

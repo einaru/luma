@@ -53,3 +53,5 @@ def getEditorWidget(parent, smartObject, attributeName, index=0):
     
     return dialog
     
+
+# vim: tabstop=4 expandtab shiftwidth=4 softtabstop=4

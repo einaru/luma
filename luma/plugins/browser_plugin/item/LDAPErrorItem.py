@@ -41,3 +41,5 @@ class LDAPErrorItem(AbstractLDAPTreeItem):
     def getSupportedOperations(self):
         return AbstractLDAPTreeItem.SUPPORT_NONE
         
+
+# vim: tabstop=4 expandtab shiftwidth=4 softtabstop=4

@@ -1,5 +1,5 @@
 ******
-THANKS
+Thanks
 ******
 
 Takk til *Kokken Tor*, *Kaptein Sabeltann*, *Huldra*, *Tøydukken Anna*,

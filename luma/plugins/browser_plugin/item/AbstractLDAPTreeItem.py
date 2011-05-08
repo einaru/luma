@@ -137,3 +137,5 @@ class AbstractLDAPTreeItem(object):
 
     def getParentServerItem(self):
         return self.serverParent
+
+# vim: tabstop=4 expandtab shiftwidth=4 softtabstop=4

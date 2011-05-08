@@ -18,3 +18,4 @@ class PluginObject(object):
 		self.getPluginSettingsWidget = None
 		self.icon = None
 		self.load = False
+# vim: tabstop=4 expandtab shiftwidth=4 softtabstop=4

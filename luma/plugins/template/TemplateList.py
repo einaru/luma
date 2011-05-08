@@ -400,3 +400,4 @@ class TemplateList(object):
 #            child = child.nextSibling()
 #        
 #        return templateList
+# vim: tabstop=4 expandtab shiftwidth=4 softtabstop=4

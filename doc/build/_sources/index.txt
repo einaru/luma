@@ -5,27 +5,32 @@
 
 Welcome to Luma's documentation!
 ================================
+*Luma is LDAP management made easy!*
 
-Luma is an cross-platform and open soruce graphical utility for accessing and 
-managing data stored on LDAP enabled servers. It is written in Python, using 
-PyQt4 and python-ldap. Luma supports plugins through its own plugin system. A
-selection of plugins is includeed in the base application, providing useful 
-LDAP-functionality.
+Luma is a cross-platform, open source LDAP browser and administration utility,
+capable of managing data stored on LDAP enabled server. It is written in 
+Python_, with PyQt4_ (*GUI*) and python-ldap_ (*LDAP connections*). Luma
+supports plugins through its own plugin system. A selection of plugins, 
+providing useful LDAP functionality, is includeed with the base application:
 
-Plugins included in the base application:
-
-- **Browser**: Provides a familiar interface to browse the entry tree on 
-  connected LDAP enabled servers. Entry attributes can be edited and deleted.
-  Supports adding filters to limit expansions on large subtrees.
+- **Browser**:
+  Provides a familiar interface to browse the entry tree on connected LDAP 
+  enabled servers. Entry attributes can be edited and deleted. Supports adding
+  filters to limit expansions on large subtrees.
 - **Template**:
-- **Search**: A specialized search plugin to do advanced and complex search on a
-  LDAP server. Supports filter creation that can be applied in the Browser 
-  plugin.
+- **Search**:
+  A specialized search plugin to do advanced and complex search on a LDAP
+  server. Supports filter creation that can be applied in the Browser plugin.
 
 .. - **Schema browser**:
 .. - **Addressbook**: 
 .. - **Massive user creation**:
 .. - **Admin utilities**:
+
+
+.. _Python: http://python.org/
+.. _PyQt4: http://www.riverbankcomputing.com/software/pyqt/download
+.. _python-ldap: http://pyhton-ldap.org/
 
 Contents
 --------
@@ -36,7 +41,7 @@ Contents
    README.rst
    INSTALL.rst
    userguide.rst
-   development.rst
+   HACKING.rst
    ChangeLog.rst
    BUGS.rst
    AUTHORS.rst
