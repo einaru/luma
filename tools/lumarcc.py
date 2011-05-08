@@ -327,8 +327,6 @@ LUMA_PRO = ['luma.pro']
 LUMA_QRC = ['luma.qrc']
 LUMA_RC = ['luma', 'resources.py']
 
-global verbose, dryrun
-
 def run(cmd, args=[]):
     """Executes the command `cmd` with optional arguments `args`,
     provided it is available on the system.
@@ -513,25 +511,26 @@ def updateTranslationFiles():
     """Just executes the ``pylupdate4`` command on the ``luma.pro``
     file.
     """
-    # FIXME: Might want to extend this utility some more, with options
-    #        for generating new translation files (skeletons that is).
-    lumapro = 'luma.pro'
-    cmd = 'pylupdate4'
-    if sys.platform.lower().startswith('win'):
-        cmd = '{0}.exe'.format(cmd)
+    ## FIXME: Might want to extend this utility some more, with options
+    ##        for generating new translation files (skeletons that is).
+    #lumapro = 'luma.pro'
+    #cmd = 'pylupdate4'
+    #if sys.platform.lower().startswith('win'):
+    #    cmd = '{0}.exe'.format(cmd)
 
-    args = ['-noobsolete']
-    
-    if verbose:
-        args.extend(['-verbose', lumapro])
-        print 'Updating translation files...'
-        print '  Project file: {0}'.format(lumapro)
-        print cmd, ' '.join([a for a in args])
-    else:
-        args.append(lumapro)
+    #args = ['-noobsolete']
+    #
+    #if verbose:
+    #    args.extend(['-verbose', lumapro])
+    #    print 'Updating translation files...'
+    #    print '  Project file: {0}'.format(lumapro)
+    #    print cmd, ' '.join([a for a in args])
+    #else:
+    #    args.append(lumapro)
 
-    if not dryrun:
-        run(cmd, args)
+    #if not dryrun:
+    #    run(cmd, args)
+    raise NotImplementedError('This method have been depreciated...')
 
 
 def updateResourceFile():
@@ -569,6 +568,7 @@ def main():
     """Sets up the option parser, parsers the commandline for opations
     and arguments, and runs the appropriate methods.
     """
+    global verbose, dryrun
 
     usage = '%prog [options]'
     # Main Options:

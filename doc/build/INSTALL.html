@@ -7,13 +7,13 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>INSTALL &mdash; Luma v3.0.5 documentation</title>
+    <title>Luma Installation &mdash; Luma v3.0.6-beta documentation</title>
     <link rel="stylesheet" href="_static/default.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '',
-        VERSION:     '3.0.5',
+        VERSION:     '3.0.6-beta',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -23,9 +23,9 @@
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
     <script type="text/javascript" src="_static/sidebar.js"></script>
-    <link rel="top" title="Luma v3.0.5 documentation" href="index.html" />
-    <link rel="next" title="Userguide" href="userguide.html" />
-    <link rel="prev" title="README" href="README.html" /> 
+    <link rel="top" title="Luma v3.0.6-beta documentation" href="index.html" />
+    <link rel="next" title="Luma Userguide" href="userguide.html" />
+    <link rel="prev" title="Luma README file" href="README.html" /> 
   </head>
   <body>
     <div class="related">
@@ -35,12 +35,12 @@
           <a href="genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="userguide.html" title="Userguide"
+          <a href="userguide.html" title="Luma Userguide"
              accesskey="N">next</a> |</li>
         <li class="right" >
-          <a href="README.html" title="README"
+          <a href="README.html" title="Luma README file"
              accesskey="P">previous</a> |</li>
-        <li><a href="index.html">Luma v3.0.5 documentation</a> &raquo;</li> 
+        <li><a href="index.html">Luma v3.0.6-beta documentation</a> &raquo;</li> 
       </ul>
     </div>  
 
@@ -49,98 +49,112 @@
         <div class="bodywrapper">
           <div class="body">
             
-  <div class="section" id="install">
-<h1>INSTALL<a class="headerlink" href="#install" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="installing-from-the-git-repository">
-<h2>Installing from the git repository<a class="headerlink" href="#installing-from-the-git-repository" title="Permalink to this headline">¶</a></h2>
-<p>The Luma <a class="reference external" href="http://git-scm.org/">git</a> repository is hosted on <a class="reference external" href="http://sourceforge.net/">sourceforge</a>. To browse the repository
-go to <a class="reference external" href="http://luma.sf.net/">http://luma.sf.net/</a>. You can install Luma from the repository if you
-don&#8217;t have an up to date packaged version or want to get the latest version
-from the trunk.</p>
-<ul>
-<li><p class="first">Make sure you have <a class="reference external" href="http://git-scm.org/">git</a> installed, you can check with:</p>
+  <div class="section" id="luma-installation">
+<h1>Luma Installation<a class="headerlink" href="#luma-installation" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="platforms-and-dependencies">
+<h2>1. Platforms and dependencies<a class="headerlink" href="#platforms-and-dependencies" title="Permalink to this headline">¶</a></h2>
+<p>Luma is a crossplatform application written in the Python programming language.
+It is developed and continiously tested on a number of platforms and operating
+systems. The development platforms include:</p>
+<ul class="simple">
+<li>Fedora: 14 (GNOME)</li>
+<li>Ubuntu: 10.04, 10.10</li>
+<li>Microsoft Windows: Vista, 7</li>
+<li>Mac OS X</li>
+</ul>
+<p>In addition Luma is tested succesfully on the following platforms:</p>
+<ul class="simple">
+<li>Fedora: 14 (KDE)</li>
+<li>Chakra GNU/Linux: 2011.02 (Cyrus)</li>
+<li>Microsoft Windows: XP</li>
+</ul>
+<p>In order to succesfully install and run Luma, you will need the to install the
+following libraries on your syste on your systemm:</p>
+<ul class="simple">
+<li>Python &gt;= 2.6 &lt; 3</li>
+<li>python-ldap &gt;= 2.3</li>
+<li>PyQt4 &gt;= 4.8</li>
+</ul>
+<p>You can install and/or run Luma in a number of ways. This includes:</p>
+<ul class="simple">
+<li><a class="reference internal" href="#installing-luma-from-the-git-repository">2. Installing Luma from the git repository</a></li>
+<li><a class="reference internal" href="#installing-luma-from-a-source-distribution">3. Installing Luma from a source distribution</a></li>
+<li><a class="reference internal" href="#installing-a-prepackaged-distribution-of-luma">4. Installing a prepackaged distribution of Luma</a></li>
+</ul>
+</div>
+<div class="section" id="installing-luma-from-the-git-repository">
+<h2>2. Installing Luma from the git repository<a class="headerlink" href="#installing-luma-from-the-git-repository" title="Permalink to this headline">¶</a></h2>
+<p>The Luma <a class="reference external" href="http://git-scm.org/">git</a> reposotory is hosted on <a class="reference external" href="http://sourceforge.net/">SourceForge</a>. To browse the repository
+go to <a class="reference external" href="http://luma.cvs.sourceforge.net/viewvc/luma/">http://luma.cvs.sourceforge.net/viewvc/luma/</a>. You can install or run Luma
+from the repository if you don&#8217;t have an up-to-date packaged version or want to
+try the latest version.</p>
+<p>First you need to make sure you have <a class="reference external" href="http://git-scm.org/">git</a> installed, you can check with:</p>
 <div class="highlight-python"><pre>$ git --version</pre>
 </div>
-</li>
-<li><p class="first">Go to the directory you want to install Luma into and clone the repository:</p>
+<p>Go to the directory you want to install Luma into and clone the repository:</p>
 <div class="highlight-python"><pre>$ cd ~/bin
-$ git clone http://luma.sf.net/git/luma</pre>
+$ git clone http://luma.sf.net/repo/luma.git luma</pre>
 </div>
-</li>
-</ul>
-<p>After cloning the <em>Luma</em> repository you can now either <a class="reference internal" href="#run-luma-from-your-local-copy">Run Luma from your local
-copy</a>, or do a <a class="reference internal" href="#systemwide-install-from-your-local-copy">Systemwide install from your local copy</a>.</p>
-<div class="section" id="run-luma-from-your-local-copy">
-<h3>Run Luma from your local copy<a class="headerlink" href="#run-luma-from-your-local-copy" title="Permalink to this headline">¶</a></h3>
-<p>Create a symlink to the Luma startup script in a search <tt class="docutils literal"><span class="pre">PATH</span></tt> directory, for
-example:</p>
-<div class="highlight-python"><pre>$ ln -s ~/bin/luma-3.0.6/luma/luma.py ~/bin/luma</pre>
+<p>After cloning the Luma repository you are now able to run the application with
+the following commands:</p>
+<div class="highlight-python"><pre>$ cd luma
+$ python luma.py</pre>
 </div>
-</div>
-<div class="section" id="systemwide-install-from-your-local-copy">
-<h3>Systemwide install from your local copy<a class="headerlink" href="#systemwide-install-from-your-local-copy" title="Permalink to this headline">¶</a></h3>
-<p>Use the <tt class="docutils literal"><span class="pre">setup.py</span></tt> file to install Luma using the python <tt class="docutils literal"><span class="pre">distutils</span></tt>
-module:</p>
+<p>If you want to install Luma on your system, you can use the <tt class="docutils literal"><span class="pre">setup.py</span></tt> script
+located in the repository root. This is a standard distutils style script, that
+is invoked like this:</p>
 <div class="highlight-python"><pre>$ sudo python setup.py install</pre>
 </div>
-<p>NOTE: To uninstall you must manually delete all installed files. These are
-typically located in <tt class="docutils literal"><span class="pre">/usr/lib/python-xxx/site-packages/luma</span></tt></p>
 </div>
-</div>
-<div class="section" id="source-distribution-installation">
-<h2>Source distribution installation<a class="headerlink" href="#source-distribution-installation" title="Permalink to this headline">¶</a></h2>
-<p>Standard <em>python</em> source distribution is available for installation. If you
-are running <em>Linux</em> or another <em>UNIX-like system</em>, you can grab the latest
-source tarball, and <a class="reference internal" href="#install-from-tarball">Install from tarball</a>. If you are running <em>Microsoft
-Windows</em>, you can grab the latest zip-archive, and <a class="reference internal" href="#install-from-zip-archive">Install from zip-archive</a>.</p>
-<div class="section" id="install-from-tarball">
-<h3>Install from tarball<a class="headerlink" href="#install-from-tarball" title="Permalink to this headline">¶</a></h3>
-<p>If your <em>Linux</em> distribution does not have a <a class="reference internal" href="#prepackaged-luma-distribution">Prepackaged Luma distribution</a>,
-or if you prefer to install the latest Luma from source, download the latest
-tarball and install using the included <tt class="docutils literal"><span class="pre">setup.py</span></tt> script.:</p>
+<div class="section" id="installing-luma-from-a-source-distribution">
+<h2>3. Installing Luma from a source distribution<a class="headerlink" href="#installing-luma-from-a-source-distribution" title="Permalink to this headline">¶</a></h2>
+<p>Source distribution for Luma is avaliable for installation using the distutils
+modules in the standard python library. Source distributions can be downloaded
+as tarballs <tt class="docutils literal"><span class="pre">.tar.gz</span></tt> (UNIX and UNIX-like) or as zipped archives (Windows)
+<tt class="docutils literal"><span class="pre">.zip</span></tt>. If you are running on Linux you could see if your distribution provide
+prepackaged distributions of Luma (<a class="reference internal" href="#installing-a-prepackaged-distribution-of-luma">4. Installing a prepackaged distribution of
+Luma</a>)</p>
+<div class="section" id="installing-the-lateset-tarball">
+<h3>3.1. Installing the lateset tarball<a class="headerlink" href="#installing-the-lateset-tarball" title="Permalink to this headline">¶</a></h3>
+<p>If you are installing on UNIX and UNIX-like systems, you should use the latest
+tarball (<a class="reference external" href="http://luma.sf.net/get/lateset-tar">http://luma.sf.net/get/lateset-tar</a>). The tarballs is known to install
+without any problem on both Linux and Mac OS X. Luma is easily installed with
+the following commands:</p>
 <div class="highlight-python"><pre>$ wget http://luma.sf.net/get/latest-tar
 $ tar xvzf luma-3.0.6.tar.gz
 $ cd luma-3.0.6
 $ sudo python setup.py install</pre>
 </div>
 </div>
-<div class="section" id="install-from-zip-archive">
-<h3>Install from zip-archive<a class="headerlink" href="#install-from-zip-archive" title="Permalink to this headline">¶</a></h3>
-<p>If your installing on <em>Microsft Windows</em> you should download the zip-archive
-from: <a class="reference external" href="http://luma.sf.net/get/latest-zip">http://luma.sf.net/get/latest-zip</a>.:</p>
+<div class="section" id="installing-the-latest-zipped-archive">
+<h3>3.2. Installing the latest zipped archive<a class="headerlink" href="#installing-the-latest-zipped-archive" title="Permalink to this headline">¶</a></h3>
+<p>If you are installing on Microsft Windows you should download the latest zipped
+archive from <a class="reference external" href="http://luma.sf.net/get/latest-zip">http://luma.sf.net/get/latest-zip</a>, and open your <tt class="docutils literal"><span class="pre">cmd.exe</span></tt>:</p>
 <div class="highlight-python"><pre>$ unzip luma-3.0.6.zip
 $ cd luma-3.0.6
 $ python.exe setup.py install</pre>
 </div>
 </div>
 </div>
-<div class="section" id="prepackaged-luma-distribution">
-<h2>Prepackaged Luma distribution<a class="headerlink" href="#prepackaged-luma-distribution" title="Permalink to this headline">¶</a></h2>
-<div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">This section just illustrated a proposed layout for <em>future</em> prepackaged
-Luma distributions.</p>
-</div>
+<div class="section" id="installing-a-prepackaged-distribution-of-luma">
+<h2>4. Installing a prepackaged distribution of Luma<a class="headerlink" href="#installing-a-prepackaged-distribution-of-luma" title="Permalink to this headline">¶</a></h2>
 <p>The following platform spesific Luma packages are available:</p>
 <div class="section" id="linux">
-<h3>Linux<a class="headerlink" href="#linux" title="Permalink to this headline">¶</a></h3>
-<p><strong>Fedora</strong>:</p>
-<div class="highlight-python"><pre>$ yum install luma</pre>
-</div>
-<p><strong>Debian/Ubuntu</strong>:</p>
-<div class="highlight-python"><pre>$ apt-get install luma</pre>
-</div>
-<p><strong>Arch</strong>:</p>
-<div class="highlight-python"><pre>$ pacman -S luma</pre>
+<h3>4.1. Linux<a class="headerlink" href="#linux" title="Permalink to this headline">¶</a></h3>
+<p><strong>Fedora 14</strong>:</p>
+<div class="highlight-python"><pre>$ wget http://folk.ntnu.no/einaru/luma/dist/luma-3.0.6b-1.fc14.noarch.rpm
+$ yum localinstall luma-3.0.6b-1.fc14.noarch.rpm --nogpgcheck</pre>
 </div>
 </div>
 <div class="section" id="microsoft-windows">
-<h3>Microsoft Windows<a class="headerlink" href="#microsoft-windows" title="Permalink to this headline">¶</a></h3>
-<p>An application bundle for <em>Microsoft Windows</em>, including all runtime
-dependencies can be downloaded from <a class="reference external" href="http://luma.sf.net/get/latest-win">http://luma.sf.net/get/latest-win</a>.</p>
+<h3>4.2. Microsoft Windows<a class="headerlink" href="#microsoft-windows" title="Permalink to this headline">¶</a></h3>
+<p>For Microsoft Windows there exists both <tt class="docutils literal"><span class="pre">.exe</span></tt> and  <tt class="docutils literal"><span class="pre">.msi</span></tt> installers
+without the dependencies, as well as an application bundle that includs all
+necessary dependencies. These can be downloaded from the website
+<a class="reference external" href="http://luma.sf.net/get/latest-win">http://luma.sf.net/get/latest-win</a>.</p>
 </div>
 <div class="section" id="mac-os-x">
-<h3>Mac OS X<a class="headerlink" href="#mac-os-x" title="Permalink to this headline">¶</a></h3>
+<h3>4.3. Mac OS X<a class="headerlink" href="#mac-os-x" title="Permalink to this headline">¶</a></h3>
 <p>An application bundle for <em>Mac OS X</em>, including all runtime dependencies can
 be downloaded from <a class="reference external" href="http://luma.sf.net/get/latest-mac">http://luma.sf.net/get/latest-mac</a>.</p>
 </div>
@@ -158,21 +172,18 @@ be downloaded from <a class="reference external" href="http://luma.sf.net/get/la
             </a></p>
   <h3><a href="index.html">Table Of Contents</a></h3>
   <ul>
-<li><a class="reference internal" href="#">INSTALL</a><ul>
-<li><a class="reference internal" href="#installing-from-the-git-repository">Installing from the git repository</a><ul>
-<li><a class="reference internal" href="#run-luma-from-your-local-copy">Run Luma from your local copy</a></li>
-<li><a class="reference internal" href="#systemwide-install-from-your-local-copy">Systemwide install from your local copy</a></li>
+<li><a class="reference internal" href="#">Luma Installation</a><ul>
+<li><a class="reference internal" href="#platforms-and-dependencies">1. Platforms and dependencies</a></li>
+<li><a class="reference internal" href="#installing-luma-from-the-git-repository">2. Installing Luma from the git repository</a></li>
+<li><a class="reference internal" href="#installing-luma-from-a-source-distribution">3. Installing Luma from a source distribution</a><ul>
+<li><a class="reference internal" href="#installing-the-lateset-tarball">3.1. Installing the lateset tarball</a></li>
+<li><a class="reference internal" href="#installing-the-latest-zipped-archive">3.2. Installing the latest zipped archive</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#source-distribution-installation">Source distribution installation</a><ul>
-<li><a class="reference internal" href="#install-from-tarball">Install from tarball</a></li>
-<li><a class="reference internal" href="#install-from-zip-archive">Install from zip-archive</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#prepackaged-luma-distribution">Prepackaged Luma distribution</a><ul>
-<li><a class="reference internal" href="#linux">Linux</a></li>
-<li><a class="reference internal" href="#microsoft-windows">Microsoft Windows</a></li>
-<li><a class="reference internal" href="#mac-os-x">Mac OS X</a></li>
+<li><a class="reference internal" href="#installing-a-prepackaged-distribution-of-luma">4. Installing a prepackaged distribution of Luma</a><ul>
+<li><a class="reference internal" href="#linux">4.1. Linux</a></li>
+<li><a class="reference internal" href="#microsoft-windows">4.2. Microsoft Windows</a></li>
+<li><a class="reference internal" href="#mac-os-x">4.3. Mac OS X</a></li>
 </ul>
 </li>
 </ul>
@@ -181,10 +192,10 @@ be downloaded from <a class="reference external" href="http://luma.sf.net/get/la
 
   <h4>Previous topic</h4>
   <p class="topless"><a href="README.html"
-                        title="previous chapter">README</a></p>
+                        title="previous chapter">Luma README file</a></p>
   <h4>Next topic</h4>
   <p class="topless"><a href="userguide.html"
-                        title="next chapter">Userguide</a></p>
+                        title="next chapter">Luma Userguide</a></p>
   <h3>This Page</h3>
   <ul class="this-page-menu">
     <li><a href="_sources/INSTALL.txt"
@@ -214,12 +225,12 @@ be downloaded from <a class="reference external" href="http://luma.sf.net/get/la
           <a href="genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="userguide.html" title="Userguide"
+          <a href="userguide.html" title="Luma Userguide"
              >next</a> |</li>
         <li class="right" >
-          <a href="README.html" title="README"
+          <a href="README.html" title="Luma README file"
              >previous</a> |</li>
-        <li><a href="index.html">Luma v3.0.5 documentation</a> &raquo;</li> 
+        <li><a href="index.html">Luma v3.0.6-beta documentation</a> &raquo;</li> 
       </ul>
     </div>
     <div class="footer">

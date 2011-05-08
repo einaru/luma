@@ -919,7 +919,7 @@ Do you wan&apos;t to update the list to reflect the changes?</source>
 <context>
     <name>LDAPTreeItemModel</name>
     <message>
-        <location filename="luma/plugins/browser_plugin/model/LDAPTreeItemModel.py" line="190"/>
+        <location filename="luma/plugins/browser_plugin/model/LDAPTreeItemModel.py" line="195"/>
         <source>No servers defined</source>
         <translation type="unfinished"></translation>
     </message>
@@ -993,27 +993,27 @@ Do you wan&apos;t to update the list to reflect the changes?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/base/gui/MainWindow.py" line="378"/>
+        <location filename="luma/base/gui/MainWindow.py" line="381"/>
         <source>You may need to restart plugins for changes to take effect.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/base/gui/MainWindow.py" line="474"/>
+        <location filename="luma/base/gui/MainWindow.py" line="476"/>
         <source>Welcome</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/base/gui/MainWindow.py" line="485"/>
+        <location filename="luma/base/gui/MainWindow.py" line="487"/>
         <source>Plugins</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/base/gui/MainWindow.py" line="657"/>
+        <location filename="luma/base/gui/MainWindow.py" line="649"/>
         <source>Available plugins</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/base/gui/MainWindow.py" line="658"/>
+        <location filename="luma/base/gui/MainWindow.py" line="650"/>
         <source>Choose plugin</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1148,7 +1148,7 @@ Do you wan&apos;t to update the list to reflect the changes?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/base/gui/MainWindow.py" line="497"/>
+        <location filename="luma/base/gui/MainWindow.py" line="499"/>
         <source>There are operations in progress which needs to finish before Luma can close.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1465,76 +1465,95 @@ Do you wan&apos;t to update the list to reflect the changes?</source>
 <context>
     <name>ServerDialog</name>
     <message>
-        <location filename="luma/base/gui/ServerDialog.py" line="166"/>
+        <location filename="luma/base/gui/ServerDialog.py" line="169"/>
         <source>SSL</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/base/gui/ServerDialog.py" line="166"/>
+        <location filename="luma/base/gui/ServerDialog.py" line="169"/>
         <source>You have choosen to use SSL but with a port other than 636.
  Do you want this automatically changed?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/base/gui/ServerDialog.py" line="221"/>
+        <location filename="luma/base/gui/ServerDialog.py" line="224"/>
         <source>Add server</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/base/gui/ServerDialog.py" line="221"/>
+        <location filename="luma/base/gui/ServerDialog.py" line="224"/>
         <source>Name:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/base/gui/ServerDialog.py" line="224"/>
+        <location filename="luma/base/gui/ServerDialog.py" line="227"/>
         <source>Error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/base/gui/ServerDialog.py" line="224"/>
+        <location filename="luma/base/gui/ServerDialog.py" line="227"/>
         <source>Invalid name or already used.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/base/gui/ServerDialog.py" line="247"/>
+        <location filename="luma/base/gui/ServerDialog.py" line="250"/>
         <source>Delete</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/base/gui/ServerDialog.py" line="247"/>
+        <location filename="luma/base/gui/ServerDialog.py" line="250"/>
         <source>Are you sure?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/base/gui/ServerDialog.py" line="290"/>
+        <location filename="luma/base/gui/ServerDialog.py" line="293"/>
         <source>Exit?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/base/gui/ServerDialog.py" line="290"/>
+        <location filename="luma/base/gui/ServerDialog.py" line="293"/>
         <source>Are you sure you want to exit the server editor?
  Any unsaved changes will be lost!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/base/gui/ServerDialog.py" line="312"/>
+        <location filename="luma/base/gui/ServerDialog.py" line="315"/>
         <source>BaseDNs not defined</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/base/gui/ServerDialog.py" line="312"/>
+        <location filename="luma/base/gui/ServerDialog.py" line="315"/>
         <source>One or more server(s) are setup to use custom base DNs without specifying any.
 Do you still want to save?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/base/gui/ServerDialog.py" line="333"/>
+        <location filename="luma/base/gui/ServerDialog.py" line="336"/>
         <source>Select certificate file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/base/gui/ServerDialog.py" line="342"/>
+        <location filename="luma/base/gui/ServerDialog.py" line="345"/>
         <source>Select certificate keyfile</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="luma/base/gui/ServerDialog.py" line="381"/>
+        <source>Bind to {0} successful!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="luma/base/gui/ServerDialog.py" line="385"/>
+        <source>Bind to {0} failed:
+{1}
+
+(You do not have to spesify passwords here -- you will be asked when needed.)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="luma/base/gui/ServerDialog.py" line="388"/>
+        <source>Bind to {0} failed:
+{1}</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1969,36 +1988,84 @@ Do you still want to save?</source>
 <context>
     <name>WelcomeTab</name>
     <message>
-        <location filename="luma/base/gui/design/WelcomeTabDesign.py" line="45"/>
+        <location filename="luma/base/gui/design/WelcomeTabDesign.py" line="46"/>
         <source>Form</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/base/gui/design/WelcomeTabDesign.py" line="46"/>
+        <location filename="luma/base/gui/design/WelcomeTabDesign.py" line="47"/>
         <source>Show this page everytime Luma starts</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/base/gui/design/WelcomeTabDesign.py" line="47"/>
+        <location filename="luma/base/gui/design/WelcomeTabDesign.py" line="48"/>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Ubuntu&apos;; font-size:11pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:16pt; color:#188fff;&quot;&gt;Welcome to Luma&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:16pt;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:14pt;&quot;&gt;What is Luma&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Luma is LDAP management made easy. It supports various languages and plugins.&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:14pt;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:14pt;&quot;&gt;Getting started&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;To get started, you first need to edit the list of servers (see Edit &amp;gt; Server List). After setting up one or more servers, open the list of available plugins (see View &amp;gt; Show plugin list). If no plugins are available, you may have to enable them. (see Edit &amp;gt; Settings &amp;gt; Plugins).&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Please refer to the plugin&apos;s help section for how the different plugins work. If you can&apos;t find a plugin that suits you, please feel free to contact us or even contribute one your self.&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:14pt;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:14pt;&quot;&gt;Problems&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;You&apos;ll see bugs and errors in our Log Window (see View &amp;gt; Logger). Please contact us with the log of any bugs and errors.&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:14pt;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:14pt;&quot;&gt;Contact&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;You&apos;ll find contact information under help (see Help &amp;gt; About Luma).&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans&apos;; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="luma/base/gui/WelcomeTab.py" line="58"/>
+        <source>
+&lt;html&gt;
+&lt;head&gt;
+&lt;style type=&quot;text/css&quot;&gt;
+body { padding: 5px; margin: 5px; font-family: sans-serif; }
+h1, h2 { color: #61a7e0; }
+a { color: #306ebd; }
+p { font-size: 10pt; }
+&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;h1&gt;Welcome to Luma&lt;/h1&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;Luma is LDAP management made easy&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Luma&lt;/em&gt; provides useful LDAP administration and management
+functionality, through a number of plugins.&lt;/p&gt;
+
+&lt;h2&gt;Getting started&lt;/h2&gt;
+
+&lt;p&gt;The first thing you need to do is to edit the &lt;em&gt;serverlist&lt;/em&gt;: Select 
+(&lt;b&gt;Edit&lt;/b&gt; &amp;rarr; &lt;b&gt;Server List&lt;/b&gt;) from the menubar or use the keyboard 
+shortcut (&lt;b&gt;CTRL&lt;/b&gt;+&lt;b&gt;SHIFT&lt;/b&gt;+&lt;b&gt;S)&lt;/b&gt;.&lt;/p&gt;
+
+&lt;p&gt;After you have added one or more servers, you must activate the plugins you 
+want to use: Select (&lt;b&gt;Edit&lt;/b&gt; &amp;rarr; &lt;b&gt;Configure Plugins&lt;/b&gt;) from the 
+menubar.&lt;/p&gt;
+
+&lt;p&gt;If you need additional help on how to use the application and/or a spesific
+plugin, please refer to the online 
+&lt;a href=&quot;http://folk.ntnu.no/einaru/luma/doc/userguide.html&quot;&gt;User guide&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;If you cannot find a plugin that suits your needs or you have ideas for a 
+great Luma plugin, please feel free to
+&lt;a href=&quot;http://luma.sf.net/&quot;&gt;contact us&lt;/a&gt; or even 
+&lt;a href=&quot;http://folk.ntnu.no/einaru/luma/doc/HACKING.html&quot;&gt;contribute one your self&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h2&gt;Problems and bugs&lt;/h2&gt;
+
+&lt;p&gt;Application errors and various debug information can be seen in the Logger 
+Window: Select (&lt;b&gt;View&lt;/b&gt; &amp;rarr; &lt;b&gt;Logger Window&lt;/b&gt;) from the menubar or 
+use the keyboard shortcut (&lt;b&gt;CTRL&lt;/b&gt;+&lt;b&gt;L&lt;/b&gt;).&lt;/p&gt;
+
+&lt;p&gt;If you encounter errors or bugs in the application, please take your time
+to fill in a bugreport on our 
+&lt;a href=&quot;http://sourceforge.net/tracker/?group_id=89105&quot;&gt;bugtracker&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h2&gt;Contact&lt;/h2&gt;
+
+&lt;p&gt;You can find contact information in the About Luma dialog: Select 
+(&lt;b&gt;Help&lt;/b&gt; &amp;rarr; &lt;b&gt;About Luma&lt;/b&gt;) or use the keyboard shortcut 
+(&lt;b&gt;F12&lt;/b&gt;), and on the &lt;a href=&quot;http://luma.sf.net/&quot;&gt;Luma website&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p style=&quot;font-size: 8pt; color: #306ebd; padding-top: 25px&quot;&gt;
+&lt;em&gt;Copyright &amp;copy; 2003 - 2011 Wido Depping and the Luma devel team&lt;/em&gt;&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

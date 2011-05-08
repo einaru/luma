@@ -64,6 +64,7 @@
   <qresource prefix="i18n">
     <file alias="en">resources/i18n/luma_en.qm</file>
     <file alias="hx">resources/i18n/luma_hx.qm</file>
+    <file alias="nn_NO">resources/i18n/luma_nn_NO.qm</file>
     <file alias="no">resources/i18n/luma_no.qm</file>
   </qresource>
   <qresource prefix="icons/64">

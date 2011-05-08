@@ -36,7 +36,7 @@ Contents
    README.rst
    INSTALL.rst
    userguide.rst
-   development.rst
+   HACKING.rst
    ChangeLog.rst
    BUGS.rst
    AUTHORS.rst

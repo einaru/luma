@@ -1,13 +1,20 @@
-******
-README
-******
+****************
+Luma README file
+****************
 
 Prerequisites
 =============
-Luma is a cross platform LDAP browser and administration utility. It is written
-in the Python programming language, so a Python interpretter is needed to run 
-the application. Python is installed by default in most Linux distributions, and
-can be downloaded from the official Python websit http://python.org/.
+*Luma is LDAP management made easy.*
+
+Luma is an cross-platform and open source graphical utility for accessing and 
+managing data stored on LDAP enabled servers. It is written in Python, and make
+use of PyQt4 and python-ldap. Luma supports plugins through its own plugin 
+system. A selection of plugins is includeed in the base application, providing 
+useful LDAP-functionality.
+
+In order to run Luma a Python interpretter is needed. Python is installed by 
+default on most Linux distributions, and can be downloaded from the offical
+Python website http://python.org/.
 
 
 Obtaining Luma

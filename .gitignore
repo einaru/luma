@@ -23,3 +23,7 @@ dist/*
 build/*
 MANIFEST
 uninstall.sh
+
+# Documentation build files (Sphinx and reST)
+.buildinfo
+.doctrees

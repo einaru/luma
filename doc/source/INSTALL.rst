@@ -1,9 +1,21 @@
-*******
-INSTALL
-*******
+*****************
+Luma Installation
+*****************
 
-Platforms and dependencies
-==========================
+.. Contents
+.. ========
+.. 1. Platforms and dependencies
+.. 2. Installing Luma from the git repository
+.. 3. Installing Luma from a source distribution
+.. 3.1. Installing the lateset tarball
+.. 3.2. Installing the latest zipped archive
+.. 4. Installing a prepackaged distribution of Luma
+.. 4.1. Linux
+.. 4.2. Microsoft Windows
+.. 4.3. Mac OS X
+
+1. Platforms and dependencies
+=============================
 Luma is a crossplatform application written in the Python programming language.
 It is developed and continiously tested on a number of platforms and operating
 systems. The development platforms include:
@@ -28,12 +40,12 @@ following libraries on your syste on your systemm:
 
 You can install and/or run Luma in a number of ways. This includes:
 
-- `1. Installing Luma from the git repository`_
-- `2. Installing Luma from a source distribution`_
-- `3. Installing a prepackaged distribution of Luma`_
+- `2. Installing Luma from the git repository`_
+- `3. Installing Luma from a source distribution`_
+- `4. Installing a prepackaged distribution of Luma`_
 
 
-1. Installing Luma from the git repository
+2. Installing Luma from the git repository
 ==========================================
 The Luma git_ reposotory is hosted on `SourceForge`_. To browse the repository
 go to http://luma.cvs.sourceforge.net/viewvc/luma/. You can install or run Luma
@@ -67,18 +79,18 @@ is invoked like this::
 .. _SourceForge: http://sourceforge.net/
 
 
-2. Installing Luma from a source distribution
+3. Installing Luma from a source distribution
 =============================================
 Source distribution for Luma is avaliable for installation using the distutils
 modules in the standard python library. Source distributions can be downloaded
 as tarballs ``.tar.gz`` (UNIX and UNIX-like) or as zipped archives (Windows) 
 ``.zip``. If you are running on Linux you could see if your distribution provide
-prepackaged distributions of Luma (`3. Installing a prepackaged distribution of
+prepackaged distributions of Luma (`4. Installing a prepackaged distribution of
 Luma`_)
 
 
-Installing the lateset tarball
-------------------------------
+3.1. Installing the lateset tarball
+-----------------------------------
 If you are installing on UNIX and UNIX-like systems, you should use the latest 
 tarball (http://luma.sf.net/get/lateset-tar). The tarballs is known to install
 without any problem on both Linux and Mac OS X. Luma is easily installed with 
@@ -90,8 +102,8 @@ the following commands::
 	$ sudo python setup.py install
 
 
-Install the latest zipped archive
----------------------------------
+3.2. Installing the latest zipped archive
+-----------------------------------------
 If you are installing on Microsft Windows you should download the latest zipped 
 archive from http://luma.sf.net/get/latest-zip, and open your ``cmd.exe``::
 
@@ -100,29 +112,29 @@ archive from http://luma.sf.net/get/latest-zip, and open your ``cmd.exe``::
 	$ python.exe setup.py install
 
 
-3. Installing a prepackaged distribution of Luma
+4. Installing a prepackaged distribution of Luma
 ================================================
 The following platform spesific Luma packages are available:
 
 
-Linux
------
+4.1. Linux
+----------
 **Fedora 14**::
 
     $ wget http://folk.ntnu.no/einaru/luma/dist/luma-3.0.6b-1.fc14.noarch.rpm
     $ yum localinstall luma-3.0.6b-1.fc14.noarch.rpm --nogpgcheck
 
 
-Microsoft Windows
------------------
+4.2. Microsoft Windows
+----------------------
 For Microsoft Windows there exists both ``.exe`` and  ``.msi`` installers 
 without the dependencies, as well as an application bundle that includs all 
 necessary dependencies. These can be downloaded from the website
 http://luma.sf.net/get/latest-win.
 
 
-Mac OS X
---------
+4.3. Mac OS X
+-------------
 An application bundle for *Mac OS X*, including all runtime dependencies can
 be downloaded from http://luma.sf.net/get/latest-mac.
 

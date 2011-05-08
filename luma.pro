@@ -141,7 +141,6 @@ SOURCES += luma/plugins/template/gui/AddObjectclassDialog.py
 SOURCES += luma/plugins/template/gui/AddTemplateDialog.py
 
 TRANSLATIONS += resources/i18n/luma_hx.ts
-TRANSLATIONS += resources/i18n/luma_nn_NO.ts
 TRANSLATIONS += resources/i18n/luma_en.ts
-TRANSLATIONS += resources/i18n/luma_no.ts
+TRANSLATIONS += resources/i18n/luma_nb_NO.ts
 

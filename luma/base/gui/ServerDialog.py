@@ -19,6 +19,8 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see http://www.gnu.org/licenses/
+from __future__ import with_statement
+from threading import RLock
 import copy
 
 from PyQt4.QtGui import QDialog, QDataWidgetMapper
@@ -26,8 +28,8 @@ from PyQt4.QtGui import QFileDialog
 from PyQt4.QtGui import QInputDialog, QItemSelectionModel
 from PyQt4.QtGui import QListWidgetItem
 from PyQt4.QtGui import QMessageBox, QProgressDialog
-from PyQt4.QtCore import QCoreApplication, Qt, pyqtSignal
-from PyQt4.QtCore import pyqtSlot, QThread, QThreadPool, QRunnable
+from PyQt4.QtCore import QCoreApplication, Qt, pyqtSignal, QObject
+from PyQt4.QtCore import pyqtSlot, QThread
 
 from ..backend.LumaConnection import LumaConnection
 from ..backend.ServerList import ServerList
@@ -39,9 +41,11 @@ from ..util.IconTheme import pixmapFromTheme
 from .ServerDelegate import ServerDelegate
 
 class ServerDialog(QDialog, Ui_ServerDialogDesign):
-    
-    # Used by TestConnection
-    testReturnSignal = pyqtSignal(bool, str)
+
+    # The threadpool for the workers
+    _threadPool = []
+    # And it's lock
+    _threadLock = RLock()
 
     def __init__(self, server=None, parent=None):
         """The `ServerDialog` constructor.
@@ -151,8 +155,7 @@ class ServerDialog(QDialog, Ui_ServerDialogDesign):
         # Enable checks for SSL enabled but with a non-standard port.
         self.encryptionBox.currentIndexChanged[int].connect(self.checkSSLport)
 
-        # Used by TestConnection
-        self.testReturnSignal.connect(self.testFinished)
+        # Used by the connection-test
         self.testProgress = QProgressDialog("Trying to connect to server.",
                 "Abort",
                 0, 0,
@@ -353,43 +356,74 @@ class ServerDialog(QDialog, Ui_ServerDialogDesign):
         sO = self.__serverList.getServerObjectByIndex(currentServerId)
 
         # Busy-dialog
+        self.testProgress.reset()
         self.testProgress.show()
 
-        thread = TestConnection(sO, self)
-        QThreadPool.globalInstance().start(thread)
+        # Run test in new thread
+        thread = WorkerThread()
+        with ServerDialog._threadLock:
+            ServerDialog._threadPool.append(thread)
+        worker = TestWorker(sO)
+        worker.testFinished.connect(self.testFinished)
+        worker.testFinished.connect(thread.quit)
+        thread.setWorker(worker)
+        thread.start()
 
-    @pyqtSlot(bool, str)
-    def testFinished(self, success, exceptionStr):
+    @pyqtSlot(bool, str, unicode)
+    def testFinished(self, success, exceptionStr, serverName):
         self.testProgress.hide()
 
-        # No message on cancel
         if self.testProgress.wasCanceled():
             return
 
         if success:
             # Success-message
-            QMessageBox.information(self, "Status", "Connection successful!")
+            QMessageBox.information(self, serverName, unicode(self.tr("Bind to {0} successful!")).format(serverName))
         else:
             # Error-message
             if exceptionStr == "Invalid credentials":
-                QMessageBox.warning(self, "Status", "Connection failed:\n"+exceptionStr+"\n\n(You do not have to spesify passwords here -- you will be asked when needed.)")
+                QMessageBox.warning(self, serverName,
+                        unicode(self.tr("Bind to {0} failed:\n{1}\n\n(You do not have to spesify passwords here -- you will be asked when needed.)")).format(serverName,exceptionStr))
                 return
-            QMessageBox.warning(self, "Status", "Connection failed:\n"+exceptionStr)
+            QMessageBox.warning(self, serverName, unicode(self.tr("Bind to {0} failed:\n{1}")).format(serverName, exceptionStr))
 
-class TestConnection(QRunnable):
-    def __init__(self, serverObject, target):
-        super(TestConnection, self).__init__()
-        self.target = target
-        self.serverObject = serverObject
+
+class WorkerThread(QThread):
+    def __init__(self, parent = None):
+        QThread.__init__(self, parent)
+        self.finished.connect(self.cleanup)
+        self.worker = None
+
     def run(self):
+        self.exec_()
+
+    def cleanup(self):
+        # Remove from threadpool
+        with ServerDialog._threadLock:
+            ServerDialog._threadPool.remove(self)
+
+    def setWorker(self, worker):
+        worker.moveToThread(self)
+        self.worker = worker
+        self.started.connect(worker.start)
+
+class TestWorker(QObject):
+
+    testFinished = pyqtSignal(bool, str, unicode)
+
+    def __init__(self, serverObject):
+        super(TestWorker, self).__init__()
+        self.serverObject = serverObject
+
+    def start(self):
         # Try bind -- do not display pw-input and do not use remembered passwords
         conn = LumaConnection(self.serverObject)
         success, exception = conn.bind(askForPw = False, noOverride = True)
         conn.unbind()
         # Return status
         if success:
-            self.target.testReturnSignal.emit(True, "")
+            self.testFinished.emit(True, "", self.serverObject.name)
         else:
-            self.target.testReturnSignal.emit(False,str(exception[0]["desc"]))
+            self.testFinished.emit(False,str(exception[0]["desc"]),self.serverObject.name)
 
 # vim: tabstop=4 expandtab shiftwidth=4 softtabstop=4

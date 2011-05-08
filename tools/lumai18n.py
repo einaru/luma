@@ -168,11 +168,11 @@ def createTranslationFile(langCode, countryCode=''):
         try:
             file = open(filepath, 'w')
             file.close()
-            # Update the translation files with lumarcc.py
-            # FIXME: Figure out if we are able to easily fo this for
-            #        only spesific files.
-            updateProjectFile()
-            updateTranslationFiles()
+            ## Update the translation files with lumarcc.py
+            ## FIXME: Figure out if we are able to easily fo this for
+            ##        only spesific files.
+            #updateProjectFile()
+            #updateTranslationFiles()
             print 'Translation file succesfully created...'
         except IOError, e:
             print 'Unable to create translation file...'
