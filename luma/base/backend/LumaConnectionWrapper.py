@@ -202,10 +202,12 @@ class WorkerThread(QThread):
     def run(self):
         self.logger.debug("Run started")
         self.exec_()
-
-    def quit(self):
         self.cleanup()
-        QThread.quit(self)
+        self.logger.debug("Run finished")
+
+    #def quit(self):
+    #    QThread.quit(self)
+    #    self.cleanup()
 
     def cleanup(self):
         self.logger.debug("Cleanup called.")

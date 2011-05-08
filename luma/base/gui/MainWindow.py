@@ -557,7 +557,7 @@ class LoggerWidget(QWidget, Ui_LoggerWidget):
         # log() can be called by any thread, so to append the message
         # to the loggerwidget, we emit it and have the owner of the textfield
         # (the gui thread) receive it and do the appending.
-        self.logSignal.connect(self.appendMsg, type=Qt.QueuedConnection)
+        self.logSignal.connect(self.appendMsg)
 
     def clearLogger(self):
         """
@@ -575,16 +575,7 @@ class LoggerWidget(QWidget, Ui_LoggerWidget):
         self.messageEdit.clear()
         # Filter out unwanted log-items
         for l in self.logList:
-            loglvl, msg = l
-            if loglvl == "DEBUG" and self.debugBox.isChecked():
-                self.messageEdit.append("DEBUG: " + msg)
-                continue
-            if loglvl == "ERROR" and self.errorBox.isChecked():
-                self.messageEdit.append("ERROR: " + msg)
-                continue
-            if loglvl == "INFO" and self.infoBox.isChecked():
-                self.messageEdit.append("INFO: " + msg)
-                continue
+            self.log(l, rebuild = True)
 
     @pyqtSlot(QString)
     def appendMsg(self, msg):
@@ -594,14 +585,15 @@ class LoggerWidget(QWidget, Ui_LoggerWidget):
         """
         self.messageEdit.append(msg)
 
-    def log(self, log):
+    def log(self, log, rebuild = False):
         """
         Appends the log the the logList
         and uses a signal in order to have it 
         be appended to the textfield by the gui-thread
         """
         loglvl, msg, name, threadName = log
-        self.logList.append(log)
+        if not rebuild:
+            self.logList.append(log)
         if loglvl == "DEBUG" and self.debugBox.isChecked():
             self.logSignal.emit("DEBUG ["+name+"/"+threadName+"]: " + msg)
             return
