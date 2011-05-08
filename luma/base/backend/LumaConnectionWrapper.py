@@ -100,9 +100,9 @@ class LumaConnectionWrapper(QObject):
             # Can't send None so we send a generic Exception
             # Listeners should use success to know if there's
             # an exception or not.
-            self.bindFinished.emit(success, resultList, Exception())
+            self.searchFinished.emit(success, resultList, Exception())
         else:
-            self.bindFinished.emit(success, resultList, exceptionList[0])
+            self.searchFinished.emit(success, resultList, exceptionList[0])
     
     def getBaseDNListSync(self):
         # TODO MAKE ASYNC VERSION
@@ -174,7 +174,6 @@ class SearchWorker(QObject):
         if self.success:
             self.workDone.emit(self.success, self.resultList, Exception())
         else:
-            print self.success, self.resultList, self.exception
             self.workDone.emit(self.success, self.resultList, self.exception)
         self.logger.debug("SearchWorker finished")
 
