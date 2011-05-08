@@ -110,8 +110,8 @@ class LumaConnectionWrapper(QObject):
     ###########
     # Sync-only-methods (resonably quick, so no immediate need for async-versions.
     ###########
-    def deleteSync(self, dnDelete=None):
-        return self.lumaConnection.delete(dndelete)
+    def delete(self, dnDelete=None):
+        return self.lumaConnection.delete(dnDelete)
     def modify(self, dn, modlist=None):
         return self.lumaConnection.modify(dn, modlist)
     def add(self, dn, modlist):
