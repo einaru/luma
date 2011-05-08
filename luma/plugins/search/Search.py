@@ -27,7 +27,9 @@ from PyQt4.QtCore import (QEvent, QObject, Qt, QTimer)
 from PyQt4.QtGui import (QKeySequence, QWidget, qApp)
 
 from base.backend.ServerList import ServerList
-from base.backend.Connection import LumaConnection
+# Switching to the LumaConnectionWrapper
+#from base.backend.Connection import LumaConnection
+from base.backend.LumaConnectionWrapper import LumaConnectionWrapper
 from base.backend.Exception import (ServerCertificateException,
                                     InvalidPasswordException)
 from base.backend.ObjectClassAttributeInfo import ObjectClassAttributeInfo
@@ -257,10 +259,12 @@ class SearchPlugin(QWidget, Ui_SearchPlugin):
         if self.currentServer is None:
             return
 
-        self.connection = LumaConnection(self.currentServer)
+        #self.connection = LumaConnection(self.currentServer)
+        self.connection = LumaConnectionWrapper(self.currentServer, self)
 
         if self.currentServer.autoBase:
-            success, baseDNList, e = self.connection.getBaseDNList()
+            #success, baseDNList, e = self.connection.getBaseDNList()
+            success, baseDNList, e = self.connection.getBaseDNListSync()
             if not success:
                 # TODO: give some visual feedback to the user, regarding
                 #       the unsuccessful bind operation
@@ -333,32 +337,34 @@ class SearchPlugin(QWidget, Ui_SearchPlugin):
     def search(self, filter, attributelist):
         """Starts the search for the given server and search filter.
         
-        NOTE! _We_don't_use_the_signal_as_of_now_
-        Emits the signal "ldap_result". Given arguments are the
-        servername, the search result and the criterias used for the filter.
+        .. note:: **We don't use the signal as of now**
+           Emits the signal "ldap_result". Given arguments are the
+           servername, the search result and the criterias used for
+           the filter.
         """
         # Return was pressed but no server selected. So we don't want 
         # to search.
         if self.connection == None:
             return
 
-        # NOTE:
-        # This is the initial testing of the refactored Connection
-        # class, where we use Exception to inform about operations gone
-        # wrong. This is an atempt to get rid of the PyQt4 dependencies
-        # in the backend package.
-        # TODO: Might want to do some quering on the exceptions.
-        #       Try to come up with a nice way to return missing stuff
-        #       (i.e. password, certificate rules, etc)
-        try:
-            bindSuccess, e = self.connection.bind()
-        except ServerCertificateException, sce:
-            self.__logger.error(str(sce))
-            return
-        except InvalidPasswordException, ipe:
-            self.__logger.error(str(ipe))
-            return
-
+        ## NOTE:
+        ## This is the initial testing of the refactored Connection
+        ## class, where we use Exception to inform about operations gone
+        ## wrong. This is an atempt to get rid of the PyQt4 dependencies
+        ## in the backend package.
+        ## TODO: Might want to do some quering on the exceptions.
+        ##       Try to come up with a nice way to return missing stuff
+        ##       (i.e. password, certificate rules, etc)
+        #try:
+        #    bindSuccess, e = self.connection.bind()
+        #except ServerCertificateException, sce:
+        #    self.__logger.error(str(sce))
+        #    return
+        #except InvalidPasswordException, ipe:
+        #    self.__logger.error(str(ipe))
+        #    return
+        
+        bindSuccess, e = self.connection.bindSync()
         if not bindSuccess:
             # TODO: give some visual feedback to the user, regarding
             #       the unsuccessful bind operation
@@ -380,15 +386,15 @@ class SearchPlugin(QWidget, Ui_SearchPlugin):
         # and disable the searchForm widget, while doing the actual
         # LDAP search.
         # On search returned we restore these states to normal.
-        qApp.setOverrideCursor(Qt.WaitCursor)
+        #qApp.setOverrideCursor(Qt.WaitCursor)
         self.searchForm.setEnabled(False)
-        success, result, e = self.connection.search(base=base,
-                                                    scope=scope,
-                                                    filter=filter,
-                                                    sizelimit=limit)
+        success, result, e = self.connection.searchSync(base=base,
+                                                        scope=scope,
+                                                        filter=filter,
+                                                        sizelimit=limit)
         # Remember to unbind
         self.connection.unbind()
-        qApp.restoreOverrideCursor()
+        #qApp.restoreOverrideCursor()
         self.searchForm.setEnabled(True)
 
         if success: # and len(result) > 0:
