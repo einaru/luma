@@ -197,9 +197,11 @@ class WorkerThread(QThread):
         # Cleanup on finish
         self.finished.connect(self.cleanup)
         self.terminated.connect(self.cleanup)
+
         self.worker = None
 
     def run(self):
+        self.logger.debug("Run started")
         self.exec_()
 
     def cleanup(self):
