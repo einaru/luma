@@ -398,12 +398,12 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             stringList.append(server.name)
 
         # Display list of servers
-        (serverString, ok) =  QInputDialog.getItem(self, "Select server", "Server:", stringList, editable = False)
+        (serverString, ok) =  QInputDialog.getItem(self, QApplication.translate("MainWindow", "Select server"), QApplication.translate("MainWindow", "Server:"), stringList, editable = False)
         if ok:
             server = serverList.getServerObjectByName(serverString)
             if server != None:
                 # Ask for password
-                (value, ok) = QInputDialog.getText(self, "Temporary password", "Enter password:", QLineEdit.Password)
+                (value, ok) = QInputDialog.getText(self, QApplication.translate("MainWindow", "Temporary password"), QApplication.translate("MainWindow","Enter password:"), QLineEdit.Password)
                 if ok:
                     # Use value as the overridePassword for the server.
                     LumaConnection(server).overridePassword(value)
