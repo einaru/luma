@@ -36,6 +36,6 @@ class LumaLogHandler(logging.Handler):
     def emit(self, record):
         """ Emit is called by Python's logger
         """
-        m = (record.levelname, record.msg)
+        m = (record.levelname, record.msg, record.name, record.threadName)
         self.logTo.log(m)
 # vim: tabstop=4 expandtab shiftwidth=4 softtabstop=4

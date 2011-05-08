@@ -8,7 +8,7 @@ from PyQt4.QtCore import pyqtSlot, pyqtSignal
 from PyQt4.QtGui import qApp
 
 from LumaConnection import LumaConnection
-import ldap, time, types
+import ldap, time, types, logging
 
 class LumaConnectionWrapper(QObject):
     """
@@ -33,6 +33,7 @@ class LumaConnectionWrapper(QObject):
         """
         QObject.__init__(self, parent)
         self.lumaConnection = LumaConnection(serverObject)
+        self.logger = logging.getLogger(__name__)
 
     ###########
     # BIND
@@ -90,7 +91,7 @@ class LumaConnectionWrapper(QObject):
     def searchAsync(self, base="", scope=ldap.SCOPE_BASE, filter="(objectClass=*)", attrList=None, attrsonly=0, sizelimit=0):
         searchWorker = SearchWorker(self.lumaConnection, base, scope, filter, attrList, attrsonly, sizelimit)
         searchWorker.workDone.connect(self.__searchThreadFinished)
-        thread = self.createStartWorker(searchWorker)
+        thread = self.__createThread(searchWorker)
         thread.start()
 
     @pyqtSlot(bool, list, Exception)
@@ -147,17 +148,21 @@ class BindWorker(QObject):
     def __init__(self, lumaConnection):
         QObject.__init__(self)
         self.lumaConnection = lumaConnection
+        self.logger = logging.getLogger(__name__)
     def doWork(self):
         self.success, self.exception = self.lumaConnection.bind()
         if self.success:
             self.workDone.emit(self.success, Exception())
         else:
             self.workDone.emit(self.success, self.exception)
+        self.logger.debug("BindWorker finished.")
+
 class SearchWorker(QObject):
     workDone = pyqtSignal(bool, list, Exception)
     def __init__(self, lumaConnection, base, scope, filter, attrList, attrsonly, sizelimit):
         QObject.__init__(self)
         self.lumaConnection = lumaConnection
+        self.logger = logging.getLogger(__name__)
         self.base = base
         self.scope = scope
         self.filter = filter
@@ -171,6 +176,7 @@ class SearchWorker(QObject):
         else:
             print self.success, self.resultList, self.exception
             self.workDone.emit(self.success, self.resultList, self.exception)
+        self.logger.debug("SearchWorker finished")
 
 ###########
 # Used by LumaConnectionWrapper to run the worker-classes in it's own thread
@@ -179,9 +185,10 @@ class WorkerThread(QThread):
 
     __threadPool = []
     __Lock = RLock()
-	
+    
     def __init__(self, parent = None):
         QThread.__init__(self, parent)
+        self.logger = logging.getLogger(__name__)
 
         # Add to the threadpool
         with WorkerThread.__Lock:
@@ -189,12 +196,14 @@ class WorkerThread(QThread):
 
         # Cleanup on finish
         self.finished.connect(self.cleanup)
+        self.terminated.connect(self.cleanup)
         self.worker = None
 
     def run(self):
         self.exec_()
 
     def cleanup(self):
+        self.logger.debug("Cleanup called.")
         # Remove from threadpool on finish
         print "Debug -- before cleanup of threadpool:"
         print WorkerThread.__threadPool

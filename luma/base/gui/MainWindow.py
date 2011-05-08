@@ -600,10 +600,10 @@ class LoggerWidget(QWidget, Ui_LoggerWidget):
         and uses a signal in order to have it 
         be appended to the textfield by the gui-thread
         """
-        loglvl, msg = log
+        loglvl, msg, name, threadName = log
         self.logList.append(log)
         if loglvl == "DEBUG" and self.debugBox.isChecked():
-            self.logSignal.emit("DEBUG: " + msg)
+            self.logSignal.emit("DEBUG ["+name+"/"+threadName+"]: " + msg)
             return
         if loglvl == "ERROR" and self.errorBox.isChecked():
             self.logSignal.emit("ERROR: " + msg)
