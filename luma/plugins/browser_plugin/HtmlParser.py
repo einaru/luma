@@ -82,10 +82,10 @@ class HtmlParser:
         tmpList = []
 
         dn = self.smartObject.getPrettyDN()
-        tmpList.append("""<td bgcolor="#B2CAE7" width="40%"><font size="+1"><b>Distinguished Name:</b></font></td>""")
-        tmpList.append("""<td bgcolor="#B2CAE7" width="60%"><font size="+1"><b>""" + dn + """</b></font></td>""")
+        tmpList.append('''<td bgcolor="#B2CAE7" width="40%"><font size="+1"><b>Distinguished Name:</b></font></td>''')
+        tmpList.append('''<td bgcolor="#B2CAE7" width="60%"><font size="+1"><b>''' + dn + '''</b></font></td>''')
         if self.entryModel.CREATE:
-                tmpList.append("""<td width=5%><a href="RDN__0__edit"><img source=":/icons/16/document-edit"></a></td>""")
+                tmpList.append('''<td width=5%><a href="RDN__0__edit"><img source=":/icons/16/document-edit"></a></td>''')
 
         return ''.join(tmpList)
 
@@ -99,8 +99,8 @@ class HtmlParser:
             classString = x[:]
             if self.smartObject.isValid and self.smartObject.isObjectclassStructural(x):
                     classString = "<b>" + classString + "</b>"
-            tmpList.append("""<tr>""")
-            tmpList.append("""<td colspan=2 bgcolor="#E5E5E5" width="100%">""")
+            tmpList.append('''<tr>''')
+            tmpList.append('''<td colspan=2 bgcolor="#E5E5E5" width="100%">''')
             tmpList.append(classString)
             
             allowDelete = True
@@ -121,10 +121,10 @@ class HtmlParser:
                             allowDelete = True
                             break
             if allowDelete and (not (x == 'top')):
-                deleteName = x + "__delete\""
-                tmpList.append(""" <a href=\"""" + deleteName + """><img source=":/icons/16/edit-delete"></a>""")
+                deleteName = x + '__delete"'
+                tmpList.append(''' <a href="''' + deleteName + '''><img source=":/icons/16/edit-delete"></a>''')
             
-            tmpList.append("""</td></tr>""")
+            tmpList.append('''</td></tr>''')
         
         return "".join(tmpList)
 
@@ -177,7 +177,7 @@ class HtmlParser:
         else:
             allowDelete = True
         
-        tmpList.append("""<tr>""")
+        tmpList.append('''<tr>''')
         
         attributeString = copy.copy(x)
         
@@ -187,9 +187,9 @@ class HtmlParser:
         
         if valueList[0] == None:
             allowDelete = False
-            attributeString = """<font color="red">""" + attributeString + """</font>"""
+            attributeString = '''<font color="red">''' + attributeString + '''</font>'''
             
-        tmpList.append("""<td bgcolor="#E5E5E5" width="35%">""" + attributeString + """</td>""")
+        tmpList.append('''<td bgcolor="#E5E5E5" width="35%">''' + attributeString + '''</td>''')
         
         attributeIndex = 0
         univAttributeName = x + "__" + unicode(attributeIndex)
@@ -202,8 +202,8 @@ class HtmlParser:
                 attributeModify = not self.smartObject.isAttributeValueRDN(x, valueList[0])
         
         if (valueList[0] == None):
-            tmpList.append("""<td bgcolor="#E5E5E5" width="60%"><font color="#ff0000">""" + 
-                unicode("Value not set.") + """</font></td>""")
+            tmpList.append('''<td bgcolor="#E5E5E5" width="60%"><font color="#ff0000">''' + 
+                unicode("Value not set.") + '''</font></td>''')
                 
             tmpList.append(self.getAttributeModifierString(univAttributeName, 
                 allowDelete, False, attributeModify))
@@ -214,7 +214,7 @@ class HtmlParser:
             tmpList.append(self.getAttributeModifierString(univAttributeName, 
                 allowDelete, attributeBinaryExport, attributeModify))
             
-        tmpList.append("""</tr>""")
+        tmpList.append('''</tr>''')
         
         
         for y in valueList[1:]:
@@ -226,11 +226,11 @@ class HtmlParser:
                 if not (y == None):
                     attributeModify = not self.smartObject.isAttributeValueRDN(x, y)
             
-            tmpList.append("""<tr><td width="35%"></td>""")
+            tmpList.append('''<tr><td width="35%"></td>''')
             
             if y == None:
-                tmpList.append("""<td bgcolor="#E5E5E5" width="55%"><font color="#ff0000">""" +
-                    unicode("Value not set.") + """</font></td>""")
+                tmpList.append('''<td bgcolor="#E5E5E5" width="55%"><font color="#ff0000">''' +
+                    unicode("Value not set.") + '''</font></td>''')
                     
                 tmpList.append(self.getAttributeModifierString(univAttributeName, 
                     allowDelete, False, attributeModify))
@@ -241,10 +241,9 @@ class HtmlParser:
                 tmpList.append(self.getAttributeModifierString(univAttributeName, 
                     allowDelete, attributeBinaryExport, attributeModify))
                 
-            tmpList.append("""</tr>""")
+            tmpList.append('''</tr>''')
         return ''.join(tmpList)
 
-    #TODO image and password will crash
     def getAttributeValueString(self, univAttributeName, value, attributeIsBinary, 
         attributeIsImage, attributeIsPassword):
         tmpList = []
@@ -255,22 +254,14 @@ class HtmlParser:
                 tmpImage = QImage()
                 tmpImage.loadFromData(value)
                 self.objectWidget.document().addResource(QTextDocument.ImageResource, QUrl(univAttributeName), tmpImage)
-
-                #QResource.registerResource(value, univAttributeName)
-                #self.mimeFactory.setImage(univAttributeName, tmpImage)
-                #resourceName = ":/jpegs/" + univAttributeName
-                #print value
-                #print QResource.registerResource(value, resourceName)
-                #print resourceName
-
-                tmpList.append("""<td width="55%"><img source=""" + univAttributeName + """></td>""")
+                tmpList.append('''<td width="55%"><img source=''' + univAttributeName + '''></td>''')
             elif attributeIsPassword:
-                tmpList.append("""<td bgcolor="#E5E5E5" width="55%">""" + value + """</td>""")
+                tmpList.append('''<td bgcolor="#E5E5E5" width="55%">''' + value.decode('utf-8') + '''</td>''')
             else:
                 #self.mimeFactory.setImage(univAttributeName, self.binaryImage)
-                tmpList.append("""<td width="55%"><img source=""" + univAttributeName + """></td>""")
+                tmpList.append('''<td width="55%"><img source=''' + univAttributeName + '''></td>''')
         else:
-            tmpList.append("""<td bgcolor="#E5E5E5" width="55%">""" + value + """</td>""")
+            tmpList.append('''<td bgcolor="#E5E5E5" width="55%">''' + value + '''</td>''')
             
         return "".join(tmpList)
         
@@ -278,23 +269,23 @@ class HtmlParser:
     def getAttributeModifierString(self, univAttributeName, allowDelete, attributeBinaryExport, attributeModify):
         tmpList = []
         
-        tmpList.append("""<td width=20%>""")
+        tmpList.append('''<td width=20%>''')
         
         if attributeModify:
         #if True:
-            editName = univAttributeName + "__edit\""
-            tmpList.append("""<a href=\"""" + editName + """><img source=":/icons/16/document-edit"></a>""")
+            editName = univAttributeName + '__edit"'
+            tmpList.append('''<a href="''' + editName + '''><img source=":/icons/16/document-edit"></a>''')
         
             if allowDelete:
             #if True:
-                deleteName = univAttributeName + "__delete\""
-                tmpList.append(""" <a href=\"""" + deleteName + """><img source=":/icons/16/edit-delete"></a>""")
+                deleteName = univAttributeName + '__delete"'
+                tmpList.append(''' <a href="''' + deleteName + '''><img source=":/icons/16/edit-delete"></a>''')
             
             if attributeBinaryExport:
-                exportName = univAttributeName + "__export\""
-                tmpList.append(""" <a href=\"""" + exportName + """><img source=":/icons/16/document-export"></a>""")
+                exportName = univAttributeName + '__export"'
+                tmpList.append(''' <a href="''' + exportName + '''><img source=":/icons/16/document-export"></a>''')
         
-        tmpList.append("""</td>""")
+        tmpList.append('''</td>''')
         
             
         return "".join(tmpList)
@@ -302,9 +293,9 @@ class HtmlParser:
     def createErrorMessageList(self):
         tmpList = []
         for x in self.smartObject.checkErrorMessageList:
-            tmpList.append("""<tr>""")
-            tmpList.append("""<td>""" + x + """</td>""")
-            tmpList.append("""</tr>""")
+            tmpList.append('''<tr>''')
+            tmpList.append('''<td>''' + x + '''</td>''')
+            tmpList.append('''</tr>''')
         return ''.join(tmpList)
 
 # vim: tabstop=4 expandtab shiftwidth=4 softtabstop=4
