@@ -31,7 +31,7 @@ from PyQt4.QtGui import QMessageBox, QProgressDialog
 from PyQt4.QtCore import QCoreApplication, Qt, pyqtSignal, QObject
 from PyQt4.QtCore import pyqtSlot, QThread
 
-from ..backend.LumaConnection import LumaConnection
+from ..backend.LumaConnectionWrapper import LumaConnectionWrapper
 from ..backend.ServerList import ServerList
 from ..backend.ServerObject import ServerEncryptionMethod
 from ..backend.ServerObject import ServerObject
@@ -417,8 +417,8 @@ class TestWorker(QObject):
 
     def start(self):
         # Try bind -- do not display pw-input and do not use remembered passwords
-        conn = LumaConnection(self.serverObject)
-        success, exception = conn.bind(askForPw = False, noOverride = True)
+        conn = LumaConnectionWrapper(self.serverObject)
+        success, exception = conn.bindSync()
         conn.unbind()
         # Return status
         if success:

@@ -3,7 +3,7 @@ import ldap
 from AbstractLDAPTreeItem import AbstractLDAPTreeItem
 from PyQt4.QtGui import QInputDialog, QIcon, QPixmap
 from PyQt4 import QtCore, QtGui
-from base.backend.LumaConnection import LumaConnection
+from base.backend.LumaConnectionWrapper import LumaConnectionWrapper
 from plugins.browser_plugin.item.AbstractLDAPTreeItem import AbstractLDAPTreeItem
 from plugins.browser_plugin.item.LDAPErrorItem import LDAPErrorItem
 
@@ -32,7 +32,6 @@ class LDAPTreeItem(AbstractLDAPTreeItem):
         
         self.error = False
         self.loading = False
-        self.lumaConnection = None
 
     def columnCount(self):
         """
@@ -80,68 +79,30 @@ class LDAPTreeItem(AbstractLDAPTreeItem):
         """
         (Re)aquire the list of childs for this item (if any).
         """       
-        self.cancelSearch()
-        lumaConnection = LumaConnection(self.serverParent.serverMeta)
-        self.lumaConnection = lumaConnection
+        lumaConnection = LumaConnectionWrapper(self.serverParent.serverMeta)
 
-        bindSuccess, exceptionObject = lumaConnection.bind()
+        bindSuccess, exceptionObject = lumaConnection.bindSync()
         
         if not bindSuccess:
             tmp = LDAPErrorItem(str("["+exceptionObject[0]["desc"]+"]"), self.serverParent, self)
             # We're adding the error as LDAPErrorItem-child, so return True
-            self.lumaConnection = None
             return (True, [tmp], exceptionObject)
         
         # Search for items at the level under this one
-        success, resultList, exceptionObject = lumaConnection.search(self.itemData.getDN(), \
+        success, resultList, exceptionObject = lumaConnection.searchSync(self.itemData.getDN(), \
                 scope=ldap.SCOPE_ONELEVEL, filter=self.filter, sizelimit=self.limit)
         lumaConnection.unbind()
         
         if not success:
             tmp = LDAPErrorItem(str("["+exceptionObject[0]["desc"]+"]"), self.serverParent, self)
             # We're adding the error as LDAPErrorItem-child, so return True
-            self.lumaConnection = None
             return (True, [tmp], exceptionObject)
         
         self.error = False
         
-        # If a limit is specified, only display the chosen amount     
-        """
-        SIzelimit is used instead
-        if self.limit > 0 and len(resultList) > self.limit:
-            returnList = []
-            for i in xrange(self.limit):
-                returnList.append(LDAPTreeItem(resultList[i], self.serverParent, self))
-            return (True, returnList, exceptionObject)
-        """
-        """
-        # If there are ALOT of returned entries, confirm displaying them all
-        if len(resultList) > self.ASK_TO_DISPLAY:
-            #Todo: specify how many to load and "remembers"/"always yes"-function in the dialog
-            # TODO Translate
-            svar = QMessageBox.question(None, self.tr("Got many results"), "Got " +str(len(resultList))+" items. Do you want to display them all?", QMessageBox.Yes|QMessageBox.No)
-            if not svar == QMessageBox.Yes:
-                self.beginUpdateModel()
-                self.childItems = []
-                for i in xrange(50):
-                    self.childItems.append(LDAPTreeItem(resultList[i], self.serverParent, self))
-                self.populated = 1
-                self.endUpdateModel()
-                return
-        """
-        
         # Default behavior: return all
-        self.lumaConnection = None
         return (True, [LDAPTreeItem(x, self.serverParent, self) for x in resultList], exceptionObject)
 
-    def canCancelSearch(self):
-        return not(self.lumaConnection == None)
-
-    def cancelSearch(self):
-        connection = self.lumaConnection
-        if not(connection == None):
-            connection.cancelSearch()
-    
     def setLimit(self):
         """
         Asks for the users limit.
@@ -167,8 +128,8 @@ class LDAPTreeItem(AbstractLDAPTreeItem):
         """ Tries to delete the item on the server
         """
         
-        lumaConnection = LumaConnection(self.serverParent.serverMeta)
-        bindSuccess, exceptionObject = lumaConnection.bind()
+        lumaConnection = LumaConnectionWrapper(self.serverParent.serverMeta)
+        bindSuccess, exceptionObject = lumaConnection.bindSync()
         
         if not bindSuccess:
             message = QtCore.QCoreApplication.translate("LDAPTreeItem","Could not bind to server.")

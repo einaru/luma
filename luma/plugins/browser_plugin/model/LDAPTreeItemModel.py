@@ -12,7 +12,7 @@ from threading import RLock
 from plugins.browser_plugin.item.ServerTreeItem import ServerTreeItem
 from plugins.browser_plugin.item.RootTreeItem import RootTreeItem
 from plugins.browser_plugin.item.LDAPErrorItem import LDAPErrorItem
-from base.backend.LumaConnection import LumaConnection
+from base.backend.LumaConnectionWrapper import LumaConnectionWrapper
 
 from PyQt4.QtCore import QAbstractItemModel, pyqtSlot, pyqtSignal, Qt
 from PyQt4.QtCore import QModelIndex, QVariant, QCoreApplication, QRunnable
@@ -330,13 +330,14 @@ class LDAPTreeItemModel(QAbstractItemModel):
         # Find associated ServerItem
         serverItem = parentItem.getParentServerItem()
 
-        if serverItem != None and self.unverified(serverItem.serverMeta):
-            # Verifies the connection to the server, and asks for password if it's invalid
-            # (Needs to be done in the GUI-thread (bacause of the password-dialog), which this should be)
-            conn = LumaConnection(serverItem.serverMeta)
-            success, exception = conn.bind(askForPw = True)
-            if success:
-                self.verified.append(serverItem.serverMeta.name)
+       # TODO ASK FOR PW SYSTEM
+       # if serverItem != None and self.unverified(serverItem.serverMeta):
+       #     # Verifies the connection to the server, and asks for password if it's invalid
+       #     # (Needs to be done in the GUI-thread (bacause of the password-dialog), which this should be)
+       #     conn = LumaConnection(serverItem.serverMeta)
+       #     success, exception = conn.bind(askForPw = True)
+       #     if success:
+       #         self.verified.append(serverItem.serverMeta.name)
 
         # Do the search (in another thread)
         # Two different solutions, each with it's own problems

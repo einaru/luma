@@ -34,7 +34,7 @@ from .NewEntryDialog import NewEntryDialog
 from .gui.BrowserDialogs import ExportDialog, DeleteDialog
 from .item.AbstractLDAPTreeItem import AbstractLDAPTreeItem
 from .model.LDAPTreeItemModel import LDAPTreeItemModel
-from base.backend.LumaConnection import LumaConnection
+from base.backend.LumaConnectionWrapper import LumaConnectionWrapper
 from base.backend.ServerList import ServerList
 from base.gui.ServerDialog import ServerDialog
 
@@ -94,8 +94,6 @@ class BrowserView(QWidget):
         # which needs processing (reloading, clearing)
         self.reloadSignal.connect(self.ldaptreemodel.reloadItem)
         self.clearSignal.connect(self.ldaptreemodel.clearItem)
-
-        self.cancelList = []
 
         self.__createContextMenu()
         self.progress = QMessageBox(
@@ -167,8 +165,6 @@ class BrowserView(QWidget):
         self.contextMenu.addMenu(self.contextMenuDelete)
         self.contextMenuExport = QMenu()
         self.contextMenu.addMenu(self.contextMenuExport)
-        self.contextMenuCancel = QAction(self)
-        self.contextMenu.addAction(self.contextMenuCancel)
 
         # Connect the context menu actions to the correct slots
         self.contextMenuServerSettings.triggered.connect(self.editServerSettings)
@@ -177,7 +173,6 @@ class BrowserView(QWidget):
         self.contextMenuClear.triggered.connect(self.clearChoosen)
         self.contextMenuFilter.triggered.connect(self.filterChoosen)
         self.contextMenuLimit.triggered.connect(self.limitChoosen)
-        self.contextMenuCancel.triggered.connect(self.cancelChoosen)
 
     def rightClick(self, point):
         """ Called when the view is right-clicked.
@@ -216,7 +211,6 @@ class BrowserView(QWidget):
         # if one of the selected indexes do not support an
         # operation, we cannot allow to apply that operation
         # on the whole selection
-        self.cancelList = []
         for index in self.selection:
             item = index.internalPointer()
             operations = item.getSupportedOperations()
@@ -238,9 +232,6 @@ class BrowserView(QWidget):
                 exportSupport = False
 	    if index.internalPointer().getParentServerItem() == None:
 		editServerSupport = False
-            if AbstractLDAPTreeItem.SUPPORT_CANCEL & operations:
-                if item.canCancelSearch():
-                    self.cancelList.append(item)
         
         # Now we just use the *Support variables to enable|disable
         # the context menu actions.
@@ -281,11 +272,6 @@ class BrowserView(QWidget):
         else:
             self.contextMenuDelete.setEnabled(False)
 
-        if len(self.cancelList) > 0:
-            self.contextMenuCancel.setEnabled(True)
-        else:
-            self.contextMenuCancel.setEnabled(False)
-
         if exportSupport:
             self.contextMenuExport.setEnabled(True)
             if numselected == 1:
@@ -310,10 +296,6 @@ class BrowserView(QWidget):
         self.contextMenuDelete.clear()
         self.contextMenuExport.clear()
 
-    def cancelChoosen(self):
-        for item in self.cancelList:
-            item.cancelSearch()
-        self.cancelList = []
     """
     Following methods are called from a context-menu.
     """
@@ -522,7 +504,7 @@ class BrowserView(QWidget):
             serverName = smartObject.getServerAlias()
             dn = smartObject.getDN()
             serverObject = self.serverList.getServerObject(serverName)
-            con = LumaConnection(serverObject)
+            con = LumaConnectionWrapper(serverObject, self)
             
             if scope == 1:
                 pass
@@ -536,7 +518,7 @@ class BrowserView(QWidget):
                 if not success:
                     self.__logger.error(str(e))
                     continue
-                success, result, e = con.search(base=dn, scope=2)
+                success, result, e = con.searchSync(base=dn, scope=2)
 
                 if success:
                     exportObjects.extend(result)
@@ -608,7 +590,6 @@ class BrowserView(QWidget):
         self.contextMenuAdd.setTitle(QtCore.QCoreApplication.translate("BrowserView", "Add"))
         self.contextMenuDelete.setTitle(QtCore.QCoreApplication.translate("BrowserView", "Delete"))
         self.contextMenuExport.setTitle(QtCore.QCoreApplication.translate("BrowserView", "Export"))
-        self.contextMenuCancel.setText(QtCore.QCoreApplication.translate("BrowserView", "Cancel"))
         
         self.str_ENTRY = QtCore.QCoreApplication.translate("BrowserView", "Entry")
         self.str_TEMPLATE = QtCore.QCoreApplication.translate("BrowserView", "Template")

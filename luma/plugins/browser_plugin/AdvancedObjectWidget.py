@@ -12,7 +12,6 @@ from PyQt4.QtGui import (QTextBrowser, QTextOption, QPixmap, QSizePolicy,
                          QMessageBox, QVBoxLayout, QWidget, QToolButton, 
                          QIcon, QComboBox, QInputDialog, QDialog, QFileDialog)
 
-from base.backend.LumaConnection import LumaConnection
 from base.backend.ServerList import ServerList
 from base.backend.SmartDataObject import SmartDataObject
 from base.backend.ObjectClassAttributeInfo import ObjectClassAttributeInfo

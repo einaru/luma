@@ -9,7 +9,7 @@ from PyQt4.QtGui import QMessageBox
 
 
 from base.backend.ServerList import ServerList
-from base.backend.LumaConnection import LumaConnection
+from base.backend.LumaConnectionWrapper import LumaConnectionWrapper
 from base.backend.SmartDataObject import SmartDataObject, LdapDataException
 
 # TODO add translation support
@@ -50,9 +50,9 @@ class EntryModel(QObject):
             tmpObject.readServerList()
             serverMeta = tmpObject.getServerObject(self.smartObject.getServerAlias())
         
-            lumaConnection = LumaConnection(serverMeta)
+            lumaConnection = LumaConnectionWrapper(serverMeta, self)
         
-            bindSuccess, exceptionObject = lumaConnection.bind()
+            bindSuccess, exceptionObject = lumaConnection.bindSync()
             
             if not bindSuccess:
                 if self.ignoreServerMetaError:
@@ -66,7 +66,7 @@ class EntryModel(QObject):
                     message = "Could not bind to server."
                     return (False, message, exceptionObject)
             
-            success, resultList, exceptionObject = lumaConnection.search(self.smartObject.dn, ldap.SCOPE_ONELEVEL, filter="(objectClass=*)", attrList=None, attrsonly=1, sizelimit=1)
+            success, resultList, exceptionObject = lumaConnection.searchSync(self.smartObject.dn, ldap.SCOPE_ONELEVEL, filter="(objectClass=*)", attrList=None, attrsonly=1, sizelimit=1)
             lumaConnection.unbind()
             
             # Our search succeeded. No errors
@@ -136,14 +136,14 @@ class EntryModel(QObject):
         """ 
         Refreshes the LDAP data from server, 
         """
-        lumaConnection = LumaConnection(self.smartObject.getServerMeta())
-        bindSuccess, exceptionObject = lumaConnection.bind()
+        lumaConnection = LumaConnectionWrapper(self.smartObject.getServerMeta())
+        bindSuccess, exceptionObject = lumaConnection.bindSync()
         
         if not bindSuccess:
             message = "Could not bind to server. "
             return (False, message, exceptionObject)
         
-        success, resultList, exceptionObject = lumaConnection.search(self.smartObject.getDN(), ldap.SCOPE_BASE)
+        success, resultList, exceptionObject = lumaConnection.searchSync(self.smartObject.getDN(), ldap.SCOPE_BASE)
         lumaConnection.unbind()
         
         if success and (len(resultList) > 0):
@@ -163,8 +163,8 @@ class EntryModel(QObject):
         Save changes to the current object.
         """
         
-        lumaConnection = LumaConnection(self.smartObject.getServerMeta())
-        bindSuccess, exceptionObject = lumaConnection.bind()
+        lumaConnection = LumaConnectionWrapper(self.smartObject.getServerMeta())
+        bindSuccess, exceptionObject = lumaConnection.bindSync()
         
         if not bindSuccess:
             message = "Could not bind to server."
@@ -240,8 +240,8 @@ class EntryModel(QObject):
         Deletes the remote object that this model represents
         """
         
-        lumaConnection = LumaConnection(self.smartObject.getServerMeta())
-        bindSuccess, exceptionObject = lumaConnection.bind()
+        lumaConnection = LumaConnectionWrapper(self.smartObject.getServerMeta())
+        bindSuccess, exceptionObject = lumaConnection.bindSync()
         
         if not bindSuccess:
             message = "Could not bind to server."

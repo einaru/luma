@@ -1,7 +1,7 @@
 
 import ldap
 
-from base.backend.LumaConnection import LumaConnection
+from base.backend.LumaConnectionWrapper import LumaConnectionWrapper
 from AbstractLDAPTreeItem import AbstractLDAPTreeItem
 from LDAPTreeItem import LDAPTreeItem
 from PyQt4 import QtCore
@@ -44,7 +44,7 @@ class ServerTreeItem(AbstractLDAPTreeItem):
         Gets the list of baseDNs for the server and return them.
         """
                 
-        connection = LumaConnection(self.serverMeta)
+        connection = LumaConnectionWrapper(self.serverMeta)
         
         # If baseDNs are aleady spesified
         if self.serverMeta.autoBase == False:
@@ -52,7 +52,7 @@ class ServerTreeItem(AbstractLDAPTreeItem):
             tmpList = self.serverMeta.baseDN
             
             #Need to bind in order to fetch the data for the baseDNs
-            bindSuccess, exceptionObject = connection.bind()
+            bindSuccess, exceptionObject = connection.bindSync()
             if not bindSuccess:
                 self.logger.debug("Bind failed.")
                 tmp = LDAPErrorItem(str("["+exceptionObject[0]["desc"]+"]"), self, self)
@@ -63,7 +63,7 @@ class ServerTreeItem(AbstractLDAPTreeItem):
         else:
             self.logger.debug("Using getBaseDNList()")
             #self.isWorking.emit()
-            success, tmpList, exceptionObject = connection.getBaseDNList()
+            success, tmpList, exceptionObject = connection.getBaseDNListSync()
         
             if not success:
                 self.logger.debug("getBaseDNList failed:"+str(exceptionObject))
@@ -71,14 +71,14 @@ class ServerTreeItem(AbstractLDAPTreeItem):
                 return (True, [tmp], exceptionObject) #See above
             
             #getBaseDNList calles unbind(), so let's rebind
-            connection.bind()
+            connection.bindSync()
         
         self.logger.debug("Entering for-loop")
 
         # Get the info for the baseDNs
         newChildList = []
         for base in tmpList:
-            success, resultList, exceptionObject = connection.search(base, \
+            success, resultList, exceptionObject = connection.searchSync(base, \
                     scope=ldap.SCOPE_BASE,filter='(objectclass=*)', sizelimit=1)
             if not success:
                 self.logger.debug("Couldn't search item:"+str(exceptionObject))
