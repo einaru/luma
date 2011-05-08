@@ -56,16 +56,6 @@ class SmartDataObject (object):
         
         self.checkIntegrity()
         
-        
-    def updateOnServer(self):
-        from base.backend.LumaConnection import LumaConnection
-        self.logger.debug("Updating smartobject on server")
-        l = LumaConnection(self.serverMeta)
-        l.bind()
-        l.updateDataObject(self)
-        l.unbind()
-        self.logger.debug("Done")
-        
 ###############################################################################
 
     def __cmp__(self, otherItem):

@@ -225,10 +225,6 @@ class LumaConnection(object):
             message += str(exception)
             self.logger.error(message)
 
-            # If credentials are overriden but wrong, remove
-            if self._override_pwd(self.serverObject) and self._invalid_pwd(exception):
-                LumaConnection.__passwordMap.pop(self.serverObject.name)
-
             return (False, exception)
 
     def __createLDAPObject(self):

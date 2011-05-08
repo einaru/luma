@@ -50,6 +50,10 @@ from PyQt4.QtGui import (QScrollArea)
 from PyQt4.QtGui import (QToolBar)
 from PyQt4.QtGui import (QWidget)
 from PyQt4.QtGui import (QErrorMessage)
+from PyQt4.QtGui import (QInputDialog, QLineEdit)
+
+from base.backend.LumaConnection import LumaConnection
+from base.backend.ServerList import ServerList
 
 from ..gui.AboutDialog import AboutDialog
 from ..gui.ServerDialog import ServerDialog
@@ -380,6 +384,30 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             #TODO -- only display if plugins open:
             self.serversChangedMessage.showMessage(QApplication.translate("MainWindow","You may need to restart plugins for changes to take effect."))
 
+    def showTempPasswordDialog(self):
+        """ Sets overridePassword for a server.
+        Using this one doesn't actually have to enter the password
+        in the ServerDialog (and by extension save to disk).
+        """
+        
+        serverList = ServerList()
+        
+        # Create a stringlist to be used by the qinputdialog
+        stringList = []
+        for server in serverList.getTable():
+            stringList.append(server.name)
+
+        # Display list of servers
+        (serverString, ok) =  QInputDialog.getItem(self, QApplication.translate("MainWindow", "Select server"), QApplication.translate("MainWindow", "Server:"), stringList, editable = False)
+        if ok:
+            server = serverList.getServerObjectByName(serverString)
+            if server != None:
+                # Ask for password
+                (value, ok) = QInputDialog.getText(self, QApplication.translate("MainWindow", "Temporary password"), QApplication.translate("MainWindow","Enter password:"), QLineEdit.Password)
+                if ok:
+                    # Use value as the overridePassword for the server.
+                    LumaConnection(server).overridePassword(value)
+
     def showSettingsDialog(self, tab=0):
         """Slot to display the settings dialog. If the settings dialog
         returns 1, i.e. the user has clicked the ok button, the
@@ -557,7 +585,7 @@ class LoggerWidget(QWidget, Ui_LoggerWidget):
         # log() can be called by any thread, so to append the message
         # to the loggerwidget, we emit it and have the owner of the textfield
         # (the gui thread) receive it and do the appending.
-        self.logSignal.connect(self.appendMsg, type=Qt.QueuedConnection)
+        self.logSignal.connect(self.appendMsg)
 
     def clearLogger(self):
         """
@@ -575,16 +603,7 @@ class LoggerWidget(QWidget, Ui_LoggerWidget):
         self.messageEdit.clear()
         # Filter out unwanted log-items
         for l in self.logList:
-            loglvl, msg = l
-            if loglvl == "DEBUG" and self.debugBox.isChecked():
-                self.messageEdit.append("DEBUG: " + msg)
-                continue
-            if loglvl == "ERROR" and self.errorBox.isChecked():
-                self.messageEdit.append("ERROR: " + msg)
-                continue
-            if loglvl == "INFO" and self.infoBox.isChecked():
-                self.messageEdit.append("INFO: " + msg)
-                continue
+            self.log(l, rebuild = True)
 
     @pyqtSlot(QString)
     def appendMsg(self, msg):
@@ -594,14 +613,15 @@ class LoggerWidget(QWidget, Ui_LoggerWidget):
         """
         self.messageEdit.append(msg)
 
-    def log(self, log):
+    def log(self, log, rebuild = False):
         """
         Appends the log the the logList
         and uses a signal in order to have it 
         be appended to the textfield by the gui-thread
         """
         loglvl, msg, name, threadName = log
-        self.logList.append(log)
+        if not rebuild:
+            self.logList.append(log)
         if loglvl == "DEBUG" and self.debugBox.isChecked():
             self.logSignal.emit("DEBUG ["+name+"/"+threadName+"]: " + msg)
             return
