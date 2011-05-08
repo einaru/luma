@@ -177,15 +177,15 @@ class LumaConnection(object):
         """ Updates the given SmartDataObject on the server. 
         @return (bool, Exception)
         """
-        success, resultList, exceptionObject = self.search(dataObject.getDN(), ldap.SCOPE_BASE)
+        success, resultList, exceptionObject = self.search(smartDataObject.getDN(), ldap.SCOPE_BASE)
         if success:
-            message = "LDAP object " + dataObject.getDN() + " was successfully updated on the server.)"
+            message = "LDAP object " + smartDataObject.getDN() + " was successfully updated on the server.)"
             self.logger.info(message)
             oldObject = resultList[0]
-            modlist =  ldap.modlist.modifyModlist(oldObject.data, dataObject.data, [], 0)
-            return self.modify(dataObject.getDN(), modlist)
+            modlist =  ldap.modlist.modifyModlist(oldObject.data, smartDataObject.data, [], 0)
+            return self.modify(smartDataObject.getDN(), modlist)
         else:
-            message = "LDAP object " + dataObject.getDN() + " could not be updated. The entry values could not be retrieved from the server. Reason:\n"
+            message = "LDAP object " + smartDataObject.getDN() + " could not be updated. The entry values could not be retrieved from the server. Reason:\n"
             message = message + str(exceptionObject)
             self.logger.error(message)
             return (False, exceptionObject)
