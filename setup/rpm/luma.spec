@@ -1,3 +1,6 @@
+%define version 3.0.6b
+%define release 3
+
 %if ! (0%{?fedora} > 12 || 0%{?rhel} > 5)
 %{!?python_sitelib: %global python_sitelib %(%{__python} -c "from distutils.sysconfig import get_python_lib; print(get_python_lib())")}
 %{!?python_sitearch: %global python_sitearch %(%{__python} -c "from distutils.sysconfig import get_python_lib; print(get_python_lib(1))")}
@@ -6,15 +9,17 @@
 %global srcname distribute
 
 Name:		luma
-Version:	3.0.6b
-Release:	1%{?dist}
+Version:	%{version}
+Release:	%{release}%{?dist}
 Summary:	LDAP Browser and administration utility
 Group:		Applications/System
 License:	GNU General Public License (GPL) version 2
-URL:		http://luma.sf.net/
 Source0:	http://folk.ntnu.no/einaru/luma/dist/%{name}-%{version}.tar.gz
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 BuildArch:	noarch
+Vendor:		Luma devel team <luma-devel@luma.sf.net>
+Packager:	Einar Uvsløkk <einar.uvslokk@linux.com>
+Url:		http://luma.sf.net
 
 BuildRequires:	python2-devel
 
@@ -47,5 +52,9 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(-,root,root)
 
 %changelog
+* Sun May 8 2011 Einar Uvsløkk <einar.uvslokk@linux.com> 3.0.6b-3
+- Fixed an issue where some required html templates not was installed.
+* Sun May 7 2011 Einar Uvsløkk <einar.uvslokk@linux.com> 3.0.6b-2
+- Updated the i18n system.
 * Fri May 6 2011 Einar Uvsløkk <einar.uvslokk@linux.com> 3.0.6b-1
 - Initial rpm build for the new Luma (version 3.*) - Beta 1 Release

@@ -7,3 +7,7 @@ include TODO
 recursive-include data *.desktop
 recursive-include data/icons *.png *.svg
 recursive-include data/doc *.1.gz
+recursive-include luma/plugins/browser_plugin/templates *.html
+recursive-include luma/plugins/browser_plugin/templates/inetOrgPerson *.html
+recursive-include luma/plugins/browser_plugin/templates/organization *.html
+recursive-include luma/plugins/browser_plugin/templates/person *.html

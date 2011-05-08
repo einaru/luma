@@ -316,36 +316,54 @@ def checkDependencies():
     launch.
     """
     failed = 0
+    error = sys.stderr.write
     try:
         import PyQt4
     except ImportError:
         failed = 1
-        print "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
-        print "!! ImportError: Unable to import module: PyQt4            !!"
-        print "!!                                                        !!"
-        print "!! PyQt4 is needed for the Graphical User Interface, and  !!"
-        print "!! must be installed in order to successfully run Luma.   !!"
-        print "!! PyQt4 can be obtained from:                            !!"
-        print "!!                                                        !!"
-        print "!! http://www.riverbankcomputing.com/software/pyqt/intro  !!"
-        print "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n"
-
+        sys.stderr.write("""
+###########################################################
+## ImportError: Unable to import module: PyQt4           ##
+##                                                       ##
+## PyQt4 is needed for the Graphical User Interface, and ##
+## must be installed in order to successfully run Luma.  ##
+## PyQt4 can be obtained from:                           ##
+##                                                       ##
+## http://www.riverbankcomputing.com/software/pyqt/intro ##
+###########################################################
+""")
     try:
         import ldap
     except ImportError:
         failed = 1
-        print "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
-        print "!! ImportError: Unable to import module: ldap             !!"
-        print "!!                                                        !!"
-        print "!! python-ldap is needed to successfully run Luma.        !!"
-        print "!! python-ldap can be obtained from:                      !!"
-        print "!!                                                        !!"
-        print "!! http://python-ldap.org/                                !!"
-        print "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n"
-
+        sys.stderr.write("""
+###########################################################
+## ImportError: Unable to import module: ldap            ##
+##                                                       ##
+## python-ldap is needed to successfully run Luma.       ##
+## python-ldap can be obtained from:                     ##
+##                                                       ##
+## http://python-ldap.org/                               ##
+###########################################################
+""")
     if failed:
         print "Exiting ..."
         sys.exit(1)
+
+    try:
+        import smbpasswd
+    except ImportError:
+        sys.stdout.write("""
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!! WARNING: smbpasswd module is not installed            !!
+!!                                                       !!
+!! You will be able to run Luma, but no nthash and lmhas !!
+!! passwords will be available!                          !!
+!! smbpasswd can be obtained from:                       !!
+!!                                                       !!
+!! http://barryp.org/software/py-smbpasswd               !!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+""")
 
 
 if __name__ == '__main__':

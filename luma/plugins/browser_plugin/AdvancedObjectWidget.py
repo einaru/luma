@@ -66,14 +66,33 @@ class AdvancedObjectWidget(QWidget):
         self.comboBox = QComboBox()
         self.currentTemplate = currentTemplate
         self.usedTemplates = []
-        # FIXME: Need a more robust way for locating the path used in
+        # FIXED: Need a more robust way for locating the path used in
         #        the TemplateFactory for locating the template view
         #        files
-        # FIXED: with base.util.Paths.getLumaRoot this should work.
+        # >>>    with base.util.Paths.getLumaRoot this should work.
         #        Probably needs some validation testing on platforms
         #        other than Linux
-        #self.templateFactory = TemplateFactory(os.path.join("plugins", "browser_plugin", "templates"))
-        self.templateFactory = TemplateFactory(unicode(os.path.join(getLumaRoot(), 'plugins', 'browser_plugin', 'templates')))
+        # Another issue occured when running Luma after a installation
+        # from a source distribution. Because the site-packages is only
+        # intended for pure python modules, the html templates is not
+        # installed, resulting in an Exception when trying to view an
+        # entry in the Browser plugin. The setup.py script is modified
+        # such that the needed html templates is copied into a folder
+        # in the path returned by `base.util.Paths.getConfigPrefix`.
+        s = QtCore.QSettings()
+        configPrefix = s.value('application/config_prefix').toString()
+        templatesPath = os.path.join(unicode(configPrefix).encode('utf-8'),
+                                     'browser-templates')
+        # If we run Luma from a development environment the isntalled
+        # templatesPath do most likely not exist. We therefore use the
+        # directory in the repository
+        if not os.path.isdir(templatesPath):
+            templatesPath = unicode(
+                os.path.join(
+                    getLumaRoot(), 'plugins', 'browser_plugin', 'templates')
+            )
+
+        self.templateFactory = TemplateFactory(templatesPath)
 
         self.htmlParser = HtmlParser(self.entryModel, self.objectWidget)
         
@@ -81,6 +100,7 @@ class AdvancedObjectWidget(QWidget):
         self.displayValues()
 
 ###############################################################################
+
     @staticmethod
     def smartObjectCopy(smartObject):
         return SmartDataObject(copy.deepcopy([smartObject.dn, smartObject.data]), copy.deepcopy(smartObject.serverMeta))

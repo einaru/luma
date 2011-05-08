@@ -19,6 +19,7 @@
 # along with this program.  If not, see http://www.gnu.org/licenses/
 
 import os
+import shutil
 import sys
 from glob import glob
 from distutils.core import setup
@@ -78,7 +79,6 @@ app_dir = 'luma'
 _author = 'Luma devel team'
 _author_email = 'luma-devel@luma.sf.net'
 _data_files = []
-_mainscript = 'luma/luma.py'
 
 textfiles = [
     'AUTHORS',
@@ -144,21 +144,52 @@ elif sys.platform.lower().startswith('linux'):
         scripts=['bin/luma']
     )
 
-# Then it's time for the general setup
-setup(
-    name=appinfo.APPNAME,
-    version=appinfo.VERSION,
-    author=_author,
-    author_email=_author_email,
-    url='http://luma.sf.net',
-    description=appinfo.DESCRIPTION,
-    license='GNU General Public License (GPL) version 2',
-    packages=findPackages(),
-    package_dir={
-        app_dir : src_dir
-    },
-    classifiers=_classifiers,
-    **_extras
-)
+if __name__ == '__main__':
+    
+    error = sys.stderr.write
+    write = sys.stdout.write
+
+    # Then it's time for the general setup
+    success = setup(
+        name=appinfo.APPNAME,
+        version=appinfo.VERSION,
+        author=_author,
+        author_email=_author_email,
+        url='http://luma.sf.net',
+        description=appinfo.DESCRIPTION,
+        license='GNU General Public License (GPL) version 2',
+        packages=findPackages(),
+        package_dir={
+            app_dir : src_dir
+        },
+        classifiers=_classifiers,
+        **_extras
+    )
+
+    if success and 'install' in sys.argv:
+        """If ``setup`` was successfully executed with the install
+        argument we need to do some additional post processing work.
+
+        This includes copying ``luma/plugins/browser/templates`` into
+        path returned by ``luma.base.util.Paths.getConfigPrefix``.
+        """
+        from luma.base.util.Paths import getConfigPrefix
+
+        src = os.path.join('luma', 'plugins','browser_plugin', 'templates')
+        configPrefix = getConfigPrefix()
+
+        if not configPrefix[0]:
+            error('Unable to create user config folder:')
+            msg = 'Additional none-python files will be copied to: {0}'
+            error(msg.format(configPrefix[1]))
+
+        dst = os.path.join(configPrefix[1], 'browser-templates')
+        try:
+            shutil.copytree(src, dst)
+        except OSError:
+            sys.stderr.write('Unable to copy files.')
+            msg = 'Destination allready exists: {0}'
+            sys.stderr.write(msg.format(dst))
+
 
 # vim: tabstop=4 expandtab shiftwidth=4 softtabstop=4
