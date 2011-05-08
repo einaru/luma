@@ -201,13 +201,6 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             self.restoreGeometry(settings.geometry)
         #self.restoreState(settings.state)
 
-        # General Mainwin
-        #if mainWin:
-        #    self.resize(settings.size)
-        #    self.move(settings.position)
-        #    if settings.maximize:
-        #        self.showMaximized()
-
         # If the geometry saved inticates fullscreen mode, 
         # we need to explicitly set the fullscreen menuaction checkbox
         if self.isFullScreen():
@@ -389,6 +382,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         Using this one doesn't actually have to enter the password
         in the ServerDialog (and by extension save to disk).
         """
+
         
         serverList = ServerList()
         
@@ -407,6 +401,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 if ok:
                     # Use value as the overridePassword for the server.
                     LumaConnection(server).overridePassword(value)
+
 
     def showSettingsDialog(self, tab=0):
         """Slot to display the settings dialog. If the settings dialog
@@ -521,11 +516,6 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         settings before we tear down the application.
         """
         self.__writeSettings()
-
-        from PyQt4.QtCore import QThreadPool
-        if QThreadPool.globalInstance().activeThreadCount() > 0:
-            print QApplication.translate("MainWindow", "There are operations in progress which needs to finish before Luma can close.")
-            print "Waiting for: " + str(QThreadPool.globalInstance().activeThreadCount()) + " operations."
         QMainWindow.closeEvent(self, e)
 
 
