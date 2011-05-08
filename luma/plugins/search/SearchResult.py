@@ -56,6 +56,9 @@ class ResultView(QWidget):
         self.proxymodel = QSortFilterProxyModel(self)
         self.proxymodel.setDynamicSortFilter(True)
 
+        for a in attributelist:
+            print a
+
         self.headerdata = ['dn']
         self.headerdata.extend(attributelist)
         self.resultdata = resultlist

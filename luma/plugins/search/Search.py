@@ -23,7 +23,7 @@ import os
 import re
 import gc
 
-from PyQt4.QtCore import (QEvent, QObject, Qt, QTimer)
+from PyQt4.QtCore import (QEvent, QObject, Qt, QTimer, pyqtSignal)
 from PyQt4.QtGui import (QKeySequence, QWidget, qApp)
 
 from base.backend.ServerList import ServerList
@@ -286,7 +286,7 @@ class SearchPlugin(QWidget, Ui_SearchPlugin):
         objectClasses = ocai.getObjectClasses()
 
         self.filterBuilder.onServerChanged(objectClasses, attributes)
-
+        
         if self.autocompleteIsEnabled:
             self.searchForm.initAutoComplete(attributes)
 
@@ -321,83 +321,56 @@ class SearchPlugin(QWidget, Ui_SearchPlugin):
         The text string in the search line is validated and prepared
         for the actual search.
         """
-        # FIXME: Switch to the methods in the Filter module when it's
-        #        finished and ready for use.
         self.searchForm.onSearchError(False)
         filter = self.searchForm.filter
-        filterPattern = re.compile("\(\w*=")
-        tmpList = filterPattern.findall(filter)
-
-        attributelist = map(lambda x: x[1:-1], tmpList)
-
         self.__logger.debug('filter: {0}'.format(filter))
-        self.__logger.debug('Attributelist: {0}'.format(attributelist))
-        self.search(filter, attributelist)
+        self.search(filter)
 
-    def search(self, filter, attributelist):
-        """Starts the search for the given server and search filter.
+    def search(self, filter):
+        """Starts the search operation on the seelcted server.
         
+        Parameters:
+
+        - `filter`: The LDAP searchfilter to be used in the search.
+        - `attributeList`: A list of attributes in the search filter.
+
         .. note:: **We don't use the signal as of now**
            Emits the signal "ldap_result". Given arguments are the
            servername, the search result and the criterias used for
            the filter.
         """
-        # Return was pressed but no server selected. So we don't want 
-        # to search.
-        if self.connection == None:
+        # Return was pressed but no server is selected, thus we do not
+        # perform any search operation.
+        if self.currentServer is None:
             return
-
-        ## NOTE:
-        ## This is the initial testing of the refactored Connection
-        ## class, where we use Exception to inform about operations gone
-        ## wrong. This is an atempt to get rid of the PyQt4 dependencies
-        ## in the backend package.
-        ## TODO: Might want to do some quering on the exceptions.
-        ##       Try to come up with a nice way to return missing stuff
-        ##       (i.e. password, certificate rules, etc)
-        #try:
-        #    bindSuccess, e = self.connection.bind()
-        #except ServerCertificateException, sce:
-        #    self.__logger.error(str(sce))
-        #    return
-        #except InvalidPasswordException, ipe:
-        #    self.__logger.error(str(ipe))
-        #    return
         
-        bindSuccess, e = self.connection.bindSync()
-        if not bindSuccess:
-            # TODO: give some visual feedback to the user, regarding
-            #       the unsuccessful bind operation
-            msg = 'Unable to bind to {0}. Reason\n{1}'
-            self.__logger.error(msg.format(self.searchForm.server, str(e)))
-            return
+        #bindSuccess, e = self.connection.bindSync()
+        #if not bindSuccess:
+        #    msg = 'Unable to bind to {0}. Reason\n{1}'
+        #    self.__logger.error(msg.format(self.searchForm.server, str(e)))
+        #    return
 
-        # The scope selection works based on the index:
-        # 0 = SCOPE_BASE
-        # 1 = SCOPE_ONELEVEL
-        # 2 = SCOPE_SUBTREE
         scope = self.searchForm.scope
         limit = self.searchForm.sizeLimit
         base = self.searchForm.baseDN
 
         self.currentServer.currentBase = base
 
-        # To give some user feedback we manually set the WaitCursor
-        # and disable the searchForm widget, while doing the actual
-        # LDAP search.
-        # On search returned we restore these states to normal.
-        #qApp.setOverrideCursor(Qt.WaitCursor)
-        self.searchForm.setEnabled(False)
-        success, result, e = self.connection.searchSync(base=base,
-                                                        scope=scope,
-                                                        filter=filter,
-                                                        sizelimit=limit)
-        # Remember to unbind
-        self.connection.unbind()
-        #qApp.restoreOverrideCursor()
-        self.searchForm.setEnabled(True)
+        # Perform an asyncronized search operation. When the search is
+        # finished we act upon the LumaConnectionWrapper.searchFinished
+        # signal in the onSearchFinished method
+        args = dict(base=base, scope=scope, filter=filter, sizelimit=limit)
+        search = Search(self, self.currentServer, **args)
+        search.resultsRetrieved.connect(self.onResultsRetrieved)
 
-        if success: # and len(result) > 0:
+    def onResultsRetrieved(self, result, e):
+        """Slot for the ``LumaConnectionWrapper.searchFinished``
+        signal.
+        """
+        print 'yayy'
+        if e is None:
+            filter = result.pop()
+            attributelist = self.__getAttributeList(filter)
             resultTab = ResultView(filter=filter,
                                    attributelist=attributelist,
                                    resultlist=result,
@@ -407,6 +380,23 @@ class SearchPlugin(QWidget, Ui_SearchPlugin):
         else:
             msg = 'Error during search operation.\n{0}'.format(e)
             self.searchForm.onSearchError(True, msg)
+    
+    def __getAttributeList(self, filter):
+        """Returns a list of attributes found in `filter`.
+
+        Parameters:
+
+        - `filter`: a valid LDAP search filter.
+        """
+        # FIXME: Switch to the methods in the Filter module when it's
+        #        finished and ready for use.
+        filterPattern = re.compile("\(\w*=")
+        tmpList = filterPattern.findall(filter)
+        attributeList = map(lambda x: x[1:-1], tmpList)
+        for attr in attributeList:
+            print attr
+
+        return attributeList
 
     def retranslate(self, all=True):
         """For dynamic retranslation of the plugin text strings
@@ -423,6 +413,39 @@ class SearchPlugin(QWidget, Ui_SearchPlugin):
                     tab.retranslate()
                 except AttributeError:
                     pass
+
+class Search(QObject):
+    """Object representing a search."""
+
+    resultsRetrieved = pyqtSignal(list, object)
+    __logger = logging.getLogger(__name__)
+
+    def __init__(self, parent, server, **kwargs):
+        """
+        Parameters:
+
+        - `connection`: the connection object to perform the search
+          operation with.
+        - `args`: a tuple with arguments to the search.
+        """
+        super(Search, self).__init__(parent)
+        self.filter = kwargs['filter']
+        self.connection = LumaConnectionWrapper(server, self)
+        self.connection.searchFinished.connect(self.onSearchFinished)
+        
+        bindSuccess, e = self.connection.bindSync()
+        if not bindSuccess:
+            msg = 'Unable to bind to {0}. Reason\n{1}'
+            self.__logger.error(msg.format(server, str(e)))
+        else:    
+            self.connection.searchAsync(**kwargs)
+
+    def onSearchFinished(self, success, result, e):
+        if success:
+            result.append(self.filter)
+            self.resultsRetrieved.emit(result, None)
+        else:
+            self.resultsRetreived.emit([], e)
 
 
 class SearchPluginSettingsWidget(QWidget, Ui_SearchPluginSettings):
