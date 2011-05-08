@@ -125,14 +125,8 @@ class LumaConnectionWrapper(QObject):
         thread.start()
 
     @pyqtSlot(bool, list, Exception)
-    def __searchThreadFinished(self, success, resultList, exceptionList):
-        if success:
-            # Can't send None so we send a generic Exception
-            # Listeners should use success to know if there's
-            # an exception or not.
-            self.searchFinished.emit(success, resultList, Exception())
-        else:
-            self.searchFinished.emit(success, resultList, exceptionList[0])
+    def __searchThreadFinished(self, success, resultList, exception):
+            self.searchFinished.emit(success, resultList, exception)
     
     def getBaseDNListSync(self):
         # TODO MAKE ASYNC VERSION
