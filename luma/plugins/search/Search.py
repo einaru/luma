@@ -109,7 +109,7 @@ class SearchPlugin(QWidget, Ui_SearchPlugin):
         self.openTabs = {}
         self.completer = None
         self.currentServer = None
-        self.connection = None
+        #self.connection = None
 
         self.serverListObject = ServerList()
         self.serverList = self.serverListObject.getTable()
@@ -260,11 +260,11 @@ class SearchPlugin(QWidget, Ui_SearchPlugin):
             return
 
         #self.connection = LumaConnection(self.currentServer)
-        self.connection = LumaConnectionWrapper(self.currentServer, self)
+        con = LumaConnectionWrapper(self.currentServer, self)
 
         if self.currentServer.autoBase:
             #success, baseDNList, e = self.connection.getBaseDNList()
-            success, baseDNList, e = self.connection.getBaseDNListSync()
+            success, baseDNList, e = con.getBaseDNListSync()
             if not success:
                 # TODO: give some visual feedback to the user, regarding
                 #       the unsuccessful bind operation
@@ -317,9 +317,6 @@ class SearchPlugin(QWidget, Ui_SearchPlugin):
 
     def onSearchButtonClicked(self):
         """Slot for the search button.
-        
-        The text string in the search line is validated and prepared
-        for the actual search.
         """
         self.searchForm.onSearchError(False)
         filter = self.searchForm.filter
@@ -327,28 +324,16 @@ class SearchPlugin(QWidget, Ui_SearchPlugin):
         self.search(filter)
 
     def search(self, filter):
-        """Starts the search operation on the seelcted server.
+        """Starts the search operation on the selected server.
         
         Parameters:
 
         - `filter`: The LDAP searchfilter to be used in the search.
-        - `attributeList`: A list of attributes in the search filter.
-
-        .. note:: **We don't use the signal as of now**
-           Emits the signal "ldap_result". Given arguments are the
-           servername, the search result and the criterias used for
-           the filter.
         """
         # Return was pressed but no server is selected, thus we do not
         # perform any search operation.
         if self.currentServer is None:
             return
-        
-        #bindSuccess, e = self.connection.bindSync()
-        #if not bindSuccess:
-        #    msg = 'Unable to bind to {0}. Reason\n{1}'
-        #    self.__logger.error(msg.format(self.searchForm.server, str(e)))
-        #    return
 
         scope = self.searchForm.scope
         limit = self.searchForm.sizeLimit
@@ -360,14 +345,13 @@ class SearchPlugin(QWidget, Ui_SearchPlugin):
         # finished we act upon the LumaConnectionWrapper.searchFinished
         # signal in the onSearchFinished method
         args = dict(base=base, scope=scope, filter=filter, sizelimit=limit)
-        search = Search(self, self.currentServer, **args)
+        search = Search(self.currentServer, **args)
         search.resultsRetrieved.connect(self.onResultsRetrieved)
 
     def onResultsRetrieved(self, result, e):
         """Slot for the ``LumaConnectionWrapper.searchFinished``
         signal.
         """
-        print 'yayy'
         if e is None:
             filter = result.pop()
             attributelist = self.__getAttributeList(filter)
@@ -420,7 +404,7 @@ class Search(QObject):
     resultsRetrieved = pyqtSignal(list, object)
     __logger = logging.getLogger(__name__)
 
-    def __init__(self, parent, server, **kwargs):
+    def __init__(self, server, **kwargs):
         """
         Parameters:
 
@@ -428,7 +412,7 @@ class Search(QObject):
           operation with.
         - `args`: a tuple with arguments to the search.
         """
-        super(Search, self).__init__(parent)
+        super(Search, self).__init__()
         self.filter = kwargs['filter']
         self.connection = LumaConnectionWrapper(server, self)
         self.connection.searchFinished.connect(self.onSearchFinished)
@@ -441,6 +425,11 @@ class Search(QObject):
             self.connection.searchAsync(**kwargs)
 
     def onSearchFinished(self, success, result, e):
+        """Slot for the searchFinished signal in LumaConnectionWrapper.
+        As of now this reemits a signal that SearchPlugin has connected
+        to. This is done in order to be able to provide the filter and
+        attributes needed for the result view.
+        """
         if success:
             result.append(self.filter)
             self.resultsRetrieved.emit(result, None)
