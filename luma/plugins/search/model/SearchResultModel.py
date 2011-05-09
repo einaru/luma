@@ -21,7 +21,7 @@
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 !! NOT CURRENTLY IN USE!                                                    !!
 !!                                                                          !!
-!! This custom model should be implemented in order to support viewing,     !! 
+!! This custom model should be implemented in order to support viewing,     !!
 !! deleting and exportingsearch result items.                               !!
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 """
@@ -29,10 +29,11 @@ from PyQt4 import QtCore
 from PyQt4.QtCore import (QAbstractTableModel)
 from PyQt4.QtGui import (QStandardItemModel)
 
+
 class ResultViewModel(QAbstractTableModel):
     """
     """
-    
+
     def __init__(self, parent=None):
         """
         """
@@ -43,13 +44,13 @@ class ResultViewModel(QAbstractTableModel):
         """
         """
         pass
-    
+
     def rowCount(self, parent=QtCore.QModelIndex()):
         pass
-    
+
     def columnCount(self, parent=QtCore.QModelIndex()):
         pass
-    
+
     def headerData(self, section, orientation, role):
         """
         """
@@ -60,12 +61,12 @@ class ResultViewModel(QAbstractTableModel):
             return QtCore.QVariant()
         else:
             return QtCore.Qt.ItemIsSelectable | QtCore.Qt.ItemIsEnabled
-    
+
     def data(self, index, role=QtCore.Qt.DisplayRole):
         """
         """
         pass
-    
+
     def index(self, row, column, parnet):
         """
         """
@@ -80,34 +81,26 @@ class ResultItemModel(QStandardItemModel):
         super(ResultItemModel, self).__init__(row, column, parent)
         self.headerdata = headerdata
         self.data = []
-    
+
     def index(self, row, column, parent=None):
-        """
-        """
         if row < 0 or column < 0:
             return QtCore.QModelIndex()
-        
-    
+
     def columnCount(self, parent=None):
-        """
-        @return:
-            the length of the headerdata list.
+        """Returns the length of the headerdata list.
         """
         return len(self.headerdata)
 
     def rowCount(self, parent):
-        """
-        @returns:
-            the length of the resultdata list
+        """Returns the length of the resultdata list.
         """
         return len(self.data)
-        
 
     def populateHeader(self, headerdata=[]):
         """Populates the model header with data.
-        
-        @param headerdata: list;
-            A list containing the attributes used in the search.
+
+        :param headerdata: the attributes used in the searh
+        :type headerdata: a list
         """
         i = 0
         for data in headerdata:
@@ -116,25 +109,24 @@ class ResultItemModel(QStandardItemModel):
 
     def populateModel(self, data=[]):
         """Populates the result view model with result data.
-        
-        @param data: list;
-            A list containing the SmartDataObjects representing items
-            in the LDAP search result.
+
+        :param data: the result from the LDAP search rsearchoperation.
+        :type data: list;
         """
         row = 0
-        for object in data:
+        for obj in data:
             self.insertRow(row)
             col = 0
             for attr in self.headerdata:
                 if self.isDistinguishedName(attr):
-                    modelData = object.getPrettyDN()
+                    modelData = obj.getPrettyDN()
                 elif self.isObjectClass(attr):
-                    modelData = ','.join(object.getObjectClasses())
-                elif object.hasAttribute(attr):
-                    if object.isAttributeBinary(attr):
+                    modelData = ','.join(obj.getObjectClasses())
+                elif obj.hasAttribute(attr):
+                    if obj.isAttributeBinary(attr):
                         modelData = self.str_BINARY_DATA
                     else:
-                        modelData = ','.join(object.getAttributeValueList(attr))
+                        modelData = ','.join(obj.getAttributeValueList(attr))
 
                 self.setData(self.model.index(row, col), modelData)
                 col += 1
@@ -154,7 +146,7 @@ class ResultItemModel(QStandardItemModel):
             True if attr is objectClass, False otherwise.
         """
         return attr.lower() == 'objectclass'
-    
+
     def deleteItem(self, index):
         """Slot for deleting an item.
         """

@@ -23,6 +23,7 @@ import os
 
 __all__ = ['ORGNAME', 'APPNAME', 'VERSION', 'DESCRIPTION']
 
+
 def getRealLumaRootPath():
     import version
     return str(version).split()[3][1:-13]

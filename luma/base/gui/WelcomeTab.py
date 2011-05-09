@@ -24,9 +24,10 @@ from PyQt4.QtCore import (QEvent, QSettings, Qt)
 
 from ..gui.design.WelcomeTabDesign import Ui_WelcomeTab
 
+
 class WelcomeTab(QWidget, Ui_WelcomeTab):
-    
-    def __init__(self, parent = None):
+
+    def __init__(self, parent=None):
         QWidget.__init__(self, parent)
         self.setupUi(self)
         self.retranslate(all=False)
@@ -51,11 +52,11 @@ class WelcomeTab(QWidget, Ui_WelcomeTab):
         if all:
             self.retranslateUi(self)
         # In order to make the job a little bit easier for translators
-        # we should avoid the (ultra verbose) Qt Designer generated 
+        # we should avoid the (ultra verbose) Qt Designer generated
         # html. If you are going to edit the following html, it might
         # be more convenient to edit the ``welcome.html`` file in the
         # resource folder, and copy paste in here afterwards.
-        self.textBrowser.setHtml(QApplication.translate('WelcomeTab',"""
+        self.textBrowser.setHtml(QApplication.translate('WelcomeTab', """
 <html>
 <head>
 <style type="text/css">
@@ -75,37 +76,39 @@ functionality, through a number of plugins.</p>
 
 <h2>Getting started</h2>
 
-<p>The first thing you need to do is to edit the <em>serverlist</em>: Select 
-(<b>Edit</b> &rarr; <b>Server List</b>) from the menubar or use the keyboard 
+<p>The first thing you need to do is to edit the <em>serverlist</em>: Select
+(<b>Edit</b> &rarr; <b>Server List</b>) from the menubar or use the keyboard
 shortcut (<b>CTRL</b>+<b>SHIFT</b>+<b>S)</b>.</p>
 
-<p>After you have added one or more servers, you must activate the plugins you 
-want to use: Select (<b>Edit</b> &rarr; <b>Configure Plugins</b>) from the 
+<p>After you have added one or more servers, you must activate the plugins you
+want to use: Select (<b>Edit</b> &rarr; <b>Configure Plugins</b>) from the
 menubar.</p>
 
 <p>If you need additional help on how to use the application and/or a spesific
-plugin, please refer to the online 
-<a href="http://folk.ntnu.no/einaru/luma/doc/userguide.html">User guide</a>.</p>
+plugin, please refer to the online
+<a href="http://folk.ntnu.no/einaru/luma/doc/userguide.html">User guide</a>.
+</p>
 
-<p>If you cannot find a plugin that suits your needs or you have ideas for a 
+<p>If you cannot find a plugin that suits your needs or you have ideas for a
 great Luma plugin, please feel free to
-<a href="http://luma.sf.net/">contact us</a> or even 
-<a href="http://folk.ntnu.no/einaru/luma/doc/HACKING.html">contribute one your self</a>.</p>
+<a href="http://luma.sf.net/">contact us</a> or even
+<a href="http://folk.ntnu.no/einaru/luma/doc/HACKING.html">contribute one your
+self</a>.</p>
 
 <h2>Problems and bugs</h2>
 
-<p>Application errors and various debug information can be seen in the Logger 
-Window: Select (<b>View</b> &rarr; <b>Logger Window</b>) from the menubar or 
+<p>Application errors and various debug information can be seen in the Logger
+Window: Select (<b>View</b> &rarr; <b>Logger Window</b>) from the menubar or
 use the keyboard shortcut (<b>CTRL</b>+<b>L</b>).</p>
 
 <p>If you encounter errors or bugs in the application, please take your time
-to fill in a bugreport on our 
+to fill in a bugreport on our
 <a href="http://sourceforge.net/tracker/?group_id=89105">bugtracker</a>.</p>
 
 <h2>Contact</h2>
 
-<p>You can find contact information in the About Luma dialog: Select 
-(<b>Help</b> &rarr; <b>About Luma</b>) or use the keyboard shortcut 
+<p>You can find contact information in the About Luma dialog: Select
+(<b>Help</b> &rarr; <b>About Luma</b>) or use the keyboard shortcut
 (<b>F12</b>), and on the <a href="http://luma.sf.net/">Luma website</a>.</p>
 
 <p style="font-size: 8pt; color: #306ebd; padding-top: 25px">

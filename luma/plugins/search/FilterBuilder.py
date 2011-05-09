@@ -28,11 +28,12 @@ from .gui.FilterBuilderDesign import Ui_FilterBuilder
 from .Search import (encodeUTF8, PluginSettings)
 from .FilterHighlighter import LumaFilterHighlighter
 
+
 class FilterBuilder(QWidget, Ui_FilterBuilder):
     """The Luma filter wizard widget
-    
+
     Widget for building simple and complex LDAP search filters.
-    
+
     .. todo::
         - implement better solution for the filters file. Maybe use
           some sort of syntax (i.e. xml, json, ect.), so that we easily
@@ -49,19 +50,19 @@ class FilterBuilder(QWidget, Ui_FilterBuilder):
         '<= (less than)'
     ]
     specialChars = {
-        'NUL' : r'\00',
-        '"' : r'\22',
-        '(' : r'\28',
-        ')' : r'\29',
-        '*' : r'\2A',
-        '+' : r'\2B',
-        ',' : r'\2C',
-        '/' : r'\2F',
-        ';' : r'\3B',
-        '<' : r'\3C',
-        '=' : r'\3D',
-        '>' : r'\3E',
-        '\\' : r'\5C',
+        'NUL': r'\00',
+        '"': r'\22',
+        '(': r'\28',
+        ')': r'\29',
+        '*': r'\2A',
+        '+': r'\2B',
+        ',': r'\2C',
+        '/': r'\2F',
+        ';': r'\3B',
+        '<': r'\3C',
+        '=': r'\3D',
+        '>': r'\3E',
+        '\\': r'\5C',
     }
 
     filterSaved = QtCore.pyqtSignal(name='filterSaved')
@@ -71,9 +72,9 @@ class FilterBuilder(QWidget, Ui_FilterBuilder):
 
     def __init__(self, objectClasses=[], attributes=[], parent=None):
         """Initializes the `FilterBuilder`.
-        
+
         Parameters:
-        
+
         - `objectClasses`: a list of available object classes for the
           selected LDAP server.
         - `attributes`: a list of available attributes for the selected
@@ -96,10 +97,12 @@ class FilterBuilder(QWidget, Ui_FilterBuilder):
     def __connectSlots(self):
         """Connects signals and slots.
         """
-        self.addSpecialCharButton.clicked.connect(self.onAddSpecialCharButtonClicked)
+        self.addSpecialCharButton.clicked.connect(
+            self.onAddSpecialCharButtonClicked)
         self.andButton.clicked.connect(self.onAndButtonClicked)
         self.clearButton.clicked.connect(self.onClearButtonClicked)
-        self.assertionEdit.returnPressed.connect(self.insertButton.animateClick)
+        self.assertionEdit.returnPressed.connect(
+            self.insertButton.animateClick)
         self.assertionEdit.textChanged.connect(self.onAssertionChanged)
         self.filterEdit.undoAvailable[bool].connect(self.undoButton.setEnabled)
         self.filterEdit.redoAvailable[bool].connect(self.redoButton.setEnabled)
@@ -108,7 +111,8 @@ class FilterBuilder(QWidget, Ui_FilterBuilder):
         self.orButton.clicked.connect(self.onOrButtonClicked)
         self.notButton.clicked.connect(self.onNotButtonClicked)
         self.rbAttribute.toggled[bool].connect(self.onAttributeButtonToggled)
-        self.rbObjectClass.toggled[bool].connect(self.onObjectClassButtonToggled)
+        self.rbObjectClass.toggled[bool].connect(
+            self.onObjectClassButtonToggled)
         self.redoButton.clicked.connect(self.filterEdit.redo)
         self.saveButton.clicked.connect(self.onSaveButtonClicked)
         self.undoButton.clicked.connect(self.filterEdit.undo)
@@ -123,15 +127,15 @@ class FilterBuilder(QWidget, Ui_FilterBuilder):
 
     def __escapeFilterItem(self, item):
         """Escapes part of a filter properly.
-        
+
         First we checks if it already is properly escapes and simply
         returns the pased parameter if it is.
         If not we append ( at the start and ) at the end.
-        
+
         Returns the escaped filter `item`.
-        
+
         Parameters:
-        
+
         - `item`: the filter item to be excaped.
         """
         item = encodeUTF8(item)
@@ -149,9 +153,9 @@ class FilterBuilder(QWidget, Ui_FilterBuilder):
 
     def __filterType(self, index):
         """Return the appropriate filter type for the given index.
-        
+
         The returned type is based on the items in the filter type box.
-        
+
         Returns the corrosponding filter type
         """
         return encodeUTF8(self.filterTypeBox.itemText(index)).split(' ')[0]
@@ -159,12 +163,12 @@ class FilterBuilder(QWidget, Ui_FilterBuilder):
     def __moveCursor(self, operation, n=1):
         """Elegant way of moving the position of the text edit cursor
         multiple chars in the direction defined by operation.
-        
+
         Parameters:
-        
+
         - `operation`: a ``QTextCursor.MoveOperation``, which is the
           direction of the move operation to apply on the text cursor.
-        - `n`: an integer indicating how many times the `operation` 
+        - `n`: an integer indicating how many times the `operation`
           should be applied
         """
         for _ in xrange(0, n):
@@ -172,10 +176,10 @@ class FilterBuilder(QWidget, Ui_FilterBuilder):
 
     def setOptions(self, objectClass):
         """Slot for the objectClass radio button.
-        
-        Populates the option combo box with available object classes, 
+
+        Populates the option combo box with available object classes,
         or attributes, depending on the `objectClass` parameter.
-        
+
         - `objectClass`: a boolean value indicating wheter the object
           class radio button is selected or not.
         """
@@ -189,15 +193,16 @@ class FilterBuilder(QWidget, Ui_FilterBuilder):
         """Registers the filter highligher if bool is True.
         """
         if bool:
-            LumaFilterHighlighter(self.filterEdit.document(), self.attributeOptions)
+            LumaFilterHighlighter(self.filterEdit.document(),
+                                  self.attributeOptions)
 
     def onServerChanged(self, objectClasses, attributes):
         """This method is called when the server in the main search
         plugin form is changed. This ensures we are working with the
         correct object classes and attributes, when build a filter.
-        
+
         Parameters:
-        
+
         - `objectClasses`: a list of available object classes for the
           selected server.
         - `attributes`: a list of available attributes for the selected
@@ -224,15 +229,15 @@ class FilterBuilder(QWidget, Ui_FilterBuilder):
 
     def onAssertionChanged(self, text):
         """Slot for the assertion edit widget.
-        
+
         If text is empty the insert button is disabled, if not it is
-        enabled. 
+        enabled.
         """
         self.insertButton.setDisabled(text == '')
 
     def onFilterChanged(self):
         """Slot for the filter edit widget.
-        
+
         Enable or disable the save button and clear button.
         """
         # As long as something has changed there is something in the
@@ -245,17 +250,17 @@ class FilterBuilder(QWidget, Ui_FilterBuilder):
 
     def onNotButtonClicked(self):
         """Slot for the not button.
-        
+
         If the assertion line edit widget is empty, all we do is insert,
         the ! operator::
-        
+
             (!)
-        
+
         If it is not empty we need to insert it and properly escape the
         text already present::
-            
+
            ...(!(<selected text>))...
-        
+
         Either way we also need to position the cursor.
         """
         cursor = self.filterEdit.textCursor()
@@ -269,17 +274,17 @@ class FilterBuilder(QWidget, Ui_FilterBuilder):
 
     def onAndButtonClicked(self):
         """Slot for the and button.
-        
+
         If the assertion line edit widget is empty all we do is insert,
         the & operator::
-            
+
             (&)
-        
+
         If is not empty er need to insert it and properly escape the
         text already present::
-        
+
             ...(&(<selected text>)...
-        
+
         """
         cursor = self.filterEdit.textCursor()
         tmp = cursor.selectedText()
@@ -292,17 +297,17 @@ class FilterBuilder(QWidget, Ui_FilterBuilder):
 
     def onOrButtonClicked(self):
         """Slot for the or button.
-        
+
         If the assertion line edit widget is empty all we do is insert,
         the | operator::
-            
+
             (|(<cursor>))
-        
+
         If is not empty er need to insert it and properly escape the
         text already present::
-        
+
             ...(|(<selected text>)<cursor>...
-        
+
         """
         cursor = self.filterEdit.textCursor()
         tmp = cursor.selectedText()
@@ -315,8 +320,8 @@ class FilterBuilder(QWidget, Ui_FilterBuilder):
 
     def onAddSpecialCharButtonClicked(self):
         """Slot for the add special char button.
-        
-        Inserts the corresponding escape value of the special char 
+
+        Inserts the corresponding escape value of the special char
         currently selected in the combobox.
         """
         index = self.specialCharBox.currentIndex()
@@ -325,7 +330,7 @@ class FilterBuilder(QWidget, Ui_FilterBuilder):
 
     def onInsertButtonClicked(self):
         """Slot for the insert button.
-        
+
         Get the selected values from the filter component group,
         concatenate them, and insert the string into the main filter
         edit widget.
@@ -346,7 +351,7 @@ class FilterBuilder(QWidget, Ui_FilterBuilder):
 
     def onUseButtonClicked(self):
         """Slot for the use button.
-        
+
         Emits the useFilterRequest signal.
         """
         self.useFilterRequest.emit(self.filterEdit.toPlainText())
@@ -359,7 +364,7 @@ class FilterBuilder(QWidget, Ui_FilterBuilder):
         prefix = settings.configPrefix
         filterFile = os.path.join(prefix, 'filters')
         filterToSave = self.filterEdit.toPlainText()
-        # Set the mode flag depending on the state of the file. If it 
+        # Set the mode flag depending on the state of the file. If it
         # exists we open the file in append mode, if not we need to use
         # the write flag to make sure it's created.
         if os.path.exists(filterFile):
@@ -373,12 +378,12 @@ class FilterBuilder(QWidget, Ui_FilterBuilder):
         # We emit the filterSaved signal after the file is closed
         self.filterSaved.emit()
         # Disable the save button so we limit the number of
-        # duplicate entries in the filters file. 
+        # duplicate entries in the filters file.
         self.saveButton.setEnabled(False)
 
     def onClearButtonClicked(self):
         """Slot for the clear button
-        
+
         When we click the clear button we clear the content of the
         filter edit widget, and disables the button. The button will be
         enabled again when the filter edit text changes.

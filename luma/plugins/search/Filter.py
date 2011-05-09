@@ -43,30 +43,30 @@ Short form definition summary in EBNF::
 import re
 
 SPECIAL_CHARS = {
-    'NUL' : r'\00',
-    '"' : r'\22',
-    '(' : r'\28',
-    ')' : r'\29',
-    '*' : r'\2A',
-    '+' : r'\2B',
-    ',' : r'\2C',
-    '/' : r'\2F',
-    ';' : r'\3B',
-    '<' : r'\3C',
-    '=' : r'\3D',
-    '>' : r'\3E',
-    '\\' : r'\5C',
+    'NUL': r'\00',
+    '"': r'\22',
+    '(': r'\28',
+    ')': r'\29',
+    '*': r'\2A',
+    '+': r'\2B',
+    ',': r'\2C',
+    '/': r'\2F',
+    ';': r'\3B',
+    '<': r'\3C',
+    '=': r'\3D',
+    '>': r'\3E',
+    '\\': r'\5C',
 }
 BOOLEAN_OPERATORS = {
-    '&' : 'AND',
-    '|' : 'OR',
-    '!' : 'NOT'
+    '&': 'AND',
+    '|': 'OR',
+    '!': 'NOT'
 }
 FILTER_TYPES = {
-    '=' : 'equals',
-    '~=' : 'approximatly',
-    '>=' : 'greater than or equals',
-    '<=' : 'less than or equals'
+    '=': 'equals',
+    '~=': 'approximatly',
+    '>=': 'greater than or equals',
+    '<=': 'less than or equals'
 }
 LOWER = 'abcdefghijklmnopqrstuvwxyz'
 UPPER = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
@@ -84,50 +84,54 @@ _assertionRegex = '=\w*[^=]'
 _boolOpRegex = ''
 _equalityOpRegex = ''
 
+
 class UnmatchingParenthesesError(Exception):
     pass
 
+
 def getAttributes(filter):
     """Finds all attributes present in an LDAP search filter.
-    
-    For example, the filter: 
-    
+
+    For example, the filter:
+
         (&(objectClass=Person)(|(sn=Jensen)(cn=Babs J*))
-    
+
     will return:
-    
+
         ['sn', 'cn']
-    
+
     @return: list;
         A list containing all attributes, might be the empty list.
     """
     regex = re.compile(_attributeRegex)
     raise NotImplementedError
 
+
 def getAssertionValues(filter):
     """Finds all assertion values in an LDAP search filter.
-    
+
     The filter:
-    
+
         (&(objectClass=Person)(|(sn=Jensen)(cn=Babs J*))
-    
+
     will return:
-        
+
         ['Jensen', 'Babs J*']
-    
+
     @return: list;
          list containing all assertion values, might be the empty list.
     """
     regex = re.compile(_assertionRegex)
     raise NotImplementedError
 
+
 def getFilterComponents(filter):
     """Find all filter components in an LDAP search filter.
-    
+
     The filter:
-    
+
         (&(objectClass=Person)(|(sn=Jensen)(cn=Babs J*))
-    
+
     will return:
         { '&' : ['objectClass=Person', {'|' : ['sn=Jensen', 'cn=Babs J*']}]}
     or
@@ -148,7 +152,7 @@ def getFilterComponents(filter):
 
 
 class Filter(object):
-    """Object representation of a collection Luma LDAP search filters, 
+    """Object representation of a collection Luma LDAP search filters,
     associated with a server name and host.
     """
 
@@ -182,12 +186,14 @@ class Filter(object):
 
 """
 ##### ##### ##### ##### # #   # #####
-  #   #     #       #   # ##  # # 
+  #   #     #       #   # ##  # #
   #   ###   #####   #   # # # # # ###
   #   #         #   #   # #  ## #   #
   #   ##### #####   #   # #   # #####
 """
 i = 0
+
+
 def test(filter):
     global i
     _r = re.compile(_filterCompRegex)
@@ -221,33 +227,47 @@ complex2 = r"""
 
 token_re = re.compile(complex, re.VERBOSE)
 
+
 class TokenizerException(Exception):
     pass
+
 
 def tokenize(text):
     pos = 0
     while True:
         m = token_re.match(text, pos)
-        if not m: break
+        if not m:
+            break
         pos = m.end()
         tokname = m.lastgroup
         tokvalue = m.group(tokname)
         yield tokname, tokvalue
     if pos != len(text):
-        raise TokenizerException('tokenizer stopped at pos %r of %r' % (pos, len(text)))
+        raise TokenizerException('tokenizer stopped at pos %r of %r' % \
+                                 (pos, len(text)))
 
 # Various test strings
-filter = r'(!(objectClass=*)(&(objectGroup=group1)(dn=OLIVER)(!(posixShell~=zsh))))'
+f = r'(!(objectClass=*)(&(objectGroup=group1)(dn=OLIVER)(!(posixShell~=zsh))))'
 booleanOps = ['!', '&', '!']
 equalityOps = ['=', '=', '=', '-=']
-criterias = ['objectClass=*', 'objectGroup=group1', 'dn=OLIVER', 'posixShell~=zsh']
-attributes = ['objectClass', 'objectGroup', 'dn', 'posixShell']
+criterias = [
+    'objectClass=*',
+    'objectGroup=group1',
+    'dn=OLIVER',
+    'posixShell~=zsh'
+]
+attributes = [
+    'objectClass',
+    'objectGroup',
+    'dn',
+    'posixShell'
+]
 
 
-for tok in tokenize(filter):
+for tok in tokenize(f):
     print tok
 
-#test(filter)
+#test(f)
 #test('(test)(test)')
 
 # vim: tabstop=4 expandtab shiftwidth=4 softtabstop=4

@@ -255,45 +255,71 @@ to change some of these.</p>
 <p>The class provides setters and getters for all settings values
 through the python property mechanism.</p>
 <p>The following settings is available:</p>
-<div class="highlight-python"><pre>[general]
-save_window_size=&lt;bool&gt;
-save_window_position=&lt;bool&gt;
+<div class="highlight-python"><pre>[General]
+showWelcome=0
 
-[mainwin]
-size=&lt;QSize&gt;
-position=&lt;QPoint&gt;
+[application]
+config_prefix=&lt;string&gt;
+geometry=&lt;ByteArray&gt;
 
-[i18n]
-language=&lt;ISO 638-1 code&gt;
+[plugins]
+search\autocomplete=&lt;bool&gt;
+search\highlighting=&lt;bool&gt;
+search\scop&lt;int&gt;
+search\limit=&lt;int&gt;
+search\load&lt;bool&gt;
+qt4plugin\load=&lt;bool&gt;
+browser\load&lt;bool&gt;
+Tetris\load&lt;bool&gt;
+template\load&lt;bool&gt;
 
 [logger]
+show_logger_on_start=&lt;bool&gt;
+show_logger&lt;bool&gt;
+show_errors&lt;bool&gt;
+show_debug&lt;bool&gt;
+show_info&lt;bool&gt;
 show_on_start=&lt;bool&gt;
-show_errors=&lt;bool&gt;
-show_debug=&lt;bool&gt;
-show_info=&lt;bool&gt;</pre>
+
+[i18n]
+language=&lt;string&gt;</pre>
 </div>
 <dl class="method">
 <dt id="base.gui.Settings.Settings.genericValue">
 <tt class="descname">genericValue</tt><big>(</big><em>key</em>, <em>default</em><big>)</big><a class="headerlink" href="#base.gui.Settings.Settings.genericValue" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns an arbitrary settings value, corrosponding to <cite>key</cite>.
 The <cite>default</cite> value is used should the <cite>key</cite> contain no value.</p>
-<p>Parameters:</p>
-<ul class="simple">
-<li><cite>key</cite>: the name of the key to get the value from.</li>
-<li><cite>default</cite>: the value to be used as fallback if <cite>key</cite> contains
-no value.</li>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>key</strong> (<em>string</em>) &#8211; the name of the key to get the value from.</li>
+<li><strong>default</strong> &#8211; the value to be used as fallback if <cite>key</cite>
+contains no value.</li>
 </ul>
+</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="method">
 <dt id="base.gui.Settings.Settings.setGenericValue">
 <tt class="descname">setGenericValue</tt><big>(</big><em>key</em>, <em>value</em><big>)</big><a class="headerlink" href="#base.gui.Settings.Settings.setGenericValue" title="Permalink to this definition">¶</a></dt>
 <dd><p>Utility method for setting an arbitrary setting value.</p>
-<p>Parameters:</p>
-<ul class="simple">
-<li><cite>key</cite>: the key for the value.</li>
-<li><cite>value</cite>: the value to be saved.</li>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>key</strong> (<em>string</em>) &#8211; the key for the value.</li>
+<li><strong>value</strong> &#8211; the value to be saved.</li>
 </ul>
+</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 </dd></dl>
@@ -311,23 +337,37 @@ save settings in the main luma settings file.</p>
 <tt class="descname">pluginValue</tt><big>(</big><em>key</em>, <em>default</em><big>)</big><a class="headerlink" href="#base.gui.Settings.PluginSettings.pluginValue" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns the plugin settings value for the <cite>key</cite>, if such a
 value exists. If not the <cite>default</cite> value is returned.</p>
-<p>Parameters:</p>
-<ul class="simple">
-<li><cite>key</cite>: the name of the key to get the value from.</li>
-<li><cite>default</cite>: the value to be used as fallback if <cite>key</cite> contains
-no value.</li>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>key</strong> (<em>string</em>) &#8211; the name of the key to get the value from.</li>
+<li><strong>default</strong> &#8211; the value to be used as fallback if <cite>key</cite>
+contains no value.</li>
 </ul>
+</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="method">
 <dt id="base.gui.Settings.PluginSettings.setPluginValue">
 <tt class="descname">setPluginValue</tt><big>(</big><em>key</em>, <em>value</em><big>)</big><a class="headerlink" href="#base.gui.Settings.PluginSettings.setPluginValue" title="Permalink to this definition">¶</a></dt>
 <dd><p>Saves a <cite>value</cite> associated with a <cite>key</cite> to the settings file.</p>
-<p>Parameters:</p>
-<ul class="simple">
-<li><cite>key</cite>: the key for the value.</li>
-<li><cite>value</cite>: the value to be saved.</li>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>key</strong> (<em>string</em>) &#8211; the key for the value.</li>
+<li><strong>value</strong> &#8211; the value to be saved.</li>
 </ul>
+</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 </dd></dl>
@@ -345,7 +385,7 @@ available application translations.</p>
 <dl class="attribute">
 <dt id="base.util.i18n.LanguageHandler.availableLanguages">
 <tt class="descname">availableLanguages</tt><a class="headerlink" href="#base.util.i18n.LanguageHandler.availableLanguages" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns a dictionary containing all available language 
+<dd><p>Returns a dictionary containing all available language
 translations for the application. The dictionary returned
 is on the form:</p>
 <div class="highlight-python"><pre>langDict = {
@@ -361,19 +401,23 @@ is on the form:</p>
 <tt class="descname">getQmFile</tt><big>(</big><em>locale=''</em><big>)</big><a class="headerlink" href="#base.util.i18n.LanguageHandler.getQmFile" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns the <tt class="docutils literal"><span class="pre">.qm</span></tt> files that matches <cite>locale</cite>. If <cite>locale</cite>
 is empty or <tt class="xref docutils literal"><span class="pre">None</span></tt>, the <tt class="docutils literal"><span class="pre">.qm</span></tt> file for <tt class="docutils literal"><span class="pre">en</span></tt> is returned.</p>
-<p>Paramters:</p>
-<ul class="simple">
-<li><cite>locale</cite>: a two-letter lowercase ISO 639 language code, with
-a possible two-letter uppercase ISO 3199 country code, that
-corresponds to one of the <tt class="docutils literal"><span class="pre">i18n</span></tt> aliases in the resource
-file.</li>
-</ul>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Parameters:</th><td class="field-body"><strong>locale</strong> (<em>string</em>) &#8211; a two-letter lowercase ISO 639 language code,
+with a possible two-letter uppercase ISO 3199 country code,
+that corresponds to one of the <tt class="docutils literal"><span class="pre">i18n</span></tt> aliases in the
+resource file.</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="base.util.i18n.LanguageHandler.translationPath">
 <tt class="descname">translationPath</tt><a class="headerlink" href="#base.util.i18n.LanguageHandler.translationPath" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns the full path to the directory containing the 
+<dd><p>Returns the full path to the directory containing the
 translation files.</p>
 </dd></dl>
 
@@ -386,13 +430,20 @@ translation files.</p>
 <dt id="base.util.IconTheme.iconFromTheme">
 <tt class="descclassname">base.util.IconTheme.</tt><tt class="descname">iconFromTheme</tt><big>(</big><em>icon</em>, <em>fallback</em><big>)</big><a class="headerlink" href="#base.util.IconTheme.iconFromTheme" title="Permalink to this definition">¶</a></dt>
 <dd><p>Utility method for getting icons from default X11 icon theme.</p>
-<p>Returns a <tt class="docutils literal"><span class="pre">QIcon</span></tt> from the system icon theme if a match is found,
-if not the <cite>fallback</cite> is used.</p>
-<p>Parameters:</p>
-<ul class="simple">
-<li><cite>icon</cite>: the name of the icon from the icon theme.</li>
-<li><cite>fallback</cite>: the name of the fallback icon.</li>
+<p>Returns a <tt class="docutils literal"><span class="pre">QIcon</span></tt> from the X11 system-icon theme if a match is
+found, else the <cite>fallback</cite> is used.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>icon</strong> (<em>string</em>) &#8211; the name of the icon in the X11 icon-theme.</li>
+<li><strong>fallback</strong> &#8211; the name of the fallback icon.</li>
 </ul>
+</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="function">
@@ -401,31 +452,24 @@ if not the <cite>fallback</cite> is used.</p>
 <dd><p>Utility method for converting a <tt class="docutils literal"><span class="pre">QIcon</span></tt> to a <tt class="docutils literal"><span class="pre">QPixmap</span></tt>.
 Useful when trying to use icons from a X11 iconTheme but need a
 pixmap.</p>
-<p>Returns a <tt class="docutils literal"><span class="pre">QPixmap</span></tt> from the system icon theme if a match is
-found, if not, the <cite>fallback</cite> is used.</p>
-<p>Parameters:</p>
-<ul>
-<li><p class="first"><cite>icon</cite>: the name of the icon from the icon theme.</p>
-</li>
-<li><p class="first"><cite>fallback</cite>: the name of the fallback icon.</p>
-</li>
-<li><p class="first"><cite>widht</cite>: the width of the icon, default is 48.</p>
-</li>
-<li><p class="first"><cite>height</cite>: the height of the icon, default is 48.</p>
-</li>
-<li><dl class="first docutils">
-<dt><cite>mode</cite>: the icon mode, default is <tt class="docutils literal"><span class="pre">QIcon.Normal</span></tt>,</dt>
-<dd><p class="first last">(see <a class="reference external" href="http://doc.trolltech.com/4.7/qicon.html#Mode-enum">http://doc.trolltech.com/4.7/qicon.html#Mode-enum</a>).</p>
-</dd>
-</dl>
-</li>
-<li><dl class="first docutils">
-<dt><cite>state</cite>: the icon state, default is <tt class="docutils literal"><span class="pre">QIcon.Off</span></tt>,</dt>
-<dd><p class="first last">(see <a class="reference external" href="http://doc.trolltech.com/4.7/qicon.html#State-enum">http://doc.trolltech.com/4.7/qicon.html#State-enum</a>).</p>
-</dd>
-</dl>
-</li>
+<p>Returns a <tt class="docutils literal"><span class="pre">QPixmap</span></tt> from the X11 system icon-theme if a match is
+found, else the <cite>fallback</cite> is used.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>icon</strong> (<em>string</em>) &#8211; the name of the icon in the icon theme.</li>
+<li><strong>fallback</strong> (<em>string</em>) &#8211; the name of the fallback icon.</li>
+<li><strong>widht</strong> &#8211; the width of the icon, default is 48.</li>
+<li><strong>height</strong> (<em>int</em>) &#8211; the height of the icon, default is 48.</li>
+<li><strong>mode</strong> (see <a class="reference external" href="http://doc.trolltech.com/4.7/qicon.html#Mode-enum">http://doc.trolltech.com/4.7/qicon.html#Mode-enum</a>) &#8211; the icon mode, default is <tt class="docutils literal"><span class="pre">QIcon.Normal</span></tt>,</li>
+<li><strong>state</strong> (see <a class="reference external" href="http://doc.trolltech.com/4.7/qicon.html#State-enum">http://doc.trolltech.com/4.7/qicon.html#State-enum</a>) &#8211; the icon state, default is <tt class="docutils literal"><span class="pre">QIcon.Off</span></tt>,</li>
 </ul>
+</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 </div>
@@ -447,8 +491,8 @@ platform. If it is not found it will be created. Either way the
 path will be returned.</p>
 <p>Returns a tuple (success, prefix), where <tt class="docutils literal"><span class="pre">success</span></tt> is a boolean
 value indicating wheter the config prefix path exists. It will be
-<tt class="xref docutils literal"><span class="pre">True</span></tt> if the path existed or was successfully created. If it 
-doesn&#8217;t exists, and we don&#8217;t have write permissions, it will be 
+<tt class="xref docutils literal"><span class="pre">True</span></tt> if the path existed or was successfully created. If it
+doesn&#8217;t exists, and we don&#8217;t have write permissions, it will be
 <tt class="xref docutils literal"><span class="pre">False</span></tt>. In this case we will return the system temp directory.</p>
 </dd></dl>
 
@@ -461,11 +505,11 @@ the location of this module, and joining it with the required
 number of levels up to the root.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">The use of __file__ most  likely will cause some issues if 
+<p class="last">The use of __file__ most  likely will cause some issues if
 Luma is packaged with</p>
 </div>
 <p>Returnes the absolute file path to the luma root directory, without
-the trailing separator -&gt; <tt class="docutils literal"><span class="pre">/full/path/to/luma</span></tt></p>
+the trailing separator: <tt class="docutils literal"><span class="pre">/full/path/to/luma</span></tt> .</p>
 </dd></dl>
 
 <dl class="function">

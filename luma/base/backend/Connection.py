@@ -6,7 +6,7 @@
 #     Christian Forfang, <cforfang@gmail.com>
 #     Einar Uvsløkk, <einar.uvslokk@linux.com>
 #
-# Copyright (c) 2003, 2004 
+# Copyright (c) 2003, 2004
 #     Wido Depping, <widod@users.sourceforge.net>
 #
 # This program is free software: you can redistribute it and/or modify
@@ -25,10 +25,10 @@
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 !! WARNING                                                                  !!
 !!                                                                          !!
-!! This version of the LumaConnection class is not finished, and should be  !! 
+!! This version of the LumaConnection class is not finished, and should be  !!
 !! used only in testing environments. This implementation is an attempt to  !!
 !! cleanup the old implementation, where one of the goals is to get rid of  !!
-!! all PyQt4 dependencies (at least all the PyQt4.QtGui dependencies).      !! 
+!! all PyQt4 dependencies (at least all the PyQt4.QtGui dependencies).      !!
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 """
 import ldap
@@ -54,19 +54,20 @@ from ..util import escapeDnChars
 
 hasSSLlibrary = False
 
+
 class LumaConnection(object):
     """This class is a wrapper around the ldap functions.
-    
+
     It is provided to access ldap data easier.
     The following public LDAP-wrapper methods is available:
-    
+
     - bind:   Binds to an LDAP server
     - unbind: Unbinds from an LDAP server
     - search: Performs an asynchronous search operation
     - add:    Performs an synchronous add operation
     - modify: Performs an synchronous modify operation
     - delete: Performs an synchronous delete operation
-    
+
     Every operation is executed in its own worker thread.
     """
 
@@ -76,11 +77,10 @@ class LumaConnection(object):
     def __init__(self, serverObject=None):
         """A LumaConnectionException will be raised if serverObject is
         not a proper server object.
-         
-        Parameters:
 
-        - `serverObject`: a `ServerObject` which contains all meta 
-          information for accessing servers.
+        :param serverObject: a `ServerObject` which contains all meta
+         information for accessing servers.
+        :type serverObject: ServerObject
         """
         if not isinstance(serverObject, ServerObject):
             e = 'Expected ServerObject type. Passed object was {0}'
@@ -114,10 +114,8 @@ class LumaConnection(object):
 
         Returns ``True`` is ``INVALID_CREDENTIALS`` is caught in the
         `workerThread`.
-        
-        Parameters:
 
-        - `workerThread`: the worker thread to examine.
+        :param workerThread: the worker thread to examine.
         """
         return isinstance(workerThread.exceptionObject,
                           ldap.INVALID_CREDENTIALS)
@@ -125,17 +123,15 @@ class LumaConnection(object):
     def __blankPassword(self, workerThread):
         """Check wheter or not the workerThread ServerObject bind
         password is blank.
-        
+
         .. note:: ``UNWILLING_TO_PERFORM`` on bind usually means trying
            to bind with blank password
-        
+
         Returns ``True`` if the bind password for `ServerObject` in the
         `workerThread` is empty and ``UNWILLING_TO_PERFORM`` is caught,
         ``False`` otherwise.
 
-        Paramters:
-
-        - `workerThread`: the worker thread to examine.
+        :param workerThread: the worker thread to examine.
         """
         return workerThread.serverObject.bindPassword == "" and \
                 isinstance(workerThread.exceptionObject,
@@ -143,37 +139,33 @@ class LumaConnection(object):
 
     def __overridePassword(self, serverObject):
         """Validates if we should override the password.
-        
-        Returns ``True`` if the `ServerObject` is found in the password
-        map, ``False`` otherwise. 
 
-        Parameters:
-        
-        - `serverObject`: the ServerObject to test.
+        Returns ``True`` if the `ServerObject` is found in the password
+        map, ``False`` otherwise.
+
+        :param serverObject: the ServerObject to test.
         """
         return LumaConnection.__passwordMap.has_key(serverObject.name)
 
     def __ignoreCertificate(self, serverObject):
         """Validates if we should ignore the certificate.
-        
-        Returns ``True`` if the `ServerObject` is found in the 
-        certificate map, ``False`` otherwise. 
-        
-        Parameters:
-        
-        - `serverObject`: the ServerObject to test.
+
+        Returns ``True`` if the `ServerObject` is found in the
+        certificate map, ``False`` otherwise.
+
+        :param serverObject: the ServerObject to test.
         """
         return LumaConnection.__certMap.has_key(serverObject.name)
 
     def __certificateError(self, workerThread):
         """Checks if we have a possible certificate error, not caught
         by default ldap operations.
-        
+
         - with ``SSL`` enabled, we get a ``SERVER_DOWN`` on wrong
           certificate.
         - with ``TLS`` enabled, we get a ``CONNECT_ERROR`` on wrong
           certificate
-        
+
         .. note:: The server error can be raised on other issues as
            well.
 
@@ -181,10 +173,8 @@ class LumaConnection(object):
         the worker thread with encryption method ``SSL``. ``True`` if a
         ``CONNECT_ERROR`` exception is caught in the worker thread with
         encryption method ``TSL``, ``False`` otherwise
-        
-        Parameters:
 
-        - `workerThread`: the worker thread to examine.
+        :param workerThread: the worker thread to examine.
         """
         cert_error = False
         if workerThread.serverObject.encryptionMethod == ServerEncryptionMethod.SSL:
@@ -195,7 +185,7 @@ class LumaConnection(object):
 
     def __bind(self):
         """Helper method for the LDAP bind operation.
-        
+
         Retruns the worker thread object.
         """
         if self.__overridePassword(self.serverObject):
@@ -217,12 +207,12 @@ class LumaConnection(object):
     def bind(self):
     #def bind(self, checkCert=ServerCheckCertificate.Never, password=''):
         """Bind to LDAP server.
-        
+
         Exceptions will be raised on certificate error and invalid or
         blank passwords.
-        
+
         Returns a tuple: (``success``, ``exceptionObj``). The boolean
-        ``success`` value indicates wheter the bind operation was 
+        ``success`` value indicates wheter the bind operation was
         successfull or not. If ``success`` is ``True``, ``exceptionObj``
         is ``None``. If ``success`` is ``False``, ``exceptionObj`` will
         contain the worker thread excpetion object.
@@ -272,24 +262,29 @@ class LumaConnection(object):
     def search(self, base="", scope=ldap.SCOPE_BASE, filter="(objectClass=*)",
                attrList=None, attrsonly=0, sizelimit=0):
         """Asynchronous search.
-        
+
         Returns a tuple: (``success``, ``result``, ``exceptionObj``).
-        The boolean ``success`` value indicates wheter the search 
+        The boolean ``success`` value indicates wheter the search
         operation was successfull or not. If ``success`` is ``True``,
-        result will contain the returnes result as a list, and 
+        result will contain the returnes result as a list, and
         ``exceptionObj`` is ``None``. If success is ``False``, result
         is ``None``, and exceptionObj will contain the worker thread
         excpetion object.
-        
+
         Parameters:
 
-        - `base`: The base entry to start the search from.
-        - `scope`: The search scope. must be one of ``SCOPE_BASE`` (0),
-          ``SCOPE_ONELEVEL`` (1) or ``SCOPE_SUBTREE`` (2)
-        - `filter`: The filter string to apply on the search .
-        - `attrList`
-        - `attrsonly`: 
-        - `sizelimit`: The limit for entries to retrive
+        :param base: The base entry to start the search from.
+        :param scope: The search scope. must be one of ``SCOPE_BASE``
+         (0), ``SCOPE_ONELEVEL`` (1) or ``SCOPE_SUBTREE`` (2).
+        :type scope: int
+        :param filter: The filter string to apply on the search .
+        :type:filter: string
+        :param attrList:
+        :type attrList: list
+        :param attrsonly:
+        :type attrsonly: int
+        :param sizelimit`: The limit for entries to retrive
+        :type sizelimit: int
         """
         workerThread = WorkerThreadSearch(self.ldapServerObject)
         workerThread.base = base
@@ -342,18 +337,17 @@ class LumaConnection(object):
 
     def add(self, dn, modlist):
         """Synchronous add.
-        
-        Returns a tuple: (``success``, ``exceptionObj``). The boolean
-        ``success`` value indicates wheter the add operation was 
-        successfull or not. If ``success`` is        ``True``, 
-        ``exceptionObj`` is ``None``. If ``success`` is ``False``, 
-        ``exceptionObj`` will contain the worker thread excpetion 
-        object.
-        
-        Parameters:
 
-        - `dn`:
-        - `modlist`:
+        Returns a tuple: (success, exceptionObj). The boolean success
+        value indicates wheter the add operation was successfull or
+        not. If success is True, exceptionObj is None. If success is
+        False, exceptionObj will contain the worker thread excpetion
+        object.
+
+        :param dn:
+        :type dn: string
+        :param modlist:
+        :type modlist: list
         """
         workerThread = WorkerThreadAdd(self.ldapServerObject)
         workerThread.dn = dn
@@ -380,17 +374,17 @@ class LumaConnection(object):
 
     def modify(self, dn, modlist=None):
         """Synchronous modify.
-        
-        Returns a tuple, (success, exceptionObj)
-            The boolean success value indicates wheter the modify
-            operation was successfull or not. If success is True, 
-            exceptionObj is None. If success is False, exceptionObj
-            will contain the worker thread excpetion object.
 
-        Parameters:
+        Returns a tuple: (success, exceptionObj). The boolean success
+        value indicates wheter the modify operation was successfull or
+        not. If success is True, exceptionObj is None. If success is
+        False, exceptionObj will contain the worker thread excpetion
+        object.
 
-        - `dn`: 
-        - `modlist`:
+        :param dn:
+        :type dn: string
+        :param modlist:
+        :type modlist: list
         """
 
         if modlist == None:
@@ -421,16 +415,15 @@ class LumaConnection(object):
 
     def delete(self, dnDelete=None):
         """Synchronous delete.
-        
-        Returns a tuple, (success, exceptionObj)
-            The boolean success value indicates wheter the delete
-            operation was successfull or not. If success is True, 
-            exceptionObj is None. If success is False, exceptionObj
-            will contain the worker thread excpetion object.
-        
-        Parameters:
 
-        - `dnDelete`: 
+        Returns a tuple: (success, exceptionObj). The boolean success
+        value indicates wheter the delete operation was successfull or
+        not. If success is True, exceptionObj is None. If success is
+        False, exceptionObj will contain the worker thread excpetion
+        object.
+
+        :param dnDelete: the dn to delete
+        :type dnDelete: object
         """
 
         if dnDelete == None:
@@ -459,13 +452,16 @@ class LumaConnection(object):
             return (False, workerThread.exceptionObject)
 
     def updateDataObject(self, dataObject):
-        """Updates the given SmartDataObject, by doing search for the dn, 
-        and modify on the object entry. 
+        """Updates the given SmartDataObject, by doing search for the dn,
+        and modify on the object entry.
 
-        Returns a tuple, (dn|False, modlist|exceptionObj)
-            If the procedure is successfull, the dn and the modlist
-            will be returned, if not False, and the worker thread
-            exception object is returned.
+        Returns a tuple: (dn|False, modlist|exceptionObj). If the
+        procedure is successfull, the dn and the modlist will be
+        returned, if not False, and the worker thread exception object
+        is returned.
+
+        :param dataObject:
+        :type dataObject: object
         """
         success, resultList, exceptionObject = self.search(dataObject.getDN(), ldap.SCOPE_BASE)
 
@@ -482,24 +478,23 @@ class LumaConnection(object):
 
     def addDataObject(self, dataObject):
         """Adds the given SmartDataObject to the server.
-        
+
         @return: [same as add()]
         """
         return self.add(dataObject.getDN(), ldap.modlist.addModlist(dataObject.data))
 
     def getBaseDNList(self):
         """Get the baseDN list off of an LDAP server.
-        
-        FIXME: implement better error handling for function which call 
+
+        FIXME: implement better error handling for function which call
                getBaseDNList. Error handling inside is okay.
-        
-        Returns a tuple, (success, result, exceptionObj|error)
-            The boolean success value indicates wheter the search
-            operation was successfull or not. If success is True, 
-            result contains the list of baseDN from the server, and
-            exceptionObj is None. If success is False, result is None,
-            end exceptionObj will contain the worker thread excpetion
-            object.
+
+        Returns a tuple, (success, result, exceptionObj|error) The
+        boolean success value indicates wheter the search operation
+        was successfull or not. If success is True, result contains the
+        list of baseDN from the server, and exceptionObj is None. If
+        success is False, result is None, end exceptionObj will contain
+        the worker thread excpetion object.
         """
         bindSuccess, exceptionObject = self.bind()
 
@@ -672,11 +667,11 @@ class WorkerThreadBind(threading.Thread):
 
                 sasl_auth = ldap.sasl.sasl(sasl_cb_value_dict, sasl_mech)
 
-                # If python-ldap has no support for SASL, it doesn't have 
+                # If python-ldap has no support for SASL, it doesn't have
                 # sasl_interactive_bind_s as a method.
                 try:
                     if "EXTERNAL" == sasl_mech:
-                        #url = ldapurl.LDAPUrl(urlscheme="ldapi", 
+                        #url = ldapurl.LDAPUrl(urlscheme="ldapi",
                         #    hostport = self.serverObject.hostname.replace("/", "%2f"),
                         #    dn = self.serverObject.baseDN)
 

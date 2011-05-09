@@ -7,7 +7,7 @@
 #     Einar Uvsløkk, <einar.uvslokk@linux.com>
 #     Christian Forfang, <cforfang@gmail.com>
 #
-# Copyright (c) 2003, 2004, 2005 
+# Copyright (c) 2003, 2004, 2005
 #     Wido Depping, <widod@users.sourceforge.net>
 #
 # This program is free software: you can redistribute it and/or modify
@@ -87,17 +87,17 @@ class TempLogHandler(logging.Handler):
 
 def startApplication(argv, verbose=False, clear=[], dirs={}):
     """Preparing Luma for take-off
-    
+
     Parameters:
 
     - `verbose`: boolean value indicating whether or not to print more
       than error messages to console.
     - `clear`: a list containing what should be cleared before start.
-    - `dirs`: a dictionary containing containing possible dirs to 
+    - `dirs`: a dictionary containing containing possible dirs to
       consider on start-up.
     """
     app = Luma(argv)
-    
+
     """ Fixed but not removed in case we change our minds """
     #import platform
     #if sys.platform.lower().startswith('win'):
@@ -124,7 +124,7 @@ def startApplication(argv, verbose=False, clear=[], dirs={}):
     l.addHandler(tmpLH)
 
     settings = Settings()
-    # Because we use QSettings for the application settings we 
+    # Because we use QSettings for the application settings we
     # facilitate QSettings if the user wishes to start Luma fresh
     if 'config' in clear:
         clear.remove('config')
@@ -151,7 +151,6 @@ def startApplication(argv, verbose=False, clear=[], dirs={}):
         consoleHandler.setFormatter(formatter)
         l.addHandler(consoleHandler)
 
-    
     __handleClearOptions(configPrefix, clear)
 
     # Initialize the splash screen
@@ -163,8 +162,8 @@ def startApplication(argv, verbose=False, clear=[], dirs={}):
 
     # Set up logging to the loggerwidget
     llh = LumaLogHandler(mainwin.loggerWidget)
-    l.removeHandler(tmpLH) # Stop temp-logging
-    l.addHandler(llh) # Start proper logging
+    l.removeHandler(tmpLH)  # Stop temp-logging
+    l.addHandler(llh)  # Start proper logging
 
     # Populate the loggerWidget with the saved entries
     for x in tmpLH.logList:
@@ -176,7 +175,7 @@ def startApplication(argv, verbose=False, clear=[], dirs={}):
 
     splash.finish(mainwin)
 
-    # Add a exception hook to handle all 
+    # Add a exception hook to handle all
     # exceptions missed in the main application
     sys.excepthook = unhandledException
 
@@ -228,7 +227,7 @@ def main(argv):
     #       been a cool feature to be able to launch Luma with different
     #       configuration locations.
     #           The option to specify yet another plugin directory to look
-    #       for plugins could also be cool. Especially if you are in the 
+    #       for plugins could also be cool. Especially if you are in the
     #       midle of developing a new plugin, a want to do some occasionally
     #       testing.
     #
@@ -309,10 +308,11 @@ with the following text and a short description of what you were doing:
     # Make sure the cursor is normal
     QApplication.restoreOverrideCursor()
 
+
 def checkDependencies():
     """Here we check if the modules luma depends upon is installed.
     If at least one of these fail, we exit with an informative
-    message to the user. If not we carry on with the application 
+    message to the user. If not we carry on with the application
     launch.
     """
     failed = 0

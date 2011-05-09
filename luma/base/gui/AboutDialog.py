@@ -30,7 +30,7 @@ from ..util.IconTheme import iconFromTheme
 
 class AboutDialog(QDialog, Ui_AboutDialog):
     """ A simple about dialog.
-    
+
     It includes basic application information, a short outline of the
     application license, and of course credit is given where credit is
     due.
@@ -40,8 +40,9 @@ class AboutDialog(QDialog, Ui_AboutDialog):
 
         super(AboutDialog, self).__init__(parent)
         self.setupUi(self)
-        
-        self.setWindowIcon(iconFromTheme('help-about', ':/icons/16/help-about'))
+
+        self.setWindowIcon(iconFromTheme(
+            'help-about', ':/icons/16/help-about'))
         self.logo.setPixmap(QPixmap(':/icons/64/luma'))
         version = qApp.applicationVersion()
         self.nameAndVersion.setText('Luma {0}'.format(version))
@@ -59,7 +60,7 @@ class AboutDialog(QDialog, Ui_AboutDialog):
         """
         credits = QDialog()
         Ui_AboutCredits().setupUi(credits)
-        credits.exec_ ()
+        credits.exec_()
 
 
 # vim: tabstop=4 expandtab shiftwidth=4 softtabstop=4

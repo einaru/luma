@@ -18,44 +18,58 @@
 import re
 import base64
 
-def lumaStringEncode(tmpString):
-    tmpString = tmpString.replace("\\", "\\\\")
-    tmpString = tmpString.replace(",", r"\\\1")
 
-    return tmpString
+def lumaStringEncode(string):
+    string = string.replace("\\", "\\\\")
+    string = string.replace(",", r"\\\1")
 
-
-def lumaStringDecode(tmpString):
-    tmpString = unicode(tmpString)
-    tmpString = tmpString.replace(r"\\\1", ",")
-    tmpString = tmpString.replace("\\\\", "\\")
-
-    return tmpString
+    return string
 
 
-def isBinaryAttribute(tmpString):
-    if tmpString == None:
+def lumaStringDecode(string):
+    string = unicode(string)
+    string = string.replace(r"\\\1", ",")
+    string = string.replace("\\\\", "\\")
+
+    return string
+
+
+def isBinaryAttribute(attr):
+    """Returns ``True`` if `attr` is binary.
+
+    :param attr: the attribute to validate
+    :type attr: string
+    """
+    if attr == None:
         return False
 
     BINARY_PATTERN = '(^(\000|\n|\r| |:|<)|[\000\n\r\200-\377]+|[ ]+$)'
     binaryPattern = re.compile(BINARY_PATTERN)
 
-    if binaryPattern.search(tmpString) == None:
+    if binaryPattern.search(attr) == None:
         return False
     else:
         return True
 
 
-def encodeBase64(tmpString):
-    return base64.encodestring(tmpString)
+def encodeBase64(text):
+    """Returns `text` base64 encoded.
+
+    :param text: the text to encode.
+    :type text: string
+    """
+    return base64.encodestring(text)
+
 
 def encodeUTF8(text, strip=False):
     """Helper method to get text objects in unicode utf-8 encoding.
-    
-    @param text: 
-        the text object to encode.
-    @return: 
-        the encoded textobject.
+
+    Returns the `text` encoded in ``utf-8`` and possibly stripped.
+
+    :param text: the text to encode.
+    :type text: string
+    :param strip: wether or not to strip `text`.
+    :type strip: boolean
     """
     text = unicode(text).encode('utf-8')
     if strip:
@@ -63,22 +77,33 @@ def encodeUTF8(text, strip=False):
     return text
 
 
-def stripSpecialChars(tmpString):
-    tmpString = tmpString.replace(r'\5C', '\\')
-    tmpString = tmpString.replace(r'\2C', ',')
-    tmpString = tmpString.replace(r'\3D', '=')
-    tmpString = tmpString.replace(r'\2B', '+')
-    # tmpString = tmpString.replace(r'\"', '"')
-    tmpString = tmpString.replace(r'\22', '"')
-    tmpString = tmpString.replace(r'\3C', '<')
-    tmpString = tmpString.replace(r'\3E', '>')
-    tmpString = tmpString.replace(r'\3B', ';')
+def stripSpecialChars(string):
+    """Returns `string` with LDAP special chars stripped back to their
+    ascii equivalents. Pretty much the opposite of `escapeSpecialChars`.
 
-    return tmpString
+    :param string: the string to strip
+    :type string: string
+    """
+    string = string.replace(r'\5C', '\\')
+    string = string.replace(r'\2C', ',')
+    string = string.replace(r'\3D', '=')
+    string = string.replace(r'\2B', '+')
+    # string = string.replace(r'\"', '"')
+    string = string.replace(r'\22', '"')
+    string = string.replace(r'\3C', '<')
+    string = string.replace(r'\3E', '>')
+    string = string.replace(r'\3B', ';')
+
+    return string
 
 
-def escapeSpecialChars(tmpString):
-    tmpList = tmpString.split('=')
+def escapeSpecialChars(string):
+    """Returns `string` with all LDAP special chars escaped.
+
+    :param string: the string to escape.
+    :type string: string
+    """
+    tmpList = string.split('=')
 
     if 2 == len(tmpList):
         attribute = tmpList[0]
@@ -97,28 +122,85 @@ def escapeSpecialChars(tmpString):
 
     return tmpString
 
+
 specialCharDict = {
-    'NUL' : r'\00',
-    '"' : r'\22',
-    '(' : r'\28',
-    ')' : r'\29',
-    '*' : r'\2A',
-    '+' : r'\2B',
-    ',' : r'\2C',
-    '/' : r'\2F',
-    ';' : r'\3B',
-    '<' : r'\3C',
-    '=' : r'\3D',
-    '>' : r'\3E',
-    '\\' : r'\5C',
+    'NUL': r'\00',
+    '"': r'\22',
+    '(': r'\28',
+    ')': r'\29',
+    '*': r'\2A',
+    '+': r'\2B',
+    ',': r'\2C',
+    '/': r'\2F',
+    ';': r'\3B',
+    '<': r'\3C',
+    '=': r'\3D',
+    '>': r'\3E',
+    '\\': r'\5C',
 }
 
+
 def escapeSpecialChar(char):
-    """
-    @return: 
-        the escaped char
+    """Returnes the escaped `char`
     """
     return specialCharDict[char]
+
+
+def explodeDN(dnString):
+    """Returns a list of dn tokens. I.e. `dnString` is split into the
+    attribute it contains.
+
+    :param dnString: a dnString with attributes seperated by commas.
+    :type dnString: string
+    """
+
+    dnList = dnString.split(',')
+
+    tokenList = []
+    for x in xrange(0, len(dnList)):
+        value = dnList[x]
+        if "=" in value:
+            tokenList.append(value)
+        else:
+            if len(tokenList) > 0:
+                tokenList[-1] = tokenList[-1] + ',' + value
+
+    return tokenList
+
+
+def getSortedDnList(dnList):
+    """Returns a sorted list for distinguished names.
+
+    The higher the object in the tree, the more it will be at the
+    beginning of the sorted list. Leaves should be at the end of the
+    list.
+
+    :param dnList: a list of distinguised names.
+    :type dnList: list
+    """
+    dnList.sort(__dnCompare)
+
+    return dnList
+
+
+def escapeDnChars(dn):
+    """Returns `dn` with all spesial chars escapes.
+
+    :param dn: the DN to escape.
+    :type dn: string
+    """
+    dn = dn.replace('\,', r'\2C')
+    dn = dn.replace('\=', r'\3D')
+    dn = dn.replace('\+', r'\2B')
+
+    return dn
+
+
+def __dnCompare(firstDN, secondDN):
+    firstList = explodeDN(firstDN)
+    secondList = explodeDN(secondDN)
+
+    return cmp(len(firstList), len(secondList))
 
 
 def testEscaping():
@@ -135,54 +217,8 @@ def testEscaping():
     assert "cn=\"foo\"" == stripSpecialChars(r"cn=\22foo\22")
 
 
-def explodeDN(tmpString):
-    """ Function for spliting the dn into it's parts.
-    """
-
-    tmpList = tmpString.split(',')
-
-    tokenList = []
-    for x in xrange(0, len(tmpList)):
-        value = tmpList[x]
-        if "=" in value:
-            tokenList.append(value)
-        else:
-            if len(tokenList) > 0:
-                tokenList[-1] = tokenList[-1] + ',' + value
-
-    return tokenList
-
-
-def getSortedDnList(tmpList):
-    """ Returns a sorted list for distinguished names.
-    
-    The higher the object in the tree, the more it will be at the
-    beginning of the sorted list. Leaves should be at the end of the
-    list.
-    """
-    tmpList.sort(__dnCompare)
-
-    return tmpList
-
-
-def escapeDnChars(dn):
-    """ Escapes the characters in the dn.
-    """
-    dn = dn.replace('\,', r'\2C')
-    dn = dn.replace('\=', r'\3D')
-    dn = dn.replace('\+', r'\2B')
-
-    return dn
-
-
-def __dnCompare(firstDN, secondDN):
-    firstList = explodeDN(firstDN)
-    secondList = explodeDN(secondDN)
-
-    return cmp(len(firstList), len(secondList))
-
-
 if __name__ == "__main__":
     testEscaping()
+
 
 # vim: tabstop=4 expandtab shiftwidth=4 softtabstop=4

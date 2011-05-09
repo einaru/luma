@@ -31,17 +31,18 @@ must implement the writeSettings method in the SettingsWidget class, as
 this method will be called by the Luma SettingsDialog when the save
 action is triggered.
 
-For more information on developing plugins for the Luma application, 
+For more information on developing plugins for the Luma application,
 please consult the documentation, both available with the source
 distribution and on the Luma website, http://luma.sf.net/ .
 """
 from PyQt4.QtCore import (QEvent)
 from PyQt4.QtGui import (QWidget)
 
+
 class AbstractLumaPlugin(QWidget):
     """Abstract Luma plugin.
     """
-    
+
     def __init__(self, parent=None, *args, **kwargs):
         super(AbstractLumaPluginSettings, self).__init__(parent, args, kwargs)
 
@@ -68,10 +69,10 @@ class AbstractLumaPlugin(QWidget):
 class AbstractLumaPluginSettings(QWidget):
     """Abstract Luma plugin settings widget.
     """
-    
+
     def __init__(self, parent=None, *args, **kwargs):
         super(AbstractLumaPluginSettings, self).__init__(self)
-    
+
     def writeSettings(self):
         """This method will be called from the Luma SettingsDialog, if
         the plugin has provided a settings widget.

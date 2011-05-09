@@ -24,9 +24,10 @@ from PyQt4.QtGui import (QCompleter, QWidget)
 from .Search import encodeUTF8
 from .gui.SearchFormDesign import Ui_SearchForm
 
+
 class SearchForm(QWidget, Ui_SearchForm):
     """The Luma search form widget.
-    
+
     This class provides easy getters for the various input and
     selection options provided by the widget.
     """
@@ -48,9 +49,12 @@ class SearchForm(QWidget, Ui_SearchForm):
     def __connectSlots(self):
         """Connect signals and slots.
         """
-        self.filterBoxEdit.currentIndexChanged['QString'].connect(self.onSearchCriteriaChanged)
-        self.filterBoxEdit.editTextChanged['QString'].connect(self.onSearchCriteriaChanged)
-        self.filterBoxEdit.lineEdit().returnPressed.connect(self.searchButton.animateClick)
+        self.filterBoxEdit.currentIndexChanged['QString'].connect(
+            self.onSearchCriteriaChanged)
+        self.filterBoxEdit.editTextChanged['QString'].connect(
+            self.onSearchCriteriaChanged)
+        self.filterBoxEdit.lineEdit().returnPressed.connect(
+            self.searchButton.animateClick)
 
     def __escape(self, text):
         """FIXME: Dummy escaping
@@ -63,7 +67,7 @@ class SearchForm(QWidget, Ui_SearchForm):
 
     def onSearchCriteriaChanged(self, text):
         """Slot for the search edit widget
-        
+
         Enable or disable the search button. If `text` is empty the
         search button is disabled. If not it is enabled.
         """
@@ -71,9 +75,9 @@ class SearchForm(QWidget, Ui_SearchForm):
 
     def populateBaseDNBox(self, baseDNList=[]):
         """Populate the base DN combo box with a available base DNs.
-        
+
         Parameters:
-        
+
         - `baseDNList`: a list containing base DN.
         """
         self.baseDNBox.clear()
@@ -93,14 +97,14 @@ class SearchForm(QWidget, Ui_SearchForm):
 
     def initAutoComplete(self, attributes):
         """Initialize the filter input auto completion.
-        
-        Try to fetches the list of available `attributes` from the 
+
+        Try to fetches the list of available `attributes` from the
         server selected in the server combo box. This list will be used
         to give the user auto complete options while building search
         filters.
         """
         # If we get an attribute list off the server we set up the
-        # attribute auto completer.  
+        # attribute auto completer.
         if len(attributes) > 0:
             self.completer = QCompleter(attributes, self)
             self.completer.setCaseSensitivity(Qt.CaseSensitive)
@@ -113,22 +117,21 @@ class SearchForm(QWidget, Ui_SearchForm):
         self.filterBoxEdit.insertItem(0, filter)
         self.filterBoxEdit.setCurrentIndex(0)
         self.searchButton.clicked.emit(True)
-    
+
     def onSearchError(self, isError, msg=''):
         """Displays a error message if the search operation fails.
-        
+
         Parameters:
-        
+
         - `isError`: a boolean value indicating if it is an error or
           not. That is, we also use this method to hide any previous
           error messages on new a search.
         - `e`: the exception object returned from the search operation,
-          cointaining information about the error. 
+          cointaining information about the error.
         """
         self.errorLabel.setText(msg)
         self.errorIcon.setVisible(isError)
         self.errorLabel.setVisible(isError)
-        
 
     @property
     def server(self):
@@ -162,7 +165,7 @@ class SearchForm(QWidget, Ui_SearchForm):
 
 class AttributeCompleter(QCompleter):
     """Attribute Completer for the search plugin.
-    
+
     Subclassing and customizing the QCompleter inorder to provide smart
     autocomplete options on the available attribute list for a selected
     server.
@@ -170,9 +173,9 @@ class AttributeCompleter(QCompleter):
 
     def __init__(self, attributeList=[], parent=None):
         """Initializes the `AttributeCompleter`.
-        
+
         Parameters:
-        
+
         - `attributeList`: a list of available attributes on the
           selected LDAP server. This should be fetched from the server
           schema.

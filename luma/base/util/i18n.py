@@ -19,6 +19,7 @@
 # along with this program.  If not, see http://www.gnu.org/licenses/
 from PyQt4.QtCore import (QDir, QLocale, QString)
 
+
 class LanguageHandler(object):
     """Helper class providing useful functionality for handling
     available application translations.
@@ -39,7 +40,7 @@ class LanguageHandler(object):
         name) as value. The information is based on the ``i18n``entries
         in the ``resources.py`` module, where the alias for a one
         translation file is locale code for the translation.
-        
+
         If the translation file is named ``luma_nn_NO.ts`` the
         corresponding alias for this file will be ``nb_NO``. Further
         more ``nb`` will map to ``QLocale.NorwegianBokmal``and ``NO``
@@ -64,7 +65,7 @@ class LanguageHandler(object):
 
     @property
     def availableLanguages(self):
-        """Returns a dictionary containing all available language 
+        """Returns a dictionary containing all available language
         translations for the application. The dictionary returned
         is on the form::
 
@@ -78,7 +79,7 @@ class LanguageHandler(object):
 
     @property
     def translationPath(self):
-        """Returns the full path to the directory containing the 
+        """Returns the full path to the directory containing the
         translation files.
         """
         return self.__translationPath
@@ -86,13 +87,12 @@ class LanguageHandler(object):
     def getQmFile(self, locale=''):
         """Returns the ``.qm`` files that matches `locale`. If `locale`
         is empty or ``None``, the ``.qm`` file for ``en`` is returned.
-        
-        Paramters:
-        
-        - `locale`: a two-letter lowercase ISO 639 language code, with
-          a possible two-letter uppercase ISO 3199 country code, that
-          corresponds to one of the ``i18n`` aliases in the resource
-          file.
+
+        :param locale: a two-letter lowercase ISO 639 language code,
+          with a possible two-letter uppercase ISO 3199 country code,
+          that corresponds to one of the ``i18n`` aliases in the
+          resource file.
+        :type locale: string
         """
         if locale == '' or locale == None:
             locale = 'en'

@@ -22,23 +22,24 @@ import os
 import platform
 import tempfile
 
+
 def getLumaRoot():
     """Utility method for locating the Luma root location.
-    
+
     This is done by using pythons magical __file__ attribute, to get
     the location of this module, and joining it with the required
     number of levels up to the root.
-    
+
     .. note::
-        The use of __file__ most  likely will cause some issues if 
-        Luma is packaged with 
-    
+        The use of __file__ most  likely will cause some issues if
+        Luma is packaged with
+
     Returnes the absolute file path to the luma root directory, without
-    the trailing separator -> ``/full/path/to/luma``
+    the trailing separator: ``/full/path/to/luma`` .
     """
     levelsUp = '..' + os.path.sep + '..'
     return os.path.abspath(os.path.join(os.path.split(__file__)[0], levelsUp))
- 
+
 
 def getConfigPrefix():
     """We must determine what platform we're running on. Making sure
@@ -46,19 +47,19 @@ def getConfigPrefix():
     directories,
 
     The platform validation, can be done through a number of modules::
-    
+
         os.name           -> posix, nt
         sys.platform      -> linux2, windows, darwin
         platform.system() -> Linux, Windows, Darwin
-    
+
     This method will check for a existing config folder based on the
     platform. If it is not found it will be created. Either way the
     path will be returned.
-    
+
     Returns a tuple (success, prefix), where ``success`` is a boolean
     value indicating wheter the config prefix path exists. It will be
-    ``True`` if the path existed or was successfully created. If it 
-    doesn't exists, and we don't have write permissions, it will be 
+    ``True`` if the path existed or was successfully created. If it
+    doesn't exists, and we don't have write permissions, it will be
     ``False``. In this case we will return the system temp directory.
     """
     prefix = ''
@@ -80,7 +81,8 @@ def getConfigPrefix():
         # Best practise config storage on Mac OS:
         # http://developer.apple.com/tools/installerpolicy.html
         # ~/Library/Application Support/luma
-        prefix = os.path.join(os.environ['HOME'], 'Library', 'Application Support', 'luma')
+        prefix = os.path.join(
+            os.environ['HOME'], 'Library', 'Application Support', 'luma')
 
     elif __platform == "Windows":
         # Best practise config storage on Windows:
@@ -95,8 +97,8 @@ def getConfigPrefix():
         try:
             os.mkdir(prefix)
         except (IOError, OSError):
-            # TODO Do some logging. We should load the application, but 
-            #      provide information to user that no settings will be 
+            # TODO Do some logging. We should load the application, but
+            #      provide information to user that no settings will be
             #      saved due to (most likely) file permission issues.
             #      Maybe prompt for a user spesific folder?
             prefix = tempfile.gettempdir()
@@ -104,20 +106,21 @@ def getConfigPrefix():
 
     return (success, prefix)
 
+
 def getUserHomeDir():
     """Helper method for finding the user home directory.
-    
+
     On UNIX systems this is achieved by using the python `os.getenv`
     module. On Windows NT systems users is able to have roaming or
     local profiles. For example:
 
     - ``CSIDL_APPDATA`` returns the roaming ``Application Data`` dir,
     - ``CSIDL_LOCAL_APPDATA`` returns the local home dir.
-    
+
     Returns the path to the user home directory.
     """
     try:
-        from win32com.shell import shellcon, shell         
+        from win32com.shell import shellcon, shell
         homedir = shell.SHGetFolderPath(0, shellcon.CSIDL_APPDATA, 0, 0)
     except ImportError:
         homedir = os.path.expanduser('~')

@@ -21,6 +21,7 @@
 from PyQt4.QtCore import QRegExp
 from PyQt4.QtGui import (QColor, QTextCharFormat, QSyntaxHighlighter)
 
+
 def format(color, style=''):
     """Return a QTextCharFormat with the given attributes.
     """
@@ -33,9 +34,9 @@ def format(color, style=''):
 
 
 STYLES = {
-    'keyword' : format('magenta'),
-    'brace' : format('blue'),
-    'operator' : format('red'),
+    'keyword': format('magenta'),
+    'brace': format('blue'),
+    'operator': format('red'),
 }
 
 
@@ -43,12 +44,12 @@ class LumaFilterHighlighter(QSyntaxHighlighter):
     """Enables highlighting of LDAP search filters.
     """
     keywords = ['objectClass']
-    braces = [ '\(', '\)']
+    braces = ['\(', '\)']
     operators = [
-        '\&', '\|','\!',
+        '\&', '\|', '\!',
         '=', '\~=', '>=', '<=',
     ]
-    
+
     def __init__(self, filter, attributes=[]):
         """
         @param attributes: list;
@@ -56,9 +57,9 @@ class LumaFilterHighlighter(QSyntaxHighlighter):
         TODO: the given attributes list doesn't register as keywords.
         """
         super(LumaFilterHighlighter, self).__init__(filter)
-        
+
         self.keywords.extend(attributes)
-        
+
         rules = []
 
         # Keyword, operator, and brace rules

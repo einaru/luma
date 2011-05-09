@@ -21,8 +21,10 @@
 from PyQt4.QtGui import QWidget
 from ..gui.design.AboutPluginDesign import Ui_AboutPlugin
 
+
 class AboutPlugin(QWidget, Ui_AboutPlugin):
-    def __init__(self, plugin, parent = None):
+
+    def __init__(self, plugin, parent=None):
         QWidget.__init__(self, parent)
         self.setupUi(self)
 

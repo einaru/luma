@@ -20,18 +20,20 @@
 from PyQt4.QtCore import QSize
 from PyQt4.QtGui import QIcon
 
+
 def iconFromTheme(icon, fallback):
     """ Utility method for getting icons from default X11 icon theme.
-    
-    Returns a ``QIcon`` from the system icon theme if a match is found,
-    if not the `fallback` is used.
 
-    Parameters:
+    Returns a ``QIcon`` from the X11 system-icon theme if a match is
+    found, else the `fallback` is used.
 
-    - `icon`: the name of the icon from the icon theme.
-    - `fallback`: the name of the fallback icon.
+    :param icon: the name of the icon in the X11 icon-theme.
+    :type icon: string
+    :param fallback: the name of the fallback icon.
+    :type icon: string
     """
     return QIcon.fromTheme(icon, QIcon(fallback))
+
 
 def pixmapFromTheme(icon, fallback, width=48, height=48, mode=QIcon.Normal,
                     state=QIcon.Off):
@@ -39,19 +41,21 @@ def pixmapFromTheme(icon, fallback, width=48, height=48, mode=QIcon.Normal,
     Useful when trying to use icons from a X11 iconTheme but need a
     pixmap.
 
-    Returns a ``QPixmap`` from the system icon theme if a match is
-    found, if not, the `fallback` is used.
+    Returns a ``QPixmap`` from the X11 system icon-theme if a match is
+    found, else the `fallback` is used.
 
-    Parameters:
-
-    - `icon`: the name of the icon from the icon theme.
-    - `fallback`: the name of the fallback icon.
-    - `widht`: the width of the icon, default is 48.
-    - `height`: the height of the icon, default is 48.
-    - `mode`: the icon mode, default is ``QIcon.Normal``,
-       (see http://doc.trolltech.com/4.7/qicon.html#Mode-enum).
-    - `state`: the icon state, default is ``QIcon.Off``,
-       (see http://doc.trolltech.com/4.7/qicon.html#State-enum).
+    :param icon: the name of the icon in the icon theme.
+    :type icon: string
+    :param fallback: the name of the fallback icon.
+    :type fallback: string
+    :param widht: the width of the icon, default is 48.
+    :type width: int
+    :param height: the height of the icon, default is 48.
+    :type height: int
+    :param mode: the icon mode, default is ``QIcon.Normal``,
+    :type mode: see http://doc.trolltech.com/4.7/qicon.html#Mode-enum
+    :param state: the icon state, default is ``QIcon.Off``,
+    :type state: see http://doc.trolltech.com/4.7/qicon.html#State-enum
     """
     ret = iconFromTheme(icon, fallback)
     return ret.pixmap(QSize(width, height), QIcon.Normal, QIcon.Off)

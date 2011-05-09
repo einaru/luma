@@ -30,7 +30,8 @@ description = u"""Do simple and advanced LDAP search,
 create filters to speed up efficiency.
 """
 
-def getIcon(iconPath = None):
+
+def getIcon(iconPath=None):
     return iconFromTheme('luma-search-plugin', ':/icons/plugins/search')
 
 
@@ -44,5 +45,6 @@ def getPluginSettingsWidget(parent):
 
 def postprocess():
     return
+
 
 # vim: tabstop=4 expandtab shiftwidth=4 softtabstop=4

@@ -34,9 +34,10 @@ from ..util import encodeUTF8
 from ..util.IconTheme import pixmapFromTheme, iconFromTheme
 from ..util.Paths import getUserHomeDir
 
+
 class ExportDialog(QtGui.QDialog, Ui_ExportDialog):
     """Dialog for exporting a selection of LDAP entries to disk.
-    
+
     TODO: better feedback if something goes wrong, perhaps not accept(), if
           not all checked items get exported ?
     """
@@ -45,11 +46,12 @@ class ExportDialog(QtGui.QDialog, Ui_ExportDialog):
 
     def __init__(self, parent=None, msg=''):
         """
-        @param items:
-            The list of items to export.
-        @param msg:
-            A message to display in the dialog. Might be information
-            about problems with fetching all the LDAP entries, etc.
+        :param items: the list of items to export.
+        :type items: list
+        :param msg: a message to display in the dialog. Might be
+         information about problems with fetching all the LDAP
+         entries, etc.
+        :type msg: string
         """
         super(ExportDialog, self).__init__(parent)
         self.setupUi(self)
@@ -79,7 +81,6 @@ class ExportDialog(QtGui.QDialog, Ui_ExportDialog):
         # The signal textEdit is not emitted if the text is changed
         # programmatically, we therefore use textChanged instead.
         self.outputEdit.textChanged['QString'].connect(self.onFilenameChanged)
-
 
     def __writeLDIF(self, file):
         """Write the export list to LDIF format.
@@ -119,14 +120,15 @@ class ExportDialog(QtGui.QDialog, Ui_ExportDialog):
             footer.close()
 
     def enableExport(self):
-        """ Enable the export-button.
+        """Enable the export-button.
         """
         self.exportButton.setEnabled(True)
 
     def setExportItems(self, data):
-        """Sets the items to be exported.
-        
-        Populates the model.
+        """Sets the items to be exported, and populates the model.
+
+        :param data: the data to be exported.
+        :type data: list
         """
         self.data = data
         for item in self.data:
@@ -141,7 +143,7 @@ class ExportDialog(QtGui.QDialog, Ui_ExportDialog):
 
     def openFileDialog(self):
         """Slot for the file button.
-        
+
         Opens a File Dialog to let the user choose where to export.
         """
         userdir = getUserHomeDir()
@@ -152,10 +154,12 @@ class ExportDialog(QtGui.QDialog, Ui_ExportDialog):
             filter = filter.format(ldifFilter, dsmlFilter)
         else:
             filter = filter.format(dsmlFilter, ldifFilter)
-        filename = QtGui.QFileDialog.getSaveFileName(self,
-                                                     caption='Select export file',
-                                                     directory=userdir,
-                                                     filter=filter)
+
+        opt = dict(caption='Select export File',
+                   directory=userdir,
+                   filter=filter)
+
+        filename = QtGui.QFileDialog.getSaveFileName(self, **opt)
         # Return if the user canceled the dialog
         if filename == "":
             return
@@ -172,20 +176,22 @@ class ExportDialog(QtGui.QDialog, Ui_ExportDialog):
 
     def onFormatChanged(self, format):
         """Slot for the format combobox.
-        
+
         Checks if the output file is defined and wether its filending
         matches the choosen export format. If not defined the method
         returns. If the filening doesn't match, it is switched.
         """
         if self.outputEdit.text() == '':
-            #self.exportButton.setEnabled(False) #Re-disable if there's nothing there
             return
+
         format = encodeUTF8(format, strip=True)
         oldname = self.outputEdit.text()
+
         if format == 'LDIF':
             newname = replace(oldname, '.dsml', '.ldif')
         elif format == 'DSML':
             newname = replace(oldname, '.ldif', '.dsml')
+
         self.outputEdit.setText(newname)
 
     def onFilenameChanged(self, filename):
@@ -200,7 +206,7 @@ class ExportDialog(QtGui.QDialog, Ui_ExportDialog):
 
     def export(self):
         """Slot for the export button.
-        
+
         Exports all checked items to the file defined in the outputEdit
         widget.
         """
@@ -212,7 +218,8 @@ class ExportDialog(QtGui.QDialog, Ui_ExportDialog):
                 del self.exportDict[encodeUTF8(item.text(), strip=True)]
 
         # Map the dictionary keys
-        self.exportList = map(lambda x: self.exportDict[x][0], self.exportDict.keys())
+        self.exportList = map(lambda x: self.exportDict[x][0],
+                                        self.exportDict.keys())
         self.exportList.sort()
         try:
             file = self.outputEdit.text()
@@ -245,14 +252,16 @@ class DeleteDialog(QtGui.QDialog):
     """Dialog for deleting a selection of LDAP entries.
     """
     def __init__(self, parnet=None):
-        raise NotImplementedError('Implement this dialog (move from Brower plugin).')
+        raise NotImplementedError(
+            'Implement this dialog (move from Brower plugin).')
 
 
 class BrowseDialog(QtGui.QDialog):
     """Dialog for browsing a spesific LDAP entry.
     """
     def __init__(self, parnet=None):
-        raise NotImplementedError('Implemnt this dialog (steal from Browser plugin)')
+        raise NotImplementedError(
+            'Implemnt this dialog (steal from Browser plugin)')
 
 
 # vim: tabstop=4 expandtab shiftwidth=4 softtabstop=4

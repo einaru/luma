@@ -21,16 +21,19 @@
 __all__ = ['LumaConnectionException', 'ServerCertificateException',
            'InvalidPasswordException']
 
+
 class LumaConnectionException(Exception):
     """This exception class will be raised if no proper server object
     is passed to the LumaConnection constructor.
     """
     pass
 
+
 class ServerCertificateException(Exception):
-    """This exception will be raised if we get an certificate error. 
+    """This exception will be raised if we get an certificate error.
     """
     pass
+
 
 class InvalidPasswordException(Exception):
     """This exception will be raised when a password is needed to
@@ -38,5 +41,6 @@ class InvalidPasswordException(Exception):
     given password is either invalid or blank.
     """
     pass
+
 
 # vim: tabstop=4 expandtab shiftwidth=4 softtabstop=4
