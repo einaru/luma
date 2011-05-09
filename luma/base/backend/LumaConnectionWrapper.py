@@ -235,12 +235,19 @@ class WorkerThread(QThread):
         # while running.
         with WorkerThread.__Lock:
             WorkerThread.__threadPool.append(self)
+
+        # Cleanup on finish
+        self.finished.connect(self.cleanup)
+        self.terminated.connect(self.cleanup)
         
         self.worker = None
 
     def run(self):
         self.exec_()
-        self.cleanup() # Run cleanup when the eventloop finishes
+
+    def quit(self):
+        QThread.quit(self)
+        self.cleanup()
     
     def cleanup(self):
         """
