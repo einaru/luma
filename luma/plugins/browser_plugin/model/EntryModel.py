@@ -46,9 +46,7 @@ class EntryModel(QObject):
             self.EDITED = False
             isLeave = False
 
-            tmpObject = ServerList()
-            tmpObject.readServerList()
-            serverMeta = tmpObject.getServerObject(self.smartObject.getServerAlias())
+            serverMeta = self.smartObject.getServerMeta()
         
             lumaConnection = LumaConnectionWrapper(serverMeta, self)
         
