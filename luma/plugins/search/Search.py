@@ -253,7 +253,7 @@ class SearchPlugin(QWidget, Ui_SearchPlugin):
         server = self.searchForm.server
 
         # No need to try to fetch the base dn list off of no server.
-        if serverString == '':
+        if server == '':
             return
 
         # Get the server object for the selected server.
@@ -283,9 +283,8 @@ class SearchPlugin(QWidget, Ui_SearchPlugin):
 
         # Try to fetch the list of available attributes, for use in the
         # filter wizard and for autocompletion.
-        serverMeta = self.serverListObject.getServerObject(serverString)
-        # Jippi ay o' what a beutiful var name!!
-        ocai = ObjectClassAttributeInfo(serverMeta)
+        # Jippi ay o' what a beautiful var name!!
+        ocai = ObjectClassAttributeInfo(self.currentServer)
         attributes = ocai.getAttributeList()
         objectClasses = ocai.getObjectClasses()
 
@@ -346,7 +345,8 @@ class SearchPlugin(QWidget, Ui_SearchPlugin):
         # Perform an asyncronized search operation. When the search is
         # finished we act upon the LumaConnectionWrapper.searchFinished
         # signal in the onSearchFinished method
-        args = dict(base=base, scope=scope, filter=filter, sizelimit=limit)
+        args = dict(base=base, scope=scope, filter=filter, sizelimit=limit,
+                    identStr='searchplugin')
         search = Search(self, self.currentServer, **args)
         search.resultsRetrieved.connect(self.onResultsRetrieved)
 
