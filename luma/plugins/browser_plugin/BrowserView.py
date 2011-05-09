@@ -26,8 +26,8 @@
 import logging
 
 from PyQt4 import (QtCore, QtGui)
-from PyQt4.QtGui import (QWidget, QMessageBox, QMenu, QAction, qApp, QTableWidget)
-from PyQt4.QtCore import Qt, QPersistentModelIndex, QModelIndex
+from PyQt4.QtGui import (QWidget, QMessageBox, QMenu, QAction, qApp, QTableWidget, QKeySequence)
+from PyQt4.QtCore import Qt, QPersistentModelIndex, QModelIndex, QObject, QEvent
 
 from .AdvancedObjectWidget import AdvancedObjectWidget
 from .NewEntryDialog import NewEntryDialog
@@ -96,6 +96,9 @@ class BrowserView(QWidget):
         self.clearSignal.connect(self.ldaptreemodel.clearItem)
 
         self.cancelList = []
+    
+        eventFilter = BrowserPluginEventFilter(self)
+        self.installEventFilter(eventFilter)
 
         self.__createContextMenu()
         self.progress = QMessageBox(
@@ -236,8 +239,8 @@ class BrowserView(QWidget):
                 deleteSupport = False
             if not AbstractLDAPTreeItem.SUPPORT_EXPORT & operations:
                 exportSupport = False
-	    if index.internalPointer().getParentServerItem() == None:
-		editServerSupport = False
+            if index.internalPointer().getParentServerItem() == None:
+                editServerSupport = False
             if AbstractLDAPTreeItem.SUPPORT_CANCEL & operations:
                 if item.canCancelSearch():
                     self.cancelList.append(item)
@@ -627,6 +630,17 @@ class BrowserView(QWidget):
             self.retranslateUi()
         else:
             QWidget.changeEvent(self, e)
+
+class BrowserPluginEventFilter(QObject):
+
+    def eventFilter(self, target, event):
+        if event.type() == QEvent.KeyPress:
+            index = target.tabWidget.currentIndex()
+            if event.matches(QKeySequence.Close):
+                if index >= 0:
+                    target.tabWidget.tabCloseRequested.emit(index)
+                return True
+        return QObject.eventFilter(self, target, event)
 
 class LoadingDelegate(QtGui.QStyledItemDelegate):
     """

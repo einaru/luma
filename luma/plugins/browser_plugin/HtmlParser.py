@@ -185,7 +185,7 @@ class HtmlParser:
             if self.smartObject.isAttributeMust(x, self.smartObject.getObjectClasses()):
                 attributeString = "<b>" + attributeString + "</b>"
         
-        if valueList[0] == None:
+        if valueList[0] == None or len(valueList[0]) == 0:
             allowDelete = False
             attributeString = '''<font color="red">''' + attributeString + '''</font>'''
             
