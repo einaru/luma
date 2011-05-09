@@ -274,22 +274,3 @@ class WorkerThread(QThread):
         # Stop thread on worker finish
         self.worker.workDone.connect(self.quit)
 
-"""
-            # Prompt for password on _invalid_pwd or _blank_pwd
-            if self._cert_error(exception, self.serverObject):
-                svarFraBruker = False
-                if svarFraBruker == QMessageBox.Yes:
-                    self.serverObject.checkServerCertificate = ServerCheckCertificate.Never
-                    LumaConnection.__certMap[self.serverObject.name] = ServerCheckCertificate.Never
-                    success, exception, ldapServerObject = self.__bind()
-            
-            # Prompt for password on _invalid_pwd or _blank_pwd
-            if self._invalid_pwd(exception) or self._blank_pwd(exception, self.serverObject):
-                hasNewPassword = False
-                if hasNewPassword:
-                    self.serverObject.bindPassword = unicode(pw)
-                    LumaConnection.__passwordMap[self.serverObject.name] = self.serverObject.bindPassword
-                    success, exception, ldapServerObject = self.__bind()
-"""
-
-

@@ -99,20 +99,6 @@ class ServerDialog(QDialog, Ui_ServerDialogDesign):
             self.tabWidget.setEnabled(False)
 
         self.splitter.setStretchFactor(1, 0)
-        
-        # If a servername is supplied we try to get its index, 
-        # And make it selected, else we select the first server
-        # in the model)
-        if not server is None:
-            serverIndex = self.__serverList.getIndexByName(server)
-            if serverIndex == -1:
-                serverIndex = 0
-            index = self.serverListView.model().index(serverIndex, 0)
-        else:
-            index = self.serverListView.model().index(0, 0)
-        # Select it in the view
-        self.serverListView.selectionModel().select(index, QItemSelectionModel.ClearAndSelect)
-        self.serverListView.selectionModel().setCurrentIndex(index, QItemSelectionModel.ClearAndSelect)
 
         # Update list of baseDNs on serverchange
         self.serverListView.selectionModel().selectionChanged.connect(self.setBaseDN) #Same as below
@@ -161,6 +147,20 @@ class ServerDialog(QDialog, Ui_ServerDialogDesign):
                 0, 0,
                 self)
         self.testProgress.setWindowModality(Qt.WindowModal)
+
+        # If a servername is supplied we try to get its index, 
+        # And make it selected, else we select the first server
+        # in the model)
+        if not server is None:
+            serverIndex = self.__serverList.getIndexByName(server)
+            if serverIndex == -1:
+                serverIndex = 0
+            index = self.serverListView.model().index(serverIndex, 0)
+        else:
+            index = self.serverListView.model().index(0, 0)
+        # Select it in the view
+        self.serverListView.selectionModel().select(index, QItemSelectionModel.ClearAndSelect)
+        self.serverListView.selectionModel().setCurrentIndex(index, QItemSelectionModel.ClearAndSelect)
         
     def checkSSLport(self, index):
         """ If SSL is choosen with a port other than 636, confirm this with the user
