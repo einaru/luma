@@ -27,12 +27,12 @@ from .AddAttributeWizard import AddAttributeWizard
 
 class AdvancedObjectWidget(QWidget):
 
-    def __init__(self, smartObject, index, currentTemplate="classic.html", create=False, parent=None):
+    def __init__(self, smartObject, index, currentTemplate="classic.html", create=False, parent=None, entryTemplate = None):
         QWidget.__init__(self, parent)
         
         w = 24
         h = 24
-        self.initModel(smartObject, create)
+        self.initModel(smartObject, create, entryTemplate)
 
         # Standard pixmaps used by the widget
         self.reloadPixmap = pixmapFromTheme(
@@ -112,11 +112,11 @@ class AdvancedObjectWidget(QWidget):
 
 ###############################################################################
     
-    def initModel(self, smartObject, create=False):
+    def initModel(self, smartObject, create=False, entryTemplate = None):
         if not create:
             # use a copy of the smartObject
             smartObject = AdvancedObjectWidget.smartObjectCopy(smartObject)
-        self.entryModel = EntryModel(smartObject, self)
+        self.entryModel = EntryModel(smartObject, self, entryTemplate)
         self.entryModel.modelChangedSignal.connect(self.displayValues)
         success, exceptionMsg, exceptionObject = self.entryModel.initModel(create)
         if not success:

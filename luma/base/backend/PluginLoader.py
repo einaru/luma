@@ -50,7 +50,7 @@ class PluginLoader(object):
     The plugins field is a list of PluginObjects.
     """
 
-    _logger = logging.getLogger(__name__)
+    __logger = logging.getLogger(__name__)
 
     def __init__(self, pluginsToLoad=[]):
         self.__pluginsToLoad = pluginsToLoad

@@ -89,7 +89,7 @@ class TemplateObject(object):
                 dataObject[attributeObject.attributeName] = [attributeObject.defaultValue.encode("utf-8")]
         
         smartObject = SmartDataObject((baseDN, dataObject), serverMeta)
-        
+
         return smartObject
 
     """

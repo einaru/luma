@@ -4,11 +4,14 @@ from AdvancedObjectWidget import AdvancedObjectWidget
 
 class NewEntryDialog(QDialog, Ui_Dialog):
 
-    def __init__(self, parentIndex, templateSmartObject = None, parent=None):
+    def __init__(self, parentIndex, templateSmartObject = None, parent=None, entryTemplate = None):
         QDialog.__init__(self)
         self.setupUi(self)
-        smartObject = AdvancedObjectWidget.smartObjectCopy(parentIndex.internalPointer().smartObject())
-        self.objectWidget = AdvancedObjectWidget(smartObject, None, create=True)
+        if templateSmartObject:
+            smartObject = templateSmartObject 
+        else:
+            smartObject = AdvancedObjectWidget.smartObjectCopy(parentIndex.internalPointer().smartObject())
+        self.objectWidget = AdvancedObjectWidget(smartObject, None, create=True, entryTemplate = entryTemplate)
         self.gridLayout.addWidget(self.objectWidget)
 
     def accept(self):
