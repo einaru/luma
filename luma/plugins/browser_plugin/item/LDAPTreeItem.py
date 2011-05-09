@@ -47,9 +47,9 @@ class LDAPTreeItem(AbstractLDAPTreeItem):
         # Return an icon if the item has been configured
         if role == QtCore.Qt.DecorationRole:
             if self.error:
-                return QIcon(QPixmap(":/icons/no"))
+                return QIcon(QPixmap(":/icons/16/edit-delete"))
             if self.filter != LDAPTreeItem.FILTER_DEFAULT or self.limit != LDAPTreeItem.LIMIT_DEFAULT:
-                return QIcon(QPixmap(":/icons/filter"))
+                return QIcon(QPixmap(":/icons/16/view-filter"))
             else:
                 return None
         # Return applicable status-tip-role and tooltip

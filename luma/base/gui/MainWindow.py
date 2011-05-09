@@ -616,15 +616,15 @@ class LoggerWidget(QWidget, Ui_LoggerWidget):
             self.logSignal.emit("DEBUG ["+name+"/"+threadName+"]: " + msg)
             return
         if loglvl == "ERROR" and self.errorBox.isChecked():
-            self.logSignal.emit("ERROR: " + msg)
+            self.logSignal.emit("ERROR: ["+name+"/"+threadName+"]: " + msg)
             return
         if loglvl == "INFO" and self.infoBox.isChecked():
-            self.logSignal.emit("INFO: " + msg)
+            self.logSignal.emit("INFO: ["+name+"/"+threadName+"]: " + msg)
             return
         if loglvl not in ["INFO", "ERROR", "DEBUG"]:
             # This shouldn't really happen...
             # Please only use the above levels
-            self.logSignal.emit("UNKNOWN: " + msg)
+            self.logSignal.emit("UNKNOWN: ["+name+"/"+threadName+"]: " + msg)
 
 
 class PluginToolBar(QToolBar):

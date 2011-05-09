@@ -173,7 +173,6 @@ def startApplication(argv, verbose=False, clear=[], dirs={}):
     app.lastWindowClosed.connect(mainwin.close)
 
     mainwin.show()
-
     splash.finish(mainwin)
 
     # Add a exception hook to handle all 

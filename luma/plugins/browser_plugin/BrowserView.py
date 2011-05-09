@@ -616,30 +616,14 @@ class LoadingDelegate(QtGui.QStyledItemDelegate):
 
     def __init__(self, view):
         super(LoadingDelegate, self).__init__()
-        from PyQt4.QtCore import QTimer
-        self.t = QTimer()
-        self.t.setInterval(1000)
-        self.t.timeout.connect(view.model().layoutChanged)
 
     def paint(self, painter, option, index):
         item = index.internalPointer()
         if item.loading == True:
-            self.t.start()
             # When loading
             self.initStyleOption(option, index)
             QtGui.QStyledItemDelegate.paint(self, painter, option, index)
-            #painter.drawText(option.rect, QtCore.Qt.AlignRight, "Loading...  ")
-            painted = False
-            if hasattr(item, "lumaConnection"):
-                connection = item.lumaConnection
-                if not(connection == None):
-                    resultCount = connection.resultCount
-                    if not(resultCount == None):
-                        painted = True
-                        painter.drawText(option.rect, QtCore.Qt.AlignRight, "Loading...  " + str(resultCount))
-                        return
-            if not painted:
-                painter.drawText(option.rect, QtCore.Qt.AlignRight, "Loading...  ")
+            painter.drawText(option.rect, QtCore.Qt.AlignRight, "Loading...  ")
         else:
             # Default
             QtGui.QStyledItemDelegate.paint(self, painter, option, index)
