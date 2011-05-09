@@ -15,10 +15,10 @@ from base.backend.SmartDataObject import SmartDataObject, LdapDataException
 # TODO add translation support
 class EntryModel(QObject):
 
-    def __init__(self, smartObject, parent=None):
+    def __init__(self, smartObject, parent=None, entryTemplate = None):
         QObject.__init__(self, parent)
         self.smartObject = smartObject
-
+        self.entryTemplate = entryTemplate
         # boolean to indicate if the current ldap object has been modified
         self.EDITED = False
         

@@ -36,7 +36,7 @@ class SmartDataObject (object):
         
         self.dn = data[0]
         self.data = data[1]
-        
+        print data
         self.logger = logging.getLogger(__name__)
 
         
@@ -204,7 +204,6 @@ class SmartDataObject (object):
     def getAttributeValue(self, attributeName=None, valueIndex=None):
         """Returns the values for the given attribute at index valueIndex.
         """
-        
         if (None == attributeName) or (None == valueIndex):
             raise FunctionArgumentException("Function getAttributeValue( attributeName, valueIndex ) called without correct parameters.")
             

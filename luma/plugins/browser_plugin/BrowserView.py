@@ -35,6 +35,7 @@ from .gui.BrowserDialogs import ExportDialog, DeleteDialog
 from .item.AbstractLDAPTreeItem import AbstractLDAPTreeItem
 from .model.LDAPTreeItemModel import LDAPTreeItemModel
 from base.backend.LumaConnection import LumaConnection
+from ..template.TemplateList import TemplateList
 from base.backend.ServerList import ServerList
 from base.gui.ServerDialog import ServerDialog
 
@@ -66,6 +67,9 @@ class BrowserView(QWidget):
         self.mainLayout = QtGui.QHBoxLayout(self)
 
         self.splitter = QtGui.QSplitter(self)
+
+        # The templatelist
+        self.templateList = TemplateList()
 
         # Create the model
         self.ldaptreemodel = LDAPTreeItemModel(self.serverList, self)
@@ -244,6 +248,7 @@ class BrowserView(QWidget):
             if AbstractLDAPTreeItem.SUPPORT_CANCEL & operations:
                 if item.canCancelSearch():
                     self.cancelList.append(item)
+
         
         # Now we just use the *Support variables to enable|disable
         # the context menu actions.
@@ -264,7 +269,17 @@ class BrowserView(QWidget):
         if addSupport and numselected == 1:
             self.contextMenuAdd.setEnabled(True)
             self.contextMenuAdd.addAction(self.str_ENTRY, self.addEntryChoosen)
-            self.contextMenuAdd.addAction(self.str_TEMPLATE, self.addTemplateChoosen)
+            #template
+            templateMenu = QMenu(self.str_TEMPLATE)
+            self.contextMenuAdd.addMenu(templateMenu)
+            index = self.selection[0]
+            for template in self.templateList.getTable():
+                if template.server == index.internalPointer().smartObject().serverMeta.name:
+                    method = lambda name = template.templateName, i = index : self.addTemplateChoosen(name, i)
+                    templateMenu.addAction(template.templateName, method)
+            
+            
+            
         else:
             self.contextMenuAdd.setEnabled(False)
 
@@ -344,10 +359,15 @@ class BrowserView(QWidget):
     def addEntryChoosen(self):
         for index in self.selection:
             self.addNewEntry(index)
-    def addTemplateChoosen(self):
-        pass
-    def addNewEntry(self, parentIndex, defaultSmartObject=None):
-        tmp = NewEntryDialog(parentIndex, defaultSmartObject)
+    def addTemplateChoosen(self, templateName, index):
+        serverMeta = index.internalPointer().smartObject().serverMeta
+        baseDN = index.internalPointer().smartObject().getDN()
+        template = self.templateList.getTemplateObject(templateName)
+        smartO = template.getDataObject(serverMeta, baseDN)
+        self.addNewEntry(index, smartO, template)
+        
+    def addNewEntry(self, parentIndex, defaultSmartObject=None, template = None):
+        tmp = NewEntryDialog(parentIndex, defaultSmartObject, entryTemplate = template)
         if tmp.exec_():
             print "La til ny entry"
             # TODO Do something. (Reload?)

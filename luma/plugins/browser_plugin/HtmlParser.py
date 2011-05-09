@@ -182,8 +182,18 @@ class HtmlParser:
         attributeString = copy.copy(x)
         
         if self.smartObject.isValid:
+            print x
             if self.smartObject.isAttributeMust(x, self.smartObject.getObjectClasses()):
                 attributeString = "<b>" + attributeString + "</b>"
+            elif self.entryModel.entryTemplate:
+                print "HER?"
+                template = self.entryModel.entryTemplate
+                if x in template.attributes:
+                    print "DER?"
+                    if template.attributes[x].customMust:
+                        print "OG OVERALT!"
+                        attributeString = "<b>" + attributeString + "</b>"
+                
         
         if valueList[0] == None or len(valueList[0]) == 0:
             allowDelete = False
