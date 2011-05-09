@@ -95,8 +95,10 @@ class ServerDialog(QDialog, Ui_ServerDialogDesign):
         # Enable/disable editing depending on if we have a server to edit
         if self.slm.hasServers():
             self.tabWidget.setEnabled(True)
+            self.testConnectionButton.setEnabled(True)
         else:
             self.tabWidget.setEnabled(False)
+            self.testConnectionButton.setEnabled(False)
 
         self.splitter.setStretchFactor(1, 0)
 
@@ -239,6 +241,7 @@ class ServerDialog(QDialog, Ui_ServerDialogDesign):
                 self.serverListView.selectionModel().setCurrentIndex(index, QItemSelectionModel.ClearAndSelect) #Mark it as current      
                 self.mapper.setCurrentIndex(index.row()) # Update the mapper
                 self.tabWidget.setEnabled(True) # Make sure editing is enabled
+                self.testConnectionButton.setEnabled(True)
 
     def deleteServer(self):
         """Delete a server from the model/list
@@ -264,6 +267,7 @@ class ServerDialog(QDialog, Ui_ServerDialogDesign):
 
         if not self.slm.hasServers():
             self.tabWidget.setEnabled(False) #Disable editing if no servers left
+            self.testConnectionButton.setEnabled(False)
 
     def saveServerlist(self):
         """Called when the Save-button is clicked
