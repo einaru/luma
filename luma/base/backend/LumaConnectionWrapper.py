@@ -26,12 +26,17 @@ class LumaConnectionWrapper(QObject):
     are called while waiting for the result which
     again mens your results will be delayed until
     that method is finished.
+
+
+    The xAsync-methods takes an identStr which
+    is signaled along with the result of the operation
+    for identifying purposes.
     """
     
     # The signals the user should bind to
     # to recive the result og xAsync-methods
-    bindFinished = pyqtSignal(bool, Exception)
-    searchFinished = pyqtSignal(bool, list, Exception)
+    bindFinished = pyqtSignal(bool, Exception, str)
+    searchFinished = pyqtSignal(bool, list, Exception, str)
 
     def __init__(self, serverObject, parent = None):
         """
@@ -53,7 +58,7 @@ class LumaConnectionWrapper(QObject):
         qApp.processEvents() while the bind
         is in progress.
         """
-        bindWorker = BindWorker(self.lumaConnection)
+        bindWorker = BindWorker(self.lumaConnection, "")
         thread = self.__createThread(bindWorker)
         thread.start()
         
@@ -62,21 +67,21 @@ class LumaConnectionWrapper(QObject):
 
         return (bindWorker.success, bindWorker.exception)
 
-    def bindAsync(self):
+    def bindAsync(self, identStr = ""):
         """
         Non-blocking. Listen to LumaConnectionWrapper.bindFinished
         for the result.
 
         Only use the exception passed if "success" is False.
         """
-        bindWorker = BindWorker(self.lumaConnection)
+        bindWorker = BindWorker(self.lumaConnection, identStr)
         bindWorker.workDone.connect(self.__bindThreadFinished)
         thread = self.__createThread(bindWorker)
         thread.start()
 
-    @pyqtSlot(bool, Exception)
-    def __bindThreadFinished(self, success, exception):
-        self.bindFinished.emit(success, exception)
+    @pyqtSlot(bool, Exception, str)
+    def __bindThreadFinished(self, success, exception, identStr):
+        self.bindFinished.emit(success, exception, identStr)
 
     ###########
     # SEARCH
@@ -111,7 +116,8 @@ class LumaConnectionWrapper(QObject):
             filter="(objectClass=*)",
             attrList=None, 
             attrsonly=0,
-            sizelimit=0
+            sizelimit=0,
+            identStr=""
             ):
         """
         Non-blocking. Listen to LumaConnectionWrapper.searchFinished
@@ -119,14 +125,14 @@ class LumaConnectionWrapper(QObject):
 
         Only use the exception passed if "success" is False.
         """
-        searchWorker = SearchWorker(self.lumaConnection, base, scope, filter, attrList, attrsonly, sizelimit)
+        searchWorker = SearchWorker(self.lumaConnection, base, scope, filter, attrList, attrsonly, sizelimit, identStr)
         searchWorker.workDone.connect(self.__searchThreadFinished)
         thread = self.__createThread(searchWorker)
         thread.start()
 
-    @pyqtSlot(bool, list, Exception)
-    def __searchThreadFinished(self, success, resultList, exception):
-            self.searchFinished.emit(success, resultList, exception)
+    @pyqtSlot(bool, list, Exception, str)
+    def __searchThreadFinished(self, success, resultList, exception, identStr):
+            self.searchFinished.emit(success, resultList, exception, identStr)
     
     def getBaseDNListSync(self):
         # TODO MAKE ASYNC VERSION
@@ -177,25 +183,26 @@ class BindWorker(QObject):
     """
     Runs LumaConnection.bind()
     """
-    workDone = pyqtSignal(bool, Exception)
-    def __init__(self, lumaConnection):
+    workDone = pyqtSignal(bool, Exception, str)
+    def __init__(self, lumaConnection, identStr):
         QObject.__init__(self)
         self.lumaConnection = lumaConnection
         self.logger = logging.getLogger(__name__)
+        self.identStr = identStr
     def doWork(self):
         self.success, self.exception = self.lumaConnection.bind()
         if self.success:
-            self.workDone.emit(self.success, Exception())
+            self.workDone.emit(self.success, Exception(), self.identStr)
         else:
-            self.workDone.emit(self.success, self.exception)
+            self.workDone.emit(self.success, self.exception, self.identStr)
         self.logger.debug("BindWorker finished.")
 
 class SearchWorker(QObject):
     """
     Runs LumaConnection.search()
     """
-    workDone = pyqtSignal(bool, list, Exception)
-    def __init__(self, lumaConnection, base, scope, filter, attrList, attrsonly, sizelimit):
+    workDone = pyqtSignal(bool, list, Exception, str)
+    def __init__(self, lumaConnection, base, scope, filter, attrList, attrsonly, sizelimit, identStr):
         QObject.__init__(self)
         self.lumaConnection = lumaConnection
         self.logger = logging.getLogger(__name__)
@@ -205,12 +212,13 @@ class SearchWorker(QObject):
         self.attrList = attrList
         self.attrsonly = attrsonly
         self.sizelimit = sizelimit
+        self.identStr = identStr
     def doWork(self):
         self.success, self.resultList, self.exception = self.lumaConnection.search(self.base, self.scope, self.filter, self.attrList, self.attrsonly, self.sizelimit)
         if self.success:
-            self.workDone.emit(self.success, self.resultList, Exception())
+            self.workDone.emit(self.success, self.resultList, Exception(), self.identStr)
         else:
-            self.workDone.emit(self.success, self.resultList, self.exception)
+            self.workDone.emit(self.success, self.resultList, self.exception, self.identStr)
         self.logger.debug("SearchWorker finished")
 
 ###########
