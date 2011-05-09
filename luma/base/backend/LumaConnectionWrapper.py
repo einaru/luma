@@ -209,7 +209,7 @@ class LumaConnectionWrapper(QObject):
 # to run code in it's own thread (WorkerThread).
 ###########
 class BindWorker(QObject):
-    """Runs LumaConnection.bind()
+    """Runs `LumaConnection.bind`
     """
 
     #: signals that the worker thread is done
