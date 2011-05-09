@@ -435,7 +435,7 @@ class Search(QObject):
             result.append(self.filter)
             self.resultsRetrieved.emit(result, None)
         else:
-            self.resultsRetreived.emit([], e)
+            self.resultsRetrieved.emit([], e)
 
 
 class SearchPluginSettingsWidget(QWidget, Ui_SearchPluginSettings):
