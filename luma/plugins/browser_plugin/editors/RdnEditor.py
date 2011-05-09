@@ -67,7 +67,7 @@ class RdnEditor(QDialog, Ui_RdnEditorDesign):
         tmpValue = unicode(self.valueEdit.text())
         attributeName = unicode(self.attributeBox.currentText())
         
-        self.value = attributeName + u"=" + tmpValue + u"," + unicode(self.baseDN)
+        self.value = attributeName + u"=" + tmpValue + u"," + self.baseDN
         
         self.dnLabel.setText(self.value)
 
