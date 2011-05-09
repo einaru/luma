@@ -41,8 +41,8 @@ class RdnEditor(QDialog, Ui_RdnEditorDesign):
     def initValue(self, smartObject, attributeName, index):
         """ Initialize the dialog with values for the attribute to be edited.
         """
-        
-        self.baseDN = smartObject.getDN()
+        print type(smartObject.getDN()) 
+        self.baseDN = unicode(smartObject.getDN(),"utf-8")
         
         # Get the list of supported attributes which are possible by the 
         # given objectclasses. Filter out binary attributes and fill the 
@@ -66,6 +66,7 @@ class RdnEditor(QDialog, Ui_RdnEditorDesign):
     def updateValue(self, newText):
         tmpValue = unicode(self.valueEdit.text())
         attributeName = unicode(self.attributeBox.currentText())
+        print tmpValue,attributeName,unicode(self.baseDN)
         
         self.value = attributeName + u"=" + tmpValue + u"," + unicode(self.baseDN)
         

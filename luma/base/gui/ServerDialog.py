@@ -362,19 +362,14 @@ class ServerDialog(QDialog, Ui_ServerDialogDesign):
         # Busy-dialog
         self.testProgress.reset()
         self.testProgress.show()
+        
+        # Try to bind
+        conn = LumaConnectionWrapper(sO, self)
+        conn.bindFinished.connect(self.testFinished)
+        conn.bindAsync(sO.name) #Send the serverName as identifier
 
-        # Run test in new thread
-        thread = WorkerThread()
-        with ServerDialog._threadLock:
-            ServerDialog._threadPool.append(thread)
-        worker = TestWorker(sO)
-        worker.testFinished.connect(self.testFinished)
-        worker.testFinished.connect(thread.quit)
-        thread.setWorker(worker)
-        thread.start()
-
-    @pyqtSlot(bool, str, unicode)
-    def testFinished(self, success, exceptionStr, serverName):
+    @pyqtSlot(bool, Exception, str)
+    def testFinished(self, success, exception, serverName):
         self.testProgress.hide()
 
         if self.testProgress.wasCanceled():
@@ -385,49 +380,10 @@ class ServerDialog(QDialog, Ui_ServerDialogDesign):
             QMessageBox.information(self, serverName, unicode(self.tr("Bind to {0} successful!")).format(serverName))
         else:
             # Error-message
-            if exceptionStr == "Invalid credentials":
+            if exception[0]["desc"] == "Invalid credentials":
                 QMessageBox.warning(self, serverName,
-                        unicode(self.tr("Bind to {0} failed:\n{1}\n\n(You do not have to spesify passwords here -- you will be asked when needed.)")).format(serverName,exceptionStr))
+                        unicode(self.tr("Bind to {0} failed:\n{1}\n\n(You do not have to spesify passwords here -- you will be asked when needed.)")).format(serverName,exception[0]["desc"]))
                 return
-            QMessageBox.warning(self, serverName, unicode(self.tr("Bind to {0} failed:\n{1}")).format(serverName, exceptionStr))
-
-
-class WorkerThread(QThread):
-    def __init__(self, parent = None):
-        QThread.__init__(self, parent)
-        self.finished.connect(self.cleanup)
-        self.worker = None
-
-    def run(self):
-        self.exec_()
-
-    def cleanup(self):
-        # Remove from threadpool
-        with ServerDialog._threadLock:
-            ServerDialog._threadPool.remove(self)
-
-    def setWorker(self, worker):
-        worker.moveToThread(self)
-        self.worker = worker
-        self.started.connect(worker.start)
-
-class TestWorker(QObject):
-
-    testFinished = pyqtSignal(bool, str, unicode)
-
-    def __init__(self, serverObject):
-        super(TestWorker, self).__init__()
-        self.serverObject = serverObject
-
-    def start(self):
-        # Try bind -- do not display pw-input and do not use remembered passwords
-        conn = LumaConnectionWrapper(self.serverObject)
-        success, exception = conn.bindSync()
-        conn.unbind()
-        # Return status
-        if success:
-            self.testFinished.emit(True, "", self.serverObject.name)
-        else:
-            self.testFinished.emit(False,str(exception[0]["desc"]),self.serverObject.name)
+            QMessageBox.warning(self, serverName, unicode(self.tr("Bind to {0} failed:\n{1}")).format(serverName, exception[0]["desc"]))
 
 # vim: tabstop=4 expandtab shiftwidth=4 softtabstop=4
