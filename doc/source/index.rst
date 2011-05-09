@@ -42,6 +42,7 @@ Contents
    INSTALL.rst
    userguide.rst
    HACKING.rst
+   lumaAPI.rst
    ChangeLog.rst
    BUGS.rst
    AUTHORS.rst

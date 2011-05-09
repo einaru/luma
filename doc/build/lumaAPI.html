@@ -1,0 +1,567 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Luma API &mdash; Luma v3.0.7-beta documentation</title>
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '3.0.7-beta',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/sidebar.js"></script>
+    <link rel="top" title="Luma v3.0.7-beta documentation" href="index.html" />
+    <link rel="next" title="ChangeLog" href="ChangeLog.html" />
+    <link rel="prev" title="Luma Development" href="HACKING.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="ChangeLog.html" title="ChangeLog"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="HACKING.html" title="Luma Development"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">Luma v3.0.7-beta documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="luma-api">
+<h1>Luma API<a class="headerlink" href="#luma-api" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="the-base-backend-package">
+<h2>The <tt class="docutils literal"><span class="pre">base.backend</span></tt> package<a class="headerlink" href="#the-base-backend-package" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="base.backend.Connection.LumaConnection">
+<em class="property">class </em><tt class="descclassname">base.backend.Connection.</tt><tt class="descname">LumaConnection</tt><big>(</big><em>serverObject=None</em><big>)</big><a class="headerlink" href="#base.backend.Connection.LumaConnection" title="Permalink to this definition">¶</a></dt>
+<dd><p>This class is a wrapper around the ldap functions.</p>
+<p>It is provided to access ldap data easier.
+The following public LDAP-wrapper methods is available:</p>
+<ul class="simple">
+<li>bind:   Binds to an LDAP server</li>
+<li>unbind: Unbinds from an LDAP server</li>
+<li>search: Performs an asynchronous search operation</li>
+<li>add:    Performs an synchronous add operation</li>
+<li>modify: Performs an synchronous modify operation</li>
+<li>delete: Performs an synchronous delete operation</li>
+</ul>
+<p>Every operation is executed in its own worker thread.</p>
+<dl class="method">
+<dt id="base.backend.Connection.LumaConnection.add">
+<tt class="descname">add</tt><big>(</big><em>dn</em>, <em>modlist</em><big>)</big><a class="headerlink" href="#base.backend.Connection.LumaConnection.add" title="Permalink to this definition">¶</a></dt>
+<dd><p>Synchronous add.</p>
+<p>Returns a tuple: (<tt class="docutils literal"><span class="pre">success</span></tt>, <tt class="docutils literal"><span class="pre">exceptionObj</span></tt>). The boolean
+<tt class="docutils literal"><span class="pre">success</span></tt> value indicates wheter the add operation was 
+successfull or not. If <tt class="docutils literal"><span class="pre">success</span></tt> is        <tt class="xref docutils literal"><span class="pre">True</span></tt>, 
+<tt class="docutils literal"><span class="pre">exceptionObj</span></tt> is <tt class="xref docutils literal"><span class="pre">None</span></tt>. If <tt class="docutils literal"><span class="pre">success</span></tt> is <tt class="xref docutils literal"><span class="pre">False</span></tt>, 
+<tt class="docutils literal"><span class="pre">exceptionObj</span></tt> will contain the worker thread excpetion 
+object.</p>
+<p>Parameters:</p>
+<ul class="simple">
+<li><cite>dn</cite>:</li>
+<li><cite>modlist</cite>:</li>
+</ul>
+</dd></dl>
+
+<dl class="method">
+<dt id="base.backend.Connection.LumaConnection.addDataObject">
+<tt class="descname">addDataObject</tt><big>(</big><em>dataObject</em><big>)</big><a class="headerlink" href="#base.backend.Connection.LumaConnection.addDataObject" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds the given SmartDataObject to the server.</p>
+<p>&#64;return: [same as add()]</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="base.backend.Connection.LumaConnection.bind">
+<tt class="descname">bind</tt><big>(</big><big>)</big><a class="headerlink" href="#base.backend.Connection.LumaConnection.bind" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bind to LDAP server.</p>
+<p>Exceptions will be raised on certificate error and invalid or
+blank passwords.</p>
+<p>Returns a tuple: (<tt class="docutils literal"><span class="pre">success</span></tt>, <tt class="docutils literal"><span class="pre">exceptionObj</span></tt>). The boolean
+<tt class="docutils literal"><span class="pre">success</span></tt> value indicates wheter the bind operation was 
+successfull or not. If <tt class="docutils literal"><span class="pre">success</span></tt> is <tt class="xref docutils literal"><span class="pre">True</span></tt>, <tt class="docutils literal"><span class="pre">exceptionObj</span></tt>
+is <tt class="xref docutils literal"><span class="pre">None</span></tt>. If <tt class="docutils literal"><span class="pre">success</span></tt> is <tt class="xref docutils literal"><span class="pre">False</span></tt>, <tt class="docutils literal"><span class="pre">exceptionObj</span></tt> will
+contain the worker thread excpetion object.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="base.backend.Connection.LumaConnection.delete">
+<tt class="descname">delete</tt><big>(</big><em>dnDelete=None</em><big>)</big><a class="headerlink" href="#base.backend.Connection.LumaConnection.delete" title="Permalink to this definition">¶</a></dt>
+<dd><p>Synchronous delete.</p>
+<dl class="docutils">
+<dt>Returns a tuple, (success, exceptionObj)</dt>
+<dd>The boolean success value indicates wheter the delete
+operation was successfull or not. If success is True, 
+exceptionObj is None. If success is False, exceptionObj
+will contain the worker thread excpetion object.</dd>
+</dl>
+<p>Parameters:</p>
+<ul class="simple">
+<li><cite>dnDelete</cite>:</li>
+</ul>
+</dd></dl>
+
+<dl class="method">
+<dt id="base.backend.Connection.LumaConnection.getBaseDNList">
+<tt class="descname">getBaseDNList</tt><big>(</big><big>)</big><a class="headerlink" href="#base.backend.Connection.LumaConnection.getBaseDNList" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the baseDN list off of an LDAP server.</p>
+<dl class="docutils">
+<dt>FIXME: implement better error handling for function which call </dt>
+<dd>getBaseDNList. Error handling inside is okay.</dd>
+<dt>Returns a tuple, (success, result, exceptionObj|error)</dt>
+<dd>The boolean success value indicates wheter the search
+operation was successfull or not. If success is True, 
+result contains the list of baseDN from the server, and
+exceptionObj is None. If success is False, result is None,
+end exceptionObj will contain the worker thread excpetion
+object.</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="base.backend.Connection.LumaConnection.modify">
+<tt class="descname">modify</tt><big>(</big><em>dn</em>, <em>modlist=None</em><big>)</big><a class="headerlink" href="#base.backend.Connection.LumaConnection.modify" title="Permalink to this definition">¶</a></dt>
+<dd><p>Synchronous modify.</p>
+<dl class="docutils">
+<dt>Returns a tuple, (success, exceptionObj)</dt>
+<dd>The boolean success value indicates wheter the modify
+operation was successfull or not. If success is True, 
+exceptionObj is None. If success is False, exceptionObj
+will contain the worker thread excpetion object.</dd>
+</dl>
+<p>Parameters:</p>
+<ul class="simple">
+<li><cite>dn</cite>:</li>
+<li><cite>modlist</cite>:</li>
+</ul>
+</dd></dl>
+
+<dl class="method">
+<dt id="base.backend.Connection.LumaConnection.search">
+<tt class="descname">search</tt><big>(</big><em>base=''</em>, <em>scope=0</em>, <em>filter='(objectClass=*)'</em>, <em>attrList=None</em>, <em>attrsonly=0</em>, <em>sizelimit=0</em><big>)</big><a class="headerlink" href="#base.backend.Connection.LumaConnection.search" title="Permalink to this definition">¶</a></dt>
+<dd><p>Asynchronous search.</p>
+<p>Returns a tuple: (<tt class="docutils literal"><span class="pre">success</span></tt>, <tt class="docutils literal"><span class="pre">result</span></tt>, <tt class="docutils literal"><span class="pre">exceptionObj</span></tt>).
+The boolean <tt class="docutils literal"><span class="pre">success</span></tt> value indicates wheter the search 
+operation was successfull or not. If <tt class="docutils literal"><span class="pre">success</span></tt> is <tt class="xref docutils literal"><span class="pre">True</span></tt>,
+result will contain the returnes result as a list, and 
+<tt class="docutils literal"><span class="pre">exceptionObj</span></tt> is <tt class="xref docutils literal"><span class="pre">None</span></tt>. If success is <tt class="xref docutils literal"><span class="pre">False</span></tt>, result
+is <tt class="xref docutils literal"><span class="pre">None</span></tt>, and exceptionObj will contain the worker thread
+excpetion object.</p>
+<p>Parameters:</p>
+<ul class="simple">
+<li><cite>base</cite>: The base entry to start the search from.</li>
+<li><cite>scope</cite>: The search scope. must be one of <tt class="docutils literal"><span class="pre">SCOPE_BASE</span></tt> (0),
+<tt class="docutils literal"><span class="pre">SCOPE_ONELEVEL</span></tt> (1) or <tt class="docutils literal"><span class="pre">SCOPE_SUBTREE</span></tt> (2)</li>
+<li><cite>filter</cite>: The filter string to apply on the search .</li>
+<li><cite>attrList</cite></li>
+<li><cite>attrsonly</cite>:</li>
+<li><cite>sizelimit</cite>: The limit for entries to retrive</li>
+</ul>
+</dd></dl>
+
+<dl class="method">
+<dt id="base.backend.Connection.LumaConnection.unbind">
+<tt class="descname">unbind</tt><big>(</big><big>)</big><a class="headerlink" href="#base.backend.Connection.LumaConnection.unbind" title="Permalink to this definition">¶</a></dt>
+<dd><p>Unbind from server.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="base.backend.Connection.LumaConnection.updateDataObject">
+<tt class="descname">updateDataObject</tt><big>(</big><em>dataObject</em><big>)</big><a class="headerlink" href="#base.backend.Connection.LumaConnection.updateDataObject" title="Permalink to this definition">¶</a></dt>
+<dd><p>Updates the given SmartDataObject, by doing search for the dn, 
+and modify on the object entry.</p>
+<dl class="docutils">
+<dt>Returns a tuple, (dn|False, modlist|exceptionObj)</dt>
+<dd>If the procedure is successfull, the dn and the modlist
+will be returned, if not False, and the worker thread
+exception object is returned.</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="base.backend.Connection.LumaConnection.whileWaiting">
+<tt class="descname">whileWaiting</tt><big>(</big><big>)</big><a class="headerlink" href="#base.backend.Connection.LumaConnection.whileWaiting" title="Permalink to this definition">¶</a></dt>
+<dd><p>FIXME: replacement for the <tt class="docutils literal"><span class="pre">qApp.processEvents</span></tt> call.</p>
+</dd></dl>
+
+</dd></dl>
+
+<span class="target" id="module-base.backend.ServerObject"></span><dl class="class">
+<dt id="base.backend.ServerObject.ServerObject">
+<em class="property">class </em><tt class="descclassname">base.backend.ServerObject.</tt><tt class="descname">ServerObject</tt><a class="headerlink" href="#base.backend.ServerObject.ServerObject" title="Permalink to this definition">¶</a></dt>
+<dd><p>This class represents a server with all its information.</p>
+</dd></dl>
+
+<div class="section" id="module-base.backend.Exception">
+<span id="exceptions"></span><h3>Exceptions<a class="headerlink" href="#module-base.backend.Exception" title="Permalink to this headline">¶</a></h3>
+<dl class="exception">
+<dt id="base.backend.Exception.LumaConnectionException">
+<em class="property">exception </em><tt class="descclassname">base.backend.Exception.</tt><tt class="descname">LumaConnectionException</tt><a class="headerlink" href="#base.backend.Exception.LumaConnectionException" title="Permalink to this definition">¶</a></dt>
+<dd><p>This exception class will be raised if no proper server object
+is passed to the LumaConnection constructor.</p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="base.backend.Exception.ServerCertificateException">
+<em class="property">exception </em><tt class="descclassname">base.backend.Exception.</tt><tt class="descname">ServerCertificateException</tt><a class="headerlink" href="#base.backend.Exception.ServerCertificateException" title="Permalink to this definition">¶</a></dt>
+<dd><p>This exception will be raised if we get an certificate error.</p>
+</dd></dl>
+
+<dl class="exception">
+<dt id="base.backend.Exception.InvalidPasswordException">
+<em class="property">exception </em><tt class="descclassname">base.backend.Exception.</tt><tt class="descname">InvalidPasswordException</tt><a class="headerlink" href="#base.backend.Exception.InvalidPasswordException" title="Permalink to this definition">¶</a></dt>
+<dd><p>This exception will be raised when a password is needed to
+proceed with a bind operation. This normaly occurs when the
+given password is either invalid or blank.</p>
+</dd></dl>
+
+</div>
+</div>
+<div class="section" id="the-base-gui-package">
+<h2>The <tt class="docutils literal"><span class="pre">base.gui</span></tt> package<a class="headerlink" href="#the-base-gui-package" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="base.gui.Settings.Settings">
+<em class="property">class </em><tt class="descclassname">base.gui.Settings.</tt><tt class="descname">Settings</tt><a class="headerlink" href="#base.gui.Settings.Settings" title="Permalink to this definition">¶</a></dt>
+<dd><p>The Settings class extends the QSettings class, to provide an
+easy and persistent way to set and retrive settings from different
+parts of the application.</p>
+<p>The main benefit for doing it this way is that the config sections
+and keys is defined in one location, should we in the future decide
+to change some of these.</p>
+<p>The class provides setters and getters for all settings values
+through the python property mechanism.</p>
+<p>The following settings is available:</p>
+<div class="highlight-python"><pre>[general]
+save_window_size=&lt;bool&gt;
+save_window_position=&lt;bool&gt;
+
+[mainwin]
+size=&lt;QSize&gt;
+position=&lt;QPoint&gt;
+
+[i18n]
+language=&lt;ISO 638-1 code&gt;
+
+[logger]
+show_on_start=&lt;bool&gt;
+show_errors=&lt;bool&gt;
+show_debug=&lt;bool&gt;
+show_info=&lt;bool&gt;</pre>
+</div>
+<dl class="method">
+<dt id="base.gui.Settings.Settings.genericValue">
+<tt class="descname">genericValue</tt><big>(</big><em>key</em>, <em>default</em><big>)</big><a class="headerlink" href="#base.gui.Settings.Settings.genericValue" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns an arbitrary settings value, corrosponding to <cite>key</cite>.
+The <cite>default</cite> value is used should the <cite>key</cite> contain no value.</p>
+<p>Parameters:</p>
+<ul class="simple">
+<li><cite>key</cite>: the name of the key to get the value from.</li>
+<li><cite>default</cite>: the value to be used as fallback if <cite>key</cite> contains
+no value.</li>
+</ul>
+</dd></dl>
+
+<dl class="method">
+<dt id="base.gui.Settings.Settings.setGenericValue">
+<tt class="descname">setGenericValue</tt><big>(</big><em>key</em>, <em>value</em><big>)</big><a class="headerlink" href="#base.gui.Settings.Settings.setGenericValue" title="Permalink to this definition">¶</a></dt>
+<dd><p>Utility method for setting an arbitrary setting value.</p>
+<p>Parameters:</p>
+<ul class="simple">
+<li><cite>key</cite>: the key for the value.</li>
+<li><cite>value</cite>: the value to be saved.</li>
+</ul>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="base.gui.Settings.PluginSettings">
+<em class="property">class </em><tt class="descclassname">base.gui.Settings.</tt><tt class="descname">PluginSettings</tt><big>(</big><em>pluginName</em><big>)</big><a class="headerlink" href="#base.gui.Settings.PluginSettings" title="Permalink to this definition">¶</a></dt>
+<dd><p>Wrapper Settings class for plugins.</p>
+<p>This is a generic settings class, which provide consistent loading
+and saving of settings for plugins. It works by providing the
+plugin name to the constructor, and using this value to retrive and
+save settings in the main luma settings file.</p>
+<dl class="method">
+<dt id="base.gui.Settings.PluginSettings.pluginValue">
+<tt class="descname">pluginValue</tt><big>(</big><em>key</em>, <em>default</em><big>)</big><a class="headerlink" href="#base.gui.Settings.PluginSettings.pluginValue" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the plugin settings value for the <cite>key</cite>, if such a
+value exists. If not the <cite>default</cite> value is returned.</p>
+<p>Parameters:</p>
+<ul class="simple">
+<li><cite>key</cite>: the name of the key to get the value from.</li>
+<li><cite>default</cite>: the value to be used as fallback if <cite>key</cite> contains
+no value.</li>
+</ul>
+</dd></dl>
+
+<dl class="method">
+<dt id="base.gui.Settings.PluginSettings.setPluginValue">
+<tt class="descname">setPluginValue</tt><big>(</big><em>key</em>, <em>value</em><big>)</big><a class="headerlink" href="#base.gui.Settings.PluginSettings.setPluginValue" title="Permalink to this definition">¶</a></dt>
+<dd><p>Saves a <cite>value</cite> associated with a <cite>key</cite> to the settings file.</p>
+<p>Parameters:</p>
+<ul class="simple">
+<li><cite>key</cite>: the key for the value.</li>
+<li><cite>value</cite>: the value to be saved.</li>
+</ul>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="the-base-util-package">
+<h2>The <tt class="docutils literal"><span class="pre">base.util</span></tt> package<a class="headerlink" href="#the-base-util-package" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="internationalization">
+<h3>Internationalization<a class="headerlink" href="#internationalization" title="Permalink to this headline">¶</a></h3>
+<dl class="class">
+<dt id="base.util.i18n.LanguageHandler">
+<em class="property">class </em><tt class="descclassname">base.util.i18n.</tt><tt class="descname">LanguageHandler</tt><a class="headerlink" href="#base.util.i18n.LanguageHandler" title="Permalink to this definition">¶</a></dt>
+<dd><p>Helper class providing useful functionality for handling
+available application translations.</p>
+<dl class="attribute">
+<dt id="base.util.i18n.LanguageHandler.availableLanguages">
+<tt class="descname">availableLanguages</tt><a class="headerlink" href="#base.util.i18n.LanguageHandler.availableLanguages" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a dictionary containing all available language 
+translations for the application. The dictionary returned
+is on the form:</p>
+<div class="highlight-python"><pre>langDict = {
+    ...,
+    locale : [language[, country]],
+    ...
+}</pre>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="base.util.i18n.LanguageHandler.getQmFile">
+<tt class="descname">getQmFile</tt><big>(</big><em>locale=''</em><big>)</big><a class="headerlink" href="#base.util.i18n.LanguageHandler.getQmFile" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the <tt class="docutils literal"><span class="pre">.qm</span></tt> files that matches <cite>locale</cite>. If <cite>locale</cite>
+is empty or <tt class="xref docutils literal"><span class="pre">None</span></tt>, the <tt class="docutils literal"><span class="pre">.qm</span></tt> file for <tt class="docutils literal"><span class="pre">en</span></tt> is returned.</p>
+<p>Paramters:</p>
+<ul class="simple">
+<li><cite>locale</cite>: a two-letter lowercase ISO 639 language code, with
+a possible two-letter uppercase ISO 3199 country code, that
+corresponds to one of the <tt class="docutils literal"><span class="pre">i18n</span></tt> aliases in the resource
+file.</li>
+</ul>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="base.util.i18n.LanguageHandler.translationPath">
+<tt class="descname">translationPath</tt><a class="headerlink" href="#base.util.i18n.LanguageHandler.translationPath" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the full path to the directory containing the 
+translation files.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-base.util.IconTheme">
+<span id="x11-user-interface-integration"></span><h3>X11 user interface integration<a class="headerlink" href="#module-base.util.IconTheme" title="Permalink to this headline">¶</a></h3>
+<dl class="function">
+<dt id="base.util.IconTheme.iconFromTheme">
+<tt class="descclassname">base.util.IconTheme.</tt><tt class="descname">iconFromTheme</tt><big>(</big><em>icon</em>, <em>fallback</em><big>)</big><a class="headerlink" href="#base.util.IconTheme.iconFromTheme" title="Permalink to this definition">¶</a></dt>
+<dd><p>Utility method for getting icons from default X11 icon theme.</p>
+<p>Returns a <tt class="docutils literal"><span class="pre">QIcon</span></tt> from the system icon theme if a match is found,
+if not the <cite>fallback</cite> is used.</p>
+<p>Parameters:</p>
+<ul class="simple">
+<li><cite>icon</cite>: the name of the icon from the icon theme.</li>
+<li><cite>fallback</cite>: the name of the fallback icon.</li>
+</ul>
+</dd></dl>
+
+<dl class="function">
+<dt id="base.util.IconTheme.pixmapFromTheme">
+<tt class="descclassname">base.util.IconTheme.</tt><tt class="descname">pixmapFromTheme</tt><big>(</big><em>icon</em>, <em>fallback</em>, <em>width=48</em>, <em>height=48</em>, <em>mode=0</em>, <em>state=1</em><big>)</big><a class="headerlink" href="#base.util.IconTheme.pixmapFromTheme" title="Permalink to this definition">¶</a></dt>
+<dd><p>Utility method for converting a <tt class="docutils literal"><span class="pre">QIcon</span></tt> to a <tt class="docutils literal"><span class="pre">QPixmap</span></tt>.
+Useful when trying to use icons from a X11 iconTheme but need a
+pixmap.</p>
+<p>Returns a <tt class="docutils literal"><span class="pre">QPixmap</span></tt> from the system icon theme if a match is
+found, if not, the <cite>fallback</cite> is used.</p>
+<p>Parameters:</p>
+<ul>
+<li><p class="first"><cite>icon</cite>: the name of the icon from the icon theme.</p>
+</li>
+<li><p class="first"><cite>fallback</cite>: the name of the fallback icon.</p>
+</li>
+<li><p class="first"><cite>widht</cite>: the width of the icon, default is 48.</p>
+</li>
+<li><p class="first"><cite>height</cite>: the height of the icon, default is 48.</p>
+</li>
+<li><dl class="first docutils">
+<dt><cite>mode</cite>: the icon mode, default is <tt class="docutils literal"><span class="pre">QIcon.Normal</span></tt>,</dt>
+<dd><p class="first last">(see <a class="reference external" href="http://doc.trolltech.com/4.7/qicon.html#Mode-enum">http://doc.trolltech.com/4.7/qicon.html#Mode-enum</a>).</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><cite>state</cite>: the icon state, default is <tt class="docutils literal"><span class="pre">QIcon.Off</span></tt>,</dt>
+<dd><p class="first last">(see <a class="reference external" href="http://doc.trolltech.com/4.7/qicon.html#State-enum">http://doc.trolltech.com/4.7/qicon.html#State-enum</a>).</p>
+</dd>
+</dl>
+</li>
+</ul>
+</dd></dl>
+
+</div>
+<div class="section" id="module-base.util.Paths">
+<span id="filepaths"></span><h3>Filepaths<a class="headerlink" href="#module-base.util.Paths" title="Permalink to this headline">¶</a></h3>
+<dl class="function">
+<dt id="base.util.Paths.getConfigPrefix">
+<tt class="descclassname">base.util.Paths.</tt><tt class="descname">getConfigPrefix</tt><big>(</big><big>)</big><a class="headerlink" href="#base.util.Paths.getConfigPrefix" title="Permalink to this definition">¶</a></dt>
+<dd><p>We must determine what platform we&#8217;re running on. Making sure
+we follow the platform convention for configuration files and
+directories,</p>
+<p>The platform validation, can be done through a number of modules:</p>
+<div class="highlight-python"><pre>os.name           -&gt; posix, nt
+sys.platform      -&gt; linux2, windows, darwin
+platform.system() -&gt; Linux, Windows, Darwin</pre>
+</div>
+<p>This method will check for a existing config folder based on the
+platform. If it is not found it will be created. Either way the
+path will be returned.</p>
+<p>Returns a tuple (success, prefix), where <tt class="docutils literal"><span class="pre">success</span></tt> is a boolean
+value indicating wheter the config prefix path exists. It will be
+<tt class="xref docutils literal"><span class="pre">True</span></tt> if the path existed or was successfully created. If it 
+doesn&#8217;t exists, and we don&#8217;t have write permissions, it will be 
+<tt class="xref docutils literal"><span class="pre">False</span></tt>. In this case we will return the system temp directory.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="base.util.Paths.getLumaRoot">
+<tt class="descclassname">base.util.Paths.</tt><tt class="descname">getLumaRoot</tt><big>(</big><big>)</big><a class="headerlink" href="#base.util.Paths.getLumaRoot" title="Permalink to this definition">¶</a></dt>
+<dd><p>Utility method for locating the Luma root location.</p>
+<p>This is done by using pythons magical __file__ attribute, to get
+the location of this module, and joining it with the required
+number of levels up to the root.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The use of __file__ most  likely will cause some issues if 
+Luma is packaged with</p>
+</div>
+<p>Returnes the absolute file path to the luma root directory, without
+the trailing separator -&gt; <tt class="docutils literal"><span class="pre">/full/path/to/luma</span></tt></p>
+</dd></dl>
+
+<dl class="function">
+<dt id="base.util.Paths.getUserHomeDir">
+<tt class="descclassname">base.util.Paths.</tt><tt class="descname">getUserHomeDir</tt><big>(</big><big>)</big><a class="headerlink" href="#base.util.Paths.getUserHomeDir" title="Permalink to this definition">¶</a></dt>
+<dd><p>Helper method for finding the user home directory.</p>
+<p>On UNIX systems this is achieved by using the python <cite>os.getenv</cite>
+module. On Windows NT systems users is able to have roaming or
+local profiles. For example:</p>
+<ul class="simple">
+<li><tt class="docutils literal"><span class="pre">CSIDL_APPDATA</span></tt> returns the roaming <tt class="docutils literal"><span class="pre">Application</span> <span class="pre">Data</span></tt> dir,</li>
+<li><tt class="docutils literal"><span class="pre">CSIDL_LOCAL_APPDATA</span></tt> returns the local home dir.</li>
+</ul>
+<p>Returns the path to the user home directory.</p>
+</dd></dl>
+
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="index.html">
+              <img class="logo" src="_static/luma.png" alt="Logo"/>
+            </a></p>
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Luma API</a><ul>
+<li><a class="reference internal" href="#the-base-backend-package">The <tt class="docutils literal"><span class="pre">base.backend</span></tt> package</a><ul>
+<li><a class="reference internal" href="#module-base.backend.Exception">Exceptions</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#the-base-gui-package">The <tt class="docutils literal"><span class="pre">base.gui</span></tt> package</a></li>
+<li><a class="reference internal" href="#the-base-util-package">The <tt class="docutils literal"><span class="pre">base.util</span></tt> package</a><ul>
+<li><a class="reference internal" href="#internationalization">Internationalization</a></li>
+<li><a class="reference internal" href="#module-base.util.IconTheme">X11 user interface integration</a></li>
+<li><a class="reference internal" href="#module-base.util.Paths">Filepaths</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="HACKING.html"
+                        title="previous chapter">Luma Development</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="ChangeLog.html"
+                        title="next chapter">ChangeLog</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/lumaAPI.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" size="18" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="ChangeLog.html" title="ChangeLog"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="HACKING.html" title="Luma Development"
+             >previous</a> |</li>
+        <li><a href="index.html">Luma v3.0.7-beta documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2011, Christian Forfang, Einar Uvsløkk, Johannes Harestad, Per Ove Ringstad, Simen Natvig, Sondre Frisvold.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.0.7.
+    </div>
+  </body>
+</html>
