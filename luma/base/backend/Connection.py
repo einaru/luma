@@ -263,27 +263,25 @@ class LumaConnection(object):
                attrList=None, attrsonly=0, sizelimit=0):
         """Asynchronous search.
 
-        Returns a tuple: (``success``, ``result``, ``exceptionObj``).
-        The boolean ``success`` value indicates wheter the search
-        operation was successfull or not. If ``success`` is ``True``,
-        result will contain the returnes result as a list, and
-        ``exceptionObj`` is ``None``. If success is ``False``, result
-        is ``None``, and exceptionObj will contain the worker thread
-        excpetion object.
-
-        Parameters:
+        Returns a tuple: (success, result, exceptionObj). The boolean
+        success value indicates wheter the search operation was
+        successfull or not. If success is True, result will contain the
+        returnes result as a list, and exceptionObj is None. If success
+        is False, result is None, and exceptionObj will contain the
+        worker thread excpetion object.
 
         :param base: The base entry to start the search from.
-        :param scope: The search scope. must be one of ``SCOPE_BASE``
-         (0), ``SCOPE_ONELEVEL`` (1) or ``SCOPE_SUBTREE`` (2).
+        :type base: string
+        :param scope: The search scope. must be one of ``SCOPE_BASE
+          (0)``, ``SCOPE_ONELEVEL (1)`` or ``SCOPE_SUBTREE (2)``.
         :type scope: int
-        :param filter: The filter string to apply on the search .
-        :type:filter: string
-        :param attrList:
+        :param filter: The filter string to apply on the search.
+        :type filter: string
+        :param attrList: a list of attributes.
         :type attrList: list
-        :param attrsonly:
+        :param attrsonly: whether or not to use only attributes.
         :type attrsonly: int
-        :param sizelimit`: The limit for entries to retrive
+        :param sizelimit: The limit for entries to retrive
         :type sizelimit: int
         """
         workerThread = WorkerThreadSearch(self.ldapServerObject)
