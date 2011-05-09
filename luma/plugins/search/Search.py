@@ -345,7 +345,7 @@ class SearchPlugin(QWidget, Ui_SearchPlugin):
         # finished we act upon the LumaConnectionWrapper.searchFinished
         # signal in the onSearchFinished method
         args = dict(base=base, scope=scope, filter=filter, sizelimit=limit)
-        search = Search(self.currentServer, **args)
+        search = Search(self, self.currentServer, **args)
         search.resultsRetrieved.connect(self.onResultsRetrieved)
 
     def onResultsRetrieved(self, result, e):
@@ -398,13 +398,14 @@ class SearchPlugin(QWidget, Ui_SearchPlugin):
                 except AttributeError:
                     pass
 
+
 class Search(QObject):
     """Object representing a search."""
 
     resultsRetrieved = pyqtSignal(list, object)
     __logger = logging.getLogger(__name__)
 
-    def __init__(self, server, **kwargs):
+    def __init__(self, parent, server, **kwargs):
         """
         Parameters:
 
@@ -412,7 +413,7 @@ class Search(QObject):
           operation with.
         - `args`: a tuple with arguments to the search.
         """
-        super(Search, self).__init__()
+        super(Search, self).__init__(parent)
         self.filter = kwargs['filter']
         self.connection = LumaConnectionWrapper(server, self)
         self.connection.searchFinished.connect(self.onSearchFinished)
