@@ -149,6 +149,7 @@ class SearchPlugin(QWidget, Ui_SearchPlugin):
         # Install the eventFilter on desired widgets
         self.installEventFilter(eventFilter)
         self.right.installEventFilter(eventFilter)
+        self.right.setUsesScrollButtons(True)
 
         self.__loadSettings()
         self.__connectSlots()

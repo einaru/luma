@@ -5,7 +5,6 @@ import PyQt4
 import copy
 from PyQt4 import QtCore
 from PyQt4.QtCore import QObject
-from PyQt4.QtGui import QMessageBox
 
 
 from base.backend.ServerList import ServerList
@@ -19,6 +18,10 @@ class EntryModel(QObject):
         QObject.__init__(self, parent)
         self.smartObject = smartObject
         self.entryTemplate = entryTemplate
+        
+        # does the smartobject have a schema?
+        self.VALID = False
+
         # boolean to indicate if the current ldap object has been modified
         self.EDITED = False
         
@@ -28,10 +31,7 @@ class EntryModel(QObject):
         # do we create a completely new object?
         self.CREATE = False
         
-        # Default
-        self.ignoreServerMetaError = False
-
-    modelChangedSignal = QtCore.pyqtSignal()
+    modelChangedSignal = QtCore.pyqtSignal("bool")
 
 
     def getSmartObject(self):
@@ -42,9 +42,12 @@ class EntryModel(QObject):
             self.EDITED = True
             self.ISLEAF = False
             self.CREATE = True
+            self.VALID = True
         else:
             self.EDITED = False
             isLeave = False
+            self.smartObject.checkIntegrity()
+            self.VALID = self.smartObject.isValid
 
             serverMeta = self.smartObject.getServerMeta()
         
@@ -53,16 +56,8 @@ class EntryModel(QObject):
             bindSuccess, exceptionObject = lumaConnection.bindSync()
             
             if not bindSuccess:
-                if self.ignoreServerMetaError:
-                    self.EDITED = False
-                    self.ISLEAF = True
-                    self.CREATE = False
-                    self.toolButtonsEnabled = True
-                    #TODO add logging
-                    return (True, None, None)
-                else:
-                    message = "Could not bind to server."
-                    return (False, message, exceptionObject)
+                message = "Could not bind to server."
+                return (False, message, exceptionObject)
             
             success, resultList, exceptionObject = lumaConnection.searchSync(self.smartObject.dn, ldap.SCOPE_ONELEVEL, filter="(objectClass=*)", attrList=None, attrsonly=1, sizelimit=1)
             lumaConnection.unbind()
@@ -86,6 +81,7 @@ class EntryModel(QObject):
                 
             self.CREATE = False
             
+        self.modelChangedSignal.emit(True)
         return (True, None, None)
 
 ###############################################################################
@@ -146,8 +142,10 @@ class EntryModel(QObject):
         
         if success and (len(resultList) > 0):
             self.smartObject = resultList[0]
+            self.smartObject.checkIntegrity()
+            self.VALID = self.smartObject.isValid
             self.EDITED = False
-            self.modelChangedSignal.emit()
+            self.modelChangedSignal.emit(True)
             return (True, None, None)
         else:
             message = "Could not refresh entry.<br><br>Reason: "
@@ -175,7 +173,7 @@ class EntryModel(QObject):
             if success:
                 #self.CREATE = False
                 self.EDITED = False
-                self.modelChangedSignal.emit()
+                self.modelChangedSignal.emit(False)
                 return (True, None, None)
             else:
                 message = "Could not add entry."
@@ -185,7 +183,7 @@ class EntryModel(QObject):
             lumaConnection.unbind()
             if success:
                 self.EDITED = False
-                self.modelChangedSignal.emit()
+                self.modelChangedSignal.emit(False)
                 return (True, None, None)
             else:
                 message = "Could not save entry."
@@ -263,7 +261,7 @@ class EntryModel(QObject):
     def editAttribute(self, attributeName, index, newValue):
         self.smartObject.setAttributeValue(attributeName, index, newValue)
         self.EDITED = True
-        self.modelChangedSignal.emit()
+        self.modelChangedSignal.emit(False)
 
 ###############################################################################
 
@@ -271,7 +269,7 @@ class EntryModel(QObject):
         #try:
         self.smartObject.deleteAttributeValue(attributeName, index)
         self.EDITED = True
-        self.modelChangedSignal.emit()
+        self.modelChangedSignal.emit(False)
         #except LdapDataException as e:
         #    print "*" * 30
         #    print e
@@ -282,20 +280,20 @@ class EntryModel(QObject):
     def deleteObjectClass(self, className):
         self.smartObject.deleteObjectClass(className)
         self.EDITED = True
-        self.modelChangedSignal.emit()
+        self.modelChangedSignal.emit(False)
 
 ###############################################################################
 
     def setDN(self, rdn):
         self.smartObject.setDN(rdn)
         self.EDITED = True
-        self.modelChangedSignal.emit()
+        self.modelChangedSignal.emit(False)
         
 ###############################################################################
 
     def addAttributeValue(self, attributeName, attributeValueList):
         self.smartObject.addAttributeValue(attributeName, attributeValueList)
         self.EDITED = True
-        self.modelChangedSignal.emit()
+        self.modelChangedSignal.emit(False)
 
 # vim: tabstop=4 expandtab shiftwidth=4 softtabstop=4

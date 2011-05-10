@@ -13,11 +13,11 @@ class NewEntryDialog(QDialog, Ui_Dialog):
         else:
             smartO = parentIndex.internalPointer().smartObject()
             serverMeta = smartO.getServerMeta()
-            print serverMeta
             baseDN = smartO.getDN()
             data = {}
             smartObject = AdvancedObjectWidget.smartObjectCopy(SmartDataObject((baseDN, data), serverMeta))
-        self.objectWidget = AdvancedObjectWidget(smartObject, None, create=True, entryTemplate = entryTemplate)
+        self.objectWidget = AdvancedObjectWidget(None, entryTemplate = entryTemplate)
+        self.objectWidget.initModel(smartObject, create=True)
         self.gridLayout.addWidget(self.objectWidget)
 
     def accept(self):

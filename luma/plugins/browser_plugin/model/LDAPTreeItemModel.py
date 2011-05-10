@@ -151,8 +151,9 @@ class LDAPTreeItemModel(QAbstractItemModel):
 
             # -- Old solution --
             #self.populateItem(parentItem)
+            
             # Updates the |>-icon to show if the item has children
-            #self.layoutChanged.emit()
+            self.layoutChanged.emit()
 
         return parentItem.childCount()
 
