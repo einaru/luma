@@ -17,8 +17,7 @@ class LLHTest(unittest.TestCase):
 
 
     def log(self, message):
-	self.lastLevel, self.lastMessage = message
-
+	self.lastLevel, self.lastMessage, self.lastName, self.lastThreadName = message
     def testLogger(self):
 	# Set up logging through pythons's logging-system
 	l = logging.getLogger()

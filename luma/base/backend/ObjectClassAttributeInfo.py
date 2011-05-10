@@ -67,6 +67,8 @@ class ObjectClassAttributeInfo(object):
     def retrieveInfoFromServer(self):
         """ Retrieve all information of objectClassesDict and attributes from the
         server.
+
+        TODO MOVE TO LUMACONNECTION
         """
         #environment.setBusy(True)
         
@@ -523,6 +525,8 @@ class ObjectClassAttributeInfo(object):
 ###############################################################################
         
 class WorkerThreadFetch(threading.Thread):
+    
+    # TODO MOVE THIS TO LUMACONNECTION
     
     def __init__(self, serverMeta):
         threading.Thread.__init__(self)

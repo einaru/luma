@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file '/mnt/debris/devel/git/luma/resources/forms/plugins/search/SearchFormDesign.ui'
+# Form implementation generated from reading ui file '/home/einar/Desktop/luma-testing/resources/forms/plugins/search/SearchFormDesign.ui'
 #
-# Created: Sat May  7 03:12:32 2011
+# Created: Mon May  9 02:27:30 2011
 #      by: PyQt4 UI code generator 4.8.3
 #
 # WARNING! All changes made in this file will be lost!
@@ -55,6 +55,7 @@ class Ui_SearchForm(object):
         self.scopeBox.setObjectName(_fromUtf8("scopeBox"))
         self.gridLayout_2.addWidget(self.scopeBox, 4, 1, 1, 2)
         self.sizeLimitSpinBox = QtGui.QSpinBox(self.optionsGrid)
+        self.sizeLimitSpinBox.setMaximum(99999)
         self.sizeLimitSpinBox.setObjectName(_fromUtf8("sizeLimitSpinBox"))
         self.gridLayout_2.addWidget(self.sizeLimitSpinBox, 5, 1, 1, 2)
         self.sizeLimitLabel = QtGui.QLabel(self.optionsGrid)

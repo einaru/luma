@@ -12,7 +12,7 @@ from threading import RLock
 from plugins.browser_plugin.item.ServerTreeItem import ServerTreeItem
 from plugins.browser_plugin.item.RootTreeItem import RootTreeItem
 from plugins.browser_plugin.item.LDAPErrorItem import LDAPErrorItem
-from base.backend.LumaConnection import LumaConnection
+from base.backend.LumaConnectionWrapper import LumaConnectionWrapper
 
 from PyQt4.QtCore import QAbstractItemModel, pyqtSlot, pyqtSignal, Qt
 from PyQt4.QtCore import QModelIndex, QVariant, QCoreApplication, QRunnable
@@ -40,13 +40,6 @@ class LDAPTreeItemModel(QAbstractItemModel):
         self.verified = []
         self.listFetched.connect(self.workerFinished)
         self.populateModel(serverList)
-
-    """ These are called internally in order to signal when busy
-    """
-    def isWorking(self):
-        self.workingSignal.emit(True)
-    def doneWorking(self):
-        self.workingSignal.emit(False)
 
     def columnCount(self, parent):
         """
@@ -207,7 +200,7 @@ class LDAPTreeItemModel(QAbstractItemModel):
 #        needed (lazy loading).
 #        """
 #
-#        self.isWorking()
+#        #self.isWorking()
 #        
 #        # Don't try to fetch again
 #        parentItem.populated = 1
@@ -217,7 +210,7 @@ class LDAPTreeItemModel(QAbstractItemModel):
 #        
 #        if not success:
 #            self.displayError(exception)
-#            self.doneWorking()
+#            #self.doneWorking()
 #            return
 #        
 #        # Workaround:
@@ -234,7 +227,7 @@ class LDAPTreeItemModel(QAbstractItemModel):
 #        for x in list:
 #            parentItem.appendChild(x)
 #
-#        self.doneWorking()
+#        #self.doneWorking()
 
     def displayError(self, exceptionObject):
         """
@@ -247,29 +240,9 @@ class LDAPTreeItemModel(QAbstractItemModel):
         """
         Re-populates an already populated item, e.g. when a filter or limit it set.
         """
-        #self.isWorking()
-
         parentItem = parentIndex.internalPointer()
         parentItem.populated = True
         self.fetchInThread(parentIndex, parentItem)
-        #(success, newList, exception) = parentItem.fetchChildList()
-
-        #if not success:
-            # Basically, do nothing (can maybe use the existing list)
-            #self.displayError(exception) #Let the user know we failed though
-            #self.doneWorking()
-            #return
-
-        # Clear old list and insert new
-        #self.clearItem(parentIndex)
-
-        #self.beginInsertRows(parentIndex, 0, len(newList) - 1)
-        #for x in newList:
-            #parentItem.appendChild(x)
-        #parentItem.populated = 1 #If the list is empty, this isn't set (appendChild isn't called)
-        #self.endInsertRows()     
-        
-        #self.doneWorking()
 
     @pyqtSlot(QModelIndex)
     def clearItem(self, parentIndex):
@@ -277,13 +250,11 @@ class LDAPTreeItemModel(QAbstractItemModel):
         Removes all children for this item.
         Used by reloadItem()
         """
-        #self.isWorking()
         parentItem = parentIndex.internalPointer()
         if parentItem.childCount() > 0:
             self.beginRemoveRows(parentIndex, 0, parentItem.childCount() - 1)
             parentItem.emptyChildren()
             self.endRemoveRows()
-        #self.doneWorking()
     
     def deleteItem(self, index):
         """ Tries to delete the item referenced by the passed index on the server
@@ -329,22 +300,13 @@ class LDAPTreeItemModel(QAbstractItemModel):
        
         # Find associated ServerItem
         serverItem = parentItem.getParentServerItem()
-
-        if serverItem != None and self.unverified(serverItem.serverMeta):
-            # Verifies the connection to the server, and asks for password if it's invalid
-            # (Needs to be done in the GUI-thread (bacause of the password-dialog), which this should be)
-            conn = LumaConnection(serverItem.serverMeta)
-            success, exception = conn.bind(askForPw = True)
-            if success:
-                self.verified.append(serverItem.serverMeta.name)
-
-        # Do the search (in another thread)
-        # Two different solutions, each with it's own problems
-
-        """ QThreadWorker """
-        ## Read below before uncommenting, and also remember
-        ## to uncomment the __del__-method if you don't like crashes.
         
+        # TODO This was made before the addition
+        # of LumaConnectionWrapper.
+        # Should be converted to not use it's own thread,
+        # although it's possible it can't be
+        # because of the passing around of indexes.
+
         # Create the thread
         workerThread = WorkerThread()
         # Add to the threadpool

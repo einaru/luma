@@ -23,11 +23,13 @@ import os
 import re
 import gc
 
-from PyQt4.QtCore import (QEvent, QObject, Qt, QTimer)
+from PyQt4.QtCore import (QEvent, QObject, Qt, QTimer, pyqtSignal)
 from PyQt4.QtGui import (QKeySequence, QWidget, qApp)
 
 from base.backend.ServerList import ServerList
-from base.backend.Connection import LumaConnection
+# Switching to the LumaConnectionWrapper
+#from base.backend.Connection import LumaConnection
+from base.backend.LumaConnectionWrapper import LumaConnectionWrapper
 from base.backend.Exception import (ServerCertificateException,
                                     InvalidPasswordException)
 from base.backend.ObjectClassAttributeInfo import ObjectClassAttributeInfo
@@ -41,9 +43,10 @@ from .FilterBuilder import FilterBuilder
 from .SearchForm import SearchForm
 from .SearchResult import ResultView
 
+
 class SearchPluginEventFilter(QObject):
     """An Event handler for the Search Plugin.
-    
+
     To act upon widget events, install an instance of this class with
     the target widget, and add the capture logic in the eventFilter
     method.
@@ -51,10 +54,10 @@ class SearchPluginEventFilter(QObject):
 
     def eventFilter(self, target, event):
         """Overrided method to catch and act upon various ``QEvent`s.
-        
+
         Parameters:
-        
-        - `target`: The target ``QWidget`` where the event was 
+
+        - `target`: The target ``QWidget`` where the event was
           generated from.
         - `event`: The ``QEvent`` that was generated.
         """
@@ -84,17 +87,17 @@ class SearchPluginEventFilter(QObject):
             if target.objectName() == 'SearchPlugin':
                 target.retranslate()
                 return True
-        # All events we didn't act upon must be forwarded        
+        # All events we didn't act upon must be forwarded
         return QObject.eventFilter(self, target, event)
 
 
 class SearchPlugin(QWidget, Ui_SearchPlugin):
     """The Luma Search plugin.
-    
+
     .. note::
        This plugin implementation still uses the experimental
        `base.backend.Connection` module. On deployment we might
-       consider switching back to the more safer 
+       consider switching back to the more safer
        `base.bakend.LumaConnection` module.
     """
 
@@ -107,7 +110,7 @@ class SearchPlugin(QWidget, Ui_SearchPlugin):
         self.openTabs = {}
         self.completer = None
         self.currentServer = None
-        self.connection = None
+        #self.connection = None
 
         self.serverListObject = ServerList()
         self.serverList = self.serverListObject.getTable()
@@ -140,7 +143,7 @@ class SearchPlugin(QWidget, Ui_SearchPlugin):
         self.filterBuilder.redoButton.setIcon(redoIcon)
         self.filterBuilder.addSpecialCharButton.setIcon(addIcon)
 
-        # The search plugin event filter we 
+        # The search plugin event filter we
         # use for acting upon various events
         eventFilter = SearchPluginEventFilter(self)
         # Install the eventFilter on desired widgets
@@ -172,33 +175,38 @@ class SearchPlugin(QWidget, Ui_SearchPlugin):
         self.filterBuilder.filterSaved.connect(self.loadFilterBookmarks)
         self.filterBuilder.useFilterRequest.connect(self.onUseFilterRequested)
         # Search Form signals and slots
-        self.searchForm.searchButton.clicked.connect(self.onSearchButtonClicked)
-        self.searchForm.filterBuilderToolButton.clicked.connect(self.onFilterBuilderButtonClicked)
-        self.searchForm.serverBox.currentIndexChanged[int].connect(self.onServerChanged)
+        self.searchForm.searchButton.clicked.connect(
+            self.onSearchButtonClicked)
+        self.searchForm.filterBuilderToolButton.clicked.connect(
+            self.onFilterBuilderButtonClicked)
+        self.searchForm.serverBox.currentIndexChanged[int].connect(
+            self.onServerChanged)
 
     def __loadSettings(self):
         """Loads the plugin settings if available.
         """
-        settings = PluginSettings('search')
-        self.autocompleteIsEnabled = settings.pluginValue('autocomplete', False).toBool()
-        self.searchForm.scope = settings.pluginValue('scope', 2).toInt()[0]
-        self.searchForm.sizeLimit = settings.pluginValue('limit', 0).toInt()[0]
-        self.filterBuilder.setFilterHighlighter(settings.pluginValue('highlighting', False).toBool())
+        s = PluginSettings('search')
+        self.autocompleteIsEnabled = s.pluginValue(
+            'autocomplete', False).toBool()
+        self.searchForm.scope = s.pluginValue('scope', 2).toInt()[0]
+        self.searchForm.sizeLimit = s.pluginValue('limit', 0).toInt()[0]
+        self.filterBuilder.setFilterHighlighter(
+            s.pluginValue('highlighting', False).toBool())
 
         # Try to fetch the luma config prefix from the settings file,
         # and call the loadFilterBookmarks to populate search box
-        self.configPrefix = settings.configPrefix
+        self.configPrefix = s.configPrefix
         self.loadFilterBookmarks()
 
     def loadFilterBookmarks(self):
         """Reads the saved filter bookmarks from disk.
-        
+
         The filter bookmarks is then passed to the search form widget.
         """
         try:
             filterFile = os.path.join(self.configPrefix, 'filters')
             # We only try to read the filters file from disk if it
-            # already exists. If not we do nothing, as it will be 
+            # already exists. If not we do nothing, as it will be
             # created in the filter wizard if the user choose to do so.
             if os.path.isfile(filterFile):
                 bookmarks = []
@@ -208,17 +216,16 @@ class SearchPlugin(QWidget, Ui_SearchPlugin):
                         bookmarks.append(filter.strip())
 
                 self.searchForm.populateFilterBookmarks(bookmarks)
+
         except IOError, e:
             msg = 'Unable to read file: {0} Reason:\n\t{1}'
             self.__logger.error(msg.format(filterFile, str(e)))
 
     def onTabClose(self, index):
         """Slot for the tabCloseRequested signal.
-        
-        Parameters:
-        
-        - `index`: the integer index value of the currently focused
-          tab widget.
+
+        :param index: the index of the currently focused tab widget.
+        :type index: int
         """
         # Might happen if QKeySequence.Close is captured when no tabs
         # is open.
@@ -235,32 +242,33 @@ class SearchPlugin(QWidget, Ui_SearchPlugin):
 
     def onServerChanged(self, index):
         """Slot for the server combo box.
-        
+
         When the selected index changes, we want to fetch the baseDN
         list off of the selected server, and populate the baseDN combo
         box.
-        
-        Parameters:
-        
-        - `index`: the index of the server entry in the combobox.
+
+        :param index: the index of the server entry in the combobox.
+        :type index: int
         """
-        serverString = self.searchForm.server
+        server = self.searchForm.server
 
         # No need to try to fetch the base dn list off of no server.
-        if serverString == '':
+        if server == '':
             return
 
         # Get the server object for the selected server.
         # And return if this object is None
-        self.currentServer = self.serverListObject.getServerObject(serverString)
+        self.currentServer = self.serverListObject.getServerObject(server)
 
         if self.currentServer is None:
             return
 
-        self.connection = LumaConnection(self.currentServer)
+        #self.connection = LumaConnection(self.currentServer)
+        con = LumaConnectionWrapper(self.currentServer, self)
 
         if self.currentServer.autoBase:
-            success, baseDNList, e = self.connection.getBaseDNList()
+            #success, baseDNList, e = self.connection.getBaseDNList()
+            success, baseDNList, e = con.getBaseDNListSync()
             if not success:
                 # TODO: give some visual feedback to the user, regarding
                 #       the unsuccessful bind operation
@@ -269,15 +277,14 @@ class SearchPlugin(QWidget, Ui_SearchPlugin):
         else:
             baseDNList = [self.currentServer.baseDN]
 
-        # Try to populate it with the newly fetched baseDN list.       
+        # Try to populate it with the newly fetched baseDN list.
         # We need make sure the baseDN combo box is cleared before we
         self.searchForm.populateBaseDNBox(baseDNList)
 
         # Try to fetch the list of available attributes, for use in the
         # filter wizard and for autocompletion.
-        serverMeta = self.serverListObject.getServerObject(serverString)
-        # Jippi ay o' what a beutiful var name!!
-        ocai = ObjectClassAttributeInfo(serverMeta)
+        # Jippi ay o' what a beautiful var name!!
+        ocai = ObjectClassAttributeInfo(self.currentServer)
         attributes = ocai.getAttributeList()
         objectClasses = ocai.getObjectClasses()
 
@@ -288,10 +295,9 @@ class SearchPlugin(QWidget, Ui_SearchPlugin):
 
     def onUseFilterRequested(self, filter):
         """Slot for the useFilterRequested signal in the filter builder.
-        
-        Parameters: 
-        
-        - `filter`: the filter to use in the searchform.
+
+        :param filter: the filter to use in the searchform.
+        :type filter: string
         """
         # We want to set the filter as the selected filter in the
         # search form, and switch to the search form, but _not_ do the
@@ -304,7 +310,7 @@ class SearchPlugin(QWidget, Ui_SearchPlugin):
 
     def onFilterBuilderButtonClicked(self):
         """Slot for the filter builder tool button.
-        
+
         Display the filter builder with the current filter.
         """
         current = self.searchForm.filterBoxEdit.currentText()
@@ -313,87 +319,51 @@ class SearchPlugin(QWidget, Ui_SearchPlugin):
 
     def onSearchButtonClicked(self):
         """Slot for the search button.
-        
-        The text string in the search line is validated and prepared
-        for the actual search.
         """
-        # FIXME: Switch to the methods in the Filter module when it's
-        #        finished and ready for use.
         self.searchForm.onSearchError(False)
         filter = self.searchForm.filter
-        filterPattern = re.compile("\(\w*=")
-        tmpList = filterPattern.findall(filter)
-
-        attributelist = map(lambda x: x[1:-1], tmpList)
-
         self.__logger.debug('filter: {0}'.format(filter))
-        self.__logger.debug('Attributelist: {0}'.format(attributelist))
-        self.search(filter, attributelist)
+        self.search(filter)
 
-    def search(self, filter, attributelist):
-        """Starts the search for the given server and search filter.
-        
-        NOTE! _We_don't_use_the_signal_as_of_now_
-        Emits the signal "ldap_result". Given arguments are the
-        servername, the search result and the criterias used for the filter.
+    def search(self, filter):
+        """Starts the search operation on the selected server.
+
+        :param filter: The LDAP searchfilter to be used in the search.
+        :type filter: string
         """
-        # Return was pressed but no server selected. So we don't want 
-        # to search.
-        if self.connection == None:
+        # Return was pressed but no server is selected, thus we do not
+        # perform any search operation.
+        if self.currentServer is None:
             return
 
-        # NOTE:
-        # This is the initial testing of the refactored Connection
-        # class, where we use Exception to inform about operations gone
-        # wrong. This is an atempt to get rid of the PyQt4 dependencies
-        # in the backend package.
-        # TODO: Might want to do some quering on the exceptions.
-        #       Try to come up with a nice way to return missing stuff
-        #       (i.e. password, certificate rules, etc)
-        try:
-            bindSuccess, e = self.connection.bind()
-        except ServerCertificateException, sce:
-            self.__logger.error(str(sce))
-            return
-        except InvalidPasswordException, ipe:
-            self.__logger.error(str(ipe))
-            return
-
-        if not bindSuccess:
-            # TODO: give some visual feedback to the user, regarding
-            #       the unsuccessful bind operation
-            msg = 'Unable to bind to {0}. Reason\n{1}'
-            self.__logger.error(msg.format(self.searchForm.server, str(e)))
-            return
-
-        # The scope selection works based on the index:
-        # 0 = SCOPE_BASE
-        # 1 = SCOPE_ONELEVEL
-        # 2 = SCOPE_SUBTREE
         scope = self.searchForm.scope
         limit = self.searchForm.sizeLimit
         base = self.searchForm.baseDN
 
         self.currentServer.currentBase = base
 
-        # To give some user feedback we manually set the WaitCursor
-        # and disable the searchForm widget, while doing the actual
-        # LDAP search.
-        # On search returned we restore these states to normal.
-        qApp.setOverrideCursor(Qt.WaitCursor)
-        self.searchForm.setEnabled(False)
-        success, result, e = self.connection.search(base=base,
-                                                    scope=scope,
-                                                    filter=filter,
-                                                    sizelimit=limit)
-        # Remember to unbind
-        self.connection.unbind()
-        qApp.restoreOverrideCursor()
-        self.searchForm.setEnabled(True)
+        # Perform an asyncronized search operation. When the search is
+        # finished we act upon the LumaConnectionWrapper.searchFinished
+        # signal in the onSearchFinished method
+        args = dict(base=base, scope=scope, filter=filter, sizelimit=limit,
+                    identStr='searchplugin')
+        search = Search(self, self.currentServer, **args)
+        search.resultsRetrieved.connect(self.onResultsRetrieved)
 
-        if success: # and len(result) > 0:
+    def onResultsRetrieved(self, result, e):
+        """Slot for the ``LumaConnectionWrapper.searchFinished``
+        signal.
+
+        :param result: a list of results from the search operation.
+        :type result: list
+        :param e: a exception object from the search operation.
+        :type e: Exception
+        """
+        if e is None:
+            filter = result.pop()
+            attributelist = self.__getAttributeList(filter)
             resultTab = ResultView(filter=filter,
-                                   attributelist=attributelist,
+                                   attributes=attributelist,
                                    resultlist=result,
                                    parent=self.right)
             index = self.right.addTab(resultTab, 'Search result')
@@ -402,11 +372,30 @@ class SearchPlugin(QWidget, Ui_SearchPlugin):
             msg = 'Error during search operation.\n{0}'.format(e)
             self.searchForm.onSearchError(True, msg)
 
+    def __getAttributeList(self, filter):
+        """Returns a list of attributes found in `filter`.
+
+        Parameters:
+
+        - `filter`: a valid LDAP search filter.
+        """
+        # FIXME: Switch to the methods in the Filter module when it's
+        #        finished and ready for use.
+        filterPattern = re.compile("\(\w*=")
+        tmpList = filterPattern.findall(filter)
+        attributeList = map(lambda x: x[1:-1], tmpList)
+        for attr in attributeList:
+            print attr
+
+        return attributeList
+
     def retranslate(self, all=True):
         """For dynamic retranslation of the plugin text strings
         """
-        self.left.setTabToolTip(self.indexSF, qApp.translate("SearchPlugin", "Search Form"))
-        self.left.setTabToolTip(self.indexFB, qApp.translate("SearchPlugin", "Filter Builder"))
+        self.left.setTabToolTip(
+            self.indexSF, qApp.translate("SearchPlugin", "Search Form"))
+        self.left.setTabToolTip(
+            self.indexFB, qApp.translate("SearchPlugin", "Filter Builder"))
         self.searchForm.retranslateUi(self.searchForm)
         self.filterBuilder.retranslateUi(self.searchForm)
 
@@ -419,9 +408,50 @@ class SearchPlugin(QWidget, Ui_SearchPlugin):
                     pass
 
 
+class Search(QObject):
+    """Object representing a search."""
+
+    resultsRetrieved = pyqtSignal(list, object)
+    __logger = logging.getLogger(__name__)
+
+    def __init__(self, parent, server, **kwargs):
+        """
+        :param parent: the connection object to perform the search
+        :type parent: QObject
+        :param server: the sever to search on.
+        :type server: ServerObject
+        :param **kwargs: a dict with keyword arguments to pass to the
+         LDAP search operation.
+        :type **kwargs: dict
+        """
+        super(Search, self).__init__(parent)
+        self.filter = kwargs['filter']
+        self.connection = LumaConnectionWrapper(server, self)
+        self.connection.searchFinished.connect(self.onSearchFinished)
+
+        bindSuccess, e = self.connection.bindSync()
+        if not bindSuccess:
+            msg = 'Unable to bind to {0}. Reason\n{1}'
+            self.__logger.error(msg.format(server, str(e)))
+        else:
+            self.connection.searchAsync(**kwargs)
+
+    def onSearchFinished(self, success, result, e):
+        """Slot for the searchFinished signal in LumaConnectionWrapper.
+        As of now this reemits a signal that SearchPlugin has connected
+        to. This is done in order to be able to provide the filter and
+        attributes needed for the result view.
+        """
+        if success:
+            result.append(self.filter)
+            self.resultsRetrieved.emit(result, None)
+        else:
+            self.resultsRetrieved.emit([], e)
+
+
 class SearchPluginSettingsWidget(QWidget, Ui_SearchPluginSettings):
     """The settings widget for the search plugin.
-    
+
     .. note::
        The writeSettings method is registered as a slot for the
        settings changed signal in the settings dialog.
@@ -440,20 +470,25 @@ class SearchPluginSettingsWidget(QWidget, Ui_SearchPluginSettings):
         highlight = settings.pluginValue('highlighting', False).toBool()
         self.enableCompletionOpt.setChecked(autocomplete)
         self.enableHighlightingOpt.setChecked(highlight)
-        self.scopeBox.setCurrentIndex(settings.pluginValue('scope', 2).toInt()[0])
+        self.scopeBox.setCurrentIndex(
+            settings.pluginValue('scope', 2).toInt()[0])
         self.sizeLimitBox.setValue(settings.pluginValue('limit', 0).toInt()[0])
         del settings
 
     def writeSettings(self):
         """Slot for the onSettingsChanged signal.
-        
+
         Writes the settings values to disk.
         """
         settings = PluginSettings('search')
-        settings.setPluginValue('autocomplete', self.enableCompletionOpt.isChecked())
-        settings.setPluginValue('highlighting', self.enableHighlightingOpt.isChecked())
-        settings.setPluginValue('scope', self.scopeBox.currentIndex())
-        settings.setPluginValue('limit', self.sizeLimitBox.value())
+        settings.setPluginValue(
+            'autocomplete', self.enableCompletionOpt.isChecked())
+        settings.setPluginValue(
+            'highlighting', self.enableHighlightingOpt.isChecked())
+        settings.setPluginValue(
+            'scope', self.scopeBox.currentIndex())
+        settings.setPluginValue(
+            'limit', self.sizeLimitBox.value())
         del settings
 
 

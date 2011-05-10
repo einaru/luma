@@ -6,6 +6,7 @@ from .DeleteDialogDesign import Ui_DeleteDialog
 from .ExportDialogDesign import Ui_ExportDialog
 from base.util.IconTheme import (pixmapFromTheme, iconFromTheme)
 from base.util.Paths import getUserHomeDir
+from base.backend.LumaConnectionWrapper import LumaConnectionWrapper
 
 def getRep(serverObject):
     """Returns a representation name for a `serverObject`. This way
@@ -123,8 +124,8 @@ class DeleteDialog(QtGui.QDialog, Ui_DeleteDialog):
         for sO in deleteSOList:
             # Create a LumaConnection if necessary
             if not self.serverConnections.has_key(sO.serverMeta):
-                self.serverConnections[sO.serverMeta] = LumaConnection(sO.serverMeta)
-                self.serverConnections[sO.serverMeta].bind()
+                self.serverConnections[sO.serverMeta] = LumaConnectionWrapper(sO.serverMeta)
+                self.serverConnections[sO.serverMeta].bindSync()
             
             # Use it to delete the object on the server
             conn = self.serverConnections[sO.serverMeta]
@@ -134,9 +135,9 @@ class DeleteDialog(QtGui.QDialog, Ui_DeleteDialog):
             if not status:
                 self.passedItemsWasDeleted = False
                 allDeleted = False
-                self.deleteDict[self.getRep(sO)][2].setText(str(e))
+                self.deleteDict[getRep(sO)][2].setText(str(e))
             else:
-                self.deleteDict[self.getRep(sO)][2].setText("OK!")
+                self.deleteDict[getRep(sO)][2].setText("OK!")
         
         # Remember to unbind all the servers
         for conn in self.serverConnections.values():

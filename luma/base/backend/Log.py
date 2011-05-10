@@ -37,7 +37,7 @@ class LumaLogHandler(logging.Handler):
     def emit(self, record):
         """Emit is called by Python's logger
         """
-        m = (record.levelname, record.msg)
+        m = (record.levelname, record.msg, record.name, record.threadName)
         self.logTo.log(m)
 
 

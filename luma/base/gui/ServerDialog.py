@@ -31,7 +31,7 @@ from PyQt4.QtGui import QMessageBox, QProgressDialog
 from PyQt4.QtCore import QCoreApplication, Qt, pyqtSignal, QObject
 from PyQt4.QtCore import pyqtSlot, QThread
 
-from ..backend.LumaConnection import LumaConnection
+from ..backend.LumaConnectionWrapper import LumaConnectionWrapper
 from ..backend.ServerList import ServerList
 from ..backend.ServerObject import ServerEncryptionMethod
 from ..backend.ServerObject import ServerObject
@@ -95,24 +95,12 @@ class ServerDialog(QDialog, Ui_ServerDialogDesign):
         # Enable/disable editing depending on if we have a server to edit
         if self.slm.hasServers():
             self.tabWidget.setEnabled(True)
+            self.testConnectionButton.setEnabled(True)
         else:
             self.tabWidget.setEnabled(False)
+            self.testConnectionButton.setEnabled(False)
 
         self.splitter.setStretchFactor(1, 0)
-        
-        # If a servername is supplied we try to get its index, 
-        # And make it selected, else we select the first server
-        # in the model)
-        if not server is None:
-            serverIndex = self.__serverList.getIndexByName(server)
-            if serverIndex == -1:
-                serverIndex = 0
-            index = self.serverListView.model().index(serverIndex, 0)
-        else:
-            index = self.serverListView.model().index(0, 0)
-        # Select it in the view
-        self.serverListView.selectionModel().select(index, QItemSelectionModel.ClearAndSelect)
-        self.serverListView.selectionModel().setCurrentIndex(index, QItemSelectionModel.ClearAndSelect)
 
         # Update list of baseDNs on serverchange
         self.serverListView.selectionModel().selectionChanged.connect(self.setBaseDN) #Same as below
@@ -161,6 +149,20 @@ class ServerDialog(QDialog, Ui_ServerDialogDesign):
                 0, 0,
                 self)
         self.testProgress.setWindowModality(Qt.WindowModal)
+
+        # If a servername is supplied we try to get its index, 
+        # And make it selected, else we select the first server
+        # in the model)
+        if not server is None:
+            serverIndex = self.__serverList.getIndexByName(server)
+            if serverIndex == -1:
+                serverIndex = 0
+            index = self.serverListView.model().index(serverIndex, 0)
+        else:
+            index = self.serverListView.model().index(0, 0)
+        # Select it in the view
+        self.serverListView.selectionModel().select(index, QItemSelectionModel.ClearAndSelect)
+        self.serverListView.selectionModel().setCurrentIndex(index, QItemSelectionModel.ClearAndSelect)
         
     def checkSSLport(self, index):
         """ If SSL is choosen with a port other than 636, confirm this with the user
@@ -239,6 +241,7 @@ class ServerDialog(QDialog, Ui_ServerDialogDesign):
                 self.serverListView.selectionModel().setCurrentIndex(index, QItemSelectionModel.ClearAndSelect) #Mark it as current      
                 self.mapper.setCurrentIndex(index.row()) # Update the mapper
                 self.tabWidget.setEnabled(True) # Make sure editing is enabled
+                self.testConnectionButton.setEnabled(True)
 
     def deleteServer(self):
         """Delete a server from the model/list
@@ -264,6 +267,7 @@ class ServerDialog(QDialog, Ui_ServerDialogDesign):
 
         if not self.slm.hasServers():
             self.tabWidget.setEnabled(False) #Disable editing if no servers left
+            self.testConnectionButton.setEnabled(False)
 
     def saveServerlist(self):
         """Called when the Save-button is clicked
@@ -358,19 +362,14 @@ class ServerDialog(QDialog, Ui_ServerDialogDesign):
         # Busy-dialog
         self.testProgress.reset()
         self.testProgress.show()
+        
+        # Try to bind
+        conn = LumaConnectionWrapper(sO, self)
+        conn.bindFinished.connect(self.testFinished)
+        conn.bindAsync(sO.name) #Send the serverName as identifier
 
-        # Run test in new thread
-        thread = WorkerThread()
-        with ServerDialog._threadLock:
-            ServerDialog._threadPool.append(thread)
-        worker = TestWorker(sO)
-        worker.testFinished.connect(self.testFinished)
-        worker.testFinished.connect(thread.quit)
-        thread.setWorker(worker)
-        thread.start()
-
-    @pyqtSlot(bool, str, unicode)
-    def testFinished(self, success, exceptionStr, serverName):
+    @pyqtSlot(bool, Exception, str)
+    def testFinished(self, success, exception, serverName):
         self.testProgress.hide()
 
         if self.testProgress.wasCanceled():
@@ -381,49 +380,10 @@ class ServerDialog(QDialog, Ui_ServerDialogDesign):
             QMessageBox.information(self, serverName, unicode(self.tr("Bind to {0} successful!")).format(serverName))
         else:
             # Error-message
-            if exceptionStr == "Invalid credentials":
+            if exception[0]["desc"] == "Invalid credentials":
                 QMessageBox.warning(self, serverName,
-                        unicode(self.tr("Bind to {0} failed:\n{1}\n\n(You do not have to spesify passwords here -- you will be asked when needed.)")).format(serverName,exceptionStr))
+                        unicode(self.tr("Bind to {0} failed:\n{1}\n\n(You do not have to spesify passwords here -- you will be asked when needed.)")).format(serverName,exception[0]["desc"]))
                 return
-            QMessageBox.warning(self, serverName, unicode(self.tr("Bind to {0} failed:\n{1}")).format(serverName, exceptionStr))
-
-
-class WorkerThread(QThread):
-    def __init__(self, parent = None):
-        QThread.__init__(self, parent)
-        self.finished.connect(self.cleanup)
-        self.worker = None
-
-    def run(self):
-        self.exec_()
-
-    def cleanup(self):
-        # Remove from threadpool
-        with ServerDialog._threadLock:
-            ServerDialog._threadPool.remove(self)
-
-    def setWorker(self, worker):
-        worker.moveToThread(self)
-        self.worker = worker
-        self.started.connect(worker.start)
-
-class TestWorker(QObject):
-
-    testFinished = pyqtSignal(bool, str, unicode)
-
-    def __init__(self, serverObject):
-        super(TestWorker, self).__init__()
-        self.serverObject = serverObject
-
-    def start(self):
-        # Try bind -- do not display pw-input and do not use remembered passwords
-        conn = LumaConnection(self.serverObject)
-        success, exception = conn.bind(askForPw = False, noOverride = True)
-        conn.unbind()
-        # Return status
-        if success:
-            self.testFinished.emit(True, "", self.serverObject.name)
-        else:
-            self.testFinished.emit(False,str(exception[0]["desc"]),self.serverObject.name)
+            QMessageBox.warning(self, serverName, unicode(self.tr("Bind to {0} failed:\n{1}")).format(serverName, exception[0]["desc"]))
 
 # vim: tabstop=4 expandtab shiftwidth=4 softtabstop=4

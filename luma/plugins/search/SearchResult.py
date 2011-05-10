@@ -30,15 +30,19 @@ class ResultView(QWidget):
     """This class represent a search result view.
     """
 
-    def __init__(self, attributelist=[], resultlist=[], parent=None):
+    def __init__(self, filter='', attributes=[], resultlist=[], parent=None):
         """Initialize a result view for the `SearchPlugin`.
 
-        Parameters:
-
-        - `attributelist`: a list containing the attributes used in the
-          search operation. Usually extracted from the `filter`.
-        - `resultlist`: a list of `SmartDataObject` from the search
-          operation.
+        :param filter: the filter applied on the search
+        :type filter: string
+        :param attributes: a list containing the attributes used in the
+         search operation. Usually extracted from the `filter`.
+        :type attributes: list
+        :param resultlist: a list of `SmartDataObject` from the search
+         operation.
+        :type resultlist: list
+        :param parent: the parent for this widget.
+        :type parent: QWidget
         """
         super(ResultView, self).__init__(parent)
         self.setObjectName('ResultView')
@@ -55,7 +59,7 @@ class ResultView(QWidget):
         self.proxymodel.setDynamicSortFilter(True)
 
         self.headerdata = ['dn']
-        self.headerdata.extend(attributelist)
+        self.headerdata.extend(attributes)
         self.resultdata = resultlist
 
         # FIXME: should we create a custom item model ?

@@ -8,7 +8,7 @@
 #     Einar Uvsløkk, <einar.uvslokk@linux.com>
 #
 # Copyright (c) 2008
-#     Vegar Westerlund, <vegarwe@users.sourceforge.net> 
+#     Vegar Westerlund, <vegarwe@users.sourceforge.net>
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -26,16 +26,17 @@
 import logging
 
 from PyQt4 import (QtCore, QtGui)
-from PyQt4.QtGui import (QWidget, QMessageBox, QMenu, QAction, qApp, QTableWidget, QKeySequence)
-from PyQt4.QtCore import Qt, QPersistentModelIndex, QModelIndex, QObject, QEvent
+from PyQt4.QtGui import (QWidget, QMessageBox, QMenu, QAction, qApp,
+                         QTableWidget)
+from PyQt4.QtCore import (QCoreApplication, Qt, QPersistentModelIndex,
+                          QModelIndex)
 
 from .AdvancedObjectWidget import AdvancedObjectWidget
 from .NewEntryDialog import NewEntryDialog
 from .gui.BrowserDialogs import ExportDialog, DeleteDialog
 from .item.AbstractLDAPTreeItem import AbstractLDAPTreeItem
 from .model.LDAPTreeItemModel import LDAPTreeItemModel
-from base.backend.LumaConnection import LumaConnection
-from ..template.TemplateList import TemplateList
+from base.backend.LumaConnectionWrapper import LumaConnectionWrapper
 from base.backend.ServerList import ServerList
 from base.gui.ServerDialog import ServerDialog
 
@@ -47,16 +48,16 @@ class BrowserView(QWidget):
     # Custom signals used
     reloadSignal = QtCore.pyqtSignal(QtCore.QModelIndex)
     clearSignal = QtCore.pyqtSignal(QtCore.QModelIndex)
-    
+
     __logger = logging.getLogger(__name__)
 
     def __init__(self, parent=None, configPrefix=None):
         """
-        @param configPrefix:
-            defines the location of serverlist
+        :param configPrefix: defines the location of serverlist.
+        :type configPrefix: string
         """
         super(BrowserView, self).__init__(parent)
-        
+
         self.__logger = logging.getLogger(__name__)
 
         self.setObjectName("PLUGIN_BROWSER")
@@ -68,13 +69,10 @@ class BrowserView(QWidget):
 
         self.splitter = QtGui.QSplitter(self)
 
-        # The templatelist
-        self.templateList = TemplateList()
-
         # Create the model
         self.ldaptreemodel = LDAPTreeItemModel(self.serverList, self)
         self.ldaptreemodel.workingSignal.connect(self.setBusy)
-    
+
         # Set up the entrylist (uses the model)
         self.__setupEntryList()
 
@@ -82,7 +80,6 @@ class BrowserView(QWidget):
         self.tabWidget = QtGui.QTabWidget(self)
         #self.tabWidget.setDocumentMode(True)
         self.tabWidget.setMovable(True)
-        #self.tabWidget.setStyleSheet("QTabWidget::pane {border: 0; border-top: 30px solid qlineargradient(x1:0, y1:0, x2:0, y2:1, stop: 0 red, stop: 1 yellow); background: yellow; } QTabWidget::tab-bar { top: 30px; }")
         self.setMinimumWidth(200)
         self.tabWidget.setTabsClosable(True)
         self.tabWidget.tabCloseRequested.connect(self.tabCloseClicked)
@@ -99,24 +96,19 @@ class BrowserView(QWidget):
         self.reloadSignal.connect(self.ldaptreemodel.reloadItem)
         self.clearSignal.connect(self.ldaptreemodel.clearItem)
 
-        self.cancelList = []
-    
-        eventFilter = BrowserPluginEventFilter(self)
-        self.installEventFilter(eventFilter)
-
         self.__createContextMenu()
-        self.progress = QMessageBox(
-            1,"Please wait",
-            "Please wait, fetching data...\nThis message will automatically close when done...",
-            QMessageBox.Ignore, parent = self
-        )
         self.retranslateUi()
-        
+
+        self.progress = QMessageBox(
+            1, self.str_PLEASE_WAIT, self.str_PLEASE_WAIT_MSG,
+            QMessageBox.Ignore, parent=self
+        )
+
         # For testing ONLY
         # AND ONLY ON SMALL LDAP-SERVERS SINCE IT LOADS BASICALLY ALL ENTIRES
         #import modeltest
         #self.modeltest = modeltest.ModelTest(self.ldaptreemodel, self);
-        
+
     def setBusy(self, status):
         """
         Helper-method.
@@ -135,8 +127,10 @@ class BrowserView(QWidget):
         self.entryList.setMinimumWidth(200)
         self.entryList.setMaximumWidth(400)
         #self.entryList.setAlternatingRowColors(True)
-        self.entryList.setAnimated(True) # Somewhat cool, but should be removed if deemed too taxing
-        self.entryList.setUniformRowHeights(True) #MAJOR optimalization for big lists
+
+        # Somewhat cool, but should be removed if deemed too taxing
+        self.entryList.setAnimated(True)
+        self.entryList.setUniformRowHeights(True)  # MAJOR optimalization
         #self.entryList.setExpandsOnDoubleClick(False)
         self.entryList.setModel(self.ldaptreemodel)
         self.entryList.setMouseTracking(True)
@@ -148,8 +142,9 @@ class BrowserView(QWidget):
         self.entryList.activated.connect(self.viewItem)
         self.delegate = LoadingDelegate(self.entryList)
         self.entryList.setItemDelegate(self.delegate)
-        self.entryList.setSelectionMode(QtGui.QAbstractItemView.ExtendedSelection)
-        
+        self.entryList.setSelectionMode(
+            QtGui.QAbstractItemView.ExtendedSelection)
+
     def __createContextMenu(self):
         """Creates the context menu for the tree view.
         """
@@ -174,24 +169,24 @@ class BrowserView(QWidget):
         self.contextMenu.addMenu(self.contextMenuDelete)
         self.contextMenuExport = QMenu()
         self.contextMenu.addMenu(self.contextMenuExport)
-        self.contextMenuCancel = QAction(self)
-        self.contextMenu.addAction(self.contextMenuCancel)
 
         # Connect the context menu actions to the correct slots
-        self.contextMenuServerSettings.triggered.connect(self.editServerSettings)
+        self.contextMenuServerSettings.triggered.connect(
+            self.editServerSettings)
         self.contextMenuOpen.triggered.connect(self.openChoosen)
         self.contextMenuReload.triggered.connect(self.reloadChoosen)
         self.contextMenuClear.triggered.connect(self.clearChoosen)
         self.contextMenuFilter.triggered.connect(self.filterChoosen)
         self.contextMenuLimit.triggered.connect(self.limitChoosen)
-        self.contextMenuCancel.triggered.connect(self.cancelChoosen)
 
     def rightClick(self, point):
         """ Called when the view is right-clicked.
         Displays a context menu with possible actions.
-        
-        @param point: 
-        """        
+
+        :param point: contains the global screen coordinates for the
+         right-click that generated this call.
+        :type potin: QPoint
+        """
         # This is a list of QModelIndex objects, which will be used by
         # the various context menu slots.
         # We therfore store it as a class member
@@ -210,20 +205,19 @@ class BrowserView(QWidget):
         # The number of selected items is used for naming of the actions
         # added to the submenues
         numselected = len(self.selection)
-        
+
         # View disabled menu if nothing selected
-        self.contextMenu.setEnabled(True) # Remember to enable in case we have a selection
-        if not numselected > 0: # If nothing is selected
-            self.contextMenu.setEnabled(False) # Disable..
-            self.contextMenu.exec_(self.entryList.mapToGlobal(point)) #.. then show.
+        self.contextMenu.setEnabled(True)  # Remember to enable if a selection
+        if not numselected > 0:  # If nothing is selected
+            self.contextMenu.setEnabled(False)  # Disable
+            self.contextMenu.exec_(self.entryList.mapToGlobal(point))  # Show
             return
 
         # Iterate through the list of selected indexes, and
-        # validate what operations are supported. That is, 
+        # validate what operations are supported. That is,
         # if one of the selected indexes do not support an
         # operation, we cannot allow to apply that operation
         # on the whole selection
-        self.cancelList = []
         for index in self.selection:
             item = index.internalPointer()
             operations = item.getSupportedOperations()
@@ -243,13 +237,10 @@ class BrowserView(QWidget):
                 deleteSupport = False
             if not AbstractLDAPTreeItem.SUPPORT_EXPORT & operations:
                 exportSupport = False
-            if index.internalPointer().getParentServerItem() == None:
-                editServerSupport = False
-            if AbstractLDAPTreeItem.SUPPORT_CANCEL & operations:
-                if item.canCancelSearch():
-                    self.cancelList.append(item)
 
-        
+        if index.internalPointer().getParentServerItem() == None:
+            editServerSupport = False
+
         # Now we just use the *Support variables to enable|disable
         # the context menu actions.
         self.contextMenuOpen.setEnabled(openSupport)
@@ -262,24 +253,17 @@ class BrowserView(QWidget):
         # For the submenues in the context menu, we add appropriate
         # actions, based on single|multi selection, or disable the menu
         # altogether if there is no support for the operation.
-        if (limitSupport or filterSupport or openSupport) and not numselected == 1:
+        if (limitSupport or filterSupport or openSupport) \
+           and not numselected == 1:
                 self.contextMenuLimit.setEnabled(False)
                 self.contextMenuFilter.setEnabled(False)
                 self.contextMenuOpen.setEnabled(False)
         if addSupport and numselected == 1:
             self.contextMenuAdd.setEnabled(True)
-            self.contextMenuAdd.addAction(self.str_ENTRY, self.addEntryChoosen)
-            #template
-            templateMenu = QMenu(self.str_TEMPLATE)
-            self.contextMenuAdd.addMenu(templateMenu)
-            index = self.selection[0]
-            for template in self.templateList.getTable():
-                if template.server == index.internalPointer().smartObject().serverMeta.name:
-                    method = lambda name = template.templateName, i = index : self.addTemplateChoosen(name, i)
-                    templateMenu.addAction(template.templateName, method)
-            
-            
-            
+            self.contextMenuAdd.addAction(
+                self.str_ENTRY, self.addEntryChoosen)
+            self.contextMenuAdd.addAction(
+                self.str_TEMPLATE, self.addTemplateChoosen)
         else:
             self.contextMenuAdd.setEnabled(False)
 
@@ -289,133 +273,152 @@ class BrowserView(QWidget):
         if deleteSupport:
             self.contextMenuDelete.setEnabled(True)
             if numselected == 1:
-                self.contextMenuDelete.addAction(self.str_ITEM, self.deleteSelection)
-                #self.contextMenuDelete.addAction(self.str_SUBTREE, self.deleteSelection)
-                #self.contextMenuDelete.addAction(self.str_SUBTREE_PARENTS, self.deleteSelection)
+                self.contextMenuDelete.addAction(
+                    self.str_ITEM, self.deleteSelection
+                )
+                #self.contextMenuDelete.addAction(
+                #    self.str_SUBTREE, self.deleteSelection
+                #)
+                #self.contextMenuDelete.addAction(
+                #    self.str_SUBTREE_PARENTS, self.deleteSelection
+                #)
             else:
-                self.contextMenuDelete.addAction(self.str_ITEMS, self.deleteSelection)
-                #self.contextMenuDelete.addAction(self.str_SUBTREES, self.deleteSelection)
-                #self.contextMenuDelete.addAction(self.str_SUBTREES_PARENTS, self.deleteSelection)
+                self.contextMenuDelete.addAction(
+                    self.str_ITEMS, self.deleteSelection
+                )
+                #self.contextMenuDelete.addAction(
+                #    self.str_SUBTREES, self.deleteSelection
+                #)
+                #self.contextMenuDelete.addAction(
+                #    self.str_SUBTREES_PARENTS, self.deleteSelection
+                #)
         else:
             self.contextMenuDelete.setEnabled(False)
-
-        if len(self.cancelList) > 0:
-            self.contextMenuCancel.setEnabled(True)
-        else:
-            self.contextMenuCancel.setEnabled(False)
 
         if exportSupport:
             self.contextMenuExport.setEnabled(True)
             if numselected == 1:
-                self.contextMenuExport.addAction(self.str_ITEM, self.exportItems)
-                self.contextMenuExport.addAction(self.str_SUBTREE, self.exportSubtrees)
-                self.contextMenuExport.addAction(self.str_SUBTREE_PARENTS, self.exportSubtreeWithParents)
+                self.contextMenuExport.addAction(
+                    self.str_ITEM, self.exportItems
+                )
+                self.contextMenuExport.addAction(
+                    self.str_SUBTREE, self.exportSubtrees
+                )
+                self.contextMenuExport.addAction(
+                    self.str_SUBTREE_PARENTS, self.exportSubtreeWithParents
+                )
             else:
-                self.contextMenuExport.addAction(self.str_ITEMS, self.exportItems)
-                self.contextMenuExport.addAction(self.str_SUBTREES, self.exportSubtrees)
-                self.contextMenuExport.addAction(self.str_SUBTREES_PARENTS, self.exportSubtreeWithParents)
+                self.contextMenuExport.addAction(
+                    self.str_ITEMS, self.exportItems
+                )
+                self.contextMenuExport.addAction(
+                    self.str_SUBTREES, self.exportSubtrees
+                )
+                self.contextMenuExport.addAction(
+                    self.str_SUBTREES_PARENTS, self.exportSubtreeWithParents
+                )
         else:
             self.contextMenuExport.setEnabled(False)
 
         # Finally we execute the context menu
         self.contextMenu.exec_(self.entryList.mapToGlobal(point))
-        
+
         # We need to clear all the submenues after each right click
-        # selection, if not; the submenu actions will be added and 
+        # selection, if not; the submenu actions will be added and
         # thus duplicated for every selection the user makes.
         # FIXME: Find a better way of handling this issue.
         self.contextMenuAdd.clear()
         self.contextMenuDelete.clear()
         self.contextMenuExport.clear()
 
-    def cancelChoosen(self):
-        for item in self.cancelList:
-            item.cancelSearch()
-        self.cancelList = []
     """
     Following methods are called from a context-menu.
     """
     def openChoosen(self):
         if len(self.selection) == 1:
             self.viewItem(self.selection[0])
+
     def reloadChoosen(self):
         for index in self.selection:
             self.reloadSignal.emit(index)
+
     def clearChoosen(self):
         for index in self.selection:
             self.clearSignal.emit(index)
+
     def limitChoosen(self):
         # Have the item set the limit for us, the reload
         for index in self.selection:
             ok = index.internalPointer().setLimit()
             if ok:
                 self.reloadSignal.emit(index)
+
     def filterChoosen(self):
         # Have the item set the filter, then reload
         for index in self.selection:
             ok = index.internalPointer().setFilter()
             if ok:
                 self.reloadSignal.emit(index)
+
     def addEntryChoosen(self):
         for index in self.selection:
             self.addNewEntry(index)
-    def addTemplateChoosen(self, templateName, index):
-        serverMeta = index.internalPointer().smartObject().serverMeta
-        baseDN = index.internalPointer().smartObject().getDN()
-        template = self.templateList.getTemplateObject(templateName)
-        smartO = template.getDataObject(serverMeta, baseDN)
-        self.addNewEntry(index, smartO, template)
-        
-    def addNewEntry(self, parentIndex, defaultSmartObject=None, template = None):
-        tmp = NewEntryDialog(parentIndex, defaultSmartObject, entryTemplate = template)
+
+    def addTemplateChoosen(self):
+        pass
+
+    def addNewEntry(self, parentIndex, defaultSmartObject=None):
+        tmp = NewEntryDialog(parentIndex, defaultSmartObject)
         if tmp.exec_():
             print "La til ny entry"
             # TODO Do something. (Reload?)
-            
+
     """
     Utility-methods
     """
     def isOpen(self, smartObject):
         rep = self.getRepForSmartObject(smartObject)
-        if self.openTabs.has_key(str(rep)):
+        # The {}.has_key() method will be removed in the future version
+        # of Python. Use the 'in' operation instead. [PEP8]
+        #if self.openTabs.has_key(str(rep)):
+        if str(rep) in self.openTabs:
             return True
         else:
             return False
+
     def getRepForSmartObject(self, smartObject):
         serverName = smartObject.getServerAlias()
         dn = smartObject.getDN()
-        return (serverName,dn)
-        
+        return (serverName, dn)
 
     def viewItem(self, index):
-        """
-        Opens items for viewing.
+        """Opens items for viewing.
         """
         item = index.internalPointer()
         supports = item.getSupportedOperations()
-        
+
         # If we can't open this item, then don't
         if not supports & AbstractLDAPTreeItem.SUPPORT_OPEN:
             self.__logger.debug("Item didn't support open.")
             return
-        
+
         smartObject = index.internalPointer().smartObject()
         rep = self.getRepForSmartObject(smartObject)
-        
+
         # If the smartobject is already open, switch to it
         if self.isOpen(smartObject):
             x = self.openTabs[str(rep)]
             self.tabWidget.setCurrentWidget(x)
             return
-            
-        # Saves a representation of the opened entry to avoid opening duplicates  
-        # and open it
-        x = AdvancedObjectWidget(smartObject, QtCore.QPersistentModelIndex(index))
+
+        # Saves a representation of the opened entry to avoid opening
+        # duplicates and open it
+        x = AdvancedObjectWidget(
+            smartObject, QtCore.QPersistentModelIndex(index))
         self.openTabs[str(rep)] = x
         self.tabWidget.addTab(x, smartObject.getPrettyRDN())
         self.tabWidget.setCurrentWidget(x)
-        
-    
+
     def deleteIndex(self, index):
         # Remember the smartObject for later
         sO = index.internalPointer().smartObject()
@@ -428,8 +431,8 @@ class BrowserView(QWidget):
             return (True, message)
         else:
             # Notify fail
-            return (False,message)
-        
+            return (False, message)
+
     def __closeTabIfOpen(self, sO):
         if self.isOpen(sO):
                 rep = self.getRepForSmartObject(sO)
@@ -438,81 +441,90 @@ class BrowserView(QWidget):
                 if i != -1:
                     self.tabWidget.removeTab(i)
 
-    def deleteSelection(self, alsoSubTree = False):
+    def deleteSelection(self, alsoSubTree=False):
         """Slot for the context menu.
-        
+
         Opens the DeleteDialog with the selected entries, giving the
         user the option to validate the selection before deleting.
-        
+
         This is for deleting the item + possibly it's subtree.
         See deleteOnlySubtreeOfSelection() for only subtree.
         """
-        
+
         # Only one item
         if len(self.selection) == 1:
             # Confirmation-message
-            ok = QMessageBox.question(self, QtCore.QCoreApplication.translate("BrowserView","Delete"), QtCore.QCoreApplication.translate("BrowserView", "Really delete?"), QMessageBox.Yes|QMessageBox.No)
+            ok = QMessageBox.question(
+                self, self.str_DELETE, self.str_REALLY_DELETE,
+                QMessageBox.Yes | QMessageBox.No
+            )
             if ok == QMessageBox.No:
                 return
             (status, message) = self.deleteIndex(self.selection[0])
             if not status:
-                QMessageBox.critical(self, QtCore.QCoreApplication.translate("BrowserView","Error"), "On "+self.selection[0].data().toPyObject()+":\n"+message)
+                QMessageBox.critical(
+                    self, self.str_ERROR, self.str_ERROR_MSG.format(
+                        self.selection[0].data().toPyObject(), message
+                    )
+                )
             return
-        
+
         if alsoSubTree:
             # Not done yet
             return
-        
+
         # Make persistent indexes and list of smartObjects to be deleted
         persistenSelection = []
         sOList = []
         for x in self.selection:
             persistenSelection.append(QPersistentModelIndex(x))
             sOList.append(x.internalPointer().smartObject())
-        
+
         # Create gui
-        deleteDialog = DeleteDialog(sOList, 0) #0 = not subtree
+        deleteDialog = DeleteDialog(sOList, 0)  # 0 = not subtree
         status = deleteDialog.exec_()
-        
-        if status: # the dialog was not canceled
-            
-            # If all rows were removed successfully, just call removeRows on all selected items
-            # (reloading all items of the parent can be expensive)
+
+        if status:  # the dialog was not canceled
+
+            # If all rows were removed successfully, just call
+            # removeRows on all selected items (reloading all items of
+            # the parent can be expensive)
             if deleteDialog.passedItemsWasDeleted:
                 for x in persistenSelection:
                     if x.isValid:
-                        i = x.sibling(x.row(), 0) #QModelIndex
-                        self.__closeTabIfOpen(i.internalPointer().smartObject())
+                        i = x.sibling(x.row(), 0)  # QModelIndex
+                        self.__closeTabIfOpen(
+                            i.internalPointer().smartObject())
                         self.ldaptreemodel.removeRow(x.row(), x.parent())
                 return
-                
+
             # If not, call reload on the parent of all the items?
             else:
-                tmp = QMessageBox.question(self, 
-                    QtCore.QCoreApplication.translate("BrowserView", "Deletion"),
-                    QtCore.QCoreApplication.translate("BrowserView", "It's possible some of the selected items might not have been deleted, while others were.\nDo you wan't to update the list to reflect the changes?"),
-                    buttons=QMessageBox.Yes|QMessageBox.No, defaultButton=QMessageBox.Yes)
-                
+                tmp = QMessageBox.question(
+                    self, self.str_DELETION, self.str_DELETION_MSG,
+                    buttons=QMessageBox.Yes | QMessageBox.No,
+                    defaultButton=QMessageBox.Yes
+                )
                 if tmp == QMessageBox.Yes:
                     for x in persistenSelection:
-                        # index might not be valid if the parent was reloaded by a previous item
+                        # index might not be valid if the parent was
+                        # reloaded by a previous item
                         if x.isValid():
                             self.ldaptreemodel.reloadItem(x.parent())
                         return
-            
+
         # Was cancelled so do nothing
         else:
             pass
-        
-            
+
     def deleteOnlySubtreeOfSelection(self, selection):
             pass
-        
+
     def exportItems(self):
         """Slot for the context menu.
         """
         self.__exportSelection(scope=0)
-    
+
     def exportSubtrees(self):
         """Slot for the context menu.
         """
@@ -525,52 +537,52 @@ class BrowserView(QWidget):
 
     def __exportSelection(self, scope=0):
         """Slot for the context menu.
-        
+
         Opens the ExportDialog with the selected entries, giving the
         user the option to validate the selection before exporting.
-        
-        @param scope:
-            The scope selection.
-            0 = SCOPE_BASE -> Item(s);
-            1 = SCOPE_ONELEVEL -> Subtree(s); 
-            2 = SCOPE_SUBTREE -> Subtree(s) with parent 
+
+        :param scope: The scope selection.
+         0 = SCOPE_BASE -> Item(s),
+         1 = SCOPE_ONELEVEL -> Subtree(s);
+         2 = SCOPE_SUBTREE -> Subtree(s) with parent
+        :type scope: int
         """
         exportObjects = []
         msg = ''
-        
+
         self.setBusy(True)
         for index in self.selection:
             smartObject = index.internalPointer().smartObject()
-            
+
             serverName = smartObject.getServerAlias()
             dn = smartObject.getDN()
             serverObject = self.serverList.getServerObject(serverName)
-            con = LumaConnection(serverObject)
-            
+            con = LumaConnectionWrapper(serverObject, self)
+
             if scope == 1:
                 pass
-            
+
             # Do a search on the whole subtree
             # 2 = ldap.SCOPE_SUBTREE
             elif scope == 2:
 
                 success, e = con.bind()
-                
+
                 if not success:
                     self.__logger.error(str(e))
                     continue
-                success, result, e = con.search(base=dn, scope=2)
+                success, result, e = con.searchSync(base=dn, scope=2)
 
                 if success:
                     exportObjects.extend(result)
                 else:
                     self.__logger.error(str(e))
-                    
+
             # For scope == 0 we need not do any LDAP search operation
             # because we already got what we need
             else:
                 exportObjects.append(smartObject)
-        
+
         # Initialize the export dialog
         # and give it the items for export
         dialog = ExportDialog(msg)
@@ -589,10 +601,14 @@ class BrowserView(QWidget):
             serverDialog = ServerDialog(serverName)
             r = serverDialog.exec_()
             if r:
-                self.serversChangedMessage.showMessage(QtCore.QCoreApplication.translate("BrowserView","You need to restart the plugin for changes to take effect."))
+                self.serversChangedMessage.showMessage(
+                    self.str_SERVER_CHANGED_MSG
+                )
         except Exception, e:
             self.__logger.error(str(e))
-            QMessageBox.information(self, "Error","See log for details")
+            QMessageBox.information(
+                self, self.str_ERROR, self.str_SEE_LOG_DETAILS
+            )
 
     def tabCloseClicked(self, index):
 
@@ -609,6 +625,7 @@ class BrowserView(QWidget):
             except:
                 # Don't care
                 pass
+
         self.tabWidget.removeTab(index)
 
     def buildToolBar(self, parent):
@@ -617,33 +634,80 @@ class BrowserView(QWidget):
 
     def retranslateUi(self):
         """Retranslates all translatable strings.
-        
+
         This method is called when the LanguageChange event is caught.
         """
-        self.tabWidget.setStatusTip(QtCore.QCoreApplication.translate("BrowserView", "This is where entries are displayed when opened."))
-        self.tabWidget.setToolTip(QtCore.QCoreApplication.translate("BrowserView", "This is where entries are displayed when opened."))
-        self.contextMenuServerSettings.setText(QtCore.QCoreApplication.translate("BrowserView", "Edit Server Settings"))
-        self.contextMenuOpen.setText(QtCore.QCoreApplication.translate("BrowserView", "Open"))
-        self.contextMenuReload.setText(QtCore.QCoreApplication.translate("BrowserView", "Reload"))
-        self.contextMenuClear.setText(QtCore.QCoreApplication.translate("BrowserView", "Clear"))
-        self.contextMenuFilter.setText(QtCore.QCoreApplication.translate("BrowserView", "Set Filter"))
-        self.contextMenuLimit.setText(QtCore.QCoreApplication.translate("BrowserView", "Set Limit"))
-        self.contextMenuAdd.setTitle(QtCore.QCoreApplication.translate("BrowserView", "Add"))
-        self.contextMenuDelete.setTitle(QtCore.QCoreApplication.translate("BrowserView", "Delete"))
-        self.contextMenuExport.setTitle(QtCore.QCoreApplication.translate("BrowserView", "Export"))
-        self.contextMenuCancel.setText(QtCore.QCoreApplication.translate("BrowserView", "Cancel"))
-        
-        self.str_ENTRY = QtCore.QCoreApplication.translate("BrowserView", "Entry")
-        self.str_TEMPLATE = QtCore.QCoreApplication.translate("BrowserView", "Template")
-        self.str_ITEM = QtCore.QCoreApplication.translate("BrowserView", "Item")
-        self.str_SUBTREE = QtCore.QCoreApplication.translate("BrowserView", "Subtree")
-        self.str_SUBTREE_PARENTS = QtCore.QCoreApplication.translate("BrowserView", "Subtree with parents")
-        self.str_ITEMS = QtCore.QCoreApplication.translate("BrowserView", "Items")
-        self.str_SUBTREES = QtCore.QCoreApplication.translate("BrowserView", "Subtrees")
-        self.str_SUBTREES_PARENTS = QtCore.QCoreApplication.translate("BrowserView", "Subtrees with parents")
+        self.tabWidget.setStatusTip(QCoreApplication.translate(
+            "BrowserView", "This is where entries are displayed when opened."))
+        self.tabWidget.setToolTip(QCoreApplication.translate(
+            "BrowserView", "This is where entries are displayed when opened."))
+        self.contextMenuServerSettings.setText(QCoreApplication.translate(
+            "BrowserView", "Edit Server Settings"))
+        self.contextMenuOpen.setText(QCoreApplication.translate(
+            "BrowserView", "Open"))
+        self.contextMenuReload.setText(QCoreApplication.translate(
+            "BrowserView", "Reload"))
+        self.contextMenuClear.setText(QCoreApplication.translate(
+            "BrowserView", "Clear"))
+        self.contextMenuFilter.setText(QCoreApplication.translate(
+            "BrowserView", "Set Filter"))
+        self.contextMenuLimit.setText(QCoreApplication.translate(
+            "BrowserView", "Set Limit"))
+        self.contextMenuAdd.setTitle(QCoreApplication.translate(
+            "BrowserView", "Add"))
+        self.contextMenuDelete.setTitle(QCoreApplication.translate(
+            "BrowserView", "Delete"))
+        self.contextMenuExport.setTitle(QCoreApplication.translate(
+            "BrowserView", "Export"))
+
+        self.str_ENTRY = QCoreApplication.translate(
+            "BrowserView", "Entry")
+        self.str_TEMPLATE = QCoreApplication.translate(
+            "BrowserView", "Template")
+        self.str_ITEM = QCoreApplication.translate(
+            "BrowserView", "Item")
+        self.str_SUBTREE = QCoreApplication.translate(
+            "BrowserView", "Subtree")
+        self.str_SUBTREE_PARENTS = QCoreApplication.translate(
+            "BrowserView", "Subtree with parents")
+        self.str_ITEMS = QCoreApplication.translate(
+            "BrowserView", "Items")
+        self.str_SUBTREES = QCoreApplication.translate(
+            "BrowserView", "Subtrees")
+        self.str_SUBTREES_PARENTS = QCoreApplication.translate(
+            "BrowserView", "Subtrees with parents")
+
+        self.str_PLEASE_WAIT = QCoreApplication.translate(
+            "BrowserView", "Please wait")
+        self.str_PLEASE_WAIT_MSG = QCoreApplication.translate(
+            "BrowserView",
+            """Please wait, fetching data...
+This message will automatically close when done...""")
+        self.str_ERROR = QCoreApplication.translate("BrowserView", "Error")
+        self.str_ERROR_MSG = QCoreApplication.translate(
+            "BrowserView", "On {0}:\n{1}"
+        )
+        self.str_SEE_LOG_DETAILS = QCoreApplication.translate(
+            "BrowserView", "See log for details"
+        )
+        self.str_DELETE = QCoreApplication.translate("BrowserView", "Delete")
+        self.str_REALLY_DELETE = QCoreApplication.translate(
+            "BrowserView", "Really delete?")
+        self.str_DELETION = QCoreApplication.translate(
+            "BrowserView", "Deletion"
+        )
+        self.str_DELETION_MSG = QCoreApplication.translate(
+            "BrowserView", """It's possible some of the selected items
+might not have been deleted, while others were.
+Do you wan't to update the list to reflect the changes?"""
+        )
+        self.str_SERVER_CHANGED_MSG = QCoreApplication.translate(
+            "BrowserView",
+            "You need to restart the plugin for changes to take effect."
+        )
 
     def changeEvent(self, e):
-        """Overloaded so we can catch the LanguageChange event, and at 
+        """Overloaded so we can catch the LanguageChange event, and at
         translation support to the plugin
         """
         if e.type() == QtCore.QEvent.LanguageChange:
@@ -651,50 +715,24 @@ class BrowserView(QWidget):
         else:
             QWidget.changeEvent(self, e)
 
-class BrowserPluginEventFilter(QObject):
-
-    def eventFilter(self, target, event):
-        if event.type() == QEvent.KeyPress:
-            index = target.tabWidget.currentIndex()
-            if event.matches(QKeySequence.Close):
-                if index >= 0:
-                    target.tabWidget.tabCloseRequested.emit(index)
-                return True
-        return QObject.eventFilter(self, target, event)
 
 class LoadingDelegate(QtGui.QStyledItemDelegate):
-    """
-    Draws "Loading..." on items currently loading data.
+    """Draws ``Loading...`` on items currently loading data.
     """
 
     def __init__(self, view):
         super(LoadingDelegate, self).__init__()
-        from PyQt4.QtCore import QTimer
-        self.t = QTimer()
-        self.t.setInterval(1000)
-        self.t.timeout.connect(view.model().layoutChanged)
 
     def paint(self, painter, option, index):
         item = index.internalPointer()
         if item.loading == True:
-            self.t.start()
             # When loading
             self.initStyleOption(option, index)
             QtGui.QStyledItemDelegate.paint(self, painter, option, index)
-            #painter.drawText(option.rect, QtCore.Qt.AlignRight, "Loading...  ")
-            painted = False
-            if hasattr(item, "lumaConnection"):
-                connection = item.lumaConnection
-                if not(connection == None):
-                    resultCount = connection.resultCount
-                    if not(resultCount == None):
-                        painted = True
-                        painter.drawText(option.rect, QtCore.Qt.AlignRight, "Loading...  " + str(resultCount))
-                        return
-            if not painted:
-                painter.drawText(option.rect, QtCore.Qt.AlignRight, "Loading...  ")
+            painter.drawText(option.rect, QtCore.Qt.AlignRight, "Loading...  ")
         else:
             # Default
             QtGui.QStyledItemDelegate.paint(self, painter, option, index)
+
 
 # vim: tabstop=4 expandtab shiftwidth=4 softtabstop=4
