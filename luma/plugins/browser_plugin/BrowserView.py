@@ -377,7 +377,6 @@ class BrowserView(QWidget):
             ret = QMessageBox.question(self, QtCore.QCoreApplication.translate("BrowserView","Add"), QtCore.QCoreApplication.translate("BrowserView", "Do you want to reload to show the changes?"), QMessageBox.Yes|QMessageBox.No)
             if ret == QMessageBox.Yes:
                 self.ldaptreemodel.reloadItem(self.selection[0])
-            # TODO Do something. (Reload?)
 
     """
     Utility-methods
