@@ -40,6 +40,9 @@ from base.backend.LumaConnectionWrapper import LumaConnectionWrapper
 from base.backend.ServerList import ServerList
 from base.gui.ServerDialog import ServerDialog
 
+#: TODO fix design issues with plugin dependencies
+from ..template.TemplateList import TemplateList
+
 
 class BrowserView(QWidget):
     """Luma LDAP Browser plugin
@@ -61,6 +64,8 @@ class BrowserView(QWidget):
         self.__logger = logging.getLogger(__name__)
 
         self.setObjectName("PLUGIN_BROWSER")
+
+        self.templateList = TemplateList()
 
         # The serverlist used
         self.serverList = ServerList(configPrefix)
@@ -262,8 +267,16 @@ class BrowserView(QWidget):
             self.contextMenuAdd.setEnabled(True)
             self.contextMenuAdd.addAction(
                 self.str_ENTRY, self.addEntryChoosen)
-            self.contextMenuAdd.addAction(
-                self.str_TEMPLATE, self.addTemplateChoosen)
+            # template
+            templateMenu = QMenu(self.str_TEMPLATE)
+            self.contextMenuAdd.addMenu(templateMenu)
+            index = self.selection[0]
+            for template in self.templateList.getTable():
+                sO = index.internalPointer().smartObject()
+                if template.server == sO.serverMeta.name:
+                    method = lambda name = template.templateName, i = index : self.addTemplateChoosen(name, i)
+                    templateMenu.addAction(template.templateName, method)
+
         else:
             self.contextMenuAdd.setEnabled(False)
 
@@ -364,11 +377,16 @@ class BrowserView(QWidget):
         for index in self.selection:
             self.addNewEntry(index)
 
-    def addTemplateChoosen(self):
-        pass
+    def addTemplateChoosen(self, templateName, index):
+        serverMeta = index.internalPointer().smartObject().serverMeta
+        baseDN = index.internalPointer().smartObject().getDN()
+        template = self.templateList.getTemplateObject(templateName)
+        smartO = template.getDataObject(serverMeta, baseDN)
+        self.addNewEntry(index, smartO, template)
 
-    def addNewEntry(self, parentIndex, defaultSmartObject=None):
-        tmp = NewEntryDialog(parentIndex, defaultSmartObject)
+    def addNewEntry(self, parentIndex, defaultSmartObject=None, template=None):
+        tmp = NewEntryDialog(parentIndex, defaultSmartObject,
+                             entryTemplate=template)
         if tmp.exec_():
             print "La til ny entry"
             # TODO Do something. (Reload?)
