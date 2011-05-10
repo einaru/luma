@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file '/mnt/debris/devel/git/luma/resources/forms/plugins/template/AddAttributeDialogDesign.ui'
+# Form implementation generated from reading ui file 'd:\Skole\it2901\resources\forms\plugins\template\AddAttributeDialogDesign.ui'
 #
-# Created: Sat May  7 03:12:33 2011
-#      by: PyQt4 UI code generator 4.8.3
+# Created: Tue May 10 19:42:00 2011
+#      by: PyQt4 UI code generator 4.8.2
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -66,6 +66,7 @@ class Ui_AddAttributeDialog(object):
         self.tableView.setSelectionBehavior(QtGui.QAbstractItemView.SelectRows)
         self.tableView.setShowGrid(False)
         self.tableView.setObjectName(_fromUtf8("tableView"))
+        self.tableView.horizontalHeader().setStretchLastSection(True)
         self.tableView.verticalHeader().setVisible(False)
         self.gridLayout_2.addWidget(self.tableView, 2, 0, 1, 4)
 

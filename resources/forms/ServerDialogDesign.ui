@@ -15,8 +15,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>607</width>
-    <height>434</height>
+    <width>662</width>
+    <height>430</height>
    </rect>
   </property>
   <property name="minimumSize">
@@ -45,16 +45,10 @@
      </property>
      <widget class="QWidget" name="layout3">
       <layout class="QGridLayout" name="serverListGrid">
-       <property name="sizeConstraint">
-        <enum>QLayout::SetMaximumSize</enum>
-       </property>
-       <property name="margin">
-        <number>0</number>
-       </property>
        <item row="0" column="0" colspan="2">
         <widget class="QListView" name="serverListView">
          <property name="sizePolicy">
-          <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
+          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
            <horstretch>0</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
@@ -86,12 +80,6 @@
        </item>
        <item row="2" column="0" colspan="2">
         <widget class="QPushButton" name="testConnectionButton">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
          <property name="text">
           <string>Test connection</string>
          </property>
@@ -104,8 +92,8 @@
        <bool>true</bool>
       </property>
       <property name="sizePolicy">
-       <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-        <horstretch>0</horstretch>
+       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+        <horstretch>1</horstretch>
         <verstretch>0</verstretch>
        </sizepolicy>
       </property>
@@ -239,6 +227,19 @@
                </item>
                <item row="3" column="1">
                 <layout class="QHBoxLayout" name="hLayout">
+                 <item>
+                  <spacer name="horizontalSpacer">
+                   <property name="orientation">
+                    <enum>Qt::Horizontal</enum>
+                   </property>
+                   <property name="sizeHint" stdset="0">
+                    <size>
+                     <width>40</width>
+                     <height>20</height>
+                    </size>
+                   </property>
+                  </spacer>
+                 </item>
                  <item>
                   <widget class="QPushButton" name="addBaseDNButton">
                    <property name="text">

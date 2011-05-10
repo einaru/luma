@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'h:\Dropbox\Git\it2901\resources\forms\MainWindowDesign.ui'
+# Form implementation generated from reading ui file 'd:\Skole\it2901\resources\forms\MainWindowDesign.ui'
 #
-# Created: Mon May 09 00:51:20 2011
-#      by: PyQt4 UI code generator 4.8.3
+# Created: Tue May 10 19:41:51 2011
+#      by: PyQt4 UI code generator 4.8.2
 #
 # WARNING! All changes made in this file will be lost!
 

@@ -57,26 +57,19 @@ class TemplateWidget(QWidget, Ui_TemplateWidget):
             self.setRightSideEnabled(True)
         else:
             self.setRightSideEnabled(False)
-
-
-        # Select the first server in the model)
+        # Select the first template in the model)
         index = self.templateTM.index(0,0)
-        # Select it in the view
+        # Select the template in the view
         self.listViewTemplates.selectionModel().select(index, QItemSelectionModel.ClearAndSelect) 
         self.listViewTemplates.selectionModel().setCurrentIndex(index, QItemSelectionModel.ClearAndSelect)
-        
         self.listViewTemplates.selectionModel().selectionChanged.connect(self.selectedTemplate)
-        
         # Map columns of the model to fields in the gui
         self.mapper = QDataWidgetMapper()
         self.mapper.setModel(self.templateTM)
-        
         self.mapper.addMapping(self.lineEditDescription, 2)
-
-        # Select the first servers (as the serverlistview does)
+        # Set-up of the non-mapped information  
         self.selectedTemplate()
         
-
     def selectedTemplate(self):
         index = self.listViewTemplates.selectionModel().currentIndex().row()
         if index >= 0:
@@ -260,8 +253,7 @@ class TemplateWidget(QWidget, Ui_TemplateWidget):
                     self.attributeTM.addRow(a.attributeName, a.must, a.single, a.binary, a.defaultValue, a.customMust)
                     
         self.tableViewAttributes.resizeRowsToContents()
-                    
-            
+        self.tableViewAttributes.resizeColumnsToContents()
 
     def deleteAttributes(self):
         if len(self.tableViewAttributes.selectedIndexes()):

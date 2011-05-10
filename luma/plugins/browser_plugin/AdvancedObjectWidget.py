@@ -44,7 +44,7 @@ class AdvancedObjectWidget(QWidget):
         self.deleteSmallPixmap = pixmapFromTheme(
             "list-remove", ":/icons/32/list-remove", w, h)
 
-        self.index = index
+        self.treeIndex = index
 
         self.setLayout(QVBoxLayout(self))
         self.layout().setSpacing(0)
@@ -98,6 +98,37 @@ class AdvancedObjectWidget(QWidget):
 
         self.htmlParser = HtmlParser(self.textBrowser)
         
+        self.str_RELOAD= QtCore.QCoreApplication.translate("AdvancedObjectWidget", 
+            "Reload")
+        self.str_SAVE = QtCore.QCoreApplication.translate("AdvancedObjectWidget", 
+            "Save entry")
+        self.str_SAVE_CONTINUE = QtCore.QCoreApplication.translate("AdvancedObjectWidget", 
+            "Do you want to save the entry before continuing?")
+        self.str_SAVE_FAILED = QtCore.QCoreApplication.translate("AdvancedObjectWidget", 
+            "Saving failed, continue anyway?")
+        self.str_DELETE = QtCore.QCoreApplication.translate("AdvancedObjectWidget", 
+            "Delete object")
+        self.str_DELETE_CONFIRM = QtCore.QCoreApplication.translate("AdvancedObjectWidget", 
+            "Do you really want to delete the object?")
+        self.str_ADD = QtCore.QCoreApplication.translate("AdvancedObjectWidget", 
+            "Add attribute")
+        self.str_SWITCH_VIEWS = QtCore.QCoreApplication.translate("AdvancedObjectWidget", 
+            "Switch between views")
+        self.str_REASON = QtCore.QCoreApplication.translate("AdvancedObjectWidget", 
+            "Reason:")
+        self.str_EXPORT_BINARY = QtCore.QCoreApplication.translate("AdvancedObjectWidget", 
+            "Export binary attribute to file"),
+        self.str_EXPORT_BINARY_EXCEPT = QtCore.QCoreApplication.translate("AdvancedObjectWidget", 
+            "Could not export binary data to file.")
+        self.str_SELECT_ANOTHER_FILE = QtCore.QCoreApplication.translate("AdvancedObjectWidget", 
+            "Please select another filename.")
+        self.str_NO_TEMPLATE = QtCore.QCoreApplication.translate("AdvancedObjectWidget", 
+            "No templates available")
+        self.str_MISSING_ENTRY = QtCore.QCoreApplication.translate("AdvancedObjectWidget", 
+            "Did'nt receive a ldap-object, it might have been deleted")
+        self.str_ENTRY_INVALID = QtCore.QCoreApplication.translate("AdvancedObjectWidget", 
+            "The ldap object is not valid, view errors?")
+
         self.buildToolBar()
         #self.displayValues()
 
@@ -126,10 +157,10 @@ class AdvancedObjectWidget(QWidget):
         self.entryModel.modelChangedSignal.connect(self.modelChanged)
         success, exceptionMsg, exceptionObject = self.entryModel.initModel(create)
         if not success:
-            errorMsg = self.trUtf8("%s <br><br>Reason: %s" % (exceptionMsg, str(exceptionObject)))
+            errorMsg = "%s<br><br>%s: %s" % (exceptionMsg, self.str_REASON, str(exceptionObject))
             QMessageBox.critical(self,
                                 self.trUtf8(""),
-                                errorMsg)
+                                self.trUtf8(errorMsg))
 
 ###############################################################################
     
@@ -165,7 +196,7 @@ class AdvancedObjectWidget(QWidget):
             if not(self.ignoreSmartObjectInvalid) and not(self.entryModel.VALID):
                 result = QMessageBox.question(self,
                                     self.trUtf8(""),
-                                    QtCore.QCoreApplication.translate("AdvancedObjectWidget", "The ldap object is not valid, view errors?"),
+                                    self.str_ENTRY_INVALID,
                                     QMessageBox.Yes | QMessageBox.No | QMessageBox.Ignore,
                                     QMessageBox.No)
                 if result == QMessageBox.Yes:
@@ -181,14 +212,13 @@ class AdvancedObjectWidget(QWidget):
         # This might happen if we want to refresh an item and
         # it might be deleted already.
         if None == self.entryModel.getSmartObject():
-            QMessageBox.critical(self,
-                                QtCore.QCoreApplication.translate("AdvancedObjectWidget", "Didnt receive a ldap-object, it might have been deleted"))
+            QMessageBox.critical(self, self.str_MISSING_ENTRY)
             self.enableToolButtons(False)
             return
         
         self.loadTemplates()
         if self.currentTemplate == None:
-            selt.textBrowser.setHtml(QtCore.QCoreApplication.translate("AdvancedObjectWidget", "No templates available"))
+            selt.textBrowser.setHtml(self.str_NO_TEMPLATE)
             return
         htmlTemplate = self.templateFactory.getTemplateFile(self.currentTemplate)
         self.currentDocument = self.htmlParser.parseHtml(htmlTemplate)
@@ -236,7 +266,7 @@ class AdvancedObjectWidget(QWidget):
         self.reloadButton.setSizePolicy(QSizePolicy(QSizePolicy.Fixed, QSizePolicy.Fixed))
         self.reloadButton.setAutoRaise(True)
         self.reloadButton.setBackgroundRole(self.backgroundRole())
-        self.reloadButton.setToolTip(QtCore.QCoreApplication.translate("AdvancedObjectWidget", "Reload"))
+        self.reloadButton.setToolTip(self.str_RELOAD)
         self.connect(self.reloadButton, SIGNAL("clicked()"), self.refreshView)
         self.toolBar.addWidget(self.reloadButton)
         
@@ -247,7 +277,7 @@ class AdvancedObjectWidget(QWidget):
         self.saveButton.setSizePolicy(QSizePolicy(QSizePolicy.Fixed, QSizePolicy.Fixed))
         self.saveButton.setAutoRaise(True)
         self.saveButton.setBackgroundRole(self.backgroundRole())
-        self.saveButton.setToolTip(QtCore.QCoreApplication.translate("AdvancedObjectWidget", "Save"))
+        self.saveButton.setToolTip(self.str_SAVE)
         self.connect(self.saveButton, SIGNAL("clicked()"), self.saveObject)
         self.toolBar.addWidget(self.saveButton)
         
@@ -259,7 +289,7 @@ class AdvancedObjectWidget(QWidget):
         self.addAttributeButton.setSizePolicy(QSizePolicy(QSizePolicy.Fixed, QSizePolicy.Fixed))
         self.addAttributeButton.setAutoRaise(True)
         self.addAttributeButton.setBackgroundRole(self.backgroundRole())
-        self.addAttributeButton.setToolTip(QtCore.QCoreApplication.translate("AdvancedObjectWidget", "Add attribute"))
+        self.addAttributeButton.setToolTip(self.str_ADD)
         self.connect(self.addAttributeButton, SIGNAL("clicked()"), self.addAttribute)
         self.toolBar.addWidget(self.addAttributeButton)
         
@@ -269,11 +299,11 @@ class AdvancedObjectWidget(QWidget):
         self.deleteObjectButton.setSizePolicy(QSizePolicy(QSizePolicy.Fixed, QSizePolicy.Fixed))
         self.deleteObjectButton.setAutoRaise(True)
         self.deleteObjectButton.setBackgroundRole(self.backgroundRole())
-        self.deleteObjectButton.setToolTip(QtCore.QCoreApplication.translate("AdvancedObjectWidget", "Delete object"))
+        self.deleteObjectButton.setToolTip(self.str_DELETE)
         self.connect(self.deleteObjectButton, SIGNAL("clicked()"), self.deleteObject)
         self.toolBar.addWidget(self.deleteObjectButton)
 
-        self.comboBox.setToolTip(QtCore.QCoreApplication.translate("AdvancedObjectWidget", "Switch between views"))
+        self.comboBox.setToolTip(self.str_SWITCH_VIEWS)
         self.connect(self.comboBox, SIGNAL("currentIndexChanged(int)"), self.changeView)
         self.toolBar.addWidget(self.comboBox)
         
@@ -303,8 +333,8 @@ class AdvancedObjectWidget(QWidget):
             return True
             
         result = QMessageBox.warning(self,
-            QtCore.QCoreApplication.translate("AdvancedObjectWidget", "Save entry"),
-            QtCore.QCoreApplication.translate("AdvancedObjectWidget", "Do you want to save the entry before continuing?"),
+            self.str_SAVE,
+            self.str_SAVE_CONTINUE,
             QMessageBox.Save | QMessageBox.Discard | QMessageBox.Cancel,
             QMessageBox.Cancel)
         
@@ -315,7 +345,7 @@ class AdvancedObjectWidget(QWidget):
                 # Saving failed
                 result = QMessageBox.question(None,
                             self.trUtf8(""),
-                            QtCore.QCoreApplication.translate("AdvancedObjectWidget", "Saving failed, continue anyway?"),
+                            self.str_SAVE_FAILED,
                             QMessageBox.Ok | QMessageBox.Cancel,
                             QMessageBox.Cancel)
         return not(result == QMessageBox.Cancel)
@@ -330,8 +360,8 @@ class AdvancedObjectWidget(QWidget):
         if self.aboutToChange():
             success, exceptionMsg, exceptionObject = self.entryModel.reloadModel()
             if not success:
-                errorMsg = self.trUtf8("%s<br><br>Reason: %s" % (exceptionMsg, str(exceptionObject)))
-                QMessageBox.critical(self, self.trUtf8(""), errorMsg)
+                errorMsg = "%s<br><br>%s: %s" % (exceptionMsg, self.str_REASON, str(exceptionObject))
+                QMessageBox.critical(self, self.trUtf8(""), self.trUtf8(errorMsg))
             else:
                 self.displayValues()
 
@@ -343,19 +373,20 @@ class AdvancedObjectWidget(QWidget):
         success, exceptionMsg, exceptionObject = self.entryModel.saveModel()
         if not success:
             # Saving failed
-            errorMsg = self.trUtf8("%s<br><br>Reason: %s" % (exceptionMsg, str(exceptionObject)))
-            QMessageBox.critical(self, self.trUtf8(""), errorMsg)
+            errorMsg = "%s<br><br>%s: %s" % (exceptionMsg, self.str_REASON, str(exceptionObject))
+
+            QMessageBox.critical(self, self.trUtf8(""), self.trUtf8(errorMsg))
             return False
         else:
             # update the smartObject in the tree
             if self.entryModel.CREATE:
                 pass
-            elif self.index.isValid():
-                row = self.index.row()
-                column = self.index.column()
+            elif self.treeIndex.isValid():
+                row = self.treeIndex.row()
+                column = self.treeIndex.column()
                 # QPersistenIndex doesn't have internalPointer()
                 # so we aquire a QModelIndex which does
-                index = self.index.sibling(row,column)
+                index = self.treeIndex.sibling(row,column)
                 index.internalPointer().itemData = self.getSmartObject()
             return True
 
@@ -378,9 +409,9 @@ class AdvancedObjectWidget(QWidget):
         attribute = str(dialog.attributeBox.currentText())
         showAll = dialog.enableAllBox.isChecked()
         if dialog.binaryBox.isChecked():
-            attributeList = set([attribute + ";binary"])
+            attributeSet = set([attribute + ";binary"])
         else:
-            attributeList = set([attribute])
+            attributeSet = set([attribute])
         
         if showAll and not(attribute.lower() in dialog.possibleAttributes):
             objectClass = str(dialog.classBox.currentItem().text())
@@ -390,11 +421,12 @@ class AdvancedObjectWidget(QWidget):
             serverSchema = ObjectClassAttributeInfo(self.entryModel.smartObject.getServerMeta())
             mustAttributes = serverSchema.getAllMusts([objectClass])
             mustAttributes = mustAttributes.difference(set(self.entryModel.smartObject.getAttributeList()))
-            attributeList = mustAttributes.union(set([attribute]))
+            attributeSet = mustAttributes.union(set([attribute]))
             
-        for x in attributeList:
+        for x in attributeSet:
             #TODO model
-            self.entryModel.smartObject.addAttributeValue(x, None)
+            self.entryModel.addAttributeValue(x, None)
+            #self.entryModel.smartObject.addAttributeValue(x, None)
         
         self.displayValues()
         
@@ -405,27 +437,27 @@ class AdvancedObjectWidget(QWidget):
     @pyqtSlot()
     def deleteObject(self):
         buttonClicked = QMessageBox.critical(self,
-                            QtCore.QCoreApplication.translate("AdvancedObjectWidget", "Delete object"),
-                            QtCore.QCoreApplication.translate("AdvancedObjectWidget", "Do you really want to delete the object?"),
+                            self.str_DELETE,
+                            self.str_DELETE_CONFIRM,
                             QMessageBox.Yes,
                             QMessageBox.No)
         if not (buttonClicked == QMessageBox.Yes):
             return
         # If we have an index, use it tell the item to delete itself
         # so that the view is updated
-        if self.index.isValid():
-            row = self.index.row()
-            column = self.index.column()
+        if self.treeIndex.isValid():
+            row = self.treeIndex.row()
+            column = self.treeIndex.column()
             # QPersistenIndex doesn't have internalPointer()
             # so we aquire a QModelIndex which does
-            index = self.index.sibling(row,column)
+            index = self.treeIndex.sibling(row,column)
             success, message = index.model().deleteItem(index)
             if success:
                 self.enableToolButtons(False)
                 self.deleteLater()
             else:
-                errorMsg = self.trUtf8("%s<br><br>Reason: %s" % (message))#, str(exceptionObject))) # We ain't got no exceptionObject here ?
-                QMessageBox.critical(self, self.trUtf8(""), errorMsg)
+                errorMsg = "%s" % (message)
+                QMessageBox.critical(self, self.trUtf8(""), self.trUtf8(errorMsg))
         # if not, we just delete it ourselves since there's not view on the object
         else:
             success, message, exceptionObject = self.entryModel.deleteObject()
@@ -433,13 +465,15 @@ class AdvancedObjectWidget(QWidget):
                 self.enableToolButtons(False)
                 self.deleteLater()
             else:
-                errorMsg = self.trUtf8("%s<br><br>Reason: %s" % (message, str(exceptionObject)))
-                QMessageBox.critical(self, self.trUtf8(""), errorMsg)
+                errorMsg = "%s<br><br>%s: %s" % (message, self.str_REASON, str(exceptionObject))
+                QMessageBox.critical(self, self.trUtf8(""), self.trUtf8(errorMsg))
 
 ###############################################################################
 
     @pyqtSlot("QUrl")
     def anchorClicked(self, url):
+        """ Called when an anchor (<a href=".." /> is clicked
+        """
         nameString = unicode(url.toString())
         tmpList = nameString.split("__")
         
@@ -509,7 +543,7 @@ class AdvancedObjectWidget(QWidget):
 
         fileName = unicode(QFileDialog.getSaveFileName(\
                             self,
-                            QtCore.QCoreApplication.translate("AdvancedObjectWidget", "Export binary attribute to file"),
+                            self.str_EXPORT_BINARY,
                             QString(""),
                             "All files (*)",
                             None))
@@ -523,11 +557,14 @@ class AdvancedObjectWidget(QWidget):
             fileHandler.close()
             SAVED = True
         except IOError, e:
+            msg = "%s %s:\n\n%s\n\n%s" % (self.str_EXPORT_BINARY_EXCEPT,
+                                          self.str_REASON,
+                                          str(e),
+                                          self.str_SELECT_ANOTHER_FILE)
             result = QMessageBox.warning(\
                     self,
-                    QtCore.QCoreApplication.translate("AdvancedObjectWidget", "Export binary attribute to file"),
-                    QtCore.QCoreApplication.translate("AdvancedObjectWidget", """Could not export binary data to file. Reason:\n"""
-                        + str(e) + """\n\n""" +  QtCore.QCoreApplication.translate("AdvancedObjectWidget", "Please select another filename.")),
+                    self.str_EXPORT_BINARY,
+                    msg,
                     QMessageBox.Cancel | QMessageBox.Ok,
                     QMessageBox.Cancel)
 

@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file '/mnt/debris/devel/git/luma/resources/forms/plugins/template/TemplateWidgetDesign.ui'
+# Form implementation generated from reading ui file 'd:\Skole\it2901\resources\forms\plugins\template\TemplateWidgetDesign.ui'
 #
-# Created: Sat May  7 03:12:33 2011
-#      by: PyQt4 UI code generator 4.8.3
+# Created: Tue May 10 20:07:31 2011
+#      by: PyQt4 UI code generator 4.8.2
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -57,8 +57,6 @@ class Ui_TemplateWidget(object):
         self.listViewTemplates.setSizePolicy(sizePolicy)
         self.listViewTemplates.setObjectName(_fromUtf8("listViewTemplates"))
         self.gridLayout_6.addWidget(self.listViewTemplates, 0, 0, 1, 3)
-        spacerItem = QtGui.QSpacerItem(40, 20, QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Minimum)
-        self.gridLayout_6.addItem(spacerItem, 1, 2, 2, 1)
         self.pushButtonTemplatesDelete = QtGui.QPushButton(self.groupBoxTemplates)
         sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Fixed, QtGui.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
@@ -127,6 +125,7 @@ class Ui_TemplateWidget(object):
         self.tableViewAttributes.setSelectionBehavior(QtGui.QAbstractItemView.SelectRows)
         self.tableViewAttributes.setShowGrid(False)
         self.tableViewAttributes.setObjectName(_fromUtf8("tableViewAttributes"))
+        self.tableViewAttributes.horizontalHeader().setStretchLastSection(True)
         self.tableViewAttributes.verticalHeader().setVisible(False)
         self.gridLayout_4.addWidget(self.tableViewAttributes, 0, 0, 3, 2)
         self.pushButtonAttributesAdd = QtGui.QPushButton(self.groupBoxAttributes)
