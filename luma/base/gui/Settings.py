@@ -42,17 +42,6 @@ class Settings(QSettings):
         config_prefix=<string>
         geometry=<ByteArray>
 
-        [plugins]
-        search\\autocomplete=<bool>
-        search\\highlighting=<bool>
-        search\\scop<int>
-        search\\limit=<int>
-        search\\load<bool>
-        qt4plugin\\load=<bool>
-        browser\\load<bool>
-        Tetris\\load<bool>
-        template\\load<bool>
-
         [logger]
         show_logger_on_start=<bool>
         show_logger<bool>

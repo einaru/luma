@@ -12,6 +12,16 @@ class HtmlParser:
         self.smartObject = None
         self.objectWidget = objectWidget
 
+    ''' Utility function, checks both smart data object and template object
+    '''
+    def _isAttributeMust(self, x):
+        if self.entryModel.entryTemplate:
+            template = self.entryModel.entryTemplate
+            if x in template.attributes:
+                if template.attributes[x].customMust:
+                    return True
+        return self.smartObject.isAttributeMust(x)
+
     def parseHtml(self, htmlTemplate):
         # reload smartObject each time
         self.smartObject = self.entryModel.getSmartObject()
@@ -144,7 +154,8 @@ class HtmlParser:
             attributeIsImage = self.smartObject.isAttributeImage(x)
             attributeIsPassword = self.smartObject.isAttributePassword(x)
             attributeIsSingle = self.smartObject.isAttributeSingle(x)
-            attributeIsMust = self.smartObject.isAttributeMust(x)
+            #attributeIsMust = self.smartObject.isAttributeMust(x)
+            attributeIsMust = self._isAttributeMust(x)
         else:
             attributeIsBinary = False
             attributeIsImage = False
@@ -182,16 +193,12 @@ class HtmlParser:
         attributeString = copy.copy(x)
         
         if self.smartObject.isValid:
-            print x
             if self.smartObject.isAttributeMust(x, self.smartObject.getObjectClasses()):
                 attributeString = "<b>" + attributeString + "</b>"
             elif self.entryModel.entryTemplate:
-                print "HER?"
                 template = self.entryModel.entryTemplate
                 if x in template.attributes:
-                    print "DER?"
                     if template.attributes[x].customMust:
-                        print "OG OVERALT!"
                         attributeString = "<b>" + attributeString + "</b>"
                 
         
@@ -211,7 +218,7 @@ class HtmlParser:
             if not (valueList[0] == None):
                 attributeModify = not self.smartObject.isAttributeValueRDN(x, valueList[0])
         
-        if (valueList[0] == None):
+        if valueList[0] == None or len(valueList[0]) == 0:
             tmpList.append('''<td bgcolor="#E5E5E5" width="60%"><font color="#ff0000">''' + 
                 unicode("Value not set.") + '''</font></td>''')
                 
@@ -238,7 +245,7 @@ class HtmlParser:
             
             tmpList.append('''<tr><td width="35%"></td>''')
             
-            if y == None:
+            if y == None or len(y) == 0:
                 tmpList.append('''<td bgcolor="#E5E5E5" width="55%"><font color="#ff0000">''' +
                     unicode("Value not set.") + '''</font></td>''')
                     

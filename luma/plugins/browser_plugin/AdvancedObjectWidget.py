@@ -33,6 +33,7 @@ class AdvancedObjectWidget(QWidget):
         w = 24
         h = 24
         self.initModel(smartObject, create, entryTemplate)
+        self.baseDN = smartObject.getDN()
 
         # Standard pixmaps used by the widget
         self.reloadPixmap = pixmapFromTheme(
@@ -428,7 +429,7 @@ class AdvancedObjectWidget(QWidget):
         if attributeName == 'RDN':
             # TODO correct this, used on creation?
             oldValue = oldDN
-            #smartObject.setDN(self.baseDN)
+            smartObject.setDN(self.baseDN)
         else:
             if smartObject.hasAttribute(attributeName):
                 addValue = False
@@ -446,16 +447,15 @@ class AdvancedObjectWidget(QWidget):
             newValue = dialog.getValue()
             if not (newValue == None):
                 if attributeName == 'RDN':
-                    self.entryModel.editRDN(newValue)
+                    self.entryModel.setDN(newValue)
                 else:
                     if addValue:
                         self.entryModel.addAttributeValue(attributeName, [newValue])
                     else:
                         self.entryModel.editAttribute(attributeName, index, newValue)
-        #else:
-        #    if attributeName == 'RDN':
-        #        # TODO correct this
-        #        smartObject.setDN(oldDN)
+        else:
+            if attributeName == 'RDN':
+                smartObject.setDN(oldDN.decode('utf-8'))
 
 ###############################################################################
 
