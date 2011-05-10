@@ -643,8 +643,6 @@ class BrowserView(QWidget):
         """
         self.tabWidget.setStatusTip(QCoreApplication.translate(
             "BrowserView", "This is where entries are displayed when opened."))
-        self.tabWidget.setToolTip(QCoreApplication.translate(
-            "BrowserView", "This is where entries are displayed when opened."))
         self.contextMenuServerSettings.setText(QCoreApplication.translate(
             "BrowserView", "Edit Server Settings"))
         self.contextMenuOpen.setText(QCoreApplication.translate(
