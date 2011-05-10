@@ -274,6 +274,7 @@ class WorkerThread(QThread):
 
     __threadPool = []
     __Lock = RLock()
+    i = 0
 
     def __init__(self, parent=None):
         QThread.__init__(self, parent)
@@ -282,6 +283,8 @@ class WorkerThread(QThread):
         # Add to the threadpool so the thread is not GCed
         # while running.
         with WorkerThread.__Lock:
+            WorkerThread.i = WorkerThread.i + 1
+            print WorkerThread.i
             WorkerThread.__threadPool.append(self)
 
         # Cleanup on finish
@@ -303,12 +306,14 @@ class WorkerThread(QThread):
         """
         self.logger.debug("Cleanup called.")
         # Remove from threadpool on finish
-        print "Debug -- before cleanup of threadpool:"
-        print WorkerThread.__threadPool
+        #print "Debug -- before cleanup of threadpool:"
+        #print WorkerThread.__threadPool
         with WorkerThread.__Lock:
+            WorkerThread.i = WorkerThread.i + 1
+            print WorkerThread.i
             WorkerThread.__threadPool.remove(self)
-        print "Debug -- after cleanup of threadpool:"
-        print WorkerThread.__threadPool
+        #print "Debug -- after cleanup of threadpool:"
+        #print WorkerThread.__threadPool
 
     def setWorker(self, worker):
         """Sets worker to be executed in this thread.

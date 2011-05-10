@@ -346,8 +346,7 @@ class SearchPlugin(QWidget, Ui_SearchPlugin):
         # Perform an asyncronized search operation. When the search is
         # finished we act upon the LumaConnectionWrapper.searchFinished
         # signal in the onSearchFinished method
-        args = dict(base=base, scope=scope, filter=filter, sizelimit=limit,
-                    identStr='searchplugin')
+        args = dict(base=base, scope=scope, filter=filter, sizelimit=limit)
         search = Search(self, self.currentServer, **args)
         search.resultsRetrieved.connect(self.onResultsRetrieved)
 
