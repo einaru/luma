@@ -83,6 +83,7 @@ class BrowserView(QWidget):
         self.setMinimumWidth(200)
         self.tabWidget.setTabsClosable(True)
         self.tabWidget.tabCloseRequested.connect(self.tabCloseClicked)
+        self.tabWidget.setUsesScrollButtons(True)
 
         # Remember and looks up open tabs
         self.openTabs = {}
