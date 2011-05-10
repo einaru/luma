@@ -1,9 +1,14 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file '/mnt/debris/devel/git/luma/resources/forms/plugins/template/TemplateWidgetDesign.ui'
+# Form implementation generated from reading ui file 'd:\Skole\it2901\resources\forms\plugins\template\TemplateWidgetDesign.ui'
 #
+<<<<<<< HEAD
 # Created: Sat May  7 03:12:33 2011
 #      by: PyQt4 UI code generator 4.8.3
+=======
+# Created: Thu Apr 14 08:40:58 2011
+#      by: PyQt4 UI code generator 4.8.2
+>>>>>>> S5-Templates
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -127,6 +132,10 @@ class Ui_TemplateWidget(object):
         self.tableViewAttributes.setSelectionBehavior(QtGui.QAbstractItemView.SelectRows)
         self.tableViewAttributes.setShowGrid(False)
         self.tableViewAttributes.setObjectName(_fromUtf8("tableViewAttributes"))
+<<<<<<< HEAD
+=======
+        self.tableViewAttributes.horizontalHeader().setStretchLastSection(True)
+>>>>>>> S5-Templates
         self.tableViewAttributes.verticalHeader().setVisible(False)
         self.gridLayout_4.addWidget(self.tableViewAttributes, 0, 0, 3, 2)
         self.pushButtonAttributesAdd = QtGui.QPushButton(self.groupBoxAttributes)

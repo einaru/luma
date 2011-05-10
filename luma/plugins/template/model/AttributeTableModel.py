@@ -15,11 +15,12 @@ class AttributeTableModel(QAbstractTableModel):
         self.attributes = {}
         
     def setTemplateObject(self, templateObject = None):
+        self.beginResetModel()
         if templateObject:
             self.attributes = templateObject.attributes
         else:
             self.attributes = {}
-        self.reset()
+        self.endResetModel()
 
     def addRow(self, name, must, single, binary, defaultValue, customMust):
         if not name in self.attributes or not self.attributes[name].must:
