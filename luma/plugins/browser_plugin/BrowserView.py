@@ -374,7 +374,9 @@ class BrowserView(QWidget):
     def addNewEntry(self, parentIndex, defaultSmartObject=None):
         tmp = NewEntryDialog(parentIndex, defaultSmartObject)
         if tmp.exec_():
-            print "La til ny entry"
+            ret = QMessageBox.question(self, QtCore.QCoreApplication.translate("BrowserView","Add"), QtCore.QCoreApplication.translate("BrowserView", "Do you want to reload to show the changes?"), QMessageBox.Yes|QMessageBox.No)
+            if ret == QMessageBox.Yes:
+                self.ldaptreemodel.reloadItem(self.selection[0])
             # TODO Do something. (Reload?)
 
     """
