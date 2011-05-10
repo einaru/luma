@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file '/home/einar/Desktop/luma-testing/resources/forms/plugins/search/SearchFormDesign.ui'
+# Form implementation generated from reading ui file 'd:\Skole\it2901\resources\forms\plugins\search\SearchFormDesign.ui'
 #
-# Created: Mon May  9 02:27:30 2011
-#      by: PyQt4 UI code generator 4.8.3
+# Created: Tue May 10 19:41:58 2011
+#      by: PyQt4 UI code generator 4.8.2
 #
 # WARNING! All changes made in this file will be lost!
 

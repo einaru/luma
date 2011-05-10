@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file '/mnt/debris/devel/git/luma/resources/forms/plugins/browser_plugin/RdnEditorDesign.ui'
+# Form implementation generated from reading ui file 'd:\Skole\it2901\resources\forms\plugins\browser_plugin\RdnEditorDesign.ui'
 #
-# Created: Sat May  7 03:12:33 2011
-#      by: PyQt4 UI code generator 4.8.3
+# Created: Tue May 10 19:41:56 2011
+#      by: PyQt4 UI code generator 4.8.2
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -94,7 +94,7 @@ class Ui_RdnEditorDesign(object):
 
     def retranslateUi(self, RdnEditorDesign):
         RdnEditorDesign.setWindowTitle(QtGui.QApplication.translate("RdnEditorDesign", "Edit DN", None, QtGui.QApplication.UnicodeUTF8))
-        self.iconLabel.setText(QtGui.QApplication.translate("RdnEditorDesign", "IT", "DO NOT TRANSLATE", QtGui.QApplication.UnicodeUTF8))
+        self.iconLabel.setText(QtGui.QApplication.translate("RdnEditorDesign", "IT", None, QtGui.QApplication.UnicodeUTF8))
         self.okButton.setText(QtGui.QApplication.translate("RdnEditorDesign", "&OK", None, QtGui.QApplication.UnicodeUTF8))
         self.okButton.setShortcut(QtGui.QApplication.translate("RdnEditorDesign", "Alt+O", None, QtGui.QApplication.UnicodeUTF8))
         self.cancelButton.setText(QtGui.QApplication.translate("RdnEditorDesign", "&Cancel", None, QtGui.QApplication.UnicodeUTF8))

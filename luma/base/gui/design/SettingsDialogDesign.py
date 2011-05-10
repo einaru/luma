@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file '/mnt/debris/devel/git/luma/resources/forms/SettingsDialogDesign.ui'
+# Form implementation generated from reading ui file 'd:\Skole\it2901\resources\forms\SettingsDialogDesign.ui'
 #
-# Created: Sat May  7 03:12:31 2011
-#      by: PyQt4 UI code generator 4.8.3
+# Created: Tue May 10 19:41:52 2011
+#      by: PyQt4 UI code generator 4.8.2
 #
 # WARNING! All changes made in this file will be lost!
 

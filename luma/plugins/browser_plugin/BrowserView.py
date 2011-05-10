@@ -84,7 +84,9 @@ class BrowserView(QWidget):
         self.tabWidget.setTabsClosable(True)
         self.tabWidget.tabCloseRequested.connect(self.tabCloseClicked)
         self.tabWidget.setUsesScrollButtons(True)
-
+        sizePolicy = self.tabWidget.sizePolicy()
+        sizePolicy.setHorizontalStretch(1)
+        self.tabWidget.setSizePolicy(sizePolicy)
         # Remember and looks up open tabs
         self.openTabs = {}
 
@@ -129,7 +131,7 @@ class BrowserView(QWidget):
         # The view for server-content
         self.entryList = QtGui.QTreeView(self)
         self.entryList.setMinimumWidth(200)
-        self.entryList.setMaximumWidth(400)
+        #self.entryList.setMaximumWidth(400)
         #self.entryList.setAlternatingRowColors(True)
 
         # Somewhat cool, but should be removed if deemed too taxing
