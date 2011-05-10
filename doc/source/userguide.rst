@@ -128,8 +128,7 @@ the filter in the *Filter builder*, by clicking the tool button next to the
 Search button.
 
 
-.. todo::
-    Add relevant screenshots of the Search plugin search form.
+.. Add relevant screenshots of the Search plugin search form.
 
 
 **Filter builder**
@@ -149,8 +148,7 @@ Filters created in the *Filter builder* follows the *LDAP String Representation
 of Search Filters* spesifications defined in ``RFC4514`` [1]_.
 
 
-.. todo::
-    Add relevant screenshots of the Search plugin filter builder.
+.. Add relevant screenshots of the Search plugin filter builder.
 
 
 **Result view**
@@ -174,8 +172,7 @@ The available filter syntaxes is:
   Note that this option can be very slow on large result sets.
 
 
-.. todo::
-    Add relevant screenshots of the Search plugin result view.
+.. Add relevant screenshots of the Search plugin result view.
 
 
 4. Luma keyboard shortcuts
