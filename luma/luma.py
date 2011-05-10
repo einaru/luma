@@ -54,7 +54,8 @@ if sys.version_info >= (3,):
 try: 
     from PyQt4.QtCore import (QEvent, Qt)
     from PyQt4.QtGui import (QApplication, QIcon)
-except ImportError:
+except ImportError, e:
+    print e
     failed = 1
     sys.stderr.write("""
 ###########################################################
