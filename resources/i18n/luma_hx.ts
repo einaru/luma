@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.0" language="en_US">
+<!DOCTYPE TS><TS version="1.1" language="en_US">
 <context>
     <name>AboutCredits</name>
     <message>
@@ -8,7 +7,7 @@
         <source>Credits</source>
         <translation>C|23[)17$</translation>
     </message>
-    <message utf8="true">
+    <message encoding="UTF-8">
         <location filename="luma/base/gui/design/AboutCreditsDesign.py" line="71"/>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
@@ -42,7 +41,7 @@ p, li { white-space: pre-wrap; }
         <source>Developers</source>
         <translation>D3\/3|_0|*3|2$</translation>
     </message>
-    <message utf8="true">
+    <message encoding="UTF-8">
         <location filename="luma/base/gui/design/AboutCreditsDesign.py" line="85"/>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
@@ -100,7 +99,7 @@ p, li { white-space: pre-wrap; }
         <source>Translators</source>
         <translation>T|24[\]$|_470|2$</translation>
     </message>
-    <message utf8="true">
+    <message encoding="UTF-8">
         <location filename="luma/base/gui/design/AboutCreditsDesign.py" line="111"/>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
@@ -202,7 +201,7 @@ p, li { white-space: pre-wrap; }
         <source>LDAP management made easy</source>
         <translation>LDAP [V]4[\]4(`(,3[V]3[\]7 [V]4[)3 34$`(</translation>
     </message>
-    <message utf8="true">
+    <message encoding="UTF-8">
         <location filename="luma/base/gui/design/AboutDialogDesign.py" line="115"/>
         <source>Copyright © 2003–2005 Wido Depping</source>
         <translation>C0|*`(|21(`(,#7 © 2003–2005 W1[)0 D3|*|*1[\](`(,</translation>
@@ -473,72 +472,72 @@ the selected objectclass.&lt;/p&gt;</source>
 <context>
     <name>AdvancedObjectWidget</name>
     <message>
-        <location filename="luma/plugins/browser_plugin/AdvancedObjectWidget.py" line="103"/>
+        <location filename="luma/plugins/browser_plugin/AdvancedObjectWidget.py" line="123"/>
         <source>%s &lt;br&gt;&lt;br&gt;Reason: %s</source>
         <translation>%$ &lt;|3|2&gt;&lt;|3|2&gt;R34$0[\]: %$</translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/AdvancedObjectWidget.py" line="187"/>
+        <location filename="luma/plugins/browser_plugin/AdvancedObjectWidget.py" line="207"/>
         <source>Reload</source>
         <translation>R3|_04[)</translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/AdvancedObjectWidget.py" line="198"/>
+        <location filename="luma/plugins/browser_plugin/AdvancedObjectWidget.py" line="218"/>
         <source>Save</source>
         <translation>S4\/3</translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/AdvancedObjectWidget.py" line="210"/>
+        <location filename="luma/plugins/browser_plugin/AdvancedObjectWidget.py" line="230"/>
         <source>Add attribute</source>
         <translation>A[)[) 477|21|3[_]73</translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/AdvancedObjectWidget.py" line="350"/>
+        <location filename="luma/plugins/browser_plugin/AdvancedObjectWidget.py" line="370"/>
         <source>Delete object</source>
         <translation>D3|_373 0|3]3(7</translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/AdvancedObjectWidget.py" line="224"/>
+        <location filename="luma/plugins/browser_plugin/AdvancedObjectWidget.py" line="244"/>
         <source>Switch between views</source>
         <translation>Svv17(# |337vv33[\] \/13vv$</translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/AdvancedObjectWidget.py" line="252"/>
+        <location filename="luma/plugins/browser_plugin/AdvancedObjectWidget.py" line="272"/>
         <source>Save entry</source>
         <translation>S4\/3 3[\]7|2`(</translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/AdvancedObjectWidget.py" line="252"/>
+        <location filename="luma/plugins/browser_plugin/AdvancedObjectWidget.py" line="272"/>
         <source>Do you want to save the entry before continuing?</source>
         <translation>D0 `(0[_] vv4[\]7 70 $4\/3 7#3 3[\]7|2`( |33(=0|23 (0[\]71[\][_]1[\](`(,?</translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/AdvancedObjectWidget.py" line="263"/>
+        <location filename="luma/plugins/browser_plugin/AdvancedObjectWidget.py" line="283"/>
         <source>Saving failed, continue anyway?</source>
         <translation>S4\/1[\](`(, (=41|_3[), (0[\]71[\][_]3 4[\]`(vv4`(?</translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/AdvancedObjectWidget.py" line="379"/>
+        <location filename="luma/plugins/browser_plugin/AdvancedObjectWidget.py" line="399"/>
         <source>%s&lt;br&gt;&lt;br&gt;Reason: %s</source>
         <translation>%$&lt;|3|2&gt;&lt;|3|2&gt;R34$0[\]: %$</translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/AdvancedObjectWidget.py" line="350"/>
+        <location filename="luma/plugins/browser_plugin/AdvancedObjectWidget.py" line="370"/>
         <source>Do you really want to delete the object?</source>
         <translation>D0 `(0[_] |234|_|_`( vv4[\]7 70 [)3|_373 7#3 0|3]3(7?</translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/AdvancedObjectWidget.py" line="453"/>
+        <location filename="luma/plugins/browser_plugin/AdvancedObjectWidget.py" line="472"/>
         <source>Export binary attribute to file</source>
         <translation>E%|*0|27 |31[\]4|2`( 477|21|3[_]73 70 (=1|_3</translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/AdvancedObjectWidget.py" line="469"/>
+        <location filename="luma/plugins/browser_plugin/AdvancedObjectWidget.py" line="488"/>
         <source>Export binary attribute</source>
         <translation>E%|*0|27 |31[\]4|2`( 477|21|3[_]73</translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/AdvancedObjectWidget.py" line="469"/>
+        <location filename="luma/plugins/browser_plugin/AdvancedObjectWidget.py" line="488"/>
         <source>Could not export binary data to file. Reason:
 </source>
         <translation>C0[_]|_[) [\]07 3%|*0|27 |31[\]4|2`( [)474 70 (=1|_3. R34$0[\]:
@@ -626,126 +625,143 @@ the selected objectclass.&lt;/p&gt;</source>
 <context>
     <name>BrowserView</name>
     <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="609"/>
+        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="691"/>
         <source>Delete</source>
         <translation>D3|_373</translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="431"/>
+        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="692"/>
         <source>Really delete?</source>
         <translation>R34|_|_`( [)3|_373?</translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="436"/>
+        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="684"/>
         <source>Error</source>
         <translation>E|2|20|2</translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="468"/>
+        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="694"/>
         <source>Deletion</source>
         <translation>D3|_3710[\]</translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="468"/>
-        <source>It&apos;s possible some of the selected items might not have been deleted, while others were.
-Do you wan&apos;t to update the list to reflect the changes?</source>
-        <translation>I7&apos;$ |*0$$1|3|_3 $0[V]3 0(= 7#3 $3|_3(73[) 173[V]$ [V]1(`(,#7 [\]07 #4\/3 |333[\] [)3|_373[), vv#1|_3 07#3|2$ vv3|23.
-D0 `(0[_] vv4[\]&apos;7 70 [_]|*[)473 7#3 |_1$7 70 |23(=|_3(7 7#3 (#4[\](`(,3$?</translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="569"/>
+        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="702"/>
         <source>You need to restart the plugin for changes to take effect.</source>
         <translation>Y0[_] [\]33[) 70 |23$74|27 7#3 |*|_[_](`(,1[\] (=0|2 (#4[\](`(,3$ 70 74|&lt;3 3(=(=3(7.</translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="601"/>
+        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="640"/>
         <source>This is where entries are displayed when opened.</source>
         <translation>T#1$ 1$ vv#3|23 3[\]7|213$ 4|23 [)1$|*|_4`(3[) vv#3[\] 0|*3[\]3[).</translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="602"/>
+        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="642"/>
         <source>Edit Server Settings</source>
         <translation>E[)17 S3|2\/3|2 S3771[\](`(,$</translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="603"/>
+        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="644"/>
         <source>Open</source>
         <translation>O|*3[\]</translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="604"/>
+        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="646"/>
         <source>Reload</source>
         <translation>R3|_04[)</translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="605"/>
+        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="648"/>
         <source>Clear</source>
         <translation>C|_34|2</translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="606"/>
+        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="650"/>
         <source>Set Filter</source>
         <translation>S37 F1|_73|2</translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="607"/>
+        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="652"/>
         <source>Set Limit</source>
         <translation>S37 L1[V]17</translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="608"/>
+        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="654"/>
         <source>Add</source>
         <translation>A[)[)</translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="610"/>
+        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="658"/>
         <source>Export</source>
         <translation>E%|*0|27</translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="611"/>
-        <source>Cancel</source>
-        <translation>C4[\](3|_</translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="613"/>
+        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="661"/>
         <source>Entry</source>
         <translation>E[\]7|2`(</translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="614"/>
+        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="663"/>
         <source>Template</source>
         <translation>T3[V]|*|_473</translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="615"/>
+        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="665"/>
         <source>Item</source>
         <translation>I73[V]</translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="616"/>
+        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="667"/>
         <source>Subtree</source>
         <translation>S[_]|37|233</translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="617"/>
+        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="669"/>
         <source>Subtree with parents</source>
         <translation>S[_]|37|233 vv17# |*4|23[\]7$</translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="618"/>
+        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="671"/>
         <source>Items</source>
         <translation>I73[V]$</translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="619"/>
+        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="673"/>
         <source>Subtrees</source>
         <translation>S[_]|37|233$</translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="620"/>
+        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="675"/>
         <source>Subtrees with parents</source>
         <translation>S[_]|37|233$ vv17# |*4|23[\]7$</translation>
+    </message>
+    <message>
+        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="678"/>
+        <source>Please wait</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="680"/>
+        <source>Please wait, fetching data...
+This message will automatically close when done...</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="685"/>
+        <source>On {0}:
+{1}</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="688"/>
+        <source>See log for details</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="697"/>
+        <source>It&apos;s possible some of the selected items
+might not have been deleted, while others were.
+Do you wan&apos;t to update the list to reflect the changes?</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -946,52 +962,52 @@ D0 `(0[_] vv4[\]&apos;7 70 [_]|*[)473 7#3 |_1$7 70 |23(=|_3(7 7#3 (#4[\](`(,3$?<
 <context>
     <name>LDAPTreeItem</name>
     <message>
-        <location filename="luma/plugins/browser_plugin/item/LDAPTreeItem.py" line="58"/>
+        <location filename="luma/plugins/browser_plugin/item/LDAPTreeItem.py" line="57"/>
         <source>Fetching items...</source>
         <translation>F37(#1[\](`(, 173[V]$...</translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/item/LDAPTreeItem.py" line="60"/>
+        <location filename="luma/plugins/browser_plugin/item/LDAPTreeItem.py" line="59"/>
         <source>Couldn&apos;t fetch list of children.</source>
         <translation>C0[_]|_[)[\]&apos;7 (=37(# |_1$7 0(= (#1|_[)|23[\].</translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/item/LDAPTreeItem.py" line="62"/>
+        <location filename="luma/plugins/browser_plugin/item/LDAPTreeItem.py" line="61"/>
         <source>This item has both a filter and limit applied.</source>
         <translation>T#1$ 173[V] #4$ |307# 4 (=1|_73|2 4[\][) |_1[V]17 4|*|*|_13[).</translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/item/LDAPTreeItem.py" line="64"/>
+        <location filename="luma/plugins/browser_plugin/item/LDAPTreeItem.py" line="63"/>
         <source>This item have a filter applied.</source>
         <translation>T#1$ 173[V] #4\/3 4 (=1|_73|2 4|*|*|_13[).</translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/item/LDAPTreeItem.py" line="66"/>
+        <location filename="luma/plugins/browser_plugin/item/LDAPTreeItem.py" line="65"/>
         <source>This item have a limit applied.</source>
         <translation>T#1$ 173[V] #4\/3 4 |_1[V]17 4|*|*|_13[).</translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/item/LDAPTreeItem.py" line="148"/>
+        <location filename="luma/plugins/browser_plugin/item/LDAPTreeItem.py" line="109"/>
         <source>Limit</source>
         <translation>L1[V]17</translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/item/LDAPTreeItem.py" line="148"/>
+        <location filename="luma/plugins/browser_plugin/item/LDAPTreeItem.py" line="109"/>
         <source>Enter the limit (0 = none):</source>
         <translation>E[\]73|2 7#3 |_1[V]17 (0 = [\]0[\]3):</translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/item/LDAPTreeItem.py" line="157"/>
+        <location filename="luma/plugins/browser_plugin/item/LDAPTreeItem.py" line="118"/>
         <source>Filter</source>
         <translation>F1|_73|2</translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/item/LDAPTreeItem.py" line="157"/>
+        <location filename="luma/plugins/browser_plugin/item/LDAPTreeItem.py" line="118"/>
         <source>Enter the filter (with parentheses -- none for default):</source>
         <translation>E[\]73|2 7#3 (=1|_73|2 (vv17# |*4|23[\]7#3$3$ -- [\]0[\]3 (=0|2 [)3(=4[_]|_7):</translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/item/LDAPTreeItem.py" line="173"/>
+        <location filename="luma/plugins/browser_plugin/item/LDAPTreeItem.py" line="134"/>
         <source>Could not bind to server.</source>
         <translation>C0[_]|_[) [\]07 |31[\][) 70 $3|2\/3|2.</translation>
     </message>
@@ -999,7 +1015,7 @@ D0 `(0[_] vv4[\]&apos;7 70 [_]|*[)473 7#3 |_1$7 70 |23(=|_3(7 7#3 (#4[\](`(,3$?<
 <context>
     <name>LDAPTreeItemModel</name>
     <message>
-        <location filename="luma/plugins/browser_plugin/model/LDAPTreeItemModel.py" line="195"/>
+        <location filename="luma/plugins/browser_plugin/model/LDAPTreeItemModel.py" line="188"/>
         <source>No servers defined</source>
         <translation>N0 $3|2\/3|2$ [)3(=1[\]3[)</translation>
     </message>
@@ -1038,199 +1054,196 @@ D0 `(0[_] vv4[\]&apos;7 70 [_]|*[)473 7#3 |_1$7 70 |23(=|_3(7 7#3 (#4[\](`(,3$?<
     </message>
 </context>
 <context>
-    <name>LumaConnection</name>
-    <message>
-        <location filename="luma/base/backend/LumaConnection.py" line="280"/>
-        <source>Certificate error</source>
-        <translation>C3|271(=1(473 3|2|20|2</translation>
-    </message>
-    <message>
-        <location filename="luma/base/backend/LumaConnection.py" line="280"/>
-        <source>Do you want to continue anyway?</source>
-        <translation>D0 `(0[_] vv4[\]7 70 (0[\]71[\][_]3 4[\]`(vv4`(?</translation>
-    </message>
-    <message>
-        <location filename="luma/base/backend/LumaConnection.py" line="292"/>
-        <source>Password</source>
-        <translation>P4$$vv0|2[)</translation>
-    </message>
-    <message>
-        <location filename="luma/base/backend/LumaConnection.py" line="292"/>
-        <source>Invalid passord. Enter new:</source>
-        <translation>I[\]\/4|_1[) |*4$$0|2[). E[\]73|2 [\]3vv:</translation>
-    </message>
-</context>
-<context>
     <name>MainWindow</name>
     <message>
-        <location filename="luma/base/gui/MainWindow.py" line="149"/>
+        <location filename="luma/base/gui/MainWindow.py" line="153"/>
         <source>Plugintoolbar</source>
         <translation>P|_[_](`(,1[\]700|_|34|2</translation>
     </message>
     <message>
-        <location filename="luma/base/gui/MainWindow.py" line="160"/>
+        <location filename="luma/base/gui/MainWindow.py" line="164"/>
         <source>Logger</source>
         <translation>L0(`(,(`(,3|2</translation>
     </message>
     <message>
-        <location filename="luma/base/gui/MainWindow.py" line="381"/>
+        <location filename="luma/base/gui/MainWindow.py" line="378"/>
         <source>You may need to restart plugins for changes to take effect.</source>
         <translation>Y0[_] [V]4`( [\]33[) 70 |23$74|27 |*|_[_](`(,1[\]$ (=0|2 (#4[\](`(,3$ 70 74|&lt;3 3(=(=3(7.</translation>
     </message>
     <message>
-        <location filename="luma/base/gui/MainWindow.py" line="476"/>
+        <location filename="luma/base/gui/MainWindow.py" line="499"/>
         <source>Welcome</source>
         <translation>W3|_(0[V]3</translation>
     </message>
     <message>
-        <location filename="luma/base/gui/MainWindow.py" line="487"/>
+        <location filename="luma/base/gui/MainWindow.py" line="510"/>
         <source>Plugins</source>
         <translation>P|_[_](`(,1[\]$</translation>
     </message>
     <message>
-        <location filename="luma/base/gui/MainWindow.py" line="649"/>
+        <location filename="luma/base/gui/MainWindow.py" line="659"/>
         <source>Available plugins</source>
         <translation>A\/41|_4|3|_3 |*|_[_](`(,1[\]$</translation>
     </message>
     <message>
-        <location filename="luma/base/gui/MainWindow.py" line="650"/>
+        <location filename="luma/base/gui/MainWindow.py" line="660"/>
         <source>Choose plugin</source>
         <translation>C#00$3 |*|_[_](`(,1[\]</translation>
     </message>
     <message>
-        <location filename="luma/base/gui/design/MainWindowDesign.py" line="118"/>
+        <location filename="luma/base/gui/design/MainWindowDesign.py" line="122"/>
         <source>Luma</source>
         <translation>L[_][V]4</translation>
     </message>
     <message>
-        <location filename="luma/base/gui/design/MainWindowDesign.py" line="119"/>
+        <location filename="luma/base/gui/design/MainWindowDesign.py" line="123"/>
         <source>&amp;File</source>
         <translation>&amp;F1|_3</translation>
     </message>
     <message>
-        <location filename="luma/base/gui/design/MainWindowDesign.py" line="120"/>
+        <location filename="luma/base/gui/design/MainWindowDesign.py" line="124"/>
         <source>&amp;Edit</source>
         <translation>&amp;E[)17</translation>
     </message>
     <message>
-        <location filename="luma/base/gui/design/MainWindowDesign.py" line="121"/>
+        <location filename="luma/base/gui/design/MainWindowDesign.py" line="125"/>
         <source>Language</source>
         <translation>L4[\](`(,[_]4(`(,3</translation>
     </message>
     <message>
-        <location filename="luma/base/gui/design/MainWindowDesign.py" line="122"/>
+        <location filename="luma/base/gui/design/MainWindowDesign.py" line="126"/>
         <source>&amp;Help</source>
         <translation>&amp;H3|_|*</translation>
     </message>
     <message>
-        <location filename="luma/base/gui/design/MainWindowDesign.py" line="123"/>
+        <location filename="luma/base/gui/design/MainWindowDesign.py" line="127"/>
         <source>&amp;View</source>
         <translation>&amp;V13vv</translation>
     </message>
     <message>
-        <location filename="luma/base/gui/design/MainWindowDesign.py" line="124"/>
+        <location filename="luma/base/gui/design/MainWindowDesign.py" line="128"/>
         <source>Logger Window</source>
         <translation>L0(`(,(`(,3|2 W1[\][)0vv</translation>
     </message>
     <message>
-        <location filename="luma/base/gui/design/MainWindowDesign.py" line="125"/>
+        <location filename="luma/base/gui/design/MainWindowDesign.py" line="129"/>
         <source>Ctrl+L</source>
         <translation>C7|2|_+L</translation>
     </message>
     <message>
-        <location filename="luma/base/gui/design/MainWindowDesign.py" line="126"/>
+        <location filename="luma/base/gui/design/MainWindowDesign.py" line="130"/>
         <source>Quit</source>
         <translation>Q[_]17</translation>
     </message>
     <message>
-        <location filename="luma/base/gui/design/MainWindowDesign.py" line="127"/>
+        <location filename="luma/base/gui/design/MainWindowDesign.py" line="131"/>
         <source>Ctrl+Q</source>
         <translation>C7|2|_+Q</translation>
     </message>
     <message>
-        <location filename="luma/base/gui/design/MainWindowDesign.py" line="128"/>
+        <location filename="luma/base/gui/design/MainWindowDesign.py" line="132"/>
         <source>Server List</source>
         <translation>S3|2\/3|2 L1$7</translation>
     </message>
     <message>
-        <location filename="luma/base/gui/design/MainWindowDesign.py" line="129"/>
+        <location filename="luma/base/gui/design/MainWindowDesign.py" line="133"/>
         <source>Ctrl+Shift+S</source>
         <translation>C7|2|_+S#1(=7+S</translation>
     </message>
     <message>
-        <location filename="luma/base/gui/design/MainWindowDesign.py" line="130"/>
+        <location filename="luma/base/gui/design/MainWindowDesign.py" line="134"/>
         <source>Reload Plugins</source>
         <translation>R3|_04[) P|_[_](`(,1[\]$</translation>
     </message>
     <message>
-        <location filename="luma/base/gui/design/MainWindowDesign.py" line="131"/>
+        <location filename="luma/base/gui/design/MainWindowDesign.py" line="135"/>
         <source>F5</source>
         <translation>F5</translation>
     </message>
     <message>
-        <location filename="luma/base/gui/design/MainWindowDesign.py" line="132"/>
+        <location filename="luma/base/gui/design/MainWindowDesign.py" line="136"/>
         <source>Configure Plugins</source>
         <translation>C0[\](=1(`(,[_]|23 P|_[_](`(,1[\]$</translation>
     </message>
     <message>
-        <location filename="luma/base/gui/design/MainWindowDesign.py" line="133"/>
+        <location filename="luma/base/gui/design/MainWindowDesign.py" line="137"/>
         <source>About Luma</source>
         <translation>A|30[_]7 L[_][V]4</translation>
     </message>
     <message>
-        <location filename="luma/base/gui/design/MainWindowDesign.py" line="134"/>
+        <location filename="luma/base/gui/design/MainWindowDesign.py" line="138"/>
         <source>F12</source>
         <translation>F12</translation>
     </message>
     <message>
-        <location filename="luma/base/gui/design/MainWindowDesign.py" line="135"/>
+        <location filename="luma/base/gui/design/MainWindowDesign.py" line="139"/>
         <source>Settings</source>
         <translation>S3771[\](`(,$</translation>
     </message>
     <message>
-        <location filename="luma/base/gui/design/MainWindowDesign.py" line="136"/>
+        <location filename="luma/base/gui/design/MainWindowDesign.py" line="140"/>
         <source>Show Plugin List</source>
         <translation>S#0vv P|_[_](`(,1[\] L1$7</translation>
     </message>
     <message>
-        <location filename="luma/base/gui/design/MainWindowDesign.py" line="137"/>
+        <location filename="luma/base/gui/design/MainWindowDesign.py" line="141"/>
         <source>Ctrl+P</source>
         <translation>C7|2|_+P</translation>
     </message>
     <message>
-        <location filename="luma/base/gui/design/MainWindowDesign.py" line="138"/>
+        <location filename="luma/base/gui/design/MainWindowDesign.py" line="142"/>
         <source>Show Welcome Tab</source>
         <translation>S#0vv W3|_(0[V]3 T4|3</translation>
     </message>
     <message>
-        <location filename="luma/base/gui/design/MainWindowDesign.py" line="139"/>
+        <location filename="luma/base/gui/design/MainWindowDesign.py" line="143"/>
         <source>Ctrl+Shift+W</source>
         <translation>C7|2|_+S#1(=7+W</translation>
     </message>
     <message>
-        <location filename="luma/base/gui/design/MainWindowDesign.py" line="140"/>
+        <location filename="luma/base/gui/design/MainWindowDesign.py" line="144"/>
         <source>Toolbar</source>
         <translation>T00|_|34|2</translation>
     </message>
     <message>
-        <location filename="luma/base/gui/design/MainWindowDesign.py" line="141"/>
+        <location filename="luma/base/gui/design/MainWindowDesign.py" line="145"/>
         <source>Statusbar</source>
         <translation>S747[_]$|34|2</translation>
     </message>
     <message>
-        <location filename="luma/base/gui/design/MainWindowDesign.py" line="142"/>
+        <location filename="luma/base/gui/design/MainWindowDesign.py" line="146"/>
         <source>Fullscreen</source>
         <translation>F[_]|_|_$(|233[\]</translation>
     </message>
     <message>
-        <location filename="luma/base/gui/design/MainWindowDesign.py" line="143"/>
+        <location filename="luma/base/gui/design/MainWindowDesign.py" line="147"/>
         <source>F11</source>
         <translation>F11</translation>
     </message>
     <message>
-        <location filename="luma/base/gui/MainWindow.py" line="499"/>
-        <source>There are operations in progress which needs to finish before Luma can close.</source>
-        <translation>T#3|23 4|23 0|*3|24710[\]$ 1[\] |*|20(`(,|23$$ vv#1(# [\]33[)$ 70 (=1[\]1$# |33(=0|23 L[_][V]4 (4[\] (|_0$3.</translation>
+        <location filename="luma/base/gui/design/MainWindowDesign.py" line="148"/>
+        <source>Use temporary password</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="luma/base/gui/MainWindow.py" line="395"/>
+        <source>Select server</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="luma/base/gui/MainWindow.py" line="395"/>
+        <source>Server:</source>
+        <translation type="unfinished">S3|2\/3|2:</translation>
+    </message>
+    <message>
+        <location filename="luma/base/gui/MainWindow.py" line="400"/>
+        <source>Temporary password</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="luma/base/gui/MainWindow.py" line="400"/>
+        <source>Enter password:</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1244,68 +1257,83 @@ D0 `(0[_] vv4[\]&apos;7 70 [_]|*[)473 7#3 |_1$7 70 |23(=|_3(7 7#3 (#4[\](`(,3$?<
 <context>
     <name>PasswordEditor</name>
     <message>
-        <location filename="luma/plugins/browser_plugin/editors/PasswordEditor.py" line="49"/>
+        <location filename="luma/plugins/browser_plugin/editors/PasswordEditor.py" line="109"/>
         <source>Passwords match</source>
         <translation>P4$$vv0|2[)$ [V]47(#</translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/editors/PasswordEditor.py" line="51"/>
+        <location filename="luma/plugins/browser_plugin/editors/PasswordEditor.py" line="114"/>
         <source>Passwords do not match</source>
         <translation>P4$$vv0|2[)$ [)0 [\]07 [V]47(#</translation>
+    </message>
+    <message>
+        <location filename="luma/plugins/browser_plugin/editors/PasswordEditor.py" line="101"/>
+        <source>Non-ascii character</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>PasswordEditorDesign</name>
     <message>
-        <location filename="luma/plugins/browser_plugin/gui/PasswordEditorDesign.py" line="117"/>
+        <location filename="luma/plugins/browser_plugin/gui/PasswordEditorDesign.py" line="124"/>
         <source>New password</source>
         <translation>N3vv |*4$$vv0|2[)</translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/gui/PasswordEditorDesign.py" line="119"/>
+        <location filename="luma/plugins/browser_plugin/gui/PasswordEditorDesign.py" line="127"/>
         <source>&amp;OK</source>
         <translation>&amp;OK</translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/gui/PasswordEditorDesign.py" line="120"/>
+        <location filename="luma/plugins/browser_plugin/gui/PasswordEditorDesign.py" line="128"/>
         <source>&amp;Cancel</source>
         <translation>&amp;C4[\](3|_</translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/gui/PasswordEditorDesign.py" line="121"/>
+        <location filename="luma/plugins/browser_plugin/gui/PasswordEditorDesign.py" line="129"/>
         <source>Strength:</source>
         <translation>S7|23[\](`(,7#:</translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/gui/PasswordEditorDesign.py" line="122"/>
+        <location filename="luma/plugins/browser_plugin/gui/PasswordEditorDesign.py" line="130"/>
         <source>Hash algorithm:</source>
         <translation>H4$# 4|_(`(,0|217#[V]:</translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/gui/PasswordEditorDesign.py" line="123"/>
+        <location filename="luma/plugins/browser_plugin/gui/PasswordEditorDesign.py" line="131"/>
         <source>Password:</source>
         <translation>P4$$vv0|2[):</translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/gui/PasswordEditorDesign.py" line="124"/>
+        <location filename="luma/plugins/browser_plugin/gui/PasswordEditorDesign.py" line="132"/>
         <source>Verify:</source>
         <translation>V3|21(=`(:</translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/gui/PasswordEditorDesign.py" line="125"/>
+        <location filename="luma/plugins/browser_plugin/gui/PasswordEditorDesign.py" line="133"/>
         <source>Passwords do not match</source>
         <translation>P4$$vv0|2[)$ [)0 [\]07 [V]47(#</translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/gui/PasswordEditorDesign.py" line="126"/>
+        <location filename="luma/plugins/browser_plugin/gui/PasswordEditorDesign.py" line="134"/>
         <source>&lt;b&gt;Please enter a new password.&lt;/b&gt;</source>
         <translation>&lt;|3&gt;P|_34$3 3[\]73|2 4 [\]3vv |*4$$vv0|2[).&lt;/|3&gt;</translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/gui/PasswordEditorDesign.py" line="118"/>
+        <location filename="luma/plugins/browser_plugin/gui/PasswordEditorDesign.py" line="135"/>
         <source>PW</source>
         <comment>DO NOT TRANSLATE</comment>
         <translation>PW</translation>
+    </message>
+    <message>
+        <location filename="luma/plugins/browser_plugin/gui/PasswordEditorDesign.py" line="125"/>
+        <source>Ascii characters</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="luma/plugins/browser_plugin/gui/PasswordEditorDesign.py" line="126"/>
+        <source>Hidden string</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1365,12 +1393,12 @@ D0 `(0[_] vv4[\]&apos;7 70 [_]|*[)473 7#3 |_1$7 70 |23(=|_3(7 7#3 (#4[\](`(,3$?<
 <context>
     <name>ResultFilterWidget</name>
     <message>
-        <location filename="luma/plugins/search/SearchResult.py" line="373"/>
+        <location filename="luma/plugins/search/SearchResult.py" line="397"/>
         <source>Choose filter syntax.</source>
         <translation>C#00$3 (=1|_73|2 $`([\]74%.</translation>
     </message>
     <message>
-        <location filename="luma/plugins/search/SearchResult.py" line="374"/>
+        <location filename="luma/plugins/search/SearchResult.py" line="399"/>
         <source>Choose filter column.</source>
         <translation>C#00$3 (=1|_73|2 (0|_[_][V][\].</translation>
     </message>
@@ -1378,42 +1406,42 @@ D0 `(0[_] vv4[\]&apos;7 70 [_]|*[)473 7#3 |_1$7 70 |23(=|_3(7 7#3 (#4[\](`(,3$?<
 <context>
     <name>ResultView</name>
     <message>
-        <location filename="luma/plugins/search/SearchResult.py" line="314"/>
+        <location filename="luma/plugins/search/SearchResult.py" line="329"/>
         <source>View Item</source>
         <translation>V13vv I73[V]</translation>
     </message>
     <message>
-        <location filename="luma/plugins/search/SearchResult.py" line="315"/>
+        <location filename="luma/plugins/search/SearchResult.py" line="331"/>
         <source>View Items</source>
         <translation>V13vv I73[V]$</translation>
     </message>
     <message>
-        <location filename="luma/plugins/search/SearchResult.py" line="316"/>
+        <location filename="luma/plugins/search/SearchResult.py" line="333"/>
         <source>Delete Item</source>
         <translation>D3|_373 I73[V]</translation>
     </message>
     <message>
-        <location filename="luma/plugins/search/SearchResult.py" line="317"/>
+        <location filename="luma/plugins/search/SearchResult.py" line="335"/>
         <source>Delete Items</source>
         <translation>D3|_373 I73[V]$</translation>
     </message>
     <message>
-        <location filename="luma/plugins/search/SearchResult.py" line="318"/>
+        <location filename="luma/plugins/search/SearchResult.py" line="337"/>
         <source>Export Item</source>
         <translation>E%|*0|27 I73[V]</translation>
     </message>
     <message>
-        <location filename="luma/plugins/search/SearchResult.py" line="319"/>
+        <location filename="luma/plugins/search/SearchResult.py" line="339"/>
         <source>Export Items</source>
         <translation>E%|*0|27 I73[V]$</translation>
     </message>
     <message>
-        <location filename="luma/plugins/search/SearchResult.py" line="320"/>
+        <location filename="luma/plugins/search/SearchResult.py" line="341"/>
         <source>Sorry, no result to display!</source>
         <translation>S0|2|2`(, [\]0 |23$[_]|_7 70 [)1$|*|_4`(!</translation>
     </message>
     <message>
-        <location filename="luma/plugins/search/SearchResult.py" line="321"/>
+        <location filename="luma/plugins/search/SearchResult.py" line="343"/>
         <source>Binary Data</source>
         <translation>B1[\]4|2`( D474</translation>
     </message>
@@ -1421,57 +1449,57 @@ D0 `(0[_] vv4[\]&apos;7 70 [_]|*[)473 7#3 |_1$7 70 |23(=|_3(7 7#3 (#4[\](`(,3$?<
 <context>
     <name>SearchForm</name>
     <message>
-        <location filename="luma/plugins/search/gui/SearchFormDesign.py" line="141"/>
+        <location filename="luma/plugins/search/gui/SearchFormDesign.py" line="142"/>
         <source>Form</source>
         <translation>F0|2[V]</translation>
     </message>
     <message>
-        <location filename="luma/plugins/search/gui/SearchFormDesign.py" line="142"/>
+        <location filename="luma/plugins/search/gui/SearchFormDesign.py" line="143"/>
         <source>Search options</source>
         <translation>S34|2(# 0|*710[\]$</translation>
     </message>
     <message>
-        <location filename="luma/plugins/search/gui/SearchFormDesign.py" line="143"/>
+        <location filename="luma/plugins/search/gui/SearchFormDesign.py" line="144"/>
         <source>Server:</source>
         <translation>S3|2\/3|2:</translation>
     </message>
     <message>
-        <location filename="luma/plugins/search/gui/SearchFormDesign.py" line="144"/>
+        <location filename="luma/plugins/search/gui/SearchFormDesign.py" line="145"/>
         <source>Base DN:</source>
         <translation>B4$3 DN:</translation>
     </message>
     <message>
-        <location filename="luma/plugins/search/gui/SearchFormDesign.py" line="145"/>
+        <location filename="luma/plugins/search/gui/SearchFormDesign.py" line="146"/>
         <source>Set the limit for retrived entries. (0 = No limit)</source>
         <translation>S37 7#3 |_1[V]17 (=0|2 |237|21\/3[) 3[\]7|213$. (0 = N0 |_1[V]17)</translation>
     </message>
     <message>
-        <location filename="luma/plugins/search/gui/SearchFormDesign.py" line="146"/>
+        <location filename="luma/plugins/search/gui/SearchFormDesign.py" line="147"/>
         <source>Size limit:</source>
         <translation>S123 |_1[V]17:</translation>
     </message>
     <message>
-        <location filename="luma/plugins/search/gui/SearchFormDesign.py" line="147"/>
+        <location filename="luma/plugins/search/gui/SearchFormDesign.py" line="148"/>
         <source>Set the search level.</source>
         <translation>S37 7#3 $34|2(# |_3\/3|_.</translation>
     </message>
     <message>
-        <location filename="luma/plugins/search/gui/SearchFormDesign.py" line="148"/>
+        <location filename="luma/plugins/search/gui/SearchFormDesign.py" line="149"/>
         <source>Level:</source>
         <translation>L3\/3|_:</translation>
     </message>
     <message>
-        <location filename="luma/plugins/search/gui/SearchFormDesign.py" line="149"/>
+        <location filename="luma/plugins/search/gui/SearchFormDesign.py" line="150"/>
         <source>&amp;Search</source>
         <translation>&amp;S34|2(#</translation>
     </message>
     <message>
-        <location filename="luma/plugins/search/gui/SearchFormDesign.py" line="150"/>
+        <location filename="luma/plugins/search/gui/SearchFormDesign.py" line="151"/>
         <source>Edit with the Filter Builder</source>
         <translation>E[)17 vv17# 7#3 F1|_73|2 B[_]1|_[)3|2</translation>
     </message>
     <message>
-        <location filename="luma/plugins/search/gui/SearchFormDesign.py" line="151"/>
+        <location filename="luma/plugins/search/gui/SearchFormDesign.py" line="152"/>
         <source>...</source>
         <translation>...</translation>
     </message>
@@ -1479,12 +1507,12 @@ D0 `(0[_] vv4[\]&apos;7 70 [_]|*[)473 7#3 |_1$7 70 |23(=|_3(7 7#3 (#4[\](`(,3$?<
 <context>
     <name>SearchPlugin</name>
     <message>
-        <location filename="luma/plugins/search/Search.py" line="408"/>
+        <location filename="luma/plugins/search/Search.py" line="395"/>
         <source>Search Form</source>
         <translation>S34|2(# F0|2[V]</translation>
     </message>
     <message>
-        <location filename="luma/plugins/search/Search.py" line="409"/>
+        <location filename="luma/plugins/search/Search.py" line="397"/>
         <source>Filter Builder</source>
         <translation>F1|_73|2 B[_]1|_[)3|2</translation>
     </message>
@@ -1545,88 +1573,88 @@ D0 `(0[_] vv4[\]&apos;7 70 [_]|*[)473 7#3 |_1$7 70 |23(=|_3(7 7#3 (#4[\](`(,3$?<
 <context>
     <name>ServerDialog</name>
     <message>
-        <location filename="luma/base/gui/ServerDialog.py" line="169"/>
+        <location filename="luma/base/gui/ServerDialog.py" line="171"/>
         <source>SSL</source>
         <translation>SSL</translation>
     </message>
     <message>
-        <location filename="luma/base/gui/ServerDialog.py" line="169"/>
+        <location filename="luma/base/gui/ServerDialog.py" line="171"/>
         <source>You have choosen to use SSL but with a port other than 636.
  Do you want this automatically changed?</source>
         <translation>Y0[_] #4\/3 (#00$3[\] 70 [_]$3 SSL |3[_]7 vv17# 4 |*0|27 07#3|2 7#4[\] 636.
  D0 `(0[_] vv4[\]7 7#1$ 4[_]70[V]471(4|_|_`( (#4[\](`(,3[)?</translation>
     </message>
     <message>
-        <location filename="luma/base/gui/ServerDialog.py" line="224"/>
+        <location filename="luma/base/gui/ServerDialog.py" line="226"/>
         <source>Add server</source>
         <translation>A[)[) $3|2\/3|2</translation>
     </message>
     <message>
-        <location filename="luma/base/gui/ServerDialog.py" line="224"/>
+        <location filename="luma/base/gui/ServerDialog.py" line="226"/>
         <source>Name:</source>
         <translation>N4[V]3:</translation>
     </message>
     <message>
-        <location filename="luma/base/gui/ServerDialog.py" line="227"/>
+        <location filename="luma/base/gui/ServerDialog.py" line="229"/>
         <source>Error</source>
         <translation>E|2|20|2</translation>
     </message>
     <message>
-        <location filename="luma/base/gui/ServerDialog.py" line="227"/>
+        <location filename="luma/base/gui/ServerDialog.py" line="229"/>
         <source>Invalid name or already used.</source>
         <translation>I[\]\/4|_1[) [\]4[V]3 0|2 4|_|234[)`( [_]$3[).</translation>
     </message>
     <message>
-        <location filename="luma/base/gui/ServerDialog.py" line="250"/>
+        <location filename="luma/base/gui/ServerDialog.py" line="253"/>
         <source>Delete</source>
         <translation>D3|_373</translation>
     </message>
     <message>
-        <location filename="luma/base/gui/ServerDialog.py" line="250"/>
+        <location filename="luma/base/gui/ServerDialog.py" line="253"/>
         <source>Are you sure?</source>
         <translation>A|23 `(0[_] $[_]|23?</translation>
     </message>
     <message>
-        <location filename="luma/base/gui/ServerDialog.py" line="293"/>
+        <location filename="luma/base/gui/ServerDialog.py" line="297"/>
         <source>Exit?</source>
         <translation>E%17?</translation>
     </message>
     <message>
-        <location filename="luma/base/gui/ServerDialog.py" line="293"/>
+        <location filename="luma/base/gui/ServerDialog.py" line="297"/>
         <source>Are you sure you want to exit the server editor?
  Any unsaved changes will be lost!</source>
         <translation>A|23 `(0[_] $[_]|23 `(0[_] vv4[\]7 70 3%17 7#3 $3|2\/3|2 3[)170|2?
  A[\]`( [_][\]$4\/3[) (#4[\](`(,3$ vv1|_|_ |33 |_0$7!</translation>
     </message>
     <message>
-        <location filename="luma/base/gui/ServerDialog.py" line="315"/>
+        <location filename="luma/base/gui/ServerDialog.py" line="319"/>
         <source>BaseDNs not defined</source>
         <translation>B4$3DN$ [\]07 [)3(=1[\]3[)</translation>
     </message>
     <message>
-        <location filename="luma/base/gui/ServerDialog.py" line="315"/>
+        <location filename="luma/base/gui/ServerDialog.py" line="319"/>
         <source>One or more server(s) are setup to use custom base DNs without specifying any.
 Do you still want to save?</source>
         <translation>O[\]3 0|2 [V]0|23 $3|2\/3|2($) 4|23 $37[_]|* 70 [_]$3 ([_]$70[V] |34$3 DN$ vv17#0[_]7 $|*3(1(=`(1[\](`(, 4[\]`(.
 D0 `(0[_] $71|_|_ vv4[\]7 70 $4\/3?</translation>
     </message>
     <message>
-        <location filename="luma/base/gui/ServerDialog.py" line="336"/>
+        <location filename="luma/base/gui/ServerDialog.py" line="340"/>
         <source>Select certificate file</source>
         <translation>S3|_3(7 (3|271(=1(473 (=1|_3</translation>
     </message>
     <message>
-        <location filename="luma/base/gui/ServerDialog.py" line="345"/>
+        <location filename="luma/base/gui/ServerDialog.py" line="349"/>
         <source>Select certificate keyfile</source>
         <translation>S3|_3(7 (3|271(=1(473 |&lt;3`((=1|_3</translation>
     </message>
     <message>
-        <location filename="luma/base/gui/ServerDialog.py" line="381"/>
+        <location filename="luma/base/gui/ServerDialog.py" line="380"/>
         <source>Bind to {0} successful!</source>
         <translation>B1[\][) 70 {0} $[_]((3$$(=[_]|_!</translation>
     </message>
     <message>
-        <location filename="luma/base/gui/ServerDialog.py" line="385"/>
+        <location filename="luma/base/gui/ServerDialog.py" line="384"/>
         <source>Bind to {0} failed:
 {1}
 
@@ -1637,7 +1665,7 @@ D0 `(0[_] $71|_|_ vv4[\]7 70 $4\/3?</translation>
 (Y0[_] [)0 [\]07 #4\/3 70 $|*3$1(=`( |*4$$vv0|2[)$ #3|23 -- `(0[_] vv1|_|_ |33 4$|&lt;3[) vv#3[\] [\]33[)3[).)</translation>
     </message>
     <message>
-        <location filename="luma/base/gui/ServerDialog.py" line="388"/>
+        <location filename="luma/base/gui/ServerDialog.py" line="387"/>
         <source>Bind to {0} failed:
 {1}</source>
         <translation>B1[\][) 70 {0} (=41|_3[):
@@ -2098,7 +2126,7 @@ p, li { white-space: pre-wrap; }
 &lt;|* $7`(|_3=&quot;-&lt;|7-|*4|24(`(,|24|*#-7`(|*3:3[V]|*7`(; [V]4|2(`(,1[\]-70|*:0|*%; [V]4|2(`(,1[\]-|30770[V]:0|*%; [V]4|2(`(,1[\]-|_3(=7:0|*%; [V]4|2(`(,1[\]-|21(`(,#7:0|*%; -&lt;|7-|3|_0(|&lt;-1[\][)3[\]7:0; 73%7-1[\][)3[\]7:0|*%;&quot;&gt;&lt;/|*&gt;&lt;/|30[)`(&gt;&lt;/#7[V]|_&gt;</translation>
     </message>
     <message>
-        <location filename="luma/base/gui/WelcomeTab.py" line="58"/>
+        <location filename="luma/base/gui/WelcomeTab.py" line="59"/>
         <source>
 &lt;html&gt;
 &lt;head&gt;
@@ -2119,37 +2147,39 @@ functionality, through a number of plugins.&lt;/p&gt;
 
 &lt;h2&gt;Getting started&lt;/h2&gt;
 
-&lt;p&gt;The first thing you need to do is to edit the &lt;em&gt;serverlist&lt;/em&gt;: Select 
-(&lt;b&gt;Edit&lt;/b&gt; &amp;rarr; &lt;b&gt;Server List&lt;/b&gt;) from the menubar or use the keyboard 
+&lt;p&gt;The first thing you need to do is to edit the &lt;em&gt;serverlist&lt;/em&gt;: Select
+(&lt;b&gt;Edit&lt;/b&gt; &amp;rarr; &lt;b&gt;Server List&lt;/b&gt;) from the menubar or use the keyboard
 shortcut (&lt;b&gt;CTRL&lt;/b&gt;+&lt;b&gt;SHIFT&lt;/b&gt;+&lt;b&gt;S)&lt;/b&gt;.&lt;/p&gt;
 
-&lt;p&gt;After you have added one or more servers, you must activate the plugins you 
-want to use: Select (&lt;b&gt;Edit&lt;/b&gt; &amp;rarr; &lt;b&gt;Configure Plugins&lt;/b&gt;) from the 
+&lt;p&gt;After you have added one or more servers, you must activate the plugins you
+want to use: Select (&lt;b&gt;Edit&lt;/b&gt; &amp;rarr; &lt;b&gt;Configure Plugins&lt;/b&gt;) from the
 menubar.&lt;/p&gt;
 
 &lt;p&gt;If you need additional help on how to use the application and/or a spesific
-plugin, please refer to the online 
-&lt;a href=&quot;http://folk.ntnu.no/einaru/luma/doc/userguide.html&quot;&gt;User guide&lt;/a&gt;.&lt;/p&gt;
+plugin, please refer to the online
+&lt;a href=&quot;http://folk.ntnu.no/einaru/luma/doc/userguide.html&quot;&gt;User guide&lt;/a&gt;.
+&lt;/p&gt;
 
-&lt;p&gt;If you cannot find a plugin that suits your needs or you have ideas for a 
+&lt;p&gt;If you cannot find a plugin that suits your needs or you have ideas for a
 great Luma plugin, please feel free to
-&lt;a href=&quot;http://luma.sf.net/&quot;&gt;contact us&lt;/a&gt; or even 
-&lt;a href=&quot;http://folk.ntnu.no/einaru/luma/doc/HACKING.html&quot;&gt;contribute one your self&lt;/a&gt;.&lt;/p&gt;
+&lt;a href=&quot;http://luma.sf.net/&quot;&gt;contact us&lt;/a&gt; or even
+&lt;a href=&quot;http://folk.ntnu.no/einaru/luma/doc/HACKING.html&quot;&gt;contribute one your
+self&lt;/a&gt;.&lt;/p&gt;
 
 &lt;h2&gt;Problems and bugs&lt;/h2&gt;
 
-&lt;p&gt;Application errors and various debug information can be seen in the Logger 
-Window: Select (&lt;b&gt;View&lt;/b&gt; &amp;rarr; &lt;b&gt;Logger Window&lt;/b&gt;) from the menubar or 
+&lt;p&gt;Application errors and various debug information can be seen in the Logger
+Window: Select (&lt;b&gt;View&lt;/b&gt; &amp;rarr; &lt;b&gt;Logger Window&lt;/b&gt;) from the menubar or
 use the keyboard shortcut (&lt;b&gt;CTRL&lt;/b&gt;+&lt;b&gt;L&lt;/b&gt;).&lt;/p&gt;
 
 &lt;p&gt;If you encounter errors or bugs in the application, please take your time
-to fill in a bugreport on our 
+to fill in a bugreport on our
 &lt;a href=&quot;http://sourceforge.net/tracker/?group_id=89105&quot;&gt;bugtracker&lt;/a&gt;.&lt;/p&gt;
 
 &lt;h2&gt;Contact&lt;/h2&gt;
 
-&lt;p&gt;You can find contact information in the About Luma dialog: Select 
-(&lt;b&gt;Help&lt;/b&gt; &amp;rarr; &lt;b&gt;About Luma&lt;/b&gt;) or use the keyboard shortcut 
+&lt;p&gt;You can find contact information in the About Luma dialog: Select
+(&lt;b&gt;Help&lt;/b&gt; &amp;rarr; &lt;b&gt;About Luma&lt;/b&gt;) or use the keyboard shortcut
 (&lt;b&gt;F12&lt;/b&gt;), and on the &lt;a href=&quot;http://luma.sf.net/&quot;&gt;Luma website&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p style=&quot;font-size: 8pt; color: #306ebd; padding-top: 25px&quot;&gt;
@@ -2157,64 +2187,7 @@ to fill in a bugreport on our
 &lt;/body&gt;
 &lt;/html&gt;
 </source>
-        <translation>
-&lt;#7[V]|_&gt;
-&lt;#34[)&gt;
-&lt;$7`(|_3 7`(|*3=&quot;73%7/($$&quot;&gt;
-|30[)`( { |*4[)[)1[\](`(,: 5|*%; [V]4|2(`(,1[\]: 5|*%; (=0[\]7-(=4[V]1|_`(: $4[\]$-$3|21(=; }
-#1, #2 { (0|_0|2: #614730; }
-4 { (0|_0|2: #3063|3[); }
-|* { (=0[\]7-$123: 10|*7; }
-&lt;/$7`(|_3&gt;
-&lt;/#34[)&gt;
-&lt;|30[)`(&gt;
-&lt;#1&gt;W3|_(0[V]3 70 L[_][V]4&lt;/#1&gt;
-
-&lt;|*&gt;&lt;$7|20[\](`(,&gt;&lt;3[V]&gt;L[_][V]4 1$ LDAP [V]4[\]4(`(,3[V]3[\]7 [V]4[)3 34$`(&lt;/3[V]&gt;&lt;/$7|20[\](`(,&gt;&lt;/|*&gt;
-
-&lt;|*&gt;&lt;3[V]&gt;L[_][V]4&lt;/3[V]&gt; |*|20\/1[)3$ [_]$3(=[_]|_ LDAP 4[)[V]1[\]1$7|24710[\] 4[\][) [V]4[\]4(`(,3[V]3[\]7
-(=[_][\](710[\]4|_17`(, 7#|20[_](`(,# 4 [\][_][V]|33|2 0(= |*|_[_](`(,1[\]$.&lt;/|*&gt;
-
-&lt;#2&gt;G3771[\](`(, $74|273[)&lt;/#2&gt;
-
-&lt;|*&gt;T#3 (=1|2$7 7#1[\](`(, `(0[_] [\]33[) 70 [)0 1$ 70 3[)17 7#3 &lt;3[V]&gt;$3|2\/3|2|_1$7&lt;/3[V]&gt;: S3|_3(7 
-(&lt;|3&gt;E[)17&lt;/|3&gt; &amp;|24|2|2; &lt;|3&gt;S3|2\/3|2 L1$7&lt;/|3&gt;) (=|20[V] 7#3 [V]3[\][_]|34|2 0|2 [_]$3 7#3 |&lt;3`(|304|2[) 
-$#0|27([_]7 (&lt;|3&gt;CTRL&lt;/|3&gt;+&lt;|3&gt;SHIFT&lt;/|3&gt;+&lt;|3&gt;S)&lt;/|3&gt;.&lt;/|*&gt;
-
-&lt;|*&gt;A(=73|2 `(0[_] #4\/3 4[)[)3[) 0[\]3 0|2 [V]0|23 $3|2\/3|2$, `(0[_] [V][_]$7 4(71\/473 7#3 |*|_[_](`(,1[\]$ `(0[_] 
-vv4[\]7 70 [_]$3: S3|_3(7 (&lt;|3&gt;E[)17&lt;/|3&gt; &amp;|24|2|2; &lt;|3&gt;C0[\](=1(`(,[_]|23 P|_[_](`(,1[\]$&lt;/|3&gt;) (=|20[V] 7#3 
-[V]3[\][_]|34|2.&lt;/|*&gt;
-
-&lt;|*&gt;I(= `(0[_] [\]33[) 4[)[)1710[\]4|_ #3|_|* 0[\] #0vv 70 [_]$3 7#3 4|*|*|_1(4710[\] 4[\][)/0|2 4 $|*3$1(=1(
-|*|_[_](`(,1[\], |*|_34$3 |23(=3|2 70 7#3 0[\]|_1[\]3 
-&lt;4 #|23(==&quot;#77|*://(=0|_|&lt;.[\]7[\][_].[\]0/31[\]4|2[_]/|_[_][V]4/[)0(/[_]$3|2(`(,[_]1[)3.#7[V]|_&quot;&gt;U$3|2 (`(,[_]1[)3&lt;/4&gt;.&lt;/|*&gt;
-
-&lt;|*&gt;I(= `(0[_] (4[\][\]07 (=1[\][) 4 |*|_[_](`(,1[\] 7#47 $[_]17$ `(0[_]|2 [\]33[)$ 0|2 `(0[_] #4\/3 1[)34$ (=0|2 4 
-(`(,|2347 L[_][V]4 |*|_[_](`(,1[\], |*|_34$3 (=33|_ (=|233 70
-&lt;4 #|23(==&quot;#77|*://|_[_][V]4.$(=.[\]37/&quot;&gt;(0[\]74(7 [_]$&lt;/4&gt; 0|2 3\/3[\] 
-&lt;4 #|23(==&quot;#77|*://(=0|_|&lt;.[\]7[\][_].[\]0/31[\]4|2[_]/|_[_][V]4/[)0(/HACKING.#7[V]|_&quot;&gt;(0[\]7|21|3[_]73 0[\]3 `(0[_]|2 $3|_(=&lt;/4&gt;.&lt;/|*&gt;
-
-&lt;#2&gt;P|20|3|_3[V]$ 4[\][) |3[_](`(,$&lt;/#2&gt;
-
-&lt;|*&gt;A|*|*|_1(4710[\] 3|2|20|2$ 4[\][) \/4|210[_]$ [)3|3[_](`(, 1[\](=0|2[V]4710[\] (4[\] |33 $33[\] 1[\] 7#3 L0(`(,(`(,3|2 
-W1[\][)0vv: S3|_3(7 (&lt;|3&gt;V13vv&lt;/|3&gt; &amp;|24|2|2; &lt;|3&gt;L0(`(,(`(,3|2 W1[\][)0vv&lt;/|3&gt;) (=|20[V] 7#3 [V]3[\][_]|34|2 0|2 
-[_]$3 7#3 |&lt;3`(|304|2[) $#0|27([_]7 (&lt;|3&gt;CTRL&lt;/|3&gt;+&lt;|3&gt;L&lt;/|3&gt;).&lt;/|*&gt;
-
-&lt;|*&gt;I(= `(0[_] 3[\](0[_][\]73|2 3|2|20|2$ 0|2 |3[_](`(,$ 1[\] 7#3 4|*|*|_1(4710[\], |*|_34$3 74|&lt;3 `(0[_]|2 71[V]3
-70 (=1|_|_ 1[\] 4 |3[_](`(,|23|*0|27 0[\] 0[_]|2 
-&lt;4 #|23(==&quot;#77|*://$0[_]|2(3(=0|2(`(,3.[\]37/7|24(|&lt;3|2/?(`(,|20[_]|*_1[)=89105&quot;&gt;|3[_](`(,7|24(|&lt;3|2&lt;/4&gt;.&lt;/|*&gt;
-
-&lt;#2&gt;C0[\]74(7&lt;/#2&gt;
-
-&lt;|*&gt;Y0[_] (4[\] (=1[\][) (0[\]74(7 1[\](=0|2[V]4710[\] 1[\] 7#3 A|30[_]7 L[_][V]4 [)14|_0(`(,: S3|_3(7 
-(&lt;|3&gt;H3|_|*&lt;/|3&gt; &amp;|24|2|2; &lt;|3&gt;A|30[_]7 L[_][V]4&lt;/|3&gt;) 0|2 [_]$3 7#3 |&lt;3`(|304|2[) $#0|27([_]7 
-(&lt;|3&gt;F12&lt;/|3&gt;), 4[\][) 0[\] 7#3 &lt;4 #|23(==&quot;#77|*://|_[_][V]4.$(=.[\]37/&quot;&gt;L[_][V]4 vv3|3$173&lt;/4&gt;.&lt;/|*&gt;
-
-&lt;|* $7`(|_3=&quot;(=0[\]7-$123: 8|*7; (0|_0|2: #3063|3[); |*4[)[)1[\](`(,-70|*: 25|*%&quot;&gt;
-&lt;3[V]&gt;C0|*`(|21(`(,#7 &amp;(0|*`(; 2003 - 2011 W1[)0 D3|*|*1[\](`(, 4[\][) 7#3 L[_][V]4 [)3\/3|_ 734[V]&lt;/3[V]&gt;&lt;/|*&gt;
-&lt;/|30[)`(&gt;
-&lt;/#7[V]|_&gt;
-</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
