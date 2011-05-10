@@ -344,66 +344,7 @@ with the following text and a short description of what you were doing:
     # Make sure the cursor is normal
     QApplication.restoreOverrideCursor()
 
-
-def checkDependencies():
-    """Here we check if the modules luma depends upon is installed.
-    If at least one of these fail, we exit with an informative
-    message to the user. If not we carry on with the application
-    launch.
-    """
-    failed = 0
-    error = sys.stderr.write
-    try:
-        import PyQt4
-    except ImportError:
-        failed = 1
-        sys.stderr.write("""
-###########################################################
-## ImportError: Unable to import module: PyQt4           ##
-##                                                       ##
-## PyQt4 is needed for the Graphical User Interface, and ##
-## must be installed in order to successfully run Luma.  ##
-## PyQt4 can be obtained from:                           ##
-##                                                       ##
-## http://www.riverbankcomputing.com/software/pyqt/intro ##
-###########################################################
-""")
-    try:
-        import ldap
-    except ImportError:
-        failed = 1
-        sys.stderr.write("""
-###########################################################
-## ImportError: Unable to import module: ldap            ##
-##                                                       ##
-## python-ldap is needed to successfully run Luma.       ##
-## python-ldap can be obtained from:                     ##
-##                                                       ##
-## http://python-ldap.org/                               ##
-###########################################################
-""")
-    if failed:
-        print "Exiting ..."
-        sys.exit(1)
-
-    try:
-        import smbpasswd
-    except ImportError:
-        sys.stdout.write("""
-!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-!! WARNING: smbpasswd module is not installed            !!
-!!                                                       !!
-!! You will be able to run Luma, but no nthash and lmhas !!
-!! passwords will be available!                          !!
-!! smbpasswd can be obtained from:                       !!
-!!                                                       !!
-!! http://barryp.org/software/py-smbpasswd               !!
-!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-""")
-
-
 if __name__ == '__main__':
-    checkDependencies()
     main(sys.argv)
 
 
