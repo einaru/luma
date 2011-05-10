@@ -285,8 +285,9 @@ class WorkerThread(QThread):
             WorkerThread.__threadPool.append(self)
 
         # Cleanup on finish
-        self.finished.connect(self.cleanup)
-        self.terminated.connect(self.cleanup)
+        # Uncommented -- done in quit()
+        #self.finished.connect(self.cleanup)
+        #self.terminated.connect(self.cleanup)
 
         self.worker = None
 
