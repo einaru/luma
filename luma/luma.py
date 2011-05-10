@@ -30,12 +30,46 @@ import StringIO
 import sys
 import traceback
 
-from PyQt4.QtCore import (QEvent, Qt)
-from PyQt4.QtGui import (QApplication, QIcon)
+failed = 0
+try: 
+    from PyQt4.QtCore import (QEvent, Qt)
+    from PyQt4.QtGui import (QApplication, QIcon)
+except ImportError:
+    failed = 1
+    sys.stderr.write("""
+###########################################################
+## ImportError: Unable to import module: PyQt4           ##
+##                                                       ##
+## PyQt4 is needed for the Graphical User Interface, and ##
+## must be installed in order to successfully run Luma.  ##
+## PyQt4 can be obtained from:                           ##
+##                                                       ##
+## http://www.riverbankcomputing.com/software/pyqt/intro ##
+###########################################################
+""")
 
+try:
+    import ldap
+except ImportError:
+    failed = 1
+    sys.stderr.write("""
+###########################################################
+## ImportError: Unable to import module: ldap            ##
+##                                                       ##
+## python-ldap is needed to successfully run Luma.       ##
+## python-ldap can be obtained from:                     ##
+##                                                       ##
+## http://python-ldap.org/                               ##
+###########################################################
+""")
+
+if failed:
+    print "Exiting ..."
+    sys.exit(1)
+       
+del failed
 import __init__ as appinfo
 from base.backend.Log import LumaLogHandler
-from base.gui.MainWindow import MainWindow
 from base.gui.SplashScreen import SplashScreen
 from base.gui.Settings import Settings
 from base.util.Paths import getConfigPrefix
@@ -158,6 +192,8 @@ def startApplication(argv, verbose=False, clear=[], dirs={}):
     splash.show()
 
     # Initialize the main window
+
+    from base.gui.MainWindow import MainWindow
     mainwin = MainWindow()
 
     # Set up logging to the loggerwidget
