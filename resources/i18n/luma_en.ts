@@ -395,74 +395,78 @@ the selected objectclass.&lt;/p&gt;</source>
 <context>
     <name>AdvancedObjectWidget</name>
     <message>
-        <location filename="luma/plugins/browser_plugin/AdvancedObjectWidget.py" line="123"/>
-        <source>%s &lt;br&gt;&lt;br&gt;Reason: %s</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/AdvancedObjectWidget.py" line="207"/>
+        <location filename="luma/plugins/browser_plugin/AdvancedObjectWidget.py" line="101"/>
         <source>Reload</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/AdvancedObjectWidget.py" line="218"/>
-        <source>Save</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/AdvancedObjectWidget.py" line="230"/>
+        <location filename="luma/plugins/browser_plugin/AdvancedObjectWidget.py" line="113"/>
         <source>Add attribute</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/AdvancedObjectWidget.py" line="370"/>
+        <location filename="luma/plugins/browser_plugin/AdvancedObjectWidget.py" line="109"/>
         <source>Delete object</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/AdvancedObjectWidget.py" line="244"/>
+        <location filename="luma/plugins/browser_plugin/AdvancedObjectWidget.py" line="115"/>
         <source>Switch between views</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/AdvancedObjectWidget.py" line="272"/>
+        <location filename="luma/plugins/browser_plugin/AdvancedObjectWidget.py" line="103"/>
         <source>Save entry</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/AdvancedObjectWidget.py" line="272"/>
+        <location filename="luma/plugins/browser_plugin/AdvancedObjectWidget.py" line="105"/>
         <source>Do you want to save the entry before continuing?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/AdvancedObjectWidget.py" line="283"/>
+        <location filename="luma/plugins/browser_plugin/AdvancedObjectWidget.py" line="107"/>
         <source>Saving failed, continue anyway?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/AdvancedObjectWidget.py" line="399"/>
-        <source>%s&lt;br&gt;&lt;br&gt;Reason: %s</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/AdvancedObjectWidget.py" line="370"/>
+        <location filename="luma/plugins/browser_plugin/AdvancedObjectWidget.py" line="111"/>
         <source>Do you really want to delete the object?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/AdvancedObjectWidget.py" line="472"/>
+        <location filename="luma/plugins/browser_plugin/AdvancedObjectWidget.py" line="119"/>
         <source>Export binary attribute to file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/AdvancedObjectWidget.py" line="488"/>
-        <source>Export binary attribute</source>
+        <location filename="luma/plugins/browser_plugin/AdvancedObjectWidget.py" line="117"/>
+        <source>Reason:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/AdvancedObjectWidget.py" line="488"/>
-        <source>Could not export binary data to file. Reason:
-</source>
+        <location filename="luma/plugins/browser_plugin/AdvancedObjectWidget.py" line="121"/>
+        <source>Could not export binary data to file.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="luma/plugins/browser_plugin/AdvancedObjectWidget.py" line="125"/>
+        <source>No templates available</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="luma/plugins/browser_plugin/AdvancedObjectWidget.py" line="127"/>
+        <source>Did&apos;nt receive a ldap-object, it might have been deleted</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="luma/plugins/browser_plugin/AdvancedObjectWidget.py" line="129"/>
+        <source>The ldap object is not valid, view errors?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="luma/plugins/browser_plugin/AdvancedObjectWidget.py" line="123"/>
+        <source>Please select another filename.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -547,139 +551,139 @@ the selected objectclass.&lt;/p&gt;</source>
 <context>
     <name>BrowserView</name>
     <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="691"/>
+        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="696"/>
         <source>Delete</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="692"/>
+        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="697"/>
         <source>Really delete?</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="684"/>
+        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="689"/>
         <source>Error</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="694"/>
+        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="699"/>
         <source>Deletion</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="702"/>
+        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="707"/>
         <source>You need to restart the plugin for changes to take effect.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="640"/>
+        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="645"/>
         <source>This is where entries are displayed when opened.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="642"/>
+        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="647"/>
         <source>Edit Server Settings</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="644"/>
+        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="649"/>
         <source>Open</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="646"/>
+        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="651"/>
         <source>Reload</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="648"/>
+        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="653"/>
         <source>Clear</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="650"/>
+        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="655"/>
         <source>Set Filter</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="652"/>
+        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="657"/>
         <source>Set Limit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="654"/>
+        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="659"/>
         <source>Add</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="658"/>
+        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="663"/>
         <source>Export</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="661"/>
+        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="666"/>
         <source>Entry</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="663"/>
+        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="668"/>
         <source>Template</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="665"/>
+        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="670"/>
         <source>Item</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="667"/>
+        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="672"/>
         <source>Subtree</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="669"/>
+        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="674"/>
         <source>Subtree with parents</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="671"/>
+        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="676"/>
         <source>Items</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="673"/>
+        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="678"/>
         <source>Subtrees</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="675"/>
+        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="680"/>
         <source>Subtrees with parents</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="678"/>
+        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="683"/>
         <source>Please wait</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="680"/>
+        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="685"/>
         <source>Please wait, fetching data...
 This message will automatically close when done...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="685"/>
+        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="690"/>
         <source>On {0}:
 {1}</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="688"/>
+        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="693"/>
         <source>See log for details</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="697"/>
+        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="702"/>
         <source>It&apos;s possible some of the selected items
 might not have been deleted, while others were.
 Do you wan&apos;t to update the list to reflect the changes?</source>
@@ -714,6 +718,39 @@ Do you wan&apos;t to update the list to reflect the changes?</source>
     <message>
         <location filename="luma/plugins/browser_plugin/gui/NewEntryDialogDesign.py" line="45"/>
         <source>Dialog</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>EntryModel</name>
+    <message>
+        <location filename="luma/plugins/browser_plugin/model/EntryModel.py" line="33"/>
+        <source>Could not bind to server.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="luma/plugins/browser_plugin/model/EntryModel.py" line="34"/>
+        <source>Could not delete entry.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="luma/plugins/browser_plugin/model/EntryModel.py" line="35"/>
+        <source>Could not add entry.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="luma/plugins/browser_plugin/model/EntryModel.py" line="36"/>
+        <source>Could not refresh entry.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="luma/plugins/browser_plugin/model/EntryModel.py" line="37"/>
+        <source>Could not check if object is a leaf in the ldap tree.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="luma/plugins/browser_plugin/model/EntryModel.py" line="38"/>
+        <source>Could not save entry.</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1429,12 +1466,12 @@ Do you wan&apos;t to update the list to reflect the changes?</source>
 <context>
     <name>SearchPlugin</name>
     <message>
-        <location filename="luma/plugins/search/Search.py" line="395"/>
+        <location filename="luma/plugins/search/Search.py" line="396"/>
         <source>Search Form</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/plugins/search/Search.py" line="397"/>
+        <location filename="luma/plugins/search/Search.py" line="398"/>
         <source>Filter Builder</source>
         <translation type="unfinished"></translation>
     </message>
