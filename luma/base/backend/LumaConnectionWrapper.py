@@ -55,6 +55,7 @@ class LumaConnectionWrapper(QObject):
     #: The signal to connect to retrive results from `searchAsync`
     searchFinished = pyqtSignal(bool, list, Exception, str)
 
+    i = 0
     def __init__(self, serverObject, parent=None):
         """To use the async-methods YOU NEED TO SPECIFY A PARENT
         QOBJECT! If you promise to only use the sync-methods, you don't
@@ -69,7 +70,7 @@ class LumaConnectionWrapper(QObject):
         QObject.__init__(self, parent)
         self.lumaConnection = LumaConnection(serverObject)
         self.logger = logging.getLogger(__name__)
-
+        LumaConnectionWrapper.i = LumaConnectionWrapper.i+1
     ###########
     # BIND
     ###########
@@ -198,7 +199,7 @@ class LumaConnectionWrapper(QObject):
 
     def __createThread(self, worker):
         # Create the thread
-        workerThread = WorkerThread()
+        workerThread = WorkerThread(LumaConnectionWrapper.i)
         # Move worker to thread
         workerThread.setWorker(worker)
         return workerThread
@@ -274,18 +275,17 @@ class WorkerThread(QThread):
 
     __threadPool = []
     __Lock = RLock()
-    i = 0
 
-    def __init__(self, parent=None):
+    def __init__(self, i, parent=None):
         QThread.__init__(self, parent)
         self.logger = logging.getLogger(__name__)
+        self.i = i
 
         # Add to the threadpool so the thread is not GCed
         # while running.
         with WorkerThread.__Lock:
-            WorkerThread.i = WorkerThread.i + 1
-            print WorkerThread.i
             WorkerThread.__threadPool.append(self)
+        self.logger.debug("init"+str(self.i))
 
         # Cleanup on finish
         # Uncommented -- done in quit()
@@ -295,22 +295,23 @@ class WorkerThread(QThread):
         self.worker = None
 
     def run(self):
+        self.logger.debug("f0r exec"+str(self.i))
         self.exec_()
+        self.logger.debug("etter exec"+str(self.i))
 
     def quit(self):
         QThread.quit(self)
+        self.logger.debug("Quit"+str(self.i))
         self.cleanup()
 
     def cleanup(self):
         """Removed this thread from the threadpool so that it is GCed.
         """
-        self.logger.debug("Cleanup called.")
+        self.logger.debug("Cleanup"+str(self.i))
         # Remove from threadpool on finish
         #print "Debug -- before cleanup of threadpool:"
         #print WorkerThread.__threadPool
         with WorkerThread.__Lock:
-            WorkerThread.i = WorkerThread.i + 1
-            print WorkerThread.i
             WorkerThread.__threadPool.remove(self)
         #print "Debug -- after cleanup of threadpool:"
         #print WorkerThread.__threadPool
