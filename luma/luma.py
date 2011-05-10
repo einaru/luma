@@ -31,6 +31,26 @@ import sys
 import traceback
 
 failed = 0
+
+if sys.version_info < (2,6):
+    failed = 1
+    sys.stderr.write("""
+###########################################################
+## Luma needs Python version 2.6 or higher.              ##
+##                                                       ##
+## Please consider an upgrade.                           ##
+###########################################################
+""")
+
+if sys.version_info >= (3,):
+    failed = 1
+    sys.stderr.write("""
+###########################################################
+## Luma does not yet run on Python 3.                    ##
+##                                                       ##
+## Please consider a downgrade.                          ##
+###########################################################
+""")
 try: 
     from PyQt4.QtCore import (QEvent, Qt)
     from PyQt4.QtGui import (QApplication, QIcon)
