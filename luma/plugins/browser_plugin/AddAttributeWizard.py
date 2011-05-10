@@ -128,7 +128,8 @@ class AddAttributeWizard(QWizard, Ui_AddAttributeWizardDesign):
             
             cleanList = filter(lambda x: x.lower() in tmpList, attributeList)
             tmpList = cleanList
-
+        else:
+            tmpList = []
         tmpList.sort()
         tmpList = filter(lambda x: not (x.lower() == "objectclass"), tmpList)
         map(self.attributeBox.addItem, tmpList)

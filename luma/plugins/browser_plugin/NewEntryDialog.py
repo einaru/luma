@@ -1,6 +1,7 @@
 from PyQt4.QtGui import QDialog, QVBoxLayout
 from .gui.NewEntryDialogDesign import Ui_Dialog
 from AdvancedObjectWidget import AdvancedObjectWidget
+from base.backend.SmartDataObject import SmartDataObject
 
 class NewEntryDialog(QDialog, Ui_Dialog):
 
@@ -10,7 +11,12 @@ class NewEntryDialog(QDialog, Ui_Dialog):
         if templateSmartObject:
             smartObject = templateSmartObject 
         else:
-            smartObject = AdvancedObjectWidget.smartObjectCopy(parentIndex.internalPointer().smartObject())
+            smartO = parentIndex.internalPointer().smartObject()
+            serverMeta = smartO.getServerMeta()
+            print serverMeta
+            baseDN = smartO.getDN()
+            data = {}
+            smartObject = AdvancedObjectWidget.smartObjectCopy(SmartDataObject((baseDN, data), serverMeta))
         self.objectWidget = AdvancedObjectWidget(smartObject, None, create=True, entryTemplate = entryTemplate)
         self.gridLayout.addWidget(self.objectWidget)
 

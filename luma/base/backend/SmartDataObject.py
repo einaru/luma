@@ -36,7 +36,6 @@ class SmartDataObject (object):
         
         self.dn = data[0]
         self.data = data[1]
-        print data
         self.logger = logging.getLogger(__name__)
 
         
