@@ -7,10 +7,13 @@ from PyQt4.QtGui import QImage, QTextDocument
 
 class HtmlParser:
 
-    def __init__(self, entryModel, objectWidget):
-        self.entryModel = entryModel
+    def __init__(self, objectWidget):
+        self.entryModel = None
         self.smartObject = None
         self.objectWidget = objectWidget
+
+    def setModel(self, entryModel):
+        self.entryModel = entryModel
 
     ''' Utility function, checks both smart data object and template object
     '''

@@ -96,6 +96,9 @@ class BrowserView(QWidget):
         self.reloadSignal.connect(self.ldaptreemodel.reloadItem)
         self.clearSignal.connect(self.ldaptreemodel.clearItem)
 
+        eventFilter = BrowserPluginEventFilter(self)
+        self.installEventFilter(eventFilter)
+
         self.__createContextMenu()
         self.retranslateUi()
 
@@ -411,10 +414,11 @@ class BrowserView(QWidget):
             self.tabWidget.setCurrentWidget(x)
             return
 
-        # Saves a representation of the opened entry to avoid opening
-        # duplicates and open it
-        x = AdvancedObjectWidget(
-            smartObject, QtCore.QPersistentModelIndex(index))
+        # Saves a representation of the opened entry to avoid opening duplicates  
+        # and open it
+        x = AdvancedObjectWidget(QtCore.QPersistentModelIndex(index))
+        x.initModel(smartObject)
+
         self.openTabs[str(rep)] = x
         self.tabWidget.addTab(x, smartObject.getPrettyRDN())
         self.tabWidget.setCurrentWidget(x)
@@ -715,6 +719,15 @@ Do you wan't to update the list to reflect the changes?"""
         else:
             QWidget.changeEvent(self, e)
 
+class BrowserPluginEventFilter(QtCore.QObject):
+    def eventFilter(self, target, event):
+        if event.type() == QtCore.QEvent.KeyPress:
+            index = target.tabWidget.currentIndex()
+            if event.matches(QtGui.QKeySequence.Close):
+                if index >= 0:
+                    target.tabWidget.tabCloseRequested.emit(index)
+                return True
+        return QtCore.QObject.eventFilter(self, target, event)
 
 class LoadingDelegate(QtGui.QStyledItemDelegate):
     """Draws ``Loading...`` on items currently loading data.

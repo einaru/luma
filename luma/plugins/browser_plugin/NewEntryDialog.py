@@ -17,7 +17,8 @@ class NewEntryDialog(QDialog, Ui_Dialog):
             baseDN = smartO.getDN()
             data = {}
             smartObject = AdvancedObjectWidget.smartObjectCopy(SmartDataObject((baseDN, data), serverMeta))
-        self.objectWidget = AdvancedObjectWidget(smartObject, None, create=True, entryTemplate = entryTemplate)
+        self.objectWidget = AdvancedObjectWidget(None, create=True, entryTemplate = entryTemplate)
+        self.objectWidget.initModel(smartObject)
         self.gridLayout.addWidget(self.objectWidget)
 
     def accept(self):
