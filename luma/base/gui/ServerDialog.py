@@ -370,6 +370,10 @@ class ServerDialog(QDialog, Ui_ServerDialogDesign):
 
     @pyqtSlot(bool, Exception, str)
     def testFinished(self, success, exception, serverName):
+        # Unparent the LumaConnectionParent from this object
+        # so that it is GCed (that is the only reference to it.)
+        self.sender().setParent(None)
+
         self.testProgress.hide()
 
         if self.testProgress.wasCanceled():

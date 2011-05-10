@@ -23,7 +23,7 @@ import os
 import re
 import gc
 
-from PyQt4.QtCore import (QEvent, QObject, Qt, QTimer, pyqtSignal)
+from PyQt4.QtCore import (QEvent, QObject, Qt, QTimer, pyqtSignal, pyqtSlot)
 from PyQt4.QtGui import (QKeySequence, QWidget, qApp)
 
 from base.backend.ServerList import ServerList
@@ -435,13 +435,18 @@ class Search(QObject):
             self.__logger.error(msg.format(server, str(e)))
         else:
             self.connection.searchAsync(**kwargs)
-
+    
     def onSearchFinished(self, success, result, e):
         """Slot for the searchFinished signal in LumaConnectionWrapper.
         As of now this reemits a signal that SearchPlugin has connected
         to. This is done in order to be able to provide the filter and
         attributes needed for the result view.
         """
+        # If self.connection wasn't an object attribute
+        # it should probably be unparented here so that it
+        # is GCed.
+        #self.sender().setParent(None)
+
         if success:
             result.append(self.filter)
             self.resultsRetrieved.emit(result, None)
