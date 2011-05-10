@@ -279,7 +279,8 @@ class LumaConnection(object):
                 ldapServerObject = ldap.initialize(url.initializeUrl())
             except ldap.LDAPError, e:
                 # This throws an empty exception, so we make our own
-                exceptionObject = [{"desc": "Invalid hostname/URL"}]
+                exceptionObject = ldap.LDAPError({'desc':"Invalid hostname/URL"})
+                #exceptionObject = [{"desc": "Invalid hostname/URL"}]
                 return (False, exceptionObject, None)
 
             ldapServerObject.protocol_version = 3

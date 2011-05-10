@@ -135,9 +135,9 @@ class DeleteDialog(QtGui.QDialog, Ui_DeleteDialog):
             if not status:
                 self.passedItemsWasDeleted = False
                 allDeleted = False
-                self.deleteDict[self.getRep(sO)][2].setText(str(e))
+                self.deleteDict[getRep(sO)][2].setText(str(e))
             else:
-                self.deleteDict[self.getRep(sO)][2].setText("OK!")
+                self.deleteDict[getRep(sO)][2].setText("OK!")
         
         # Remember to unbind all the servers
         for conn in self.serverConnections.values():

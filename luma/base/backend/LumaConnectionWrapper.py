@@ -58,7 +58,7 @@ class LumaConnectionWrapper(QObject):
         qApp.processEvents() while the bind
         is in progress.
         """
-        bindWorker = BindWorker(self.lumaConnection, "")
+        bindWorker = BindWorker(self.lumaConnection)
         thread = self.__createThread(bindWorker)
         thread.start()
         
@@ -184,7 +184,7 @@ class BindWorker(QObject):
     Runs LumaConnection.bind()
     """
     workDone = pyqtSignal(bool, Exception, str)
-    def __init__(self, lumaConnection, identStr):
+    def __init__(self, lumaConnection, identStr = ""):
         QObject.__init__(self)
         self.lumaConnection = lumaConnection
         self.logger = logging.getLogger(__name__)
@@ -202,7 +202,7 @@ class SearchWorker(QObject):
     Runs LumaConnection.search()
     """
     workDone = pyqtSignal(bool, list, Exception, str)
-    def __init__(self, lumaConnection, base, scope, filter, attrList, attrsonly, sizelimit, identStr):
+    def __init__(self, lumaConnection, base, scope, filter, attrList, attrsonly, sizelimit, identStr = ""):
         QObject.__init__(self)
         self.lumaConnection = lumaConnection
         self.logger = logging.getLogger(__name__)
