@@ -398,8 +398,7 @@ class AdvancedObjectWidget(QWidget):
         """
         
         dialog = AddAttributeWizard(self)
-        #TODO model
-        dialog.setData(self.smartObjectCopy(self.entryModel.smartObject))
+        dialog.setData(self.smartObjectCopy(self.entryModel.getSmartObject()))
         
         dialog.exec_()
         
@@ -415,8 +414,7 @@ class AdvancedObjectWidget(QWidget):
         
         if showAll and not(attribute.lower() in dialog.possibleAttributes):
             objectClass = str(dialog.classBox.currentItem().text())
-            #TODO model
-            self.entryModel.smartObject.addObjectClass(objectClass)
+            self.entryModel.addObjectClass(objectClass)
             
             serverSchema = ObjectClassAttributeInfo(self.entryModel.smartObject.getServerMeta())
             mustAttributes = serverSchema.getAllMusts([objectClass])
@@ -424,9 +422,7 @@ class AdvancedObjectWidget(QWidget):
             attributeSet = mustAttributes.union(set([attribute]))
             
         for x in attributeSet:
-            #TODO model
             self.entryModel.addAttributeValue(x, None)
-            #self.entryModel.smartObject.addAttributeValue(x, None)
         
         self.displayValues()
         
@@ -519,6 +515,10 @@ class AdvancedObjectWidget(QWidget):
             if not (newValue == None):
                 if attributeName == 'RDN':
                     self.entryModel.setDN(newValue)
+                    if dialog.addAttributeBox.isChecked():
+                        addAttribute = unicode(dialog.attributeBox.currentText())
+                        addValue = unicode(dialog.valueEdit.text())
+                        self.entryModel.addAttributeValue(addAttribute, [addValue])
                 else:
                     if addValue:
                         self.entryModel.addAttributeValue(attributeName, [newValue])

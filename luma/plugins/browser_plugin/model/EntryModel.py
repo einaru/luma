@@ -224,4 +224,11 @@ class EntryModel(QObject):
         self.EDITED = True
         self.modelChangedSignal.emit(False)
 
+###############################################################################
+
+    def addObjectClass(self, objectClass):
+        self.smartObject.addObjectClass(objectClass)
+        self.EDITED = True
+        self.modelChangedSignal.emit(False)
+
 # vim: tabstop=4 expandtab shiftwidth=4 softtabstop=4
