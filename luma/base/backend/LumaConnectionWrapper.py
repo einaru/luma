@@ -291,8 +291,8 @@ class WorkerThread(QThread):
 
         # Cleanup on finish
         # Uncommented -- done in quit()
-        #self.finished.connect(self.cleanup)
-        #self.terminated.connect(self.cleanup)
+        self.finished.connect(self.cleanup)
+        self.terminated.connect(self.cleanup)
 
         self.worker = None
 
@@ -304,19 +304,18 @@ class WorkerThread(QThread):
     def quit(self):
         QThread.quit(self)
         self.logger.debug("Quit"+str(self.i))
-        self.cleanup()
+        #self.cleanup()
 
     def cleanup(self):
         """Removed this thread from the threadpool so that it is GCed.
         """
-        self.logger.debug("Cleanup"+str(self.i))
+        self.logger.debug("Cleanup"+str(self.i)+str(time.time()))
         # Remove from threadpool on finish
         #print "Debug -- before cleanup of threadpool:"
         #print WorkerThread.__threadPool
-        #while not self.isFinished():
-        #    self.logger.debug("process")
-        #    qApp.processEvents()
-        self.logger.debug("isfinished"+str(time.time()))
+        while not self.isFinished():
+            self.logger.debug(self+" was scheduled for cleanup but not finished")
+            qApp.processEvents()
         with WorkerThread.__Lock:
             WorkerThread.__threadPool.remove(self)
         print "Debug -- after cleanup of threadpool:"
