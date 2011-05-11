@@ -1,0 +1,284 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>The luma.base.util package &mdash; Luma v3.0.7-beta documentation</title>
+    <link rel="stylesheet" href="../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '3.0.7-beta',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/sidebar.js"></script>
+    <link rel="top" title="Luma v3.0.7-beta documentation" href="../index.html" />
+    <link rel="up" title="Luma API" href="index.html" />
+    <link rel="next" title="ChangeLog" href="../ChangeLog.html" />
+    <link rel="prev" title="The luma.base.gui package" href="gui.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="../ChangeLog.html" title="ChangeLog"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="gui.html" title="The luma.base.gui package"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Luma v3.0.7-beta documentation</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">Luma API</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="the-luma-base-util-package">
+<h1>The <tt class="docutils literal"><span class="pre">luma.base.util</span></tt> package<a class="headerlink" href="#the-luma-base-util-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="internationalization">
+<h2>Internationalization<a class="headerlink" href="#internationalization" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="base.util.i18n.LanguageHandler">
+<em class="property">class </em><tt class="descclassname">base.util.i18n.</tt><tt class="descname">LanguageHandler</tt><a class="headerlink" href="#base.util.i18n.LanguageHandler" title="Permalink to this definition">¶</a></dt>
+<dd><p>Helper class providing useful functionality for handling
+available application translations.</p>
+<dl class="attribute">
+<dt id="base.util.i18n.LanguageHandler.availableLanguages">
+<tt class="descname">availableLanguages</tt><a class="headerlink" href="#base.util.i18n.LanguageHandler.availableLanguages" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a dictionary containing all available language
+translations for the application. The dictionary returned
+is on the form:</p>
+<div class="highlight-python"><pre>langDict = {
+    ...,
+    locale : [language[, country]],
+    ...
+}</pre>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="base.util.i18n.LanguageHandler.getQmFile">
+<tt class="descname">getQmFile</tt><big>(</big><em>locale=''</em><big>)</big><a class="headerlink" href="#base.util.i18n.LanguageHandler.getQmFile" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the <tt class="docutils literal"><span class="pre">.qm</span></tt> files that matches <cite>locale</cite>. If <cite>locale</cite>
+is empty or <tt class="xref docutils literal"><span class="pre">None</span></tt>, the <tt class="docutils literal"><span class="pre">.qm</span></tt> file for <tt class="docutils literal"><span class="pre">en</span></tt> is returned.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Parameters:</th><td class="field-body"><strong>locale</strong> (<em>string</em>) &#8211; a two-letter lowercase ISO 639 language code,
+with a possible two-letter uppercase ISO 3199 country code,
+that corresponds to one of the <tt class="docutils literal"><span class="pre">i18n</span></tt> aliases in the
+resource file.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="base.util.i18n.LanguageHandler.translationPath">
+<tt class="descname">translationPath</tt><a class="headerlink" href="#base.util.i18n.LanguageHandler.translationPath" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the full path to the directory containing the
+translation files.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-base.util.IconTheme">
+<span id="x11-user-interface-integration"></span><h2>X11 user interface integration<a class="headerlink" href="#module-base.util.IconTheme" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="base.util.IconTheme.iconFromTheme">
+<tt class="descclassname">base.util.IconTheme.</tt><tt class="descname">iconFromTheme</tt><big>(</big><em>icon</em>, <em>fallback</em><big>)</big><a class="headerlink" href="#base.util.IconTheme.iconFromTheme" title="Permalink to this definition">¶</a></dt>
+<dd><p>Utility method for getting icons from default X11 icon theme.</p>
+<p>Returns a <tt class="docutils literal"><span class="pre">QIcon</span></tt> from the X11 system-icon theme if a match is
+found, else the <cite>fallback</cite> is used.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>icon</strong> (<em>string</em>) &#8211; the name of the icon in the X11 icon-theme.</li>
+<li><strong>fallback</strong> &#8211; the name of the fallback icon.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="base.util.IconTheme.pixmapFromTheme">
+<tt class="descclassname">base.util.IconTheme.</tt><tt class="descname">pixmapFromTheme</tt><big>(</big><em>icon</em>, <em>fallback</em>, <em>width=48</em>, <em>height=48</em>, <em>mode=0</em>, <em>state=1</em><big>)</big><a class="headerlink" href="#base.util.IconTheme.pixmapFromTheme" title="Permalink to this definition">¶</a></dt>
+<dd><p>Utility method for converting a <tt class="docutils literal"><span class="pre">QIcon</span></tt> to a <tt class="docutils literal"><span class="pre">QPixmap</span></tt>.
+Useful when trying to use icons from a X11 iconTheme but need a
+pixmap.</p>
+<p>Returns a <tt class="docutils literal"><span class="pre">QPixmap</span></tt> from the X11 system icon-theme if a match is
+found, else the <cite>fallback</cite> is used.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>icon</strong> (<em>string</em>) &#8211; the name of the icon in the icon theme.</li>
+<li><strong>fallback</strong> (<em>string</em>) &#8211; the name of the fallback icon.</li>
+<li><strong>widht</strong> &#8211; the width of the icon, default is 48.</li>
+<li><strong>height</strong> (<em>int</em>) &#8211; the height of the icon, default is 48.</li>
+<li><strong>mode</strong> (see <a class="reference external" href="http://doc.trolltech.com/4.7/qicon.html#Mode-enum">http://doc.trolltech.com/4.7/qicon.html#Mode-enum</a>) &#8211; the icon mode, default is <tt class="docutils literal"><span class="pre">QIcon.Normal</span></tt>,</li>
+<li><strong>state</strong> (see <a class="reference external" href="http://doc.trolltech.com/4.7/qicon.html#State-enum">http://doc.trolltech.com/4.7/qicon.html#State-enum</a>) &#8211; the icon state, default is <tt class="docutils literal"><span class="pre">QIcon.Off</span></tt>,</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="module-base.util.Paths">
+<span id="filepaths"></span><h2>Filepaths<a class="headerlink" href="#module-base.util.Paths" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="base.util.Paths.getConfigPrefix">
+<tt class="descclassname">base.util.Paths.</tt><tt class="descname">getConfigPrefix</tt><big>(</big><big>)</big><a class="headerlink" href="#base.util.Paths.getConfigPrefix" title="Permalink to this definition">¶</a></dt>
+<dd><p>We must determine what platform we&#8217;re running on. Making sure
+we follow the platform convention for configuration files and
+directories,</p>
+<p>The platform validation, can be done through a number of modules:</p>
+<div class="highlight-python"><pre>os.name           -&gt; posix, nt
+sys.platform      -&gt; linux2, windows, darwin
+platform.system() -&gt; Linux, Windows, Darwin</pre>
+</div>
+<p>This method will check for a existing config folder based on the
+platform. If it is not found it will be created. Either way the
+path will be returned.</p>
+<p>Returns a tuple (success, prefix), where <tt class="docutils literal"><span class="pre">success</span></tt> is a boolean
+value indicating wheter the config prefix path exists. It will be
+<tt class="xref docutils literal"><span class="pre">True</span></tt> if the path existed or was successfully created. If it
+doesn&#8217;t exists, and we don&#8217;t have write permissions, it will be
+<tt class="xref docutils literal"><span class="pre">False</span></tt>. In this case we will return the system temp directory.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="base.util.Paths.getLumaRoot">
+<tt class="descclassname">base.util.Paths.</tt><tt class="descname">getLumaRoot</tt><big>(</big><big>)</big><a class="headerlink" href="#base.util.Paths.getLumaRoot" title="Permalink to this definition">¶</a></dt>
+<dd><p>Utility method for locating the Luma root location.</p>
+<p>This is done by using pythons magical __file__ attribute, to get
+the location of this module, and joining it with the required
+number of levels up to the root.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The use of __file__ most  likely will cause some issues if
+Luma is packaged with</p>
+</div>
+<p>Returnes the absolute file path to the luma root directory, without
+the trailing separator: <tt class="docutils literal"><span class="pre">/full/path/to/luma</span></tt> .</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="base.util.Paths.getUserHomeDir">
+<tt class="descclassname">base.util.Paths.</tt><tt class="descname">getUserHomeDir</tt><big>(</big><big>)</big><a class="headerlink" href="#base.util.Paths.getUserHomeDir" title="Permalink to this definition">¶</a></dt>
+<dd><p>Helper method for finding the user home directory.</p>
+<p>On UNIX systems this is achieved by using the python <cite>os.getenv</cite>
+module. On Windows NT systems users is able to have roaming or
+local profiles. For example:</p>
+<ul class="simple">
+<li><tt class="docutils literal"><span class="pre">CSIDL_APPDATA</span></tt> returns the roaming <tt class="docutils literal"><span class="pre">Application</span> <span class="pre">Data</span></tt> dir,</li>
+<li><tt class="docutils literal"><span class="pre">CSIDL_LOCAL_APPDATA</span></tt> returns the local home dir.</li>
+</ul>
+<p>Returns the path to the user home directory.</p>
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../index.html">
+              <img class="logo" src="../_static/luma.png" alt="Logo"/>
+            </a></p>
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">The <tt class="docutils literal"><span class="pre">luma.base.util</span></tt> package</a><ul>
+<li><a class="reference internal" href="#internationalization">Internationalization</a></li>
+<li><a class="reference internal" href="#module-base.util.IconTheme">X11 user interface integration</a></li>
+<li><a class="reference internal" href="#module-base.util.Paths">Filepaths</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="gui.html"
+                        title="previous chapter">The <tt class="docutils literal docutils literal docutils literal"><span class="pre">luma.base.gui</span></tt> package</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="../ChangeLog.html"
+                        title="next chapter">ChangeLog</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/api/util.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" size="18" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="../ChangeLog.html" title="ChangeLog"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="gui.html" title="The luma.base.gui package"
+             >previous</a> |</li>
+        <li><a href="../index.html">Luma v3.0.7-beta documentation</a> &raquo;</li>
+          <li><a href="index.html" >Luma API</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2011, Christian Forfang, Einar Uvsløkk, Johannes Harestad, Per Ove Ringstad, Simen Natvig, Sondre Frisvold.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.0.7.
+    </div>
+  </body>
+</html>
