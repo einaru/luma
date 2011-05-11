@@ -214,7 +214,7 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>AddAttributeDialog</name>
     <message>
-        <location filename="luma/plugins/template/gui/AddAttributeDialogDesign.py" line="80"/>
+        <location filename="luma/plugins/template/gui/AddAttributeDialogDesign.py" line="81"/>
         <source>Dialog</source>
         <translation>Dialog</translation>
     </message>
@@ -234,17 +234,17 @@ p, li { white-space: pre-wrap; }
         <translation>Advarsel: Følgende attributter vil bli fjernet når alle valgte objektklasser slettes. Ønsker du å fortsette?</translation>
     </message>
     <message>
-        <location filename="luma/plugins/template/gui/AddAttributeDialogDesign.py" line="81"/>
+        <location filename="luma/plugins/template/gui/AddAttributeDialogDesign.py" line="82"/>
         <source>Cancel</source>
         <translation>Avbryt</translation>
     </message>
     <message>
-        <location filename="luma/plugins/template/gui/AddAttributeDialogDesign.py" line="82"/>
+        <location filename="luma/plugins/template/gui/AddAttributeDialogDesign.py" line="83"/>
         <source>OK</source>
         <translation>Ok</translation>
     </message>
     <message>
-        <location filename="luma/plugins/template/gui/AddAttributeDialogDesign.py" line="83"/>
+        <location filename="luma/plugins/template/gui/AddAttributeDialogDesign.py" line="84"/>
         <source>Please select the attributes you want to add.</source>
         <translation>Vennligst velg attributtet du ønsker å legge til.</translation>
     </message>
@@ -320,10 +320,15 @@ attributter som må legges til sammen valgte objektklasse.&lt;/p&gt;</translatio
         <translation>&lt;b&gt;Ytterligere attributter&lt;/b&gt;</translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/gui/AddAttributeWizardDesign.py" line="175"/>
+        <location filename="resources/forms/plugins/browser_plugin/AddAttributeWizardDesign.ui" line="81"/>
         <source>PI</source>
         <comment>DO NOT TRANSLATE</comment>
         <translation></translation>
+    </message>
+    <message>
+        <location filename="luma/plugins/browser_plugin/gui/AddAttributeWizardDesign.py" line="175"/>
+        <source>PI</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -541,162 +546,177 @@ attributter som må legges til sammen valgte objektklasse.&lt;/p&gt;</translatio
         <translation>Lokasjon:</translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/gui/BinaryEditorDesign.py" line="92"/>
+        <location filename="resources/forms/plugins/browser_plugin/BinaryEditorDesign.ui" line="32"/>
         <source>IT</source>
         <comment>DO NOT TRANSLATE</comment>
         <translation></translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/gui/BinaryEditorDesign.py" line="97"/>
+        <location filename="resources/forms/plugins/browser_plugin/BinaryEditorDesign.ui" line="113"/>
         <source>F</source>
         <comment>DO NOT TRANSLATE</comment>
         <translation></translation>
+    </message>
+    <message>
+        <location filename="luma/plugins/browser_plugin/gui/BinaryEditorDesign.py" line="92"/>
+        <source>IT</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="luma/plugins/browser_plugin/gui/BinaryEditorDesign.py" line="97"/>
+        <source>F</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>BrowserView</name>
     <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="696"/>
+        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="717"/>
         <source>Delete</source>
         <translation>Slett</translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="697"/>
+        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="718"/>
         <source>Really delete?</source>
         <translation>Virkelig slette?</translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="689"/>
+        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="710"/>
         <source>Error</source>
         <translation>Feil</translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="699"/>
+        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="720"/>
         <source>Deletion</source>
         <translation>Sletting</translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="707"/>
+        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="728"/>
         <source>You need to restart the plugin for changes to take effect.</source>
         <translation>Du må laste innstikkene på nytt for at forandringene skal tre i kraft.</translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="645"/>
+        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="666"/>
         <source>This is where entries are displayed when opened.</source>
         <translation>Her vises innslag når de åpnes.</translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="647"/>
+        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="668"/>
         <source>Edit Server Settings</source>
         <translation>Rediger Tjener innstillinger</translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="649"/>
+        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="670"/>
         <source>Open</source>
         <translation>Åpne</translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="651"/>
+        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="672"/>
         <source>Reload</source>
         <translation>Last på nytt</translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="653"/>
+        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="674"/>
         <source>Clear</source>
         <translation>Tøm</translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="655"/>
+        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="676"/>
         <source>Set Filter</source>
         <translation>Sett filter</translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="657"/>
+        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="678"/>
         <source>Set Limit</source>
         <translation>Set grense</translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="659"/>
+        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="680"/>
         <source>Add</source>
         <translation>Legg til</translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="663"/>
+        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="684"/>
         <source>Export</source>
         <translation>Eksporter</translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="666"/>
+        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="687"/>
         <source>Entry</source>
         <translation>Innslag</translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="668"/>
+        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="689"/>
         <source>Template</source>
         <translation>Mal</translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="670"/>
+        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="691"/>
         <source>Item</source>
         <translation>Element</translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="672"/>
+        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="693"/>
         <source>Subtree</source>
         <translation>Subtre</translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="674"/>
+        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="695"/>
         <source>Subtree with parents</source>
         <translation>Subtre med forelder</translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="676"/>
+        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="697"/>
         <source>Items</source>
         <translation>Elementer</translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="678"/>
+        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="699"/>
         <source>Subtrees</source>
         <translation>Subtrær</translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="680"/>
+        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="701"/>
         <source>Subtrees with parents</source>
         <translation>Subtrær med foreldre</translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="683"/>
+        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="704"/>
         <source>Please wait</source>
         <translation>Vennligst vent</translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="685"/>
+        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="706"/>
         <source>Please wait, fetching data...
 This message will automatically close when done...</source>
         <translation>Vennligst vent, henter data...
 Denne meldingen vil automatisk lukkes når operasjonen er ferdig...</translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="690"/>
+        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="711"/>
         <source>On {0}:
 {1}</source>
         <translation>På {0}:
 {1}</translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="693"/>
+        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="714"/>
         <source>See log for details</source>
         <translation>Se loggen for detaljer</translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="702"/>
+        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="723"/>
         <source>It&apos;s possible some of the selected items
 might not have been deleted, while others were.
 Do you wan&apos;t to update the list to reflect the changes?</source>
         <translation>Det er mulig at noen av de valgte elementene
 ikke har blitt slettet, mens andre har blitt det.
 Ønsker du å oppdatere listen for å se forandringene?</translation>
+    </message>
+    <message>
+        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="397"/>
+        <source>Do you want to reload to show the changes?</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -983,7 +1003,7 @@ ikke har blitt slettet, mens andre har blitt det.
 <context>
     <name>LDAPTreeItemModel</name>
     <message>
-        <location filename="luma/plugins/browser_plugin/model/LDAPTreeItemModel.py" line="188"/>
+        <location filename="luma/plugins/browser_plugin/model/LDAPTreeItemModel.py" line="189"/>
         <source>No servers defined</source>
         <translation>Ingen tjenere er definert</translation>
     </message>
@@ -1288,7 +1308,7 @@ ikke har blitt slettet, mens andre har blitt det.
         <translation>&lt;b&gt;Vennligst velg et nytt passord.&lt;/b&gt;</translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/gui/PasswordEditorDesign.py" line="135"/>
+        <location filename="resources/forms/plugins/browser_plugin/PasswordEditorDesign.ui" line="240"/>
         <source>PW</source>
         <comment>DO NOT TRANSLATE</comment>
         <translation></translation>
@@ -1303,59 +1323,69 @@ ikke har blitt slettet, mens andre har blitt det.
         <source>Hidden string</source>
         <translation>Skjult streng</translation>
     </message>
+    <message>
+        <location filename="luma/plugins/browser_plugin/gui/PasswordEditorDesign.py" line="135"/>
+        <source>PW</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>RdnEditorDesign</name>
     <message>
-        <location filename="luma/plugins/browser_plugin/gui/RdnEditorDesign.py" line="96"/>
+        <location filename="luma/plugins/browser_plugin/gui/RdnEditorDesign.py" line="99"/>
         <source>Edit DN</source>
         <translation>Rediger DN</translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/gui/RdnEditorDesign.py" line="98"/>
+        <location filename="luma/plugins/browser_plugin/gui/RdnEditorDesign.py" line="102"/>
         <source>&amp;OK</source>
         <translation>&amp;Ok</translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/gui/RdnEditorDesign.py" line="99"/>
+        <location filename="luma/plugins/browser_plugin/gui/RdnEditorDesign.py" line="103"/>
         <source>Alt+O</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/gui/RdnEditorDesign.py" line="100"/>
+        <location filename="luma/plugins/browser_plugin/gui/RdnEditorDesign.py" line="104"/>
         <source>&amp;Cancel</source>
         <translation>&amp;Avbryt</translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/gui/RdnEditorDesign.py" line="101"/>
+        <location filename="luma/plugins/browser_plugin/gui/RdnEditorDesign.py" line="105"/>
         <source>Alt+C</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/gui/RdnEditorDesign.py" line="102"/>
+        <location filename="luma/plugins/browser_plugin/gui/RdnEditorDesign.py" line="106"/>
         <source>Value:</source>
         <translation>Verdi:</translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/gui/RdnEditorDesign.py" line="103"/>
+        <location filename="luma/plugins/browser_plugin/gui/RdnEditorDesign.py" line="107"/>
         <source>DN:</source>
         <translation>DN:</translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/gui/RdnEditorDesign.py" line="104"/>
+        <location filename="luma/plugins/browser_plugin/gui/RdnEditorDesign.py" line="108"/>
         <source>Please choose an attribute and enter a value for it. These values will be part of distinguished name for the new object.</source>
         <translation>Vennligst velg et attributt og en verdi. Disse verdiene vil være en del av det distinkte navnet til det nye objektet.</translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/gui/RdnEditorDesign.py" line="105"/>
+        <location filename="luma/plugins/browser_plugin/gui/RdnEditorDesign.py" line="109"/>
         <source>Attribute:</source>
         <translation>Attributt:</translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/gui/RdnEditorDesign.py" line="97"/>
+        <location filename="luma/plugins/browser_plugin/gui/RdnEditorDesign.py" line="100"/>
         <source>IT</source>
         <comment>DO NOT TRANSLATE</comment>
         <translation></translation>
+    </message>
+    <message>
+        <location filename="luma/plugins/browser_plugin/gui/RdnEditorDesign.py" line="101"/>
+        <source>Add attribute</source>
+        <translation type="unfinished">Legg til attributt</translation>
     </message>
 </context>
 <context>
@@ -1475,12 +1505,12 @@ ikke har blitt slettet, mens andre har blitt det.
 <context>
     <name>SearchPlugin</name>
     <message>
-        <location filename="luma/plugins/search/Search.py" line="396"/>
+        <location filename="luma/plugins/search/Search.py" line="395"/>
         <source>Search Form</source>
         <translation>Søkeform</translation>
     </message>
     <message>
-        <location filename="luma/plugins/search/Search.py" line="398"/>
+        <location filename="luma/plugins/search/Search.py" line="397"/>
         <source>Filter Builder</source>
         <translation>Filterbygger</translation>
     </message>
@@ -1614,12 +1644,12 @@ Do you still want to save?</source>
         <translation>Velg sertifikatnøkkelfil</translation>
     </message>
     <message>
-        <location filename="luma/base/gui/ServerDialog.py" line="380"/>
+        <location filename="luma/base/gui/ServerDialog.py" line="384"/>
         <source>Bind to {0} successful!</source>
         <translation>Binding til {0} suksessfult!</translation>
     </message>
     <message>
-        <location filename="luma/base/gui/ServerDialog.py" line="384"/>
+        <location filename="luma/base/gui/ServerDialog.py" line="388"/>
         <source>Bind to {0} failed:
 {1}
 
@@ -1630,7 +1660,7 @@ Do you still want to save?</source>
 (Du trenger ikke å spesifisere passord her -- du vil bli forespurt når det trengs.)</translation>
     </message>
     <message>
-        <location filename="luma/base/gui/ServerDialog.py" line="387"/>
+        <location filename="luma/base/gui/ServerDialog.py" line="391"/>
         <source>Bind to {0} failed:
 {1}</source>
         <translation>Binding til {0} feilet: {1}</translation>
@@ -1945,121 +1975,126 @@ Do you still want to save?</source>
         <translation>Verdi:</translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/gui/StandardEditorDesign.py" line="85"/>
+        <location filename="resources/forms/plugins/browser_plugin/StandardEditorDesign.ui" line="32"/>
         <source>IT</source>
         <comment>DO NOT TRANSLATE</comment>
         <translation></translation>
+    </message>
+    <message>
+        <location filename="luma/plugins/browser_plugin/gui/StandardEditorDesign.py" line="85"/>
+        <source>IT</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>TemplateWidget</name>
     <message>
-        <location filename="luma/plugins/template/gui/TemplateWidgetDesign.py" line="208"/>
+        <location filename="luma/plugins/template/gui/TemplateWidgetDesign.py" line="207"/>
         <source>Delete</source>
         <translation>Slett</translation>
     </message>
     <message>
-        <location filename="luma/plugins/template/gui/TemplateWidget.py" line="268"/>
+        <location filename="luma/plugins/template/gui/TemplateWidget.py" line="260"/>
         <source>Are you sure you want to delete the selected attributes?</source>
         <translation>Er du sikker på at du vil slette det valgte attributtet?</translation>
     </message>
     <message>
-        <location filename="luma/plugins/template/gui/TemplateWidgetDesign.py" line="184"/>
+        <location filename="luma/plugins/template/gui/TemplateWidgetDesign.py" line="183"/>
         <source>Form</source>
         <translation>Form</translation>
     </message>
     <message>
-        <location filename="luma/plugins/template/gui/TemplateWidgetDesign.py" line="185"/>
+        <location filename="luma/plugins/template/gui/TemplateWidgetDesign.py" line="184"/>
         <source>Templates</source>
         <translation>Maler</translation>
     </message>
     <message>
-        <location filename="luma/plugins/template/gui/TemplateWidgetDesign.py" line="186"/>
+        <location filename="luma/plugins/template/gui/TemplateWidgetDesign.py" line="185"/>
         <source>Save template</source>
         <translation>Lagre mal</translation>
     </message>
     <message>
-        <location filename="luma/plugins/template/gui/TemplateWidgetDesign.py" line="187"/>
+        <location filename="luma/plugins/template/gui/TemplateWidgetDesign.py" line="186"/>
         <source>Save</source>
         <translation>Lagre</translation>
     </message>
     <message>
-        <location filename="luma/plugins/template/gui/TemplateWidgetDesign.py" line="188"/>
+        <location filename="luma/plugins/template/gui/TemplateWidgetDesign.py" line="187"/>
         <source>Add template</source>
         <translation>Legg til mal</translation>
     </message>
     <message>
-        <location filename="luma/plugins/template/gui/TemplateWidgetDesign.py" line="206"/>
+        <location filename="luma/plugins/template/gui/TemplateWidgetDesign.py" line="205"/>
         <source>Add</source>
         <translation>Legg til</translation>
     </message>
     <message>
-        <location filename="luma/plugins/template/gui/TemplateWidgetDesign.py" line="190"/>
+        <location filename="luma/plugins/template/gui/TemplateWidgetDesign.py" line="189"/>
         <source>Existing templates</source>
         <translation>Eksiterende maler</translation>
     </message>
     <message>
-        <location filename="luma/plugins/template/gui/TemplateWidgetDesign.py" line="191"/>
+        <location filename="luma/plugins/template/gui/TemplateWidgetDesign.py" line="190"/>
         <source>Delete template</source>
         <translation>Slett mal</translation>
     </message>
     <message>
-        <location filename="luma/plugins/template/gui/TemplateWidgetDesign.py" line="193"/>
+        <location filename="luma/plugins/template/gui/TemplateWidgetDesign.py" line="192"/>
         <source>Duplicate template</source>
         <translation>Dupliser mal</translation>
     </message>
     <message>
-        <location filename="luma/plugins/template/gui/TemplateWidgetDesign.py" line="194"/>
+        <location filename="luma/plugins/template/gui/TemplateWidgetDesign.py" line="193"/>
         <source>Duplicate</source>
         <translation>Dupliser</translation>
     </message>
     <message>
-        <location filename="luma/plugins/template/gui/TemplateWidgetDesign.py" line="195"/>
+        <location filename="luma/plugins/template/gui/TemplateWidgetDesign.py" line="194"/>
         <source>Server:</source>
         <translation>Tjener:</translation>
     </message>
     <message>
-        <location filename="luma/plugins/template/gui/TemplateWidgetDesign.py" line="196"/>
+        <location filename="luma/plugins/template/gui/TemplateWidgetDesign.py" line="195"/>
         <source>Description:</source>
         <translation>Beskrivelse:</translation>
     </message>
     <message>
-        <location filename="luma/plugins/template/gui/TemplateWidgetDesign.py" line="197"/>
+        <location filename="luma/plugins/template/gui/TemplateWidgetDesign.py" line="196"/>
         <source>Objectclasses</source>
         <translation>Objektklasser</translation>
     </message>
     <message>
-        <location filename="luma/plugins/template/gui/TemplateWidgetDesign.py" line="198"/>
+        <location filename="luma/plugins/template/gui/TemplateWidgetDesign.py" line="197"/>
         <source>Add objectclasses</source>
         <translation>Legg til objektklasser</translation>
     </message>
     <message>
-        <location filename="luma/plugins/template/gui/TemplateWidgetDesign.py" line="200"/>
+        <location filename="luma/plugins/template/gui/TemplateWidgetDesign.py" line="199"/>
         <source>Added objectclasses</source>
         <translation>Tillagte objektklasser</translation>
     </message>
     <message>
-        <location filename="luma/plugins/template/gui/TemplateWidgetDesign.py" line="201"/>
+        <location filename="luma/plugins/template/gui/TemplateWidgetDesign.py" line="200"/>
         <source>Delete objectclasses</source>
         <translation>Slett objektklasser</translation>
     </message>
     <message>
-        <location filename="luma/plugins/template/gui/TemplateWidgetDesign.py" line="203"/>
+        <location filename="luma/plugins/template/gui/TemplateWidgetDesign.py" line="202"/>
         <source>Attributes</source>
         <translation>Attributter</translation>
     </message>
     <message>
-        <location filename="luma/plugins/template/gui/TemplateWidgetDesign.py" line="204"/>
+        <location filename="luma/plugins/template/gui/TemplateWidgetDesign.py" line="203"/>
         <source>Added attributes</source>
         <translation>Tillagte attributter</translation>
     </message>
     <message>
-        <location filename="luma/plugins/template/gui/TemplateWidgetDesign.py" line="205"/>
+        <location filename="luma/plugins/template/gui/TemplateWidgetDesign.py" line="204"/>
         <source>Add attributes</source>
         <translation>Leg til attributter</translation>
     </message>
     <message>
-        <location filename="luma/plugins/template/gui/TemplateWidgetDesign.py" line="207"/>
+        <location filename="luma/plugins/template/gui/TemplateWidgetDesign.py" line="206"/>
         <source>Delete attributes</source>
         <translation>Slett attributter</translation>
     </message>

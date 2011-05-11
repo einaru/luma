@@ -103,21 +103,33 @@ class LumaPRO(object):
 
         ...
     """
-    
+
+    #: the name of the target project file
     FILE = 'luma.pro'
 
     def __init__(self):
         self.proDict = {}
         self.proDict['CONFIG'] = ['qt debug']
         self.proDict['RESOURCES'] = ['luma/resources.py']
-    
+
     def __str__(self):
         """Retruns the string representation of the project file.
         """
         return '\n'.join([line for line in self.asList()])
 
+    @staticmethod
+    def targetFile():
+        return LumaPRO.FILE
+
     def addItem(self, section, item):
-        """
+        """Adds a correctly formatted section entry to the data
+        structure.
+
+        :param section: the section for `item`
+        :type section: string
+        :param item: the item to include. should include the path
+         relative to the project file.
+        :type item: string
         """
         if self.proDict.has_key(section):
             self.proDict.get(section).append(item)
@@ -125,14 +137,27 @@ class LumaPRO(object):
             self.proDict[section] = [item]
 
     def update(self):
-        """
+        """Uses `LumaPRO.find` to locate all the files to include.
+        Should be called before `LumaPRO.save`.
         """
         self.find('SOURCES', getPath(['luma']), '.py', ['__init__.py'])
         self.find('FORMS', getPath(SRC_UI))
         self.find('TRANSLATIONS', getPath(SRC_i18n), '.ts')
-        
-    def find(self, section, path, ending='', ignore=[]):
-        """
+
+    def find(self, section, path, extension='', ignore=[]):
+        """Locates the files that should be included in the project
+        file.
+
+        :param section: the file section, i.e. SOURCES, TRANSLATIONS
+         FORMS, etc. (see: ??)
+        :type section: string
+        :param path: the path to look inside. Both relative and
+         absolute path is supported.
+        :type path: string
+        :param extension: the file extension of the files to include.
+        :type extension: string
+        :param ignore: a list of files to ignore.
+        :type ignore: list
         """
         if verbose:
             print '[{0}]'.format(section)
@@ -143,13 +168,16 @@ class LumaPRO(object):
 
             for file in files:
                 relpath = p.replace(cwd, '').replace('\\', '/')
-                if not file in ignore and file.endswith(ending):
+                if not file in ignore and file.endswith(extension):
                     file = os.path.join(relpath, file)
                     self.addItem(section, file)
                     if verbose:
                         print '  {0}'.format(file)
 
     def save(self):
+        """Saves the contens of `LUMAPRO.proDict` to disk.
+        Uses the format returned from `LUMAPRO.__str__`.
+        """
         with open(self.FILE, 'w') as f:
             f.write(str(self))
             f.write('\n')
@@ -164,7 +192,7 @@ class LumaPRO(object):
                 proFile.append(line.format(section, item))
 
             proFile.append('')
-                
+
         return proFile
 
 
@@ -194,17 +222,19 @@ class LumaQRC(object):
         </RCC>
     """
 
+    #: the name of the target resource file
     FILE = 'luma.qrc'
+    #: default .qrc header definition
     header = '<!DOCTYPE RCC><RCC version="1.0">'
+    #: default .qrc footer definition
     footer = '</RCC>'
 
     def __init__(self, resourceRoot='resources'):
         """Initializes a `LumaQrc` object.
 
-        Parameters:
-
-        - `resourceRoot`: the resource root location (relative to the
-          repository root)
+        :param resourceRoot: the resource root location (relative to
+         the repository root and location of the resource file)
+        :type resourceRoot: string
         """
         self.root = resourceRoot
         self.qrcDict = {}
@@ -216,17 +246,20 @@ class LumaQRC(object):
         """
         return '\n'.join([line for line in self.asList()])
 
+    @staticmethod
+    def targetFile():
+        return LumaQRC.FILE
+
     def getIconPrefix(self, path):
         """All we need to do for the icontheme paths is to look for the
-        size folder. This is done by splitting the folder items on 'x' 
+        size folder. This is done by splitting the folder items on 'x'
         and see if the first item ``isdigit``.
-        
+
         Returns a prefix containing the path folders preceeding the
         size folder, including the size folder (without 'xSize').
-        
-        Parameters:
-        
-        - `path`: the path to get the 'prefix' from.
+
+        :param path: the path to get the 'prefix' from.
+        :type path: string
         """
         list = path.split(os.sep)
         i = 0
@@ -246,15 +279,21 @@ class LumaQRC(object):
         return 'icons'
 
     def addResource(self, prefix, path, file):
-        """Adds or appends a `resource` to the value for key `prefix`.
-        The alias for the resource will be the
-        resource filename without hte filending, i.e. *luma.png*
-        get the alias *luma*
+        """Adds or appends a resource to the value for key `prefix`.
+        The alias for the resource will be the resource filename
+        without the filending, i.e.::
 
-        Parameters:
+            ``luma.png`` gets the alias ``luma``
 
-        - `resource`: a string containing the path to the resource
-          (relative to the repository root).
+        :param prefix: the prefix is the accessor root for the resource
+         and is typically ``icons`` or ``i18n``.
+        :type prefix: string
+        :param path: the realtive path to the resource, not including
+         the filename.
+        :type path: string
+        :param file: the resource filename, by which the alias is
+         created.
+        :type file: string
         """
         if prefix == 'icons':
             prefix = self.getIconPrefix(path)
@@ -281,6 +320,8 @@ class LumaQRC(object):
                     self.addResource('icons', path, file)
 
     def save(self):
+        """Saves the resource file to disk.
+        """
         with open(self.FILE, 'w') as f:
             f.write(str(self))
             f.write('\n')
@@ -290,10 +331,9 @@ class LumaQRC(object):
         """Returns the .qrc file as a list of lines. By default the
         lines in the list is indented with 2 spaces.
 
-        Parameters:
-        
-        - `indentation`: an integer defining how many spaces to use for
-          indentation. Use 0 for no indentation (default is 2).
+        :param indentation: an integer defining how many spaces to use for
+         indentation. Use 0 for no indentation (default is 2).
+        :type indentation: int
         """
         indent = ''
         for i in xrange(indentation):
@@ -323,16 +363,16 @@ DST_UI = ['luma', 'base', 'gui', 'design']
 PLUGINS = ['luma', 'plugins']
 
 # Files w/filepaths
-LUMA_PRO = ['luma.pro']
-LUMA_QRC = ['luma.qrc']
+LUMA_PRO = 'luma.pro'
+LUMA_QRC = 'luma.qrc'
 LUMA_RC = ['luma', 'resources.py']
 
 def run(cmd, args=[]):
     """Executes the command `cmd` with optional arguments `args`,
     provided it is available on the system.
-    
+
     Parameters:
-    
+
     - `cmd`: The program command.
     - `args`: a list of arguments to pass to `cmd` (default is []).
     """
@@ -345,7 +385,7 @@ def run(cmd, args=[]):
                 print '>>>'
                 print 'ReadyRead:\n{0}'.format(proc.readAll())
                 print '<<<'
-                
+
         if verbose:
             stderr = proc.readAllStandardError()
             if stderr != '':
@@ -359,32 +399,30 @@ def run(cmd, args=[]):
                 print '<<<'
 
 
-def writeToDisk(list, where):
+def writeToDisk(content, where):
     """Writes the `list` to disk, item for item.
-    
-    Parameters:
-    
-    - `list`: the content to write to disk, should be a list.
-    - `where`: the path to file we're writing to.
+
+    :param content: the content to write to disk.
+    :type content: list
+    :param where: the path to file we're writing to.
+    :type where: string
     """
     if verbose:
         print 'Writing content to {0}'.format(where)
 
     if not dryrun:
         with open(where, 'w') as f:
-            f.write('\n'.join([line for line in list]))
+            f.write('\n'.join([line for line in content]))
 
 
 def getPath(dirList):
     """Ensures that we get correct paths. That is we change our
     working directory to the top-level (one step up from tools).
-    
+
     Returns a cross-platform filepath from file system root including
     the last directory in the path list.
-    
-    Parameters:
-    
-    - `dirList`: a list of directories to join from cwd.
+
+    :param dirList: a list of directories to join from cwd.
     """
     cwd = os.path.abspath(os.path.dirname(__file__))
 
@@ -474,8 +512,8 @@ def compileUiFiles(all=False):
             for n in nums:
                 if n.isdigit():
                     compile.append(selection[int(n)])
-    
-    # Iterate through the file(s) marked for compiling, and run 
+
+    # Iterate through the file(s) marked for compiling, and run
     # the *pyuic4* command.
     cmd = 'pyuic4'
     if sys.platform.lower().startswith('win'):
@@ -483,11 +521,11 @@ def compileUiFiles(all=False):
 
     if verbose:
         print 'Compiling ui files:'
-    
+
     for file in compile:
         basename = os.path.basename('{0}.py'.format(file[:-3]))
         dirname = os.path.split(os.path.dirname(file))[1]
-        
+
         # If `dirname` is not `forms` we are dealing with plugins
         # files, and need a different target destination.
         if dirname != 'forms':
@@ -511,26 +549,49 @@ def updateTranslationFiles():
     """Just executes the ``pylupdate4`` command on the ``luma.pro``
     file.
     """
-    ## FIXME: Might want to extend this utility some more, with options
-    ##        for generating new translation files (skeletons that is).
-    #lumapro = 'luma.pro'
-    #cmd = 'pylupdate4'
-    #if sys.platform.lower().startswith('win'):
-    #    cmd = '{0}.exe'.format(cmd)
+    # FIXME: Might want to extend this utility some more, with options
+    #        for generating new translation files (skeletons that is).
+    lumapro = LumaPRO.targetFile()
+    cmd = 'pylupdate4'
 
-    #args = ['-noobsolete']
-    #
-    #if verbose:
-    #    args.extend(['-verbose', lumapro])
-    #    print 'Updating translation files...'
-    #    print '  Project file: {0}'.format(lumapro)
-    #    print cmd, ' '.join([a for a in args])
-    #else:
-    #    args.append(lumapro)
+    if sys.platform.lower().startswith('win'):
+        cmd = '{0}.exe'.format(cmd)
 
-    #if not dryrun:
-    #    run(cmd, args)
-    raise NotImplementedError('This method have been depreciated...')
+    args = ['-noobsolete']
+
+    if verbose:
+        args.extend(['-verbose', lumapro])
+        print 'Updating translation files...'
+        print '  Project file: {0}'.format(lumapro)
+        print cmd, ' '.join([a for a in args])
+    else:
+        args.append(lumapro)
+
+    if not dryrun:
+        run(cmd, args)
+
+
+def compileTranslationFiles():
+    """Runs lrelease-qt4 on the project file, in order to create
+    compiled ``.qm`` files from the ``.ts`` translation files.
+    """
+    lumapro = LumaPRO.targetFile()
+    cmd = 'lrelease-qt4'
+    args = ['-noobsolete']
+
+    if sys.platform.lower().startswith('win'):
+        cmd = '{0}.exe'.format(cmd)
+
+    if verbose:
+        args.append(['-verbose', lumapro])
+        print 'Compiling translation files...'
+        print '  Project file: {0}'.format(lumapro)
+        print cmd, ' '.join([a for a in args])
+    else:
+        args.append(lumapro)
+
+    if not dryrun:
+        run(cmd, args)
 
 
 def updateResourceFile():
@@ -681,5 +742,6 @@ if __name__ == '__main__':
         os.chdir(os.path.split(cwd)[0])
 
     sys.exit(main())
+
 
 # vim: tabstop=4 expandtab shiftwidth=4 softtabstop=4

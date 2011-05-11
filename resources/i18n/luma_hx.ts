@@ -283,7 +283,7 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>AddAttributeDialog</name>
     <message>
-        <location filename="luma/plugins/template/gui/AddAttributeDialogDesign.py" line="80"/>
+        <location filename="luma/plugins/template/gui/AddAttributeDialogDesign.py" line="81"/>
         <source>Dialog</source>
         <translation>D14|_0(`(,</translation>
     </message>
@@ -303,17 +303,17 @@ p, li { white-space: pre-wrap; }
         <translation>W4|2[\]1[\](`(,: T#3 (=0|_|_0vv1[\](`(, 477|21|3[_]73$ vv1|_|_ |33 |23[V]0\/3[) vv#3[\] [)3|_371[\](`(, 4|_|_ $3|_3(73[) 0|3]3(7(|_4$$3$. D0 `(0[_] vv4[\]7 70 (0[\]71[\][_]3?</translation>
     </message>
     <message>
-        <location filename="luma/plugins/template/gui/AddAttributeDialogDesign.py" line="81"/>
+        <location filename="luma/plugins/template/gui/AddAttributeDialogDesign.py" line="82"/>
         <source>Cancel</source>
         <translation>C4[\](3|_</translation>
     </message>
     <message>
-        <location filename="luma/plugins/template/gui/AddAttributeDialogDesign.py" line="82"/>
+        <location filename="luma/plugins/template/gui/AddAttributeDialogDesign.py" line="83"/>
         <source>OK</source>
         <translation>OK</translation>
     </message>
     <message>
-        <location filename="luma/plugins/template/gui/AddAttributeDialogDesign.py" line="83"/>
+        <location filename="luma/plugins/template/gui/AddAttributeDialogDesign.py" line="84"/>
         <source>Please select the attributes you want to add.</source>
         <translation>P|_34$3 $3|_3(7 7#3 477|21|3[_]73$ `(0[_] vv4[\]7 70 4[)[).</translation>
     </message>
@@ -392,10 +392,15 @@ the selected objectclass.&lt;/p&gt;</source>
         <translation>&lt;|3&gt;A[)[)1710[\]4|_ 477|21|3[_]73$&lt;/|3&gt;</translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/gui/AddAttributeWizardDesign.py" line="175"/>
+        <location filename="resources/forms/plugins/browser_plugin/AddAttributeWizardDesign.ui" line="81"/>
         <source>PI</source>
         <comment>DO NOT TRANSLATE</comment>
         <translation>PI</translation>
+    </message>
+    <message>
+        <location filename="luma/plugins/browser_plugin/gui/AddAttributeWizardDesign.py" line="175"/>
+        <source>PI</source>
+        <translation type="unfinished">PI</translation>
     </message>
 </context>
 <context>
@@ -613,157 +618,172 @@ the selected objectclass.&lt;/p&gt;</source>
         <translation>L0(4710[\]:</translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/gui/BinaryEditorDesign.py" line="92"/>
+        <location filename="resources/forms/plugins/browser_plugin/BinaryEditorDesign.ui" line="32"/>
         <source>IT</source>
         <comment>DO NOT TRANSLATE</comment>
         <translation>IT</translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/gui/BinaryEditorDesign.py" line="97"/>
+        <location filename="resources/forms/plugins/browser_plugin/BinaryEditorDesign.ui" line="113"/>
         <source>F</source>
         <comment>DO NOT TRANSLATE</comment>
         <translation>F</translation>
+    </message>
+    <message>
+        <location filename="luma/plugins/browser_plugin/gui/BinaryEditorDesign.py" line="92"/>
+        <source>IT</source>
+        <translation type="unfinished">IT</translation>
+    </message>
+    <message>
+        <location filename="luma/plugins/browser_plugin/gui/BinaryEditorDesign.py" line="97"/>
+        <source>F</source>
+        <translation type="unfinished">F</translation>
     </message>
 </context>
 <context>
     <name>BrowserView</name>
     <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="696"/>
+        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="717"/>
         <source>Delete</source>
         <translation>D3|_373</translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="697"/>
+        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="718"/>
         <source>Really delete?</source>
         <translation>R34|_|_`( [)3|_373?</translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="689"/>
+        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="710"/>
         <source>Error</source>
         <translation>E|2|20|2</translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="699"/>
+        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="720"/>
         <source>Deletion</source>
         <translation>D3|_3710[\]</translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="707"/>
+        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="728"/>
         <source>You need to restart the plugin for changes to take effect.</source>
         <translation>Y0[_] [\]33[) 70 |23$74|27 7#3 |*|_[_](`(,1[\] (=0|2 (#4[\](`(,3$ 70 74|&lt;3 3(=(=3(7.</translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="645"/>
+        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="666"/>
         <source>This is where entries are displayed when opened.</source>
         <translation>T#1$ 1$ vv#3|23 3[\]7|213$ 4|23 [)1$|*|_4`(3[) vv#3[\] 0|*3[\]3[).</translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="647"/>
+        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="668"/>
         <source>Edit Server Settings</source>
         <translation>E[)17 S3|2\/3|2 S3771[\](`(,$</translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="649"/>
+        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="670"/>
         <source>Open</source>
         <translation>O|*3[\]</translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="651"/>
+        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="672"/>
         <source>Reload</source>
         <translation>R3|_04[)</translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="653"/>
+        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="674"/>
         <source>Clear</source>
         <translation>C|_34|2</translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="655"/>
+        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="676"/>
         <source>Set Filter</source>
         <translation>S37 F1|_73|2</translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="657"/>
+        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="678"/>
         <source>Set Limit</source>
         <translation>S37 L1[V]17</translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="659"/>
+        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="680"/>
         <source>Add</source>
         <translation>A[)[)</translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="663"/>
+        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="684"/>
         <source>Export</source>
         <translation>E%|*0|27</translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="666"/>
+        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="687"/>
         <source>Entry</source>
         <translation>E[\]7|2`(</translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="668"/>
+        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="689"/>
         <source>Template</source>
         <translation>T3[V]|*|_473</translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="670"/>
+        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="691"/>
         <source>Item</source>
         <translation>I73[V]</translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="672"/>
+        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="693"/>
         <source>Subtree</source>
         <translation>S[_]|37|233</translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="674"/>
+        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="695"/>
         <source>Subtree with parents</source>
         <translation>S[_]|37|233 vv17# |*4|23[\]7$</translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="676"/>
+        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="697"/>
         <source>Items</source>
         <translation>I73[V]$</translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="678"/>
+        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="699"/>
         <source>Subtrees</source>
         <translation>S[_]|37|233$</translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="680"/>
+        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="701"/>
         <source>Subtrees with parents</source>
         <translation>S[_]|37|233$ vv17# |*4|23[\]7$</translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="683"/>
+        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="704"/>
         <source>Please wait</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="685"/>
+        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="706"/>
         <source>Please wait, fetching data...
 This message will automatically close when done...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="690"/>
+        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="711"/>
         <source>On {0}:
 {1}</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="693"/>
+        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="714"/>
         <source>See log for details</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="702"/>
+        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="723"/>
         <source>It&apos;s possible some of the selected items
 might not have been deleted, while others were.
 Do you wan&apos;t to update the list to reflect the changes?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="397"/>
+        <source>Do you want to reload to show the changes?</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1051,7 +1071,7 @@ Do you wan&apos;t to update the list to reflect the changes?</source>
 <context>
     <name>LDAPTreeItemModel</name>
     <message>
-        <location filename="luma/plugins/browser_plugin/model/LDAPTreeItemModel.py" line="188"/>
+        <location filename="luma/plugins/browser_plugin/model/LDAPTreeItemModel.py" line="189"/>
         <source>No servers defined</source>
         <translation>N0 $3|2\/3|2$ [)3(=1[\]3[)</translation>
     </message>
@@ -1356,7 +1376,7 @@ Do you wan&apos;t to update the list to reflect the changes?</source>
         <translation>&lt;|3&gt;P|_34$3 3[\]73|2 4 [\]3vv |*4$$vv0|2[).&lt;/|3&gt;</translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/gui/PasswordEditorDesign.py" line="135"/>
+        <location filename="resources/forms/plugins/browser_plugin/PasswordEditorDesign.ui" line="240"/>
         <source>PW</source>
         <comment>DO NOT TRANSLATE</comment>
         <translation>PW</translation>
@@ -1371,59 +1391,69 @@ Do you wan&apos;t to update the list to reflect the changes?</source>
         <source>Hidden string</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <location filename="luma/plugins/browser_plugin/gui/PasswordEditorDesign.py" line="135"/>
+        <source>PW</source>
+        <translation type="unfinished">PW</translation>
+    </message>
 </context>
 <context>
     <name>RdnEditorDesign</name>
     <message>
-        <location filename="luma/plugins/browser_plugin/gui/RdnEditorDesign.py" line="96"/>
+        <location filename="luma/plugins/browser_plugin/gui/RdnEditorDesign.py" line="99"/>
         <source>Edit DN</source>
         <translation>E[)17 DN</translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/gui/RdnEditorDesign.py" line="98"/>
+        <location filename="luma/plugins/browser_plugin/gui/RdnEditorDesign.py" line="102"/>
         <source>&amp;OK</source>
         <translation>&amp;OK</translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/gui/RdnEditorDesign.py" line="99"/>
+        <location filename="luma/plugins/browser_plugin/gui/RdnEditorDesign.py" line="103"/>
         <source>Alt+O</source>
         <translation>A|_7+O</translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/gui/RdnEditorDesign.py" line="100"/>
+        <location filename="luma/plugins/browser_plugin/gui/RdnEditorDesign.py" line="104"/>
         <source>&amp;Cancel</source>
         <translation>&amp;C4[\](3|_</translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/gui/RdnEditorDesign.py" line="101"/>
+        <location filename="luma/plugins/browser_plugin/gui/RdnEditorDesign.py" line="105"/>
         <source>Alt+C</source>
         <translation>A|_7+C</translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/gui/RdnEditorDesign.py" line="102"/>
+        <location filename="luma/plugins/browser_plugin/gui/RdnEditorDesign.py" line="106"/>
         <source>Value:</source>
         <translation>V4|_[_]3:</translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/gui/RdnEditorDesign.py" line="103"/>
+        <location filename="luma/plugins/browser_plugin/gui/RdnEditorDesign.py" line="107"/>
         <source>DN:</source>
         <translation>DN:</translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/gui/RdnEditorDesign.py" line="104"/>
+        <location filename="luma/plugins/browser_plugin/gui/RdnEditorDesign.py" line="108"/>
         <source>Please choose an attribute and enter a value for it. These values will be part of distinguished name for the new object.</source>
         <translation>P|_34$3 (#00$3 4[\] 477|21|3[_]73 4[\][) 3[\]73|2 4 \/4|_[_]3 (=0|2 17. T#3$3 \/4|_[_]3$ vv1|_|_ |33 |*4|27 0(= [)1$71[\](`(,[_]1$#3[) [\]4[V]3 (=0|2 7#3 [\]3vv 0|3]3(7.</translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/gui/RdnEditorDesign.py" line="105"/>
+        <location filename="luma/plugins/browser_plugin/gui/RdnEditorDesign.py" line="109"/>
         <source>Attribute:</source>
         <translation>A77|21|3[_]73:</translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/gui/RdnEditorDesign.py" line="97"/>
+        <location filename="luma/plugins/browser_plugin/gui/RdnEditorDesign.py" line="100"/>
         <source>IT</source>
         <comment>DO NOT TRANSLATE</comment>
         <translation>IT</translation>
+    </message>
+    <message>
+        <location filename="luma/plugins/browser_plugin/gui/RdnEditorDesign.py" line="101"/>
+        <source>Add attribute</source>
+        <translation type="unfinished">A[)[) 477|21|3[_]73</translation>
     </message>
 </context>
 <context>
@@ -1543,12 +1573,12 @@ Do you wan&apos;t to update the list to reflect the changes?</source>
 <context>
     <name>SearchPlugin</name>
     <message>
-        <location filename="luma/plugins/search/Search.py" line="396"/>
+        <location filename="luma/plugins/search/Search.py" line="395"/>
         <source>Search Form</source>
         <translation>S34|2(# F0|2[V]</translation>
     </message>
     <message>
-        <location filename="luma/plugins/search/Search.py" line="398"/>
+        <location filename="luma/plugins/search/Search.py" line="397"/>
         <source>Filter Builder</source>
         <translation>F1|_73|2 B[_]1|_[)3|2</translation>
     </message>
@@ -1685,12 +1715,12 @@ D0 `(0[_] $71|_|_ vv4[\]7 70 $4\/3?</translation>
         <translation>S3|_3(7 (3|271(=1(473 |&lt;3`((=1|_3</translation>
     </message>
     <message>
-        <location filename="luma/base/gui/ServerDialog.py" line="380"/>
+        <location filename="luma/base/gui/ServerDialog.py" line="384"/>
         <source>Bind to {0} successful!</source>
         <translation>B1[\][) 70 {0} $[_]((3$$(=[_]|_!</translation>
     </message>
     <message>
-        <location filename="luma/base/gui/ServerDialog.py" line="384"/>
+        <location filename="luma/base/gui/ServerDialog.py" line="388"/>
         <source>Bind to {0} failed:
 {1}
 
@@ -1701,7 +1731,7 @@ D0 `(0[_] $71|_|_ vv4[\]7 70 $4\/3?</translation>
 (Y0[_] [)0 [\]07 #4\/3 70 $|*3$1(=`( |*4$$vv0|2[)$ #3|23 -- `(0[_] vv1|_|_ |33 4$|&lt;3[) vv#3[\] [\]33[)3[).)</translation>
     </message>
     <message>
-        <location filename="luma/base/gui/ServerDialog.py" line="387"/>
+        <location filename="luma/base/gui/ServerDialog.py" line="391"/>
         <source>Bind to {0} failed:
 {1}</source>
         <translation>B1[\][) 70 {0} (=41|_3[):
@@ -2017,121 +2047,126 @@ D0 `(0[_] $71|_|_ vv4[\]7 70 $4\/3?</translation>
         <translation>V4|_[_]3:</translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/gui/StandardEditorDesign.py" line="85"/>
+        <location filename="resources/forms/plugins/browser_plugin/StandardEditorDesign.ui" line="32"/>
         <source>IT</source>
         <comment>DO NOT TRANSLATE</comment>
         <translation>IT</translation>
+    </message>
+    <message>
+        <location filename="luma/plugins/browser_plugin/gui/StandardEditorDesign.py" line="85"/>
+        <source>IT</source>
+        <translation type="unfinished">IT</translation>
     </message>
 </context>
 <context>
     <name>TemplateWidget</name>
     <message>
-        <location filename="luma/plugins/template/gui/TemplateWidgetDesign.py" line="208"/>
+        <location filename="luma/plugins/template/gui/TemplateWidgetDesign.py" line="207"/>
         <source>Delete</source>
         <translation>D3|_373</translation>
     </message>
     <message>
-        <location filename="luma/plugins/template/gui/TemplateWidget.py" line="268"/>
+        <location filename="luma/plugins/template/gui/TemplateWidget.py" line="260"/>
         <source>Are you sure you want to delete the selected attributes?</source>
         <translation>A|23 `(0[_] $[_]|23 `(0[_] vv4[\]7 70 [)3|_373 7#3 $3|_3(73[) 477|21|3[_]73$?</translation>
     </message>
     <message>
-        <location filename="luma/plugins/template/gui/TemplateWidgetDesign.py" line="184"/>
+        <location filename="luma/plugins/template/gui/TemplateWidgetDesign.py" line="183"/>
         <source>Form</source>
         <translation>F0|2[V]</translation>
     </message>
     <message>
-        <location filename="luma/plugins/template/gui/TemplateWidgetDesign.py" line="185"/>
+        <location filename="luma/plugins/template/gui/TemplateWidgetDesign.py" line="184"/>
         <source>Templates</source>
         <translation>T3[V]|*|_473$</translation>
     </message>
     <message>
-        <location filename="luma/plugins/template/gui/TemplateWidgetDesign.py" line="186"/>
+        <location filename="luma/plugins/template/gui/TemplateWidgetDesign.py" line="185"/>
         <source>Save template</source>
         <translation>S4\/3 73[V]|*|_473</translation>
     </message>
     <message>
-        <location filename="luma/plugins/template/gui/TemplateWidgetDesign.py" line="187"/>
+        <location filename="luma/plugins/template/gui/TemplateWidgetDesign.py" line="186"/>
         <source>Save</source>
         <translation>S4\/3</translation>
     </message>
     <message>
-        <location filename="luma/plugins/template/gui/TemplateWidgetDesign.py" line="188"/>
+        <location filename="luma/plugins/template/gui/TemplateWidgetDesign.py" line="187"/>
         <source>Add template</source>
         <translation>A[)[) 73[V]|*|_473</translation>
     </message>
     <message>
-        <location filename="luma/plugins/template/gui/TemplateWidgetDesign.py" line="206"/>
+        <location filename="luma/plugins/template/gui/TemplateWidgetDesign.py" line="205"/>
         <source>Add</source>
         <translation>A[)[)</translation>
     </message>
     <message>
-        <location filename="luma/plugins/template/gui/TemplateWidgetDesign.py" line="190"/>
+        <location filename="luma/plugins/template/gui/TemplateWidgetDesign.py" line="189"/>
         <source>Existing templates</source>
         <translation>E%1$71[\](`(, 73[V]|*|_473$</translation>
     </message>
     <message>
-        <location filename="luma/plugins/template/gui/TemplateWidgetDesign.py" line="191"/>
+        <location filename="luma/plugins/template/gui/TemplateWidgetDesign.py" line="190"/>
         <source>Delete template</source>
         <translation>D3|_373 73[V]|*|_473</translation>
     </message>
     <message>
-        <location filename="luma/plugins/template/gui/TemplateWidgetDesign.py" line="193"/>
+        <location filename="luma/plugins/template/gui/TemplateWidgetDesign.py" line="192"/>
         <source>Duplicate template</source>
         <translation>D[_]|*|_1(473 73[V]|*|_473</translation>
     </message>
     <message>
-        <location filename="luma/plugins/template/gui/TemplateWidgetDesign.py" line="194"/>
+        <location filename="luma/plugins/template/gui/TemplateWidgetDesign.py" line="193"/>
         <source>Duplicate</source>
         <translation>D[_]|*|_1(473</translation>
     </message>
     <message>
-        <location filename="luma/plugins/template/gui/TemplateWidgetDesign.py" line="195"/>
+        <location filename="luma/plugins/template/gui/TemplateWidgetDesign.py" line="194"/>
         <source>Server:</source>
         <translation>S3|2\/3|2:</translation>
     </message>
     <message>
-        <location filename="luma/plugins/template/gui/TemplateWidgetDesign.py" line="196"/>
+        <location filename="luma/plugins/template/gui/TemplateWidgetDesign.py" line="195"/>
         <source>Description:</source>
         <translation>D3$(|21|*710[\]:</translation>
     </message>
     <message>
-        <location filename="luma/plugins/template/gui/TemplateWidgetDesign.py" line="197"/>
+        <location filename="luma/plugins/template/gui/TemplateWidgetDesign.py" line="196"/>
         <source>Objectclasses</source>
         <translation>O|3]3(7(|_4$$3$</translation>
     </message>
     <message>
-        <location filename="luma/plugins/template/gui/TemplateWidgetDesign.py" line="198"/>
+        <location filename="luma/plugins/template/gui/TemplateWidgetDesign.py" line="197"/>
         <source>Add objectclasses</source>
         <translation>A[)[) 0|3]3(7(|_4$$3$</translation>
     </message>
     <message>
-        <location filename="luma/plugins/template/gui/TemplateWidgetDesign.py" line="200"/>
+        <location filename="luma/plugins/template/gui/TemplateWidgetDesign.py" line="199"/>
         <source>Added objectclasses</source>
         <translation>A[)[)3[) 0|3]3(7(|_4$$3$</translation>
     </message>
     <message>
-        <location filename="luma/plugins/template/gui/TemplateWidgetDesign.py" line="201"/>
+        <location filename="luma/plugins/template/gui/TemplateWidgetDesign.py" line="200"/>
         <source>Delete objectclasses</source>
         <translation>D3|_373 0|3]3(7(|_4$$3$</translation>
     </message>
     <message>
-        <location filename="luma/plugins/template/gui/TemplateWidgetDesign.py" line="203"/>
+        <location filename="luma/plugins/template/gui/TemplateWidgetDesign.py" line="202"/>
         <source>Attributes</source>
         <translation>A77|21|3[_]73$</translation>
     </message>
     <message>
-        <location filename="luma/plugins/template/gui/TemplateWidgetDesign.py" line="204"/>
+        <location filename="luma/plugins/template/gui/TemplateWidgetDesign.py" line="203"/>
         <source>Added attributes</source>
         <translation>A[)[)3[) 477|21|3[_]73$</translation>
     </message>
     <message>
-        <location filename="luma/plugins/template/gui/TemplateWidgetDesign.py" line="205"/>
+        <location filename="luma/plugins/template/gui/TemplateWidgetDesign.py" line="204"/>
         <source>Add attributes</source>
         <translation>A[)[) 477|21|3[_]73$</translation>
     </message>
     <message>
-        <location filename="luma/plugins/template/gui/TemplateWidgetDesign.py" line="207"/>
+        <location filename="luma/plugins/template/gui/TemplateWidgetDesign.py" line="206"/>
         <source>Delete attributes</source>
         <translation>D3|_373 477|21|3[_]73$</translation>
     </message>
