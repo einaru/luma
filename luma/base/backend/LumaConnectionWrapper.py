@@ -94,12 +94,14 @@ class LumaConnectionWrapper(QObject):
         Only use the exception passed if ``success`` is False.
         """
         bindWorker = BindWorker(self.lumaConnection, identStr)
-        bindWorker.workDone.connect(self.__bindThreadFinished)
+        #bindWorker.workDone.connect(self.__bindThreadFinished)
+        bindWorker.workDone.connect(self.bindFinished)
         thread = self.__createThread(bindWorker)
         thread.start()
 
     @pyqtSlot(bool, Exception, str)
     def __bindThreadFinished(self, success, exception, identStr):
+        self.logger.debug("bindthreadfinishe")
         self.bindFinished.emit(success, exception, identStr)
 
     ###########
@@ -297,7 +299,7 @@ class WorkerThread(QThread):
     def run(self):
         self.logger.debug("f0r exec"+str(self.i))
         self.exec_()
-        self.logger.debug("etter exec"+str(self.i))
+        self.logger.debug("etter exec"+str(self.i)+str(time.time()))
 
     def quit(self):
         QThread.quit(self)
@@ -311,14 +313,14 @@ class WorkerThread(QThread):
         # Remove from threadpool on finish
         #print "Debug -- before cleanup of threadpool:"
         #print WorkerThread.__threadPool
-        while not self.isFinished():
-            self.logger.debug("process")
-            qApp.processEvents()
-        self.logger.debug("isfinished")
+        #while not self.isFinished():
+        #    self.logger.debug("process")
+        #    qApp.processEvents()
+        self.logger.debug("isfinished"+str(time.time()))
         with WorkerThread.__Lock:
             WorkerThread.__threadPool.remove(self)
-        #print "Debug -- after cleanup of threadpool:"
-        #print WorkerThread.__threadPool
+        print "Debug -- after cleanup of threadpool:"
+        print WorkerThread.__threadPool
 
     def setWorker(self, worker):
         """Sets worker to be executed in this thread.
