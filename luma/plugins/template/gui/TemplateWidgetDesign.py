@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'd:\Skole\it2901\resources\forms\plugins\template\TemplateWidgetDesign.ui'
+# Form implementation generated from reading ui file '/mnt/debris/devel/git/luma/resources/forms/plugins/template/TemplateWidgetDesign.ui'
 #
-# Created: Tue May 10 20:07:31 2011
-#      by: PyQt4 UI code generator 4.8.2
+# Created: Wed May 11 13:31:20 2011
+#      by: PyQt4 UI code generator 4.8.3
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -73,6 +73,8 @@ class Ui_TemplateWidget(object):
         self.pushButtonTemplatesDuplicate.setSizePolicy(sizePolicy)
         self.pushButtonTemplatesDuplicate.setObjectName(_fromUtf8("pushButtonTemplatesDuplicate"))
         self.gridLayout_6.addWidget(self.pushButtonTemplatesDuplicate, 2, 1, 1, 1)
+        spacerItem = QtGui.QSpacerItem(40, 20, QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Minimum)
+        self.gridLayout_6.addItem(spacerItem, 1, 2, 2, 1)
         self.gridLayout.addWidget(self.groupBoxTemplates, 0, 0, 1, 1)
         self.layoutWidget1 = QtGui.QWidget(self.splitter_2)
         self.layoutWidget1.setObjectName(_fromUtf8("layoutWidget1"))

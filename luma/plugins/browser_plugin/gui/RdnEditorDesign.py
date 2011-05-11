@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file '/Users/perove_r/Documents/it2901/git/resources/forms/plugins/browser_plugin/RdnEditorDesign.ui'
+# Form implementation generated from reading ui file '/mnt/debris/devel/git/luma/resources/forms/plugins/browser_plugin/RdnEditorDesign.ui'
 #
-# Created: Wed May 11 10:48:25 2011
+# Created: Wed May 11 13:31:19 2011
 #      by: PyQt4 UI code generator 4.8.3
 #
 # WARNING! All changes made in this file will be lost!

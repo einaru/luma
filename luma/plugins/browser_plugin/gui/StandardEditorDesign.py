@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'd:\Skole\it2901\resources\forms\plugins\browser_plugin\StandardEditorDesign.ui'
+# Form implementation generated from reading ui file '/mnt/debris/devel/git/luma/resources/forms/plugins/browser_plugin/StandardEditorDesign.ui'
 #
-# Created: Tue May 10 19:41:57 2011
-#      by: PyQt4 UI code generator 4.8.2
+# Created: Wed May 11 13:31:18 2011
+#      by: PyQt4 UI code generator 4.8.3
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -82,7 +82,7 @@ class Ui_StandardEditorDesign(object):
 
     def retranslateUi(self, StandardEditorDesign):
         StandardEditorDesign.setWindowTitle(QtGui.QApplication.translate("StandardEditorDesign", "Edit attribute", None, QtGui.QApplication.UnicodeUTF8))
-        self.iconLabel.setText(QtGui.QApplication.translate("StandardEditorDesign", "IT", None, QtGui.QApplication.UnicodeUTF8))
+        self.iconLabel.setText(QtGui.QApplication.translate("StandardEditorDesign", "IT", "DO NOT TRANSLATE", QtGui.QApplication.UnicodeUTF8))
         self.attributeLabel.setText(QtGui.QApplication.translate("StandardEditorDesign", "Please enter a new value for the attribute <b>%1</b>.", None, QtGui.QApplication.UnicodeUTF8))
         self.okButton.setText(QtGui.QApplication.translate("StandardEditorDesign", "&OK", None, QtGui.QApplication.UnicodeUTF8))
         self.okButton.setShortcut(QtGui.QApplication.translate("StandardEditorDesign", "Alt+O", None, QtGui.QApplication.UnicodeUTF8))
