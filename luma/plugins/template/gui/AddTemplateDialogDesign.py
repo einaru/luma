@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'd:\Skole\it2901\resources\forms\plugins\template\AddTemplateDialogDesign.ui'
+# Form implementation generated from reading ui file '/mnt/debris/devel/git/luma/resources/forms/plugins/template/AddTemplateDialogDesign.ui'
 #
-# Created: Tue May 10 19:42:00 2011
-#      by: PyQt4 UI code generator 4.8.2
+# Created: Wed May 11 13:31:20 2011
+#      by: PyQt4 UI code generator 4.8.3
 #
 # WARNING! All changes made in this file will be lost!
 
