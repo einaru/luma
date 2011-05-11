@@ -12,7 +12,7 @@ class NewEntryDialog(QDialog, Ui_Dialog):
             smartObject = templateSmartObject 
         else:
             smartO = parentIndex.internalPointer().smartObject()
-            serverMeta = smartO.getServerMeta()
+            serverMeta = smartO.serverMeta
             baseDN = smartO.getDN()
             data = {}
             smartObject = AdvancedObjectWidget.smartObjectCopy(SmartDataObject((baseDN, data), serverMeta))

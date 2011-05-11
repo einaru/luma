@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'd:\Skole\it2901\resources\forms\plugins\browser_plugin\RdnEditorDesign.ui'
+# Form implementation generated from reading ui file '/Users/perove_r/Documents/it2901/git/resources/forms/plugins/browser_plugin/RdnEditorDesign.ui'
 #
-# Created: Tue May 10 19:41:56 2011
-#      by: PyQt4 UI code generator 4.8.2
+# Created: Wed May 11 10:48:25 2011
+#      by: PyQt4 UI code generator 4.8.3
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -36,6 +36,9 @@ class Ui_RdnEditorDesign(object):
         self.hboxlayout.setObjectName(_fromUtf8("hboxlayout"))
         spacerItem1 = QtGui.QSpacerItem(390, 21, QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Minimum)
         self.hboxlayout.addItem(spacerItem1)
+        self.addAttributeBox = QtGui.QCheckBox(RdnEditorDesign)
+        self.addAttributeBox.setObjectName(_fromUtf8("addAttributeBox"))
+        self.hboxlayout.addWidget(self.addAttributeBox)
         self.okButton = QtGui.QPushButton(RdnEditorDesign)
         self.okButton.setDefault(True)
         self.okButton.setObjectName(_fromUtf8("okButton"))
@@ -44,12 +47,12 @@ class Ui_RdnEditorDesign(object):
         self.cancelButton.setDefault(False)
         self.cancelButton.setObjectName(_fromUtf8("cancelButton"))
         self.hboxlayout.addWidget(self.cancelButton)
-        self.gridlayout.addLayout(self.hboxlayout, 7, 0, 1, 3)
+        self.gridlayout.addLayout(self.hboxlayout, 8, 0, 1, 3)
         self.line2 = QtGui.QFrame(RdnEditorDesign)
         self.line2.setFrameShape(QtGui.QFrame.HLine)
         self.line2.setFrameShadow(QtGui.QFrame.Sunken)
         self.line2.setObjectName(_fromUtf8("line2"))
-        self.gridlayout.addWidget(self.line2, 6, 0, 1, 3)
+        self.gridlayout.addWidget(self.line2, 7, 0, 1, 3)
         self.textLabel3 = QtGui.QLabel(RdnEditorDesign)
         self.textLabel3.setWordWrap(False)
         self.textLabel3.setObjectName(_fromUtf8("textLabel3"))
@@ -94,7 +97,8 @@ class Ui_RdnEditorDesign(object):
 
     def retranslateUi(self, RdnEditorDesign):
         RdnEditorDesign.setWindowTitle(QtGui.QApplication.translate("RdnEditorDesign", "Edit DN", None, QtGui.QApplication.UnicodeUTF8))
-        self.iconLabel.setText(QtGui.QApplication.translate("RdnEditorDesign", "IT", None, QtGui.QApplication.UnicodeUTF8))
+        self.iconLabel.setText(QtGui.QApplication.translate("RdnEditorDesign", "IT", "DO NOT TRANSLATE", QtGui.QApplication.UnicodeUTF8))
+        self.addAttributeBox.setText(QtGui.QApplication.translate("RdnEditorDesign", "Add attribute", None, QtGui.QApplication.UnicodeUTF8))
         self.okButton.setText(QtGui.QApplication.translate("RdnEditorDesign", "&OK", None, QtGui.QApplication.UnicodeUTF8))
         self.okButton.setShortcut(QtGui.QApplication.translate("RdnEditorDesign", "Alt+O", None, QtGui.QApplication.UnicodeUTF8))
         self.cancelButton.setText(QtGui.QApplication.translate("RdnEditorDesign", "&Cancel", None, QtGui.QApplication.UnicodeUTF8))

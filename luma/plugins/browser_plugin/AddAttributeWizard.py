@@ -129,7 +129,9 @@ class AddAttributeWizard(QWizard, Ui_AddAttributeWizardDesign):
             cleanList = filter(lambda x: x.lower() in tmpList, attributeList)
             tmpList = cleanList
         else:
-            tmpList = []
+            self.enableAllBox.setChecked(True)
+            self.enableAllBox.setEnabled(False)
+            tmpList = sorted(self.allPossibleAttributes)
         tmpList.sort()
         tmpList = filter(lambda x: not (x.lower() == "objectclass"), tmpList)
         map(self.attributeBox.addItem, tmpList)
@@ -182,6 +184,9 @@ class AddAttributeWizard(QWizard, Ui_AddAttributeWizardDesign):
                 for y in self.smartObject.getObjectClasses():
                     if self.SCHEMAINFO.sameObjectClassChain(x, y):
                         classList.append(x)
+        else:
+            classList = sorted(classList)
+
                         
         classList.sort()
                 
