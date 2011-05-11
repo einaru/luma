@@ -70,7 +70,6 @@ class LumaConnectionWrapper(QObject):
         QObject.__init__(self, parent)
         self.lumaConnection = LumaConnection(serverObject)
         self.logger = logging.getLogger(__name__)
-        LumaConnectionWrapper.i = LumaConnectionWrapper.i+1
     ###########
     # BIND
     ###########
@@ -200,6 +199,7 @@ class LumaConnectionWrapper(QObject):
     def __createThread(self, worker):
         # Create the thread
         workerThread = WorkerThread(LumaConnectionWrapper.i)
+        LumaConnectionWrapper.i = LumaConnectionWrapper.i+1
         # Move worker to thread
         workerThread.setWorker(worker)
         return workerThread
@@ -311,6 +311,10 @@ class WorkerThread(QThread):
         # Remove from threadpool on finish
         #print "Debug -- before cleanup of threadpool:"
         #print WorkerThread.__threadPool
+        while not self.isFinished():
+            self.logger.debug("process")
+            qApp.processEvents()
+        self.logger.debug("isfinished")
         with WorkerThread.__Lock:
             WorkerThread.__threadPool.remove(self)
         #print "Debug -- after cleanup of threadpool:"
