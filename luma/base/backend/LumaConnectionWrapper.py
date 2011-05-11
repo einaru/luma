@@ -70,6 +70,7 @@ class LumaConnectionWrapper(QObject):
         QObject.__init__(self, parent)
         self.lumaConnection = LumaConnection(serverObject)
         self.logger = logging.getLogger(__name__)
+
     ###########
     # BIND
     ###########
@@ -84,6 +85,12 @@ class LumaConnectionWrapper(QObject):
 
         while not thread.isFinished():
             self.__whileWaiting()
+        
+        # Make sure cleanup() is called since the
+        # finished()-signal connected to cleanup()
+        # might not be emitted.
+        if self.parent() == None:
+            thread.cleanup()
 
         return (bindWorker.success, bindWorker.exception)
 
@@ -94,15 +101,9 @@ class LumaConnectionWrapper(QObject):
         Only use the exception passed if ``success`` is False.
         """
         bindWorker = BindWorker(self.lumaConnection, identStr)
-        #bindWorker.workDone.connect(self.__bindThreadFinished)
         bindWorker.workDone.connect(self.bindFinished)
         thread = self.__createThread(bindWorker)
         thread.start()
-
-    @pyqtSlot(bool, Exception, str)
-    def __bindThreadFinished(self, success, exception, identStr):
-        self.logger.debug("bindthreadfinishe")
-        self.bindFinished.emit(success, exception, identStr)
 
     ###########
     # SEARCH
@@ -128,6 +129,12 @@ class LumaConnectionWrapper(QObject):
 
         while not thread.isFinished():
             self.__whileWaiting()
+        
+        # Make sure cleanup() is called since the
+        # finished()-signal connected to cleanup()
+        # might not be emitted.
+        if self.parent() == None:
+            thread.cleanup()
 
         return (searchWorker.success,
                 searchWorker.resultList,
@@ -154,16 +161,12 @@ class LumaConnectionWrapper(QObject):
             attrList, attrsonly,
             sizelimit, identStr
         )
-        searchWorker.workDone.connect(self.__searchThreadFinished)
+        searchWorker.workDone.connect(self.searchFinished)
         thread = self.__createThread(searchWorker)
         thread.start()
 
-    @pyqtSlot(bool, list, Exception, str)
-    def __searchThreadFinished(self, success, resultList, exception, identStr):
-            self.searchFinished.emit(success, resultList, exception, identStr)
-
     def getBaseDNListSync(self):
-        # TODO MAKE ASYNC VERSION
+        # TODO MAKE WORKER-OBJECT / ASYNC-VERSION
         return self.lumaConnection.getBaseDNList()
 
     ###########
@@ -200,8 +203,7 @@ class LumaConnectionWrapper(QObject):
 
     def __createThread(self, worker):
         # Create the thread
-        workerThread = WorkerThread(LumaConnectionWrapper.i)
-        LumaConnectionWrapper.i = LumaConnectionWrapper.i+1
+        workerThread = WorkerThread()
         # Move worker to thread
         workerThread.setWorker(worker)
         return workerThread
@@ -217,6 +219,7 @@ class BindWorker(QObject):
 
     #: signals that the worker thread is done
     workDone = pyqtSignal(bool, Exception, str)
+
     def __init__(self, lumaConnection, identStr = ""):
         QObject.__init__(self)
         self.lumaConnection = lumaConnection
@@ -238,6 +241,7 @@ class SearchWorker(QObject):
 
     #: signals that the worker thread is done
     workDone = pyqtSignal(bool, list, Exception, str)
+
     def __init__(self,
                  lumaConnection, base, scope, filter, attrList,
                  attrsonly, sizelimit, identStr = ""):
@@ -278,46 +282,36 @@ class WorkerThread(QThread):
     __threadPool = []
     __Lock = RLock()
 
-    def __init__(self, i, parent=None):
+    def __init__(self, parent=None):
         QThread.__init__(self, parent)
         self.logger = logging.getLogger(__name__)
-        self.i = i
 
         # Add to the threadpool so the thread is not GCed
         # while running.
         with WorkerThread.__Lock:
             WorkerThread.__threadPool.append(self)
-        self.logger.debug("init"+str(self.i))
 
         # Cleanup on finish
-        # Uncommented -- done in quit()
         self.finished.connect(self.cleanup)
         self.terminated.connect(self.cleanup)
+        self.cleaned = False
 
         self.worker = None
 
     def run(self):
-        self.logger.debug("f0r exec"+str(self.i))
         self.exec_()
-        self.logger.debug("etter exec"+str(self.i)+str(time.time()))
 
     def quit(self):
         QThread.quit(self)
-        self.logger.debug("Quit"+str(self.i))
-        #self.cleanup()
 
     def cleanup(self):
         """Removed this thread from the threadpool so that it is GCed.
         """
-        self.logger.debug("Cleanup"+str(self.i)+str(time.time()))
         # Remove from threadpool on finish
-        #print "Debug -- before cleanup of threadpool:"
-        #print WorkerThread.__threadPool
-        while not self.isFinished():
-            self.logger.debug(self+" was scheduled for cleanup but not finished")
-            qApp.processEvents()
         with WorkerThread.__Lock:
-            WorkerThread.__threadPool.remove(self)
+            if not self.cleaned == True:
+                WorkerThread.__threadPool.remove(self)
+                self.cleaned = True
         print "Debug -- after cleanup of threadpool:"
         print WorkerThread.__threadPool
 
@@ -330,6 +324,5 @@ class WorkerThread(QThread):
         self.started.connect(worker.doWork)
         # Stop thread on worker finish
         self.worker.workDone.connect(self.quit)
-
 
 # vim: tabstop=4 expandtab shiftwidth=4 softtabstop=4

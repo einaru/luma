@@ -113,7 +113,7 @@ class ServerList(object):
         """
         if self.__serverList != None:
             for x in self.__serverList:
-                if x.name == unicode(serverName):
+                if x.name == serverName:
                     return  x
         return None
 

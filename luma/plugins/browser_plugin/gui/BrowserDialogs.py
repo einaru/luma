@@ -44,6 +44,8 @@ class DeleteDialog(QtGui.QDialog, Ui_DeleteDialog):
             'document-close', ':/icons/64/document-close'))
 
         self.model = QtGui.QStandardItemModel()
+
+        self.model.setHorizontalHeaderLabels(["DN","Status"])
         self.items = sOList
         self.deleteDict = {}
         
@@ -121,6 +123,7 @@ class DeleteDialog(QtGui.QDialog, Ui_DeleteDialog):
         #BUSY
         
         # We now have a list with smartObjects to be deleted, so let's do so
+        # TODO Do in thread?
         for sO in deleteSOList:
             # Create a LumaConnection if necessary
             if not self.serverConnections.has_key(sO.serverMeta):
@@ -146,8 +149,8 @@ class DeleteDialog(QtGui.QDialog, Ui_DeleteDialog):
         #NOTBUSY
         
         # If everything we wanted to delete was deleted -- close
-        if allDeleted:
-            self.accept()
+        #if allDeleted:
+        #    self.accept()
             
     def cancel(self):
         if self.hasTriedToDelete:
