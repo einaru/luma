@@ -31,8 +31,6 @@ class AdvancedObjectWidget(QWidget):
         w = 24
         h = 24
         self.entryModel = None
-        #self.initModel(smartObject, create, entryTemplate)
-        #self.baseDN = smartObject.getDN()
 
         # Standard pixmaps used by the widget
         self.reloadPixmap = pixmapFromTheme(
@@ -62,7 +60,6 @@ class AdvancedObjectWidget(QWidget):
         self.currentDocument = ''
         self.addingToComboBox = False
         
-        self.ignoreSmartObjectInvalid = False
         # create the combobox containing the different views
         self.comboBox = QComboBox()
         self.currentTemplate = currentTemplate
@@ -130,7 +127,6 @@ class AdvancedObjectWidget(QWidget):
             "The ldap object is not valid\nClick Yes to view the object \nNo to view the errors \nIgnore to view the object and ignore this message.")
 
         self.buildToolBar()
-        #self.displayValues()
 
 ###############################################################################
 
@@ -192,18 +188,26 @@ class AdvancedObjectWidget(QWidget):
     
     @pyqtSlot(bool)
     def modelChanged(self, reload):
-        print "mc"
         if reload:
-            if not(self.ignoreSmartObjectInvalid) and not(self.entryModel.VALID):
-                result = QMessageBox.question(self,
-                                    self.trUtf8(""),
-                                    self.str_ENTRY_INVALID,
-                                    QMessageBox.Yes | QMessageBox.No | QMessageBox.Ignore,
-                                    QMessageBox.No)
-                if result == QMessageBox.No:
-                    self.currentTemplate = self.errorTemplate
-                elif result == QMessageBox.Ignore:
-                    self.ignoreSmartObjectInvalid = True
+            item = None
+            if self.treeIndex.isValid():
+                row = self.treeIndex.row()
+                column = self.treeIndex.column()
+                # QPersistenIndex doesn't have internalPointer()
+                # so we aquire a QModelIndex which does
+                item = self.treeIndex.sibling(row,column).internalPointer()
+            if not(self.entryModel.VALID):
+                if item == None or not(item.serverParent.ignoreItemErrors):
+                    result = QMessageBox.question(self,
+                                        self.trUtf8(""),
+                                        self.str_ENTRY_INVALID,
+                                        QMessageBox.Yes | QMessageBox.No | QMessageBox.Ignore,
+                                        QMessageBox.No)
+                    if result == QMessageBox.No:
+                        self.currentTemplate = self.errorTemplate
+                    elif result == QMessageBox.Ignore:
+                        if not(item == None):
+                            item.serverParent.ignoreItemErrors = True
         self.displayValues()
         
 ###############################################################################
