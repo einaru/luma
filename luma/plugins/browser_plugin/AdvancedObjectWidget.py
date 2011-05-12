@@ -127,7 +127,7 @@ class AdvancedObjectWidget(QWidget):
         self.str_MISSING_ENTRY = QtCore.QCoreApplication.translate("AdvancedObjectWidget", 
             "Did'nt receive a ldap-object, it might have been deleted")
         self.str_ENTRY_INVALID = QtCore.QCoreApplication.translate("AdvancedObjectWidget", 
-            "The ldap object is not valid, view errors?")
+            "The ldap object is not valid\nClick Yes to view the object \nNo to view the errors \nIgnore to view the object and ignore this message.")
 
         self.buildToolBar()
         #self.displayValues()
@@ -192,6 +192,7 @@ class AdvancedObjectWidget(QWidget):
     
     @pyqtSlot(bool)
     def modelChanged(self, reload):
+        print "mc"
         if reload:
             if not(self.ignoreSmartObjectInvalid) and not(self.entryModel.VALID):
                 result = QMessageBox.question(self,
@@ -199,7 +200,7 @@ class AdvancedObjectWidget(QWidget):
                                     self.str_ENTRY_INVALID,
                                     QMessageBox.Yes | QMessageBox.No | QMessageBox.Ignore,
                                     QMessageBox.No)
-                if result == QMessageBox.Yes:
+                if result == QMessageBox.No:
                     self.currentTemplate = self.errorTemplate
                 elif result == QMessageBox.Ignore:
                     self.ignoreSmartObjectInvalid = True
