@@ -556,10 +556,13 @@ class SmartDataObject (object):
         converted to their real repesentations.
         """
         
-        rdn = explodeDN(self.dn)[0]
-        tmpString = stripSpecialChars(rdn)
+        list = explodeDN(self.dn)
+        if list:
+            rdn = list[0]
+            tmpString = stripSpecialChars(rdn)
         
-        return tmpString.decode('utf-8')
+            return tmpString.decode('utf-8')
+        return "[EMPTY]"
         
 ###############################################################################
         
