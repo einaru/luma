@@ -81,19 +81,17 @@ functionality, through a number of plugins.</p>
 shortcut (<b>CTRL</b>+<b>SHIFT</b>+<b>S)</b>.</p>
 
 <p>After you have added one or more servers, you must activate the plugins you
-want to use: Select (<b>Edit</b> &rarr; <b>Configure Plugins</b>) from the
-menubar.</p>
+want to use: Select (<b>Edit</b> &rarr; <b>Settings</b>) from the
+menubar to open the <em>Settings dialog</em>, and select the <b>Plugins</b> tab.</p>
 
 <p>If you need additional help on how to use the application and/or a spesific
 plugin, please refer to the online
-<a href="http://folk.ntnu.no/einaru/luma/doc/userguide.html">User guide</a>.
-</p>
+<a href="http://folk.ntnu.no/einaru/luma/doc/userguide.html">User guide</a>.</p>
 
 <p>If you cannot find a plugin that suits your needs or you have ideas for a
 great Luma plugin, please feel free to
 <a href="http://luma.sf.net/">contact us</a> or even
-<a href="http://folk.ntnu.no/einaru/luma/doc/HACKING.html">contribute one your
-self</a>.</p>
+<a href="http://folk.ntnu.no/einaru/luma/doc/HACKING.html">contribute one your self</a>.</p>
 
 <h2>Problems and bugs</h2>
 
