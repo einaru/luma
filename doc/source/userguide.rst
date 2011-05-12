@@ -68,7 +68,7 @@ The Server Dialog is basically divided into three section:
 ============================
 When you have added servers to the serverlist its time to manage the available
 plugins. By default no plugins is activated. To activate a plugin you must
-select ``Edit → Configure Plugins`` from the menubar. A list of all avilable
+select ``Edit → Settings`` from the menubar to open the settings dialog, and select the plugins tab. A list of all avilable
 plugins will be shown, and you can select the plugins you can to activate.
 If the plugin support it, you can also edit plugin spesific settings from the
 same dialog.
@@ -90,8 +90,42 @@ configure the plugin settings (if the plugin supports this).
 
 3.1.1. Browser
 ..............
-- Description
-- Figur
+The browser consists of the list of server-trees on the left, and the entry-view on the right.
+
+**Server tree**
+
+The following operations is avaialable when rightclicking a node:
+Edit server settings
+
+- **Open**: Loads the selected object, if not already loaded, and displays it in the entry-view.
+- **Reload**: Removes the children from memory, and reloads them.
+- **Clear**: Remove the children from memory.
+- **Set filter**: Set the search filter used to collect the children, and reloads them.
+- **Set limit**: Set the limit of the nodes children.
+- **Add**: Add an entry using the selected nodes DN, and the selected template.
+- **Delete**: Delete the node on the server.
+- **Export**: Export the entry to file, with subtree or with subtree and parent.
+
+
+**Entry-view**
+
+The entry-view has the following functionality (on top):
+
+- **Reload**: Reload current entry, asks whether to save if it has been modified.
+- **Save**: Save changes done to the current entry.
+- **Add attribute**: Opens a dialog where you can select attributes from a list, and add them to the entry.
+- **Delete object**: Deletes the entry from server, if it is a leaf node.
+- **Switch between views**: A drop down list where you can select views.
+
+And the following inside the document:
+
+- **Delete objectclass**: A red cross behind the object class, deletes the object, and the attributes that are no longer supported.
+- **Edit attribute (RDN)**: Add a attribute as RDN (only on CREATE).
+- **Edit attribute (Password)**: Type a password, only ascii is allowed when using encryption.
+- **Edit attribute (Binary)**: Edit a binary attribute, opens a file dialog.
+- **Edit attribute (Normal)**: Plain text input (Not allowed for RDN).
+- **Delete attribute**: Delete the attribute (Not allowed for must with only one value)
+- **Export binary**: Export the value to file.
 
 
 3.1.2 Templates
@@ -207,6 +241,12 @@ The available filter syntaxes is:
 +-----------------------+-----------------------------------------------------+
 | ``Ctrl + W``          | Close the currently selected result view tab        |
 +-----------------------+-----------------------------------------------------+
+| **Browser plugin**                                                          |
++-----------------------+-----------------------------------------------------+
+| ``Ctrl + W``          | Close the current entry tab                         |
++-----------------------+-----------------------------------------------------+
+
+On Os X Ctrl is replaced with Meta
 
 
 5. Problems and bugs
