@@ -52,8 +52,6 @@ if sys.version_info >= (3,):
 ###########################################################
 """)
 try:
-    import sip
-    sip.setapi('QString', 2)
     from PyQt4.QtCore import (QEvent, Qt)
     from PyQt4.QtGui import (QApplication, QIcon)
 except ImportError, e:

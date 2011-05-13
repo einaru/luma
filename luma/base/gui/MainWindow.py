@@ -34,7 +34,7 @@ import logging
 import gc
 import platform
 
-from PyQt4.QtCore import (Qt, pyqtSlot, pyqtSignal)
+from PyQt4.QtCore import (Qt, QString, pyqtSlot, pyqtSignal)
 from PyQt4.QtCore import (QObject)
 from PyQt4.QtCore import (QEvent, QTimer)
 from PyQt4.QtCore import (QTranslator)
@@ -576,7 +576,7 @@ class LoggerWidget(QWidget, Ui_LoggerWidget):
     to filter the log based on the loglevel on messages.
     """
 
-    logSignal = pyqtSignal('QString')
+    logSignal = pyqtSignal(QString)
 
     def __init__(self, parent=None):
         QWidget.__init__(self, parent)
