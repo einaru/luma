@@ -57,7 +57,7 @@
 <p><em>Luma is LDAP management made easy.</em></p>
 <div class="section" id="getting-started">
 <h2>1. Getting started<a class="headerlink" href="#getting-started" title="Permalink to this headline">¶</a></h2>
-<p>On UNIX and UNIX-like systems after a succesfull installation, Luma can be
+<p>On UNIX and UNIX-like systems after a successful installation, Luma can be
 started from a shell, with the following command (provided the startup script
 is installed in the system <tt class="docutils literal"><span class="pre">PATH</span></tt>):</p>
 <div class="highlight-python"><pre>$ luma</pre>
@@ -84,7 +84,7 @@ Tab</em>. Here you will find a quick overview of how to get started using the Lu
 application. The first thing you need to do is to edit the <strong>serverlist</strong>. This
 can be done by selecting <tt class="docutils literal"><span class="pre">Edit</span> <span class="pre">→</span> <span class="pre">Server</span> <span class="pre">List</span></tt> from the menubar or with the
 keyboard shortcut <tt class="docutils literal"><span class="pre">Ctrl</span> <span class="pre">+</span> <span class="pre">Shift</span> <span class="pre">+</span> <span class="pre">S</span></tt>.</p>
-<p>When adding servers to the serverlist you are presented with alot of options.
+<p>When adding servers to the serverlist you are presented with many of options.
 The Server Dialog is basically divided into three section:</p>
 <ul class="simple">
 <li><strong>Network</strong>:
@@ -100,9 +100,9 @@ certificate.</li>
 <h2>3. Activate and use a plugin<a class="headerlink" href="#activate-and-use-a-plugin" title="Permalink to this headline">¶</a></h2>
 <p>When you have added servers to the serverlist its time to manage the available
 plugins. By default no plugins is activated. To activate a plugin you must
-select <tt class="docutils literal"><span class="pre">Edit</span> <span class="pre">→</span> <span class="pre">Settings</span></tt> from the menubar to open the settings dialog, and select the plugins tab. A list of all avilable
+select <tt class="docutils literal"><span class="pre">Edit</span> <span class="pre">→</span> <span class="pre">Settings</span></tt> from the menubar to open the settings dialog, and select the plugins tab. A list of all available
 plugins will be shown, and you can select the plugins you can to activate.
-If the plugin support it, you can also edit plugin spesific settings from the
+If the plugin support it, you can also edit plugin specific settings from the
 same dialog.</p>
 <p>When you have activated one or more plugins and closed the settings dialog, the
 activated plugins will be listed in the <em>Plugins tab</em> in the main window.
@@ -119,7 +119,7 @@ configure the plugin settings (if the plugin supports this).</p>
 <h4>3.1.1. Browser<a class="headerlink" href="#browser" title="Permalink to this headline">¶</a></h4>
 <p>The browser consists of the list of server-trees on the left, and the entry-view on the right.</p>
 <p><strong>Server tree</strong></p>
-<p>The following operations is avaialable when rightclicking a node:
+<p>The following operations is available when right clicking a node:
 Edit server settings</p>
 <ul class="simple">
 <li><strong>Open</strong>: Loads the selected object, if not already loaded, and displays it in the entry-view.</li>
@@ -153,15 +153,23 @@ Edit server settings</p>
 </div>
 <div class="section" id="templates">
 <h4>3.1.2 Templates<a class="headerlink" href="#templates" title="Permalink to this headline">¶</a></h4>
+<p>The template plugin is for making templates to use in making ldap entries.
+On the left side is the template list and it shows existing templates. The right side is the template view and shows information on the selected template.</p>
+<p><strong>Template list</strong></p>
+<p>The four buttons under the template list is:</p>
 <ul class="simple">
-<li>Description</li>
-<li>Figur</li>
+<li><strong>Add</strong>: Opens a dialog for adding a new template.</li>
+<li><strong>Save</strong>: Saves the template list to disk.</li>
+<li><strong>Delete</strong>: Deletes the selected template.</li>
+<li><strong>Duplicate</strong>: Duplicates the selected template.</li>
 </ul>
+<p><strong>Template view</strong></p>
+<p>In the upper part of the template view is the name of the server, which the template belongs to, and the description of the template. In the <em>Objectclasses</em> section the template&#8217;s objectclasses is shown and can be added and deleted. The <em>Attributes</em> section works the same way as the <em>Objectclasses</em> section, but you can also change the <em>must</em> of an attribute with no <em>must</em> to a blue checkmark. This is to show that you want the template to force an attribute to get a value when made in the browser plugin.</p>
 </div>
 <div class="section" id="search">
 <h4>3.1.3. Search<a class="headerlink" href="#search" title="Permalink to this headline">¶</a></h4>
-<p>The search plugin supports arbritrary LDAP search operations on a selected
-server. The plugin also includes a convinient Filter builder, which can be used
+<p>The search plugin supports arbitrary LDAP search operations on a selected
+server. The plugin also includes a convenient Filter builder, which can be used
 to build complex LDAP search filters.</p>
 <p><strong>Search form</strong></p>
 <p>In the <em>Search form</em> you select the server you wish to do a search operation on,
@@ -172,7 +180,7 @@ limit for the search. The search level options is:</p>
 <li><strong>SCOPE_ONELEVEL</strong>:</li>
 <li><strong>SCOPE_SUBTREE</strong>: (<em>Default</em>)</li>
 </ul>
-<p>The <em>size limit</em> defines the maximum number of matches to retrive from the
+<p>The <em>size limit</em> defines the maximum number of matches to retrieve from the
 search operation. The default value is 0 (which is the same as None).</p>
 <p>To perform a search you simply select a server, enter a search filter and click
 on the <em>Search</em> button. If the search filter contains no syntax errors, a
@@ -184,22 +192,22 @@ Search button.</p>
 <p>The <em>Filter builder</em> is intended to help the you construct complex LDAP search
 filters. Based on the currently selected server you are presented with a
 complete list of object classes and attributes that is supported on the server.</p>
-<p>The <em>Filter builder</em> is divided into a search critaria component creator, and a
+<p>The <em>Filter builder</em> is divided into a search criteria component creator, and a
 filter editor. When you create a search filter criteria, you insert it into the
 editor. The component will be inserted at the cursor position in the editor.
 In the filter editor you are able to perform various operations on selections.
 This includes to <tt class="docutils literal"><span class="pre">or</span></tt>, <tt class="docutils literal"><span class="pre">and</span></tt> or <tt class="docutils literal"><span class="pre">negate</span></tt> a selection of the search filter.
 You also is able to insert escaped special characters into the filter.</p>
 <p>Filters created in the <em>Filter builder</em> follows the <em>LDAP String Representation
-of Search Filters</em> spesifications defined in <tt class="docutils literal"><span class="pre">RFC4514</span></tt> <a class="footnote-reference" href="#id2" id="id1">[1]</a>.</p>
+of Search Filters</em> specifications defined in <tt class="docutils literal"><span class="pre">RFC4514</span></tt> <a class="footnote-reference" href="#id2" id="id1">[1]</a>.</p>
 <p><strong>Result view</strong></p>
 <p>When a search operation successfully returns. The matching LDAP entries are
 displayed in a new tab. The search result is displayed in a table view. The
-collumns in this table represents the DN plus one column for every attribute
+columns in this table represents the DN plus one column for every attribute
 used in the search filter.</p>
 <p>It is also possible to do additional filtering on columns in the result view.
 To open the result view filter box you can use the keyboard shortcut <tt class="docutils literal"><span class="pre">Ctrl</span> <span class="pre">+</span>
-<span class="pre">F</span></tt>. Here you can choose the filtering sysntax to use and the column to apply
+<span class="pre">F</span></tt>. Here you can choose the filtering syntax to use and the column to apply
 the filter on.</p>
 <p>The available filter syntaxes is:</p>
 <ul class="simple">
@@ -274,7 +282,7 @@ Note that this option can be very slow on large result sets.</li>
 <div class="section" id="problems-and-bugs">
 <h2>5. Problems and bugs<a class="headerlink" href="#problems-and-bugs" title="Permalink to this headline">¶</a></h2>
 <p>Luma tries to provide relevant feedback to the user, when illegal operations,
-errors and/or other problems occure. If you encounter some issues where the
+errors and/or other problems occur. If you encounter some issues where the
 application feedback is missing, you can try to start the application from a
 shell with the <tt class="docutils literal"><span class="pre">-v</span></tt> or <tt class="docutils literal"><span class="pre">--verbose</span></tt> option:</p>
 <div class="highlight-python"><pre>$ luma --verbose</pre>
@@ -286,7 +294,7 @@ application, in <a class="reference internal" href="#the-luma-logger-window">5.1
 <h3>5.1. The Luma Logger Window<a class="headerlink" href="#the-luma-logger-window" title="Permalink to this headline">¶</a></h3>
 <p>The <em>Logger Window</em> is not displayed by default. To display it you can select
 <tt class="docutils literal"><span class="pre">View</span> <span class="pre">→</span> <span class="pre">Logger</span> <span class="pre">Window</span></tt> from the menu bar, or use the keyboard shortcut <tt class="docutils literal"><span class="pre">Ctrl</span>
-<span class="pre">+</span> <span class="pre">L</span></tt>. If you want the <em>Logger Window</em> to be displayed everytime you start Luma
+<span class="pre">+</span> <span class="pre">L</span></tt>. If you want the <em>Logger Window</em> to be displayed every time you start Luma
 you can select this in the <em>Settings Dialog</em> (<tt class="docutils literal"><span class="pre">Edit</span> <span class="pre">→</span> <span class="pre">Settings</span></tt> in the
 menubar).</p>
 <p>The <em>Logger Window</em> can be customized to display only selected types of
@@ -299,7 +307,7 @@ Messages mostly intended for the developers to hunt down various issues.
 Some of these messages can be of great value when a problem occurs.</li>
 <li><strong>Info</strong>:
 Messages that only contain verbose information of things that happen
-succesfully.</li>
+successfully.</li>
 </ul>
 </div>
 <div class="section" id="reporting-bugs">
@@ -310,7 +318,7 @@ succesfully.</li>
 </div>
 <div class="section" id="contact-and-support">
 <h2>6. Contact and support<a class="headerlink" href="#contact-and-support" title="Permalink to this headline">¶</a></h2>
-<p>Application news and contact information can be found on the offical Luma
+<p>Application news and contact information can be found on the official Luma
 website <a class="reference external" href="http://luma.sf.net/">http://luma.sf.net/</a>.</p>
 </div>
 <div class="section" id="footnotes">
