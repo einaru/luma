@@ -5,18 +5,18 @@
 #     Christian Forfang, <cforfang@gmail.com>
 #     Johannes Harestad, <johannesharestad@gmail.com>
 #
-# Luma is free software; you can redistribute it and/or modify 
-# it under the terms of the GNU General Public Licence as published by 
-# the Free Software Foundation; either version 2 of the Licence, or 
+# Luma is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public Licence as published by
+# the Free Software Foundation; either version 2 of the Licence, or
 # (at your option) any later version.
 #
-# Luma is distributed in the hope that it will be useful, but 
+# Luma is distributed in the hope that it will be useful, but
 # WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY
-# or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public Licence 
+# or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public Licence
 # for more details.
 #
-# You should have received a copy of the GNU General Public Licence along 
-# with Luma; if not, write to the Free Software Foundation, Inc., 
+# You should have received a copy of the GNU General Public Licence along
+# with Luma; if not, write to the Free Software Foundation, Inc.,
 # 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA
 """
 This module contains several Luma Widget classes:
@@ -36,7 +36,7 @@ import platform
 
 from PyQt4.QtCore import (Qt, pyqtSlot, pyqtSignal)
 from PyQt4.QtCore import (QObject)
-from PyQt4.QtCore import (QEvent, QString, QTimer)
+from PyQt4.QtCore import (QEvent, QTimer)
 from PyQt4.QtCore import (QTranslator)
 
 from PyQt4.QtGui import (QAction, QActionGroup, QApplication, qApp)
@@ -88,9 +88,9 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         # in the toggleFullscreen slot.
         self.__tmpWinSize = self.size()
         self.eventFilter = LumaEventFilter(self)
-        
+
         self.mainTabs.installEventFilter(self.eventFilter)
-        
+
         self.translator = QTranslator()
         self.languageHandler = LanguageHandler()
         self.languages = self.languageHandler.availableLanguages
@@ -104,7 +104,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
         self.mainTabs.setTabsClosable(True)
         self.mainTabs.setContextMenuPolicy(Qt.CustomContextMenu)
-        self.mainTabs.customContextMenuRequested.connect(self.__mainTabsContextMenu)
+        self.mainTabs.customContextMenuRequested.connect(
+            self.__mainTabsContextMenu)
 
         self.defaultTabStyle = ''
         self.lumaHeadStyle = 'background: url(:/icons/luma-gray);\n' + \
@@ -138,9 +139,10 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         if self.mainTabs.count() > 0:
             return
             # The menu is displayed even when the rightclick is not
-            # done over the actual tabs so to avoid confusion the 
+            # done over the actual tabs so to avoid confusion the
             # function is disabled entirey
-            #menu.addAction(QApplication.translate("MainWindow", "Close all plugin-tabs"), self.tabCloseAll)
+            #menu.addAction(QApplication.translate(
+            #    "MainWindow", "Close all plugin-tabs"), self.tabCloseAll)
         else:
             # If there's no tabs, offer to display the pluginlist
             menu.addAction(self.actionShowPluginList)
@@ -150,7 +152,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         """Creates the pluign toolbar.
         """
         self.pluginToolBar = PluginToolBar(self)
-        self.pluginToolBar.setWindowTitle(QApplication.translate('MainWindow', 'Plugintoolbar', None, QApplication.UnicodeUTF8))
+        self.pluginToolBar.setWindowTitle(QApplication.translate(
+            'MainWindow', 'Plugintoolbar', None, QApplication.UnicodeUTF8))
         self.pluginToolBar.setObjectName('pluginToolBar')
         self.addToolBar(self.pluginToolBar)
         self.pluginToolBar.hide()
@@ -160,8 +163,10 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         """
         self.loggerDockWindow = QDockWidget(self)
         self.loggerDockWindow.setObjectName('loggerDockWindow')
-        self.loggerDockWindow.visibilityChanged[bool].connect(self.actionShowLogger.setChecked)
-        self.loggerDockWindow.setWindowTitle(QApplication.translate('MainWindow', 'Logger', None, QApplication.UnicodeUTF8))
+        self.loggerDockWindow.visibilityChanged[bool].connect(
+            self.actionShowLogger.setChecked)
+        self.loggerDockWindow.setWindowTitle(QApplication.translate(
+            'MainWindow', 'Logger', None, QApplication.UnicodeUTF8))
         self.loggerWidget = LoggerWidget(self.loggerDockWindow)
         self.loggerDockWindow.setWidget(self.loggerWidget)
         self.addDockWidget(Qt.BottomDockWidgetArea, self.loggerDockWindow)
@@ -187,12 +192,11 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
     def __loadSettings(self, mainWin=True):
         """Loads settings from file.
-        
-        Parameters:
-        
-        - `mainWin`: If set to ``False``, neither the values for the
-          window size or the window position will be loaded. This is
-          i.e done when the settings dialog returns 1.
+
+        :param mainWin: If set to ``False``, neither the values for the
+         window size or the window position will be loaded. This is
+         i.e done when the settings dialog returns 1.
+        :type mainWin: bool
         """
         settings = Settings()
         # We might want to use these methods to restore the
@@ -201,7 +205,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             self.restoreGeometry(settings.geometry)
         #self.restoreState(settings.state)
 
-        # If the geometry saved inticates fullscreen mode, 
+        # If the geometry saved inticates fullscreen mode,
         # we need to explicitly set the fullscreen menuaction checkbox
         if self.isFullScreen():
             self.actionFullscreen.setChecked(True)
@@ -256,11 +260,11 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
     def __switchTranslator(self, translator, qmFile):
         """Called when a new language is loaded.
-        
-        Parameters:
 
-        - `translator`: The translator object to install.
-        - `qmFile`: The translation file for the loaded language.
+        :param translator: The translator object to install.
+        :type translator: QTranslator
+        :qmFile: The translation file for the loaded language.
+        :type qmFile: string
         """
         qApp.removeTranslator(translator)
         if translator.load(qmFile):
@@ -272,15 +276,15 @@ class MainWindow(QMainWindow, Ui_MainWindow):
     @pyqtSlot('QAction*')
     @pyqtSlot(int)
     def languageChanged(self, value):
-        """This slot is called by actions and signals related to 
+        """This slot is called by actions and signals related to
         application translations. The slot contains validation for
         those parameters defined by the pyqtSlot meta info in the
         method header.
-        
-        Parameters:
-        - `value`: Can be either a ``QAction`` or an integer value.
-          I.e. menu actions provide ``QActions`` but a ``QCombobox`` 
-          might send it's index. 
+
+        :param value: Can be either a ``QAction`` or an integer value.
+         I.e. menu actions provide ``QActions`` but a ``QCombobox``
+         might send it's index.
+        :type value: QAction/int
         """
         locale = None
         if isinstance(value, int):
@@ -294,11 +298,11 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
     def loadLanguage(self, locale):
         """Loads a language by the given language iso code.
-        
-        Parameters:
-        - `locale`: A twoletter lowercase ISO 639 language code and
-          possibly a twoletter uppercase ISO 3166 country code
-          separeted by a underscore.
+
+        :param locale: A twoletter lowercase ISO 639 language code and
+         possibly a twoletter uppercase ISO 3166 country code separeted
+         by a underscore.
+        :type locale: string
         """
         if self.currentLanguage != locale:
             self.currentLanguage = locale
@@ -308,10 +312,9 @@ class MainWindow(QMainWindow, Ui_MainWindow):
     def changeEvent(self, event):
         """This event is called when a new translator is loaded or the
         system language (locale) is changed.
-        
-        Parameters:
 
-        - `event`: The event that generated the `changeEvent`.
+        :param event: The event that generated the `changeEvent`.
+        :type event: QEvent
         """
         if None != event:
             type = event.type()
@@ -323,15 +326,14 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         """Slot for displaying the about dialog.
         """
         AboutDialog().exec_()
-    
+
     @pyqtSlot(bool)
     def toggleLoggerWindow(self, show):
         """Slot for toggling the logger window.
-        
-        Parameters:
-        
-        - `show`: a boolean value indicating whether the logger window
-          should be shown or not.
+
+        :param show: a boolean value indicating whether the logger window
+         should be shown or not.
+        :type show: bool
         """
         if show:
             self.loggerDockWindow.show()
@@ -341,11 +343,10 @@ class MainWindow(QMainWindow, Ui_MainWindow):
     @pyqtSlot(bool)
     def toggleStatusbar(self, show):
         """Slot for toggling the logger window.
-        
-        Parameters:
-        
-        - `show`: a boolean value indicating whether the statusbar
-          should be shown or not.
+
+        :param show: a boolean value indicating whether the statusbar
+         should be shown or not.
+        :type show: bool
         """
         if show:
             self.statusBar.show()
@@ -355,11 +356,10 @@ class MainWindow(QMainWindow, Ui_MainWindow):
     @pyqtSlot(bool)
     def toggleFullscreen(self, fullscreen):
         """Slot for toggling the logger window.
-        
-        Parameters:
-        
-        - `fullscreen`: a boolean value indicating whether to enter
-          fullscreenmode or not.
+
+        :param fullscreen: a boolean value indicating whether to enter
+         fullscreenmode or not.
+        :type fullcreen: bool
         """
         if fullscreen:
             self.__tmpWinSize = self.size()
@@ -375,43 +375,53 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         r = serverEditor.exec_()
         if r:
             #TODO -- only display if plugins open:
-            self.serversChangedMessage.showMessage(QApplication.translate("MainWindow","You may need to restart plugins for changes to take effect."))
+            self.serversChangedMessage.showMessage(QApplication.translate(
+                "MainWindow",
+                "You may need to restart plugins for changes to take effect."))
 
     def showTempPasswordDialog(self):
         """ Sets overridePassword for a server.
         Using this one doesn't actually have to enter the password
         in the ServerDialog (and by extension save to disk).
         """
-
-        
         serverList = ServerList()
-        
+
         # Create a stringlist to be used by the qinputdialog
         stringList = []
         for server in serverList.getTable():
             stringList.append(server.name)
 
         # Display list of servers
-        (serverString, ok) =  QInputDialog.getItem(self, QApplication.translate("MainWindow", "Select server"), QApplication.translate("MainWindow", "Server:"), stringList, editable = False)
+        (serverString, ok) = QInputDialog.getItem(
+            self,
+            QApplication.translate("MainWindow", "Select server"),
+            QApplication.translate("MainWindow", "Server:"),
+            stringList,
+            editable=False
+        )
         if ok:
             server = serverList.getServerObjectByName(serverString)
             if server != None:
                 # Ask for password
-                (value, ok) = QInputDialog.getText(self, QApplication.translate("MainWindow", "Temporary password"), QApplication.translate("MainWindow","Enter password:"), QLineEdit.Password)
+                (value, ok) = QInputDialog.getText(
+                    self,
+                    QApplication.translate("MainWindow", "Temporary password"),
+                    QApplication.translate("MainWindow", "Enter password:"),
+                    QLineEdit.Password
+                )
                 if ok:
                     # Use value as the overridePassword for the server.
                     LumaConnection(server).overridePassword(value)
 
-
     def showSettingsDialog(self, tab=0):
         """Slot to display the settings dialog. If the settings dialog
         returns 1, i.e. the user has clicked the ok button, the
-        loadSettings method is called with mainWin=False, to load the 
+        loadSettings method is called with mainWin=False, to load the
         (assumed) newly changed settings.
-        
-        Parameters:
-        
-        - `tab`: The index of the tab to display in the settings dialog. 
+
+        :param tab: The index of the tab to display in the settings
+         dialog.
+        :type tab: int
         """
         #settingsDialog = SettingsDialog(self.currentLanguage, self.languages)
         settingsDialog = SettingsDialog()
@@ -420,7 +430,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         settingsDialog.tabWidget.setCurrentIndex(tab)
         if settingsDialog.exec_():
             self.reloadPlugins()
-#            # We assume that some settings is changed 
+#            # We assume that some settings is changed
 #            # if the user clicked the ok button, and
 #            # reloads the application settings
 #            self.__loadSettings(mainWin=False)
@@ -449,12 +459,14 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         widget = item.plugin.getPluginWidget(None, self)
 
         if platform.system() == "Windows":
-            scroll = QScrollArea() 
+            scroll = QScrollArea()
             scroll.setWidget(widget)
             scroll.setWidgetResizable(True)
-            index = self.mainTabs.addTab(scroll, item.icon(), item.plugin.pluginUserString)
+            index = self.mainTabs.addTab(
+                scroll, item.icon(), item.plugin.pluginUserString)
         else:
-            index = self.mainTabs.addTab(widget, item.icon(), item.plugin.pluginUserString)
+            index = self.mainTabs.addTab(
+                widget, item.icon(), item.plugin.pluginUserString)
 
         self.mainTabs.setCurrentIndex(index)
 
@@ -507,7 +519,9 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         """
         self.__setTabWidgetStyle(self.defaultTabStyle)
         if self.mainTabs.indexOf(self.pluginWidget) == -1:
-            index = self.mainTabs.addTab(self.pluginWidget, QApplication.translate("MainWindow", "Plugins"))
+            index = self.mainTabs.addTab(
+                self.pluginWidget, QApplication.translate(
+                    "MainWindow", "Plugins"))
             self.mainTabs.setCurrentIndex(index)
             self.actionShowPluginList.setEnabled(False)
 
@@ -521,7 +535,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
 class LumaEventFilter(QObject):
     """An Event handler for the Luma Main application.
-    
+
     To act upon widget events, install an instance of this class with
     the target widget, and add the capture logic in the eventFilter
     method.
@@ -529,11 +543,11 @@ class LumaEventFilter(QObject):
 
     def eventFilter(self, target, event):
         """
-        Parameters:
-        
-        - `target`: a QObject that contains the target widget, i.e the
-          widget that got the handler installed.
-        - `event`: the QEvent event to act upon.
+        :param target: a QObject that contains the target widget, i.e
+         the widget that got the handler installed.
+        :type target: QObject
+        :param event: the event to act upon.
+        :type event: QEvent
         """
         if event.type() == QEvent.KeyPress:
             # If we have a match on the QKeySequence we're looking for
@@ -550,19 +564,19 @@ class LumaEventFilter(QObject):
                     # we need to inform the eventHandler about this.
                     return True
 
-        # All events we didn't act upon must be forwarded        
+        # All events we didn't act upon must be forwarded
         return QObject.eventFilter(self, target, event)
 
 
 class LoggerWidget(QWidget, Ui_LoggerWidget):
     """The Luma logger window.
-    
+
     This widget contains a text field where the LumaLogHandler is
     writing it's log messages to. The widget also provides options
     to filter the log based on the loglevel on messages.
     """
 
-    logSignal = pyqtSignal(QString)
+    logSignal = pyqtSignal('QString')
 
     def __init__(self, parent=None):
         QWidget.__init__(self, parent)
@@ -578,60 +592,50 @@ class LoggerWidget(QWidget, Ui_LoggerWidget):
         self.logSignal.connect(self.appendMsg)
 
     def clearLogger(self):
-        """
-        Clears the logwindow. Currently the loglist is deleted when this
-        method is called.
+        """Clears the logwindow. Currently the loglist is deleted when
+        this method is called.
         """
         self.logList = []
         self.messageEdit.clear()
 
     def rebuildLog(self):
-        """
-        This method is called when on of the checkboxes indicates new
-        filter state.
+        """This method is called when on of the checkboxes indicates
+        new filter state.
         """
         self.messageEdit.clear()
         # Filter out unwanted log-items
         for l in self.logList:
-            self.log(l, rebuild = True)
+            self.log(l, rebuild=True)
 
-    @pyqtSlot(QString)
+    @pyqtSlot('QString')
     def appendMsg(self, msg):
-        """
-        For thread-safety: this is executed in the thread
-        which owns the loggerwidget, ie. the gui-thread
+        """For thread-safety: this is executed in the thread which owns
+        the loggerwidget, i.e. the gui-thread.
         """
         self.messageEdit.append(msg)
 
-    def log(self, log, rebuild = False):
-        """
-        Appends the log the the logList
-        and uses a signal in order to have it 
-        be appended to the textfield by the gui-thread
+    def log(self, log, rebuild=False):
+        """Appends the log the the logList and uses a signal in order
+        to have it be appended to the textfield by the gui-thread.
         """
         loglvl, msg, name, threadName = log
+        #: Log message format. 0: loglvl, 1: name, 2: threadname, 3: msg
+        _msg = '{0}: [{1}/{2}]: {3}'
         if not rebuild:
             self.logList.append(log)
-        if loglvl == "DEBUG" and self.debugBox.isChecked():
-            self.logSignal.emit("DEBUG ["+name+"/"+threadName+"]: " + msg)
-            return
-        if loglvl == "ERROR" and self.errorBox.isChecked():
-            self.logSignal.emit("ERROR: ["+name+"/"+threadName+"]: " + msg)
-            return
-        if loglvl == "INFO" and self.infoBox.isChecked():
-            self.logSignal.emit("INFO: ["+name+"/"+threadName+"]: " + msg)
-            return
         if loglvl not in ["INFO", "ERROR", "DEBUG"]:
             # This shouldn't really happen...
             # Please only use the above levels
-            self.logSignal.emit("UNKNOWN: ["+name+"/"+threadName+"]: " + msg)
+            self.logSignal.emit(_msg.format('UNKNOWN', name, threadName, msg))
+        else:
+            self.logSignal.emit(_msg.format(loglvl, name, threadName, msg))
 
 
 class PluginToolBar(QToolBar):
     """The plugin toolbar.
-    
+
     Provides a toolbar for quickly switching between installed plugins
-    
+
     The button will be enabled and disabled directly from main-win,
     and the label for the plugin-name too.
     """
@@ -656,8 +660,10 @@ class PluginToolBar(QToolBar):
         self.button.clicked.connect(self.choosePlugin)
 
     def retranslateUi(self, pluginToolBar):
-        pluginToolBar.label.setText(QApplication.translate('MainWindow', 'Available plugins', None, QApplication.UnicodeUTF8))
-        pluginToolBar.button.setText(QApplication.translate('MainWindow', 'Choose plugin', None, QApplication.UnicodeUTF8))
+        pluginToolBar.label.setText(QApplication.translate(
+            'MainWindow', 'Available plugins', None, QApplication.UnicodeUTF8))
+        pluginToolBar.button.setText(QApplication.translate(
+            'MainWindow', 'Choose plugin', None, QApplication.UnicodeUTF8))
 
     def choosePlugin(self):
         if hasattr(self.parent, "showPlugins"):

@@ -21,7 +21,6 @@
 from PyQt4.QtCore import (Qt)
 from PyQt4.QtGui import (QCompleter, QWidget)
 
-from .Search import encodeUTF8
 from .gui.SearchFormDesign import Ui_SearchForm
 
 
@@ -162,8 +161,9 @@ class SearchForm(QWidget, Ui_SearchForm):
     def filter(self):
         # Python-LDAP takes strings in UTF8
         # TODO: run some validation on the filter
-        return self.__escape(encodeUTF8(unicode(self.filterBoxEdit.currentText())))
-
+        return self.__escape(
+                encodeUTF8(unicode(
+                    self.filterBoxEdit.currentText())))
 
 class AttributeCompleter(QCompleter):
     """Attribute Completer for the search plugin.

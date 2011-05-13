@@ -17,7 +17,7 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see http://www.gnu.org/licenses/
-from PyQt4.QtCore import (QDir, QLocale, QString)
+from PyQt4.QtCore import (QDir, QLocale)
 
 
 class LanguageHandler(object):
@@ -97,7 +97,7 @@ class LanguageHandler(object):
         if locale == '' or locale == None:
             locale = 'en'
 
-        return QString(':/i18n/{0}'.format(locale))
+        return ':/i18n/{0}'.format(locale)
 
 
 # vim: tabstop=4 expandtab shiftwidth=4 softtabstop=4

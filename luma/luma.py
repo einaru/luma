@@ -51,7 +51,9 @@ if sys.version_info >= (3,):
 ## Please consider a downgrade.                          ##
 ###########################################################
 """)
-try: 
+try:
+    import sip
+    sip.setapi('QString', 2)
     from PyQt4.QtCore import (QEvent, Qt)
     from PyQt4.QtGui import (QApplication, QIcon)
 except ImportError, e:
@@ -87,7 +89,7 @@ except ImportError:
 if failed:
     print "Exiting ..."
     sys.exit(1)
-       
+
 del failed
 import __init__ as appinfo
 from base.backend.Log import LumaLogHandler

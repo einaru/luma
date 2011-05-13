@@ -100,7 +100,7 @@ certificate.</li>
 <h2>3. Activate and use a plugin<a class="headerlink" href="#activate-and-use-a-plugin" title="Permalink to this headline">¶</a></h2>
 <p>When you have added servers to the serverlist its time to manage the available
 plugins. By default no plugins is activated. To activate a plugin you must
-select <tt class="docutils literal"><span class="pre">Edit</span> <span class="pre">→</span> <span class="pre">Configure</span> <span class="pre">Plugins</span></tt> from the menubar. A list of all avilable
+select <tt class="docutils literal"><span class="pre">Edit</span> <span class="pre">→</span> <span class="pre">Settings</span></tt> from the menubar to open the settings dialog, and select the plugins tab. A list of all avilable
 plugins will be shown, and you can select the plugins you can to activate.
 If the plugin support it, you can also edit plugin spesific settings from the
 same dialog.</p>
@@ -117,9 +117,38 @@ functionality to the application.
 configure the plugin settings (if the plugin supports this).</p>
 <div class="section" id="browser">
 <h4>3.1.1. Browser<a class="headerlink" href="#browser" title="Permalink to this headline">¶</a></h4>
+<p>The browser consists of the list of server-trees on the left, and the entry-view on the right.</p>
+<p><strong>Server tree</strong></p>
+<p>The following operations is avaialable when rightclicking a node:
+Edit server settings</p>
 <ul class="simple">
-<li>Description</li>
-<li>Figur</li>
+<li><strong>Open</strong>: Loads the selected object, if not already loaded, and displays it in the entry-view.</li>
+<li><strong>Reload</strong>: Removes the children from memory, and reloads them.</li>
+<li><strong>Clear</strong>: Remove the children from memory.</li>
+<li><strong>Set filter</strong>: Set the search filter used to collect the children, and reloads them.</li>
+<li><strong>Set limit</strong>: Set the limit of the nodes children.</li>
+<li><strong>Add</strong>: Add an entry using the selected nodes DN, and the selected template.</li>
+<li><strong>Delete</strong>: Delete the node on the server.</li>
+<li><strong>Export</strong>: Export the entry to file, with subtree or with subtree and parent.</li>
+</ul>
+<p><strong>Entry-view</strong></p>
+<p>The entry-view has the following functionality (on top):</p>
+<ul class="simple">
+<li><strong>Reload</strong>: Reload current entry, asks whether to save if it has been modified.</li>
+<li><strong>Save</strong>: Save changes done to the current entry.</li>
+<li><strong>Add attribute</strong>: Opens a dialog where you can select attributes from a list, and add them to the entry.</li>
+<li><strong>Delete object</strong>: Deletes the entry from server, if it is a leaf node.</li>
+<li><strong>Switch between views</strong>: A drop down list where you can select views.</li>
+</ul>
+<p>And the following inside the document:</p>
+<ul class="simple">
+<li><strong>Delete objectclass</strong>: A red cross behind the object class, deletes the object, and the attributes that are no longer supported.</li>
+<li><strong>Edit attribute (RDN)</strong>: Add a attribute as RDN (only on CREATE).</li>
+<li><strong>Edit attribute (Password)</strong>: Type a password, only ascii is allowed when using encryption.</li>
+<li><strong>Edit attribute (Binary)</strong>: Edit a binary attribute, opens a file dialog.</li>
+<li><strong>Edit attribute (Normal)</strong>: Plain text input (Not allowed for RDN).</li>
+<li><strong>Delete attribute</strong>: Delete the attribute (Not allowed for must with only one value)</li>
+<li><strong>Export binary</strong>: Export the value to file.</li>
 </ul>
 </div>
 <div class="section" id="templates">
@@ -233,8 +262,14 @@ Note that this option can be very slow on large result sets.</li>
 <tr><td><tt class="docutils literal"><span class="pre">Ctrl</span> <span class="pre">+</span> <span class="pre">W</span></tt></td>
 <td>Close the currently selected result view tab</td>
 </tr>
+<tr><td colspan="2"><strong>Browser plugin</strong></td>
+</tr>
+<tr><td><tt class="docutils literal"><span class="pre">Ctrl</span> <span class="pre">+</span> <span class="pre">W</span></tt></td>
+<td>Close the current entry tab</td>
+</tr>
 </tbody>
 </table>
+<p>On Os X Ctrl is replaced with Meta</p>
 </div>
 <div class="section" id="problems-and-bugs">
 <h2>5. Problems and bugs<a class="headerlink" href="#problems-and-bugs" title="Permalink to this headline">¶</a></h2>
