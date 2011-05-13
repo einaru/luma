@@ -139,7 +139,7 @@ class SearchForm(QWidget, Ui_SearchForm):
     @property
     def baseDN(self):
         # Python-LDAP takes strings in UTF8
-        return encodeUTF8(unicode(self.baseDNBox.currentText()))
+        return unicode(self.baseDNBox.currentText())
 
     @property
     def scope(self):
@@ -162,8 +162,8 @@ class SearchForm(QWidget, Ui_SearchForm):
         # Python-LDAP takes strings in UTF8
         # TODO: run some validation on the filter
         return self.__escape(
-                encodeUTF8(unicode(
-                    self.filterBoxEdit.currentText())))
+                unicode(
+                    self.filterBoxEdit.currentText()))
 
 class AttributeCompleter(QCompleter):
     """Attribute Completer for the search plugin.

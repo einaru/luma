@@ -140,9 +140,9 @@ class FilterBuilder(QWidget, Ui_FilterBuilder):
         """
         item = unicode(item)
         if not item.startswith('('):
-            item = '({0}'.format(item)
+            item = u'({0}'.format(item)
         if not item.endswith(')'):
-            item = '{0})'.format(item)
+            item = u'{0})'.format(item)
         return item
 
     def __addFilterComponent(self, assertion):
@@ -270,7 +270,7 @@ class FilterBuilder(QWidget, Ui_FilterBuilder):
             self.__moveCursor(QTextCursor.Left, 2)
         else:
             tmp = self.__escapeFilterItem(tmp)
-            self.filterEdit.insertPlainText('(!{0})'.format(tmp))
+            self.filterEdit.insertPlainText(u'(!{0})'.format(tmp))
 
     def onAndButtonClicked(self):
         """Slot for the and button.
@@ -293,7 +293,7 @@ class FilterBuilder(QWidget, Ui_FilterBuilder):
             self.__moveCursor(QTextCursor.Left, 2)
         else:
             tmp = self.__escapeFilterItem(tmp)
-            self.filterEdit.insertPlainText('(&{0})'.format(tmp))
+            self.filterEdit.insertPlainText(u'(&{0})'.format(tmp))
 
     def onOrButtonClicked(self):
         """Slot for the or button.
@@ -316,7 +316,7 @@ class FilterBuilder(QWidget, Ui_FilterBuilder):
             self.__moveCursor(QTextCursor.Left, 2)
         else:
             tmp = self.__escapeFilterItem(tmp)
-            self.filterEdit.insertPlainText('(|{0})'.format(tmp))
+            self.filterEdit.insertPlainText(u'(|{0})'.format(tmp))
 
     def onAddSpecialCharButtonClicked(self):
         """Slot for the add special char button.
@@ -337,7 +337,7 @@ class FilterBuilder(QWidget, Ui_FilterBuilder):
         """
         if self.rbObjectClass.isChecked():
             obj = unicode(self.optionBox.currentText())
-            component = 'objectClass={0}'.format(obj)
+            component = u'objectClass={0}'.format(obj)
         elif self.rbAttribute.isChecked():
             attr = unicode(self.optionBox.currentText())
             eq = self.__filterType(self.filterTypeBox.currentIndex())
@@ -373,7 +373,7 @@ class FilterBuilder(QWidget, Ui_FilterBuilder):
             flag = 'w'
         # Try to save the file.
         with open(filterFile, flag) as f:
-            f.write('{0}\n'.format(filterToSave))
+            f.write(u'{0}\n'.format(filterToSave))
 
         # We emit the filterSaved signal after the file is closed
         self.filterSaved.emit()
