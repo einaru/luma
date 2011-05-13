@@ -85,6 +85,7 @@ class HtmlParser:
                 return self.createAttributeValueString(id)
             elif functioncall == "createErrorMessageList":
                 return self.createErrorMessageList()
+        return "Invalid syntax in html document<br />"
 
     def getPrettyDN(self):
         tmpList = []
