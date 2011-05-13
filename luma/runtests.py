@@ -9,7 +9,11 @@ if __name__ == "__main__":
     l = logging.getLogger()
     l.setLevel(logging.ERROR)
     #l.addHandler(logging.StreamHandler()) #Uncomment for logging to console
-    l.addHandler(logging.NullHandler()) #Comment this if adding the above
+    try:
+        l.addHandler(logging.NullHandler()) #Comment this if adding the above
+    except Exception:
+        #Null handler is new in 2.7
+        pass
     
     # Get the tests
     suite1 = ServerListTest.suite()

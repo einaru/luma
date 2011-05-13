@@ -124,7 +124,7 @@ class AdvancedObjectWidget(QWidget):
         self.str_MISSING_ENTRY = QtCore.QCoreApplication.translate("AdvancedObjectWidget", 
             "Did'nt receive a ldap-object, it might have been deleted")
         self.str_ENTRY_INVALID = QtCore.QCoreApplication.translate("AdvancedObjectWidget", 
-            "The ldap object is not valid\nClick Yes to view the object \nNo to view the errors \nIgnore to view the object and ignore this message.")
+            "The ldap object is not valid\nClick Yes to view the object anyway\nNo to view the errors \nIgnore to view the object and ignore this message in later attempts.")
 
         self.buildToolBar()
 
