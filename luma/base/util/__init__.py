@@ -71,9 +71,10 @@ def encodeUTF8(text, strip=False):
     :param strip: wether or not to strip `text`.
     :type strip: boolean
     """
-    text = unicode(text).encode('utf-8')
     if strip:
         text = text.strip()
+    #text = unicode(text).encode('utf-8')
+
     return text
 
 

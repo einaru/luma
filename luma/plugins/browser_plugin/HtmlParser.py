@@ -6,7 +6,8 @@ from PyQt4.QtCore import QXmlStreamReader, QString, QResource, QUrl
 from PyQt4.QtGui import QImage, QTextDocument
 
 class HtmlParser:
-
+    ''' This class parses a html-template and inserts values from the entry model
+    '''
     def __init__(self, objectWidget):
         self.entryModel = None
         self.smartObject = None
@@ -67,28 +68,22 @@ class HtmlParser:
         return ''.join(tmpList)
 
     def createStringFromTemplate(self, attributes):
-        type = unicode(attributes.value(QString("type")).toString())
+        functioncall = unicode(attributes.value(QString("function")).toString())
         id = unicode(attributes.value(QString("id")).toString())
         style = unicode(attributes.value(QString("style")).toString())
 
-        if not type == "":
-            if type == "getPrettyDN":
+        if not functioncall == "":
+            if functioncall == "getPrettyDN":
                 return self.getPrettyDN()
-            elif type == "createClassString":
-                if style == "table":
+            elif functioncall == "createClassString":
+                if style == "rows":
                     return self.createClassString()
-            elif type == "createAttributeString":
-                if style == "table":
+            elif functioncall == "createAttributeString":
+                if style == "rows":
                     return self.createAttributeString()
-            elif type == "attribute":
+            elif functioncall == "attribute":
                 return self.createAttributeValueString(id)
-                #if attributes.hasAttribute(QString("id")):
-                #    attribute = unicode(attributes.value(QString("type")).toString())
-                #    if attributes.hasAttribute(QString("style")):
-                #        style = attributes.value(QString("style"))
-                #        if style == "table":
-                #            return self.createAttributeValueString(attribute)
-            elif type == "createErrorMessageList":
+            elif functioncall == "createErrorMessageList":
                 return self.createErrorMessageList()
 
     def getPrettyDN(self):

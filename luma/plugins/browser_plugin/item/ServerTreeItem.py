@@ -23,6 +23,7 @@ class ServerTreeItem(AbstractLDAPTreeItem):
         self.serverMeta = serverMeta
 
         self.loading = False
+        self.ignoreItemErrors = False
 
     def columnCount(self):
         return len(self.itemData)

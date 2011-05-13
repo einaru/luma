@@ -90,6 +90,7 @@ class EntryModel(QObject):
             else:
                 self.ISLEAF = False
                 message = self.str_CHECK_LEAF
+                self.modelChangedSignal.emit(True)
                 return (False, message, exceptionObject)
                 
             self.CREATE = False

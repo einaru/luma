@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS><TS version="1.1" language="nb_NO">
+<!DOCTYPE TS>
+<TS version="2.0" language="nb_NO">
 <context>
     <name>AboutCredits</name>
     <message>
@@ -7,7 +8,7 @@
         <source>Credits</source>
         <translation>Annerkjennelser</translation>
     </message>
-    <message encoding="UTF-8">
+    <message utf8="true">
         <location filename="luma/base/gui/design/AboutCreditsDesign.py" line="71"/>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
@@ -29,7 +30,7 @@ p, li { white-space: pre-wrap; }
         <source>Developers</source>
         <translation>Utviklere</translation>
     </message>
-    <message encoding="UTF-8">
+    <message utf8="true">
         <location filename="luma/base/gui/design/AboutCreditsDesign.py" line="85"/>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
@@ -63,7 +64,7 @@ p, li { white-space: pre-wrap; }
         <source>Translators</source>
         <translation>Oversettere</translation>
     </message>
-    <message encoding="UTF-8">
+    <message utf8="true">
         <location filename="luma/base/gui/design/AboutCreditsDesign.py" line="111"/>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
@@ -138,7 +139,7 @@ p, li { white-space: pre-wrap; }
         <source>LDAP management made easy</source>
         <translation>LDAP administrering gjort enkelt</translation>
     </message>
-    <message encoding="UTF-8">
+    <message utf8="true">
         <location filename="luma/base/gui/design/AboutDialogDesign.py" line="115"/>
         <source>Copyright © 2003–2005 Wido Depping</source>
         <translation>Opphavsrett © 2003–2005 Wido Depping</translation>
@@ -320,15 +321,10 @@ attributter som må legges til sammen valgte objektklasse.&lt;/p&gt;</translatio
         <translation>&lt;b&gt;Ytterligere attributter&lt;/b&gt;</translation>
     </message>
     <message>
-        <location filename="resources/forms/plugins/browser_plugin/AddAttributeWizardDesign.ui" line="81"/>
+        <location filename="luma/plugins/browser_plugin/gui/AddAttributeWizardDesign.py" line="175"/>
         <source>PI</source>
         <comment>DO NOT TRANSLATE</comment>
         <translation></translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/gui/AddAttributeWizardDesign.py" line="175"/>
-        <source>PI</source>
-        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -405,79 +401,85 @@ attributter som må legges til sammen valgte objektklasse.&lt;/p&gt;</translatio
 <context>
     <name>AdvancedObjectWidget</name>
     <message>
-        <location filename="luma/plugins/browser_plugin/AdvancedObjectWidget.py" line="101"/>
+        <location filename="luma/plugins/browser_plugin/AdvancedObjectWidget.py" line="98"/>
         <source>Reload</source>
         <translation>Last på nytt</translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/AdvancedObjectWidget.py" line="113"/>
+        <location filename="luma/plugins/browser_plugin/AdvancedObjectWidget.py" line="110"/>
         <source>Add attribute</source>
         <translation>Legg til attributt</translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/AdvancedObjectWidget.py" line="109"/>
+        <location filename="luma/plugins/browser_plugin/AdvancedObjectWidget.py" line="106"/>
         <source>Delete object</source>
         <translation>Slett objekt</translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/AdvancedObjectWidget.py" line="115"/>
+        <location filename="luma/plugins/browser_plugin/AdvancedObjectWidget.py" line="112"/>
         <source>Switch between views</source>
         <translation>Bytt mellom visninger</translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/AdvancedObjectWidget.py" line="103"/>
+        <location filename="luma/plugins/browser_plugin/AdvancedObjectWidget.py" line="100"/>
         <source>Save entry</source>
         <translation>Lagre innslag</translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/AdvancedObjectWidget.py" line="105"/>
+        <location filename="luma/plugins/browser_plugin/AdvancedObjectWidget.py" line="102"/>
         <source>Do you want to save the entry before continuing?</source>
         <translation>Ønsker du å lagre innslaget før du fortsetter?</translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/AdvancedObjectWidget.py" line="107"/>
+        <location filename="luma/plugins/browser_plugin/AdvancedObjectWidget.py" line="104"/>
         <source>Saving failed, continue anyway?</source>
         <translation>Lagring mislyktes, fortsett likevell?</translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/AdvancedObjectWidget.py" line="111"/>
+        <location filename="luma/plugins/browser_plugin/AdvancedObjectWidget.py" line="108"/>
         <source>Do you really want to delete the object?</source>
         <translation>Ønsker du virkelig å slette objektet?</translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/AdvancedObjectWidget.py" line="119"/>
+        <location filename="luma/plugins/browser_plugin/AdvancedObjectWidget.py" line="116"/>
         <source>Export binary attribute to file</source>
         <translation>Eksporter binært attributt til fil</translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/AdvancedObjectWidget.py" line="117"/>
+        <location filename="luma/plugins/browser_plugin/AdvancedObjectWidget.py" line="114"/>
         <source>Reason:</source>
         <translation>Årsak:</translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/AdvancedObjectWidget.py" line="121"/>
+        <location filename="luma/plugins/browser_plugin/AdvancedObjectWidget.py" line="118"/>
         <source>Could not export binary data to file.</source>
         <translation>Eksportering av binær data til fil mislyktes.</translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/AdvancedObjectWidget.py" line="125"/>
+        <location filename="luma/plugins/browser_plugin/AdvancedObjectWidget.py" line="122"/>
         <source>No templates available</source>
         <translation>Ingen eksisterende maler</translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/AdvancedObjectWidget.py" line="127"/>
+        <location filename="luma/plugins/browser_plugin/AdvancedObjectWidget.py" line="124"/>
         <source>Did&apos;nt receive a ldap-object, it might have been deleted</source>
         <translation>Mottok ikke et ldap-objekt, det kan ha blitt slettet</translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/AdvancedObjectWidget.py" line="129"/>
-        <source>The ldap object is not valid, view errors?</source>
-        <translation>Ldap-objektet er ikke gyldig, se feilmeldinger?</translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/AdvancedObjectWidget.py" line="123"/>
+        <location filename="luma/plugins/browser_plugin/AdvancedObjectWidget.py" line="120"/>
         <source>Please select another filename.</source>
         <translation>Velg et annet filnavn.</translation>
+    </message>
+    <message>
+        <location filename="luma/plugins/browser_plugin/AdvancedObjectWidget.py" line="126"/>
+        <source>The ldap object is not valid
+Click Yes to view the object 
+No to view the errors 
+Ignore to view the object and ignore this message.</source>
+        <translation>LDAP objektet er ikke gyldig.
+Trykk Ja for p se objektet
+Nei for å vise feilmelding
+Ignorer for å vise objektet og ignorere denne meldingen.</translation>
     </message>
 </context>
 <context>
@@ -546,26 +548,16 @@ attributter som må legges til sammen valgte objektklasse.&lt;/p&gt;</translatio
         <translation>Lokasjon:</translation>
     </message>
     <message>
-        <location filename="resources/forms/plugins/browser_plugin/BinaryEditorDesign.ui" line="32"/>
-        <source>IT</source>
-        <comment>DO NOT TRANSLATE</comment>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="resources/forms/plugins/browser_plugin/BinaryEditorDesign.ui" line="113"/>
-        <source>F</source>
-        <comment>DO NOT TRANSLATE</comment>
-        <translation></translation>
-    </message>
-    <message>
         <location filename="luma/plugins/browser_plugin/gui/BinaryEditorDesign.py" line="92"/>
         <source>IT</source>
-        <translation type="unfinished"></translation>
+        <comment>DO NOT TRANSLATE</comment>
+        <translation></translation>
     </message>
     <message>
         <location filename="luma/plugins/browser_plugin/gui/BinaryEditorDesign.py" line="97"/>
         <source>F</source>
-        <translation type="unfinished"></translation>
+        <comment>DO NOT TRANSLATE</comment>
+        <translation></translation>
     </message>
 </context>
 <context>
@@ -716,7 +708,7 @@ ikke har blitt slettet, mens andre har blitt det.
     <message>
         <location filename="luma/plugins/browser_plugin/BrowserView.py" line="397"/>
         <source>Do you want to reload to show the changes?</source>
-        <translation type="unfinished"></translation>
+        <translation>Ønsker du å laste om for å vise forandringene?</translation>
     </message>
 </context>
 <context>
@@ -1079,139 +1071,84 @@ ikke har blitt slettet, mens andre har blitt det.
         <translation>Velg innstikk</translation>
     </message>
     <message>
-        <location filename="luma/base/gui/design/MainWindowDesign.py" line="122"/>
+        <location filename="luma/base/gui/design/MainWindowDesign.py" line="119"/>
         <source>Luma</source>
         <translation>Luma</translation>
     </message>
     <message>
-        <location filename="luma/base/gui/design/MainWindowDesign.py" line="123"/>
+        <location filename="luma/base/gui/design/MainWindowDesign.py" line="120"/>
         <source>&amp;File</source>
         <translation>&amp;Fil</translation>
     </message>
     <message>
-        <location filename="luma/base/gui/design/MainWindowDesign.py" line="124"/>
+        <location filename="luma/base/gui/design/MainWindowDesign.py" line="121"/>
         <source>&amp;Edit</source>
         <translation>&amp;Rediger</translation>
     </message>
     <message>
-        <location filename="luma/base/gui/design/MainWindowDesign.py" line="125"/>
-        <source>Language</source>
-        <translation>Språk</translation>
-    </message>
-    <message>
-        <location filename="luma/base/gui/design/MainWindowDesign.py" line="126"/>
+        <location filename="luma/base/gui/design/MainWindowDesign.py" line="123"/>
         <source>&amp;Help</source>
         <translation>&amp;Hjelp</translation>
     </message>
     <message>
-        <location filename="luma/base/gui/design/MainWindowDesign.py" line="127"/>
+        <location filename="luma/base/gui/design/MainWindowDesign.py" line="124"/>
         <source>&amp;View</source>
         <translation>&amp;Vis</translation>
     </message>
     <message>
-        <location filename="luma/base/gui/design/MainWindowDesign.py" line="128"/>
-        <source>Logger Window</source>
-        <translation>Loggvindu</translation>
-    </message>
-    <message>
-        <location filename="luma/base/gui/design/MainWindowDesign.py" line="129"/>
+        <location filename="luma/base/gui/design/MainWindowDesign.py" line="126"/>
         <source>Ctrl+L</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="luma/base/gui/design/MainWindowDesign.py" line="130"/>
-        <source>Quit</source>
-        <translation>Avslutt</translation>
-    </message>
-    <message>
-        <location filename="luma/base/gui/design/MainWindowDesign.py" line="131"/>
+        <location filename="luma/base/gui/design/MainWindowDesign.py" line="128"/>
         <source>Ctrl+Q</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="luma/base/gui/design/MainWindowDesign.py" line="132"/>
-        <source>Server List</source>
-        <translation>Tjenerliste</translation>
-    </message>
-    <message>
-        <location filename="luma/base/gui/design/MainWindowDesign.py" line="133"/>
+        <location filename="luma/base/gui/design/MainWindowDesign.py" line="130"/>
         <source>Ctrl+Shift+S</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="luma/base/gui/design/MainWindowDesign.py" line="134"/>
+        <location filename="luma/base/gui/design/MainWindowDesign.py" line="131"/>
         <source>Reload Plugins</source>
         <translation>Last innstikk på nytt</translation>
     </message>
     <message>
-        <location filename="luma/base/gui/design/MainWindowDesign.py" line="135"/>
+        <location filename="luma/base/gui/design/MainWindowDesign.py" line="132"/>
         <source>F5</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="luma/base/gui/design/MainWindowDesign.py" line="136"/>
+        <location filename="luma/base/gui/design/MainWindowDesign.py" line="133"/>
         <source>Configure Plugins</source>
         <translation>Konfigurer innstikk</translation>
     </message>
     <message>
-        <location filename="luma/base/gui/design/MainWindowDesign.py" line="137"/>
-        <source>About Luma</source>
-        <translation>Om Luma</translation>
-    </message>
-    <message>
-        <location filename="luma/base/gui/design/MainWindowDesign.py" line="138"/>
+        <location filename="luma/base/gui/design/MainWindowDesign.py" line="135"/>
         <source>F12</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="luma/base/gui/design/MainWindowDesign.py" line="139"/>
-        <source>Settings</source>
-        <translation>Innstillinger</translation>
+        <location filename="luma/base/gui/design/MainWindowDesign.py" line="138"/>
+        <source>Ctrl+P</source>
+        <translation>Ctrl+I</translation>
     </message>
     <message>
         <location filename="luma/base/gui/design/MainWindowDesign.py" line="140"/>
-        <source>Show Plugin List</source>
-        <translation>Vis listen over innstikk</translation>
+        <source>Ctrl+Shift+W</source>
+        <translation>Ctrl+Shift+V</translation>
     </message>
     <message>
         <location filename="luma/base/gui/design/MainWindowDesign.py" line="141"/>
-        <source>Ctrl+P</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="luma/base/gui/design/MainWindowDesign.py" line="142"/>
-        <source>Show Welcome Tab</source>
-        <translation>Vis velkomstfanen</translation>
-    </message>
-    <message>
-        <location filename="luma/base/gui/design/MainWindowDesign.py" line="143"/>
-        <source>Ctrl+Shift+W</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="luma/base/gui/design/MainWindowDesign.py" line="144"/>
         <source>Toolbar</source>
         <translation>Verktøyslinjen</translation>
     </message>
     <message>
-        <location filename="luma/base/gui/design/MainWindowDesign.py" line="145"/>
-        <source>Statusbar</source>
-        <translation>Statuslinjen</translation>
-    </message>
-    <message>
-        <location filename="luma/base/gui/design/MainWindowDesign.py" line="146"/>
-        <source>Fullscreen</source>
-        <translation>Fullskjerm</translation>
-    </message>
-    <message>
-        <location filename="luma/base/gui/design/MainWindowDesign.py" line="147"/>
+        <location filename="luma/base/gui/design/MainWindowDesign.py" line="144"/>
         <source>F11</source>
         <translation></translation>
-    </message>
-    <message>
-        <location filename="luma/base/gui/design/MainWindowDesign.py" line="148"/>
-        <source>Use temporary password</source>
-        <translation>Bruk midlertidig passord</translation>
     </message>
     <message>
         <location filename="luma/base/gui/MainWindow.py" line="395"/>
@@ -1232,6 +1169,61 @@ ikke har blitt slettet, mens andre har blitt det.
         <location filename="luma/base/gui/MainWindow.py" line="400"/>
         <source>Enter password:</source>
         <translation>Anngi passord:</translation>
+    </message>
+    <message>
+        <location filename="luma/base/gui/design/MainWindowDesign.py" line="122"/>
+        <source>&amp;Language</source>
+        <translation>&amp;Språk</translation>
+    </message>
+    <message>
+        <location filename="luma/base/gui/design/MainWindowDesign.py" line="125"/>
+        <source>&amp;Logger Window</source>
+        <translation>&amp;Loggvinduet</translation>
+    </message>
+    <message>
+        <location filename="luma/base/gui/design/MainWindowDesign.py" line="127"/>
+        <source>&amp;Quit</source>
+        <translation>&amp;Avslutt</translation>
+    </message>
+    <message>
+        <location filename="luma/base/gui/design/MainWindowDesign.py" line="129"/>
+        <source>S&amp;erver List</source>
+        <translation>&amp;Serverlisten</translation>
+    </message>
+    <message>
+        <location filename="luma/base/gui/design/MainWindowDesign.py" line="134"/>
+        <source>&amp;About Luma</source>
+        <translation>&amp;Om Luma</translation>
+    </message>
+    <message>
+        <location filename="luma/base/gui/design/MainWindowDesign.py" line="136"/>
+        <source>&amp;Settings</source>
+        <translation>&amp;Innstillinger</translation>
+    </message>
+    <message>
+        <location filename="luma/base/gui/design/MainWindowDesign.py" line="137"/>
+        <source>&amp;Plugin List</source>
+        <translation>&amp;Innstikklisten</translation>
+    </message>
+    <message>
+        <location filename="luma/base/gui/design/MainWindowDesign.py" line="139"/>
+        <source>&amp;Welcome Tab</source>
+        <translation>&amp;Velkomstfanen</translation>
+    </message>
+    <message>
+        <location filename="luma/base/gui/design/MainWindowDesign.py" line="142"/>
+        <source>&amp;Statusbar</source>
+        <translation>&amp;Statuslinjen</translation>
+    </message>
+    <message>
+        <location filename="luma/base/gui/design/MainWindowDesign.py" line="143"/>
+        <source>&amp;Fullscreen</source>
+        <translation>&amp;Fullskjerm</translation>
+    </message>
+    <message>
+        <location filename="luma/base/gui/design/MainWindowDesign.py" line="145"/>
+        <source>Temporary &amp;Password</source>
+        <translation>Midlertidig &amp;passord</translation>
     </message>
 </context>
 <context>
@@ -1308,7 +1300,7 @@ ikke har blitt slettet, mens andre har blitt det.
         <translation>&lt;b&gt;Vennligst velg et nytt passord.&lt;/b&gt;</translation>
     </message>
     <message>
-        <location filename="resources/forms/plugins/browser_plugin/PasswordEditorDesign.ui" line="240"/>
+        <location filename="luma/plugins/browser_plugin/gui/PasswordEditorDesign.py" line="135"/>
         <source>PW</source>
         <comment>DO NOT TRANSLATE</comment>
         <translation></translation>
@@ -1322,11 +1314,6 @@ ikke har blitt slettet, mens andre har blitt det.
         <location filename="luma/plugins/browser_plugin/gui/PasswordEditorDesign.py" line="126"/>
         <source>Hidden string</source>
         <translation>Skjult streng</translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/gui/PasswordEditorDesign.py" line="135"/>
-        <source>PW</source>
-        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1385,7 +1372,7 @@ ikke har blitt slettet, mens andre har blitt det.
     <message>
         <location filename="luma/plugins/browser_plugin/gui/RdnEditorDesign.py" line="101"/>
         <source>Add attribute</source>
-        <translation type="unfinished">Legg til attributt</translation>
+        <translation>Legg til attributt</translation>
     </message>
 </context>
 <context>
@@ -1669,232 +1656,232 @@ Do you still want to save?</source>
 <context>
     <name>ServerDialogDesign</name>
     <message>
-        <location filename="luma/base/gui/design/ServerDialogDesign.py" line="465"/>
+        <location filename="luma/base/gui/design/ServerDialogDesign.py" line="460"/>
         <source>Manage Server List</source>
         <translation>Rediger tjenerlisten</translation>
     </message>
     <message>
-        <location filename="luma/base/gui/design/ServerDialogDesign.py" line="466"/>
+        <location filename="luma/base/gui/design/ServerDialogDesign.py" line="461"/>
         <source>&amp;Add</source>
         <translation>&amp;Legg til</translation>
     </message>
     <message>
-        <location filename="luma/base/gui/design/ServerDialogDesign.py" line="467"/>
+        <location filename="luma/base/gui/design/ServerDialogDesign.py" line="462"/>
         <source>&amp;Delete</source>
         <translation>&amp;Slett</translation>
     </message>
     <message>
-        <location filename="luma/base/gui/design/ServerDialogDesign.py" line="468"/>
+        <location filename="luma/base/gui/design/ServerDialogDesign.py" line="463"/>
         <source>Test connection</source>
         <translation>Test tilkoblingen</translation>
     </message>
     <message>
-        <location filename="luma/base/gui/design/ServerDialogDesign.py" line="469"/>
+        <location filename="luma/base/gui/design/ServerDialogDesign.py" line="464"/>
         <source>Network options</source>
         <translation>Nettverks valg</translation>
     </message>
     <message>
-        <location filename="luma/base/gui/design/ServerDialogDesign.py" line="470"/>
+        <location filename="luma/base/gui/design/ServerDialogDesign.py" line="465"/>
         <source>Host:</source>
         <translation>Vert:</translation>
     </message>
     <message>
-        <location filename="luma/base/gui/design/ServerDialogDesign.py" line="471"/>
+        <location filename="luma/base/gui/design/ServerDialogDesign.py" line="466"/>
         <source>Port:</source>
         <translation>Port:</translation>
     </message>
     <message>
-        <location filename="luma/base/gui/design/ServerDialogDesign.py" line="472"/>
+        <location filename="luma/base/gui/design/ServerDialogDesign.py" line="467"/>
         <source>LDAP options</source>
         <translation>LDAP valg</translation>
     </message>
     <message>
-        <location filename="luma/base/gui/design/ServerDialogDesign.py" line="473"/>
+        <location filename="luma/base/gui/design/ServerDialogDesign.py" line="468"/>
         <source>Follow aliases</source>
         <translation>Følg psevdonymer</translation>
     </message>
     <message>
-        <location filename="luma/base/gui/design/ServerDialogDesign.py" line="474"/>
+        <location filename="luma/base/gui/design/ServerDialogDesign.py" line="469"/>
         <source>Use Base DN provided by server</source>
         <translation>Bruk Base DN fremskaffet av tjeneren</translation>
     </message>
     <message>
-        <location filename="luma/base/gui/design/ServerDialogDesign.py" line="475"/>
+        <location filename="luma/base/gui/design/ServerDialogDesign.py" line="470"/>
         <source>Custom:</source>
         <translation>Egendefinert:</translation>
     </message>
     <message>
-        <location filename="luma/base/gui/design/ServerDialogDesign.py" line="476"/>
+        <location filename="luma/base/gui/design/ServerDialogDesign.py" line="471"/>
         <source>Add</source>
         <translation>Legg til</translation>
     </message>
     <message>
-        <location filename="luma/base/gui/design/ServerDialogDesign.py" line="477"/>
+        <location filename="luma/base/gui/design/ServerDialogDesign.py" line="472"/>
         <source>Delete</source>
         <translation>Slett</translation>
     </message>
     <message>
-        <location filename="luma/base/gui/design/ServerDialogDesign.py" line="478"/>
+        <location filename="luma/base/gui/design/ServerDialogDesign.py" line="473"/>
         <source>Network</source>
         <translation>Nettverk</translation>
     </message>
     <message>
-        <location filename="luma/base/gui/design/ServerDialogDesign.py" line="479"/>
+        <location filename="luma/base/gui/design/ServerDialogDesign.py" line="474"/>
         <source>Bind options</source>
         <translation>Bindings valg</translation>
     </message>
     <message>
-        <location filename="luma/base/gui/design/ServerDialogDesign.py" line="480"/>
+        <location filename="luma/base/gui/design/ServerDialogDesign.py" line="475"/>
         <source>Anonymous bind</source>
         <translation>Anonym binding</translation>
     </message>
     <message>
-        <location filename="luma/base/gui/design/ServerDialogDesign.py" line="481"/>
+        <location filename="luma/base/gui/design/ServerDialogDesign.py" line="476"/>
         <source>Mechanism:</source>
         <translation>Mekanisme:</translation>
     </message>
     <message>
-        <location filename="luma/base/gui/design/ServerDialogDesign.py" line="482"/>
+        <location filename="luma/base/gui/design/ServerDialogDesign.py" line="477"/>
         <source>SIMPLE</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="luma/base/gui/design/ServerDialogDesign.py" line="483"/>
+        <location filename="luma/base/gui/design/ServerDialogDesign.py" line="478"/>
         <source>SASL CRAM-MD5</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="luma/base/gui/design/ServerDialogDesign.py" line="484"/>
+        <location filename="luma/base/gui/design/ServerDialogDesign.py" line="479"/>
         <source>SASL DIGEST-MD5</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="luma/base/gui/design/ServerDialogDesign.py" line="485"/>
+        <location filename="luma/base/gui/design/ServerDialogDesign.py" line="480"/>
         <source>SASL EXTERNAL</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="luma/base/gui/design/ServerDialogDesign.py" line="486"/>
+        <location filename="luma/base/gui/design/ServerDialogDesign.py" line="481"/>
         <source>SASL GSSAPI</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="luma/base/gui/design/ServerDialogDesign.py" line="487"/>
+        <location filename="luma/base/gui/design/ServerDialogDesign.py" line="482"/>
         <source>SASL Login</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="luma/base/gui/design/ServerDialogDesign.py" line="488"/>
+        <location filename="luma/base/gui/design/ServerDialogDesign.py" line="483"/>
         <source>SASL Plain</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="luma/base/gui/design/ServerDialogDesign.py" line="489"/>
+        <location filename="luma/base/gui/design/ServerDialogDesign.py" line="484"/>
         <source>Bind as:</source>
         <translation>Bind som:</translation>
     </message>
     <message>
-        <location filename="luma/base/gui/design/ServerDialogDesign.py" line="490"/>
+        <location filename="luma/base/gui/design/ServerDialogDesign.py" line="485"/>
         <source>Password:</source>
         <translation>Passord:</translation>
     </message>
     <message>
-        <location filename="luma/base/gui/design/ServerDialogDesign.py" line="491"/>
+        <location filename="luma/base/gui/design/ServerDialogDesign.py" line="486"/>
         <source>Authentification</source>
         <translation>Autentifisering</translation>
     </message>
     <message>
-        <location filename="luma/base/gui/design/ServerDialogDesign.py" line="492"/>
+        <location filename="luma/base/gui/design/ServerDialogDesign.py" line="487"/>
         <source>Security options</source>
         <translation>Sikkerhets valg</translation>
     </message>
     <message>
-        <location filename="luma/base/gui/design/ServerDialogDesign.py" line="493"/>
+        <location filename="luma/base/gui/design/ServerDialogDesign.py" line="488"/>
         <source>Unencrypted connection</source>
         <translation>Ukryptert tilkobling</translation>
     </message>
     <message>
-        <location filename="luma/base/gui/design/ServerDialogDesign.py" line="494"/>
+        <location filename="luma/base/gui/design/ServerDialogDesign.py" line="489"/>
         <source>Transport Layer Security (TLS)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="luma/base/gui/design/ServerDialogDesign.py" line="495"/>
+        <location filename="luma/base/gui/design/ServerDialogDesign.py" line="490"/>
         <source>Secure Socket Layer (SSL)</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="luma/base/gui/design/ServerDialogDesign.py" line="496"/>
+        <location filename="luma/base/gui/design/ServerDialogDesign.py" line="491"/>
         <source>Validate server certificate</source>
         <translation>Valider tjener sertifikat</translation>
     </message>
     <message>
-        <location filename="luma/base/gui/design/ServerDialogDesign.py" line="497"/>
+        <location filename="luma/base/gui/design/ServerDialogDesign.py" line="492"/>
         <source>Never</source>
         <translation>Alsri</translation>
     </message>
     <message>
-        <location filename="luma/base/gui/design/ServerDialogDesign.py" line="498"/>
+        <location filename="luma/base/gui/design/ServerDialogDesign.py" line="493"/>
         <source>Allow</source>
         <translation>Tillat</translation>
     </message>
     <message>
-        <location filename="luma/base/gui/design/ServerDialogDesign.py" line="499"/>
+        <location filename="luma/base/gui/design/ServerDialogDesign.py" line="494"/>
         <source>Try</source>
         <translation>Prøv</translation>
     </message>
     <message>
-        <location filename="luma/base/gui/design/ServerDialogDesign.py" line="500"/>
+        <location filename="luma/base/gui/design/ServerDialogDesign.py" line="495"/>
         <source>Demand</source>
         <translation>Krev</translation>
     </message>
     <message>
-        <location filename="luma/base/gui/design/ServerDialogDesign.py" line="501"/>
+        <location filename="luma/base/gui/design/ServerDialogDesign.py" line="496"/>
         <source>Client certificate options</source>
         <translation>Klientsertifikat valg</translation>
     </message>
     <message>
-        <location filename="luma/base/gui/design/ServerDialogDesign.py" line="502"/>
+        <location filename="luma/base/gui/design/ServerDialogDesign.py" line="497"/>
         <source>Use client certificates</source>
         <translation>Bruk klientsertifikater</translation>
     </message>
     <message>
-        <location filename="luma/base/gui/design/ServerDialogDesign.py" line="503"/>
+        <location filename="luma/base/gui/design/ServerDialogDesign.py" line="498"/>
         <source>Certificate file:</source>
         <translation>Sertifikatfil:</translation>
     </message>
     <message>
-        <location filename="luma/base/gui/design/ServerDialogDesign.py" line="505"/>
+        <location filename="luma/base/gui/design/ServerDialogDesign.py" line="500"/>
         <source>...</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="luma/base/gui/design/ServerDialogDesign.py" line="506"/>
+        <location filename="luma/base/gui/design/ServerDialogDesign.py" line="501"/>
         <source>Certificate keyfile:</source>
         <translation>Sertifikatnøkkelfil:</translation>
     </message>
     <message>
-        <location filename="luma/base/gui/design/ServerDialogDesign.py" line="507"/>
+        <location filename="luma/base/gui/design/ServerDialogDesign.py" line="502"/>
         <source>Security</source>
         <translation>Sikkerhet</translation>
     </message>
     <message>
-        <location filename="luma/base/gui/design/ServerDialogDesign.py" line="508"/>
+        <location filename="luma/base/gui/design/ServerDialogDesign.py" line="503"/>
         <source>&amp;OK</source>
         <translation>&amp;Ok</translation>
     </message>
     <message>
-        <location filename="luma/base/gui/design/ServerDialogDesign.py" line="509"/>
+        <location filename="luma/base/gui/design/ServerDialogDesign.py" line="504"/>
         <source>Apply</source>
         <translation>Gjør gjeldene</translation>
     </message>
     <message>
-        <location filename="luma/base/gui/design/ServerDialogDesign.py" line="510"/>
+        <location filename="luma/base/gui/design/ServerDialogDesign.py" line="505"/>
         <source>&amp;Cancel</source>
         <translation>&amp;Avbryt</translation>
     </message>
     <message>
-        <location filename="luma/base/gui/design/ServerDialogDesign.py" line="511"/>
+        <location filename="luma/base/gui/design/ServerDialogDesign.py" line="506"/>
         <source>Alt+C</source>
         <translation></translation>
     </message>
@@ -1975,21 +1962,16 @@ Do you still want to save?</source>
         <translation>Verdi:</translation>
     </message>
     <message>
-        <location filename="resources/forms/plugins/browser_plugin/StandardEditorDesign.ui" line="32"/>
+        <location filename="luma/plugins/browser_plugin/gui/StandardEditorDesign.py" line="85"/>
         <source>IT</source>
         <comment>DO NOT TRANSLATE</comment>
         <translation></translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/gui/StandardEditorDesign.py" line="85"/>
-        <source>IT</source>
-        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>TemplateWidget</name>
     <message>
-        <location filename="luma/plugins/template/gui/TemplateWidgetDesign.py" line="207"/>
+        <location filename="luma/plugins/template/gui/TemplateWidgetDesign.py" line="209"/>
         <source>Delete</source>
         <translation>Slett</translation>
     </message>
@@ -1999,102 +1981,102 @@ Do you still want to save?</source>
         <translation>Er du sikker på at du vil slette det valgte attributtet?</translation>
     </message>
     <message>
-        <location filename="luma/plugins/template/gui/TemplateWidgetDesign.py" line="183"/>
+        <location filename="luma/plugins/template/gui/TemplateWidgetDesign.py" line="185"/>
         <source>Form</source>
         <translation>Form</translation>
     </message>
     <message>
-        <location filename="luma/plugins/template/gui/TemplateWidgetDesign.py" line="184"/>
+        <location filename="luma/plugins/template/gui/TemplateWidgetDesign.py" line="186"/>
         <source>Templates</source>
         <translation>Maler</translation>
     </message>
     <message>
-        <location filename="luma/plugins/template/gui/TemplateWidgetDesign.py" line="185"/>
+        <location filename="luma/plugins/template/gui/TemplateWidgetDesign.py" line="187"/>
         <source>Save template</source>
         <translation>Lagre mal</translation>
     </message>
     <message>
-        <location filename="luma/plugins/template/gui/TemplateWidgetDesign.py" line="186"/>
+        <location filename="luma/plugins/template/gui/TemplateWidgetDesign.py" line="188"/>
         <source>Save</source>
         <translation>Lagre</translation>
     </message>
     <message>
-        <location filename="luma/plugins/template/gui/TemplateWidgetDesign.py" line="187"/>
+        <location filename="luma/plugins/template/gui/TemplateWidgetDesign.py" line="189"/>
         <source>Add template</source>
         <translation>Legg til mal</translation>
     </message>
     <message>
-        <location filename="luma/plugins/template/gui/TemplateWidgetDesign.py" line="205"/>
+        <location filename="luma/plugins/template/gui/TemplateWidgetDesign.py" line="207"/>
         <source>Add</source>
         <translation>Legg til</translation>
     </message>
     <message>
-        <location filename="luma/plugins/template/gui/TemplateWidgetDesign.py" line="189"/>
+        <location filename="luma/plugins/template/gui/TemplateWidgetDesign.py" line="191"/>
         <source>Existing templates</source>
         <translation>Eksiterende maler</translation>
     </message>
     <message>
-        <location filename="luma/plugins/template/gui/TemplateWidgetDesign.py" line="190"/>
+        <location filename="luma/plugins/template/gui/TemplateWidgetDesign.py" line="192"/>
         <source>Delete template</source>
         <translation>Slett mal</translation>
     </message>
     <message>
-        <location filename="luma/plugins/template/gui/TemplateWidgetDesign.py" line="192"/>
+        <location filename="luma/plugins/template/gui/TemplateWidgetDesign.py" line="194"/>
         <source>Duplicate template</source>
         <translation>Dupliser mal</translation>
     </message>
     <message>
-        <location filename="luma/plugins/template/gui/TemplateWidgetDesign.py" line="193"/>
+        <location filename="luma/plugins/template/gui/TemplateWidgetDesign.py" line="195"/>
         <source>Duplicate</source>
         <translation>Dupliser</translation>
     </message>
     <message>
-        <location filename="luma/plugins/template/gui/TemplateWidgetDesign.py" line="194"/>
+        <location filename="luma/plugins/template/gui/TemplateWidgetDesign.py" line="196"/>
         <source>Server:</source>
         <translation>Tjener:</translation>
     </message>
     <message>
-        <location filename="luma/plugins/template/gui/TemplateWidgetDesign.py" line="195"/>
+        <location filename="luma/plugins/template/gui/TemplateWidgetDesign.py" line="197"/>
         <source>Description:</source>
         <translation>Beskrivelse:</translation>
     </message>
     <message>
-        <location filename="luma/plugins/template/gui/TemplateWidgetDesign.py" line="196"/>
+        <location filename="luma/plugins/template/gui/TemplateWidgetDesign.py" line="198"/>
         <source>Objectclasses</source>
         <translation>Objektklasser</translation>
     </message>
     <message>
-        <location filename="luma/plugins/template/gui/TemplateWidgetDesign.py" line="197"/>
+        <location filename="luma/plugins/template/gui/TemplateWidgetDesign.py" line="199"/>
         <source>Add objectclasses</source>
         <translation>Legg til objektklasser</translation>
     </message>
     <message>
-        <location filename="luma/plugins/template/gui/TemplateWidgetDesign.py" line="199"/>
+        <location filename="luma/plugins/template/gui/TemplateWidgetDesign.py" line="201"/>
         <source>Added objectclasses</source>
         <translation>Tillagte objektklasser</translation>
     </message>
     <message>
-        <location filename="luma/plugins/template/gui/TemplateWidgetDesign.py" line="200"/>
+        <location filename="luma/plugins/template/gui/TemplateWidgetDesign.py" line="202"/>
         <source>Delete objectclasses</source>
         <translation>Slett objektklasser</translation>
     </message>
     <message>
-        <location filename="luma/plugins/template/gui/TemplateWidgetDesign.py" line="202"/>
+        <location filename="luma/plugins/template/gui/TemplateWidgetDesign.py" line="204"/>
         <source>Attributes</source>
         <translation>Attributter</translation>
     </message>
     <message>
-        <location filename="luma/plugins/template/gui/TemplateWidgetDesign.py" line="203"/>
+        <location filename="luma/plugins/template/gui/TemplateWidgetDesign.py" line="205"/>
         <source>Added attributes</source>
         <translation>Tillagte attributter</translation>
     </message>
     <message>
-        <location filename="luma/plugins/template/gui/TemplateWidgetDesign.py" line="204"/>
+        <location filename="luma/plugins/template/gui/TemplateWidgetDesign.py" line="206"/>
         <source>Add attributes</source>
         <translation>Leg til attributter</translation>
     </message>
     <message>
-        <location filename="luma/plugins/template/gui/TemplateWidgetDesign.py" line="206"/>
+        <location filename="luma/plugins/template/gui/TemplateWidgetDesign.py" line="208"/>
         <source>Delete attributes</source>
         <translation>Slett attributter</translation>
     </message>
@@ -2147,19 +2129,17 @@ functionality, through a number of plugins.&lt;/p&gt;
 shortcut (&lt;b&gt;CTRL&lt;/b&gt;+&lt;b&gt;SHIFT&lt;/b&gt;+&lt;b&gt;S)&lt;/b&gt;.&lt;/p&gt;
 
 &lt;p&gt;After you have added one or more servers, you must activate the plugins you
-want to use: Select (&lt;b&gt;Edit&lt;/b&gt; &amp;rarr; &lt;b&gt;Configure Plugins&lt;/b&gt;) from the
-menubar.&lt;/p&gt;
+want to use: Select (&lt;b&gt;Edit&lt;/b&gt; &amp;rarr; &lt;b&gt;Settings&lt;/b&gt;)from the
+menubar to open the &lt;em&gt;Settings dialog&lt;/em&gt;, and select the &lt;b&gt;Plugins&lt;/b&gt; tab.&lt;/p&gt;
 
 &lt;p&gt;If you need additional help on how to use the application and/or a spesific
 plugin, please refer to the online
-&lt;a href=&quot;http://folk.ntnu.no/einaru/luma/doc/userguide.html&quot;&gt;User guide&lt;/a&gt;.
-&lt;/p&gt;
+&lt;a href=&quot;http://folk.ntnu.no/einaru/luma/doc/userguide.html&quot;&gt;User guide&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;If you cannot find a plugin that suits your needs or you have ideas for a
 great Luma plugin, please feel free to
 &lt;a href=&quot;http://luma.sf.net/&quot;&gt;contact us&lt;/a&gt; or even
-&lt;a href=&quot;http://folk.ntnu.no/einaru/luma/doc/HACKING.html&quot;&gt;contribute one your
-self&lt;/a&gt;.&lt;/p&gt;
+&lt;a href=&quot;http://folk.ntnu.no/einaru/luma/doc/HACKING.html&quot;&gt;contribute one your self&lt;/a&gt;.&lt;/p&gt;
 
 &lt;h2&gt;Problems and bugs&lt;/h2&gt;
 
@@ -2206,8 +2186,8 @@ rekke innstikk.&lt;/p&gt;
 tastatur snarveien (&lt;b&gt;CTRL&lt;/b&gt;+&lt;b&gt;SHIFT&lt;/b&gt;+&lt;b&gt;S&lt;/b&gt;).&lt;/p&gt;
 
 &lt;p&gt;Etter at du har lagt til en eller flere tjenere, må du aktivere innstikkene
-du ønsker å bruke: Velg (&lt;b&gt;Rediger&lt;/b&gt; &amp;rarr; &lt;b&gt;Konfigurer innstikk&lt;/b&gt;) fra
-menylinjen.&lt;/p&gt;
+du ønsker å bruke: Velg (&lt;b&gt;Rediger&lt;/b&gt; &amp;rarr; &lt;b&gt;Instillinger&lt;/b&gt;) fra
+menylinjen for å åpne &lt;em&gt;Instillinger dialogen&lt;/em&gt;, og velg &lt;b&gt;Innstikk&lt;/b&gt; fanen.&lt;/p&gt;
 
 &lt;p&gt;Hvis du trenger ytterligere hjelp anngående bruk av applikasjonen og/eller
 et spesifikt innstikk, vennligst referer til 

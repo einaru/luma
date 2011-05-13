@@ -135,11 +135,11 @@ class SearchForm(QWidget, Ui_SearchForm):
 
     @property
     def server(self):
-        return encodeUTF8(self.serverBox.currentText())
+        return self.serverBox.currentText()
 
     @property
     def baseDN(self):
-        return encodeUTF8(self.baseDNBox.currentText())
+        return self.baseDNBox.currentText()
 
     @property
     def scope(self):
@@ -160,7 +160,7 @@ class SearchForm(QWidget, Ui_SearchForm):
     @property
     def filter(self):
         # TODO: run some validation on the filter
-        return self.__escape(encodeUTF8(self.filterBoxEdit.currentText()))
+        return self.__escape(self.filterBoxEdit.currentText())
 
 
 class AttributeCompleter(QCompleter):

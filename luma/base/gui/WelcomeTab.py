@@ -78,28 +78,26 @@ functionality, through a number of plugins.</p>
 
 <p>The first thing you need to do is to edit the <em>serverlist</em>: Select
 (<b>Edit</b> &rarr; <b>Server List</b>) from the menubar or use the keyboard
-shortcut (<b>CTRL</b>+<b>SHIFT</b>+<b>S)</b>.</p>
+shortcut (<b>CTRL</b>+<b>SHIFT</b>+<b>S</b> on Linux/Windwos, <b>CMD</b>+<b>SHIFT</b>+<b>S</b> on Mac Os X).</p>
 
 <p>After you have added one or more servers, you must activate the plugins you
-want to use: Select (<b>Edit</b> &rarr; <b>Configure Plugins</b>) from the
-menubar.</p>
+want to use: Select (<b>Edit</b> &rarr; <b>Settings</b>) from the
+menubar to open the <em>Settings dialog</em>, and select the <b>Plugins</b> tab.</p>
 
 <p>If you need additional help on how to use the application and/or a spesific
 plugin, please refer to the online
-<a href="http://folk.ntnu.no/einaru/luma/doc/userguide.html">User guide</a>.
-</p>
+<a href="http://folk.ntnu.no/einaru/luma/doc/userguide.html">User guide</a>.</p>
 
 <p>If you cannot find a plugin that suits your needs or you have ideas for a
 great Luma plugin, please feel free to
 <a href="http://luma.sf.net/">contact us</a> or even
-<a href="http://folk.ntnu.no/einaru/luma/doc/HACKING.html">contribute one your
-self</a>.</p>
+<a href="http://folk.ntnu.no/einaru/luma/doc/HACKING.html">contribute one your self</a>.</p>
 
 <h2>Problems and bugs</h2>
 
 <p>Application errors and various debug information can be seen in the Logger
 Window: Select (<b>View</b> &rarr; <b>Logger Window</b>) from the menubar or
-use the keyboard shortcut (<b>CTRL</b>+<b>L</b>).</p>
+use the keyboard shortcut (<b>CTRL</b>+<b>L</b> on Linux/Windows, <b>CMD</b>+<b>L</b> on Mac Os X).</p>
 
 <p>If you encounter errors or bugs in the application, please take your time
 to fill in a bugreport on our
