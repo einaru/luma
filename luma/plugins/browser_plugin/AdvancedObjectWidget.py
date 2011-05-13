@@ -190,7 +190,7 @@ class AdvancedObjectWidget(QWidget):
     def modelChanged(self, reload):
         if reload:
             item = None
-            if self.treeIndex.isValid():
+            if self.treeIndex and self.treeIndex.isValid():
                 row = self.treeIndex.row()
                 column = self.treeIndex.column()
                 # QPersistenIndex doesn't have internalPointer()
@@ -386,7 +386,7 @@ class AdvancedObjectWidget(QWidget):
             # update the smartObject in the tree
             if self.entryModel.CREATE:
                 pass
-            elif self.treeIndex.isValid():
+            elif self.treeIndex and self.treeIndex.isValid():
                 row = self.treeIndex.row()
                 column = self.treeIndex.column()
                 # QPersistenIndex doesn't have internalPointer()
@@ -446,7 +446,7 @@ class AdvancedObjectWidget(QWidget):
             return
         # If we have an index, use it tell the item to delete itself
         # so that the view is updated
-        if self.treeIndex.isValid():
+        if self.treeIndex and self.treeIndex.isValid():
             row = self.treeIndex.row()
             column = self.treeIndex.column()
             # QPersistenIndex doesn't have internalPointer()
