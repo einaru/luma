@@ -57,9 +57,14 @@ class LumaConnectionWrapper(QObject):
 
     i = 0
     def __init__(self, serverObject, parent=None):
-        """To use the async-methods YOU NEED TO SPECIFY A PARENT
-        QOBJECT! If you promise to only use the sync-methods, you don't
-        need to specify a parent.
+        """
+        If you specify a parent, remember the instance isn't
+        garbage-collected before it's unparented. If you don't,
+        remember the instance IS garbage collected as soon as it
+        goes out of scope -- so don't except any signals from it.
+
+        If you aren't using the signals you can use the instance without spesifying
+        a parent.
 
         :param serverObject: the server object to create a connection
          with.
@@ -310,10 +315,14 @@ class WorkerThread(QThread):
         # Remove from threadpool on finish
         with WorkerThread.__Lock:
             if not self.cleaned == True:
-                WorkerThread.__threadPool.remove(self)
+                try:
+                    WorkerThread.__threadPool.remove(self)
+                except:
+                    # Already removed
+                    pass
                 self.cleaned = True
-        print "Debug -- after cleanup of threadpool:"
-        print WorkerThread.__threadPool
+        #print "Debug -- after cleanup of threadpool:"
+        #print WorkerThread.__threadPool
 
     def setWorker(self, worker):
         """Sets worker to be executed in this thread.

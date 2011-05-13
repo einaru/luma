@@ -1,4 +1,5 @@
 import logging
+import ldap
 from string import replace
 
 from PyQt4 import QtGui, QtCore
@@ -30,12 +31,11 @@ class DeleteDialog(QtGui.QDialog, Ui_DeleteDialog):
     
     __logger = logging.getLogger(__name__)
     
-    def __init__(self, sOList, subTree = 0, parent=None):
+    def __init__(self, sOList, subTree = True, parent=None):
         """
-        subTree:
-            0 = nodes only
-            1 = subtree
-            2 = nodes+subtree
+        subTree: 
+            False = only sOList
+            True = subtree of SOList
         """
         super(DeleteDialog, self).__init__(parent)
         self.setupUi(self)
@@ -52,31 +52,27 @@ class DeleteDialog(QtGui.QDialog, Ui_DeleteDialog):
         self.subTree = subTree        
         self.serverConnections = {}
         
-        if self.subTree == 0: # Nodes only
-            
-            for sO in self.items:
-                
-                # Find a textual representation for the smartobjects
-                #rep = self.getRep(sO)
-                rep = getRep(sO)
-            
-                # Make and item with text rep
-                modelItem = QtGui.QStandardItem(rep)
-                modelItem.setEditable(False)
-                modelItem.setCheckable(True)
-                
-                # Represents the status of the deletion
-                statusItem = QtGui.QStandardItem("")
-                statusItem.setEditable(False)
-                
-                # Dict where one can lookup reps to get smartObjects and modelitems
-                self.deleteDict[rep] = [sO, modelItem, statusItem]
-                modelItem.setCheckState(QtCore.Qt.Checked)
-                self.model.appendRow([modelItem,statusItem])
-                
+        if not self.subTree: # The nodes only
+            for smd in self.items:
+                self.addItemToModel(smd)
         else:
-            QMessageBox.critical(None, "Not implemented yet", "Ikke impl.")
-            
+            # Load subtrees
+            for sO in self.items:
+                if not self.serverConnections.has_key(sO.serverMeta.name):
+                    self.serverConnections[sO.serverMeta.name] = LumaConnectionWrapper(sO.serverMeta)
+                    self.serverConnections[sO.serverMeta.name].bindSync()
+                con = self.serverConnections[sO.serverMeta.name]
+                # Subtree 
+                success, result, e = con.searchSync(base=sO.getDN(), scope=ldap.SCOPE_SUBTREE)
+                if success:
+                    for i in result:
+                        # Subtree only
+                        if i.getDN() == sO.getDN():
+                            continue
+                        self.addItemToModel(i)
+                else:
+                    continue
+
         self.deleteItemView.setModel(self.model)
         self.deleteItemView.setAlternatingRowColors(True)
         self.deleteItemView.setUniformRowHeights(True)
@@ -91,6 +87,24 @@ class DeleteDialog(QtGui.QDialog, Ui_DeleteDialog):
     #    dn = sO.getPrettyDN()
     #    #return str(dn+" ["+serverName+"]") # This results in a decode error
     #    return dn + ' [' + serverName + ']'
+
+    def addItemToModel(self, smartDataObject):
+        # Find a textual representation for the smartobjects
+        rep = getRep(smartDataObject)
+    
+        # Make and item with text rep
+        modelItem = QtGui.QStandardItem(rep)
+        modelItem.setEditable(False)
+        modelItem.setCheckable(True)
+        
+        # Represents the status of the deletion
+        statusItem = QtGui.QStandardItem("")
+        statusItem.setEditable(False)
+        
+        # Dict where one can lookup reps to get smartObjects and modelitems
+        self.deleteDict[rep] = [smartDataObject, modelItem, statusItem]
+        modelItem.setCheckState(QtCore.Qt.Checked)
+        self.model.appendRow([modelItem,statusItem])
             
     def delete(self):
         
@@ -118,20 +132,19 @@ class DeleteDialog(QtGui.QDialog, Ui_DeleteDialog):
         
         # Map the dictionary keys
         deleteSOList = map(lambda x: self.deleteDict[x][0], self.deleteDict.keys())
-        deleteSOList.sort()
-        
-        #BUSY
+        deleteSOList.sort(key=lambda x: len(x.getDN())) #parents first (sorted by length)
+        deleteSOList.reverse()
         
         # We now have a list with smartObjects to be deleted, so let's do so
         # TODO Do in thread?
         for sO in deleteSOList:
             # Create a LumaConnection if necessary
-            if not self.serverConnections.has_key(sO.serverMeta):
-                self.serverConnections[sO.serverMeta] = LumaConnectionWrapper(sO.serverMeta)
-                self.serverConnections[sO.serverMeta].bindSync()
+            if not self.serverConnections.has_key(sO.serverMeta.name):
+                self.serverConnections[sO.serverMeta.name] = LumaConnectionWrapper(sO.serverMeta)
+                self.serverConnections[sO.serverMeta.name].bindSync()
             
             # Use it to delete the object on the server
-            conn = self.serverConnections[sO.serverMeta]
+            conn = self.serverConnections[sO.serverMeta.name]
             status, e = conn.delete(sO.getDN())
             
             # Update the status in the dialog
@@ -146,8 +159,6 @@ class DeleteDialog(QtGui.QDialog, Ui_DeleteDialog):
         for conn in self.serverConnections.values():
             conn.unbind()
             
-        #NOTBUSY
-        
         # If everything we wanted to delete was deleted -- close
         #if allDeleted:
         #    self.accept()
@@ -160,6 +171,16 @@ class DeleteDialog(QtGui.QDialog, Ui_DeleteDialog):
         
     def __utf8(self, text):
         return unicode(text).encode('utf-8').strip()
+
+    def accept(self):
+        for conn in self.serverConnections.values():
+            conn.unbind()
+        QDialog.accept(self)
+
+    def reject(self):
+        for conn in self.serverConnections.values():
+            conn.unbind()
+        QDialog.reject(self)
 
         
 import dsml
@@ -356,6 +377,32 @@ class ExportDialog(QtGui.QDialog, Ui_ExportDialog):
         """
         del self.exportDict
         self.reject()
+
+from PyQt4.QtGui import QDialog, QVBoxLayout
+from .NewEntryDialogDesign import Ui_Dialog
+from ..AdvancedObjectWidget import AdvancedObjectWidget
+from base.backend.SmartDataObject import SmartDataObject
+
+class NewEntryDialog(QDialog, Ui_Dialog):
+
+    def __init__(self, parentIndex, templateSmartObject = None, parent=None, entryTemplate = None):
+        QDialog.__init__(self)
+        self.setupUi(self)
+        if templateSmartObject:
+            smartObject = templateSmartObject 
+        else:
+            smartO = parentIndex.internalPointer().smartObject()
+            serverMeta = smartO.serverMeta
+            baseDN = smartO.getDN()
+            data = {}
+            smartObject = AdvancedObjectWidget.smartObjectCopy(SmartDataObject((baseDN, data), serverMeta))
+        self.objectWidget = AdvancedObjectWidget(None, entryTemplate = entryTemplate)
+        self.objectWidget.initModel(smartObject, create=True)
+        self.gridLayout.addWidget(self.objectWidget)
+
+    def accept(self):
+        if self.objectWidget.saveObject():
+            super(NewEntryDialog, self).accept()
         
 
 # vim: tabstop=4 expandtab shiftwidth=4 softtabstop=4

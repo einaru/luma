@@ -30,7 +30,6 @@ description = u"""Do simple and advanced LDAP search,
 create filters to speed up efficiency.
 """
 
-
 def getIcon(iconPath=None):
     return iconFromTheme('luma-search-plugin', ':/icons/plugins/search')
 

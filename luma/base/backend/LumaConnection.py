@@ -31,7 +31,6 @@ class LumaConnectionException(Exception):
 
 ###############################################################################
 
-
 class LumaConnection(object):
     """ This class is a wrapper around the LDAP functions. It is provided to 
     access ldap data easier.
@@ -161,7 +160,7 @@ class LumaConnection(object):
         try:
             searchResult = self.ldapServerObject.add_s(dn, modlist)
         except ldap.LDAPError, e:
-            self.exceptionObject = e
+            exceptionObject = e
         if None == exceptionObject:
             message = "LDAP object " + dn + " successfully added."
             self.logger.info(message)
