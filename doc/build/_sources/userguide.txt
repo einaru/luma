@@ -286,8 +286,8 @@ messages. The message that Luma produces is categorized in:
 
 5.2. Reporting bugs
 -------------------
-The Luma bugtracker can be found here: http://luma.sf.net/bugtracker.
-
+The Luma bugtracker can be found here: 
+http://sourceforge.net/tracker/?group_id=89105.
 
 6. Contact and support
 ======================

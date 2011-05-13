@@ -33,17 +33,17 @@ def fullSplit(path, result=None):
     """
     if result is None:
         result = []
-    
+
     head, tail = os.path.split(path)
-    
+
     if head == '':
         return [tail] + result
-    
+
     if head == path:
         return result
-    
+
     return fullSplit(head, [tail] + result)
-    
+
 
 def findPackages():
     """Custom method to suplement distutils with a setuptools-like way
@@ -54,7 +54,7 @@ def findPackages():
     root_dir = os.path.dirname(__file__)
     if root_dir != '':
         os.chdir(root_dir)
-    
+
     for path, names, files in os.walk(src_dir):
         top = os.path.split(path)[1]
         # Skip directories defined in `skipDirs`
@@ -64,12 +64,12 @@ def findPackages():
         for i, name in enumerate(names):
             if name.startswith('.'):
                 del names[i]
-        
+
         if '__init__.py' in files:
             s = fullSplit(path)
             if s[0] == src_dir:
                 s[0] = app_dir
-            
+
             packages.append('.'.join(s))
     return packages
 
@@ -117,12 +117,13 @@ if sys.platform.lower().startswith('win'):
 elif sys.platform.lower().startswith('darwin'):
     # TODO: add Mac OS X spesifics. (py2app?)
     _extras = dict(
-        scripts=['bin/luma']
+        scripts=['bin/luma'],
+        data_files=[('share/man/man1', glob('data/man/luma.1.gz'))]
     )
 # Linux
 elif sys.platform.lower().startswith('linux'):
     # Include the application icon in various sizes, so that icon themers
-    # can change this as per the iconthemeing standards defined by 
+    # can change this as per the iconthemeing standards defined by
     # freedesktop.org
     for size in [16, 22, 32, 48, 64, 128, 256]:
         dst = 'share/icons/hicolor/{0}x{0}/apps'.format(size)
@@ -138,14 +139,14 @@ elif sys.platform.lower().startswith('linux'):
     # Include the desktop and manpage files
     _data_files.append(('share/applications', glob('data/luma.desktop')))
     _data_files.append(('share/man/man1', glob('data/man/luma.1.gz')))
-    
+
     _extras = dict(
         data_files=_data_files,
         scripts=['bin/luma']
     )
 
 if __name__ == '__main__':
-    
+
     error = sys.stderr.write
     write = sys.stdout.write
 
@@ -166,30 +167,35 @@ if __name__ == '__main__':
         **_extras
     )
 
-    if success and 'install' in sys.argv:
-        """If ``setup`` was successfully executed with the install
-        argument we need to do some additional post processing work.
+    # This section is commented out because it currently is not
+    # needed. It was created in an attempt to solve the issue with
+    # including none python files in site-packages. This is currently
+    # done for the html files shipped with the browser plugin.
+    #
+    #if success and 'install' in sys.argv:
+    #    """If ``setup`` was successfully executed with the install
+    #    argument we need to do some additional post processing work.
 
-        This includes copying ``luma/plugins/browser/templates`` into
-        path returned by ``luma.base.util.Paths.getConfigPrefix``.
-        """
-        from luma.base.util.Paths import getConfigPrefix
+    #    This includes copying ``luma/plugins/browser/templates`` into
+    #    path returned by ``luma.base.util.Paths.getConfigPrefix``.
+    #    """
+    #    from luma.base.util.Paths import getConfigPrefix
 
-        src = os.path.join('luma', 'plugins','browser_plugin', 'templates')
-        configPrefix = getConfigPrefix()
+    #    src = os.path.join('luma', 'plugins','browser_plugin', 'templates')
+    #    configPrefix = getConfigPrefix()
 
-        if not configPrefix[0]:
-            error('Unable to create user config folder:')
-            msg = 'Additional none-python files will be copied to: {0}'
-            error(msg.format(configPrefix[1]))
+    #    if not configPrefix[0]:
+    #        error('Unable to create user config folder:')
+    #        msg = 'Additional none-python files will be copied to: {0}'
+    #        error(msg.format(configPrefix[1]))
 
-        dst = os.path.join(configPrefix[1], 'browser-templates')
-        try:
-            shutil.copytree(src, dst)
-        except OSError:
-            sys.stderr.write('Unable to copy files.')
-            msg = 'Destination allready exists: {0}'
-            sys.stderr.write(msg.format(dst))
+    #    dst = os.path.join(configPrefix[1], 'browser-templates')
+    #    try:
+    #        shutil.copytree(src, dst)
+    #    except OSError:
+    #        sys.stderr.write('Unable to copy files.')
+    #        msg = 'Destination allready exists: {0}'
+    #        sys.stderr.write(msg.format(dst))
 
 
 # vim: tabstop=4 expandtab shiftwidth=4 softtabstop=4
