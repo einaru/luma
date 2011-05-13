@@ -173,6 +173,12 @@ class ServerDialog(QDialog, Ui_ServerDialogDesign):
                 ,QMessageBox.Yes|QMessageBox.No)
             if ans == QMessageBox.Yes:
                 self.portSpinBox.setValue(636)
+        if index == ServerEncryptionMethod.Unencrypted and self.portSpinBox.value() != 389:
+            ans = QMessageBox.information(self, QCoreApplication.translate("ServerDialog","Unencrypted")
+                ,QCoreApplication.translate("ServerDialog","You have choosen to use unencryped LDAP but with a port other than 389.\n Do you want this automatically changed?")
+                ,QMessageBox.Yes|QMessageBox.No)
+            if ans == QMessageBox.Yes:
+                self.portSpinBox.setValue(389)
 
     def wasChanged(self):
         """Slot to register that some server settings is changed.

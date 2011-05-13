@@ -1,4 +1,21 @@
 # -*- coding: utf-8 -*-
+#
+# Copyright (c) 2011
+#     Johannes Harestad, <johannesharestad@gmail.com>
+#
+# Luma is free software; you can redistribute it and/or modify 
+# it under the terms of the GNU General Public Licence as published by 
+# the Free Software Foundation; either version 2 of the Licence, or 
+# (at your option) any later version.
+#
+# Luma is distributed in the hope that it will be useful, but 
+# WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY
+# or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public Licence 
+# for more details.
+#
+# You should have received a copy of the GNU General Public Licence along 
+# with Luma; if not, write to the Free Software Foundation, Inc., 
+# 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA
 
 from PyQt4.QtCore import QSettings
 from PyQt4.QtGui import QStandardItemModel, QStandardItem
@@ -8,8 +25,6 @@ class PluginListWidgetModel(QStandardItemModel):
     """
     This model will create its own items, from the QSettings where 
     plugins is set to "load".
-
-    FIX BUG: This object is being called twice on startup... ?
     """
     def __init__(self, parent = None):
         QStandardItemModel.__init__(self, parent)

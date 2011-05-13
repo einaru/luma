@@ -1,17 +1,28 @@
-#!/usr/bin/env python
 # -*- coding: utf-8 -*-
-
-###########################################################################
-#    Copyright (C) 2008 by Vegar Westerlund
-#    <vegarwe@users.sourceforge.net>
-###########################################################################
+#
+# Copyright (c) 2011
+#     Christian Forfang, <cforfang@gmail.com>
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see http://www.gnu.org/licenses/
 
 from __future__ import with_statement
 from threading import RLock
 
-from plugins.browser_plugin.item.ServerTreeItem import ServerTreeItem
-from plugins.browser_plugin.item.RootTreeItem import RootTreeItem
-from plugins.browser_plugin.item.LDAPErrorItem import LDAPErrorItem
+from ..item.ServerTreeItem import ServerTreeItem
+from ..item.RootTreeItem import RootTreeItem
+from ..item.LDAPErrorItem import LDAPErrorItem
+
 from base.backend.LumaConnectionWrapper import LumaConnectionWrapper
 
 from PyQt4.QtCore import QAbstractItemModel, pyqtSlot, pyqtSignal, Qt
