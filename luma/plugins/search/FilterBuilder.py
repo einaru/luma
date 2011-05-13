@@ -139,7 +139,7 @@ class FilterBuilder(QWidget, Ui_FilterBuilder):
         - `item`: the filter item to be excaped.
         """
         item = unicode(item)
-        if not item.startswith('('):
+        if not item.startswith(u'('):
             item = u'({0}'.format(item)
         if not item.endswith(')'):
             item = u'{0})'.format(item)
@@ -208,7 +208,7 @@ class FilterBuilder(QWidget, Ui_FilterBuilder):
         - `attributes`: a list of available attributes for the selected
           server.
         """
-        self.objectClassOptions = ['*']
+        self.objectClassOptions = [u'*']
         self.objectClassOptions.extend(sorted(objectClasses, key=str.lower))
         self.attributeOptions = sorted(attributes, key=str.lower)
         self.setOptions(self.rbObjectClass.isChecked())
@@ -233,7 +233,7 @@ class FilterBuilder(QWidget, Ui_FilterBuilder):
         If text is empty the insert button is disabled, if not it is
         enabled.
         """
-        self.insertButton.setDisabled(text == '')
+        self.insertButton.setDisabled(text == u'')
 
     def onFilterChanged(self):
         """Slot for the filter edit widget.
@@ -243,7 +243,7 @@ class FilterBuilder(QWidget, Ui_FilterBuilder):
         # As long as something has changed there is something in the
         # undo|redo buffer, and we have something that can be cleared.
         self.clearButton.setEnabled(True)
-        currentFilterState = self.filterEdit.toPlainText() == ''
+        currentFilterState = self.filterEdit.toPlainText() == u''
         self.saveButton.setDisabled(currentFilterState)
         # If there is nothing to save, there is nothing to use
         self.useButton.setDisabled(currentFilterState)
@@ -266,7 +266,7 @@ class FilterBuilder(QWidget, Ui_FilterBuilder):
         cursor = self.filterEdit.textCursor()
         tmp = cursor.selectedText()
         if tmp == '':
-            self.filterEdit.insertPlainText('(!())')
+            self.filterEdit.insertPlainText(u'(!())')
             self.__moveCursor(QTextCursor.Left, 2)
         else:
             tmp = self.__escapeFilterItem(tmp)
@@ -289,7 +289,7 @@ class FilterBuilder(QWidget, Ui_FilterBuilder):
         cursor = self.filterEdit.textCursor()
         tmp = cursor.selectedText()
         if tmp == '':
-            self.filterEdit.insertPlainText('(&())')
+            self.filterEdit.insertPlainText(u'(&())')
             self.__moveCursor(QTextCursor.Left, 2)
         else:
             tmp = self.__escapeFilterItem(tmp)
@@ -312,7 +312,7 @@ class FilterBuilder(QWidget, Ui_FilterBuilder):
         cursor = self.filterEdit.textCursor()
         tmp = cursor.selectedText()
         if tmp == '':
-            self.filterEdit.insertPlainText('(|())')
+            self.filterEdit.insertPlainText(u'(|())')
             self.__moveCursor(QTextCursor.Left, 2)
         else:
             tmp = self.__escapeFilterItem(tmp)
@@ -363,7 +363,10 @@ class FilterBuilder(QWidget, Ui_FilterBuilder):
         settings = PluginSettings('search')
         prefix = settings.configPrefix
         filterFile = os.path.join(prefix, 'filters')
-        filterToSave = self.filterEdit.toPlainText()
+        filterToSave = unicode(self.filterEdit.toPlainText())
+
+        print filterToSave.__repr__()
+
         # Set the mode flag depending on the state of the file. If it
         # exists we open the file in append mode, if not we need to use
         # the write flag to make sure it's created.
@@ -373,7 +376,7 @@ class FilterBuilder(QWidget, Ui_FilterBuilder):
             flag = 'w'
         # Try to save the file.
         with open(filterFile, flag) as f:
-            f.write(u'{0}\n'.format(filterToSave))
+            f.write(u'{0}\n'.format(filterToSave).encode('utf-8'))
 
         # We emit the filterSaved signal after the file is closed
         self.filterSaved.emit()
@@ -390,5 +393,6 @@ class FilterBuilder(QWidget, Ui_FilterBuilder):
         """
         self.filterEdit.clear()
         self.clearButton.setEnabled(False)
+
 
 # vim: tabstop=4 expandtab shiftwidth=4 softtabstop=4
