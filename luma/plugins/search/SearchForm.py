@@ -21,6 +21,7 @@
 from PyQt4.QtCore import (Qt)
 from PyQt4.QtGui import (QCompleter, QWidget)
 
+from base.util import encodeUTF8
 from .gui.SearchFormDesign import Ui_SearchForm
 
 
@@ -134,7 +135,7 @@ class SearchForm(QWidget, Ui_SearchForm):
 
     @property
     def server(self):
-        return unicode(self.serverBox.currentText())
+        return encodeUTF8(unicode(self.serverBox.currentText()))
 
     @property
     def baseDN(self):

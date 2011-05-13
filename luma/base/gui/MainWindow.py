@@ -620,7 +620,7 @@ class LoggerWidget(QWidget, Ui_LoggerWidget):
         """
         loglvl, msg, name, threadName = log
         #: Log message format. 0: loglvl, 1: name, 2: threadname, 3: msg
-        _msg = '{0}: [{1}/{2}]: {3}'
+        _msg = u'{0}: [{1}/{2}]: {3}'
         if not rebuild:
             self.logList.append(log)
         if loglvl not in ["INFO", "ERROR", "DEBUG"]:

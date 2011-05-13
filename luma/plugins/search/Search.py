@@ -213,7 +213,7 @@ class SearchPlugin(QWidget, Ui_SearchPlugin):
                 with open(filterFile, 'r+') as f:
                     #bookmarks = f.readLines()
                     for filter in f:
-                        bookmarks.append(filter.strip())
+                        bookmarks.append(filter.strip().decode('utf-8'))
 
                 self.searchForm.populateFilterBookmarks(bookmarks)
 
