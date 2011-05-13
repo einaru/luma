@@ -58,10 +58,10 @@ class SearchForm(QWidget, Ui_SearchForm):
     def __escape(self, text):
         """FIXME: Dummy escaping
         """
-        if not text.startswith('('):
-            text = '({0}'.format(text)
-        if not text.endswith(')'):
-            text = '{0})'.format(text)
+        if not text.startswith(u'('):
+            text = u'({0}'.format(text)
+        if not text.endswith(u')'):
+            text = u'{0})'.format(text)
         return text
 
     def onSearchCriteriaChanged(self, text):
@@ -134,11 +134,12 @@ class SearchForm(QWidget, Ui_SearchForm):
 
     @property
     def server(self):
-        return self.serverBox.currentText()
+        return unicode(self.serverBox.currentText())
 
     @property
     def baseDN(self):
-        return self.baseDNBox.currentText()
+        # Python-LDAP takes strings in UTF8
+        return encodeUTF8(unicode(self.baseDNBox.currentText()))
 
     @property
     def scope(self):
@@ -158,10 +159,11 @@ class SearchForm(QWidget, Ui_SearchForm):
 
     @property
     def filter(self):
+        # Python-LDAP takes strings in UTF8
         # TODO: run some validation on the filter
-        return self.__escape(unicode(
-            self.filterBoxEdit.currentText()))
-
+        return self.__escape(
+                encodeUTF8(unicode(
+                    self.filterBoxEdit.currentText())))
 
 class AttributeCompleter(QCompleter):
     """Attribute Completer for the search plugin.

@@ -73,8 +73,7 @@ def encodeUTF8(text, strip=False):
     """
     if strip:
         text = text.strip()
-    #text = unicode(text).encode('utf-8')
-
+    text = unicode(text).encode('utf-8')
     return text
 
 

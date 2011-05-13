@@ -22,6 +22,8 @@
 #############################################################################
 """
 
+# See BrowserView.py for example of use.
+
 import sip
 from PyQt4 import QtCore
 

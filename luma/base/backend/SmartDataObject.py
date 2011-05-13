@@ -49,7 +49,6 @@ class SmartDataObject (object):
                     
         # Set server meta information
         self.serverMeta = serverMeta
-        
         # Set schema for current server
         self.serverSchema = ObjectClassAttributeInfo(serverMeta)
         
@@ -514,7 +513,7 @@ class SmartDataObject (object):
             
         # No binary attribute
         else:
-            tmpRDN = attributeName + "=" + attributeValue
+            tmpRDN = attributeName + u"=" + attributeValue
         
             # Does the created RDN match the actual RDN?
             if tmpRDN == self.getPrettyRDN():
@@ -544,7 +543,8 @@ class SmartDataObject (object):
         tmpList = explodeDN(tmpString)
         newList = map(escapeSpecialChars, tmpList)
         tmpString = ",".join(newList)
-        tmpString = unicode(tmpString)
+        if not type(tmpString) == unicode:
+            tmpString = unicode(tmpString,"utf8",)
         
         self.dn = tmpString.encode('utf-8')
         
@@ -616,7 +616,7 @@ class SmartDataObject (object):
             if index <= (valueLength - 1):
                 
                 # Is the value we want to delete the RDN of the object?
-                if self.isAttributeValueRDN(attributeName, self.data[attributeName][index]):
+                if self.isAttributeValueRDN(attributeName, self.data[attributeName][index].decode('utf8')):
                     errorList = []
                     errorList.append("Can't delete attribute. Attribute is RDN of this object.")
                     errorList.append(" DN: " + self.getPrettyDN() + ".")
