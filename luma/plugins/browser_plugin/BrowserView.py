@@ -293,7 +293,7 @@ class BrowserView(QWidget):
                     self.str_ITEM, self.deleteSelection
                 )
                 self.contextMenuDelete.addAction(
-                    self.str_SUBTREE, self.deleteSubtree
+                    self.str_SUBTREE_ONLY, self.deleteSubtree
                 )
                 #self.contextMenuDelete.addAction(
                 #    self.str_SUBTREE_PARENTS, self.deleteSelection
@@ -460,7 +460,7 @@ class BrowserView(QWidget):
                 if i != -1:
                     self.tabWidget.removeTab(i)
 
-    def deleteSelection(self, alsoSubTree=False):
+    def deleteSelection(self, subTree=False):
         """Slot for the context menu.
 
         Opens the DeleteDialog with the selected entries, giving the
@@ -470,8 +470,8 @@ class BrowserView(QWidget):
         See deleteOnlySubtreeOfSelection() for only subtree.
         """
 
-        # Only one item
-        if len(self.selection) == 1:
+        # Only a single item
+        if len(self.selection) == 1 and not subTree:
             # Confirmation-message
             ok = QMessageBox.question(
                 self, self.str_DELETE, self.str_REALLY_DELETE,
@@ -489,10 +489,6 @@ class BrowserView(QWidget):
                 )
             return
 
-        if alsoSubTree:
-            # Not done yet
-            return
-
         # Make persistent indexes and list of smartObjects to be deleted
         persistenSelection = []
         sOList = []
@@ -501,10 +497,17 @@ class BrowserView(QWidget):
             sOList.append(x.internalPointer().smartObject())
 
         # Create gui
-        deleteDialog = DeleteDialog(sOList, 0)  # 0 = not subtree
+        self.setBusy(True)
+        deleteDialog = DeleteDialog(sOList, subTree)
+        self.setBusy(False)
         status = deleteDialog.exec_()
 
         if status:  # the dialog was not canceled
+            if subTree:
+                # Reload the items whos subtree was deleted
+                for x in self.selection:
+                    self.ldaptreemodel.reloadItem(x)
+                return
             # If all rows were removed successfully, just call
             # removeRows on all selected items (reloading all items of
             # the parent can be expensive)
@@ -537,7 +540,7 @@ class BrowserView(QWidget):
             pass
 
     def deleteSubtree(self):
-        self.deleteSelection(alsoSubTree=True)
+        self.deleteSelection(subTree=True)
 
     def exportItems(self):
         """Slot for the context menu.
@@ -685,6 +688,8 @@ class BrowserView(QWidget):
             "BrowserView", "Item")
         self.str_SUBTREE = QCoreApplication.translate(
             "BrowserView", "Subtree")
+        self.str_SUBTREE_ONLY = QCoreApplication.translate(
+            "BrowserView", "Subtree only")
         self.str_SUBTREE_PARENTS = QCoreApplication.translate(
             "BrowserView", "Subtree with parents")
         self.str_ITEMS = QCoreApplication.translate(
