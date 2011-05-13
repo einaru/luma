@@ -21,7 +21,6 @@
 from PyQt4.QtCore import (Qt)
 from PyQt4.QtGui import (QCompleter, QWidget)
 
-from .Search import encodeUTF8
 from .gui.SearchFormDesign import Ui_SearchForm
 
 
@@ -160,7 +159,8 @@ class SearchForm(QWidget, Ui_SearchForm):
     @property
     def filter(self):
         # TODO: run some validation on the filter
-        return self.__escape(self.filterBoxEdit.currentText())
+        return self.__escape(unicode(
+            self.filterBoxEdit.currentText()))
 
 
 class AttributeCompleter(QCompleter):

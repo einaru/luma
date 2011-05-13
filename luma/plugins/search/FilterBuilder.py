@@ -25,7 +25,7 @@ from PyQt4 import QtCore
 from PyQt4.QtGui import (QWidget, QTextCursor)
 
 from .gui.FilterBuilderDesign import Ui_FilterBuilder
-from .Search import (encodeUTF8, PluginSettings)
+from .Search import PluginSettings
 from .FilterHighlighter import LumaFilterHighlighter
 
 
@@ -138,7 +138,7 @@ class FilterBuilder(QWidget, Ui_FilterBuilder):
 
         - `item`: the filter item to be excaped.
         """
-        item = encodeUTF8(item)
+        item = unicode(item)
         if not item.startswith('('):
             item = '({0}'.format(item)
         if not item.endswith(')'):
@@ -158,7 +158,7 @@ class FilterBuilder(QWidget, Ui_FilterBuilder):
 
         Returns the corrosponding filter type
         """
-        return encodeUTF8(self.filterTypeBox.itemText(index)).split(' ')[0]
+        return unicode(self.filterTypeBox.itemText(index)).split(' ')[0]
 
     def __moveCursor(self, operation, n=1):
         """Elegant way of moving the position of the text edit cursor
@@ -336,12 +336,12 @@ class FilterBuilder(QWidget, Ui_FilterBuilder):
         edit widget.
         """
         if self.rbObjectClass.isChecked():
-            obj = encodeUTF8(self.optionBox.currentText())
+            obj = unicode(self.optionBox.currentText())
             component = 'objectClass={0}'.format(obj)
         elif self.rbAttribute.isChecked():
-            attr = encodeUTF8(self.optionBox.currentText())
+            attr = unicode(self.optionBox.currentText())
             eq = self.__filterType(self.filterTypeBox.currentIndex())
-            component = encodeUTF8(self.assertionEdit.text())
+            component = unicode(self.assertionEdit.text())
             if component == '':
                 return
             component = u'{0}{1}{2}'.format(attr, eq, component)

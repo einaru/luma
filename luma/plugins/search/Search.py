@@ -34,7 +34,6 @@ from base.backend.Exception import (ServerCertificateException,
                                     InvalidPasswordException)
 from base.backend.ObjectClassAttributeInfo import ObjectClassAttributeInfo
 from base.gui.Settings import PluginSettings
-from base.util import encodeUTF8
 from base.util.IconTheme import iconFromTheme, pixmapFromTheme
 
 from .gui.SearchPluginDesign import Ui_SearchPlugin
@@ -55,11 +54,11 @@ class SearchPluginEventFilter(QObject):
     def eventFilter(self, target, event):
         """Overrided method to catch and act upon various ``QEvent`s.
 
-        Parameters:
-
-        - `target`: The target ``QWidget`` where the event was
+        :param target: The target ``QWidget`` where the event was
           generated from.
-        - `event`: The ``QEvent`` that was generated.
+        :type target: QObject
+        :param event: The ``QEvent`` that was generated.
+        :type event: QEvent
         """
         if event.type() == QEvent.KeyPress:
             # If we have a match on the QKeySequence we're looking for
@@ -323,6 +322,7 @@ class SearchPlugin(QWidget, Ui_SearchPlugin):
         """
         self.searchForm.onSearchError(False)
         filter = self.searchForm.filter
+        #filter = self.searchForm.filterBoxEdit.currentText()
         self.__logger.debug('filter: {0}'.format(filter))
         self.search(filter)
 
@@ -435,7 +435,7 @@ class Search(QObject):
             self.__logger.error(msg.format(server, str(e)))
         else:
             self.connection.searchAsync(**kwargs)
-    
+
     def onSearchFinished(self, success, result, e):
         """Slot for the searchFinished signal in LumaConnectionWrapper.
         As of now this reemits a signal that SearchPlugin has connected
