@@ -31,7 +31,7 @@ class LDAPTreeItem(AbstractLDAPTreeItem):
     
     # Defaults
     LIMIT_DEFAULT = 0
-    FILTER_DEFAULT = "(objectClass=*)"
+    FILTER_DEFAULT = u"(objectClass=*)"
     
     # How many aquired entries before a messagebox 
     # pops up asking if the user want to load them all?
@@ -107,7 +107,7 @@ class LDAPTreeItem(AbstractLDAPTreeItem):
         
         # Search for items at the level under this one
         success, resultList, exceptionObject = lumaConnection.searchSync(self.itemData.getDN(), \
-                scope=ldap.SCOPE_ONELEVEL, filter=self.filter, sizelimit=self.limit)
+                scope=ldap.SCOPE_ONELEVEL, filter=self.filter.encode('utf8'), sizelimit=self.limit)
         lumaConnection.unbind()
         
         if not success:
@@ -135,8 +135,8 @@ class LDAPTreeItem(AbstractLDAPTreeItem):
         """
         (value, ok) = QInputDialog.getText(None, QtCore.QCoreApplication.translate("LDAPTreeItem","Filter"), QtCore.QCoreApplication.translate("LDAPTreeItem","Enter the filter (with parentheses -- none for default):"), text=self.filter)
         if ok == True:
-            if len(str(value)) > 0:
-                self.filter = str(value)
+            if len(value) > 0:
+                self.filter = unicode(value)
             else:
                 self.filter = LDAPTreeItem.FILTER_DEFAULT
         return ok
