@@ -19,7 +19,7 @@ Luma Userguide
 
 1. Getting started
 ==================
-On UNIX and UNIX-like systems after a succesfull installation, Luma can be 
+On UNIX and UNIX-like systems after a successful installation, Luma can be 
 started from a shell, with the following command (provided the startup script
 is installed in the system ``PATH``)::
 
@@ -52,7 +52,7 @@ application. The first thing you need to do is to edit the **serverlist**. This
 can be done by selecting ``Edit → Server List`` from the menubar or with the 
 keyboard shortcut ``Ctrl + Shift + S``.
 
-When adding servers to the serverlist you are presented with alot of options.
+When adding servers to the serverlist you are presented with many of options.
 The Server Dialog is basically divided into three section:
 
 - **Network**:
@@ -68,9 +68,9 @@ The Server Dialog is basically divided into three section:
 ============================
 When you have added servers to the serverlist its time to manage the available
 plugins. By default no plugins is activated. To activate a plugin you must
-select ``Edit → Settings`` from the menubar to open the settings dialog, and select the plugins tab. A list of all avilable
+select ``Edit → Settings`` from the menubar to open the settings dialog, and select the plugins tab. A list of all available
 plugins will be shown, and you can select the plugins you can to activate.
-If the plugin support it, you can also edit plugin spesific settings from the
+If the plugin support it, you can also edit plugin specific settings from the
 same dialog.
 
 When you have activated one or more plugins and closed the settings dialog, the
@@ -94,7 +94,7 @@ The browser consists of the list of server-trees on the left, and the entry-view
 
 **Server tree**
 
-The following operations is avaialable when rightclicking a node:
+The following operations is available when right clicking a node:
 Edit server settings
 
 - **Open**: Loads the selected object, if not already loaded, and displays it in the entry-view.
@@ -130,14 +130,27 @@ And the following inside the document:
 
 3.1.2 Templates
 ...............
-- Description
-- Figur
+The template plugin is for making templates to use in making ldap entries.
+On the left side is the template list and it shows existing templates. The right side is the template view and shows information on the selected template.
+
+**Template list**
+
+The four buttons under the template list is:
+
+- **Add**: Opens a dialog for adding a new template.
+- **Save**: Saves the template list to disk.
+- **Delete**: Deletes the selected template.
+- **Duplicate**: Duplicates the selected template.
+
+**Template view**
+
+In the upper part of the template view is the name of the server, which the template belongs to, and the description of the template. In the *Objectclasses* section the template's objectclasses is shown and can be added and deleted. The *Attributes* section works the same way as the *Objectclasses* section, but you can also change the *must* of an attribute with no *must* to a blue checkmark. This is to show that you want the template to force an attribute to get a value when made in the browser plugin.
 
 
 3.1.3. Search
 .............
-The search plugin supports arbritrary LDAP search operations on a selected 
-server. The plugin also includes a convinient Filter builder, which can be used
+The search plugin supports arbitrary LDAP search operations on a selected 
+server. The plugin also includes a convenient Filter builder, which can be used
 to build complex LDAP search filters.
 
 
@@ -151,7 +164,7 @@ limit for the search. The search level options is:
 - **SCOPE_ONELEVEL**:
 - **SCOPE_SUBTREE**: (*Default*)
 
-The *size limit* defines the maximum number of matches to retrive from the 
+The *size limit* defines the maximum number of matches to retrieve from the 
 search operation. The default value is 0 (which is the same as None).
 
 To perform a search you simply select a server, enter a search filter and click
@@ -171,7 +184,7 @@ The *Filter builder* is intended to help the you construct complex LDAP search
 filters. Based on the currently selected server you are presented with a
 complete list of object classes and attributes that is supported on the server.
 
-The *Filter builder* is divided into a search critaria component creator, and a
+The *Filter builder* is divided into a search criteria component creator, and a
 filter editor. When you create a search filter criteria, you insert it into the
 editor. The component will be inserted at the cursor position in the editor.
 In the filter editor you are able to perform various operations on selections.
@@ -179,22 +192,22 @@ This includes to ``or``, ``and`` or ``negate`` a selection of the search filter.
 You also is able to insert escaped special characters into the filter.
 
 Filters created in the *Filter builder* follows the *LDAP String Representation
-of Search Filters* spesifications defined in ``RFC4514`` [1]_.
+of Search Filters* specifications defined in ``RFC4514`` [1]_.
 
 
-.. Add relevant screenshots of the Search plugin filter builder.
+.. Add relevant screen shots of the Search plugin filter builder.
 
 
 **Result view**
 
 When a search operation successfully returns. The matching LDAP entries are
 displayed in a new tab. The search result is displayed in a table view. The
-collumns in this table represents the DN plus one column for every attribute
+columns in this table represents the DN plus one column for every attribute
 used in the search filter.
 
 It is also possible to do additional filtering on columns in the result view.
 To open the result view filter box you can use the keyboard shortcut ``Ctrl +
-F``. Here you can choose the filtering sysntax to use and the column to apply
+F``. Here you can choose the filtering syntax to use and the column to apply
 the filter on.
 
 The available filter syntaxes is:
@@ -206,7 +219,7 @@ The available filter syntaxes is:
   Note that this option can be very slow on large result sets.
 
 
-.. Add relevant screenshots of the Search plugin result view.
+.. Add relevant screen shots of the Search plugin result view.
 
 
 4. Luma keyboard shortcuts
@@ -252,7 +265,7 @@ On Os X Ctrl is replaced with Meta
 5. Problems and bugs
 ====================
 Luma tries to provide relevant feedback to the user, when illegal operations, 
-errors and/or other problems occure. If you encounter some issues where the
+errors and/or other problems occur. If you encounter some issues where the
 application feedback is missing, you can try to start the application from a
 shell with the ``-v`` or ``--verbose`` option::
 
@@ -267,7 +280,7 @@ application, in `5.1. The Luma Logger Window`_.
 ---------------------------
 The *Logger Window* is not displayed by default. To display it you can select
 ``View → Logger Window`` from the menu bar, or use the keyboard shortcut ``Ctrl
-+ L``. If you want the *Logger Window* to be displayed everytime you start Luma
++ L``. If you want the *Logger Window* to be displayed every time you start Luma
 you can select this in the *Settings Dialog* (``Edit → Settings`` in the 
 menubar).
 
@@ -281,7 +294,7 @@ messages. The message that Luma produces is categorized in:
   Some of these messages can be of great value when a problem occurs.
 - **Info**:
   Messages that only contain verbose information of things that happen
-  succesfully.
+  successfully.
 
 
 5.2. Reporting bugs
@@ -291,7 +304,7 @@ http://sourceforge.net/tracker/?group_id=89105.
 
 6. Contact and support
 ======================
-Application news and contact information can be found on the offical Luma 
+Application news and contact information can be found on the official Luma 
 website http://luma.sf.net/.
 
 
