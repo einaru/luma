@@ -20,7 +20,6 @@ from .gui.AddAttributeWizardDesign import Ui_AddAttributeWizardDesign
 from base.backend.ObjectClassAttributeInfo import ObjectClassAttributeInfo
 from base.util.IconTheme import pixmapFromTheme
 
-
 class AddAttributeWizard(QWizard, Ui_AddAttributeWizardDesign):
 
     def __init__(self, parent = None, flags = PyQt4.QtCore.Qt.Widget):

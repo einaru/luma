@@ -323,7 +323,6 @@ class SearchPlugin(QWidget, Ui_SearchPlugin):
         """
         self.searchForm.onSearchError(False)
         filter = self.searchForm.filter
-        self.__logger.debug('filter: {0}'.format(filter))
         self.search(filter)
 
     def search(self, filter):
