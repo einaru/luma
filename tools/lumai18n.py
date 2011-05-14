@@ -23,7 +23,7 @@ import sys
 
 from optparse import (OptionParser, OptionGroup)
 
-from lumarcc import (updateTranslationFiles, updateProjectFile)
+#from lumarcc import (updateTranslationFiles, updateProjectFile)
 from util.isocodes import (languages, countries)
 
 short_description = """lumai18n.py - Luma Internationalization tool
@@ -67,10 +67,10 @@ def __getOptions(dictionary, criteria):
 
         (dictionary[key], key)
 
-    Parameters:
-
-    - `dictionary`: a dictionary to match keys against `criteria`.
-    - `criteria`: the criteria to match against keys against.
+    :param dictionary: a dictionary to match keys against `criteria`.
+    :type dictionary: dict
+    :param criteria: the criteria to match against keys against.
+    :type criteria: string
     """
     options = []
     for key in dictionary.keys():
@@ -88,11 +88,12 @@ def __getChoice(options, criteria, forwhat):
 
     Returns the value in `options` that corresponds to the choice.
 
-    Parameters:
-
-    - `options`: a list of tuples to choose from.
-    - `criteria`: the criteria that genreated `options`.
-    - `forwhat`: the category for the criteria.
+    :param options: a list of tuples to choose from.
+    :type options: list
+    :param criteria: the criteria that genreated `options`.
+    :param criteria: string
+    :param forwhat: the category for the criteria.
+    :type forwhat: string
     """
     choice = None
 
@@ -117,9 +118,7 @@ def getLanguageCode(language):
     """
     options = __getOptions(languages, language)
 
-    if len(options) == 1:
-        return options[0][0]
-    elif len(options) > 1:
+    if len(options) > 0:
         return __getChoice(options, language, 'language')
     else:
         return None
@@ -130,9 +129,8 @@ def getCountryCode(country):
     `country`. If no country code is found ``None`` is returned.
     """
     options = __getOptions(countries, country)
-    if len(options) == 1:
-        return options[0][0]
-    elif len(options) > 1:
+
+    if len(options) > 0:
         return __getChoice(options, country, 'country')
     else:
         return None
@@ -149,14 +147,16 @@ def createTranslationFile(langCode, countryCode=''):
     provided. If a translation file with the same name already exists,
     file is not created.
 
-    Parameters:
-
-    - `langCode`: a two-letter lowletter ISO 639 language code.
-    - `countryCode`: a two-letter uppercase ISO 3199 country code.
+    :param langCode: a two-letter lowletter ISO 639 language code.
+    :type langCode: string
+    :param countryCode: a two-letter uppercase ISO 3199 country code.
+    :type countryCode: string
     """
     name = 'luma_{0}'.format(langCode)
-    if countryCode != '':
+
+    if not countryCode is None:
         name = '{0}_{1}'.format(name, countryCode)
+
     name = '{0}.ts'.format(name)
     filepath = os.path.join('resources', 'i18n', name)
 
@@ -184,7 +184,7 @@ def createTranslationFile(langCode, countryCode=''):
 def main():
     global verbose, dryrun
 
-    usage = '%prog [options] -l LANG -c COUNTRY'
+    usage = '%prog [options]'
 
     parser = OptionParser(usage=usage)
 
@@ -202,7 +202,7 @@ def main():
         'The script will try to look up the correct ISO 639 code to use.'
     )
     parser.add_option(
-        '-L', '--LANG',
+        '-L', '--Lcode',
         dest='lang_code', action='store', type='string', metavar='CODE',
         help='A twoletter lowercase ISO 639 language code to create a ' +
         'translation file for.'
@@ -214,7 +214,7 @@ def main():
         'The script will try to look up the correct ISO 3166 code to use.'
     )
     parser.add_option(
-        '-C', '--COUNTRY',
+        '-C', '--Ccode',
         dest='country_code', action='store', type='string', metavar='CODE',
         help='A twoletter lowercase ISO 3166 language code to create a' +
         'translation file for.'
@@ -273,7 +273,7 @@ def main():
     elif opt.lang:
         lang = getLanguageCode(opt.lang)
         if lang is None:
-            print 'No match was found for language: {0}'.format(language)
+            print 'No match was found for language: {0}'.format(lang)
             print 'Aborting...'
             sys.exit(1)
     else:
