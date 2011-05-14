@@ -5,17 +5,17 @@
 
 # Copyright (C) 2011
 #     Einar Uvsløkk, <einar.uvslokk@gmail.com>
-# 
+#
 # program is free software: you can redistribute it and/or modify it
 # under the terms of the GNU General Public License as published by the
 # Free Software Foundation, either version 3 of the License, or
 # (at your option) any later version.
-# 
+#
 # oya-invitationals is distributed in the hope that it will be useful, but
 # WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 # See the GNU General Public License for more details.
-# 
+#
 # You should have received a copy of the GNU General Public License along
 # with this program.  If not, see <http://www.gnu.org/licenses/>.
 import os
@@ -29,7 +29,8 @@ from util.isocodes import (languages, countries)
 short_description = """lumai18n.py - Luma Internationalization tool
 copyright (c) Einar Uvsløkk 2011 einar.uvslokk@linux.com
 """
-long_description="""
+
+long_description = """
 lumai18n.py is part of the Luma tool chain.
 
 It creates a new translation source file following the Luma
@@ -43,6 +44,7 @@ and   ``CC`` is a two-letter uppercase ISO 3166 [2]_ country code.
 .. [1] http://www.gnu.org/software/gettext/manual/gettext.html#Language-Codes
 .. [2] http://www.gnu.org/software/gettext/manual/gettext.html#Country-Codes
 """
+
 
 def listPossibleLanguageTranslations():
     """Displayes a list of possible new language translations to choose
@@ -64,7 +66,7 @@ def __getOptions(dictionary, criteria):
     form::
 
         (dictionary[key], key)
-    
+
     Parameters:
 
     - `dictionary`: a dictionary to match keys against `criteria`.
@@ -99,7 +101,7 @@ def __getChoice(options, criteria, forwhat):
 
     for i, opt in enumerate(options):
         print '  ({0}) {1}'.format(i, opt[1])
-    
+
     try:
         msg = '\nPlease choose a {0}: '
         input = raw_input(msg.format(forwhat))
@@ -148,7 +150,7 @@ def createTranslationFile(langCode, countryCode=''):
     file is not created.
 
     Parameters:
-    
+
     - `langCode`: a two-letter lowletter ISO 639 language code.
     - `countryCode`: a two-letter uppercase ISO 3199 country code.
     """

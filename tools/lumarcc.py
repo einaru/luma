@@ -131,7 +131,7 @@ class LumaPRO(object):
          relative to the project file.
         :type item: string
         """
-        if self.proDict.has_key(section):
+        if section in self.proDict:
             self.proDict.get(section).append(item)
         else:
             self.proDict[section] = [item]
@@ -301,7 +301,7 @@ class LumaQRC(object):
         else:
             alias = file[:-3].replace('luma_', '')
 
-        if self.qrcDict.has_key(prefix):
+        if prefix in self.qrcDict:
             self.qrcDict.get(prefix).extend([(alias, path, file)])
         else:
             self.qrcDict[prefix] = [(alias, path, file)]
@@ -316,7 +316,7 @@ class LumaQRC(object):
             for file in sorted(files):
                 if path.endswith('i18n') and file[-3:] == '.qm':
                     self.addResource('i18n', path, file)
-                elif file[-4:] in ['.png', '.gif']: #, '.svg']:
+                elif file[-4:] in ['.png', '.gif']:
                     self.addResource('icons', path, file)
 
     def save(self):
@@ -325,7 +325,6 @@ class LumaQRC(object):
         with open(self.FILE, 'w') as f:
             f.write(str(self))
             f.write('\n')
-
 
     def asList(self, indentation=2):
         """Returns the .qrc file as a list of lines. By default the
@@ -353,7 +352,7 @@ class LumaQRC(object):
         return self.qrcFile
 
 
-# ---------------------------------------------------------------------------- #
+# --------------------------------------------------------------------------- #
 # Filepaths
 SRC_ICONS = ['resources', 'icons']
 SRC_i18n = ['resources', 'i18n']
@@ -366,6 +365,7 @@ PLUGINS = ['luma', 'plugins']
 LUMA_PRO = 'luma.pro'
 LUMA_QRC = 'luma.qrc'
 LUMA_RC = ['luma', 'resources.py']
+
 
 def run(cmd, args=[]):
     """Executes the command `cmd` with optional arguments `args`,
