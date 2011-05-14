@@ -82,7 +82,7 @@ class LumaConnection(object):
                         for x in result_data:
                             result.append(x)
         except ldap.TIMEOUT, e:
-            exceptionObject = [{"desc":"Search timed out"}]
+            exceptionObject = ldap.LDAPError({'desc':"Search timed out"})
         except ldap.LDAPError, e:
             exceptionObject = e
         self.logger.debug("Search finished.")
@@ -449,7 +449,8 @@ class LumaConnection(object):
         if None == dnList:
             message = "Could not retrieve Base DNs from server. Unknown server type."
             self.logger.error(message)
-            return (False, None, [{"desc":"Unknown server type"}])
+            exceptionObject = ldap.LDAPError({'desc':"Unknown server type"})
+            return (False, [], exceptionObject)
         else:
             message = "Base DNs successfully retrieved from server."
             self.logger.info(message)
