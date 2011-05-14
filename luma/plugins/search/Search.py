@@ -27,11 +27,7 @@ from PyQt4.QtCore import (QEvent, QObject, Qt, QTimer, pyqtSignal, pyqtSlot)
 from PyQt4.QtGui import (QKeySequence, QWidget, qApp)
 
 from base.backend.ServerList import ServerList
-# Switching to the LumaConnectionWrapper
-#from base.backend.Connection import LumaConnection
 from base.backend.LumaConnectionWrapper import LumaConnectionWrapper
-from base.backend.Exception import (ServerCertificateException,
-                                    InvalidPasswordException)
 from base.backend.ObjectClassAttributeInfo import ObjectClassAttributeInfo
 from base.gui.Settings import PluginSettings
 from base.util.IconTheme import iconFromTheme, pixmapFromTheme
