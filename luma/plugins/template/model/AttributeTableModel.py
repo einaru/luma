@@ -63,7 +63,6 @@ class AttributeTableModel(QAbstractTableModel):
         """
         Handles updating data in the TemplateObjects
         """
-        print "AttributeTableModel: setData()"
         if index.column() == 1:
             if not self.attributes.items()[index.row()][1].must:
                 self.attributes.items()[index.row()][1].customMust = not self.attributes.items()[index.row()][1].customMust  

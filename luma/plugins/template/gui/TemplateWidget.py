@@ -32,7 +32,7 @@ class TemplateWidget(QWidget, Ui_TemplateWidget):
     def __init__(self):
         QWidget.__init__(self)
         self.setupUi(self)
-        
+        self.setObjectName('TemplatePlugin')
         self._serverList = ServerList()
         
         templateList = TemplateList()
@@ -261,5 +261,12 @@ class TemplateWidget(QWidget, Ui_TemplateWidget):
                                       self.tr("Are you sure you want to delete the selected attributes?"), QMessageBox.Yes, QMessageBox.No)
             if re == QMessageBox.Yes:
                 self.attributeTM.removeRows(self.tableViewAttributes.selectedIndexes())
+
+    def retranslate(self, all=True):
+        """For dynamic retranslation of the plugin text strings
+        """
+        
+        self.retranslateUi(self)
+
 
 # vim: tabstop=4 expandtab shiftwidth=4 softtabstop=4
