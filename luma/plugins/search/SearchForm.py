@@ -162,8 +162,7 @@ class SearchForm(QWidget, Ui_SearchForm):
     def filter(self):
         # Python-LDAP takes strings in UTF8
         # TODO: run some validation on the filter
-        return self.__escape(
-                encodeUTF8(unicode(
+        return encodeUTF8(self.__escape(unicode(
                     self.filterBoxEdit.currentText())))
 
 class AttributeCompleter(QCompleter):
