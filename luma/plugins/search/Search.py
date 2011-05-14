@@ -246,15 +246,16 @@ class SearchPlugin(QWidget, Ui_SearchPlugin):
         :param index: the index of the server entry in the combobox.
         :type index: int
         """
-        server = self.searchForm.server
+        server = self.searchForm.server.decode('utf-8')
 
         # No need to try to fetch the base dn list off of no server.
         if server == '':
+            self.searchForm.baseDNBox.clear()
             return
 
         # Get the server object for the selected server.
         # And return if this object is None
-        self.currentServer = self.serverListObject.getServerObject(server)
+        self.currentServer =  self.serverListObject.getServerObject(server)
 
         if self.currentServer is None:
             return
