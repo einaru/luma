@@ -379,8 +379,6 @@ class SearchPlugin(QWidget, Ui_SearchPlugin):
         filterPattern = re.compile("\(\w*=")
         tmpList = filterPattern.findall(filter)
         attributeList = map(lambda x: x[1:-1], tmpList)
-        for attr in attributeList:
-            print attr
 
         return attributeList
 
