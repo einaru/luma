@@ -262,6 +262,15 @@ class TemplateWidget(QWidget, Ui_TemplateWidget):
             if re == QMessageBox.Yes:
                 self.attributeTM.removeRows(self.tableViewAttributes.selectedIndexes())
 
+    def changeEvent(self, e):
+        """Overloaded so we can catch the LanguageChange event, and at
+        translation support to the plugin
+        """
+        if e.type() == QtCore.QEvent.LanguageChange:
+            self.retranslateUi(self)
+        else:
+            QWidget.changeEvent(self, e)
+
     def retranslate(self, all=True):
         """For dynamic retranslation of the plugin text strings
         """
