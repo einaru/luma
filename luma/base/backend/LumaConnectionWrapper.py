@@ -171,8 +171,23 @@ class LumaConnectionWrapper(QObject):
         thread.start()
 
     def getBaseDNListSync(self):
-        # TODO MAKE WORKER-OBJECT / ASYNC-VERSION
-        return self.lumaConnection.getBaseDNList()
+        # TODO MAKE ASYNC-VERSION
+        baseWorker = BaseDNWorker(self.lumaConnection)
+        thread = self.__createThread(baseWorker)
+        thread.start()
+
+        while not thread.isFinished():
+            self.__whileWaiting()
+        
+        # Make sure cleanup() is called since the
+        # finished()-signal connected to cleanup()
+        # might not be emitted.
+        if self.parent() == None:
+            thread.cleanup()
+
+        return (baseWorker.success,
+                baseWorker.resultList,
+                baseWorker.exception)
 
     ###########
     # Sync-only-methods
@@ -230,15 +245,52 @@ class BindWorker(QObject):
         self.lumaConnection = lumaConnection
         self.logger = logging.getLogger(__name__)
         self.identStr = identStr
+        self.success = False
+        self.exception = ldap.LDAPError({"desc":"Fetch failed"})
 
     def doWork(self):
-        self.success, self.exception = self.lumaConnection.bind()
-        if self.success:
-            self.workDone.emit(self.success, Exception(), self.identStr)
-        else:
+        try:
+            self.success, self.exception = self.lumaConnection.bind()
+            if self.success:
+                self.workDone.emit(self.success, Exception(), self.identStr)
+            else:
+                self.workDone.emit(self.success, self.exception, self.identStr)
+            self.logger.debug("BindWorker finished.")
+        except Exception:
+            # Should hopefully never happen, but in the worst-case
+            # we end up here and emits workDone so the thread exits.
             self.workDone.emit(self.success, self.exception, self.identStr)
-        self.logger.debug("BindWorker finished.")
 
+class BaseDNWorker(QObject):
+    """Runs `LumaConnection.getBaseDNList`
+    """
+
+    #: signals that the worker thread is done
+    workDone = pyqtSignal(bool, list, Exception, str)
+
+    def __init__(self, lumaConnection, identStr = ""):
+        QObject.__init__(self)
+        self.lumaConnection = lumaConnection
+        self.logger = logging.getLogger(__name__)
+        self.identStr = identStr
+        self.success = False
+        self.resultList = []
+        self.exception = ldap.LDAPError({"desc":"Fetch failed"})
+
+    def doWork(self):
+        try:
+            self.success, self.resultList, self.exception = self.lumaConnection.getBaseDNList()
+            if self.success:
+                self.workDone.emit(
+                    self.success, self.resultList, Exception(), self.identStr)
+            else:
+                self.workDone.emit(
+                        self.success, self.resultList, self.exception, self.identStr)
+            self.logger.debug("BaseDNWorker finished")
+        except Exception:
+            # Should hopefully never happen, but in the worst-case
+            # we end up here and emits workDone so the thread exits.
+            self.workDone.emit(self.success, self.resultList, self.exception, self.identStr)
 
 class SearchWorker(QObject):
     """Runs `LumaConnection.search`
@@ -260,19 +312,25 @@ class SearchWorker(QObject):
         self.attrsonly = attrsonly
         self.sizelimit = sizelimit
         self.identStr = identStr
+        self.success = False
+        self.resultList = []
+        self.exception = ldap.LDAPError({"desc":"Fetch failed"})
 
     def doWork(self):
-        self.success, self.resultList, self.exception = self.lumaConnection.search(
-            self.base, self.scope, self.filter,
-            self.attrList, self.attrsonly, self.sizelimit
-        )
-        if self.success:
-            self.workDone.emit(
-                self.success, self.resultList, Exception(), self.identStr)
-        else:
-            self.workDone.emit(
-                    self.success, self.resultList, self.exception, self.identStr)
-        self.logger.debug("SearchWorker finished")
+        try:
+            self.success, self.resultList, self.exception = self.lumaConnection.search(
+                self.base, self.scope, self.filter,
+                self.attrList, self.attrsonly, self.sizelimit
+            )
+            if self.success:
+                self.workDone.emit(
+                    self.success, self.resultList, Exception(), self.identStr)
+            else:
+                self.workDone.emit(
+                        self.success, self.resultList, self.exception, self.identStr)
+            self.logger.debug("SearchWorker finished")
+        except Exception:
+            self.workDone.emit(self.success, self.resultList, self.exception, self.identStr)
 
 
 ###########
