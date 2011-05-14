@@ -40,7 +40,7 @@ class PluginListWidgetModel(QStandardItemModel):
                 # information, the str.capitalize complains about
                 # receiving a unicode and not a str. -Einar
                 #item = QStandardItem(str.capitalize(plugin.pluginName))
-                item = QStandardItem(plugin.pluginName)
+                item = QStandardItem(plugin.pluginUserString)
                 if plugin.icon:
                     item.setIcon(plugin.icon)
                 font = item.font()
