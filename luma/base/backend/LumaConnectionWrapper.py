@@ -290,6 +290,13 @@ class BaseDNWorker(QObject):
         except Exception:
             # Should hopefully never happen, but in the worst-case
             # we end up here and emits workDone so the thread exits.
+
+            # We get a 'exception.TypeError' if we try to emit workDone
+            # when self.resultList is None, which most likely is the
+            # case is we end up here. But for the sake of it lets test it.
+            if self.resultList is None:
+                self.resultList = []
+
             self.workDone.emit(self.success, self.resultList, self.exception, self.identStr)
 
 class SearchWorker(QObject):
