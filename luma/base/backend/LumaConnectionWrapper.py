@@ -90,7 +90,7 @@ class LumaConnectionWrapper(QObject):
 
         while not thread.isFinished():
             self.__whileWaiting()
-        
+
         # Make sure cleanup() is called since the
         # finished()-signal connected to cleanup()
         # might not be emitted.
@@ -134,7 +134,7 @@ class LumaConnectionWrapper(QObject):
 
         while not thread.isFinished():
             self.__whileWaiting()
-        
+
         # Make sure cleanup() is called since the
         # finished()-signal connected to cleanup()
         # might not be emitted.
@@ -158,7 +158,7 @@ class LumaConnectionWrapper(QObject):
         """Non-blocking. Listen to LumaConnectionWrapper.searchFinished
         for the result.
 
-        Only use the exception passed if ``success``is False.
+        Only use the exception passed if ``success`` is False.
         """
         searchWorker = SearchWorker(
             self.lumaConnection,
@@ -178,7 +178,7 @@ class LumaConnectionWrapper(QObject):
 
         while not thread.isFinished():
             self.__whileWaiting()
-        
+
         # Make sure cleanup() is called since the
         # finished()-signal connected to cleanup()
         # might not be emitted.
