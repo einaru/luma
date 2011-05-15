@@ -1,52 +1,19 @@
-Developers
-----------
-Wido Depping <widod@users.sourceforge.net>
-Bjørn Ove Grøtan <bgrotan@grotan.com>
-Vegar Westerlund
-Johannes Harestad <johannesharestad@gmail.com>
-Sondre Frisvold <sondre.frisvold@c2i.net>
-Christian Forfang <cforfang@gmail.com>
-Per Ove Ringdal <peroveri@stud.ntnu.no>
-Einar Uvsløkk <einar.uvslokk@linux.com>
-Simen Natvig <simen.natvig@gmail.com>
+*******
+AUTHORS
+*******
 
-Translators
------------
-Einar Uvsløkk (no)
+Luma 3.x
+========
+- Christian Forfang, cforfang@gmail.com
+- Einar Uvsløkk, einar.uvslokk@linux.com
+- Johannes Haresstad, johannesharestad@gmail.com
+- Per Over Ringdal, peroveri@stud.ntnu.no
+- Simen Natvig, simen.natvig@gmail.com
+- Sondre Frisvold, sondre.frisvold@c2i.net
 
-[luma2.4]
-Bjørn Ove Grøtan (no)
-Fernando Maciel Souto Maior (pt)
-Jirka Jurek (cz)
-Magnus Määttä (sv)
-Alexander Novitsky (ru)
-Florens Daignière (fr)
+Luma 2.x
+========
+- Bjørn Ove Grøtan, bgrotan@samfundet.no
+- Vegar Westerlund, vegarwe@users.sourceforge.net
+- Wido Depping, widod@users.sourceforge.net
 
-Other Contributors
-(a.k.a. credit where credit is due)
-------------------------------------
-Jesse Morgan
-  - Cleaning up the bugtracker and initiating the qt4-port
-
-Vegar Westerlund
-  - For contributing patches
-
-Bjørn Ove Grøtan <bgrotan@grotan.com>
-  - Luma Project Admin and Debian Maintainer
-  - Contributed his mkpasswd module
-
-Kerstin Isebrecht
-  - Thanks for the ice and all your patience :) 
-
-Joern Koerner
-  - Luma-crash-test-dummy. He also had the idea with the plugin support. 
-
-
-Jan Winhuysen
-  - My mentor and UI tester :) 
-
-Eric Cote
-  - Testing guinea pig for python 2.3
-
-Rebekka Golombek <rebekkagolombe@web.de>
-  - Luma logo

@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file '/Users/johannes/Programmering/Luma/git/resources/forms/AboutPluginDesign.ui'
+# Form implementation generated from reading ui file '/mnt/debris/devel/git/luma/resources/forms/AboutPluginDesign.ui'
 #
-# Created: Wed Mar 23 13:49:44 2011
-#      by: PyQt4 UI code generator 4.8.2
+# Created: Wed May 11 13:31:17 2011
+#      by: PyQt4 UI code generator 4.8.3
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -17,7 +17,7 @@ except AttributeError:
 class Ui_AboutPlugin(object):
     def setupUi(self, AboutPlugin):
         AboutPlugin.setObjectName(_fromUtf8("AboutPlugin"))
-        AboutPlugin.resize(230, 97)
+        AboutPlugin.resize(171, 75)
         self.formLayout = QtGui.QFormLayout(AboutPlugin)
         self.formLayout.setFieldGrowthPolicy(QtGui.QFormLayout.FieldsStayAtSizeHint)
         self.formLayout.setObjectName(_fromUtf8("formLayout"))
@@ -29,6 +29,7 @@ class Ui_AboutPlugin(object):
         self.label.setObjectName(_fromUtf8("label"))
         self.formLayout.setWidget(0, QtGui.QFormLayout.LabelRole, self.label)
         self.label_name = QtGui.QLabel(AboutPlugin)
+        self.label_name.setWordWrap(True)
         self.label_name.setObjectName(_fromUtf8("label_name"))
         self.formLayout.setWidget(0, QtGui.QFormLayout.FieldRole, self.label_name)
         self.label_3 = QtGui.QLabel(AboutPlugin)
@@ -39,6 +40,7 @@ class Ui_AboutPlugin(object):
         self.label_3.setObjectName(_fromUtf8("label_3"))
         self.formLayout.setWidget(1, QtGui.QFormLayout.LabelRole, self.label_3)
         self.label_version = QtGui.QLabel(AboutPlugin)
+        self.label_version.setWordWrap(True)
         self.label_version.setObjectName(_fromUtf8("label_version"))
         self.formLayout.setWidget(1, QtGui.QFormLayout.FieldRole, self.label_version)
         self.label_5 = QtGui.QLabel(AboutPlugin)
@@ -49,6 +51,7 @@ class Ui_AboutPlugin(object):
         self.label_5.setObjectName(_fromUtf8("label_5"))
         self.formLayout.setWidget(2, QtGui.QFormLayout.LabelRole, self.label_5)
         self.label_author = QtGui.QLabel(AboutPlugin)
+        self.label_author.setWordWrap(True)
         self.label_author.setObjectName(_fromUtf8("label_author"))
         self.formLayout.setWidget(2, QtGui.QFormLayout.FieldRole, self.label_author)
 

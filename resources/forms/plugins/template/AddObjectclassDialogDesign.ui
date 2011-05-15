@@ -65,18 +65,20 @@
    </item>
    <item row="0" column="0">
     <widget class="QLabel" name="labelMainIcon">
-     <property name="text">
-      <string/>
-     </property>
-    </widget>
-   </item>
-   <item row="3" column="0" colspan="4">
-    <widget class="QListView" name="listViewObjectclasses">
      <property name="sizePolicy">
-      <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+      <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
        <horstretch>0</horstretch>
        <verstretch>0</verstretch>
       </sizepolicy>
+     </property>
+     <property name="minimumSize">
+      <size>
+       <width>64</width>
+       <height>64</height>
+      </size>
+     </property>
+     <property name="text">
+      <string/>
      </property>
     </widget>
    </item>
@@ -94,8 +96,20 @@
      </property>
     </widget>
    </item>
+   <item row="3" column="0" colspan="4">
+    <widget class="QListWidget" name="listWidgetObjectclasses">
+     <property name="selectionMode">
+      <enum>QAbstractItemView::ExtendedSelection</enum>
+     </property>
+    </widget>
+   </item>
   </layout>
  </widget>
+ <tabstops>
+  <tabstop>pushButtonOk</tabstop>
+  <tabstop>pushButtonCancel</tabstop>
+  <tabstop>listWidgetObjectclasses</tabstop>
+ </tabstops>
  <resources/>
  <connections>
   <connection>

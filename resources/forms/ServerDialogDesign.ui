@@ -15,8 +15,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>607</width>
-    <height>434</height>
+    <width>662</width>
+    <height>430</height>
    </rect>
   </property>
   <property name="minimumSize">
@@ -45,16 +45,10 @@
      </property>
      <widget class="QWidget" name="layout3">
       <layout class="QGridLayout" name="serverListGrid">
-       <property name="sizeConstraint">
-        <enum>QLayout::SetMaximumSize</enum>
-       </property>
-       <property name="margin">
-        <number>0</number>
-       </property>
-       <item row="0" column="0" colspan="3">
+       <item row="0" column="0" colspan="2">
         <widget class="QListView" name="serverListView">
          <property name="sizePolicy">
-          <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
+          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
            <horstretch>0</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
@@ -64,29 +58,32 @@
        <item row="1" column="0">
         <widget class="QPushButton" name="addButton">
          <property name="text">
-          <string>Add</string>
+          <string>&amp;Add</string>
+         </property>
+         <property name="autoDefault">
+          <bool>true</bool>
+         </property>
+         <property name="default">
+          <bool>false</bool>
          </property>
         </widget>
        </item>
        <item row="1" column="1">
         <widget class="QPushButton" name="deleteButton">
          <property name="text">
-          <string>Delete</string>
+          <string>&amp;Delete</string>
+         </property>
+         <property name="autoDefault">
+          <bool>true</bool>
          </property>
         </widget>
        </item>
-       <item row="1" column="2">
-        <spacer name="hspacer2">
-         <property name="orientation">
-          <enum>Qt::Horizontal</enum>
+       <item row="2" column="0" colspan="2">
+        <widget class="QPushButton" name="testConnectionButton">
+         <property name="text">
+          <string>Test connection</string>
          </property>
-         <property name="sizeHint" stdset="0">
-          <size>
-           <width>40</width>
-           <height>20</height>
-          </size>
-         </property>
-        </spacer>
+        </widget>
        </item>
       </layout>
      </widget>
@@ -95,8 +92,8 @@
        <bool>true</bool>
       </property>
       <property name="sizePolicy">
-       <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
-        <horstretch>0</horstretch>
+       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+        <horstretch>1</horstretch>
         <verstretch>0</verstretch>
        </sizepolicy>
       </property>
@@ -148,6 +145,9 @@
                  <property name="text">
                   <string>Host:</string>
                  </property>
+                 <property name="buddy">
+                  <cstring>hostEdit</cstring>
+                 </property>
                 </widget>
                </item>
                <item row="0" column="1">
@@ -157,6 +157,9 @@
                 <widget class="QLabel" name="portLabel">
                  <property name="text">
                   <string>Port:</string>
+                 </property>
+                 <property name="buddy">
+                  <cstring>portSpinBox</cstring>
                  </property>
                 </widget>
                </item>
@@ -191,6 +194,9 @@
               <layout class="QGridLayout" name="LDAPGrid">
                <item row="0" column="0" colspan="2">
                 <widget class="QCheckBox" name="aliasBox">
+                 <property name="enabled">
+                  <bool>false</bool>
+                 </property>
                  <property name="text">
                   <string>Follow aliases</string>
                  </property>
@@ -222,9 +228,25 @@
                <item row="3" column="1">
                 <layout class="QHBoxLayout" name="hLayout">
                  <item>
+                  <spacer name="horizontalSpacer">
+                   <property name="orientation">
+                    <enum>Qt::Horizontal</enum>
+                   </property>
+                   <property name="sizeHint" stdset="0">
+                    <size>
+                     <width>40</width>
+                     <height>20</height>
+                    </size>
+                   </property>
+                  </spacer>
+                 </item>
+                 <item>
                   <widget class="QPushButton" name="addBaseDNButton">
                    <property name="text">
                     <string>Add</string>
+                   </property>
+                   <property name="autoDefault">
+                    <bool>false</bool>
                    </property>
                   </widget>
                  </item>
@@ -232,6 +254,9 @@
                   <widget class="QPushButton" name="deleteBaseDNButton">
                    <property name="text">
                     <string>Delete</string>
+                   </property>
+                   <property name="autoDefault">
+                    <bool>false</bool>
                    </property>
                   </widget>
                  </item>
@@ -298,6 +323,9 @@
                  <property name="text">
                   <string>Mechanism:</string>
                  </property>
+                 <property name="buddy">
+                  <cstring>mechanismBox</cstring>
+                 </property>
                 </widget>
                </item>
                <item row="1" column="1">
@@ -359,6 +387,9 @@
                  <property name="text">
                   <string>Bind as:</string>
                  </property>
+                 <property name="buddy">
+                  <cstring>bindAsEdit</cstring>
+                 </property>
                 </widget>
                </item>
                <item row="2" column="1">
@@ -379,12 +410,18 @@
                  <property name="text">
                   <string>Password:</string>
                  </property>
+                 <property name="buddy">
+                  <cstring>passwordEdit</cstring>
+                 </property>
                 </widget>
                </item>
                <item row="3" column="1">
                 <widget class="QLineEdit" name="passwordEdit">
                  <property name="enabled">
                   <bool>false</bool>
+                 </property>
+                 <property name="echoMode">
+                  <enum>QLineEdit::Password</enum>
                  </property>
                 </widget>
                </item>
@@ -621,6 +658,9 @@
                  <property name="wordWrap">
                   <bool>false</bool>
                  </property>
+                 <property name="buddy">
+                  <cstring>certFileEdit</cstring>
+                 </property>
                 </widget>
                </item>
                <item row="1" column="1">
@@ -701,6 +741,9 @@
                  <property name="wordWrap">
                   <bool>false</bool>
                  </property>
+                 <property name="buddy">
+                  <cstring>certKeyfileEdit</cstring>
+                 </property>
                 </widget>
                </item>
               </layout>
@@ -771,13 +814,19 @@
      </item>
      <item>
       <widget class="QPushButton" name="okButton">
+       <property name="focusPolicy">
+        <enum>Qt::TabFocus</enum>
+       </property>
        <property name="text">
         <string>&amp;OK</string>
        </property>
-       <property name="shortcut">
-        <string>Alt+O</string>
-       </property>
        <property name="autoDefault">
+        <bool>true</bool>
+       </property>
+       <property name="default">
+        <bool>true</bool>
+       </property>
+       <property name="flat">
         <bool>false</bool>
        </property>
       </widget>
@@ -791,10 +840,7 @@
         </sizepolicy>
        </property>
        <property name="text">
-        <string>&amp;Apply</string>
-       </property>
-       <property name="shortcut">
-        <string>Alt+A</string>
+        <string>Apply</string>
        </property>
        <property name="autoDefault">
         <bool>false</bool>
@@ -857,8 +903,8 @@
    <slot>addBaseDN()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>435</x>
-     <y>271</y>
+     <x>473</x>
+     <y>247</y>
     </hint>
     <hint type="destinationlabel">
      <x>186</x>
@@ -905,12 +951,12 @@
    <slot>setDisabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>455</x>
-     <y>209</y>
+     <x>572</x>
+     <y>191</y>
     </hint>
     <hint type="destinationlabel">
-     <x>435</x>
-     <y>271</y>
+     <x>473</x>
+     <y>247</y>
     </hint>
    </hints>
   </connection>
@@ -921,12 +967,12 @@
    <slot>setDisabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>455</x>
-     <y>209</y>
+     <x>572</x>
+     <y>191</y>
     </hint>
     <hint type="destinationlabel">
-     <x>530</x>
-     <y>271</y>
+     <x>571</x>
+     <y>247</y>
     </hint>
    </hints>
   </connection>
@@ -937,12 +983,12 @@
    <slot>setDisabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>455</x>
-     <y>209</y>
+     <x>572</x>
+     <y>191</y>
     </hint>
     <hint type="destinationlabel">
-     <x>482</x>
-     <y>238</y>
+     <x>572</x>
+     <y>217</y>
     </hint>
    </hints>
   </connection>
@@ -953,8 +999,8 @@
    <slot>setDisabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>455</x>
-     <y>209</y>
+     <x>572</x>
+     <y>191</y>
     </hint>
     <hint type="destinationlabel">
      <x>455</x>
@@ -969,8 +1015,8 @@
    <slot>addBaseDN()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>493</x>
-     <y>143</y>
+     <x>572</x>
+     <y>133</y>
     </hint>
     <hint type="destinationlabel">
      <x>318</x>
@@ -1001,8 +1047,8 @@
    <slot>certFileDialog()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>564</x>
-     <y>277</y>
+     <x>572</x>
+     <y>254</y>
     </hint>
     <hint type="destinationlabel">
      <x>303</x>
@@ -1017,8 +1063,8 @@
    <slot>certKeyfileDialog()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>564</x>
-     <y>246</y>
+     <x>572</x>
+     <y>228</y>
     </hint>
     <hint type="destinationlabel">
      <x>303</x>
@@ -1033,8 +1079,8 @@
    <slot>deleteBaseDN()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>530</x>
-     <y>271</y>
+     <x>571</x>
+     <y>247</y>
     </hint>
     <hint type="destinationlabel">
      <x>303</x>
@@ -1081,12 +1127,12 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>455</x>
-     <y>217</y>
+     <x>572</x>
+     <y>202</y>
     </hint>
     <hint type="destinationlabel">
-     <x>498</x>
-     <y>246</y>
+     <x>541</x>
+     <y>228</y>
     </hint>
    </hints>
   </connection>
@@ -1097,12 +1143,12 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>455</x>
-     <y>217</y>
+     <x>572</x>
+     <y>202</y>
     </hint>
     <hint type="destinationlabel">
-     <x>498</x>
-     <y>277</y>
+     <x>541</x>
+     <y>254</y>
     </hint>
    </hints>
   </connection>
@@ -1113,12 +1159,12 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>455</x>
-     <y>217</y>
+     <x>572</x>
+     <y>202</y>
     </hint>
     <hint type="destinationlabel">
-     <x>564</x>
-     <y>277</y>
+     <x>572</x>
+     <y>254</y>
     </hint>
    </hints>
   </connection>
@@ -1129,12 +1175,12 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>455</x>
-     <y>217</y>
+     <x>572</x>
+     <y>202</y>
     </hint>
     <hint type="destinationlabel">
-     <x>564</x>
-     <y>246</y>
+     <x>572</x>
+     <y>228</y>
     </hint>
    </hints>
   </connection>
@@ -1145,12 +1191,12 @@
    <slot>setDisabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>455</x>
-     <y>83</y>
+     <x>572</x>
+     <y>81</y>
     </hint>
     <hint type="destinationlabel">
-     <x>493</x>
-     <y>112</y>
+     <x>572</x>
+     <y>107</y>
     </hint>
    </hints>
   </connection>
@@ -1161,12 +1207,12 @@
    <slot>setDisabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>455</x>
-     <y>83</y>
+     <x>572</x>
+     <y>81</y>
     </hint>
     <hint type="destinationlabel">
-     <x>493</x>
-     <y>143</y>
+     <x>572</x>
+     <y>133</y>
     </hint>
    </hints>
   </connection>
@@ -1177,12 +1223,28 @@
    <slot>setDisabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>455</x>
-     <y>83</y>
+     <x>572</x>
+     <y>81</y>
     </hint>
     <hint type="destinationlabel">
-     <x>493</x>
-     <y>174</y>
+     <x>572</x>
+     <y>159</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>testConnectionButton</sender>
+   <signal>clicked()</signal>
+   <receiver>ServerDialogDesign</receiver>
+   <slot>testConnection()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>87</x>
+     <y>372</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>303</x>
+     <y>216</y>
     </hint>
    </hints>
   </connection>
@@ -1196,5 +1258,6 @@
   <slot>saveServerlist()</slot>
   <slot>certFileDialog()</slot>
   <slot>certKeyfileDialog()</slot>
+  <slot>testConnection()</slot>
  </slots>
 </ui>

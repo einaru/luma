@@ -18,28 +18,32 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see http://www.gnu.org/licenses/
 
-from PyQt4.QtGui import QIcon, QPixmap
-from base.util.IconTheme import pixmapFromThemeIcon
+from base.util.IconTheme import iconFromTheme
+from .Search import (SearchPlugin, SearchPluginSettingsWidget)
 
 lumaPlugin = True
-pluginName = "search"
-pluginUserString = "Search"
-version = "0.1"
-author = "Einar Uvsløkk"
+pluginName = u'search'
+pluginUserString = u'Search'
+version = u'0.3'
+author = u'Einar Uvsløkk'
+description = u"""Do simple and advanced LDAP search,
+create filters to speed up efficiency.
+"""
 
-
-def getIcon(iconPath = None):
-    return QIcon(pixmapFromThemeIcon('edit-find', ':/icons/search_plugin-plugin'))
+def getIcon(iconPath=None):
+    return iconFromTheme('luma-search-plugin', ':/icons/plugins/search')
 
 
 def getPluginWidget(parent, mainwin):
-    from .Search import SearchPlugin
     return SearchPlugin(parent)
 
 
 def getPluginSettingsWidget(parent):
-    return
+    return SearchPluginSettingsWidget()
 
 
 def postprocess():
     return
+
+
+# vim: tabstop=4 expandtab shiftwidth=4 softtabstop=4

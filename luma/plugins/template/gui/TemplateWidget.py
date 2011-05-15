@@ -9,11 +9,15 @@ from PyQt4.QtGui import QInputDialog, QMessageBox, QStyledItemDelegate
 from PyQt4.QtGui import QHeaderView
 from PyQt4 import QtCore
 from PyQt4.QtCore import QModelIndex
+
 from base.backend.ServerList import ServerList
+from base.backend.ObjectClassAttributeInfo import ObjectClassAttributeInfo
+
 from .TemplateWidgetDesign import Ui_TemplateWidget
 from .AddAttributeDialog import AddAttributeDialog
 from .AddObjectclassDialog import AddObjectclassDialog
 from .AddTemplateDialog import AddTemplateDialog
+from .DeleteObjectclassDialog import DeleteObjectclassDialog
 from ..TemplateList import TemplateList
 from ..TemplateObject import TemplateObject
 from ..model.TemplateTableModel import TemplateTableModel
@@ -28,7 +32,7 @@ class TemplateWidget(QWidget, Ui_TemplateWidget):
     def __init__(self):
         QWidget.__init__(self)
         self.setupUi(self)
-        
+        self.setObjectName('TemplatePlugin')
         self._serverList = ServerList()
         
         templateList = TemplateList()
@@ -36,13 +40,16 @@ class TemplateWidget(QWidget, Ui_TemplateWidget):
         self._templateListCopy = None
         self._returnList = None
         
-        self.templateTM = TemplateTableModel(self._templateList)
+        #ObjectclassAttributeInfo
+        self.preloadedServerMeta = {}
+        
+        self.templateTM = TemplateTableModel(self._templateList, self)
         self.listViewTemplates.setModel(self.templateTM)
         
-        self.objectclassTM = ObjectclassTableModel(self._templateList) 
+        self.objectclassTM = ObjectclassTableModel(self) 
         self.listViewObjectclasses.setModel(self.objectclassTM)
         
-        self.attributeTM = AttributeTableModel(self._templateList)
+        self.attributeTM = AttributeTableModel(self)
         self.tableViewAttributes.setModel(self.attributeTM)
 
         # Enable/disable editing depending on if we have a server to edit
@@ -50,33 +57,32 @@ class TemplateWidget(QWidget, Ui_TemplateWidget):
             self.setRightSideEnabled(True)
         else:
             self.setRightSideEnabled(False)
-
-
-        # Select the first server in the model)
+        # Select the first template in the model)
         index = self.templateTM.index(0,0)
-        # Select it in the view
+        # Select the template in the view
         self.listViewTemplates.selectionModel().select(index, QItemSelectionModel.ClearAndSelect) 
         self.listViewTemplates.selectionModel().setCurrentIndex(index, QItemSelectionModel.ClearAndSelect)
-        
         self.listViewTemplates.selectionModel().selectionChanged.connect(self.selectedTemplate)
-        
         # Map columns of the model to fields in the gui
         self.mapper = QDataWidgetMapper()
         self.mapper.setModel(self.templateTM)
-        
         self.mapper.addMapping(self.lineEditDescription, 2)
-
-        # Select the first servers (as the serverlistview does)
+        # Set-up of the non-mapped information  
         self.selectedTemplate()
-
+        
     def selectedTemplate(self):
         index = self.listViewTemplates.selectionModel().currentIndex().row()
         if index >= 0:
             self.mapper.setCurrentIndex(index)
-            self.labelServerName.setText(self._templateList._templateList[index].server)
+            
+            server = self._templateList._templateList[index].server
+            self.labelServerName.setText(server)
+            self.loadServerMeta(server)
+            
             self.setObjectclasses()
             self.setAttributes()
             self.tableViewAttributes.resizeColumnsToContents()
+            self.tableViewAttributes.resizeRowsToContents()
 
     def setObjectclasses(self):
         templateObject = self.getSelectedTemplateObject()
@@ -89,7 +95,13 @@ class TemplateWidget(QWidget, Ui_TemplateWidget):
         if templateObject:
             self.attributeTM.setTemplateObject(templateObject)
             
-            
+    def loadServerMeta(self, serverName):
+        serverName = unicode(serverName)
+        if not (serverName in self.preloadedServerMeta.keys()):
+            serverMeta = self._serverList.getServerObject(serverName)
+            self.preloadedServerMeta[serverName] = ObjectClassAttributeInfo(serverMeta)
+        return self.preloadedServerMeta[serverName]
+    
     def setRightSideEnabled(self, enabled):
         self.lineEditDescription.setEnabled(enabled)
         self.groupBoxObjectclasses.setEnabled(enabled)
@@ -184,18 +196,86 @@ class TemplateWidget(QWidget, Ui_TemplateWidget):
         self._templateList.save()
 
     def addObjectclass(self):
-        dialog = AddObjectclassDialog()
+        server = self.labelServerName.text()
+        dialog = AddObjectclassDialog(self.loadServerMeta(server), self.getSelectedTemplateObject())
         if dialog.exec_():
             for i in dialog.listWidgetObjectclasses.selectedIndexes():
                 item = dialog.listWidgetObjectclasses.itemFromIndex(i)
-                self.objectclassTM.insertRow(item.text())
+                self.objectclassTM.insertRow(str(item.text()))
+                
+        self.refreshMustAttributes()
 
     def deleteObjectclass(self):
-        self.objectclassTM.removeRows(self.listViewObjectclasses.selectedIndexes())
+        dOc = self.listViewObjectclasses.selectedIndexes()
+        if dOc:
+            server = self.labelServerName.text()
+            tO = self.getSelectedTemplateObject()
+            attributes = self.attributeTM.attributes
+            dialog = DeleteObjectclassDialog(self.loadServerMeta(server), tO, dOc, attributes)
+            if dialog.exec_():
+                self.objectclassTM.removeRows(dOc)
+                self.refreshAllAttributes()
+        
+    
+    def refreshMustAttributes(self):
+        tO = self.getSelectedTemplateObject()
+        for attr in tO.attributes.values():
+            if attr.must:
+                self.attributeTM.removeAlways(attr)
+                
+        
+        server = self.labelServerName.text()
+        ocai = self.loadServerMeta(server)
+        attributeNameList = ocai.getAllMusts(tO.objectclasses)
+        for name in attributeNameList:
+            single = ocai.isSingle(name)
+            binary = ocai.isBinary(name)
+            self.attributeTM.addRow(name, True, single, binary, "", False)
+            
+    def refreshAllAttributes(self):
+        tO = self.getSelectedTemplateObject()
+        server = self.labelServerName.text()
+        ocai = self.loadServerMeta(server)
+        must, may = ocai.getAllAttributes(tO.objectclasses)
+        for attr in tO.attributes.items():
+            if (not attr[0] in must) and (not attr[0] in may):
+                self.attributeTM.removeAlways(attr[1])
+            elif not attr[0] in must:
+                attr[1].must = False
 
     def addAttribute(self):
-        dialog = AddAttributeDialog()
-        dialog.exec_()
+        server = self.labelServerName.text()
+        dialog = AddAttributeDialog(self.loadServerMeta(server), self.getSelectedTemplateObject())
+        if dialog.exec_():
+            for i in dialog.tableView.selectedIndexes():
+                if(i.column() == 0):
+                    a = dialog.attributeTM.getAttribute(i)
+                    self.attributeTM.addRow(a.attributeName, a.must, a.single, a.binary, a.defaultValue, a.customMust)
+                    
+        self.tableViewAttributes.resizeRowsToContents()
+        self.tableViewAttributes.resizeColumnsToContents()
 
     def deleteAttributes(self):
-        self.attributeTM.removeRows(self.tableViewAttributes.selectedIndexes())
+        if len(self.tableViewAttributes.selectedIndexes()):
+            re = QMessageBox.question(self, self.tr('Delete'),
+                                      self.tr("Are you sure you want to delete the selected attributes?"), QMessageBox.Yes, QMessageBox.No)
+            if re == QMessageBox.Yes:
+                self.attributeTM.removeRows(self.tableViewAttributes.selectedIndexes())
+
+    def changeEvent(self, e):
+        """Overloaded so we can catch the LanguageChange event, and at
+        translation support to the plugin
+        """
+        if e.type() == QtCore.QEvent.LanguageChange:
+            self.retranslateUi(self)
+        else:
+            QWidget.changeEvent(self, e)
+
+    def retranslate(self, all=True):
+        """For dynamic retranslation of the plugin text strings
+        """
+        
+        self.retranslateUi(self)
+
+
+# vim: tabstop=4 expandtab shiftwidth=4 softtabstop=4

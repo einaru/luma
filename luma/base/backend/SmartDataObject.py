@@ -14,7 +14,6 @@ import dsml
 import copy
 import logging
 from cStringIO import StringIO
-from sets import Set
 
 from ..backend.ObjectClassAttributeInfo import ObjectClassAttributeInfo
 from ..util import stripSpecialChars
@@ -37,7 +36,6 @@ class SmartDataObject (object):
         
         self.dn = data[0]
         self.data = data[1]
-        
         self.logger = logging.getLogger(__name__)
 
         
@@ -51,21 +49,10 @@ class SmartDataObject (object):
                     
         # Set server meta information
         self.serverMeta = serverMeta
-        
         # Set schema for current server
         self.serverSchema = ObjectClassAttributeInfo(serverMeta)
         
         self.checkIntegrity()
-        
-        
-    def updateOnServer(self):
-        from base.backend.LumaConnection import LumaConnection
-        self.logger.debug("Updating smartobject on server")
-        l = LumaConnection(self.serverMeta)
-        l.bind()
-        l.updateDataObject(self)
-        l.unbind()
-        self.logger.debug("Done")
         
 ###############################################################################
 
@@ -205,7 +192,6 @@ class SmartDataObject (object):
     def getAttributeValue(self, attributeName=None, valueIndex=None):
         """Returns the values for the given attribute at index valueIndex.
         """
-        
         if (None == attributeName) or (None == valueIndex):
             raise FunctionArgumentException("Function getAttributeValue( attributeName, valueIndex ) called without correct parameters.")
             
@@ -527,7 +513,7 @@ class SmartDataObject (object):
             
         # No binary attribute
         else:
-            tmpRDN = attributeName + "=" + attributeValue
+            tmpRDN = attributeName + u"=" + attributeValue
         
             # Does the created RDN match the actual RDN?
             if tmpRDN == self.getPrettyRDN():
@@ -557,7 +543,8 @@ class SmartDataObject (object):
         tmpList = explodeDN(tmpString)
         newList = map(escapeSpecialChars, tmpList)
         tmpString = ",".join(newList)
-        tmpString = unicode(tmpString)
+        if not type(tmpString) == unicode:
+            tmpString = unicode(tmpString,"utf8",)
         
         self.dn = tmpString.encode('utf-8')
         
@@ -569,10 +556,13 @@ class SmartDataObject (object):
         converted to their real repesentations.
         """
         
-        rdn = explodeDN(self.dn)[0]
-        tmpString = stripSpecialChars(rdn)
+        list = explodeDN(self.dn)
+        if list:
+            rdn = list[0]
+            tmpString = stripSpecialChars(rdn)
         
-        return tmpString.decode('utf-8')
+            return tmpString.decode('utf-8')
+        return "[EMPTY]"
         
 ###############################################################################
         
@@ -626,7 +616,7 @@ class SmartDataObject (object):
             if index <= (valueLength - 1):
                 
                 # Is the value we want to delete the RDN of the object?
-                if self.isAttributeValueRDN(attributeName, self.data[attributeName][index]):
+                if self.isAttributeValueRDN(attributeName, self.data[attributeName][index].decode('utf8')):
                     errorList = []
                     errorList.append("Can't delete attribute. Attribute is RDN of this object.")
                     errorList.append(" DN: " + self.getPrettyDN() + ".")
@@ -776,7 +766,7 @@ class SmartDataObject (object):
         self.data[self.objectClassName].remove(className)
 
         must, may = self.getPossibleAttributes()
-        all = Set(self.getAttributeList())
+        all = set(self.getAttributeList())
         rest = all - must.union(may)
         for x in rest:
             self.deleteAttribute(x)
@@ -959,3 +949,5 @@ class FunctionArgumentException(Exception):
         
     def __str__(self):
         return repr(self.value)
+
+# vim: tabstop=4 expandtab shiftwidth=4 softtabstop=4

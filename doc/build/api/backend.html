@@ -1,0 +1,202 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>The luma.base.backend package &mdash; Luma v3.0.7-beta documentation</title>
+    <link rel="stylesheet" href="../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '3.0.7-beta',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/sidebar.js"></script>
+    <link rel="top" title="Luma v3.0.7-beta documentation" href="../index.html" />
+    <link rel="up" title="Luma API" href="index.html" />
+    <link rel="next" title="The luma.base.gui package" href="gui.html" />
+    <link rel="prev" title="Luma API" href="index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="gui.html" title="The luma.base.gui package"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="Luma API"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Luma v3.0.7-beta documentation</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">Luma API</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="the-luma-base-backend-package">
+<h1>The <tt class="docutils literal"><span class="pre">luma.base.backend</span></tt> package<a class="headerlink" href="#the-luma-base-backend-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="ldap-connections">
+<h2>LDAP connections<a class="headerlink" href="#ldap-connections" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="base.backend.LumaConnectionWrapper.LumaConnectionWrapper">
+<em class="property">class </em><tt class="descclassname">base.backend.LumaConnectionWrapper.</tt><tt class="descname">LumaConnectionWrapper</tt><big>(</big><em>serverObject</em>, <em>parent=None</em><big>)</big><a class="headerlink" href="#base.backend.LumaConnectionWrapper.LumaConnectionWrapper" title="Permalink to this definition">¶</a></dt>
+<dd><p>Connection wrapper for <cite>LumaConnection</cite></p>
+<p>The erapper provides async-versions of time-consuming methods which
+use signals to return the result and also sync-versions which use
+<tt class="docutils literal"><span class="pre">qApp.processEvents</span></tt> to avoid blocking the GUI.</p>
+<p>If your method can work with signals to get the result, please use
+the async-methods. That way we avoid calling <tt class="docutils literal"><span class="pre">qApp.processEvents</span></tt>
+which leads to recursion if other methods are called while waiting
+for the result which again mens your results will be delayed until
+that method is finished.</p>
+<p>The xAsync-methods takes an <tt class="docutils literal"><span class="pre">identStr</span></tt> which is signaled along
+with the result of the operation for identifying purposes.</p>
+<dl class="method">
+<dt id="base.backend.LumaConnectionWrapper.LumaConnectionWrapper.bindAsync">
+<tt class="descname">bindAsync</tt><big>(</big><em>identStr=''</em><big>)</big><a class="headerlink" href="#base.backend.LumaConnectionWrapper.LumaConnectionWrapper.bindAsync" title="Permalink to this definition">¶</a></dt>
+<dd><p>Non-blocking. Listen to <cite>LumaConnectionWrapper.bindFinished</cite>
+for the result.</p>
+<p>Only use the exception passed if <tt class="docutils literal"><span class="pre">success</span></tt> is False.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="base.backend.LumaConnectionWrapper.LumaConnectionWrapper.bindFinished">
+<tt class="descname">bindFinished</tt><a class="headerlink" href="#base.backend.LumaConnectionWrapper.LumaConnectionWrapper.bindFinished" title="Permalink to this definition">¶</a></dt>
+<dd><p>The signal to connect to retirve bind success from <cite>bindAsync</cite></p>
+</dd></dl>
+
+<dl class="method">
+<dt id="base.backend.LumaConnectionWrapper.LumaConnectionWrapper.bindSync">
+<tt class="descname">bindSync</tt><big>(</big><big>)</big><a class="headerlink" href="#base.backend.LumaConnectionWrapper.LumaConnectionWrapper.bindSync" title="Permalink to this definition">¶</a></dt>
+<dd><p>Equivalent to <cite>LumaConnection.bind</cite> but doesn&#8217;t block the GUI
+through calling <tt class="docutils literal"><span class="pre">qApp.processEvents</span></tt> while the bind is in
+progress.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="base.backend.LumaConnectionWrapper.LumaConnectionWrapper.searchAsync">
+<tt class="descname">searchAsync</tt><big>(</big><em>base=''</em>, <em>scope=0</em>, <em>filter='(objectClass=*)'</em>, <em>attrList=None</em>, <em>attrsonly=0</em>, <em>sizelimit=0</em>, <em>identStr=''</em><big>)</big><a class="headerlink" href="#base.backend.LumaConnectionWrapper.LumaConnectionWrapper.searchAsync" title="Permalink to this definition">¶</a></dt>
+<dd><p>Non-blocking. Listen to LumaConnectionWrapper.searchFinished
+for the result.</p>
+<p>Only use the exception passed if <tt class="docutils literal"><span class="pre">success</span></tt> is False.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="base.backend.LumaConnectionWrapper.LumaConnectionWrapper.searchFinished">
+<tt class="descname">searchFinished</tt><a class="headerlink" href="#base.backend.LumaConnectionWrapper.LumaConnectionWrapper.searchFinished" title="Permalink to this definition">¶</a></dt>
+<dd><p>The signal to connect to retrive results from <cite>searchAsync</cite></p>
+</dd></dl>
+
+<dl class="method">
+<dt id="base.backend.LumaConnectionWrapper.LumaConnectionWrapper.searchSync">
+<tt class="descname">searchSync</tt><big>(</big><em>base=''</em>, <em>scope=0</em>, <em>filter='(objectClass=*)'</em>, <em>attrList=None</em>, <em>attrsonly=0</em>, <em>sizelimit=0</em><big>)</big><a class="headerlink" href="#base.backend.LumaConnectionWrapper.LumaConnectionWrapper.searchSync" title="Permalink to this definition">¶</a></dt>
+<dd><p>Equivalent to <cite>LumaConnection.search</cite>.</p>
+<p>See <cite>bindSync</cite> for details.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-base.backend.ServerObject">
+<span id="ldap-server-representation"></span><h2>LDAP server representation<a class="headerlink" href="#module-base.backend.ServerObject" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="base.backend.ServerObject.ServerObject">
+<em class="property">class </em><tt class="descclassname">base.backend.ServerObject.</tt><tt class="descname">ServerObject</tt><a class="headerlink" href="#base.backend.ServerObject.ServerObject" title="Permalink to this definition">¶</a></dt>
+<dd><p>This class represents a server with all its information.</p>
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../index.html">
+              <img class="logo" src="../_static/luma.png" alt="Logo"/>
+            </a></p>
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">The <tt class="docutils literal"><span class="pre">luma.base.backend</span></tt> package</a><ul>
+<li><a class="reference internal" href="#ldap-connections">LDAP connections</a></li>
+<li><a class="reference internal" href="#module-base.backend.ServerObject">LDAP server representation</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="index.html"
+                        title="previous chapter">Luma API</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="gui.html"
+                        title="next chapter">The <tt class="docutils literal"><span class="pre">luma.base.gui</span></tt> package</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/api/backend.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" size="18" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="gui.html" title="The luma.base.gui package"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="Luma API"
+             >previous</a> |</li>
+        <li><a href="../index.html">Luma v3.0.7-beta documentation</a> &raquo;</li>
+          <li><a href="index.html" >Luma API</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2011, Christian Forfang, Einar Uvsløkk, Johannes Harestad, Per Ove Ringstad, Simen Natvig, Sondre Frisvold.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.0.7.
+    </div>
+  </body>
+</html>

@@ -4,8 +4,7 @@
 <body>
 <table border="0" cellpadding="1" cellspacing="0" width="100%">
 <tr>
-<td bgcolor="#B2CAE7" width="40%"><font size="+1"><b>Distinguished Name:</b> </font></td>
-<td bgcolor="#B2CAE7" width="60%"><font size="+1"><b><ldapobject type="RDN" /></b></font></td>
+<ldapobject function="getPrettyDN" style="rows" />
 </tr>
 </table>
 <br />
@@ -14,7 +13,9 @@
 <tr>
 <td bgcolor="#C4DFFF" align="center"><b>ObjectClasses</b></td>
 </tr>
-<ldapobject type="createClassString" style="table" />
+</table>
+<table border="0" cellpadding="1" cellspacing="0" width="100%">
+<ldapobject function="createClassString" style="rows" />
 </table>
 <!-- classes end -->
 <br />
@@ -25,7 +26,7 @@
 </tr>
 </table>
 <table border="0" cellpadding="1" cellspacing="1" width="100%">
-<ldapobject type="createAttributeString" style="table" />
+<ldapobject function="createAttributeString" style="rows" />
 </table>
 <!-- attributes end -->
 </body>

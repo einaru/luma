@@ -1,0 +1,421 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Luma Userguide &mdash; Luma v3.0.7-beta documentation</title>
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '3.0.7-beta',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/sidebar.js"></script>
+    <link rel="top" title="Luma v3.0.7-beta documentation" href="index.html" />
+    <link rel="next" title="Luma Development" href="HACKING.html" />
+    <link rel="prev" title="Luma Installation" href="INSTALL.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="HACKING.html" title="Luma Development"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="INSTALL.html" title="Luma Installation"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">Luma v3.0.7-beta documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="luma-userguide">
+<h1>Luma Userguide<a class="headerlink" href="#luma-userguide" title="Permalink to this headline">¶</a></h1>
+<p><em>Luma is LDAP management made easy.</em></p>
+<div class="section" id="getting-started">
+<h2>1. Getting started<a class="headerlink" href="#getting-started" title="Permalink to this headline">¶</a></h2>
+<p>On UNIX and UNIX-like systems after a successful installation, Luma can be
+started from a shell, with the following command (provided the startup script
+is installed in the system <tt class="docutils literal"><span class="pre">PATH</span></tt>):</p>
+<div class="highlight-python"><pre>$ luma</pre>
+</div>
+<p>On Windows systems you can start Luma from <tt class="docutils literal"><span class="pre">cmd.exe</span></tt>. If you installed from
+a source distribution this can be done with:</p>
+<div class="highlight-python"><pre>$ luma.py</pre>
+</div>
+<p>If you installed a frozen bundle of Luma, it can be started with:</p>
+<div class="highlight-python"><pre>$ luma.exe</pre>
+</div>
+<p>For an overview of the available commandline options, you can run:</p>
+<div class="highlight-python"><pre>$ luma -h</pre>
+</div>
+<p>If you are running on a UNIX or UNIX-like system, you can read the luma(1) man
+page, by running:</p>
+<div class="highlight-python"><pre>$ man luma(1)</pre>
+</div>
+</div>
+<div class="section" id="editing-the-serverlist">
+<h2>2. Editing the serverlist<a class="headerlink" href="#editing-the-serverlist" title="Permalink to this headline">¶</a></h2>
+<p>If you are running Luma for the first time you will be greeted with a <em>Welcome
+Tab</em>. Here you will find a quick overview of how to get started using the Luma
+application. The first thing you need to do is to edit the <strong>serverlist</strong>. This
+can be done by selecting <tt class="docutils literal"><span class="pre">Edit</span> <span class="pre">→</span> <span class="pre">Server</span> <span class="pre">List</span></tt> from the menubar or with the
+keyboard shortcut <tt class="docutils literal"><span class="pre">Ctrl</span> <span class="pre">+</span> <span class="pre">Shift</span> <span class="pre">+</span> <span class="pre">S</span></tt>.</p>
+<p>When adding servers to the serverlist you are presented with many of options.
+The Server Dialog is basically divided into three section:</p>
+<ul class="simple">
+<li><strong>Network</strong>:
+Here you can define the server hostname, port number and base DN to use.</li>
+<li><strong>Authentification</strong>:
+Here you can choose how to bind to the server.</li>
+<li><strong>Security</strong>:
+Here you can choose your connection type, server certificate and client
+certificate.</li>
+</ul>
+</div>
+<div class="section" id="activate-and-use-a-plugin">
+<h2>3. Activate and use a plugin<a class="headerlink" href="#activate-and-use-a-plugin" title="Permalink to this headline">¶</a></h2>
+<p>When you have added servers to the serverlist its time to manage the available
+plugins. By default no plugins is activated. To activate a plugin you must
+select <tt class="docutils literal"><span class="pre">Edit</span> <span class="pre">→</span> <span class="pre">Settings</span></tt> from the menubar to open the settings dialog, and select the plugins tab. A list of all available
+plugins will be shown, and you can select the plugins you can to activate.
+If the plugin support it, you can also edit plugin specific settings from the
+same dialog.</p>
+<p>When you have activated one or more plugins and closed the settings dialog, the
+activated plugins will be listed in the <em>Plugins tab</em> in the main window.
+(If the <em>Plugins tab</em> is closed you can open it by selecting <tt class="docutils literal"><span class="pre">View</span> <span class="pre">→</span> <span class="pre">Show</span>
+<span class="pre">Plugin</span> <span class="pre">List</span></tt> from the menubar). To open a plugin you simply double click it,
+and a new tab will be created for the plugin. This way you can have multiple
+plugins open at the same time.</p>
+<div class="section" id="available-plugins">
+<h3>3.1. Available plugins<a class="headerlink" href="#available-plugins" title="Permalink to this headline">¶</a></h3>
+<p>The base Luma application includes a number of plugins which brings and extends
+functionality to the application.
+configure the plugin settings (if the plugin supports this).</p>
+<div class="section" id="browser">
+<h4>3.1.1. Browser<a class="headerlink" href="#browser" title="Permalink to this headline">¶</a></h4>
+<p>The browser consists of the list of server-trees on the left, and the entry-view on the right.</p>
+<p><strong>Server tree</strong></p>
+<p>The following operations is available when right clicking a node:
+Edit server settings</p>
+<ul class="simple">
+<li><strong>Open</strong>: Loads the selected object, if not already loaded, and displays it in the entry-view.</li>
+<li><strong>Reload</strong>: Removes the children from memory, and reloads them.</li>
+<li><strong>Clear</strong>: Remove the children from memory.</li>
+<li><strong>Set filter</strong>: Set the search filter used to collect the children, and reloads them.</li>
+<li><strong>Set limit</strong>: Set the limit of the nodes children.</li>
+<li><strong>Add</strong>: Add an entry using the selected nodes DN, and the selected template.</li>
+<li><strong>Delete</strong>: Delete the node on the server.</li>
+<li><strong>Export</strong>: Export the entry to file, with subtree or with subtree and parent.</li>
+</ul>
+<p><strong>Entry-view</strong></p>
+<p>The entry-view has the following functionality (on top):</p>
+<ul class="simple">
+<li><strong>Reload</strong>: Reload current entry, asks whether to save if it has been modified.</li>
+<li><strong>Save</strong>: Save changes done to the current entry.</li>
+<li><strong>Add attribute</strong>: Opens a dialog where you can select attributes from a list, and add them to the entry.</li>
+<li><strong>Delete object</strong>: Deletes the entry from server, if it is a leaf node.</li>
+<li><strong>Switch between views</strong>: A drop down list where you can select views.</li>
+</ul>
+<p>And the following inside the document:</p>
+<ul class="simple">
+<li><strong>Delete objectclass</strong>: A red cross behind the object class, deletes the object, and the attributes that are no longer supported.</li>
+<li><strong>Edit attribute (RDN)</strong>: Add a attribute as RDN (only on CREATE).</li>
+<li><strong>Edit attribute (Password)</strong>: Type a password, only ascii is allowed when using encryption.</li>
+<li><strong>Edit attribute (Binary)</strong>: Edit a binary attribute, opens a file dialog.</li>
+<li><strong>Edit attribute (Normal)</strong>: Plain text input (Not allowed for RDN).</li>
+<li><strong>Delete attribute</strong>: Delete the attribute (Not allowed for must with only one value)</li>
+<li><strong>Export binary</strong>: Export the value to file.</li>
+</ul>
+</div>
+<div class="section" id="templates">
+<h4>3.1.2 Templates<a class="headerlink" href="#templates" title="Permalink to this headline">¶</a></h4>
+<p>The template plugin is for making templates to use in making ldap entries.
+On the left side is the template list and it shows existing templates. The right side is the template view and shows information on the selected template.</p>
+<p><strong>Template list</strong></p>
+<p>The four buttons under the template list is:</p>
+<ul class="simple">
+<li><strong>Add</strong>: Opens a dialog for adding a new template.</li>
+<li><strong>Save</strong>: Saves the template list to disk.</li>
+<li><strong>Delete</strong>: Deletes the selected template.</li>
+<li><strong>Duplicate</strong>: Duplicates the selected template.</li>
+</ul>
+<p><strong>Template view</strong></p>
+<p>In the upper part of the template view is the name of the server, which the template belongs to, and the description of the template. In the <em>Objectclasses</em> section the template&#8217;s objectclasses is shown and can be added and deleted. The <em>Attributes</em> section works the same way as the <em>Objectclasses</em> section, but you can also change the <em>must</em> of an attribute with no <em>must</em> to a blue checkmark. This is to show that you want the template to force an attribute to get a value when made in the browser plugin.</p>
+</div>
+<div class="section" id="search">
+<h4>3.1.3. Search<a class="headerlink" href="#search" title="Permalink to this headline">¶</a></h4>
+<p>The search plugin supports arbitrary LDAP search operations on a selected
+server. The plugin also includes a convenient Filter builder, which can be used
+to build complex LDAP search filters.</p>
+<p><strong>Search form</strong></p>
+<p>In the <em>Search form</em> you select the server you wish to do a search operation on,
+the Base DN you wish to connect with, the search level, and a possible size
+limit for the search. The search level options is:</p>
+<ul class="simple">
+<li><strong>SCOPE_BASE</strong>:</li>
+<li><strong>SCOPE_ONELEVEL</strong>:</li>
+<li><strong>SCOPE_SUBTREE</strong>: (<em>Default</em>)</li>
+</ul>
+<p>The <em>size limit</em> defines the maximum number of matches to retrieve from the
+search operation. The default value is 0 (which is the same as None).</p>
+<p>To perform a search you simply select a server, enter a search filter and click
+on the <em>Search</em> button. If the search filter contains no syntax errors, a
+result view is displayed at the left. If the search filter contains syntax
+errors, an error message is displayed. It is also possible to continue editing
+the filter in the <em>Filter builder</em>, by clicking the tool button next to the
+Search button.</p>
+<p><strong>Filter builder</strong></p>
+<p>The <em>Filter builder</em> is intended to help the you construct complex LDAP search
+filters. Based on the currently selected server you are presented with a
+complete list of object classes and attributes that is supported on the server.</p>
+<p>The <em>Filter builder</em> is divided into a search criteria component creator, and a
+filter editor. When you create a search filter criteria, you insert it into the
+editor. The component will be inserted at the cursor position in the editor.
+In the filter editor you are able to perform various operations on selections.
+This includes to <tt class="docutils literal"><span class="pre">or</span></tt>, <tt class="docutils literal"><span class="pre">and</span></tt> or <tt class="docutils literal"><span class="pre">negate</span></tt> a selection of the search filter.
+You also is able to insert escaped special characters into the filter.</p>
+<p>Filters created in the <em>Filter builder</em> follows the <em>LDAP String Representation
+of Search Filters</em> specifications defined in <tt class="docutils literal"><span class="pre">RFC4514</span></tt> <a class="footnote-reference" href="#id2" id="id1">[1]</a>.</p>
+<p><strong>Result view</strong></p>
+<p>When a search operation successfully returns. The matching LDAP entries are
+displayed in a new tab. The search result is displayed in a table view. The
+columns in this table represents the DN plus one column for every attribute
+used in the search filter.</p>
+<p>It is also possible to do additional filtering on columns in the result view.
+To open the result view filter box you can use the keyboard shortcut <tt class="docutils literal"><span class="pre">Ctrl</span> <span class="pre">+</span>
+<span class="pre">F</span></tt>. Here you can choose the filtering syntax to use and the column to apply
+the filter on.</p>
+<p>The available filter syntaxes is:</p>
+<ul class="simple">
+<li><strong>Fixed String</strong>:</li>
+<li><strong>Regular Expression</strong>:
+Note that this option can be very slow on large result sets.</li>
+<li><strong>Wildcard</strong>:
+Note that this option can be very slow on large result sets.</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="section" id="luma-keyboard-shortcuts">
+<h2>4. Luma keyboard shortcuts<a class="headerlink" href="#luma-keyboard-shortcuts" title="Permalink to this headline">¶</a></h2>
+<table border="1" class="docutils">
+<colgroup>
+<col width="30%" />
+<col width="70%" />
+</colgroup>
+<thead valign="bottom">
+<tr><th class="head"><strong>Keyboard shortcut</strong></th>
+<th class="head"><strong>Action</strong></th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr><td colspan="2"><strong>Main Application</strong></td>
+</tr>
+<tr><td><tt class="docutils literal"><span class="pre">Ctrl</span> <span class="pre">+</span> <span class="pre">L</span></tt></td>
+<td>Toggles the <em>Logger Window</em></td>
+</tr>
+<tr><td><tt class="docutils literal"><span class="pre">Ctrl</span> <span class="pre">+</span> <span class="pre">P</span></tt></td>
+<td>Show the <em>Plugin List</em></td>
+</tr>
+<tr><td><tt class="docutils literal"><span class="pre">Ctrl</span> <span class="pre">+</span> <span class="pre">Q</span></tt></td>
+<td>Quit the application</td>
+</tr>
+<tr><td><tt class="docutils literal"><span class="pre">Ctrl</span> <span class="pre">+</span> <span class="pre">W</span></tt></td>
+<td>Close the currently selected tab</td>
+</tr>
+<tr><td><tt class="docutils literal"><span class="pre">Ctrl</span> <span class="pre">+</span> <span class="pre">Shift</span> <span class="pre">+</span> <span class="pre">S</span></tt></td>
+<td>Open the Server dialog</td>
+</tr>
+<tr><td><tt class="docutils literal"><span class="pre">Ctrl</span> <span class="pre">+</span> <span class="pre">Shift</span> <span class="pre">+</span> <span class="pre">W</span></tt></td>
+<td>Show the <em>Welcome Tab</em></td>
+</tr>
+<tr><td><tt class="docutils literal"><span class="pre">F5</span></tt></td>
+<td>Reload the plugins</td>
+</tr>
+<tr><td><tt class="docutils literal"><span class="pre">F11</span></tt></td>
+<td>Toggle fullscreen mode</td>
+</tr>
+<tr><td><tt class="docutils literal"><span class="pre">F12</span></tt></td>
+<td>Open the <em>About Dialog</em></td>
+</tr>
+<tr><td colspan="2"><strong>Search plugin</strong></td>
+</tr>
+<tr><td><tt class="docutils literal"><span class="pre">Ctrl</span> <span class="pre">+</span> <span class="pre">F</span></tt></td>
+<td>Opens the filterbox in a result view</td>
+</tr>
+<tr><td><tt class="docutils literal"><span class="pre">Ctrl</span> <span class="pre">+</span> <span class="pre">W</span></tt></td>
+<td>Close the currently selected result view tab</td>
+</tr>
+<tr><td colspan="2"><strong>Browser plugin</strong></td>
+</tr>
+<tr><td><tt class="docutils literal"><span class="pre">Ctrl</span> <span class="pre">+</span> <span class="pre">W</span></tt></td>
+<td>Close the current entry tab</td>
+</tr>
+</tbody>
+</table>
+<p>On Os X Ctrl is replaced with Meta</p>
+</div>
+<div class="section" id="problems-and-bugs">
+<h2>5. Problems and bugs<a class="headerlink" href="#problems-and-bugs" title="Permalink to this headline">¶</a></h2>
+<p>Luma tries to provide relevant feedback to the user, when illegal operations,
+errors and/or other problems occur. If you encounter some issues where the
+application feedback is missing, you can try to start the application from a
+shell with the <tt class="docutils literal"><span class="pre">-v</span></tt> or <tt class="docutils literal"><span class="pre">--verbose</span></tt> option:</p>
+<div class="highlight-python"><pre>$ luma --verbose</pre>
+</div>
+<p>This will print more information, about what is going on, to <em>standard out</em>. It
+is also possible to view <em>Error</em>, <em>Debug</em> and <em>Info</em> messages, produced by the
+application, in <a class="reference internal" href="#the-luma-logger-window">5.1. The Luma Logger Window</a>.</p>
+<div class="section" id="the-luma-logger-window">
+<h3>5.1. The Luma Logger Window<a class="headerlink" href="#the-luma-logger-window" title="Permalink to this headline">¶</a></h3>
+<p>The <em>Logger Window</em> is not displayed by default. To display it you can select
+<tt class="docutils literal"><span class="pre">View</span> <span class="pre">→</span> <span class="pre">Logger</span> <span class="pre">Window</span></tt> from the menu bar, or use the keyboard shortcut <tt class="docutils literal"><span class="pre">Ctrl</span>
+<span class="pre">+</span> <span class="pre">L</span></tt>. If you want the <em>Logger Window</em> to be displayed every time you start Luma
+you can select this in the <em>Settings Dialog</em> (<tt class="docutils literal"><span class="pre">Edit</span> <span class="pre">→</span> <span class="pre">Settings</span></tt> in the
+menubar).</p>
+<p>The <em>Logger Window</em> can be customized to display only selected types of
+messages. The message that Luma produces is categorized in:</p>
+<ul class="simple">
+<li><strong>Error</strong>:
+Messages for things that have gone wrong.</li>
+<li><strong>Debug</strong>:
+Messages mostly intended for the developers to hunt down various issues.
+Some of these messages can be of great value when a problem occurs.</li>
+<li><strong>Info</strong>:
+Messages that only contain verbose information of things that happen
+successfully.</li>
+</ul>
+</div>
+<div class="section" id="reporting-bugs">
+<h3>5.2. Reporting bugs<a class="headerlink" href="#reporting-bugs" title="Permalink to this headline">¶</a></h3>
+<p>The Luma bugtracker can be found here:
+<a class="reference external" href="http://sourceforge.net/tracker/?group_id=89105">http://sourceforge.net/tracker/?group_id=89105</a>.</p>
+</div>
+</div>
+<div class="section" id="contact-and-support">
+<h2>6. Contact and support<a class="headerlink" href="#contact-and-support" title="Permalink to this headline">¶</a></h2>
+<p>Application news and contact information can be found on the official Luma
+website <a class="reference external" href="http://luma.sf.net/">http://luma.sf.net/</a>.</p>
+</div>
+<div class="section" id="footnotes">
+<h2>Footnotes<a class="headerlink" href="#footnotes" title="Permalink to this headline">¶</a></h2>
+<table class="docutils footnote" frame="void" id="id2" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td><a class="reference external" href="http://tools.ietf.org/html/rfc4515">http://tools.ietf.org/html/rfc4515</a></td></tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="index.html">
+              <img class="logo" src="_static/luma.png" alt="Logo"/>
+            </a></p>
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Luma Userguide</a><ul>
+<li><a class="reference internal" href="#getting-started">1. Getting started</a></li>
+<li><a class="reference internal" href="#editing-the-serverlist">2. Editing the serverlist</a></li>
+<li><a class="reference internal" href="#activate-and-use-a-plugin">3. Activate and use a plugin</a><ul>
+<li><a class="reference internal" href="#available-plugins">3.1. Available plugins</a><ul>
+<li><a class="reference internal" href="#browser">3.1.1. Browser</a></li>
+<li><a class="reference internal" href="#templates">3.1.2 Templates</a></li>
+<li><a class="reference internal" href="#search">3.1.3. Search</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#luma-keyboard-shortcuts">4. Luma keyboard shortcuts</a></li>
+<li><a class="reference internal" href="#problems-and-bugs">5. Problems and bugs</a><ul>
+<li><a class="reference internal" href="#the-luma-logger-window">5.1. The Luma Logger Window</a></li>
+<li><a class="reference internal" href="#reporting-bugs">5.2. Reporting bugs</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#contact-and-support">6. Contact and support</a></li>
+<li><a class="reference internal" href="#footnotes">Footnotes</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="INSTALL.html"
+                        title="previous chapter">Luma Installation</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="HACKING.html"
+                        title="next chapter">Luma Development</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/userguide.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" size="18" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="HACKING.html" title="Luma Development"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="INSTALL.html" title="Luma Installation"
+             >previous</a> |</li>
+        <li><a href="index.html">Luma v3.0.7-beta documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2011, Christian Forfang, Einar Uvsløkk, Johannes Harestad, Per Ove Ringstad, Simen Natvig, Sondre Frisvold.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.0.7.
+    </div>
+  </body>
+</html>

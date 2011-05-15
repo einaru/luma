@@ -17,47 +17,48 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see http://www.gnu.org/licenses/
-
 from PyQt4.QtCore import QSize
 from PyQt4.QtGui import QIcon
 
-def iconFromTheme(themeIcon, fallbackIcon):
+
+def iconFromTheme(icon, fallback):
     """ Utility method for getting icons from default X11 icon theme.
-    
-    @param themeIcon: a string;
-        the name of the icontheme icon
-    @param fallbackIcon: a string;
-        the name of the fallback icon
-    
-    @return:
-        a QIcon from the current icon theme if a match is found, 
-        the fallback QIcon if not.
-    """
-    return QIcon.fromTheme(themeIcon, QIcon(fallbackIcon))
 
-def pixmapFromThemeIcon(themeIconName, fallbackIconName, width=48, height=48,
-                           mode=QIcon.Normal, state=QIcon.Off):
-    """
-    Utility method for converting a QIcon to a QPixmap. Useful when
-    trying to use icons from a X11 iconTheme but need a pixmap.
-    
-    @param themeIcon: string;
-        the name of the icontheme icon
-    @param fallbackIcon: string;
-        the name of the fallback icon
-    @param widht: integer;
-        the width of the icon, defaults to 48
-    @param height: integer;
-        the height of the icon, defaults to 48
-    @param mode:
-        defaults to QIcon.Normal
-    @param state:
-        defaults to QIcon.Off
-        
-    @return:
-        a QPixmap from a icon in the current icon theme if a match is
-        found. A QPixmap from the fallback icon if not. 
-    """
-    icon = iconFromTheme(themeIconName, fallbackIconName)
-    return icon.pixmap(QSize(width, height), QIcon.Normal, QIcon.Off)
+    Returns a ``QIcon`` from the X11 system-icon theme if a match is
+    found, else the `fallback` is used.
 
+    :param icon: the name of the icon in the X11 icon-theme.
+    :type icon: string
+    :param fallback: the name of the fallback icon.
+    :type icon: string
+    """
+    return QIcon.fromTheme(icon, QIcon(fallback))
+
+
+def pixmapFromTheme(icon, fallback, width=48, height=48, mode=QIcon.Normal,
+                    state=QIcon.Off):
+    """Utility method for converting a ``QIcon`` to a ``QPixmap``.
+    Useful when trying to use icons from a X11 iconTheme but need a
+    pixmap.
+
+    Returns a ``QPixmap`` from the X11 system icon-theme if a match is
+    found, else the `fallback` is used.
+
+    :param icon: the name of the icon in the icon theme.
+    :type icon: string
+    :param fallback: the name of the fallback icon.
+    :type fallback: string
+    :param widht: the width of the icon, default is 48.
+    :type width: int
+    :param height: the height of the icon, default is 48.
+    :type height: int
+    :param mode: the icon mode, default is ``QIcon.Normal``,
+    :type mode: see http://doc.trolltech.com/4.7/qicon.html#Mode-enum
+    :param state: the icon state, default is ``QIcon.Off``,
+    :type state: see http://doc.trolltech.com/4.7/qicon.html#State-enum
+    """
+    ret = iconFromTheme(icon, fallback)
+    return ret.pixmap(QSize(width, height), QIcon.Normal, QIcon.Off)
+
+
+# vim: tabstop=4 expandtab shiftwidth=4 softtabstop=4

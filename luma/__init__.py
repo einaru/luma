@@ -23,6 +23,7 @@ import os
 
 __all__ = ['ORGNAME', 'APPNAME', 'VERSION', 'DESCRIPTION']
 
+
 def getRealLumaRootPath():
     import version
     return str(version).split()[3][1:-13]
@@ -30,6 +31,8 @@ def getRealLumaRootPath():
 sys.path.append(getRealLumaRootPath())
 
 ORGNAME = APPNAME = 'luma'
-VERSION = '3.0.3-sprint3'
+VERSION = '3.0.6b'
 DESCRIPTION = 'LDAP browser and administration utility'
 
+
+# vim: tabstop=4 expandtab shiftwidth=4 softtabstop=4

@@ -1,168 +1,192 @@
 # -*- coding: utf-8 -*-
+#
+# base.backend.PluginLoader
+#
+# Copyright (C) 2011
+#     Johannes Harestad, <johanhar@stud.ntnu.no>
+#
+# This is free software: you can redistribute it and/or modify it
+# under the terms of the GNU General Public License as published by the
+# Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# oya-invitationals is distributed in the hope that it will be useful, but
+# WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+# See the GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License along
+# with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-from os import listdir 
-import imp 
+from os import listdir
+import imp
 from os import path
 import logging
-import sys
-from PyQt4 import QtGui
+
+from ..util.Paths import getLumaRoot
+
+
+class PluginObject(object):
+    """This object is for keeping information about a Plugin.
+    """
+
+    def __init__(self):
+        self.lumaPlugin = True
+        self.pluginName = None
+        self.author = None
+        self.pluginUserString = None
+        self.version = None
+        self.getIcon = None
+        self.getPluginWidget = None
+        self.getPluginSettingsWidget = None
+        self.icon = None
+        self.load = False
+
 
 class PluginLoader(object):
-    
-    """
-    This is the new version of PluginLoader, with the use of a PluginObject.
+    """This is the new version of PluginLoader, with the use of a
+    PluginObject.
+
     The plugins field is a list of PluginObjects.
-    
-    lumaInstallationPrefix: the path to where luma is installed
-    pluginsToLoad: a list of plugin names, or 'ALL'
     """
-    
-    _logger = logging.getLogger(__name__)
-    
-    def __init__(self, pluginsToLoad = []):
-        self._pluginsToLoad = pluginsToLoad
-        self._plugins = [] #PluginObjects
-        self._changed = True
-        
-        #os.path.split - array of two elements, path + file
-        #os.path.join - joins the path and "../.."
-        #os.path.abspath - makes a "abspath" out of the entire path
-        self._pluginsBaseDir = path.abspath(path.join(path.split(__file__)[0],
-                                                      "../../plugins"))
+
+    __logger = logging.getLogger(__name__)
+
+    def __init__(self, pluginsToLoad=[]):
+        self.__pluginsToLoad = pluginsToLoad
+        self.__plugins = []
+        self.__changed = True
+        self.__pluginsBaseDir = path.join(getLumaRoot(), 'plugins')
 
     @property
     def pluginsToLoad(self):
-        return self._pluginsToLoad
+        return self.__pluginsToLoad
 
     @pluginsToLoad.setter
     def pluginsToLoad(self, value):
-        self._changed = True
-        self._pluginsToLoad = value
+        self.__changed = True
+        self.__pluginsToLoad = value
 
-    @property   
+    @property
     def plugins(self):
+        """It should not be possible to set the plugin field from
+        outside, therefore no ``plugins.setter`` is available.
         """
-        It should not be possible to set the plugin field
-        from outside, so no @plugins.setter is made.
-        """
-        if self._changed == True:
+        if self.__changed == True:
             self.__loadPlugins()
-            self._changed = False
-        
-        return self._plugins
-    
+            self.__changed = False
+
+        return self.__plugins
+
     def __loadPlugins(self):
+        """Will load plugins from the directories returned by
+        `__findPluginDirectories`.
         """
-        Will load all plugins that was found from the "__findPluginDirectories()".
-        """
-        
-        self._plugins = []
-        
+        self.__plugins = []
+
         pluginDirs = self.__findPluginDirectories()
         if not pluginDirs:
             return
 
         for x in pluginDirs:
-            if x == "CVS" or x == ".svn" or x == ".git":
+            if x in ['CVS', '.svn', '.git']:
                 continue
-        
+
             try:
-                self._plugins.append(self.__readMetaInfo(x))
-        
+                self.__plugins.append(self.__readMetaInfo(x))
+
             except PluginMetaError, y:
-                errorString = "Plugin \"" + str(x) + "\" gave an exception: \n"
-                errorString += str(y)
-                self._logger.error(errorString)
+                msg = 'Plugin {0} gave an exception:\n{1}'
+                self.__logger.error(msg.format(str(x), str(y)))
 
     def __findPluginDirectories(self):
-        """
-        Will find all directories inside the "_pluginBaseDir"
-        and put them in a list
+        """Returns a list of directories found inside `pluginBaseDir`.
         """
         tmpList = []
-    
+
         try:
             #look for directories
-            for x in listdir(self._pluginsBaseDir):
-                xPath = path.join(self._pluginsBaseDir, x)
-                
+            for x in listdir(self.__pluginsBaseDir):
+                xPath = path.join(self.__pluginsBaseDir, x)
+
                 if path.isdir(xPath):
                     tmpList.append(x)
-            
+
             return tmpList
-        
-        except OSError, errorData:
-            errorString = "Could not read from directory where plugins are stored. Reason:\n"
-            errorString += str(errorData)
-            self._logger.error(errorString)
+
+        except OSError, e:
+            msg = 'Could not read from directory where plugins are stored.'
+            self.__logger.error('{0} Reason:\n{1}'.format(msg, str(e)))
 
     def __readMetaInfo(self, pluginName):
-        """
-        Reads meta information for a plugin by its directory.
+        """Reads meta information for a plugin by its directory.
+
         If the plugin is in pluginsToLoad, the load attribute will be
-        set to true.
-        All of the meta information about a plugin will be put into a PluginObject.
+        set to True  All of the meta information about a plugin will be
+        put into a PluginObject.
         """
-        
-        from base.backend.PluginObject import PluginObject
         plugin = PluginObject()
-        
-        attributes =    ["lumaPlugin", 
-                        "pluginName", 
-                        "author",
-                        "pluginUserString", 
-                        "version", 
-                        "getIcon", 
-                        "getPluginWidget", 
-                        "getPluginSettingsWidget"]
-                        
+
+        attributes = [
+            'lumaPlugin',
+            'pluginName',
+            'author',
+            'pluginUserString',
+            'version',
+            'getIcon',
+            'getPluginWidget',
+            'getPluginSettingsWidget'
+        ]
+
         importedModule = None
 
-        
         try:
-            searchList = [self._pluginsBaseDir]
+            searchList = [self.__pluginsBaseDir]
             foundModule = imp.find_module(pluginName, searchList)
             importedModule = imp.load_module(pluginName, *foundModule)
-            
-        except ImportError, errorData:
-            errorString = "Plugin meta information could not be loaded. Reason:\n"
-            errorString += str(errorData)
-            self._logger.error(errorString)
-            raise PluginMetaError, errorData
-        
+        except ImportError, e:
+            msg = 'Plugin meta information could not be loaded. Reason:\n{0}'
+            self.__logger.error(msg.format(str(e)))
+            raise PluginMetaError(e)
 
         missingAttributes = []
         for x in attributes:
             if not hasattr(importedModule, x):
                 missingAttributes.append(x)
-        
+
         if len(missingAttributes) > 0:
-            errorString = "Loaded module \"" + pluginName + "\" is not a Luma plugin. Attributes are missing! \n"
-            raise PluginMetaError, errorString
-            
+            msg = 'Loaded module {0} is not a Luma plugin.'.format(pluginName)
+            raise PluginMetaError('{0} Attributes are missing!'.format(msg))
+
         plugin.pluginName = importedModule.pluginName
         plugin.pluginUserString = importedModule.pluginUserString
         plugin.author = importedModule.author
         plugin.version = importedModule.version
         plugin.getPluginWidget = importedModule.getPluginWidget
         plugin.getPluginSettingsWidget = importedModule.getPluginSettingsWidget
+
         try:
             plugin.icon = importedModule.getIcon()
         except Exception, e:
-            self._logger.error("Plugin \""+plugin.pluginName+"\" gave error: "+str(e))
-        
-        if self._pluginsToLoad == 'ALL':
+            msg = 'Plugin {0} gave error: {1}'
+            self.__logger.error(msg.format(plugin.pluginName, str(e)))
+
+        if self.__pluginsToLoad == 'ALL':
             plugin.load = True
         else:
-            for ptl in self._pluginsToLoad:
+            for ptl in self.__pluginsToLoad:
                 if plugin.pluginName == ptl:
                     plugin.load = True
                     break
+
         return plugin
 
+
 class PluginMetaError(Exception):
-    """
-    When __readMetaInfo sees that a directory is not a plugin-directory,
-    this exception is raised..
+    """When `__readMetaInfo` discovers a directory in the search path
+    with corrupted metainfo, this exception is raised.
     """
     pass
+
+
+# vim: tabstop=4 expandtab shiftwidth=4 softtabstop=4

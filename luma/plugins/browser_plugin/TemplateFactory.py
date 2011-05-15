@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import os
 
 class TemplateFactory:
@@ -33,13 +34,14 @@ class TemplateFactory:
                 for dependentFile in os.listdir(path):
                     localPath = os.path.join(file, dependentFile)
                     dependentPath = os.path.join(path, dependentFile)
-                    split = str(dependentFile).rsplit('.')
+                    split = dependentFile.rsplit('.')
                     if os.path.isfile(dependentPath) and split[-1] == 'html':
-                        retlist.append((str(file), str(localPath)))
+                        retlist.append((file, localPath))
             elif os.path.isfile(path):
-                split = str(file).rsplit('.')
+                split = file.rsplit('.')
                 if split[-1] == 'html':
-                    retlist.append(('', str(file)))
+                    retlist.append(('', file))
+        retlist.sort()
         return retlist
 
     def getTemplateFile(self, fileName):
@@ -56,3 +58,5 @@ class TemplateFactory:
 
 
 
+
+# vim: tabstop=4 expandtab shiftwidth=4 softtabstop=4

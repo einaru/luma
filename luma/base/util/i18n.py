@@ -17,128 +17,87 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see http://www.gnu.org/licenses/
-from PyQt4.QtCore import (QDir, QString)
+from PyQt4.QtCore import (QDir, QString, QLocale)
+
 
 class LanguageHandler(object):
-    """ Helper class providing useful functionality for handling
+    """Helper class providing useful functionality for handling
     available application translations.
-
-    We use the ISO 638-1 standard for 2 char language codes:
-    http://en.wikipedia.org/wiki/List_of_ISO_639-1_codes
     """
-    __isolangCodes = {
-        u'af' : [u'Afrikaans', u'Afrikaans'],
-        u'ar' : [u'العربية', u'Arabic'],
-        u'be' : [u'Беларуская', u'Belarusian'],
-        u'bg' : [u'Български', u'Bulgarian'],
-        u'ca' : [u'Català', u'Catalan'],
-        u'cs' : [u'České', u'Czech'],
-        u'cy' : [u'Cymraeg', u'Welsh'],
-        u'da' : [u'Dansk', u'Danish'],
-        u'de' : [u'Deutsch', u'German'],
-        u'el' : [u'Ελληνικά', u'Greek'],
-        u'en' : [u'English', u'English'],
-        u'es' : [u'Español', u'Spanish'],
-        u'et' : [u'Eesti', u'Estonian'],
-        u'fa' : [u'فارسی', u'Persian'],
-        u'fi' : [u'Suomalainen', u'Finnish'],
-        u'fr' : [u'Française', u'French'],
-        u'ga' : [u'Na hÉireann', u'Irish'],
-        u'gl' : [u'Galego', u'Galician'],
-        u'he' : [u'עברית', u'Hebrew'],
-        u'hx' : [u'h4x0r', u'01101000 00110100 01111000 00110000 01110010'],
-        u'hi' : [u'हिन्दी', u'Hindi'],
-        u'hr' : [u'Hrvatski', u'Croatian'],
-        u'hu' : [u'Magyar', u'Hungarian'],
-        u'id' : [u'Bahasa Indonesia', u'Indonesian'],
-        u'is' : [u'Íslenska', u'Icelandic'],
-        u'it' : [u'Italiano', u'Italian'],
-        u'ja' : [u'日本', u'Japanese'],
-        u'ko' : [u'한국어', u'Korean'],
-        u'lt' : [u'Lietuvos', u'Lithuanian'],
-        u'lv' : [u'Latvijā', u'Latvian'],
-        u'mk' : [u'Македонски', u'Macedonian'],
-        u'ms' : [u'Melayu', u'Malay'],
-        u'mt' : [u'Malti', u'Maltese'],
-        u'nl' : [u'Nederlandse', u'Dutch'],
-        u'no' : [u'Norsk', u'Norwegian'],
-        u'pl' : [u'Polska', u'Polish'],
-        u'pt' : [u'Português', u'Portuguese'],
-        u'ro' : [u'Română', u'Romanian'],
-        u'ru' : [u'Россию', u'Russian'],
-        u'sk' : [u'Slovenskému', u'Slovak'],
-        u'sl' : [u'Slovenščina', u'Slovenian'],
-        u'sq' : [u'Shqiptar', u'Albanian'],
-        u'sr' : [u'Српска', u'Serbian'],
-        u'sv' : [u'Svenska', u'Swedish'],
-        u'sw' : [u'Swahili', u'Swahili'],
-        u'th' : [u'ไทย', u'Thai'],
-        u'tl' : [u'Filipino', u'Filipino'],
-        u'tr' : [u'Türk', u'Turkish'],
-        u'uk' : [u'Українське', u'Ukrainian'],
-        u'vi' : [u'Việt', u'Vietnamese'],
-        u'yi' : [u'ייִדיש', u'Yiddish'],
-        u'zh' : [u'中文', u'Chinese'],
-    }
-
-    __availableLanguages = {}
 
     def __init__(self):
         self.__translationPath = QDir(':/i18n')
-        
+        self.__availableLanguages = {}
         # Must be put in manually because there exists no translation file
         # UPDATE: well it does now, but we'll keep it this way none the less
-        self.__availableLanguages['en'] = ['English', 'English']
+        #self.__availableLanguages['en'] = ['English', 'English']
         self.__buildLanguageDictionary()
 
     def __buildLanguageDictionary(self):
-        """ Scannes the resources for  available translation files, and
-        builds a dictionary with the language code as key and language
-        name as value. This works as long as we are consitent in filname
-        conventions for these files.
-        
-            luma_<iso-code>.qm
-        
-        It's a hack but it works (provided we got < 10 translation files:)
+        """Builds the language dictionary used by the application. The
+        dictionary is constructed with the locale code as key, and a
+        list containing the language name (and possibly the country
+        name) as value. The information is based on the ``i18n``entries
+        in the ``resources.py`` module, where the alias for a one
+        translation file is locale code for the translation.
+
+        If the translation file is named ``luma_nn_NO.ts`` the
+        corresponding alias for this file will be ``nb_NO``. Further
+        more ``nb`` will map to ``QLocale.NorwegianBokmal``and ``NO``
+        will map to ``QLocale.Norway``, resulting in the following entry
+        in the dictionary::
+
+            langDict = {
+                ...,
+                'en' : ['English'], # Default is allways included
+                'nb_NO' : ['Norwegian', 'Norway'],
+                ...
+            }
         """
         for i18n in self.__translationPath:
-            for iso, lang in self.__isolangCodes.iteritems():
-                if i18n == iso:
-                    self.__availableLanguages[iso] = lang
+            if i18n == 'hx':
+                self.__availableLanguages[i18n] = ['leet', '10100111001']
+            else:
+                locale = QLocale(i18n)
+                language = QLocale.languageToString(locale.language())
+                country = QLocale.countryToString(locale.country())
+                self.__availableLanguages[i18n] = [language, country]
 
     @property
     def availableLanguages(self):
-        """ The available application language translations are
-        returned in a dictionary on the form:
-            { ... ,
-            <iso code> : [ <native name>, <english name> ],
-            ... }
-        
-        @return: A dictionary containing all available application 
-                 languages.
+        """Returns a dictionary containing all available language
+        translations for the application. The dictionary returned
+        is on the form::
+
+            langDict = {
+                ...,
+                locale : [language[, country]],
+                ...
+            }
         """
         return self.__availableLanguages
 
     @property
     def translationPath(self):
-        """
-        @return: The full path to the directory containing the 
-                 translation files.
+        """Returns the full path to the directory containing the
+        translation files.
         """
         return self.__translationPath
 
-    def getQmFile(self, isoCode=''):
-        """ Get the translation file for the provided iso code.
-        
-        @param isoCode:
-            A legal 2 char language code as spesified by the
-            ISO 638-1 standard. If it is empty the code for the default
-            language will be used (normally 'en').
-        
-        @return:
-            The full path to the associated .qm translation file.
-        """
-        if isoCode == '' or isoCode == None:
-            isoCode = u'en'
+    def getQmFile(self, locale=''):
+        """Returns the ``.qm`` files that matches `locale`. If `locale`
+        is empty or ``None``, the ``.qm`` file for ``en`` is returned.
 
-        return QString(':/i18n/%s' % isoCode)
+        :param locale: a two-letter lowercase ISO 639 language code,
+          with a possible two-letter uppercase ISO 3199 country code,
+          that corresponds to one of the ``i18n`` aliases in the
+          resource file.
+        :type locale: string
+        """
+        if locale == '' or locale == None:
+            locale = 'en'
+
+        return QString(':/i18n/{0}'.format(locale))
+
+
+# vim: tabstop=4 expandtab shiftwidth=4 softtabstop=4

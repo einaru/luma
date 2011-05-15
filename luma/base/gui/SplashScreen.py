@@ -23,7 +23,11 @@ from PyQt4.QtCore import Qt, QMetaObject
 from PyQt4.QtGui import QPixmap
 from PyQt4.QtGui import QSplashScreen
 
+
 class SplashScreen(QSplashScreen):
+    """ Defines the splash-screen used by Luma
+    """
+
     def __init__(self):
         QSplashScreen.__init__(self)
         self.setupUi()
@@ -32,8 +36,11 @@ class SplashScreen(QSplashScreen):
         self.setObjectName(u'splash_screen')
         self.setWindowFlags(self.windowFlags() | Qt.WindowStaysOnTopHint)
         self.setContextMenuPolicy(Qt.PreventContextMenu)
-        splash_image = QPixmap(u':/icons/luma-128')
+        splash_image = QPixmap(u':/icons/128/luma')
         self.setPixmap(splash_image)
         self.setMask(splash_image.mask())
         self.resize(128, 128)
         QMetaObject.connectSlotsByName(self)
+
+
+# vim: tabstop=4 expandtab shiftwidth=4 softtabstop=4

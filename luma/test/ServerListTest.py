@@ -150,3 +150,4 @@ if __name__ == "__main__":
     logger.addHandler(ch)
     
     unittest.main()
+# vim: tabstop=4 expandtab shiftwidth=4 softtabstop=4

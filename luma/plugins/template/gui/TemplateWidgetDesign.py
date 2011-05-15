@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'd:\Skole\it2901\resources\forms\plugins\template\TemplateWidgetDesign.ui'
+# Form implementation generated from reading ui file '/mnt/debris/devel/git/luma/resources/forms/plugins/template/TemplateWidgetDesign.ui'
 #
-# Created: Tue Mar 22 12:40:23 2011
-#      by: PyQt4 UI code generator 4.8.2
+# Created: Wed May 11 13:31:20 2011
+#      by: PyQt4 UI code generator 4.8.3
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -57,8 +57,6 @@ class Ui_TemplateWidget(object):
         self.listViewTemplates.setSizePolicy(sizePolicy)
         self.listViewTemplates.setObjectName(_fromUtf8("listViewTemplates"))
         self.gridLayout_6.addWidget(self.listViewTemplates, 0, 0, 1, 3)
-        spacerItem = QtGui.QSpacerItem(40, 20, QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Minimum)
-        self.gridLayout_6.addItem(spacerItem, 1, 2, 2, 1)
         self.pushButtonTemplatesDelete = QtGui.QPushButton(self.groupBoxTemplates)
         sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Fixed, QtGui.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
@@ -75,6 +73,8 @@ class Ui_TemplateWidget(object):
         self.pushButtonTemplatesDuplicate.setSizePolicy(sizePolicy)
         self.pushButtonTemplatesDuplicate.setObjectName(_fromUtf8("pushButtonTemplatesDuplicate"))
         self.gridLayout_6.addWidget(self.pushButtonTemplatesDuplicate, 2, 1, 1, 1)
+        spacerItem = QtGui.QSpacerItem(40, 20, QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Minimum)
+        self.gridLayout_6.addItem(spacerItem, 1, 2, 2, 1)
         self.gridLayout.addWidget(self.groupBoxTemplates, 0, 0, 1, 1)
         self.layoutWidget1 = QtGui.QWidget(self.splitter_2)
         self.layoutWidget1.setObjectName(_fromUtf8("layoutWidget1"))
@@ -125,7 +125,10 @@ class Ui_TemplateWidget(object):
         self.gridLayout_4.setObjectName(_fromUtf8("gridLayout_4"))
         self.tableViewAttributes = QtGui.QTableView(self.groupBoxAttributes)
         self.tableViewAttributes.setSelectionBehavior(QtGui.QAbstractItemView.SelectRows)
+        self.tableViewAttributes.setShowGrid(False)
         self.tableViewAttributes.setObjectName(_fromUtf8("tableViewAttributes"))
+        self.tableViewAttributes.horizontalHeader().setStretchLastSection(True)
+        self.tableViewAttributes.verticalHeader().setVisible(False)
         self.gridLayout_4.addWidget(self.tableViewAttributes, 0, 0, 3, 2)
         self.pushButtonAttributesAdd = QtGui.QPushButton(self.groupBoxAttributes)
         sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Fixed, QtGui.QSizePolicy.Fixed)
@@ -166,20 +169,42 @@ class Ui_TemplateWidget(object):
         QtCore.QObject.connect(self.pushButtonTemplatesDuplicate, QtCore.SIGNAL(_fromUtf8("clicked()")), TemplateWidget.duplicateTemplate)
         QtCore.QObject.connect(self.pushButtonTemplatesSave, QtCore.SIGNAL(_fromUtf8("clicked()")), TemplateWidget.saveTemplate)
         QtCore.QMetaObject.connectSlotsByName(TemplateWidget)
+        TemplateWidget.setTabOrder(self.listViewTemplates, self.pushButtonTemplatesAdd)
+        TemplateWidget.setTabOrder(self.pushButtonTemplatesAdd, self.pushButtonTemplatesSave)
+        TemplateWidget.setTabOrder(self.pushButtonTemplatesSave, self.pushButtonTemplatesDelete)
+        TemplateWidget.setTabOrder(self.pushButtonTemplatesDelete, self.pushButtonTemplatesDuplicate)
+        TemplateWidget.setTabOrder(self.pushButtonTemplatesDuplicate, self.lineEditDescription)
+        TemplateWidget.setTabOrder(self.lineEditDescription, self.listViewObjectclasses)
+        TemplateWidget.setTabOrder(self.listViewObjectclasses, self.pushButtonObjectclassesAdd)
+        TemplateWidget.setTabOrder(self.pushButtonObjectclassesAdd, self.pushButtonObjectclassesDelete)
+        TemplateWidget.setTabOrder(self.pushButtonObjectclassesDelete, self.tableViewAttributes)
+        TemplateWidget.setTabOrder(self.tableViewAttributes, self.pushButtonAttributesAdd)
+        TemplateWidget.setTabOrder(self.pushButtonAttributesAdd, self.pushButtonAttributesDelete)
 
     def retranslateUi(self, TemplateWidget):
         TemplateWidget.setWindowTitle(QtGui.QApplication.translate("TemplateWidget", "Form", None, QtGui.QApplication.UnicodeUTF8))
         self.groupBoxTemplates.setTitle(QtGui.QApplication.translate("TemplateWidget", "Templates", None, QtGui.QApplication.UnicodeUTF8))
+        self.pushButtonTemplatesSave.setToolTip(QtGui.QApplication.translate("TemplateWidget", "Save template", None, QtGui.QApplication.UnicodeUTF8))
         self.pushButtonTemplatesSave.setText(QtGui.QApplication.translate("TemplateWidget", "Save", None, QtGui.QApplication.UnicodeUTF8))
+        self.pushButtonTemplatesAdd.setToolTip(QtGui.QApplication.translate("TemplateWidget", "Add template", None, QtGui.QApplication.UnicodeUTF8))
         self.pushButtonTemplatesAdd.setText(QtGui.QApplication.translate("TemplateWidget", "Add", None, QtGui.QApplication.UnicodeUTF8))
+        self.listViewTemplates.setToolTip(QtGui.QApplication.translate("TemplateWidget", "Existing templates", None, QtGui.QApplication.UnicodeUTF8))
+        self.pushButtonTemplatesDelete.setToolTip(QtGui.QApplication.translate("TemplateWidget", "Delete template", None, QtGui.QApplication.UnicodeUTF8))
         self.pushButtonTemplatesDelete.setText(QtGui.QApplication.translate("TemplateWidget", "Delete", None, QtGui.QApplication.UnicodeUTF8))
+        self.pushButtonTemplatesDuplicate.setToolTip(QtGui.QApplication.translate("TemplateWidget", "Duplicate template", None, QtGui.QApplication.UnicodeUTF8))
         self.pushButtonTemplatesDuplicate.setText(QtGui.QApplication.translate("TemplateWidget", "Duplicate", None, QtGui.QApplication.UnicodeUTF8))
         self.labelServer.setText(QtGui.QApplication.translate("TemplateWidget", "Server:", None, QtGui.QApplication.UnicodeUTF8))
         self.labelDescription.setText(QtGui.QApplication.translate("TemplateWidget", "Description:", None, QtGui.QApplication.UnicodeUTF8))
         self.groupBoxObjectclasses.setTitle(QtGui.QApplication.translate("TemplateWidget", "Objectclasses", None, QtGui.QApplication.UnicodeUTF8))
+        self.pushButtonObjectclassesAdd.setToolTip(QtGui.QApplication.translate("TemplateWidget", "Add objectclasses", None, QtGui.QApplication.UnicodeUTF8))
         self.pushButtonObjectclassesAdd.setText(QtGui.QApplication.translate("TemplateWidget", "Add", None, QtGui.QApplication.UnicodeUTF8))
+        self.listViewObjectclasses.setToolTip(QtGui.QApplication.translate("TemplateWidget", "Added objectclasses", None, QtGui.QApplication.UnicodeUTF8))
+        self.pushButtonObjectclassesDelete.setToolTip(QtGui.QApplication.translate("TemplateWidget", "Delete objectclasses", None, QtGui.QApplication.UnicodeUTF8))
         self.pushButtonObjectclassesDelete.setText(QtGui.QApplication.translate("TemplateWidget", "Delete", None, QtGui.QApplication.UnicodeUTF8))
         self.groupBoxAttributes.setTitle(QtGui.QApplication.translate("TemplateWidget", "Attributes", None, QtGui.QApplication.UnicodeUTF8))
+        self.tableViewAttributes.setToolTip(QtGui.QApplication.translate("TemplateWidget", "Added attributes", None, QtGui.QApplication.UnicodeUTF8))
+        self.pushButtonAttributesAdd.setToolTip(QtGui.QApplication.translate("TemplateWidget", "Add attributes", None, QtGui.QApplication.UnicodeUTF8))
         self.pushButtonAttributesAdd.setText(QtGui.QApplication.translate("TemplateWidget", "Add", None, QtGui.QApplication.UnicodeUTF8))
+        self.pushButtonAttributesDelete.setToolTip(QtGui.QApplication.translate("TemplateWidget", "Delete attributes", None, QtGui.QApplication.UnicodeUTF8))
         self.pushButtonAttributesDelete.setText(QtGui.QApplication.translate("TemplateWidget", "Delete", None, QtGui.QApplication.UnicodeUTF8))
 

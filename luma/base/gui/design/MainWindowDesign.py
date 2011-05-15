@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file '/home/johannes/Programmering/Luma/git/resources/forms/MainWindowDesign.ui'
+# Form implementation generated from reading ui file '/mnt/debris/devel/git/luma/resources/forms/MainWindowDesign.ui'
 #
-# Created: Tue Mar 22 18:48:36 2011
-#      by: PyQt4 UI code generator 4.8.2
+# Created: Thu May 12 19:52:11 2011
+#      by: PyQt4 UI code generator 4.8.3
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -28,7 +28,7 @@ class Ui_MainWindow(object):
         self.gridLayout.addWidget(self.mainTabs, 0, 0, 1, 1)
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtGui.QMenuBar(MainWindow)
-        self.menubar.setGeometry(QtCore.QRect(0, 0, 700, 25))
+        self.menubar.setGeometry(QtCore.QRect(0, 0, 700, 23))
         self.menubar.setObjectName(_fromUtf8("menubar"))
         self.menuFile = QtGui.QMenu(self.menubar)
         self.menuFile.setObjectName(_fromUtf8("menuFile"))
@@ -76,13 +76,12 @@ class Ui_MainWindow(object):
         self.actionFullscreen = QtGui.QAction(MainWindow)
         self.actionFullscreen.setCheckable(True)
         self.actionFullscreen.setObjectName(_fromUtf8("actionFullscreen"))
-        self.menuFile.addSeparator()
+        self.actionSet_Temporary_Password = QtGui.QAction(MainWindow)
+        self.actionSet_Temporary_Password.setObjectName(_fromUtf8("actionSet_Temporary_Password"))
         self.menuFile.addSeparator()
         self.menuFile.addAction(self.actionQuit)
         self.menuEdit.addAction(self.actionEditServerList)
-        self.menuEdit.addSeparator()
-        self.menuEdit.addAction(self.actionReloadPlugins)
-        self.menuEdit.addAction(self.actionConfigurePlugins)
+        self.menuEdit.addAction(self.actionSet_Temporary_Password)
         self.menuEdit.addSeparator()
         self.menuEdit.addAction(self.menuLanguage.menuAction())
         self.menuEdit.addSeparator()
@@ -91,7 +90,6 @@ class Ui_MainWindow(object):
         self.menu_View.addAction(self.actionShowPluginList)
         self.menu_View.addAction(self.actionShowWelcomeTab)
         self.menu_View.addSeparator()
-        self.menu_View.addAction(self.actionShowToolbar)
         self.menu_View.addAction(self.actionShowStatusbar)
         self.menu_View.addAction(self.actionShowLogger)
         self.menu_View.addSeparator()
@@ -113,35 +111,36 @@ class Ui_MainWindow(object):
         QtCore.QObject.connect(self.actionShowPluginList, QtCore.SIGNAL(_fromUtf8("triggered()")), MainWindow.showPlugins)
         QtCore.QObject.connect(self.actionShowWelcomeTab, QtCore.SIGNAL(_fromUtf8("triggered()")), MainWindow.showWelcome)
         QtCore.QObject.connect(self.actionShowStatusbar, QtCore.SIGNAL(_fromUtf8("toggled(bool)")), MainWindow.toggleStatusbar)
-        QtCore.QObject.connect(self.actionShowToolbar, QtCore.SIGNAL(_fromUtf8("toggled(bool)")), MainWindow.toggleToolbar)
         QtCore.QObject.connect(self.actionFullscreen, QtCore.SIGNAL(_fromUtf8("toggled(bool)")), MainWindow.toggleFullscreen)
+        QtCore.QObject.connect(self.actionSet_Temporary_Password, QtCore.SIGNAL(_fromUtf8("triggered()")), MainWindow.showTempPasswordDialog)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def retranslateUi(self, MainWindow):
         MainWindow.setWindowTitle(QtGui.QApplication.translate("MainWindow", "Luma", None, QtGui.QApplication.UnicodeUTF8))
         self.menuFile.setTitle(QtGui.QApplication.translate("MainWindow", "&File", None, QtGui.QApplication.UnicodeUTF8))
         self.menuEdit.setTitle(QtGui.QApplication.translate("MainWindow", "&Edit", None, QtGui.QApplication.UnicodeUTF8))
-        self.menuLanguage.setTitle(QtGui.QApplication.translate("MainWindow", "Language", None, QtGui.QApplication.UnicodeUTF8))
+        self.menuLanguage.setTitle(QtGui.QApplication.translate("MainWindow", "&Language", None, QtGui.QApplication.UnicodeUTF8))
         self.menuHelp.setTitle(QtGui.QApplication.translate("MainWindow", "&Help", None, QtGui.QApplication.UnicodeUTF8))
         self.menu_View.setTitle(QtGui.QApplication.translate("MainWindow", "&View", None, QtGui.QApplication.UnicodeUTF8))
-        self.actionShowLogger.setText(QtGui.QApplication.translate("MainWindow", "Logger Window", None, QtGui.QApplication.UnicodeUTF8))
+        self.actionShowLogger.setText(QtGui.QApplication.translate("MainWindow", "&Logger Window", None, QtGui.QApplication.UnicodeUTF8))
         self.actionShowLogger.setShortcut(QtGui.QApplication.translate("MainWindow", "Ctrl+L", None, QtGui.QApplication.UnicodeUTF8))
-        self.actionQuit.setText(QtGui.QApplication.translate("MainWindow", "Quit", None, QtGui.QApplication.UnicodeUTF8))
+        self.actionQuit.setText(QtGui.QApplication.translate("MainWindow", "&Quit", None, QtGui.QApplication.UnicodeUTF8))
         self.actionQuit.setShortcut(QtGui.QApplication.translate("MainWindow", "Ctrl+Q", None, QtGui.QApplication.UnicodeUTF8))
-        self.actionEditServerList.setText(QtGui.QApplication.translate("MainWindow", "Server List", None, QtGui.QApplication.UnicodeUTF8))
+        self.actionEditServerList.setText(QtGui.QApplication.translate("MainWindow", "S&erver List", None, QtGui.QApplication.UnicodeUTF8))
         self.actionEditServerList.setShortcut(QtGui.QApplication.translate("MainWindow", "Ctrl+Shift+S", None, QtGui.QApplication.UnicodeUTF8))
         self.actionReloadPlugins.setText(QtGui.QApplication.translate("MainWindow", "Reload Plugins", None, QtGui.QApplication.UnicodeUTF8))
         self.actionReloadPlugins.setShortcut(QtGui.QApplication.translate("MainWindow", "F5", None, QtGui.QApplication.UnicodeUTF8))
         self.actionConfigurePlugins.setText(QtGui.QApplication.translate("MainWindow", "Configure Plugins", None, QtGui.QApplication.UnicodeUTF8))
-        self.actionAboutLuma.setText(QtGui.QApplication.translate("MainWindow", "About Luma", None, QtGui.QApplication.UnicodeUTF8))
+        self.actionAboutLuma.setText(QtGui.QApplication.translate("MainWindow", "&About Luma", None, QtGui.QApplication.UnicodeUTF8))
         self.actionAboutLuma.setShortcut(QtGui.QApplication.translate("MainWindow", "F12", None, QtGui.QApplication.UnicodeUTF8))
-        self.actionEditSettings.setText(QtGui.QApplication.translate("MainWindow", "Settings", None, QtGui.QApplication.UnicodeUTF8))
-        self.actionShowPluginList.setText(QtGui.QApplication.translate("MainWindow", "Show Plugin List", None, QtGui.QApplication.UnicodeUTF8))
+        self.actionEditSettings.setText(QtGui.QApplication.translate("MainWindow", "&Settings", None, QtGui.QApplication.UnicodeUTF8))
+        self.actionShowPluginList.setText(QtGui.QApplication.translate("MainWindow", "&Plugin List", None, QtGui.QApplication.UnicodeUTF8))
         self.actionShowPluginList.setShortcut(QtGui.QApplication.translate("MainWindow", "Ctrl+P", None, QtGui.QApplication.UnicodeUTF8))
-        self.actionShowWelcomeTab.setText(QtGui.QApplication.translate("MainWindow", "Show Welcome Tab", None, QtGui.QApplication.UnicodeUTF8))
+        self.actionShowWelcomeTab.setText(QtGui.QApplication.translate("MainWindow", "&Welcome Tab", None, QtGui.QApplication.UnicodeUTF8))
         self.actionShowWelcomeTab.setShortcut(QtGui.QApplication.translate("MainWindow", "Ctrl+Shift+W", None, QtGui.QApplication.UnicodeUTF8))
         self.actionShowToolbar.setText(QtGui.QApplication.translate("MainWindow", "Toolbar", None, QtGui.QApplication.UnicodeUTF8))
-        self.actionShowStatusbar.setText(QtGui.QApplication.translate("MainWindow", "Statusbar", None, QtGui.QApplication.UnicodeUTF8))
-        self.actionFullscreen.setText(QtGui.QApplication.translate("MainWindow", "Fullscreen", None, QtGui.QApplication.UnicodeUTF8))
+        self.actionShowStatusbar.setText(QtGui.QApplication.translate("MainWindow", "&Statusbar", None, QtGui.QApplication.UnicodeUTF8))
+        self.actionFullscreen.setText(QtGui.QApplication.translate("MainWindow", "&Fullscreen", None, QtGui.QApplication.UnicodeUTF8))
         self.actionFullscreen.setShortcut(QtGui.QApplication.translate("MainWindow", "F11", None, QtGui.QApplication.UnicodeUTF8))
+        self.actionSet_Temporary_Password.setText(QtGui.QApplication.translate("MainWindow", "Temporary &Password", None, QtGui.QApplication.UnicodeUTF8))
 

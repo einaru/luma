@@ -22,6 +22,8 @@
 #############################################################################
 """
 
+# See BrowserView.py for example of use.
+
 import sip
 from PyQt4 import QtCore
 
@@ -480,3 +482,5 @@ class ModelTest(QtCore.QObject):
                 # Make sure that after testing the children that the index doesn't change
                 newIdx = self.model.index(row, column, parent)
                 assert(index == newIdx)
+
+# vim: tabstop=4 expandtab shiftwidth=4 softtabstop=4

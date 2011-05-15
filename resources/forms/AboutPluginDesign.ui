@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>230</width>
-    <height>97</height>
+    <width>171</width>
+    <height>75</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -35,6 +35,9 @@
      <property name="text">
       <string>&quot;name&quot;</string>
      </property>
+     <property name="wordWrap">
+      <bool>true</bool>
+     </property>
     </widget>
    </item>
    <item row="1" column="0">
@@ -55,6 +58,9 @@
      <property name="text">
       <string>&quot;version&quot;</string>
      </property>
+     <property name="wordWrap">
+      <bool>true</bool>
+     </property>
     </widget>
    </item>
    <item row="2" column="0">
@@ -74,6 +80,9 @@
     <widget class="QLabel" name="label_author">
      <property name="text">
       <string>&quot;author&quot;</string>
+     </property>
+     <property name="wordWrap">
+      <bool>true</bool>
      </property>
     </widget>
    </item>

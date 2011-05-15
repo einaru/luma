@@ -1,12 +1,13 @@
+#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 #
-# lumaWithOptions
+# luma
 #
 # Copyright (c) 2011
 #     Einar Uvsløkk, <einar.uvslokk@linux.com>
 #     Christian Forfang, <cforfang@gmail.com>
 #
-# Copyright (c) 2003, 2004, 2005 
+# Copyright (c) 2003, 2004, 2005
 #     Wido Depping, <widod@users.sourceforge.net>
 #
 # This program is free software: you can redistribute it and/or modify
@@ -29,16 +30,73 @@ import StringIO
 import sys
 import traceback
 
-from PyQt4.QtCore import (QEvent, Qt)
-from PyQt4.QtGui import QApplication
+failed = 0
 
+if sys.version_info < (2,6):
+    failed = 1
+    sys.stderr.write("""
+###########################################################
+## Luma needs Python version 2.6 or higher.              ##
+##                                                       ##
+## Please consider an upgrade.                           ##
+###########################################################
+""")
+
+if sys.version_info >= (3,):
+    failed = 1
+    sys.stderr.write("""
+###########################################################
+## Luma does not yet run on Python 3.                    ##
+##                                                       ##
+## Please consider a downgrade.                          ##
+###########################################################
+""")
+try:
+    from PyQt4.QtCore import (QEvent, Qt)
+    from PyQt4.QtGui import (QApplication, QIcon)
+except ImportError, e:
+    print e
+    failed = 1
+    sys.stderr.write("""
+###########################################################
+## ImportError: Unable to import module: PyQt4           ##
+##                                                       ##
+## PyQt4 is needed for the Graphical User Interface, and ##
+## must be installed in order to successfully run Luma.  ##
+## PyQt4 can be obtained from:                           ##
+##                                                       ##
+## http://www.riverbankcomputing.com/software/pyqt/intro ##
+###########################################################
+""")
+
+try:
+    import ldap
+except ImportError:
+    failed = 1
+    sys.stderr.write("""
+###########################################################
+## ImportError: Unable to import module: ldap            ##
+##                                                       ##
+## python-ldap is needed to successfully run Luma.       ##
+## python-ldap can be obtained from:                     ##
+##                                                       ##
+## http://python-ldap.org/                               ##
+###########################################################
+""")
+
+if failed:
+    print "Exiting ..."
+    sys.exit(1)
+
+del failed
 import __init__ as appinfo
 from base.backend.Log import LumaLogHandler
-from base.gui.MainWindow import MainWindow
 from base.gui.SplashScreen import SplashScreen
 from base.gui.Settings import Settings
 from base.util.Paths import getConfigPrefix
 
+# This import ensures that all compiled resources are available for the
+# running application. It contains all icons and translation files
 import resources
 
 
@@ -84,27 +142,29 @@ class TempLogHandler(logging.Handler):
 
 def startApplication(argv, verbose=False, clear=[], dirs={}):
     """Preparing Luma for take-off
-    
-    @param verbose: boolean value;
-        Whether or not to print more than error messages to console.
-    @param clear: a list;
-        containing what should be cleared before start.
-    @param dirs: a dict;
-        containing possible dirs to consider on start-up.
+
+    Parameters:
+
+    - `verbose`: boolean value indicating whether or not to print more
+      than error messages to console.
+    - `clear`: a list containing what should be cleared before start.
+    - `dirs`: a dictionary containing containing possible dirs to
+      consider on start-up.
     """
     app = Luma(argv)
-    
-    import platform
-    if platform.system() == "Windows":
-        # Avoids ugly white background
-        from PyQt4 import QtGui
-        QtGui.QApplication.setStyle(QtGui.QStyleFactory.create("plastique"))
-        QtGui.QApplication.setPalette(QtGui.QApplication.style().standardPalette())
 
+    """ Fixed but not removed in case we change our minds """
+    #import platform
+    #if sys.platform.lower().startswith('win'):
+        # Avoids ugly white background
+        #from PyQt4.QtGui import QStyleFactory
+        #QApplication.setStyle(QStyleFactory.create("plastique"))
+        #QApplication.setPalette(QApplication.style().standardPalette())
 
     app.setOrganizationName(appinfo.ORGNAME)
     app.setApplicationName(appinfo.APPNAME)
     app.setApplicationVersion(appinfo.VERSION)
+    app.setWindowIcon(QIcon(':/icons/128/luma'))
 
     # Setup the logging mechanism
     l = logging.getLogger()
@@ -113,18 +173,19 @@ def startApplication(argv, verbose=False, clear=[], dirs={}):
         "[%(threadName)s] - %(name)s - %(levelname)s - %(message)s"
     )
 
-    # Keep all logs from now until the GUI-LoggerWidget is up and can be populated
+    # Keep all logs from now until the GUI-LoggerWidget is up and can
+    # be populated
     tmpLH = TempLogHandler()
     l.addHandler(tmpLH)
 
     settings = Settings()
-    # Because we use QSettings for the application settings we 
+    # Because we use QSettings for the application settings we
     # facilitate QSettings if the user wishes to start Luma fresh
     if 'config' in clear:
         clear.remove('config')
         settings.clear()
 
-    if settings.configPrefix == u'':
+    if settings.configPrefix == '':
         # This will be the case on the first run, or if the user
         # have startet the application with the --clear-config option
         # We therefore need to retrive the config prefix in a best
@@ -145,7 +206,6 @@ def startApplication(argv, verbose=False, clear=[], dirs={}):
         consoleHandler.setFormatter(formatter)
         l.addHandler(consoleHandler)
 
-    
     __handleClearOptions(configPrefix, clear)
 
     # Initialize the splash screen
@@ -153,12 +213,14 @@ def startApplication(argv, verbose=False, clear=[], dirs={}):
     splash.show()
 
     # Initialize the main window
+
+    from base.gui.MainWindow import MainWindow
     mainwin = MainWindow()
 
     # Set up logging to the loggerwidget
     llh = LumaLogHandler(mainwin.loggerWidget)
-    l.removeHandler(tmpLH) # Stop temp-logging
-    l.addHandler(llh) # Start proper logging
+    l.removeHandler(tmpLH)  # Stop temp-logging
+    l.addHandler(llh)  # Start proper logging
 
     # Populate the loggerWidget with the saved entries
     for x in tmpLH.logList:
@@ -167,10 +229,9 @@ def startApplication(argv, verbose=False, clear=[], dirs={}):
     app.lastWindowClosed.connect(mainwin.close)
 
     mainwin.show()
-
     splash.finish(mainwin)
 
-    # Add a exception hook to handle all 
+    # Add a exception hook to handle all
     # exceptions missed in the main application
     sys.excepthook = unhandledException
 
@@ -222,7 +283,7 @@ def main(argv):
     #       been a cool feature to be able to launch Luma with different
     #       configuration locations.
     #           The option to specify yet another plugin directory to look
-    #       for plugins could also be cool. Especially if you are in the 
+    #       for plugins could also be cool. Especially if you are in the
     #       midle of developing a new plugin, a want to do some occasionally
     #       testing.
     #
@@ -284,7 +345,8 @@ def __handleClearOptions(configPrefix, clear=[]):
             f.close()
         else:
             l = logging.getLogger('luma')
-            l.info('%s couldn\'t be located in %s' % (file, configPrefix))
+            msg = '{0} couldn\'t be located in {1}'
+            l.info(msg.format(file, configPrefix))
 
 
 def unhandledException(etype, evalue, etraceback):
@@ -296,13 +358,14 @@ def unhandledException(etype, evalue, etraceback):
 This is most likely a bug. In order to fix this, please send an email to
     <luma-users@lists.sourceforge.net>
 with the following text and a short description of what you were doing:
->>>\n[%s] Reason:\n%s\n%s\n<<<""" % (tmp.getvalue(), str(etype), str(evalue))
+>>>\n[{0}] Reason:\n{1}\n{2}\n<<<"""
     logger = logging.getLogger('luma')
-    logger.error(e)
+    logger.error(e.format(tmp.getvalue(), str(etype), str(evalue)))
     # Make sure the cursor is normal
     QApplication.restoreOverrideCursor()
 
-
-
 if __name__ == '__main__':
     main(sys.argv)
+
+
+# vim: tabstop=4 expandtab shiftwidth=4 softtabstop=4

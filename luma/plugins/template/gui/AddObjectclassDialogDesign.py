@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'd:\Skole\it2901\resources\forms\plugins\template\AddObjectclassDialogDesign.ui'
+# Form implementation generated from reading ui file '/mnt/debris/devel/git/luma/resources/forms/plugins/template/AddObjectclassDialogDesign.ui'
 #
-# Created: Mon Mar 21 20:50:08 2011
-#      by: PyQt4 UI code generator 4.8.2
+# Created: Wed May 11 13:31:19 2011
+#      by: PyQt4 UI code generator 4.8.3
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -43,6 +43,12 @@ class Ui_AddObjectclassDialog(object):
         spacerItem = QtGui.QSpacerItem(40, 20, QtGui.QSizePolicy.Expanding, QtGui.QSizePolicy.Minimum)
         self.gridLayout.addItem(spacerItem, 5, 0, 1, 2)
         self.labelMainIcon = QtGui.QLabel(AddObjectclassDialog)
+        sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Fixed, QtGui.QSizePolicy.Fixed)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.labelMainIcon.sizePolicy().hasHeightForWidth())
+        self.labelMainIcon.setSizePolicy(sizePolicy)
+        self.labelMainIcon.setMinimumSize(QtCore.QSize(64, 64))
         self.labelMainIcon.setText(_fromUtf8(""))
         self.labelMainIcon.setObjectName(_fromUtf8("labelMainIcon"))
         self.gridLayout.addWidget(self.labelMainIcon, 0, 0, 1, 1)
@@ -65,6 +71,8 @@ class Ui_AddObjectclassDialog(object):
         QtCore.QObject.connect(self.pushButtonCancel, QtCore.SIGNAL(_fromUtf8("clicked()")), AddObjectclassDialog.reject)
         QtCore.QObject.connect(self.pushButtonOk, QtCore.SIGNAL(_fromUtf8("clicked()")), AddObjectclassDialog.accept)
         QtCore.QMetaObject.connectSlotsByName(AddObjectclassDialog)
+        AddObjectclassDialog.setTabOrder(self.pushButtonOk, self.pushButtonCancel)
+        AddObjectclassDialog.setTabOrder(self.pushButtonCancel, self.listWidgetObjectclasses)
 
     def retranslateUi(self, AddObjectclassDialog):
         AddObjectclassDialog.setWindowTitle(QtGui.QApplication.translate("AddObjectclassDialog", "Dialog", None, QtGui.QApplication.UnicodeUTF8))

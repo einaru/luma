@@ -47,7 +47,8 @@ class TemplateObject(object):
             self.objectclasses.pop(index)
             
     def objectclassIndex(self, objectclass):
-        return self.objectclasses.index(objectclass)
+        if objectclass in self.objectclasses:
+            return self.objectclasses.index(objectclass)
 
     def getCountObjectclasses(self):
         return len(self.objectclasses)
@@ -71,7 +72,7 @@ class TemplateObject(object):
         return self.attributes.values().index(attribute)
 
     def getCountAttributes(self):
-        return len(self.attributes.keys())
+        return len(self.attributes)
 
     def getDataObject(self, serverMeta, baseDN):
         """
@@ -89,7 +90,7 @@ class TemplateObject(object):
                 dataObject[attributeObject.attributeName] = [attributeObject.defaultValue.encode("utf-8")]
         
         smartObject = SmartDataObject((baseDN, dataObject), serverMeta)
-        
+
         return smartObject
 
     """
@@ -157,12 +158,30 @@ class TemplateObject(object):
     
     
 class AttributeObject(object):
-    def __init__(self, name="", must=False, single=False, binary=False, defaultValue=None):
+    def __init__(self, name="", must=False, single=False, binary=False, defaultValue=None, customMust=False):
         self.attributeName = name
         self.must = must
         self.single = single
         self.binary = binary
         self.defaultValue = defaultValue
+        self.customMust = customMust
         
     def getList(self):
-        return [self.attributeName, self.must, self.single, self.binary, self.defaultValue]
+        return [self.attributeName, self.must, self.single, self.binary, self.defaultValue, self.customMust]
+    
+    def getDataObject(self, serverMeta, baseDN):
+        dataObject = {}
+        dataObject['objectClass'] = deepcopy(self.objectClasses)
+        
+        for x in self.attributes.keys():
+            attributeObject = self.attributes[x]
+            if attributeObject.defaultValue == None:
+                dataObject[attributeObject.attributeName] = [None]
+            else:
+                dataObject[attributeObject.attributeName] = [attributeObject.defaultValue.encode("utf-8")]
+        
+        smartObject = SmartDataObject((baseDN, dataObject), serverMeta)
+        
+        return smartObject
+    
+# vim: tabstop=4 expandtab shiftwidth=4 softtabstop=4

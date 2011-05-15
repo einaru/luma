@@ -9,12 +9,13 @@ from PyQt4.QtCore import QAbstractTableModel, Qt, QVariant, QModelIndex
 class ObjectclassTableModel(QAbstractTableModel):
     
     def __init__(self, parent = None):
-        QAbstractTableModel.__init__(self)
+        QAbstractTableModel.__init__(self, parent)
         self.templateObject = None
         
     def setTemplateObject(self, templateObject = None):
+        self.beginResetModel()
         self.templateObject = templateObject
-        self.reset()
+        self.endResetModel()
         
     def insertRow(self, objectclass):
         if self.templateObject:
@@ -25,6 +26,7 @@ class ObjectclassTableModel(QAbstractTableModel):
         return False
     
     def removeRows(self, indexes):
+        # We must get the objectclasses before we make any of their indexes invalid 
         if self.templateObject:
             objectclasses = map(self.getObjectclass, indexes)
             for o in objectclasses:
@@ -35,8 +37,9 @@ class ObjectclassTableModel(QAbstractTableModel):
         return False
     
     def getObjectclass(self, index):
-        if index.row() < self.templateObject.getCountObjectclasses:
-            return self.templateObject.objectclasses[index.row()]
+        if index.isValid():
+            return index.internalPointer()
+        return QVariant()
 
     def getIndexRow(self, objectclass):
         return self.templateObject.objectclassIndex(objectclass)
@@ -51,30 +54,26 @@ class ObjectclassTableModel(QAbstractTableModel):
         return 1
     
     def flags(self, index):
-        if not index.isValid():
-            return QVariant()
         return Qt.ItemIsSelectable | Qt.ItemIsEnabled
     
     def data(self,index,role = Qt.DisplayRole):
         """
-        Handles getting the correct data from the TemplateObjects and returning it
+        Handles getting the correct data from the TemplateObject and returning it
         """
         if not index.isValid():
             return QVariant()
-        
         row = index.row()
-        
-        if row >= len(self.templateObject.objectclasses):
-            #TODO: See print...
-            print "WHY index out of range?! second from the bottom deleted...?"
-            print row, len(self.templateObject.objectclasses)
-            row = row-1
-        
         if role == Qt.DisplayRole and self.templateObject:
-            # getTable() return a list of all the TemplateObjects
+            # return the objectclass in the given row
             return self.templateObject.objectclasses[row]
 
-            # return the property set in the given column
-            # correct painting/displaying of it is done by a delegate if needed
-
-
+    def index(self, row, column, parent):
+        if row < 0 or column < 0:
+            return QModelIndex()
+        if row >= self.rowCount() or column >= self.columnCount():
+            return QModelIndex()
+        internalPointer = self.templateObject.objectclasses[row]
+        return self.createIndex(row, column, internalPointer)
+    
+    
+# vim: tabstop=4 expandtab shiftwidth=4 softtabstop=4

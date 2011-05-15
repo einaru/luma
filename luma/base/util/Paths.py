@@ -3,7 +3,8 @@
 # base.util.paths
 #
 # Copyright (c) 2011
-#      Einar Uvsløkk, <einaru@stud.ntnu.no>
+#     Einar Uvsløkk, <einaru@stud.ntnu.no>
+#     Johannes Harestad, <johannesharestad@gmail.com>
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -17,34 +18,52 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see http://www.gnu.org/licenses/
-
 import os
 import platform
+import tempfile
+
+
+def getLumaRoot():
+    """Utility method for locating the Luma root location.
+
+    This is done by using pythons magical __file__ attribute, to get
+    the location of this module, and joining it with the required
+    number of levels up to the root.
+
+    .. note::
+        The use of __file__ most  likely will cause some issues if
+        Luma is packaged with
+
+    Returnes the absolute file path to the luma root directory, without
+    the trailing separator: ``/full/path/to/luma`` .
+    """
+    levelsUp = '..' + os.path.sep + '..'
+    return os.path.abspath(os.path.join(os.path.split(__file__)[0], levelsUp))
+
 
 def getConfigPrefix():
-    """ We must determine what platform we're running on. Making sure
+    """We must determine what platform we're running on. Making sure
     we follow the platform convention for configuration files and
     directories,
 
-    The platform validation, can be done through a number of modules: 
-    
+    The platform validation, can be done through a number of modules::
+
         os.name           -> posix, nt
         sys.platform      -> linux2, windows, darwin
         platform.system() -> Linux, Windows, Darwin
-    
+
     This method will check for a existing config folder based on the
     platform. If it is not found it will be created. Either way the
     path will be returned.
-    
-    @return: a tuple (isvalid, prefix);
-        the boolean value, isvalid, indicates wheter the config prefix
-        path exists. It will be true if the path existed or was
-        successfully created. If it doesn't exists, and we don't have
-        write permissions, it will be False. Either way the prefix
-        value will contain the config prefix path.
+
+    Returns a tuple (success, prefix), where ``success`` is a boolean
+    value indicating wheter the config prefix path exists. It will be
+    ``True`` if the path existed or was successfully created. If it
+    doesn't exists, and we don't have write permissions, it will be
+    ``False``. In this case we will return the system temp directory.
     """
     prefix = ''
-    isvalid = True
+    success = True
 
     __platform = platform.system()
     if __platform == "Linux":
@@ -55,16 +74,15 @@ def getConfigPrefix():
         try:
             from xdg import BaseDirectory
             prefix = os.path.join(BaseDirectory.xdg_config_home, 'luma')
-        except:
-            pass
-        finally:
+        except ImportError:
             prefix = os.path.join(os.environ['HOME'], '.config', 'luma')
 
     elif __platform == "Darwin":
         # Best practise config storage on Mac OS:
         # http://developer.apple.com/tools/installerpolicy.html
         # ~/Library/Application Support/luma
-        prefix = os.path.join(os.environ['HOME'], 'Library', 'Application Support', 'luma')
+        prefix = os.path.join(
+            os.environ['HOME'], 'Library', 'Application Support', 'luma')
 
     elif __platform == "Windows":
         # Best practise config storage on Windows:
@@ -79,31 +97,34 @@ def getConfigPrefix():
         try:
             os.mkdir(prefix)
         except (IOError, OSError):
-            # TODO Do some logging. We should load the application, but 
-            #      provide information to user that no settings will be 
+            # TODO Do some logging. We should load the application, but
+            #      provide information to user that no settings will be
             #      saved due to (most likely) file permission issues.
             #      Maybe prompt for a user spesific folder?
-            isvalid = False
+            prefix = tempfile.gettempdir()
+            success = False
 
-    return (isvalid, prefix)
+    return (success, prefix)
+
 
 def getUserHomeDir():
     """Helper method for finding the user home directory.
-    
-    On UNIX systems this is achieved by using the python os.getenv
+
+    On UNIX systems this is achieved by using the python `os.getenv`
     module. On Windows NT systems users is able to have roaming or
     local profiles. For example:
-    CSIDL_APPDATA gets for the roaming 'Application Data' directory,
-    and CSIDL_LOCAL_APPDATA gets the local one.
-    
-    @return:
-        The path to the user home directory.
+
+    - ``CSIDL_APPDATA`` returns the roaming ``Application Data`` dir,
+    - ``CSIDL_LOCAL_APPDATA`` returns the local home dir.
+
+    Returns the path to the user home directory.
     """
-    #homedir = os.path.expanduser('~')
-    homedir = os.getenv('HOME')
     try:
-        from win32com.shell import shellcon, shell         
+        from win32com.shell import shellcon, shell
         homedir = shell.SHGetFolderPath(0, shellcon.CSIDL_APPDATA, 0, 0)
     except ImportError:
-        homedir = os.path.expanduser("~")
+        homedir = os.path.expanduser('~')
     return homedir
+
+
+# vim: tabstop=4 expandtab shiftwidth=4 softtabstop=4

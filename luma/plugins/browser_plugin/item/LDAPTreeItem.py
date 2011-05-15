@@ -1,11 +1,28 @@
-
+# -*- coding: utf-8 -*-
+#
+# Copyright (c) 2011
+#     Christian Forfang, <cforfang@gmail.com>
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see http://www.gnu.org/licenses/
 
 import ldap
 from AbstractLDAPTreeItem import AbstractLDAPTreeItem
 from PyQt4.QtGui import QInputDialog, QIcon, QPixmap
-from PyQt4 import QtCore
-from base.backend.LumaConnection import LumaConnection
-from plugins.browser_plugin.item.AbstractLDAPTreeItem import AbstractLDAPTreeItem
+from PyQt4 import QtCore, QtGui
+from base.backend.LumaConnectionWrapper import LumaConnectionWrapper
+from .AbstractLDAPTreeItem import AbstractLDAPTreeItem
+from .LDAPErrorItem import LDAPErrorItem
 
 class LDAPTreeItem(AbstractLDAPTreeItem):
     """
@@ -14,22 +31,24 @@ class LDAPTreeItem(AbstractLDAPTreeItem):
     
     # Defaults
     LIMIT_DEFAULT = 0
-    FILTER_DEFAULT = "(objectClass=*)"
+    FILTER_DEFAULT = u"(objectClass=*)"
     
     # How many aquired entries before a messagebox 
     # pops up asking if the user want to load them all?
-    ASK_TO_DISPLAY = 1000
+    # Not used currently.
+    # See commented-out code.
+    #ASK_TO_DISPLAY = 1000
 
     def __init__(self, data, serverParent, parent):
-        AbstractLDAPTreeItem.__init__(self, parent)
+        AbstractLDAPTreeItem.__init__(self, serverParent, parent)
         
-        self.serverParent = serverParent
         self.itemData = data
         
         self.limit = LDAPTreeItem.LIMIT_DEFAULT
         self.filter = LDAPTreeItem.FILTER_DEFAULT
         
         self.error = False
+        self.loading = False
 
     def columnCount(self):
         """
@@ -45,13 +64,15 @@ class LDAPTreeItem(AbstractLDAPTreeItem):
         # Return an icon if the item has been configured
         if role == QtCore.Qt.DecorationRole:
             if self.error:
-                return QIcon(QPixmap(":/icons/no"))
+                return QIcon(QPixmap(":/icons/16/edit-delete"))
             if self.filter != LDAPTreeItem.FILTER_DEFAULT or self.limit != LDAPTreeItem.LIMIT_DEFAULT:
-                return QIcon(QPixmap(":/icons/filter"))
+                return QIcon(QPixmap(":/icons/16/view-filter"))
             else:
                 return None
-        # Return applicable status-tip-role
-        elif role == QtCore.Qt.StatusTipRole:
+        # Return applicable status-tip-role and tooltip
+        elif role == QtCore.Qt.StatusTipRole or role == QtCore.Qt.ToolTipRole:
+            if self.loading:
+                return QtCore.QCoreApplication.translate("LDAPTreeItem","Fetching items...")
             if self.error:
                 return QtCore.QCoreApplication.translate("LDAPTreeItem","Couldn't fetch list of children.")
             if self.limit != LDAPTreeItem.LIMIT_DEFAULT and self.filter != LDAPTreeItem.FILTER_DEFAULT:
@@ -75,55 +96,30 @@ class LDAPTreeItem(AbstractLDAPTreeItem):
         """
         (Re)aquire the list of childs for this item (if any).
         """       
-        
-        l = LumaConnection(self.serverParent.serverMeta)
-        
-        bindSuccess, exceptionObject = l.bind()
+        lumaConnection = LumaConnectionWrapper(self.serverParent.serverMeta)
+
+        bindSuccess, exceptionObject = lumaConnection.bindSync()
         
         if not bindSuccess:
-            self.error = True
-            return (False, None, exceptionObject)
-        
+            tmp = LDAPErrorItem(str("["+exceptionObject[0]["desc"]+"]"), self.serverParent, self)
+            # We're adding the error as LDAPErrorItem-child, so return True
+            return (True, [tmp], exceptionObject)
         
         # Search for items at the level under this one
-        success, resultList, exceptionObject = l.search(self.itemData.getDN(), \
-                scope=ldap.SCOPE_ONELEVEL, filter=self.filter, sizelimit=self.limit)
-        l.unbind()
+        success, resultList, exceptionObject = lumaConnection.searchSync(self.itemData.getDN(), \
+                scope=ldap.SCOPE_ONELEVEL, filter=self.filter.encode('utf8'), sizelimit=self.limit)
+        lumaConnection.unbind()
         
         if not success:
-            self.error = True
-            return (False, None, exceptionObject)
+            tmp = LDAPErrorItem(str("["+exceptionObject[0]["desc"]+"]"), self.serverParent, self)
+            # We're adding the error as LDAPErrorItem-child, so return True
+            return (True, [tmp], exceptionObject)
         
         self.error = False
         
-        # If a limit is specified, only display the chosen amount     
-        """
-        SIzelimit is used instead
-        if self.limit > 0 and len(resultList) > self.limit:
-            returnList = []
-            for i in xrange(self.limit):
-                returnList.append(LDAPTreeItem(resultList[i], self.serverParent, self))
-            return (True, returnList, exceptionObject)
-        """
-        """
-        # If there are ALOT of returned entries, confirm displaying them all
-        if len(resultList) > self.ASK_TO_DISPLAY:
-            #Todo: specify how many to load and "remembers"/"always yes"-function in the dialog
-            # TODO Translate
-            svar = QMessageBox.question(None, self.tr("Got many results"), "Got " +str(len(resultList))+" items. Do you want to display them all?", QMessageBox.Yes|QMessageBox.No)
-            if not svar == QMessageBox.Yes:
-                self.beginUpdateModel()
-                self.childItems = []
-                for i in xrange(50):
-                    self.childItems.append(LDAPTreeItem(resultList[i], self.serverParent, self))
-                self.populated = 1
-                self.endUpdateModel()
-                return
-        """
-        
         # Default behavior: return all
         return (True, [LDAPTreeItem(x, self.serverParent, self) for x in resultList], exceptionObject)
-    
+
     def setLimit(self):
         """
         Asks for the users limit.
@@ -139,15 +135,18 @@ class LDAPTreeItem(AbstractLDAPTreeItem):
         """
         (value, ok) = QInputDialog.getText(None, QtCore.QCoreApplication.translate("LDAPTreeItem","Filter"), QtCore.QCoreApplication.translate("LDAPTreeItem","Enter the filter (with parentheses -- none for default):"), text=self.filter)
         if ok == True:
-            if len(str(value)) > 0:
-                self.filter = str(value)
+            if len(value) > 0:
+                self.filter = unicode(value)
             else:
                 self.filter = LDAPTreeItem.FILTER_DEFAULT
         return ok
                 
     def delete(self):
-        lumaConnection = LumaConnection(self.serverParent.serverMeta)
-        bindSuccess, exceptionObject = lumaConnection.bind()
+        """ Tries to delete the item on the server
+        """
+        
+        lumaConnection = LumaConnectionWrapper(self.serverParent.serverMeta)
+        bindSuccess, exceptionObject = lumaConnection.bindSync()
         
         if not bindSuccess:
             message = QtCore.QCoreApplication.translate("LDAPTreeItem","Could not bind to server.")
@@ -172,4 +171,7 @@ class LDAPTreeItem(AbstractLDAPTreeItem):
                AbstractLDAPTreeItem.SUPPORT_ADD | \
                AbstractLDAPTreeItem.SUPPORT_EXPORT | \
                AbstractLDAPTreeItem.SUPPORT_DELETE | \
-               AbstractLDAPTreeItem.SUPPORT_OPEN
+               AbstractLDAPTreeItem.SUPPORT_OPEN | \
+               AbstractLDAPTreeItem.SUPPORT_CANCEL
+
+# vim: tabstop=4 expandtab shiftwidth=4 softtabstop=4

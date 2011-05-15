@@ -5,19 +5,21 @@ import PyQt4
 import copy
 from PyQt4 import QtCore
 from PyQt4.QtCore import QObject
-from PyQt4.QtGui import QMessageBox
 
 
 from base.backend.ServerList import ServerList
-from base.backend.LumaConnection import LumaConnection
+from base.backend.LumaConnectionWrapper import LumaConnectionWrapper
 from base.backend.SmartDataObject import SmartDataObject, LdapDataException
 
-# TODO add translation support
 class EntryModel(QObject):
 
-    def __init__(self, smartObject, parent=None):
+    def __init__(self, smartObject, parent=None, entryTemplate = None):
         QObject.__init__(self, parent)
-        self.smartObject = self.smartObjectCopy(smartObject)
+        self.smartObject = smartObject
+        self.entryTemplate = entryTemplate
+        
+        # does the smartobject have a schema?
+        self.VALID = False
 
         # boolean to indicate if the current ldap object has been modified
         self.EDITED = False
@@ -27,49 +29,50 @@ class EntryModel(QObject):
         
         # do we create a completely new object?
         self.CREATE = False
-        
-        # Default
-        self.ignoreServerMetaError = False
 
-    modelChangedSignal = QtCore.pyqtSignal()
+        self.str_BIND = QtCore.QCoreApplication.translate("EntryModel", "Could not bind to server.")
+        self.str_DELETE = QtCore.QCoreApplication.translate("EntryModel", "Could not delete entry.")
+        self.str_ADD = QtCore.QCoreApplication.translate("EntryModel", "Could not add entry.")
+        self.str_REFRESH = QtCore.QCoreApplication.translate("EntryModel", "Could not refresh entry.")
+        self.str_CHECK_LEAF = QtCore.QCoreApplication.translate("EntryModel", "Could not check if object is a leaf in the ldap tree.")
+        self.str_SAVE = QtCore.QCoreApplication.translate("EntryModel", "Could not save entry.")
+    
+    """ The signal that viewers should connect on, called when the model changes
+        The parameter is true when the smartobject is reloaded, and on init, which
+        means that the smartobject might have gone invalid
+    """
+    modelChangedSignal = QtCore.pyqtSignal("bool")
 
-    #TODO move to SmartDataObject?
-    def smartObjectCopy(self, smartObject):
-        return SmartDataObject(copy.deepcopy([smartObject.dn, smartObject.data]), copy.deepcopy(smartObject.serverMeta))
+###############################################################################
 
     def getSmartObject(self):
         return self.smartObject
+
+###############################################################################
 
     def initModel(self, create=False):
         if create:
             self.EDITED = True
             self.ISLEAF = False
             self.CREATE = True
+            self.VALID = True
         else:
             self.EDITED = False
             isLeave = False
+            self.smartObject.checkIntegrity()
+            self.VALID = self.smartObject.isValid
 
-            tmpObject = ServerList()
-            tmpObject.readServerList()
-            serverMeta = tmpObject.getServerObject(self.smartObject.getServerAlias())
+            serverMeta = self.smartObject.getServerMeta()
         
-            lumaConnection = LumaConnection(serverMeta)
+            lumaConnection = LumaConnectionWrapper(serverMeta, self)
         
-            bindSuccess, exceptionObject = lumaConnection.bind()
+            bindSuccess, exceptionObject = lumaConnection.bindSync()
             
             if not bindSuccess:
-                if self.ignoreServerMetaError:
-                    self.EDITED = False
-                    self.ISLEAF = True
-                    self.CREATE = False
-                    self.toolButtonsEnabled = True
-                    #TODO add logging
-                    return (True, None, None)
-                else:
-                    message = "Could not bind to server."
-                    return (False, message, exceptionObject)
+                message = self.str_BIND
+                return (False, message, exceptionObject)
             
-            success, resultList, exceptionObject = lumaConnection.search(self.smartObject.dn, ldap.SCOPE_ONELEVEL, filter="(objectClass=*)", attrList=None, attrsonly=1, sizelimit=1)
+            success, resultList, exceptionObject = lumaConnection.searchSync(self.smartObject.dn, ldap.SCOPE_ONELEVEL, filter="(objectClass=*)", attrList=None, attrsonly=1, sizelimit=1)
             lumaConnection.unbind()
             
             # Our search succeeded. No errors
@@ -86,91 +89,54 @@ class EntryModel(QObject):
             # Error during search request
             else:
                 self.ISLEAF = False
-                message = "Could not check if object is a leaf in the ldap tree."
+                message = self.str_CHECK_LEAF
+                self.modelChangedSignal.emit(True)
                 return (False, message, exceptionObject)
                 
             self.CREATE = False
             
+        self.modelChangedSignal.emit(True)
         return (True, None, None)
 
 ###############################################################################
 
-    # TODO: not used yet
-    def exportAttribute(self, attributeName, index):
-        return
-        """ Show the dialog for exporting binary attribute data.
-        """
-        '''
-        value = self.smartObject.getAttributeValue(attributeName, index)
-
-
-        #filename = unicode(QFileDialog.getSaveFileName(
-        #                    self,
-        #fileName = unicode(QFileDialog.getSaveFileName(\
-        #                    QString.null,
-        #                    "All files (*)",
-        #                    self, None,
-        #                    self.trUtf8("Export binary attribute to file"),
-        #                    None, 1))
-
-        if unicode(fileName) == "":
-            return
-            
-        try:
-            fileHandler = open(fileName, "w")
-            fileHandler.write(value)
-            fileHandler.close()
-            SAVED = True
-        except IOError, e:
-            result = QMessageBox.warning(None,
-                self.trUtf8("Export binary attribute"),
-                self.trUtf8("""Could not export binary data to file. Reason:
-""" + str(e) + """\n\nPlease select another filename."""),
-                self.trUtf8("&Cancel"),
-                self.trUtf8("&OK"),
-                None,
-                1, -1)
-        '''
-
-###############################################################################
-
-    # TODO: add logging for each error
     def reloadModel(self):
         """ 
         Refreshes the LDAP data from server, 
         """
-        lumaConnection = LumaConnection(self.smartObject.getServerMeta())
-        bindSuccess, exceptionObject = lumaConnection.bind()
+        lumaConnection = LumaConnectionWrapper(self.smartObject.getServerMeta())
+        bindSuccess, exceptionObject = lumaConnection.bindSync()
         
         if not bindSuccess:
-            message = "Could not bind to server. "
+            message = self.str_BIND
             return (False, message, exceptionObject)
         
-        success, resultList, exceptionObject = lumaConnection.search(self.smartObject.getDN(), ldap.SCOPE_BASE)
+        success, resultList, exceptionObject = lumaConnection.searchSync(self.smartObject.getDN(), ldap.SCOPE_BASE)
         lumaConnection.unbind()
         
         if success and (len(resultList) > 0):
             self.smartObject = resultList[0]
+            self.smartObject.checkIntegrity()
+            self.VALID = self.smartObject.isValid
             self.EDITED = False
-            self.modelChangedSignal.emit()
+            self.modelChangedSignal.emit(True)
             return (True, None, None)
         else:
-            message = "Could not refresh entry.<br><br>Reason: "
+            message = self.str_REFRESH
             return (False, message, exceptionObject)
 
 ###############################################################################
 
-    # TODO: add logging for each error
     def saveModel(self):
         """ 
         Save changes to the current object.
         """
         
-        lumaConnection = LumaConnection(self.smartObject.getServerMeta())
-        bindSuccess, exceptionObject = lumaConnection.bind()
+        lumaConnection = LumaConnectionWrapper(self.smartObject.getServerMeta())
+        bindSuccess, exceptionObject = lumaConnection.bindSync()
         
         if not bindSuccess:
-            message = "Could not bind to server."
+            message = self.str_BIND
             return (False, message, exceptionObject)
         
         if self.CREATE:
@@ -178,62 +144,23 @@ class EntryModel(QObject):
             lumaConnection.unbind()
             
             if success:
-                self.CREATE = False
+                #self.CREATE = False
                 self.EDITED = False
-                self.modelChangedSignal.emit()
+                self.modelChangedSignal.emit(False)
                 return (True, None, None)
             else:
-                message = "Could not add entry."
+                message = self.str_ADD
                 return (False, message, exceptionObject)
         else:
             success, exceptionObject = lumaConnection.updateDataObject(self.smartObject)
             lumaConnection.unbind()
             if success:
                 self.EDITED = False
-                self.modelChangedSignal.emit()
+                self.modelChangedSignal.emit(False)
                 return (True, None, None)
             else:
-                message = "Could not save entry."
+                message = self.str_SAVE
                 return (False, message, exceptionObject)
-
-###############################################################################
-
-    def addAttribute(self):
-        """ 
-        Add attributes to the current object.
-        """
-        
-        pass
-        '''
-        dialog = AddAttributeWizard(self)
-        dialog.setData(copy.deepcopy(self.smartObject))
-        
-        dialog.exec_loop()
-        
-        if dialog.result() == QDialog.Rejected:
-            return
-        
-        attribute = str(dialog.attributeBox.currentText())
-        showAll = dialog.enableAllBox.isChecked()
-        if dialog.binaryBox.isOn():
-            attributeList = Set([attribute + ";binary"])
-        else:
-            attributeList = Set([attribute])
-        
-        if showAll and not(attribute in dialog.possibleAttributes):
-            objectClass = str(dialog.classBox.currentText())
-            self.smartObject.addObjectClass(objectClass)
-            
-            serverSchema = ObjectClassAttributeInfo(self.smartObject.getServerMeta())
-            mustAttributes = serverSchema.getAllMusts([objectClass])
-            mustAttributes = mustAttributes.difference(Set(self.smartObject.getAttributeList()))
-            attributeList = mustAttributes.union(Set([attribute]))
-            
-        for x in attributeList:
-            self.smartObject.addAttributeValue(x, None)
-        
-        self.displayValues()
-        '''
 
 ###############################################################################
 
@@ -243,11 +170,11 @@ class EntryModel(QObject):
         Deletes the remote object that this model represents
         """
         
-        lumaConnection = LumaConnection(self.smartObject.getServerMeta())
-        bindSuccess, exceptionObject = lumaConnection.bind()
+        lumaConnection = LumaConnectionWrapper(self.smartObject.getServerMeta())
+        bindSuccess, exceptionObject = lumaConnection.bindSync()
         
         if not bindSuccess:
-            message = "Could not bind to server."
+            message = self.str_BIND
             return (False, message, exceptionObject)
         
         success, exceptionObject = lumaConnection.delete(self.smartObject.getDN())
@@ -260,7 +187,7 @@ class EntryModel(QObject):
             #self.modelChangedSignal.emit()
             return (True, None, None)
         else:
-            message = "Could not delete entry."
+            message = self.str_DELETE
             return (False, message, exceptionObject)
 
 ###############################################################################
@@ -268,24 +195,41 @@ class EntryModel(QObject):
     def editAttribute(self, attributeName, index, newValue):
         self.smartObject.setAttributeValue(attributeName, index, newValue)
         self.EDITED = True
-        self.modelChangedSignal.emit()
+        self.modelChangedSignal.emit(False)
 
 ###############################################################################
 
     def deleteAttribute(self, attributeName, index):
-        #try:
         self.smartObject.deleteAttributeValue(attributeName, index)
         self.EDITED = True
-        self.modelChangedSignal.emit()
-        #except LdapDataException as e:
-        #    print "*" * 30
-        #    print e
-        #    print "*" * 30
+        self.modelChangedSignal.emit(False)
 
 ###############################################################################
 
     def deleteObjectClass(self, className):
         self.smartObject.deleteObjectClass(className)
         self.EDITED = True
-        self.modelChangedSignal.emit()
+        self.modelChangedSignal.emit(False)
 
+###############################################################################
+
+    def setDN(self, rdn):
+        self.smartObject.setDN(rdn)
+        self.EDITED = True
+        self.modelChangedSignal.emit(False)
+        
+###############################################################################
+
+    def addAttributeValue(self, attributeName, attributeValueList):
+        self.smartObject.addAttributeValue(attributeName, attributeValueList)
+        self.EDITED = True
+        self.modelChangedSignal.emit(False)
+
+###############################################################################
+
+    def addObjectClass(self, objectClass):
+        self.smartObject.addObjectClass(objectClass)
+        self.EDITED = True
+        self.modelChangedSignal.emit(False)
+
+# vim: tabstop=4 expandtab shiftwidth=4 softtabstop=4

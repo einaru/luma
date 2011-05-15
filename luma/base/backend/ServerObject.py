@@ -48,31 +48,31 @@ class ServerObject(object):
 
     numFields = 16 # Models need to know
     
-    
     def __init__(self):
         
         # Holds the data about the server
         # Used for easy mapping to model-columns
 
         self._dataHolder = [
-                #Index - Description (Options)
-        u"",    # 0 Servername
-        u"",    # 1 Hostname
-        389,    # 2 Port
-        True,   # 3 BindAnon
-        True,   # 4 AutoBase
-        [],     # 5 BaseDN
-        u"",    # 6 BindDN ("username")
-        u"",    # 7 BindPassword
-        0,      # 8 encryptionMethod 8 (0=Unencrypted, 1=TLS, 2=SSL)
-        0,      # 9 authMetod (0=simple, 1=SASL CRAM-MD5, 2=SASL DIGEST-MD5, 
-                    #3=SASL EXTERNAL, 4=SASL GSSLAPI, 5=SASL LOGIN,6=SASL Plain)
-        False,  # 10 followAliases 
-        False,  # 11 useCertificate 
-        u"",    # 12 clientCertFile
-        u"",    # 13 clientCertKeyfile
-        0,      #14 checkServerCertificate (0=never, 1=allow, 2=try, 3=demand)
-        u""     #15 currentBase
+            #Index - Description (Options)
+            u"",    # 0 Servername
+            u"",    # 1 Hostname
+            389,    # 2 Port
+            True,   # 3 BindAnon
+            True,   # 4 AutoBase
+            [],     # 5 BaseDN
+            u"",    # 6 BindDN ("username")
+            u"",    # 7 BindPassword
+            0,      # 8 encryptionMethod 8 (0=Unencrypted, 1=TLS, 2=SSL)
+            0,      # 9 authMetod (0=simple, 1=SASL CRAM-MD5,
+                    #              2=SASL DIGEST-MD5, 3=SASL EXTERNAL, 
+                    #              4=SASL GSSLAPI, 5=SASL LOGIN,6=SASL Plain)
+            False,  # 10 followAliases 
+            False,  # 11 useCertificate 
+            u"",    # 12 clientCertFile
+            u"",    # 13 clientCertKeyfile
+            0,      # 14 checkServerCertificate (0=never, 1=allow, 2=try, 3=demand)
+            u""     # 15 currentBase
         ]
         
     
@@ -89,11 +89,11 @@ class ServerObject(object):
     """
     @property
     def name(self):
-        return self._dataHolder[0]
+        return unicode(self._dataHolder[0])
     
     @property
     def hostname(self):
-        return self._dataHolder[1]
+        return unicode(self._dataHolder[1])
     
     @property
     def port(self):
@@ -113,11 +113,11 @@ class ServerObject(object):
     
     @property
     def bindDN(self):
-        return self._dataHolder[6]
+        return unicode(self._dataHolder[6])
     
     @property
     def bindPassword(self):
-        return self._dataHolder[7]
+        return unicode(self._dataHolder[7])
     
     @property
     def encryptionMethod(self):
@@ -137,11 +137,11 @@ class ServerObject(object):
     
     @property
     def clientCertFile(self):
-        return self._dataHolder[12]
+        return unicode(self._dataHolder[12])
     
     @property
     def clientCertKeyFile(self):
-        return self._dataHolder[13]
+        return unicode(self._dataHolder[13])
     
     @property
     def checkServerCertificate(self):
@@ -221,7 +221,6 @@ class ServerObject(object):
     
     def __repr__(self):
         finalString = []
-
         finalString.append(unicode("Name: "))
         finalString.append(unicode(self.name))
         finalString.append(unicode("\nHost: "))
@@ -230,6 +229,8 @@ class ServerObject(object):
         finalString.append(unicode(self.port))
         finalString.append(unicode("\nBind anonymously: "))
         finalString.append(unicode(self.bindAnon))
+        finalString.append(unicode("\nAutobase: "))
+        finalString.append(unicode(self.autoBase))
         finalString.append(unicode("\nBase DN: "))
         map(lambda x: finalString.append(unicode(x) + u", "), self.baseDN)
         finalString.append(unicode("\nCurrent Base: "))
@@ -251,5 +252,6 @@ class ServerObject(object):
         finalString.append(unicode("\nCheck server certificate: "))
         finalString.append(unicode(self.checkServerCertificate))
         finalString.append(unicode("\n"))
-
         return "".join(finalString)
+
+# vim: tabstop=4 expandtab shiftwidth=4 softtabstop=4
