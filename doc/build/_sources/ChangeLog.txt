@@ -5,19 +5,40 @@ ChangeLog
 .. the master branch. Changes made in the devlopment branch is documented in
 .. the git log.
 
-3.0.7-beta (2010-05-xx)
-=======================
+3.0.6b-1 (2011-05-15)
+=====================
 
+- Some small fixes to the documentation files.
 
-3.0.6-beta (2011-04-xx)
-=======================
+3.0.6b (2011-05-15)
+===================
+.. This marks the end of the project. Einar Uvsløkk <einar.uvslokk@linux.com>
 
+- New Connection API introduced with the LumaConnectionWrapper. This includes
+  wrapper methods (both sync and async) for the refactored LumaConnection.
+  Uses signal and slots to notify results from the various operations.
+  All Qt 4 dependencies is thus removed from the backend modules.
 
-3.0.5-sprint5 (2011-04-xx)
+- Refactor cleanup of the menubar in the main window.
+
+- Search plugin now supports none-ascii characters in both server name and 
+  search filter strings.
+
+- Dynamic translation implemented in the Template plugin.
+
+- Improved (simplified) internationalization support
+
+3.0.5-sprint5 (2011-04-11)
 ==========================
 .. This marks the end of sprint 5. Einar Uvsløkk <einar.uvslokk@linux.com>
 
-- ...
+- Search plugin has got a few updates and improvements. The filter builder
+  has replaced the old filter wizard, some UI fixes in the search form, and 
+  the result view for displaying search results is implemented. New feature
+  enabling additional filtering on returned search results.
+
+- Template plugin improved with the option to define none required attributes
+  to appear as required.
 
 
 3.0.4-sprint4 (2011-03-25)

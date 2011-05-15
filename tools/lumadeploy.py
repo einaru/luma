@@ -38,14 +38,19 @@ doc/source/HACKING.rst file.
 def buidlHtmlDocs():
     """
     """
+    pass
 
 
 def ensureUpToDateDocsInRepoRoot():
     """
     """
+    pass
 
 
-
+if __name__ == '__main__':
+    print "Not implemented yet!"
+    print "For now use the prepareDeployment.sh script in the doc folder."
+    print
 
 
 # vim: tabstop=4 expandtab shiftwidth=4 softtabstop=4
