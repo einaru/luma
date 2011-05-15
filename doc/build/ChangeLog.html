@@ -25,7 +25,7 @@
     <script type="text/javascript" src="_static/sidebar.js"></script>
     <link rel="top" title="Luma v3.0.7-beta documentation" href="index.html" />
     <link rel="next" title="Bugs" href="BUGS.html" />
-    <link rel="prev" title="Luma API" href="lumaAPI.html" /> 
+    <link rel="prev" title="The luma.base.util package" href="api/util.html" /> 
   </head>
   <body>
     <div class="related">
@@ -41,7 +41,7 @@
           <a href="BUGS.html" title="Bugs"
              accesskey="N">next</a> |</li>
         <li class="right" >
-          <a href="lumaAPI.html" title="Luma API"
+          <a href="api/util.html" title="The luma.base.util package"
              accesskey="P">previous</a> |</li>
         <li><a href="index.html">Luma v3.0.7-beta documentation</a> &raquo;</li> 
       </ul>
@@ -54,16 +54,35 @@
             
   <div class="section" id="changelog">
 <h1>ChangeLog<a class="headerlink" href="#changelog" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="beta-2010-05-xx">
-<h2>3.0.7-beta (2010-05-xx)<a class="headerlink" href="#beta-2010-05-xx" title="Permalink to this headline">¶</a></h2>
-</div>
-<div class="section" id="beta-2011-04-xx">
-<h2>3.0.6-beta (2011-04-xx)<a class="headerlink" href="#beta-2011-04-xx" title="Permalink to this headline">¶</a></h2>
-</div>
-<div class="section" id="sprint5-2011-04-xx">
-<h2>3.0.5-sprint5 (2011-04-xx)<a class="headerlink" href="#sprint5-2011-04-xx" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="b-1-2011-05-15">
+<h2>3.0.6b-1 (2011-05-15)<a class="headerlink" href="#b-1-2011-05-15" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li>...</li>
+<li>Some small fixes to the documentation files.</li>
+</ul>
+</div>
+<div class="section" id="b-2011-05-15">
+<h2>3.0.6b (2011-05-15)<a class="headerlink" href="#b-2011-05-15" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>New Connection API introduced with the LumaConnectionWrapper. This includes
+wrapper methods (both sync and async) for the refactored LumaConnection.
+Uses signal and slots to notify results from the various operations.
+All Qt 4 dependencies is thus removed from the backend modules.</li>
+<li>Refactor cleanup of the menubar in the main window.</li>
+<li>Search plugin now supports none-ascii characters in both server name and
+search filter strings.</li>
+<li>Dynamic translation implemented in the Template plugin.</li>
+<li>Improved (simplified) internationalization support</li>
+</ul>
+</div>
+<div class="section" id="sprint5-2011-04-11">
+<h2>3.0.5-sprint5 (2011-04-11)<a class="headerlink" href="#sprint5-2011-04-11" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Search plugin has got a few updates and improvements. The filter builder
+has replaced the old filter wizard, some UI fixes in the search form, and
+the result view for displaying search results is implemented. New feature
+enabling additional filtering on returned search results.</li>
+<li>Template plugin improved with the option to define none required attributes
+to appear as required.</li>
 </ul>
 </div>
 <div class="section" id="sprint4-2011-03-25">
@@ -139,9 +158,9 @@ from the menu bar, which is populated dynamically on startup.</li>
   <h3><a href="index.html">Table Of Contents</a></h3>
   <ul>
 <li><a class="reference internal" href="#">ChangeLog</a><ul>
-<li><a class="reference internal" href="#beta-2010-05-xx">3.0.7-beta (2010-05-xx)</a></li>
-<li><a class="reference internal" href="#beta-2011-04-xx">3.0.6-beta (2011-04-xx)</a></li>
-<li><a class="reference internal" href="#sprint5-2011-04-xx">3.0.5-sprint5 (2011-04-xx)</a></li>
+<li><a class="reference internal" href="#b-1-2011-05-15">3.0.6b-1 (2011-05-15)</a></li>
+<li><a class="reference internal" href="#b-2011-05-15">3.0.6b (2011-05-15)</a></li>
+<li><a class="reference internal" href="#sprint5-2011-04-11">3.0.5-sprint5 (2011-04-11)</a></li>
 <li><a class="reference internal" href="#sprint4-2011-03-25">3.0.4-sprint4 (2011-03-25)</a></li>
 <li><a class="reference internal" href="#sprint3-2011-03-14">3.0.3-sprint3 (2011-03-14)</a></li>
 <li><a class="reference internal" href="#sprint2-2011-03-01">3.0.2-sprint2 (2011-03-01)</a></li>
@@ -151,8 +170,8 @@ from the menu bar, which is populated dynamically on startup.</li>
 </ul>
 
   <h4>Previous topic</h4>
-  <p class="topless"><a href="lumaAPI.html"
-                        title="previous chapter">Luma API</a></p>
+  <p class="topless"><a href="api/util.html"
+                        title="previous chapter">The <tt class="docutils literal"><span class="pre">luma.base.util</span></tt> package</a></p>
   <h4>Next topic</h4>
   <p class="topless"><a href="BUGS.html"
                         title="next chapter">Bugs</a></p>
@@ -191,7 +210,7 @@ from the menu bar, which is populated dynamically on startup.</li>
           <a href="BUGS.html" title="Bugs"
              >next</a> |</li>
         <li class="right" >
-          <a href="lumaAPI.html" title="Luma API"
+          <a href="api/util.html" title="The luma.base.util package"
              >previous</a> |</li>
         <li><a href="index.html">Luma v3.0.7-beta documentation</a> &raquo;</li> 
       </ul>
