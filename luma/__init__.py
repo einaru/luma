@@ -31,7 +31,7 @@ def getRealLumaRootPath():
 sys.path.append(getRealLumaRootPath())
 
 ORGNAME = APPNAME = 'luma'
-VERSION = '3.0.6b'
+VERSION = '3.0.6'
 DESCRIPTION = 'LDAP browser and administration utility'
 
 
