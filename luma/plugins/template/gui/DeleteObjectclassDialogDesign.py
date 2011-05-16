@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file '/mnt/debris/devel/git/luma/resources/forms/plugins/template/DeleteObjectclassDialogDesign.ui'
+# Form implementation generated from reading ui file '/home/einar/Desktop/luma-merging/resources/forms/plugins/template/DeleteObjectclassDialogDesign.ui'
 #
-# Created: Wed May 11 13:31:19 2011
+# Created: Mon May 16 02:47:11 2011
 #      by: PyQt4 UI code generator 4.8.3
 #
 # WARNING! All changes made in this file will be lost!

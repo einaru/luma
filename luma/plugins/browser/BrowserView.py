@@ -429,7 +429,7 @@ class BrowserView(QWidget):
             self.tabWidget.setCurrentWidget(x)
             return
 
-        # Saves a representation of the opened entry to avoid opening duplicates  
+        # Saves a representation of the opened entry to avoid opening duplicates
         # and open it
         x = AdvancedObjectWidget(QtCore.QPersistentModelIndex(index))
         x.initModel(smartObject)
@@ -581,14 +581,18 @@ class BrowserView(QWidget):
             serverObject = self.serverList.getServerObject(serverName)
             con = LumaConnectionWrapper(serverObject, self)
 
-            if scope == 1:
+            # For both subtree and subtree with parent, we fetch the
+            # whole subtree including the parent, with a basic sync
+            # search operation. Then, if only the subtree is to be
+            # exported, we remove the smartObject(s) selected.
+            if scope > 0:
                 pass
 
             # Do a search on the whole subtree
             # 2 = ldap.SCOPE_SUBTREE
-            elif scope == 2:
+            #elif scope == 2:
 
-                success, e = con.bind()
+                success, e = con.bindSync()
 
                 if not success:
                     self.__logger.error(str(e))
@@ -599,6 +603,12 @@ class BrowserView(QWidget):
                     exportObjects.extend(result)
                 else:
                     self.__logger.error(str(e))
+
+                # If only the subtree is to be selected, we remove
+                # the parent, which happens to be the smartObject(s)
+                # initialy selected.
+                if scope == 1:
+                    exportObjects.remove(smartObject)
 
             # For scope == 0 we need not do any LDAP search operation
             # because we already got what we need

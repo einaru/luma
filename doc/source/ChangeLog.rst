@@ -14,8 +14,10 @@ ChangeLog
 
 - Renamed the browser_plugin folder to browser
 
-- moved Plugin* related code out from the util package and into base.gui, 
+- Moved Plugin* related code out from the util package and into base.gui, 
   base.gui.design, base.model
+
+- Fixed export subtree in Browser plugin.
 
 3.0.6-1 (2011-05-15)
 ====================

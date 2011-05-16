@@ -63,7 +63,7 @@ from ..gui.design.LoggerWidgetDesign import Ui_LoggerWidget
 from ..gui.design.MainWindowDesign import Ui_MainWindow
 from ..util.i18n import LanguageHandler
 from ..util.IconTheme import iconFromTheme
-from ..util.gui.PluginListWidget import PluginListWidget
+from ..gui.PluginListWidget import PluginListWidget
 from ..gui.WelcomeTab import WelcomeTab
 
 

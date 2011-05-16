@@ -31,7 +31,7 @@ def getIcon():
     return iconFromTheme('luma-browser-plugin', ':/icons/plugins/browser')
 
 def getPluginWidget(parent, mainwin):
-    from plugins.browser_plugin.BrowserView import BrowserView
+    from plugins.browser.BrowserView import BrowserView
     # parent is not used, but the widget is reparented by the QTabWidget
     pluginWidget = BrowserView()
     return pluginWidget
