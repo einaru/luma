@@ -5,13 +5,22 @@ ChangeLog
 .. the master branch. Changes made in the devlopment branch is documented in
 .. the git log.
 
-3.0.6b-1 (2011-05-15)
-=====================
+3.0.6-2 (2011-05-16)
+====================
+
+- Fixed exception.ErrorType bug in LumaConnectionWrapper.
+
+- Updated the error/exception feedback in the Search plugin
+
+- renamed the browser_plugin folder to browser
+
+3.0.6-1 (2011-05-15)
+====================
 
 - Some small fixes to the documentation files.
 
-3.0.6b (2011-05-15)
-===================
+3.0.6 (2011-05-15)
+==================
 .. This marks the end of the project. Einar Uvsløkk <einar.uvslokk@linux.com>
 
 - New Connection API introduced with the LumaConnectionWrapper. This includes
