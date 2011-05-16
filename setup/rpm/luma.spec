@@ -1,5 +1,5 @@
-%define version 3.0.6b
-%define release 4
+%define version 3.0.6
+%define release 1
 
 %if ! (0%{?fedora} > 12 || 0%{?rhel} > 5)
 %{!?python_sitelib: %global python_sitelib %(%{__python} -c "from distutils.sysconfig import get_python_lib; print(get_python_lib())")}
@@ -52,6 +52,8 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(-,root,root)
 
 %changelog
+* Mon May 16 2011 Einar Uvsløkk <einar.uvslokk@linux.com> 3.0.6-1
+- Bugfix in LumaConnectionWrapper, export fixed in Browser plugin
 * Mon May 10 2011 Einar Uvsløkk <einar.uvslokk@linux.com> 3.0.6b-4
 - Updated to new and improved Connection wrapper for various ldap opreations.
 * Sun May 8 2011 Einar Uvsløkk <einar.uvslokk@linux.com> 3.0.6b-3
