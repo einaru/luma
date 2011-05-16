@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'PluginListWidgetDesign.ui'
+# Form implementation generated from reading ui file '/home/einar/Desktop/luma-merging/resources/forms/PluginListWidgetDesign.ui'
 #
-# Created: Tue Feb 22 15:15:05 2011
-#      by: PyQt4 UI code generator 4.8.2
+# Created: Mon May 16 02:47:10 2011
+#      by: PyQt4 UI code generator 4.8.3
 #
 # WARNING! All changes made in this file will be lost!
 

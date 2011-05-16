@@ -269,8 +269,9 @@ class SearchPlugin(QWidget, Ui_SearchPlugin):
             if not success:
                 # TODO: give some visual feedback to the user, regarding
                 #       the unsuccessful bind operation
-                msg = 'Could not retrieve baseDN. Reason:\n{0}'
-                self.__logger.error(msg.format(str(e)))
+                msg = 'Could not retrieve baseDN. Reason:\n{0}'.format(str(e))
+                self.searchForm.onSearchError(True, msg)
+                self.__logger.error(msg)
         else:
             baseDNList = [self.currentServer.baseDN]
 

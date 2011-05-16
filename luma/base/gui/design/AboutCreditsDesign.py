@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file '/mnt/debris/devel/git/luma/resources/forms/AboutCreditsDesign.ui'
+# Form implementation generated from reading ui file '/home/einar/Desktop/luma-merging/resources/forms/AboutCreditsDesign.ui'
 #
-# Created: Wed May 11 13:31:17 2011
+# Created: Mon May 16 02:47:11 2011
 #      by: PyQt4 UI code generator 4.8.3
 #
 # WARNING! All changes made in this file will be lost!
@@ -73,12 +73,12 @@ class Ui_AboutCredits(object):
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:\'Sans\'; font-size:9pt; font-weight:400; font-style:normal;\">\n"
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Wido Depping &lt;<a href=\"mailto:widod@users.sourceforge.net\"><span style=\" text-decoration: underline; color:#0000ff;\">widod@users.sourceforge.net</span></a>&gt;</p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Bjørn Ove Grøtan &lt;<a href=\"mailto:bgrotan@grotan.com\"><span style=\" text-decoration: underline; color:#0000ff;\">bgrotan@grotan.com</span></a>&gt;</p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Bjørn Ove Grøtan</p>\n"
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Vegar Westerlund</p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Johannes Harestad &lt;<a href=\"mailto:johannesharestad@gmail.com\"><span style=\" text-decoration: underline; color:#0000ff;\">johannesharestad@gmail.com</span></a>&gt;</p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Sondre Frisvold &lt;<a href=\"mailto:sondre.frisvold@c2i.net\"><span style=\" text-decoration: underline; color:#0000ff;\">sondre.frisvold@c2i.net</span></a>&gt;</p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Christian Forfang &lt;<a href=\"mailto:cforfang@gmail.com\"><span style=\" text-decoration: underline; color:#0000ff;\">cforfang@gmail.com</span></a>&gt;</p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Per Ove RIngdal &lt;<a href=\"mailto:peroveri@stud.ntnu.no\"><span style=\" text-decoration: underline; color:#0000ff;\">peroveri@stud.ntnu.no</span></a>&gt;</p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Johannes Harestad</p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Sondre Frisvold</p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Christian Forfang</p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Per Ove RIngdal</p>\n"
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Einar Uvsløkk &lt;<a href=\"mailto:einaru@stud.ntnu.no\"><span style=\" text-decoration: underline; color:#0000ff;\">einar.uvslokk@gmail.com</span></a>&gt;</p>\n"
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Simen Natvig &lt;<a href=\"mailto:simenna@stud.ntnu.no\"><span style=\" text-decoration: underline; color:#0000ff;\">simen.natvig@gmail.com</span></a>&gt;</p></body></html>", None, QtGui.QApplication.UnicodeUTF8))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tabAuthors), QtGui.QApplication.translate("AboutCredits", "Developers", None, QtGui.QApplication.UnicodeUTF8))
@@ -87,8 +87,7 @@ class Ui_AboutCredits(object):
 "p, li { white-space: pre-wrap; }\n"
 "</style></head><body style=\" font-family:\'Sans\'; font-size:9pt; font-weight:400; font-style:normal;\">\n"
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-weight:600;\">Norwegian translation</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Luma 2.4 : Bjørn Ove Grøtan &lt;<a href=\"mailto:bgrotan@grotan.com\"><span style=\" text-decoration: underline; color:#0000ff;\">bgrotan@grotan.com</span></a>&gt;</p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Luma 3.0 : Einar Uvsløkk &lt;<a href=\"mailto:einar.uvslokk@linux.com\"><span style=\" text-decoration: underline; color:#0000ff;\">einar.uvslokk@linux.com</span></a>&gt;</p>\n"
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Bjørn Ove Grøtan &lt;<a href=\"mailto:bgrotan@grotan.com\"><span style=\" text-decoration: underline; color:#0000ff;\">bgrotan@grotan.com</span></a>&gt;</p>\n"
 "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"></p>\n"
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-weight:600;\">Portuguese translation</span></p>\n"
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Fernando Maciel Souto Maior</p>\n"
@@ -103,10 +102,7 @@ class Ui_AboutCredits(object):
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Alexander Novitsky</p>\n"
 "<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"></p>\n"
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-weight:600;\">French translation</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Florens Daignière &lt;<a href=\"mailto:nextgens@freenetproject.org\"><span style=\" text-decoration: underline; color:#0000ff;\">nextgens@freenetproject.org</span></a>&gt;</p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-weight:600;\">h4x0r translation</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Einar Uvsløkk &lt;<a href=\"mailto:einar.uvslokk@linux.com\"><span style=\" text-decoration: underline; color:#0000ff;\">einar.uvslokk@linux.com</span></a>&gt;</p></body></html>", None, QtGui.QApplication.UnicodeUTF8))
+"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Florens Daignière &lt;<a href=\"mailto:nextgens@freenetproject.org\"><span style=\" text-decoration: underline; color:#0000ff;\">nextgens@freenetproject.org</span></a>&gt;</p></body></html>", None, QtGui.QApplication.UnicodeUTF8))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tabTranselators), QtGui.QApplication.translate("AboutCredits", "Translators", None, QtGui.QApplication.UnicodeUTF8))
         self.textCredits.setHtml(QtGui.QApplication.translate("AboutCredits", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
 "<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
