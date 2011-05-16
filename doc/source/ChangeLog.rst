@@ -12,7 +12,10 @@ ChangeLog
 
 - Updated the error/exception feedback in the Search plugin
 
-- renamed the browser_plugin folder to browser
+- Renamed the browser_plugin folder to browser
+
+- moved Plugin* related code out from the util package and into base.gui, 
+  base.gui.design, base.model
 
 3.0.6-1 (2011-05-15)
 ====================
