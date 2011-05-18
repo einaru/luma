@@ -1,0 +1,76 @@
+This is BibTeX, Version 0.99c (TeX Live 2009/Debian)
+The top-level auxiliary file: report.aux
+The style file: plain.bst
+Database file #1: luma.bib
+You're missing a field name---line 168 of file luma.bib
+ : 
+ : }
+(Error may have been on previous line)
+I'm skipping whatever remains of this entry
+Warning--to sort, need author or key in luma-about
+Warning--to sort, need author or key in gpl
+Warning--to sort, need author or key in luma
+Warning--to sort, need author or key in gpl-compability
+Warning--to sort, need author or key in python
+Warning--to sort, need author or key in python-ldap
+Warning--to sort, need author or key in pyqt4
+Warning--to sort, need author or key in subversion
+Warning--to sort, need author or key in git
+Warning--to sort, need author or key in eclipse
+Warning--to sort, need author or key in pydev
+Warning--to sort, need author or key in subclipse
+Warning--to sort, need author or key in latex
+Warning--to sort, need author or key in Dia
+Warning--to sort, need author or key in redmine
+Warning--to sort, need author or key in jxplorer
+Warning--to sort, need author or key in argonne
+Warning--to sort, need author or key in symlabs
+Warning--to sort, need author or key in luma24-bugtracker
+Warning--to sort, need author or key in userstories
+Warning--to sort, need author or key in GNOME-HIG
+Warning--to sort, need author or key in KDE-HIG
+Warning--to sort, need author or key in Windows-HIG
+Warning--to sort, need author or key in MacOSX-HIG
+Warning--to sort, need author or key in rest
+You've used 29 entries,
+            2118 wiz_defined-function locations,
+            597 strings with 6513 characters,
+and the built_in function-call counts, 4876 in all, are:
+= -- 460
+> -- 59
+< -- 0
++ -- 39
+- -- 10
+* -- 167
+:= -- 596
+add.period$ -- 62
+call.type$ -- 29
+change.case$ -- 92
+chr.to.int$ -- 0
+cite$ -- 54
+duplicate$ -- 217
+empty$ -- 653
+format.name$ -- 10
+if$ -- 1185
+int.to.chr$ -- 0
+int.to.str$ -- 29
+missing$ -- 6
+newline$ -- 123
+num.names$ -- 8
+pop$ -- 223
+preamble$ -- 1
+purify$ -- 63
+quote$ -- 0
+skip$ -- 223
+stack$ -- 0
+substring$ -- 145
+swap$ -- 28
+text.length$ -- 0
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 110
+warning$ -- 25
+while$ -- 8
+width$ -- 31
+write$ -- 220
+(There was 1 error message)

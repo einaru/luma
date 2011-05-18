@@ -1,0 +1,224 @@
+\contentsline {chapter}{Contents}{7}{chapter*.1}
+\contentsline {chapter}{List of Figures}{9}{chapter*.2}
+\contentsline {chapter}{List of Tables}{11}{chapter*.3}
+\contentsline {chapter}{\numberline {1}Introduction}{11}{chapter.1}
+\contentsline {section}{\numberline {1.1}Project purpose}{11}{section.1.1}
+\contentsline {section}{\numberline {1.2}Challenges and problems}{11}{section.1.2}
+\contentsline {section}{\numberline {1.3}The customer}{11}{section.1.3}
+\contentsline {section}{\numberline {1.4}The group}{12}{section.1.4}
+\contentsline {subsection}{\numberline {1.4.1}Group structure}{13}{subsection.1.4.1}
+\contentsline {subsubsection}{Project Manager}{13}{subsubsection*.4}
+\contentsline {subsubsection}{Quality Assurance Control}{13}{subsubsection*.5}
+\contentsline {subsubsection}{Testing}{13}{subsubsection*.6}
+\contentsline {subsubsection}{Back-end and LDAP}{13}{subsubsection*.7}
+\contentsline {subsubsection}{UI and Repository}{14}{subsubsection*.8}
+\contentsline {subsubsection}{Report and Documentation}{14}{subsubsection*.9}
+\contentsline {section}{\numberline {1.5}Structure of the report}{15}{section.1.5}
+\contentsline {paragraph}{Chapter 1}{15}{paragraph*.10}
+\contentsline {paragraph}{Chapter 2}{15}{paragraph*.11}
+\contentsline {paragraph}{Chapter 3}{15}{paragraph*.12}
+\contentsline {paragraph}{Chapter 4}{15}{paragraph*.13}
+\contentsline {paragraph}{Chapter 5}{15}{paragraph*.14}
+\contentsline {paragraph}{Chapter 6}{15}{paragraph*.15}
+\contentsline {paragraph}{Chapter 7}{15}{paragraph*.16}
+\contentsline {paragraph}{Chapter 8}{15}{paragraph*.17}
+\contentsline {paragraph}{Chapter 9}{15}{paragraph*.18}
+\contentsline {paragraph}{Chapter 10}{15}{paragraph*.19}
+\contentsline {chapter}{\numberline {2}Pre studies}{16}{chapter.2}
+\contentsline {section}{\numberline {2.1}Technologies}{16}{section.2.1}
+\contentsline {section}{\numberline {2.2}Development methods}{17}{section.2.2}
+\contentsline {subsection}{\numberline {2.2.1}Alternative development methods}{17}{subsection.2.2.1}
+\contentsline {subsection}{\numberline {2.2.2}Our development method}{18}{subsection.2.2.2}
+\contentsline {section}{\numberline {2.3}Libraries and Tools}{18}{section.2.3}
+\contentsline {section}{\numberline {2.4}Alternative solutions}{20}{section.2.4}
+\contentsline {subsection}{\numberline {2.4.1}JXplorer}{20}{subsection.2.4.1}
+\contentsline {subsection}{\numberline {2.4.2}Argonne's {LDAP} browser/editor}{21}{subsection.2.4.2}
+\contentsline {subsection}{\numberline {2.4.3}{LDAP} Browser from Symlabs}{21}{subsection.2.4.3}
+\contentsline {subsection}{\numberline {2.4.4}Summary}{21}{subsection.2.4.4}
+\contentsline {chapter}{\numberline {3}Problems with {Luma} 2.4}{23}{chapter.3}
+\contentsline {section}{\numberline {3.1}Problems}{23}{section.3.1}
+\contentsline {section}{\numberline {3.2}Bugs}{24}{section.3.2}
+\contentsline {section}{\numberline {3.3}Shortcomings}{25}{section.3.3}
+\contentsline {section}{\numberline {3.4}Plugin system}{26}{section.3.4}
+\contentsline {subsection}{\numberline {3.4.1}Plugin implementation}{27}{subsection.3.4.1}
+\contentsline {subsection}{\numberline {3.4.2}Plugin system implementation}{27}{subsection.3.4.2}
+\contentsline {chapter}{\numberline {4}Requirements}{29}{chapter.4}
+\contentsline {section}{\numberline {4.1}Functional requirements}{29}{section.4.1}
+\contentsline {section}{\numberline {4.2}Non-functional requirements}{30}{section.4.2}
+\contentsline {section}{\numberline {4.3}Requirements summary}{31}{section.4.3}
+\contentsline {section}{\numberline {4.4}Use cases}{31}{section.4.4}
+\contentsline {chapter}{\numberline {5}Planning}{37}{chapter.5}
+\contentsline {section}{\numberline {5.1}Milestones}{37}{section.5.1}
+\contentsline {section}{\numberline {5.2}Risk analysis}{37}{section.5.2}
+\contentsline {section}{\numberline {5.3}Architecture}{38}{section.5.3}
+\contentsline {section}{\numberline {5.4}Product backlog}{38}{section.5.4}
+\contentsline {section}{\numberline {5.5}Gantt and Task list}{41}{section.5.5}
+\contentsline {chapter}{\numberline {6}Sprint overviews}{44}{chapter.6}
+\contentsline {section}{\numberline {6.1}Sprint 1}{44}{section.6.1}
+\contentsline {subsection}{\numberline {6.1.1}Review}{45}{subsection.6.1.1}
+\contentsline {section}{\numberline {6.2}Sprint 2}{46}{section.6.2}
+\contentsline {subsection}{\numberline {6.2.1}Review}{47}{subsection.6.2.1}
+\contentsline {section}{\numberline {6.3}Sprint 3}{48}{section.6.3}
+\contentsline {subsection}{\numberline {6.3.1}Review}{48}{subsection.6.3.1}
+\contentsline {section}{\numberline {6.4}Sprint 4}{49}{section.6.4}
+\contentsline {subsection}{\numberline {6.4.1}Review}{50}{subsection.6.4.1}
+\contentsline {section}{\numberline {6.5}Sprint 5}{51}{section.6.5}
+\contentsline {subsection}{\numberline {6.5.1}Review}{51}{subsection.6.5.1}
+\contentsline {section}{\numberline {6.6}Sprint 6}{53}{section.6.6}
+\contentsline {subsection}{\numberline {6.6.1}Review}{54}{subsection.6.6.1}
+\contentsline {chapter}{\numberline {7}Development}{55}{chapter.7}
+\contentsline {section}{\numberline {7.1}Main Window}{55}{section.7.1}
+\contentsline {subsection}{\numberline {7.1.1}Sprint 1}{55}{subsection.7.1.1}
+\contentsline {subsubsection}{Design}{55}{subsubsection*.20}
+\contentsline {subsubsection}{Implementation}{56}{subsubsection*.21}
+\contentsline {paragraph}{Menu bar}{56}{paragraph*.22}
+\contentsline {paragraph}{Main view}{56}{paragraph*.23}
+\contentsline {paragraph}{Plugin toolbar and logger window}{56}{paragraph*.24}
+\contentsline {subsection}{\numberline {7.1.2}Sprint 4}{57}{subsection.7.1.2}
+\contentsline {subsubsection}{Design}{57}{subsubsection*.25}
+\contentsline {paragraph}{Main view}{57}{paragraph*.26}
+\contentsline {subsubsection}{Implementation}{58}{subsubsection*.27}
+\contentsline {paragraph}{Menu bar}{58}{paragraph*.28}
+\contentsline {paragraph}{Main window}{58}{paragraph*.29}
+\contentsline {subsection}{\numberline {7.1.3}Sprint 5}{58}{subsection.7.1.3}
+\contentsline {subsubsection}{Implementation}{58}{subsubsection*.30}
+\contentsline {paragraph}{Main Window}{58}{paragraph*.31}
+\contentsline {subsection}{\numberline {7.1.4}Sprint 6}{60}{subsection.7.1.4}
+\contentsline {subsubsection}{Implementation}{60}{subsubsection*.32}
+\contentsline {paragraph}{Menubar}{60}{paragraph*.33}
+\contentsline {section}{\numberline {7.2}Settings system}{61}{section.7.2}
+\contentsline {subsection}{\numberline {7.2.1}Sprint 1}{61}{subsection.7.2.1}
+\contentsline {subsubsection}{Design}{61}{subsubsection*.34}
+\contentsline {subsubsection}{Implementation}{62}{subsubsection*.35}
+\contentsline {subsection}{\numberline {7.2.2}Sprint 2}{62}{subsection.7.2.2}
+\contentsline {subsection}{\numberline {7.2.3}Sprint 5}{63}{subsection.7.2.3}
+\contentsline {subsubsection}{Design}{63}{subsubsection*.36}
+\contentsline {subsubsection}{Implementation}{64}{subsubsection*.37}
+\contentsline {section}{\numberline {7.3}Server dialog}{65}{section.7.3}
+\contentsline {subsection}{\numberline {7.3.1}Sprint 1}{65}{subsection.7.3.1}
+\contentsline {subsection}{\numberline {7.3.2}Sprint 2}{66}{subsection.7.3.2}
+\contentsline {subsection}{\numberline {7.3.3}Sprint 4}{66}{subsection.7.3.3}
+\contentsline {subsection}{\numberline {7.3.4}Sprint 6}{67}{subsection.7.3.4}
+\contentsline {section}{\numberline {7.4}Internationalization}{68}{section.7.4}
+\contentsline {subsection}{\numberline {7.4.1}Sprint 1}{68}{subsection.7.4.1}
+\contentsline {subsection}{\numberline {7.4.2}Sprint 2}{69}{subsection.7.4.2}
+\contentsline {subsubsection}{Implementation}{69}{subsubsection*.38}
+\contentsline {subsection}{\numberline {7.4.3}Sprint 3}{69}{subsection.7.4.3}
+\contentsline {subsection}{\numberline {7.4.4}Sprint 6}{69}{subsection.7.4.4}
+\contentsline {section}{\numberline {7.5}Plugin system}{71}{section.7.5}
+\contentsline {subsection}{\numberline {7.5.1}Sprint 1}{71}{subsection.7.5.1}
+\contentsline {subsubsection}{The reimplementation of the \texttt {PluginLoader}}{71}{subsubsection*.39}
+\contentsline {paragraph}{Environment}{71}{paragraph*.40}
+\contentsline {paragraph}{Private variables and properties}{71}{paragraph*.41}
+\contentsline {paragraph}{PluginObject}{72}{paragraph*.42}
+\contentsline {subsubsection}{The reimplementation of configuring plugins}{72}{subsubsection*.43}
+\contentsline {subsection}{\numberline {7.5.2}Sprint 2}{72}{subsection.7.5.2}
+\contentsline {subsubsection}{The implementation}{73}{subsubsection*.44}
+\contentsline {subsection}{\numberline {7.5.3}Sprint 3}{73}{subsection.7.5.3}
+\contentsline {subsubsection}{Implementing plugin system as in {Luma 2.4}}{73}{subsubsection*.45}
+\contentsline {subsubsection}{A new and better implementation}{74}{subsubsection*.46}
+\contentsline {subsection}{\numberline {7.5.4}Sprint 4}{74}{subsection.7.5.4}
+\contentsline {section}{\numberline {7.6}Browser plugin}{75}{section.7.6}
+\contentsline {subsection}{\numberline {7.6.1}Sprint 2}{76}{subsection.7.6.1}
+\contentsline {subsection}{\numberline {7.6.2}Sprint 3}{77}{subsection.7.6.2}
+\contentsline {subsection}{\numberline {7.6.3}Sprint 4}{78}{subsection.7.6.3}
+\contentsline {subsubsection}{Entry view}{81}{subsubsection*.47}
+\contentsline {subsubsection}{HTML templates}{82}{subsubsection*.48}
+\contentsline {subsection}{\numberline {7.6.4}Sprint 5}{83}{subsection.7.6.4}
+\contentsline {subsection}{\numberline {7.6.5}Sprint 6}{84}{subsection.7.6.5}
+\contentsline {subsection}{\numberline {7.6.6}Performance comparison with {Luma 2.4}}{84}{subsection.7.6.6}
+\contentsline {section}{\numberline {7.7}Template plugin}{86}{section.7.7}
+\contentsline {subsection}{\numberline {7.7.1}Sprint4}{86}{subsection.7.7.1}
+\contentsline {subsection}{\numberline {7.7.2}Sprint5}{86}{subsection.7.7.2}
+\contentsline {subsection}{\numberline {7.7.3}Sprint6}{86}{subsection.7.7.3}
+\contentsline {section}{\numberline {7.8}Search Plugin}{88}{section.7.8}
+\contentsline {subsection}{\numberline {7.8.1}Sprint 4}{88}{subsection.7.8.1}
+\contentsline {subsubsection}{Design}{88}{subsubsection*.49}
+\contentsline {subsubsection}{Implementation}{88}{subsubsection*.50}
+\contentsline {paragraph}{Search form}{88}{paragraph*.51}
+\contentsline {subsubsection}{Testing}{89}{subsubsection*.52}
+\contentsline {subsection}{\numberline {7.8.2}Sprint 5}{90}{subsection.7.8.2}
+\contentsline {subsubsection}{Design}{90}{subsubsection*.53}
+\contentsline {subsubsection}{Implementation}{90}{subsubsection*.54}
+\contentsline {paragraph}{Search form}{90}{paragraph*.55}
+\contentsline {paragraph}{Filter builder}{91}{paragraph*.56}
+\contentsline {paragraph}{Result view}{91}{paragraph*.57}
+\contentsline {subsection}{\numberline {7.8.3}Sprint 6}{92}{subsection.7.8.3}
+\contentsline {subsubsection}{Implementation}{92}{subsubsection*.58}
+\contentsline {subsection}{\numberline {7.8.4}Summary}{93}{subsection.7.8.4}
+\contentsline {section}{\numberline {7.9}Logging}{95}{section.7.9}
+\contentsline {section}{\numberline {7.10}Back-end}{97}{section.7.10}
+\contentsline {subsection}{\numberline {7.10.1}Sprint 6}{97}{subsection.7.10.1}
+\contentsline {section}{\numberline {7.11}Installation}{99}{section.7.11}
+\contentsline {subsection}{\numberline {7.11.1}Sprint 3}{99}{subsection.7.11.1}
+\contentsline {subsubsection}{Settings, storage and file-paths}{99}{subsubsection*.59}
+\contentsline {subsubsection}{Implementation}{100}{subsubsection*.60}
+\contentsline {subsection}{\numberline {7.11.2}Sprint 6}{100}{subsection.7.11.2}
+\contentsline {section}{\numberline {7.12}{Luma} Tool Chain}{102}{section.7.12}
+\contentsline {subsection}{\numberline {7.12.1}Sprint 3}{102}{subsection.7.12.1}
+\contentsline {subsubsection}{Compiling UI files to Python code}{102}{subsubsection*.61}
+\contentsline {subsection}{\numberline {7.12.2}Sprint 4}{102}{subsection.7.12.2}
+\contentsline {subsubsection}{Updating the {Luma} Project file}{102}{subsubsection*.62}
+\contentsline {subsubsection}{Updating the {Luma} Resource file}{103}{subsubsection*.63}
+\contentsline {subsection}{\numberline {7.12.3}Sprint 5}{103}{subsection.7.12.3}
+\contentsline {subsection}{\numberline {7.12.4}Sprint 6}{104}{subsection.7.12.4}
+\contentsline {subsubsection}{Kickstarting {Luma} translation}{104}{subsubsection*.64}
+\contentsline {subsection}{\numberline {7.12.5}Summary}{104}{subsection.7.12.5}
+\contentsline {chapter}{\numberline {8}Testing}{105}{chapter.8}
+\contentsline {section}{\numberline {8.1}White-box}{105}{section.8.1}
+\contentsline {subsection}{\numberline {8.1.1}Unit-test}{105}{subsection.8.1.1}
+\contentsline {section}{\numberline {8.2}Black-box}{105}{section.8.2}
+\contentsline {subsection}{\numberline {8.2.1}Integration testing}{105}{subsection.8.2.1}
+\contentsline {subsection}{\numberline {8.2.2}System testing}{106}{subsection.8.2.2}
+\contentsline {section}{\numberline {8.3}Tests features}{106}{section.8.3}
+\contentsline {section}{\numberline {8.4}Functional requirements testing}{107}{section.8.4}
+\contentsline {chapter}{\numberline {9}Evaluation}{112}{chapter.9}
+\contentsline {section}{\numberline {9.1}Challenges summary}{112}{section.9.1}
+\contentsline {section}{\numberline {9.2}Group structure}{113}{section.9.2}
+\contentsline {section}{\numberline {9.3}Customer relations}{113}{section.9.3}
+\contentsline {section}{\numberline {9.4}Development method}{113}{section.9.4}
+\contentsline {section}{\numberline {9.5}Tools and utilities}{114}{section.9.5}
+\contentsline {section}{\numberline {9.6}Social gatherings}{114}{section.9.6}
+\contentsline {section}{\numberline {9.7}Further work}{114}{section.9.7}
+\contentsline {subsection}{\numberline {9.7.1}Search plugin}{114}{subsection.9.7.1}
+\contentsline {subsection}{\numberline {9.7.2}More plugins}{115}{subsection.9.7.2}
+\contentsline {subsection}{\numberline {9.7.3}Installation packages}{115}{subsection.9.7.3}
+\contentsline {chapter}{\numberline {10}Conclusion}{116}{chapter.10}
+\contentsline {section}{\numberline {10.1}Comparison of {Luma 2.4} and {Luma} 3.0}{116}{section.10.1}
+\contentsline {subsection}{\numberline {10.1.1}Comparing functional features}{116}{subsection.10.1.1}
+\contentsline {paragraph}{Tabs}{116}{paragraph*.65}
+\contentsline {paragraph}{Key binding}{117}{paragraph*.66}
+\contentsline {paragraph}{Logger and error handling}{117}{paragraph*.67}
+\contentsline {paragraph}{Command line arguments}{117}{paragraph*.68}
+\contentsline {paragraph}{Search plugin}{117}{paragraph*.69}
+\contentsline {paragraph}{Browser plugin}{117}{paragraph*.70}
+\contentsline {subsection}{\numberline {10.1.2}Comparing non-functional features}{117}{subsection.10.1.2}
+\contentsline {paragraph}{Cross-platform}{117}{paragraph*.71}
+\contentsline {paragraph}{MVC}{117}{paragraph*.72}
+\contentsline {paragraph}{Current technology}{117}{paragraph*.73}
+\contentsline {paragraph}{Speed}{117}{paragraph*.74}
+\contentsline {paragraph}{Less bugs}{117}{paragraph*.75}
+\contentsline {paragraph}{Supported plugins}{117}{paragraph*.76}
+\contentsline {chapter}{Bibliography}{119}{chapter*.77}
+\contentsline {chapter}{Appendix \numberline {A}Official meetings}{120}{Appendix.a.A}
+\contentsline {section}{\numberline {A.1}Meetings with customer}{120}{section.a.A.1}
+\contentsline {section}{\numberline {A.2}Meetings with supervisor}{121}{section.a.A.2}
+\contentsline {chapter}{Appendix \numberline {B}Crash course in LDAP}{122}{Appendix.a.B}
+\contentsline {section}{\numberline {B.1}What is {LDAP}}{122}{section.a.B.1}
+\contentsline {section}{\numberline {B.2}Directories and directory services}{122}{section.a.B.2}
+\contentsline {section}{\numberline {B.3}The {LDAP} information model}{122}{section.a.B.3}
+\contentsline {chapter}{Appendix \numberline {C}Cross-platform GUI development}{124}{Appendix.a.C}
+\contentsline {section}{\numberline {C.1}Human Interface Guidelines}{124}{section.a.C.1}
+\contentsline {section}{\numberline {C.2}The menu bar}{124}{section.a.C.2}
+\contentsline {subsection}{\numberline {C.2.1}Windows and the X Window System}{124}{subsection.a.C.2.1}
+\contentsline {subsection}{\numberline {C.2.2}Mac OS}{125}{subsection.a.C.2.2}
+\contentsline {section}{\numberline {C.3}Icons}{125}{section.a.C.3}
+\contentsline {chapter}{Appendix \numberline {D}Cross-platform Python deployment}{127}{Appendix.a.D}
+\contentsline {section}{\numberline {D.1}Available tools}{127}{section.a.D.1}
+\contentsline {subsection}{\numberline {D.1.1}Distutils}{128}{subsection.a.D.1.1}
+\contentsline {subsection}{\numberline {D.1.2}Setuptools}{128}{subsection.a.D.1.2}
+\contentsline {subsection}{\numberline {D.1.3}Py2exe}{128}{subsection.a.D.1.3}
+\contentsline {subsection}{\numberline {D.1.4}Py2app}{129}{subsection.a.D.1.4}
+\contentsline {subsection}{\numberline {D.1.5}PyInstaller}{130}{subsection.a.D.1.5}
+\contentsline {chapter}{Appendix \numberline {E}Luma User documentation}{131}{Appendix.a.E}
+\contentsline {section}{\numberline {E.1}Available formats}{131}{section.a.E.1}

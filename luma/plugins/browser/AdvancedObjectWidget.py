@@ -114,7 +114,7 @@ class AdvancedObjectWidget(QWidget):
         self.str_REASON = QtCore.QCoreApplication.translate("AdvancedObjectWidget", 
             "Reason:")
         self.str_EXPORT_BINARY = QtCore.QCoreApplication.translate("AdvancedObjectWidget", 
-            "Export binary attribute to file"),
+            "Export binary attribute to file")
         self.str_EXPORT_BINARY_EXCEPT = QtCore.QCoreApplication.translate("AdvancedObjectWidget", 
             "Could not export binary data to file.")
         self.str_SELECT_ANOTHER_FILE = QtCore.QCoreApplication.translate("AdvancedObjectWidget", 

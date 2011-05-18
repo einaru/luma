@@ -1,0 +1,66 @@
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {2.1}{\ignorespaces The JXplorer interface}}{21}{figure.2.1}
+\contentsline {figure}{\numberline {2.2}{\ignorespaces The Symlabs LDAP\ browser interface}}{22}{figure.2.2}
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {3.1}{\ignorespaces Sequence diagaram for expanding user object entries in the Addressbook plugin with {Luma 2.4}.}}{24}{figure.3.1}
+\contentsline {figure}{\numberline {3.2}{\ignorespaces Sequence diagram for improved solution to expanding user object entries in the Addressbook plugin.}}{25}{figure.3.2}
+\contentsline {figure}{\numberline {3.3}{\ignorespaces Browsing an entry on an {LDAP} enabled server with {Luma 2.4}}}{26}{figure.3.3}
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {4.1}{\ignorespaces Use case diagram}}{36}{figure.4.1}
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {5.1}{\ignorespaces {Luma} architecture}}{38}{figure.5.1}
+\contentsline {figure}{\numberline {5.2}{\ignorespaces Gantt diagram}}{43}{figure.5.2}
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {7.1}{\ignorespaces Mockup sketch for the application main window}}{55}{figure.7.1}
+\contentsline {figure}{\numberline {7.2}{\ignorespaces The menu bar structure after sprint 1}}{56}{figure.7.2}
+\contentsline {figure}{\numberline {7.3}{\ignorespaces Conceptual architecture compared to actual implementation}}{57}{figure.7.3}
+\contentsline {figure}{\numberline {7.4}{\ignorespaces Mockup sketch for the application main window with tabs to handle various plugin views.}}{57}{figure.7.4}
+\contentsline {figure}{\numberline {7.5}{\ignorespaces The menu bar structure after sprint 4.}}{58}{figure.7.5}
+\contentsline {figure}{\numberline {7.6}{\ignorespaces The menu bar structure as shown when running on Mac OSX.}}{58}{figure.7.6}
+\contentsline {figure}{\numberline {7.7}{\ignorespaces The main window after sprint 4}}{59}{figure.7.7}
+\contentsline {figure}{\numberline {7.8}{\ignorespaces The \newluma [] Welcome tab}}{59}{figure.7.8}
+\contentsline {figure}{\numberline {7.9}{\ignorespaces The final menu bar.}}{60}{figure.7.9}
+\contentsline {figure}{\numberline {7.10}{\ignorespaces Settings dialog mockup 1.}}{61}{figure.7.10}
+\contentsline {figure}{\numberline {7.11}{\ignorespaces Settings dialog mockup 2, with tabbed layout.}}{61}{figure.7.11}
+\contentsline {figure}{\numberline {7.12}{\ignorespaces The new settings dialog at the end of sprint 1.}}{62}{figure.7.12}
+\contentsline {figure}{\numberline {7.13}{\ignorespaces The new {Luma} settings system architecture}}{63}{figure.7.13}
+\contentsline {figure}{\numberline {7.14}{\ignorespaces The settingsdialog with plugin configuration.}}{64}{figure.7.14}
+\contentsline {figure}{\numberline {7.15}{\ignorespaces The serverdialog after sprint 6}}{67}{figure.7.15}
+\contentsline {figure}{\numberline {7.16}{\ignorespaces The browser plugin in {Luma 2.4}}}{75}{figure.7.16}
+\contentsline {figure}{\numberline {7.17}{\ignorespaces The browser plugin as of sprint 2}}{77}{figure.7.17}
+\contentsline {figure}{\numberline {7.18}{\ignorespaces Classdiagram for the browser plugin as of sprint 2}}{78}{figure.7.18}
+\contentsline {figure}{\numberline {7.19}{\ignorespaces The browser plugin as of sprint 3}}{79}{figure.7.19}
+\contentsline {figure}{\numberline {7.20}{\ignorespaces Failure to connect to a server in {Luma 2.4}}}{80}{figure.7.20}
+\contentsline {figure}{\numberline {7.21}{\ignorespaces Error when trying to connect (open) the server named no-ext-server after sprint 3}}{81}{figure.7.21}
+\contentsline {figure}{\numberline {7.22}{\ignorespaces The same error as in figure \ref {fig:sprint3-browser-plugin-error} with sprint 4}}{82}{figure.7.22}
+\contentsline {figure}{\numberline {7.23}{\ignorespaces Entry view}}{83}{figure.7.23}
+\contentsline {figure}{\numberline {7.24}{\ignorespaces The browser plugin after sprint 6}}{85}{figure.7.24}
+\contentsline {figure}{\numberline {7.25}{\ignorespaces The new template plugin}}{87}{figure.7.25}
+\contentsline {figure}{\numberline {7.26}{\ignorespaces Search plugin redesign mockup (old design to the left)}}{88}{figure.7.26}
+\contentsline {figure}{\numberline {7.27}{\ignorespaces The search form after sprint 4.}}{89}{figure.7.27}
+\contentsline {figure}{\numberline {7.28}{\ignorespaces The search form as seen in {Luma 2.4}.}}{89}{figure.7.28}
+\contentsline {figure}{\numberline {7.29}{\ignorespaces The {\newluma {5}} Search plugin, search-form design.}}{90}{figure.7.29}
+\contentsline {figure}{\numberline {7.30}{\ignorespaces The {\newluma {5}} Search plugin, search-form with autocomplete enabled.}}{90}{figure.7.30}
+\contentsline {figure}{\numberline {7.31}{\ignorespaces The {\newluma {5}} filterbuilder design.}}{91}{figure.7.31}
+\contentsline {figure}{\numberline {7.32}{\ignorespaces The filterbuilder with syntax highlighting enabled}}{91}{figure.7.32}
+\contentsline {figure}{\numberline {7.33}{\ignorespaces The new {Luma} result view with filter support.}}{92}{figure.7.33}
+\contentsline {figure}{\numberline {7.34}{\ignorespaces The {Luma 2.4} search plugin.}}{93}{figure.7.34}
+\contentsline {figure}{\numberline {7.35}{\ignorespaces The new {Luma} search plugin with support for multiple result views.}}{93}{figure.7.35}
+\contentsline {figure}{\numberline {7.36}{\ignorespaces The loggerwidget}}{95}{figure.7.36}
+\contentsline {figure}{\numberline {7.37}{\ignorespaces Logging to the console when the --verbose flag is used}}{96}{figure.7.37}
+\contentsline {figure}{\numberline {7.38}{\ignorespaces Users has the ability to use a temporary password which is not saved to disk}}{97}{figure.7.38}
+\contentsline {figure}{\numberline {7.39}{\ignorespaces Windows graphical exe install.}}{101}{figure.7.39}
+\contentsline {figure}{\numberline {7.40}{\ignorespaces Windows graphical msi install.}}{101}{figure.7.40}
+\contentsline {figure}{\numberline {7.41}{\ignorespaces Linux graphical RPM install.}}{101}{figure.7.41}
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {8.1}{\ignorespaces Testing structure}}{106}{figure.8.1}
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {B.1}{\ignorespaces {LDAP} directory tree}}{123}{figure.a.B.1}
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\addvspace {10\p@ }
