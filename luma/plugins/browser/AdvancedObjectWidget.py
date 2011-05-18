@@ -88,7 +88,7 @@ class AdvancedObjectWidget(QWidget):
         if not os.path.isdir(templatesPath):
             templatesPath = unicode(
                 os.path.join(
-                    getLumaRoot(), 'plugins', 'browser_plugin', 'templates')
+                    getLumaRoot(), 'plugins', 'browser', 'templates')
             )
 
         self.templateFactory = TemplateFactory(templatesPath)
