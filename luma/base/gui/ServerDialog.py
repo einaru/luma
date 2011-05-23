@@ -26,7 +26,7 @@ import copy
 from PyQt4.QtGui import QDialog, QDataWidgetMapper
 from PyQt4.QtGui import QFileDialog
 from PyQt4.QtGui import QInputDialog, QItemSelectionModel
-from PyQt4.QtGui import QListWidgetItem, QTableView
+from PyQt4.QtGui import QListWidgetItem
 from PyQt4.QtGui import QMessageBox, QProgressDialog
 from PyQt4.QtCore import QCoreApplication, Qt, pyqtSignal, QObject
 from PyQt4.QtCore import pyqtSlot, QThread
@@ -91,12 +91,6 @@ class ServerDialog(QDialog, Ui_ServerDialogDesign):
 
         # The serverListView works on the servermodel
         self.serverListView.setModel(self.slm)
-        
-        # PRESENTASJON ONLY
-        self.tableView = QTableView()
-        self.tableView.resize(800,400)
-        self.tableView.setModel(self.slm)
-        self.tableView.show()
 
         # Enable/disable editing depending on if we have a server to edit
         if self.slm.hasServers():
@@ -147,7 +141,7 @@ class ServerDialog(QDialog, Ui_ServerDialogDesign):
         self.serverListView.selectionModel().currentRowChanged.connect(self.mapper.setCurrentModelIndex)
         
         # Enable checks for SSL enabled but with a non-standard port.
-        self.encryptionBox.activated[int].connect(self.checkSSLport)
+        self.encryptionBox.currentIndexChanged[int].connect(self.checkSSLport)
 
         # Used by the connection-test
         self.testProgress = QProgressDialog("Trying to connect to server.",
