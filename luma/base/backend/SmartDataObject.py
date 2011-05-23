@@ -513,6 +513,8 @@ class SmartDataObject (object):
             
         # No binary attribute
         else:
+            if not type(attributeValue) == unicode:
+                attributeValue = attributeValue.decode('utf8')
             tmpRDN = attributeName + u"=" + attributeValue
         
             # Does the created RDN match the actual RDN?
@@ -616,7 +618,7 @@ class SmartDataObject (object):
             if index <= (valueLength - 1):
                 
                 # Is the value we want to delete the RDN of the object?
-                if self.isAttributeValueRDN(attributeName, self.data[attributeName][index].decode('utf8')):
+                if self.isAttributeValueRDN(attributeName, self.data[attributeName][index]):
                     errorList = []
                     errorList.append("Can't delete attribute. Attribute is RDN of this object.")
                     errorList.append(" DN: " + self.getPrettyDN() + ".")

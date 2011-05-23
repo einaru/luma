@@ -690,53 +690,53 @@ class BrowserView(QWidget):
         self.contextMenuExport.setTitle(QCoreApplication.translate(
             "BrowserView", "Export"))
 
-        self.str_ENTRY = QCoreApplication.translate(
-            "BrowserView", "Entry")
-        self.str_TEMPLATE = QCoreApplication.translate(
-            "BrowserView", "Template")
-        self.str_ITEM = QCoreApplication.translate(
-            "BrowserView", "Item")
-        self.str_SUBTREE = QCoreApplication.translate(
-            "BrowserView", "Subtree")
-        self.str_SUBTREE_ONLY = QCoreApplication.translate(
-            "BrowserView", "Subtree only")
-        self.str_SUBTREE_PARENTS = QCoreApplication.translate(
-            "BrowserView", "Subtree with parents")
-        self.str_ITEMS = QCoreApplication.translate(
-            "BrowserView", "Items")
-        self.str_SUBTREES = QCoreApplication.translate(
-            "BrowserView", "Subtrees")
-        self.str_SUBTREES_PARENTS = QCoreApplication.translate(
-            "BrowserView", "Subtrees with parents")
+        self.str_ENTRY = unicode(QCoreApplication.translate(
+            "BrowserView", "Entry"))
+        self.str_TEMPLATE = unicode(QCoreApplication.translate(
+            "BrowserView", "Template"))
+        self.str_ITEM = unicode(QCoreApplication.translate(
+            "BrowserView", "Item"))
+        self.str_SUBTREE = unicode(QCoreApplication.translate(
+            "BrowserView", "Subtree"))
+        self.str_SUBTREE_ONLY = unicode(QCoreApplication.translate(
+            "BrowserView", "Subtree only"))
+        self.str_SUBTREE_PARENTS = unicode(QCoreApplication.translate(
+            "BrowserView", "Subtree with parents"))
+        self.str_ITEMS = unicode(QCoreApplication.translate(
+            "BrowserView", "Items"))
+        self.str_SUBTREES = unicode(QCoreApplication.translate(
+            "BrowserView", "Subtrees"))
+        self.str_SUBTREES_PARENTS = unicode(QCoreApplication.translate(
+            "BrowserView", "Subtrees with parents"))
 
-        self.str_PLEASE_WAIT = QCoreApplication.translate(
-            "BrowserView", "Please wait")
-        self.str_PLEASE_WAIT_MSG = QCoreApplication.translate(
+        self.str_PLEASE_WAIT = unicode(QCoreApplication.translate(
+            "BrowserView", "Please wait"))
+        self.str_PLEASE_WAIT_MSG = unicode(QCoreApplication.translate(
             "BrowserView",
             """Please wait, fetching data...
-This message will automatically close when done...""")
-        self.str_ERROR = QCoreApplication.translate("BrowserView", "Error")
-        self.str_ERROR_MSG = QCoreApplication.translate(
+This message will automatically close when done..."""))
+        self.str_ERROR = unicode(QCoreApplication.translate("BrowserView", "Error"))
+        self.str_ERROR_MSG = unicode(QCoreApplication.translate(
             "BrowserView", "On {0}:\n{1}"
-        )
-        self.str_SEE_LOG_DETAILS = QCoreApplication.translate(
+        ))
+        self.str_SEE_LOG_DETAILS = unicode(QCoreApplication.translate(
             "BrowserView", "See log for details"
-        )
-        self.str_DELETE = QCoreApplication.translate("BrowserView", "Delete")
-        self.str_REALLY_DELETE = QCoreApplication.translate(
-            "BrowserView", "Really delete?")
-        self.str_DELETION = QCoreApplication.translate(
+        ))
+        self.str_DELETE = unicode(QCoreApplication.translate("BrowserView", "Delete"))
+        self.str_REALLY_DELETE = unicode(QCoreApplication.translate(
+            "BrowserView", "Really delete?"))
+        self.str_DELETION = unicode(QCoreApplication.translate(
             "BrowserView", "Deletion"
-        )
-        self.str_DELETION_MSG = QCoreApplication.translate(
+        ))
+        self.str_DELETION_MSG = unicode(QCoreApplication.translate(
             "BrowserView", """It's possible some of the selected items
 might not have been deleted, while others were.
 Do you wan't to update the list to reflect the changes?"""
-        )
-        self.str_SERVER_CHANGED_MSG = QCoreApplication.translate(
+        ))
+        self.str_SERVER_CHANGED_MSG = unicode(QCoreApplication.translate(
             "BrowserView",
             "You need to restart the plugin for changes to take effect."
-        )
+        ))
 
     def changeEvent(self, e):
         """Overloaded so we can catch the LanguageChange event, and at

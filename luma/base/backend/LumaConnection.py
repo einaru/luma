@@ -107,7 +107,7 @@ class LumaConnection(object):
             else:
                 # Return error
                 message = "LDAP search operation failed. Reason:\n" + str(exceptionObject)
-                self.logger.error(message)
+                self.logger.error(message.decode('utf8'))
                 return (False, [], exceptionObject)
             
             
@@ -123,12 +123,12 @@ class LumaConnection(object):
             
         if None == exceptionObject:
             message = "LDAP object " + dnDelete + " successfully deleted."
-            self.logger.info(message)
+            self.logger.info(message.decode('utf8'))
             return (True, None)
         else:
             message = "LDAP object " + dnDelete + " could not be deleted. Reason:\n"
             message = message + str(exceptionObject)
-            self.logger.error(message)
+            self.logger.error(message.decode('utf8'))
             return (False, exceptionObject)
             
 
@@ -143,12 +143,12 @@ class LumaConnection(object):
             exceptionObject = e
         if None == exceptionObject:
             message = "LDAP object " + dn + " successfully modified."
-            self.logger.info(message)
+            self.logger.info(message.decode('utf8'))
             return (True, None)
         else:
             message = "LDAP object " + dn + " could not be modified. Reason:\n"
             message = message + str(exceptionObject)
-            self.logger.error(message)
+            self.logger.error(message.decode('utf8'))
             return (False, exceptionObject)
 
 
@@ -163,12 +163,12 @@ class LumaConnection(object):
             exceptionObject = e
         if None == exceptionObject:
             message = "LDAP object " + dn + " successfully added."
-            self.logger.info(message)
+            self.logger.info(message.decode('utf8'))
             return (True, None)
         else:
             message = "LDAP object " + dn + " could not be added. Reason:\n"
             message = message + str(exceptionObject)
-            self.logger.error(message)
+            self.logger.error(message.decode('utf8'))
             return (False, exceptionObject)
         
 
@@ -179,14 +179,14 @@ class LumaConnection(object):
         success, resultList, exceptionObject = self.search(smartDataObject.getDN(), ldap.SCOPE_BASE)
         if success:
             message = "LDAP object " + smartDataObject.getDN() + " was successfully updated on the server.)"
-            self.logger.info(message)
+            self.logger.info(message.decode('utf8'))
             oldObject = resultList[0]
             modlist =  ldap.modlist.modifyModlist(oldObject.data, smartDataObject.data, [], 0)
             return self.modify(smartDataObject.getDN(), modlist)
         else:
             message = "LDAP object " + smartDataObject.getDN() + " could not be updated. The entry values could not be retrieved from the server. Reason:\n"
             message = message + str(exceptionObject)
-            self.logger.error(message)
+            self.logger.error(message.decode('utf8'))
             return (False, exceptionObject)
         
 
@@ -216,13 +216,13 @@ class LumaConnection(object):
         
         if success:
             message = "LDAP bind operation successful."
-            self.logger.info(message)
+            self.logger.info(message.decode('utf8'))
             self.ldapServerObject = ldapServerObject
             return (True, None)
         else:
             message = "LDAP bind operation not successful. Reason:\n"
             message += str(exception)
-            self.logger.error(message)
+            self.logger.error(message.decode('utf8'))
 
             return (False, exception)
 
@@ -271,8 +271,9 @@ class LumaConnection(object):
                 hostport = self.serverObject.hostname + ":" + str(self.serverObject.port),
                 dn = self.serverObject.baseDN, who = whoVal,
                 cred = credVal)
-            
-            self.logger.debug("ldap.initialize() with url: "+url.initializeUrl())
+
+            m = "ldap.initialize() with url: "+url.initializeUrl()
+            self.logger.debug(m.decode('utf8'))
            
             try:
                 ldapServerObject = ldap.initialize(url.initializeUrl())
@@ -293,7 +294,7 @@ class LumaConnection(object):
                     message = "Certificate error. Reason:\n"
                     message += "Could not set client certificate and certificate keyfile. "
                     message += str(e)
-                    self.logger.error(message)
+                    self.logger.error(message.decode('utf8'))
             
             if self.serverObject.encryptionMethod == ServerEncryptionMethod.TLS:
                 ldapServerObject.start_tls_s()
@@ -388,7 +389,7 @@ class LumaConnection(object):
         except ldap.LDAPError, e:
             message = "LDAP unbind operation not successful. Reason:\n"
             message = message + str(e)
-            self.logger.error(message)
+            self.logger.error(message.decode('utf8'))
             
 ###############################################################################
 
@@ -448,12 +449,12 @@ class LumaConnection(object):
             
         if None == dnList:
             message = "Could not retrieve Base DNs from server. Unknown server type."
-            self.logger.error(message)
+            self.logger.error(message.decode('utf8'))
             exceptionObject = ldap.LDAPError({'desc':"Unknown server type"})
             return (False, [], exceptionObject)
         else:
             message = "Base DNs successfully retrieved from server."
-            self.logger.info(message)
+            self.logger.info(message.decode('utf8'))
             return (True, dnList, None)
             
             
