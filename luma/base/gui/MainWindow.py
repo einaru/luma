@@ -628,7 +628,8 @@ class LoggerWidget(QWidget, Ui_LoggerWidget):
             # Please only use the above levels
             self.logSignal.emit(_msg.format('UNKNOWN', name, threadName, msg))
         else:
-            self.logSignal.emit(_msg.format(loglvl, name, threadName, msg))
+            _msg = _msg.format(loglvl, name, threadName, msg)
+            self.logSignal.emit(_msg)
 
 
 class PluginToolBar(QToolBar):
