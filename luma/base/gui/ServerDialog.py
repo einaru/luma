@@ -141,7 +141,7 @@ class ServerDialog(QDialog, Ui_ServerDialogDesign):
         self.serverListView.selectionModel().currentRowChanged.connect(self.mapper.setCurrentModelIndex)
         
         # Enable checks for SSL enabled but with a non-standard port.
-        self.encryptionBox.currentIndexChanged[int].connect(self.checkSSLport)
+        self.encryptionBox.activated[int].connect(self.checkSSLport)
 
         # Used by the connection-test
         self.testProgress = QProgressDialog("Trying to connect to server.",
