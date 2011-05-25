@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file '/home/einar/Desktop/luma-merging/resources/forms/plugins/search/FilterBuilderDesign.ui'
+# Form implementation generated from reading ui file '/mnt/debris/devel/repo/git/luma-fixes/resources/forms/plugins/search/FilterBuilderDesign.ui'
 #
-# Created: Mon May 16 02:47:12 2011
+# Created: Wed May 25 21:41:10 2011
 #      by: PyQt4 UI code generator 4.8.3
 #
 # WARNING! All changes made in this file will be lost!
