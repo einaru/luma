@@ -1,15 +1,15 @@
-#$Id: mkpasswd.py 841 2009-12-14 17:36:26Z bgrotan $
+#$Id: mkpasswd.py 711 2006-11-09 13:53:17Z bgrotan $
 '''
- This module depends on python >= 2.2
+ This module depends on python >= 2.3
 
- Module written by Bjorn Ove Grotan <bgrotan@samfundet.no>
+ Module written by Bjorn Ove Grotan <bgrotan@grotan.com>
 
-  Mkpasswd is free software; you can redistribute it and/or modify it
+  mkpasswd is free software; you can redistribute it and/or modify it
   under the terms of the GNU General Public License as published by
   the Free Software Foundation; either version 2 of the License, or
   (at your option) any later version.
  
-  Mkpasswd is distributed in the hope that it will be useful, but
+  mkpasswd is distributed in the hope that it will be useful, but
   WITHOUT ANY WARRANTY; without even the implied warranty of
   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
   General Public License for more details.
@@ -27,35 +27,35 @@
      the bytes are randomly chosen - followed by the same salt bytes
  For LDAP-use, the SHA1 and SSHA-digest has to be base64-encoded. 
 
- SHA and SSHA are described at:
- http://developer.netscape.com/docs/technote/ldap/pass-sha.html
- This page have examples for Perl and Java if one would prefer that.
-
  Example-LDIF:
      {SSHA}oaEG3PJ10sHxGcSxsDRRooTifL55/2NOdN3nU1VEV+NFzc9Q
  
  This package should now support passwords compatible with [1] Samba using the [2]
- smbpasswd module for [3] Python. You should find a recent copy of this software 
- at the project [4] webpage. The samba compability is added for use with Samba as
- PDC with storing user and host-information in LDAP.
+ smbpasswd module for [3] Python. The samba compability is added for use with Samba 
+ as PDC with storing user and host-information in LDAP.
 
  [1] http://www.samba.org
  [2] http://barryp.org/software/py-smbpasswd/
  [3] http://www.python.org
- [4] http://www.grotan.com/project/python
 '''
 import string,base64
 import random,sys
 import exceptions
-import md5,sha,crypt
-smb = 0 # Where 1 is true, and 0 is false
+import hashlib
+smb_module = 0 # Where 1 is true, and 0 is false
+crypt_module = 0
 debug = False
 
 try:
-    import smbpasswd
-    smb = 1 
+    import crypt
+    crypt_module = 1
 except:
-    smb = 0
+    crypt_module = 0
+try:
+    import smbpasswd
+    smb_module = 1 
+except:
+    smb_module = 0
     if debug:
         print '''
         module <smbpasswd> not found or not installed. Windows-passwords are therefor
@@ -84,30 +84,47 @@ def check_password(s):
     '''
     return True
 
-def mkpasswd(pwd,sambaver=3,default='ssha'):
-    ''' Make a given password cryptated, possibly with different 
+def mkpasswd(pwd,sambaver=3,default='ssha1'):
+    ''' Make a given password encrypted, possibly with different 
         crypt-algorihtms. This module was written for use with 
-	    LDAP - so default is seeded sha
+	    LDAP - so default is seeded sha1
     '''
     alg = {
-        'ssha':'Seeded SHA',
-	    'sha':'Secure Hash Algorithm',
+	    'sha1':'Secure Hash Algorithm',
+            'ssha1':'Seeded SHA',
 	    'md5':'MD5',
-	    'crypt':'standard unix crypt'
+	    'smd5':'Seeded MD5',
     }
-    if smb:
+    if crypt_module:
+        alg['crypt'] = 'standard unix crypt'
+    if smb_module:
         alg['lmhash'] = 'lan man hash'
         alg['nthash'] = 'nt hash'
     if default not in alg.keys():
         return 'algorithm <%s> not supported in this version.' % default
     else:
         salt = getsalt()
-        if default == 'ssha':
-            return "{SSHA}" + base64.encodestring(sha.new(str(pwd) + salt).digest() + salt)
-        elif default =='sha':
-            return "{SHA}" + base64.encodestring(sha.new(str(pwd)).digest())
+        if default == 'ssha1':
+            sha1 = hashlib.sha1()
+            sha1.update(str(pwd) + salt)
+            pwString = "{SSHA}" + base64.encodestring(sha1.digest() + salt)
+            return pwString[:-1]
+        elif default =='sha1':
+            sha1 = hashlib.sha1()
+            sha1.update(str(pwd))
+            pwString = "{SHA}" + base64.encodestring(sha1.digest())
+            return pwString[:-1]
         elif default =='md5':
-            return "{MD5}" + base64.encodestring(md5.new(str(pwd)).digest())
+            md5 = hashlib.md5()
+            md5.update(str(pwd))
+            pwString = "{MD5}" + base64.encodestring(md5.digest())
+            return pwString[:-1]
+        elif default =='smd5':
+            salt = getsalt(length=4) # Newer versions of OpenLDAP should support the default length 16
+            md5 = hashlib.md5()
+            md5.update(str(pwd) + salt)
+            pwString = "{SMD5}" + base64.encodestring(md5.digest() + salt)
+            return pwString[:-1]
         elif default =='crypt':
             return "{CRYPT}" + crypt.crypt(str(pwd),getsalt(length=2)) # crypt only uses a salt of length 2
         elif default == 'lmhash':
@@ -117,7 +134,114 @@ def mkpasswd(pwd,sambaver=3,default='ssha'):
                 return "{lmPassword}" + smbpasswd.lmhash(pwd)
         elif default == 'nthash':
             if sambaver==3:
-                "{sambaNTPassword}" + smbpasswd.nthash(pwd)
+                return "{sambaNTPassword}" + smbpasswd.lmhash(pwd)
             elif sambaver==2:
-                return "{NTPassword}" + smbpasswd.nthash(pwd)
+                return "{NTPassword}" + smbpasswd.lmhash(pwd)
 
+def check_strength(passwordString=""):
+    
+    def check_length():
+        return 13 * pLength
+        
+    def check_chars():
+        upperBool = False
+        lowerBool = False
+        specialBool = False
+        numberBool = False
+        combination = 0
+        
+        valueDict = {0:50, 1:50, 2:20, 3:0, 4:0}
+        
+        for x in passwordString:
+            if (not lowerBool) and (x in string.ascii_lowercase):
+                lowerBool = True
+                combination += 1
+            if (not upperBool) and (x in string.ascii_uppercase):
+                upperBool = True
+                combination += 1
+            if (not numberBool) and (x in string.digits):
+                numberBool = True
+                combination += 1
+            if (not specialBool) and ((x in string.punctuation) \
+                    and (not(x in string.ascii_uppercase)) \
+                    and (not(x in string.ascii_lowercase)) \
+                    and (not(x in string.digits))):
+                specialBool = True
+                combination += 1
+            if upperBool and lowerBool and specialBool and numberBool:
+                break
+        
+        return valueDict[combination]
+        
+        
+    def check_distribution():
+        tmpDict = {}
+        for x in passwordString:
+            if tmpDict.has_key(x):
+                tmpDict[x] += 1
+            else:
+                tmpDict[x] = 0
+                
+        doubleCharSum = 0
+        
+        for x in tmpDict.keys():
+            value = tmpDict[x]
+            if value > 2:
+                doubleCharSum += value
+            
+        
+        #ratio = pLength / len(tmpDict.keys())
+        #return 13 * (ratio-1)
+        return 13 * doubleCharSum
+        
+    def check_special_characters():
+        tmpVal = 0
+        return tmpVal
+    
+    pLength = len(passwordString)
+    
+    if 0 == pLength:
+        return 0
+    
+    value = check_length()
+    value -= check_distribution()
+    value -= check_chars()
+    
+    if value < 0:
+        value = 0
+    
+    if value > 100:
+        value = 100
+        
+    return value
+
+
+def check_strength_function():
+
+    pwList = ["a", "aA", "aaaaaaaaaaa", "abcdefgh", "aBcDeFgH", "abc123ef",
+        "aBc123Ef", "      ", "abC12 \ *+"]
+        
+    for x in pwList:
+        print x, check_strength(x)
+        
+    
+def get_available_hash_methods():
+    # basic algorithms which are supported by mkpasswd-module
+    supportedAlgorithms = ['md5','smd5', 'sha1', 'ssha1', 'cleartext']
+        
+    # add lmhash and nthash algorithms if smbpasswd module is present
+    try:
+        import smbpasswd
+        supportedAlgorithms.extend(['lmhash', 'nthash'])
+    except ImportError, e:
+        pass
+    try:
+        import crypt
+        supportedAlgorithms.extend(['crypt'])
+    except ImportError, e:
+        pass
+        
+    supportedAlgorithms.sort()
+    return supportedAlgorithms
+
+# vim: tabstop=4 expandtab shiftwidth=4 softtabstop=4

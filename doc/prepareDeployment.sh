@@ -16,19 +16,32 @@ location="../.."
 
 showHelp()
 {
-	echo "usage: $0 [options]"
-	echo ""
-	echo "$0 is used to ensure up-to-date doc files is included in the root"
-	echo "folder prior to building a luma source distribution."
-	echo ""
-	echo "options:"
-	echo ""
-	echo "--h, --help  Display this help message."
-	echo "--html       Also generate the html documentation." 
-	echo "             This option requires sphinx to be installed"
-	echo ""
-	exit
+	cat <<-EndHelp
+	usage: $0 [options]
+	
+	$0 is used to ensure up-to-date doc files is included in the root
+	folder prior to building a luma source distribution.
+	
+	options:
+	
+	--h, --help  Display this help message.
+	--update     Update the doc files, i.e. the defined files is copied 
+	             into the repo root.
+	--html       Generate the html documentation. This option requires
+	             sphinx to be installed
+	-a, --all    Update doc files and generate the html docs.
+	
+	EndHelp
 }
+
+noValidArgs()
+{
+	cat <<-EndNoArgs
+	No valid arguments provided.
+	Try runing $0 --help for more information.
+	EndNoArgs
+}
+
 # Generate the html docs
 generateHtmlDoc()
 {
@@ -46,16 +59,14 @@ copyDocFilesToRepoRoot()
 	done
 }
 
-case $1 in
-	-h|--help)
-		showHelp
-		;;
-	--html)
-		copyDocFilesToRepoRoot
-		generateHtmlDoc
-		;;
-	*)
-		copyDocFilesToRepoRoot
-		;;
-esac
+while true;
+do
+	case $1 in
+		-h|--help) showHelp ; break ;;
+		-a|--all ) copyDocFilesToRepoRoot ; generateHtmlDoc ; break ;;
+		--update ) copyDocFilesToRepoRoot ; shift ;;
+		--html   ) generateHtmlDoc ; shift ;;
+		*        ) break ;;
+	esac
+done
 
