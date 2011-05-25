@@ -17,14 +17,13 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see http://www.gnu.org/licenses/
-
 import logging
 import os
 import re
 import gc
 
 from PyQt4.QtCore import (QEvent, QObject, Qt, QTimer, pyqtSignal, pyqtSlot)
-from PyQt4.QtGui import (QKeySequence, QWidget, qApp)
+from PyQt4.QtGui import (QCursor, QKeySequence, QWidget, qApp)
 
 from base.backend.ServerList import ServerList
 from base.backend.LumaConnectionWrapper import LumaConnectionWrapper
@@ -87,14 +86,7 @@ class SearchPluginEventFilter(QObject):
 
 
 class SearchPlugin(QWidget, Ui_SearchPlugin):
-    """The Luma Search plugin.
-
-    .. note::
-       This plugin implementation still uses the experimental
-       `base.backend.Connection` module. On deployment we might
-       consider switching back to the more safer
-       `base.bakend.LumaConnection` module.
-    """
+    """The Luma Search plugin."""
 
     __logger = logging.getLogger(__name__)
 
@@ -106,6 +98,7 @@ class SearchPlugin(QWidget, Ui_SearchPlugin):
         self.completer = None
         self.currentServer = None
         #self.connection = None
+        self.resultSetCount = 0
 
         self.serverListObject = ServerList()
         self.serverList = self.serverListObject.getTable()
@@ -164,8 +157,7 @@ class SearchPlugin(QWidget, Ui_SearchPlugin):
                     self.searchForm.serverBox.addItem(secureIcon, server.name)
 
     def __connectSlots(self):
-        """Connects signals and slots.
-        """
+        """Connects signals and slots."""
         self.right.tabCloseRequested[int].connect(self.onTabClose)
         # Filter Builder signals and slots
         self.filterBuilder.filterSaved.connect(self.loadFilterBookmarks)
@@ -343,6 +335,8 @@ class SearchPlugin(QWidget, Ui_SearchPlugin):
         # finished we act upon the LumaConnectionWrapper.searchFinished
         # signal in the onSearchFinished method
         args = dict(base=base, scope=scope, filter=filter, sizelimit=limit)
+        # Sets the cursor to waiting
+        self.right.setCursor(QCursor(Qt.WaitCursor))
         search = Search(self, self.currentServer, **args)
         search.resultsRetrieved.connect(self.onResultsRetrieved)
 
@@ -355,6 +349,8 @@ class SearchPlugin(QWidget, Ui_SearchPlugin):
         :param e: a exception object from the search operation.
         :type e: Exception
         """
+        # Change the cursor back to normal
+        self.right.setCursor(QCursor(Qt.ArrowCursor))
         if e is None:
             filter = result.pop()
             attributelist = self.__getAttributeList(filter)
@@ -362,7 +358,12 @@ class SearchPlugin(QWidget, Ui_SearchPlugin):
                                    attributes=attributelist,
                                    resultlist=result,
                                    parent=self.right)
-            index = self.right.addTab(resultTab, 'Search result')
+
+            self.resultSetCount += 1
+            tabText = '{0} {1}'.format(
+                self.str_SEARCH_RESULT, self.resultSetCount
+            )
+            index = self.right.addTab(resultTab, tabText)
             self.right.setCurrentIndex(index)
         else:
             msg = 'Error during search operation.\n{0}'.format(e)
@@ -393,6 +394,10 @@ class SearchPlugin(QWidget, Ui_SearchPlugin):
         self.searchForm.retranslateUi(self.searchForm)
         self.filterBuilder.retranslateUi(self.searchForm)
 
+        self.str_SEARCH_RESULT = qApp.translate(
+            "SearchPlugin", "Search Result"
+        )
+
         if all:
             self.retranslateUi(self)
             for tab in self.right.children():
@@ -405,6 +410,7 @@ class SearchPlugin(QWidget, Ui_SearchPlugin):
 class Search(QObject):
     """Object representing a search."""
 
+    #: Signal used to inform about returned search results
     resultsRetrieved = pyqtSignal(list, object)
     __logger = logging.getLogger(__name__)
 
@@ -462,8 +468,7 @@ class SearchPluginSettingsWidget(QWidget, Ui_SearchPluginSettings):
         self.loadSettings()
 
     def loadSettings(self):
-        """Load the possibly saved search plugin settings from diks.
-        """
+        """Load the possibly saved search plugin settings from diks."""
         settings = PluginSettings('search')
         autocomplete = settings.pluginValue('autocomplete', False).toBool()
         highlight = settings.pluginValue('highlighting', False).toBool()
