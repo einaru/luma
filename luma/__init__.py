@@ -7,7 +7,7 @@
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
+# the Free Software Foundation, either version 2 of the License, or
 # (at your option) any later version.
 #
 # This program is distributed in the hope that it will be useful,
@@ -31,7 +31,7 @@ def getRealLumaRootPath():
 sys.path.append(getRealLumaRootPath())
 
 ORGNAME = APPNAME = 'luma'
-VERSION = '3.0.6'
+VERSION = '3.0.6.3'
 DESCRIPTION = 'LDAP browser and administration utility'
 
 

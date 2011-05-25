@@ -48,7 +48,7 @@ A summary of the options supported by *luma* is included below.
 	Display a help message and exit.
 
 -v, --verbose
-	print more error, debug ang info messages to the console.
+	print more error, debug and info messages to the console.
 
 --clear-config
 	clear the config file before launching Luma.
@@ -58,6 +58,9 @@ A summary of the options supported by *luma* is included below.
 
 --clear-templates
 	clear the templates file before launching Luma.
+
+--clear-filters
+    clear the filters file before launching Luma.
 
 --clear-all
 	clear everything before launching Luma. This will result in the same as 
@@ -83,6 +86,9 @@ FILES
 
 ``~/.config/luma/templatelist.xml``
 	The templatelist created by the Template plugin.
+
+``-/.config/luma/filters``
+    The saved LDAP filters created by the Search plugin.
 
 BUGS
 ====

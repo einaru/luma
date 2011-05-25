@@ -1,4 +1,20 @@
 # -*- coding: utf-8 -*-
+#
+# Copyright (c) 2011
+#     Christian Forfang, <cforfang@gmail.com>
+#
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see http://www.gnu.org/licenses/
 
 import ldap
 import PyQt4
@@ -17,16 +33,16 @@ class EntryModel(QObject):
         QObject.__init__(self, parent)
         self.smartObject = smartObject
         self.entryTemplate = entryTemplate
-        
+
         # does the smartobject have a schema?
         self.VALID = False
 
         # boolean to indicate if the current ldap object has been modified
         self.EDITED = False
-        
+
         # is the current object a leaf of the ldap tree?
         self.ISLEAF = False
-        
+
         # do we create a completely new object?
         self.CREATE = False
 
@@ -36,7 +52,7 @@ class EntryModel(QObject):
         self.str_REFRESH = QtCore.QCoreApplication.translate("EntryModel", "Could not refresh entry.")
         self.str_CHECK_LEAF = QtCore.QCoreApplication.translate("EntryModel", "Could not check if object is a leaf in the ldap tree.")
         self.str_SAVE = QtCore.QCoreApplication.translate("EntryModel", "Could not save entry.")
-    
+
     """ The signal that viewers should connect on, called when the model changes
         The parameter is true when the smartobject is reloaded, and on init, which
         means that the smartobject might have gone invalid
@@ -63,57 +79,57 @@ class EntryModel(QObject):
             self.VALID = self.smartObject.isValid
 
             serverMeta = self.smartObject.getServerMeta()
-        
+
             lumaConnection = LumaConnectionWrapper(serverMeta, self)
-        
+
             bindSuccess, exceptionObject = lumaConnection.bindSync()
-            
+
             if not bindSuccess:
                 message = self.str_BIND
                 return (False, message, exceptionObject)
-            
+
             success, resultList, exceptionObject = lumaConnection.searchSync(self.smartObject.dn, ldap.SCOPE_ONELEVEL, filter="(objectClass=*)", attrList=None, attrsonly=1, sizelimit=1)
             lumaConnection.unbind()
-            
+
             # Our search succeeded. No errors
             if success:
-                
+
                 # There are no leaves below
                 if len(resultList) == 0:
                     self.ISLEAF = True
-                
+
                 # Leaves are below
                 else:
                     self.ISLEAF = False
-                    
+
             # Error during search request
             else:
                 self.ISLEAF = False
                 message = self.str_CHECK_LEAF
                 self.modelChangedSignal.emit(True)
                 return (False, message, exceptionObject)
-                
+
             self.CREATE = False
-            
+
         self.modelChangedSignal.emit(True)
         return (True, None, None)
 
 ###############################################################################
 
     def reloadModel(self):
-        """ 
-        Refreshes the LDAP data from server, 
+        """
+        Refreshes the LDAP data from server,
         """
         lumaConnection = LumaConnectionWrapper(self.smartObject.getServerMeta())
         bindSuccess, exceptionObject = lumaConnection.bindSync()
-        
+
         if not bindSuccess:
             message = self.str_BIND
             return (False, message, exceptionObject)
-        
+
         success, resultList, exceptionObject = lumaConnection.searchSync(self.smartObject.getDN(), ldap.SCOPE_BASE)
         lumaConnection.unbind()
-        
+
         if success and (len(resultList) > 0):
             self.smartObject = resultList[0]
             self.smartObject.checkIntegrity()
@@ -128,21 +144,21 @@ class EntryModel(QObject):
 ###############################################################################
 
     def saveModel(self):
-        """ 
+        """
         Save changes to the current object.
         """
-        
+
         lumaConnection = LumaConnectionWrapper(self.smartObject.getServerMeta())
         bindSuccess, exceptionObject = lumaConnection.bindSync()
-        
+
         if not bindSuccess:
             message = self.str_BIND
             return (False, message, exceptionObject)
-        
+
         if self.CREATE:
             success, exceptionObject = lumaConnection.addDataObject(self.smartObject)
             lumaConnection.unbind()
-            
+
             if success:
                 #self.CREATE = False
                 self.EDITED = False
@@ -169,17 +185,17 @@ class EntryModel(QObject):
         """
         Deletes the remote object that this model represents
         """
-        
+
         lumaConnection = LumaConnectionWrapper(self.smartObject.getServerMeta())
         bindSuccess, exceptionObject = lumaConnection.bindSync()
-        
+
         if not bindSuccess:
             message = self.str_BIND
             return (False, message, exceptionObject)
-        
+
         success, exceptionObject = lumaConnection.delete(self.smartObject.getDN())
         lumaConnection.unbind()
-        
+
         if success:
             #serverName = self.smartObject.getServerAlias()
             #dn = self.smartObject.getPrettyParentDN()
@@ -217,7 +233,7 @@ class EntryModel(QObject):
         self.smartObject.setDN(rdn)
         self.EDITED = True
         self.modelChangedSignal.emit(False)
-        
+
 ###############################################################################
 
     def addAttributeValue(self, attributeName, attributeValueList):

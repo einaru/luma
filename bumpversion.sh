@@ -35,7 +35,7 @@ ask_for_version()
 {
 	cat <<-EndAskForVersion
 	Current version of Luma:
-	  $(sed -n "/VERSION = '\(.*\)'/p" test.py)
+	  $(sed -n "/VERSION = '\(.*\)'/p" $version_file)
 	Bump Luma to version: 
 	EndAskForVersion
 

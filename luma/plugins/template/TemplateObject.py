@@ -1,9 +1,20 @@
-'''
-Created on 16. mars 2011
-
-@author: Simen
-'''
-
+# -*- coding: utf-8 -*-
+#
+# Copyright (c) 2011
+#     Simen Natvig, <simen.natvig@gmail.com>
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 2 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see http://www.gnu.org/licenses/
 from base.backend.SmartDataObject import SmartDataObject
 import copy
 
@@ -11,11 +22,11 @@ class TemplateObject(object):
     """
     This class represents a template with all its information.
     """
-    
+
     numFields = 5 # Models need to know
-    
+
     def __init__(self, name = "", server = "", description = ""):
-        
+
         # Holds the data about the server
         # Used for easy mapping to model-columns
 
@@ -27,11 +38,11 @@ class TemplateObject(object):
         [],     # 3 Objectclasses
         {},     # 4 Attributes
         ]
-    
+
     #Returns the entire list
     def getList(self):
         return self._dataHolder
-    
+
     #Given an index to the _dataHolder, sets the value
     def setIndexToValue(self, index, value):
         self._dataHolder[index] = value
@@ -39,13 +50,13 @@ class TemplateObject(object):
     def addObjectclass(self, objectclass):
         if not objectclass in self.objectclasses:
             self.objectclasses.append(objectclass)
-    
+
     def deleteObjectclass(self, objectclass = None, index = None):
         if objectclass:
             self.objectclasses.remove(objectclass)
         elif index != None:
             self.objectclasses.pop(index)
-            
+
     def objectclassIndex(self, objectclass):
         if objectclass in self.objectclasses:
             return self.objectclasses.index(objectclass)
@@ -61,13 +72,13 @@ class TemplateObject(object):
             self.attributes.pop(attributeName, None)
         elif index != None:
             self.attributes.pop(self.attributes.items()[index][0])
-        
+
     def setAttributeDefaultValue(self, value, attributeName = None, index = None):
         if attributeName:
             self.attributes[attributeName].defaultValue = value
         elif index != None:
             self.attributes.items()[index].defaultValue = value
-            
+
     def attributeIndex(self, attribute):
         return self.attributes.values().index(attribute)
 
@@ -78,17 +89,17 @@ class TemplateObject(object):
         """
         Create a data structure which can be used by python-ldap and return it.
         """
-    
+
         dataObject = {}
         dataObject['objectClass'] = copy.deepcopy(self.objectclasses)
-        
+
         for x in self.attributes.items():
             attributeObject = x[1]
             if attributeObject.defaultValue == None:
                 dataObject[attributeObject.attributeName] = [None]
             else:
                 dataObject[attributeObject.attributeName] = [attributeObject.defaultValue.encode("utf-8")]
-        
+
         smartObject = SmartDataObject((baseDN, dataObject), serverMeta)
 
         return smartObject
@@ -99,19 +110,19 @@ class TemplateObject(object):
     @property
     def templateName(self):
         return self._dataHolder[0]
-    
+
     @property
     def server(self):
         return self._dataHolder[1]
-    
+
     @property
     def description(self):
         return self._dataHolder[2]
-    
+
     @property
     def objectclasses(self):
         return self._dataHolder[3]
-    
+
     @property
     def attributes(self):
         return self._dataHolder[4]
@@ -119,29 +130,29 @@ class TemplateObject(object):
     @templateName.setter
     def templateName(self, name):
         self._dataHolder[0] = name
-    
+
     @server.setter
     def server(self, server):
         self._dataHolder[1] = server
-    
+
     @description.setter
     def description(self, description):
         self._dataHolder[2] = description
-    
-    @objectclasses.setter    
+
+    @objectclasses.setter
     def objectclasses(self, objectclasses):
         self._dataHolder[3] = objectclasses
-            
-    @attributes.setter   
+
+    @attributes.setter
     def attributes(self, attributes):
         self._dataHolder[4] = attributes
-        
-        
+
+
 
 
     def __repr__(self):
         finalString = []
-        
+
         finalString.append(unicode("Template name:"))
         finalString.append(unicode(self.templateName))
         finalString.append(unicode("\nServer:"))
@@ -153,10 +164,10 @@ class TemplateObject(object):
         finalString.append(unicode("\nAttributes:"))
         finalString.append(unicode(self.attributes))
         finalString.append(unicode("\n"))
-        
+
         return "".join(finalString)
-    
-    
+
+
 class AttributeObject(object):
     def __init__(self, name="", must=False, single=False, binary=False, defaultValue=None, customMust=False):
         self.attributeName = name
@@ -165,23 +176,23 @@ class AttributeObject(object):
         self.binary = binary
         self.defaultValue = defaultValue
         self.customMust = customMust
-        
+
     def getList(self):
         return [self.attributeName, self.must, self.single, self.binary, self.defaultValue, self.customMust]
-    
+
     def getDataObject(self, serverMeta, baseDN):
         dataObject = {}
         dataObject['objectClass'] = deepcopy(self.objectClasses)
-        
+
         for x in self.attributes.keys():
             attributeObject = self.attributes[x]
             if attributeObject.defaultValue == None:
                 dataObject[attributeObject.attributeName] = [None]
             else:
                 dataObject[attributeObject.attributeName] = [attributeObject.defaultValue.encode("utf-8")]
-        
+
         smartObject = SmartDataObject((baseDN, dataObject), serverMeta)
-        
+
         return smartObject
-    
+
 # vim: tabstop=4 expandtab shiftwidth=4 softtabstop=4
