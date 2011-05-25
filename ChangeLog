@@ -19,6 +19,16 @@ ChangeLog
 - Gzipping of Nroff manpages on UNIX and UNIX-like systems is now handled during
   installation.
 
+- Include the nthash patch, which was fixed in Luma 2.4 svn rev 841, but not 
+  included in the new codebase.
+
+| http://sourceforge.net/support/tracker.php?aid=2309281
+| http://bugs.debian.org/559078
+| http://luma.svn.sourceforge.net/viewvc/luma?view=rev&revision=841
+| https://launchpad.net/bugs/297148
+| http://launchpadlibrarian.net/19590144/luma_2.3-1.1ubuntu1.debdiff
+
+
 3.0.6-2 (2011-05-16)
 ====================
 

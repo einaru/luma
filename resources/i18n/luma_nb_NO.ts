@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.0" language="nb_NO">
+<!DOCTYPE TS><TS version="1.1" language="nb_NO">
 <context>
     <name>AboutCredits</name>
     <message>
@@ -8,64 +7,18 @@
         <source>Credits</source>
         <translation>Annerkjennelser</translation>
     </message>
-    <message utf8="true">
-        <location filename="luma/base/gui/design/AboutCreditsDesign.py" line="71"/>
-        <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans&apos;; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Wido Depping &amp;lt;&lt;a href=&quot;mailto:widod@users.sourceforge.net&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;widod@users.sourceforge.net&lt;/span&gt;&lt;/a&gt;&amp;gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Bjørn Ove Grøtan &amp;lt;&lt;a href=&quot;mailto:bgrotan@grotan.com&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;bgrotan@grotan.com&lt;/span&gt;&lt;/a&gt;&amp;gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Vegar Westerlund&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Johannes Harestad &amp;lt;&lt;a href=&quot;mailto:johannesharestad@gmail.com&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;johannesharestad@gmail.com&lt;/span&gt;&lt;/a&gt;&amp;gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Sondre Frisvold &amp;lt;&lt;a href=&quot;mailto:sondre.frisvold@c2i.net&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;sondre.frisvold@c2i.net&lt;/span&gt;&lt;/a&gt;&amp;gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Christian Forfang &amp;lt;&lt;a href=&quot;mailto:cforfang@gmail.com&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;cforfang@gmail.com&lt;/span&gt;&lt;/a&gt;&amp;gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Per Ove RIngdal &amp;lt;&lt;a href=&quot;mailto:peroveri@stud.ntnu.no&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;peroveri@stud.ntnu.no&lt;/span&gt;&lt;/a&gt;&amp;gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Einar Uvsløkk &amp;lt;&lt;a href=&quot;mailto:einaru@stud.ntnu.no&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;einar.uvslokk@gmail.com&lt;/span&gt;&lt;/a&gt;&amp;gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Simen Natvig &amp;lt;&lt;a href=&quot;mailto:simenna@stud.ntnu.no&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;simen.natvig@gmail.com&lt;/span&gt;&lt;/a&gt;&amp;gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation></translation>
-    </message>
     <message>
         <location filename="luma/base/gui/design/AboutCreditsDesign.py" line="84"/>
         <source>Developers</source>
         <translation>Utviklere</translation>
     </message>
-    <message utf8="true">
-        <location filename="luma/base/gui/design/AboutCreditsDesign.py" line="85"/>
-        <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans&apos;; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Norwegian translation&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Luma 2.4 : Bjørn Ove Grøtan &amp;lt;&lt;a href=&quot;mailto:bgrotan@grotan.com&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;bgrotan@grotan.com&lt;/span&gt;&lt;/a&gt;&amp;gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Luma 3.0 : Einar Uvsløkk &amp;lt;&lt;a href=&quot;mailto:einar.uvslokk@linux.com&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;einar.uvslokk@linux.com&lt;/span&gt;&lt;/a&gt;&amp;gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Portuguese translation&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Fernando Maciel Souto Maior&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Czech translation&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Jirka Jurek &amp;lt;&lt;a href=&quot;mailto:jiri.jurek@trinet.as&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;jiri.jurek@trinet.as&lt;/span&gt;&lt;/a&gt;&amp;gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Swedish translation&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Magnus Määttä&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Russian translation&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Alexander Novitsky&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;French translation&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Florens Daignière &amp;lt;&lt;a href=&quot;mailto:nextgens@freenetproject.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;nextgens@freenetproject.org&lt;/span&gt;&lt;/a&gt;&amp;gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;h4x0r translation&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Einar Uvsløkk &amp;lt;&lt;a href=&quot;mailto:einar.uvslokk@linux.com&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;einar.uvslokk@linux.com&lt;/span&gt;&lt;/a&gt;&amp;gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation></translation>
-    </message>
     <message>
-        <location filename="luma/base/gui/design/AboutCreditsDesign.py" line="110"/>
+        <location filename="luma/base/gui/design/AboutCreditsDesign.py" line="106"/>
         <source>Translators</source>
         <translation>Oversettere</translation>
     </message>
-    <message utf8="true">
-        <location filename="luma/base/gui/design/AboutCreditsDesign.py" line="111"/>
+    <message encoding="UTF-8">
+        <location filename="luma/base/gui/design/AboutCreditsDesign.py" line="107"/>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
@@ -97,14 +50,56 @@ p, li { white-space: pre-wrap; }
         <translation></translation>
     </message>
     <message>
-        <location filename="luma/base/gui/design/AboutCreditsDesign.py" line="139"/>
+        <location filename="luma/base/gui/design/AboutCreditsDesign.py" line="135"/>
         <source>Contributors</source>
         <translation>Bidragsytere</translation>
     </message>
     <message>
-        <location filename="luma/base/gui/design/AboutCreditsDesign.py" line="140"/>
+        <location filename="luma/base/gui/design/AboutCreditsDesign.py" line="136"/>
         <source>&amp;Close</source>
         <translation>&amp;Lukk</translation>
+    </message>
+    <message encoding="UTF-8">
+        <location filename="luma/base/gui/design/AboutCreditsDesign.py" line="71"/>
+        <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans&apos;; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Wido Depping &amp;lt;&lt;a href=&quot;mailto:widod@users.sourceforge.net&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;widod@users.sourceforge.net&lt;/span&gt;&lt;/a&gt;&amp;gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Bjørn Ove Grøtan&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Vegar Westerlund&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Johannes Harestad&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Sondre Frisvold&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Christian Forfang&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Per Ove RIngdal&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Einar Uvsløkk &amp;lt;&lt;a href=&quot;mailto:einaru@stud.ntnu.no&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;einar.uvslokk@gmail.com&lt;/span&gt;&lt;/a&gt;&amp;gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Simen Natvig &amp;lt;&lt;a href=&quot;mailto:simenna@stud.ntnu.no&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;simen.natvig@gmail.com&lt;/span&gt;&lt;/a&gt;&amp;gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message encoding="UTF-8">
+        <location filename="luma/base/gui/design/AboutCreditsDesign.py" line="85"/>
+        <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans&apos;; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Norwegian translation&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Bjørn Ove Grøtan &amp;lt;&lt;a href=&quot;mailto:bgrotan@grotan.com&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;bgrotan@grotan.com&lt;/span&gt;&lt;/a&gt;&amp;gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Portuguese translation&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Fernando Maciel Souto Maior&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Czech translation&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Jirka Jurek &amp;lt;&lt;a href=&quot;mailto:jiri.jurek@trinet.as&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;jiri.jurek@trinet.as&lt;/span&gt;&lt;/a&gt;&amp;gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Swedish translation&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Magnus Määttä&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Russian translation&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Alexander Novitsky&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;French translation&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Florens Daignière &amp;lt;&lt;a href=&quot;mailto:nextgens@freenetproject.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;nextgens@freenetproject.org&lt;/span&gt;&lt;/a&gt;&amp;gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -139,7 +134,7 @@ p, li { white-space: pre-wrap; }
         <source>LDAP management made easy</source>
         <translation>LDAP administrering gjort enkelt</translation>
     </message>
-    <message utf8="true">
+    <message encoding="UTF-8">
         <location filename="luma/base/gui/design/AboutDialogDesign.py" line="115"/>
         <source>Copyright © 2003–2005 Wido Depping</source>
         <translation>Opphavsrett © 2003–2005 Wido Depping</translation>
@@ -158,20 +153,20 @@ p, li { white-space: pre-wrap; }
         <translation>Lisens</translation>
     </message>
     <message>
+        <location filename="luma/base/gui/design/AboutLicenseDesign.py" line="52"/>
+        <source>&amp;Close</source>
+        <translation>&amp;Lukk</translation>
+    </message>
+    <message>
         <location filename="luma/base/gui/design/AboutLicenseDesign.py" line="45"/>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans&apos;; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Luma is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version. &lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Luma is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details. &lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;You should have received a copy of the GNU General Public License along with Luma; if not, write to the Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA, or visit &lt;a href=&quot;http://www.gnu.org/licenses/gpl-2.0.html&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;www.gnu.org/licenses/gpl-2.0&lt;/span&gt;&lt;/a&gt;.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="luma/base/gui/design/AboutLicenseDesign.py" line="52"/>
-        <source>&amp;Close</source>
-        <translation>&amp;Lukk</translation>
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Cantarell&apos;; font-size:11pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans&apos;; font-size:9pt;&quot;&gt;Luma is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version. &lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans&apos;; font-size:9pt;&quot;&gt;Luma is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details. &lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans&apos;; font-size:9pt;&quot;&gt;You should have received a copy of the GNU General Public License along with Luma. If not, see &lt;/span&gt;&lt;a href=&quot;http://www.gnu.org/licenses/&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans&apos;; font-size:9pt; text-decoration: underline; color:#0000ff;&quot;&gt;www.gnu.org/licenses/&lt;/span&gt;&lt;/a&gt;&lt;span style=&quot; font-family:&apos;Sans&apos;; font-size:9pt;&quot;&gt;.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -251,83 +246,6 @@ p, li { white-space: pre-wrap; }
     </message>
 </context>
 <context>
-    <name>AddAttributeWizardDesign</name>
-    <message>
-        <location filename="luma/plugins/browser_plugin/gui/AddAttributeWizardDesign.py" line="173"/>
-        <source>Add Attribute</source>
-        <translation>Legg til attributt</translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/gui/AddAttributeWizardDesign.py" line="174"/>
-        <source>Select Attribute</source>
-        <translation>Velg attributt</translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/gui/AddAttributeWizardDesign.py" line="176"/>
-        <source>&lt;p&gt;Please select an attribute you want to add to the current entry.&lt;/p&gt;
-&lt;p&gt;By default only attributes which are supported by the current 
-objectclasses are displayed. If you want to add an attribute which is 
-supported by other objectclasses, please enable this functionality below.
-&lt;/p&gt;</source>
-        <translation>&lt;p&gt;Vennligst velg et attributt som du ønsker å legge til gjeldende innslag.&lt;/p&gt;
-&lt;p&gt;Som standard vil bare attributter som støttes av gjeldende objektklasser 
-vises. Hvis du ønsker å legge til attributter som støttes av andre objektklasser,
-må du aktivere dette nedenfor.&lt;/p&gt;</translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/gui/AddAttributeWizardDesign.py" line="181"/>
-        <source>Attribute:</source>
-        <translation>Attributt:</translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/gui/AddAttributeWizardDesign.py" line="182"/>
-        <source>Use binary extension</source>
-        <translation>Bruk binær forlengelse</translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/gui/AddAttributeWizardDesign.py" line="183"/>
-        <source>Enable all attributes which are supported by the server.</source>
-        <translation>Aktiver alle attributter som er støttet av gjeldende tjener.</translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/gui/AddAttributeWizardDesign.py" line="184"/>
-        <source>Choose objectclass</source>
-        <translation>Velg objektklasse</translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/gui/AddAttributeWizardDesign.py" line="185"/>
-        <source>CL</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/gui/AddAttributeWizardDesign.py" line="186"/>
-        <source>&lt;p&gt;You have chosen to add an attribute which is not supported by the 
-objectclasses for the current entry.&lt;/p&gt;
-&lt;p&gt;Please select an objectclass which supports the new attribute. The 
-list on the right shows all attributes which must be added additionally with
-the selected objectclass.&lt;/p&gt;</source>
-        <translation>&lt;p&gt;Du har valgt å legge til et attributt som ikke er støttet av objektklassen til gjeldende innslag.&lt;/p&gt;
-&lt;p&gt;Vennligst velg en objektklasse som støtter det nye attributtet. Listen til høyre viser alle ytterligere 
-attributter som må legges til sammen valgte objektklasse.&lt;/p&gt;</translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/gui/AddAttributeWizardDesign.py" line="191"/>
-        <source>&lt;b&gt;Objectclass&lt;/b&gt;</source>
-        <translation>&lt;b&gt;Objektklasse&lt;/b&gt;</translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/gui/AddAttributeWizardDesign.py" line="192"/>
-        <source>&lt;b&gt;Additional attributes&lt;/b&gt;</source>
-        <translation>&lt;b&gt;Ytterligere attributter&lt;/b&gt;</translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/gui/AddAttributeWizardDesign.py" line="175"/>
-        <source>PI</source>
-        <comment>DO NOT TRANSLATE</comment>
-        <translation></translation>
-    </message>
-</context>
-<context>
     <name>AddObjectclassDialog</name>
     <message>
         <location filename="luma/plugins/template/gui/AddObjectclassDialogDesign.py" line="78"/>
@@ -399,386 +317,17 @@ attributter som må legges til sammen valgte objektklasse.&lt;/p&gt;</translatio
     </message>
 </context>
 <context>
-    <name>AdvancedObjectWidget</name>
-    <message>
-        <location filename="luma/plugins/browser_plugin/AdvancedObjectWidget.py" line="98"/>
-        <source>Reload</source>
-        <translation>Last på nytt</translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/AdvancedObjectWidget.py" line="110"/>
-        <source>Add attribute</source>
-        <translation>Legg til attributt</translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/AdvancedObjectWidget.py" line="106"/>
-        <source>Delete object</source>
-        <translation>Slett objekt</translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/AdvancedObjectWidget.py" line="112"/>
-        <source>Switch between views</source>
-        <translation>Bytt mellom visninger</translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/AdvancedObjectWidget.py" line="100"/>
-        <source>Save entry</source>
-        <translation>Lagre innslag</translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/AdvancedObjectWidget.py" line="102"/>
-        <source>Do you want to save the entry before continuing?</source>
-        <translation>Ønsker du å lagre innslaget før du fortsetter?</translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/AdvancedObjectWidget.py" line="104"/>
-        <source>Saving failed, continue anyway?</source>
-        <translation>Lagring mislyktes, fortsett likevell?</translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/AdvancedObjectWidget.py" line="108"/>
-        <source>Do you really want to delete the object?</source>
-        <translation>Ønsker du virkelig å slette objektet?</translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/AdvancedObjectWidget.py" line="116"/>
-        <source>Export binary attribute to file</source>
-        <translation>Eksporter binært attributt til fil</translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/AdvancedObjectWidget.py" line="114"/>
-        <source>Reason:</source>
-        <translation>Årsak:</translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/AdvancedObjectWidget.py" line="118"/>
-        <source>Could not export binary data to file.</source>
-        <translation>Eksportering av binær data til fil mislyktes.</translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/AdvancedObjectWidget.py" line="122"/>
-        <source>No templates available</source>
-        <translation>Ingen eksisterende maler</translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/AdvancedObjectWidget.py" line="124"/>
-        <source>Did&apos;nt receive a ldap-object, it might have been deleted</source>
-        <translation>Mottok ikke et ldap-objekt, det kan ha blitt slettet</translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/AdvancedObjectWidget.py" line="120"/>
-        <source>Please select another filename.</source>
-        <translation>Velg et annet filnavn.</translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/AdvancedObjectWidget.py" line="126"/>
-        <source>The ldap object is not valid
-Click Yes to view the object 
-No to view the errors 
-Ignore to view the object and ignore this message.</source>
-        <translation>LDAP objektet er ikke gyldig.
-Trykk Ja for p se objektet
-Nei for å vise feilmelding
-Ignorer for å vise objektet og ignorere denne meldingen.</translation>
-    </message>
-</context>
-<context>
-    <name>BinaryEditor</name>
-    <message>
-        <location filename="luma/plugins/browser_plugin/editors/BinaryEditor.py" line="48"/>
-        <source>Given file does not exist. Please check the filename.</source>
-        <translation>Valgt fil eksisterer ikke. Vennligst kontroler filnavnet.</translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/editors/BinaryEditor.py" line="51"/>
-        <source>Given file is a directory. Please check the filename.</source>
-        <translation>Valgt fil katalog eksisterer ikke. Vennligst kontroler filnavnet.</translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/editors/BinaryEditor.py" line="57"/>
-        <source>Can&apos;t open file. Please check file permissions.</source>
-        <translation>Kan ikke åpne fil. Vennligst kontroler filrettighetene.</translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/editors/BinaryEditor.py" line="65"/>
-        <source>Select file to change binary value</source>
-        <translation>Velg fil for å bytte binær verdi</translation>
-    </message>
-</context>
-<context>
-    <name>BinaryEditorDesign</name>
-    <message>
-        <location filename="luma/plugins/browser_plugin/gui/BinaryEditorDesign.py" line="91"/>
-        <source>Edit attribute</source>
-        <translation>Rediger attributt</translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/gui/BinaryEditorDesign.py" line="93"/>
-        <source>&amp;OK</source>
-        <translation>&amp;Ok</translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/gui/BinaryEditorDesign.py" line="94"/>
-        <source>Alt+O</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/gui/BinaryEditorDesign.py" line="95"/>
-        <source>&amp;Cancel</source>
-        <translation>&amp;Avbryt</translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/gui/BinaryEditorDesign.py" line="96"/>
-        <source>Alt+C</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/gui/BinaryEditorDesign.py" line="98"/>
-        <source>Please enter a file location from where to load binary data for the attribute &lt;b&gt;%1&lt;/b&gt;.</source>
-        <translation>Vennligst anngi en lokasjon for hvor binær data skal lastes for attributtet &lt;b&gt;%1&lt;/b&gt;.</translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/gui/BinaryEditorDesign.py" line="99"/>
-        <source>IL</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/gui/BinaryEditorDesign.py" line="100"/>
-        <source>Location:</source>
-        <translation>Lokasjon:</translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/gui/BinaryEditorDesign.py" line="92"/>
-        <source>IT</source>
-        <comment>DO NOT TRANSLATE</comment>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/gui/BinaryEditorDesign.py" line="97"/>
-        <source>F</source>
-        <comment>DO NOT TRANSLATE</comment>
-        <translation></translation>
-    </message>
-</context>
-<context>
-    <name>BrowserView</name>
-    <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="717"/>
-        <source>Delete</source>
-        <translation>Slett</translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="718"/>
-        <source>Really delete?</source>
-        <translation>Virkelig slette?</translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="710"/>
-        <source>Error</source>
-        <translation>Feil</translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="720"/>
-        <source>Deletion</source>
-        <translation>Sletting</translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="728"/>
-        <source>You need to restart the plugin for changes to take effect.</source>
-        <translation>Du må laste innstikkene på nytt for at forandringene skal tre i kraft.</translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="666"/>
-        <source>This is where entries are displayed when opened.</source>
-        <translation>Her vises innslag når de åpnes.</translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="668"/>
-        <source>Edit Server Settings</source>
-        <translation>Rediger Tjener innstillinger</translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="670"/>
-        <source>Open</source>
-        <translation>Åpne</translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="672"/>
-        <source>Reload</source>
-        <translation>Last på nytt</translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="674"/>
-        <source>Clear</source>
-        <translation>Tøm</translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="676"/>
-        <source>Set Filter</source>
-        <translation>Sett filter</translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="678"/>
-        <source>Set Limit</source>
-        <translation>Set grense</translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="680"/>
-        <source>Add</source>
-        <translation>Legg til</translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="684"/>
-        <source>Export</source>
-        <translation>Eksporter</translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="687"/>
-        <source>Entry</source>
-        <translation>Innslag</translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="689"/>
-        <source>Template</source>
-        <translation>Mal</translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="691"/>
-        <source>Item</source>
-        <translation>Element</translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="693"/>
-        <source>Subtree</source>
-        <translation>Subtre</translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="695"/>
-        <source>Subtree with parents</source>
-        <translation>Subtre med forelder</translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="697"/>
-        <source>Items</source>
-        <translation>Elementer</translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="699"/>
-        <source>Subtrees</source>
-        <translation>Subtrær</translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="701"/>
-        <source>Subtrees with parents</source>
-        <translation>Subtrær med foreldre</translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="704"/>
-        <source>Please wait</source>
-        <translation>Vennligst vent</translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="706"/>
-        <source>Please wait, fetching data...
-This message will automatically close when done...</source>
-        <translation>Vennligst vent, henter data...
-Denne meldingen vil automatisk lukkes når operasjonen er ferdig...</translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="711"/>
-        <source>On {0}:
-{1}</source>
-        <translation>På {0}:
-{1}</translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="714"/>
-        <source>See log for details</source>
-        <translation>Se loggen for detaljer</translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="723"/>
-        <source>It&apos;s possible some of the selected items
-might not have been deleted, while others were.
-Do you wan&apos;t to update the list to reflect the changes?</source>
-        <translation>Det er mulig at noen av de valgte elementene
-ikke har blitt slettet, mens andre har blitt det.
-Ønsker du å oppdatere listen for å se forandringene?</translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="397"/>
-        <source>Do you want to reload to show the changes?</source>
-        <translation>Ønsker du å laste om for å vise forandringene?</translation>
-    </message>
-</context>
-<context>
-    <name>DeleteDialog</name>
-    <message>
-        <location filename="luma/plugins/browser_plugin/gui/DeleteDialogDesign.py" line="88"/>
-        <source>Delete items</source>
-        <translation>Slett elementer</translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/gui/DeleteDialogDesign.py" line="89"/>
-        <source>The following entries will be deleted from the server. You can remove items from the list if you don&apos;t want them to be deleted. Press start to begin with deletion.</source>
-        <translation>Følgende elementer vil bli slettet fra tjeneren. Du kan fjerne elementer fra listen hvis du ikke ønsker at de skal slettes. Trykk &lt;b&gt;Slett&lt;/b&gt; for å starte slettingen.</translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/gui/DeleteDialogDesign.py" line="90"/>
-        <source>&amp;Delete</source>
-        <translation>&amp;Slett</translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/gui/DeleteDialogDesign.py" line="91"/>
-        <source>&amp;Cancel</source>
-        <translation>&amp;Avbryt</translation>
-    </message>
-</context>
-<context>
     <name>Dialog</name>
     <message>
-        <location filename="luma/plugins/browser_plugin/gui/NewEntryDialogDesign.py" line="45"/>
+        <location filename="luma/base/gui/design/NewEntryDialogDesign.py" line="28"/>
         <source>Dialog</source>
         <translation>Dialog</translation>
     </message>
 </context>
 <context>
-    <name>EntryModel</name>
-    <message>
-        <location filename="luma/plugins/browser_plugin/model/EntryModel.py" line="33"/>
-        <source>Could not bind to server.</source>
-        <translation>Kunne ikke binde til tjeneren.</translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/model/EntryModel.py" line="34"/>
-        <source>Could not delete entry.</source>
-        <translation>Kunne ikke slette innslag.</translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/model/EntryModel.py" line="35"/>
-        <source>Could not add entry.</source>
-        <translation>Kunne ikke legge til innslag.</translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/model/EntryModel.py" line="36"/>
-        <source>Could not refresh entry.</source>
-        <translation>Kunne ikke oppdatere innslag.</translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/model/EntryModel.py" line="37"/>
-        <source>Could not check if object is a leaf in the ldap tree.</source>
-        <translation>Kunne ikke sjekke om objektet er en løvnode i ldap-treet.</translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/model/EntryModel.py" line="38"/>
-        <source>Could not save entry.</source>
-        <translation>Kunne ikke lagre innslag.</translation>
-    </message>
-</context>
-<context>
     <name>ExportDialog</name>
     <message>
-        <location filename="luma/plugins/browser_plugin/gui/ExportDialogDesign.py" line="125"/>
+        <location filename="luma/base/gui/design/ExportDialogDesign.py" line="111"/>
         <source>Export items</source>
         <translation>Eksporter elementer</translation>
     </message>
@@ -788,44 +337,39 @@ ikke har blitt slettet, mens andre har blitt det.
         <translation>&lt;p&gt;Alle valgte elementer vil bli eksportert til ønsket format. Du kan fjerne elementer fra listen hvis du ikke ønsker at de skal eksporters. Trykk &lt;b&gt;Eksporter&lt;/b&gt; for å starte eksporteringen.&lt;/p&gt;</translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/gui/ExportDialogDesign.py" line="127"/>
+        <location filename="luma/base/gui/design/ExportDialogDesign.py" line="113"/>
         <source>Export format:</source>
         <translation>Eksporterings format:</translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/gui/ExportDialogDesign.py" line="128"/>
+        <location filename="luma/base/gui/design/ExportDialogDesign.py" line="114"/>
         <source>LDIF</source>
         <translation>LDIF</translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/gui/ExportDialogDesign.py" line="129"/>
+        <location filename="luma/base/gui/design/ExportDialogDesign.py" line="115"/>
         <source>DSML</source>
         <translation>DSML</translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/gui/ExportDialogDesign.py" line="130"/>
+        <location filename="luma/base/gui/design/ExportDialogDesign.py" line="116"/>
         <source>Output file:</source>
         <translation>Eksporter til:</translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/gui/ExportDialogDesign.py" line="131"/>
+        <location filename="luma/base/gui/design/ExportDialogDesign.py" line="117"/>
         <source>...</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/gui/ExportDialogDesign.py" line="132"/>
+        <location filename="luma/base/gui/design/ExportDialogDesign.py" line="118"/>
         <source>&amp;Export</source>
         <translation>&amp;Eksporter</translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/gui/ExportDialogDesign.py" line="133"/>
+        <location filename="luma/base/gui/design/ExportDialogDesign.py" line="119"/>
         <source>&amp;Cancel</source>
         <translation>&amp;Avbryt</translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/gui/ExportDialogDesign.py" line="126"/>
-        <source>&lt;p&gt;All checked items will be exported to the format of your choice. You can uncheck items from the list if you don&apos;t want them to be exported. Click &lt;span style=&quot; font-weight:600;&quot;&gt;Export&lt;/span&gt; to start exporting.&lt;/p&gt;</source>
-        <translation>&lt;p&gt;Alle valgte elementer vil bli eksportert til ønsket format. Du kan fjerne elementer fra listen hvis du ikke ønsker at de skal eksporters. Trykk &lt;b&gt;Eksporter&lt;/b&gt; for å starte eksporteringen.&lt;/p&gt;</translation>
     </message>
 </context>
 <context>
@@ -932,75 +476,6 @@ ikke har blitt slettet, mens andre har blitt det.
     </message>
 </context>
 <context>
-    <name>LDAPErrorItem</name>
-    <message>
-        <location filename="luma/plugins/browser_plugin/item/LDAPErrorItem.py" line="24"/>
-        <source>There was an error receiving this item or it&apos;s parent. See the attached error-message and/or the log for details.</source>
-        <translation>En feil oppstod ved mottakelsen av dette elementet eller dets forelder. Se medfølgende feil melding og/eller loggen for detaljer.</translation>
-    </message>
-</context>
-<context>
-    <name>LDAPTreeItem</name>
-    <message>
-        <location filename="luma/plugins/browser_plugin/item/LDAPTreeItem.py" line="57"/>
-        <source>Fetching items...</source>
-        <translation>Henter elementer...</translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/item/LDAPTreeItem.py" line="59"/>
-        <source>Couldn&apos;t fetch list of children.</source>
-        <translation>Kunne ikke hente listen med barn.</translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/item/LDAPTreeItem.py" line="61"/>
-        <source>This item has both a filter and limit applied.</source>
-        <translation>Dette elementet har både et filter og en grense satt.</translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/item/LDAPTreeItem.py" line="63"/>
-        <source>This item have a filter applied.</source>
-        <translation>The elementet har et filter satt.</translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/item/LDAPTreeItem.py" line="65"/>
-        <source>This item have a limit applied.</source>
-        <translation>The elementet har en grense satt.</translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/item/LDAPTreeItem.py" line="109"/>
-        <source>Limit</source>
-        <translation>Grense</translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/item/LDAPTreeItem.py" line="109"/>
-        <source>Enter the limit (0 = none):</source>
-        <translation>Anngi en grense (0 = ingen):</translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/item/LDAPTreeItem.py" line="118"/>
-        <source>Filter</source>
-        <translation>Filter</translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/item/LDAPTreeItem.py" line="118"/>
-        <source>Enter the filter (with parentheses -- none for default):</source>
-        <translation>Anngi filteret (med paranteser, none for standard):</translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/item/LDAPTreeItem.py" line="134"/>
-        <source>Could not bind to server.</source>
-        <translation>Kunne ikke binde til tjeneren.</translation>
-    </message>
-</context>
-<context>
-    <name>LDAPTreeItemModel</name>
-    <message>
-        <location filename="luma/plugins/browser_plugin/model/LDAPTreeItemModel.py" line="189"/>
-        <source>No servers defined</source>
-        <translation>Ingen tjenere er definert</translation>
-    </message>
-</context>
-<context>
     <name>LoggerWidget</name>
     <message>
         <location filename="luma/base/gui/design/LoggerWidgetDesign.py" line="63"/>
@@ -1036,37 +511,37 @@ ikke har blitt slettet, mens andre har blitt det.
 <context>
     <name>MainWindow</name>
     <message>
-        <location filename="luma/base/gui/MainWindow.py" line="153"/>
+        <location filename="luma/base/gui/MainWindow.py" line="154"/>
         <source>Plugintoolbar</source>
         <translation>Innstikksverktøyslinje</translation>
     </message>
     <message>
-        <location filename="luma/base/gui/MainWindow.py" line="164"/>
+        <location filename="luma/base/gui/MainWindow.py" line="167"/>
         <source>Logger</source>
         <translation>Logger</translation>
     </message>
     <message>
-        <location filename="luma/base/gui/MainWindow.py" line="378"/>
+        <location filename="luma/base/gui/MainWindow.py" line="377"/>
         <source>You may need to restart plugins for changes to take effect.</source>
         <translation>Du må starte innstikkene på nytt for at forandringene skal tre i kraft.</translation>
     </message>
     <message>
-        <location filename="luma/base/gui/MainWindow.py" line="499"/>
+        <location filename="luma/base/gui/MainWindow.py" line="510"/>
         <source>Welcome</source>
         <translation>Velkommen</translation>
     </message>
     <message>
-        <location filename="luma/base/gui/MainWindow.py" line="510"/>
+        <location filename="luma/base/gui/MainWindow.py" line="521"/>
         <source>Plugins</source>
         <translation>Innstikk</translation>
     </message>
     <message>
-        <location filename="luma/base/gui/MainWindow.py" line="659"/>
+        <location filename="luma/base/gui/MainWindow.py" line="663"/>
         <source>Available plugins</source>
         <translation>Tilgjengelige innstikk</translation>
     </message>
     <message>
-        <location filename="luma/base/gui/MainWindow.py" line="660"/>
+        <location filename="luma/base/gui/MainWindow.py" line="665"/>
         <source>Choose plugin</source>
         <translation>Velg innstikk</translation>
     </message>
@@ -1151,22 +626,22 @@ ikke har blitt slettet, mens andre har blitt det.
         <translation></translation>
     </message>
     <message>
-        <location filename="luma/base/gui/MainWindow.py" line="395"/>
+        <location filename="luma/base/gui/MainWindow.py" line="394"/>
         <source>Select server</source>
         <translation>Velg tjener</translation>
     </message>
     <message>
-        <location filename="luma/base/gui/MainWindow.py" line="395"/>
+        <location filename="luma/base/gui/MainWindow.py" line="394"/>
         <source>Server:</source>
         <translation>Tjener:</translation>
     </message>
     <message>
-        <location filename="luma/base/gui/MainWindow.py" line="400"/>
+        <location filename="luma/base/gui/MainWindow.py" line="405"/>
         <source>Temporary password</source>
         <translation>Midlertidig passord</translation>
     </message>
     <message>
-        <location filename="luma/base/gui/MainWindow.py" line="400"/>
+        <location filename="luma/base/gui/MainWindow.py" line="405"/>
         <source>Enter password:</source>
         <translation>Anngi passord:</translation>
     </message>
@@ -1232,147 +707,6 @@ ikke har blitt slettet, mens andre har blitt det.
         <location filename="luma/base/gui/design/WidgetPlusOkCancelDialog.py" line="41"/>
         <source>Add new entry</source>
         <translation>Legg til nytt innslag</translation>
-    </message>
-</context>
-<context>
-    <name>PasswordEditor</name>
-    <message>
-        <location filename="luma/plugins/browser_plugin/editors/PasswordEditor.py" line="109"/>
-        <source>Passwords match</source>
-        <translation>Passord samsvarer</translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/editors/PasswordEditor.py" line="114"/>
-        <source>Passwords do not match</source>
-        <translation>Passord samsvarer ikke</translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/editors/PasswordEditor.py" line="101"/>
-        <source>Non-ascii character</source>
-        <translation>Ikke-ascii tegn</translation>
-    </message>
-</context>
-<context>
-    <name>PasswordEditorDesign</name>
-    <message>
-        <location filename="luma/plugins/browser_plugin/gui/PasswordEditorDesign.py" line="124"/>
-        <source>New password</source>
-        <translation>Nytt passord</translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/gui/PasswordEditorDesign.py" line="127"/>
-        <source>&amp;OK</source>
-        <translation>&amp;Ok</translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/gui/PasswordEditorDesign.py" line="128"/>
-        <source>&amp;Cancel</source>
-        <translation>&amp;Avbryt</translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/gui/PasswordEditorDesign.py" line="129"/>
-        <source>Strength:</source>
-        <translation>Styrke:</translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/gui/PasswordEditorDesign.py" line="130"/>
-        <source>Hash algorithm:</source>
-        <translation>Hash algoritme:</translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/gui/PasswordEditorDesign.py" line="131"/>
-        <source>Password:</source>
-        <translation>Passord:</translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/gui/PasswordEditorDesign.py" line="132"/>
-        <source>Verify:</source>
-        <translation>Verifiser:</translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/gui/PasswordEditorDesign.py" line="133"/>
-        <source>Passwords do not match</source>
-        <translation>Passord samsvarer ikke</translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/gui/PasswordEditorDesign.py" line="134"/>
-        <source>&lt;b&gt;Please enter a new password.&lt;/b&gt;</source>
-        <translation>&lt;b&gt;Vennligst velg et nytt passord.&lt;/b&gt;</translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/gui/PasswordEditorDesign.py" line="135"/>
-        <source>PW</source>
-        <comment>DO NOT TRANSLATE</comment>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/gui/PasswordEditorDesign.py" line="125"/>
-        <source>Ascii characters</source>
-        <translation>Ascii tegn</translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/gui/PasswordEditorDesign.py" line="126"/>
-        <source>Hidden string</source>
-        <translation>Skjult streng</translation>
-    </message>
-</context>
-<context>
-    <name>RdnEditorDesign</name>
-    <message>
-        <location filename="luma/plugins/browser_plugin/gui/RdnEditorDesign.py" line="99"/>
-        <source>Edit DN</source>
-        <translation>Rediger DN</translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/gui/RdnEditorDesign.py" line="102"/>
-        <source>&amp;OK</source>
-        <translation>&amp;Ok</translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/gui/RdnEditorDesign.py" line="103"/>
-        <source>Alt+O</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/gui/RdnEditorDesign.py" line="104"/>
-        <source>&amp;Cancel</source>
-        <translation>&amp;Avbryt</translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/gui/RdnEditorDesign.py" line="105"/>
-        <source>Alt+C</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/gui/RdnEditorDesign.py" line="106"/>
-        <source>Value:</source>
-        <translation>Verdi:</translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/gui/RdnEditorDesign.py" line="107"/>
-        <source>DN:</source>
-        <translation>DN:</translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/gui/RdnEditorDesign.py" line="108"/>
-        <source>Please choose an attribute and enter a value for it. These values will be part of distinguished name for the new object.</source>
-        <translation>Vennligst velg et attributt og en verdi. Disse verdiene vil være en del av det distinkte navnet til det nye objektet.</translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/gui/RdnEditorDesign.py" line="109"/>
-        <source>Attribute:</source>
-        <translation>Attributt:</translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/gui/RdnEditorDesign.py" line="100"/>
-        <source>IT</source>
-        <comment>DO NOT TRANSLATE</comment>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/gui/RdnEditorDesign.py" line="101"/>
-        <source>Add attribute</source>
-        <translation>Legg til attributt</translation>
     </message>
 </context>
 <context>
@@ -1492,12 +826,12 @@ ikke har blitt slettet, mens andre har blitt det.
 <context>
     <name>SearchPlugin</name>
     <message>
-        <location filename="luma/plugins/search/Search.py" line="395"/>
+        <location filename="luma/plugins/search/Search.py" line="390"/>
         <source>Search Form</source>
         <translation>Søkeform</translation>
     </message>
     <message>
-        <location filename="luma/plugins/search/Search.py" line="397"/>
+        <location filename="luma/plugins/search/Search.py" line="392"/>
         <source>Filter Builder</source>
         <translation>Filterbygger</translation>
     </message>
@@ -1505,6 +839,11 @@ ikke har blitt slettet, mens andre har blitt det.
         <location filename="luma/plugins/search/gui/SearchPluginDesign.py" line="54"/>
         <source>Search</source>
         <translation>Søk</translation>
+    </message>
+    <message>
+        <location filename="luma/plugins/search/Search.py" line="397"/>
+        <source>Search Result</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1569,74 +908,74 @@ ikke har blitt slettet, mens andre har blitt det.
         <translation>Du har valgt å bruke SSL, men med en annen port enn 636. Ønsker du å bytte port automatisk?</translation>
     </message>
     <message>
-        <location filename="luma/base/gui/ServerDialog.py" line="226"/>
+        <location filename="luma/base/gui/ServerDialog.py" line="232"/>
         <source>Add server</source>
         <translation>Legg til tjener</translation>
     </message>
     <message>
-        <location filename="luma/base/gui/ServerDialog.py" line="226"/>
+        <location filename="luma/base/gui/ServerDialog.py" line="232"/>
         <source>Name:</source>
         <translation>Navn:</translation>
     </message>
     <message>
-        <location filename="luma/base/gui/ServerDialog.py" line="229"/>
+        <location filename="luma/base/gui/ServerDialog.py" line="235"/>
         <source>Error</source>
         <translation>Feil</translation>
     </message>
     <message>
-        <location filename="luma/base/gui/ServerDialog.py" line="229"/>
+        <location filename="luma/base/gui/ServerDialog.py" line="235"/>
         <source>Invalid name or already used.</source>
         <translation>Ugyldig navn eller allerede i bruk.</translation>
     </message>
     <message>
-        <location filename="luma/base/gui/ServerDialog.py" line="253"/>
+        <location filename="luma/base/gui/ServerDialog.py" line="259"/>
         <source>Delete</source>
         <translation>Slett</translation>
     </message>
     <message>
-        <location filename="luma/base/gui/ServerDialog.py" line="253"/>
+        <location filename="luma/base/gui/ServerDialog.py" line="259"/>
         <source>Are you sure?</source>
         <translation>Er du sikker?</translation>
     </message>
     <message>
-        <location filename="luma/base/gui/ServerDialog.py" line="297"/>
+        <location filename="luma/base/gui/ServerDialog.py" line="303"/>
         <source>Exit?</source>
         <translation>Avslutt?</translation>
     </message>
     <message>
-        <location filename="luma/base/gui/ServerDialog.py" line="297"/>
+        <location filename="luma/base/gui/ServerDialog.py" line="303"/>
         <source>Are you sure you want to exit the server editor?
  Any unsaved changes will be lost!</source>
         <translation>Er du sikker på at du vil avslutte tjenerdialogen? Ulagrede endringer vil gå tapt!</translation>
     </message>
     <message>
-        <location filename="luma/base/gui/ServerDialog.py" line="319"/>
+        <location filename="luma/base/gui/ServerDialog.py" line="325"/>
         <source>BaseDNs not defined</source>
         <translation>Base DN er ikke definert</translation>
     </message>
     <message>
-        <location filename="luma/base/gui/ServerDialog.py" line="319"/>
+        <location filename="luma/base/gui/ServerDialog.py" line="325"/>
         <source>One or more server(s) are setup to use custom base DNs without specifying any.
 Do you still want to save?</source>
         <translation>En er flere tjenere er satt opp til å bruke egendefinert base DN uten å spesifisere noen. Ønsker du likevell å lagre?</translation>
     </message>
     <message>
-        <location filename="luma/base/gui/ServerDialog.py" line="340"/>
+        <location filename="luma/base/gui/ServerDialog.py" line="346"/>
         <source>Select certificate file</source>
         <translation>Velg sertifikatfil</translation>
     </message>
     <message>
-        <location filename="luma/base/gui/ServerDialog.py" line="349"/>
+        <location filename="luma/base/gui/ServerDialog.py" line="355"/>
         <source>Select certificate keyfile</source>
         <translation>Velg sertifikatnøkkelfil</translation>
     </message>
     <message>
-        <location filename="luma/base/gui/ServerDialog.py" line="384"/>
+        <location filename="luma/base/gui/ServerDialog.py" line="390"/>
         <source>Bind to {0} successful!</source>
         <translation>Binding til {0} suksessfult!</translation>
     </message>
     <message>
-        <location filename="luma/base/gui/ServerDialog.py" line="388"/>
+        <location filename="luma/base/gui/ServerDialog.py" line="394"/>
         <source>Bind to {0} failed:
 {1}
 
@@ -1647,10 +986,21 @@ Do you still want to save?</source>
 (Du trenger ikke å spesifisere passord her -- du vil bli forespurt når det trengs.)</translation>
     </message>
     <message>
-        <location filename="luma/base/gui/ServerDialog.py" line="391"/>
+        <location filename="luma/base/gui/ServerDialog.py" line="397"/>
         <source>Bind to {0} failed:
 {1}</source>
         <translation>Binding til {0} feilet: {1}</translation>
+    </message>
+    <message>
+        <location filename="luma/base/gui/ServerDialog.py" line="177"/>
+        <source>Unencrypted</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="luma/base/gui/ServerDialog.py" line="177"/>
+        <source>You have choosen to use unencryped LDAP but with a port other than 389.
+ Do you want this automatically changed?</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1925,50 +1275,6 @@ Do you still want to save?</source>
     </message>
 </context>
 <context>
-    <name>StandardEditorDesign</name>
-    <message>
-        <location filename="luma/plugins/browser_plugin/gui/StandardEditorDesign.py" line="84"/>
-        <source>Edit attribute</source>
-        <translation>Rediger attributt</translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/gui/StandardEditorDesign.py" line="86"/>
-        <source>Please enter a new value for the attribute &lt;b&gt;%1&lt;/b&gt;.</source>
-        <translation>Vennligst anngi en ny vredi for attributt &lt;b&gt;%1&lt;/b&gt;.</translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/gui/StandardEditorDesign.py" line="87"/>
-        <source>&amp;OK</source>
-        <translation>&amp;Ok</translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/gui/StandardEditorDesign.py" line="88"/>
-        <source>Alt+O</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/gui/StandardEditorDesign.py" line="89"/>
-        <source>&amp;Cancel</source>
-        <translation>&amp;Avbryt</translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/gui/StandardEditorDesign.py" line="90"/>
-        <source>Alt+C</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/gui/StandardEditorDesign.py" line="91"/>
-        <source>Value:</source>
-        <translation>Verdi:</translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/gui/StandardEditorDesign.py" line="85"/>
-        <source>IT</source>
-        <comment>DO NOT TRANSLATE</comment>
-        <translation></translation>
-    </message>
-</context>
-<context>
     <name>TemplateWidget</name>
     <message>
         <location filename="luma/plugins/template/gui/TemplateWidgetDesign.py" line="209"/>
@@ -1976,7 +1282,7 @@ Do you still want to save?</source>
         <translation>Slett</translation>
     </message>
     <message>
-        <location filename="luma/plugins/template/gui/TemplateWidget.py" line="260"/>
+        <location filename="luma/plugins/template/gui/TemplateWidget.py" line="271"/>
         <source>Are you sure you want to delete the selected attributes?</source>
         <translation>Er du sikker på at du vil slette det valgte attributtet?</translation>
     </message>
@@ -2126,10 +1432,10 @@ functionality, through a number of plugins.&lt;/p&gt;
 
 &lt;p&gt;The first thing you need to do is to edit the &lt;em&gt;serverlist&lt;/em&gt;: Select
 (&lt;b&gt;Edit&lt;/b&gt; &amp;rarr; &lt;b&gt;Server List&lt;/b&gt;) from the menubar or use the keyboard
-shortcut (&lt;b&gt;CTRL&lt;/b&gt;+&lt;b&gt;SHIFT&lt;/b&gt;+&lt;b&gt;S)&lt;/b&gt;.&lt;/p&gt;
+shortcut (&lt;b&gt;CTRL&lt;/b&gt;+&lt;b&gt;SHIFT&lt;/b&gt;+&lt;b&gt;S&lt;/b&gt; on Linux/Windwos, &lt;b&gt;CMD&lt;/b&gt;+&lt;b&gt;SHIFT&lt;/b&gt;+&lt;b&gt;S&lt;/b&gt; on Mac Os X).&lt;/p&gt;
 
 &lt;p&gt;After you have added one or more servers, you must activate the plugins you
-want to use: Select (&lt;b&gt;Edit&lt;/b&gt; &amp;rarr; &lt;b&gt;Settings&lt;/b&gt;)from the
+want to use: Select (&lt;b&gt;Edit&lt;/b&gt; &amp;rarr; &lt;b&gt;Settings&lt;/b&gt;) from the
 menubar to open the &lt;em&gt;Settings dialog&lt;/em&gt;, and select the &lt;b&gt;Plugins&lt;/b&gt; tab.&lt;/p&gt;
 
 &lt;p&gt;If you need additional help on how to use the application and/or a spesific
@@ -2145,7 +1451,7 @@ great Luma plugin, please feel free to
 
 &lt;p&gt;Application errors and various debug information can be seen in the Logger
 Window: Select (&lt;b&gt;View&lt;/b&gt; &amp;rarr; &lt;b&gt;Logger Window&lt;/b&gt;) from the menubar or
-use the keyboard shortcut (&lt;b&gt;CTRL&lt;/b&gt;+&lt;b&gt;L&lt;/b&gt;).&lt;/p&gt;
+use the keyboard shortcut (&lt;b&gt;CTRL&lt;/b&gt;+&lt;b&gt;L&lt;/b&gt; on Linux/Windows, &lt;b&gt;CMD&lt;/b&gt;+&lt;b&gt;L&lt;/b&gt; on Mac Os X).&lt;/p&gt;
 
 &lt;p&gt;If you encounter errors or bugs in the application, please take your time
 to fill in a bugreport on our
@@ -2162,72 +1468,7 @@ to fill in a bugreport on our
 &lt;/body&gt;
 &lt;/html&gt;
 </source>
-        <translation>&lt;html&gt;
-&lt;head&gt;
-&lt;style type=&quot;text/css&quot;&gt;
-body { padding: 5px; margin: 5px; font-family: sans-serif; }
-h1, h2 { color: #61a7e0; }
-a { color: #306ebd; }
-p { font-size: 10pt; }
-&lt;/style&gt;
-&lt;/head&gt;
-&lt;body&gt;
-&lt;h1&gt;Velkommen til Luma&lt;/h1&gt;
-
-&lt;p&gt;&lt;strong&gt;&lt;em&gt;Luma er LDAP administrering gjort enkelt&lt;/em&gt;&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;em&gt;Luma&lt;/em&gt; tilbyr nyttig LDAP administrerings funksjonalitet, gjennom en
-rekke innstikk.&lt;/p&gt;
-
-&lt;h2&gt;Komme i gang&lt;/h2&gt;
-
-&lt;p&gt;Det første du må gjøre er å redigere &lt;em&gt;tjenerlisten&lt;/em&gt;: Velg 
-(&lt;b&gt;Rediger&lt;/b&gt; &amp;rarr; &lt;b&gt;Tjenerlisten&lt;/b&gt;) fra menylinjen eller bruk
-tastatur snarveien (&lt;b&gt;CTRL&lt;/b&gt;+&lt;b&gt;SHIFT&lt;/b&gt;+&lt;b&gt;S&lt;/b&gt;).&lt;/p&gt;
-
-&lt;p&gt;Etter at du har lagt til en eller flere tjenere, må du aktivere innstikkene
-du ønsker å bruke: Velg (&lt;b&gt;Rediger&lt;/b&gt; &amp;rarr; &lt;b&gt;Instillinger&lt;/b&gt;) fra
-menylinjen for å åpne &lt;em&gt;Instillinger dialogen&lt;/em&gt;, og velg &lt;b&gt;Innstikk&lt;/b&gt; fanen.&lt;/p&gt;
-
-&lt;p&gt;Hvis du trenger ytterligere hjelp anngående bruk av applikasjonen og/eller
-et spesifikt innstikk, vennligst referer til 
-&lt;a href=&quot;http://folk.ntnu.no/einaru/luma/doc/userguide.html&quot;&gt;Bruker guiden&lt;/a&gt;
-online.&lt;/p&gt;
-
-&lt;p&gt;Hvis du ikke finner et innstikk som oppfyller dine krav eller du har gode 
-ideer til nye &lt;em&gt;Luma&lt;/em&gt; innstikk er du velkommen til å
-&lt;a href=&quot;http://luma.sf.net/&quot;&gt;kontakte oss&lt;/a&gt; eller til og med 
-&lt;a href=&quot;http://folk.ntnu.no/einaru/luma/doc/HACKING.html&quot;&gt;bidra med en selv&lt;/a&gt;.&lt;/p&gt;
-
-&lt;h2&gt;Problemer og bugs&lt;/h2&gt;
-
-&lt;p&gt;Applikasjons feil og foskjellige feil meldinger kan ses i Loggvinduet: Velg
-(&lt;b&gt;Vis&lt;/b&gt; &amp;rarr; &lt;b&gt;Loggvindu&lt;/b&gt;) fra menylinjen eller bruk tastatur
-snarveien (&lt;b&gt;CTRL&lt;/b&gt;+&lt;b&gt;L&lt;/b&gt;).&lt;/p&gt;
-
-&lt;p&gt;Hvis du opplever feil og bugs i applikasjonen, vennligst send inn en
-bugrapport til vår
-&lt;a href=&quot;http://sourceforge.net/tracker/?group_id=89105&quot;&gt;bugtracker&lt;/a&gt;.&lt;/p&gt;
-
-&lt;h2&gt;Kontakt&lt;/h2&gt;
-
-&lt;p&gt;Du finner kontakt informasjon i Om Luma dialogen: Velg (&lt;b&gt;Hjelp&lt;/b&gt; &amp;rarr;
-&lt;b&gt;Om Luma&lt;/b&gt;) fra menylinjen eller bruk tastatur snarveien (&lt;b&gt;F12&lt;/b&gt;), og
-på &lt;a href=&quot;http://luma.sf.net/&quot;&gt;Luma hjemmesiden&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p style=&quot;font-size: 8pt; color: #306ebd; padding-top: 25px&quot;&gt;
-&lt;em&gt;Copyright &amp;copy; 2003 - 2011 Wido Depping and the Luma devel team&lt;/em&gt;&lt;/p&gt;
-&lt;/body&gt;
-&lt;/html&gt;
-</translation>
-    </message>
-</context>
-<context>
-    <name>pluginListWidget</name>
-    <message>
-        <location filename="luma/base/util/gui/PluginListWidgetDesign.py" line="32"/>
-        <source>Form</source>
-        <translation>Form</translation>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 </TS>
