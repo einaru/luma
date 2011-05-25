@@ -1,19 +1,30 @@
-'''
-Created on 16. mars 2011
-
-@author: Simen
-'''
-
+# -*- coding: utf-8 -*-
+#
+# Copyright (c) 2011
+#     Simen Natvig, <simen.natvig@gmail.com>
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 2 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see http://www.gnu.org/licenses/
 from PyQt4.QtCore import QAbstractTableModel, Qt, QVariant, QModelIndex
 from PyQt4.QtGui import QIcon
 from ..TemplateObject import AttributeObject
 
 class AttributeTableModel(QAbstractTableModel):
-    
+
     def __init__(self, parent = None):
         QAbstractTableModel.__init__(self, parent)
         self.attributes = {}
-        
+
     def setTemplateObject(self, templateObject = None):
         self.beginResetModel()
         if templateObject:
@@ -55,7 +66,7 @@ class AttributeTableModel(QAbstractTableModel):
         if index.row() < len(self.attributes) and index.column() == 0:
             return self.attributes.items()[index.row()][1]
         return None
-    
+
     def getIndexRow(self, attribute):
         return self.attributes.values().index(attribute)
 
@@ -65,19 +76,19 @@ class AttributeTableModel(QAbstractTableModel):
         """
         if index.column() == 1:
             if not self.attributes.items()[index.row()][1].must:
-                self.attributes.items()[index.row()][1].customMust = not self.attributes.items()[index.row()][1].customMust  
+                self.attributes.items()[index.row()][1].customMust = not self.attributes.items()[index.row()][1].customMust
         if index.column() == 4:
             self.attributes.items()[index.row()][1].defaultValue = value.toString()
             return True
         return False
-    
+
     def rowCount(self,parent = QModelIndex()):
         #Number of objectclass
         return len(self.attributes)
-    
+
     def columnCount(self,parent = QModelIndex()):
         return 5
-    
+
     def headerData(self, section, orientation, role):
         if role == Qt.DisplayRole:
             if orientation == Qt.Horizontal:
@@ -105,10 +116,10 @@ class AttributeTableModel(QAbstractTableModel):
         """
         if not index.isValid():
             return QVariant()
-        
+
         row = index.row()
         column = index.column()
-        
+
         if role == Qt.DecorationRole:
             if column == 1 or column == 2 or column == 3:
                 if self.attributes.items()[row][1].getList()[column]:
@@ -117,13 +128,13 @@ class AttributeTableModel(QAbstractTableModel):
                     return QIcon(':/icons/16/dialog-ok')
                 else:
                     return QIcon(':/icons/16/dialog-close')
-        
+
         elif (role == Qt.DisplayRole or role == Qt.EditRole):
             if column == 0 or column == 4:
                 return self.attributes.items()[row][1].getList()[column]
         else:
             return QVariant()
-            
+
     def index(self, row, column, parent):
         if row < 0 or column < 0:
             return QModelIndex()

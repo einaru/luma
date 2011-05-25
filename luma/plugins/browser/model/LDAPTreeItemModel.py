@@ -5,7 +5,7 @@
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
+# the Free Software Foundation, either version 2 of the License, or
 # (at your option) any later version.
 #
 # This program is distributed in the hope that it will be useful,
@@ -36,7 +36,7 @@ class LDAPTreeItemModel(QAbstractItemModel):
     """
     The model used by the QTreeView in the BrowserPlugin.
     """
-    
+
     # Callers can listed to this signal and display busy-messages as they see fit
     workingSignal = pyqtSignal(bool)
     # Emitted by the the worker-thread when finished
@@ -123,7 +123,7 @@ class LDAPTreeItemModel(QAbstractItemModel):
 
     def parent(self, index):
         """
-        Returns the parent of the model item with the given index. 
+        Returns the parent of the model item with the given index.
         """
 
         if not index.isValid():
@@ -162,7 +162,7 @@ class LDAPTreeItemModel(QAbstractItemModel):
 
             # -- Old solution --
             #self.populateItem(parentItem)
-            
+
             # Updates the |>-icon to show if the item has children
             self.layoutChanged.emit()
 
@@ -172,7 +172,7 @@ class LDAPTreeItemModel(QAbstractItemModel):
         """
         Used to avoid (expensive) calls to rowCount()
         to find out it an item has children.
-        
+
         Return True unless it's known to not have children
         (ie. it has already been loaded).
         """
@@ -208,23 +208,23 @@ class LDAPTreeItemModel(QAbstractItemModel):
 #    def populateItem(self, parentItem):
 #        """
 #        Populates the list of children for the current parent-item.
-#        This is called from rowCount() when the list is actually 
+#        This is called from rowCount() when the list is actually
 #        needed (lazy loading).
 #        """
 #
 #        #self.isWorking()
-#        
+#
 #        # Don't try to fetch again
 #        parentItem.populated = 1
 #
 #        # Ask the item to fetch the list for us
 #        (success, list, exception) = parentItem.fetchChildList()
-#        
+#
 #        if not success:
 #            self.displayError(exception)
 #            #self.doneWorking()
 #            return
-#        
+#
 #        # Workaround:
 #        # if someone opens a long list, the user could
 #        # set a limit and have the childList be populated by that function
@@ -232,7 +232,7 @@ class LDAPTreeItemModel(QAbstractItemModel):
 #        # To make sure the list aquired here isn't appended to that list
 #        # we clear the list of children even though in most cases
 #        # it won't be populated.
-#        
+#
 #        # Normally (and prefferably)
 #        # this method should be called and return before anything else is done to the model.
 #        parentItem.emptyChildren()
@@ -267,7 +267,7 @@ class LDAPTreeItemModel(QAbstractItemModel):
             self.beginRemoveRows(parentIndex, 0, parentItem.childCount() - 1)
             parentItem.emptyChildren()
             self.endRemoveRows()
-    
+
     def deleteItem(self, index):
         """ Tries to delete the item referenced by the passed index on the server
         """
@@ -285,10 +285,10 @@ class LDAPTreeItemModel(QAbstractItemModel):
         else:
             # Return fail
             return (False, message)
-        
+
     def deleteSubtree(self, index, withNode = 0):
         pass
-    
+
     def removeRows(self, row, count, parent = QModelIndex()):
         """ Removew rows from the model
         """
@@ -302,17 +302,17 @@ class LDAPTreeItemModel(QAbstractItemModel):
             return True
         else:
             return False
-    
+
     def unverified(self, serverObject):
         if serverObject.name in self.verified:
             return False
         return True
 
     def fetchInThread(self, parentIndex, parentItem):
-       
+
         # Find associated ServerItem
         serverItem = parentItem.getParentServerItem()
-        
+
         # TODO This was made before the addition
         # of LumaConnectionWrapper.
         # Should be converted to not use it's own thread,
@@ -324,19 +324,19 @@ class LDAPTreeItemModel(QAbstractItemModel):
         # Add to the threadpool
         with LDAPTreeItemModel._threadLock:
             LDAPTreeItemModel._threadPool.append(workerThread)
-        
+
         # Create the worker
         worker = Worker(parentIndex, parentItem)
         worker.listFetched.connect(self.workerFinished)
         worker.listFetched.connect(workerThread.quit)
         # Move worker to thread
         workerThread.setWorker(worker)
-    
+
         # Start thread
         workerThread.start()
 
         parentItem.loading = True
-    
+
     @pyqtSlot(QModelIndex, tuple)
     def workerFinished(self, parentIndex, tupel):
         if parentIndex.isValid():
@@ -352,18 +352,18 @@ class LDAPTreeItemModel(QAbstractItemModel):
                 return
             # Clear old list and insert new
             self.clearItem(parentIndex)
-            
+
             self.beginInsertRows(parentIndex, 0, len(newList) - 1)
             for x in newList:
                 parentItem.appendChild(x)
             parentItem.populated = 1 #If the list is empty, this isn't set (appendChild isn't called)
-            self.endInsertRows()     
+            self.endInsertRows()
 
             self.layoutChanged.emit()
 
 
 class WorkerThread(QThread):
-	
+
     def __init__(self, parent = None):
         QThread.__init__(self, parent)
         self.finished.connect(self.cleanup)
@@ -385,7 +385,7 @@ class WorkerThread(QThread):
 
 from PyQt4.QtCore import QObject
 class Worker(QObject):
-    """ 
+    """
     Problems/issues:
         - None major?
         - Minor: reload when in progress aborts the currently running one
@@ -393,7 +393,7 @@ class Worker(QObject):
                  Fixed by removing self.cancelSearch() in LDAPTreeItem
                  but should be properly fixed instead. (Removing cancel?)
     """
-    
+
     # Emitted by the workerThread when finished
     listFetched = pyqtSignal(QModelIndex, tuple)
 

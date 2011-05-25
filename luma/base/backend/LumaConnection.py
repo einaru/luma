@@ -1,13 +1,23 @@
 # -*- coding: utf-8 -*-
-
-###########################################################################
-#    Copyright (C) 2003, 2004 by Wido Depping                                      
-#    <widod@users.sourceforge.net>                                                             
 #
-# Copyright: See COPYING file that comes with this distribution
+# Copyright (c) 2011
+#     Christian Forfang, <cforfang@gmail.com>
 #
-###########################################################################
-
+# Copyright (C) 2003, 2004
+#     Wido Depping, <widod@users.sourceforge.net>
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 2 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see http://www.gnu.org/licenses/
 import ldap
 import ldapurl
 import ldap.modlist
@@ -16,7 +26,7 @@ try:
 except ImportError, e:
     print "Python LDAP module has no SASL support"
     print e
-    
+
 import logging
 
 from ..backend.ServerObject import (ServerObject, ServerCheckCertificate,
@@ -24,7 +34,7 @@ from ..backend.ServerObject import (ServerObject, ServerCheckCertificate,
 from ..backend.SmartDataObject import SmartDataObject
 
 class LumaConnectionException(Exception):
-    """This exception class will be raised if no proper server object is passed 
+    """This exception class will be raised if no proper server object is passed
     to the constructor.
     """
     pass
@@ -32,32 +42,32 @@ class LumaConnectionException(Exception):
 ###############################################################################
 
 class LumaConnection(object):
-    """ This class is a wrapper around the LDAP functions. It is provided to 
+    """ This class is a wrapper around the LDAP functions. It is provided to
     access ldap data easier.
-    
+
     All methods are blocking.
-    
-    Parameter is a ServerObject which contains all meta information for 
+
+    Parameter is a ServerObject which contains all meta information for
     accessing servers.
     """
 
     # For storing prompted passwords
     __passwordMap = {}
     __certMap = {}
-    
+
     def __init__(self, serverObject=None):
 
         # Throw exception if no ServerObject is passed.
         if not isinstance(serverObject, ServerObject):
             exceptionString = u"Expected ServerObject type. Passed object was " + unicode(type(serverObject))
             raise LumaConnectionException, exceptionString
-        
+
         self.serverObject = serverObject
-        
+
         # This ldap object will be assigned in the methods.
         # This way we have better control over bind, unbind and open sockets.
         self.ldapServerObject = None
-        
+
         # Used for logging
         self.logger = logging.getLogger(__name__)
 
@@ -69,7 +79,7 @@ class LumaConnection(object):
 
         self.logger.debug("Started LDAP-search.")
         exceptionObject = None
-        result = []    
+        result = []
         try:
             resultId = self.ldapServerObject.search_ext(base, scope, filter, attrList, attrsonly, sizelimit=sizelimit)
             while 1:
@@ -86,7 +96,7 @@ class LumaConnection(object):
         except ldap.LDAPError, e:
             exceptionObject = e
         self.logger.debug("Search finished.")
-        
+
         if None == exceptionObject:
             # Everything went well
             message = "Received " + str(len(result)) + " item(s) from LDAP search operation."
@@ -94,7 +104,7 @@ class LumaConnection(object):
 
             returnList = [SmartDataObject(x, self.serverObject) for x in result]
             return (True, returnList, None)
-            
+
         else:
             if isinstance(exceptionObject, ldap.SIZELIMIT_EXCEEDED):
                 # Did we hit the server side search limit?
@@ -109,8 +119,8 @@ class LumaConnection(object):
                 message = "LDAP search operation failed. Reason:\n" + str(exceptionObject)
                 self.logger.error(message.decode('utf8'))
                 return (False, [], exceptionObject)
-            
-            
+
+
     def delete(self, dnDelete=None):
         """ Deleted the given DN from the currently bound-to server.
         @return (bool, Exception)
@@ -120,7 +130,7 @@ class LumaConnection(object):
             self.ldapServerObject.delete_s(dnDelete)
         except ldap.LDAPError, e:
             exceptionObject = e
-            
+
         if None == exceptionObject:
             message = "LDAP object " + dnDelete + " successfully deleted."
             self.logger.info(message.decode('utf8'))
@@ -130,7 +140,7 @@ class LumaConnection(object):
             message = message + str(exceptionObject)
             self.logger.error(message.decode('utf8'))
             return (False, exceptionObject)
-            
+
 
     def modify(self, dn, modlist=None):
         """ Synchronous modify.
@@ -170,10 +180,10 @@ class LumaConnection(object):
             message = message + str(exceptionObject)
             self.logger.error(message.decode('utf8'))
             return (False, exceptionObject)
-        
+
 
     def updateDataObject(self, smartDataObject):
-        """ Updates the given SmartDataObject on the server. 
+        """ Updates the given SmartDataObject on the server.
         @return (bool, Exception)
         """
         success, resultList, exceptionObject = self.search(smartDataObject.getDN(), ldap.SCOPE_BASE)
@@ -188,7 +198,7 @@ class LumaConnection(object):
             message = message + str(exceptionObject)
             self.logger.error(message.decode('utf8'))
             return (False, exceptionObject)
-        
+
 
     def addDataObject(self, dataObject):
         """ Adds the given SmartDataObject to the server.
@@ -205,15 +215,15 @@ class LumaConnection(object):
     def overrideCertificate(self):
         self.serverObject.checkServerCertificate = ServerCheckCertificate.Never
         LumaConnection.__certMap[self.serverObject.name] = ServerCheckCertificate.Never
-            
+
 
     def bind(self):
         """
         @return (bool, exception)
         """
-        
+
         success, exception, ldapServerObject = self.__createLDAPObject()
-        
+
         if success:
             message = "LDAP bind operation successful."
             self.logger.info(message.decode('utf8'))
@@ -247,34 +257,34 @@ class LumaConnection(object):
                 validateMethod = ldap.OPT_X_TLS_TRY
             elif self.serverObject.checkServerCertificate == ServerCheckCertificate.Allow:
                 validateMethod = ldap.OPT_X_TLS_ALLOW
-            
+
             encryption = False
             if self.serverObject.encryptionMethod == ServerEncryptionMethod.SSL:
                 encryption = True
             elif self.serverObject.encryptionMethod == ServerEncryptionMethod.TLS:
                 encryption = True
-            
+
             if encryption:
                 ldap.set_option(ldap.OPT_X_TLS_REQUIRE_CERT, validateMethod)
 
             urlschemeVal = "ldap"
             if self.serverObject.encryptionMethod == ServerEncryptionMethod.SSL:
                 urlschemeVal = "ldaps"
-              
+
             whoVal = None
             credVal = None
             if not (self.serverObject.bindAnon):
                 whoVal = self.serverObject.bindDN
                 credVal = self.serverObject.bindPassword
-                
-            url = ldapurl.LDAPUrl(urlscheme=urlschemeVal, 
+
+            url = ldapurl.LDAPUrl(urlscheme=urlschemeVal,
                 hostport = self.serverObject.hostname + ":" + str(self.serverObject.port),
                 dn = self.serverObject.baseDN, who = whoVal,
                 cred = credVal)
 
             m = "ldap.initialize() with url: "+url.initializeUrl()
             self.logger.debug(m.decode('utf8'))
-           
+
             try:
                 ldapServerObject = ldap.initialize(url.initializeUrl())
             except ldap.LDAPError, e:
@@ -284,7 +294,7 @@ class LumaConnection(object):
                 return (False, exceptionObject, None)
 
             ldapServerObject.protocol_version = 3
-            
+
             # If we're going to present client certificates, this must be set as an option
             if self.serverObject.useCertificate and encryption:
                 try:
@@ -295,14 +305,14 @@ class LumaConnection(object):
                     message += "Could not set client certificate and certificate keyfile. "
                     message += str(e)
                     self.logger.error(message.decode('utf8'))
-            
+
             if self.serverObject.encryptionMethod == ServerEncryptionMethod.TLS:
                 ldapServerObject.start_tls_s()
-            
+
             # Enable Alias support
             if self.serverObject.followAliases:
                 ldapServerObject.set_option(ldap.OPT_DEREF, ldap.DEREF_ALWAYS)
-            
+
             if self.serverObject.bindAnon:
                 ldapServerObject.simple_bind()
             elif self.serverObject.authMethod == ServerAuthMethod.Simple:
@@ -312,7 +322,7 @@ class LumaConnection(object):
                 if not ServerAuthMethod.SASL_GSSAPI == self.serverObject.authMethod:
                     sasl_cb_value_dict[ldap.sasl.CB_AUTHNAME] = whoVal
                     sasl_cb_value_dict[ldap.sasl.CB_PASS] = credVal
-                    
+
                 sasl_mech = None
                 if self.serverObject.authMethod == ServerAuthMethod.SASL_PLAIN:
                     sasl_mech = "PLAIN"
@@ -326,22 +336,22 @@ class LumaConnection(object):
                     sasl_mech = "GSSAPI"
                 elif self.serverObject.authMethod == ServerAuthMethod.SASL_EXTERNAL:
                     sasl_mech = "EXTERNAL"
-                    
+
                 sasl_auth = ldap.sasl.sasl(sasl_cb_value_dict,sasl_mech)
-                
-                # If python-ldap has no support for SASL, it doesn't have 
+
+                # If python-ldap has no support for SASL, it doesn't have
                 # sasl_interactive_bind_s as a method.
                 try:
                     if "EXTERNAL" == sasl_mech:
-                        #url = ldapurl.LDAPUrl(urlscheme="ldapi", 
+                        #url = ldapurl.LDAPUrl(urlscheme="ldapi",
                         #    hostport = self.serverObject.hostname.replace("/", "%2f"),
                         #    dn = self.serverObject.baseDN)
-                            
+
                         url = "ldapi://" + self.serverObject.hostname.replace("/", "%2F").replace(",", "%2C")
-            
+
                         ldapServerObject = ldap.initialize(url)
                         ldapServerObject.protocol_version = 3
-            
+
                         # Enable Alias support
                         if self.serverObject.followAliases:
                             ldapServerObject.set_option(ldap.OPT_DEREF, ldap.DEREF_ALWAYS)
@@ -350,12 +360,12 @@ class LumaConnection(object):
                 except AttributeError, e:
                     return (False, e, None)
 
-            # Everything went well        
+            # Everything went well
             return (True, None, ldapServerObject)
-                
+
         except ldap.LDAPError, e:
             return (False, e, None)
-        
+
     # Internal helper functions with semi self explaining names
     def _ignore_cert(self, serverObject):
         return LumaConnection.__certMap.has_key(serverObject.name)
@@ -390,25 +400,25 @@ class LumaConnection(object):
             message = "LDAP unbind operation not successful. Reason:\n"
             message = message + str(e)
             self.logger.error(message.decode('utf8'))
-            
+
 ###############################################################################
 
     def getBaseDNList(self):
 
         bindSuccess, exceptionObject = self.bind()
-            
+
         if not bindSuccess:
             return (False, None, exceptionObject)
-            
+
         dnList = None
-        
+
         # Check for openldap
         success, resultList, exceptionObject = self.search("", ldap.SCOPE_BASE, "(objectClass=*)", ["namingContexts"])
         if success and (len(resultList) > 0):
             resultItem = resultList[0]
             if resultItem.hasAttribute('namingContexts'):
                 dnList = resultItem.getAttributeValueList('namingContexts')
-        
+
         # Check for Novell
         if None == dnList:
             success, resultList, exceptionObject = self.search("", ldap.SCOPE_BASE)
@@ -416,7 +426,7 @@ class LumaConnection(object):
                 resultItem = resultList[0]
                 if resultItem.hasAttribute('dsaName'):
                     dnList = resultItem.getAttributeValueList('dsaName')
-            
+
         # Univertity of Michigan aka umich
         # not yet tested
         if None == dnList:
@@ -425,7 +435,7 @@ class LumaConnection(object):
                 resultItem = resultList[0]
                 if resultItem.hasAttribute('namingContexts'):
                     dnList = resultItem.getAttributeValueList('namingContexts')
-                    
+
         # Check for Oracle
         if None == dnList:
             success, resultList, exceptionObject = self.search("", ldap.SCOPE_ONELEVEL, "(objectClass=*)", ['dn'])
@@ -435,7 +445,7 @@ class LumaConnection(object):
                     dnList.append(x.getDN())
                 #if resultItem.hasAttribute('namingContexts'):
                 #    dnList = resultItem.getAttributeValueList('namingContexts')
-                
+
         # Check for Active Directory
         if None == dnList:
             success, resultList, exceptionObject = self.search("", ldap.SCOPE_BASE, "(defaultNamingContext=*)" ,['defaultNamingContext'])
@@ -443,10 +453,10 @@ class LumaConnection(object):
                 resultItem = resultList[0]
                 if resultItem.hasAttribute('defaultNamingContext'):
                     dnList = resultItem.getAttributeValueList('defaultNamingContext')
-                    
-                    
+
+
         self.unbind()
-            
+
         if None == dnList:
             message = "Could not retrieve Base DNs from server. Unknown server type."
             self.logger.error(message.decode('utf8'))
@@ -456,17 +466,17 @@ class LumaConnection(object):
             message = "Base DNs successfully retrieved from server."
             self.logger.info(message.decode('utf8'))
             return (True, dnList, None)
-            
-            
+
+
     def cleanDN(self, dnString):
         tmpList = []
-        
+
         for x in ldap.explode_dn(dnString):
             tmpList.append(self.escape_dn_chars(x))
-            
+
         return ",".join(tmpList)
-            
-            
+
+
     def escape_dn_chars(self, s):
         s = s.replace('\,', r'\2C')
         s = s.replace('\=', r'\3D')

@@ -1,8 +1,20 @@
-'''
-Created on 16. mars 2011
-
-@author: Simen
-'''
+# -*- coding: utf-8 -*-
+#
+# Copyright (c) 2011
+#     Simen Natvig, <simen.natvig@gmail.com>
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 2 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see http://www.gnu.org/licenses/
 import os.path
 import logging
 import copy
@@ -19,9 +31,9 @@ class TemplateList(object):
     """
 
     _logger = logging.getLogger(__name__)
-    
+
 #    # The cache for the client side ssl certificates
-#    # The filename is the key. In a tupel are the modification time and the 
+#    # The filename is the key. In a tupel are the modification time and the
 #    # cert as StringIO objects
 #    certCache = {}
 
@@ -33,7 +45,7 @@ class TemplateList(object):
         self._templateList = []
         self._configPrefix = configPrefix
         self._configFile = os.path.join(self._configPrefix, templateFileName)
-        
+
         if os.path.isfile(self._configFile):
             self._readTemplateList()
 
@@ -53,7 +65,7 @@ class TemplateList(object):
 
 
     def getTemplateObject(self, templateName):
-        """ 
+        """
         Get a template object by its name.
         """
         for x in self._templateList:
@@ -62,11 +74,11 @@ class TemplateList(object):
 
 
     def addTemplate(self, templateObject):
-        """ 
+        """
         Add a template to the template list.
         """
         self._logger.debug("Adding template to self.templateList")
-        
+
         if self._templateList == None:
             self._templateList = [templateObject]
         else:
@@ -95,7 +107,7 @@ class TemplateList(object):
         Templates are stored in self.templateList
         """
         self._logger.debug("Calling _readTemplateList")
-        
+
         self._templateList = []
 
         fileContent = ""
@@ -105,15 +117,15 @@ class TemplateList(object):
             errorString = "Could not read template configuration file. Reason:\n"
             errorString += str(e)
             self._logger.error(errorString)
-    
-        
+
+
         document = QDomDocument("LumaTemplateFile")
         document.setContent(fileContent)
-        
+
         root = document.documentElement()
         if not (unicode(root.tagName()) == "LumaTemplates"):
             self._logger.debug("Could not parse template file.")
-            
+
         child = root.firstChild()
         while (not child.isNull()):
             template = TemplateObject()
@@ -122,12 +134,12 @@ class TemplateList(object):
                 template.templateName = unicode(element.attribute("name"))
                 template.server = unicode(element.attribute("server"))
                 template.description = unicode(element.attribute("description"))
-                
+
                 templateChild = child.firstChild()
                 while (not templateChild.isNull()):
                     templateElement = templateChild.toElement()
                     tagName = unicode(templateElement.tagName())
-                    
+
                     if tagName == "objectClasses":
                         classNode = templateChild.firstChild()
                         while (not classNode.isNull()):
@@ -135,48 +147,48 @@ class TemplateList(object):
                             className = str(classElement.tagName())
                             template.addObjectclass(className)
                             classNode = classNode.nextSibling()
-                        
+
                     if tagName == "attributes":
                         attributeNode = templateChild.firstChild()
                         while (not attributeNode.isNull()):
                             attributeElement = attributeNode.toElement()
-                            
+
                             attributeName = str(attributeElement.tagName())
                             binaryString = attributeElement.attribute("binary")
                             mustString = attributeElement.attribute("must")
                             customMustString = attributeElement.attribute("customMust")
                             singleString = attributeElement.attribute("single")
-                            
+
                             binary = False
                             if binaryString == "True":
                                 binary = True
-                                
+
                             must = False
                             if mustString == "True":
                                 must = True
-                                
+
                             customMust = False
                             if customMustString == "True":
                                 customMust = True
-                                
+
                             single = False
                             if singleString == "True":
                                 single = True
-                                
+
                             defaultValue = None
                             if attributeElement.hasAttribute("defaultValue"):
                                 defaultValue = unicode(attributeElement.attribute("defaultValue"))
-                                
+
                             attribute = AttributeObject(attributeName, must, single, binary, defaultValue, customMust)
                             template.attributes[attributeName] = attribute
                             attributeNode = attributeNode.nextSibling()
-                        
-                        
+
+
                     templateChild = templateChild.nextSibling()
-            
+
             child = child.nextSibling()
             self._templateList.append(template)
-        
+
 
     def save(self):
         """
@@ -184,23 +196,23 @@ class TemplateList(object):
         """
 
         self._logger.debug("Saving template list to disk")
-        
+
         document = QDomDocument("LumaTemplateFile")
         root = document.createElement( "LumaTemplates" )
         document.appendChild(root)
-        
+
         for x in self._templateList:
             templateNode = document.createElement("template")
             templateNode.setAttribute("name", x.templateName)
             templateNode.setAttribute("server", x.server)
             templateNode.setAttribute("description", x.description)
-            
+
             templateClasses = document.createElement("objectClasses")
             for y in x.objectclasses:
                 classNode = document.createElement(y)
                 templateClasses.appendChild(classNode)
             templateNode.appendChild(templateClasses)
-            
+
             templateAttributes = document.createElement("attributes")
             for y in x.attributes.keys():
                 attribute = x.attributes[y]
@@ -213,10 +225,10 @@ class TemplateList(object):
                     attributeNode.setAttribute("defaultValue", unicode(attribute.defaultValue))
                 templateAttributes.appendChild(attributeNode)
             templateNode.appendChild(templateAttributes)
-            
-            
+
+
             root.appendChild(templateNode)
-        
+
         fileHandler = open(self._configFile, "w")
         fileHandler.write(unicode(document.toString()).encode("utf-8"))
         fileHandler.close()

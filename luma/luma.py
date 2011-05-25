@@ -12,7 +12,7 @@
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
+# the Free Software Foundation, either version 2 of the License, or
 # (at your option) any later version.
 #
 # This program is distributed in the hope that it will be useful,
@@ -272,6 +272,12 @@ def main(argv):
         help='clear the templates file before launching Luma'
     )
     p.add_option(
+        '--clear-filters',
+        dest='clear_filters',
+        action='store_true',
+        help='clear the filters file before launching Luma'
+    )
+    p.add_option(
         '--clear-all',
         dest='clear_all',
         action='store_true',
@@ -329,7 +335,9 @@ def main(argv):
         if opt.clear_serverlist:
             clear.append('serverlist.xml')
         if opt.clear_templatefile:
-            clear.append('templates')
+            clear.append('templates.xml')
+        if opt.clear_filters:
+            clear.append('filters')
 
     startApplication(argv, opt.verbose, clear, dirs)
 

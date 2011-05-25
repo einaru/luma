@@ -5,6 +5,17 @@ ChangeLog
 .. the master branch. Changes made in the devlopment branch is documented in
 .. the git log.
 
+3.0.6.3 (2011-05-25)
+====================
+
+- Fixed unconsistent license statements in the sourcecode, meaning license
+  boilerplates is now added/updated (from GPL v3 to GPL v2) in all files
+  added and/or modified since Luma 2.4.
+
+- Removed the last string exception from ObjectClassAttributeInfo.py!
+| http://sourceforge.net/support/tracker.php?aid=3014815
+| http://bugs.debian.org/585248
+
 3.0.6-2 (2011-05-16)
 ====================
 

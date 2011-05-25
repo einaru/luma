@@ -5,9 +5,9 @@
 # Copyright (c) 2011
 #     Einar Uvsløkk, <einar.uvslokk@linux.com>
 #
-# This program is free software: you can redistribute it and/or modify
+# This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
+# the Free Software Foundation; either version 2 of the License, or
 # (at your option) any later version.
 #
 # This program is distributed in the hope that it will be useful,
@@ -73,6 +73,30 @@ def findPackages():
             packages.append('.'.join(s))
     return packages
 
+
+def createNroffManpage():
+    """Creates the Nroff manpage for inclusion on UNIX and UNIX-like
+    platforms.
+    """
+    target_loc = os.path.join('data', 'man')
+    src_manpage = 'luma.1'
+    zip_manpage = 'luma.1.gz'
+    try:
+        import gzip
+    except ImportError, ie:
+        print >> sys.stderr, 'Unable to create nroff Manpage:'
+        print >> sys.stderr, str(ie)
+        return False
+
+    # Create the gzipped nroff manpage
+    input = open(os.path.join(target_loc, src_manpage), 'rb')
+    output = gzip.open(os.path.join(target_loc, zip_manpage), 'wb')
+    output.writelines(input)
+    output.close()
+    output.close()
+    return True
+
+
 # Some default values shared among platforms
 src_dir = 'luma'
 app_dir = 'luma'
@@ -107,19 +131,26 @@ _classifiers = [
 ]
 
 # First we setup some platform spesific includes
-# Winsows
+# Windows
 if sys.platform.lower().startswith('win'):
     # TODO: add Windows spesifics. (py2exe?)
     _extras = dict(
         scripts=['luma/luma.py']
     )
+
 # Mac OS X
 elif sys.platform.lower().startswith('darwin'):
     # TODO: add Mac OS X spesifics. (py2app?)
+
+    # Create the Nroff man page for mac.
+    if createNroffManpage():
+        _data_files.append(('share/man/man1', glob('data/man/luma.1.gz')))
+
     _extras = dict(
         scripts=['bin/luma'],
-        data_files=[('share/man/man1', glob('data/man/luma.1.gz'))]
+        data_files=_data_files
     )
+
 # Linux
 elif sys.platform.lower().startswith('linux'):
     # Include the application icon in various sizes, so that icon themers
@@ -138,7 +169,10 @@ elif sys.platform.lower().startswith('linux'):
 
     # Include the desktop and manpage files
     _data_files.append(('share/applications', glob('data/luma.desktop')))
-    _data_files.append(('share/man/man1', glob('data/man/luma.1.gz')))
+
+    # Create the nroff man page for linux.
+    if createNroffManpage():
+        _data_files.append(('share/man/man1', glob('data/man/luma.1.gz')))
 
     _extras = dict(
         data_files=_data_files,

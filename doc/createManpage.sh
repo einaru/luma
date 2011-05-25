@@ -21,7 +21,10 @@ createManPage()
 {
 	echo "Running rst2man on $source_man"
 	echo "Destination nroff manpage: $location"
-	rst2man $source_man > $location/$target_man ; gzip $location/$target_man
+
+	# The gzip of the man page is now handled during installation
+	#rst2man $source_man > $location/$target_man ; gzip $location/$target_man
+	rst2man $source_man > $location/$target_man
 }
 
 createManPage
