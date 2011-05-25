@@ -16,6 +16,9 @@ ChangeLog
 | http://sourceforge.net/support/tracker.php?aid=3014815
 | http://bugs.debian.org/585248
 
+- Gzipping of Nroff manpages on UNIX and UNIX-like systems is now handled during
+  installation.
+
 3.0.6-2 (2011-05-16)
 ====================
 
