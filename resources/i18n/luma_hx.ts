@@ -7,100 +7,18 @@
         <source>Credits</source>
         <translation>C|23[)17$</translation>
     </message>
-    <message encoding="UTF-8">
-        <location filename="luma/base/gui/design/AboutCreditsDesign.py" line="71"/>
-        <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans&apos;; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Wido Depping &amp;lt;&lt;a href=&quot;mailto:widod@users.sourceforge.net&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;widod@users.sourceforge.net&lt;/span&gt;&lt;/a&gt;&amp;gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Bjørn Ove Grøtan &amp;lt;&lt;a href=&quot;mailto:bgrotan@grotan.com&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;bgrotan@grotan.com&lt;/span&gt;&lt;/a&gt;&amp;gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Vegar Westerlund&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Johannes Harestad &amp;lt;&lt;a href=&quot;mailto:johannesharestad@gmail.com&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;johannesharestad@gmail.com&lt;/span&gt;&lt;/a&gt;&amp;gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Sondre Frisvold &amp;lt;&lt;a href=&quot;mailto:sondre.frisvold@c2i.net&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;sondre.frisvold@c2i.net&lt;/span&gt;&lt;/a&gt;&amp;gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Christian Forfang &amp;lt;&lt;a href=&quot;mailto:cforfang@gmail.com&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;cforfang@gmail.com&lt;/span&gt;&lt;/a&gt;&amp;gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Per Ove RIngdal &amp;lt;&lt;a href=&quot;mailto:peroveri@stud.ntnu.no&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;peroveri@stud.ntnu.no&lt;/span&gt;&lt;/a&gt;&amp;gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Einar Uvsløkk &amp;lt;&lt;a href=&quot;mailto:einaru@stud.ntnu.no&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;einar.uvslokk@gmail.com&lt;/span&gt;&lt;/a&gt;&amp;gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Simen Natvig &amp;lt;&lt;a href=&quot;mailto:simenna@stud.ntnu.no&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;simen.natvig@gmail.com&lt;/span&gt;&lt;/a&gt;&amp;gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;#77|*://vvvvvv.vv3.0|2(`(,/TR/REC-#7[V]|_40/$7|21(7.[)7[)&quot;&gt;
-&lt;#7[V]|_&gt;&lt;#34[)&gt;&lt;[V]374 [\]4[V]3=&quot;&lt;||21(#73%7&quot; (0[\]73[\]7=&quot;1&quot; /&gt;&lt;$7`(|_3 7`(|*3=&quot;73%7/($$&quot;&gt;
-|*, |_1 { vv#173-$|*4(3: |*|23-vv|24|*; }
-&lt;/$7`(|_3&gt;&lt;/#34[)&gt;&lt;|30[)`( $7`(|_3=&quot; (=0[\]7-(=4[V]1|_`(:&apos;S4[\]$&apos;; (=0[\]7-$123:9|*7; (=0[\]7-vv31(`(,#7:400; (=0[\]7-$7`(|_3:[\]0|2[V]4|_;&quot;&gt;
-&lt;|* $7`(|_3=&quot; [V]4|2(`(,1[\]-70|*:0|*%; [V]4|2(`(,1[\]-|30770[V]:0|*%; [V]4|2(`(,1[\]-|_3(=7:0|*%; [V]4|2(`(,1[\]-|21(`(,#7:0|*%; -&lt;|7-|3|_0(|&lt;-1[\][)3[\]7:0; 73%7-1[\][)3[\]7:0|*%;&quot;&gt;W1[)0 D3|*|*1[\](`(, &amp;|_7;&lt;4 #|23(==&quot;[V]41|_70:vv1[)0[)@[_]$3|2$.$0[_]|2(3(=0|2(`(,3.[\]37&quot;&gt;&lt;$|*4[\] $7`(|_3=&quot; 73%7-[)3(0|24710[\]: [_][\][)3|2|_1[\]3; (0|_0|2:#0000(=(=;&quot;&gt;vv1[)0[)@[_]$3|2$.$0[_]|2(3(=0|2(`(,3.[\]37&lt;/$|*4[\]&gt;&lt;/4&gt;&amp;(`(,7;&lt;/|*&gt;
-&lt;|* $7`(|_3=&quot; [V]4|2(`(,1[\]-70|*:0|*%; [V]4|2(`(,1[\]-|30770[V]:0|*%; [V]4|2(`(,1[\]-|_3(=7:0|*%; [V]4|2(`(,1[\]-|21(`(,#7:0|*%; -&lt;|7-|3|_0(|&lt;-1[\][)3[\]7:0; 73%7-1[\][)3[\]7:0|*%;&quot;&gt;B]ø|2[\] O\/3 G|2ø74[\] &amp;|_7;&lt;4 #|23(==&quot;[V]41|_70:|3(`(,|2074[\]@(`(,|2074[\].(0[V]&quot;&gt;&lt;$|*4[\] $7`(|_3=&quot; 73%7-[)3(0|24710[\]: [_][\][)3|2|_1[\]3; (0|_0|2:#0000(=(=;&quot;&gt;|3(`(,|2074[\]@(`(,|2074[\].(0[V]&lt;/$|*4[\]&gt;&lt;/4&gt;&amp;(`(,7;&lt;/|*&gt;
-&lt;|* $7`(|_3=&quot; [V]4|2(`(,1[\]-70|*:0|*%; [V]4|2(`(,1[\]-|30770[V]:0|*%; [V]4|2(`(,1[\]-|_3(=7:0|*%; [V]4|2(`(,1[\]-|21(`(,#7:0|*%; -&lt;|7-|3|_0(|&lt;-1[\][)3[\]7:0; 73%7-1[\][)3[\]7:0|*%;&quot;&gt;V3(`(,4|2 W3$73|2|_[_][\][)&lt;/|*&gt;
-&lt;|* $7`(|_3=&quot; [V]4|2(`(,1[\]-70|*:0|*%; [V]4|2(`(,1[\]-|30770[V]:0|*%; [V]4|2(`(,1[\]-|_3(=7:0|*%; [V]4|2(`(,1[\]-|21(`(,#7:0|*%; -&lt;|7-|3|_0(|&lt;-1[\][)3[\]7:0; 73%7-1[\][)3[\]7:0|*%;&quot;&gt;J0#4[\][\]3$ H4|23$74[) &amp;|_7;&lt;4 #|23(==&quot;[V]41|_70:]0#4[\][\]3$#4|23$74[)@(`(,[V]41|_.(0[V]&quot;&gt;&lt;$|*4[\] $7`(|_3=&quot; 73%7-[)3(0|24710[\]: [_][\][)3|2|_1[\]3; (0|_0|2:#0000(=(=;&quot;&gt;]0#4[\][\]3$#4|23$74[)@(`(,[V]41|_.(0[V]&lt;/$|*4[\]&gt;&lt;/4&gt;&amp;(`(,7;&lt;/|*&gt;
-&lt;|* $7`(|_3=&quot; [V]4|2(`(,1[\]-70|*:0|*%; [V]4|2(`(,1[\]-|30770[V]:0|*%; [V]4|2(`(,1[\]-|_3(=7:0|*%; [V]4|2(`(,1[\]-|21(`(,#7:0|*%; -&lt;|7-|3|_0(|&lt;-1[\][)3[\]7:0; 73%7-1[\][)3[\]7:0|*%;&quot;&gt;S0[\][)|23 F|21$\/0|_[) &amp;|_7;&lt;4 #|23(==&quot;[V]41|_70:$0[\][)|23.(=|21$\/0|_[)@(21.[\]37&quot;&gt;&lt;$|*4[\] $7`(|_3=&quot; 73%7-[)3(0|24710[\]: [_][\][)3|2|_1[\]3; (0|_0|2:#0000(=(=;&quot;&gt;$0[\][)|23.(=|21$\/0|_[)@(21.[\]37&lt;/$|*4[\]&gt;&lt;/4&gt;&amp;(`(,7;&lt;/|*&gt;
-&lt;|* $7`(|_3=&quot; [V]4|2(`(,1[\]-70|*:0|*%; [V]4|2(`(,1[\]-|30770[V]:0|*%; [V]4|2(`(,1[\]-|_3(=7:0|*%; [V]4|2(`(,1[\]-|21(`(,#7:0|*%; -&lt;|7-|3|_0(|&lt;-1[\][)3[\]7:0; 73%7-1[\][)3[\]7:0|*%;&quot;&gt;C#|21$714[\] F0|2(=4[\](`(, &amp;|_7;&lt;4 #|23(==&quot;[V]41|_70:((=0|2(=4[\](`(,@(`(,[V]41|_.(0[V]&quot;&gt;&lt;$|*4[\] $7`(|_3=&quot; 73%7-[)3(0|24710[\]: [_][\][)3|2|_1[\]3; (0|_0|2:#0000(=(=;&quot;&gt;((=0|2(=4[\](`(,@(`(,[V]41|_.(0[V]&lt;/$|*4[\]&gt;&lt;/4&gt;&amp;(`(,7;&lt;/|*&gt;
-&lt;|* $7`(|_3=&quot; [V]4|2(`(,1[\]-70|*:0|*%; [V]4|2(`(,1[\]-|30770[V]:0|*%; [V]4|2(`(,1[\]-|_3(=7:0|*%; [V]4|2(`(,1[\]-|21(`(,#7:0|*%; -&lt;|7-|3|_0(|&lt;-1[\][)3[\]7:0; 73%7-1[\][)3[\]7:0|*%;&quot;&gt;P3|2 O\/3 RI[\](`(,[)4|_ &amp;|_7;&lt;4 #|23(==&quot;[V]41|_70:|*3|20\/3|21@$7[_][).[\]7[\][_].[\]0&quot;&gt;&lt;$|*4[\] $7`(|_3=&quot; 73%7-[)3(0|24710[\]: [_][\][)3|2|_1[\]3; (0|_0|2:#0000(=(=;&quot;&gt;|*3|20\/3|21@$7[_][).[\]7[\][_].[\]0&lt;/$|*4[\]&gt;&lt;/4&gt;&amp;(`(,7;&lt;/|*&gt;
-&lt;|* $7`(|_3=&quot; [V]4|2(`(,1[\]-70|*:0|*%; [V]4|2(`(,1[\]-|30770[V]:0|*%; [V]4|2(`(,1[\]-|_3(=7:0|*%; [V]4|2(`(,1[\]-|21(`(,#7:0|*%; -&lt;|7-|3|_0(|&lt;-1[\][)3[\]7:0; 73%7-1[\][)3[\]7:0|*%;&quot;&gt;E1[\]4|2 U\/$|_ø|&lt;|&lt; &amp;|_7;&lt;4 #|23(==&quot;[V]41|_70:31[\]4|2[_]@$7[_][).[\]7[\][_].[\]0&quot;&gt;&lt;$|*4[\] $7`(|_3=&quot; 73%7-[)3(0|24710[\]: [_][\][)3|2|_1[\]3; (0|_0|2:#0000(=(=;&quot;&gt;31[\]4|2.[_]\/$|_0|&lt;|&lt;@(`(,[V]41|_.(0[V]&lt;/$|*4[\]&gt;&lt;/4&gt;&amp;(`(,7;&lt;/|*&gt;
-&lt;|* $7`(|_3=&quot; [V]4|2(`(,1[\]-70|*:0|*%; [V]4|2(`(,1[\]-|30770[V]:0|*%; [V]4|2(`(,1[\]-|_3(=7:0|*%; [V]4|2(`(,1[\]-|21(`(,#7:0|*%; -&lt;|7-|3|_0(|&lt;-1[\][)3[\]7:0; 73%7-1[\][)3[\]7:0|*%;&quot;&gt;S1[V]3[\] N47\/1(`(, &amp;|_7;&lt;4 #|23(==&quot;[V]41|_70:$1[V]3[\][\]4@$7[_][).[\]7[\][_].[\]0&quot;&gt;&lt;$|*4[\] $7`(|_3=&quot; 73%7-[)3(0|24710[\]: [_][\][)3|2|_1[\]3; (0|_0|2:#0000(=(=;&quot;&gt;$1[V]3[\].[\]47\/1(`(,@(`(,[V]41|_.(0[V]&lt;/$|*4[\]&gt;&lt;/4&gt;&amp;(`(,7;&lt;/|*&gt;&lt;/|30[)`(&gt;&lt;/#7[V]|_&gt;</translation>
-    </message>
     <message>
         <location filename="luma/base/gui/design/AboutCreditsDesign.py" line="84"/>
         <source>Developers</source>
         <translation>D3\/3|_0|*3|2$</translation>
     </message>
-    <message encoding="UTF-8">
-        <location filename="luma/base/gui/design/AboutCreditsDesign.py" line="85"/>
-        <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans&apos;; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Norwegian translation&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Luma 2.4 : Bjørn Ove Grøtan &amp;lt;&lt;a href=&quot;mailto:bgrotan@grotan.com&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;bgrotan@grotan.com&lt;/span&gt;&lt;/a&gt;&amp;gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Luma 3.0 : Einar Uvsløkk &amp;lt;&lt;a href=&quot;mailto:einar.uvslokk@linux.com&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;einar.uvslokk@linux.com&lt;/span&gt;&lt;/a&gt;&amp;gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Portuguese translation&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Fernando Maciel Souto Maior&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Czech translation&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Jirka Jurek &amp;lt;&lt;a href=&quot;mailto:jiri.jurek@trinet.as&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;jiri.jurek@trinet.as&lt;/span&gt;&lt;/a&gt;&amp;gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Swedish translation&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Magnus Määttä&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Russian translation&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Alexander Novitsky&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;French translation&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Florens Daignière &amp;lt;&lt;a href=&quot;mailto:nextgens@freenetproject.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;nextgens@freenetproject.org&lt;/span&gt;&lt;/a&gt;&amp;gt;&lt;/p&gt;
-&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;h4x0r translation&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Einar Uvsløkk &amp;lt;&lt;a href=&quot;mailto:einar.uvslokk@linux.com&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;einar.uvslokk@linux.com&lt;/span&gt;&lt;/a&gt;&amp;gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;#77|*://vvvvvv.vv3.0|2(`(,/TR/REC-#7[V]|_40/$7|21(7.[)7[)&quot;&gt;
-&lt;#7[V]|_&gt;&lt;#34[)&gt;&lt;[V]374 [\]4[V]3=&quot;&lt;||21(#73%7&quot; (0[\]73[\]7=&quot;1&quot; /&gt;&lt;$7`(|_3 7`(|*3=&quot;73%7/($$&quot;&gt;
-|*, |_1 { vv#173-$|*4(3: |*|23-vv|24|*; }
-&lt;/$7`(|_3&gt;&lt;/#34[)&gt;&lt;|30[)`( $7`(|_3=&quot; (=0[\]7-(=4[V]1|_`(:&apos;S4[\]$&apos;; (=0[\]7-$123:9|*7; (=0[\]7-vv31(`(,#7:400; (=0[\]7-$7`(|_3:[\]0|2[V]4|_;&quot;&gt;
-&lt;|* $7`(|_3=&quot; [V]4|2(`(,1[\]-70|*:0|*%; [V]4|2(`(,1[\]-|30770[V]:0|*%; [V]4|2(`(,1[\]-|_3(=7:0|*%; [V]4|2(`(,1[\]-|21(`(,#7:0|*%; -&lt;|7-|3|_0(|&lt;-1[\][)3[\]7:0; 73%7-1[\][)3[\]7:0|*%;&quot;&gt;&lt;$|*4[\] $7`(|_3=&quot; (=0[\]7-vv31(`(,#7:600;&quot;&gt;N0|2vv3(`(,14[\] 7|24[\]$|_4710[\]&lt;/$|*4[\]&gt;&lt;/|*&gt;
-&lt;|* $7`(|_3=&quot; [V]4|2(`(,1[\]-70|*:0|*%; [V]4|2(`(,1[\]-|30770[V]:0|*%; [V]4|2(`(,1[\]-|_3(=7:0|*%; [V]4|2(`(,1[\]-|21(`(,#7:0|*%; -&lt;|7-|3|_0(|&lt;-1[\][)3[\]7:0; 73%7-1[\][)3[\]7:0|*%;&quot;&gt;L[_][V]4 2.4 : B]ø|2[\] O\/3 G|2ø74[\] &amp;|_7;&lt;4 #|23(==&quot;[V]41|_70:|3(`(,|2074[\]@(`(,|2074[\].(0[V]&quot;&gt;&lt;$|*4[\] $7`(|_3=&quot; 73%7-[)3(0|24710[\]: [_][\][)3|2|_1[\]3; (0|_0|2:#0000(=(=;&quot;&gt;|3(`(,|2074[\]@(`(,|2074[\].(0[V]&lt;/$|*4[\]&gt;&lt;/4&gt;&amp;(`(,7;&lt;/|*&gt;
-&lt;|* $7`(|_3=&quot; [V]4|2(`(,1[\]-70|*:0|*%; [V]4|2(`(,1[\]-|30770[V]:0|*%; [V]4|2(`(,1[\]-|_3(=7:0|*%; [V]4|2(`(,1[\]-|21(`(,#7:0|*%; -&lt;|7-|3|_0(|&lt;-1[\][)3[\]7:0; 73%7-1[\][)3[\]7:0|*%;&quot;&gt;L[_][V]4 3.0 : E1[\]4|2 U\/$|_ø|&lt;|&lt; &amp;|_7;&lt;4 #|23(==&quot;[V]41|_70:31[\]4|2.[_]\/$|_0|&lt;|&lt;@|_1[\][_]%.(0[V]&quot;&gt;&lt;$|*4[\] $7`(|_3=&quot; 73%7-[)3(0|24710[\]: [_][\][)3|2|_1[\]3; (0|_0|2:#0000(=(=;&quot;&gt;31[\]4|2.[_]\/$|_0|&lt;|&lt;@|_1[\][_]%.(0[V]&lt;/$|*4[\]&gt;&lt;/4&gt;&amp;(`(,7;&lt;/|*&gt;
-&lt;|* $7`(|_3=&quot;-&lt;|7-|*4|24(`(,|24|*#-7`(|*3:3[V]|*7`(; [V]4|2(`(,1[\]-70|*:0|*%; [V]4|2(`(,1[\]-|30770[V]:0|*%; [V]4|2(`(,1[\]-|_3(=7:0|*%; [V]4|2(`(,1[\]-|21(`(,#7:0|*%; -&lt;|7-|3|_0(|&lt;-1[\][)3[\]7:0; 73%7-1[\][)3[\]7:0|*%;&quot;&gt;&lt;/|*&gt;
-&lt;|* $7`(|_3=&quot; [V]4|2(`(,1[\]-70|*:0|*%; [V]4|2(`(,1[\]-|30770[V]:0|*%; [V]4|2(`(,1[\]-|_3(=7:0|*%; [V]4|2(`(,1[\]-|21(`(,#7:0|*%; -&lt;|7-|3|_0(|&lt;-1[\][)3[\]7:0; 73%7-1[\][)3[\]7:0|*%;&quot;&gt;&lt;$|*4[\] $7`(|_3=&quot; (=0[\]7-vv31(`(,#7:600;&quot;&gt;P0|27[_](`(,[_]3$3 7|24[\]$|_4710[\]&lt;/$|*4[\]&gt;&lt;/|*&gt;
-&lt;|* $7`(|_3=&quot; [V]4|2(`(,1[\]-70|*:0|*%; [V]4|2(`(,1[\]-|30770[V]:0|*%; [V]4|2(`(,1[\]-|_3(=7:0|*%; [V]4|2(`(,1[\]-|21(`(,#7:0|*%; -&lt;|7-|3|_0(|&lt;-1[\][)3[\]7:0; 73%7-1[\][)3[\]7:0|*%;&quot;&gt;F3|2[\]4[\][)0 M4(13|_ S0[_]70 M410|2&lt;/|*&gt;
-&lt;|* $7`(|_3=&quot;-&lt;|7-|*4|24(`(,|24|*#-7`(|*3:3[V]|*7`(; [V]4|2(`(,1[\]-70|*:0|*%; [V]4|2(`(,1[\]-|30770[V]:0|*%; [V]4|2(`(,1[\]-|_3(=7:0|*%; [V]4|2(`(,1[\]-|21(`(,#7:0|*%; -&lt;|7-|3|_0(|&lt;-1[\][)3[\]7:0; 73%7-1[\][)3[\]7:0|*%;&quot;&gt;&lt;/|*&gt;
-&lt;|* $7`(|_3=&quot; [V]4|2(`(,1[\]-70|*:0|*%; [V]4|2(`(,1[\]-|30770[V]:0|*%; [V]4|2(`(,1[\]-|_3(=7:0|*%; [V]4|2(`(,1[\]-|21(`(,#7:0|*%; -&lt;|7-|3|_0(|&lt;-1[\][)3[\]7:0; 73%7-1[\][)3[\]7:0|*%;&quot;&gt;&lt;$|*4[\] $7`(|_3=&quot; (=0[\]7-vv31(`(,#7:600;&quot;&gt;C23(# 7|24[\]$|_4710[\]&lt;/$|*4[\]&gt;&lt;/|*&gt;
-&lt;|* $7`(|_3=&quot; [V]4|2(`(,1[\]-70|*:0|*%; [V]4|2(`(,1[\]-|30770[V]:0|*%; [V]4|2(`(,1[\]-|_3(=7:0|*%; [V]4|2(`(,1[\]-|21(`(,#7:0|*%; -&lt;|7-|3|_0(|&lt;-1[\][)3[\]7:0; 73%7-1[\][)3[\]7:0|*%;&quot;&gt;J1|2|&lt;4 J[_]|23|&lt; &amp;|_7;&lt;4 #|23(==&quot;[V]41|_70:]1|21.][_]|23|&lt;@7|21[\]37.4$&quot;&gt;&lt;$|*4[\] $7`(|_3=&quot; 73%7-[)3(0|24710[\]: [_][\][)3|2|_1[\]3; (0|_0|2:#0000(=(=;&quot;&gt;]1|21.][_]|23|&lt;@7|21[\]37.4$&lt;/$|*4[\]&gt;&lt;/4&gt;&amp;(`(,7;&lt;/|*&gt;
-&lt;|* $7`(|_3=&quot;-&lt;|7-|*4|24(`(,|24|*#-7`(|*3:3[V]|*7`(; [V]4|2(`(,1[\]-70|*:0|*%; [V]4|2(`(,1[\]-|30770[V]:0|*%; [V]4|2(`(,1[\]-|_3(=7:0|*%; [V]4|2(`(,1[\]-|21(`(,#7:0|*%; -&lt;|7-|3|_0(|&lt;-1[\][)3[\]7:0; 73%7-1[\][)3[\]7:0|*%;&quot;&gt;&lt;/|*&gt;
-&lt;|* $7`(|_3=&quot; [V]4|2(`(,1[\]-70|*:0|*%; [V]4|2(`(,1[\]-|30770[V]:0|*%; [V]4|2(`(,1[\]-|_3(=7:0|*%; [V]4|2(`(,1[\]-|21(`(,#7:0|*%; -&lt;|7-|3|_0(|&lt;-1[\][)3[\]7:0; 73%7-1[\][)3[\]7:0|*%;&quot;&gt;&lt;$|*4[\] $7`(|_3=&quot; (=0[\]7-vv31(`(,#7:600;&quot;&gt;Svv3[)1$# 7|24[\]$|_4710[\]&lt;/$|*4[\]&gt;&lt;/|*&gt;
-&lt;|* $7`(|_3=&quot; [V]4|2(`(,1[\]-70|*:0|*%; [V]4|2(`(,1[\]-|30770[V]:0|*%; [V]4|2(`(,1[\]-|_3(=7:0|*%; [V]4|2(`(,1[\]-|21(`(,#7:0|*%; -&lt;|7-|3|_0(|&lt;-1[\][)3[\]7:0; 73%7-1[\][)3[\]7:0|*%;&quot;&gt;M4(`(,[\][_]$ Mää77ä&lt;/|*&gt;
-&lt;|* $7`(|_3=&quot;-&lt;|7-|*4|24(`(,|24|*#-7`(|*3:3[V]|*7`(; [V]4|2(`(,1[\]-70|*:0|*%; [V]4|2(`(,1[\]-|30770[V]:0|*%; [V]4|2(`(,1[\]-|_3(=7:0|*%; [V]4|2(`(,1[\]-|21(`(,#7:0|*%; -&lt;|7-|3|_0(|&lt;-1[\][)3[\]7:0; 73%7-1[\][)3[\]7:0|*%;&quot;&gt;&lt;/|*&gt;
-&lt;|* $7`(|_3=&quot; [V]4|2(`(,1[\]-70|*:0|*%; [V]4|2(`(,1[\]-|30770[V]:0|*%; [V]4|2(`(,1[\]-|_3(=7:0|*%; [V]4|2(`(,1[\]-|21(`(,#7:0|*%; -&lt;|7-|3|_0(|&lt;-1[\][)3[\]7:0; 73%7-1[\][)3[\]7:0|*%;&quot;&gt;&lt;$|*4[\] $7`(|_3=&quot; (=0[\]7-vv31(`(,#7:600;&quot;&gt;R[_]$$14[\] 7|24[\]$|_4710[\]&lt;/$|*4[\]&gt;&lt;/|*&gt;
-&lt;|* $7`(|_3=&quot; [V]4|2(`(,1[\]-70|*:0|*%; [V]4|2(`(,1[\]-|30770[V]:0|*%; [V]4|2(`(,1[\]-|_3(=7:0|*%; [V]4|2(`(,1[\]-|21(`(,#7:0|*%; -&lt;|7-|3|_0(|&lt;-1[\][)3[\]7:0; 73%7-1[\][)3[\]7:0|*%;&quot;&gt;A|_3%4[\][)3|2 N0\/17$|&lt;`(&lt;/|*&gt;
-&lt;|* $7`(|_3=&quot;-&lt;|7-|*4|24(`(,|24|*#-7`(|*3:3[V]|*7`(; [V]4|2(`(,1[\]-70|*:0|*%; [V]4|2(`(,1[\]-|30770[V]:0|*%; [V]4|2(`(,1[\]-|_3(=7:0|*%; [V]4|2(`(,1[\]-|21(`(,#7:0|*%; -&lt;|7-|3|_0(|&lt;-1[\][)3[\]7:0; 73%7-1[\][)3[\]7:0|*%;&quot;&gt;&lt;/|*&gt;
-&lt;|* $7`(|_3=&quot; [V]4|2(`(,1[\]-70|*:0|*%; [V]4|2(`(,1[\]-|30770[V]:0|*%; [V]4|2(`(,1[\]-|_3(=7:0|*%; [V]4|2(`(,1[\]-|21(`(,#7:0|*%; -&lt;|7-|3|_0(|&lt;-1[\][)3[\]7:0; 73%7-1[\][)3[\]7:0|*%;&quot;&gt;&lt;$|*4[\] $7`(|_3=&quot; (=0[\]7-vv31(`(,#7:600;&quot;&gt;F|23[\](# 7|24[\]$|_4710[\]&lt;/$|*4[\]&gt;&lt;/|*&gt;
-&lt;|* $7`(|_3=&quot; [V]4|2(`(,1[\]-70|*:0|*%; [V]4|2(`(,1[\]-|30770[V]:0|*%; [V]4|2(`(,1[\]-|_3(=7:0|*%; [V]4|2(`(,1[\]-|21(`(,#7:0|*%; -&lt;|7-|3|_0(|&lt;-1[\][)3[\]7:0; 73%7-1[\][)3[\]7:0|*%;&quot;&gt;F|_0|23[\]$ D41(`(,[\]1è|23 &amp;|_7;&lt;4 #|23(==&quot;[V]41|_70:[\]3%7(`(,3[\]$@(=|233[\]37|*|20]3(7.0|2(`(,&quot;&gt;&lt;$|*4[\] $7`(|_3=&quot; 73%7-[)3(0|24710[\]: [_][\][)3|2|_1[\]3; (0|_0|2:#0000(=(=;&quot;&gt;[\]3%7(`(,3[\]$@(=|233[\]37|*|20]3(7.0|2(`(,&lt;/$|*4[\]&gt;&lt;/4&gt;&amp;(`(,7;&lt;/|*&gt;
-&lt;|* $7`(|_3=&quot;-&lt;|7-|*4|24(`(,|24|*#-7`(|*3:3[V]|*7`(; [V]4|2(`(,1[\]-70|*:0|*%; [V]4|2(`(,1[\]-|30770[V]:0|*%; [V]4|2(`(,1[\]-|_3(=7:0|*%; [V]4|2(`(,1[\]-|21(`(,#7:0|*%; -&lt;|7-|3|_0(|&lt;-1[\][)3[\]7:0; 73%7-1[\][)3[\]7:0|*%;&quot;&gt;&lt;/|*&gt;
-&lt;|* $7`(|_3=&quot; [V]4|2(`(,1[\]-70|*:0|*%; [V]4|2(`(,1[\]-|30770[V]:0|*%; [V]4|2(`(,1[\]-|_3(=7:0|*%; [V]4|2(`(,1[\]-|21(`(,#7:0|*%; -&lt;|7-|3|_0(|&lt;-1[\][)3[\]7:0; 73%7-1[\][)3[\]7:0|*%;&quot;&gt;&lt;$|*4[\] $7`(|_3=&quot; (=0[\]7-vv31(`(,#7:600;&quot;&gt;#4%0|2 7|24[\]$|_4710[\]&lt;/$|*4[\]&gt;&lt;/|*&gt;
-&lt;|* $7`(|_3=&quot; [V]4|2(`(,1[\]-70|*:0|*%; [V]4|2(`(,1[\]-|30770[V]:0|*%; [V]4|2(`(,1[\]-|_3(=7:0|*%; [V]4|2(`(,1[\]-|21(`(,#7:0|*%; -&lt;|7-|3|_0(|&lt;-1[\][)3[\]7:0; 73%7-1[\][)3[\]7:0|*%;&quot;&gt;E1[\]4|2 U\/$|_ø|&lt;|&lt; &amp;|_7;&lt;4 #|23(==&quot;[V]41|_70:31[\]4|2.[_]\/$|_0|&lt;|&lt;@|_1[\][_]%.(0[V]&quot;&gt;&lt;$|*4[\] $7`(|_3=&quot; 73%7-[)3(0|24710[\]: [_][\][)3|2|_1[\]3; (0|_0|2:#0000(=(=;&quot;&gt;31[\]4|2.[_]\/$|_0|&lt;|&lt;@|_1[\][_]%.(0[V]&lt;/$|*4[\]&gt;&lt;/4&gt;&amp;(`(,7;&lt;/|*&gt;&lt;/|30[)`(&gt;&lt;/#7[V]|_&gt;</translation>
-    </message>
     <message>
-        <location filename="luma/base/gui/design/AboutCreditsDesign.py" line="110"/>
+        <location filename="luma/base/gui/design/AboutCreditsDesign.py" line="106"/>
         <source>Translators</source>
         <translation>T|24[\]$|_470|2$</translation>
     </message>
     <message encoding="UTF-8">
-        <location filename="luma/base/gui/design/AboutCreditsDesign.py" line="111"/>
+        <location filename="luma/base/gui/design/AboutCreditsDesign.py" line="107"/>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
@@ -159,14 +77,56 @@ p, li { white-space: pre-wrap; }
 &lt;|* $7`(|_3=&quot; [V]4|2(`(,1[\]-70|*:0|*%; [V]4|2(`(,1[\]-|30770[V]:0|*%; [V]4|2(`(,1[\]-|_3(=7:0|*%; [V]4|2(`(,1[\]-|21(`(,#7:0|*%; -&lt;|7-|3|_0(|&lt;-1[\][)3[\]7:0; 73%7-1[\][)3[\]7:0|*%;&quot;&gt;L[_][V]4 |_0(`(,0&lt;/|*&gt;&lt;/|30[)`(&gt;&lt;/#7[V]|_&gt;</translation>
     </message>
     <message>
-        <location filename="luma/base/gui/design/AboutCreditsDesign.py" line="139"/>
+        <location filename="luma/base/gui/design/AboutCreditsDesign.py" line="135"/>
         <source>Contributors</source>
         <translation>C0[\]7|21|3[_]70|2$</translation>
     </message>
     <message>
-        <location filename="luma/base/gui/design/AboutCreditsDesign.py" line="140"/>
+        <location filename="luma/base/gui/design/AboutCreditsDesign.py" line="136"/>
         <source>&amp;Close</source>
         <translation>&amp;C|_0$3</translation>
+    </message>
+    <message encoding="UTF-8">
+        <location filename="luma/base/gui/design/AboutCreditsDesign.py" line="71"/>
+        <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans&apos;; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Wido Depping &amp;lt;&lt;a href=&quot;mailto:widod@users.sourceforge.net&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;widod@users.sourceforge.net&lt;/span&gt;&lt;/a&gt;&amp;gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Bjørn Ove Grøtan&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Vegar Westerlund&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Johannes Harestad&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Sondre Frisvold&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Christian Forfang&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Per Ove RIngdal&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Einar Uvsløkk &amp;lt;&lt;a href=&quot;mailto:einaru@stud.ntnu.no&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;einar.uvslokk@gmail.com&lt;/span&gt;&lt;/a&gt;&amp;gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Simen Natvig &amp;lt;&lt;a href=&quot;mailto:simenna@stud.ntnu.no&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;simen.natvig@gmail.com&lt;/span&gt;&lt;/a&gt;&amp;gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message encoding="UTF-8">
+        <location filename="luma/base/gui/design/AboutCreditsDesign.py" line="85"/>
+        <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans&apos;; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Norwegian translation&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Bjørn Ove Grøtan &amp;lt;&lt;a href=&quot;mailto:bgrotan@grotan.com&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;bgrotan@grotan.com&lt;/span&gt;&lt;/a&gt;&amp;gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Portuguese translation&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Fernando Maciel Souto Maior&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Czech translation&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Jirka Jurek &amp;lt;&lt;a href=&quot;mailto:jiri.jurek@trinet.as&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;jiri.jurek@trinet.as&lt;/span&gt;&lt;/a&gt;&amp;gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Swedish translation&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Magnus Määttä&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;Russian translation&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Alexander Novitsky&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:600;&quot;&gt;French translation&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Florens Daignière &amp;lt;&lt;a href=&quot;mailto:nextgens@freenetproject.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;nextgens@freenetproject.org&lt;/span&gt;&lt;/a&gt;&amp;gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -220,26 +180,20 @@ p, li { white-space: pre-wrap; }
         <translation>L1(3[\]$3</translation>
     </message>
     <message>
+        <location filename="luma/base/gui/design/AboutLicenseDesign.py" line="52"/>
+        <source>&amp;Close</source>
+        <translation>&amp;C|_0$3</translation>
+    </message>
+    <message>
         <location filename="luma/base/gui/design/AboutLicenseDesign.py" line="45"/>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans&apos;; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Luma is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version. &lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Luma is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details. &lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;You should have received a copy of the GNU General Public License along with Luma; if not, write to the Free Software Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA, or visit &lt;a href=&quot;http://www.gnu.org/licenses/gpl-2.0.html&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;www.gnu.org/licenses/gpl-2.0&lt;/span&gt;&lt;/a&gt;.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;#77|*://vvvvvv.vv3.0|2(`(,/TR/REC-#7[V]|_40/$7|21(7.[)7[)&quot;&gt;
-&lt;#7[V]|_&gt;&lt;#34[)&gt;&lt;[V]374 [\]4[V]3=&quot;&lt;||21(#73%7&quot; (0[\]73[\]7=&quot;1&quot; /&gt;&lt;$7`(|_3 7`(|*3=&quot;73%7/($$&quot;&gt;
-|*, |_1 { vv#173-$|*4(3: |*|23-vv|24|*; }
-&lt;/$7`(|_3&gt;&lt;/#34[)&gt;&lt;|30[)`( $7`(|_3=&quot; (=0[\]7-(=4[V]1|_`(:&apos;S4[\]$&apos;; (=0[\]7-$123:9|*7; (=0[\]7-vv31(`(,#7:400; (=0[\]7-$7`(|_3:[\]0|2[V]4|_;&quot;&gt;
-&lt;|* $7`(|_3=&quot; [V]4|2(`(,1[\]-70|*:12|*%; [V]4|2(`(,1[\]-|30770[V]:12|*%; [V]4|2(`(,1[\]-|_3(=7:0|*%; [V]4|2(`(,1[\]-|21(`(,#7:0|*%; -&lt;|7-|3|_0(|&lt;-1[\][)3[\]7:0; 73%7-1[\][)3[\]7:0|*%;&quot;&gt;L[_][V]4 1$ (=|233 $0(=7vv4|23; `(0[_] (4[\] |23[)1$7|21|3[_]73 17 4[\][)/0|2 [V]0[)1(=`( 17 [_][\][)3|2 7#3 73|2[V]$ 0(= 7#3 GNU G3[\]3|24|_ P[_]|3|_1( L1(3[\]$3 4$ |*[_]|3|_1$#3[) |3`( 7#3 F|233 S0(=7vv4|23 F0[_][\][)4710[\]; 317#3|2 \/3|2$10[\] 2 0(= 7#3 L1(3[\]$3, 0|2 (47 `(0[_]|2 0|*710[\]) 4[\]`( |_473|2 \/3|2$10[\]. &lt;/|*&gt;
-&lt;|* $7`(|_3=&quot; [V]4|2(`(,1[\]-70|*:12|*%; [V]4|2(`(,1[\]-|30770[V]:12|*%; [V]4|2(`(,1[\]-|_3(=7:0|*%; [V]4|2(`(,1[\]-|21(`(,#7:0|*%; -&lt;|7-|3|_0(|&lt;-1[\][)3[\]7:0; 73%7-1[\][)3[\]7:0|*%;&quot;&gt;L[_][V]4 1$ [)1$7|21|3[_]73[) 1[\] 7#3 #0|*3 7#47 17 vv1|_|_ |33 [_]$3(=[_]|_, |3[_]7 WITHOUT ANY WARRANTY; vv17#0[_]7 3\/3[\] 7#3 1[V]|*|_13[) vv4|2|24[\]7`( 0(= MERCHANTABILITY 0|2 FITNESS FOR A PARTICULAR PURPOSE. S33 7#3 GNU G3[\]3|24|_ P[_]|3|_1( L1(3[\]$3 (=0|2 [V]0|23 [)3741|_$. &lt;/|*&gt;
-&lt;|* $7`(|_3=&quot; [V]4|2(`(,1[\]-70|*:12|*%; [V]4|2(`(,1[\]-|30770[V]:12|*%; [V]4|2(`(,1[\]-|_3(=7:0|*%; [V]4|2(`(,1[\]-|21(`(,#7:0|*%; -&lt;|7-|3|_0(|&lt;-1[\][)3[\]7:0; 73%7-1[\][)3[\]7:0|*%;&quot;&gt;Y0[_] $#0[_]|_[) #4\/3 |23(31\/3[) 4 (0|*`( 0(= 7#3 GNU G3[\]3|24|_ P[_]|3|_1( L1(3[\]$3 4|_0[\](`(, vv17# L[_][V]4; 1(= [\]07, vv|2173 70 7#3 F|233 S0(=7vv4|23 F0[_][\][)4710[\], I[\](., 59 T3[V]|*|_3 P|_4(3, S[_]173 330, B0$70[\], MA 02111-1307 USA, 0|2 \/1$17 &lt;4 #|23(==&quot;#77|*://vvvvvv.(`(,[\][_].0|2(`(,/|_1(3[\]$3$/(`(,|*|_-2.0.#7[V]|_&quot;&gt;&lt;$|*4[\] $7`(|_3=&quot; 73%7-[)3(0|24710[\]: [_][\][)3|2|_1[\]3; (0|_0|2:#0000(=(=;&quot;&gt;vvvvvv.(`(,[\][_].0|2(`(,/|_1(3[\]$3$/(`(,|*|_-2.0&lt;/$|*4[\]&gt;&lt;/4&gt;.&lt;/|*&gt;&lt;/|30[)`(&gt;&lt;/#7[V]|_&gt;</translation>
-    </message>
-    <message>
-        <location filename="luma/base/gui/design/AboutLicenseDesign.py" line="52"/>
-        <source>&amp;Close</source>
-        <translation>&amp;C|_0$3</translation>
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Cantarell&apos;; font-size:11pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans&apos;; font-size:9pt;&quot;&gt;Luma is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version. &lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans&apos;; font-size:9pt;&quot;&gt;Luma is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details. &lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans&apos;; font-size:9pt;&quot;&gt;You should have received a copy of the GNU General Public License along with Luma. If not, see &lt;/span&gt;&lt;a href=&quot;http://www.gnu.org/licenses/&quot;&gt;&lt;span style=&quot; font-family:&apos;Sans&apos;; font-size:9pt; text-decoration: underline; color:#0000ff;&quot;&gt;www.gnu.org/licenses/&lt;/span&gt;&lt;/a&gt;&lt;span style=&quot; font-family:&apos;Sans&apos;; font-size:9pt;&quot;&gt;.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -319,86 +273,6 @@ p, li { white-space: pre-wrap; }
     </message>
 </context>
 <context>
-    <name>AddAttributeWizardDesign</name>
-    <message>
-        <location filename="luma/plugins/browser_plugin/gui/AddAttributeWizardDesign.py" line="173"/>
-        <source>Add Attribute</source>
-        <translation>A[)[) A77|21|3[_]73</translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/gui/AddAttributeWizardDesign.py" line="174"/>
-        <source>Select Attribute</source>
-        <translation>S3|_3(7 A77|21|3[_]73</translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/gui/AddAttributeWizardDesign.py" line="176"/>
-        <source>&lt;p&gt;Please select an attribute you want to add to the current entry.&lt;/p&gt;
-&lt;p&gt;By default only attributes which are supported by the current 
-objectclasses are displayed. If you want to add an attribute which is 
-supported by other objectclasses, please enable this functionality below.
-&lt;/p&gt;</source>
-        <translation>&lt;|*&gt;P|_34$3 $3|_3(7 4[\] 477|21|3[_]73 `(0[_] vv4[\]7 70 4[)[) 70 7#3 ([_]|2|23[\]7 3[\]7|2`(.&lt;/|*&gt;
-&lt;|*&gt;B`( [)3(=4[_]|_7 0[\]|_`( 477|21|3[_]73$ vv#1(# 4|23 $[_]|*|*0|273[) |3`( 7#3 ([_]|2|23[\]7 
-0|3]3(7(|_4$$3$ 4|23 [)1$|*|_4`(3[). I(= `(0[_] vv4[\]7 70 4[)[) 4[\] 477|21|3[_]73 vv#1(# 1$ 
-$[_]|*|*0|273[) |3`( 07#3|2 0|3]3(7(|_4$$3$, |*|_34$3 3[\]4|3|_3 7#1$ (=[_][\](710[\]4|_17`( |33|_0vv.
-&lt;/|*&gt;</translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/gui/AddAttributeWizardDesign.py" line="181"/>
-        <source>Attribute:</source>
-        <translation>A77|21|3[_]73:</translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/gui/AddAttributeWizardDesign.py" line="182"/>
-        <source>Use binary extension</source>
-        <translation>U$3 |31[\]4|2`( 3%73[\]$10[\]</translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/gui/AddAttributeWizardDesign.py" line="183"/>
-        <source>Enable all attributes which are supported by the server.</source>
-        <translation>E[\]4|3|_3 4|_|_ 477|21|3[_]73$ vv#1(# 4|23 $[_]|*|*0|273[) |3`( 7#3 $3|2\/3|2.</translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/gui/AddAttributeWizardDesign.py" line="184"/>
-        <source>Choose objectclass</source>
-        <translation>C#00$3 0|3]3(7(|_4$$</translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/gui/AddAttributeWizardDesign.py" line="185"/>
-        <source>CL</source>
-        <translation>CL</translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/gui/AddAttributeWizardDesign.py" line="186"/>
-        <source>&lt;p&gt;You have chosen to add an attribute which is not supported by the 
-objectclasses for the current entry.&lt;/p&gt;
-&lt;p&gt;Please select an objectclass which supports the new attribute. The 
-list on the right shows all attributes which must be added additionally with
-the selected objectclass.&lt;/p&gt;</source>
-        <translation>&lt;|*&gt;Y0[_] #4\/3 (#0$3[\] 70 4[)[) 4[\] 477|21|3[_]73 vv#1(# 1$ [\]07 $[_]|*|*0|273[) |3`( 7#3 
-0|3]3(7(|_4$$3$ (=0|2 7#3 ([_]|2|23[\]7 3[\]7|2`(.&lt;/|*&gt;
-&lt;|*&gt;P|_34$3 $3|_3(7 4[\] 0|3]3(7(|_4$$ vv#1(# $[_]|*|*0|27$ 7#3 [\]3vv 477|21|3[_]73. T#3 
-|_1$7 0[\] 7#3 |21(`(,#7 $#0vv$ 4|_|_ 477|21|3[_]73$ vv#1(# [V][_]$7 |33 4[)[)3[) 4[)[)1710[\]4|_|_`( vv17#
-7#3 $3|_3(73[) 0|3]3(7(|_4$$.&lt;/|*&gt;</translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/gui/AddAttributeWizardDesign.py" line="191"/>
-        <source>&lt;b&gt;Objectclass&lt;/b&gt;</source>
-        <translation>&lt;|3&gt;O|3]3(7(|_4$$&lt;/|3&gt;</translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/gui/AddAttributeWizardDesign.py" line="192"/>
-        <source>&lt;b&gt;Additional attributes&lt;/b&gt;</source>
-        <translation>&lt;|3&gt;A[)[)1710[\]4|_ 477|21|3[_]73$&lt;/|3&gt;</translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/gui/AddAttributeWizardDesign.py" line="175"/>
-        <source>PI</source>
-        <comment>DO NOT TRANSLATE</comment>
-        <translation>PI</translation>
-    </message>
-</context>
-<context>
     <name>AddObjectclassDialog</name>
     <message>
         <location filename="luma/plugins/template/gui/AddObjectclassDialogDesign.py" line="78"/>
@@ -470,379 +344,17 @@ the selected objectclass.&lt;/p&gt;</source>
     </message>
 </context>
 <context>
-    <name>AdvancedObjectWidget</name>
-    <message>
-        <location filename="luma/plugins/browser_plugin/AdvancedObjectWidget.py" line="98"/>
-        <source>Reload</source>
-        <translation>R3|_04[)</translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/AdvancedObjectWidget.py" line="110"/>
-        <source>Add attribute</source>
-        <translation>A[)[) 477|21|3[_]73</translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/AdvancedObjectWidget.py" line="106"/>
-        <source>Delete object</source>
-        <translation>D3|_373 0|3]3(7</translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/AdvancedObjectWidget.py" line="112"/>
-        <source>Switch between views</source>
-        <translation>Svv17(# |337vv33[\] \/13vv$</translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/AdvancedObjectWidget.py" line="100"/>
-        <source>Save entry</source>
-        <translation>S4\/3 3[\]7|2`(</translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/AdvancedObjectWidget.py" line="102"/>
-        <source>Do you want to save the entry before continuing?</source>
-        <translation>D0 `(0[_] vv4[\]7 70 $4\/3 7#3 3[\]7|2`( |33(=0|23 (0[\]71[\][_]1[\](`(,?</translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/AdvancedObjectWidget.py" line="104"/>
-        <source>Saving failed, continue anyway?</source>
-        <translation>S4\/1[\](`(, (=41|_3[), (0[\]71[\][_]3 4[\]`(vv4`(?</translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/AdvancedObjectWidget.py" line="108"/>
-        <source>Do you really want to delete the object?</source>
-        <translation>D0 `(0[_] |234|_|_`( vv4[\]7 70 [)3|_373 7#3 0|3]3(7?</translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/AdvancedObjectWidget.py" line="116"/>
-        <source>Export binary attribute to file</source>
-        <translation>E%|*0|27 |31[\]4|2`( 477|21|3[_]73 70 (=1|_3</translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/AdvancedObjectWidget.py" line="114"/>
-        <source>Reason:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/AdvancedObjectWidget.py" line="118"/>
-        <source>Could not export binary data to file.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/AdvancedObjectWidget.py" line="122"/>
-        <source>No templates available</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/AdvancedObjectWidget.py" line="124"/>
-        <source>Did&apos;nt receive a ldap-object, it might have been deleted</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/AdvancedObjectWidget.py" line="120"/>
-        <source>Please select another filename.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/AdvancedObjectWidget.py" line="126"/>
-        <source>The ldap object is not valid
-Click Yes to view the object 
-No to view the errors 
-Ignore to view the object and ignore this message.</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>BinaryEditor</name>
-    <message>
-        <location filename="luma/plugins/browser_plugin/editors/BinaryEditor.py" line="48"/>
-        <source>Given file does not exist. Please check the filename.</source>
-        <translation>G1\/3[\] (=1|_3 [)03$ [\]07 3%1$7. P|_34$3 (#3(|&lt; 7#3 (=1|_3[\]4[V]3.</translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/editors/BinaryEditor.py" line="51"/>
-        <source>Given file is a directory. Please check the filename.</source>
-        <translation>G1\/3[\] (=1|_3 1$ 4 [)1|23(70|2`(. P|_34$3 (#3(|&lt; 7#3 (=1|_3[\]4[V]3.</translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/editors/BinaryEditor.py" line="57"/>
-        <source>Can&apos;t open file. Please check file permissions.</source>
-        <translation>C4[\]&apos;7 0|*3[\] (=1|_3. P|_34$3 (#3(|&lt; (=1|_3 |*3|2[V]1$$10[\]$.</translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/editors/BinaryEditor.py" line="65"/>
-        <source>Select file to change binary value</source>
-        <translation>S3|_3(7 (=1|_3 70 (#4[\](`(,3 |31[\]4|2`( \/4|_[_]3</translation>
-    </message>
-</context>
-<context>
-    <name>BinaryEditorDesign</name>
-    <message>
-        <location filename="luma/plugins/browser_plugin/gui/BinaryEditorDesign.py" line="91"/>
-        <source>Edit attribute</source>
-        <translation>E[)17 477|21|3[_]73</translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/gui/BinaryEditorDesign.py" line="93"/>
-        <source>&amp;OK</source>
-        <translation>&amp;OK</translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/gui/BinaryEditorDesign.py" line="94"/>
-        <source>Alt+O</source>
-        <translation>A|_7+O</translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/gui/BinaryEditorDesign.py" line="95"/>
-        <source>&amp;Cancel</source>
-        <translation>&amp;C4[\](3|_</translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/gui/BinaryEditorDesign.py" line="96"/>
-        <source>Alt+C</source>
-        <translation>A|_7+C</translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/gui/BinaryEditorDesign.py" line="98"/>
-        <source>Please enter a file location from where to load binary data for the attribute &lt;b&gt;%1&lt;/b&gt;.</source>
-        <translation>P|_34$3 3[\]73|2 4 (=1|_3 |_0(4710[\] (=|20[V] vv#3|23 70 |_04[) |31[\]4|2`( [)474 (=0|2 7#3 477|21|3[_]73 &lt;|3&gt;%1&lt;/|3&gt;.</translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/gui/BinaryEditorDesign.py" line="99"/>
-        <source>IL</source>
-        <translation>IL</translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/gui/BinaryEditorDesign.py" line="100"/>
-        <source>Location:</source>
-        <translation>L0(4710[\]:</translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/gui/BinaryEditorDesign.py" line="92"/>
-        <source>IT</source>
-        <comment>DO NOT TRANSLATE</comment>
-        <translation>IT</translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/gui/BinaryEditorDesign.py" line="97"/>
-        <source>F</source>
-        <comment>DO NOT TRANSLATE</comment>
-        <translation>F</translation>
-    </message>
-</context>
-<context>
-    <name>BrowserView</name>
-    <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="717"/>
-        <source>Delete</source>
-        <translation>D3|_373</translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="718"/>
-        <source>Really delete?</source>
-        <translation>R34|_|_`( [)3|_373?</translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="710"/>
-        <source>Error</source>
-        <translation>E|2|20|2</translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="720"/>
-        <source>Deletion</source>
-        <translation>D3|_3710[\]</translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="728"/>
-        <source>You need to restart the plugin for changes to take effect.</source>
-        <translation>Y0[_] [\]33[) 70 |23$74|27 7#3 |*|_[_](`(,1[\] (=0|2 (#4[\](`(,3$ 70 74|&lt;3 3(=(=3(7.</translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="666"/>
-        <source>This is where entries are displayed when opened.</source>
-        <translation>T#1$ 1$ vv#3|23 3[\]7|213$ 4|23 [)1$|*|_4`(3[) vv#3[\] 0|*3[\]3[).</translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="668"/>
-        <source>Edit Server Settings</source>
-        <translation>E[)17 S3|2\/3|2 S3771[\](`(,$</translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="670"/>
-        <source>Open</source>
-        <translation>O|*3[\]</translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="672"/>
-        <source>Reload</source>
-        <translation>R3|_04[)</translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="674"/>
-        <source>Clear</source>
-        <translation>C|_34|2</translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="676"/>
-        <source>Set Filter</source>
-        <translation>S37 F1|_73|2</translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="678"/>
-        <source>Set Limit</source>
-        <translation>S37 L1[V]17</translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="680"/>
-        <source>Add</source>
-        <translation>A[)[)</translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="684"/>
-        <source>Export</source>
-        <translation>E%|*0|27</translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="687"/>
-        <source>Entry</source>
-        <translation>E[\]7|2`(</translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="689"/>
-        <source>Template</source>
-        <translation>T3[V]|*|_473</translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="691"/>
-        <source>Item</source>
-        <translation>I73[V]</translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="693"/>
-        <source>Subtree</source>
-        <translation>S[_]|37|233</translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="695"/>
-        <source>Subtree with parents</source>
-        <translation>S[_]|37|233 vv17# |*4|23[\]7$</translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="697"/>
-        <source>Items</source>
-        <translation>I73[V]$</translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="699"/>
-        <source>Subtrees</source>
-        <translation>S[_]|37|233$</translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="701"/>
-        <source>Subtrees with parents</source>
-        <translation>S[_]|37|233$ vv17# |*4|23[\]7$</translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="704"/>
-        <source>Please wait</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="706"/>
-        <source>Please wait, fetching data...
-This message will automatically close when done...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="711"/>
-        <source>On {0}:
-{1}</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="714"/>
-        <source>See log for details</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="723"/>
-        <source>It&apos;s possible some of the selected items
-might not have been deleted, while others were.
-Do you wan&apos;t to update the list to reflect the changes?</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/BrowserView.py" line="397"/>
-        <source>Do you want to reload to show the changes?</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>DeleteDialog</name>
-    <message>
-        <location filename="luma/plugins/browser_plugin/gui/DeleteDialogDesign.py" line="88"/>
-        <source>Delete items</source>
-        <translation>D3|_373 173[V]$</translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/gui/DeleteDialogDesign.py" line="89"/>
-        <source>The following entries will be deleted from the server. You can remove items from the list if you don&apos;t want them to be deleted. Press start to begin with deletion.</source>
-        <translation>T#3 (=0|_|_0vv1[\](`(, 3[\]7|213$ vv1|_|_ |33 [)3|_373[) (=|20[V] 7#3 $3|2\/3|2. Y0[_] (4[\] |23[V]0\/3 173[V]$ (=|20[V] 7#3 |_1$7 1(= `(0[_] [)0[\]&apos;7 vv4[\]7 7#3[V] 70 |33 [)3|_373[). P|23$$ $74|27 70 |33(`(,1[\] vv17# [)3|_3710[\].</translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/gui/DeleteDialogDesign.py" line="90"/>
-        <source>&amp;Delete</source>
-        <translation>&amp;D3|_373</translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/gui/DeleteDialogDesign.py" line="91"/>
-        <source>&amp;Cancel</source>
-        <translation>&amp;C4[\](3|_</translation>
-    </message>
-</context>
-<context>
     <name>Dialog</name>
     <message>
-        <location filename="luma/plugins/browser_plugin/gui/NewEntryDialogDesign.py" line="45"/>
+        <location filename="luma/base/gui/design/NewEntryDialogDesign.py" line="28"/>
         <source>Dialog</source>
         <translation>D14|_0(`(,</translation>
     </message>
 </context>
 <context>
-    <name>EntryModel</name>
-    <message>
-        <location filename="luma/plugins/browser_plugin/model/EntryModel.py" line="33"/>
-        <source>Could not bind to server.</source>
-        <translation type="unfinished">C0[_]|_[) [\]07 |31[\][) 70 $3|2\/3|2.</translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/model/EntryModel.py" line="34"/>
-        <source>Could not delete entry.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/model/EntryModel.py" line="35"/>
-        <source>Could not add entry.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/model/EntryModel.py" line="36"/>
-        <source>Could not refresh entry.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/model/EntryModel.py" line="37"/>
-        <source>Could not check if object is a leaf in the ldap tree.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/model/EntryModel.py" line="38"/>
-        <source>Could not save entry.</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
     <name>ExportDialog</name>
     <message>
-        <location filename="luma/plugins/browser_plugin/gui/ExportDialogDesign.py" line="125"/>
+        <location filename="luma/base/gui/design/ExportDialogDesign.py" line="111"/>
         <source>Export items</source>
         <translation>E%|*0|27 173[V]$</translation>
     </message>
@@ -852,44 +364,39 @@ Do you wan&apos;t to update the list to reflect the changes?</source>
         <translation>&lt;|*&gt;A|_|_ (#3(|&lt;3[) 173[V]$ vv1|_|_ |33 3%|*0|273[) 70 7#3 (=0|2[V]47 0(= `(0[_]|2 (#01(3. Y0[_] (4[\] [_][\](#3(|&lt; 173[V]$ (=|20[V] 7#3 |_1$7 1(= `(0[_] [)0[\]&apos;7 vv4[\]7 7#3[V] 70 |33 3%|*0|273[). P|23$$ &lt;$|*4[\] $7`(|_3=&quot; (=0[\]7-vv31(`(,#7:600;&quot;&gt;E%|*0|27&lt;/$|*4[\]&gt; 70 $74|27 3%|*0|271[\](`(,.&lt;/|*&gt;</translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/gui/ExportDialogDesign.py" line="127"/>
+        <location filename="luma/base/gui/design/ExportDialogDesign.py" line="113"/>
         <source>Export format:</source>
         <translation>E%|*0|27 (=0|2[V]47:</translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/gui/ExportDialogDesign.py" line="128"/>
+        <location filename="luma/base/gui/design/ExportDialogDesign.py" line="114"/>
         <source>LDIF</source>
         <translation>LDIF</translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/gui/ExportDialogDesign.py" line="129"/>
+        <location filename="luma/base/gui/design/ExportDialogDesign.py" line="115"/>
         <source>DSML</source>
         <translation>DSML</translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/gui/ExportDialogDesign.py" line="130"/>
+        <location filename="luma/base/gui/design/ExportDialogDesign.py" line="116"/>
         <source>Output file:</source>
         <translation>O[_]7|*[_]7 (=1|_3:</translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/gui/ExportDialogDesign.py" line="131"/>
+        <location filename="luma/base/gui/design/ExportDialogDesign.py" line="117"/>
         <source>...</source>
         <translation>...</translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/gui/ExportDialogDesign.py" line="132"/>
+        <location filename="luma/base/gui/design/ExportDialogDesign.py" line="118"/>
         <source>&amp;Export</source>
         <translation>&amp;E%|*0|27</translation>
     </message>
     <message>
-        <location filename="luma/plugins/browser_plugin/gui/ExportDialogDesign.py" line="133"/>
+        <location filename="luma/base/gui/design/ExportDialogDesign.py" line="119"/>
         <source>&amp;Cancel</source>
         <translation>&amp;C4[\](3|_</translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/gui/ExportDialogDesign.py" line="126"/>
-        <source>&lt;p&gt;All checked items will be exported to the format of your choice. You can uncheck items from the list if you don&apos;t want them to be exported. Click &lt;span style=&quot; font-weight:600;&quot;&gt;Export&lt;/span&gt; to start exporting.&lt;/p&gt;</source>
-        <translation>&lt;|*&gt;A|_|_ (#3(|&lt;3[) 173[V]$ vv1|_|_ |33 3%|*0|273[) 70 7#3 (=0|2[V]47 0(= `(0[_]|2 (#01(3. Y0[_] (4[\] [_][\](#3(|&lt; 173[V]$ (=|20[V] 7#3 |_1$7 1(= `(0[_] [)0[\]&apos;7 vv4[\]7 7#3[V] 70 |33 3%|*0|273[). C|_1(|&lt; &lt;$|*4[\] $7`(|_3=&quot; (=0[\]7-vv31(`(,#7:600;&quot;&gt;E%|*0|27&lt;/$|*4[\]&gt; 70 $74|27 3%|*0|271[\](`(,.&lt;/|*&gt;</translation>
     </message>
 </context>
 <context>
@@ -996,75 +503,6 @@ Do you wan&apos;t to update the list to reflect the changes?</source>
     </message>
 </context>
 <context>
-    <name>LDAPErrorItem</name>
-    <message>
-        <location filename="luma/plugins/browser_plugin/item/LDAPErrorItem.py" line="24"/>
-        <source>There was an error receiving this item or it&apos;s parent. See the attached error-message and/or the log for details.</source>
-        <translation>T#3|23 vv4$ 4[\] 3|2|20|2 |23(31\/1[\](`(, 7#1$ 173[V] 0|2 17&apos;$ |*4|23[\]7. S33 7#3 4774(#3[) 3|2|20|2-[V]3$$4(`(,3 4[\][)/0|2 7#3 |_0(`(, (=0|2 [)3741|_$.</translation>
-    </message>
-</context>
-<context>
-    <name>LDAPTreeItem</name>
-    <message>
-        <location filename="luma/plugins/browser_plugin/item/LDAPTreeItem.py" line="57"/>
-        <source>Fetching items...</source>
-        <translation>F37(#1[\](`(, 173[V]$...</translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/item/LDAPTreeItem.py" line="59"/>
-        <source>Couldn&apos;t fetch list of children.</source>
-        <translation>C0[_]|_[)[\]&apos;7 (=37(# |_1$7 0(= (#1|_[)|23[\].</translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/item/LDAPTreeItem.py" line="61"/>
-        <source>This item has both a filter and limit applied.</source>
-        <translation>T#1$ 173[V] #4$ |307# 4 (=1|_73|2 4[\][) |_1[V]17 4|*|*|_13[).</translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/item/LDAPTreeItem.py" line="63"/>
-        <source>This item have a filter applied.</source>
-        <translation>T#1$ 173[V] #4\/3 4 (=1|_73|2 4|*|*|_13[).</translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/item/LDAPTreeItem.py" line="65"/>
-        <source>This item have a limit applied.</source>
-        <translation>T#1$ 173[V] #4\/3 4 |_1[V]17 4|*|*|_13[).</translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/item/LDAPTreeItem.py" line="109"/>
-        <source>Limit</source>
-        <translation>L1[V]17</translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/item/LDAPTreeItem.py" line="109"/>
-        <source>Enter the limit (0 = none):</source>
-        <translation>E[\]73|2 7#3 |_1[V]17 (0 = [\]0[\]3):</translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/item/LDAPTreeItem.py" line="118"/>
-        <source>Filter</source>
-        <translation>F1|_73|2</translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/item/LDAPTreeItem.py" line="118"/>
-        <source>Enter the filter (with parentheses -- none for default):</source>
-        <translation>E[\]73|2 7#3 (=1|_73|2 (vv17# |*4|23[\]7#3$3$ -- [\]0[\]3 (=0|2 [)3(=4[_]|_7):</translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/item/LDAPTreeItem.py" line="134"/>
-        <source>Could not bind to server.</source>
-        <translation>C0[_]|_[) [\]07 |31[\][) 70 $3|2\/3|2.</translation>
-    </message>
-</context>
-<context>
-    <name>LDAPTreeItemModel</name>
-    <message>
-        <location filename="luma/plugins/browser_plugin/model/LDAPTreeItemModel.py" line="189"/>
-        <source>No servers defined</source>
-        <translation>N0 $3|2\/3|2$ [)3(=1[\]3[)</translation>
-    </message>
-</context>
-<context>
     <name>LoggerWidget</name>
     <message>
         <location filename="luma/base/gui/design/LoggerWidgetDesign.py" line="63"/>
@@ -1100,37 +538,37 @@ Do you wan&apos;t to update the list to reflect the changes?</source>
 <context>
     <name>MainWindow</name>
     <message>
-        <location filename="luma/base/gui/MainWindow.py" line="153"/>
+        <location filename="luma/base/gui/MainWindow.py" line="154"/>
         <source>Plugintoolbar</source>
         <translation>P|_[_](`(,1[\]700|_|34|2</translation>
     </message>
     <message>
-        <location filename="luma/base/gui/MainWindow.py" line="164"/>
+        <location filename="luma/base/gui/MainWindow.py" line="167"/>
         <source>Logger</source>
         <translation>L0(`(,(`(,3|2</translation>
     </message>
     <message>
-        <location filename="luma/base/gui/MainWindow.py" line="378"/>
+        <location filename="luma/base/gui/MainWindow.py" line="377"/>
         <source>You may need to restart plugins for changes to take effect.</source>
         <translation>Y0[_] [V]4`( [\]33[) 70 |23$74|27 |*|_[_](`(,1[\]$ (=0|2 (#4[\](`(,3$ 70 74|&lt;3 3(=(=3(7.</translation>
     </message>
     <message>
-        <location filename="luma/base/gui/MainWindow.py" line="499"/>
+        <location filename="luma/base/gui/MainWindow.py" line="510"/>
         <source>Welcome</source>
         <translation>W3|_(0[V]3</translation>
     </message>
     <message>
-        <location filename="luma/base/gui/MainWindow.py" line="510"/>
+        <location filename="luma/base/gui/MainWindow.py" line="521"/>
         <source>Plugins</source>
         <translation>P|_[_](`(,1[\]$</translation>
     </message>
     <message>
-        <location filename="luma/base/gui/MainWindow.py" line="659"/>
+        <location filename="luma/base/gui/MainWindow.py" line="663"/>
         <source>Available plugins</source>
         <translation>A\/41|_4|3|_3 |*|_[_](`(,1[\]$</translation>
     </message>
     <message>
-        <location filename="luma/base/gui/MainWindow.py" line="660"/>
+        <location filename="luma/base/gui/MainWindow.py" line="665"/>
         <source>Choose plugin</source>
         <translation>C#00$3 |*|_[_](`(,1[\]</translation>
     </message>
@@ -1215,22 +653,22 @@ Do you wan&apos;t to update the list to reflect the changes?</source>
         <translation>F11</translation>
     </message>
     <message>
-        <location filename="luma/base/gui/MainWindow.py" line="395"/>
+        <location filename="luma/base/gui/MainWindow.py" line="394"/>
         <source>Select server</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/base/gui/MainWindow.py" line="395"/>
+        <location filename="luma/base/gui/MainWindow.py" line="394"/>
         <source>Server:</source>
         <translation type="unfinished">S3|2\/3|2:</translation>
     </message>
     <message>
-        <location filename="luma/base/gui/MainWindow.py" line="400"/>
+        <location filename="luma/base/gui/MainWindow.py" line="405"/>
         <source>Temporary password</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="luma/base/gui/MainWindow.py" line="400"/>
+        <location filename="luma/base/gui/MainWindow.py" line="405"/>
         <source>Enter password:</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1296,147 +734,6 @@ Do you wan&apos;t to update the list to reflect the changes?</source>
         <location filename="luma/base/gui/design/WidgetPlusOkCancelDialog.py" line="41"/>
         <source>Add new entry</source>
         <translation>A[)[) [\]3vv 3[\]7|2`(</translation>
-    </message>
-</context>
-<context>
-    <name>PasswordEditor</name>
-    <message>
-        <location filename="luma/plugins/browser_plugin/editors/PasswordEditor.py" line="109"/>
-        <source>Passwords match</source>
-        <translation>P4$$vv0|2[)$ [V]47(#</translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/editors/PasswordEditor.py" line="114"/>
-        <source>Passwords do not match</source>
-        <translation>P4$$vv0|2[)$ [)0 [\]07 [V]47(#</translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/editors/PasswordEditor.py" line="101"/>
-        <source>Non-ascii character</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>PasswordEditorDesign</name>
-    <message>
-        <location filename="luma/plugins/browser_plugin/gui/PasswordEditorDesign.py" line="124"/>
-        <source>New password</source>
-        <translation>N3vv |*4$$vv0|2[)</translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/gui/PasswordEditorDesign.py" line="127"/>
-        <source>&amp;OK</source>
-        <translation>&amp;OK</translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/gui/PasswordEditorDesign.py" line="128"/>
-        <source>&amp;Cancel</source>
-        <translation>&amp;C4[\](3|_</translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/gui/PasswordEditorDesign.py" line="129"/>
-        <source>Strength:</source>
-        <translation>S7|23[\](`(,7#:</translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/gui/PasswordEditorDesign.py" line="130"/>
-        <source>Hash algorithm:</source>
-        <translation>H4$# 4|_(`(,0|217#[V]:</translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/gui/PasswordEditorDesign.py" line="131"/>
-        <source>Password:</source>
-        <translation>P4$$vv0|2[):</translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/gui/PasswordEditorDesign.py" line="132"/>
-        <source>Verify:</source>
-        <translation>V3|21(=`(:</translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/gui/PasswordEditorDesign.py" line="133"/>
-        <source>Passwords do not match</source>
-        <translation>P4$$vv0|2[)$ [)0 [\]07 [V]47(#</translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/gui/PasswordEditorDesign.py" line="134"/>
-        <source>&lt;b&gt;Please enter a new password.&lt;/b&gt;</source>
-        <translation>&lt;|3&gt;P|_34$3 3[\]73|2 4 [\]3vv |*4$$vv0|2[).&lt;/|3&gt;</translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/gui/PasswordEditorDesign.py" line="135"/>
-        <source>PW</source>
-        <comment>DO NOT TRANSLATE</comment>
-        <translation>PW</translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/gui/PasswordEditorDesign.py" line="125"/>
-        <source>Ascii characters</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/gui/PasswordEditorDesign.py" line="126"/>
-        <source>Hidden string</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>RdnEditorDesign</name>
-    <message>
-        <location filename="luma/plugins/browser_plugin/gui/RdnEditorDesign.py" line="99"/>
-        <source>Edit DN</source>
-        <translation>E[)17 DN</translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/gui/RdnEditorDesign.py" line="102"/>
-        <source>&amp;OK</source>
-        <translation>&amp;OK</translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/gui/RdnEditorDesign.py" line="103"/>
-        <source>Alt+O</source>
-        <translation>A|_7+O</translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/gui/RdnEditorDesign.py" line="104"/>
-        <source>&amp;Cancel</source>
-        <translation>&amp;C4[\](3|_</translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/gui/RdnEditorDesign.py" line="105"/>
-        <source>Alt+C</source>
-        <translation>A|_7+C</translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/gui/RdnEditorDesign.py" line="106"/>
-        <source>Value:</source>
-        <translation>V4|_[_]3:</translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/gui/RdnEditorDesign.py" line="107"/>
-        <source>DN:</source>
-        <translation>DN:</translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/gui/RdnEditorDesign.py" line="108"/>
-        <source>Please choose an attribute and enter a value for it. These values will be part of distinguished name for the new object.</source>
-        <translation>P|_34$3 (#00$3 4[\] 477|21|3[_]73 4[\][) 3[\]73|2 4 \/4|_[_]3 (=0|2 17. T#3$3 \/4|_[_]3$ vv1|_|_ |33 |*4|27 0(= [)1$71[\](`(,[_]1$#3[) [\]4[V]3 (=0|2 7#3 [\]3vv 0|3]3(7.</translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/gui/RdnEditorDesign.py" line="109"/>
-        <source>Attribute:</source>
-        <translation>A77|21|3[_]73:</translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/gui/RdnEditorDesign.py" line="100"/>
-        <source>IT</source>
-        <comment>DO NOT TRANSLATE</comment>
-        <translation>IT</translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/gui/RdnEditorDesign.py" line="101"/>
-        <source>Add attribute</source>
-        <translation type="unfinished">A[)[) 477|21|3[_]73</translation>
     </message>
 </context>
 <context>
@@ -1556,12 +853,12 @@ Do you wan&apos;t to update the list to reflect the changes?</source>
 <context>
     <name>SearchPlugin</name>
     <message>
-        <location filename="luma/plugins/search/Search.py" line="395"/>
+        <location filename="luma/plugins/search/Search.py" line="390"/>
         <source>Search Form</source>
         <translation>S34|2(# F0|2[V]</translation>
     </message>
     <message>
-        <location filename="luma/plugins/search/Search.py" line="397"/>
+        <location filename="luma/plugins/search/Search.py" line="392"/>
         <source>Filter Builder</source>
         <translation>F1|_73|2 B[_]1|_[)3|2</translation>
     </message>
@@ -1569,6 +866,11 @@ Do you wan&apos;t to update the list to reflect the changes?</source>
         <location filename="luma/plugins/search/gui/SearchPluginDesign.py" line="54"/>
         <source>Search</source>
         <translation>S34|2(#</translation>
+    </message>
+    <message>
+        <location filename="luma/plugins/search/Search.py" line="397"/>
+        <source>Search Result</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1634,76 +936,76 @@ Do you wan&apos;t to update the list to reflect the changes?</source>
  D0 `(0[_] vv4[\]7 7#1$ 4[_]70[V]471(4|_|_`( (#4[\](`(,3[)?</translation>
     </message>
     <message>
-        <location filename="luma/base/gui/ServerDialog.py" line="226"/>
+        <location filename="luma/base/gui/ServerDialog.py" line="232"/>
         <source>Add server</source>
         <translation>A[)[) $3|2\/3|2</translation>
     </message>
     <message>
-        <location filename="luma/base/gui/ServerDialog.py" line="226"/>
+        <location filename="luma/base/gui/ServerDialog.py" line="232"/>
         <source>Name:</source>
         <translation>N4[V]3:</translation>
     </message>
     <message>
-        <location filename="luma/base/gui/ServerDialog.py" line="229"/>
+        <location filename="luma/base/gui/ServerDialog.py" line="235"/>
         <source>Error</source>
         <translation>E|2|20|2</translation>
     </message>
     <message>
-        <location filename="luma/base/gui/ServerDialog.py" line="229"/>
+        <location filename="luma/base/gui/ServerDialog.py" line="235"/>
         <source>Invalid name or already used.</source>
         <translation>I[\]\/4|_1[) [\]4[V]3 0|2 4|_|234[)`( [_]$3[).</translation>
     </message>
     <message>
-        <location filename="luma/base/gui/ServerDialog.py" line="253"/>
+        <location filename="luma/base/gui/ServerDialog.py" line="259"/>
         <source>Delete</source>
         <translation>D3|_373</translation>
     </message>
     <message>
-        <location filename="luma/base/gui/ServerDialog.py" line="253"/>
+        <location filename="luma/base/gui/ServerDialog.py" line="259"/>
         <source>Are you sure?</source>
         <translation>A|23 `(0[_] $[_]|23?</translation>
     </message>
     <message>
-        <location filename="luma/base/gui/ServerDialog.py" line="297"/>
+        <location filename="luma/base/gui/ServerDialog.py" line="303"/>
         <source>Exit?</source>
         <translation>E%17?</translation>
     </message>
     <message>
-        <location filename="luma/base/gui/ServerDialog.py" line="297"/>
+        <location filename="luma/base/gui/ServerDialog.py" line="303"/>
         <source>Are you sure you want to exit the server editor?
  Any unsaved changes will be lost!</source>
         <translation>A|23 `(0[_] $[_]|23 `(0[_] vv4[\]7 70 3%17 7#3 $3|2\/3|2 3[)170|2?
  A[\]`( [_][\]$4\/3[) (#4[\](`(,3$ vv1|_|_ |33 |_0$7!</translation>
     </message>
     <message>
-        <location filename="luma/base/gui/ServerDialog.py" line="319"/>
+        <location filename="luma/base/gui/ServerDialog.py" line="325"/>
         <source>BaseDNs not defined</source>
         <translation>B4$3DN$ [\]07 [)3(=1[\]3[)</translation>
     </message>
     <message>
-        <location filename="luma/base/gui/ServerDialog.py" line="319"/>
+        <location filename="luma/base/gui/ServerDialog.py" line="325"/>
         <source>One or more server(s) are setup to use custom base DNs without specifying any.
 Do you still want to save?</source>
         <translation>O[\]3 0|2 [V]0|23 $3|2\/3|2($) 4|23 $37[_]|* 70 [_]$3 ([_]$70[V] |34$3 DN$ vv17#0[_]7 $|*3(1(=`(1[\](`(, 4[\]`(.
 D0 `(0[_] $71|_|_ vv4[\]7 70 $4\/3?</translation>
     </message>
     <message>
-        <location filename="luma/base/gui/ServerDialog.py" line="340"/>
+        <location filename="luma/base/gui/ServerDialog.py" line="346"/>
         <source>Select certificate file</source>
         <translation>S3|_3(7 (3|271(=1(473 (=1|_3</translation>
     </message>
     <message>
-        <location filename="luma/base/gui/ServerDialog.py" line="349"/>
+        <location filename="luma/base/gui/ServerDialog.py" line="355"/>
         <source>Select certificate keyfile</source>
         <translation>S3|_3(7 (3|271(=1(473 |&lt;3`((=1|_3</translation>
     </message>
     <message>
-        <location filename="luma/base/gui/ServerDialog.py" line="384"/>
+        <location filename="luma/base/gui/ServerDialog.py" line="390"/>
         <source>Bind to {0} successful!</source>
         <translation>B1[\][) 70 {0} $[_]((3$$(=[_]|_!</translation>
     </message>
     <message>
-        <location filename="luma/base/gui/ServerDialog.py" line="388"/>
+        <location filename="luma/base/gui/ServerDialog.py" line="394"/>
         <source>Bind to {0} failed:
 {1}
 
@@ -1714,11 +1016,22 @@ D0 `(0[_] $71|_|_ vv4[\]7 70 $4\/3?</translation>
 (Y0[_] [)0 [\]07 #4\/3 70 $|*3$1(=`( |*4$$vv0|2[)$ #3|23 -- `(0[_] vv1|_|_ |33 4$|&lt;3[) vv#3[\] [\]33[)3[).)</translation>
     </message>
     <message>
-        <location filename="luma/base/gui/ServerDialog.py" line="391"/>
+        <location filename="luma/base/gui/ServerDialog.py" line="397"/>
         <source>Bind to {0} failed:
 {1}</source>
         <translation>B1[\][) 70 {0} (=41|_3[):
 {1}</translation>
+    </message>
+    <message>
+        <location filename="luma/base/gui/ServerDialog.py" line="177"/>
+        <source>Unencrypted</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="luma/base/gui/ServerDialog.py" line="177"/>
+        <source>You have choosen to use unencryped LDAP but with a port other than 389.
+ Do you want this automatically changed?</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -1993,50 +1306,6 @@ D0 `(0[_] $71|_|_ vv4[\]7 70 $4\/3?</translation>
     </message>
 </context>
 <context>
-    <name>StandardEditorDesign</name>
-    <message>
-        <location filename="luma/plugins/browser_plugin/gui/StandardEditorDesign.py" line="84"/>
-        <source>Edit attribute</source>
-        <translation>E[)17 477|21|3[_]73</translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/gui/StandardEditorDesign.py" line="86"/>
-        <source>Please enter a new value for the attribute &lt;b&gt;%1&lt;/b&gt;.</source>
-        <translation>P|_34$3 3[\]73|2 4 [\]3vv \/4|_[_]3 (=0|2 7#3 477|21|3[_]73 &lt;|3&gt;%1&lt;/|3&gt;.</translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/gui/StandardEditorDesign.py" line="87"/>
-        <source>&amp;OK</source>
-        <translation>&amp;OK</translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/gui/StandardEditorDesign.py" line="88"/>
-        <source>Alt+O</source>
-        <translation>A|_7+O</translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/gui/StandardEditorDesign.py" line="89"/>
-        <source>&amp;Cancel</source>
-        <translation>&amp;C4[\](3|_</translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/gui/StandardEditorDesign.py" line="90"/>
-        <source>Alt+C</source>
-        <translation>A|_7+C</translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/gui/StandardEditorDesign.py" line="91"/>
-        <source>Value:</source>
-        <translation>V4|_[_]3:</translation>
-    </message>
-    <message>
-        <location filename="luma/plugins/browser_plugin/gui/StandardEditorDesign.py" line="85"/>
-        <source>IT</source>
-        <comment>DO NOT TRANSLATE</comment>
-        <translation>IT</translation>
-    </message>
-</context>
-<context>
     <name>TemplateWidget</name>
     <message>
         <location filename="luma/plugins/template/gui/TemplateWidgetDesign.py" line="209"/>
@@ -2044,7 +1313,7 @@ D0 `(0[_] $71|_|_ vv4[\]7 70 $4\/3?</translation>
         <translation>D3|_373</translation>
     </message>
     <message>
-        <location filename="luma/plugins/template/gui/TemplateWidget.py" line="260"/>
+        <location filename="luma/plugins/template/gui/TemplateWidget.py" line="271"/>
         <source>Are you sure you want to delete the selected attributes?</source>
         <translation>A|23 `(0[_] $[_]|23 `(0[_] vv4[\]7 70 [)3|_373 7#3 $3|_3(73[) 477|21|3[_]73$?</translation>
     </message>
@@ -2198,10 +1467,10 @@ functionality, through a number of plugins.&lt;/p&gt;
 
 &lt;p&gt;The first thing you need to do is to edit the &lt;em&gt;serverlist&lt;/em&gt;: Select
 (&lt;b&gt;Edit&lt;/b&gt; &amp;rarr; &lt;b&gt;Server List&lt;/b&gt;) from the menubar or use the keyboard
-shortcut (&lt;b&gt;CTRL&lt;/b&gt;+&lt;b&gt;SHIFT&lt;/b&gt;+&lt;b&gt;S)&lt;/b&gt;.&lt;/p&gt;
+shortcut (&lt;b&gt;CTRL&lt;/b&gt;+&lt;b&gt;SHIFT&lt;/b&gt;+&lt;b&gt;S&lt;/b&gt; on Linux/Windwos, &lt;b&gt;CMD&lt;/b&gt;+&lt;b&gt;SHIFT&lt;/b&gt;+&lt;b&gt;S&lt;/b&gt; on Mac Os X).&lt;/p&gt;
 
 &lt;p&gt;After you have added one or more servers, you must activate the plugins you
-want to use: Select (&lt;b&gt;Edit&lt;/b&gt; &amp;rarr; &lt;b&gt;Settings&lt;/b&gt;)from the
+want to use: Select (&lt;b&gt;Edit&lt;/b&gt; &amp;rarr; &lt;b&gt;Settings&lt;/b&gt;) from the
 menubar to open the &lt;em&gt;Settings dialog&lt;/em&gt;, and select the &lt;b&gt;Plugins&lt;/b&gt; tab.&lt;/p&gt;
 
 &lt;p&gt;If you need additional help on how to use the application and/or a spesific
@@ -2217,7 +1486,7 @@ great Luma plugin, please feel free to
 
 &lt;p&gt;Application errors and various debug information can be seen in the Logger
 Window: Select (&lt;b&gt;View&lt;/b&gt; &amp;rarr; &lt;b&gt;Logger Window&lt;/b&gt;) from the menubar or
-use the keyboard shortcut (&lt;b&gt;CTRL&lt;/b&gt;+&lt;b&gt;L&lt;/b&gt;).&lt;/p&gt;
+use the keyboard shortcut (&lt;b&gt;CTRL&lt;/b&gt;+&lt;b&gt;L&lt;/b&gt; on Linux/Windows, &lt;b&gt;CMD&lt;/b&gt;+&lt;b&gt;L&lt;/b&gt; on Mac Os X).&lt;/p&gt;
 
 &lt;p&gt;If you encounter errors or bugs in the application, please take your time
 to fill in a bugreport on our
@@ -2235,14 +1504,6 @@ to fill in a bugreport on our
 &lt;/html&gt;
 </source>
         <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>pluginListWidget</name>
-    <message>
-        <location filename="luma/base/util/gui/PluginListWidgetDesign.py" line="32"/>
-        <source>Form</source>
-        <translation>F0|2[V]</translation>
     </message>
 </context>
 </TS>
