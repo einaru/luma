@@ -15,12 +15,14 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see http://www.gnu.org/licenses/
-""" 
-Utility script for preparing a luma release.
+#
+# ----------------------------------------------------------------------
+# This is a utility script for preparing a luma release.
+# 
+# The script is used to ensure up-to-date doc files is included in the
+# root folder prior to building a luma source distribution.
+# ----------------------------------------------------------------------
 
-The script is used to ensure up-to-date doc files is included in the
-root folder prior to building a luma source distribution.
-"""
 # Change directory to the source folder
 basepath=$(dirname $0)
 cd $basepath/source

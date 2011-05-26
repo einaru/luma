@@ -15,16 +15,22 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see http://www.gnu.org/licenses/
-"""
-Utility script for bumping the version of the Luma application.
-Uses 'sed' to update the version variable in the version file.
-The version string should be on the format:
- 
-    VERSION = 'version'
+#
+# ----------------------------------------------------------------------
+# This is a utility script for bumping the version on the Luma 
+# application. It uses `sed` to update the version variable in the 
+# version file(s).
+# The version string should be on the format:
+#  
+#     VERSION = 'version'
+# 
+# Where version typically is made up of version.release.modification,
+# i.e. 3.0.6.
+#
+# NOTE: see the usage text for additional information regarding version
+# numbers and what is considered valid by the distutils module.
+# ----------------------------------------------------------------------
 
-Where version typically is made up of version.release.modification,
-i.e. 3.0.6.
-"""
 # The file(s) containing the version string
 version_file="luma/__init__.py"
 version_file_doc="doc/source/conf.py"

@@ -15,14 +15,16 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see http://www.gnu.org/licenses/
-""" 
-Utility script to create the luma nroff manpage from reST.
+#
+# ----------------------------------------------------------------------
+# This is a utility script to create the luma nroff manpage from reST.
+# 
+# It needs the docutils program rst2man in order to work.
+# The script creates a standard .gz compressed manpage. To create a 
+# manpage with a  different compression, just change the 'gzip'
+# command. I.e. to  create a bz2 compression change it to bzip2.
+# ----------------------------------------------------------------------
 
-Needs the docutils program rst2man in order to work. 
-The script creates a standard .gz compressed manpage. To create a 
-manpage with a  different compression, just change the 'gzip'
-command. I.e. to  create a bz2 compression change it to bzip2.
-"""
 # Change directory to the source folder
 basepath=$(dirname $0)
 cd $basepath/source
