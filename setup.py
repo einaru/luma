@@ -71,6 +71,7 @@ def findPackages():
                 s[0] = app_dir
 
             packages.append('.'.join(s))
+
     return packages
 
 
@@ -100,10 +101,30 @@ def createNroffManpage():
 # Some default values shared among platforms
 src_dir = 'luma'
 app_dir = 'luma'
-_author = 'Luma devel team'
-_author_email = 'luma-devel@luma.sf.net'
-_data_files = []
+NAME = appinfo.APPNAME
+VERSION = appinfo.VERSION
+URL='http://luma.sf.net'
+AUTHOR = 'Luma devel team'
+AUTHOR_EMAIL = 'luma-devel@luma.sf.net'
+LICENSE = 'GNU General Public License (GPL) version 2'
+DESCRIPTION = appinfo.DESCRIPTION
 
+# For a complete list of available classifiers, see:
+# http://pypi.python.org/pypi?%3Aaction=list_classifiers
+_classifiers = [
+    'Development Status :: 4 - Beta',
+    'Environment :: MacOS X',
+    'Environment :: Win32 (MS Windows)',
+    'Environment :: X11 Applications :: Qt',
+    'License :: OSI Approved :: GNU General Public License (GPL)',
+    'Operating System :: MacOS :: MacOS X',
+    'Operating System :: Microsoft :: Windows',
+    'Operating System :: POSIX',
+    'Operating System :: POSIX :: Linux',
+    'Topic :: System :: Systems Administration :: Authentication/Directory :: LDAP'
+]
+
+#: Docfiles to be included in source distributions
 textfiles = [
     'AUTHORS',
     'Changelog',
@@ -113,22 +134,8 @@ textfiles = [
     'README',
     'TODO',
 ]
-
-# For a complete list of available classifiers, see:
-# http://pypi.python.org/pypi?%3Aaction=list_classifiers
-_classifiers = [
-    'Development Status :: 3 - Alpha',
-    'Environment :: Console',
-    'Environment :: MacOS X',
-    'Environment :: Win32 (MS Windows)',
-    'Environment :: X11 Applications :: Qt',
-    'License :: OSI Approved :: GNU General Public License (GPL)',
-    'Operating System :: MacOS :: MacOS X',
-    'Operating System :: Microsoft',
-    'Operating System :: POSIX',
-    'Operating System :: POSIX :: Linux',
-    'Topic :: Utilities',
-]
+#: Used to include platform spesific files.
+_data_files = []
 
 # First we setup some platform spesific includes
 # Windows
@@ -186,13 +193,13 @@ if __name__ == '__main__':
 
     # Then it's time for the general setup
     success = setup(
-        name=appinfo.APPNAME,
-        version=appinfo.VERSION,
-        author=_author,
-        author_email=_author_email,
-        url='http://luma.sf.net',
-        description=appinfo.DESCRIPTION,
-        license='GNU General Public License (GPL) version 2',
+        name=NAME,
+        version=VERSION,
+        author=AUTHOR,
+        author_email=AUTHOR_EMAIL,
+        url=URL,
+        description=DESCRIPTION,
+        license=LICENSE,
         packages=findPackages(),
         package_dir={
             app_dir : src_dir
@@ -201,28 +208,28 @@ if __name__ == '__main__':
         **_extras
     )
 
-    # This section is commented out because it currently is not
-    # needed. It was created in an attempt to solve the issue with
-    # including none python files in site-packages. This is currently
-    # done for the html files shipped with the browser plugin.
+    ## This section is commented out because it currently is not
+    ## needed. It was created in an attempt to solve the issue with
+    ## including none python files in site-packages. This is currently
+    ## done for the html files shipped with the browser plugin.
     #
     #if success and 'install' in sys.argv:
     #    """If ``setup`` was successfully executed with the install
     #    argument we need to do some additional post processing work.
-
+    #
     #    This includes copying ``luma/plugins/browser/templates`` into
     #    path returned by ``luma.base.util.Paths.getConfigPrefix``.
     #    """
     #    from luma.base.util.Paths import getConfigPrefix
-
+    #
     #    src = os.path.join('luma', 'plugins','browser_plugin', 'templates')
     #    configPrefix = getConfigPrefix()
-
+    #
     #    if not configPrefix[0]:
     #        error('Unable to create user config folder:')
     #        msg = 'Additional none-python files will be copied to: {0}'
     #        error(msg.format(configPrefix[1]))
-
+    #
     #    dst = os.path.join(configPrefix[1], 'browser-templates')
     #    try:
     #        shutil.copytree(src, dst)

@@ -82,14 +82,14 @@ The following platform spesific Luma packages are available:
 3.1. Linux
 ----------
 
-**Fedora 14+**
+**Fedora**
 
 Testbuilds is currently available at http://folk.ntnu.no/einaru/luma/dist. 
-To install run::
 
 
 3.2. Microsoft Windows
 ----------------------
 For Microsoft Windows there exists both ``.exe`` and  ``.msi`` installers. Note
 that all the required dependencies must be installed seperately.
+Windows installers is currently available at http://folk.ntnu.no/einaru/luma/dist.
 

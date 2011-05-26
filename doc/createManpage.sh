@@ -1,14 +1,28 @@
 #!/usr/bin/env bash
 #
-# Utility script to create the luma nroff manpage from reST.
+# Copyright (c) 2011
+#     Einar Uvsløkk, <einar.uvslokk@linux.com>
 #
-# 2011 Einar Uvsløkk <einar.uvslokk@linux.com>
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2 of the License, or
+# (at your option) any later version.
 #
-# Needs the docutils program rst2man in order to work. 
-# The script creates a standard .gz compressed manpage. To create a 
-# manpage with a  different compression, just change the `gzip` 
-# command. I.e. to  create a bz2 compression change it to bzip2.
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see http://www.gnu.org/licenses/
+""" 
+Utility script to create the luma nroff manpage from reST.
 
+Needs the docutils program rst2man in order to work. 
+The script creates a standard .gz compressed manpage. To create a 
+manpage with a  different compression, just change the 'gzip'
+command. I.e. to  create a bz2 compression change it to bzip2.
+"""
 # Change directory to the source folder
 basepath=$(dirname $0)
 cd $basepath/source

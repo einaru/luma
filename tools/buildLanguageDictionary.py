@@ -2,21 +2,20 @@
 # -*- coding: utf-8 -*-
 #
 # Copyright (c) 2011
-#      Einar Uvsløkk, <einaru@stud.ntnu.no>
+#     Einar Uvsløkk, <einar.uvslokk@linux.com>
 #
-# Luma is free software; you can redistribute it and/or modify 
-# it under the terms of the GNU General Public Licence as published by 
-# the Free Software Foundation; either version 2 of the Licence, or 
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2 of the License, or
 # (at your option) any later version.
 #
-# Luma is distributed in the hope that it will be useful, but 
-# WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY
-# or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public Licence 
-# for more details.
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
 #
-# You should have received a copy of the GNU General Public Licence along 
-# with Luma; if not, write to the Free Software Foundation, Inc., 
-# 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see http://www.gnu.org/licenses/
 """
 This script uses Google Translate to generate native names for languages
 we uses and might use in our application.
@@ -95,7 +94,7 @@ base_url='http://ajax.googleapis.com/ajax/services/language/translate?'
 
 def getNativeLanguageNamesFromGoogleTranslate(param='haha'):
     """
-    The google translate API can be found here: 
+    The google translate API can be found here:
     http://code.google.com/apis/ajaxlanguage/documentation/#Examples
     """
     result = []
@@ -121,7 +120,7 @@ def writeToDisk(list):
     path = os.path.join(os.getcwd(), outputFile)
     file = open(path, 'w')
     print u'Generated iso dictionary will be written to:\n' + \
-          u'\t%s' % (outputFile) 
+          u'\t%s' % (outputFile)
     for i in sorted(list):
         print i
         file.write(i)
