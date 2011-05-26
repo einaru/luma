@@ -1,4 +1,4 @@
-%define version 3.0.6.3
+%define version 3.0.7
 %define release 1
 
 %if ! (0%{?fedora} > 12 || 0%{?rhel} > 5)
@@ -52,7 +52,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(-,root,root)
 
 %changelog
-* Wed May 25 2011 Einar Uvsløkk <einar.uvslokk@linux.com> 3.0.6.3-1
+* Wed May 26 2011 Einar Uvsløkk <einar.uvslokk@linux.com> 3.0.7-1
 - Updated unconsistent license statements in the sourcecode.
 - Added some missing patches from the Luma 2.4 svn trunk
 * Mon May 16 2011 Einar Uvsløkk <einar.uvslokk@linux.com> 3.0.6-1

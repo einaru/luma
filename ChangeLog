@@ -5,8 +5,8 @@ ChangeLog
 .. the master branch. Changes made in the devlopment branch is documented in
 .. the git log.
 
-3.0.6.3 (2011-05-25)
-====================
+3.0.7 (2011-05-26)
+==================
 
 - Fixed unconsistent license statements in the sourcecode, meaning license
   boilerplates is now added/updated (from GPL v3 to GPL v2) in all files
@@ -28,6 +28,8 @@ ChangeLog
 | https://launchpad.net/bugs/297148
 | http://launchpadlibrarian.net/19590144/luma_2.3-1.1ubuntu1.debdiff
 
+- Added a import check for the crypt module in mkpasswd, because of ImportError
+  on the Windows platform.
 
 3.0.6-2 (2011-05-16)
 ====================

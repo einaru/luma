@@ -40,9 +40,18 @@
 import string,base64
 import random,sys
 import exceptions
-import md5,sha,crypt
+import md5,sha#,crypt
 smb = 0 # Where 1 is true, and 0 is false
+_crypt = 0
 debug = False
+
+try:
+    # Need to except import error if we are running on Windows,
+    # because `crypt` is a `UNIX spesific service`
+    import crypt
+    _crypt = 1
+except ImportError:
+    _crypt = 0
 
 try:
     import smbpasswd
@@ -87,8 +96,10 @@ def mkpasswd(pwd,sambaver=3,default='ssha'):
         'ssha':'Seeded SHA',
 	    'md5':'MD5',
 	    'smd5':'Seeded MD5',
-	    'crypt':'standard unix crypt'
     }
+    if _crypt:
+        alg['crypt'] = 'standard unix crypt'
+
     if smb:
         alg['lmhash'] = 'lan man hash'
         alg['nthash'] = 'nt hash'
