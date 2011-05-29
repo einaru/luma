@@ -1,0 +1,320 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>The luma.base.gui package &mdash; Luma v3.0.7 documentation</title>
+    <link rel="stylesheet" href="../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '3.0.7',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/sidebar.js"></script>
+    <link rel="top" title="Luma v3.0.7 documentation" href="../index.html" />
+    <link rel="up" title="Luma API" href="index.html" />
+    <link rel="next" title="The luma.base.util package" href="util.html" />
+    <link rel="prev" title="The luma.base.backend package" href="backend.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="util.html" title="The luma.base.util package"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="backend.html" title="The luma.base.backend package"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Luma v3.0.7 documentation</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">Luma API</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="the-luma-base-gui-package">
+<h1>The <tt class="docutils literal"><span class="pre">luma.base.gui</span></tt> package<a class="headerlink" href="#the-luma-base-gui-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="application-settings">
+<h2>Application settings<a class="headerlink" href="#application-settings" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="base.gui.Settings.Settings">
+<em class="property">class </em><tt class="descclassname">base.gui.Settings.</tt><tt class="descname">Settings</tt><a class="headerlink" href="#base.gui.Settings.Settings" title="Permalink to this definition">¶</a></dt>
+<dd><p>The Settings class extends the QSettings class, to provide an
+easy and persistent way to set and retrive settings from different
+parts of the application.</p>
+<p>The main benefit for doing it this way is that the config sections
+and keys is defined in one location, should we in the future decide
+to change some of these.</p>
+<p>The class provides setters and getters for all settings values
+through the python property mechanism.</p>
+<p>The following settings is available:</p>
+<div class="highlight-python"><pre>[General]
+showWelcome=0
+
+[application]
+config_prefix=&lt;string&gt;
+geometry=&lt;ByteArray&gt;
+
+[logger]
+show_logger_on_start=&lt;bool&gt;
+show_logger&lt;bool&gt;
+show_errors&lt;bool&gt;
+show_debug&lt;bool&gt;
+show_info&lt;bool&gt;
+show_on_start=&lt;bool&gt;
+
+[i18n]
+language=&lt;string&gt;</pre>
+</div>
+<dl class="attribute">
+<dt id="base.gui.Settings.Settings.configPrefix">
+<tt class="descname">configPrefix</tt><a class="headerlink" href="#base.gui.Settings.Settings.configPrefix" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="base.gui.Settings.Settings.genericValue">
+<tt class="descname">genericValue</tt><big>(</big><em>key</em>, <em>default</em><big>)</big><a class="headerlink" href="#base.gui.Settings.Settings.genericValue" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns an arbitrary settings value, corrosponding to <cite>key</cite>.
+The <cite>default</cite> value is used should the <cite>key</cite> contain no value.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>key</strong> (<em>string</em>) &#8211; the name of the key to get the value from.</li>
+<li><strong>default</strong> &#8211; the value to be used as fallback if <cite>key</cite>
+contains no value.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="base.gui.Settings.Settings.geometry">
+<tt class="descname">geometry</tt><a class="headerlink" href="#base.gui.Settings.Settings.geometry" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="base.gui.Settings.Settings.language">
+<tt class="descname">language</tt><a class="headerlink" href="#base.gui.Settings.Settings.language" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="base.gui.Settings.Settings.maximize">
+<tt class="descname">maximize</tt><a class="headerlink" href="#base.gui.Settings.Settings.maximize" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="base.gui.Settings.Settings.position">
+<tt class="descname">position</tt><a class="headerlink" href="#base.gui.Settings.Settings.position" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="base.gui.Settings.Settings.setGenericValue">
+<tt class="descname">setGenericValue</tt><big>(</big><em>key</em>, <em>value</em><big>)</big><a class="headerlink" href="#base.gui.Settings.Settings.setGenericValue" title="Permalink to this definition">¶</a></dt>
+<dd><p>Utility method for setting an arbitrary setting value.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>key</strong> (<em>string</em>) &#8211; the key for the value.</li>
+<li><strong>value</strong> &#8211; the value to be saved.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="base.gui.Settings.Settings.showDebug">
+<tt class="descname">showDebug</tt><a class="headerlink" href="#base.gui.Settings.Settings.showDebug" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="base.gui.Settings.Settings.showErrors">
+<tt class="descname">showErrors</tt><a class="headerlink" href="#base.gui.Settings.Settings.showErrors" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="base.gui.Settings.Settings.showInfo">
+<tt class="descname">showInfo</tt><a class="headerlink" href="#base.gui.Settings.Settings.showInfo" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="base.gui.Settings.Settings.showLogger">
+<tt class="descname">showLogger</tt><a class="headerlink" href="#base.gui.Settings.Settings.showLogger" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="base.gui.Settings.Settings.showLoggerOnStart">
+<tt class="descname">showLoggerOnStart</tt><a class="headerlink" href="#base.gui.Settings.Settings.showLoggerOnStart" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="base.gui.Settings.Settings.size">
+<tt class="descname">size</tt><a class="headerlink" href="#base.gui.Settings.Settings.size" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="base.gui.Settings.Settings.state">
+<tt class="descname">state</tt><a class="headerlink" href="#base.gui.Settings.Settings.state" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="plugin-settings">
+<h2>Plugin settings<a class="headerlink" href="#plugin-settings" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="base.gui.Settings.PluginSettings">
+<em class="property">class </em><tt class="descclassname">base.gui.Settings.</tt><tt class="descname">PluginSettings</tt><big>(</big><em>pluginName</em><big>)</big><a class="headerlink" href="#base.gui.Settings.PluginSettings" title="Permalink to this definition">¶</a></dt>
+<dd><p>Wrapper Settings class for plugins.</p>
+<p>This is a generic settings class, which provide consistent loading
+and saving of settings for plugins. It works by providing the
+plugin name to the constructor, and using this value to retrive and
+save settings in the main luma settings file.</p>
+<dl class="attribute">
+<dt id="base.gui.Settings.PluginSettings.configPrefix">
+<tt class="descname">configPrefix</tt><a class="headerlink" href="#base.gui.Settings.PluginSettings.configPrefix" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="base.gui.Settings.PluginSettings.pluginValue">
+<tt class="descname">pluginValue</tt><big>(</big><em>key</em>, <em>default</em><big>)</big><a class="headerlink" href="#base.gui.Settings.PluginSettings.pluginValue" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the plugin settings value for the <cite>key</cite>, if such a
+value exists. If not the <cite>default</cite> value is returned.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>key</strong> (<em>string</em>) &#8211; the name of the key to get the value from.</li>
+<li><strong>default</strong> &#8211; the value to be used as fallback if <cite>key</cite>
+contains no value.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="base.gui.Settings.PluginSettings.setPluginValue">
+<tt class="descname">setPluginValue</tt><big>(</big><em>key</em>, <em>value</em><big>)</big><a class="headerlink" href="#base.gui.Settings.PluginSettings.setPluginValue" title="Permalink to this definition">¶</a></dt>
+<dd><p>Saves a <cite>value</cite> associated with a <cite>key</cite> to the settings file.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>key</strong> (<em>string</em>) &#8211; the key for the value.</li>
+<li><strong>value</strong> &#8211; the value to be saved.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="../index.html">
+              <img class="logo" src="../_static/luma.png" alt="Logo"/>
+            </a></p>
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">The <tt class="docutils literal"><span class="pre">luma.base.gui</span></tt> package</a><ul>
+<li><a class="reference internal" href="#application-settings">Application settings</a></li>
+<li><a class="reference internal" href="#plugin-settings">Plugin settings</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="backend.html"
+                        title="previous chapter">The <tt class="docutils literal docutils literal"><span class="pre">luma.base.backend</span></tt> package</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="util.html"
+                        title="next chapter">The <tt class="docutils literal docutils literal"><span class="pre">luma.base.util</span></tt> package</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/api/gui.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" size="18" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="util.html" title="The luma.base.util package"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="backend.html" title="The luma.base.backend package"
+             >previous</a> |</li>
+        <li><a href="../index.html">Luma v3.0.7 documentation</a> &raquo;</li>
+          <li><a href="index.html" >Luma API</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2011, Christian Forfang, Einar Uvsløkk, Johannes Harestad, Per Ove Ringstad, Simen Natvig, Sondre Frisvold.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.0.7.
+    </div>
+  </body>
+</html>

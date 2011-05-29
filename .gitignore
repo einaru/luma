@@ -1,0 +1,32 @@
+# Python files
+*.pyc
+.pyc
+
+# Eclipse files
+.settings
+.metadata
+.project
+.pydevproject
+
+# Vim -_-
+*.swp
+
+# Used by tests
+serverlist.xml
+
+# Used for testing
+src/luma/snippets/*
+snippets/*
+
+# distutils
+dist/*
+build/*
+MANIFEST
+uninstall.sh
+
+# Documentation build files (Sphinx and reST)
+.buildinfo
+.doctrees
+
+*.log
+*.gz

@@ -1,0 +1,42 @@
+****
+TODO
+****
+
+Luma TODO file contains spesific things to do in the project tree
+
+
+- Kill all threading activity against LDAP servers when quitting ?
+  Perhaps with some sort of signal system.
+
+
+2011-03-31 sprint5
+------------------
+- taborder
+- tooltips
+- enter working correctly for all dialogs
+- consistency:
+
+  - model implementations
+  - ui files:
+
+    - how much is done in the designer?
+    - where do we define signal and slots
+
+- translations
+
+  - implement dynamic translation support in all plugins.
+    (changeEvent + restranslate methods)
+
+- keybinding consistency
+
+
+TODOs marked DONE
+-----------------
+- **[DONE]** Solve the dynamic path issues:
+  resource files (icons, translation files), config files, etc.
+
+- **[DONE]** Update all relevant parts of the application when settings are
+  changed through the settings dialog, (i.e. most settings in the dialog can
+  also be changed through menu actions)
+
+- **[DONE]** Update the bin/luma startup script.

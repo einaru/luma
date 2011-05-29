@@ -1,0 +1,231 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>luma &mdash; Luma v3.0.7 documentation</title>
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '3.0.7',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/sidebar.js"></script>
+    <link rel="top" title="Luma v3.0.7 documentation" href="index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="index.html">Luma v3.0.7 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="luma">
+<h1>luma<a class="headerlink" href="#luma" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="ldap-browser-and-administration-utility">
+<h2>LDAP browser and administration utility<a class="headerlink" href="#ldap-browser-and-administration-utility" title="Permalink to this headline">¶</a></h2>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Date:</th><td class="field-body">April 26, 2011</td>
+</tr>
+<tr class="field"><th class="field-name">Copyright:</th><td class="field-body">GNU General Public License version 2 or later</td>
+</tr>
+<tr class="field"><th class="field-name">Manual section:</th><td class="field-body">1</td>
+</tr>
+<tr class="field"><th class="field-name">Manual group:</th><td class="field-body">LDAP administration utility</td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="synopsis">
+<h3>SYNOPSIS<a class="headerlink" href="#synopsis" title="Permalink to this headline">¶</a></h3>
+<p>luma [OPTIONS]</p>
+</div>
+<div class="section" id="description">
+<h3>DESCRIPTION<a class="headerlink" href="#description" title="Permalink to this headline">¶</a></h3>
+<p>Luma is a cross-platform, open source LDAP browser and administration utility,
+capable of managing data stored on LDAP enabled server. It is written in Python,
+with PyQt4 (<em>GUI</em>) and python-ldap (<em>LDAP connections</em>). Luma supports plugins
+through its own plugin system. A selection of plugins, providing useful LDAP
+functionality, is includeed with the base application:</p>
+<ul class="simple">
+<li><em>Browser</em>:
+Provides a familiar interface to browse the entry tree on connected LDAP
+enabled servers. Entry attributes can be edited and deleted. Supports adding
+filters to limit expansions on large subtrees.</li>
+<li><em>Template</em>:</li>
+<li><em>Search</em>:
+A specialized search plugin to do advanced and complex search on a LDAP
+server. Supports filter creation that can be applied in the Browser plugin.</li>
+</ul>
+<p>Plugins included in <em>Luma 2.4</em>, but not ported from PyQt3 yet:</p>
+<ul class="simple">
+<li><em>Schema browser</em>:</li>
+<li><em>Addressbook</em>: Supports building addressbooks from LDAP entries on different
+servers.</li>
+<li><em>Massive user creation</em>:</li>
+<li><em>Admin utilities</em>:</li>
+</ul>
+</div>
+<div class="section" id="options">
+<h3>OPTIONS<a class="headerlink" href="#options" title="Permalink to this headline">¶</a></h3>
+<p>A summary of the options supported by <em>luma</em> is included below.</p>
+<table class="docutils option-list" frame="void" rules="none">
+<col class="option" />
+<col class="description" />
+<tbody valign="top">
+<tr><td class="option-group">
+<kbd><span class="option">-h</span>, <span class="option">--help</span></kbd></td>
+<td>Display a help message and exit.</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">-v</span>, <span class="option">--verbose</span></kbd></td>
+<td>print more error, debug and info messages to the console.</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">--clear-config</span></kbd></td>
+<td>clear the config file before launching Luma.</td></tr>
+<tr><td class="option-group" colspan="2">
+<kbd><span class="option">--clear-serverlist</span></kbd></td>
+</tr>
+<tr><td>&nbsp;</td><td>clear the serverlist before launching Luma.</td></tr>
+<tr><td class="option-group" colspan="2">
+<kbd><span class="option">--clear-templates</span></kbd></td>
+</tr>
+<tr><td>&nbsp;</td><td>clear the templates file before launching Luma.</td></tr>
+<tr><td class="option-group" colspan="2">
+<kbd><span class="option">--clear-filters</span></kbd></td>
+</tr>
+<tr><td>&nbsp;</td><td>clear the filters file before launching Luma.</td></tr>
+<tr><td class="option-group">
+<kbd><span class="option">--clear-all</span></kbd></td>
+<td>clear everything before launching Luma. This will result in the same as
+providing all the before mentioned clear options.</td></tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="files">
+<h3>FILES<a class="headerlink" href="#files" title="Permalink to this headline">¶</a></h3>
+<dl class="docutils">
+<dt><tt class="docutils literal"><span class="pre">~/.config/luma</span></tt></dt>
+<dd>Default directory for configuration data.</dd>
+<dt><tt class="docutils literal"><span class="pre">~/.config/luma/luma.conf</span></tt></dt>
+<dd>Application settings.</dd>
+<dt><tt class="docutils literal"><span class="pre">~/.config/luma/serverlist.xml</span></tt></dt>
+<dd>The serverlist.</dd>
+<dt><tt class="docutils literal"><span class="pre">~/.config/luma/templatelist.xml</span></tt></dt>
+<dd>The templatelist created by the Template plugin.</dd>
+<dt><tt class="docutils literal"><span class="pre">-/.config/luma/filters</span></tt></dt>
+<dd>The saved LDAP filters created by the Search plugin.</dd>
+</dl>
+</div>
+<div class="section" id="bugs">
+<h3>BUGS<a class="headerlink" href="#bugs" title="Permalink to this headline">¶</a></h3>
+<p>Bug tracker: <a class="reference external" href="http://sourceforge.net/tracker/?group_id=89105">http://sourceforge.net/tracker/?group_id=89105</a></p>
+</div>
+<div class="section" id="resources">
+<h3>RESOURCES<a class="headerlink" href="#resources" title="Permalink to this headline">¶</a></h3>
+<p>Website: <a class="reference external" href="http://luma.sf.net">http://luma.sf.net</a></p>
+</div>
+<div class="section" id="authors">
+<h3>AUTHORS<a class="headerlink" href="#authors" title="Permalink to this headline">¶</a></h3>
+<p>Originally written and developed by Wido Depping <a class="reference external" href="mailto:wido&#37;&#52;&#48;users&#46;sourceforge&#46;net">wido<span>&#64;</span>users<span>&#46;</span>sourceforge<span>&#46;</span>net</a>
+from 2003, with help from Bjørn Over Grøtan <a class="reference external" href="mailto:bgrotan&#37;&#52;&#48;grotan&#46;com">bgrotan<span>&#64;</span>grotan<span>&#46;</span>com</a> and Vegar
+Westerlund <a class="reference external" href="mailto:vegarwe&#37;&#52;&#48;users&#46;sourceforge&#46;net">vegarwe<span>&#64;</span>users<span>&#46;</span>sourceforge<span>&#46;</span>net</a>.</p>
+<p>Rewritten for PyQt4 and ported to multiple platforms in 2011 by Christian
+Forfang <a class="reference external" href="mailto:cforfang&#37;&#52;&#48;gmail&#46;com">cforfang<span>&#64;</span>gmail<span>&#46;</span>com</a>, Einar Uvsløkk <a class="reference external" href="mailto:einar&#46;uvslokk&#37;&#52;&#48;gmail&#46;com">einar<span>&#46;</span>uvslokk<span>&#64;</span>gmail<span>&#46;</span>com</a>, Johannes
+Harestad <a class="reference external" href="mailto:johannesharestad&#37;&#52;&#48;gmail&#46;com">johannesharestad<span>&#64;</span>gmail<span>&#46;</span>com</a>, Per Ove Ringstad <a class="reference external" href="mailto:peroveri&#37;&#52;&#48;stud&#46;ntnu&#46;no">peroveri<span>&#64;</span>stud<span>&#46;</span>ntnu<span>&#46;</span>no</a>,
+Simen Natvig <a class="reference external" href="mailto:simen&#46;natvig&#37;&#52;&#48;gmail&#46;com">simen<span>&#46;</span>natvig<span>&#64;</span>gmail<span>&#46;</span>com</a>, Sondre Frisvold <a class="reference external" href="mailto:sondre&#46;frisvold&#37;&#52;&#48;c2i&#46;net">sondre<span>&#46;</span>frisvold<span>&#64;</span>c2i<span>&#46;</span>net</a></p>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="index.html">
+              <img class="logo" src="_static/luma.png" alt="Logo"/>
+            </a></p>
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">luma</a><ul>
+<li><a class="reference internal" href="#ldap-browser-and-administration-utility">LDAP browser and administration utility</a><ul>
+<li><a class="reference internal" href="#synopsis">SYNOPSIS</a></li>
+<li><a class="reference internal" href="#description">DESCRIPTION</a></li>
+<li><a class="reference internal" href="#options">OPTIONS</a></li>
+<li><a class="reference internal" href="#files">FILES</a></li>
+<li><a class="reference internal" href="#bugs">BUGS</a></li>
+<li><a class="reference internal" href="#resources">RESOURCES</a></li>
+<li><a class="reference internal" href="#authors">AUTHORS</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/luma.1.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" size="18" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="index.html">Luma v3.0.7 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2011, Christian Forfang, Einar Uvsløkk, Johannes Harestad, Per Ove Ringstad, Simen Natvig, Sondre Frisvold.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.0.7.
+    </div>
+  </body>
+</html>

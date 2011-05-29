@@ -1,0 +1,211 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Luma Installation &mdash; Luma v3.0.7 documentation</title>
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '3.0.7',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/sidebar.js"></script>
+    <link rel="top" title="Luma v3.0.7 documentation" href="index.html" />
+    <link rel="next" title="Luma Userguide" href="userguide.html" />
+    <link rel="prev" title="Luma README file" href="README.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="userguide.html" title="Luma Userguide"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="README.html" title="Luma README file"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">Luma v3.0.7 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="luma-installation">
+<h1>Luma Installation<a class="headerlink" href="#luma-installation" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="platforms-and-dependencies">
+<h2>1. Platforms and dependencies<a class="headerlink" href="#platforms-and-dependencies" title="Permalink to this headline">¶</a></h2>
+<p>Luma is a crossplatform application written in the Python programming language.
+It is developed and continiously tested on a number of platforms and operating
+systems. The development platforms include:</p>
+<ul class="simple">
+<li>Fedora: 14 (GNOME)</li>
+<li>Ubuntu: 10.04, 10.10</li>
+<li>Microsoft Windows: Vista, 7</li>
+<li>Mac OS X</li>
+</ul>
+<p>In addition Luma is tested succesfully on the following platforms:</p>
+<ul class="simple">
+<li>Fedora: 14 (KDE)</li>
+<li>Fedora: 15 (GNOME 3)</li>
+<li>Chakra GNU/Linux: 2011.02 (Cyrus)</li>
+<li>Microsoft Windows: XP</li>
+</ul>
+<p>In order to succesfully install and run Luma, you will need the to install the
+following libraries on your syste on your systemm:</p>
+<ul class="simple">
+<li>Python &gt;= 2.6 &lt; 3</li>
+<li>python-ldap &gt;= 2.3</li>
+<li>PyQt4 &gt;= 4.8</li>
+</ul>
+<p>You can install and/or run Luma in a number of ways. This includes:</p>
+<ul class="simple">
+<li><a class="reference internal" href="#installing-luma-from-a-source-distribution">2. Installing Luma from a source distribution</a></li>
+<li><a class="reference internal" href="#installing-a-prepackaged-distribution-of-luma">3. Installing a prepackaged distribution of Luma</a></li>
+</ul>
+</div>
+<div class="section" id="installing-luma-from-a-source-distribution">
+<h2>2. Installing Luma from a source distribution<a class="headerlink" href="#installing-luma-from-a-source-distribution" title="Permalink to this headline">¶</a></h2>
+<p>Source distribution for Luma is avaliable for installation using the distutils
+modules in the standard python library. Source distributions can be downloaded
+as tarballs <tt class="docutils literal"><span class="pre">.tar.gz</span></tt> (UNIX and UNIX-like) or as zipped archives (Windows)
+<tt class="docutils literal"><span class="pre">.zip</span></tt>. If you are running on Linux you could see if your distribution provide
+prepackaged distributions of Luma (<a class="reference internal" href="#installing-a-prepackaged-distribution-of-luma">3. Installing a prepackaged distribution of
+Luma</a>)</p>
+<div class="section" id="installing-the-latest-tarball">
+<h3>2.1. Installing the latest tarball<a class="headerlink" href="#installing-the-latest-tarball" title="Permalink to this headline">¶</a></h3>
+<p>If you are installing on UNIX and UNIX-like systems, you should use the latest
+tarball. The tarballs is known to install without any problem on both Linux and
+Mac OS X. Luma is easily installed with the following commands:</p>
+<div class="highlight-python"><pre>$ tar xvzf luma-3.0.6.tar.gz
+$ cd luma-3.0.6
+$ sudo python setup.py install</pre>
+</div>
+</div>
+<div class="section" id="installing-the-latest-zipped-archive">
+<h3>2.2. Installing the latest zipped archive<a class="headerlink" href="#installing-the-latest-zipped-archive" title="Permalink to this headline">¶</a></h3>
+<p>If you are installing on Microsft Windows you should download the latest zipped
+archive, and open your <tt class="docutils literal"><span class="pre">cmd.exe</span></tt>:</p>
+<div class="highlight-python"><pre>$ unzip luma-3.0.6.zip
+$ cd luma-3.0.6
+$ python.exe setup.py install</pre>
+</div>
+</div>
+</div>
+<div class="section" id="installing-a-prepackaged-distribution-of-luma">
+<h2>3. Installing a prepackaged distribution of Luma<a class="headerlink" href="#installing-a-prepackaged-distribution-of-luma" title="Permalink to this headline">¶</a></h2>
+<p>The following platform spesific Luma packages are available:</p>
+<div class="section" id="linux">
+<h3>3.1. Linux<a class="headerlink" href="#linux" title="Permalink to this headline">¶</a></h3>
+<p><strong>Fedora</strong></p>
+<p>Testbuilds is currently available at <a class="reference external" href="http://folk.ntnu.no/einaru/luma/dist">http://folk.ntnu.no/einaru/luma/dist</a>.</p>
+</div>
+<div class="section" id="microsoft-windows">
+<h3>3.2. Microsoft Windows<a class="headerlink" href="#microsoft-windows" title="Permalink to this headline">¶</a></h3>
+<p>For Microsoft Windows there exists both <tt class="docutils literal"><span class="pre">.exe</span></tt> and  <tt class="docutils literal"><span class="pre">.msi</span></tt> installers. Note
+that all the required dependencies must be installed seperately.
+Windows installers is currently available at <a class="reference external" href="http://folk.ntnu.no/einaru/luma/dist">http://folk.ntnu.no/einaru/luma/dist</a>.</p>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="index.html">
+              <img class="logo" src="_static/luma.png" alt="Logo"/>
+            </a></p>
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Luma Installation</a><ul>
+<li><a class="reference internal" href="#platforms-and-dependencies">1. Platforms and dependencies</a></li>
+<li><a class="reference internal" href="#installing-luma-from-a-source-distribution">2. Installing Luma from a source distribution</a><ul>
+<li><a class="reference internal" href="#installing-the-latest-tarball">2.1. Installing the latest tarball</a></li>
+<li><a class="reference internal" href="#installing-the-latest-zipped-archive">2.2. Installing the latest zipped archive</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#installing-a-prepackaged-distribution-of-luma">3. Installing a prepackaged distribution of Luma</a><ul>
+<li><a class="reference internal" href="#linux">3.1. Linux</a></li>
+<li><a class="reference internal" href="#microsoft-windows">3.2. Microsoft Windows</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="README.html"
+                        title="previous chapter">Luma README file</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="userguide.html"
+                        title="next chapter">Luma Userguide</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/INSTALL.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" size="18" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="userguide.html" title="Luma Userguide"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="README.html" title="Luma README file"
+             >previous</a> |</li>
+        <li><a href="index.html">Luma v3.0.7 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2011, Christian Forfang, Einar Uvsløkk, Johannes Harestad, Per Ove Ringstad, Simen Natvig, Sondre Frisvold.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.0.7.
+    </div>
+  </body>
+</html>

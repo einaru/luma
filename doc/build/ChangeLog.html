@@ -1,0 +1,266 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>ChangeLog &mdash; Luma v3.0.7 documentation</title>
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '3.0.7',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/sidebar.js"></script>
+    <link rel="top" title="Luma v3.0.7 documentation" href="index.html" />
+    <link rel="next" title="Bugs" href="BUGS.html" />
+    <link rel="prev" title="The luma.base.util package" href="api/util.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="BUGS.html" title="Bugs"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="api/util.html" title="The luma.base.util package"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">Luma v3.0.7 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="changelog">
+<h1>ChangeLog<a class="headerlink" href="#changelog" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="id1">
+<h2>3.0.7 (2011-05-26)<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Fixed unconsistent license statements in the sourcecode, meaning license
+boilerplates is now added/updated (from GPL v3 to GPL v2) in all files
+added and/or modified since Luma 2.4.</li>
+<li>Removed the last string exception from ObjectClassAttributeInfo.py!</li>
+</ul>
+<div class="line-block">
+<div class="line"><a class="reference external" href="http://sourceforge.net/support/tracker.php?aid=3014815">http://sourceforge.net/support/tracker.php?aid=3014815</a></div>
+<div class="line"><a class="reference external" href="http://bugs.debian.org/585248">http://bugs.debian.org/585248</a></div>
+</div>
+<ul class="simple">
+<li>Gzipping of Nroff manpages on UNIX and UNIX-like systems is now handled during
+installation.</li>
+<li>Include the nthash patch, which was fixed in Luma 2.4 svn rev 841, but not
+included in the new codebase.</li>
+</ul>
+<div class="line-block">
+<div class="line"><a class="reference external" href="http://sourceforge.net/support/tracker.php?aid=2309281">http://sourceforge.net/support/tracker.php?aid=2309281</a></div>
+<div class="line"><a class="reference external" href="http://bugs.debian.org/559078">http://bugs.debian.org/559078</a></div>
+<div class="line"><a class="reference external" href="http://luma.svn.sourceforge.net/viewvc/luma?view=rev&amp;revision=841">http://luma.svn.sourceforge.net/viewvc/luma?view=rev&amp;revision=841</a></div>
+<div class="line"><a class="reference external" href="https://launchpad.net/bugs/297148">https://launchpad.net/bugs/297148</a></div>
+<div class="line"><a class="reference external" href="http://launchpadlibrarian.net/19590144/luma_2.3-1.1ubuntu1.debdiff">http://launchpadlibrarian.net/19590144/luma_2.3-1.1ubuntu1.debdiff</a></div>
+</div>
+<ul class="simple">
+<li>Added a import check for the crypt module in mkpasswd, because of ImportError
+on the Windows platform.</li>
+</ul>
+</div>
+<div class="section" id="id2">
+<h2>3.0.6-2 (2011-05-16)<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Fixed exception.ErrorType bug in LumaConnectionWrapper.</li>
+<li>Updated the error/exception feedback in the Search plugin</li>
+<li>Renamed the browser_plugin folder to browser</li>
+<li>Moved Plugin* related code out from the util package and into base.gui,
+base.gui.design, base.model</li>
+<li>Fixed export subtree in Browser plugin.</li>
+</ul>
+</div>
+<div class="section" id="id3">
+<h2>3.0.6-1 (2011-05-15)<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Some small fixes to the documentation files.</li>
+</ul>
+</div>
+<div class="section" id="id4">
+<h2>3.0.6 (2011-05-15)<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>New Connection API introduced with the LumaConnectionWrapper. This includes
+wrapper methods (both sync and async) for the refactored LumaConnection.
+Uses signal and slots to notify results from the various operations.
+All Qt 4 dependencies is thus removed from the backend modules.</li>
+<li>Refactor cleanup of the menubar in the main window.</li>
+<li>Search plugin now supports none-ascii characters in both server name and
+search filter strings.</li>
+<li>Dynamic translation implemented in the Template plugin.</li>
+<li>Improved (simplified) internationalization support</li>
+</ul>
+</div>
+<div class="section" id="sprint5-2011-04-11">
+<h2>3.0.5-sprint5 (2011-04-11)<a class="headerlink" href="#sprint5-2011-04-11" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Search plugin has got a few updates and improvements. The filter builder
+has replaced the old filter wizard, some UI fixes in the search form, and
+the result view for displaying search results is implemented. New feature
+enabling additional filtering on returned search results.</li>
+<li>Template plugin improved with the option to define none required attributes
+to appear as required.</li>
+</ul>
+</div>
+<div class="section" id="sprint4-2011-03-25">
+<h2>3.0.4-sprint4 (2011-03-25)<a class="headerlink" href="#sprint4-2011-03-25" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Main-application: Support for commandline arguments added. As of now this
+includes mostly clear flags, to wipe clean malicious config settings.</li>
+<li>Browser-plugin: Added multiselection item export and delete. Lots of
+improvments in the Browsers entry view, including basic support for different
+html layouts for the view.</li>
+<li>Template-plugin: Gui finished, logic on its way.</li>
+<li>Search-plugin: Skeleton gui, and basic functionality implemented.</li>
+</ul>
+</div>
+<div class="section" id="sprint3-2011-03-14">
+<h2>3.0.3-sprint3 (2011-03-14)<a class="headerlink" href="#sprint3-2011-03-14" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Luma is now able to load plugins from the default plugin location.</li>
+<li>The Browser plugin now supports editing entries</li>
+<li>A simple installation procedure is included, making use of pythons own
+distutils module.</li>
+</ul>
+</div>
+<div class="section" id="sprint2-2011-03-01">
+<h2>3.0.2-sprint2 (2011-03-01)<a class="headerlink" href="#sprint2-2011-03-01" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Plugin support is partly implemented. Loading plugins is working, but no
+<em>real</em> plugins is present at runtime yet.</li>
+<li>The Browser plugin is partly implemented, but not integrated into the
+application yet.</li>
+<li>An extended QSettings class is implemented, with transparent support for
+loading and saving application  settings. Settings is loaded and saved from
+both the main window and the newly implemented settings dialog.</li>
+<li>Full translation is available for English and Norwegian, and can be changed,
+from both the settings dialog and the application menu bar, at runtime
+without changing the application state.</li>
+</ul>
+</div>
+<div class="section" id="sprint1-2011-02-28">
+<h2>3.0.1-sprint1 (2011-02-28)<a class="headerlink" href="#sprint1-2011-02-28" title="Permalink to this headline">¶</a></h2>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">This relase branch was tagged and created at the end of sprint 2, but still
+reflects the work done up until the end of sprint 1. It was created to
+document the development progression.</p>
+</div>
+<ul class="simple">
+<li>The Menu bar is restructured compared to Luma 2.4, various platforms <em>Human
+Interface Guidelines</em>.</li>
+<li>The Plugin toolbar is implemented, but with no real functionality yet.</li>
+<li>The Logger Window is implemented and displayes various logging levels, using
+the builtin python logging module.</li>
+<li>About dialog is implemented, and completely rewritten compared to Luma 2.4,
+inspired by gtk and gnome.</li>
+<li>The Server dialog GUI is implemented. Support for reading and saving the
+server list is also implemented.</li>
+<li>Translation files is loaded dynamically. Uses the old translation files,
+which still works on parts of the application. The languages can be selected
+from the menu bar, which is populated dynamically on startup.</li>
+</ul>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="index.html">
+              <img class="logo" src="_static/luma.png" alt="Logo"/>
+            </a></p>
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">ChangeLog</a><ul>
+<li><a class="reference internal" href="#id1">3.0.7 (2011-05-26)</a></li>
+<li><a class="reference internal" href="#id2">3.0.6-2 (2011-05-16)</a></li>
+<li><a class="reference internal" href="#id3">3.0.6-1 (2011-05-15)</a></li>
+<li><a class="reference internal" href="#id4">3.0.6 (2011-05-15)</a></li>
+<li><a class="reference internal" href="#sprint5-2011-04-11">3.0.5-sprint5 (2011-04-11)</a></li>
+<li><a class="reference internal" href="#sprint4-2011-03-25">3.0.4-sprint4 (2011-03-25)</a></li>
+<li><a class="reference internal" href="#sprint3-2011-03-14">3.0.3-sprint3 (2011-03-14)</a></li>
+<li><a class="reference internal" href="#sprint2-2011-03-01">3.0.2-sprint2 (2011-03-01)</a></li>
+<li><a class="reference internal" href="#sprint1-2011-02-28">3.0.1-sprint1 (2011-02-28)</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="api/util.html"
+                        title="previous chapter">The <tt class="docutils literal"><span class="pre">luma.base.util</span></tt> package</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="BUGS.html"
+                        title="next chapter">Bugs</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/ChangeLog.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" size="18" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="BUGS.html" title="Bugs"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="api/util.html" title="The luma.base.util package"
+             >previous</a> |</li>
+        <li><a href="index.html">Luma v3.0.7 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2011, Christian Forfang, Einar Uvsløkk, Johannes Harestad, Per Ove Ringstad, Simen Natvig, Sondre Frisvold.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.0.7.
+    </div>
+  </body>
+</html>

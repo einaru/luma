@@ -1,0 +1,14 @@
+include AUTHORS
+include ChangeLog
+include COPYING
+include INSTALL
+include README
+include TODO
+recursive-include data *.desktop
+recursive-include data/icons *.png *.svg
+recursive-include data/man *.1
+recursive-include data/man *.1.gz
+recursive-include luma/plugins/browser/templates *.html
+recursive-include luma/plugins/browser/templates/inetOrgPerson *.html
+recursive-include luma/plugins/browser/templates/organization *.html
+recursive-include luma/plugins/browser/templates/person *.html
