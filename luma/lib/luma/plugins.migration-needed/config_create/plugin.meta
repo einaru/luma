@@ -1,4 +1,0 @@
-PLUGIN_NAME=Config File Creator
-PLUGIN_VERSION=0.1
-PLUGIN_AUTHOR=wido.depping@tu-clausthal.de
-PLUGIN_FILE=config_create_plugin.py
