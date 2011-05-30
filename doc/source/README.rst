@@ -23,7 +23,7 @@ you can read the installation instruction in the `INSTALL`_ file.
 
 COPYING
 =======
-Copyright (c) 2003-2011 Wido Depping, Bjørn Ove Grøtan, Vegard Westerlund
+Copyright (c) 2003-2011 Wido Depping, Bjørn Ove Grøtan, Vegar Westerlund
 Copyright (c) 2011 Christian Forfang, Einar Uvsløkk, Johannes Harestad, Per Ove
 Ringstad, Simen Natvig, Sondre Frisvold.
 

@@ -24,7 +24,7 @@ lumaPlugin = True
 pluginName = u"browser"
 pluginUserString = u"Browser"
 version = u"0.3"
-author = u"Christian Forfang, Simen Natvig, Per Ove Ringdal, Vegard Westerlund"
+author = u"Christian Forfang, Simen Natvig, Per Ove Ringdal, Vegar Westerlund"
 description = u""
 
 def getIcon():
